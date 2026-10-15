@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-05:intro1:r2": {
+          "ru": "Ровно та ошибка, которую делают все: `am` проглотили. Про себя — всегда `I am`.",
+          "uk": "Саме та помилка, яку роблять усі: `am` проковтнули. Про себе — завжди `I am`."
+        },
+        "en:lesson-01:session-05:intro1:r3": {
+          "ru": "Теперь пропал сам `I`. Англичане говорят, кто именно в порядке, даже если это очевидно.",
+          "uk": "Тепер зник сам `I`. Англійці кажуть, хто саме в порядку, навіть якщо це очевидно."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-05:intro2:r2": {
+          "ru": "В этой конструкции `no` не заменяет `not`: для «я не уверен» нужен `not` после `am`.",
+          "uk": "У цій конструкції `no` не замінює `not`: для «я не впевнений» потрібне `not` після `am`."
+        },
+        "en:lesson-01:session-05:intro2:r3": {
+          "ru": "`not` убежал в конец. Его место — сразу после `am`, перед словом о вас.",
+          "uk": "`not` утік у кінець. Його місце — одразу після `am`, перед словом про вас."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-05:intro3:r2": {
+          "ru": "Не хватает `am`. О себе по-английски говорим `I am new`.",
+          "uk": "Бракує `am`. Про себе англійською кажемо `I am new`."
+        },
+        "en:lesson-01:session-05:intro3:r3": {
+          "ru": "Вы сказали обратное: «я тут не новенький». А вы как раз новенький.",
+          "uk": "Ви сказали протилежне: «я тут не новенький». А ви якраз новенький."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5038be9cefac7a7c32b00119fb2c4fba0c92ac0e7367e4ba9f72fd1f80b6210f"
+}

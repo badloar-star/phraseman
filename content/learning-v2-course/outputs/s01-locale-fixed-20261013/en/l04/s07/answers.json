@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-07:i01",
+    "correctText": "playground",
+    "correctResponseId": "en:lesson-04:session-07:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i02",
+    "correctText": "playground",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i03",
+    "correctText": "playground",
+    "correctResponseId": "en:lesson-04:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i04",
+    "correctText": "There is a playground near a building.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i05",
+    "correctText": "There is a playground near the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i07",
+    "correctText": "There are buildings beside the playground.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i08",
+    "correctText": "p1=playground\np2=building\np3=shop\np4=street",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i10",
+    "correctText": "There is a shop near the playground.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i11",
+    "correctText": "There are buildings on the street near the playground.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i12",
+    "correctText": "There is a playground near the buildings.",
+    "correctResponseId": null
+  }
+]

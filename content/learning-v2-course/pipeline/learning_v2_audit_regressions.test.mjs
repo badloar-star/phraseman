@@ -218,6 +218,15 @@ const choice = (interactionId, family = "context_gap_grammar") => ({
   },
 });
 
+const choiceAnswer = (task, interaction) => {
+  const correctIndex = (task.options ?? []).findIndex((option) => option.correct);
+  return {
+    interactionId: interaction.interactionId,
+    correctResponseId: `${interaction.interactionId}:r${correctIndex + 1}`,
+    correctText: task.options[correctIndex]?.text,
+  };
+};
+
 test("one shared header contract parses the Ukrainian scene and explicit no-new-words marker", () => {
   const header = parseHeader([
     "# Повторення",
@@ -341,7 +350,7 @@ test("every wrong response in a single-choice interaction needs localized feedba
   assert.ok(issues.some((issue) => issue.responseId === "i1:r3" && issue.reason === "choice_feedback_missing"));
 });
 
-test("feedback attached to the correct response is accepted only when marked correct", () => {
+test("feedback attached to the correct response is always invalid", () => {
   const interaction = choice("i1");
   interaction.modePayload.choiceFeedback = [{
     responseId: "i1:r1",
@@ -351,11 +360,11 @@ test("feedback attached to the correct response is accepted only when marked cor
   const answers = [{ interactionId: "i1", correctResponseId: "i1:r1", correctText: "are" }];
   const issues = feedbackLocaleParityIssues({ ru: [interaction], uk: [structuredClone(interaction)] }, { answers });
 
-  assert.equal(issues.some((issue) => issue.responseId === "i1:r1"), false);
+  assert.ok(issues.some((issue) => issue.responseId === "i1:r1" && issue.reason === "feedback_target_invalid"));
 
   interaction.modePayload.choiceFeedback[0].correct = false;
   const invalid = feedbackLocaleParityIssues({ ru: [interaction], uk: [structuredClone(interaction)] }, { answers });
-  assert.ok(invalid.some((issue) => issue.responseId === "i1:r1" && issue.reason === "choice_feedback_wrong_contract"));
+  assert.ok(invalid.some((issue) => issue.responseId === "i1:r1" && issue.reason === "feedback_target_invalid"));
 });
 
 test("context-gap Markdown feedback must survive exactly into the atomic locale", () => {
@@ -388,10 +397,10 @@ test("context-gap Markdown feedback must survive exactly into the atomic locale"
     },
   };
 
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.choiceFeedback");
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), "modePayload.choiceFeedback");
 });
 
-test("explicit feedback on the declared correct Markdown option cannot disappear", () => {
+test("legacy feedback on the declared correct Markdown option is not learner feedback", () => {
   const task = {
     family: "context_gap_grammar",
     target: "___",
@@ -415,7 +424,7 @@ test("explicit feedback on the declared correct Markdown option cannot disappear
       choiceFeedback: [{ responseId: "i1:r2", correct: false, testedDimension: "", feedbackByLocale: { ru: "Для нескольких мест нужен are." } }],
     },
   };
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.choiceFeedback");
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), null);
 });
 
 test("inline Markdown decoration is ignored for feedback parity but semantic edits are not", () => {
@@ -442,9 +451,9 @@ test("inline Markdown decoration is ignored for feedback parity but semantic edi
       choiceFeedback: [{ responseId: "i1:r2", feedbackByLocale: { ru: "Для нескольких мест нужен are." } }],
     },
   };
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null);
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), null);
   interaction.modePayload.choiceFeedback[0].feedbackByLocale.ru = "Для одного места нужен is.";
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.choiceFeedback");
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), "modePayload.choiceFeedback");
 });
 
 test("multiple raw inline-code spans normalize independently before fence handling", () => {
@@ -478,9 +487,9 @@ test("multiple raw inline-code spans normalize independently before fence handli
       }],
     },
   };
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null);
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), null);
   interaction.modePayload.choiceFeedback[0].feedbackByLocale.ru = "Gate — это ворота; garden — это парк.";
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.choiceFeedback");
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), "modePayload.choiceFeedback");
 });
 
 test("choice feedback parity rejects stale learner-visible atomic entries", () => {
@@ -521,15 +530,15 @@ test("choice feedback parity rejects stale learner-visible atomic entries", () =
     },
   };
 
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null);
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), null);
   interaction.modePayload.choiceFeedback.push({
     responseId: "en:lesson-01:session-52:i11:r999",
     feedbackByLocale: { ru: "Устаревший разбор, которого нет в Markdown." },
   });
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.choiceFeedback");
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), "modePayload.choiceFeedback");
 });
 
-test("choice feedback parity binds correct feedback and the full tested dimension", () => {
+test("choice feedback parity ignores legacy correct feedback and binds the full wrong-answer dimension", () => {
   const title = "Вставьте слово — вас спросили, как дела, всё хорошо";
   const interactionId = "en:lesson-01:session-01:i10";
   const task = {
@@ -561,15 +570,15 @@ test("choice feedback parity binds correct feedback and the full tested dimensio
       ],
     },
   };
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, canonical, "ru"), null);
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, canonical, "ru", choiceAnswer(task, canonical)), null);
 
   const staleCorrect = structuredClone(canonical);
   staleCorrect.modePayload.choiceFeedback[0].feedbackByLocale.ru = "Старый правильный разбор.";
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, staleCorrect, "ru"), "modePayload.choiceFeedback");
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, staleCorrect, "ru", choiceAnswer(task, staleCorrect)), null);
 
   const truncatedDimension = structuredClone(canonical);
   truncatedDimension.modePayload.choiceFeedback[1].testedDimension = "Вставьте слово — вас спросили, как дела,";
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, truncatedDimension, "ru"), "modePayload.choiceFeedback");
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, truncatedDimension, "ru", choiceAnswer(task, truncatedDimension)), "modePayload.choiceFeedback");
 });
 
 test("word-card parity binds both learner-visible definition copies", () => {
@@ -673,9 +682,9 @@ test("learner-visible atomic choice feedback cannot exceed the Markdown contract
     },
   };
 
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.choiceFeedback");
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), "modePayload.choiceFeedback");
   interaction.modePayload.choiceFeedback = [];
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null);
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), null);
 });
 
 test("choice IDs and the declared correct option stay bound from Markdown through answers and feedback", () => {
@@ -766,7 +775,7 @@ test("sound contrast keeps canonical contrasts and both audio contracts", () => 
       choiceFeedback: [{ responseId: `${interactionId}:r2`, correct: false, testedDimension: "", feedbackByLocale: { ru: "Долгий звук." } }],
     },
   };
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null);
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), null);
   for (const [field, mutate] of [
     ["modePayload.contrastA", (copy) => { copy.modePayload.contrastA = "sheep"; }],
     ["modePayload.contrastB", (copy) => { copy.modePayload.contrastB = "ship"; }],
@@ -776,7 +785,7 @@ test("sound contrast keeps canonical contrasts and both audio contracts", () => 
   ]) {
     const copy = structuredClone(interaction);
     mutate(copy);
-    assert.equal(firstMarkdownAtomicLearnerMismatch(task, copy, "ru"), field);
+    assert.equal(firstMarkdownAtomicLearnerMismatch(task, copy, "ru", choiceAnswer(task, copy)), field);
   }
 });
 
@@ -1006,7 +1015,7 @@ test("an authored visible condition cannot disappear between Markdown and atomic
     },
   };
 
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.localizedScene");
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), "modePayload.localizedScene");
 });
 
 test("a labeled visible condition is parsed as learner-facing task data", () => {
@@ -1031,7 +1040,7 @@ test("unlabelled learner guidance before a task is projected while service field
       choiceFeedback: [{ responseId: `${task.interactionId}:r2`, feedbackByLocale: { ru: "Для двух нужна форма are." } }],
     },
   };
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.localizedScene");
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", choiceAnswer(task, interaction)), "modePayload.localizedScene");
 });
 
 test("the first declared option is the authored correct response", () => {

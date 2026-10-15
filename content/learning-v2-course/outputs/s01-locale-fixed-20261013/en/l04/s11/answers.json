@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-11:i01",
+    "correctText": "tram",
+    "correctResponseId": "en:lesson-04:session-11:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i02",
+    "correctText": "tram",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i03",
+    "correctText": "p1=library\np2=bank\np3=garden\np4=clinic\np5=tram",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i04",
+    "correctText": "Are there trams near the garden?",
+    "correctResponseId": "en:lesson-04:session-11:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i05",
+    "correctText": "Are there trams near the library?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i06",
+    "correctText": "Are there trams near the pharmacy?",
+    "correctResponseId": "en:lesson-04:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i07",
+    "correctText": "Are there trams near the bank?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i08",
+    "correctText": "Are there trams near the post office?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i09",
+    "correctText": "p1=dentist\np2=bakery\np3=post office\np4=pharmacy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i10",
+    "correctText": "Are there trams near the dentist?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i11",
+    "correctText": "Are there trams near the bakery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i12",
+    "correctText": "Are there trams near the clinic?",
+    "correctResponseId": null
+  }
+]

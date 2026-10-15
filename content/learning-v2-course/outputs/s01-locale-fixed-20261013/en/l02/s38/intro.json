@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "перенос знакомых вопросов с `who` в разговор о людях на работе",
+    "uk": "перенесення знайомих запитань із `who` у розмову про людей на роботі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать человека",
+        "uk": "Дізнатися, хто ця людина"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is he?` — «Кто он?» Этого вопроса достаточно, чтобы узнать о мужчине, даже если вы не знаете ни имени, ни должности. В отдельном вопросе сначала `Who is`, затем `he` — «он». В ответ могут назвать имя или объяснить, кем он работает: оба ответа помогут понять, кто это.",
+        "uk": "`Who is he?` — «Хто він?» Цього запитання досить, щоб дізнатися, хто цей чоловік, навіть якщо ви не знаєте ні його імені, ні посади. В окремому запитанні спочатку йде `Who is`, потім `he` — «він». У відповідь можуть назвати ім’я або пояснити, ким він працює: обидва варіанти допоможуть зрозуміти, хто це."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "В понедельник в офисе незнакомый мужчина здоровается с командой. Спросите коллегу, кто он.",
+          "uk": "У понеділок в офісі незнайомий чоловік вітається з командою. Запитайте колегу, хто він."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-38:intro1:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro1:r2",
+              "text": "Where is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro1:r3",
+              "text": "Who he is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-38:intro1:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro1:r2",
+              "text": "Where is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro1:r3",
+              "text": "Who he is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В понедельник в офисе незнакомый мужчина здоровается с командой. Спросите коллегу, кто он.",
+          "uk": "У понеділок в офісі незнайомий чоловік вітається з командою. Запитайте колегу, хто він."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Узнать или уточнить",
+        "uk": "Дізнатися або уточнити"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is she?` — «Кто она?» А `Is she new?` — «Она новенькая?» — уточняет, недавно ли она пришла работать; `new` здесь значит «новенькая». Незнакомый человек не обязательно новенький: возможно, новенький здесь вы. Если хотите узнать, кто она, выбирайте `Who is she?`.",
+        "uk": "`Who is she?` — «Хто вона?», а `Is she new?` — «Вона новенька?» — уточнює, чи недавно вона прийшла сюди працювати; `new` тут означає «новенька». Незнайома людина не обов’язково новенька: можливо, це саме ви щойно прийшли. Якщо хочете дізнатися, хто вона, обирайте `Who is she?`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Рядом с коллегой стоит незнакомая женщина. Вы хотите узнать, кто она, а не уточнить, давно ли она здесь работает.",
+          "uk": "Поруч із колегою стоїть незнайома жінка. Ви хочете дізнатися, хто вона, а не уточнити, чи давно вона тут працює."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-38:intro2:r1",
+              "text": "Who is she?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro2:r2",
+              "text": "Is she new?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro2:r3",
+              "text": "Who is he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-38:intro2:r1",
+              "text": "Who is she?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro2:r2",
+              "text": "Is she new?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro2:r3",
+              "text": "Who is he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Рядом с коллегой стоит незнакомая женщина. Вы хотите узнать, кто она, а не уточнить, давно ли она здесь работает.",
+          "uk": "Поруч із колегою стоїть незнайома жінка. Ви хочете дізнатися, хто вона, а не уточнити, чи давно вона тут працює."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить о нескольких",
+        "uk": "Запитати про кількох людей"
+      },
+      "bodyByLocale": {
+        "ru": "`Who are these people?` — «Кто эти люди?» Слово `people` значит «люди», а `these people` — «эти люди». Можно спросить сразу обо всех. Людей несколько, поэтому после `Who` ставим `are`, затем `these people`. По-русски обходимся без слова для `are`, но здесь его оставляем.",
+        "uk": "`Who are these people?` — «Хто ці люди?» `people` означає «люди», а `these people` — «ці люди». Можна запитати одразу про всіх. Людей кілька, тому після `Who` ставимо `are`, а далі `these people`. Українською можемо обійтися без окремого слова для `are`, але в англійському запитанні його залишаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "В офис вошли двое незнакомых людей. Спросите коллегу, кто они.",
+          "uk": "До офісу зайшли двоє незнайомих людей. Запитайте колегу, хто вони."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-38:intro3:r1",
+              "text": "Who are these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro3:r2",
+              "text": "Who is these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro3:r3",
+              "text": "Where are these people?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-38:intro3:r1",
+              "text": "Who are these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro3:r2",
+              "text": "Who is these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-38:intro3:r3",
+              "text": "Where are these people?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В офис вошли двое незнакомых людей. Спросите коллегу, кто они.",
+          "uk": "До офісу зайшли двоє незнайомих людей. Запитайте колегу, хто вони."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "baa11e6de975b632ca066e5ed33c8ed5881fd56e6c70553cbe52d288a862250d"
+}

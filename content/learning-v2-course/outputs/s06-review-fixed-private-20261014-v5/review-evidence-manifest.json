@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "learning_v2_session_review_evidence_manifest_v1",
+  "courseSessionId": "en:lesson-01:session-06",
+  "candidateRoot": "content/learning-v2-course/outputs/s06-review-fixed-private-20261014-v5",
+  "candidateBundleSha256": "0dd511080e4b05b022dff13e80ef934a3bc94f9141efa584faf411daad01e755",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s06-review-fixed-private-20261014-v5/content-receipt.json",
+  "candidateReceiptInventorySha256": "44db61e00c7fdfa3bd5f43290deacfa3eb5c1539a6de9afda3a430c4a8130ede",
+  "requiredRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "eligibleRoles": [],
+  "missingRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "roles": [],
+  "textReviewComplete": false,
+  "releaseAuthority": false
+}

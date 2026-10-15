@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "контрольное применение `a + noun` в знакомых утверждениях, вопросах и отрицаниях",
+    "uk": "контрольне застосування `a + noun` у знайомих твердженнях, запитаннях і запереченнях"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "На маленьком слове не экономим",
+        "uk": "На маленькому слові не заощаджуємо"
+      },
+      "bodyByLocale": {
+        "ru": "`shelf` — «полка»: длинная доска на стене, куда ставят вещи. В списке она тоже один предмет: `a shelf`. На маленьком `a` в этой фразе не сэкономить: оно стоит перед `shelf`. Для полной фразы добавьте `It is`: `It is a shelf` — «Это полка».",
+        "uk": "`shelf` — «полиця»: довга дошка на стіні, на яку ставлять речі. У списку це теж один предмет: `a shelf`. На маленькому `a` у цій фразі не заощадити: воно стоїть перед `shelf`. Для повної фрази додайте `It is`: `It is a shelf` — «Це полиця»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг добавляет в список найденную полку. Назовите её полной фразой.",
+          "uk": "Друг додає знайдену полицю до списку. Назвіть її повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r1",
+              "text": "It is a shelf."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r2",
+              "text": "It is shelf."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r3",
+              "text": "It a shelf."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r1",
+              "text": "It is a shelf."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r2",
+              "text": "It is shelf."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r3",
+              "text": "It a shelf."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг добавляет в список найденную полку. Назовите её полной фразой.",
+          "uk": "Друг додає знайдену полицю до списку. Назвіть її повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сначала уточнить",
+        "uk": "Спочатку уточніть"
+      },
+      "bodyByLocale": {
+        "ru": "`shelf` — «полка». Её уже добавили в список, но друг показывает на неё ещё раз и уточняет. Для вопроса переставьте первые два слова: `Is it a shelf?` — «Это полка?» Название `a shelf` остаётся вместе: вопрос меняет порядок, но не название предмета.",
+        "uk": "`shelf` — «полиця». Її вже додали до списку, але друг показує на неї ще раз і просить перевірити запис. Для запитання переставте перші два слова: `Is it a shelf?` — «Це полиця?» Назва `a shelf` залишається разом: запитання змінює порядок, але не назву предмета."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на новую полку у стены и просит сверить запись. Спросите: «Это полка?».",
+          "uk": "Друг показує на нову полицю біля стіни й просить звірити запис. Запитайте: «Це полиця?»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r1",
+              "text": "Is it a shelf?"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r2",
+              "text": "Is it shelf?"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r3",
+              "text": "Are it a shelf?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r1",
+              "text": "Is it a shelf?"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r2",
+              "text": "Is it shelf?"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r3",
+              "text": "Are it a shelf?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на новую полку у стены и просит сверить запись. Спросите: «Это полка?».",
+          "uk": "Друг показує на нову полицю біля стіни й просить звірити запис. Запитайте: «Це полиця?»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Исправить название",
+        "uk": "Виправте назву"
+      },
+      "bodyByLocale": {
+        "ru": "`shelf` — «полка». Иногда в списке оказываются похожие вещи. Чтобы сказать, что предмет не полка, после `It is` добавьте `not`, а затем сохраните `a shelf`: `It is not a shelf` — «Это не полка». Слово `not` исправляет запись, но не разбирает название `a shelf` на части.",
+        "uk": "`shelf` — «полиця». Іноді в списку опиняються схожі речі. Щоб сказати, що предмет не полиця, після `It is` додайте `not`, а потім збережіть `a shelf`: `It is not a shelf` — «Це не полиця». Слово `not` виправляє запис, але не розбирає назву `a shelf` на частини."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг взял табурет и по ошибке отметил его как полку. Скажите: «Это не полка».",
+          "uk": "Друг узяв табурет і помилково позначив його як полицю. Скажіть: «Це не полиця»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r1",
+              "text": "It is not a shelf."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r2",
+              "text": "It not a shelf."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r3",
+              "text": "It is not shelf."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r1",
+              "text": "It is not a shelf."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r2",
+              "text": "It not a shelf."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r3",
+              "text": "It is not shelf."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг взял табурет и по ошибке отметил его как полку. Скажите: «Это не полка».",
+          "uk": "Друг узяв табурет і помилково позначив його як полицю. Скажіть: «Це не полиця»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e207af52f3d484f3de6e297dde4d78dd3727ec8345976fdaee17be62e619cc7f"
+}

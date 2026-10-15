@@ -1,0 +1,963 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — worried",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — worried",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i01:audio",
+          "transcript": "worried"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-03:i01:r1",
+            "targetText": "worried",
+            "meaningByLocale": {
+              "ru": "«обеспокоенный, встревоженный». Когда вы не знаете, всё ли будет хорошо.",
+              "uk": "«стурбований, схвильований». Коли ви не знаєте, чи все буде добре."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worried",
+          "definitionByLocale": {
+            "ru": "«обеспокоенный, встревоженный». Когда вы не знаете, всё ли будет хорошо.",
+            "uk": "«стурбований, схвильований». Коли ви не знаєте, чи все буде добре."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — worried",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-03:i02:r1",
+          "text": "worried"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i02:r2",
+          "text": "prepared"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i02:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — worried",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i02:audio",
+          "transcript": "worried"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-03:i02:r1",
+            "targetText": "worried",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i02:r2",
+            "targetText": "prepared",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i02:r3",
+            "targetText": "ready",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — worried",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `worried`.",
+              "uk": "У записі звучить `worried`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — worried",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `worried`.",
+              "uk": "У записі звучить `worried`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — prepared",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — prepared",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i03:audio",
+          "transcript": "prepared"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-03:i03:r1",
+            "targetText": "prepared",
+            "meaningByLocale": {
+              "ru": "«подготовленный, готовый». Когда нужные вещи собраны и вы знаете, что делать дальше.",
+              "uk": "«підготовлений, готовий». Коли потрібні речі зібрані й ви знаєте, що робити далі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prepared",
+          "definitionByLocale": {
+            "ru": "«подготовленный, готовый». Когда нужные вещи собраны и вы знаете, что делать дальше.",
+            "uk": "«підготовлений, готовий». Коли потрібні речі зібрані й ви знаєте, що робити далі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — prepared",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-03:i04:r1",
+          "text": "prepared"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i04:r2",
+          "text": "worried"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i04:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — prepared",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i04:audio",
+          "transcript": "prepared"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-03:i04:r1",
+            "targetText": "prepared",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i04:r2",
+            "targetText": "worried",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i04:r3",
+            "targetText": "ready",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — prepared",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `prepared`.",
+              "uk": "У записі звучить `prepared`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — prepared",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `prepared`.",
+              "uk": "У записі звучить `prepared`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова и значения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова и значения",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-03:i05:p1",
+            "target": "worried",
+            "meaningByLocale": {
+              "ru": "обеспокоенный",
+              "uk": "стурбований"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i05:p2",
+            "target": "prepared",
+            "meaningByLocale": {
+              "ru": "подготовленный",
+              "uk": "підготовлений"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i05:p3",
+            "target": "hungry",
+            "meaningByLocale": {
+              "ru": "голодный",
+              "uk": "голодний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i05:p4",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудившийся",
+              "uk": "заблукалий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "worried",
+          "prepared",
+          "hungry",
+          "lost"
+        ],
+        "rightColumn": [
+          "обеспокоенный",
+          "подготовленный",
+          "голодный",
+          "заблудившийся"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите короткое «нет» — на вопрос `Are you worried?` вы спокойны",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите короткое «нет» — на вопрос `Are you worried?` вы спокойны",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, I am not.",
+        "localizedMeaning": {
+          "ru": "На вопрос `Are you worried?` вы спокойны.",
+          "uk": "На запитання `Are you worried?` ви спокійні."
+        },
+        "orderedTokens": [
+          "No,",
+          "I",
+          "am",
+          "not"
+        ],
+        "authoredDistractorTokens": [
+          "worried"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i07:audio",
+          "transcript": "Are you prepared?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you prepared?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "prepared?"
+        ],
+        "authoredDistractorTokens": [
+          "worried?"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — билет и вещи уже собраны",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-03:i08:r1",
+          "text": "prepared"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i08:r2",
+          "text": "worried"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i08:r3",
+          "text": "cold"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — билет и вещи уже собраны",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Билет и вещи уже собраны.",
+          "uk": "Квиток і речі вже зібрані."
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-03:i08:r1",
+            "text": "prepared"
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i08:r2",
+            "text": "worried"
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i08:r3",
+            "text": "cold"
+          }
+        ],
+        "testedDimension": "Вставьте слово — билет и вещи уже собраны",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — билет и вещи уже собраны",
+            "feedbackByLocale": {
+              "ru": "Здесь всё готово, поэтому подходит `prepared`.",
+              "uk": "Тут усе готове, тому підходить `prepared`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — билет и вещи уже собраны",
+            "feedbackByLocale": {
+              "ru": "В сцене не говорится о холоде.",
+              "uk": "У сцені не йдеться про холод."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — билет ещё на стойке; на вопрос `Are you prepared?` ответьте отрицательно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-03:i09:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — билет ещё на стойке; на вопрос `Are you prepared?` ответьте отрицательно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Билет ещё на стойке. На вопрос `Are you prepared?` ответьте отрицательно.",
+          "uk": "Квиток ще на стійці. На запитання `Are you prepared?` дайте заперечну відповідь."
+        },
+        "gappedTargetPhrase": "No, I ___ not.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-03:i09:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — билет ещё на стойке; на вопрос `Are you prepared?` ответьте отрицательно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — билет ещё на стойке; на вопрос `Are you prepared?` ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "С `I` в ответе нужна форма `am`.",
+              "uk": "З `I` у відповіді потрібна форма `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — билет ещё на стойке; на вопрос `Are you prepared?` ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "С `I` в ответе нужна форма `am`.",
+              "uk": "З `I` у відповіді потрібна форма `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите короткое «да» — рюкзак закрыт, билет в кармане; вопрос: `Are you prepared?`",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите короткое «да» — рюкзак закрыт, билет в кармане; вопрос: `Are you prepared?`",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yes, I am.",
+        "localizedMeaning": {
+          "ru": "Рюкзак закрыт, билет в кармане. На вопрос `Are you prepared?` ответьте коротко.",
+          "uk": "Рюкзак закритий, квиток у кишені. На запитання `Are you prepared?` дайте коротку відповідь."
+        },
+        "orderedTokens": [
+          "Yes,",
+          "I",
+          "am"
+        ],
+        "authoredDistractorTokens": [
+          "prepared"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — автобус опаздывает, а телефон разряжен",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-03:i11:r1",
+          "text": "worried"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i11:r2",
+          "text": "prepared"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i11:r3",
+          "text": "hungry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — автобус опаздывает, а телефон разряжен",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Автобус опаздывает, а телефон разряжен.",
+          "uk": "Автобус запізнюється, а телефон розряджений."
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-03:i11:r1",
+            "text": "worried"
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i11:r2",
+            "text": "prepared"
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i11:r3",
+            "text": "hungry"
+          }
+        ],
+        "testedDimension": "Вставьте слово — автобус опаздывает, а телефон разряжен",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — автобус опаздывает, а телефон разряжен",
+            "feedbackByLocale": {
+              "ru": "Вещи могут быть собраны, но сейчас вы волнуетесь.",
+              "uk": "Речі можуть бути зібрані, але зараз ви хвилюєтеся."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — автобус опаздывает, а телефон разряжен",
+            "feedbackByLocale": {
+              "ru": "В сцене причина для тревоги, не для голода.",
+              "uk": "У сцені є причина для тривоги, а не для голоду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите полную фразу — всё для дороги готово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите полную фразу — всё для дороги готово",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yes, I am prepared.",
+        "localizedMeaning": {
+          "ru": "Всё для дороги готово.",
+          "uk": "Усе для дороги готове."
+        },
+        "orderedTokens": [
+          "Yes,",
+          "I",
+          "am",
+          "prepared."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы не нашли бронь и волнуетесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-03:i13:r1",
+          "text": "worried"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i13:r2",
+          "text": "awake"
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i13:r3",
+          "text": "lost"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы не нашли бронь и волнуетесь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не нашли бронь и волнуетесь.",
+          "uk": "Ви не знайшли бронювання й хвилюєтеся."
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-03:i13:r1",
+            "text": "worried"
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i13:r2",
+            "text": "awake"
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i13:r3",
+            "text": "lost"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы не нашли бронь и волнуетесь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы не нашли бронь и волнуетесь",
+            "feedbackByLocale": {
+              "ru": "Вы можете не спать, но сцена говорит о тревоге.",
+              "uk": "Ви можете не спати, але сцена говорить про тривогу."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы не нашли бронь и волнуетесь",
+            "feedbackByLocale": {
+              "ru": "Бронь потерялась, но вы не заблудились сами.",
+              "uk": "Бронювання загубилося, але ви самі не заблукали."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-03:i14:p1",
+            "target": "yes",
+            "meaningByLocale": {
+              "ru": "да",
+              "uk": "так"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i14:p2",
+            "target": "no",
+            "meaningByLocale": {
+              "ru": "нет",
+              "uk": "ні"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i14:p3",
+            "target": "ok",
+            "meaningByLocale": {
+              "ru": "нормально",
+              "uk": "нормально"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-03:i14:p4",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "не спит",
+              "uk": "не спить"
+            }
+          }
+        ],
+        "leftColumn": [
+          "yes",
+          "no",
+          "ok",
+          "awake"
+        ],
+        "rightColumn": [
+          "да",
+          "нет",
+          "нормально",
+          "не спит"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Карта открыта, билет у вас, времени достаточно. Вопрос: `Are you worried?` Соберите короткий ответ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Карта открыта, билет у вас, времени достаточно. Вопрос: `Are you worried?` Соберите короткий ответ.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, I am not.",
+        "localizedMeaning": {
+          "ru": "Карта открыта, билет у вас, времени достаточно. Вопрос: `Are you worried?`",
+          "uk": "Мапа відкрита, квиток у вас, часу достатньо. Запитання: `Are you worried?`"
+        },
+        "orderedTokens": [
+          "No,",
+          "I",
+          "am",
+          "not"
+        ],
+        "authoredDistractorTokens": [
+          "worried"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i16:s01",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Билет в кармане, рюкзак закрыт, всё для дороги собрано. Скажите вслух, что вы готовы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i16:s01:audio"
+      ],
+      "accessibilityLabel": "Билет в кармане, рюкзак закрыт, всё для дороги собрано. Скажите вслух, что вы готовы.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i16:s01:audio",
+          "transcript": "I am prepared."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am prepared.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i16:s02",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы нашли билет и успеваете к автобусу. Скажите вслух, что вы не волнуетесь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-03:i16:s02:audio"
+      ],
+      "accessibilityLabel": "Вы нашли билет и успеваете к автобусу. Скажите вслух, что вы не волнуетесь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-03:i16:s02:audio",
+          "transcript": "No, I am not worried."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, I am not worried.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:i16:s03",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Финал — вы проснулись, проверили билет и закрыли рюкзак. Вставьте подходящую фразу: сообщите соседу, что вы готовы и уже не спите.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-03:i16:s03:r1",
+          "text": "I am prepared and awake."
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i16:s03:r2",
+          "text": "I prepared am and awake."
+        },
+        {
+          "responseId": "en:lesson-02:session-03:i16:s03:r3",
+          "text": "I am prepared awake and."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Финал — вы проснулись, проверили билет и закрыли рюкзак. Вставьте подходящую фразу: сообщите соседу, что вы готовы и уже не спите.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы проснулись, проверили билет и закрыли рюкзак. Скажите соседу, что вы готовы и уже не спите.",
+          "uk": "Ви прокинулися, перевірили квиток і закрили рюкзак. Скажіть сусіду, що ви готові й уже не спите."
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-03:i16:s03:r1",
+            "text": "I am prepared and awake."
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i16:s03:r2",
+            "text": "I prepared am and awake."
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i16:s03:r3",
+            "text": "I am prepared awake and."
+          }
+        ],
+        "testedDimension": "Финал — вы проснулись, проверили билет и закрыли рюкзак. Вставьте подходящую фразу: сообщите соседу, что вы готовы и уже не спите.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-03:i16:s03:r2",
+            "correct": false,
+            "testedDimension": "Финал — вы проснулись, проверили билет и закрыли рюкзак. Вставьте подходящую фразу: сообщите соседу, что вы готовы и уже не спите.",
+            "feedbackByLocale": {
+              "ru": "После `I` сначала нужна форма `am`; `prepared` описывает ваше состояние.",
+              "uk": "Після `I` спочатку потрібна форма `am`; `prepared` описує ваш стан."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-03:i16:s03:r3",
+            "correct": false,
+            "testedDimension": "Финал — вы проснулись, проверили билет и закрыли рюкзак. Вставьте подходящую фразу: сообщите соседу, что вы готовы и уже не спите.",
+            "feedbackByLocale": {
+              "ru": "После `prepared` нужно `and`, чтобы соединить два состояния: `prepared and awake`.",
+              "uk": "Після `prepared` потрібно `and`, щоб з’єднати два стани: `prepared and awake`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6aa2c82c9fb67fc344e561704006daa847c7c503f57d40e7075d539bb3251e6c"
+}

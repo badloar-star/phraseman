@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-28:intro1:r2": {
+          "ru": "Между `it` и словом нужна форма `is`.",
+          "uk": "Між `it` і словом потрібна форма `is`."
+        },
+        "en:lesson-01:session-28:intro1:r3": {
+          "ru": "`break` — это «ломать»: так говорят про того, кто ломает. Свет ничего не ломает, он сам сломан — `broken`.",
+          "uk": "`break` — це «ламати»: так кажуть про того, хто ламає. Світло нічого не ламає, воно саме зламане — `broken`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-28:intro2:r2": {
+          "ru": "Хвост `-d` тут лишний. Про состояние «открыто» говорят коротко: `open`.",
+          "uk": "Хвіст `-d` тут зайвий. Про стан «відчинено» кажуть коротко: `open`."
+        },
+        "en:lesson-01:session-28:intro2:r3": {
+          "ru": "Без `is` фраза разваливается. Про вещь всегда `It is`.",
+          "uk": "Без `is` фраза розвалюється. Про річ завжди `It is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-28:intro3:r2": {
+          "ru": "`small` — «маленький», это про размер. А холодильник может быть огромным и всё равно пустым внутри.",
+          "uk": "`small` — «маленький», це про розмір. А холодильник може бути величезним і все одно порожнім усередині."
+        },
+        "en:lesson-01:session-28:intro3:r3": {
+          "ru": "Между `it` и словом нужна форма `is`.",
+          "uk": "Між `it` і словом потрібна форма `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "561aa1bf64ee3d109df58e5369b3cc5d8b4bd4ee57f85bcc4f5108cedfa3b3b1"
+}

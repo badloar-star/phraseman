@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-52:i01",
+    "correctText": "round",
+    "correctResponseId": "en:lesson-03:session-52:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i03",
+    "correctText": "square",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i05",
+    "correctText": "wooden",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i02",
+    "correctText": "round",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i04",
+    "correctText": "square",
+    "correctResponseId": "en:lesson-03:session-52:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i06",
+    "correctText": "wooden",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i08",
+    "correctText": "round",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i09",
+    "correctText": "square",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i10",
+    "correctText": "wooden",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i07",
+    "correctText": "en:lesson-03:session-52:i07:p1=round\nen:lesson-03:session-52:i07:p2=square\nen:lesson-03:session-52:i07:p3=wooden\nen:lesson-03:session-52:i07:p4=table\nen:lesson-03:session-52:i07:p5=mirror\nen:lesson-03:session-52:i07:p6=chair\nen:lesson-03:session-52:i07:p7=please",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i11",
+    "correctText": "This round table, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i12",
+    "correctText": "That",
+    "correctResponseId": "en:lesson-03:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i13",
+    "correctText": "То квадратное зеркало, пожалуйста.",
+    "correctResponseId": "en:lesson-03:session-52:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i14",
+    "correctText": "round",
+    "correctResponseId": "en:lesson-03:session-52:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i15",
+    "correctText": "This wooden chair, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i16",
+    "correctText": "Это деревянное зеркало здесь.",
+    "correctResponseId": "en:lesson-03:session-52:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-52:i17",
+    "correctText": "That wooden table, please.",
+    "correctResponseId": null
+  }
+]

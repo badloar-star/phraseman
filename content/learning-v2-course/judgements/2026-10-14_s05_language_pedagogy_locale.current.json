@@ -1,0 +1,21 @@
+{
+  "identity": {
+    "course_session_id": "en:lesson-01:session-05",
+    "candidate_receipt_sha256": "fc8726a4e7840cd9ac89bf6054c14fbbf9adfb6cb11979837490c3093c4fdaa4",
+    "candidate_bundle_sha256": "86fd1363db86f190546b013309532e4a8d2c21d0d8cc3ac84e6c1a4bc8b6538a",
+    "learner_ru_sha256": "15508c69868a4d294d74644b9aff8989c2ab92b1dbab3cfef66b062d91223271",
+    "learner_uk_sha256": "56f108709df1629ed705cbd989cc9a3201e3366e26485b1d95c6b5c3ec7e2522"
+  },
+  "dimension": "language_pedagogy_locale",
+  "verdict": "PASS",
+  "findings": [],
+  "notes": [
+    "Independently recomputed the receipt, all 22 inventory entries, the inventory hash, bundle hash, and source snapshot index before review.",
+    "Reviewed all three intro pages and all 20 interactions in both Russian and Ukrainian learner projections.",
+    "Russian and Ukrainian teach the same English targets and retain exact interaction parity.",
+    "Listening feedback identifies the wrong option and target contrast without accent-specific vowel-quality claims.",
+    "The lost, new, ready, sick, and hot meanings are contextually accurate and gender-neutral.",
+    "Feedback is present only for wrong answers and contains no internal mode terminology.",
+    "Audio semantics were not judged in this language review."
+  ]
+}

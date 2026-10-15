@@ -48,33 +48,24 @@
             "text": "free"
           }
         ],
-        "testedDimension": "Вставте слово — вона питає, чи не заблук",
+        "testedDimension": "Вставте слово — Міра питає, чи не заблукали ви в коридорах. Дорогу ви знайшли",
         "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-08:i01:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — Міра питає, чи не заблук",
-            "feedbackByLocale": {
-              "ru": "Верно: вы нашли дорогу, поэтому говорите I am not lost — «я не заблудился».",
-              "uk": "Правильно: ви знайшли дорогу, тому кажете I am not lost — «я не заблукав»."
-            }
-          },
           {
             "responseId": "en:lesson-01:session-08:i01:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — вона питає, чи не заблук",
+            "testedDimension": "Вставте слово — Міра питає, чи не заблукали ви в коридорах. Дорогу ви знайшли",
             "feedbackByLocale": {
-              "ru": "Правда, но не ответ: вы тут действительно новичок, вопрос был про коридоры.",
-              "uk": "Правда, але не відповідь: ви тут справді новенький, а запитання було про коридори."
+              "ru": "Правда, но не ответ: вы здесь недавно, а вопрос был про коридоры.",
+              "uk": "Правда, але не відповідь: ви тут нещодавно, а запитання було про коридори."
             }
           },
           {
             "responseId": "en:lesson-01:session-08:i01:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — вона питає, чи не заблук",
+            "testedDimension": "Вставте слово — Міра питає, чи не заблукали ви в коридорах. Дорогу ви знайшли",
             "feedbackByLocale": {
-              "ru": "«Я не свободен» — вас об этом не спрашивали, вас спрашивали, не заблудились ли вы.",
-              "uk": "«Я не вільний» — про це вас не питали, вас питали, чи не заблукали ви."
+              "ru": "«У меня нет свободного времени» — это не ответ на вопрос о дороге.",
+              "uk": "«У мене немає вільного часу» — це не відповідь про дорогу."
             }
           }
         ]
@@ -134,15 +125,6 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-08:i02:r1",
-            "correct": true,
-            "testedDimension": "Послухайте і виберіть — tired",
-            "feedbackByLocale": {
-              "ru": "Верно: в записи tired. В нём два слога; tried и tide звучат в один слог.",
-              "uk": "Правильно: у записі tired. У ньому два склади; tried і tide звучать в один склад."
-            }
-          },
-          {
             "responseId": "en:lesson-01:session-08:i02:r2",
             "correct": false,
             "testedDimension": "Послухайте і виберіть — tired",
@@ -196,10 +178,10 @@
           {
             "responseId": "en:lesson-01:session-08:i03:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Мира спрашивает, устали",
+            "testedDimension": "Складіть речення — Міра питає, чи втомилися ви після довгого дня",
             "feedbackByLocale": {
-              "ru": "она изменила бы смысл на «я не устал», но после длинного дня вы признаёте, что устали",
-              "uk": "вона змінила б зміст на «я не втомився», але після довгого дня ви визнаєте, що втомилися"
+              "ru": "она изменила бы смысл; после длинного дня вы говорите об усталости",
+              "uk": "вона змінила б зміст; після довгого дня ви говорите про втому"
             }
           }
         ]
@@ -212,7 +194,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — Міра уточнює, чи ви той самий новенький",
+      "prompt": "Вставте слово — Міра уточнює, чи ви тут уперше",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-08:i04:r1",
@@ -229,12 +211,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — Міра уточнює, чи ви той самий новенький",
+      "accessibilityLabel": "Вставте слово — Міра уточнює, чи ви тут уперше",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — вы новенький",
-          "uk": "Вставте слово — Міра уточнює, чи ви той самий новенький"
+          "uk": "Вставте слово — Міра уточнює, чи ви тут уперше"
         },
         "gappedTargetPhrase": "I ___ new here.",
         "gapOptions": [
@@ -251,21 +233,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставте слово — ви новенький",
+        "testedDimension": "Вставте слово — Міра уточнює, чи ви тут уперше",
         "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-08:i04:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — Міра уточнює, чи ви той ",
-            "feedbackByLocale": {
-              "ru": "Верно: после I нужна форма am: I am new here.",
-              "uk": "Правильно: після I потрібна форма am: I am new here."
-            }
-          },
           {
             "responseId": "en:lesson-01:session-08:i04:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — ви новенький",
+            "testedDimension": "Вставте слово — Міра уточнює, чи ви тут уперше",
             "feedbackByLocale": {
               "ru": "`Is` используют с `he`, `she` или `it`. О себе говорят `I am`.",
               "uk": "`Is` використовують з `he`, `she` або `it`. Про себе кажуть `I am`."
@@ -274,10 +247,10 @@
           {
             "responseId": "en:lesson-01:session-08:i04:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — ви новенький",
+            "testedDimension": "Вставте слово — Міра уточнює, чи ви тут уперше",
             "feedbackByLocale": {
-              "ru": "Тоже не для `I`. С собой — только `am`, в любой фразе.",
-              "uk": "Теж не для `I`. Про себе — тільки `am`, у будь-якій фразі."
+              "ru": "В этой фразе о себе после `I` нужна форма `am`.",
+              "uk": "У цій фразі про себе після `I` потрібна форма `am`."
             }
           }
         ]
@@ -290,13 +263,13 @@
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте і складіть — «я не голодний»",
+      "prompt": "Послухайте і складіть — «голоду немає»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-08:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте і складіть — «я не голодний»",
+      "accessibilityLabel": "Послухайте і складіть — «голоду немає»",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -335,7 +308,7 @@
             "target": "ready",
             "meaningByLocale": {
               "ru": "готов",
-              "uk": "готовий"
+              "uk": "можна вирушати"
             }
           },
           {
@@ -343,7 +316,7 @@
             "target": "tired",
             "meaningByLocale": {
               "ru": "устал",
-              "uk": "втомлений"
+              "uk": "відчуваю втому"
             }
           },
           {
@@ -351,7 +324,7 @@
             "target": "lost",
             "meaningByLocale": {
               "ru": "заблудился",
-              "uk": "заблукав"
+              "uk": "знаю, куди йти"
             }
           },
           {
@@ -359,7 +332,7 @@
             "target": "hungry",
             "meaningByLocale": {
               "ru": "голоден",
-              "uk": "голодний"
+              "uk": "голоду немає"
             }
           }
         ],
@@ -370,10 +343,10 @@
           "hungry"
         ],
         "rightColumn": [
-          "готов",
-          "устал",
-          "заблудился",
-          "голоден"
+          "можна вирушати",
+          "відчуваю втому",
+          "знаю, куди йти",
+          "голоду немає"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -434,33 +407,24 @@
             "text": "done"
           }
         ],
-        "testedDimension": "Вставте слово — ви поїли, тому відмовляєтеся від",
+        "testedDimension": "Вставте слово — ви поїли, тому відмовляєтеся від перекусу",
         "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-08:i07:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — ви поїли, тому відмовляєтеся від",
-            "feedbackByLocale": {
-              "ru": "Верно: после еды вы говорите `I am not hungry` — «я не голоден».",
-              "uk": "Правильно: після їжі ви кажете `I am not hungry` — «я не голодний»."
-            }
-          },
           {
             "responseId": "en:lesson-01:session-08:i07:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — ви поїли, тому відмовляєтеся від",
+            "testedDimension": "Вставте слово — ви поїли, тому відмовляєтеся від перекусу",
             "feedbackByLocale": {
-              "ru": "`I am not sure` значит «я не уверен», это не ответ про еду.",
-              "uk": "`I am not sure` означає «я не впевнений», це не відповідь про їжу."
+              "ru": "`I am not sure` значит «я не знаю точно», это не ответ про еду.",
+              "uk": "`I am not sure` означає «я не знаю напевно», це не відповідь про їжу."
             }
           },
           {
             "responseId": "en:lesson-01:session-08:i07:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — ви поїли, тому відмовляєтеся від",
+            "testedDimension": "Вставте слово — ви поїли, тому відмовляєтеся від перекусу",
             "feedbackByLocale": {
-              "ru": "`I am not done` значит «я не закончил», а здесь речь о голоде.",
-              "uk": "`I am not done` означає «я не закінчив», а тут ідеться про голод."
+              "ru": "`I am not done` значит «с делами ещё не всё», а здесь речь о голоде.",
+              "uk": "`I am not done` означає «зі справами ще не все», а тут ідеться про голод."
             }
           }
         ]
@@ -549,15 +513,6 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-08:i09:r1",
-            "correct": true,
-            "testedDimension": "Послухайте і виберіть — free",
-            "feedbackByLocale": {
-              "ru": "Верно: в записи free. Оно начинается со звука /f/ и заканчивается долгим /iː/.",
-              "uk": "Правильно: у записі free. Воно починається зі звука /f/ і закінчується довгим /iː/."
-            }
-          },
-          {
             "responseId": "en:lesson-01:session-08:i09:r2",
             "correct": false,
             "testedDimension": "Послухайте і виберіть — free",
@@ -626,30 +581,21 @@
             "text": "tired"
           }
         ],
-        "testedDimension": "Вставте слово — вас кличуть на спільний ",
+        "testedDimension": "Вставте слово — вас кличуть на спільний обід у п'ятницю. У п’ятницю ви вільні",
         "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-08:i10:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — вас кличуть на спільний ",
-            "feedbackByLocale": {
-              "ru": "Верно: пятница свободна, поэтому ответ — I am free.",
-              "uk": "Правильно: п’ятниця вільна, тому відповідь — I am free."
-            }
-          },
           {
             "responseId": "en:lesson-01:session-08:i10:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — вас кличуть на спільний ",
+            "testedDimension": "Вставте слово — вас кличуть на спільний обід у п'ятницю. У п’ятницю ви вільні",
             "feedbackByLocale": {
-              "ru": "«Я заблудился» — на вопрос про пятницу это уже почти диагноз.",
-              "uk": "«Я заблукав» — у відповідь на запитання про п'ятницю це вже майже діагноз."
+              "ru": "«Я знаю, куда идти» — на вопрос про планы на пятницу это не ответ.",
+              "uk": "«Я знаю, куди йти» — це не відповідь на запитання про плани на п’ятницю."
             }
           },
           {
             "responseId": "en:lesson-01:session-08:i10:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — вас кличуть на спільний ",
+            "testedDimension": "Вставте слово — вас кличуть на спільний обід у п'ятницю. У п’ятницю ви вільні",
             "feedbackByLocale": {
               "ru": "Вы, может, и устали, но спрашивают не про сейчас, а про планы.",
               "uk": "Ви, може, і втомилися, але питають не про зараз, а про плани."
@@ -665,13 +611,13 @@
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте і складіть — «я готовий»",
+      "prompt": "Послухайте і складіть — «можна вирушати»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-08:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте і складіть — «я готовий»",
+      "accessibilityLabel": "Послухайте і складіть — «можна вирушати»",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -692,10 +638,10 @@
           {
             "responseId": "en:lesson-01:session-08:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — «я готов»",
+            "testedDimension": "Послухайте і складіть — «можна вирушати»",
             "feedbackByLocale": {
-              "ru": "в записи `ready` — «готов», а `done` изменило бы ответ на «я закончил»",
-              "uk": "у записі `ready` — «готовий», а `done` змінило б відповідь на «я закінчив»"
+              "ru": "в записи `ready` — «можно идти», а `done` сообщает, что с делами всё",
+              "uk": "у записі `ready` — «можна вирушати», а `done` повідомляє, що зі справами все"
             }
           }
         ]
@@ -708,7 +654,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — ви давно тут, тому кажете, що вже не новачок",
+      "prompt": "Вставте слово — ви тут уже не вперше",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-08:i12:r1",
@@ -725,12 +671,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — ви давно тут, тому кажете, що вже не новачок",
+      "accessibilityLabel": "Вставте слово — ви тут уже не вперше",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — вы давно здесь, поэтому говорите, что уже не новичок",
-          "uk": "Вставте слово — ви давно тут, тому кажете, що вже не новачок"
+          "uk": "Вставте слово — ви тут уже не вперше"
         },
         "gappedTargetPhrase": "I am not ___ .",
         "gapOptions": [
@@ -747,33 +693,24 @@
             "text": "hungry"
           }
         ],
-        "testedDimension": "Вставте слово — ви давно тут, тому кажете, що вж",
+        "testedDimension": "Вставте слово — ви тут уже не вперше",
         "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-08:i12:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — ви давно тут, тому кажете, що вж",
-            "feedbackByLocale": {
-              "ru": "Верно: `I am not new` означает «я уже не новичок».",
-              "uk": "Правильно: `I am not new` означає «я вже не новачок»."
-            }
-          },
           {
             "responseId": "en:lesson-01:session-08:i12:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — ви давно тут, тому кажете, що вж",
+            "testedDimension": "Вставте слово — ви тут уже не вперше",
             "feedbackByLocale": {
-              "ru": "`I am not done` — «я ещё не закончил», это другой смысл.",
-              "uk": "`I am not done` — «я ще не закінчив», це інший зміст."
+              "ru": "`I am not done` — «с делами ещё не всё», это другой смысл.",
+              "uk": "`I am not done` — «зі справами ще не все», це інший зміст."
             }
           },
           {
             "responseId": "en:lesson-01:session-08:i12:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — ви давно тут, тому кажете, що вж",
+            "testedDimension": "Вставте слово — ви тут уже не вперше",
             "feedbackByLocale": {
-              "ru": "`I am not hungry` — «я не голоден», это не ответ о том, давно ли вы здесь.",
-              "uk": "`I am not hungry` — «я не голодний», це не відповідь про те, давно ви тут чи ні."
+              "ru": "`I am not hungry` — «голода нет», это не ответ о том, давно ли вы здесь.",
+              "uk": "`I am not hungry` — «голоду немає», це не відповідь про те, давно ви тут чи ні."
             }
           }
         ]
@@ -810,10 +747,10 @@
           {
             "responseId": "en:lesson-01:session-08:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Мира спрашивает, законч",
+            "testedDimension": "Складіть речення — Міра питає, чи закінчили ви справи. Ви закінчили.",
             "feedbackByLocale": {
-              "ru": "`free` означает «свободен», но здесь вы сообщаете, что закончили",
-              "uk": "`free` означає «вільний», але тут ви повідомляєте, що закінчили"
+              "ru": "`free` говорит о свободном времени, а здесь вы сообщаете, что с делами всё",
+              "uk": "`free` говорить про вільний час, а тут ви повідомляєте, що зі справами все"
             }
           }
         ]
@@ -839,7 +776,7 @@
             "target": "sure",
             "meaningByLocale": {
               "ru": "уверен",
-              "uk": "впевнений"
+              "uk": "знаю напевно"
             }
           },
           {
@@ -847,7 +784,7 @@
             "target": "free",
             "meaningByLocale": {
               "ru": "свободен",
-              "uk": "вільний"
+              "uk": "маю час"
             }
           },
           {
@@ -855,7 +792,7 @@
             "target": "done",
             "meaningByLocale": {
               "ru": "закончил",
-              "uk": "закінчив"
+              "uk": "зі справами все"
             }
           },
           {
@@ -874,10 +811,10 @@
           "new"
         ],
         "rightColumn": [
-          "уверен",
-          "свободен",
-          "закончил",
-          "новый"
+          "знаю напевно",
+          "маю час",
+          "зі справами все",
+          "новий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -989,7 +926,7 @@
           {
             "responseId": "en:lesson-01:session-08:i16:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — вас зовут в пятницу, и ",
+            "testedDimension": "Складіть фразу — вас кличуть у п’ятницю, і справ у вас немає",
             "feedbackByLocale": {
               "ru": "с `I` нужна форма `am`",
               "uk": "з `I` потрібна форма `am`"
@@ -1138,5 +1075,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "523fae1205cee4c6073f086224061a39aa22a925316986dec6aae542855b75e8"
+  "learnerFingerprint": "0d9a69deaf38deb940402e1b6d7c47a4848c2a1f478b09c0bc38954a60705f09"
 }

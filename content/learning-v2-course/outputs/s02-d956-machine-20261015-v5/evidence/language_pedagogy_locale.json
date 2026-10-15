@@ -1,0 +1,16 @@
+{
+  "sessionId": "en:lesson-01:session-02",
+  "candidateBundleSha256": "0cd7ef1f6f5a5f5c231b0d98072de961a1159dcf15c07223491d739f4ac05e0c",
+  "contentReceiptSha256": "539f72f05faba3a70736b392e33d63ac2bb13aa8fc90d3a67efe54b662167b16",
+  "dimension": "language_pedagogy_locale",
+  "verdict": "PASS",
+  "configuredModel": "gpt-6-luna",
+  "authority": "advisory_self_declared",
+  "audioReviewed": false,
+  "findings": [
+    "Английские формы корректны, русская и украинская версии естественны и согласованы.",
+    "Последовательность соответствует утверждённому d956-пакету.",
+    "Общие объяснения не просочились в практику; обратная связь относится только к ошибкам.",
+    "Правки i14 и i16 согласованы между обоими языками."
+  ]
+}

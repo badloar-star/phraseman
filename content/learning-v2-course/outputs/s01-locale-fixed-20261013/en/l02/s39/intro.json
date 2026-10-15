@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "повторение вопросов о людях и месте; слова главы в разговоре на вечеринке",
+    "uk": "повторення запитань про людей і місце; слова розділу в розмові на вечірці"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пара здесь",
+        "uk": "Пара тут"
+      },
+      "bodyByLocale": {
+        "ru": "`couple` — «пара», здесь о людях в отношениях: например, они встречаются или женаты. Просто досчитать до двух для этого смысла мало. `The couple is here` — «Эта пара здесь». В нашей фразе после `the couple` ставим `is`, затем `here`: сообщаем, что пара здесь.",
+        "uk": "`couple` — «пара», тут про людей у стосунках: наприклад, вони зустрічаються або одружені. Просто полічити до двох для такого значення замало. `The couple is here` — «Ця пара тут». У нашій фразі після `the couple` ставимо `is`, а потім `here`: повідомляємо, що пара тут."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг ищет знакомую пару на вечеринке. Они рядом с вами. Скажите: «Эта пара здесь».",
+          "uk": "Друг шукає знайому пару на вечірці. Вони поруч із вами. Скажіть: «Ця пара тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-39:intro1:r1",
+              "text": "The couple is here."
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro1:r2",
+              "text": "The couple here."
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro1:r3",
+              "text": "The couple is outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-39:intro1:r1",
+              "text": "The couple is here."
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro1:r2",
+              "text": "The couple here."
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro1:r3",
+              "text": "The couple is outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг ищет знакомую пару на вечеринке. Они рядом с вами. Скажите: «Эта пара здесь».",
+          "uk": "Друг шукає знайому пару на вечірці. Вони поруч із вами. Скажіть: «Ця пара тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где толпа",
+        "uk": "Де натовп"
+      },
+      "bodyByLocale": {
+        "ru": "`crowd` — «толпа»: много людей в одном месте. Можно назвать всю группу сразу: `The crowd is outside` — «Толпа снаружи». Если нужно узнать, где она, спросите `Where is the crowd?` — «Где толпа?» Начните с `Where is`, затем добавьте `the crowd`: вы ищете место.",
+        "uk": "`crowd` — «натовп»: багато людей в одному місці. Усю групу можна назвати одним словом: `The crowd is outside` — «Натовп надворі». Щоб дізнатися, де він, запитайте `Where is the crowd?` — «Де натовп?» Почніть із `Where is`, а потім додайте `the crowd`: ви шукаєте місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "В комнате почти никого не осталось. Спросите друга, где толпа.",
+          "uk": "У кімнаті майже нікого не залишилося. Запитайте друга, де натовп."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-39:intro2:r1",
+              "text": "Where is the crowd?"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro2:r2",
+              "text": "Who is the crowd?"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro2:r3",
+              "text": "Where the crowd?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-39:intro2:r1",
+              "text": "Where is the crowd?"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro2:r2",
+              "text": "Who is the crowd?"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro2:r3",
+              "text": "Where the crowd?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В комнате почти никого не осталось. Спросите друга, где толпа.",
+          "uk": "У кімнаті майже нікого не залишилося. Запитайте друга, де натовп."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнать хозяина или найти его",
+        "uk": "Упізнати господаря чи знайти його"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is the host?` — «Кто хозяин вечера?» Здесь `host` — тот, кто принимает гостей. Этот вопрос поможет понять, кто он. Если уже знаете человека, но не видите его, пригодится `Where is the host?` — «Где хозяин вечера?» Выбирайте начало по тому, чего не знаете: кто или где.",
+        "uk": "`Who is the host?` — «Хто господар вечірки?» Тут `host` — той, хто приймає гостей. Це запитання допоможе з’ясувати, хто він. Якщо вже знаєте цю людину, але не бачите її, стане в пригоді `Where is the host?` — «Де господар вечірки?» Обирайте початок за тим, чого не знаєте: хто чи де."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Перед уходом друг хочет поблагодарить хозяина, но не знает, кто из гостей устроил вечеринку. Как ему спросить?",
+          "uk": "Перед виходом друг хоче подякувати господареві, але не знає, хто з гостей влаштував вечірку. Як йому запитати?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-39:intro3:r1",
+              "text": "Who is the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro3:r2",
+              "text": "Where is the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro3:r3",
+              "text": "Whose is it?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-39:intro3:r1",
+              "text": "Who is the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro3:r2",
+              "text": "Where is the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:intro3:r3",
+              "text": "Whose is it?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Перед уходом друг хочет поблагодарить хозяина, но не знает, кто из гостей устроил вечеринку. Как ему спросить?",
+          "uk": "Перед виходом друг хоче подякувати господареві, але не знає, хто з гостей влаштував вечірку. Як йому запитати?"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "65ffa22fef360dfdc1f5a051369b8d7f77ca97a7d46edc863c278393fd3756f2"
+}

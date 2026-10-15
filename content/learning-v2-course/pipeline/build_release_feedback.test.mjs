@@ -7,8 +7,8 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 import vm from "node:vm";
-import { buildInteraction, introFeedbackContractIssues, parseIntro, slotFeedbackForTask, sourceReleaseSemanticParityIssues } from "./build_release.mjs";
-import { projectSinglePhraseRelease } from "./single_phrase_release.mjs";
+import { buildInteraction, introFeedbackContractIssues, parseIntro, projectWrongOnlyChoiceFeedback, slotFeedbackForTask, sourceReleaseSemanticParityIssues } from "./build_release.mjs";
+import { feedbackLocaleParityIssues, projectSinglePhraseRelease } from "./single_phrase_release.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -19,7 +19,7 @@ test("release feedback preserves the complete authored tested dimension", () => 
     title,
     family: "listen_choose",
     options: [
-      { text: "is", correct: true, feedback: "Верно." },
+      { text: "is", correct: true, feedback: "legacy correct-answer analysis" },
       { text: "are", correct: false, feedback: "Здесь не несколько предметов." },
     ],
   };
@@ -30,7 +30,7 @@ test("release feedback preserves the complete authored tested dimension", () => 
   const interaction = buildInteraction(optionTask, perLocale, "en/l99/s99", 0, 1);
   assert.deepEqual(
     interaction.modePayload.choiceFeedback.map((entry) => entry.testedDimension),
-    [title, title],
+    [title],
   );
 
   const gap = buildInteraction({ ...optionTask, family: "context_gap_grammar", body: "I ___ ready." }, perLocale, "en/l99/s99", 0, 1);
@@ -48,6 +48,414 @@ test("release feedback preserves the complete authored tested dimension", () => 
     uk: { body: "*(плитка `late` зайва: Тут говорять про готовність.)*" },
   }, "en/l99/s99", ["I", "am", "ready"]);
   assert.equal(slots[0].testedDimension, title);
+});
+
+test("speed-match projection never exposes its authored pair line as a learner scene", () => {
+  const task = {
+    ordinal: 1,
+    title: "Соедините пары",
+    family: "speed_match",
+    options: [],
+    condition: "polite — вежливый · serious — серьёзный",
+    pairs: [
+      { target: "polite", meaning: "вежливый" },
+      { target: "serious", meaning: "серьёзный" },
+    ],
+  };
+  const perLocale = {
+    ru: task,
+    uk: {
+      ...task,
+      title: "З'єднайте пари",
+      condition: "polite — ввічливий · serious — серйозний",
+      pairs: [
+        { target: "polite", meaning: "ввічливий" },
+        { target: "serious", meaning: "серйозний" },
+      ],
+    },
+  };
+  const interaction = buildInteraction(task, perLocale, "en/l99/s99", 0, 1);
+  assert.equal(Object.hasOwn(interaction.modePayload, "localizedScene"), false);
+});
+
+test("wrong-only projection removes at most one confirmed-correct legacy row", () => {
+  const interactionId = "en:lesson-99:session-99:i01";
+  const correctResponseId = `${interactionId}:r1`;
+  const wrongResponseId = `${interactionId}:r2`;
+  const answer = { interactionId, correctResponseId, correctText: "am" };
+  const correct = {
+    responseId: correctResponseId,
+    correct: true,
+    testedDimension: "Выберите форму",
+    feedbackByLocale: { ru: "Исторический разбор.", uk: "Історичний розбір." },
+  };
+  const wrong = {
+    responseId: wrongResponseId,
+    correct: false,
+    testedDimension: "Выберите форму",
+    feedbackByLocale: { ru: "С I нужен am.", uk: "З I потрібне am." },
+  };
+  const interaction = (choiceFeedback) => ({
+    interactionId,
+    family: "listen_choose",
+    inputMode: "single_choice",
+    responseOptions: [
+      { responseId: correctResponseId, text: "am" },
+      { responseId: wrongResponseId, text: "are" },
+    ],
+    modePayload: { choiceFeedback },
+  });
+  const project = (choiceFeedback) => projectWrongOnlyChoiceFeedback([interaction(choiceFeedback)], [answer]);
+
+  assert.deepEqual(project([wrong])[0].modePayload.choiceFeedback, [wrong]);
+  assert.deepEqual(project([correct, wrong])[0].modePayload.choiceFeedback, [wrong]);
+  assert.throws(() => projectWrongOnlyChoiceFeedback([interaction([wrong])], []), /answer_missing/u);
+  assert.throws(() => projectWrongOnlyChoiceFeedback([interaction([wrong])], [answer, structuredClone(answer)]), /answer_duplicate/u);
+  assert.throws(() => projectWrongOnlyChoiceFeedback([interaction([wrong])], [{ ...answer, correctResponseId: `${interactionId}:stale` }]), /correct_response_missing/u);
+  for (const rows of [
+    [correct, structuredClone(correct), wrong],
+    [correct, { ...correct, feedbackByLocale: { ru: "Другой разбор.", uk: "Інший розбір." } }, wrong],
+  ]) {
+    assert.throws(() => project(rows), /choice_feedback_correct_duplicate/u);
+  }
+
+  const duplicateWrong = project([wrong, structuredClone(wrong)])[0];
+  assert.ok(feedbackLocaleParityIssues({ ru: [duplicateWrong], uk: [structuredClone(duplicateWrong)] }, { answers: [answer] })
+    .some((issue) => issue.reason === "choice_feedback_duplicate"));
+  const stale = { ...wrong, responseId: `${interactionId}:stale` };
+  const duplicateStale = project([stale, structuredClone(stale), wrong])[0];
+  const staleIssues = feedbackLocaleParityIssues({ ru: [duplicateStale], uk: [structuredClone(duplicateStale)] }, { answers: [answer] });
+  assert.ok(staleIssues.some((issue) => issue.reason === "choice_feedback_duplicate"));
+  assert.ok(staleIssues.some((issue) => issue.reason === "choice_feedback_unknown_response"));
+});
+
+test("source/release parity fails closed on duplicate confirmed-correct feedback rows", () => {
+  const sessionId = "en:lesson-99:session-99";
+  const interactionId = `${sessionId}:i01`;
+  const correctResponseId = `${interactionId}:r1`;
+  const wrongResponseId = `${interactionId}:r2`;
+  const answer = { interactionId, correctResponseId, correctText: "am" };
+  const correct = { responseId: correctResponseId, correct: true, testedDimension: "", feedbackByLocale: { ru: "Старый разбор.", uk: "Старий розбір." } };
+  const wrong = { responseId: wrongResponseId, correct: false, testedDimension: "", feedbackByLocale: { ru: "С I нужен am.", uk: "З I потрібне am." } };
+  const source = {
+    interactionId,
+    ordinal: 4,
+    purpose: "guided_practice",
+    family: "listen_choose",
+    inputMode: "single_choice",
+    prompt: "Выберите форму",
+    responseOptions: [{ responseId: correctResponseId, text: "am" }, { responseId: wrongResponseId, text: "are" }],
+    mediaIds: [],
+    audioTargetIds: [`${interactionId}:audio`],
+    accessibilityLabel: "Выберите форму",
+    modePayload: {
+      referenceAudio: { audioTargetId: `${interactionId}:audio`, transcript: "am" },
+      localizedMeaningChoices: [
+        { responseId: correctResponseId, targetText: "am", meaningByLocale: null },
+        { responseId: wrongResponseId, targetText: "are", meaningByLocale: null },
+      ],
+      isWordCard: false,
+      choiceFeedback: [correct, structuredClone(correct), wrong],
+    },
+    scriptedAlternate: null,
+  };
+  const release = structuredClone(source);
+  release.modePayload.choiceFeedback = [wrong];
+  const issues = sourceReleaseSemanticParityIssues({
+    sessionIdentity: "en/l99/s99",
+    sessionId,
+    atomicSource: {
+      schemaVersion: "learning_v2_atomic_practice_source_v1",
+      courseSessionId: sessionId,
+      interactionsByLocale: { ru: [source] },
+      answers: [answer],
+    },
+    sourceIntroByLocale: {},
+    sourceLearningOutcomeByLocale: {},
+    releaseIntro: { courseSessionId: sessionId, pages: [] },
+    releaseLearnersByLocale: { ru: { courseSessionId: sessionId, interactions: [release] } },
+    releaseAnswers: [answer],
+    locales: ["ru"],
+  });
+  assert.ok(issues.some((issue) => issue.includes("choice_feedback_correct_duplicate")), issues.join("\n"));
+
+  const validSource = structuredClone(source);
+  validSource.modePayload.choiceFeedback = [correct, wrong];
+  const duplicateAnswerIssues = sourceReleaseSemanticParityIssues({
+    sessionIdentity: "en/l99/s99",
+    sessionId,
+    atomicSource: {
+      schemaVersion: "learning_v2_atomic_practice_source_v1",
+      courseSessionId: sessionId,
+      interactionsByLocale: { ru: [validSource] },
+      answers: [answer, structuredClone(answer)],
+    },
+    sourceIntroByLocale: {},
+    sourceLearningOutcomeByLocale: {},
+    releaseIntro: { courseSessionId: sessionId, pages: [] },
+    releaseLearnersByLocale: { ru: { courseSessionId: sessionId, interactions: [release] } },
+    releaseAnswers: [answer],
+    locales: ["ru"],
+  });
+  assert.ok(duplicateAnswerIssues.some((issue) => issue.includes(`single_phrase_projection_hold:${interactionId}:answer_duplicate`)), duplicateAnswerIssues.join("\n"));
+});
+
+test("source/release parity validates complete source and raw release feedback maps separately", () => {
+  const sessionId = "en:lesson-99:session-96";
+  const interactionId = `${sessionId}:i01`;
+  const correctResponseId = `${interactionId}:r1`;
+  const wrongResponseId = `${interactionId}:r2`;
+  const answers = [{ interactionId, correctResponseId, correctText: "am" }];
+  const correct = { responseId: correctResponseId, correct: true, testedDimension: "Выберите форму", feedbackByLocale: { ru: "Старый разбор.", uk: "Старий розбір." } };
+  const wrong = { responseId: wrongResponseId, correct: false, testedDimension: "Выберите форму", feedbackByLocale: { ru: "С I нужен am.", uk: "З I потрібне am." } };
+  const stale = { ...wrong, responseId: `${interactionId}:stale` };
+  const choice = (choiceFeedback) => ({
+    interactionId,
+    ordinal: 4,
+    purpose: "guided_practice",
+    family: "listen_choose",
+    inputMode: "single_choice",
+    prompt: "Выберите форму",
+    responseOptions: [{ responseId: correctResponseId, text: "am" }, { responseId: wrongResponseId, text: "are" }],
+    mediaIds: [],
+    audioTargetIds: [`${interactionId}:audio`],
+    accessibilityLabel: "Выберите форму",
+    modePayload: {
+      referenceAudio: { audioTargetId: `${interactionId}:audio`, transcript: "am" },
+      localizedMeaningChoices: [
+        { responseId: correctResponseId, targetText: "am", meaningByLocale: null },
+        { responseId: wrongResponseId, targetText: "are", meaningByLocale: null },
+      ],
+      isWordCard: false,
+      choiceFeedback,
+    },
+    scriptedAlternate: null,
+  });
+  const run = (sourceRows, releaseRows) => sourceReleaseSemanticParityIssues({
+    sessionIdentity: "en/l99/s96",
+    sessionId,
+    atomicSource: {
+      schemaVersion: "learning_v2_atomic_practice_source_v1",
+      courseSessionId: sessionId,
+      interactionsByLocale: {
+        ru: [choice(structuredClone(sourceRows))],
+        uk: [choice(structuredClone(sourceRows))],
+      },
+      answers,
+    },
+    sourceIntroByLocale: {},
+    sourceLearningOutcomeByLocale: {},
+    releaseIntro: { courseSessionId: sessionId, pages: [] },
+    releaseLearnersByLocale: {
+      ru: { courseSessionId: sessionId, interactions: [choice(structuredClone(releaseRows))] },
+      uk: { courseSessionId: sessionId, interactions: [choice(structuredClone(releaseRows))] },
+    },
+    releaseAnswers: answers,
+    locales: ["ru", "uk"],
+  });
+
+  assert.deepEqual(run([correct, wrong], [wrong]), []);
+
+  const duplicateWrong = run([wrong, structuredClone(wrong)], [wrong, structuredClone(wrong)]);
+  assert.ok(duplicateWrong.some((issue) => issue.includes("source_raw_feedback_locale_parity") && issue.includes("choice_feedback_duplicate")), duplicateWrong.join("\n"));
+  assert.ok(duplicateWrong.some((issue) => issue.includes("release_feedback_locale_parity") && issue.includes("choice_feedback_duplicate")), duplicateWrong.join("\n"));
+
+  const duplicateStale = run([wrong, stale, structuredClone(stale)], [wrong, stale, structuredClone(stale)]);
+  for (const side of ["source", "release"]) {
+    const prefix = side === "source" ? "source_raw_feedback_locale_parity" : "release_feedback_locale_parity";
+    assert.ok(duplicateStale.some((issue) => issue.includes(prefix) && issue.includes("choice_feedback_duplicate")), duplicateStale.join("\n"));
+    assert.ok(duplicateStale.some((issue) => issue.includes(prefix) && issue.includes("choice_feedback_unknown_response")), duplicateStale.join("\n"));
+  }
+
+  const releaseOnlyDuplicate = run([wrong], [wrong, structuredClone(wrong)]);
+  assert.ok(releaseOnlyDuplicate.some((issue) => issue.includes("release_feedback_locale_parity") && issue.includes("choice_feedback_duplicate")), releaseOnlyDuplicate.join("\n"));
+
+  const invalidSourceAndDuplicateRelease = run(
+    [correct, structuredClone(correct), wrong],
+    [wrong, structuredClone(wrong)],
+  );
+  assert.ok(invalidSourceAndDuplicateRelease.some((issue) => issue.includes("choice_feedback_correct_duplicate")), invalidSourceAndDuplicateRelease.join("\n"));
+  assert.ok(invalidSourceAndDuplicateRelease.some((issue) => issue.includes("release_feedback_locale_parity") && issue.includes("choice_feedback_duplicate")), invalidSourceAndDuplicateRelease.join("\n"));
+});
+
+test("source/release parity retains duplicate slot-feedback holds on both sides", () => {
+  const sessionId = "en:lesson-99:session-95";
+  const interactionId = `${sessionId}:i01`;
+  const tileId = `${interactionId}:tile:d1`;
+  const slot = { responseId: tileId, correct: false, testedDimension: "Соберите фразу", feedbackByLocale: { ru: "Лишнее слово.", uk: "Зайве слово." } };
+  const builder = {
+    interactionId,
+    ordinal: 4,
+    purpose: "guided_practice",
+    family: "phrase_builder",
+    inputMode: "ordered_tokens",
+    prompt: "Соберите фразу",
+    responseOptions: [],
+    mediaIds: [],
+    audioTargetIds: [],
+    accessibilityLabel: "Соберите фразу",
+    modePayload: {
+      targetPhrase: "I am back.",
+      orderedTokens: ["I", "am", "back"],
+      authoredDistractorTokens: ["late"],
+      slotFeedback: [slot, structuredClone(slot)],
+    },
+    scriptedAlternate: null,
+  };
+  const answers = [{ interactionId, correctResponseId: null, correctText: "I am back." }];
+  const issues = sourceReleaseSemanticParityIssues({
+    sessionIdentity: "en/l99/s95",
+    sessionId,
+    atomicSource: {
+      schemaVersion: "learning_v2_atomic_practice_source_v1",
+      courseSessionId: sessionId,
+      interactionsByLocale: { ru: [builder], uk: [structuredClone(builder)] },
+      answers,
+    },
+    sourceIntroByLocale: {},
+    sourceLearningOutcomeByLocale: {},
+    releaseIntro: { courseSessionId: sessionId, pages: [] },
+    releaseLearnersByLocale: {
+      ru: { courseSessionId: sessionId, interactions: [structuredClone(builder)] },
+      uk: { courseSessionId: sessionId, interactions: [structuredClone(builder)] },
+    },
+    releaseAnswers: answers,
+    locales: ["ru", "uk"],
+  });
+  assert.ok(issues.some((issue) => issue.includes("source_raw_feedback_locale_parity") && issue.includes("slot_feedback_duplicate")), issues.join("\n"));
+  assert.ok(issues.some((issue) => issue.includes("release_feedback_locale_parity") && issue.includes("slot_feedback_duplicate")), issues.join("\n"));
+});
+
+test("source/release parity validates raw split-choice feedback before projection", () => {
+  const sessionId = "en:lesson-99:session-94";
+  const interactionId = `${sessionId}:i01`;
+  const correctResponseId = `${interactionId}:r1`;
+  const wrongResponseId = `${interactionId}:r2`;
+  const answers = [{ interactionId, correctResponseId, correctText: "I am here. You are ready." }];
+  const correct = { responseId: correctResponseId, correct: true, testedDimension: "Выберите услышанное", feedbackByLocale: { ru: "Старый разбор." } };
+  const wrong = { responseId: wrongResponseId, correct: false, testedDimension: "Выберите услышанное", feedbackByLocale: { ru: "После I и you нужны разные формы be." } };
+  const splitChoice = (choiceFeedback) => ({
+    interactionId,
+    ordinal: 4,
+    purpose: "guided_practice",
+    family: "listen_choose",
+    inputMode: "single_choice",
+    prompt: "Выберите услышанное",
+    responseOptions: [
+      { responseId: correctResponseId, text: "I am here. You are ready." },
+      { responseId: wrongResponseId, text: "I is here. You is ready." },
+    ],
+    mediaIds: [],
+    audioTargetIds: [`${interactionId}:audio`],
+    accessibilityLabel: "Выберите услышанное",
+    modePayload: {
+      referenceAudio: { audioTargetId: `${interactionId}:audio`, transcript: "I am here. You are ready." },
+      localizedMeaningChoices: [
+        { responseId: correctResponseId, targetText: "I am here. You are ready.", meaningByLocale: null },
+        { responseId: wrongResponseId, targetText: "I is here. You is ready.", meaningByLocale: null },
+      ],
+      isWordCard: false,
+      choiceFeedback,
+    },
+    scriptedAlternate: null,
+  });
+  const releaseFor = (sourceRows = [wrong]) => {
+    const projection = projectSinglePhraseRelease({ interactions: [splitChoice(sourceRows)], answers, locale: "ru" });
+    return {
+      interactions: projectWrongOnlyChoiceFeedback(projection.interactions, projection.answers),
+      answers: projection.answers,
+    };
+  };
+  const run = (sourceRows, release = releaseFor()) => sourceReleaseSemanticParityIssues({
+    sessionIdentity: "en/l99/s94",
+    sessionId,
+    atomicSource: {
+      schemaVersion: "learning_v2_atomic_practice_source_v1",
+      courseSessionId: sessionId,
+      interactionsByLocale: { ru: [splitChoice(structuredClone(sourceRows))] },
+      answers,
+    },
+    sourceIntroByLocale: {},
+    sourceLearningOutcomeByLocale: {},
+    releaseIntro: { courseSessionId: sessionId, pages: [] },
+    releaseLearnersByLocale: { ru: { courseSessionId: sessionId, interactions: release.interactions } },
+    releaseAnswers: release.answers,
+    locales: ["ru"],
+  });
+
+  assert.deepEqual(run([correct, wrong]), []);
+  for (const duplicateRows of [
+    [wrong, structuredClone(wrong)],
+    [wrong, { ...wrong, feedbackByLocale: { ru: "Другой разбор той же ошибки." } }],
+  ]) {
+    const issues = run(duplicateRows, releaseFor([duplicateRows.at(-1)]));
+    assert.ok(issues.some((issue) => issue.includes("source_raw_feedback_locale_parity") && issue.includes("choice_feedback_duplicate")), issues.join("\n"));
+  }
+  const duplicateCorrect = run([correct, structuredClone(correct), wrong]);
+  assert.ok(duplicateCorrect.some((issue) => issue.includes("choice_feedback_correct_duplicate")), duplicateCorrect.join("\n"));
+});
+
+test("source/release parity validates projected split-choice wrong coverage after raw validation", () => {
+  const sessionId = "en:lesson-99:session-93";
+  const interactionId = `${sessionId}:i01`;
+  const sharedResponseId = `${interactionId}:r1`;
+  const answers = [{ interactionId, correctResponseId: sharedResponseId, correctText: "I am here. You are ready." }];
+  const source = {
+    interactionId,
+    ordinal: 4,
+    purpose: "guided_practice",
+    family: "listen_choose",
+    inputMode: "single_choice",
+    prompt: "Выберите услышанное",
+    responseOptions: [
+      { responseId: sharedResponseId, text: "I am here. You are ready." },
+      { responseId: sharedResponseId, text: "I is here. You is ready." },
+    ],
+    mediaIds: [],
+    audioTargetIds: [`${interactionId}:audio`],
+    accessibilityLabel: "Выберите услышанное",
+    modePayload: {
+      referenceAudio: { audioTargetId: `${interactionId}:audio`, transcript: "I am here. You are ready." },
+      localizedMeaningChoices: [
+        { responseId: sharedResponseId, targetText: "I am here. You are ready.", meaningByLocale: null },
+        { responseId: sharedResponseId, targetText: "I is here. You is ready.", meaningByLocale: null },
+      ],
+      isWordCard: false,
+      choiceFeedback: [],
+    },
+    scriptedAlternate: null,
+  };
+  const projection = projectSinglePhraseRelease({ interactions: [source], answers, locale: "ru" });
+  const releaseInteractions = projection.interactions.map((interaction, index) => ({
+    ...interaction,
+    modePayload: {
+      ...interaction.modePayload,
+      choiceFeedback: [{
+        responseId: interaction.responseOptions.find((option) => option.responseId !== projection.answers[index].correctResponseId).responseId,
+        correct: false,
+        testedDimension: "Выберите услышанное",
+        feedbackByLocale: { ru: "После подлежащего нужна согласованная форма be." },
+      }],
+    },
+  }));
+  const issues = sourceReleaseSemanticParityIssues({
+    sessionIdentity: "en/l99/s93",
+    sessionId,
+    atomicSource: {
+      schemaVersion: "learning_v2_atomic_practice_source_v1",
+      courseSessionId: sessionId,
+      interactionsByLocale: { ru: [source] },
+      answers,
+    },
+    sourceIntroByLocale: {},
+    sourceLearningOutcomeByLocale: {},
+    releaseIntro: { courseSessionId: sessionId, pages: [] },
+    releaseLearnersByLocale: { ru: { courseSessionId: sessionId, interactions: releaseInteractions } },
+    releaseAnswers: projection.answers,
+    locales: ["ru"],
+  });
+  assert.ok(issues.some((issue) => issue.includes("source_feedback_locale_parity") && issue.includes("choice_feedback_missing")), issues.join("\n"));
+  assert.ok(!issues.some((issue) => issue.includes("release_feedback_locale_parity") && issue.includes("choice_feedback_missing")), issues.join("\n"));
 });
 
 test("source/release parity rejects changed feedback dimensions and direct gap dimensions", () => {
@@ -80,6 +488,8 @@ test("source/release parity rejects changed feedback dimensions and direct gap d
       locale: "ru",
     });
     const releaseInteraction = structuredClone(sourceProjection.interactions[0]);
+    releaseInteraction.modePayload.choiceFeedback = releaseInteraction.modePayload.choiceFeedback
+      .filter((row) => row.responseId !== `${sourceInteraction.interactionId}:r1`);
     mutateRelease(releaseInteraction);
     return sourceReleaseSemanticParityIssues({
       sessionIdentity: "en/l99/s99",
@@ -99,7 +509,7 @@ test("source/release parity rejects changed feedback dimensions and direct gap d
   };
 
   const choiceIssues = parityIssues(makeInteraction("listen_choose"), (release) => {
-    release.modePayload.choiceFeedback[1].testedDimension = title.slice(0, 40);
+    release.modePayload.choiceFeedback[0].testedDimension = title.slice(0, 40);
   });
   assert.ok(choiceIssues.some((issue) => issue.includes("modePayload.choiceFeedback")), choiceIssues.join("\n"));
 
@@ -149,7 +559,7 @@ test("intro parser keeps a multiline localized explanation out of the English an
     "",
     "**Выберите фразу.**",
     "",
-    "- ✅ **I am not tired.** — *Этот порядок слов передаёт отрицание правильно.*",
+    "- ✅ **I am not tired.**",
     `- ❌ I am tired not. — *${feedback.first}`,
     `  ${feedback.second}*`,
   ].join("\r\n"))[0];
@@ -163,6 +573,12 @@ test("intro parser keeps a multiline localized explanation out of the English an
   assert.equal(ru.feedback, "Not стоит сразу после am.");
   assert.equal(uk.feedback, "Not стоїть одразу після am.");
   assert.deepEqual(introFeedbackContractIssues({ ru: { intro: [ruPage] }, uk: { intro: [ukPage] } }), []);
+
+  const legacyRu = structuredClone(ruPage);
+  const legacyUk = structuredClone(ukPage);
+  legacyRu.options[0].feedback = "Исторический разбор верного ответа.";
+  legacyUk.options[0].feedback = "Історичний розбір правильної відповіді.";
+  assert.deepEqual(introFeedbackContractIssues({ ru: { intro: [legacyRu] }, uk: { intro: [legacyUk] } }), []);
 });
 
 function makeReady(dir, root) {
@@ -204,20 +620,25 @@ function makeReady(dir, root) {
     ]),
     localeHashes: { ru, uk }, locales: { uk: { verdict: "PASS" } },
   }));
-  fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify({ sourceSha256: ru, exactRuSha256: ru, exactUkSha256: uk, localeHashes: { ru, uk }, practiceAtomicSha256: atomic, converged: true, needsHumanReview: false }));
+  fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify({ bindingSchemaVersion: "learning_v2_canonical_source_binding_v1", sourceSha256: ru, exactRuSha256: ru, exactUkSha256: uk, localeHashes: { ru, uk }, practiceAtomicSha256: atomic, converged: true, needsHumanReview: false }));
 }
 
-test("release feedback keeps the selected option ID in every locale and answer position", () => {
+test("release feedback projects only wrong response IDs in every locale and answer position", () => {
   const tempParent = fs.realpathSync(os.tmpdir());
-  const root = fs.mkdtempSync(path.join(tempParent, "learning-v2-feedback-"));
+  const sandbox = fs.mkdtempSync(path.join(tempParent, "learning-v2-feedback-"));
+  const root = path.join(sandbox, "content/learning-v2-course");
   try {
-    fs.mkdirSync(path.join(root, "pipeline"));
-    fs.mkdirSync(path.join(root, "modules/learning-v2/content"), { recursive: true });
+    fs.mkdirSync(path.join(root, "pipeline"), { recursive: true });
+    fs.mkdirSync(path.join(sandbox, "modules/learning-v2/content"), { recursive: true });
     fs.copyFileSync(
       path.resolve(here, "../../../modules/learning-v2/content/learner_visible_text_v1.js"),
-      path.join(root, "modules/learning-v2/content/learner_visible_text_v1.js"),
+      path.join(sandbox, "modules/learning-v2/content/learner_visible_text_v1.js"),
     );
-    for (const name of ["build_release.mjs", "practice_explanations_v1.mjs", "single_phrase_release.mjs", "session_header.mjs", "session_readiness.mjs", "owner_quality.mjs", "progression_quality_gate.mjs", "audit_actor_clarity.mjs", "prejudge_choreography.mjs", "write_mockup_file.mjs", "sync_mockup_readiness.mjs", "sync_mockup_source_release_findings.mjs", "sync_mockup_source_quality_findings.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+    for (const name of ["build_release.mjs", "practice_explanations_v1.mjs", "single_phrase_release.mjs", "session_header.mjs", "session_readiness.mjs", "owner_quality.mjs", "progression_quality_gate.mjs", "audit_actor_clarity.mjs", "prejudge_choreography.mjs", "write_mockup_file.mjs", "sync_mockup_readiness.mjs", "sync_mockup_source_release_findings.mjs", "sync_mockup_source_quality_findings.mjs", "candidate_preview_status.mjs", "reviewed_projection_freshness.mjs", "reviewed_card_evidence.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+    // This fixture exercises feedback projection after the global course gate.
+    // The real 186-session gate is covered behaviorally by its integration test;
+    // keep this isolated root focused on the downstream release contract.
+    fs.writeFileSync(path.join(root, "pipeline/factory_intro_practice_gate.mjs"), "export function auditFactoryIntroPractice(){return {schemaVersion:'test_fixture_only',verdict:'PASS',inventoryCount:186,auditedSessionCount:186,findingCount:0,perSession:[],findings:[]};}\n");
     fs.copyFileSync(path.join(here, "build_mockup.mjs"), path.join(root, "pipeline/build_mockup.mjs"));
     fs.copyFileSync(path.join(here, "write_mockup_file.mjs"), path.join(root, "pipeline/write_mockup_file.mjs"));
     const sessionDir = path.join(root, "sessions/en/l02/s33");
@@ -230,10 +651,10 @@ test("release feedback keeps the selected option ID in every locale and answer p
       const labels = labelsByLocale[locale];
       const introLabels = ["is", "are", "am"];
       const audioByCorrect = ["This is ready.", "They are ready.", "I am ready."];
-      const intro = [1, 2, 3].map((n) => `## Интро ${n}\n\n### Вопрос\n\nТекст.\n\n**Выберите.**\n\n- ✅ **${introLabels[0]}** — *${locale}-${introLabels[0]}*\n- ❌ ${introLabels[1]} — *${locale}-${introLabels[1]}*\n- ❌ ${introLabels[2]} — *${locale}-${introLabels[2]}*\n\n---`).join("\n\n");
+      const intro = [1, 2, 3].map((n) => `## Интро ${n}\n\n### Вопрос\n\nТекст.\n\n**Выберите.**\n\n- ✅ **${introLabels[0]}** — *${locale}-legacy-correct*\n- ❌ ${introLabels[1]} — *${locale}-${introLabels[1]}*\n- ❌ ${introLabels[2]} — *${locale}-${introLabels[2]}*\n\n---`).join("\n\n");
       const instruction = locale === "uk" ? "Послухайте й виберіть" : "Послушайте и выберите";
       const tasks = [0, 1, 2].map((correct, index) => `**${index + 1} · ${instruction} — ${labels[correct]}**\n<!-- interaction_id: en:lesson-02:session-33:i${String(index + 1).padStart(2, "0")}; family: listen_choose -->\n\n🔊 *${audioByCorrect[correct]}*\n\n` + labels.map((label, i) => i === correct
-        ? `- ✅ **${label}** — *${locale}-${label}*`
+        ? `- ✅ **${label}** — *${locale}-legacy-correct*`
         : `- ❌ ${label} — *${locale}-${label}*`).join("\n")
         + `\nЗначения вариантов: ${labels.map((label) => `${label} — ${locale}-meaning-${label}`).join(index === 0 ? "; " : " · ")}`
       ).join("\n\n");
@@ -270,10 +691,10 @@ test("release feedback keeps the selected option ID in every locale and answer p
       }
       const entry = auxiliary.entries.find((candidate) => candidate.interactionId === page.question.interactionId);
       assert.ok(entry, "intro feedback must travel in the auxiliary channel");
-      // Feedback is response-specific learner guidance, not an answer key:
-      // every sealed visible response ID must project its authored explanation.
+      // Feedback is response-specific learner guidance, not an answer key.
       const optionIds = page.question.choicesByLocale.ru
-        .map((choice) => choice.responseId);
+        .map((choice) => choice.responseId)
+        .slice(1);
       assert.deepEqual(Object.keys(entry.responseFeedbackById), optionIds);
       for (const responseId of optionIds) {
         const index = page.question.choicesByLocale.ru.findIndex((choice) => choice.responseId === responseId);
@@ -288,15 +709,17 @@ test("release feedback keeps the selected option ID in every locale and answer p
     for (const [index, interaction] of learner.interactions.slice(0, 3).entries()) {
       const feedback = interaction.modePayload?.choiceFeedback;
       assert.ok(Array.isArray(feedback), "built interaction must expose its feedback entries");
-      assert.equal(feedback.length, 3);
+      assert.equal(feedback.length, 2);
       for (const item of feedback) {
         const option = interaction.responseOptions.find((candidate) => candidate.responseId === item.responseId);
         assert.ok(option, "feedback must target a visible option");
         const optionIndex = interaction.responseOptions.findIndex((candidate) => candidate.responseId === item.responseId);
-        assert.equal(item.correct, item.responseId === answers[index].correctResponseId, "feedback contract must match the visible option");
+        assert.equal(item.correct, false, "feedback must target only a wrong option");
+        assert.notEqual(item.responseId, answers[index].correctResponseId);
         for (const locale of ["ru", "uk"]) assert.equal(item.feedbackByLocale[locale], `${locale}-${labelsByLocale[locale][optionIndex]}`);
       }
-      const optionIds = interaction.responseOptions.map((option) => option.responseId);
+      const optionIds = interaction.responseOptions.map((option) => option.responseId)
+        .filter((responseId) => responseId !== answers[index].correctResponseId);
       assert.deepEqual(feedback.map((item) => item.responseId), optionIds);
       for (const [choiceIndex, choice] of interaction.modePayload.localizedMeaningChoices.entries()) {
         assert.equal(choice.meaningByLocale.ru, `ru-meaning-${labelsByLocale.ru[choiceIndex]}`);
@@ -330,11 +753,6 @@ test("release feedback keeps the selected option ID in every locale and answer p
     const ukFile = path.join(sessionDir, "final.uk.md");
     const validUk = fs.readFileSync(ukFile, "utf8");
     const rejectedIntroCases = [
-      {
-        name: "missing-correct-feedback",
-        reason: /intro_feedback_contract_hold:.+:page=1:reason=feedback_missing:locale=uk:index=0/u,
-        mutate: (source) => source.replace("- ✅ **is** — *uk-is*", "- ✅ **is**"),
-      },
       {
         name: "missing-feedback",
         reason: /intro_feedback_contract_hold:.+:page=1:reason=feedback_missing:locale=uk:index=1/u,
@@ -418,7 +836,7 @@ test("release feedback keeps the selected option ID in every locale and answer p
     const appJs = fs.readFileSync(path.join(root, "mockup/app.js"), "utf8");
     assert.match(appJs, /S\.picked = c\.responseId/u, "intro selection must retain the stable response ID after shuffle");
     assert.match(appJs, /responseFeedbackById\?\.\[S\.picked\]/u, "intro option feedback must resolve by stable response ID");
-    assert.match(appJs, /nextRow\(S\.answered && Boolean\(selectedFeedback\)\)/u, "intro navigation must remain fail-closed until the selected answer has feedback");
+    assert.match(appJs, /nextRow\(S\.answered && \(S\.ok \|\| Boolean\(selectedFeedback\)\)\)/u, "correct answers need no explanation; wrong answers require selected feedback");
     const selector = /^const learnerForSession = .+;$/m.exec(appJs)?.[0];
     assert.ok(selector, "mockup must expose one locale-child selector used by every render");
     const select = (session, locale) => {
@@ -456,10 +874,11 @@ test("release feedback keeps the selected option ID in every locale and answer p
     fs.writeFileSync(path.join(out, "learner.uk.json"), JSON.stringify({ ...learnerUk, interactions: divergentUk }, null, 2));
     const divergentMockup = spawnSync(process.execPath, [path.join(root, "pipeline/build_mockup.mjs")], { encoding: "utf8" });
     assert.equal(divergentMockup.status, 0, divergentMockup.stderr || divergentMockup.stdout);
-    assert.match(`${divergentMockup.stdout}\n${divergentMockup.stderr}`, /choice_feedback_locale_map_mismatch/u);
+    assert.match(`${divergentMockup.stdout}\n${divergentMockup.stderr}`, /choice_feedback_locale_map_mismatch/u,
+      "the shared wrong-only validator must retain exact cross-locale maps");
   } finally {
-    assert.equal(path.dirname(root), tempParent);
-    assert.ok(path.basename(root).startsWith("learning-v2-feedback-"));
-    fs.rmSync(root, { recursive: true, force: true });
+    assert.equal(path.dirname(sandbox), tempParent);
+    assert.ok(path.basename(sandbox).startsWith("learning-v2-feedback-"));
+    fs.rmSync(sandbox, { recursive: true, force: true });
   }
 });

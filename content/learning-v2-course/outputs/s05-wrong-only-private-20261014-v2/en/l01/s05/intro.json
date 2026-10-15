@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "как сказать о себе с `I am` и как поставить `not` после `am`",
+    "uk": "як сказати про себе з `I am` і як поставити `not` після `am`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Слово, которое проглатывают",
+        "uk": "Слово, яке ковтають"
+      },
+      "bodyByLocale": {
+        "ru": "По-русски «у меня всё хорошо» обходится без «есть». Рука тянется сделать так же по-английски: `I fine`.\n\nНо между `I` и словом о себе всегда стоит `am`. Без него вас поймут, но по лицу собеседника будет видно, что он дослушивает из вежливости.",
+        "uk": "Українською «у мене все добре» обходиться без «є». Рука тягнеться зробити так само англійською: `I fine`.\n\nАле між `I` і словом про себе завжди стоїть `am`. Без нього вас зрозуміють, але з обличчя співрозмовника буде видно, що він дослуховує з ввічливості."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега Марина спрашивает возле чайника, как вы себя чувствуете. Вы в порядке — ответьте полной фразой.",
+          "uk": "Колега Марина питає біля чайника, як ви почуваєтеся. У вас усе гаразд — скажіть повним реченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r1",
+              "text": "I am fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r2",
+              "text": "I fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r3",
+              "text": "Am fine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r1",
+              "text": "I am fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r2",
+              "text": "I fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r3",
+              "text": "Am fine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега Марина спрашивает возле чайника, как вы себя чувствуете. Вы в порядке — ответьте полной фразой.",
+          "uk": "Колега Марина питає біля чайника, як ви почуваєтеся. У вас усе гаразд — скажіть повним реченням."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Not не работает в одиночку",
+        "uk": "Not сам не працює"
+      },
+      "bodyByLocale": {
+        "ru": "`sure` — «уверен». Для «я не уверен» может прийти в голову `I no sure`, но в этой конструкции нужно `not`.\n\nОтдельно `No` — это ответ «нет». А в конструкции `I am ___ sure` «не» — это `not`, сразу после `am`: `I am not sure`.",
+        "uk": "`sure` — «впевнений». Для «я не впевнений» може спасти на думку `I no sure`, але в цій конструкції потрібне `not`.\n\nОкремо `No` — це відповідь «ні». А в конструкції `I am ___ sure` «не» — це `not`, одразу після `am`: `I am not sure`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Марина предлагает вам кофе и спрашивает, понравился ли он вам. Вы его ещё не пробовали.",
+          "uk": "Марина пропонує вам каву й питає, чи сподобалася вона вам. Ви її ще не куштували."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r1",
+              "text": "I am not sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r2",
+              "text": "I no sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r3",
+              "text": "I am sure not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r1",
+              "text": "I am not sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r2",
+              "text": "I no sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r3",
+              "text": "I am sure not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Марина предлагает вам кофе и спрашивает, понравился ли он вам. Вы его ещё не пробовали.",
+          "uk": "Марина пропонує вам каву й питає, чи сподобалася вона вам. Ви її ще не куштували."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Am — это и есть «я»",
+        "uk": "Am — це і є «я»"
+      },
+      "bodyByLocale": {
+        "ru": "`I am lost` — «я заблудился». Без `am` получится `I lost` — здесь это «я что-то потерял», а не «я заблудился».\n\nТак же и с `I am new`: без `am` пропадает смысл «я новенький».",
+        "uk": "`I am lost` — «я заблукав». Без `am` буде `I lost` — тут це означає «я щось загубив», а не «я заблукав».\n\nТак само і з `I am new`: без `am` зникає значення «я новенький»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Лина знакомит вас с Антоном и просит представиться. Сегодня у вас первый день в компании — скажите, что вы новенький.",
+          "uk": "Ліна знайомить вас з Антоном і просить представитися. Сьогодні у вас перший день у компанії — скажіть, що ви новенький."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r1",
+              "text": "I am new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r2",
+              "text": "I new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r3",
+              "text": "I am not new."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r1",
+              "text": "I am new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r2",
+              "text": "I new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r3",
+              "text": "I am not new."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Лина знакомит вас с Антоном и просит представиться. Сегодня у вас первый день в компании — скажите, что вы новенький.",
+          "uk": "Ліна знайомить вас з Антоном і просить представитися. Сьогодні у вас перший день у компанії — скажіть, що ви новенький."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1110aa85cbfaae0ac77c2c9378e8532d2110674176c399d162066dc8e7244747"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-17:i01",
+    "correctText": "container",
+    "correctResponseId": "en:lesson-04:session-17:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i02",
+    "correctText": "container",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i03",
+    "correctText": "en:lesson-04:session-17:i03:p1=container\nen:lesson-04:session-17:i03:p2=berry\nen:lesson-04:session-17:i03:p3=basket\nen:lesson-04:session-17:i03:p4=bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i04",
+    "correctText": "There are some containers here.",
+    "correctResponseId": "en:lesson-04:session-17:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i05",
+    "correctText": "There are some containers on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i06",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-04:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i07",
+    "correctText": "There are some berries in the basket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i08",
+    "correctText": "There are some containers by the market.",
+    "correctResponseId": "en:lesson-04:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i09",
+    "correctText": "There are some berries on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i10",
+    "correctText": "There are some containers near the basket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i11",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-04:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i12",
+    "correctText": "There are some containers near the table.",
+    "correctResponseId": null
+  }
+]

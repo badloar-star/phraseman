@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-13:intro1:r2": {
+          "ru": "`A tram` — трамвай. На стоянке стоит машина `a taxi`.",
+          "uk": "`A tram` — трамвай. На стоянці стоїть машина `a taxi`."
+        },
+        "en:lesson-04:session-13:intro1:r3": {
+          "ru": "`A platform` — платформа. Это место для поезда, не машина.",
+          "uk": "`A platform` — платформа. Це місце для поїзда, не машина."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-13:intro2:r2": {
+          "ru": "Это порядок сообщения. В вопросе `is` ставят перед `there`: `Is there a taxi?`.",
+          "uk": "Це порядок повідомлення. У питанні `is` ставлять перед `there`: `Is there a taxi?`."
+        },
+        "en:lesson-04:session-13:intro2:r3": {
+          "ru": "Перед одним исчисляемым предметом нужен `a`: `Is there a taxi?`.",
+          "uk": "Перед одним злічуваним предметом потрібен `a`: `Is there a taxi?`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-13:intro3:r2": {
+          "ru": "Это сообщение, а не обычный вопрос. Вопрос начинается с `Are`: `Are there taxis?`.",
+          "uk": "Це повідомлення, а не звичайне питання. Питання починається з `Are`: `Are there taxis?`."
+        },
+        "en:lesson-04:session-13:intro3:r3": {
+          "ru": "`Taxis` — несколько машин, поэтому нужна форма `Are`: `Are there taxis?`.",
+          "uk": "`Taxis` — кілька машин, тому потрібна форма `Are`: `Are there taxis?`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b0316f73eb2bc7ddda8d5b2f60cb6e467944fc04076161a8d728668f732a5ee5"
+}

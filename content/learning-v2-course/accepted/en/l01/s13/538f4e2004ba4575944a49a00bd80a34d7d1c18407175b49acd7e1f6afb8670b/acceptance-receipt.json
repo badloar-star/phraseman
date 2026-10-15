@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "learning_v2_session_acceptance_receipt_v1",
+  "session": "en/l01/s13",
+  "courseSessionId": "en:lesson-01:session-13",
+  "state": "TEXT_CANONICAL",
+  "candidateRoot": "content/learning-v2-course/outputs/s13-review-fixed-private-20261015-v1",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s13-review-fixed-private-20261015-v1/content-receipt.json",
+  "candidateReceiptSha256": "e3b3cb3ae5757edcbc91e94f1764104df5a8ec614c1e4f9ece35e2435cc1872a",
+  "candidateBundleSha256": "538f4e2004ba4575944a49a00bd80a34d7d1c18407175b49acd7e1f6afb8670b",
+  "candidateInventorySha256": "20834a1e4eb19c708c4792e54b8bf46cb143cb4aba2c260ab596c97ce662e54b",
+  "sourceFingerprint": "60d466e971bdf79d303957417673e91dc57aa3c476d8a122fdee68367742de87",
+  "deterministicGateReport": {
+    "path": "content/learning-v2-course/judgements/2026-10-15_s13_v1_deterministic_gates.current.json",
+    "sha256": "1df197cf7d0132e85399faf9a65c3a3685a57ed4f909102e0a1c5902786b6b15",
+    "bytes": 1505
+  },
+  "reviewEvidence": [
+    {
+      "dimension": "blind_learner",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-15_s13_v1_blind_learner.current.json",
+      "artifactSha256": "caf869fa69641c23b69246598ef01bf003b14e08607f7a62a198ac79e35b5235",
+      "artifactBytes": 984,
+      "dispatchProvenance": {
+        "agent": "/root/activate_s11_green/s13_blind_v1",
+        "configuredModel": "gpt-6-luna"
+      }
+    },
+    {
+      "dimension": "language_pedagogy_locale",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-15_s13_v1_language_pedagogy_locale.current.json",
+      "artifactSha256": "17c837df84d6c50424506eb2e3161adaa6fb8be7ba2b267f399f045a80da5deb",
+      "artifactBytes": 793,
+      "dispatchProvenance": {
+        "agent": "/root/activate_s11_green/s13_locale_v1",
+        "configuredModel": "gpt-6-luna"
+      }
+    }
+  ],
+  "localeEvidence": {
+    "path": "content/learning-v2-course/outputs/s13-review-fixed-private-20261015-v1/source-snapshot/content/learning-v2-course/sessions/en/l01/s13/locales_batch.md",
+    "sha256": "9769341b289b15f648b3c9cf04216e25dac8194aaf37c4c0bb5612d5fc845592",
+    "bytes": 12329
+  },
+  "audioTechnicalEvidence": null,
+  "semanticAudioVerified": false,
+  "releaseAuthority": false,
+  "immutableContentOnly": true
+}

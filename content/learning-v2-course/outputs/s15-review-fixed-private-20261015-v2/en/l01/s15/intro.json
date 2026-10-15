@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "как сказать о себе и собеседнике `I am` / `You are`, включая `not`",
+    "uk": "як сказати про себе й співрозмовника `I am` / `You are`, зокрема з `not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Polite — «вежливый»",
+        "uk": "Polite — «ввічливий»"
+      },
+      "bodyByLocale": {
+        "ru": "Так называют человека, который говорит «пожалуйста» и «спасибо» и относится к людям учтиво.\n\nПро себя — `I am polite`. Про собеседника — `You are polite`. Меняется только `am` на `are`, само слово одно и то же.",
+        "uk": "Так називають людину, яка каже «будь ласка» і «дякую» та ввічливо ставиться до інших.\n\nПро себе — `I am polite`. Про співрозмовника — `You are polite`. Змінюється тільки `am` на `are`, саме слово те саме."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Вика весь день благодарила коллег и пропускала их вперёд у двери. Скажите ей, что она вежливая.",
+          "uk": "Віка весь день дякувала колегам і пропускала їх уперед біля дверей. Скажіть їй, що вона ввічлива."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r1",
+              "text": "You are polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r2",
+              "text": "You polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r3",
+              "text": "You am polite."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r1",
+              "text": "You are polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r2",
+              "text": "You polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r3",
+              "text": "You am polite."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вика весь день благодарила коллег и пропускала их вперёд у двери. Скажите ей, что она вежливая.",
+          "uk": "Віка весь день дякувала колегам і пропускала їх уперед біля дверей. Скажіть їй, що вона ввічлива."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Serious — «серьёзный»",
+        "uk": "Serious — «серйозний»"
+      },
+      "bodyByLocale": {
+        "ru": "`serious` — «серьёзный». Человек не шутит: он правда собирается это сделать.\n\nКогда вы объясняете, что не говорили всерьёз, поставьте `not` сразу после `am`.\n\n`I am not serious` — «я не говорю всерьёз». Три слова вместо нашего «да шучу я».",
+        "uk": "`serious` — «серйозний». Людина не жартує і не відмахується: вона справді збирається це зробити.\n\nКоли ви пояснюєте, що не говорили серйозно, поставте `not` одразу після `am`. `I am not serious` — «я кажу це несерйозно», три слова замість нашого «та я жартую»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы пошутили, и Вика решила, что это правда. Уточните: «я говорю не всерьёз».",
+          "uk": "Ви пожартували, і Віка вирішила, що це правда. Уточніть: «я жартую»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r1",
+              "text": "I am not serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r2",
+              "text": "I not am serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r3",
+              "text": "I am no serious."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r1",
+              "text": "I am not serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r2",
+              "text": "I not am serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r3",
+              "text": "I am no serious."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы пошутили, и Вика решила, что это правда. Уточните: «я говорю не всерьёз».",
+          "uk": "Ви пожартували, і Віка вирішила, що це правда. Уточніть: «я жартую»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Lucky и sad",
+        "uk": "Lucky і sad — про везіння й сум"
+      },
+      "bodyByLocale": {
+        "ru": "`lucky` — «везучий» или «везучая»: человеку просто повезло.\n\n`sad` — «грустный». Это слово о грусти; `lucky` — о том, что человеку повезло.\n\nВ этих фразах перед признаком человека стоит `I am`: `I am sad`, `I am lucky`.",
+        "uk": "`lucky` — «везуча»: людині просто пощастило. Це не те саме, що бути щасливою.\n\n`sad` — «сумний» або «сумна». У цих фразах перед ознакою людини стоїть `I am`: `I am sad`, `I am lucky`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "На розыгрыше среди коллег Вика вытянула призовой билет. Скажите ей: «ты везучая».",
+          "uk": "На розіграші серед колег Віка витягнула призовий квиток. Скажіть їй: «ти везуча»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r1",
+              "text": "You are lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r2",
+              "text": "You is lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r3",
+              "text": "You lucky are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r1",
+              "text": "You are lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r2",
+              "text": "You is lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r3",
+              "text": "You lucky are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На розыгрыше среди коллег Вика вытянула призовой билет. Скажите ей: «ты везучая».",
+          "uk": "На розіграші серед колег Віка витягнула призовий квиток. Скажіть їй: «ти везуча»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f77b4e080363aca098af23ad1a1c6000afb31e525fd2dbb270da962ed5756222"
+}

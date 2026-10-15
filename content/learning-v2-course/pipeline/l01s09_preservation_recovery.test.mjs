@@ -12,7 +12,7 @@ const expectedFinal = [
   ["i18:s03", "I am not tired."],
   ["i18:s04", "You are kind."],
 ];
-const expectedCorrectFeedback = ["i02:r1", "i04:r1", "i06:r1", "i08:r1", "i11:r1", "i17:r1"];
+const expectedCorrectResponses = ["i02:r1", "i04:r1", "i06:r1", "i08:r1", "i11:r1", "i17:r1"];
 const expectedTileFeedback = ["i13:tile:d1", "i13:tile:d2", "i16:tile:d1"];
 const atomic = () => JSON.parse(fs.readFileSync(path.join(root, "sessions/en/l01/s09/practice.atomic.json"), "utf8"));
 const ledger = () => JSON.parse(fs.readFileSync(path.join(root, "migration/single-phrase-2026-10-03/preservation-ledger.json"), "utf8"));
@@ -32,7 +32,7 @@ test("L01/S09 preserves all four historical final spoken steps in both locales",
   }
 });
 
-test("L01/S09 gives every checked answer and unused builder tile an explanation", () => {
+test("L01/S09 explains unused builder tiles without adding correct-answer feedback", () => {
   const data = atomic();
   for (const locale of ["ru", "uk"]) {
     const interactions = data.interactionsByLocale[locale];
@@ -40,8 +40,8 @@ test("L01/S09 gives every checked answer and unused builder tile an explanation"
       ...(entry.modePayload?.choiceFeedback ?? []),
       ...(entry.modePayload?.slotFeedback ?? []),
     ]);
-    for (const suffix of expectedCorrectFeedback) {
-      assert.equal(feedback.some((entry) => entry.responseId === `${session}:${suffix}` && entry.correct === true && entry.feedbackByLocale?.ru?.trim() && entry.feedbackByLocale?.uk?.trim()), true, `${locale}:${suffix}`);
+    for (const suffix of expectedCorrectResponses) {
+      assert.equal(feedback.some((entry) => entry.responseId === `${session}:${suffix}`), false, `${locale}:${suffix}`);
     }
     for (const suffix of expectedTileFeedback) {
       assert.equal(feedback.some((entry) => entry.responseId === `${session}:${suffix}` && entry.feedbackByLocale?.ru?.trim() && entry.feedbackByLocale?.uk?.trim()), true, `${locale}:${suffix}`);

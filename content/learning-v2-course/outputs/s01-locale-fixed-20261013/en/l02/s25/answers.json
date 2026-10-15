@@ -1,0 +1,102 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-25:i01",
+    "correctText": "price",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i02",
+    "correctText": "price",
+    "correctResponseId": "en:lesson-02:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i03",
+    "correctText": "name",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i04",
+    "correctText": "name",
+    "correctResponseId": "en:lesson-02:session-25:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i05",
+    "correctText": "What is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i06",
+    "correctText": "price",
+    "correctResponseId": "en:lesson-02:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i07",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-25:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i08",
+    "correctText": "price",
+    "correctResponseId": "en:lesson-02:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i09",
+    "correctText": "cheap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i10",
+    "correctText": "What is the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i11",
+    "correctText": "street",
+    "correctResponseId": "en:lesson-02:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i12",
+    "correctText": "What is the name?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i13",
+    "correctText": "en:lesson-02:session-25:i13:p1=price\nen:lesson-02:session-25:i13:p2=name\nen:lesson-02:session-25:i13:p3=cheap\nen:lesson-02:session-25:i13:p4=street",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i14",
+    "correctText": "cheap",
+    "correctResponseId": "en:lesson-02:session-25:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i15",
+    "correctText": "What is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i16:s01",
+    "correctText": "What is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i16:s02",
+    "correctText": "What is the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i17:s01",
+    "correctText": "What is the name?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i17:s02",
+    "correctText": "What is the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i17:s03",
+    "correctText": "It is cheap.",
+    "correctResponseId": null
+  }
+]

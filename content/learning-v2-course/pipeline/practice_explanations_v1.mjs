@@ -232,10 +232,14 @@ function expectedResponses(interaction, atomicSource = null) {
     }));
   }
   const feedbackById = new Map((payload.choiceFeedback ?? []).map((feedback) => [feedback.responseId, feedback]));
+  const answer = atomicSource?.answers?.find((candidate) => candidate?.interactionId === interaction?.interactionId);
+  const correctResponseId = nonEmpty(answer?.correctResponseId) ? answer.correctResponseId : null;
   const soleChoiceCorrect = interaction?.family === "listen_choose" && rows.length === 1;
   return rows.map((row, index) => ({
     responseId: row.responseId,
-    correct: feedbackById.get(row.responseId)?.correct ?? soleChoiceCorrect,
+    correct: correctResponseId
+      ? row.responseId === correctResponseId
+      : feedbackById.get(row.responseId)?.correct ?? soleChoiceCorrect,
     textByLocale: Object.fromEntries(LOCALES.map((locale) => {
       const localizedInteraction = atomicSource?.interactionsByLocale?.[locale]?.find((candidate) =>
         candidate.interactionId === interaction.interactionId) ?? interaction;
@@ -323,33 +327,52 @@ function uniqueExplainedInteractions(atomicSource) {
   return byId;
 }
 
+export function parseIntroOptionsFromMarkdown(markdown, locale) {
+  const issues = [];
+  const intro = markdown.split(/^##\s*[ИІ]нтро\s*\d+[^\n]*$/mi).slice(1, 4);
+  const options = intro.flatMap((block, pageIndex) => {
+    const section = block.split(/^##\s+/m, 1)[0];
+    const markedLines = section.split(/\r?\n/u).filter((line) => /^-\s+[✅❌]/u.test(line));
+    return markedLines.map((line, choiceIndex) => {
+      const match = /^-\s+([✅❌])\s+(.+?)\s*$/u.exec(line);
+      const markedText = match?.[2]?.trim() ?? "";
+      const suffix = /\s+—\s+\*([^*\n]+)\*\s*$/u.exec(markedText);
+      const feedback = suffix?.[1]?.trim() ?? "";
+      const choice = (suffix ? markedText.slice(0, suffix.index) : markedText)
+        .trim()
+        .replace(/^\*\*(.*?)\*\*$/u, "$1")
+        .trim();
+      const correct = match?.[1] === "✅";
+      if (!correct && !nonEmpty(feedback)) {
+        issues.push(`intro${pageIndex + 1}:r${choiceIndex + 1}:wrong_feedback_missing:${locale}`);
+      }
+      return { pageIndex, choiceIndex, text: choice, correct, feedback };
+    });
+  });
+  return { options, issues };
+}
+
 function introOptionsFromMarkdown(sessionDir) {
   const byLocale = {};
+  const issues = [];
   for (const locale of LOCALES) {
     const markdown = fs.readFileSync(path.join(sessionDir, `final.${locale}.md`), "utf8");
-    const intro = markdown.split(/^##\s*[ИІ]нтро\s*\d+[^\n]*$/mi).slice(1, 4);
-    byLocale[locale] = intro.flatMap((block, pageIndex) => {
-      const section = block.split(/^##\s+/m, 1)[0];
-      return [...section.matchAll(/^-\s+([✅❌])\s*(?:\*\*)?(.+?)(?:\*\*)?\s+—\s+\*[^\n]+\*\s*$/gmu)].map((match, choiceIndex) => ({
-        pageIndex,
-        choiceIndex,
-        text: match[2].trim().replace(/^\*\*|\*\*$/gu, ""),
-        correct: match[1] === "✅",
-      }));
-    });
+    const parsed = parseIntroOptionsFromMarkdown(markdown, locale);
+    byLocale[locale] = parsed.options;
+    issues.push(...parsed.issues);
   }
-  return byLocale;
+  return { byLocale, issues };
 }
 
 function introResponseIssues(sidecar, sessionDir) {
-  const byLocale = introOptionsFromMarkdown(sessionDir);
+  const { byLocale, issues } = introOptionsFromMarkdown(sessionDir);
   const expected = (byLocale.ru ?? []).map((entry) => ({
     responseId: `${sidecar.courseSessionId}:intro${entry.pageIndex + 1}:r${entry.choiceIndex + 1}`,
     correct: entry.correct,
     textByLocale: Object.fromEntries(LOCALES.map((locale) => [locale, byLocale[locale]?.find((row) =>
       row.pageIndex === entry.pageIndex && row.choiceIndex === entry.choiceIndex)?.text ?? ""])),
   }));
-  const issues = responseCoverageIssues(sidecar?.introResponses, expected, "practice_explanations:intro");
+  issues.push(...responseCoverageIssues(sidecar?.introResponses, expected, "practice_explanations:intro"));
   return issues.map((value) => value.replace("response_analysis_missing", "intro_response_analysis_missing"));
 }
 

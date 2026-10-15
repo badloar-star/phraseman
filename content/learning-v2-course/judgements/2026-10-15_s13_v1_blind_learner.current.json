@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "learning_v2_independent_review_v1",
+  "sessionId": "en:lesson-01:session-13",
+  "dimension": "blind_learner",
+  "verdict": "PASS",
+  "findings": [],
+  "candidateBundleSha256": "538f4e2004ba4575944a49a00bd80a34d7d1c18407175b49acd7e1f6afb8670b",
+  "contentReceiptSha256": "e3b3cb3ae5757edcbc91e94f1764104df5a8ec614c1e4f9ece35e2435cc1872a",
+  "candidateInventorySha256": "20834a1e4eb19c708c4792e54b8bf46cb143cb4aba2c260ab596c97ce662e54b",
+  "sourceFingerprint": "60d466e971bdf79d303957417673e91dc57aa3c476d8a122fdee68367742de87",
+  "deterministicReportSha256": "1df197cf7d0132e85399faf9a65c3a3685a57ed4f909102e0a1c5902786b6b15",
+  "blindPacketPath": "content/learning-v2-course/review-packets/2026-10-15_s13_v1_blind_learner.rendered.json",
+  "blindPacketSha256": "d1c70a6262aa8f47f4e868d7a5aab5c444475117d90ad98391b25281fb14d68f",
+  "audioReviewed": false,
+  "dispatchProvenance": {"agent":"/root/activate_s11_green/s13_blind_v1","configuredModel":"gpt-6-luna"}
+}

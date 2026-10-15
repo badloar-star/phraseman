@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "learning_v2_independent_review_v1",
+  "sessionId": "en:lesson-01:session-12",
+  "dimension": "language_pedagogy_locale",
+  "verdict": "PASS",
+  "findings": [],
+  "editorialNotes": [
+    "UK i19 утомлений/утомлена is valid and understandable; втомлений/втомлена may sound more natural in future polish.",
+    "The Russian assembler appendix header is build metadata, not learner-facing content.",
+    "The generated UK learner projection has no explicit locale field; its localized content is coherent under the existing filename/selection contract."
+  ],
+  "candidateBundleSha256": "e427c91429689df9ba09d1e32b7c6e388e90b57cd014606d0a4ad15a5e4f7b0e",
+  "contentReceiptSha256": "4916aa7acfbe2e5c6d2501092803922db7573892291dfbd26c722ea8f4a49eea",
+  "candidateInventorySha256": "3017ec9e3f4a0209aec0b6599042736470e685f424d0e95b5d19dda082861ef0",
+  "sourceFingerprint": "37575011d5ab7de7ac3c03180e9104158a4a4de0a4ff2236df8433df78c4b22d",
+  "deterministicReportSha256": "352636995256214754a7e4b68d6176fe023c49f46af76baf5876a06c8ac6364f",
+  "audioReviewed": false,
+  "dispatchProvenance": {"agent":"/root/activate_s11_green/s12_locale_v11","configuredModel":"gpt-6-luna"}
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-27:i01",
+    "correctText": "prices",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i02",
+    "correctText": "prices",
+    "correctResponseId": "en:lesson-02:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i03",
+    "correctText": "rules",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i04",
+    "correctText": "rules",
+    "correctResponseId": "en:lesson-02:session-27:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i05",
+    "correctText": "What are these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i07",
+    "correctText": "prices",
+    "correctResponseId": "en:lesson-02:session-27:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i08",
+    "correctText": "rules",
+    "correctResponseId": "en:lesson-02:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i09",
+    "correctText": "What are these rules?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i10",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-27:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i11",
+    "correctText": "What are these prices?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i12",
+    "correctText": "cheap",
+    "correctResponseId": "en:lesson-02:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i13",
+    "correctText": "en:lesson-02:session-27:i13:p1=prices\nen:lesson-02:session-27:i13:p2=rules\nen:lesson-02:session-27:i13:p3=cheap\nen:lesson-02:session-27:i13:p4=shops",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i14",
+    "correctText": "What are these prices?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i15",
+    "correctText": "shops",
+    "correctResponseId": "en:lesson-02:session-27:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i16:s01",
+    "correctText": "What are these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i16:s02",
+    "correctText": "What are these prices?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i17:s01",
+    "correctText": "What are these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i17:s02",
+    "correctText": "What are these prices?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i17:s03",
+    "correctText": "What are these rules?",
+    "correctResponseId": null
+  }
+]

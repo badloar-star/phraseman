@@ -1,0 +1,930 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-56:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-56:i01:r1",
+          "text": "mat"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i01:r2",
+          "text": "map"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i01:r3",
+          "text": "hat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i01:audio",
+          "transcript": "mat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-56:i01:r1",
+            "targetText": "mat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i01:r2",
+            "targetText": "map",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i01:r3",
+            "targetText": "hat",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово у двери",
+            "feedbackByLocale": {
+              "ru": "`Map` начинается похоже, но в записи слышно `mat` — коврик у двери.",
+              "uk": "`Map` починається схоже, але в записі чути `mat` — килимок біля дверей."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово у двери",
+            "feedbackByLocale": {
+              "ru": "`Hat` — шляпа; в записи слышно короткое `mat`.",
+              "uk": "`Hat` — капелюх; у записі чути коротке `mat`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i02:audio",
+          "transcript": "tray"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "tray",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i03:audio",
+          "transcript": "hook"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "hook",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i04:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i04:audio",
+          "transcript": "mat"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "mat",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i05:audio",
+          "transcript": "tray"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "tray",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-56:i06:r1",
+          "text": "hook"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i06:r2",
+          "text": "book"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i06:r3",
+          "text": "look"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i06:audio",
+          "transcript": "hook"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-56:i06:r1",
+            "targetText": "hook",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i06:r2",
+            "targetText": "book",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i06:r3",
+            "targetText": "look",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово для вешалки",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `hook` — «крючок». `Book` рифмуется с ним, но это другое слово.",
+              "uk": "У записі звучить `hook` — «гачок». `Book` римується з ним, але це інше слово."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово для вешалки",
+            "feedbackByLocale": {
+              "ru": "В записи слышно `hook` — «крючок». У `look` похожий конец, но это другое слово.",
+              "uk": "У записі чути `hook` — «гачок». У `look` схожий кінець, але це інше слово."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i07:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i07:audio",
+          "transcript": "mat"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "mat",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с покупками",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с покупками",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-56:i08:p1",
+            "target": "mat",
+            "meaningByLocale": {
+              "ru": "коврик у двери",
+              "uk": "килимок біля дверей"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-56:i08:p2",
+            "target": "tray",
+            "meaningByLocale": {
+              "ru": "поднос",
+              "uk": "таця"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-56:i08:p3",
+            "target": "hook",
+            "meaningByLocale": {
+              "ru": "крючок",
+              "uk": "гачок"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-56:i08:p4",
+            "target": "rug",
+            "meaningByLocale": {
+              "ru": "ковёр в комнате",
+              "uk": "килим у кімнаті"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mat",
+          "tray",
+          "hook",
+          "rug"
+        ],
+        "rightColumn": [
+          "коврик у двери",
+          "поднос",
+          "крючок",
+          "ковёр в комнате"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i09:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i09:audio",
+          "transcript": "hook"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "hook",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-56:i10:r1",
+          "text": "tray"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i10:r2",
+          "text": "tree"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i10:r3",
+          "text": "try"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i10:audio",
+          "transcript": "tray"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-56:i10:r1",
+            "targetText": "tray",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i10:r2",
+            "targetText": "tree",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i10:r3",
+            "targetText": "try",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово для подноса",
+            "feedbackByLocale": {
+              "ru": "`Tree` — дерево; в записи слышно `tray` — поднос.",
+              "uk": "`Tree` — дерево; у записі чути `tray` — таця."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово для подноса",
+            "feedbackByLocale": {
+              "ru": "В `tray` гласный звучит как `/eɪ/`, а в `try` — как `/aɪ/`. В записи — `tray`, поднос.",
+              "uk": "У `tray` голосний звучить як `/eɪ/`, а в `try` — як `/aɪ/`. У записі — `tray`, таця."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу о коврике у двери",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу о коврике у двери",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a mat.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу о коврике у двери",
+          "uk": "Складіть фразу про килимок біля дверей"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "mat"
+        ],
+        "authoredDistractorTokens": [
+          "These"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите подпись о подносе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите подпись о подносе",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i12:audio",
+          "transcript": "That tray is wooden."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That tray is wooden.",
+        "orderedTokens": [
+          "That",
+          "tray",
+          "is",
+          "wooden"
+        ],
+        "authoredDistractorTokens": [
+          "Those"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте материал крючков рядом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-56:i13:r1",
+          "text": "metal"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i13:r2",
+          "text": "wooden"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i13:r3",
+          "text": "soft"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте материал крючков рядом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте материал крючков рядом",
+          "uk": "Вставте матеріал гачків поруч"
+        },
+        "gappedTargetPhrase": "These hooks are ___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-56:i13:r1",
+            "text": "metal"
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i13:r2",
+            "text": "wooden"
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i13:r3",
+            "text": "soft"
+          }
+        ],
+        "testedDimension": "Вставьте материал крючков рядом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте материал крючков рядом",
+            "feedbackByLocale": {
+              "ru": "`Wooden` подходит к подносу, а крючки здесь металлические: `metal`.",
+              "uk": "`Wooden` пасує до таці, а гачки тут металеві: `metal`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте материал крючков рядом",
+            "feedbackByLocale": {
+              "ru": "Крючки не описывают словом `soft`; здесь нужен их материал: `metal`.",
+              "uk": "Гачки не описують словом `soft`; тут потрібен їхній матеріал: `metal`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите значение фразы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-56:i14:r1",
+          "text": "That tray is wooden."
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i14:r2",
+          "text": "Those trays are wooden."
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i14:r3",
+          "text": "This tray is wooden."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите значение фразы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i14:audio",
+          "transcript": "That tray is wooden."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-56:i14:r1",
+            "targetText": "That tray is wooden.",
+            "meaningByLocale": {
+              "ru": "Тот поднос деревянный.",
+              "uk": "Та таця дерев’яна."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i14:r2",
+            "targetText": "Those trays are wooden.",
+            "meaningByLocale": {
+              "ru": "Те подносы деревянные.",
+              "uk": "Ті таці дерев’яні."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i14:r3",
+            "targetText": "This tray is wooden.",
+            "meaningByLocale": {
+              "ru": "Этот поднос деревянный.",
+              "uk": "Ця таця дерев’яна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл подписи о да",
+            "feedbackByLocale": {
+              "ru": "Здесь один поднос, поэтому слышно `That tray is`, а не `Those trays are`.",
+              "uk": "Тут одна таця, тому чути `That tray is`, а не `Those trays are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл подписи о да",
+            "feedbackByLocale": {
+              "ru": "Поднос дальше от вас, поэтому в записи `That`, а не `This`.",
+              "uk": "Таця далі від вас, тому в записі `That`, а не `This`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите подпись для коврика рядом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите подпись для коврика рядом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This mat is here.",
+        "localizedMeaning": {
+          "ru": "Соберите подпись для коврика рядом",
+          "uk": "Складіть підпис для килимка поруч"
+        },
+        "orderedTokens": [
+          "This",
+          "mat",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "That"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i16:audio",
+          "transcript": "These hooks are metal."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These hooks are metal.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте указатель для дальних чёрных крючков",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-56:i17:r1",
+          "text": "Those"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i17:r2",
+          "text": "These"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i17:r3",
+          "text": "That"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте указатель для дальних чёрных крючков",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель для дальних чёрных крючков",
+          "uk": "Вставте вказівник для дальніх чорних гачків"
+        },
+        "gappedTargetPhrase": "___ hooks are black.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-56:i17:r1",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i17:r2",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i17:r3",
+            "text": "That"
+          }
+        ],
+        "testedDimension": "Вставьте указатель для дальних чёрных кр",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i17:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель для дальних чёрных кр",
+            "feedbackByLocale": {
+              "ru": "`These` показывает на крючки рядом, а эти крючки дальше: нужен `Those`.",
+              "uk": "`These` показує на гачки поруч, а ці гачки далі: потрібне `Those`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i17:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель для дальних чёрных кр",
+            "feedbackByLocale": {
+              "ru": "`That` относится к одному предмету, а крючков несколько: нужен `Those`.",
+              "uk": "`That` стосується одного предмета, а гачків кілька: потрібне `Those`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите подпись о нескольких подносах",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите подпись о нескольких подносах",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i18:audio",
+          "transcript": "These trays are wooden."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These trays are wooden.",
+        "orderedTokens": [
+          "These",
+          "trays",
+          "are",
+          "wooden"
+        ],
+        "authoredDistractorTokens": [
+          "Those"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Финал — соберите подпись о крючках в конце прихожей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Финал — соберите подпись о крючках в конце прихожей",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are the hooks.",
+        "localizedMeaning": {
+          "ru": "Финал — соберите подпись о крючках в конце прихожей",
+          "uk": "Фінал — складіть підпис про гачки в кінці передпокою"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "the",
+          "hooks"
+        ],
+        "authoredDistractorTokens": [
+          "These"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "434407f41a86d9103f27cc1c5ccb3b72b9fb3fe075a667ab12de749ef74c5cf3"
+}

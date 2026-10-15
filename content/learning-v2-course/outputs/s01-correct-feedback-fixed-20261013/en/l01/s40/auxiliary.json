@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-40",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-40:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-40:intro1:r2": {
+          "ru": "После `we` нужно `are`: `We are friendly.`",
+          "uk": "Після `we` потрібне `are`: `We are friendly.`"
+        },
+        "en:lesson-01:session-40:intro1:r3": {
+          "ru": "`is` — про одного человека со стороны. Про «мы» — `are`.",
+          "uk": "`is` — про одну людину збоку. Про «ми» — `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-40:intro2:r2": {
+          "ru": "`is` — когда человек один. `they` — это несколько, значит `are`.",
+          "uk": "`is` — коли людина одна. `they` — це кілька, отже `are`."
+        },
+        "en:lesson-01:session-40:intro2:r3": {
+          "ru": "Для англичанина это обрывок: он ждёт продолжения, а фраза уже кончилась.",
+          "uk": "Для англійця це уривок: він чекає продовження, а фраза вже скінчилася."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-40:intro3:r2": {
+          "ru": "`not` идёт после `are`, а не перед ним.",
+          "uk": "`not` іде після `are`, а не перед ним."
+        },
+        "en:lesson-01:session-40:intro3:r3": {
+          "ru": "В этой фразе нужно `not` после `are`: `They are not kind.`",
+          "uk": "У цій фразі потрібне `not` після `are`: `They are not kind.`"
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1874907932d7afff19f14d7f8ee369b60812077a1edf5fd1e19e7654b7b624a4"
+}

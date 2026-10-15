@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "использовать уже знакомую форму `I am` с новыми словами и в изменённых ситуациях.",
+    "uk": "уживати вже знайому форму `I am` із новими словами та в змінених ситуаціях."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`I am` связывает говорящего с состоянием",
+        "uk": "`I am` поєднує мовця зі станом"
+      },
+      "bodyByLocale": {
+        "ru": "`I` — «я», `am` связывает говорящего со словом о его состоянии. `I am tired` значит «я устал / устала»: человеку нужен отдых. `I am here` значит «я здесь».",
+        "uk": "`I` — «я», `am` поєднує мовця зі словом про його стан. `I am tired` означає «я втомився / втомилася»: людині потрібен відпочинок. `I am here` означає «я тут»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Том закончил готовить зал и хочет сказать Лене, что ему нужен отдых. Что он скажет?",
+          "uk": "Том закінчив готувати зал і хоче сказати Лені, що йому потрібен відпочинок. Що він скаже?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-02:intro1:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro1:r2",
+              "text": "I am sad."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro1:r3",
+              "text": "I tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-02:intro1:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro1:r2",
+              "text": "I am sad."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro1:r3",
+              "text": "I tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Том закончил готовить зал и хочет сказать Лене, что ему нужен отдых. Что он скажет?",
+          "uk": "Том закінчив готувати зал і хоче сказати Лені, що йому потрібен відпочинок. Що він скаже?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`I am` + слово о состоянии",
+        "uk": "`I am` + слово про стан"
+      },
+      "bodyByLocale": {
+        "ru": "Сначала назовите себя: `I am`. Затем добавьте слово о состоянии: `I am sad` — «мне грустно», `I am happy` — «я рад / рада». Слово после `am` уточняет, что вы хотите сообщить.",
+        "uk": "Спочатку назвіть себе: `I am`. Потім додайте слово про стан: `I am sad` — «мені сумно», `I am happy` — «я радий / рада». Слово після `am` уточнює, що саме ви хочете сказати."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Лена сообщает, что вечер отменили, и Том расстроен. Он хочет сказать, что ему грустно. Какую фразу выбрать?",
+          "uk": "Лена повідомляє, що вечір скасували, і Том засмучений. Він хоче сказати, що йому сумно. Яку фразу вибрати?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-02:intro2:r1",
+              "text": "I am sad."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro2:r2",
+              "text": "I am happy."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro2:r3",
+              "text": "I sad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-02:intro2:r1",
+              "text": "I am sad."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro2:r2",
+              "text": "I am happy."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro2:r3",
+              "text": "I sad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Лена сообщает, что вечер отменили, и Том расстроен. Он хочет сказать, что ему грустно. Какую фразу выбрать?",
+          "uk": "Лена повідомляє, що вечір скасували, і Том засмучений. Він хоче сказати, що йому сумно. Яку фразу вибрати?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не пропускайте `am`",
+        "uk": "Не пропускайте `am`"
+      },
+      "bodyByLocale": {
+        "ru": "В полной фразе `I am tired` слово `am` нельзя пропустить. Русский перевод обычно обходится без отдельной связки, но в этой английской фразе она нужна.",
+        "uk": "У повному реченні `I am tired` слово `am` не можна пропустити. У перекладі українською окремого дієслова-зв’язки зазвичай немає, але в цьому англійському реченні воно потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Лена спрашивает, как Том себя чувствует после подготовки зала. Он хочет ответить: «Я устал». Какая полная английская фраза подходит?",
+          "uk": "Лена запитує, як Том почувається після підготовки залу. Він хоче відповісти: «Я втомився». Яке повне англійське речення підходить?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-02:intro3:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro3:r2",
+              "text": "I tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro3:r3",
+              "text": "I am sad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-02:intro3:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro3:r2",
+              "text": "I tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro3:r3",
+              "text": "I am sad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Лена спрашивает, как Том себя чувствует после подготовки зала. Он хочет ответить: «Я устал». Какая полная английская фраза подходит?",
+          "uk": "Лена запитує, як Том почувається після підготовки залу. Він хоче відповісти: «Я втомився». Яке повне англійське речення підходить?"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6d4d6878ca4ae5ea100bfd22d87a2971bdb43f9097871bda07d6cd7e1f538c61"
+}

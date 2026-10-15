@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "learning_v2_blind_learner_review_v1",
+  "sessionId": "en:lesson-01:session-04",
+  "candidateRoot": "content/learning-v2-course/outputs/s04-corrections-private-20261014-v9-projection",
+  "contentReceiptSha256": "b9fea6332a22f6bd295625b2fca97d85197672071ca95ae997c77c15a6f97686",
+  "candidateBundleSha256": "a154b2ad0b9cee08a7a38d7a758a0d8f5e990961d54507ffa8c6bf1ba4b8b2aa",
+  "learnerJsonSha256": "ccd9ebfcda21a7d1e783b1e7a056db1b7035838a15c4c56512f556695ed66bea",
+  "learnerUkJsonSha256": "8f567445ed24776f93e70dee3797a0ae14638c72d1adbd22fae7d146c492bcc8",
+  "dimension": "blind_learner",
+  "verdict": "PASS",
+  "findings": [],
+  "notes": [
+    "Independently recomputed the content receipt, candidate bundle, and every one of the 21 inventoried file digests before review.",
+    "Reviewed only learner-visible Russian and Ukrainian material; answer keys and implementation data were excluded from the judgement.",
+    "All 21 learner interactions are understandable without hidden context. The prompts for i08, i13, i17, and i19 uniquely determine the requested response.",
+    "No visible answer leak, ambiguous instruction, missing learner cue, or implausible scenario was found.",
+    "Audio semantics were outside this visual blind review and are not claimed here."
+  ],
+  "taskCount": 21
+}

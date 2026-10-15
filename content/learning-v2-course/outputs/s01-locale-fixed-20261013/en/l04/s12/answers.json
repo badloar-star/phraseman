@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-12:i01",
+    "correctText": "platform",
+    "correctResponseId": "en:lesson-04:session-12:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i02",
+    "correctText": "platform",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i03",
+    "correctText": "platform",
+    "correctResponseId": "en:lesson-04:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i04",
+    "correctText": "Yes, there is.",
+    "correctResponseId": "en:lesson-04:session-12:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i05",
+    "correctText": "Are there platforms?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i06",
+    "correctText": "Yes, there are.",
+    "correctResponseId": "en:lesson-04:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i07",
+    "correctText": "Are there two platforms?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i08",
+    "correctText": "There are platforms.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i09",
+    "correctText": "p1=platform\np2=platforms\np3=there are\np4=tram",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i10",
+    "correctText": "Are there three platforms?",
+    "correctResponseId": "en:lesson-04:session-12:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i11",
+    "correctText": "No, there are not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i12",
+    "correctText": "Yes, there are.",
+    "correctResponseId": "en:lesson-04:session-12:i12:r1"
+  }
+]

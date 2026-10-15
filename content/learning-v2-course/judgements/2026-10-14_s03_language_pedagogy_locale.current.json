@@ -1,0 +1,30 @@
+{
+  "identity": {
+    "course_session_id": "en:lesson-01:session-03",
+    "candidate_receipt_sha256": "04a22cdc61585f10f87eae8b58c5dcf83d4d051a74a34ab0e1d0c2e05a8799bd",
+    "candidate_bundle_sha256": "2957755fba8272749258e92cc473dbb1618d299fc074b19e702d95168a5ffca6",
+    "learner_ru_sha256": "74f9741ec4456e81b883d439534e5dc8ef7ac6caa7f2a197aa8a009ff9214aa8",
+    "learner_uk_sha256": "5e974ad60b659b05185e6c720254e812cc14cde82228df956e6d6808c6e53b0d"
+  },
+  "dimension": "language_pedagogy_locale",
+  "verdict": "PASS",
+  "findings": [],
+  "notes": [
+    "The receipt file hash matches 04a22cdc…; its recorded bundle hash matches 2957755f…. Current learner JSON hashes match the receipt inventory.",
+    "RU and UK intro 1 scope the placement rule to the taught I am + state pattern. Intro explanations and practice translations are aligned and understandable.",
+    "i02 has a useful listening cue: initial /h/ distinguishes hungry from angry, and /ŋ/ followed by /g/ distinguishes it from hurry.",
+    "i04 asks which word is in the first recording; the prompt does not name the answer. Its two audio targets are ordered sure then shirt. Transcript metadata is present in the learner payload; runtime display behavior was not assessed.",
+    "i12 has matching RU/UK meaning and options; am is uniquely correct. Its feedback addresses only the wrong choices.",
+    "Atomic practice contains 21 tasks per locale. Choice feedback has 14 wrong-option rows and zero correct-option rows per locale. Intro source text likewise gives corrections for wrong choices without adding correct-answer explanations.",
+    "Audio playback was unavailable, so recordings were not verified against transcripts.",
+    "The preview manifest still says HOLD, textVerified=false, and releaseAuthority=false; this language review does not change that status."
+  ],
+  "task_ids": [
+    "en:lesson-01:session-03:intro1:q", "en:lesson-01:session-03:intro2:q", "en:lesson-01:session-03:intro3:q",
+    "en:lesson-01:session-03:i01", "en:lesson-01:session-03:i02", "en:lesson-01:session-03:i03", "en:lesson-01:session-03:i04",
+    "en:lesson-01:session-03:i05", "en:lesson-01:session-03:i06", "en:lesson-01:session-03:i07", "en:lesson-01:session-03:i08",
+    "en:lesson-01:session-03:i09", "en:lesson-01:session-03:i10", "en:lesson-01:session-03:i11", "en:lesson-01:session-03:i12",
+    "en:lesson-01:session-03:i13", "en:lesson-01:session-03:i14", "en:lesson-01:session-03:i15:s01", "en:lesson-01:session-03:i15:s02",
+    "en:lesson-01:session-03:i16", "en:lesson-01:session-03:i17:s01", "en:lesson-01:session-03:i17:s02", "en:lesson-01:session-03:i17:s03", "en:lesson-01:session-03:i17:s04"
+  ]
+}

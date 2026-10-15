@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "письменная форма для нескольких предметов с добавлением `es` в словах `bus`, `dish`, `watch`, `box`; знакомые рамки `They are`, `Are they`, `They are not`",
+    "uk": "письмова форма для кількох предметів із додаванням `es` у словах `bus`, `dish`, `watch`, `box`; знайомі рамки `They are`, `Are they`, `They are not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Автобусы с двумя буквами",
+        "uk": "Автобуси з двома літерами"
+      },
+      "bodyByLocale": {
+        "ru": "`bus` — «автобус». Несколько автобусов — `buses`: к слову приписываем две буквы, `es`. В этой форме одной добавленной `s` не хватит. `They are buses` — «Это автобусы»: начало `They are` относится ко всей группе, а название автобусов пишем с `es`.",
+        "uk": "`bus` — «автобус». Кілька автобусів — `buses`: до слова дописуємо дві літери, `es`. У цьому слові однієї доданої `s` замало. `They are buses` — «Це автобуси»: початок `They are` стосується всієї групи, а назву автобусів пишемо з `es`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг у окна показывает на два больших пассажирских автобуса у остановки; назовите их полной фразой.",
+          "uk": "Друг біля вікна показує на два великі пасажирські автобуси на зупинці; назвіть їх повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-18:intro1:r1",
+              "text": "They are buses."
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro1:r2",
+              "text": "They are bus."
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro1:r3",
+              "text": "They is buses."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-18:intro1:r1",
+              "text": "They are buses."
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro1:r2",
+              "text": "They are bus."
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro1:r3",
+              "text": "They is buses."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг у окна показывает на два больших пассажирских автобуса у остановки; назовите их полной фразой.",
+          "uk": "Друг біля вікна показує на два великі пасажирські автобуси на зупинці; назвіть їх повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Блюда из коробки",
+        "uk": "Блюда з коробки"
+      },
+      "bodyByLocale": {
+        "ru": "`dish` — «блюдо», посуда для подачи еды. Одно блюдо — `dish`, а несколько — `dishes`: после `sh` в этом слове дописываем `es`. Хотите убедиться, что перед вами блюда? Начните с `Are they` и добавьте название: `Are they dishes?` — «Это блюда?»",
+        "uk": "`dish` — «блюдо», предмет посуду для подавання їжі. Одне блюдо — `dish`, а кілька — `dishes`: у цьому слові після `sh` дописуємо `es`. Хочете впевнитися, що перед вами блюда? Почніть з `Are they` і додайте назву: `Are they dishes?` — «Це блюда?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг разворачивает несколько плоских предметов из кухонной коробки. Спросите: «Это блюда?»",
+          "uk": "Друг розгортає кілька пласких предметів із кухонної коробки. Запитайте: «Це блюда?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-18:intro2:r1",
+              "text": "Are they dishes?"
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro2:r2",
+              "text": "Are they dish?"
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro2:r3",
+              "text": "Is they dishes?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-18:intro2:r1",
+              "text": "Are they dishes?"
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro2:r2",
+              "text": "Are they dish?"
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro2:r3",
+              "text": "Is they dishes?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг разворачивает несколько плоских предметов из кухонной коробки. Спросите: «Это блюда?»",
+          "uk": "Друг розгортає кілька пласких предметів із кухонної коробки. Запитайте: «Це блюда?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Часы считаем по ремешкам",
+        "uk": "Годинники видно одразу"
+      },
+      "bodyByLocale": {
+        "ru": "`watch` — «наручные часы». По-русски «часы» — хоть целая коллекция, хоть одни на руке: по слову богатство не оценишь. По-английски одни — `watch`, несколько отдельных часов — `watches`, с добавленным `es` после `ch`. Два ремешка с циферблатами — уже `watches`.",
+        "uk": "`watch` — «наручний годинник». В українській тут усе видно відразу: один наручний годинник, кілька — годинники. Англійською один — `watch`, а кілька — `watches`: у цьому слові після `ch` додаємо `es`. Два годинники не сховаються за одним `watch`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг достал из маленькой коробки двое наручных часов; выберите английское название для них обоих.",
+          "uk": "Друг дістав із маленької коробки два наручні годинники; оберіть англійську назву для обох."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-18:intro3:r1",
+              "text": "watches"
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro3:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro3:r3",
+              "text": "watchs"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-18:intro3:r1",
+              "text": "watches"
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro3:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-03:session-18:intro3:r3",
+              "text": "watchs"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг достал из маленькой коробки двое наручных часов; выберите английское название для них обоих.",
+          "uk": "Друг дістав із маленької коробки два наручні годинники; оберіть англійську назву для обох."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fc30ffca5816662c27867e0b0fcb19e3fdd0e92b6f5b32edbc033168de06d21a"
+}

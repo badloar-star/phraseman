@@ -1,0 +1,112 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-55:i01",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-55:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i02",
+    "correctText": "kind",
+    "correctResponseId": "en:lesson-01:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i03",
+    "correctText": "kind",
+    "correctResponseId": "en:lesson-01:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i04",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-55:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i05",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i06",
+    "correctText": "en:lesson-01:session-55:i06:p1=tired\nen:lesson-01:session-55:i06:p2=quiet\nen:lesson-01:session-55:i06:p3=kind\nen:lesson-01:session-55:i06:p4=ready",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i07",
+    "correctText": "We are busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i08",
+    "correctText": "She is not busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i09",
+    "correctText": "warm",
+    "correctResponseId": "en:lesson-01:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i10",
+    "correctText": "warm",
+    "correctResponseId": "en:lesson-01:session-55:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i11",
+    "correctText": "You are safe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i13",
+    "correctText": "I am not cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i14",
+    "correctText": "en:lesson-01:session-55:i14:p1=busy\nen:lesson-01:session-55:i14:p2=safe\nen:lesson-01:session-55:i14:p3=warm\nen:lesson-01:session-55:i14:p4=cold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i15",
+    "correctText": "They are not ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i16:s01",
+    "correctText": "I am fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i16:s02",
+    "correctText": "It is warm here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i16:s03",
+    "correctText": "I am not cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i17:s01",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i17:s02",
+    "correctText": "I am safe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i17:s03",
+    "correctText": "They are quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-55:i17:s04",
+    "correctText": "He is not busy.",
+    "correctResponseId": null
+  }
+]

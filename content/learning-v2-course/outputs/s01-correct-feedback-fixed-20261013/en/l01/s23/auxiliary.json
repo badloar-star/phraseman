@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-23:intro1:r2": {
+          "ru": "В английской фразе нужна форма `is`: `He is patient`.",
+          "uk": "В англійській фразі потрібна форма `is`: `He is patient`."
+        },
+        "en:lesson-01:session-23:intro1:r3": {
+          "ru": "`are` — не для одного человека. Про него — только `is`.",
+          "uk": "`are` — не для однієї людини. Про нього — тільки `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-23:intro2:r2": {
+          "ru": "«Он злой» — это сильнее. А он всего лишь бурчит про лифт: `grumpy`.",
+          "uk": "«Він злий» — це сильніше. А він усього лише бурчить про ліфт: `grumpy`."
+        },
+        "en:lesson-01:session-23:intro2:r3": {
+          "ru": "Без `is` фраза не стоит. Про него — всегда `he is`.",
+          "uk": "Без `is` фраза не стоїть. Про нього — завжди `he is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-23:intro3:r2": {
+          "ru": "Слова поменялись местами. Сначала `is`, потом `not`.",
+          "uk": "Слова помінялися місцями. Спершу `is`, потім `not`."
+        },
+        "en:lesson-01:session-23:intro3:r3": {
+          "ru": "`no` тут не работает. Отрицание в такой фразе — `not`, и только после `is`.",
+          "uk": "`no` тут не працює. Заперечення в такій фразі — `not`, і тільки після `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0cc4fa090ba21143dc62b2488af4c723f3dc5c07f01bc2451b67108a3371fd1e"
+}

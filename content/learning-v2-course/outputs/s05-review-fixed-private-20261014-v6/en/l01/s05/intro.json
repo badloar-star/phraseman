@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "как сказать о себе с `I am` и как поставить `not` после `am`",
+    "uk": "як сказати про себе з `I am` і як поставити `not` після `am`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Слово, которое проглатывают",
+        "uk": "Слово, яке ковтають"
+      },
+      "bodyByLocale": {
+        "ru": "В короткой фразе о себе после `I` ставят `am`, а затем слово о состоянии или качестве. Например: `I am tired` — о сильной усталости после долгого дня.\n\nЗдесь мы разбираем сочетание `I am` перед прилагательным. Это не правило для любой фразы с `I`: например, `I work` — «я работаю» — обходится без `am`.",
+        "uk": "У короткому реченні про себе після `I` ставлять `am`, а потім слово про стан або якість. Наприклад: `I am tired` — про втому після довгого дня.\n\nТут ми розглядаємо поєднання `I am` перед прикметником. Це не правило для будь-якого речення з `I`: наприклад, `I work` — «я працюю» — обходиться без `am`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега Марина спрашивает возле чайника, как вы себя чувствуете. Вы в порядке — ответьте полной фразой.",
+          "uk": "Колега Марина питає біля чайника, як ви почуваєтеся. У вас усе гаразд — скажіть повним реченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r1",
+              "text": "I am fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r2",
+              "text": "I fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r3",
+              "text": "Am fine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r1",
+              "text": "I am fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r2",
+              "text": "I fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r3",
+              "text": "Am fine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега Марина спрашивает возле чайника, как вы себя чувствуете. Вы в порядке — ответьте полной фразой.",
+          "uk": "Колега Марина питає біля чайника, як ви почуваєтеся. У вас усе гаразд — скажіть повним реченням."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Not не работает в одиночку",
+        "uk": "Not сам не працює"
+      },
+      "bodyByLocale": {
+        "ru": "В нейтральной фразе о себе отрицание строится так: `I am not` + прилагательное. Например: `I am not sick` — «я не болею».\n\n`No` обычно отвечает на вопрос «да или нет». В отрицательной фразе `not` ставят после `am` и перед прилагательным.",
+        "uk": "У нейтральному реченні про себе заперечення будується так: `I am not` + прикметник. Наприклад: `I am not sick` — «я не хворію».\n\n`No` зазвичай відповідає на запитання «так чи ні». У заперечному реченні `not` ставлять після `am` і перед прикметником."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Марина предлагает вам кофе и спрашивает, понравился ли он вам. Вы его ещё не пробовали.",
+          "uk": "Марина пропонує вам каву й питає, чи сподобалася вона вам. Ви її ще не куштували."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r1",
+              "text": "I am not sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r2",
+              "text": "I no sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r3",
+              "text": "I am sure not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r1",
+              "text": "I am not sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r2",
+              "text": "I no sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r3",
+              "text": "I am sure not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Марина предлагает вам кофе и спрашивает, понравился ли он вам. Вы его ещё не пробовали.",
+          "uk": "Марина пропонує вам каву й питає, чи сподобалася вона вам. Ви її ще не куштували."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "I am — сочетание для описания состояния",
+        "uk": "I am — поєднання для опису стану"
+      },
+      "bodyByLocale": {
+        "ru": "`I am` перед прилагательным — цельный шаблон: после него ставят описание состояния или качества. Значение `lost` зависит от контекста: `I am lost` описывает, что человек не знает, куда идти; `I lost my keys` означает, что человек потерял ключи.\n\nВ коротком `I lost` без дополнения смысл не всегда ясен; для значения «потерял ключи» обычно называют, что именно потеряли.",
+        "uk": "`I am` перед прикметником — цілісний шаблон: після нього ставлять опис стану або якості. Значення `lost` залежить від контексту: `I am lost` описує, що людина не знає, куди йти; `I lost my keys` означає, що людина загубила ключі.\n\nУ короткому `I lost` без додатка зміст не завжди зрозумілий; щоб сказати про загублені ключі, зазвичай називають, що саме загубили."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Лина знакомит вас с Антоном и просит представиться. Сегодня ваш первый день в компании — скажите, что вы недавно пришли в команду.",
+          "uk": "Ліна знайомить вас з Антоном і просить представитися. Сьогодні ваш перший день у компанії — скажіть, що ви нещодавно приєдналися до команди."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r1",
+              "text": "I am new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r2",
+              "text": "I new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r3",
+              "text": "I am not new."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r1",
+              "text": "I am new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r2",
+              "text": "I new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r3",
+              "text": "I am not new."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Лина знакомит вас с Антоном и просит представиться. Сегодня ваш первый день в компании — скажите, что вы недавно пришли в команду.",
+          "uk": "Ліна знайомить вас з Антоном і просить представитися. Сьогодні ваш перший день у компанії — скажіть, що ви нещодавно приєдналися до команди."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f6da071e52495a107d4c8c5fa6f8cb466977a865ae46a12b902182e69eff7a27"
+}

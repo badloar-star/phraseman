@@ -9,10 +9,98 @@ import { fileURLToPath } from "node:url";
 import {
   atomicMarkdownParityIssues,
   factoryManifestCorrectChoiceIndexes,
+  firstMarkdownAtomicLearnerMismatch,
   sourceReleaseScopeIssues,
   sourceReleaseSemanticParityIssues,
 } from "./build_release.mjs";
 import { applyPracticeExplanationsV1 } from "./practice_explanations_v1.mjs";
+
+test("atomic Markdown parity ignores only the evaluator-confirmed legacy correct-feedback row", () => {
+  const interactionId = "en:lesson-99:session-99:i01";
+  const title = "Выберите am";
+  const task = {
+    ordinal: 1,
+    title,
+    family: "listen_choose",
+    options: [
+      { text: "am", correct: true, feedback: "Старый разбор верного ответа." },
+      { text: "are", correct: false, feedback: "С I нужен am." },
+      { text: "is", correct: false, feedback: "Is не ставят после I." },
+    ],
+  };
+  const interaction = {
+    interactionId,
+    family: "listen_choose",
+    responseOptions: task.options.map((option, index) => ({ responseId: `${interactionId}:r${index + 1}`, text: option.text })),
+    modePayload: {
+      referenceAudio: null,
+      localizedMeaningChoices: task.options.map((option, index) => ({
+        responseId: `${interactionId}:r${index + 1}`,
+        targetText: option.text,
+        meaningByLocale: null,
+      })),
+      choiceFeedback: task.options.map((option, index) => ({
+        responseId: `${interactionId}:r${index + 1}`,
+        correct: option.correct,
+        testedDimension: title,
+        feedbackByLocale: { ru: option.feedback, uk: `uk-${option.feedback}` },
+      })),
+    },
+  };
+  const answer = { interactionId, correctResponseId: `${interactionId}:r1`, correctText: "am" };
+
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", answer), null);
+
+  const withoutCorrectFeedback = structuredClone(interaction);
+  withoutCorrectFeedback.modePayload.choiceFeedback = withoutCorrectFeedback.modePayload.choiceFeedback.slice(1);
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, withoutCorrectFeedback, "ru", answer), null);
+
+  const richerDiagnosticMetadata = structuredClone(withoutCorrectFeedback);
+  richerDiagnosticMetadata.modePayload.choiceFeedback[0].testedDimension = `${title} — форма are`;
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, richerDiagnosticMetadata, "ru", answer), null);
+
+  for (const correctRows of [
+    [interaction.modePayload.choiceFeedback[0], structuredClone(interaction.modePayload.choiceFeedback[0])],
+    [
+      interaction.modePayload.choiceFeedback[0],
+      { ...interaction.modePayload.choiceFeedback[0], feedbackByLocale: { ru: "Другой старый разбор.", uk: "Інший старий розбір." } },
+    ],
+  ]) {
+    const candidate = structuredClone(interaction);
+    candidate.modePayload.choiceFeedback = [...correctRows, ...candidate.modePayload.choiceFeedback.slice(1)];
+    assert.equal(firstMarkdownAtomicLearnerMismatch(task, candidate, "ru", answer), "modePayload.choiceFeedback");
+  }
+
+  const duplicateWrong = structuredClone(interaction);
+  duplicateWrong.modePayload.choiceFeedback.push(structuredClone(duplicateWrong.modePayload.choiceFeedback[1]));
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, duplicateWrong, "ru", answer), "modePayload.choiceFeedback");
+
+  const staleWrong = structuredClone(interaction);
+  staleWrong.modePayload.choiceFeedback.push({
+    ...structuredClone(staleWrong.modePayload.choiceFeedback[1]),
+    responseId: `${interactionId}:stale`,
+  });
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, staleWrong, "ru", answer), "modePayload.choiceFeedback");
+
+  const wrongMutations = [
+    (candidate) => { candidate.modePayload.choiceFeedback[1].feedbackByLocale.ru = "Подмена."; },
+    (candidate) => { candidate.modePayload.choiceFeedback[1].correct = true; },
+    (candidate) => { candidate.modePayload.choiceFeedback.splice(1, 1); },
+    (candidate) => { candidate.modePayload.choiceFeedback[1].responseId = `${interactionId}:stale`; },
+  ];
+  for (const mutate of wrongMutations) {
+    const candidate = structuredClone(interaction);
+    mutate(candidate);
+    assert.equal(firstMarkdownAtomicLearnerMismatch(task, candidate, "ru", answer), "modePayload.choiceFeedback");
+  }
+
+  assert.notEqual(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null);
+  assert.notEqual(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", { ...answer, correctResponseId: `${interactionId}:r2` }), null);
+  assert.notEqual(firstMarkdownAtomicLearnerMismatch({
+    ...task,
+    options: task.options.map((option, index) => ({ ...option, correct: index < 2 })),
+  }, interaction, "ru", answer), null);
+});
 
 test("legacy title-only word cards compare their taught word, not the shortened generic title", () => {
   const sessionId = "en:lesson-02:session-01";
@@ -27,9 +115,135 @@ test("legacy title-only word cards compare their taught word, not the shortened 
   assert.deepEqual(atomicMarkdownParityIssues({
     sessionIdentity: "en/l02/s01",
     sessionId,
-    atomicSource: { schemaVersion: "learning_v2_atomic_practice_source_v1", courseSessionId: sessionId, interactionsByLocale: { ru: [interaction] }, answers: [] },
+    atomicSource: {
+      schemaVersion: "learning_v2_atomic_practice_source_v1",
+      courseSessionId: sessionId,
+      interactionsByLocale: { ru: [interaction] },
+      answers: [{ interactionId: task.interactionId, correctText: "week", correctResponseId: null }],
+    },
     tasksByLocale: { ru: [task] },
   }), []);
+});
+
+test("atomic Markdown parity leaves non-Markdown gap diagnostic metadata to source-release parity", () => {
+  const interactionId = "en:lesson-99:session-99:i01";
+  const task = {
+    ordinal: 1,
+    title: "Вставьте слово",
+    family: "context_gap_grammar",
+    target: "I ___ ready.",
+    options: [
+      { text: "am", correct: true, feedback: "" },
+      { text: "are", correct: false, feedback: "После I нужна форма am." },
+    ],
+  };
+  const interaction = {
+    interactionId,
+    family: "context_gap_grammar",
+    responseOptions: task.options.map((option, index) => ({ responseId: `${interactionId}:r${index + 1}`, text: option.text })),
+    modePayload: {
+      gappedTargetPhrase: task.target,
+      gapOptions: task.options.map((option, index) => ({ responseId: `${interactionId}:r${index + 1}`, text: option.text })),
+      testedDimension: "subject_auxiliary_agreement:first_person",
+      localizedScene: { ru: task.title },
+      choiceFeedback: [{
+        responseId: `${interactionId}:r2`,
+        correct: false,
+        testedDimension: "subject_auxiliary_agreement:first_person",
+        feedbackByLocale: { ru: task.options[1].feedback },
+      }],
+    },
+  };
+  const answer = { interactionId, correctResponseId: `${interactionId}:r1`, correctText: "am" };
+
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", answer), null);
+});
+
+test("atomic Markdown parity permits atomic-only tile diagnostics when Markdown has no tile annotation", () => {
+  const interactionId = "en:lesson-99:session-99:i01";
+  const task = {
+    ordinal: 1,
+    title: "Соберите фразу",
+    family: "phrase_builder",
+    target: "I am calm.",
+    tokens: ["I", "am", "calm", "are"],
+    body: "Слова для фразы: `I` `am` `calm` `are` → **I am calm.**",
+  };
+  const interaction = {
+    interactionId,
+    family: "phrase_builder",
+    responseOptions: [],
+    modePayload: {
+      targetPhrase: task.target,
+      orderedTokens: ["I", "am", "calm"],
+      authoredDistractorTokens: ["are"],
+      slotFeedback: [{
+        responseId: `${interactionId}:tile:d1`,
+        correct: false,
+        testedDimension: "subject_auxiliary_agreement:first_person",
+        feedbackByLocale: { ru: "После I ставят am, поэтому are здесь лишнее." },
+      }],
+    },
+  };
+  const answer = { interactionId, correctResponseId: null, correctText: task.target };
+
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", answer), null);
+});
+
+test("atomic Markdown parity rejects identical and conflicting duplicate choice answer authority", () => {
+  const sessionId = "en:lesson-99:session-98";
+  const interactionId = `${sessionId}:i01`;
+  const task = {
+    ordinal: 1,
+    title: "Выберите форму",
+    family: "listen_choose",
+    audio: "am",
+    options: [
+      { text: "am", correct: true, feedback: "" },
+      { text: "are", correct: false, feedback: "С I нужен am." },
+    ],
+  };
+  const interaction = {
+    interactionId,
+    family: "listen_choose",
+    inputMode: "single_choice",
+    prompt: task.title,
+    responseOptions: task.options.map((option, index) => ({ responseId: `${interactionId}:r${index + 1}`, text: option.text })),
+    modePayload: {
+      referenceAudio: { transcript: "am" },
+      localizedMeaningChoices: task.options.map((option, index) => ({
+        responseId: `${interactionId}:r${index + 1}`,
+        targetText: option.text,
+        meaningByLocale: null,
+      })),
+      choiceFeedback: [{
+        responseId: `${interactionId}:r2`,
+        correct: false,
+        testedDimension: task.title,
+        feedbackByLocale: { ru: "С I нужен am.", uk: "З I потрібне am." },
+      }],
+    },
+  };
+  const answer = { interactionId, correctText: "am", correctResponseId: `${interactionId}:r1` };
+  const run = (answers) => atomicMarkdownParityIssues({
+    sessionIdentity: "en/l99/s98",
+    sessionId,
+    atomicSource: {
+      schemaVersion: "learning_v2_atomic_practice_source_v1",
+      courseSessionId: sessionId,
+      interactionsByLocale: { ru: [interaction] },
+      answers,
+    },
+    tasksByLocale: { ru: [task] },
+  });
+
+  assert.deepEqual(run([answer]), []);
+  for (const answers of [
+    [answer, structuredClone(answer)],
+    [answer, { ...answer, correctText: "are", correctResponseId: `${interactionId}:r2` }],
+  ]) {
+    assert.ok(run(answers).some((issue) => issue.includes(`atomic_answer_authority_duplicate:en/l99/s98:${interactionId}`)));
+  }
 });
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -477,6 +691,9 @@ test("source/release check command prints all mismatches and exits non-zero", ()
     "single_phrase_release.mjs",
     "write_mockup_file.mjs",
   ]) fs.copyFileSync(path.join(HERE, name), path.join(pipeline, name));
+  // This copied pipeline isolates semantic parity behind the global gate. The
+  // real gate is exercised against all 186 sessions in the integration suite.
+  fs.writeFileSync(path.join(pipeline, "factory_intro_practice_gate.mjs"), "export function auditFactoryIntroPractice(){return {schemaVersion:'test_fixture_only',verdict:'PASS',inventoryCount:186,auditedSessionCount:186,findingCount:0,perSession:[],findings:[]};}\n");
   const visibleTextModule = path.resolve(HERE, "../../../modules/learning-v2/content/learner_visible_text_v1.js");
   const fixtureVisibleTextModule = path.join(root, "modules/learning-v2/content/learner_visible_text_v1.js");
   fs.mkdirSync(path.dirname(fixtureVisibleTextModule), { recursive: true });

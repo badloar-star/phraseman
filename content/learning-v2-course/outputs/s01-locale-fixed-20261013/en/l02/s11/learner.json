@@ -1,0 +1,1045 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-11:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово для полного ответа — мужчина устал",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-11:i01:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i01:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i01:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово для полного ответа — мужчина устал",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После долгой прогулки мужчина сел на скамейку и зевает. Спутник спрашивает: «Он устал?» Выберите слово, чтобы ответить «да» полной фразой.",
+          "uk": "Після довгої прогулянки чоловік сів на лавку й позіхає. Супутник питає: «Він втомився?» Оберіть слово, щоб відповісти «так» повним реченням."
+        },
+        "gappedTargetPhrase": "Yes, he ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-11:i01:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i01:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i01:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите форму после `he` в полном ответе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-11:i01:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после `he` в полном ответе.",
+            "feedbackByLocale": {
+              "ru": "`Are` употребляют с `you`, `we` и `they`. С `he` нужен `is`.",
+              "uk": "`Are` уживають з `you`, `we` і `they`. З `he` потрібне `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i01:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после `he` в полном ответе.",
+            "feedbackByLocale": {
+              "ru": "`Am` говорят только с `I`. С `he` нужен `is`.",
+              "uk": "`Am` кажуть тільки з `I`. З `he` потрібне `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите полный ответ «да» — женщине холодно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-11:i02:r1",
+          "text": "`he`"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите полный ответ «да» — женщине холодно",
+      "modePayload": {
+        "family": "phrase_builder",
+        "localizedScene": {
+          "ru": "Женщина кутается в шарф и держит руки в карманах. Спутник спрашивает: «Ей холодно?» Соберите полный ответ «да».",
+          "uk": "Жінка кутається в шарф і тримає руки в кишенях. Супутник питає: «Їй холодно?» Складіть повну відповідь «так»."
+        },
+        "targetPhrase": "Yes, she is cold.",
+        "orderedTokens": [
+          "Yes,",
+          "she",
+          "is",
+          "cold."
+        ],
+        "authoredDistractorTokens": [
+          "he"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-11:i02:r1",
+            "correct": false,
+            "testedDimension": "Соберите короткий ответ о женщине.",
+            "feedbackByLocale": {
+              "ru": "Здесь речь о женщине, поэтому нужен `she`, а не `he`.",
+              "uk": "Тут ідеться про жінку, тому потрібне `she`, а не `he`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово означает «замёрз»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-11:i03:r1",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i03:r2",
+          "text": "gold"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i03:r3",
+          "text": "call"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово означает «замёрз»?",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:i03:audio",
+          "transcript": "cold"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-11:i03:r1",
+            "targetText": "cold",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i03:r2",
+            "targetText": "gold",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i03:r3",
+            "targetText": "call",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Отличите `cold` на слух.",
+            "feedbackByLocale": {
+              "ru": "`Gold` — «золото». У него другой первый звук; в записи звучит `cold`.",
+              "uk": "`Gold` — «золото». У нього інший перший звук; у записі звучить `cold`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Отличите `cold` на слух.",
+            "feedbackByLocale": {
+              "ru": "`Call` — «звонить». Оно оканчивается на звук `л`, а `cold` — на `д`.",
+              "uk": "`Call` — «дзвонити». Воно закінчується звуком `л`, а `cold` — на `д`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово для ответа «нет» — мужчина не расстроен",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-11:i04:r1",
+          "text": "not"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i04:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i04:r3",
+          "text": "never"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово для ответа «нет» — мужчина не расстроен",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мужчина спокойно читает книгу и улыбается. Спутник спрашивает: «Он расстроен?» Выберите слово, чтобы ответить «нет» полной фразой.",
+          "uk": "Чоловік спокійно читає книжку й усміхається. Супутник питає: «Він засмучений?» Оберіть слово, щоб відповісти «ні» повним реченням."
+        },
+        "gappedTargetPhrase": "No, he is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-11:i04:r1",
+            "text": "not"
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i04:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i04:r3",
+            "text": "never"
+          }
+        ],
+        "testedDimension": "Выберите слово после `is` в отрицательном ответе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-11:i04:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово после `is` в отрицательном ответе.",
+            "feedbackByLocale": {
+              "ru": "`No` уже стоит в начале ответа. После `is` нужно `not`.",
+              "uk": "`No` уже стоїть на початку відповіді. Після `is` потрібне `not`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i04:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово после `is` в отрицательном ответе.",
+            "feedbackByLocale": {
+              "ru": "`Never` значит «никогда» и не образует здесь ответ. Нужен `not`.",
+              "uk": "`Never` означає «ніколи» й не утворює тут відповідь. Потрібне `not`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите ответ: «Зал переполнен?» — «Нет, не переполнен»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите ответ: «Зал переполнен?» — «Нет, не переполнен»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, it is not.",
+        "localizedMeaning": {
+          "ru": "«Зал переполнен?» — «Нет, не переполнен»",
+          "uk": "«Зала переповнена?» — «Ні, не переповнена»"
+        },
+        "orderedTokens": [
+          "No,",
+          "it",
+          "is",
+          "not"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте ответ сотрудника: он помог посетителю. Соберите полную фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-11:i06:r1",
+          "text": "she"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте ответ сотрудника: он помог посетителю. Соберите полную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:i06:audio",
+          "transcript": "Yes, he is helpful."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Yes, he is helpful.",
+        "orderedTokens": [
+          "Yes,",
+          "he",
+          "is",
+          "helpful."
+        ],
+        "authoredDistractorTokens": [
+          "she"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-11:i06:r1",
+            "correct": false,
+            "testedDimension": "Соберите услышанный ответ о мужчине.",
+            "feedbackByLocale": {
+              "ru": "В записи ответ о мужчине: `he`, а не `she`.",
+              "uk": "У записі відповідь про чоловіка: `he`, а не `she`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте два похожих слова: какое означает «голодный»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-11:i07:r1",
+          "text": "hungry"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i07:r2",
+          "text": "angry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i07:audioA",
+        "en:lesson-02:session-11:i07:audioB"
+      ],
+      "accessibilityLabel": "Послушайте два похожих слова: какое означает «голодный»?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "hungry",
+        "contrastB": "angry",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-11:i07:audioA",
+          "transcript": "hungry"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-11:i07:audioB",
+          "transcript": "angry"
+        },
+        "testedPhoneticContrast": "Послушайте два похожих слова: какое означает «голодный»?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-11:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте два похожих слова: какое означает «голодный»?",
+            "feedbackByLocale": {
+              "ru": "`Angry` значит «сердитый». `Hungry` начинается со звука «х», а `angry` — с гласного.",
+              "uk": "`Angry` означає «сердитий». `Hungry` починається зі звука «х», а `angry` — з голосного."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спутник кивает на женщину, которая зевает третий раз",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-11:i08:r1",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i08:r2",
+          "text": "he"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i08:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спутник кивает на женщину, которая зевает третий раз",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спутник кивает на женщину, которая зевает третий раз.",
+          "uk": "Супутник киває на жінку, яка позіхає втретє."
+        },
+        "gappedTargetPhrase": "Is ___ tired?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-11:i08:r1",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i08:r2",
+            "text": "he"
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i08:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спутник кивает на женщину, которая зевает третий раз",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник кивает на женщину, которая зевает третий раз",
+            "feedbackByLocale": {
+              "ru": "`He` говорят о мужчине, а здесь зевает женщина.",
+              "uk": "`He` говорять про чоловіка, а тут позіхає жінка."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник кивает на женщину, которая зевает третий раз",
+            "feedbackByLocale": {
+              "ru": "`It` говорят о вещи или месте, не о человеке.",
+              "uk": "`It` говорять про річ або місце, не про людину."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-11:i09:p1",
+            "target": "cold",
+            "meaningByLocale": {
+              "ru": "замёрз",
+              "uk": "змерз"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-11:i09:p2",
+            "target": "hungry",
+            "meaningByLocale": {
+              "ru": "голодный",
+              "uk": "голодний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-11:i09:p3",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал",
+              "uk": "втомився"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-11:i09:p4",
+            "target": "upset",
+            "meaningByLocale": {
+              "ru": "расстроен",
+              "uk": "засмучений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cold",
+          "hungry",
+          "tired",
+          "upset"
+        ],
+        "rightColumn": [
+          "замёрз",
+          "голодный",
+          "устал",
+          "расстроен"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите ответ: «Она голодна?» — «Нет, она только что пообедала»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-11:i10:r1",
+          "text": "he"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите ответ: «Она голодна?» — «Нет, она только что пообедала»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, she is not hungry.",
+        "localizedMeaning": {
+          "ru": "«Она голодна?» — «Нет, она только что пообедала»",
+          "uk": "«Вона голодна?» — «Ні, вона щойно пообідала»"
+        },
+        "orderedTokens": [
+          "No,",
+          "she",
+          "is",
+          "not",
+          "hungry."
+        ],
+        "authoredDistractorTokens": [
+          "he"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-11:i10:r1",
+            "correct": false,
+            "testedDimension": "Соберите ответ о женщине после еды.",
+            "feedbackByLocale": {
+              "ru": "Речь о женщине, поэтому нужен `she`, а не `he`.",
+              "uk": "Ідеться про жінку, тому потрібне `she`, а не `he`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — «На улице холодно?» На улице плюс двадцать",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-11:i11:r1",
+          "text": "not"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i11:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i11:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — «На улице холодно?» На улице плюс двадцать",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На улице плюс двадцать. Спутник спрашивает: «На улице холодно?» Вставьте слово, чтобы ответить полным предложением.",
+          "uk": "Надворі плюс двадцять. Супутник питає: «Надворі холодно?» Вставте слово, щоб відповісти повним реченням."
+        },
+        "gappedTargetPhrase": "No, it is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-11:i11:r1",
+            "text": "not"
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i11:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i11:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Вставьте слово — «На улице холодно?» На улице плюс двадцать",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — «На улице холодно?» На улице плюс двадцать",
+            "feedbackByLocale": {
+              "ru": "No уже стоит в начале ответа. После it is для отрицания нужно not.",
+              "uk": "No вже стоїть на початку відповіді. Після it is для заперечення потрібне not."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — «На улице холодно?» На улице плюс двадцать",
+            "feedbackByLocale": {
+              "ru": "It уже стоит перед is; после is нужно not.",
+              "uk": "It уже стоїть перед is; після is потрібне not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово про «расстроен»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-11:i12:r1",
+          "text": "upset"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i12:r2",
+          "text": "sit"
+        },
+        {
+          "responseId": "en:lesson-02:session-11:i12:r3",
+          "text": "sorry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово про «расстроен»?",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:i12:audio",
+          "transcript": "upset"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-11:i12:r1",
+            "targetText": "upset",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i12:r2",
+            "targetText": "sit",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i12:r3",
+            "targetText": "sorry",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово про «расстроен»?",
+            "feedbackByLocale": {
+              "ru": "«Сидеть». Один слог, а в `upset` их два, и ударение на втором.",
+              "uk": "«Сидіти». Один склад, а в `upset` їх два, і наголос на другому."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово про «расстроен»?",
+            "feedbackByLocale": {
+              "ru": "«Извините». Про извинения, а нужно слово про расстройство.",
+              "uk": "«Вибачте». Про вибачення, а потрібне слово про засмучення."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите короткое «да» — сотрудник помог гостю; вопрос: `Is he helpful?`",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите короткое «да» — сотрудник помог гостю; вопрос: `Is he helpful?`",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yes, he is.",
+        "localizedMeaning": {
+          "ru": "Сотрудник помог гостю. Вопрос: `Is he helpful?`",
+          "uk": "Працівник допоміг гостю. Запитання: `Is he helpful?`"
+        },
+        "orderedTokens": [
+          "Yes,",
+          "he",
+          "is"
+        ],
+        "authoredDistractorTokens": [
+          "helpful"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите ответ — гостья ещё не готова уйти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите ответ — гостья ещё не готова уйти",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "localizedScene": {
+          "ru": "Гостья всё ещё ждёт ключ у стойки. Спутник спрашивает: `Is she ready?` Соберите короткий ответ «нет». ",
+          "uk": "Гостя все ще чекає ключ біля стійки. Супутник питає: `Is she ready?` Складіть коротку відповідь «ні»."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:i14:audio",
+          "transcript": "No, she is not."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No, she is not.",
+        "orderedTokens": [
+          "No,",
+          "she",
+          "is",
+          "not"
+        ],
+        "authoredDistractorTokens": [
+          "he"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите короткое «да» — сотрудник смотрит не на тот заказ; вопрос: `Is he confused?`",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите короткое «да» — сотрудник смотрит не на тот заказ; вопрос: `Is he confused?`",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yes, he is.",
+        "localizedMeaning": {
+          "ru": "Сотрудник смотрит не на тот заказ. Вопрос: `Is he confused?`",
+          "uk": "Працівник дивиться не на те замовлення. Запитання: `Is he confused?`"
+        },
+        "orderedTokens": [
+          "Yes,",
+          "he",
+          "is"
+        ],
+        "authoredDistractorTokens": [
+          "confused"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i16:s01",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите короткое «да» — женщина помогает гостю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i16:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите короткое «да» — женщина помогает гостю",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "localizedScene": {
+          "ru": "Женщина у стойки помогает пожилому гостю с сумкой. Спутник спрашивает: «Она помогает?» Ответьте коротко.",
+          "uk": "Жінка біля стійки допомагає літньому гостю з сумкою. Супутник питає: «Вона допомагає?» Відповідайте коротко."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:i16:s01:audio",
+          "transcript": "Yes, she is."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yes, she is.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i16:s02",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите короткое «нет»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i16:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите короткое «нет»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:i16:s02:audio",
+          "transcript": "No, he is not."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, he is not.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i17:s01",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите полный ответ «да» — мужчина замёрз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите полный ответ «да» — мужчина замёрз",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "localizedScene": {
+          "ru": "Мужчина сидит в куртке и трёт ладони. Спутник спрашивает: «Он замёрз?» Ответьте полным предложением.",
+          "uk": "Чоловік сидить у куртці й тре долоні. Супутник питає: «Він змерз?» Відповідайте повним реченням."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:i17:s01:audio",
+          "transcript": "Yes, he is cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yes, he is cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите полный ответ «нет» — женщина не готова к выходу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите короткое «нет» — женщина не готова к выходу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "localizedScene": {
+          "ru": "Женщина у двери ищет перчатки и ещё не готова выйти. Спутник спрашивает: «Она готова?» Ответьте коротко.",
+          "uk": "Жінка біля дверей шукає рукавички й ще не готова вийти. Супутник питає: «Вона готова?» Відповідайте коротко."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:i17:s02:audio",
+          "transcript": "No, she is not ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, she is not ready."
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i17:s03",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите ответ «да» — лампа работает",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите ответ «да» — лампа работает",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "localizedScene": {
+          "ru": "У входа горит лампа. Спутник спрашивает: «Она работает?» Ответьте коротко.",
+          "uk": "Біля входу світить лампа. Супутник питає: «Вона працює?» Відповідайте коротко."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:i17:s03:audio",
+          "transcript": "Yes, it is."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yes, it is.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-11:i17:s04",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите полный ответ «нет» — мужчина не голоден",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-11:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Произнесите полный ответ «нет» — мужчина не голоден",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "localizedScene": {
+          "ru": "Мужчина только что позавтракал и отказывается от сэндвича. Спутник спрашивает: «Он голоден?» Ответьте полным предложением.",
+          "uk": "Чоловік щойно поснідав і відмовляється від сендвіча. Супутник питає: «Він голодний?» Відповідайте повним реченням."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-11:i17:s04:audio",
+          "transcript": "No, he is not hungry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, he is not hungry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0d4db0beb6cf67effd55aa7cce9d0f6c57abfcc2f97e352f52a9b41d49262a76"
+}

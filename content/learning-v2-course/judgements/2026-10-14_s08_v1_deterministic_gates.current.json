@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-08",
+  "candidateBundleSha256": "abcc1794aea92f92e2df4cf5f0a3a33f560d0140865f80026ead97752cd57477",
+  "contentReceiptSha256": "db5dcb3c7f72734b7934488c9242a93bf7e74df20cfcacf9ad2583a69a8174b9",
+  "candidateInventorySha256": "0eaaa4e8eac6efebced83b37fa06d49f1f191af794e45fb9536b3467f1a42c2b",
+  "sourceFingerprint": "afca116fc9d90931fc133050577fee232a09a01a525a869ff1fc2beec70ca16b",
+  "verdict": "PASS",
+  "gates": [
+    {
+      "id": "focused_regression_suite",
+      "verdict": "PASS",
+      "command": "node --test build_session_candidate_receipt, session_acceptance_receipt, l01s08_feedback_repair, l01s08_preservation_recovery",
+      "exitCode": 0,
+      "tests": 42,
+      "failures": 0
+    },
+    {
+      "id": "receipt_inventory_and_bundle_rehash",
+      "verdict": "PASS",
+      "command": "exact candidate receipt reconstruction and deep equality",
+      "exitCode": 0,
+      "files": 18,
+      "failures": 0
+    },
+    {
+      "id": "locale_projection_parity",
+      "verdict": "PASS",
+      "command": "RU/UK canonical prompt, source, interaction, feedback-map and wrong-only feedback parity checks",
+      "exitCode": 0,
+      "correctAnswerFeedbackRows": 0,
+      "introPagesPerLocale": 3,
+      "practiceInteractionsPerLocale": 21
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о человеке: `Is he / Is she + слово?`",
+    "uk": "запитати про людину: `Is he / Is she + слово?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`handsome` — привлекательный мужчина",
+        "uk": "`handsome` — привабливий чоловік"
+      },
+      "bodyByLocale": {
+        "ru": "`handsome` — «красивый, привлекательный». Так чаще говорят о мужчине: приятное лицо, уверенный вид, аккуратная одежда. Это не означает «богатый» или «модный». Спутник уже готов вынести эстетический вердикт, хотя кофе ещё не принесли. Вопрос о мужчине звучит `Is he handsome?`.",
+        "uk": "`handsome` — «вродливий, привабливий». Так частіше кажуть про чоловіка: приємне обличчя, упевнений вигляд, охайний одяг. Це не означає «багатий» або «модний». Супутник уже готовий винести естетичний вердикт, хоча каву ще не принесли. Запитання про чоловіка звучить `Is he handsome?`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "За соседним столиком мужчина, который кажется вам привлекательным. Спросите спутника о нём.",
+          "uk": "За сусіднім столиком чоловік, який здається вам привабливим. Запитайте супутника про нього."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r1",
+              "text": "Is he handsome?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r2",
+              "text": "He is handsome?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r3",
+              "text": "Is handsome he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r1",
+              "text": "Is he handsome?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r2",
+              "text": "He is handsome?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r3",
+              "text": "Is handsome he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За соседним столиком мужчина, который кажется вам привлекательным. Спросите спутника о нём.",
+          "uk": "За сусіднім столиком чоловік, який здається вам привабливим. Запитайте супутника про нього."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`pretty` — приятно смотреть",
+        "uk": "`pretty` — приємно дивитися"
+      },
+      "bodyByLocale": {
+        "ru": "`pretty` — «красивая, привлекательная». Так часто говорят о женщине или девушке, а ещё о вещи или месте, на которые приятно смотреть. Здесь речь о человеке. Слово не обещает ни особого стиля, ни дорогой одежды. Чтобы спросить о женщине, говорим `Is she pretty?`: сначала `is she`, затем `pretty`.",
+        "uk": "`pretty` — «гарна, приваблива». Так часто кажуть про жінку або дівчину, а ще про річ чи місце, на які приємно дивитися. Тут ідеться про людину. Слово не обіцяє ані особливого стилю, ані дорогого одягу. Щоб запитати про жінку, кажемо `Is she pretty?`: спочатку `is she`, потім `pretty`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "У стойки стоит женщина, которая кажется вам привлекательной. Спросите спутника о ней.",
+          "uk": "Біля стійки стоїть жінка, яка здається вам привабливою. Запитайте супутника про неї."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r1",
+              "text": "Is she pretty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r2",
+              "text": "She is pretty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r3",
+              "text": "Is pretty she?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r1",
+              "text": "Is she pretty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r2",
+              "text": "She is pretty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r3",
+              "text": "Is pretty she?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У стойки стоит женщина, которая кажется вам привлекательной. Спросите спутника о ней.",
+          "uk": "Біля стійки стоїть жінка, яка здається вам привабливою. Запитайте супутника про неї."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`he` — про мужчину, `she` — про женщину",
+        "uk": "`he` — про чоловіка, `she` — про жінку"
+      },
+      "bodyByLocale": {
+        "ru": "В вопросе `Is he handsome?` слово `he` указывает на мужчину, а в `Is she pretty?` слово `she` — на женщину. Порядок один: `is`, затем `he` или `she`, потом слово с описанием. `Handsome` чаще выбирают для мужчины, `pretty` — для женщины. Это обычный выбор слов, а не строгий запрет.",
+        "uk": "У запитанні `Is he handsome?` слово `he` вказує на чоловіка, а в `Is she pretty?` слово `she` — на жінку. Порядок один: `is`, потім `he` або `she`, далі слово з описом. `Handsome` частіше вживають про чоловіка, `pretty` — про жінку. Це звичне слововживання, а не сувора заборона."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Спутник показывает на женщину в красивом платье. Спросите, кажется ли она привлекательной.",
+          "uk": "Супутник показує на жінку в гарній сукні. Запитайте, чи здається вона привабливою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r1",
+              "text": "Is she pretty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r2",
+              "text": "Is he pretty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r3",
+              "text": "Is she handsome?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r1",
+              "text": "Is she pretty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r2",
+              "text": "Is he pretty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r3",
+              "text": "Is she handsome?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник показывает на женщину в красивом платье. Спросите, кажется ли она привлекательной.",
+          "uk": "Супутник показує на жінку в гарній сукні. Запитайте, чи здається вона привабливою."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "69253898db880389e5f345cf6f487c6e6c9cd527bb9c829b1bf0034cd6c64e64"
+}

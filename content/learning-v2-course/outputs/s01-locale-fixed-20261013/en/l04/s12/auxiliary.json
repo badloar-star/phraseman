@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-12:intro1:r2": {
+          "ru": "`A train` — поезд. Пассажиры ждут у `a platform`.",
+          "uk": "`A train` — поїзд. Пасажири чекають біля `a platform`."
+        },
+        "en:lesson-04:session-12:intro1:r3": {
+          "ru": "`A tram` — трамвай. На вокзале здесь указана `a platform`.",
+          "uk": "`A tram` — трамвай. На вокзалі тут позначено `a platform`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-12:intro2:r2": {
+          "ru": "После `there are` повторять `there` не нужно: `Yes, there are.`.",
+          "uk": "Після `there are` повторювати `there` не потрібно: `Yes, there are.`."
+        },
+        "en:lesson-04:session-12:intro2:r3": {
+          "ru": "В ответе сначала говорят `there`, потом `are`: `Yes, there are.`.",
+          "uk": "У відповіді спочатку кажуть `there`, потім `are`: `Yes, there are.`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-12:intro3:r2": {
+          "ru": "После `there aren't` повторять `there` не нужно: `No, there aren't.`.",
+          "uk": "Після `there aren't` повторювати `there` не потрібно: `No, there aren't.`."
+        },
+        "en:lesson-04:session-12:intro3:r3": {
+          "ru": "В ответе сначала говорят `there`, потом `aren't`: `No, there aren't.`.",
+          "uk": "У відповіді спочатку кажуть `there`, потім `aren't`: `No, there aren't.`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "be17237ff743c55352175abb39a3ac8f3dc06ec70122cead02d88ee2a0f2f616"
+}

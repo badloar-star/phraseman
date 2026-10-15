@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "знакомый вопрос и подходящий короткий ответ в разговоре",
+    "uk": "знайоме запитання й відповідна коротка відповідь у розмові"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ответ о себе",
+        "uk": "Відповідь про себе"
+      },
+      "bodyByLocale": {
+        "ru": "`Yes, I am` — это «Да» в ответ на вопрос `Are you ready?` — «Вы готовы?» Целый доклад о готовности не нужен: слово `ready` уже есть в вопросе, его можно не повторять. В этом коротком ответе оставляем `I am`: говорим о себе и выбираем `am`, хотя в вопросе было `are`.",
+        "uk": "`Yes, I am` — це «Так» у відповідь на `Are you ready?` — «Ви готові?» Ціла доповідь про готовність не потрібна: `ready` уже є в запитанні, його можна не повторювати. У короткій відповіді залишаємо `I am`: говоримо про себе й вибираємо `am`, хоча в запитанні було `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Сотрудник проката спрашивает, готовы ли вы выбрать велосипед. Вы определились. Ответьте коротко.",
+          "uk": "Працівник прокату запитує, чи готові ви вибрати велосипед. Ви вже визначилися. Дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-50:intro1:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro1:r2",
+              "text": "Yes, I are."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro1:r3",
+              "text": "Yes, I."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-50:intro1:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro1:r2",
+              "text": "Yes, I are."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro1:r3",
+              "text": "Yes, I."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник проката спрашивает, готовы ли вы выбрать велосипед. Вы определились. Ответьте коротко.",
+          "uk": "Працівник прокату запитує, чи готові ви вибрати велосипед. Ви вже визначилися. Дайте коротку відповідь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ответ о другом человеке",
+        "uk": "Відповідь про іншу людину"
+      },
+      "bodyByLocale": {
+        "ru": "`No, she is not` — это «Нет» в ответ на вопрос `Is she free?` — «Она свободна?» Здесь `free` значит «не занята делом». Отвечаете вы, но центром разговора от этого не становитесь: вопрос всё ещё о ней. Поэтому сохраняем `she is`, а после `is` добавляем `not`, чтобы ответить «нет».",
+        "uk": "`No, she is not` — це «Ні» у відповідь на `Is she free?` — «Вона вільна?» Тут `free` означає «не зайнята справою». Відповідаєте ви, але центром розмови від цього не стаєте: запитання досі про неї. Тому зберігаємо `she is`, а після `is` додаємо `not`, щоб відповісти «ні»."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, свободна ли сотрудница у стойки. Она помогает другому посетителю. Ответьте коротко.",
+          "uk": "Друг запитує, чи вільна працівниця біля стійки. Вона допомагає іншому відвідувачеві. Дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-50:intro2:r1",
+              "text": "No, she is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro2:r2",
+              "text": "No, she are not."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro2:r3",
+              "text": "No, she not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-50:intro2:r1",
+              "text": "No, she is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro2:r2",
+              "text": "No, she are not."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro2:r3",
+              "text": "No, she not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, свободна ли сотрудница у стойки. Она помогает другому посетителю. Ответьте коротко.",
+          "uk": "Друг запитує, чи вільна працівниця біля стійки. Вона допомагає іншому відвідувачеві. Дайте коротку відповідь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одинаковый ответ, другой вопрос",
+        "uk": "Та сама відповідь, інше запитання"
+      },
+      "bodyByLocale": {
+        "ru": "`No, I am not` — «Нет»: так можно ответить на `Are you sure?` — «Вы уверены?», если вы сомневаетесь. Слово `sure` уже прозвучало, поэтому его можно не повторять. О себе отвечаем с `I am`, а `not` ставим после `am`. Тот же ответ годится и на вопрос о готовности: смысл понятен из разговора.",
+        "uk": "`No, I am not` — «Ні»: так відповідають на `Are you sure?` — «Ви впевнені?», якщо сумніваються. `sure` уже прозвучало, тому його можна не повторювати. Про себе говоримо `I am`, а `not` ставимо після `am`. Та сама відповідь підійде й до запитання про готовність: зміст зрозумілий із розмови."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, уверены ли вы в дороге до парка. Вы пока не проверили маршрут и сомневаетесь. Ответьте коротко.",
+          "uk": "Друг запитує, чи впевнені ви щодо дороги до парку. Ви ще не перевірили маршрут і сумніваєтеся. Дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-50:intro3:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro3:r2",
+              "text": "No, I is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro3:r3",
+              "text": "No, I not am."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-50:intro3:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro3:r2",
+              "text": "No, I is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-50:intro3:r3",
+              "text": "No, I not am."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, уверены ли вы в дороге до парка. Вы пока не проверили маршрут и сомневаетесь. Ответьте коротко.",
+          "uk": "Друг запитує, чи впевнені ви щодо дороги до парку. Ви ще не перевірили маршрут і сумніваєтеся. Дайте коротку відповідь."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "820ec52b20ea4f880e1092a8e4a4772ece300394dfdc98f0e9c85c133407a14d"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-07:intro1:r2": {
+          "ru": "После I нужно `am`: о себе говорим `I am`.",
+          "uk": "Після I потрібне `am`: про себе кажемо `I am`."
+        },
+        "en:lesson-01:session-07:intro1:r3": {
+          "ru": "`Me` не ставят перед прилагательным; скажите `I am glad`.",
+          "uk": "У цій фразі про себе кажуть `I`; потрібна конструкція `I am glad`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-07:intro2:r2": {
+          "ru": "Это значит, что еды ещё недостаточно, и вам могут предложить добавку.",
+          "uk": "Це означає, що їжі ще недостатньо й вам можуть запропонувати добавку."
+        },
+        "en:lesson-01:session-07:intro2:r3": {
+          "ru": "Без `am` фраза рассыпается. Два слова тут не работают, нужно три.",
+          "uk": "Без `am` фраза розсипається. Два слова тут не працюють, потрібно три."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-07:intro3:r2": {
+          "ru": "Русское «я не боюсь» просочилось целиком. `not` цепляется к `am`, а не к `I`.",
+          "uk": "Українське «я не боюся» перебралося сюди без змін. `not` чіпляється до `am`, а не до `I`."
+        },
+        "en:lesson-01:session-07:intro3:r3": {
+          "ru": "Это противоположное сообщение: вам страшно, а нужно сказать, что не страшно.",
+          "uk": "Це протилежне повідомлення: вам страшно, а потрібно сказати, що не страшно."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9e8beb3100f215e931f684d29dbb4761c946eef3e4df13db8efc408646f87613"
+}

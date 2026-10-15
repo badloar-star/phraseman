@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-39:intro1:r2": {
+          "ru": "После `we` нужно `are`: We are early.",
+          "uk": "Після `we` потрібне `are`: We are early."
+        },
+        "en:lesson-01:session-39:intro1:r3": {
+          "ru": "`is` — про одного. Вас двое, значит `are`.",
+          "uk": "`is` — про одного. Вас двоє, отже `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-39:intro2:r2": {
+          "ru": "Сначала `are`, затем `not`: They are not right.",
+          "uk": "Спочатку `are`, потім `not`: They are not right."
+        },
+        "en:lesson-01:session-39:intro2:r3": {
+          "ru": "Это «они не ошиблись» — ровно наоборот. С `wrong` отрицание переворачивает смысл.",
+          "uk": "Це «вони не помилилися» — рівно навпаки. З `wrong` заперечення перевертає зміст."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-39:intro3:r2": {
+          "ru": "После `we` поставьте `are`: We are fine.",
+          "uk": "Після `we` поставте `are`: We are fine."
+        },
+        "en:lesson-01:session-39:intro3:r3": {
+          "ru": "`am` — только про себя одного. Про «мы» — `are`.",
+          "uk": "`am` — тільки про себе одного. Про «ми» — `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8232ed05d868fc147bc74b519979cdc9d12b9c469221867a0f8706639f3563d6"
+}

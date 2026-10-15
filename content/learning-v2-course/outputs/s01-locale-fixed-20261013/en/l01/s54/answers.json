@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-54:i01",
+    "correctText": "nervous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i02",
+    "correctText": "nervous",
+    "correctResponseId": "en:lesson-01:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i03",
+    "correctText": "confident",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i04",
+    "correctText": "confident",
+    "correctResponseId": "en:lesson-01:session-54:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i05",
+    "correctText": "confident",
+    "correctResponseId": "en:lesson-01:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i06",
+    "correctText": "fluent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i07",
+    "correctText": "fluent",
+    "correctResponseId": "en:lesson-01:session-54:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i08",
+    "correctText": "I am nervous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i09",
+    "correctText": "fluent",
+    "correctResponseId": "en:lesson-01:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i10",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-54:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i11",
+    "correctText": "I am fluent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i12",
+    "correctText": "honest",
+    "correctResponseId": "en:lesson-01:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i13",
+    "correctText": "I am calm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i14:s01",
+    "correctText": "I am nervous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i14:s02",
+    "correctText": "I am honest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i15",
+    "correctText": "I am ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i16",
+    "correctText": "en:lesson-01:session-54:i16:p1=nervous\nen:lesson-01:session-54:i16:p2=confident\nen:lesson-01:session-54:i16:p3=fluent\nen:lesson-01:session-54:i16:p4=honest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i17:s01",
+    "correctText": "I am confident.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i17:s02",
+    "correctText": "I am fluent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i17:s03",
+    "correctText": "I am calm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-54:i17:s04",
+    "correctText": "I am ready.",
+    "correctResponseId": null
+  }
+]

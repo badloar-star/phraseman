@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "перенос `a/an` на названия еды: один сэндвич, одна порция салата, одно яйцо; выбор по первому звуку следующего названия",
+    "uk": "перенесення `a/an` на назви їжі: один сендвіч, одна порція салату, одне яйце; вибір за першим звуком наступної назви"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Знакомое слово, полная фраза",
+        "uk": "Знайоме слово, повна фраза"
+      },
+      "bodyByLocale": {
+        "ru": "`sandwich` — «сэндвич», хлеб с начинкой. Перед названием одного сэндвича ставим `a`: первый звук согласный. Слово почти как русское, но перевести всю фразу слово в слово было бы слишком удобно. Полная фраза здесь: `It is a sandwich` — «Это сэндвич».",
+        "uk": "`sandwich` — «сендвіч», хліб із начинкою. Перед назвою одного сендвіча ставимо `a`: перший звук приголосний. Слово схоже на українське, але перекласти всю фразу слово за словом було б надто зручно. Повна фраза тут: `It is a sandwich` — «Це сендвіч»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на хлеб с начинкой у вас на тарелке. Скажите «Это сэндвич».",
+          "uk": "Друг показує на хліб із начинкою у вас на тарілці. Скажіть: «Це сендвіч»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-14:intro1:r1",
+              "text": "It is a sandwich."
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro1:r2",
+              "text": "It is an sandwich."
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro1:r3",
+              "text": "It sandwich."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-14:intro1:r1",
+              "text": "It is a sandwich."
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro1:r2",
+              "text": "It is an sandwich."
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro1:r3",
+              "text": "It sandwich."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на хлеб с начинкой у вас на тарелке. Скажите «Это сэндвич».",
+          "uk": "Друг показує на хліб із начинкою у вас на тарілці. Скажіть: «Це сендвіч»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одна порция",
+        "uk": "Одна порція"
+      },
+      "bodyByLocale": {
+        "ru": "`salad` — «салат». Здесь называем одну порцию, поэтому берём `a salad`: в начале слова слышно согласный «с». Чтобы уточнить название, начните с `Is it`, а затем добавьте название с `a`: `Is it a salad?` — «Это салат?»",
+        "uk": "`salad` — «салат». Тут називаємо одну порцію страви, тому беремо `a salad`: на початку слова чути приголосний «с». Щоб уточнити назву, почніть з `Is it`, а потім додайте назву з `a`: `Is it a salad?` — «Це салат?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Официант принёс вам порцию незнакомого блюда. Уточните «Это салат?».",
+          "uk": "Офіціант приніс вам порцію незнайомої страви. Уточніть: «Це салат?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-14:intro2:r1",
+              "text": "Is it a salad?"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro2:r2",
+              "text": "Is it an salad?"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro2:r3",
+              "text": "Is a salad?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-14:intro2:r1",
+              "text": "Is it a salad?"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro2:r2",
+              "text": "Is it an salad?"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro2:r3",
+              "text": "Is a salad?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Официант принёс вам порцию незнакомого блюда. Уточните «Это салат?».",
+          "uk": "Офіціант приніс вам порцію незнайомої страви. Уточніть: «Це салат?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Первым слышен гласный",
+        "uk": "Спершу чути голосний"
+      },
+      "bodyByLocale": {
+        "ru": "`egg` — «яйцо». Речь об одном целом яйце. Слово начинается сразу с гласного звука, поэтому перед ним выбираем `an`. Короткое название — `an egg`. Для полной фразы добавьте `It is`: `It is an egg` — «Это яйцо». У `sandwich` и `salad` начало другое — согласное.",
+        "uk": "`egg` — «яйце». Ідеться про одне ціле яйце. Слово починається відразу з голосного звуку, тому перед ним обираємо `an`. Коротка назва — `an egg`. Для повної фрази додайте `It is`: `It is an egg` — «Це яйце». У `sandwich` і `salad` початок інший — приголосний."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на яйцо у вас на тарелке и спрашивает, что это. Назовите его полной фразой.",
+          "uk": "Друг показує на яйце у вас на тарілці й питає, що це. Назвіть його повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-14:intro3:r1",
+              "text": "It is an egg."
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro3:r2",
+              "text": "It is a egg."
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro3:r3",
+              "text": "It is egg."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-14:intro3:r1",
+              "text": "It is an egg."
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro3:r2",
+              "text": "It is a egg."
+            },
+            {
+              "responseId": "en:lesson-03:session-14:intro3:r3",
+              "text": "It is egg."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на яйцо у вас на тарелке и спрашивает, что это. Назовите его полной фразой.",
+          "uk": "Друг показує на яйце у вас на тарілці й питає, що це. Назвіть його повною фразою."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0ae2a7a2f4bae336d6c92b08b0f77f1e9245d34e98a0fb45f846e015f4fff92e"
+}

@@ -96,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-05:i19",
-    "correctText": "en:lesson-01:session-05:i19:p1=I am hot.\nen:lesson-01:session-05:i19:p2=I am not sick.\nen:lesson-01:session-05:i19:p3=I am ready.\nen:lesson-01:session-05:i19:p4=I am not new.",
+    "correctText": "en:lesson-01:session-05:i19:p1=I am hot.\nen:lesson-01:session-05:i19:p2=I am not sick.\nen:lesson-01:session-05:i19:p3=I am ready.\nen:lesson-01:session-05:i19:p4=I am not hot.",
     "correctResponseId": null
   }
 ]

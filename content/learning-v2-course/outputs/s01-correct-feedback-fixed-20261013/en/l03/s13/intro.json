@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "контраст `an earring` и `a necklace/a bracelet`: когда сразу после `a/an` идёт название предмета, выбираем по первому звуку этого названия",
+    "uk": "контраст `an earring` і `a necklace/a bracelet`: коли відразу після `a/an` іде назва предмета, обираємо за першим звуком цієї назви"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна серьга",
+        "uk": "Одна сережка"
+      },
+      "bodyByLocale": {
+        "ru": "`earring` — «серьга», украшение для уха. Даже если продаётся пара, этим словом называем одну серьгу. Перед ним выбираем `an`, потому что первый звук гласный. Добавьте начало `It is`, чтобы сказать полную фразу: `It is an earring` — «Это серьга».",
+        "uk": "`earring` — «сережка», прикраса для вуха. Навіть якщо продається пара, цим словом називають одну сережку. Перед ним обираємо `an`, бо перший звук голосний. Додайте початок `It is`, щоб сказати повну фразу: `It is an earring` — «Це сережка»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Продавец положил перед вами одну серьгу. Назовите её полной фразой.",
+          "uk": "Продавець поклав перед вами одну сережку. Назвіть її повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-13:intro1:r1",
+              "text": "It is an earring."
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro1:r2",
+              "text": "It is a earring."
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro1:r3",
+              "text": "It is earring."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-13:intro1:r1",
+              "text": "It is an earring."
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro1:r2",
+              "text": "It is a earring."
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro1:r3",
+              "text": "It is earring."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Продавец положил перед вами одну серьгу. Назовите её полной фразой.",
+          "uk": "Продавець поклав перед вами одну сережку. Назвіть її повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одно an на всё не подойдёт",
+        "uk": "Одне an на все не підійде"
+      },
+      "bodyByLocale": {
+        "ru": "`necklace` — «ожерелье». Здесь первым звучит согласный «н», поэтому перед названием нужно `a`. Одно удачное `an` нельзя назначить всем названиям сразу: смысл может быть похожим, а первые звуки — разными. Полная фраза: `It is a necklace` — «Это ожерелье».",
+        "uk": "`necklace` — «намисто». Тут першим чути приголосний «н», тому перед назвою потрібне `a`. Одне вдале `an` не можна призначити всім назвам відразу: значення можуть бути схожими, а перші звуки — різними. Повна фраза: `It is a necklace` — «Це намисто»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Продавец показывает украшение для шеи. Назовите ожерелье полной фразой.",
+          "uk": "Продавець показує прикрасу для шиї. Назвіть намисто повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-13:intro2:r1",
+              "text": "It is a necklace."
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro2:r2",
+              "text": "It is an necklace."
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro2:r3",
+              "text": "It a necklace."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-13:intro2:r1",
+              "text": "It is a necklace."
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro2:r2",
+              "text": "It is an necklace."
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro2:r3",
+              "text": "It a necklace."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Продавец показывает украшение для шеи. Назовите ожерелье полной фразой.",
+          "uk": "Продавець показує прикрасу для шиї. Назвіть намисто повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что надевают на запястье",
+        "uk": "Що носять на зап’ясті"
+      },
+      "bodyByLocale": {
+        "ru": "`bracelet` — «браслет», украшение, которое обычно носят на запястье. Перед начальным согласным «б» выбираем `a`. Для вопроса поставьте `Is` перед `it`, а название оставьте с маленьким словом: `Is it a bracelet?` — «Это браслет?»",
+        "uk": "`bracelet` — «браслет», прикраса, яку зазвичай носять на зап’ясті. Перед початковим приголосним «б» обираємо `a`. Для питання поставте `Is` перед `it`, а назву лишіть із маленьким словом: `Is it a bracelet?` — «Це браслет?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг увидел украшение, свёрнутое в кольцо. Спросите у продавца «Это браслет?».",
+          "uk": "Друг побачив прикрасу, згорнуту кільцем. Запитайте продавця: «Це браслет?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-13:intro3:r1",
+              "text": "Is it a bracelet?"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro3:r2",
+              "text": "Is it an bracelet?"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro3:r3",
+              "text": "Is it bracelet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-13:intro3:r1",
+              "text": "Is it a bracelet?"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro3:r2",
+              "text": "Is it an bracelet?"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:intro3:r3",
+              "text": "Is it bracelet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг увидел украшение, свёрнутое в кольцо. Спросите у продавца «Это браслет?».",
+          "uk": "Друг побачив прикрасу, згорнуту кільцем. Запитайте продавця: «Це браслет?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d78a97dca9d7f3db479a574837bcc55f9774055807264e2e239b595ec305599b"
+}

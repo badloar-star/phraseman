@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "повторение вопросов о себе и своей компании; оценка манеры общения",
+    "uk": "повторення запитань про себе та свою компанію; оцінка манери спілкування"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать чужую оценку",
+        "uk": "Дізнатися чужу оцінку"
+      },
+      "bodyByLocale": {
+        "ru": "`polite` — «вежливый»: так описывают уважительную манеру общения. `Am I polite?` — «Я вежливый?» Так вы узнаёте чужое мнение. А `I am polite` — «Я вежливый» — уже ваша оценка. Похвалить себя вы всегда успеете; если хотите услышать собеседника, оставьте ему ответ и начните с `Am I`.",
+        "uk": "`polite` — «ввічливий»: так описують шанобливу манеру спілкування. `Am I polite?` — «Я ввічливий?» Так ви дізнаєтеся чужу думку. А `I am polite` — «Я ввічливий» — це вже ваша оцінка. Похвалити себе ви ще встигнете; якщо хочете почути співрозмовника, дайте йому відповісти й почніть із `Am I`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "За столиком в кафе вы спрашиваете друга, считает ли он вас вежливым человеком.",
+          "uk": "За столиком у кафе ви запитуєте друга, чи вважає він вас ввічливою людиною."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-47:intro1:r1",
+              "text": "Am I polite?"
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro1:r2",
+              "text": "I am polite."
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro1:r3",
+              "text": "Are you polite?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-47:intro1:r1",
+              "text": "Am I polite?"
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro1:r2",
+              "text": "I am polite."
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro1:r3",
+              "text": "Are you polite?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За столиком в кафе вы спрашиваете друга, считает ли он вас вежливым человеком.",
+          "uk": "За столиком у кафе ви запитуєте друга, чи вважає він вас ввічливою людиною."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить о резкости",
+        "uk": "Запитати про різкість"
+      },
+      "bodyByLocale": {
+        "ru": "`rude` — «грубый, невежливый»: например, так описывают резкое или неуважительное обращение. `Am I rude?` — «Я грубый?» Вопрос позволяет узнать, как вас воспринимают. Самим вопросом вы ещё не признаёте себя грубым: сначала хочется понять, совпадает ли чужое впечатление с вашим.",
+        "uk": "`rude` — «грубий, неввічливий»: так, наприклад, описують різке або нешанобливе звертання. `Am I rude?` — «Я грубий?» Це запитання допомагає дізнатися, як вас сприймають. Самим запитанням ви ще не визнаєте себе грубим: спершу варто з’ясувати, чи збігається чуже враження з вашим."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы переживаете, что иногда говорите слишком резко. Спросите друга, считает ли он вас грубым.",
+          "uk": "Ви хвилюєтеся, що іноді говорите надто різко. Запитайте друга, чи вважає він вас грубим."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-47:intro2:r1",
+              "text": "Am I rude?"
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro2:r2",
+              "text": "I am rude."
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro2:r3",
+              "text": "Am I ready?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-47:intro2:r1",
+              "text": "Am I rude?"
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro2:r2",
+              "text": "I am rude."
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro2:r3",
+              "text": "Am I ready?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы переживаете, что иногда говорите слишком резко. Спросите друга, считает ли он вас грубым.",
+          "uk": "Ви хвилюєтеся, що іноді говорите надто різко. Запитайте друга, чи вважає він вас грубим."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "О себе или обо всех",
+        "uk": "Про себе чи про всіх"
+      },
+      "bodyByLocale": {
+        "ru": "`Are we rude?` — «Мы грубые?» Здесь `we` включает и вас, и вашу компанию. Если спрашиваете только о себе, нужно `Am I rude?` Последнее слово одинаковое: меняется, чью манеру общения оценивают. Выберите начало до того, как зададите вопрос: речь только о вас или обо всех.",
+        "uk": "`Are we rude?` — «Ми грубі?» Тут `we` охоплює і вас, і вашу компанію. Якщо запитуєте лише про себе, потрібне `Am I rude?` Останнє слово те саме: змінюється лише те, чию манеру спілкування оцінюють. Оберіть початок до того, як поставите запитання: чи йдеться лише про вас, чи про всіх."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы с другом обсуждаете, как ваша компания разговаривает с официантами. Спросите: «Мы грубые?»",
+          "uk": "Ви з другом обговорюєте, як ваша компанія розмовляє з офіціантами. Запитайте: «Ми грубі?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-47:intro3:r1",
+              "text": "Are we rude?"
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro3:r2",
+              "text": "Am I rude?"
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro3:r3",
+              "text": "Are you rude?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-47:intro3:r1",
+              "text": "Are we rude?"
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro3:r2",
+              "text": "Am I rude?"
+            },
+            {
+              "responseId": "en:lesson-02:session-47:intro3:r3",
+              "text": "Are you rude?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы с другом обсуждаете, как ваша компания разговаривает с официантами. Спросите: «Мы грубые?»",
+          "uk": "Ви з другом обговорюєте, як ваша компанія розмовляє з офіціантами. Запитайте: «Ми грубі?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "39cc1db3c5eba2d23eb4b0488cd83ab7757f965bf19a08ec573d0ccce3d67be1"
+}

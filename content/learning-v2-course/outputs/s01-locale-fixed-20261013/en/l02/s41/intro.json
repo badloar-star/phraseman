@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "вопрос о себе `Am I + слово?`",
+    "uk": "запитання про себе `Am I + слово?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спросить о себе",
+        "uk": "Запитати про себе"
+      },
+      "bodyByLocale": {
+        "ru": "`Am I late?` — «Я опоздал?» Так вы уточняете, успели ли вовремя. В сообщении `I am late` сначала стоит `I`, затем `am`. Для обычного вопроса меняем их местами: `Am I late?` Последнее слово остаётся тем же. С `I` здесь нужна форма `am`, даже когда она стоит первой.",
+        "uk": "`Am I late?` — «Я запізнився?» Так ви уточнюєте, чи встигли вчасно. У повідомленні `I am late` спочатку стоїть `I`, а потім `am`. У звичайному запитанні міняємо їх місцями: `Am I late?` Останнє слово не змінюється. З `I` тут потрібне `am`, навіть коли воно стоїть першим."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы пришли к соседям на воскресный завтрак и не уверены, успели ли к началу. Спросите, опоздали ли вы.",
+          "uk": "Ви прийшли до сусідів на недільний сніданок і не впевнені, чи встигли до початку. Запитайте, чи ви запізнилися."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-41:intro1:r1",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro1:r2",
+              "text": "Are I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro1:r3",
+              "text": "Am I early?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-41:intro1:r1",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro1:r2",
+              "text": "Are I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro1:r3",
+              "text": "Am I early?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы пришли к соседям на воскресный завтрак и не уверены, успели ли к началу. Спросите, опоздали ли вы.",
+          "uk": "Ви прийшли до сусідів на недільний сніданок і не впевнені, чи встигли до початку. Запитайте, чи ви запізнилися."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проверить своё предположение",
+        "uk": "Перевірити своє припущення"
+      },
+      "bodyByLocale": {
+        "ru": "`Am I wrong?` — «Я ошибаюсь?» Слово `wrong` значит «неправ». Можно проверить своё предположение и не спешить признавать ошибку, которой, возможно, нет. Для этого ставим `Am I` в начале. А `I am wrong` — «Я неправ» — уже сообщает об ошибке. Порядок слов меняет вашу реплику.",
+        "uk": "`Am I wrong?` — «Я помиляюся?» `wrong` означає «неправий». Так можна перевірити припущення й не поспішати визнавати помилку, якої, можливо, немає. Для цього ставимо `Am I` на початку. А `I am wrong` — «Я неправий» — уже повідомляє про помилку. Порядок слів змінює вашу репліку."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы говорите другу, что завтрак назначен на десять, но не уверены. Спросите: «Я ошибаюсь?»",
+          "uk": "Ви кажете другові, що сніданок призначено на десяту, але не впевнені. Запитайте: «Я помиляюся?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-41:intro2:r1",
+              "text": "Am I wrong?"
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro2:r2",
+              "text": "Is I wrong?"
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro2:r3",
+              "text": "Am I late?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-41:intro2:r1",
+              "text": "Am I wrong?"
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro2:r2",
+              "text": "Is I wrong?"
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro2:r3",
+              "text": "Am I late?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы говорите другу, что завтрак назначен на десять, но не уверены. Спросите: «Я ошибаюсь?»",
+          "uk": "Ви кажете другові, що сніданок призначено на десяту, але не впевнені. Запитайте: «Я помиляюся?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рады ли вашему приходу",
+        "uk": "Чи раді вашому приходу"
+      },
+      "bodyByLocale": {
+        "ru": "`welcome` — «желанный»: так говорят о том, кого рады видеть. `Am I welcome here?` — «Мне здесь рады?» Слово `here` значит «здесь». В ответе на благодарность `You are welcome` перевод другой: «Пожалуйста». Здесь вы не отвечаете на спасибо, а хотите узнать, как относятся к вашему приходу.",
+        "uk": "`welcome` — «бажаний»: так кажуть про того, кого раді бачити. `Am I welcome here?` — «Мені тут раді?» `here` означає «тут». У відповіді на подяку `You are welcome` перекладаємо інакше: «Будь ласка». Тут ви не відповідаєте на подяку, а з’ясовуєте, як ставляться до вашого приходу."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг позвал вас к соседям, но вы не знаете, предупредил ли он их. Уточните у него, рады ли вам здесь.",
+          "uk": "Друг запросив вас до сусідів, але ви не знаєте, чи попередив він їх. Запитайте його, чи вам тут раді."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-41:intro3:r1",
+              "text": "Am I welcome here?"
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro3:r2",
+              "text": "You are welcome."
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro3:r3",
+              "text": "Am I early?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-41:intro3:r1",
+              "text": "Am I welcome here?"
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro3:r2",
+              "text": "You are welcome."
+            },
+            {
+              "responseId": "en:lesson-02:session-41:intro3:r3",
+              "text": "Am I early?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг позвал вас к соседям, но вы не знаете, предупредил ли он их. Уточните у него, рады ли вам здесь.",
+          "uk": "Друг запросив вас до сусідів, але ви не знаєте, чи попередив він їх. Запитайте його, чи вам тут раді."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "aadef4cc7582fdfb04a28fc8780ea7515bead42dc02e22a70f4150f9619aee5f"
+}

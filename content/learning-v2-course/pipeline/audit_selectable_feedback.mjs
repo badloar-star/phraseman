@@ -46,20 +46,69 @@ function issue(category, file, responseId, reason, extra = {}) {
   return { category, path: relative(file), responseId, reason, ...extra };
 }
 
-function checkFeedbackMap({ category, file, responseIds, feedbackById, correctResponseId = null, projectionLocale = null }) {
+function projectionExtra(projectionLocale) {
+  return projectionLocale ? { projectionLocale } : {};
+}
+
+function resolveAnswerCorrectness({ category, file, interactionId, responseIds, answers, projectionLocale = null }) {
+  const matching = (answers ?? []).filter((answer) => answer?.interactionId === interactionId);
+  const extra = projectionExtra(projectionLocale);
+  if (!matching.length || !String(matching[0]?.correctResponseId ?? "").trim()) {
+    return { issues: [issue(category, file, interactionId, "answer_correctness_missing", extra)] };
+  }
+  if (matching.length !== 1 || !responseIds.includes(matching[0].correctResponseId)) {
+    return { issues: [issue(category, file, interactionId, "answer_correctness_ambiguous", extra)] };
+  }
+  return { correctResponseId: matching[0].correctResponseId, issues: [] };
+}
+
+function resolveMarkedCorrectness({ category, file, interactionId, responseIds, options, projectionLocale = null }) {
+  const correctIndexes = (options ?? []).flatMap((option, index) => option?.correct === true ? [index] : []);
+  const extra = projectionExtra(projectionLocale);
+  if (!correctIndexes.length) {
+    return { issues: [issue(category, file, interactionId, "answer_correctness_missing", extra)] };
+  }
+  const correctResponseId = responseIds[correctIndexes[0]];
+  if (correctIndexes.length !== 1 || !correctResponseId) {
+    return { issues: [issue(category, file, interactionId, "answer_correctness_ambiguous", extra)] };
+  }
+  return { correctResponseId, issues: [] };
+}
+
+function checkFeedbackMap({
+  category,
+  file,
+  responseIds,
+  feedbackEntries,
+  correctResponseId,
+  projectionLocale = null,
+}) {
   const issues = [];
-  for (const responseId of responseIds) {
-    const feedback = feedbackById.get(responseId);
-    if (!feedback) {
-      issues.push(issue(category, file, responseId, "feedback_missing", projectionLocale ? { projectionLocale } : {}));
+  const extra = projectionExtra(projectionLocale);
+  const feedbackById = new Map();
+  for (const [responseId, feedback] of feedbackEntries) {
+    if (feedbackById.has(responseId)) {
+      issues.push(issue(category, file, responseId ?? "missing", "feedback_target_duplicate", extra));
       continue;
     }
-    if (correctResponseId && feedback.correct !== (responseId === correctResponseId)) {
-      issues.push(issue(category, file, responseId, "correct_flag_mismatch", projectionLocale ? { projectionLocale } : {}));
+    feedbackById.set(responseId, feedback);
+    if (responseId === correctResponseId || !responseIds.includes(responseId)) {
+      issues.push(issue(category, file, responseId ?? "missing", "feedback_target_invalid", extra));
+    }
+  }
+
+  for (const responseId of responseIds.filter((id) => id !== correctResponseId)) {
+    const feedback = feedbackById.get(responseId);
+    if (!feedback) {
+      issues.push(issue(category, file, responseId, "feedback_missing", extra));
+      continue;
+    }
+    if (feedback.correct !== undefined && feedback.correct !== false) {
+      issues.push(issue(category, file, responseId, "correct_flag_mismatch", extra));
     }
     const localized = feedback.feedbackByLocale ?? feedback;
     for (const locale of REQUIRED_LOCALES) if (!String(localized?.[locale] ?? "").trim()) {
-      issues.push(issue(category, file, responseId, "feedback_locale_missing", { locale, ...(projectionLocale ? { projectionLocale } : {}) }));
+      issues.push(issue(category, file, responseId, "feedback_locale_missing", { locale, ...extra }));
     }
   }
   return issues;
@@ -75,9 +124,15 @@ function auditSource() {
       const file = path.join(dir, `final.${locale}.md`);
       if (!exists(file)) continue;
       for (const [pageIndex, page] of parseIntro(fs.readFileSync(file, "utf8")).entries()) {
+        const interactionId = `${sessionId}:intro${pageIndex + 1}:q`;
+        const responseIds = page.options.map((_, optionIndex) => `${sessionId}:intro${pageIndex + 1}:r${optionIndex + 1}`);
+        const correctness = resolveMarkedCorrectness({ category: "source", file, interactionId, responseIds, options: page.options });
+        issues.push(...correctness.issues);
+        if (!correctness.correctResponseId) continue;
         for (const [optionIndex, option] of page.options.entries()) {
+          if (responseIds[optionIndex] === correctness.correctResponseId) continue;
           if (!String(option.feedback ?? "").trim()) issues.push(issue(
-            "source", file, `${sessionId}:intro${pageIndex + 1}:r${optionIndex + 1}`, "feedback_missing", { locale },
+            "source", file, responseIds[optionIndex], "feedback_missing", { locale },
           ));
         }
       }
@@ -85,18 +140,30 @@ function auditSource() {
     const atomicFile = path.join(dir, "practice.atomic.json");
     if (!exists(atomicFile)) continue;
     const atomic = readJson(atomicFile);
-    const answerById = new Map((atomic.answers ?? []).map((answer) => [answer.interactionId, answer]));
     for (const projectionLocale of Object.keys(atomic.interactionsByLocale ?? {}).sort()) {
       for (const interaction of atomic.interactionsByLocale[projectionLocale] ?? []) {
         const responseIds = (interaction.responseOptions ?? []).map((option) => option.responseId).filter(Boolean);
         if (interaction.inputMode !== "single_choice" || responseIds.length < 2) continue;
-        const correctResponseId = answerById.get(interaction.interactionId)?.correctResponseId ?? null;
-        const feedbackById = new Map((interaction.modePayload?.choiceFeedback ?? []).map((row) => [row.responseId, row]));
-        issues.push(...checkFeedbackMap({ category: "source", file: atomicFile, responseIds, feedbackById, correctResponseId, projectionLocale }));
+        const correctness = resolveAnswerCorrectness({
+          category: "source", file: atomicFile, interactionId: interaction.interactionId,
+          responseIds, answers: atomic.answers, projectionLocale,
+        });
+        issues.push(...correctness.issues);
+        if (!correctness.correctResponseId) continue;
+        const feedbackEntries = (interaction.modePayload?.choiceFeedback ?? []).map((row) => [row.responseId, row]);
+        issues.push(...checkFeedbackMap({
+          category: "source", file: atomicFile, responseIds, feedbackEntries,
+          correctResponseId: correctness.correctResponseId, projectionLocale,
+        }));
       }
     }
   }
   return issues;
+}
+
+function sourceIntroForScope(scope) {
+  const file = path.join(ROOT, "sessions", ...scope.split("/"), "final.ru.md");
+  return { file, pages: exists(file) ? parseIntro(fs.readFileSync(file, "utf8")) : [] };
 }
 
 function auditProjection(category, rootName) {
@@ -104,22 +171,38 @@ function auditProjection(category, rootName) {
   const issues = [];
   for (const scope of collectSessionScopes(base)) {
     const dir = path.join(base, ...scope.split("/"));
+    const sessionId = sessionIdFor(scope);
     const introFile = path.join(dir, "intro.json");
     const auxiliaryFile = path.join(dir, "auxiliary.json");
     if (exists(introFile)) {
       const intro = readJson(introFile);
       const auxiliary = exists(auxiliaryFile) ? readJson(auxiliaryFile) : { entries: [] };
       const auxByInteraction = new Map((auxiliary.entries ?? []).map((entry) => [entry.interactionId, entry.responseFeedbackById ?? {}]));
-      for (const page of intro.pages ?? []) {
+      const sourceIntro = sourceIntroForScope(scope);
+      for (const [pageIndex, page] of (intro.pages ?? []).entries()) {
         const question = page.question ?? {};
         const choices = question.choicesByLocale?.ru ?? Object.values(question.choicesByLocale ?? {})[0] ?? [];
-        const feedbackById = new Map(Object.entries(auxByInteraction.get(question.interactionId) ?? {}));
-        issues.push(...checkFeedbackMap({ category, file: auxiliaryFile, responseIds: choices.map((choice) => choice.responseId), feedbackById }));
+        const responseIds = choices.map((choice) => choice.responseId).filter(Boolean);
+        const sourceOptions = sourceIntro.pages[pageIndex]?.options ?? [];
+        const sourceResponseIds = sourceOptions.map((_, optionIndex) => `${sessionId}:intro${pageIndex + 1}:r${optionIndex + 1}`);
+        const correctness = resolveMarkedCorrectness({
+          category, file: auxiliaryFile, interactionId: question.interactionId,
+          responseIds: sourceResponseIds, options: sourceOptions,
+        });
+        issues.push(...correctness.issues);
+        if (!correctness.correctResponseId || !responseIds.includes(correctness.correctResponseId)) {
+          if (correctness.correctResponseId) issues.push(issue(category, auxiliaryFile, question.interactionId, "answer_correctness_ambiguous"));
+          continue;
+        }
+        issues.push(...checkFeedbackMap({
+          category, file: auxiliaryFile, responseIds,
+          feedbackEntries: Object.entries(auxByInteraction.get(question.interactionId) ?? {}),
+          correctResponseId: correctness.correctResponseId,
+        }));
       }
     }
     const answersFile = path.join(dir, "answers.json");
     const answers = exists(answersFile) ? readJson(answersFile) : [];
-    const answerById = new Map(answers.map((answer) => [answer.interactionId, answer]));
     for (const learnerName of ["learner.json", "learner.uk.json"]) {
       const learnerFile = path.join(dir, learnerName);
       if (!exists(learnerFile)) continue;
@@ -127,11 +210,17 @@ function auditProjection(category, rootName) {
       for (const interaction of learner.interactions ?? []) {
         const responseIds = (interaction.responseOptions ?? []).map((option) => option.responseId).filter(Boolean);
         if (interaction.inputMode !== "single_choice" || responseIds.length < 2) continue;
-        const feedbackById = new Map((interaction.modePayload?.choiceFeedback ?? []).map((row) => [row.responseId, row]));
+        const projectionLocale = learnerName === "learner.uk.json" ? "uk" : "ru";
+        const correctness = resolveAnswerCorrectness({
+          category, file: learnerFile, interactionId: interaction.interactionId,
+          responseIds, answers, projectionLocale,
+        });
+        issues.push(...correctness.issues);
+        if (!correctness.correctResponseId) continue;
+        const feedbackEntries = (interaction.modePayload?.choiceFeedback ?? []).map((row) => [row.responseId, row]);
         issues.push(...checkFeedbackMap({
-          category, file: learnerFile, responseIds, feedbackById,
-          correctResponseId: answerById.get(interaction.interactionId)?.correctResponseId ?? null,
-          projectionLocale: learnerName === "learner.uk.json" ? "uk" : "ru",
+          category, file: learnerFile, responseIds, feedbackEntries,
+          correctResponseId: correctness.correctResponseId, projectionLocale,
         }));
       }
     }
@@ -147,7 +236,7 @@ export function auditSelectableFeedback() {
   ].sort((a, b) => (
     CATEGORY_ORDER.get(a.category) - CATEGORY_ORDER.get(b.category)
     || a.path.localeCompare(b.path)
-    || a.responseId.localeCompare(b.responseId)
+    || String(a.responseId).localeCompare(String(b.responseId))
     || a.reason.localeCompare(b.reason)
     || String(a.locale ?? "").localeCompare(String(b.locale ?? ""))
   ));

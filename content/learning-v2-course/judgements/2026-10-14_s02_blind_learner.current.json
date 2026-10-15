@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "blind_learner_review_v1",
+  "sessionId": "en:lesson-01:session-02",
+  "candidateBundleSha256": "fec409ef4b0039f658485d93736d78b5101bb6a73c69e3d37b4cf97c3d7cb116",
+  "learnerJsonSha256": "96550ed666dbda7a1c42695d9e0e8c195349941fa60dc6be10f91c9b87688d21",
+  "reviewerModel": "gpt-6-luna",
+  "dimension": "blind_learner",
+  "verdict": "PASS",
+  "blockerFindings": [],
+  "nonBlockingNotes": [],
+  "taskCount": 21,
+  "reviewedTaskIds": [
+    "en:lesson-01:session-02:i01", "en:lesson-01:session-02:i02", "en:lesson-01:session-02:i03", "en:lesson-01:session-02:i04",
+    "en:lesson-01:session-02:i05", "en:lesson-01:session-02:i06", "en:lesson-01:session-02:i07", "en:lesson-01:session-02:i08",
+    "en:lesson-01:session-02:i09", "en:lesson-01:session-02:i10", "en:lesson-01:session-02:i11", "en:lesson-01:session-02:i12",
+    "en:lesson-01:session-02:i13", "en:lesson-01:session-02:i14:s01", "en:lesson-01:session-02:i14:s02", "en:lesson-01:session-02:i15",
+    "en:lesson-01:session-02:i16", "en:lesson-01:session-02:i17:s01", "en:lesson-01:session-02:i17:s02", "en:lesson-01:session-02:i17:s03",
+    "en:lesson-01:session-02:i17:s04"
+  ]
+}

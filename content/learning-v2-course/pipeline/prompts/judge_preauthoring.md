@@ -35,9 +35,21 @@ BLOCK обязателен, если хотя бы один документ н�
 planned real situation появится только в единственном вопросе под объяснением.
 Польза фразы станет ясна раньше разбора ловушки. Общих слов «будет понятно» недостаточно.
 
+Верните JSON строго со `bindingSchemaVersion: "learning_v2_preauthoring_guardian_v2"`.
+Дословно перенесите из текущего preflight-пакета `preflightRunId` и
+`preflightIssuedAt`, а также `hostEpoch`; подмена, пропуск или значение от прошлого запуска дают
+BLOCK. `issuedAt` должен быть не раньше `preflightIssuedAt`. После compaction,
+restart или handoff координатор обязан заново запустить preflight и передать
+guardian новый ID и новый trusted host lifecycle epoch: старая квитанция не переносится между запусками.
+`CODEX_THREAD_ID` и `CODEX_SESSION_ID` не являются lifecycle epoch и не могут
+использоваться вместо значения, выданного координатором.
+Единственный источник актуальной привязки для draft/edit/full — сохранённое кодом в каталоге сессии состояние preflight.
+Переданный вызывающим кодом аргумент с ID или временем не является источником актуальной привязки и не может оживить старую квитанцию.
+
 Верните JSON с полями: `verdict`, `issuedAt`, `guardian` со строгим значением
 `independent-preauthoring-guardian`,
-`authorMustNotSelfIssue: true`, `session`, `documentHashes`, `documentReview`, `curriculumRow`,
+`authorMustNotSelfIssue: true`, `session`, `preflightRunId`, `preflightIssuedAt`, `hostEpoch`,
+`documentHashes`, `documentRoles`, `documentReview`, `curriculumRow`,
 `cambridgeEvidence`, `newWords`, `retrievalWords`, `scene`,
 `priorLearnerFacingScan` (`through`, `evidence`, `conflicts`, `hashes`), `introTargets`,
 `independentFinal`, `requirementsChecklist`, `mustFix`. У
@@ -46,8 +58,13 @@ planned real situation появится только в единственном
 `practiceLink`. `independentFinal` содержит `target` и доказательство
 `independence`.
 
-`documentReview` содержит отдельную запись для КАЖДОГО файла из manifest:
-точный `sha256`, дословную `quote` не короче 24 символов из текущих байтов и
+`documentRoles` дословно копируется из preflight-пакета; роли выводит код, а не
+guardian: `current_authority` задаёт действующие правила,
+`supplemental_runtime` применяется только в своей runtime/process-области,
+`historical_context` читается и хэшируется, но не может переопределять текущий
+factory Constitution, curriculum или прямой owner verdict. `documentReview`
+содержит отдельную запись для КАЖДОГО файла из manifest: точный `sha256`, точную
+`role` из `documentRoles`, дословную `quote` не короче 24 символов из текущих байтов и
 `applied` — что именно из этой цитаты применяется здесь.
 `requirementsChecklist` содержит ровно все IDs, которые экспортирует
 `PREAUTHORING_REQUIREMENT_IDS` в `preauthoring_guard.mjs`; у каждого нужны

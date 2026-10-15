@@ -1,0 +1,160 @@
+{
+  "schemaVersion": "learning_v2_s01_review_content_bundle_receipt_v3",
+  "courseSessionId": "en:lesson-01:session-01",
+  "releaseAuthority": false,
+  "appendOnly": true,
+  "receiptChain": {
+    "kind": "stable_content_bundle_successor",
+    "supersedes": {
+      "path": "content/learning-v2-course/outputs/s01-locale-fixed-20261013/review-content-bundle-receipt.v3.json",
+      "sha256": "a72a8611c2cd38ee17c529cdd37c6998fef7ef1241129b72258d521836cccc14",
+      "reason": "successor repairs independently confirmed S01 feedback findings while preserving the exact prior immutable receipt head"
+    }
+  },
+  "contentReceipt": {
+    "path": "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/content-receipt.json",
+    "sha256": "563d4d4eb11f2c1fe482637bb8a7f29ce6acb69d46c105a1ccd85f8455dddbc6",
+    "inventorySha256": "f7a32e1302558b3c45fff6402fbbe73e4e8a35ccdd1f89361505d0606e07ea0e",
+    "fileCount": 14
+  },
+  "candidateBundle": {
+    "files": [
+      {
+        "path": "en/l01/s01/intro.json",
+        "bytes": 9083,
+        "sha256": "a7585a55efcdbd206b2aff04232b72c36069d247298b673eeacb356700d30fef"
+      },
+      {
+        "path": "en/l01/s01/auxiliary.json",
+        "bytes": 84225,
+        "sha256": "f3b8d5c5f350c6cfae37175db981a28cc80010a9fa51fde4929644b825af206d"
+      },
+      {
+        "path": "en/l01/s01/learner.json",
+        "bytes": 217829,
+        "sha256": "d7bb49240ad49b16ce99a3a371e31955e3dfee05b8c6ab314bd60da032b7075b"
+      },
+      {
+        "path": "en/l01/s01/learner.uk.json",
+        "bytes": 217570,
+        "sha256": "39a40bc1ac0466a778933f15a82243e63b0a58cee23de71f512a44810b1cbda8"
+      },
+      {
+        "path": "en/l01/s01/answers.json",
+        "bytes": 2923,
+        "sha256": "9c5bb7b1144c5ce767f47fc3ccec024b73a9ec73ee35e43911e84cb687d549d8"
+      }
+    ],
+    "sha256": "d3784635bf3b5a32d3b6fc378a41d37bf73a53a61008172ad4b50f92b094d5f8"
+  },
+  "protectedNoDriftBoundary": {
+    "fileCount": 152,
+    "sha256": "62b4fda679ae55875f78634da73b6e9141e0db6d5ef1f3860bc69b3bd67f5008"
+  },
+  "toolchain": [
+    {
+      "path": "content/learning-v2-course/pipeline/build_s01_candidate_receipt.mjs",
+      "bytes": 34009,
+      "sha256": "a7920d188da1023614370b93512201a63c732817c4c0ab1853edbb68a471cdc5"
+    },
+    {
+      "path": "content/learning-v2-course/pipeline/build_s01_review_bundle_receipt.mjs",
+      "bytes": 15987,
+      "sha256": "6a81ccc49245af68935051da7899050e9e608b02825f4581cb22a73e76530095"
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "path": "content/learning-v2-course/judgements/2026-10-13_l01_s01_source_evidence.md",
+      "bytes": 9963,
+      "sha256": "0a726074365642e21bd7b3a16c32ab93f0a2b552072df3426981605371258da3"
+    }
+  ],
+  "files": [
+    {
+      "path": "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/app.js",
+      "bytes": 40070,
+      "sha256": "387074291857f381f650d1ce2dc5305ab85f4812dd0a551bd61b615b3980143c"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/data.js",
+      "bytes": 12036810,
+      "sha256": "b1b3224be4391ec851bcacda4c03f82706703080bff93de3750121e054647b54"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/en/l01/s01/answers.json",
+      "bytes": 2923,
+      "sha256": "9c5bb7b1144c5ce767f47fc3ccec024b73a9ec73ee35e43911e84cb687d549d8"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/en/l01/s01/auxiliary.json",
+      "bytes": 84225,
+      "sha256": "f3b8d5c5f350c6cfae37175db981a28cc80010a9fa51fde4929644b825af206d"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/en/l01/s01/intro.json",
+      "bytes": 9083,
+      "sha256": "a7585a55efcdbd206b2aff04232b72c36069d247298b673eeacb356700d30fef"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/en/l01/s01/learner.json",
+      "bytes": 217829,
+      "sha256": "d7bb49240ad49b16ce99a3a371e31955e3dfee05b8c6ab314bd60da032b7075b"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/en/l01/s01/learner.uk.json",
+      "bytes": 217570,
+      "sha256": "39a40bc1ac0466a778933f15a82243e63b0a58cee23de71f512a44810b1cbda8"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/external.html",
+      "bytes": 128332,
+      "sha256": "de22179ccfaa9014729d76acef928a90771af2381d0e5f5829fbb3e91354fa56"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/index.html",
+      "bytes": 12205241,
+      "sha256": "4b02ea8a6cbacf85c350304502e7dc2e338c5955528425fb020f210765d77fad"
+    },
+    {
+      "path": "content/learning-v2-course/sessions/en/l01/s01/final.ru.md",
+      "bytes": 12499,
+      "sha256": "501567f01406a30cedae9a4e98682d5729e49f634e16d5423d522b087a9d6a09"
+    },
+    {
+      "path": "content/learning-v2-course/sessions/en/l01/s01/final.uk.md",
+      "bytes": 12441,
+      "sha256": "b2ce30d7b8def1399757fd3558af6a9eb5b96ba76827e41b0dc796a0b51577e7"
+    },
+    {
+      "path": "content/learning-v2-course/sessions/en/l01/s01/locales_batch.md",
+      "bytes": 13640,
+      "sha256": "9537b75630f48f63135dc21e7cdcd1b0c6c8e5fd5478cd1ebd25842928d906bc"
+    },
+    {
+      "path": "content/learning-v2-course/sessions/en/l01/s01/practice.atomic.json",
+      "bytes": 122958,
+      "sha256": "6e63211ca66d6f0f3c8f7e306025c8486e05144f6da54e144262e47b5636d9b7"
+    },
+    {
+      "path": "content/learning-v2-course/sessions/en/l01/s01/practice.explanations.v1.json",
+      "bytes": 303421,
+      "sha256": "63207288b25787223ea4ac42968c57662611e36baf0a66f46e99f13325eace3a"
+    },
+    {
+      "path": "content/learning-v2-course/pipeline/build_s01_candidate_receipt.mjs",
+      "bytes": 34009,
+      "sha256": "a7920d188da1023614370b93512201a63c732817c4c0ab1853edbb68a471cdc5"
+    },
+    {
+      "path": "content/learning-v2-course/pipeline/build_s01_review_bundle_receipt.mjs",
+      "bytes": 15987,
+      "sha256": "6a81ccc49245af68935051da7899050e9e608b02825f4581cb22a73e76530095"
+    },
+    {
+      "path": "content/learning-v2-course/judgements/2026-10-13_l01_s01_source_evidence.md",
+      "bytes": 9963,
+      "sha256": "0a726074365642e21bd7b3a16c32ab93f0a2b552072df3426981605371258da3"
+    }
+  ]
+}

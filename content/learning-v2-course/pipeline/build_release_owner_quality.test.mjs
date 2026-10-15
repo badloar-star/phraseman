@@ -64,6 +64,9 @@ function factory(session = "en/l02/s33") {
   const root = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), "learning-v2-release-quality-"));
   fs.mkdirSync(path.join(root, "pipeline"));
   for (const name of ["build_release.mjs", "single_phrase_release.mjs", "session_readiness.mjs", "session_header.mjs", "owner_quality.mjs", "progression_quality_gate.mjs", "audit_actor_clarity.mjs", "write_mockup_file.mjs", "practice_explanations_v1.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+  // The isolated fixture tests readiness after the global course gate. The
+  // real gate and its no-scope-bypass behavior run in the integration suite.
+  fs.writeFileSync(path.join(root, "pipeline/factory_intro_practice_gate.mjs"), "export function auditFactoryIntroPractice(){return {schemaVersion:'test_fixture_only',verdict:'PASS',inventoryCount:186,auditedSessionCount:186,findingCount:0,perSession:[],findings:[]};}\n");
   const visibleTextModule = path.resolve(here, "../../../modules/learning-v2/content/learner_visible_text_v1.js");
   const fixtureVisibleTextModule = path.join(root, "modules/learning-v2/content/learner_visible_text_v1.js");
   fs.mkdirSync(path.dirname(fixtureVisibleTextModule), { recursive: true });

@@ -1,0 +1,11 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import test from "node:test";
+const dir=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"../sessions/en/l01/s05");
+const data=()=>JSON.parse(fs.readFileSync(path.join(dir,"practice.atomic.json"),"utf8"));
+const choices=["i02","i06","i08","i10","i12","i15"], tiles={i09:2,i13:1,i16:1,"i18:s02":2};
+test("L01/S05 gives feedback only for wrong selectable answers",()=>{const d=data();for(const l of ["ru","uk"])for(const s of choices){const id=`en:lesson-01:session-05:${s}`,x=d.interactionsByLocale[l].find(v=>v.interactionId===id),a=d.answers.find(v=>v.interactionId===id),feedback=x?.modePayload?.choiceFeedback??[];assert.equal(feedback.some(v=>v.correct),false,`${l}:${s}`);assert.equal(feedback.length,2,`${l}:${s}`);assert.ok(feedback.every(v=>v.correct===false&&v.responseId!==a?.correctResponseId&&v.feedbackByLocale?.ru&&v.feedbackByLocale?.uk),`${l}:${s}`);}});
+test("L01/S05 supplies feedback for every physical extra tile",()=>{const d=data();for(const l of ["ru","uk"])for(const[s,count]of Object.entries(tiles)){const id=`en:lesson-01:session-05:${s}`,f=d.interactionsByLocale[l].find(v=>v.interactionId===id)?.modePayload?.slotFeedback??[];assert.equal(f.length,count,`${l}:${s}`);f.forEach((r,i)=>assert.equal(r.responseId,`${id}:tile:d${i+1}`));}});
+test("L01/S05 does not duplicate sick after the final gap",()=>{for(const l of ["ru","uk"])assert.equal(data().interactionsByLocale[l].find(v=>v.interactionId.endsWith(":i12"))?.modePayload?.gappedTargetPhrase,"I am ___ .");});

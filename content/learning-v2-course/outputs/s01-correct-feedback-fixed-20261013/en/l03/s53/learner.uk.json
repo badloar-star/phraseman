@@ -1,0 +1,895 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i01:r1",
+          "text": "metal"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i01:audio",
+          "transcript": "metal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-53:i01:r1",
+            "targetText": "metal",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "metal",
+          "definitionByLocale": {
+            "ru": "«металлический». Так можно описать стулья на стеллаже.",
+            "uk": "«металевий». Так можна описати стільці на стелажі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i03:audio",
+          "transcript": "plastic"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "plastic",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i05:audio",
+          "transcript": "soft"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "soft",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i02:audio",
+          "transcript": "metal"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "metal",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i04:r1",
+          "text": "plastic"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i04:audio",
+          "transcript": "plastic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-53:i04:r1",
+            "targetText": "plastic",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plastic",
+          "definitionByLocale": {
+            "ru": "«пластиковый».",
+            "uk": "«пластиковий»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i06:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i06:audio",
+          "transcript": "soft"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "soft",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i08:audio",
+          "transcript": "metal"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "metal",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i09",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i09:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i09:audio",
+          "transcript": "plastic"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "plastic",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i10",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i10:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i10:audio",
+          "transcript": "soft"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "soft",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте пари — згадайте речі у пункті видачі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте пари — згадайте речі у пункті видачі",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-53:i07:p1",
+            "target": "metal",
+            "meaningByLocale": {
+              "ru": "металлический",
+              "uk": "металевий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i07:p2",
+            "target": "plastic",
+            "meaningByLocale": {
+              "ru": "пластиковый",
+              "uk": "пластиковий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i07:p3",
+            "target": "soft",
+            "meaningByLocale": {
+              "ru": "мягкий",
+              "uk": "м’який"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i07:p4",
+            "target": "chairs",
+            "meaningByLocale": {
+              "ru": "стулья",
+              "uk": "стільці"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i07:p5",
+            "target": "tables",
+            "meaningByLocale": {
+              "ru": "столы",
+              "uk": "столи"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i07:p6",
+            "target": "cushions",
+            "meaningByLocale": {
+              "ru": "подушки",
+              "uk": "подушки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i07:p7",
+            "target": "please",
+            "meaningByLocale": {
+              "ru": "пожалуйста",
+              "uk": "будь ласка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "metal",
+          "plastic",
+          "soft",
+          "chairs",
+          "tables",
+          "cushions",
+          "please"
+        ],
+        "rightColumn": [
+          "металевий",
+          "пластиковий",
+          "м’який",
+          "стільці",
+          "столи",
+          "подушки",
+          "будь ласка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть прохання — вибираєте металеві стільці поруч",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть прохання — вибираєте металеві стільці поруч",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These metal chairs, please.",
+        "localizedMeaning": {
+          "ru": "Соберите просьбу — выбираете металлические стулья рядом",
+          "uk": "Складіть прохання — вибираєте металеві стільці поруч"
+        },
+        "orderedTokens": [
+          "These",
+          "metal",
+          "chairs,",
+          "please"
+        ],
+        "authoredDistractorTokens": [
+          "These",
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте вказівне слово — пластикові столи стоять на дальньому стелажі",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i12:r1",
+          "text": "Those"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i12:r2",
+          "text": "These"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i12:r3",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i12:r4",
+          "text": "It"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте вказівне слово — пластикові столи стоять на дальньому стелажі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — пластиковые столы стоят на дальнем стеллаже",
+          "uk": "Вставте вказівне слово — пластикові столи стоять на дальньому стелажі"
+        },
+        "gappedTargetPhrase": "___ plastic tables, please.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i12:r1",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i12:r2",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i12:r3",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i12:r4",
+            "text": "It"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — пластиковые столы с",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — пластиковые столы с",
+            "feedbackByLocale": {
+              "ru": "`These` выбирает несколько вещей рядом, а столы стоят дальше.",
+              "uk": "`These` вибирає кілька речей поруч, а столи стоять далі."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — пластиковые столы с",
+            "feedbackByLocale": {
+              "ru": "`That` указывает на один предмет дальше. Здесь несколько столов, поэтому нужно `Those`.",
+              "uk": "`That` указує на один предмет далі. Тут кілька столів, тому потрібно `Those`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i12:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — пластиковые столы с",
+            "feedbackByLocale": {
+              "ru": "`It plastic tables` не образует просьбу. Перед несколькими дальними вещами нужно `Those`.",
+              "uk": "`It plastic tables` не утворює прохання. Перед кількома дальніми речами потрібне `Those`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точне значення запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i13:r1",
+          "text": "Те пластиковые столы здесь?"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i13:r2",
+          "text": "Эти пластиковые столы здесь?"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i13:r3",
+          "text": "Те металлические столы здесь?"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i13:r4",
+          "text": "Те пластиковые столы готовы?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точне значення запитання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i13:audio",
+          "transcript": "Are those plastic tables here?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-53:i13:r1",
+            "targetText": "Те пластиковые столы здесь?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i13:r2",
+            "targetText": "Эти пластиковые столы здесь?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i13:r3",
+            "targetText": "Те металлические столы здесь?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i13:r4",
+            "targetText": "Те пластиковые столы готовы?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение во",
+            "feedbackByLocale": {
+              "ru": "В записи `those`, а этот вариант передаёт `these`.",
+              "uk": "У записі `those`, а цей варіант передає `these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение во",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `plastic`, а не `metal`.",
+              "uk": "У записі чути `plastic`, а не `metal`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i13:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение во",
+            "feedbackByLocale": {
+              "ru": "В записи спрашивают `here`, а не о готовности.",
+              "uk": "У записі питають `here`, а не про готовність."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте опис — подушки лежать біля стійки поруч",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i14:r1",
+          "text": "soft"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i14:r2",
+          "text": "metal"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i14:r3",
+          "text": "plastic"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i14:r4",
+          "text": "cushions"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте опис — подушки лежать біля стійки поруч",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте описание — подушки лежат у стойки рядом",
+          "uk": "Вставте опис — подушки лежать біля стійки поруч"
+        },
+        "gappedTargetPhrase": "These ___ cushions, please.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i14:r1",
+            "text": "soft"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i14:r2",
+            "text": "metal"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i14:r3",
+            "text": "plastic"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i14:r4",
+            "text": "cushions"
+          }
+        ],
+        "testedDimension": "Вставьте описание — подушки лежат у стой",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте описание — подушки лежат у стой",
+            "feedbackByLocale": {
+              "ru": "Металлическими были стулья, а подушки здесь `soft`.",
+              "uk": "Металевими були стільці, а подушки тут `soft`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте описание — подушки лежат у стой",
+            "feedbackByLocale": {
+              "ru": "Пластиковыми были столы, а для подушек нужно `soft`.",
+              "uk": "Пластиковими були столи, а для подушок потрібно `soft`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i14:r4",
+            "correct": false,
+            "testedDimension": "Вставьте описание — подушки лежат у стой",
+            "feedbackByLocale": {
+              "ru": "`Cushions` уже стоит после пропуска; сюда ставят описание `soft`.",
+              "uk": "`Cushions` уже стоїть після пропуску, сюди ставлять опис `soft`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i15:audio",
+          "transcript": "These soft cushions, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These soft cushions, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точне значення прохання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i16:r1",
+          "text": "Эти мягкие подушки, пожалуйста."
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i16:r2",
+          "text": "Те мягкие подушки, пожалуйста."
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i16:r3",
+          "text": "Эти пластиковые подушки, пожалуйста."
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i16:r4",
+          "text": "Эти мягкие столы, пожалуйста."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точне значення прохання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i16:audio",
+          "transcript": "These soft cushions, please."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-53:i16:r1",
+            "targetText": "Эти мягкие подушки, пожалуйста.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i16:r2",
+            "targetText": "Те мягкие подушки, пожалуйста.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i16:r3",
+            "targetText": "Эти пластиковые подушки, пожалуйста.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i16:r4",
+            "targetText": "Эти мягкие столы, пожалуйста.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "В записи `These`, а этот вариант передаёт `Those`.",
+              "uk": "У записі `These`, а цей варіант передає `Those`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `soft`, а не `plastic`.",
+              "uk": "У записі чути `soft`, а не `plastic`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i16:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "В записи назвали `cushions`, а не `tables`.",
+              "uk": "У записі назвали `cushions`, а не `tables`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Фінал — працівник чекає, що забрати з дальнього стелажа",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фінал — працівник чекає, що забрати з дальнього стелажа",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those soft cushions, please.",
+        "localizedMeaning": {
+          "ru": "Финал — сотрудник ждёт, что забрать с дальнего стеллажа",
+          "uk": "Фінал — працівник чекає, що забрати з дальнього стелажа"
+        },
+        "orderedTokens": [
+          "Those",
+          "soft",
+          "cushions,",
+          "please"
+        ],
+        "authoredDistractorTokens": [
+          "These",
+          "a"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "004b622af8c292c59e876eeb4c7563b2f42a58b454f16984c627daadfdc2fa50"
+}

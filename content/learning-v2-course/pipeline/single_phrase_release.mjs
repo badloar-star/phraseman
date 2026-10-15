@@ -86,6 +86,7 @@ const STRUCTURAL_OR_EXPLANATORY_PAYLOAD_FIELDS = new Set([
   "recordControlPolicy", "modelPlayback", "learnerPlayback", "honestOutcomeStates",
   "transcriptRevealPolicy", "isWordCard", "pairingKey", "timerPolicy", "finishStats",
   "ipaA", "ipaB", "audioTargetId", "audioTargetIds", "wordCard", "explanationV1",
+  "scriptedRepeatRevealPolicy",
 ]);
 
 function learnerHeardAudioCandidates(payload) {
@@ -288,6 +289,11 @@ function knownNestedSchemaIssues(interaction, source) {
     "whyTemptingByLocale", "whyWrongHereByLocale", "minimalContrastByLocale", "acceptabilityBoundaryByLocale",
   ]);
   const timerKeys = new Set(["enabledByDefault", "learnerCanDisable", "pausesOnInterruption"]);
+  const scriptedRepeatRevealPolicyKeys = new Set([
+    "schemaVersion", "revealAfter", "answerExposedBeforeAttempt",
+    "targetPhraseVisibleBeforeAttempt", "referenceAudioAvailableBeforeAttempt",
+    "modelPlaybackAvailableBeforeAttempt",
+  ]);
   const textAnalysisKeys = new Set(["text", "meaningByLocale", "explanationByLocale", "units"]);
   const textUnitKeys = new Set([
     "text", "start", "end", "lemma", "partOfSpeech", "partOfSpeechLabelByLocale",
@@ -429,6 +435,25 @@ function knownNestedSchemaIssues(interaction, source) {
   }
   issues.push(...closedObjectIssues({ value: payload.timerPolicy, rootPath: "modePayload.timerPolicy", allowedKeys: timerKeys, interaction, source }));
   if (isPlainJsonObject(payload.timerPolicy)) for (const key of timerKeys) requireBoolean(payload.timerPolicy[key], `modePayload.timerPolicy.${key}`);
+  issues.push(...closedObjectIssues({
+    value: payload.scriptedRepeatRevealPolicy,
+    rootPath: "modePayload.scriptedRepeatRevealPolicy",
+    allowedKeys: scriptedRepeatRevealPolicyKeys,
+    interaction,
+    source,
+  }));
+  if (isPlainJsonObject(payload.scriptedRepeatRevealPolicy)) {
+    const policy = payload.scriptedRepeatRevealPolicy;
+    const valid = interaction?.family === "scripted_repeat_compare"
+      && policy.schemaVersion === "learning-v2-scripted-repeat-reveal-policy.v1"
+      && policy.revealAfter === "first_submitted_attempt"
+      && policy.answerExposedBeforeAttempt === false
+      && policy.targetPhraseVisibleBeforeAttempt === false
+      && policy.referenceAudioAvailableBeforeAttempt === false
+      && policy.modelPlaybackAvailableBeforeAttempt === false
+      && Object.keys(policy).length === scriptedRepeatRevealPolicyKeys.size;
+    if (!valid) invalid("modePayload.scriptedRepeatRevealPolicy");
+  }
   for (const field of ["localizedScene", "localizedMeaning", "completionFeedbackByLocale"]) issues.push(...localeMapIssues({
     value: payload[field],
     rootPath: `modePayload.${field}`,
@@ -1174,10 +1199,35 @@ function materializeAnswer(interaction, answer, options = {}) {
   };
 }
 
-export function answerContractIssues(interactions, answers, source = "", { allowLocalizedChoiceText = false } = {}) {
-  const answerById = new Map((answers ?? []).map((item) => [item.interactionId, item]));
+function rawChoiceAnswerAuthorityIssues(interactions, answers, source = "") {
   const issues = [];
   for (const interaction of interactions ?? []) {
+    const responseIds = (interaction?.responseOptions ?? []).map((option) => option?.responseId).filter(Boolean);
+    if (interaction?.inputMode !== "single_choice" || responseIds.length < 2) continue;
+    const matchingAnswers = (answers ?? []).filter((answer) => answer?.interactionId === interaction.interactionId);
+    if (!matchingAnswers.length) {
+      issues.push({ source, interactionId: interaction.interactionId, family: interaction.family, reason: "answer_missing" });
+      continue;
+    }
+    if (matchingAnswers.length > 1) {
+      issues.push({ source, interactionId: interaction.interactionId, family: interaction.family, reason: "answer_duplicate" });
+      continue;
+    }
+    const correctResponseId = matchingAnswers[0]?.correctResponseId;
+    if (!String(correctResponseId ?? "").trim() || !responseIds.includes(correctResponseId)) {
+      issues.push({ source, interactionId: interaction.interactionId, family: interaction.family, reason: "correct_response_missing" });
+    }
+  }
+  return issues;
+}
+
+export function answerContractIssues(interactions, answers, source = "", { allowLocalizedChoiceText = false } = {}) {
+  const authorityIssues = rawChoiceAnswerAuthorityIssues(interactions, answers, source);
+  const invalidChoiceIds = new Set(authorityIssues.map((issue) => issue.interactionId));
+  const issues = [...authorityIssues];
+  const answerById = new Map((answers ?? []).map((item) => [item.interactionId, item]));
+  for (const interaction of interactions ?? []) {
+    if (invalidChoiceIds.has(interaction.interactionId)) continue;
     const answer = answerById.get(interaction.interactionId);
     if (!answer) {
       issues.push({ source, interactionId: interaction.interactionId, family: interaction.family, reason: "answer_missing" });
@@ -1552,7 +1602,6 @@ export function feedbackLocaleParityIssues(interactionsByLocale, { answers = [] 
   const [baseLocale, ...otherLocales] = locales;
   const baseItems = interactionsByLocale[baseLocale] ?? [];
   const issues = [];
-  const answerById = new Map((answers ?? []).map((answer) => [answer.interactionId, answer]));
   for (const projectionLocale of locales) {
     for (const interaction of interactionsByLocale[projectionLocale] ?? []) {
       const responseIds = (interaction?.responseOptions ?? []).map((option) => option?.responseId).filter(Boolean);
@@ -1604,22 +1653,31 @@ export function feedbackLocaleParityIssues(interactionsByLocale, { answers = [] 
           interactionId: interaction.interactionId, responseId, projectionLocale, reason: "slot_feedback_missing",
         });
       }
-      if (interaction?.inputMode !== "single_choice" || responseIds.length < 2 || !answers.length) continue;
-      const correctResponseId = answerById.get(interaction.interactionId)?.correctResponseId;
-      if (!correctResponseId || !responseIds.includes(correctResponseId)) {
+      if (interaction?.inputMode !== "single_choice" || responseIds.length < 2) continue;
+      const matchingAnswers = (answers ?? []).filter((answer) => answer?.interactionId === interaction.interactionId);
+      if (matchingAnswers.length > 1) {
+        issues.push({ interactionId: interaction.interactionId, projectionLocale, reason: "choice_feedback_answer_duplicate" });
+        continue;
+      }
+      const correctResponseId = matchingAnswers[0]?.correctResponseId;
+      if (matchingAnswers.length !== 1 || !correctResponseId || !responseIds.includes(correctResponseId)) {
         issues.push({ interactionId: interaction.interactionId, projectionLocale, reason: "choice_feedback_answer_missing" });
         continue;
       }
-      for (const responseId of responseIds) {
+      for (const responseId of responseIds.filter((id) => id !== correctResponseId)) {
         const feedback = feedbackById.get(responseId);
         if (!feedback) {
           issues.push({ interactionId: interaction.interactionId, responseId, projectionLocale, reason: "choice_feedback_missing" });
-        } else if (feedback.correct !== (responseId === correctResponseId)) {
+        } else if (feedback.correct !== false) {
           issues.push({ interactionId: interaction.interactionId, responseId, projectionLocale, reason: "choice_feedback_wrong_contract" });
         }
       }
       for (const responseId of feedbackById.keys()) {
-        if (!responseIds.includes(responseId)) issues.push({ interactionId: interaction.interactionId, responseId, projectionLocale, reason: "choice_feedback_unknown_response" });
+        if (responseId === correctResponseId) {
+          issues.push({ interactionId: interaction.interactionId, responseId, projectionLocale, reason: "feedback_target_invalid" });
+        } else if (!responseIds.includes(responseId)) {
+          issues.push({ interactionId: interaction.interactionId, responseId, projectionLocale, reason: "choice_feedback_unknown_response" });
+        }
       }
 
     }
@@ -2110,6 +2168,11 @@ export function preJudgeChoreographyIssues({
 }
 
 export function projectSinglePhraseRelease({ interactions, answers, locale = "ru" }) {
+  const authorityIssues = rawChoiceAnswerAuthorityIssues(interactions, answers);
+  if (authorityIssues.length) {
+    const first = authorityIssues[0];
+    throw new Error(`single_phrase_projection_hold:${first.interactionId}:${first.reason}`);
+  }
   const answerById = new Map((answers ?? []).map((item) => [item.interactionId, item]));
   const outputInteractions = [];
   const outputAnswers = [];

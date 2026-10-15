@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "`a/an` для нового человека, `the` для уже названного.",
+    "uk": "`a/an` для нової людини, `the` для людини, яку вже назвали."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Новый покупатель",
+        "uk": "Новий покупець"
+      },
+      "bodyByLocale": {
+        "ru": "`customer` — «покупатель». У кассы впервые появился человек: `A customer is here.` Сначала кассир просто замечает, что у кассы появился покупатель. После первой фразы все уже знают, о ком идёт речь, поэтому говорят `The customer is here.`",
+        "uk": "`customer` — «покупець». Біля каси вперше з’явилася людина: `A customer is here.` Спочатку касир лише помічає, що покупець підійшов до каси. Після першої фрази всі вже знають, про кого йдеться, тому кажуть `The customer is here.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Сотрудник впервые замечает покупателя. Что он скажет?",
+          "uk": "Працівник уперше помічає покупця. Що він скаже?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-44:intro1:r1",
+              "text": "A customer is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro1:r2",
+              "text": "The customer is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro1:r3",
+              "text": "An customer is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-44:intro1:r1",
+              "text": "A customer is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro1:r2",
+              "text": "The customer is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro1:r3",
+              "text": "An customer is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник впервые замечает покупателя. Что он скажет?",
+          "uk": "Працівник уперше помічає покупця. Що він скаже?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Новый продавец",
+        "uk": "Новий продавець"
+      },
+      "bodyByLocale": {
+        "ru": "`seller` — «продавец». Впервые: `A seller is here.` Кассир сначала представляет продавца в разговоре. После этого можно вернуться к тому же человеку с `The seller is here.` Очередь движется, а разговор помнит, кого уже представили.",
+        "uk": "`seller` — «продавець». Уперше: `A seller is here.` Касир спочатку вводить продавця в розмову. Після цього можна повернутися до тієї самої людини: `The seller is here.` Черга рухається, а розмова пам’ятає, кого вже представили."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Помощник впервые называет продавца. Выберите фразу.",
+          "uk": "Помічник уперше називає продавця. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-44:intro2:r1",
+              "text": "A seller is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro2:r2",
+              "text": "The seller is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro2:r3",
+              "text": "An seller is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-44:intro2:r1",
+              "text": "A seller is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro2:r2",
+              "text": "The seller is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro2:r3",
+              "text": "An seller is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Помощник впервые называет продавца. Выберите фразу.",
+          "uk": "Помічник уперше називає продавця. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Новый помощник",
+        "uk": "Новий помічник"
+      },
+      "bodyByLocale": {
+        "ru": "`assistant` — «помощник». Кассир ещё не говорил о помощнике, поэтому впервые ставит `an`: `An assistant is here.` Когда помощник уже появился в разговоре, будет `The assistant is here.` Перед гласным звуком в `assistant` нужен `an`.",
+        "uk": "`assistant` — «помічник». Касир ще не говорив про помічника, тому вперше ставить `an`: `An assistant is here.` Коли помічник уже з’явився в розмові, буде `The assistant is here.` Перед голосним звуком в `assistant` потрібен `an`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Сотрудник впервые говорит о помощнике. Что он скажет?",
+          "uk": "Працівник уперше говорить про помічника. Що він скаже?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-44:intro3:r1",
+              "text": "An assistant is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro3:r2",
+              "text": "The assistant is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro3:r3",
+              "text": "A assistant is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-44:intro3:r1",
+              "text": "An assistant is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro3:r2",
+              "text": "The assistant is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-44:intro3:r3",
+              "text": "A assistant is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник впервые говорит о помощнике. Что он скажет?",
+          "uk": "Працівник уперше говорить про помічника. Що він скаже?"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1eded7ba265648b18c3a14ea43c6617b5045aa71786387f0ada0b2e802e575e9"
+}

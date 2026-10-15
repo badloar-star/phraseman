@@ -57,3 +57,10 @@ test("what-you-will-review header remains a learner-facing outcome", () => {
   assert.equal(ru.operation, "Формы `am`, `is` и `are`.");
   assert.equal(uk.operation, "Форми `am`, `is` і `are`.");
 });
+
+test("localized semicolon declarations retain only the shared English lemmas", () => {
+  const ru = parseSessionHeader("**Новые слова:** sad — грустный; tired — уставший.");
+  const uk = parseSessionHeader("**Нові слова:** sad — сумний; tired — стомлений.");
+  assert.deepEqual(ru.newWords, ["sad", "tired"]);
+  assert.deepEqual(uk.newWords, ["sad", "tired"]);
+});

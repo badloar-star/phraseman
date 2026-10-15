@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i11",
-    "correctText": "I am sure.",
+    "correctText": "I am early.",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i14",
-    "correctText": "I am free.",
+    "correctText": "I am not late.",
     "correctResponseId": null
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i16",
-    "correctText": "I am early.",
+    "correctText": "I am not tired.",
     "correctResponseId": null
   },
   {
@@ -85,13 +85,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-04:i18",
-    "correctText": "I am fine.",
+    "interactionId": "en:lesson-01:session-04:i19",
+    "correctText": "I am free.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-04:i19",
-    "correctText": "I am happy.",
+    "interactionId": "en:lesson-01:session-04:i18",
+    "correctText": "I am not alone.",
     "correctResponseId": null
   },
   {

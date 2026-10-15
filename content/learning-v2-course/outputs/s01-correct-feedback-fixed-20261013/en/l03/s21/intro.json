@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "при назывании предметов выбирать `a +` название одного или название нескольких без `a`; знакомые `It is`, `They are`, `They are not`",
+    "uk": "називаючи предмети, обирати `a +` назву одного або назву кількох без `a`; знайомі `It is`, `They are`, `They are not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Маленькое слово перед полотенцем",
+        "uk": "Маленьке слово перед рушником"
+      },
+      "bodyByLocale": {
+        "ru": "`towel` — «полотенце»: им вытираются после душа или вытирают мокрые вещи. Называя один такой предмет, скажите `It is a towel` — «Это полотенце». Перед `towel` стоит `a`: слово крошечное, пропустить его легко. Но в этой фразе про одно полотенце оно нужно.",
+        "uk": "`towel` — «рушник»: ним витираються після душу або витирають мокрі речі. Називаючи один такий предмет, скажіть `It is a towel` — «Це рушник». Перед `towel` стоїть `a`: слово маленьке, тож його легко загубити. Але в цій фразі про один рушник воно потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы достали одно полотенце. Курьер уточняет название для накладной. Ответьте: «Это полотенце».",
+          "uk": "Ви дістали один рушник. Кур’єр уточнює назву для накладної. Відповідайте: «Це рушник»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-21:intro1:r1",
+              "text": "It is a towel."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro1:r2",
+              "text": "It is towel."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro1:r3",
+              "text": "It is a towels."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-21:intro1:r1",
+              "text": "It is a towel."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro1:r2",
+              "text": "It is towel."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro1:r3",
+              "text": "It is a towels."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы достали одно полотенце. Курьер уточняет название для накладной. Ответьте: «Это полотенце».",
+          "uk": "Ви дістали один рушник. Кур’єр уточнює назву для накладної. Відповідайте: «Це рушник»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шторы пришли парой",
+        "uk": "Штори приїхали парою"
+      },
+      "bodyByLocale": {
+        "ru": "`curtain` — «штора», `curtains` — «шторы». Одну называем `a curtain`, несколько — `curtains`, без `a`. Поэтому «Это шторы» — `They are curtains`. Меняется и начало фразы, и название предметов: нельзя просто добавить окончание и оставить всё остальное.",
+        "uk": "`curtain` — «штора», `curtains` — «штори». Одну називаємо `a curtain`, кілька — `curtains`, без `a`. Тому «Це штори» — `They are curtains`. Змінюється і початок фрази, і назва предметів: не можна просто додати закінчення й лишити все інше."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "В накладной указана одна штора, а в коробке две. Сообщите курьеру: «Это шторы».",
+          "uk": "У накладній зазначено одну штору, а в коробці дві. Повідомте кур’єру: «Це штори»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-21:intro2:r1",
+              "text": "They are curtains."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro2:r2",
+              "text": "They are a curtains."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro2:r3",
+              "text": "They are a curtain."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-21:intro2:r1",
+              "text": "They are curtains."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro2:r2",
+              "text": "They are a curtains."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro2:r3",
+              "text": "They are a curtain."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В накладной указана одна штора, а в коробке две. Сообщите курьеру: «Это шторы».",
+          "uk": "У накладній зазначено одну штору, а в коробці дві. Повідомте кур’єру: «Це штори»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверяем название целиком",
+        "uk": "Перевіряємо назву повністю"
+      },
+      "bodyByLocale": {
+        "ru": "`pillow` — «подушка» под голову для сна. Сравните `It is a pillow` — «Это подушка» и `They are pillows` — «Это подушки». Окончание добавили, а `a` прихватили на всякий случай? Получится ошибка. В названии нескольких здесь остаётся `pillows`, без `a`.",
+        "uk": "`pillow` — «подушка» під голову для сну. Порівняйте `It is a pillow` — «Це подушка» і `They are pillows` — «Це подушки». Додали закінчення, а `a` прихопили про всяк випадок? Вийде помилка. У назві кількох тут лишається `pillows`, без `a`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы раскрыли упаковку с двумя подушками для кровати. Курьер вносит их в список. Скажите: «Это подушки».",
+          "uk": "Ви розкрили паковання з двома подушками для ліжка. Кур’єр вносить їх до списку. Скажіть: «Це подушки»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-21:intro3:r1",
+              "text": "They are pillows."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro3:r2",
+              "text": "They are a pillows."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro3:r3",
+              "text": "They are a pillow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-21:intro3:r1",
+              "text": "They are pillows."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro3:r2",
+              "text": "They are a pillows."
+            },
+            {
+              "responseId": "en:lesson-03:session-21:intro3:r3",
+              "text": "They are a pillow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы раскрыли упаковку с двумя подушками для кровати. Курьер вносит их в список. Скажите: «Это подушки».",
+          "uk": "Ви розкрили паковання з двома подушками для ліжка. Кур’єр вносить їх до списку. Скажіть: «Це подушки»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b869bb48c0feb8c016fe1d9b638c66cc898dd9a228e649e10747595dfa7f5d59"
+}

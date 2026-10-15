@@ -1,0 +1,1077 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — great",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — great",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i01:audio",
+          "transcript": "great"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-42:i01:r1",
+            "targetText": "great",
+            "meaningByLocale": {
+              "ru": "«отлично, класс». Самая частая похвала в баре: и про человека, и про вечер, и про матч по телевизору.",
+              "uk": "«чудово, клас». Головна похвала в барі: і про людину, і про вечір, і про матч по телевізору."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "great",
+          "definitionByLocale": {
+            "ru": "«отлично, класс». Самая частая похвала в баре: и про человека, и про вечер, и про матч по телевизору.",
+            "uk": "«чудово, клас». Головна похвала в барі: і про людину, і про вечір, і про матч по телевізору."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-42:i02:r1",
+          "text": "great"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i02:r2",
+          "text": "grade"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i02:r3",
+          "text": "gate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i02:audio",
+          "transcript": "great"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-42:i02:r1",
+            "targetText": "great",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i02:r2",
+            "targetText": "grade",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i02:r3",
+            "targetText": "gate",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — great",
+            "feedbackByLocale": {
+              "ru": "На конце «д», а не «т». Слово другое — «оценка».",
+              "uk": "У кінці «д», а не «т». Слово інше — «оцінка»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — great",
+            "feedbackByLocale": {
+              "ru": "Внутри нет «р». `gate` — «ворота».",
+              "uk": "Усередині немає «р». `gate` — «ворота»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i02:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `great`: оно звучит в аудио и значит «отличный».",
+              "uk": "Обрано слово `great`: воно звучить в аудіо й означає «чудовий»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — awful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — awful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i03:audio",
+          "transcript": "awful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-42:i03:r1",
+            "targetText": "awful",
+            "meaningByLocale": {
+              "ru": "«ужасный». Не «так себе», а прямо плохо: еда, погода, вечер.",
+              "uk": "«жахливий». Не «так собі», а прямо погано: їжа, погода, вечір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "awful",
+          "definitionByLocale": {
+            "ru": "«ужасный». Не «так себе», а прямо плохо: еда, погода, вечер.",
+            "uk": "«жахливий». Не «так собі», а прямо погано: їжа, погода, вечір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-42:i04:r1",
+          "text": "awful"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i04:r2",
+          "text": "offer"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i04:r3",
+          "text": "awake"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i04:audio",
+          "transcript": "awful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-42:i04:r1",
+            "targetText": "awful",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i04:r2",
+            "targetText": "offer",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i04:r3",
+            "targetText": "awake",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — awful",
+            "feedbackByLocale": {
+              "ru": "Другое слово и другой конец: `-er` против `-ful`.",
+              "uk": "Інше слово й інший кінець: `-er` проти `-ful`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — awful",
+            "feedbackByLocale": {
+              "ru": "Начало похоже, дальше всё расходится: в `awful` нет «к».",
+              "uk": "Початок схожий, далі все розходиться: в `awful` немає «к»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i04:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `awful`: оно звучит в аудио и значит «ужасный».",
+              "uk": "Обрано слово `awful`: воно звучить в аудіо й означає «жахливий"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — «він чудовий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — «він чудовий»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He's great.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «он отличный»",
+          "uk": "Складіть фразу — «він чудовий»"
+        },
+        "orderedTokens": [
+          "He's",
+          "great"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «он отличный»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: в `He's great.` слово `is` уже спрятано в `He's`.",
+              "uk": "`is` зайве: у `He's great` слово `is` уже заховане в `He's`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i06:audio",
+          "transcript": "gone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-42:i06:r1",
+            "targetText": "gone",
+            "meaningByLocale": {
+              "ru": "«ушёл, его больше нет». Был человек за столом — и нет человека. Или было пиво в кружке.",
+              "uk": "«пішов, його більше немає». Була людина за столом — і немає людини. Або було пиво в кухлі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gone",
+          "definitionByLocale": {
+            "ru": "«ушёл, его больше нет». Был человек за столом — и нет человека. Или было пиво в кружке.",
+            "uk": "«пішов, його більше немає». Була людина за столом — і немає людини. Або було пиво в кухлі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-42:i07:r1",
+          "text": "gone"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i07:r2",
+          "text": "go"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i07:r3",
+          "text": "gun"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i07:audio",
+          "transcript": "gone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-42:i07:r1",
+            "targetText": "gone",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i07:r2",
+            "targetText": "go",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i07:r3",
+            "targetText": "gun",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — gone",
+            "feedbackByLocale": {
+              "ru": "Только начало, без «н» на конце.",
+              "uk": "Тільки початок, без «н» у кінці."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — gone",
+            "feedbackByLocale": {
+              "ru": "Другая гласная и другое слово — «пистолет».",
+              "uk": "Інший голосний і інше слово — «пістолет»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i07:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `gone`: в аудио слышно `gone`, «ушёл».",
+              "uk": "Обрано слово `gone`: в аудіо чути `gone`, «пішов"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — начальник у барі всім сподобався",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-42:i08:r1",
+          "text": "great"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i08:r2",
+          "text": "awful"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i08:r3",
+          "text": "gone"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — начальник у барі всім сподобався",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — начальник в баре всем понравился",
+          "uk": "Вставте слово — начальник у барі всім сподобався"
+        },
+        "gappedTargetPhrase": "He's ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i08:r1",
+            "text": "great"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i08:r2",
+            "text": "awful"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i08:r3",
+            "text": "gone"
+          }
+        ],
+        "testedDimension": "Вставте слово — начальник у барі всім сп",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i08:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — начальник у барі всім сподобався",
+            "feedbackByLocale": {
+              "ru": "Начальник всем понравился, поэтому он `great` — «отличный».",
+              "uk": "Начальник усім сподобався, тому він `great` — «чудовий"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — начальник у барі всім сп",
+            "feedbackByLocale": {
+              "ru": "Это «ужасный» — ровно наоборот.",
+              "uk": "Це «жахливий» — рівно навпаки."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — начальник у барі всім сп",
+            "feedbackByLocale": {
+              "ru": "«Ушёл». Он сидит с вами за столом.",
+              "uk": "«Пішов». Він сидить із вами за столом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть — Ліна читає повідомлення: «Вона тиха»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — Ліна читає повідомлення: «Вона тиха»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i09:audio",
+          "transcript": "She's quiet."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She's quiet.",
+        "orderedTokens": [
+          "She's",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [
+          "She"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — Лина читает сооб",
+            "feedbackByLocale": {
+              "ru": "Нужно `She's quiet.`: `She` без `is` не образует фразу.",
+              "uk": "Потрібно `She's quiet`: `She` без `is` не утворює фразу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте пари",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте пари",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-42:i10:p1",
+            "target": "great",
+            "meaningByLocale": {
+              "ru": "отлично",
+              "uk": "чудово"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-42:i10:p2",
+            "target": "awful",
+            "meaningByLocale": {
+              "ru": "ужасный",
+              "uk": "жахливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-42:i10:p3",
+            "target": "gone",
+            "meaningByLocale": {
+              "ru": "ушёл",
+              "uk": "пішов"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-42:i10:p4",
+            "target": "quiet",
+            "meaningByLocale": {
+              "ru": "тихая",
+              "uk": "тиха"
+            }
+          }
+        ],
+        "leftColumn": [
+          "great",
+          "awful",
+          "gone",
+          "quiet"
+        ],
+        "rightColumn": [
+          "отлично",
+          "ужасный",
+          "ушёл",
+          "тихая"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть — «воно жахливе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — «воно жахливе»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i11:audio",
+          "transcript": "It's awful."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It's awful.",
+        "orderedTokens": [
+          "It's",
+          "awful"
+        ],
+        "authoredDistractorTokens": [
+          "great",
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «оно ужасное»",
+            "feedbackByLocale": {
+              "ru": "`great` лишнее: в аудио `It's awful.`",
+              "uk": "`great` зайве: в аудіо `It's awful`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i11:tile:d2",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «оно ужасное»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `It's awful.`",
+              "uk": "`is` зайве: воно вже заховане в `It's awful`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви обернулися, а стілець друга порожній",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-42:i12:r1",
+          "text": "gone"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i12:r2",
+          "text": "here"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i12:r3",
+          "text": "late"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви обернулися, а стілець друга порожній",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы обернулись, а стул друга пустой",
+          "uk": "Вставте слово — ви обернулися, а стілець друга порожній"
+        },
+        "gappedTargetPhrase": "He's ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i12:r1",
+            "text": "gone"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i12:r2",
+            "text": "here"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i12:r3",
+            "text": "late"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви обернулися, а стілець",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ви обернулися, а стілець друга порожній",
+            "feedbackByLocale": {
+              "ru": "Стул пустой, значит друг `gone` — «ушёл».",
+              "uk": "Стілець порожній, отже друг `gone` — «пішов"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви обернулися, а стілець",
+            "feedbackByLocale": {
+              "ru": "«Здесь». Как раз наоборот: его нет.",
+              "uk": "«Тут». Якраз навпаки: його немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви обернулися, а стілець",
+            "feedbackByLocale": {
+              "ru": "«Опоздал». Он не опоздал, он уже успел уйти.",
+              "uk": "«Запізнився». Він не запізнився, він уже встиг піти."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — вона пожартувала, і ви смієтеся; скажіть про неї коротко",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — вона пожартувала, і ви смієтеся; скажіть про неї коротко",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She's funny.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — она пошутила, и вы смеётесь; скажите про неё коротко",
+          "uk": "Складіть фразу — вона пожартувала, і ви смієтеся; скажіть про неї коротко"
+        },
+        "orderedTokens": [
+          "She's",
+          "funny"
+        ],
+        "authoredDistractorTokens": [
+          "is",
+          "quiet"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — она пошутила, и вы смеё",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `She's funny.`",
+              "uk": "`is` зайве: воно вже заховане в `She's funny`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i13:tile:d2",
+            "correct": false,
+            "testedDimension": "Соберите фразу — она пошутила, и вы смеё",
+            "feedbackByLocale": {
+              "ru": "`quiet` лишнее: после шутки говорят `She's funny.`",
+              "uk": "`quiet` зайве: після жарту кажуть `She's funny`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть — «він тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — «він тут»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i14:audio",
+          "transcript": "He's here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He's here.",
+        "orderedTokens": [
+          "He's",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "gone",
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «он здесь»",
+            "feedbackByLocale": {
+              "ru": "`gone` лишнее: в аудио `He's here.`",
+              "uk": "`gone` зайве: в аудіо `He's here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i14:tile:d2",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «он здесь»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `He's here.`",
+              "uk": "`is` зайве: воно вже заховане в `He's here`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — надворі злива, ви забігли в паб",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-42:i15:r1",
+          "text": "awful"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i15:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-42:i15:r3",
+          "text": "great"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — надворі злива, ви забігли в паб",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — на улице ливень, вы забежали в паб",
+          "uk": "Вставте слово — надворі злива, ви забігли в паб"
+        },
+        "gappedTargetPhrase": "It's ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i15:r1",
+            "text": "awful"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i15:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i15:r3",
+            "text": "great"
+          }
+        ],
+        "testedDimension": "Вставте слово — надворі злива, ви забігл",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — надворі злива, ви забігли в паб",
+            "feedbackByLocale": {
+              "ru": "На улице ливень, поэтому погода `awful` — «ужасная».",
+              "uk": "Надворі злива, тому погода `awful` — «жахлива"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — надворі злива, ви забігл",
+            "feedbackByLocale": {
+              "ru": "«Тихо». Про ливень так не скажешь.",
+              "uk": "«Тихо». Про зливу так не скажеш."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — надворі злива, ви забігл",
+            "feedbackByLocale": {
+              "ru": "«Отлично». Мокрым под дождём — вряд ли.",
+              "uk": "«Чудово». Мокрим під дощем — навряд."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — її все немає, а початок був о сьомій; скажіть коротко",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — її все немає, а початок був о сьомій; скажіть коротко",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She's late.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — её всё нет, а начало было в семь; скажите коротко",
+          "uk": "Складіть фразу — її все немає, а початок був о сьомій; скажіть коротко"
+        },
+        "orderedTokens": [
+          "She's",
+          "late"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — её всё нет, а начало бы",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `She's late.`",
+              "uk": "`is` зайве: воно вже заховане в `She's late`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i17:s01:audio",
+          "transcript": "It's great."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's great.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i17:s02:audio",
+          "transcript": "He's gone."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He's gone.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i17:s03:audio",
+          "transcript": "It's quiet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's quiet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e38469991e408dbf67a0ece449f5a789684bfa19749468cf1ed35ca60d896d6d"
+}

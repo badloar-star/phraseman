@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "learning_v2_session_review_evidence_manifest_v1",
+  "courseSessionId": "en:lesson-01:session-03",
+  "candidateRoot": "content/learning-v2-course/outputs/s03-blind-review-private-20261014-v1",
+  "candidateBundleSha256": "5117aa16ec37c9229262bb19e3c11d9d3d5c83da0028e714c6a94d6110c9ab09",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s03-blind-review-private-20261014-v1/content-receipt.json",
+  "candidateReceiptInventorySha256": "4244b2e81ed1c16ab4c9ee223c74d62d2231b82eaf16a5954c4d5ab5127ab838",
+  "requiredRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "eligibleRoles": [],
+  "missingRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "roles": [],
+  "textReviewComplete": false,
+  "releaseAuthority": false
+}

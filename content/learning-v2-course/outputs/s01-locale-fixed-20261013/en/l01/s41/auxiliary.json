@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-41:intro1:r2": {
+          "ru": "Значок `'` потерялся. Без него это уже не сокращение, а просто набор букв.",
+          "uk": "Значок `'` загубився. Без нього це вже не скорочення, а просто набір букв."
+        },
+        "en:lesson-01:session-41:intro1:r3": {
+          "ru": "`am` уже спрятано внутри `I'm`. Второй раз его ставить не нужно.",
+          "uk": "`am` уже сховане всередині `I'm`. Удруге його ставити не треба."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-41:intro2:r2": {
+          "ru": "`your` — это «твой». Здесь нужно `you're` — сжатое `you are`.",
+          "uk": "`your` — це «твій». Тут потрібне `you're` — стиснуте `you are`."
+        },
+        "en:lesson-01:session-41:intro2:r3": {
+          "ru": "`are` уже внутри `you're`. Одного раза достаточно.",
+          "uk": "`are` уже всередині `you're`. Одного разу досить."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-41:intro3:r2": {
+          "ru": "Между `I` и словом о себе нужна форма `am`, здесь — `I'm`.",
+          "uk": "Між `I` і словом про себе потрібна форма `am`, тут — `I'm`."
+        },
+        "en:lesson-01:session-41:intro3:r3": {
+          "ru": "Без значка `'` это не сокращение. `I'm` пишется с ним.",
+          "uk": "Без значка `'` це не скорочення. `I'm` пишеться з ним."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c8a0d4a86da76a7e84ef365e1e078b2aea567a63614e3e110a49f8420c12505d"
+}

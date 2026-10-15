@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-38:intro1:r2": {
+          "ru": "Это «мы проиграли, мы потеряли». Про своё состояние — `we are lost`.",
+          "uk": "Це «ми програли, ми втратили». Про свій стан — `we are lost`."
+        },
+        "en:lesson-01:session-38:intro1:r3": {
+          "ru": "`is` — про одного. Вас несколько, значит `are`.",
+          "uk": "`is` — про одного. Вас кілька, отже `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-38:intro2:r2": {
+          "ru": "После `we` нужно `are`: We are safe.",
+          "uk": "Після `we` потрібне `are`: We are safe."
+        },
+        "en:lesson-01:session-38:intro2:r3": {
+          "ru": "`save` — «спасать», действие. Нужно `safe`.",
+          "uk": "`save` — «рятувати», дія. Потрібне `safe`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-38:intro3:r2": {
+          "ru": "Лишнее `in`. С `home` оно не нужно: `They are home`.",
+          "uk": "Зайве `in`. З `home` воно не потрібне: `They are home`."
+        },
+        "en:lesson-01:session-38:intro3:r3": {
+          "ru": "`is` — про одного человека. Их двое: `they are`.",
+          "uk": "`is` — про одну людину. Їх двоє: `they are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "86facd65229e242d0d7690c8d9b486f802696486c5b5a2b184406fd1d8ec7bc1"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "узнавание на слух и произнесение знакомых вопросов `Am I…?` и `Are we…?`",
+    "uk": "розпізнавання на слух і вимовляння знайомих запитань `Am I…?` і `Are we…?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вопрос о своей готовности",
+        "uk": "Запитання про власну готовність"
+      },
+      "bodyByLocale": {
+        "ru": "`Am I ready?` — «Я готов?» Здесь `ready` значит «готов», а `Am I` показывает, что вы спрашиваете о себе. Сравните с сообщением `I am ready` — «Я готов». Слова те же, но первые два поменялись местами. По началу фразы слышно, спрашивает человек о своей готовности или уже сообщает о ней.",
+        "uk": "`Am I ready?` — «Я готовий?» Тут `ready` означає «готовий», а `Am I` показує, що ви запитуєте про себе. Порівняйте з повідомленням `I am ready` — «Я готовий». Слова ті самі, але перші два помінялися місцями. За початком фрази чутно, чи людина перевіряє свою готовність, чи вже повідомляє про неї."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг проверяет ваши вещи по списку. Спросите его, готовы ли вы к выходу.",
+          "uk": "Друг перевіряє ваші речі за списком. Запитайте його, чи ви готові до виходу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-44:intro1:r1",
+              "text": "Am I ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro1:r2",
+              "text": "Are we ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro1:r3",
+              "text": "Am I late?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-44:intro1:r1",
+              "text": "Am I ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro1:r2",
+              "text": "Are we ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro1:r3",
+              "text": "Am I late?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг проверяет ваши вещи по списку. Спросите его, готовы ли вы к выходу.",
+          "uk": "Друг перевіряє ваші речі за списком. Запитайте його, чи ви готові до виходу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Услышать, о ком вопрос",
+        "uk": "Почути, про кого запитують"
+      },
+      "bodyByLocale": {
+        "ru": "`Are we late?` — «Мы опаздываем?» Слово `we` — «мы» — включает вас со спутником. А `Am I late?` спрашивает только о вас. Чтобы понять, о ком речь, дослушайте первые два слова: `Am I` или `Are we`. Одного `late` мало: оно говорит об опоздании, но не называет тех, кто опаздывает.",
+        "uk": "`Are we late?` — «Ми запізнюємося?» `we` — «ми» — охоплює вас і супутника. А `Am I late?` стосується лише вас. Щоб зрозуміти, про кого йдеться, дослухайте перші два слова: `Am I` чи `Are we`. Самого `late` замало: воно говорить про запізнення, але не називає тих, хто запізнюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы с другом ещё в квартире и беспокоитесь, успеете ли на поезд. Спросите друга, не опаздываете ли вы оба.",
+          "uk": "Ви з другом іще у квартирі й хвилюєтеся, чи встигнете на потяг. Запитайте друга, чи не запізнюєтеся ви обоє."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-44:intro2:r1",
+              "text": "Are we late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro2:r2",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro2:r3",
+              "text": "Are you late?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-44:intro2:r1",
+              "text": "Are we late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro2:r2",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro2:r3",
+              "text": "Are you late?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы с другом ещё в квартире и беспокоитесь, успеете ли на поезд. Спросите друга, не опаздываете ли вы оба.",
+          "uk": "Ви з другом іще у квартирі й хвилюєтеся, чи встигнете на потяг. Запитайте друга, чи не запізнюєтеся ви обоє."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Один готов — а остальные?",
+        "uk": "Один готовий — а інший?"
+      },
+      "bodyByLocale": {
+        "ru": "`Are we ready?` — «Мы готовы?» Так проверяют готовность всей компании. `I am ready` — «Я готов» — сообщает только о вас. От вашей готовности остальные быстрее не собираются: `I` их не включает. Поэтому даже после своего «Я готов» можно спросить за всех: `Are we ready?`",
+        "uk": "`Are we ready?` — «Ми готові?» Так перевіряють готовність усієї компанії. `I am ready` — «Я готовий» — стосується лише вас. Від вашої готовності решта швидше не збереться: `I` їх не охоплює. Тому навіть після свого «Я готовий» можна запитати про всіх: `Are we ready?`"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы собрали свои вещи, но друг ещё возится у сумки. Спросите, готовы ли вы оба.",
+          "uk": "Ви зібрали свої речі, але друг іще порається біля сумки. Запитайте, чи ви обоє готові."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-44:intro3:r1",
+              "text": "Are we ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro3:r2",
+              "text": "I am ready."
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro3:r3",
+              "text": "Am I ready?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-44:intro3:r1",
+              "text": "Are we ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro3:r2",
+              "text": "I am ready."
+            },
+            {
+              "responseId": "en:lesson-02:session-44:intro3:r3",
+              "text": "Am I ready?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы собрали свои вещи, но друг ещё возится у сумки. Спросите, готовы ли вы оба.",
+          "uk": "Ви зібрали свої речі, але друг іще порається біля сумки. Запитайте, чи ви обоє готові."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cce42e30acc0be304e3ba31649c1e6366abbcf227232a252d34c6e0a187e197d"
+}

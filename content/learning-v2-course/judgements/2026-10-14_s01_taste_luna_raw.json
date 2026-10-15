@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "learning_v2_taste_review_raw_v1",
+  "reviewer": "taste",
+  "model": "gpt-5.6-luna",
+  "reviewDate": "2026-10-14",
+  "courseSessionId": "en:lesson-01:session-01",
+  "candidateRoot": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014",
+  "inventorySha256": "362658ddc6a17ae37cde5d4bf3529a5f5f0cf400480c9c2efb6aa581d85eee17",
+  "reviewBundleDigest": "0548773ad10f1aa6be9416311070227ca1a536891c37c6a264185b2f1c8fecd9",
+  "scope": {
+    "locales": ["ru", "uk"],
+    "introPagesReviewed": 3,
+    "learnerInteractionsReviewedPerLocale": 20,
+    "choicesReviewed": true,
+    "criteria": ["naturalness", "concrete situations", "readable voice", "no boilerplate", "no internal terminology"]
+  },
+  "status": "PASS",
+  "findings": []
+}

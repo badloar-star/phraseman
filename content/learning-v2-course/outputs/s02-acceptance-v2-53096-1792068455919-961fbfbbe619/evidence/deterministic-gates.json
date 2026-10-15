@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-02",
+  "candidateBundleSha256": "977d5715d74d9e0031f6c75a4cd1a59e7fd6adfab133ccb994118798740be72a",
+  "contentReceiptSha256": "6bd52919d7916683e8075fdde84928b35f8d2b44518e790e13d5d29c40a7ba7a",
+  "candidateInventorySha256": "5be5bd3c3f7a7abe1ff5ac15c54c4ad65e48d645be6e4a01fcc7dc0337642e98",
+  "sourceFingerprint": "b309328511aa0141478c06932e168c59ab2f1bb650de7d710a1ece0e2c961180",
+  "verdict": "PASS",
+  "gates": [
+    {
+      "id": "blueprint_authority",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-acceptance-v2-53096-1792068455919-961fbfbbe619/content-receipt.json --check blueprint_authority",
+      "verdict": "PASS",
+      "exitCode": 0
+    },
+    {
+      "id": "s02_exact_packet",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-acceptance-v2-53096-1792068455919-961fbfbbe619/content-receipt.json --check s02_exact_packet",
+      "verdict": "PASS",
+      "exitCode": 0
+    },
+    {
+      "id": "feedback_locale_parity",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-acceptance-v2-53096-1792068455919-961fbfbbe619/content-receipt.json --check feedback_locale_parity",
+      "verdict": "PASS",
+      "exitCode": 0
+    },
+    {
+      "id": "actor_clarity",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-acceptance-v2-53096-1792068455919-961fbfbbe619/content-receipt.json --check actor_clarity",
+      "verdict": "PASS",
+      "exitCode": 0
+    },
+    {
+      "id": "candidate_build_source_projection",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-acceptance-v2-53096-1792068455919-961fbfbbe619/content-receipt.json --check candidate_build_source_projection",
+      "verdict": "PASS",
+      "exitCode": 0
+    },
+    {
+      "id": "receipt_history",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-acceptance-v2-53096-1792068455919-961fbfbbe619/content-receipt.json --check receipt_history",
+      "verdict": "PASS",
+      "exitCode": 0
+    }
+  ]
+}

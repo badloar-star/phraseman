@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "различить вопрос `Is he / Is she …?` и сообщение `He is / She is …`",
+    "uk": "розрізнити запитання `Is he / Is she …?` і повідомлення `He is / She is …`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`ashamed` — стыдно за свой поступок",
+        "uk": "`ashamed` — соромно за свій учинок"
+      },
+      "bodyByLocale": {
+        "ru": "`ashamed` — «испытывающий стыд». Так человек чувствует себя, когда понимает, что сделал что-то плохое или неловкое. Это сильнее простого смущения и относится к чувству человека, а не к самому поступку. Гость спрятал последний круассан и теперь смотрит на тарелку особенно честными глазами. Сообщение: `He is ashamed.`.",
+        "uk": "`ashamed` — «той, кому соромно». Так людина почувається, коли розуміє, що зробила щось погане або незручне. Це сильніше за просте збентеження й стосується почуття людини, а не самого вчинку. Гість сховав останній круасан і тепер дивиться на тарілку особливо чесними очима. Повідомлення: `He is ashamed.`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Мужчина понимает, что взял чужой заказ, и ему стыдно. Сообщите об этом.",
+          "uk": "Чоловік розуміє, що взяв чуже замовлення, і йому соромно. Повідомте про це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r1",
+              "text": "He is ashamed."
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r2",
+              "text": "Is he ashamed?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r3",
+              "text": "He ashamed is."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r1",
+              "text": "He is ashamed."
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r2",
+              "text": "Is he ashamed?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r3",
+              "text": "He ashamed is."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мужчина понимает, что взял чужой заказ, и ему стыдно. Сообщите об этом.",
+          "uk": "Чоловік розуміє, що взяв чуже замовлення, і йому соромно. Повідомте про це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`surprised` — случилось неожиданное",
+        "uk": "`surprised` — сталося несподіване"
+      },
+      "bodyByLocale": {
+        "ru": "`surprised` — «удивлённый»: произошло то, чего человек не ожидал. Удивление может быть приятным или неприятным; слово само по себе этого не решает. Чтобы спросить о женщине, ставим `is` перед `she`: `Is she surprised?`. Чтобы сообщить, меняем первые слова местами: `She is surprised.`.",
+        "uk": "`surprised` — «здивований»: сталося те, чого людина не очікувала. Здивування може бути приємним або неприємним; саме слово цього не вирішує. Щоб запитати про жінку, ставимо `is` перед `she`: `Is she surprised?`. Щоб повідомити, міняємо перші слова місцями: `She is surprised.`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Женщине неожиданно принесли праздничный торт. Спросите, удивлена ли она.",
+          "uk": "Жінці несподівано принесли святковий торт. Запитайте, чи вона здивована."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r1",
+              "text": "Is she surprised?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r2",
+              "text": "She is surprised."
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r3",
+              "text": "Is surprised she?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r1",
+              "text": "Is she surprised?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r2",
+              "text": "She is surprised."
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r3",
+              "text": "Is surprised she?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Женщине неожиданно принесли праздничный торт. Спросите, удивлена ли она.",
+          "uk": "Жінці несподівано принесли святковий торт. Запитайте, чи вона здивована."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Первые два слова задают смысл",
+        "uk": "Перші два слова задають зміст"
+      },
+      "bodyByLocale": {
+        "ru": "`Is he ashamed?` — вопрос: сначала стоит `is`. `He is ashamed.` — сообщение: сначала стоит `he`. Тот же контраст работает с новым словом `surprised`: `Is she surprised?` спрашивает, а `She is surprised.` сообщает. Знак вопроса помогает при чтении, но в речи смысл держит порядок первых двух слов.",
+        "uk": "`Is he ashamed?` — запитання: спочатку стоїть `is`. `He is ashamed.` — повідомлення: спочатку стоїть `he`. Той самий контраст працює з новим словом `surprised`: `Is she surprised?` запитує, а `She is surprised.` повідомляє. Знак питання допомагає під час читання, але в мовленні зміст тримає порядок перших двох слів."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Женщина широко раскрыла глаза, когда увидела подарок. Выберите сообщение о ней.",
+          "uk": "Жінка широко розплющила очі, коли побачила подарунок. Оберіть повідомлення про неї."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r1",
+              "text": "She is surprised."
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r2",
+              "text": "Is she surprised?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r3",
+              "text": "She surprised is."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r1",
+              "text": "She is surprised."
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r2",
+              "text": "Is she surprised?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r3",
+              "text": "She surprised is."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Женщина широко раскрыла глаза, когда увидела подарок. Выберите сообщение о ней.",
+          "uk": "Жінка широко розплющила очі, коли побачила подарунок. Оберіть повідомлення про неї."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c2effb1abbca698cf2235db96f215816013af4dc9a7e9d8676ecd221b889bee2"
+}

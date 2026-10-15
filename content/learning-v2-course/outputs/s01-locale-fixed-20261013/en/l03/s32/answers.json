@@ -1,0 +1,97 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-32:i01",
+    "correctText": "postcard",
+    "correctResponseId": "en:lesson-03:session-32:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i03",
+    "correctText": "magnet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i05",
+    "correctText": "keyring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i02",
+    "correctText": "postcard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i04",
+    "correctText": "magnet",
+    "correctResponseId": "en:lesson-03:session-32:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i06",
+    "correctText": "keyring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i07",
+    "correctText": "en:lesson-03:session-32:i07:p1=postcard\nen:lesson-03:session-32:i07:p2=magnet\nen:lesson-03:session-32:i07:p3=keyring\nen:lesson-03:session-32:i07:p4=key",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i08",
+    "correctText": "postcard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i09",
+    "correctText": "magnet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i10",
+    "correctText": "keyring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i11",
+    "correctText": "This is a postcard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i12",
+    "correctText": "Вон магнит.",
+    "correctResponseId": "en:lesson-03:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i13",
+    "correctText": "this",
+    "correctResponseId": "en:lesson-03:session-32:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i14",
+    "correctText": "That postcard, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i15",
+    "correctText": "Is that a magnet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i16",
+    "correctText": "Этот брелок, пожалуйста.",
+    "correctResponseId": "en:lesson-03:session-32:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i17:s01",
+    "correctText": "That is a postcard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i17:s02",
+    "correctText": "Is this a magnet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i17:s03",
+    "correctText": "That keyring, please.",
+    "correctResponseId": null
+  }
+]

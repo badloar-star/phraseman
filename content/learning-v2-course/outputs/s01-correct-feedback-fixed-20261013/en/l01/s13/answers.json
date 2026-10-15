@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-13:i01",
+    "correctText": "young",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i02",
+    "correctText": "young",
+    "correctResponseId": "en:lesson-01:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i03",
+    "correctText": "old",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i04",
+    "correctText": "You are young.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i05",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i06",
+    "correctText": "strong",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i07",
+    "correctText": "strong",
+    "correctResponseId": "en:lesson-01:session-13:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i08",
+    "correctText": "tall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i09",
+    "correctText": "tall",
+    "correctResponseId": "en:lesson-01:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i10",
+    "correctText": "strong",
+    "correctResponseId": "en:lesson-01:session-13:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i11",
+    "correctText": "en:lesson-01:session-13:i11:p1=young\nen:lesson-01:session-13:i11:p2=old\nen:lesson-01:session-13:i11:p3=strong\nen:lesson-01:session-13:i11:p4=tall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i12",
+    "correctText": "I am strong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i13",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-13:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i14",
+    "correctText": "brave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i15",
+    "correctText": "brave",
+    "correctResponseId": "en:lesson-01:session-13:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i16",
+    "correctText": "kind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i17",
+    "correctText": "You are brave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i18",
+    "correctText": "You are kind.",
+    "correctResponseId": null
+  }
+]

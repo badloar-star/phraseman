@@ -1,0 +1,19 @@
+{
+  "identity": {
+    "course_session_id": "en:lesson-01:session-08",
+    "candidate_receipt_sha256": "db5dcb3c7f72734b7934488c9242a93bf7e74df20cfcacf9ad2583a69a8174b9",
+    "candidate_bundle_sha256": "abcc1794aea92f92e2df4cf5f0a3a33f560d0140865f80026ead97752cd57477",
+    "learner_ru_sha256": "ac0303fe6062edb15c933109801240a52d2a5bda6d3c108ae23ec4cc6303db94",
+    "learner_uk_sha256": "57ff22da96e40f81c6881485c7113e22adb76c196333e2590d88e8dbcbb5b741"
+  },
+  "dimension": "language_pedagogy_locale",
+  "verdict": "PASS",
+  "findings": [],
+  "notes": [
+    "Reviewed all three intro pages and all 21 interactions in both Russian and Ukrainian learner projections.",
+    "English correctness, source fidelity, localization, beginner pedagogy, context clarity, and distractor uniqueness passed.",
+    "Feedback is concise and appears only for wrong responses; correct-answer feedback rows equal zero.",
+    "The hash-bound deterministic report passed 42 of 42 tests and rehashed 18 candidate files.",
+    "Audio presence and listening were outside this language review."
+  ]
+}

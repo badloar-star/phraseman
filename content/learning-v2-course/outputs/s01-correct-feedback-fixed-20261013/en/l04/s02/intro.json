@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить полную утвердительную форму `There is + singular` и добавить знакомые `near/behind`.",
+    "uk": "закріпити повну стверджувальну форму `There is + singular` і додати знайомі `near/behind`."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один общий сад",
+        "uk": "Один спільний сад"
+      },
+      "bodyByLocale": {
+        "ru": "`garden` — «сад». Если на территории есть один сад, скажите `There is a garden.` Сначала идёт `There is`, затем `a` и название одного места. `A` нужно, потому что речь идёт об одном впервые названном саде. `There is a garden.` — хорошая новость: двор оказался не только парковкой.",
+        "uk": "`garden` — «сад». Якщо на території є один сад, скажіть `There is a garden.` Спочатку йде `There is`, потім `a` і назва одного місця. `A` потрібне, бо йдеться про один уперше названий сад. `There is a garden.` — добра новина: подвір’я виявилося не лише парковкою."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Сотрудник впервые показывает вам общий сад. Выберите точную фразу.",
+          "uk": "Працівник уперше показує вам спільний сад. Виберіть точну фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-02:intro1:r1",
+              "text": "There is a garden."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro1:r2",
+              "text": "There is an garden."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro1:r3",
+              "text": "There is garden."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-02:intro1:r1",
+              "text": "There is a garden."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro1:r2",
+              "text": "There is an garden."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro1:r3",
+              "text": "There is garden."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник впервые показывает вам общий сад. Выберите точную фразу.",
+          "uk": "Працівник уперше показує вам спільний сад. Виберіть точну фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сад рядом с домом",
+        "uk": "Сад поруч із будинком"
+      },
+      "bodyByLocale": {
+        "ru": "`near` — «рядом с». Фраза `There is a garden near the house.` сообщает сразу две вещи: сад есть, и он рядом с домом. Сначала назовите сад, затем добавьте его место: `near the house`. Один сад — `There is a garden`.",
+        "uk": "`near` — «поруч із». Фраза `There is a garden near the house.` повідомляє одразу дві речі: сад є, і він поруч із будинком. Спочатку назвіть сад, потім додайте його місце: `near the house`. Один сад — `There is a garden`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "На плане сад отмечен рядом с домом. Выберите точное сообщение.",
+          "uk": "На плані сад позначено поруч із будинком. Виберіть точне повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-02:intro2:r1",
+              "text": "There is a garden near the house."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro2:r2",
+              "text": "There is a garden behind the house."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro2:r3",
+              "text": "There a garden near the house."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-02:intro2:r1",
+              "text": "There is a garden near the house."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro2:r2",
+              "text": "There is a garden behind the house."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro2:r3",
+              "text": "There a garden near the house."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На плане сад отмечен рядом с домом. Выберите точное сообщение.",
+          "uk": "На плані сад позначено поруч із будинком. Виберіть точне повідомлення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сад за зданием",
+        "uk": "Сад за будівлею"
+      },
+      "bodyByLocale": {
+        "ru": "`behind` значит «за, позади». `There is a garden behind the building.` — «За зданием есть сад». После названия сада добавьте место: `behind the building`. После `behind` называют ориентир: `the building`. `There is a garden` сообщает, что сад один.",
+        "uk": "`behind` означає «за, позаду». `There is a garden behind the building.` — «За будівлею є сад». Після назви саду додайте місце: `behind the building`. Після `behind` називають орієнтир: `the building`; так фраза уточнює, де розташований сад. `There is a garden` повідомляє, що сад один."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Сотрудник ведёт вас за здание. Выберите точную фразу.",
+          "uk": "Працівник веде вас за будівлю. Виберіть точну фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-02:intro3:r1",
+              "text": "There is a garden behind the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro3:r2",
+              "text": "There is a garden near the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro3:r3",
+              "text": "There garden behind the building."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-02:intro3:r1",
+              "text": "There is a garden behind the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro3:r2",
+              "text": "There is a garden near the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-02:intro3:r3",
+              "text": "There garden behind the building."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник ведёт вас за здание. Выберите точную фразу.",
+          "uk": "Працівник веде вас за будівлю. Виберіть точну фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e948cb13ba31ca4721b28e7477c1f737df392cb0b0ee18bb681d80b4a1f9f30f"
+}

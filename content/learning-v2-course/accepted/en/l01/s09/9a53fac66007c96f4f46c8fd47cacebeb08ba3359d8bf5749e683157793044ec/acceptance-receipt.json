@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "learning_v2_session_acceptance_receipt_v1",
+  "session": "en/l01/s09",
+  "courseSessionId": "en:lesson-01:session-09",
+  "state": "TEXT_CANONICAL",
+  "candidateRoot": "content/learning-v2-course/outputs/s09-review-fixed-private-20261014-v4",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s09-review-fixed-private-20261014-v4/content-receipt.json",
+  "candidateReceiptSha256": "88c0d6b0076a8480bb190b195a10c970a32fdc726a425edee17bf5fffb14fb35",
+  "candidateBundleSha256": "9a53fac66007c96f4f46c8fd47cacebeb08ba3359d8bf5749e683157793044ec",
+  "candidateInventorySha256": "a7a5df16a652c641e887fc4c7df18b97137f04111def53da0a468dd974c444fd",
+  "sourceFingerprint": "9251e69820f2ca7a075eb652c0610eba6f62afd9423cbea8c70b5000016a17ae",
+  "deterministicGateReport": {"path":"content/learning-v2-course/judgements/2026-10-14_s09_v4_deterministic_gates.current.json","sha256":"4a4a20aa45d10cb4b662f8425bfbb6a00a36504daaa6f794c3b22a56a1abe59a","bytes":1007},
+  "reviewEvidence": [
+    {"dimension":"blind_learner","verdict":"PASS","artifactPath":"content/learning-v2-course/judgements/2026-10-14_s09_v4_blind_learner.current.json","artifactSha256":"5edc23d993fb747a027d53e6a5c851a2d45255a9ea74787aabae974ed3e31221","artifactBytes":762,"dispatchProvenance":{"agent":"/root/s09_v2_blind","configuredModel":"gpt-6-luna"}},
+    {"dimension":"language_pedagogy_locale","verdict":"PASS","artifactPath":"content/learning-v2-course/judgements/2026-10-14_s09_v4_language_pedagogy_locale.current.json","artifactSha256":"942c8bf6a829be056b5eaf9dd04e0249109bfb9675120ee5a8d383c1bd99df8a","artifactBytes":774,"dispatchProvenance":{"agent":"/root/s09_v2_locale","configuredModel":"gpt-6-luna"}}
+  ],
+  "localeEvidence": {"path":"content/learning-v2-course/outputs/s09-review-fixed-private-20261014-v4/source-snapshot/content/learning-v2-course/sessions/en/l01/s09/locales_batch.md","sha256":"6fc0a7e71685f9083cdda162cc2bce48fb4e1174c8e821ed11998885f4a77bcd","bytes":10872},
+  "audioTechnicalEvidence": null,
+  "semanticAudioVerified": false,
+  "releaseAuthority": false,
+  "immutableContentOnly": true
+}

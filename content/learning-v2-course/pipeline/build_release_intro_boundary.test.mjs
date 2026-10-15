@@ -25,15 +25,23 @@ test("canonical release intro page 3 stops before the practice section", (t) => 
     "owner_quality.mjs",
     "progression_quality_gate.mjs",
     "write_mockup_file.mjs",
+    "practice_explanations_v1.mjs",
+    "audit_actor_clarity.mjs",
   ]) {
     fs.copyFileSync(path.join(here, name), path.join(pipeline, name));
   }
+  const visibleTextModule = path.resolve(here, "../../../modules/learning-v2/content/learner_visible_text_v1.js");
+  const fixtureVisibleTextModule = path.join(root, "modules/learning-v2/content/learner_visible_text_v1.js");
+  fs.mkdirSync(path.dirname(fixtureVisibleTextModule), { recursive: true });
+  fs.copyFileSync(visibleTextModule, fixtureVisibleTextModule);
 
   const session = "en/l04/s04";
   const sourceDir = path.resolve(here, "..", "sessions", ...session.split("/"));
   const sessionDir = path.join(root, "sessions", ...session.split("/"));
   fs.mkdirSync(sessionDir, { recursive: true });
-  fs.copyFileSync(path.join(sourceDir, "final.ru.md"), path.join(sessionDir, "final.ru.md"));
+  const sourceMarkdown = fs.readFileSync(path.join(sourceDir, "final.ru.md"), "utf8");
+  const introOnly = sourceMarkdown.slice(0, sourceMarkdown.indexOf("## Практика"));
+  fs.writeFileSync(path.join(sessionDir, "final.ru.md"), `${introOnly}## Практика\n\n**1 · Вставьте слово**\n<!-- interaction_id: en:lesson-04:session-04:i01; family: context_gap_grammar -->\nI ___ ready. → **am** · is · are\n- am — *Верно.*\n- is — *После I нужна форма am.*\n- are — *После I нужна форма am.*\n\n## Для сборщика\n\nmodes: 1=context_gap_grammar\n`);
 
   const out = path.join(root, "private-review");
   const result = spawnSync(
@@ -93,9 +101,15 @@ test("requested RU and UK intros with a lost question fail before creating relea
     "owner_quality.mjs",
     "progression_quality_gate.mjs",
     "write_mockup_file.mjs",
+    "practice_explanations_v1.mjs",
+    "audit_actor_clarity.mjs",
   ]) {
     fs.copyFileSync(path.join(here, name), path.join(pipeline, name));
   }
+  const visibleTextModule = path.resolve(here, "../../../modules/learning-v2/content/learner_visible_text_v1.js");
+  const fixtureVisibleTextModule = path.join(root, "modules/learning-v2/content/learner_visible_text_v1.js");
+  fs.mkdirSync(path.dirname(fixtureVisibleTextModule), { recursive: true });
+  fs.copyFileSync(visibleTextModule, fixtureVisibleTextModule);
 
   const session = "en/l04/s04";
   const sourceDir = path.resolve(here, "..", "sessions", ...session.split("/"));

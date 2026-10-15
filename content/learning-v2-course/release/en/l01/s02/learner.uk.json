@@ -28,19 +28,63 @@
             "responseId": "en:lesson-01:session-02:i01:r1",
             "targetText": "tired",
             "meaningByLocale": {
-              "ru": "«устал». Не «сплю на ходу», а просто «сил уже меньше, чем было». После трёх встреч — самое то.",
-              "uk": "«втомлений». Не «сплю на ходу», а просто «сил уже менше, ніж було». Після трьох зустрічей — саме воно."
+              "ru": "«устал / устала»: так говорят о состоянии, когда нужен отдых.",
+              "uk": "«втомився / втомилася»: так говорять про стан, коли потрібен відпочинок."
             }
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-02:i01:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "tired — прилагательное; здесь означает «устал / устала».",
+              "uk": "tired — прикметник; тут означає «втомився / втомилася»."
+            },
+            "analysisV1": {
+              "text": "tired",
+              "meaningByLocale": {
+                "ru": "устал / устала",
+                "uk": "втомився / втомилася"
+              },
+              "explanationByLocale": {
+                "ru": "tired — прилагательное; здесь означает «устал / устала».",
+                "uk": "tired — прикметник; тут означає «втомився / втомилася»."
+              },
+              "units": [
+                {
+                  "text": "tired",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "tired",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "устал / устала",
+                    "uk": "втомився / втомилася"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово называет состояние усталости; в полной фразе I am tired оно стоит после I am.",
+                    "uk": "Саме слово називає стан утоми; у повній фразі I am tired воно стоїть після I am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#tired-adjective"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
         "isWordCard": true,
         "wordCard": {
           "word": "tired",
           "definitionByLocale": {
-            "ru": "«устал». Не «сплю на ходу», а просто «сил уже меньше, чем было». После трёх встреч — самое то.",
-            "uk": "«втомлений». Не «сплю на ходу», а просто «сил уже менше, ніж було». Після трьох зустрічей — саме воно."
+            "ru": "«устал / устала»: так говорят о состоянии, когда нужен отдых.",
+            "uk": "«втомився / втомилася»: так говорять про стан, коли потрібен відпочинок."
           }
         }
       },
@@ -99,29 +143,125 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-02:i02:r1",
-            "correct": true,
-            "feedbackByLocale": {
-              "ru": "Верно: в записи tired. Это слово звучит иначе, чем tide или tie.",
-              "uk": "Правильно: у записі tired. Це слово звучить інакше, ніж tide або tie."
-            }
-          },
-          {
             "responseId": "en:lesson-01:session-02:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — tired",
+            "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "Без хвоста «-ред». Это «прилив» — в офисе не пригодится.",
-              "uk": "Без хвоста «-ред». Це «приплив» — в офісі не знадобиться."
+              "ru": "Tide означает «прилив», а tired — «устал / устала». Для названного состояния нужно tired.",
+              "uk": "Tide означає «приплив», а tired — «втомився / втомилася». Для названого стану потрібне tired."
+            },
+            "analysisV1": {
+              "text": "tide",
+              "meaningByLocale": {
+                "ru": "прилив",
+                "uk": "приплив"
+              },
+              "explanationByLocale": {
+                "ru": "tide — существительное; здесь означает «прилив».",
+                "uk": "tide — іменник; тут означає «приплив»."
+              },
+              "units": [
+                {
+                  "text": "tide",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "tide",
+                  "partOfSpeech": "noun",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "существительное",
+                    "uk": "іменник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "прилив",
+                    "uk": "приплив"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово называет прилив; оно не называет состояние человека.",
+                    "uk": "Саме слово називає приплив; воно не називає стан людини."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#distractor-words"
+                  ]
+                }
+              ]
+            },
+            "errorType": "listening_lexical_confusion",
+            "whyTemptingByLocale": {
+              "ru": "tide и tired начинаются с букв ti, поэтому их легко спутать при быстром чтении.",
+              "uk": "tide і tired починаються з літер ti, тому їх легко сплутати під час швидкого читання."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Tide означает «прилив», а tired — «устал / устала». Для названного состояния нужно tired.",
+              "uk": "Tide означає «приплив», а tired — «втомився / втомилася». Для названого стану потрібне tired."
+            },
+            "minimalContrastByLocale": {
+              "ru": "tide — «прилив»; tired — «устал / устала».",
+              "uk": "tide — «приплив»; tired — «втомився / втомилася»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "tide уместно при разговоре о приливе; здесь нужен смысл «устал / устала».",
+              "uk": "tide доречне, коли йдеться про приплив; тут потрібен зміст «втомився / втомилася»."
             }
           },
           {
             "responseId": "en:lesson-01:session-02:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — tired",
+            "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "Только начало. Tired — два слога: TAI-ed.",
-              "uk": "Тільки початок. Tired — два склади: ТАЙ-ед."
+              "ru": "Tie означает «галстук» или «завязывать», а tired — «устал / устала». Для названного состояния нужно tired.",
+              "uk": "Tie означає «краватка» або «зав'язувати», а tired — «втомився / втомилася». Для названого стану потрібне tired."
+            },
+            "analysisV1": {
+              "text": "tie",
+              "meaningByLocale": {
+                "ru": "галстук; завязывать",
+                "uk": "краватка; зав'язувати"
+              },
+              "explanationByLocale": {
+                "ru": "tie — существительное или глагол; здесь означает «галстук; завязывать».",
+                "uk": "tie — іменник або дієслово; тут означає «краватка; зав'язувати»."
+              },
+              "units": [
+                {
+                  "text": "tie",
+                  "start": 0,
+                  "end": 3,
+                  "lemma": "tie",
+                  "partOfSpeech": "noun_or_verb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "существительное или глагол",
+                    "uk": "іменник або дієслово"
+                  },
+                  "meaningByLocale": {
+                    "ru": "галстук; завязывать",
+                    "uk": "краватка; зав'язувати"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово означает «галстук» или «завязывать»; оно не называет состояние усталости.",
+                    "uk": "Саме слово означає «краватка» або «зав'язувати»; воно не називає стану втоми."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#distractor-words"
+                  ]
+                }
+              ]
+            },
+            "errorType": "listening_lexical_confusion",
+            "whyTemptingByLocale": {
+              "ru": "tie и tired начинаются с букв ti, поэтому взгляд может остановиться на знакомом начале.",
+              "uk": "tie і tired починаються з літер ti, тому погляд може зупинитися на знайомому початку."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Tie означает «галстук» или «завязывать», а tired — «устал / устала». Для названного состояния нужно tired.",
+              "uk": "Tie означає «краватка» або «зав'язувати», а tired — «втомився / втомилася». Для названого стану потрібне tired."
+            },
+            "minimalContrastByLocale": {
+              "ru": "tie — «галстук; завязывать»; tired — «устал / устала».",
+              "uk": "tie — «краватка; зав'язувати»; tired — «втомився / втомилася»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "tie уместно при разговоре о галстуке или завязывании; здесь нужен смысл «устал / устала».",
+              "uk": "tie доречне, коли йдеться про краватку або зав'язування; тут потрібен зміст «втомився / втомилася»."
             }
           }
         ],
@@ -155,19 +295,63 @@
             "responseId": "en:lesson-01:session-02:i03:r1",
             "targetText": "busy",
             "meaningByLocale": {
-              "ru": "«занят». Руки в деле, голова в задаче, «зайдите позже».",
-              "uk": "«зайнятий». Руки в роботі, голова в задачі, «зайдіть пізніше»."
+              "ru": "«занят / занята»: так говорят, когда сейчас есть дело или работа.",
+              "uk": "«зайнятий / зайнята»: так говорять, коли зараз є справа або робота."
             }
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-02:i03:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "busy — прилагательное; здесь означает «занят / занята».",
+              "uk": "busy — прикметник; тут означає «зайнятий / зайнята»."
+            },
+            "analysisV1": {
+              "text": "busy",
+              "meaningByLocale": {
+                "ru": "занят / занята",
+                "uk": "зайнятий / зайнята"
+              },
+              "explanationByLocale": {
+                "ru": "busy — прилагательное; здесь означает «занят / занята».",
+                "uk": "busy — прикметник; тут означає «зайнятий / зайнята»."
+              },
+              "units": [
+                {
+                  "text": "busy",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "busy",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "занят / занята",
+                    "uk": "зайнятий / зайнята"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово называет занятость; в полной фразе I am busy оно стоит после I am.",
+                    "uk": "Саме слово називає зайнятість; у повній фразі I am busy воно стоїть після I am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#busy-adjective"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
         "isWordCard": true,
         "wordCard": {
           "word": "busy",
           "definitionByLocale": {
-            "ru": "«занят». Руки в деле, голова в задаче, «зайдите позже».",
-            "uk": "«зайнятий». Руки в роботі, голова в задачі, «зайдіть пізніше»."
+            "ru": "«занят / занята»: так говорят, когда сейчас есть дело или работа.",
+            "uk": "«зайнятий / зайнята»: так говорять, коли зараз є справа або робота."
           }
         }
       },
@@ -226,29 +410,125 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-02:i04:r1",
-            "correct": true,
-            "feedbackByLocale": {
-              "ru": "Верно: в записи busy. Это не bus и не buzzy.",
-              "uk": "Правильно: у записі busy. Це не bus і не buzzy."
-            }
-          },
-          {
             "responseId": "en:lesson-01:session-02:i04:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — busy",
+            "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "«Автобус». Обрублен хвост «-зи».",
-              "uk": "«Автобус». Обрубано хвіст «-зі»."
+              "ru": "Bus означает «автобус», а busy — «занят / занята». Для состояния человека нужно busy.",
+              "uk": "Bus означає «автобус», а busy — «зайнятий / зайнята». Для стану людини потрібне busy."
+            },
+            "analysisV1": {
+              "text": "bus",
+              "meaningByLocale": {
+                "ru": "автобус",
+                "uk": "автобус"
+              },
+              "explanationByLocale": {
+                "ru": "bus — существительное; здесь означает «автобус».",
+                "uk": "bus — іменник; тут означає «автобус»."
+              },
+              "units": [
+                {
+                  "text": "bus",
+                  "start": 0,
+                  "end": 3,
+                  "lemma": "bus",
+                  "partOfSpeech": "noun",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "существительное",
+                    "uk": "іменник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "автобус",
+                    "uk": "автобус"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово называет автобус; оно не сообщает о занятости.",
+                    "uk": "Саме слово називає автобус; воно не повідомляє про зайнятість."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#distractor-words"
+                  ]
+                }
+              ]
+            },
+            "errorType": "listening_lexical_confusion",
+            "whyTemptingByLocale": {
+              "ru": "bus — начало слова busy, поэтому короткий вариант можно принять за нужное слово.",
+              "uk": "bus — початок слова busy, тому короткий варіант можна прийняти за потрібне слово."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Bus означает «автобус», а busy — «занят / занята». Для состояния человека нужно busy.",
+              "uk": "Bus означає «автобус», а busy — «зайнятий / зайнята». Для стану людини потрібне busy."
+            },
+            "minimalContrastByLocale": {
+              "ru": "bus — «автобус»; busy — «занят / занята».",
+              "uk": "bus — «автобус»; busy — «зайнятий / зайнята»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "bus уместно при разговоре об автобусе; здесь нужен смысл «занят / занята».",
+              "uk": "bus доречне, коли йдеться про автобус; тут потрібен зміст «зайнятий / зайнята»."
             }
           },
           {
             "responseId": "en:lesson-01:session-02:i04:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — busy",
+            "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "Похоже, но это не слово из этого занятия. Busy — «би-зи», первая гласная «и».",
-              "uk": "Схоже, але це не слово з цього заняття. Busy — «бі-зі», перша голосна «і»."
+              "ru": "Buzzy означает «жужжащий» или «оживлённый», а busy — «занят / занята». В этом задании нужно busy.",
+              "uk": "Buzzy означає «той, що дзижчить» або «жвавий», а busy — «зайнятий / зайнята». У цьому завданні потрібне busy."
+            },
+            "analysisV1": {
+              "text": "buzzy",
+              "meaningByLocale": {
+                "ru": "жужжащий; оживлённый",
+                "uk": "той, що дзижчить; жвавий"
+              },
+              "explanationByLocale": {
+                "ru": "buzzy — прилагательное; здесь означает «жужжащий; оживлённый».",
+                "uk": "buzzy — прикметник; тут означає «той, що дзижчить; жвавий»."
+              },
+              "units": [
+                {
+                  "text": "buzzy",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "buzzy",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "жужжащий; оживлённый",
+                    "uk": "той, що дзижчить; жвавий"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово описывает жужжание или оживлённость; оно не сообщает о занятости.",
+                    "uk": "Саме слово описує дзижчання або жвавість; воно не повідомляє про зайнятість."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#distractor-words"
+                  ]
+                }
+              ]
+            },
+            "errorType": "listening_lexical_confusion",
+            "whyTemptingByLocale": {
+              "ru": "buzzy похоже на busy буквами b, u и y, но это другое слово с другим значением.",
+              "uk": "buzzy схоже на busy літерами b, u та y, але це інше слово з іншим значенням."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Buzzy означает «жужжащий» или «оживлённый», а busy — «занят / занята». В этом задании нужно busy.",
+              "uk": "Buzzy означає «той, що дзижчить» або «жвавий», а busy — «зайнятий / зайнята». У цьому завданні потрібне busy."
+            },
+            "minimalContrastByLocale": {
+              "ru": "buzzy — «жужжащий; оживлённый»; busy — «занят / занята».",
+              "uk": "buzzy — «той, що дзижчить; жвавий»; busy — «зайнятий / зайнята»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "buzzy уместно при описании жужжания или оживлённости; здесь нужен смысл «занят / занята».",
+              "uk": "buzzy доречне, коли описують дзижчання або жвавість; тут потрібен зміст «зайнятий / зайнята»."
             }
           }
         ],
@@ -282,19 +562,63 @@
             "responseId": "en:lesson-01:session-02:i05:r1",
             "targetText": "late",
             "meaningByLocale": {
-              "ru": "«поздно, опаздываю». Часы показывают больше, чем вы обещали.",
-              "uk": "«пізно, запізнююся». Годинник показує більше, ніж ви обіцяли."
+              "ru": "«опоздал / опоздала»: так говорят, когда пришли позже назначенного времени.",
+              "uk": "«запізнився / запізнилася»: так говорять, коли прийшли пізніше за призначений час."
             }
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-02:i05:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "late — прилагательное; здесь означает «опоздал / опоздала».",
+              "uk": "late — прикметник; тут означає «запізнився / запізнилася»."
+            },
+            "analysisV1": {
+              "text": "late",
+              "meaningByLocale": {
+                "ru": "опоздал / опоздала",
+                "uk": "запізнився / запізнилася"
+              },
+              "explanationByLocale": {
+                "ru": "late — прилагательное; здесь означает «опоздал / опоздала».",
+                "uk": "late — прикметник; тут означає «запізнився / запізнилася»."
+              },
+              "units": [
+                {
+                  "text": "late",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "late",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "опоздал / опоздала",
+                    "uk": "запізнився / запізнилася"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово сообщает об опоздании; в полной фразе I am late оно стоит после I am.",
+                    "uk": "Саме слово повідомляє про запізнення; у повній фразі I am late воно стоїть після I am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#late-adjective"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
         "isWordCard": true,
         "wordCard": {
           "word": "late",
           "definitionByLocale": {
-            "ru": "«поздно, опаздываю». Часы показывают больше, чем вы обещали.",
-            "uk": "«пізно, запізнююся». Годинник показує більше, ніж ви обіцяли."
+            "ru": "«опоздал / опоздала»: так говорят, когда пришли позже назначенного времени.",
+            "uk": "«запізнився / запізнилася»: так говорять, коли прийшли пізніше за призначений час."
           }
         }
       },
@@ -329,7 +653,44 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        ],
+        "explanationV1": {
+          "phrase": {
+            "text": "sorry",
+            "meaningByLocale": {
+              "ru": "мне жаль; извините",
+              "uk": "мені шкода; вибачте"
+            },
+            "explanationByLocale": {
+              "ru": "sorry — прилагательное; здесь означает «мне жаль; извините».",
+              "uk": "sorry — прикметник; тут означає «мені шкода; вибачте»."
+            },
+            "units": [
+              {
+                "text": "sorry",
+                "start": 0,
+                "end": 5,
+                "lemma": "sorry",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "мне жаль; извините",
+                  "uk": "мені шкода; вибачте"
+                },
+                "functionByLocale": {
+                  "ru": "Самостоятельно sorry служит кратким извинением; в полной фразе I am sorry оно стоит после I am.",
+                  "uk": "Самостійно sorry слугує коротким вибаченням; у повній фразі I am sorry воно стоїть після I am."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#sorry-adjective"
+                ]
+              }
+            ]
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -339,7 +700,7 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З'єднайте пари",
+      "prompt": "З'єднайте англійські слова з їхніми значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
@@ -353,6 +714,64 @@
             "meaningByLocale": {
               "ru": "устал",
               "uk": "втомлений"
+            },
+            "analysisV1": {
+              "lemma": "tired",
+              "partOfSpeech": "adjective",
+              "partOfSpeechLabelByLocale": {
+                "ru": "прилагательное",
+                "uk": "прикметник"
+              },
+              "meaningByLocale": {
+                "ru": "устал",
+                "uk": "втомлений"
+              },
+              "functionByLocale": {
+                "ru": "После I am называет состояние усталости.",
+                "uk": "Після I am називає стан утоми."
+              },
+              "matchExplanationByLocale": {
+                "ru": "tired соответствует «устал».",
+                "uk": "tired відповідає «втомлений»."
+              },
+              "sourceRefs": [
+                "judgements/2026-10-13_l01_s02_source_evidence.md#tired-adjective"
+              ],
+              "phrase": {
+                "text": "tired",
+                "meaningByLocale": {
+                  "ru": "устал / устала",
+                  "uk": "втомився / втомилася"
+                },
+                "explanationByLocale": {
+                  "ru": "tired — прилагательное; здесь означает «устал / устала».",
+                  "uk": "tired — прикметник; тут означає «втомився / втомилася»."
+                },
+                "units": [
+                  {
+                    "text": "tired",
+                    "start": 0,
+                    "end": 5,
+                    "lemma": "tired",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "устал / устала",
+                      "uk": "втомився / втомилася"
+                    },
+                    "functionByLocale": {
+                      "ru": "Само слово называет состояние усталости; в полной фразе I am tired оно стоит после I am.",
+                      "uk": "Саме слово називає стан утоми; у повній фразі I am tired воно стоїть після I am."
+                    },
+                    "sourceRefs": [
+                      "judgements/2026-10-13_l01_s02_source_evidence.md#tired-adjective"
+                    ]
+                  }
+                ]
+              }
             }
           },
           {
@@ -361,6 +780,64 @@
             "meaningByLocale": {
               "ru": "занят",
               "uk": "зайнятий"
+            },
+            "analysisV1": {
+              "lemma": "busy",
+              "partOfSpeech": "adjective",
+              "partOfSpeechLabelByLocale": {
+                "ru": "прилагательное",
+                "uk": "прикметник"
+              },
+              "meaningByLocale": {
+                "ru": "занят",
+                "uk": "зайнятий"
+              },
+              "functionByLocale": {
+                "ru": "После I am сообщает о занятости говорящего.",
+                "uk": "Після I am повідомляє про зайнятість мовця."
+              },
+              "matchExplanationByLocale": {
+                "ru": "busy соответствует «занят».",
+                "uk": "busy відповідає «зайнятий»."
+              },
+              "sourceRefs": [
+                "judgements/2026-10-13_l01_s02_source_evidence.md#busy-adjective"
+              ],
+              "phrase": {
+                "text": "busy",
+                "meaningByLocale": {
+                  "ru": "занят / занята",
+                  "uk": "зайнятий / зайнята"
+                },
+                "explanationByLocale": {
+                  "ru": "busy — прилагательное; здесь означает «занят / занята».",
+                  "uk": "busy — прикметник; тут означає «зайнятий / зайнята»."
+                },
+                "units": [
+                  {
+                    "text": "busy",
+                    "start": 0,
+                    "end": 4,
+                    "lemma": "busy",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "занят / занята",
+                      "uk": "зайнятий / зайнята"
+                    },
+                    "functionByLocale": {
+                      "ru": "Само слово называет занятость; в полной фразе I am busy оно стоит после I am.",
+                      "uk": "Саме слово називає зайнятість; у повній фразі I am busy воно стоїть після I am."
+                    },
+                    "sourceRefs": [
+                      "judgements/2026-10-13_l01_s02_source_evidence.md#busy-adjective"
+                    ]
+                  }
+                ]
+              }
             }
           },
           {
@@ -369,6 +846,64 @@
             "meaningByLocale": {
               "ru": "опаздываю",
               "uk": "запізнююся"
+            },
+            "analysisV1": {
+              "lemma": "late",
+              "partOfSpeech": "adjective",
+              "partOfSpeechLabelByLocale": {
+                "ru": "прилагательное",
+                "uk": "прикметник"
+              },
+              "meaningByLocale": {
+                "ru": "опаздываю",
+                "uk": "запізнююся"
+              },
+              "functionByLocale": {
+                "ru": "После I am сообщает об опоздании.",
+                "uk": "Після I am повідомляє про запізнення."
+              },
+              "matchExplanationByLocale": {
+                "ru": "late соответствует «опаздываю».",
+                "uk": "late відповідає «запізнююся»."
+              },
+              "sourceRefs": [
+                "judgements/2026-10-13_l01_s02_source_evidence.md#late-adjective"
+              ],
+              "phrase": {
+                "text": "late",
+                "meaningByLocale": {
+                  "ru": "опоздал / опоздала",
+                  "uk": "запізнився / запізнилася"
+                },
+                "explanationByLocale": {
+                  "ru": "late — прилагательное; здесь означает «опоздал / опоздала».",
+                  "uk": "late — прикметник; тут означає «запізнився / запізнилася»."
+                },
+                "units": [
+                  {
+                    "text": "late",
+                    "start": 0,
+                    "end": 4,
+                    "lemma": "late",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "опоздал / опоздала",
+                      "uk": "запізнився / запізнилася"
+                    },
+                    "functionByLocale": {
+                      "ru": "Само слово сообщает об опоздании; в полной фразе I am late оно стоит после I am.",
+                      "uk": "Саме слово повідомляє про запізнення; у повній фразі I am late воно стоїть після I am."
+                    },
+                    "sourceRefs": [
+                      "judgements/2026-10-13_l01_s02_source_evidence.md#late-adjective"
+                    ]
+                  }
+                ]
+              }
             }
           },
           {
@@ -377,6 +912,64 @@
             "meaningByLocale": {
               "ru": "извините",
               "uk": "вибачте"
+            },
+            "analysisV1": {
+              "lemma": "sorry",
+              "partOfSpeech": "adjective",
+              "partOfSpeechLabelByLocale": {
+                "ru": "прилагательное",
+                "uk": "прикметник"
+              },
+              "meaningByLocale": {
+                "ru": "извините",
+                "uk": "вибачте"
+              },
+              "functionByLocale": {
+                "ru": "После I am выражает сожаление или извинение.",
+                "uk": "Після I am виражає жаль або вибачення."
+              },
+              "matchExplanationByLocale": {
+                "ru": "sorry соответствует «извините».",
+                "uk": "sorry відповідає «вибачте»."
+              },
+              "sourceRefs": [
+                "judgements/2026-10-13_l01_s02_source_evidence.md#sorry-adjective"
+              ],
+              "phrase": {
+                "text": "sorry",
+                "meaningByLocale": {
+                  "ru": "мне жаль; извините",
+                  "uk": "мені шкода; вибачте"
+                },
+                "explanationByLocale": {
+                  "ru": "sorry — прилагательное; здесь означает «мне жаль; извините».",
+                  "uk": "sorry — прикметник; тут означає «мені шкода; вибачте»."
+                },
+                "units": [
+                  {
+                    "text": "sorry",
+                    "start": 0,
+                    "end": 5,
+                    "lemma": "sorry",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "мне жаль; извините",
+                      "uk": "мені шкода; вибачте"
+                    },
+                    "functionByLocale": {
+                      "ru": "Самостоятельно sorry служит кратким извинением; в полной фразе I am sorry оно стоит после I am.",
+                      "uk": "Самостійно sorry слугує коротким вибаченням; у повній фразі I am sorry воно стоїть після I am."
+                    },
+                    "sourceRefs": [
+                      "judgements/2026-10-13_l01_s02_source_evidence.md#sorry-adjective"
+                    ]
+                  }
+                ]
+              }
             }
           }
         ],
@@ -412,7 +1005,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — вас кличуть на каву, а у вас дедлайн",
+      "prompt": "Вставте слово — вас кличуть на каву, але ви завершуєте термінову роботу; скажіть, що зайняті",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-02:i08:r1",
@@ -429,12 +1022,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — вас кличуть на каву, а у вас дедлайн",
+      "accessibilityLabel": "Вставте слово — вас кличуть на каву, але ви завершуєте термінову роботу; скажіть, що зайняті",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вас зовут пить кофе, а у вас дедлайн",
-          "uk": "Вставте слово — вас кличуть на каву, а у вас дедлайн"
+          "ru": "Вставьте слово — вас зовут пить кофе, но вы заканчиваете срочную работу; скажите, что заняты",
+          "uk": "Вставте слово — вас кличуть на каву, але ви завершуєте термінову роботу; скажіть, що зайняті"
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
@@ -451,33 +1044,128 @@
             "text": "late"
           }
         ],
-        "testedDimension": "Вставте слово — вас кличуть на каву, а у",
+        "testedDimension": "Вставте слово — вас кличуть на каву, але ви завершуєте термінову роботу; скажіть, що зайняті",
         "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-02:i08:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — вас кличуть на каву, а у",
-            "feedbackByLocale": {
-              "ru": "Верно: busy — «занят»: поэтому вы отказываетесь от кофе из-за дела.",
-              "uk": "Правильно: busy — «зайнятий»: тому ви відмовляєтеся від кави через справу."
-            }
-          },
           {
             "responseId": "en:lesson-01:session-02:i08:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — вас кличуть на каву, а у",
+            "testedDimension": "Вставте слово — вас кличуть на каву, але ви завершуєте термінову роботу; скажіть, що зайняті",
             "feedbackByLocale": {
-              "ru": "«Я устал» — правда, но вы отказываетесь не из-за усталости, а из-за дела.",
-              "uk": "«Я втомився» — правда, але ви відмовляєтесь не через утому, а через справу."
+              "ru": "I am tired означает «я устал / устала». Это возможная фраза, но задание сообщает только о срочной работе, поэтому нужен busy.",
+              "uk": "I am tired означає «я втомився / втомилася». Це можлива фраза, але завдання повідомляє лише про термінову роботу, тому потрібне busy."
+            },
+            "analysisV1": {
+              "text": "tired",
+              "meaningByLocale": {
+                "ru": "устал / устала",
+                "uk": "втомився / втомилася"
+              },
+              "explanationByLocale": {
+                "ru": "tired — прилагательное; здесь означает «устал / устала».",
+                "uk": "tired — прикметник; тут означає «втомився / втомилася»."
+              },
+              "units": [
+                {
+                  "text": "tired",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "tired",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "устал / устала",
+                    "uk": "втомився / втомилася"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово называет состояние усталости; в полной фразе I am tired оно стоит после I am.",
+                    "uk": "Саме слово називає стан утоми; у повній фразі I am tired воно стоїть після I am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#tired-adjective"
+                  ]
+                }
+              ]
+            },
+            "errorType": "scene_meaning_mismatch",
+            "whyTemptingByLocale": {
+              "ru": "tired может описывать реальное состояние человека, но в задании просят сказать, что вы заняты срочной работой.",
+              "uk": "tired може описувати реальний стан людини, але в завданні просять сказати, що ви зайняті терміновою роботою."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "I am tired означает «я устал / устала». Это возможная фраза, но задание сообщает только о срочной работе, поэтому нужен busy.",
+              "uk": "I am tired означає «я втомився / втомилася». Це можлива фраза, але завдання повідомляє лише про термінову роботу, тому потрібне busy."
+            },
+            "minimalContrastByLocale": {
+              "ru": "tired — «устал / устала»; busy — «занят / занята».",
+              "uk": "tired — «втомився / втомилася»; busy — «зайнятий / зайнята»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "tired уместно при сообщении об усталости; здесь нужен смысл «занят / занята».",
+              "uk": "tired доречне, коли повідомляють про втому; тут потрібен зміст «зайнятий / зайнята»."
             }
           },
           {
             "responseId": "en:lesson-01:session-02:i08:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — вас кличуть на каву, а у",
+            "testedDimension": "Вставте слово — вас кличуть на каву, але ви завершуєте термінову роботу; скажіть, що зайняті",
             "feedbackByLocale": {
-              "ru": "«Я опаздываю» — некуда: вы никуда не идёте, вы работаете.",
-              "uk": "«Я запізнююся» — нікуди: ви нікуди не йдете, ви працюєте."
+              "ru": "I am late означает «я опаздываю». Задание сообщает о срочной работе, а не об опоздании, поэтому нужен busy.",
+              "uk": "I am late означає «я запізнююся». Завдання повідомляє про термінову роботу, а не про запізнення, тому потрібне busy."
+            },
+            "analysisV1": {
+              "text": "late",
+              "meaningByLocale": {
+                "ru": "опоздал / опоздала",
+                "uk": "запізнився / запізнилася"
+              },
+              "explanationByLocale": {
+                "ru": "late — прилагательное; здесь означает «опоздал / опоздала».",
+                "uk": "late — прикметник; тут означає «запізнився / запізнилася»."
+              },
+              "units": [
+                {
+                  "text": "late",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "late",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "опоздал / опоздала",
+                    "uk": "запізнився / запізнилася"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово сообщает об опоздании; в полной фразе I am late оно стоит после I am.",
+                    "uk": "Саме слово повідомляє про запізнення; у повній фразі I am late воно стоїть після I am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#late-adjective"
+                  ]
+                }
+              ]
+            },
+            "errorType": "scene_meaning_mismatch",
+            "whyTemptingByLocale": {
+              "ru": "late подходит к ситуации с опозданием, но в задании просят сказать, что вы заняты срочной работой.",
+              "uk": "late підходить до ситуації із запізненням, але в завданні просять сказати, що ви зайняті терміновою роботою."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "I am late означает «я опаздываю». Задание сообщает о срочной работе, а не об опоздании, поэтому нужен busy.",
+              "uk": "I am late означає «я запізнююся». Завдання повідомляє про термінову роботу, а не про запізнення, тому потрібне busy."
+            },
+            "minimalContrastByLocale": {
+              "ru": "late — «опоздал / опоздала»; busy — «занят / занята».",
+              "uk": "late — «запізнився / запізнилася»; busy — «зайнятий / зайнята»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "late уместно при сообщении об опоздании; здесь нужен смысл «занят / занята».",
+              "uk": "late доречне, коли повідомляють про запізнення; тут потрібен зміст «зайнятий / зайнята»."
             }
           }
         ]
@@ -537,20 +1225,130 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-02:i09:r1",
-            "correct": true,
-            "feedbackByLocale": {
-              "ru": "Верно: I am sorry. — «я извиняюсь»; именно эта фраза звучит в записи.",
-              "uk": "Правильно: I am sorry. — «я перепрошую»; саме ця фраза звучить у записі."
-            }
-          },
-          {
             "responseId": "en:lesson-01:session-02:i09:r2",
             "correct": false,
             "testedDimension": "Послухайте і виберіть точну фразу — ви вибачаєтесь перед керівником",
             "feedbackByLocale": {
               "ru": "I am late — «я опаздываю». В аудио после I am слышно sorry: это извинение, а не сообщение об опоздании.",
               "uk": "I am late — «я запізнююся». В аудіо після I am чути sorry: це вибачення, а не повідомлення про запізнення."
+            },
+            "analysisV1": {
+              "text": "I am late.",
+              "meaningByLocale": {
+                "ru": "Я опоздал / опоздала.",
+                "uk": "Я запізнився / запізнилася."
+              },
+              "explanationByLocale": {
+                "ru": "I называет говорящего, am связывает его с описанием, а late сообщает об опоздании.",
+                "uk": "I називає мовця, am поєднує його з описом, а late повідомляє про запізнення."
+              },
+              "units": [
+                {
+                  "text": "I",
+                  "start": 0,
+                  "end": 1,
+                  "lemma": "I",
+                  "partOfSpeech": "personal_pronoun",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "особовий займенник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего и служит подлежащим.",
+                    "uk": "Називає мовця й слугує підметом."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                  ]
+                },
+                {
+                  "text": "am",
+                  "start": 2,
+                  "end": 4,
+                  "lemma": "be",
+                  "partOfSpeech": "linking_verb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be с I",
+                    "uk": "форма be з I"
+                  },
+                  "functionByLocale": {
+                    "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                    "uk": "Поєднує I з описом стану або місця в цій фразі."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                  ]
+                },
+                {
+                  "text": "late",
+                  "start": 5,
+                  "end": 9,
+                  "lemma": "late",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "опоздал / опоздала",
+                    "uk": "запізнився / запізнилася"
+                  },
+                  "functionByLocale": {
+                    "ru": "После I am сообщает об опоздании.",
+                    "uk": "Після I am повідомляє про запізнення."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#late-adjective"
+                  ]
+                },
+                {
+                  "text": ".",
+                  "start": 9,
+                  "end": 10,
+                  "lemma": ".",
+                  "partOfSpeech": "punctuation",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает предложение.",
+                    "uk": "Завершує речення."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                  ]
+                }
+              ]
+            },
+            "errorType": "listening_lexical_confusion",
+            "whyTemptingByLocale": {
+              "ru": "Все варианты начинаются с I am; легко выбрать знакомую фразу, не сверив последнее слово late.",
+              "uk": "Усі варіанти починаються з I am; легко вибрати знайому фразу, не звіривши останнє слово late."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "I am late — «я опаздываю». В аудио после I am слышно sorry: это извинение, а не сообщение об опоздании.",
+              "uk": "I am late — «я запізнююся». В аудіо після I am чути sorry: це вибачення, а не повідомлення про запізнення."
+            },
+            "minimalContrastByLocale": {
+              "ru": "I am late. — «Я опоздал / опоздала.»; I am sorry. — «Мне жаль; извините.».",
+              "uk": "I am late. — «Я запізнився / запізнилася.»; I am sorry. — «Мені шкода; вибачте.»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "I am late. уместно при сообщении об опоздании; здесь нужен смысл «Мне жаль; извините.».",
+              "uk": "I am late. доречне, коли повідомляють про запізнення; тут потрібен зміст «Мені шкода; вибачте.»."
             }
           },
           {
@@ -560,6 +1358,124 @@
             "feedbackByLocale": {
               "ru": "I am tired — «я устал». Здесь после I am звучит sorry: вы просите прощения, а не говорите об усталости.",
               "uk": "I am tired — «я втомився». Тут після I am звучить sorry: ви просите вибачення, а не говорите про втому."
+            },
+            "analysisV1": {
+              "text": "I am tired.",
+              "meaningByLocale": {
+                "ru": "Я устал / устала.",
+                "uk": "Я втомився / втомилася."
+              },
+              "explanationByLocale": {
+                "ru": "I называет говорящего, am связывает его с описанием, а tired называет усталость.",
+                "uk": "I називає мовця, am поєднує його з описом, а tired називає втому."
+              },
+              "units": [
+                {
+                  "text": "I",
+                  "start": 0,
+                  "end": 1,
+                  "lemma": "I",
+                  "partOfSpeech": "personal_pronoun",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "особовий займенник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего и служит подлежащим.",
+                    "uk": "Називає мовця й слугує підметом."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                  ]
+                },
+                {
+                  "text": "am",
+                  "start": 2,
+                  "end": 4,
+                  "lemma": "be",
+                  "partOfSpeech": "linking_verb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be с I",
+                    "uk": "форма be з I"
+                  },
+                  "functionByLocale": {
+                    "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                    "uk": "Поєднує I з описом стану або місця в цій фразі."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                  ]
+                },
+                {
+                  "text": "tired",
+                  "start": 5,
+                  "end": 10,
+                  "lemma": "tired",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "устал / устала",
+                    "uk": "втомився / втомилася"
+                  },
+                  "functionByLocale": {
+                    "ru": "После I am называет состояние усталости.",
+                    "uk": "Після I am називає стан утоми."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#tired-adjective"
+                  ]
+                },
+                {
+                  "text": ".",
+                  "start": 10,
+                  "end": 11,
+                  "lemma": ".",
+                  "partOfSpeech": "punctuation",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает предложение.",
+                    "uk": "Завершує речення."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                  ]
+                }
+              ]
+            },
+            "errorType": "listening_lexical_confusion",
+            "whyTemptingByLocale": {
+              "ru": "Все варианты начинаются с I am; легко выбрать знакомую фразу, не сверив последнее слово tired.",
+              "uk": "Усі варіанти починаються з I am; легко вибрати знайому фразу, не звіривши останнє слово tired."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "I am tired — «я устал». Здесь после I am звучит sorry: вы просите прощения, а не говорите об усталости.",
+              "uk": "I am tired — «я втомився». Тут після I am звучить sorry: ви просите вибачення, а не говорите про втому."
+            },
+            "minimalContrastByLocale": {
+              "ru": "I am tired. — «Я устал / устала.»; I am sorry. — «Мне жаль; извините.».",
+              "uk": "I am tired. — «Я втомився / втомилася.»; I am sorry. — «Мені шкода; вибачте.»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "I am tired. уместно при сообщении об усталости; здесь нужен смысл «Мне жаль; извините.».",
+              "uk": "I am tired. доречне, коли повідомляють про втому; тут потрібен зміст «Мені шкода; вибачте.»."
             }
           }
         ],
@@ -601,13 +1517,176 @@
           {
             "responseId": "en:lesson-01:session-02:i10:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — «я устал»",
+            "testedDimension": "Послухайте і зберіть — «я втомився»",
             "feedbackByLocale": {
               "ru": "«занят», но в записи tired: «устал»",
               "uk": "«зайнятий», але в записі tired: «втомлений»"
+            },
+            "analysisV1": {
+              "text": "busy",
+              "meaningByLocale": {
+                "ru": "занят / занята",
+                "uk": "зайнятий / зайнята"
+              },
+              "explanationByLocale": {
+                "ru": "busy — прилагательное; здесь означает «занят / занята».",
+                "uk": "busy — прикметник; тут означає «зайнятий / зайнята»."
+              },
+              "units": [
+                {
+                  "text": "busy",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "busy",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "занят / занята",
+                    "uk": "зайнятий / зайнята"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово называет занятость; в полной фразе I am busy оно стоит после I am.",
+                    "uk": "Саме слово називає зайнятість; у повній фразі I am busy воно стоїть після I am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#busy-adjective"
+                  ]
+                }
+              ]
+            },
+            "errorType": "scene_meaning_mismatch",
+            "whyTemptingByLocale": {
+              "ru": "Плитка busy дана среди вариантов и уже знакома, но она передаёт «занят / занята», а нужна фраза со смыслом «Я устал / устала.».",
+              "uk": "Плитку busy подано серед варіантів і вона вже знайома, але передає «зайнятий / зайнята», а потрібна фраза зі змістом «Я втомився / втомилася.»."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "«занят», но в записи tired: «устал»",
+              "uk": "«зайнятий», але в записі tired: «втомлений»"
+            },
+            "minimalContrastByLocale": {
+              "ru": "busy — «занят / занята»; I am tired. — «Я устал / устала.».",
+              "uk": "busy — «зайнятий / зайнята»; I am tired. — «Я втомився / втомилася.»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "busy уместно при сообщении о занятости; здесь нужен смысл «Я устал / устала.».",
+              "uk": "busy доречне, коли повідомляють про зайнятість; тут потрібен зміст «Я втомився / втомилася.»."
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно.",
+          "uk": "Правильно."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно.",
+            "uk": "Правильно."
+          },
+          "phrase": {
+            "text": "I am tired.",
+            "meaningByLocale": {
+              "ru": "Я устал / устала.",
+              "uk": "Я втомився / втомилася."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его с описанием, а tired называет усталость.",
+              "uk": "I називає мовця, am поєднує його з описом, а tired називає втому."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be с I",
+                  "uk": "форма be з I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                  "uk": "Поєднує I з описом стану або місця в цій фразі."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                ]
+              },
+              {
+                "text": "tired",
+                "start": 5,
+                "end": 10,
+                "lemma": "tired",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "устал / устала",
+                  "uk": "втомився / втомилася"
+                },
+                "functionByLocale": {
+                  "ru": "После I am называет состояние усталости.",
+                  "uk": "Після I am називає стан утоми."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#tired-adjective"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -641,13 +1720,176 @@
           {
             "responseId": "en:lesson-01:session-02:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — вы смотрите на часы и п",
+            "testedDimension": "Складіть фразу — ви дивитеся на годинник і розумієте, що запізнюєтеся",
             "feedbackByLocale": {
               "ru": "с I используется am, поэтому is здесь лишнее",
               "uk": "з I використовується am, тому is тут зайве"
+            },
+            "analysisV1": {
+              "text": "is",
+              "meaningByLocale": {
+                "ru": "форма be с he/she/it",
+                "uk": "форма be з he/she/it"
+              },
+              "explanationByLocale": {
+                "ru": "is — глагол-связка; здесь означает «форма be с he/she/it».",
+                "uk": "is — дієслово-зв'язка; тут означає «форма be з he/she/it»."
+              },
+              "units": [
+                {
+                  "text": "is",
+                  "start": 0,
+                  "end": 2,
+                  "lemma": "be",
+                  "partOfSpeech": "linking_verb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be с he/she/it",
+                    "uk": "форма be з he/she/it"
+                  },
+                  "functionByLocale": {
+                    "ru": "Это форма be для he, she или it; в полной фразе с I нужна форма am.",
+                    "uk": "Це форма be для he, she або it; у повній фразі з I потрібна форма am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#is-third-person"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_be_form",
+            "whyTemptingByLocale": {
+              "ru": "is — другая форма be, поэтому её можно ошибочно поставить вместо am.",
+              "uk": "is — інша форма be, тому її можна помилково поставити замість am."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "с I используется am, поэтому is здесь лишнее",
+              "uk": "з I використовується am, тому is тут зайве"
+            },
+            "minimalContrastByLocale": {
+              "ru": "is — «форма be с he/she/it»; I am late. — «Я опоздал / опоздала.».",
+              "uk": "is — «форма be з he/she/it»; I am late. — «Я запізнився / запізнилася.»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "is используется с he, she или it; с I в этой фразе нужна форма am.",
+              "uk": "is уживається з he, she або it; з I в цій фразі потрібна форма am."
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно.",
+          "uk": "Правильно."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно.",
+            "uk": "Правильно."
+          },
+          "phrase": {
+            "text": "I am late.",
+            "meaningByLocale": {
+              "ru": "Я опоздал / опоздала.",
+              "uk": "Я запізнився / запізнилася."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его с описанием, а late сообщает об опоздании.",
+              "uk": "I називає мовця, am поєднує його з описом, а late повідомляє про запізнення."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be с I",
+                  "uk": "форма be з I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                  "uk": "Поєднує I з описом стану або місця в цій фразі."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                ]
+              },
+              {
+                "text": "late",
+                "start": 5,
+                "end": 9,
+                "lemma": "late",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "опоздал / опоздала",
+                  "uk": "запізнився / запізнилася"
+                },
+                "functionByLocale": {
+                  "ru": "После I am сообщает об опоздании.",
+                  "uk": "Після I am повідомляє про запізнення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#late-adjective"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -680,7 +1922,110 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        ],
+        "explanationV1": {
+          "phrase": {
+            "text": "I am here.",
+            "meaningByLocale": {
+              "ru": "Я здесь.",
+              "uk": "Я тут."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его с местом, а here означает «здесь».",
+              "uk": "I називає мовця, am поєднує його з місцем, а here означає «тут»."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be с I",
+                  "uk": "форма be з I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                  "uk": "Поєднує I з описом стану або місця в цій фразі."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                ]
+              },
+              {
+                "text": "here",
+                "start": 5,
+                "end": 9,
+                "lemma": "here",
+                "partOfSpeech": "adverb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "наречие",
+                  "uk": "прислівник"
+                },
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "functionByLocale": {
+                  "ru": "После I am сообщает о месте говорящего.",
+                  "uk": "Після I am повідомляє про місце мовця."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#here-adverb-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -717,13 +2062,176 @@
           {
             "responseId": "en:lesson-01:session-02:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — «я занят»",
+            "testedDimension": "Послухайте і зберіть — «я зайнятий»",
             "feedbackByLocale": {
               "ru": "«опаздываю», но в записи busy: «занят»",
               "uk": "«запізнююсь», але в записі busy: «зайнятий»"
+            },
+            "analysisV1": {
+              "text": "late",
+              "meaningByLocale": {
+                "ru": "опоздал / опоздала",
+                "uk": "запізнився / запізнилася"
+              },
+              "explanationByLocale": {
+                "ru": "late — прилагательное; здесь означает «опоздал / опоздала».",
+                "uk": "late — прикметник; тут означає «запізнився / запізнилася»."
+              },
+              "units": [
+                {
+                  "text": "late",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "late",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "опоздал / опоздала",
+                    "uk": "запізнився / запізнилася"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово сообщает об опоздании; в полной фразе I am late оно стоит после I am.",
+                    "uk": "Саме слово повідомляє про запізнення; у повній фразі I am late воно стоїть після I am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#late-adjective"
+                  ]
+                }
+              ]
+            },
+            "errorType": "scene_meaning_mismatch",
+            "whyTemptingByLocale": {
+              "ru": "Плитка late дана среди вариантов и уже знакома, но она передаёт «опоздал / опоздала», а нужна фраза со смыслом «Я занят / занята.».",
+              "uk": "Плитку late подано серед варіантів і вона вже знайома, але передає «запізнився / запізнилася», а потрібна фраза зі змістом «Я зайнятий / зайнята.»."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "«опаздываю», но в записи busy: «занят»",
+              "uk": "«запізнююсь», але в записі busy: «зайнятий»"
+            },
+            "minimalContrastByLocale": {
+              "ru": "late — «опоздал / опоздала»; I am busy. — «Я занят / занята.».",
+              "uk": "late — «запізнився / запізнилася»; I am busy. — «Я зайнятий / зайнята.»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "late уместно при сообщении об опоздании; здесь нужен смысл «Я занят / занята.».",
+              "uk": "late доречне, коли повідомляють про запізнення; тут потрібен зміст «Я зайнятий / зайнята.»."
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно.",
+          "uk": "Правильно."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно.",
+            "uk": "Правильно."
+          },
+          "phrase": {
+            "text": "I am busy.",
+            "meaningByLocale": {
+              "ru": "Я занят / занята.",
+              "uk": "Я зайнятий / зайнята."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его с описанием, а busy сообщает о занятости.",
+              "uk": "I називає мовця, am поєднує його з описом, а busy повідомляє про зайнятість."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be с I",
+                  "uk": "форма be з I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                  "uk": "Поєднує I з описом стану або місця в цій фразі."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                ]
+              },
+              {
+                "text": "busy",
+                "start": 5,
+                "end": 9,
+                "lemma": "busy",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "занят / занята",
+                  "uk": "зайнятий / зайнята"
+                },
+                "functionByLocale": {
+                  "ru": "После I am сообщает о занятости говорящего.",
+                  "uk": "Після I am повідомляє про зайнятість мовця."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#busy-adjective"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -756,7 +2264,110 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        ],
+        "explanationV1": {
+          "phrase": {
+            "text": "I am late.",
+            "meaningByLocale": {
+              "ru": "Я опоздал / опоздала.",
+              "uk": "Я запізнився / запізнилася."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его с описанием, а late сообщает об опоздании.",
+              "uk": "I називає мовця, am поєднує його з описом, а late повідомляє про запізнення."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be с I",
+                  "uk": "форма be з I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                  "uk": "Поєднує I з описом стану або місця в цій фразі."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                ]
+              },
+              {
+                "text": "late",
+                "start": 5,
+                "end": 9,
+                "lemma": "late",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "опоздал / опоздала",
+                  "uk": "запізнився / запізнилася"
+                },
+                "functionByLocale": {
+                  "ru": "После I am сообщает об опоздании.",
+                  "uk": "Після I am повідомляє про запізнення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#late-adjective"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -808,21 +2419,64 @@
         "testedDimension": "Вставте слово — ви вибачаєтесь перед керівником за запізнення",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-02:i14:s02:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — ви вибачаєтесь перед керівником за запізнення",
-            "feedbackByLocale": {
-              "ru": "Верно: sorry — здесь вы извиняетесь за опоздание.",
-              "uk": "Правильно: sorry — тут ви перепрошуєте за запізнення."
-            }
-          },
-          {
             "responseId": "en:lesson-01:session-02:i14:s02:r2",
             "correct": false,
             "testedDimension": "Вставте слово — ви вибачаєтесь перед керівником за запізнення",
             "feedbackByLocale": {
               "ru": "I am late означает «я опаздываю». Здесь вы уже объясняете ситуацию и просите прощения.",
               "uk": "I am late означає «я запізнююся». Тут ви вже пояснюєте ситуацію і просите вибачення."
+            },
+            "analysisV1": {
+              "text": "late",
+              "meaningByLocale": {
+                "ru": "опоздал / опоздала",
+                "uk": "запізнився / запізнилася"
+              },
+              "explanationByLocale": {
+                "ru": "late — прилагательное; здесь означает «опоздал / опоздала».",
+                "uk": "late — прикметник; тут означає «запізнився / запізнилася»."
+              },
+              "units": [
+                {
+                  "text": "late",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "late",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "опоздал / опоздала",
+                    "uk": "запізнився / запізнилася"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово сообщает об опоздании; в полной фразе I am late оно стоит после I am.",
+                    "uk": "Саме слово повідомляє про запізнення; у повній фразі I am late воно стоїть після I am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#late-adjective"
+                  ]
+                }
+              ]
+            },
+            "errorType": "scene_meaning_mismatch",
+            "whyTemptingByLocale": {
+              "ru": "late передаёт понятный смысл «опоздал / опоздала», но ситуация требует «мне жаль; извините».",
+              "uk": "late передає зрозумілий зміст «запізнився / запізнилася», але ситуація вимагає «мені шкода; вибачте»."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "I am late означает «я опаздываю». Здесь вы уже объясняете ситуацию и просите прощения.",
+              "uk": "I am late означає «я запізнююся». Тут ви вже пояснюєте ситуацію і просите вибачення."
+            },
+            "minimalContrastByLocale": {
+              "ru": "late — «опоздал / опоздала»; sorry — «мне жаль; извините».",
+              "uk": "late — «запізнився / запізнилася»; sorry — «мені шкода; вибачте»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "late уместно при сообщении об опоздании; здесь нужен смысл «мне жаль; извините».",
+              "uk": "late доречне, коли повідомляють про запізнення; тут потрібен зміст «мені шкода; вибачте»."
             }
           },
           {
@@ -832,6 +2486,58 @@
             "feedbackByLocale": {
               "ru": "I am busy означает «я занят». Это не извинение за опоздание.",
               "uk": "I am busy означає «я зайнятий». Це не вибачення за запізнення."
+            },
+            "analysisV1": {
+              "text": "busy",
+              "meaningByLocale": {
+                "ru": "занят / занята",
+                "uk": "зайнятий / зайнята"
+              },
+              "explanationByLocale": {
+                "ru": "busy — прилагательное; здесь означает «занят / занята».",
+                "uk": "busy — прикметник; тут означає «зайнятий / зайнята»."
+              },
+              "units": [
+                {
+                  "text": "busy",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "busy",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "занят / занята",
+                    "uk": "зайнятий / зайнята"
+                  },
+                  "functionByLocale": {
+                    "ru": "Само слово называет занятость; в полной фразе I am busy оно стоит после I am.",
+                    "uk": "Саме слово називає зайнятість; у повній фразі I am busy воно стоїть після I am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#busy-adjective"
+                  ]
+                }
+              ]
+            },
+            "errorType": "scene_meaning_mismatch",
+            "whyTemptingByLocale": {
+              "ru": "busy передаёт понятный смысл «занят / занята», но ситуация требует «мне жаль; извините».",
+              "uk": "busy передає зрозумілий зміст «зайнятий / зайнята», але ситуація вимагає «мені шкода; вибачте»."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "I am busy означает «я занят». Это не извинение за опоздание.",
+              "uk": "I am busy означає «я зайнятий». Це не вибачення за запізнення."
+            },
+            "minimalContrastByLocale": {
+              "ru": "busy — «занят / занята»; sorry — «мне жаль; извините».",
+              "uk": "busy — «зайнятий / зайнята»; sorry — «мені шкода; вибачте»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "busy уместно при сообщении о занятости; здесь нужен смысл «мне жаль; извините».",
+              "uk": "busy доречне, коли повідомляють про зайнятість; тут потрібен зміст «мені шкода; вибачте»."
             }
           }
         ]
@@ -868,13 +2574,176 @@
           {
             "responseId": "en:lesson-01:session-02:i15:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — вы вошли последним и из",
+            "testedDimension": "Складіть фразу — ви зайшли останнім і перепрошуєте",
             "feedbackByLocale": {
               "ru": "с I используется am, поэтому is здесь лишнее",
               "uk": "з I використовується am, тому is тут зайве"
+            },
+            "analysisV1": {
+              "text": "is",
+              "meaningByLocale": {
+                "ru": "форма be с he/she/it",
+                "uk": "форма be з he/she/it"
+              },
+              "explanationByLocale": {
+                "ru": "is — глагол-связка; здесь означает «форма be с he/she/it».",
+                "uk": "is — дієслово-зв'язка; тут означає «форма be з he/she/it»."
+              },
+              "units": [
+                {
+                  "text": "is",
+                  "start": 0,
+                  "end": 2,
+                  "lemma": "be",
+                  "partOfSpeech": "linking_verb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be с he/she/it",
+                    "uk": "форма be з he/she/it"
+                  },
+                  "functionByLocale": {
+                    "ru": "Это форма be для he, she или it; в полной фразе с I нужна форма am.",
+                    "uk": "Це форма be для he, she або it; у повній фразі з I потрібна форма am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#is-third-person"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_be_form",
+            "whyTemptingByLocale": {
+              "ru": "is — другая форма be, поэтому её можно ошибочно поставить вместо am.",
+              "uk": "is — інша форма be, тому її можна помилково поставити замість am."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "с I используется am, поэтому is здесь лишнее",
+              "uk": "з I використовується am, тому is тут зайве"
+            },
+            "minimalContrastByLocale": {
+              "ru": "is — «форма be с he/she/it»; I am sorry. — «Мне жаль; извините.».",
+              "uk": "is — «форма be з he/she/it»; I am sorry. — «Мені шкода; вибачте.»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "is используется с he, she или it; с I в этой фразе нужна форма am.",
+              "uk": "is уживається з he, she або it; з I в цій фразі потрібна форма am."
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно.",
+          "uk": "Правильно."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно.",
+            "uk": "Правильно."
+          },
+          "phrase": {
+            "text": "I am sorry.",
+            "meaningByLocale": {
+              "ru": "Мне жаль; извините.",
+              "uk": "Мені шкода; вибачте."
+            },
+            "explanationByLocale": {
+              "ru": "I называет того, кто извиняется, am связывает его с sorry, а sorry выражает сожаление.",
+              "uk": "I називає того, хто перепрошує, am поєднує його із sorry, а sorry виражає жаль."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be с I",
+                  "uk": "форма be з I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                  "uk": "Поєднує I з описом стану або місця в цій фразі."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                ]
+              },
+              {
+                "text": "sorry",
+                "start": 5,
+                "end": 10,
+                "lemma": "sorry",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "мне жаль; извините",
+                  "uk": "мені шкода; вибачте"
+                },
+                "functionByLocale": {
+                  "ru": "После I am выражает сожаление или извинение.",
+                  "uk": "Після I am виражає жаль або вибачення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#sorry-adjective"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -884,7 +2753,7 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З'єднайте пари — слова, які вже ваші",
+      "prompt": "З'єднайте англійські слова з їхніми значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
@@ -898,6 +2767,64 @@
             "meaningByLocale": {
               "ru": "здесь",
               "uk": "тут"
+            },
+            "analysisV1": {
+              "lemma": "here",
+              "partOfSpeech": "adverb",
+              "partOfSpeechLabelByLocale": {
+                "ru": "наречие",
+                "uk": "прислівник"
+              },
+              "meaningByLocale": {
+                "ru": "здесь",
+                "uk": "тут"
+              },
+              "functionByLocale": {
+                "ru": "После I am сообщает о месте говорящего.",
+                "uk": "Після I am повідомляє про місце мовця."
+              },
+              "matchExplanationByLocale": {
+                "ru": "here соответствует «здесь».",
+                "uk": "here відповідає «тут»."
+              },
+              "sourceRefs": [
+                "judgements/2026-10-13_l01_s01_source_evidence.md#here-adverb-ru-uk"
+              ],
+              "phrase": {
+                "text": "here",
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "explanationByLocale": {
+                  "ru": "here — наречие; здесь означает «здесь».",
+                  "uk": "here — прислівник; тут означає «тут»."
+                },
+                "units": [
+                  {
+                    "text": "here",
+                    "start": 0,
+                    "end": 4,
+                    "lemma": "here",
+                    "partOfSpeech": "adverb",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "наречие",
+                      "uk": "прислівник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "здесь",
+                      "uk": "тут"
+                    },
+                    "functionByLocale": {
+                      "ru": "Само слово сообщает о месте; в полной фразе I am here оно стоит после I am.",
+                      "uk": "Саме слово повідомляє про місце; у повній фразі I am here воно стоїть після I am."
+                    },
+                    "sourceRefs": [
+                      "judgements/2026-10-13_l01_s01_source_evidence.md#here-adverb-ru-uk"
+                    ]
+                  }
+                ]
+              }
             }
           },
           {
@@ -906,6 +2833,64 @@
             "meaningByLocale": {
               "ru": "готов",
               "uk": "готовий"
+            },
+            "analysisV1": {
+              "lemma": "ready",
+              "partOfSpeech": "adjective",
+              "partOfSpeechLabelByLocale": {
+                "ru": "прилагательное",
+                "uk": "прикметник"
+              },
+              "meaningByLocale": {
+                "ru": "готов",
+                "uk": "готовий"
+              },
+              "functionByLocale": {
+                "ru": "После I am сообщает о готовности.",
+                "uk": "Після I am повідомляє про готовність."
+              },
+              "matchExplanationByLocale": {
+                "ru": "ready соответствует «готов».",
+                "uk": "ready відповідає «готовий»."
+              },
+              "sourceRefs": [
+                "judgements/2026-10-13_l01_s01_source_evidence.md#ready-adjective-ru-uk"
+              ],
+              "phrase": {
+                "text": "ready",
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "explanationByLocale": {
+                  "ru": "ready — прилагательное; здесь означает «готов / готова».",
+                  "uk": "ready — прикметник; тут означає «готовий / готова»."
+                },
+                "units": [
+                  {
+                    "text": "ready",
+                    "start": 0,
+                    "end": 5,
+                    "lemma": "ready",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "готов / готова",
+                      "uk": "готовий / готова"
+                    },
+                    "functionByLocale": {
+                      "ru": "Само слово называет готовность; в полной фразе I am ready оно стоит после I am.",
+                      "uk": "Саме слово називає готовність; у повній фразі I am ready воно стоїть після I am."
+                    },
+                    "sourceRefs": [
+                      "judgements/2026-10-13_l01_s01_source_evidence.md#ready-adjective-ru-uk"
+                    ]
+                  }
+                ]
+              }
             }
           },
           {
@@ -914,6 +2899,64 @@
             "meaningByLocale": {
               "ru": "хорошо",
               "uk": "добре"
+            },
+            "analysisV1": {
+              "lemma": "fine",
+              "partOfSpeech": "adjective",
+              "partOfSpeechLabelByLocale": {
+                "ru": "прилагательное",
+                "uk": "прикметник"
+              },
+              "meaningByLocale": {
+                "ru": "хорошо",
+                "uk": "добре"
+              },
+              "functionByLocale": {
+                "ru": "После I am сообщает, что у говорящего всё хорошо.",
+                "uk": "Після I am повідомляє, що в мовця все добре."
+              },
+              "matchExplanationByLocale": {
+                "ru": "fine соответствует «хорошо».",
+                "uk": "fine відповідає «добре»."
+              },
+              "sourceRefs": [
+                "judgements/2026-10-13_l01_s01_source_evidence.md#fine-adjective-ru-uk"
+              ],
+              "phrase": {
+                "text": "fine",
+                "meaningByLocale": {
+                  "ru": "всё хорошо",
+                  "uk": "усе добре"
+                },
+                "explanationByLocale": {
+                  "ru": "fine — прилагательное; здесь означает «всё хорошо».",
+                  "uk": "fine — прикметник; тут означає «усе добре»."
+                },
+                "units": [
+                  {
+                    "text": "fine",
+                    "start": 0,
+                    "end": 4,
+                    "lemma": "fine",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "всё хорошо",
+                      "uk": "усе добре"
+                    },
+                    "functionByLocale": {
+                      "ru": "Само слово сообщает, что всё хорошо; в полной фразе I am fine оно стоит после I am.",
+                      "uk": "Саме слово повідомляє, що все гаразд; у повній фразі I am fine воно стоїть після I am."
+                    },
+                    "sourceRefs": [
+                      "judgements/2026-10-13_l01_s01_source_evidence.md#fine-adjective-ru-uk"
+                    ]
+                  }
+                ]
+              }
             }
           },
           {
@@ -922,6 +2965,64 @@
             "meaningByLocale": {
               "ru": "рад",
               "uk": "радий"
+            },
+            "analysisV1": {
+              "lemma": "happy",
+              "partOfSpeech": "adjective",
+              "partOfSpeechLabelByLocale": {
+                "ru": "прилагательное",
+                "uk": "прикметник"
+              },
+              "meaningByLocale": {
+                "ru": "рад",
+                "uk": "радий"
+              },
+              "functionByLocale": {
+                "ru": "После I am сообщает о радости.",
+                "uk": "Після I am повідомляє про радість."
+              },
+              "matchExplanationByLocale": {
+                "ru": "happy соответствует «рад».",
+                "uk": "happy відповідає «радий»."
+              },
+              "sourceRefs": [
+                "judgements/2026-10-13_l01_s01_source_evidence.md#happy-adjective-ru-uk"
+              ],
+              "phrase": {
+                "text": "happy",
+                "meaningByLocale": {
+                  "ru": "рад / рада",
+                  "uk": "радий / рада"
+                },
+                "explanationByLocale": {
+                  "ru": "happy — прилагательное; здесь означает «рад / рада».",
+                  "uk": "happy — прикметник; тут означає «радий / рада»."
+                },
+                "units": [
+                  {
+                    "text": "happy",
+                    "start": 0,
+                    "end": 5,
+                    "lemma": "happy",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "рад / рада",
+                      "uk": "радий / рада"
+                    },
+                    "functionByLocale": {
+                      "ru": "Само слово называет радость; в полной фразе I am happy оно стоит после I am.",
+                      "uk": "Саме слово називає радість; у повній фразі I am happy воно стоїть після I am."
+                    },
+                    "sourceRefs": [
+                      "judgements/2026-10-13_l01_s01_source_evidence.md#happy-adjective-ru-uk"
+                    ]
+                  }
+                ]
+              }
             }
           }
         ],
@@ -980,7 +3081,110 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        ],
+        "explanationV1": {
+          "phrase": {
+            "text": "I am tired.",
+            "meaningByLocale": {
+              "ru": "Я устал / устала.",
+              "uk": "Я втомився / втомилася."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его с описанием, а tired называет усталость.",
+              "uk": "I називає мовця, am поєднує його з описом, а tired називає втому."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be с I",
+                  "uk": "форма be з I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                  "uk": "Поєднує I з описом стану або місця в цій фразі."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                ]
+              },
+              {
+                "text": "tired",
+                "start": 5,
+                "end": 10,
+                "lemma": "tired",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "устал / устала",
+                  "uk": "втомився / втомилася"
+                },
+                "functionByLocale": {
+                  "ru": "После I am называет состояние усталости.",
+                  "uk": "Після I am називає стан утоми."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#tired-adjective"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1014,13 +3218,176 @@
           {
             "responseId": "en:lesson-01:session-02:i17:s02:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Мира зовёт на кофе, но ",
+            "testedDimension": "Складіть фразу — Міра кличе на каву, але ви завершуєте термінове завдання",
             "feedbackByLocale": {
               "ru": "с I используется am, поэтому is здесь лишнее",
               "uk": "з I використовується am, тому is тут зайве"
+            },
+            "analysisV1": {
+              "text": "is",
+              "meaningByLocale": {
+                "ru": "форма be с he/she/it",
+                "uk": "форма be з he/she/it"
+              },
+              "explanationByLocale": {
+                "ru": "is — глагол-связка; здесь означает «форма be с he/she/it».",
+                "uk": "is — дієслово-зв'язка; тут означає «форма be з he/she/it»."
+              },
+              "units": [
+                {
+                  "text": "is",
+                  "start": 0,
+                  "end": 2,
+                  "lemma": "be",
+                  "partOfSpeech": "linking_verb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be с he/she/it",
+                    "uk": "форма be з he/she/it"
+                  },
+                  "functionByLocale": {
+                    "ru": "Это форма be для he, she или it; в полной фразе с I нужна форма am.",
+                    "uk": "Це форма be для he, she або it; у повній фразі з I потрібна форма am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#is-third-person"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_be_form",
+            "whyTemptingByLocale": {
+              "ru": "is — другая форма be, поэтому её можно ошибочно поставить вместо am.",
+              "uk": "is — інша форма be, тому її можна помилково поставити замість am."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "с I используется am, поэтому is здесь лишнее",
+              "uk": "з I використовується am, тому is тут зайве"
+            },
+            "minimalContrastByLocale": {
+              "ru": "is — «форма be с he/she/it»; I am busy. — «Я занят / занята.».",
+              "uk": "is — «форма be з he/she/it»; I am busy. — «Я зайнятий / зайнята.»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "is используется с he, she или it; с I в этой фразе нужна форма am.",
+              "uk": "is уживається з he, she або it; з I в цій фразі потрібна форма am."
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно.",
+          "uk": "Правильно."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно.",
+            "uk": "Правильно."
+          },
+          "phrase": {
+            "text": "I am busy.",
+            "meaningByLocale": {
+              "ru": "Я занят / занята.",
+              "uk": "Я зайнятий / зайнята."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его с описанием, а busy сообщает о занятости.",
+              "uk": "I називає мовця, am поєднує його з описом, а busy повідомляє про зайнятість."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be с I",
+                  "uk": "форма be з I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                  "uk": "Поєднує I з описом стану або місця в цій фразі."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                ]
+              },
+              {
+                "text": "busy",
+                "start": 5,
+                "end": 9,
+                "lemma": "busy",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "занят / занята",
+                  "uk": "зайнятий / зайнята"
+                },
+                "functionByLocale": {
+                  "ru": "После I am сообщает о занятости говорящего.",
+                  "uk": "Після I am повідомляє про зайнятість мовця."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#busy-adjective"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1077,20 +3444,130 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-02:i17:s03:r1",
-            "correct": true,
-            "feedbackByLocale": {
-              "ru": "Верно: I am fine. — «у меня всё хорошо»; эта фраза звучит в записи.",
-              "uk": "Правильно: I am fine. — «у мене все добре»; ця фраза звучить у записі."
-            }
-          },
-          {
             "responseId": "en:lesson-01:session-02:i17:s03:r2",
             "correct": false,
             "testedDimension": "Послухайте і виберіть точну фразу — Міра питає, як ви після перерви",
             "feedbackByLocale": {
               "ru": "I am tired — «я устал». В аудио после I am слышно fine: это ответ «у меня всё хорошо».",
               "uk": "I am tired — «я втомився». В аудіо після I am чути fine: це відповідь «у мене все добре»."
+            },
+            "analysisV1": {
+              "text": "I am tired.",
+              "meaningByLocale": {
+                "ru": "Я устал / устала.",
+                "uk": "Я втомився / втомилася."
+              },
+              "explanationByLocale": {
+                "ru": "I называет говорящего, am связывает его с описанием, а tired называет усталость.",
+                "uk": "I називає мовця, am поєднує його з описом, а tired називає втому."
+              },
+              "units": [
+                {
+                  "text": "I",
+                  "start": 0,
+                  "end": 1,
+                  "lemma": "I",
+                  "partOfSpeech": "personal_pronoun",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "особовий займенник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего и служит подлежащим.",
+                    "uk": "Називає мовця й слугує підметом."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                  ]
+                },
+                {
+                  "text": "am",
+                  "start": 2,
+                  "end": 4,
+                  "lemma": "be",
+                  "partOfSpeech": "linking_verb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be с I",
+                    "uk": "форма be з I"
+                  },
+                  "functionByLocale": {
+                    "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                    "uk": "Поєднує I з описом стану або місця в цій фразі."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                  ]
+                },
+                {
+                  "text": "tired",
+                  "start": 5,
+                  "end": 10,
+                  "lemma": "tired",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "устал / устала",
+                    "uk": "втомився / втомилася"
+                  },
+                  "functionByLocale": {
+                    "ru": "После I am называет состояние усталости.",
+                    "uk": "Після I am називає стан утоми."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#tired-adjective"
+                  ]
+                },
+                {
+                  "text": ".",
+                  "start": 10,
+                  "end": 11,
+                  "lemma": ".",
+                  "partOfSpeech": "punctuation",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает предложение.",
+                    "uk": "Завершує речення."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                  ]
+                }
+              ]
+            },
+            "errorType": "listening_lexical_confusion",
+            "whyTemptingByLocale": {
+              "ru": "Все варианты начинаются с I am; легко выбрать знакомую фразу, не сверив последнее слово tired.",
+              "uk": "Усі варіанти починаються з I am; легко вибрати знайому фразу, не звіривши останнє слово tired."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "I am tired — «я устал». В аудио после I am слышно fine: это ответ «у меня всё хорошо».",
+              "uk": "I am tired — «я втомився». В аудіо після I am чути fine: це відповідь «у мене все добре»."
+            },
+            "minimalContrastByLocale": {
+              "ru": "I am tired. — «Я устал / устала.»; I am fine. — «У меня всё хорошо.».",
+              "uk": "I am tired. — «Я втомився / втомилася.»; I am fine. — «У мене все добре.»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "I am tired. уместно при сообщении об усталости; здесь нужен смысл «У меня всё хорошо.».",
+              "uk": "I am tired. доречне, коли повідомляють про втому; тут потрібен зміст «У мене все добре.»."
             }
           },
           {
@@ -1100,6 +3577,124 @@
             "feedbackByLocale": {
               "ru": "I am busy — «я занят». В аудио звучит fine, не busy: речь о самочувствии после перерыва.",
               "uk": "I am busy — «я зайнятий». В аудіо звучить fine, не busy: йдеться про самопочуття після перерви."
+            },
+            "analysisV1": {
+              "text": "I am busy.",
+              "meaningByLocale": {
+                "ru": "Я занят / занята.",
+                "uk": "Я зайнятий / зайнята."
+              },
+              "explanationByLocale": {
+                "ru": "I называет говорящего, am связывает его с описанием, а busy сообщает о занятости.",
+                "uk": "I називає мовця, am поєднує його з описом, а busy повідомляє про зайнятість."
+              },
+              "units": [
+                {
+                  "text": "I",
+                  "start": 0,
+                  "end": 1,
+                  "lemma": "I",
+                  "partOfSpeech": "personal_pronoun",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "особовий займенник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего и служит подлежащим.",
+                    "uk": "Називає мовця й слугує підметом."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                  ]
+                },
+                {
+                  "text": "am",
+                  "start": 2,
+                  "end": 4,
+                  "lemma": "be",
+                  "partOfSpeech": "linking_verb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be с I",
+                    "uk": "форма be з I"
+                  },
+                  "functionByLocale": {
+                    "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                    "uk": "Поєднує I з описом стану або місця в цій фразі."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                  ]
+                },
+                {
+                  "text": "busy",
+                  "start": 5,
+                  "end": 9,
+                  "lemma": "busy",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "занят / занята",
+                    "uk": "зайнятий / зайнята"
+                  },
+                  "functionByLocale": {
+                    "ru": "После I am сообщает о занятости говорящего.",
+                    "uk": "Після I am повідомляє про зайнятість мовця."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#busy-adjective"
+                  ]
+                },
+                {
+                  "text": ".",
+                  "start": 9,
+                  "end": 10,
+                  "lemma": ".",
+                  "partOfSpeech": "punctuation",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает предложение.",
+                    "uk": "Завершує речення."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                  ]
+                }
+              ]
+            },
+            "errorType": "listening_lexical_confusion",
+            "whyTemptingByLocale": {
+              "ru": "Все варианты начинаются с I am; легко выбрать знакомую фразу, не сверив последнее слово busy.",
+              "uk": "Усі варіанти починаються з I am; легко вибрати знайому фразу, не звіривши останнє слово busy."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "I am busy — «я занят». В аудио звучит fine, не busy: речь о самочувствии после перерыва.",
+              "uk": "I am busy — «я зайнятий». В аудіо звучить fine, не busy: йдеться про самопочуття після перерви."
+            },
+            "minimalContrastByLocale": {
+              "ru": "I am busy. — «Я занят / занята.»; I am fine. — «У меня всё хорошо.».",
+              "uk": "I am busy. — «Я зайнятий / зайнята.»; I am fine. — «У мене все добре.»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "I am busy. уместно при сообщении о занятости; здесь нужен смысл «У меня всё хорошо.».",
+              "uk": "I am busy. доречне, коли повідомляють про зайнятість; тут потрібен зміст «У мене все добре.»."
             }
           }
         ],
@@ -1138,13 +3733,176 @@
           {
             "responseId": "en:lesson-01:session-02:i17:s04:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — руководитель подтвердил",
+            "testedDimension": "Складіть фразу — керівник підтвердив, що вашу заявку прийняли; скажіть, що ви раді",
             "feedbackByLocale": {
               "ru": "с I используется am, поэтому is здесь лишнее",
               "uk": "з I використовується am, тому is тут зайве"
+            },
+            "analysisV1": {
+              "text": "is",
+              "meaningByLocale": {
+                "ru": "форма be с he/she/it",
+                "uk": "форма be з he/she/it"
+              },
+              "explanationByLocale": {
+                "ru": "is — глагол-связка; здесь означает «форма be с he/she/it».",
+                "uk": "is — дієслово-зв'язка; тут означає «форма be з he/she/it»."
+              },
+              "units": [
+                {
+                  "text": "is",
+                  "start": 0,
+                  "end": 2,
+                  "lemma": "be",
+                  "partOfSpeech": "linking_verb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be с he/she/it",
+                    "uk": "форма be з he/she/it"
+                  },
+                  "functionByLocale": {
+                    "ru": "Это форма be для he, she или it; в полной фразе с I нужна форма am.",
+                    "uk": "Це форма be для he, she або it; у повній фразі з I потрібна форма am."
+                  },
+                  "sourceRefs": [
+                    "judgements/2026-10-13_l01_s02_source_evidence.md#is-third-person"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_be_form",
+            "whyTemptingByLocale": {
+              "ru": "is — другая форма be, поэтому её можно ошибочно поставить вместо am.",
+              "uk": "is — інша форма be, тому її можна помилково поставити замість am."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "с I используется am, поэтому is здесь лишнее",
+              "uk": "з I використовується am, тому is тут зайве"
+            },
+            "minimalContrastByLocale": {
+              "ru": "is — «форма be с he/she/it»; I am happy. — «Я рад / рада.».",
+              "uk": "is — «форма be з he/she/it»; I am happy. — «Я радий / рада.»."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "is используется с he, she или it; с I в этой фразе нужна форма am.",
+              "uk": "is уживається з he, she або it; з I в цій фразі потрібна форма am."
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно.",
+          "uk": "Правильно."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно.",
+            "uk": "Правильно."
+          },
+          "phrase": {
+            "text": "I am happy.",
+            "meaningByLocale": {
+              "ru": "Я рад / рада.",
+              "uk": "Я радий / рада."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его с описанием, а happy сообщает о радости.",
+              "uk": "I називає мовця, am поєднує його з описом, а happy повідомляє про радість."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#pronoun-i"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be с I",
+                  "uk": "форма be з I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с описанием состояния или места в этой фразе.",
+                  "uk": "Поєднує I з описом стану або місця в цій фразі."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#be-present-i-am"
+                ]
+              },
+              {
+                "text": "happy",
+                "start": 5,
+                "end": 10,
+                "lemma": "happy",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "рад / рада",
+                  "uk": "радий / рада"
+                },
+                "functionByLocale": {
+                  "ru": "После I am сообщает о радости.",
+                  "uk": "Після I am повідомляє про радість."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#happy-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s02_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
       },
       "scriptedAlternate": null
     }
@@ -1155,5 +3913,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1d090b8510047f796ac4a675f39ce44fa20bb3de10a3521b6f39b805a630815f"
+  "learnerFingerprint": "9b15400a16f38dae449c277bd1b6ccdc8cd2773c08a0564f8b9ce22d371e31fa"
 }

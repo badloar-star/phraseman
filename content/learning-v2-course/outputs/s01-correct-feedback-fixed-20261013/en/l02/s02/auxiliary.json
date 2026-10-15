@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-02:intro1:r2": {
+          "ru": "Так бросают на бегу, но это обрубок. Полный вопрос начинается с `are`.",
+          "uk": "Так кидають на бігу, але це обрубок. Повне питання починається з `are`."
+        },
+        "en:lesson-02:session-02:intro1:r3": {
+          "ru": "`you` оторвано от `are`. Эти двое идут парой: сначала `are you`, и только потом само слово.",
+          "uk": "`you` відірване від `are`. Ці двоє йдуть парою: спершу `are you`, і лише потім саме слово."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-02:intro2:r2": {
+          "ru": "Пропало «ты». Без `you` непонятно, о ком речь.",
+          "uk": "Зникло «ти». Без `you` незрозуміло, про кого мова."
+        },
+        "en:lesson-02:session-02:intro2:r3": {
+          "ru": "Это уже утверждение: «тебе удобно». Для вопроса `are` выходит вперёд.",
+          "uk": "Це вже твердження: «тобі зручно». Для питання `are` виходить наперед."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-02:intro3:r2": {
+          "ru": "Про собеседника связка `are`, не `is`.",
+          "uk": "Про співрозмовника зв'язка `are`, не `is`."
+        },
+        "en:lesson-02:session-02:intro3:r3": {
+          "ru": "Слова верные, но вопрос не собран: впереди нужен `are`.",
+          "uk": "Слова правильні, але питання не зібране: попереду потрібен `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3856e3681bc532eae663364fc84ee1ac2dd4690da524b55d247e32ff7ae4b223"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "проверка вопросов о себе `Am I…?` и о своей компании `Are we…?`",
+    "uk": "перевірка запитань про себе `Am I…?` і про свою компанію `Are we…?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чей приход и какое время",
+        "uk": "Чий прихід і який час"
+      },
+      "bodyByLocale": {
+        "ru": "`Am I late?` — «Я опоздал?» А `Are we early?` — «Мы рано?» С `Am I` речь только о вас, с `Are we` — о вас со спутником. `late` значит «опоздал», `early` — «рано». Не выбирайте вопрос только по первому знакомому слову: важно и то, чей приход, и то, какое время вы проверяете.",
+        "uk": "`Am I late?` — «Я запізнився?», а `Are we early?` — «Ми прийшли рано?» З `Am I` йдеться лише про вас, а з `Are we` — про вас із супутником. `late` означає «запізнився», `early` — «рано». Не обирайте запитання лише за першим знайомим словом: важливо і те, про чий прихід ідеться, і те, який час ви перевіряєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы с другом пришли в зал, где ещё расставляют стулья. Спросите организатора, не рано ли вы оба.",
+          "uk": "Ви з другом прийшли до зали, де ще розставляють стільці. Запитайте організатора, чи ви обоє прийшли рано."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-48:intro1:r1",
+              "text": "Are we early?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro1:r2",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro1:r3",
+              "text": "Are we late?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-48:intro1:r1",
+              "text": "Are we early?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro1:r2",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro1:r3",
+              "text": "Are we late?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы с другом пришли в зал, где ещё расставляют стулья. Спросите организатора, не рано ли вы оба.",
+          "uk": "Ви з другом прийшли до зали, де ще розставляють стільці. Запитайте організатора, чи ви обоє прийшли рано."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Две проверки микрофона",
+        "uk": "Дві перевірки мікрофона"
+      },
+      "bodyByLocale": {
+        "ru": "`Am I audible?` — «Меня слышно?» Это формальная проверка слышимости: `audible` значит «слышимый». А `Am I clear?` — «Я говорю разборчиво?» — уточняет, легко ли разобрать слова; `clear` здесь значит «разборчивый». При настройке звука полезно выяснить и то и другое.",
+        "uk": "`Am I audible?` — «Мене чути?» Це формальна перевірка чутності: `audible` означає «чутний». А `Am I clear?` — «Я говорю розбірливо?» — уточнює, чи легко розібрати слова; `clear` тут означає «розбірливий». Під час налаштування звуку корисно перевірити і одне, й інше."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Организатор включил микрофон. Для начала спросите, слышен ли ваш голос в зале.",
+          "uk": "Організатор увімкнув мікрофон. Спочатку запитайте, чи чути ваш голос у залі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-48:intro2:r1",
+              "text": "Am I audible?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro2:r2",
+              "text": "Am I clear?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro2:r3",
+              "text": "Are you audible?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-48:intro2:r1",
+              "text": "Am I audible?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro2:r2",
+              "text": "Am I clear?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro2:r3",
+              "text": "Are you audible?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Организатор включил микрофон. Для начала спросите, слышен ли ваш голос в зале.",
+          "uk": "Організатор увімкнув мікрофон. Спочатку запитайте, чи чути ваш голос у залі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оценить манеру общения",
+        "uk": "Оцінити манеру спілкування"
+      },
+      "bodyByLocale": {
+        "ru": "`polite` — «вежливый», `rude` — «грубый». Вопрос `Am I polite?` просит оценить вашу манеру общения. А `Are we rude?` — «Мы грубые?» — включает вас со всей компанией. После «мы» сделать вид, что речь только об остальных, уже трудно. Вы спрашиваете чужое мнение обо всей вашей компании, включая себя.",
+        "uk": "`polite` — «ввічливий», `rude` — «грубий». Запитання `Am I polite?` просить оцінити вашу манеру спілкування. А `Are we rude?` — «Ми грубі?» — охоплює вас разом з усією компанією. Після «ми» вже важко вдавати, ніби йдеться лише про решту. Ви запитуєте чужу думку про всю вашу компанію, включно із собою."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы с другом обсуждаете, как ваша команда обычно отвечает на замечания. Спросите организатора: «Мы грубые?»",
+          "uk": "Ви з другом обговорюєте, як ваша команда зазвичай відповідає на зауваження. Запитайте організатора: «Ми грубі?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-48:intro3:r1",
+              "text": "Are we rude?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro3:r2",
+              "text": "Am I polite?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro3:r3",
+              "text": "Are you rude?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-48:intro3:r1",
+              "text": "Are we rude?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro3:r2",
+              "text": "Am I polite?"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:intro3:r3",
+              "text": "Are you rude?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы с другом обсуждаете, как ваша команда обычно отвечает на замечания. Спросите организатора: «Мы грубые?»",
+          "uk": "Ви з другом обговорюєте, як ваша команда зазвичай відповідає на зауваження. Запитайте організатора: «Ми грубі?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "44bb7782f797973a5c6ae306d390674086f879d9080cd274c59398bc1c01d574"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-07:i01",
+    "correctText": "drawer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i02",
+    "correctText": "drawer",
+    "correctResponseId": "en:lesson-03:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i03",
+    "correctText": "cupboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i04",
+    "correctText": "cupboard",
+    "correctResponseId": "en:lesson-03:session-07:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i05",
+    "correctText": "It is a drawer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i06",
+    "correctText": "wardrobe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i07",
+    "correctText": "wardrobe",
+    "correctResponseId": "en:lesson-03:session-07:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i08",
+    "correctText": "It is a cupboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i09",
+    "correctText": "It is a lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i10",
+    "correctText": "en:lesson-03:session-07:i10:p1=drawer\nen:lesson-03:session-07:i10:p2=cupboard\nen:lesson-03:session-07:i10:p3=wardrobe\nen:lesson-03:session-07:i10:p4=lamp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i11",
+    "correctText": "Is it open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i13",
+    "correctText": "Is it closed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i14",
+    "correctText": "It is not a wardrobe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i15",
+    "correctText": "It",
+    "correctResponseId": "en:lesson-03:session-07:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i16",
+    "correctText": "It is a wardrobe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:i17",
+    "correctText": "Is it a drawer?",
+    "correctResponseId": null
+  }
+]

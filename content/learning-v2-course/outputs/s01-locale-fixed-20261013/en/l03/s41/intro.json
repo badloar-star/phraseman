@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "`a` впервые называет один предмет или профессию; `the` возвращает к тому же уже названному предмету или человеку.",
+    "uk": "`a` уперше називає один предмет або професію; `the` повертає до того самого вже названого предмета чи людини."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сначала назовите чек",
+        "uk": "Спершу назвіть чек"
+      },
+      "bodyByLocale": {
+        "ru": "`receipt` — «чек»: напечатанная запись об оплате. `This is a receipt. The receipt is wrong.` — сначала вы называете, что это за документ, затем говорите об этом же, уже понятном чеке. Здесь `a` вводит чек, а `the` не меняет его на другой.",
+        "uk": "`receipt` — «чек»: надрукований запис про оплату. `This is a receipt. The receipt is wrong.` — спочатку ви називаєте, що це за документ, потім говорите про той самий уже названий чек. Тут `a` вводить чек, а `the` не змінює його на інший."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы уже сказали `This is a receipt.` Теперь сообщите об этом же чеке: в нём ошибка.",
+          "uk": "Ви вже сказали `This is a receipt.` Тепер повідомте про той самий чек: у ньому помилка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r1",
+              "text": "The receipt is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r2",
+              "text": "A receipt is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r3",
+              "text": "Receipt is wrong."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r1",
+              "text": "The receipt is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r2",
+              "text": "A receipt is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r3",
+              "text": "Receipt is wrong."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы уже сказали `This is a receipt.` Теперь сообщите об этом же чеке: в нём ошибка.",
+          "uk": "Ви вже сказали `This is a receipt.` Тепер повідомте про той самий чек: у ньому помилка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сначала назовите кассира",
+        "uk": "Спершу назвіть касира"
+      },
+      "bodyByLocale": {
+        "ru": "`cashier` — «кассир»: человек, который принимает оплату. `She is a cashier. The cashier is here.` — вы называете её профессию, затем возвращаетесь к той же женщине у стойки. Она не становится новым кассиром между двумя фразами.",
+        "uk": "`cashier` — «касир»: людина, яка приймає оплату. `She is a cashier. The cashier is here.` — ви називаєте її професію, потім повертаєтеся до тієї самої жінки біля стійки. Вона не стає іншим касиром між двома фразами."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы уже сказали `She is a cashier.` Теперь сообщите о той же женщине: она здесь.",
+          "uk": "Ви вже сказали `She is a cashier.` Тепер повідомте про ту саму жінку: вона тут."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r1",
+              "text": "The cashier is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r2",
+              "text": "A cashier is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r3",
+              "text": "Cashier is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r1",
+              "text": "The cashier is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r2",
+              "text": "A cashier is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r3",
+              "text": "Cashier is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы уже сказали `She is a cashier.` Теперь сообщите о той же женщине: она здесь.",
+          "uk": "Ви вже сказали `She is a cashier.` Тепер повідомте про ту саму жінку: вона тут."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сначала назовите стойку",
+        "uk": "Спершу назвіть стійку"
+      },
+      "bodyByLocale": {
+        "ru": "`counter` — «стойка»: место обслуживания, у которого вы сейчас стоите. `That is a counter. The counter is open.` — сначала вы называете вид места, затем говорите именно об этой стойке. Один и тот же предмет получает новое слово перед собой, а не новую личность.",
+        "uk": "`counter` — «стійка»: місце обслуговування, біля якого ви зараз стоїте. `That is a counter. The counter is open.` — спочатку ви називаєте вид місця, потім говорите саме про цю стійку. `The` показує, що йдеться про ту саму вже названу стійку, а не про іншу."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы уже сказали `That is a counter.` Теперь сообщите о той же стойке: она открыта.",
+          "uk": "Ви вже сказали `That is a counter.` Тепер повідомте про ту саму стійку: вона відкрита."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r1",
+              "text": "The counter is open."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r2",
+              "text": "A counter is open."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r3",
+              "text": "Counter is open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r1",
+              "text": "The counter is open."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r2",
+              "text": "A counter is open."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r3",
+              "text": "Counter is open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы уже сказали `That is a counter.` Теперь сообщите о той же стойке: она открыта.",
+          "uk": "Ви вже сказали `That is a counter.` Тепер повідомте про ту саму стійку: вона відкрита."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3d10a7b9890b592d3650b6ca7b9c864a1aeb989bac284fe909d50dcd45822bea"
+}

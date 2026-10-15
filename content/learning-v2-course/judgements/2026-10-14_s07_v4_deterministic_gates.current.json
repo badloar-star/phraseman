@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-07",
+  "candidateBundleSha256": "35c69b655ab10c7c087c445538448c68db1614595cec07396bbad93354a84daa",
+  "contentReceiptSha256": "76907d416885c058c7707227e4a1c1cd7463cb967bb7b5833a748fd9fcc0018b",
+  "candidateInventorySha256": "870aa70f0a37059109f9f5c90804415cdbe2a34bc9c6079fb4f16ab1c6ffaceb",
+  "sourceFingerprint": "232cd8ab1d54a0e36c16f4e99dafab311cf7ea8d7f05a703ddab00e513a2b036",
+  "verdict": "PASS",
+  "gates": [
+    {
+      "id": "focused_regression_suite",
+      "verdict": "PASS",
+      "command": "node --test build_session_candidate_receipt, session_acceptance_receipt, l01s07_feedback_repair",
+      "exitCode": 0,
+      "tests": 38,
+      "failures": 0
+    },
+    {
+      "id": "receipt_inventory_and_bundle_rehash",
+      "verdict": "PASS",
+      "command": "content receipt, inventory and bundle rehash",
+      "exitCode": 0,
+      "files": 22,
+      "failures": 0
+    },
+    {
+      "id": "locale_projection_parity",
+      "verdict": "PASS",
+      "command": "RU/UK source, nested locale map, title, interaction and wrong-only feedback parity checks",
+      "exitCode": 0,
+      "correctAnswerFeedbackRows": 0,
+      "introPagesPerLocale": 3,
+      "practiceInteractionsPerLocale": 18
+    }
+  ]
+}

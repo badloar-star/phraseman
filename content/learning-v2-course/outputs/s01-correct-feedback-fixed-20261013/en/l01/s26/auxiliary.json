@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-26:intro1:r2": {
+          "ru": "`It` пропало. Оно кажется лишним, но без него фраза начинается ниоткуда.",
+          "uk": "`It` зникло. Воно здається зайвим, але без нього фраза починається нізвідки."
+        },
+        "en:lesson-01:session-26:intro1:r3": {
+          "ru": "Между `it` и словом нужна форма `is`.",
+          "uk": "Між `it` і словом потрібна форма `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-26:intro2:r2": {
+          "ru": "`wind` — сам ветер. Погода — `windy`, с хвостом «-и».",
+          "uk": "`wind` — сам вітер. Погода — `windy`, з хвостиком «-і»."
+        },
+        "en:lesson-01:session-26:intro2:r3": {
+          "ru": "Без `it` фраза начинается ниоткуда. Про погоду всегда `It is`.",
+          "uk": "Без `it` фраза починається нізвідки. Про погоду завжди `It is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-26:intro3:r2": {
+          "ru": "Это «я пришёл рано» — про вас. А тут вы говорите про часы: `It is early`.",
+          "uk": "Це «я прийшов рано» — про вас. А тут ви говорите про годинник: `It is early`."
+        },
+        "en:lesson-01:session-26:intro3:r3": {
+          "ru": "Между `It` и словом нужна форма `is`.",
+          "uk": "Між `It` і словом потрібна форма `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2d2014ac5e4bc578f55853f22cd0eb397a24ddd6f133302b1d1d05c92161fa1c"
+}

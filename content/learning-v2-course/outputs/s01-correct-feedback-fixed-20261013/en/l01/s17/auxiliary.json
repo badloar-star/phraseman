@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-17:intro1:r2": {
+          "ru": "`is` пропало. По-русски связка не нужна, по-английски без `is` фраза не стоит.",
+          "uk": "`is` зникло. Українською зв'язка не потрібна, англійською без `is` фраза не стоїть."
+        },
+        "en:lesson-01:session-17:intro1:r3": {
+          "ru": "`am` бывает только рядом с `I`. Про него — всегда `is`.",
+          "uk": "`am` буває тільки поруч із `I`. Про нього — завжди `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-17:intro2:r2": {
+          "ru": "`nice` — «приятная» вообще. Но тут важно, что она подходит сама, а это `friendly`.",
+          "uk": "`nice` — «приємна» взагалі. Але тут важливо, що вона підходить сама, а це `friendly`."
+        },
+        "en:lesson-01:session-17:intro2:r3": {
+          "ru": "`he` — это «он». Про женщину — `she`.",
+          "uk": "`he` — це «він». Про жінку — `she`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-17:intro3:r2": {
+          "ru": "После `she` нужно `is`: `She is new`.",
+          "uk": "Після `she` потрібне `is`: `She is new`."
+        },
+        "en:lesson-01:session-17:intro3:r3": {
+          "ru": "Это «добрая» — про поступки. «Недавно пришла» — `new`.",
+          "uk": "Це «добра» — про вчинки. «Недавно прийшла» — `new`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aabc858e37d6823d1344ded1a993cf5b71f02bd06a961204f9eb7e1cdae450d0"
+}

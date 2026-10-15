@@ -4,11 +4,11 @@
   "sourceBindings": {
     "ru": {
       "path": "final.ru.md",
-      "sha256": "a03f4db070b70bebc09c7f2aa31e466e30d5c565d9633ce6103d237cc9eae831"
+      "sha256": "4163a337edf5e95223dedc6299d2b39604403c98644fb645d5e5c918c541b8c6"
     },
     "uk": {
       "path": "final.uk.md",
-      "sha256": "8427f77077fe9b68803c2bc9cf828a25bdd3f62d792449c5fb0e63002370a3eb"
+      "sha256": "bc478a9bab0cbfe328e07a18ad305c0151f81eaab2e4a3f15e74d424b8f8b92e"
     }
   },
   "interactions": {
@@ -2073,8 +2073,8 @@
     "en:lesson-01:session-02:i10": {
       "family": "listen_build_dictation",
       "completionFeedbackByLocale": {
-        "ru": "Верно: I am tired. — «Я устал / устала».",
-        "uk": "Правильно: I am tired. — «Я втомився / втомилася»."
+        "ru": "Верно.",
+        "uk": "Правильно."
       },
       "phrase": {
         "text": "I am tired.",
@@ -2280,8 +2280,8 @@
     "en:lesson-01:session-02:i11": {
       "family": "phrase_builder",
       "completionFeedbackByLocale": {
-        "ru": "Верно: I am late. — «Я опоздал / опоздала».",
-        "uk": "Правильно: I am late. — «Я запізнився / запізнилася»."
+        "ru": "Верно.",
+        "uk": "Правильно."
       },
       "phrase": {
         "text": "I am late.",
@@ -2591,8 +2591,8 @@
     "en:lesson-01:session-02:i13": {
       "family": "listen_build_dictation",
       "completionFeedbackByLocale": {
-        "ru": "Верно: I am busy. — «Я занят / занята».",
-        "uk": "Правильно: I am busy. — «Я зайнятий / зайнята»."
+        "ru": "Верно.",
+        "uk": "Правильно."
       },
       "phrase": {
         "text": "I am busy.",
@@ -3181,8 +3181,8 @@
     "en:lesson-01:session-02:i15": {
       "family": "phrase_builder",
       "completionFeedbackByLocale": {
-        "ru": "Верно: I am sorry. — «Мне жаль; извините».",
-        "uk": "Правильно: I am sorry. — «Мені шкода; вибачте»."
+        "ru": "Верно.",
+        "uk": "Правильно."
       },
       "phrase": {
         "text": "I am sorry.",
@@ -3745,8 +3745,8 @@
     "en:lesson-01:session-02:i17:s02": {
       "family": "phrase_builder",
       "completionFeedbackByLocale": {
-        "ru": "Верно: I am busy. — «Я занят / занята».",
-        "uk": "Правильно: I am busy. — «Я зайнятий / зайнята»."
+        "ru": "Верно.",
+        "uk": "Правильно."
       },
       "phrase": {
         "text": "I am busy.",
@@ -4627,8 +4627,8 @@
     "en:lesson-01:session-02:i17:s04": {
       "family": "phrase_builder",
       "completionFeedbackByLocale": {
-        "ru": "Верно: I am happy. — «Я рад / рада».",
-        "uk": "Правильно: I am happy. — «Я радий / рада»."
+        "ru": "Верно.",
+        "uk": "Правильно."
       },
       "phrase": {
         "text": "I am happy.",

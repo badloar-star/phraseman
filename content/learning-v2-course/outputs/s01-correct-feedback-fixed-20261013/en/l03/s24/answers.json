@@ -1,0 +1,97 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-24:i01",
+    "correctText": "an envelope",
+    "correctResponseId": "en:lesson-03:session-24:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i02",
+    "correctText": "Are they envelopes?",
+    "correctResponseId": "en:lesson-03:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i03",
+    "correctText": "It is an envelope.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i04",
+    "correctText": "they",
+    "correctResponseId": "en:lesson-03:session-24:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i05",
+    "correctText": "It is a glass.",
+    "correctResponseId": "en:lesson-03:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i06",
+    "correctText": "dishes",
+    "correctResponseId": "en:lesson-03:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i07",
+    "correctText": "Are they glasses?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i08",
+    "correctText": "stories",
+    "correctResponseId": "en:lesson-03:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i09",
+    "correctText": "They are envelopes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i10",
+    "correctText": "They are not envelopes.",
+    "correctResponseId": "en:lesson-03:session-24:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i11",
+    "correctText": "glass",
+    "correctResponseId": "en:lesson-03:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i12",
+    "correctText": "They are not dishes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i13",
+    "correctText": "They are envelopes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i14",
+    "correctText": "en:lesson-03:session-24:i14:p1=envelopes\nen:lesson-03:session-24:i14:p2=dishes\nen:lesson-03:session-24:i14:p3=stories\nen:lesson-03:session-24:i14:p4=glasses",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i15",
+    "correctText": "It is a story.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i16",
+    "correctText": "glasses",
+    "correctResponseId": "en:lesson-03:session-24:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i17:s01",
+    "correctText": "It is an envelope.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i17:s02",
+    "correctText": "Are they envelopes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:i17:s03",
+    "correctText": "They are not envelopes.",
+    "correctResponseId": null
+  }
+]

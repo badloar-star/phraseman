@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "знакомое `a + noun` на слух и вслух; сохраняем `a` в названии внутри утверждения, вопроса и отрицания",
+    "uk": "знайома конструкція `a + noun` на слух і вголос; зберігаємо `a` у назві всередині твердження, запитання й заперечення"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не потерять маленькое слово",
+        "uk": "Не загубити маленьке слово"
+      },
+      "bodyByLocale": {
+        "ru": "`key` — «ключ». Название одного предмета — `a key`, а полная фраза — `It is a key`: «Это ключ». Произносите название вместе с `a`. Потерять ключ неприятно. Потерять `a` проще: вещь на месте, а фразу уже надо поправить. Поэтому учите и произносите эти два слова вместе.",
+        "uk": "`key` — «ключ». Назва одного предмета — `a key`, а повна фраза — `It is a key`: «Це ключ». Вимовляйте назву разом із `a`. Загубити ключ неприємно. Загубити `a` простіше: річ на місці, а фразу вже треба виправляти. Тож учіть і вимовляйте ці два слова разом."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Хозяин положил на ладонь небольшой предмет. Назовите его полной фразой: «Это ключ».",
+          "uk": "Господар поклав на долоню невеликий предмет. Назвіть його повною фразою: «Це ключ»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-04:intro1:r1",
+              "text": "It is a key."
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro1:r2",
+              "text": "It is key."
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro1:r3",
+              "text": "It a key."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-04:intro1:r1",
+              "text": "It is a key."
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro1:r2",
+              "text": "It is key."
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro1:r3",
+              "text": "It a key."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Хозяин положил на ладонь небольшой предмет. Назовите его полной фразой: «Это ключ».",
+          "uk": "Господар поклав на долоню невеликий предмет. Назвіть його повною фразою: «Це ключ»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слышать вопрос с самого начала",
+        "uk": "Чути запитання від самого початку"
+      },
+      "bodyByLocale": {
+        "ru": "`door` — «дверь». `It is a door` — «Это дверь», а `Is it a door?` — «Это дверь?» В вопросе первые два слова меняются местами; название `a door` остаётся целым. Когда слушаете, замечайте и начало фразы, и слово перед `door`: они помогают восстановить её целиком.",
+        "uk": "`door` — «двері». `It is a door` — «Це двері», а `Is it a door?` — «Це двері?» У запитанні перші два слова міняються місцями; назва `a door` лишається цілою. Коли слухаєте, помічайте й початок фрази, і слово перед `door`: разом вони допоможуть відновити всю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Хозяин показывает на панель в стене. Спросите: «Это дверь?»",
+          "uk": "Господар показує на панель у стіні. Запитайте: «Це двері?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-04:intro2:r1",
+              "text": "Is it a door?"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro2:r2",
+              "text": "Is a door?"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro2:r3",
+              "text": "Is it door?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-04:intro2:r1",
+              "text": "Is it a door?"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro2:r2",
+              "text": "Is a door?"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro2:r3",
+              "text": "Is it door?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Хозяин показывает на панель в стене. Спросите: «Это дверь?»",
+          "uk": "Господар показує на панель у стіні. Запитайте: «Це двері?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Два маленьких слова с разной работой",
+        "uk": "Два маленькі слова з різною роботою"
+      },
+      "bodyByLocale": {
+        "ru": "`window` — «окно». Назвать его можно фразой `It is a window` — «Это окно». Если нужно возразить, получится `It is not a window` — «Это не окно». Отрицание добавляет `not` после `is`, но не убирает `a` перед названием. Вслух произнесите и `not`, и `a`: у них разная работа.",
+        "uk": "`window` — «вікно». Назвати його можна фразою `It is a window` — «Це вікно». Якщо треба заперечити, вийде `It is not a window` — «Це не вікно». Заперечення додає `not` після `is`, але не прибирає `a` перед назвою. Вголос вимовляйте і `not`, і `a`: у них різна робота."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Хозяин решил, что вы показываете на окно, но вы имеете в виду другую вещь. Возразите: «Это не окно».",
+          "uk": "Господар вирішив, що ви показуєте на вікно, але ви маєте на увазі іншу річ. Заперечте: «Це не вікно»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-04:intro3:r1",
+              "text": "It is not a window."
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro3:r2",
+              "text": "It is no a window."
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro3:r3",
+              "text": "It is not window."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-04:intro3:r1",
+              "text": "It is not a window."
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro3:r2",
+              "text": "It is no a window."
+            },
+            {
+              "responseId": "en:lesson-03:session-04:intro3:r3",
+              "text": "It is not window."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Хозяин решил, что вы показываете на окно, но вы имеете в виду другую вещь. Возразите: «Это не окно».",
+          "uk": "Господар вирішив, що ви показуєте на вікно, але ви маєте на увазі іншу річ. Заперечте: «Це не вікно»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "193d1b0deed3e02b991d1ad624dc11f6dcd062dfff89a07b68670ae57d34b999"
+}

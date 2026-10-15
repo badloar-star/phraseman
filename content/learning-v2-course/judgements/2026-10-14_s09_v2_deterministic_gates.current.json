@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-09",
+  "candidateBundleSha256": "32b95dee1fd467983df511067f807014585aab440cb66ac343e7e2176554d232",
+  "contentReceiptSha256": "3587bd16347673b2d80c2497c05e8b329112b34f030de64098bc27462eae732f",
+  "candidateInventorySha256": "0656efee048a4781700eb9e33db1387bb4cbeb7e7b300065a3842605712c8731",
+  "sourceFingerprint": "fd6bc776d6e65a8c48011079d2aa6756230de518ae826b55416861622dba36a8",
+  "verdict": "PASS",
+  "gates": [
+    {
+      "id": "focused_candidate_acceptance_source_suite",
+      "verdict": "PASS",
+      "command": "node --test builder, acceptance and l01s09 feedback suites",
+      "exitCode": 0,
+      "tests": 37,
+      "failures": 0
+    },
+    {
+      "id": "receipt_inventory_and_bundle_rehash",
+      "verdict": "PASS",
+      "command": "exact asynchronous receipt reconstruction and deep equality",
+      "exitCode": 0,
+      "files": 18,
+      "originCount": 12,
+      "failures": 0
+    },
+    {
+      "id": "runtime_answer_visibility_contract",
+      "verdict": "PASS",
+      "command": "transport, factory-native, RNTL visibility and accepted-prefix parity",
+      "exitCode": 0,
+      "tests": 25,
+      "failures": 0
+    },
+    {
+      "id": "locale_projection_parity",
+      "verdict": "PASS",
+      "correctAnswerFeedbackRows": 0,
+      "introPagesPerLocale": 3,
+      "practiceInteractionsPerLocale": 21
+    }
+  ]
+}

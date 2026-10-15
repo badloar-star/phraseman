@@ -1,0 +1,1100 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-22:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — asleep",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — asleep",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i01:audio",
+          "transcript": "asleep"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:i01:r1",
+            "targetText": "asleep",
+            "meaningByLocale": {
+              "ru": "«спит». Глаза закрыты, дыхание ровное, и трогать его не надо.",
+              "uk": "«спить». Очі заплющені, дихання рівне, і чіпати його не треба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "asleep",
+          "definitionByLocale": {
+            "ru": "«спит». Глаза закрыты, дыхание ровное, и трогать его не надо.",
+            "uk": "«спить». Очі заплющені, дихання рівне, і чіпати його не треба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i02:r1",
+          "text": "asleep"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i02:r2",
+          "text": "sleep"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i02:r3",
+          "text": "sheep"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i02:audio",
+          "transcript": "asleep"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:i02:r1",
+            "targetText": "asleep",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i02:r2",
+            "targetText": "sleep",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i02:r3",
+            "targetText": "sheep",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — asleep",
+            "feedbackByLocale": {
+              "ru": "Это то же слово без начала. В `asleep` впереди есть короткий проглоченный звук: эсЛИП. Ударение — на второй части.",
+              "uk": "Це те саме слово без початку. В `asleep` попереду є короткий проковтнутий звук: асЛІП. Наголос — на другій частині."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — asleep",
+            "feedbackByLocale": {
+              "ru": "Это «овца». Первый звук другой: «ш», а не «с».",
+              "uk": "Це «вівця». Перший звук інший: «ш», а не «с»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `asleep` есть начало `a-`, а дальше слышно `sleep`: это не `sleep` и не `sheep`.",
+              "uk": "У записі `asleep` є початок `a-`, а далі чути `sleep`: це не `sleep` і не `sheep`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — awake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — awake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i03:audio",
+          "transcript": "awake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:i03:r1",
+            "targetText": "awake",
+            "meaningByLocale": {
+              "ru": "«не спит». Глаза открыты, всё слышит — говорите тише.",
+              "uk": "«не спить». Очі розплющені, все чує — говоріть тихіше."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "awake",
+          "definitionByLocale": {
+            "ru": "«не спит». Глаза открыты, всё слышит — говорите тише.",
+            "uk": "«не спить». Очі розплющені, все чує — говоріть тихіше."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i04:r1",
+          "text": "awake"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i04:r2",
+          "text": "wake"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i04:r3",
+          "text": "away"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i04:audio",
+          "transcript": "awake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:i04:r1",
+            "targetText": "awake",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i04:r2",
+            "targetText": "wake",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i04:r3",
+            "targetText": "away",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — awake",
+            "feedbackByLocale": {
+              "ru": "Это то же слово без начала. В `awake` впереди один короткий проглоченный звук: эУЭЙК.",
+              "uk": "Це те саме слово без початку. В `awake` попереду один короткий проковтнутий звук: аУЕЙК."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — awake",
+            "feedbackByLocale": {
+              "ru": "Похожее начало, конец другой: «эУЭЙ» без «к».",
+              "uk": "Схожий початок, кінець інший: «аУЕЙ» без «к»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `awake` сначала слышно короткое `a-`, потом `wake`: это не `wake` и не `away`.",
+              "uk": "У записі `awake` спочатку чути коротке `a-`, потім `wake`: це не `wake` і не `away`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сын соседа лежит с закрытыми глазами",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i05:r1",
+          "text": "asleep"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i05:r2",
+          "text": "awake"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i05:r3",
+          "text": "home"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сын соседа лежит с закрытыми глазами",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сын соседа лежит с закрытыми глазами",
+          "uk": "Вставте слово — син сусіда лежить із заплющеними очима"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-22:i05:r1",
+            "text": "asleep"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i05:r2",
+            "text": "awake"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i05:r3",
+            "text": "home"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сын соседа лежит с закр",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i05:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — сын соседа лежит с закрытыми глазами",
+            "feedbackByLocale": {
+              "ru": "У мальчика закрыты глаза, значит он `asleep`; `awake` означает «не спит».",
+              "uk": "У хлопчика заплющені очі, отже він `asleep`; `awake` означає «не спить»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сын соседа лежит с закр",
+            "feedbackByLocale": {
+              "ru": "Наоборот: `awake` — не спит. Глаза закрыты — значит `asleep`.",
+              "uk": "Навпаки: `awake` — не спить. Очі заплющені — отже `asleep`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сын соседа лежит с закр",
+            "feedbackByLocale": {
+              "ru": "«Дома» — правда, но сосед просит не шуметь не поэтому.",
+              "uk": "«Удома» — правда, але сусід просить не шуміти не через це."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — away",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — away",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i06:audio",
+          "transcript": "away"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:i06:r1",
+            "targetText": "away",
+            "meaningByLocale": {
+              "ru": "«уехал, его нет тут». Другой город, работа, магазин — неважно где, важно что не здесь.",
+              "uk": "«поїхав, його тут немає». Інше місто, робота, магазин — байдуже де, важливо що не тут."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "away",
+          "definitionByLocale": {
+            "ru": "«уехал, его нет тут». Другой город, работа, магазин — неважно где, важно что не здесь.",
+            "uk": "«поїхав, його тут немає». Інше місто, робота, магазин — байдуже де, важливо що не тут."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i07:audio",
+          "transcript": "ill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:i07:r1",
+            "targetText": "ill",
+            "meaningByLocale": {
+              "ru": "«болен». Второе слово с тем же смыслом, что и `sick`.",
+              "uk": "«хворий». Друге слово з тим самим змістом, що й `sick`."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ill",
+          "definitionByLocale": {
+            "ru": "«болен». Второе слово с тем же смыслом, что и `sick`.",
+            "uk": "«хворий». Друге слово з тим самим змістом, що й `sick`."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i08:r1",
+          "text": "ill"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i08:r2",
+          "text": "eel"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i08:r3",
+          "text": "all"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i08:audio",
+          "transcript": "ill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:i08:r1",
+            "targetText": "ill",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i08:r2",
+            "targetText": "eel",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i08:r3",
+            "targetText": "all",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — ill",
+            "feedbackByLocale": {
+              "ru": "Это «угорь», и гласная там тянется: «и-и-л». В `ill` гласная другая, глуше — между русскими «и» и «ы».",
+              "uk": "Це «вугор», і голосна там тягнеться: «і-і-л». В `ill` голосна інша, глухіша — між українськими «і» та «и»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — ill",
+            "feedbackByLocale": {
+              "ru": "Гласная другая: «ол». А тут «ил».",
+              "uk": "Голосна інша: «ол». А тут «іл»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i08:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи короткий звук в `ill`: это не долгое `eel` и не `all`.",
+              "uk": "У записі короткий звук у `ill`: це не довге `eel` і не `all`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «она уехала»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «она уехала»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is away.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «она уехала»",
+          "uk": "Складіть фразу — «вона поїхала»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "away"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «она уехала»",
+            "feedbackByLocale": {
+              "ru": "`am` лишнее: с `She` ставят `is` — `She is away.`",
+              "uk": "`am` зайве: з `She` ставлять `is` — `She is away`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — дочь соседа второй день не выходит, температура",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i10:r1",
+          "text": "ill"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i10:r2",
+          "text": "away"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i10:r3",
+          "text": "quiet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — дочь соседа второй день не выходит, температура",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — дочь соседа второй день не выходит, температура",
+          "uk": "Вставте слово — донька сусіда другий день не виходить, температура"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-22:i10:r1",
+            "text": "ill"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i10:r2",
+            "text": "away"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i10:r3",
+            "text": "quiet"
+          }
+        ],
+        "testedDimension": "Вставьте слово — дочь соседа второй день",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — дочь соседа второй день не выходит, температура",
+            "feedbackByLocale": {
+              "ru": "Температура и второй день дома — признак `ill`; она не уехала и не просто молчит.",
+              "uk": "Температура й другий день удома — ознака `ill`; вона не поїхала й не просто мовчить."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дочь соседа второй день",
+            "feedbackByLocale": {
+              "ru": "«Уехала» — но она как раз дома, в постели.",
+              "uk": "«Поїхала» — але вона якраз удома, у ліжку."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дочь соседа второй день",
+            "feedbackByLocale": {
+              "ru": "«Тихая» — да, но не потому. Дело в болезни.",
+              "uk": "«Тиха» — так, але не через це. Річ у хворобі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «он не спит»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «он не спит»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i11:audio",
+          "transcript": "He is awake."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is awake.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "awake"
+        ],
+        "authoredDistractorTokens": [
+          "asleep"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «он не спит»",
+            "feedbackByLocale": {
+              "ru": "`asleep` лишнее: в записи он не спит, поэтому `He is awake.`",
+              "uk": "`asleep` зайве: у записі він не спить, тому `He is awake`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-22:i12:p1",
+            "target": "asleep",
+            "meaningByLocale": {
+              "ru": "спит",
+              "uk": "спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i12:p2",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "не спит",
+              "uk": "не спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i12:p3",
+            "target": "away",
+            "meaningByLocale": {
+              "ru": "уехал",
+              "uk": "поїхав"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i12:p4",
+            "target": "ill",
+            "meaningByLocale": {
+              "ru": "болен",
+              "uk": "хворий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "asleep",
+          "awake",
+          "away",
+          "ill"
+        ],
+        "rightColumn": [
+          "спит",
+          "не спит",
+          "уехал",
+          "болен"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — дочь соседа сидит с книгой и не издаёт ни звука",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i13:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i13:r2",
+          "text": "away"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i13:r3",
+          "text": "ill"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — дочь соседа сидит с книгой и не издаёт ни звука",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — дочь соседа сидит с книгой и не издаёт ни звука",
+          "uk": "Вставте слово — донька сусіда сидить із книжкою і не видає ані звуку"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-22:i13:r1",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i13:r2",
+            "text": "away"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i13:r3",
+            "text": "ill"
+          }
+        ],
+        "testedDimension": "Вставьте слово — дочь соседа сидит с кни",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — дочь соседа сидит с книгой и не издаёт ни звука",
+            "feedbackByLocale": {
+              "ru": "Девочка рядом с книгой, но её не слышно, поэтому она `quiet`, не `away` и не `ill`.",
+              "uk": "Дівчинка поруч із книжкою, але її не чути, тому вона `quiet`, а не `away` чи `ill`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дочь соседа сидит с кни",
+            "feedbackByLocale": {
+              "ru": "«Уехала» — но она тут, вы её видите. Не слышно — это `quiet`.",
+              "uk": "«Поїхала» — але вона тут, ви її бачите. Не чути — це `quiet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дочь соседа сидит с кни",
+            "feedbackByLocale": {
+              "ru": "«Больна» — сейчас с ней всё в порядке, она просто молчит.",
+              "uk": "«Хвора» — зараз із нею все гаразд, вона просто мовчить."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — её нет на работе, она у себя дома",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — её нет на работе, она у себя дома",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is home.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — её нет на работе, она у себя дома",
+          "uk": "Складіть фразу — її немає на роботі, вона в себе вдома"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "home"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — её нет на работе, она у",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: с `She` ставят `is` — `She is home.`",
+              "uk": "`are` зайве: з `She` ставлять `is` — `She is home`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Марта говорит о коллеге Олеге: «Он не болен»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Марта говорит о коллеге Олеге: «Он не болен»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i15:audio",
+          "transcript": "He is not sick."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is not sick.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Нина зевает третий раз подряд",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Нина зевает третий раз подряд",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is tired.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Нина зевает третий раз подряд",
+          "uk": "Складіть фразу — Ніна позіхає третій раз поспіль"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "tired"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Нина зевает третий раз ",
+            "feedbackByLocale": {
+              "ru": "`not` лишнее: Нина зевает, поэтому `She is tired.`, без отрицания.",
+              "uk": "`not` зайве: Ніна позіхає, тому `She is tired`, без заперечення."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i17:s01:audio",
+          "transcript": "He is asleep."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is asleep.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «она не спит»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «она не спит»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is awake.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «она не спит»",
+          "uk": "Складіть фразу — «вона не спить»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "awake"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i17:s02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «она не спит»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: с `She` ставят `is` — `She is awake.`",
+              "uk": "`are` зайве: з `She` ставлять `is` — `She is awake`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «он уехал»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «он уехал»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i17:s03:audio",
+          "transcript": "He is away."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is away.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "away"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i17:s03:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «он уехал»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: с `He` ставят `is` — `He is away.`",
+              "uk": "`are` зайве: з `He` ставлять `is` — `He is away`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i17:s04",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сосед прямо говорит, что устал",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сосед прямо говорит, что устал",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is tired.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сосед прямо говорит, что устал",
+          "uk": "Складіть фразу — сусід прямо каже, що втомився"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "tired"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i17:s04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сосед прямо говорит, чт",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: с `He` ставят `is` — `He is tired.`",
+              "uk": "`are` зайве: з `He` ставлять `is` — `He is tired`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "64ca1f7b205cb625a0dc6198bcf69cdd6414a29a26d532392a64717071424dca"
+}

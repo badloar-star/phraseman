@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "ответить на один вопрос отдельно: `Yes, there is.` или `No, there isn't.`",
+    "uk": "окремо відповісти на одне питання: `Yes, there is.` або `No, there isn't.`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Отель",
+        "uk": "Готель"
+      },
+      "bodyByLocale": {
+        "ru": "`hotel` — «гостиница» или «отель»: место, где можно заплатить за комнату и переночевать. Для одного места говорим `a hotel`. Чемодану отель не нужен: он и на полу неплохо устроился. А вам нужна комната. Не путайте с `hostel`: там бывают и общие, и отдельные комнаты. Здесь вам нужна именно гостиница.",
+        "uk": "`hotel` — «готель»: місце, де можна заплатити за кімнату й переночувати. Про одне місце кажемо `a hotel`. Валізі готель не потрібен: вона й на підлозі непогано влаштувалася. А вам потрібна кімната. Не плутайте з `hostel`: там бувають і спільні, й окремі кімнати. Тут вам потрібен саме готель."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы ищете гостиницу на одну ночь. Выберите группу слов.",
+          "uk": "Ви шукаєте готель на одну ніч. Оберіть групу слів."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-10:intro1:r1",
+              "text": "a hotel"
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro1:r2",
+              "text": "a hospital"
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro1:r3",
+              "text": "a hostel"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-10:intro1:r1",
+              "text": "a hotel"
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro1:r2",
+              "text": "a hospital"
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro1:r3",
+              "text": "a hostel"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы ищете гостиницу на одну ночь. Выберите группу слов.",
+          "uk": "Ви шукаєте готель на одну ніч. Оберіть групу слів."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Короткое «нет»",
+        "uk": "Коротке «ні»"
+      },
+      "bodyByLocale": {
+        "ru": "`No, there is not.` — «Нет». Так полностью отвечают на `Is there a hotel near the library?` Вопрос уже назвал отель и библиотеку, поэтому повторять их не нужно. После `No` говорят `there`, затем `is not`. Сокращённый ответ `No, there isn't.` значит то же самое; `isn't` — это короткое `is not`.",
+        "uk": "`No, there is not.` — «Ні». Так повністю відповідають на `Is there a hotel near the library?` Питання вже назвало готель і бібліотеку, тому повторювати їх не треба. Після `No` кажуть `there`, потім `is not`. Скорочена відповідь `No, there isn't.` означає те саме; `isn't` — це коротке `is not`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "У стойки спрашивают: `Is there a hotel near the library?` Рядом отеля нет. Выберите полный отрицательный ответ сотрудника.",
+          "uk": "Біля стійки питають: `Is there a hotel near the library?` Поруч готелю немає. Оберіть повну заперечну відповідь працівника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-10:intro2:r1",
+              "text": "No, there is not."
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro2:r2",
+              "text": "No, there not is."
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro2:r3",
+              "text": "No, is there not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-10:intro2:r1",
+              "text": "No, there is not."
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro2:r2",
+              "text": "No, there not is."
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro2:r3",
+              "text": "No, is there not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У стойки спрашивают: `Is there a hotel near the library?` Рядом отеля нет. Выберите полный отрицательный ответ сотрудника.",
+          "uk": "Біля стійки питають: `Is there a hotel near the library?` Поруч готелю немає. Оберіть повну заперечну відповідь працівника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Короткое «да»",
+        "uk": "Коротке «так»"
+      },
+      "bodyByLocale": {
+        "ru": "`Yes, there is.` — «Да, есть». Так коротко отвечают на `Is there a hotel near the pharmacy?` Вопрос уже назвал отель и аптеку, поэтому повторять их не нужно. В ответе после `Yes` говорят `there`, затем `is`. Эти два слова взяты из вопроса, но в ответе стоят в порядке `there is`.",
+        "uk": "`Yes, there is.` — «Так, є». Так коротко відповідають на `Is there a hotel near the pharmacy?` Питання вже назвало готель і аптеку, тому повторювати їх не треба. У відповіді після `Yes` кажуть `there`, потім `is`. Ці два слова взяті з питання, але у відповіді стоять у порядку `there is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "У стойки спрашивают: `Is there a hotel near the pharmacy?` Рядом с аптекой отель есть. Выберите короткий ответ.",
+          "uk": "Біля стійки питають: `Is there a hotel near the pharmacy?` Біля аптеки готель є. Оберіть коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-10:intro3:r1",
+              "text": "Yes, there is."
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro3:r2",
+              "text": "Yes, there."
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro3:r3",
+              "text": "Yes, is there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-10:intro3:r1",
+              "text": "Yes, there is."
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro3:r2",
+              "text": "Yes, there."
+            },
+            {
+              "responseId": "en:lesson-04:session-10:intro3:r3",
+              "text": "Yes, is there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У стойки спрашивают: `Is there a hotel near the pharmacy?` Рядом с аптекой отель есть. Выберите короткий ответ.",
+          "uk": "Біля стійки питають: `Is there a hotel near the pharmacy?` Біля аптеки готель є. Оберіть коротку відповідь."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e87713b77313aad19870c76ed7573e4681a953e7f175f7482c43e47f9be90a81"
+}

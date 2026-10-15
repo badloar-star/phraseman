@@ -1,0 +1,160 @@
+{
+  "schemaVersion": "learning_v2_s01_review_content_bundle_receipt_v3",
+  "courseSessionId": "en:lesson-01:session-01",
+  "releaseAuthority": false,
+  "appendOnly": true,
+  "receiptChain": {
+    "kind": "stable_content_bundle_successor",
+    "supersedes": {
+      "path": "content/learning-v2-course/outputs/s01-locale-batch-parity-fixed-20261014/review-content-bundle-receipt.v3.json",
+      "sha256": "fab4d25424ba630d1250dd6b1724bee397cc94d9c099aaccc54cbeccf8549a86",
+      "reason": "successor repairs independently confirmed S01 feedback naturalness findings while preserving the exact locale-batch immutable receipt head"
+    }
+  },
+  "contentReceipt": {
+    "path": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/content-receipt.json",
+    "sha256": "b1652cfb9b60719cb19dd84abe5b376307434e585607670490a2919c7ee37386",
+    "inventorySha256": "362658ddc6a17ae37cde5d4bf3529a5f5f0cf400480c9c2efb6aa581d85eee17",
+    "fileCount": 14
+  },
+  "candidateBundle": {
+    "files": [
+      {
+        "path": "en/l01/s01/intro.json",
+        "bytes": 9083,
+        "sha256": "a7585a55efcdbd206b2aff04232b72c36069d247298b673eeacb356700d30fef"
+      },
+      {
+        "path": "en/l01/s01/auxiliary.json",
+        "bytes": 84217,
+        "sha256": "e88b78c1c77c396d24848403aa8e94ca723b4cebb6a36adc27250d4aa9cfe45e"
+      },
+      {
+        "path": "en/l01/s01/learner.json",
+        "bytes": 217821,
+        "sha256": "99cb1dd81fa51a1cef8d449ce1fb29f7820ec851ab8d1285a020d8f9def72ad9"
+      },
+      {
+        "path": "en/l01/s01/learner.uk.json",
+        "bytes": 217562,
+        "sha256": "1df258fe03501f5237da03cca23889b2060c6bb178b033b1ec9af3b980fe877b"
+      },
+      {
+        "path": "en/l01/s01/answers.json",
+        "bytes": 2923,
+        "sha256": "9c5bb7b1144c5ce767f47fc3ccec024b73a9ec73ee35e43911e84cb687d549d8"
+      }
+    ],
+    "sha256": "0548773ad10f1aa6be9416311070227ca1a536891c37c6a264185b2f1c8fecd9"
+  },
+  "protectedNoDriftBoundary": {
+    "fileCount": 152,
+    "sha256": "62b4fda679ae55875f78634da73b6e9141e0db6d5ef1f3860bc69b3bd67f5008"
+  },
+  "toolchain": [
+    {
+      "path": "content/learning-v2-course/pipeline/build_s01_candidate_receipt.mjs",
+      "bytes": 45689,
+      "sha256": "7c5a40bccba5a60157290cf03ee33212a4ea1ab62e05354849eb06ad6032eaa6"
+    },
+    {
+      "path": "content/learning-v2-course/pipeline/build_s01_review_bundle_receipt.mjs",
+      "bytes": 18404,
+      "sha256": "1f1b0757f43723372e7b03e2c61523d9f85ee3e56f6ce0756d6308eefdae82dd"
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "path": "content/learning-v2-course/judgements/2026-10-13_l01_s01_source_evidence.md",
+      "bytes": 9963,
+      "sha256": "0a726074365642e21bd7b3a16c32ab93f0a2b552072df3426981605371258da3"
+    }
+  ],
+  "files": [
+    {
+      "path": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/app.js",
+      "bytes": 40034,
+      "sha256": "3727f7676121490f5d26114ea7d84f6e7354c0390aa8612935630fe9e9097f51"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/data.js",
+      "bytes": 357984,
+      "sha256": "810531a4f7d03bb1395ee3183907a2e498f86c54ea82d7984b1d8d79052991e8"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/en/l01/s01/answers.json",
+      "bytes": 2923,
+      "sha256": "9c5bb7b1144c5ce767f47fc3ccec024b73a9ec73ee35e43911e84cb687d549d8"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/en/l01/s01/auxiliary.json",
+      "bytes": 84217,
+      "sha256": "e88b78c1c77c396d24848403aa8e94ca723b4cebb6a36adc27250d4aa9cfe45e"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/en/l01/s01/intro.json",
+      "bytes": 9083,
+      "sha256": "a7585a55efcdbd206b2aff04232b72c36069d247298b673eeacb356700d30fef"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/en/l01/s01/learner.json",
+      "bytes": 217821,
+      "sha256": "99cb1dd81fa51a1cef8d449ce1fb29f7820ec851ab8d1285a020d8f9def72ad9"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/en/l01/s01/learner.uk.json",
+      "bytes": 217562,
+      "sha256": "1df258fe03501f5237da03cca23889b2060c6bb178b033b1ec9af3b980fe877b"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/external.html",
+      "bytes": 11223,
+      "sha256": "9af6c8a18a26bcfefb23a526a806451e363581fde90e5310657fee76da0fa453"
+    },
+    {
+      "path": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/index.html",
+      "bytes": 409270,
+      "sha256": "4333c638892bf46140b7421b84d1a99592541795b495459ac9647a99260eb512"
+    },
+    {
+      "path": "content/learning-v2-course/sessions/en/l01/s01/final.ru.md",
+      "bytes": 12505,
+      "sha256": "22f8e2a982bb8e089cd9eedce7aba5f47869370a557a86f23ba4343f685714e5"
+    },
+    {
+      "path": "content/learning-v2-course/sessions/en/l01/s01/final.uk.md",
+      "bytes": 12427,
+      "sha256": "4fd5e34ee722b87df38bb5fb5e147a55c0123b6d4de537ea114bcc88dd0d950a"
+    },
+    {
+      "path": "content/learning-v2-course/sessions/en/l01/s01/locales_batch.md",
+      "bytes": 12444,
+      "sha256": "05deefe56586ef645f12736fe646c8071cce55053bfec447be4f04503d37cc0a"
+    },
+    {
+      "path": "content/learning-v2-course/sessions/en/l01/s01/practice.atomic.json",
+      "bytes": 122508,
+      "sha256": "07619d2798091def37a841b5b3dcf8fa52dffc97955bc3591eee6b6acb5ea652"
+    },
+    {
+      "path": "content/learning-v2-course/sessions/en/l01/s01/practice.explanations.v1.json",
+      "bytes": 303618,
+      "sha256": "88cc06bb411f9a1be00b4e6589e5af3f4d476fa870f4ab17f8cc1e3592824099"
+    },
+    {
+      "path": "content/learning-v2-course/pipeline/build_s01_candidate_receipt.mjs",
+      "bytes": 45689,
+      "sha256": "7c5a40bccba5a60157290cf03ee33212a4ea1ab62e05354849eb06ad6032eaa6"
+    },
+    {
+      "path": "content/learning-v2-course/pipeline/build_s01_review_bundle_receipt.mjs",
+      "bytes": 18404,
+      "sha256": "1f1b0757f43723372e7b03e2c61523d9f85ee3e56f6ce0756d6308eefdae82dd"
+    },
+    {
+      "path": "content/learning-v2-course/judgements/2026-10-13_l01_s01_source_evidence.md",
+      "bytes": 9963,
+      "sha256": "0a726074365642e21bd7b3a16c32ab93f0a2b552072df3426981605371258da3"
+    }
+  ]
+}

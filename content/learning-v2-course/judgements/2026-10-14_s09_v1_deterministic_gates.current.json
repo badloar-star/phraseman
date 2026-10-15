@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-09",
+  "candidateBundleSha256": "748b1f9f8b388edfbfebc7cd65d2b82082eef08aabda41c7f5e514d94d82ecf0",
+  "contentReceiptSha256": "96f80ae03f76533c27fcdbd6f996c879c1e6604b80e63f57efd4c8b3b82a58bd",
+  "candidateInventorySha256": "e4eefc0862f87e851a9057c65e47f70b4f4a711c8664de2d79fe0ea8ba056f20",
+  "sourceFingerprint": "1cc0e71de68f6e562d937aff9ff7c76374a708529ee8ac7c4b5906639ce4d14a",
+  "verdict": "PASS",
+  "gates": [
+    {
+      "id": "focused_builder_and_source_suite",
+      "verdict": "PASS",
+      "command": "node --test build_session_candidate_receipt and l01s09_feedback_repair",
+      "exitCode": 0,
+      "tests": 31,
+      "failures": 0
+    },
+    {
+      "id": "acceptance_contract_suite",
+      "verdict": "PASS",
+      "command": "node --test session_acceptance_receipt",
+      "exitCode": 0,
+      "tests": 4,
+      "failures": 0
+    },
+    {
+      "id": "receipt_inventory_and_bundle_rehash",
+      "verdict": "PASS",
+      "command": "exact candidate receipt reconstruction and deep equality",
+      "exitCode": 0,
+      "files": 18,
+      "failures": 0
+    },
+    {
+      "id": "locale_projection_parity",
+      "verdict": "PASS",
+      "command": "RU/UK source, prompt, interaction and wrong-only feedback parity checks",
+      "exitCode": 0,
+      "correctAnswerFeedbackRows": 0,
+      "introPagesPerLocale": 3,
+      "practiceInteractionsPerLocale": 21
+    }
+  ]
+}

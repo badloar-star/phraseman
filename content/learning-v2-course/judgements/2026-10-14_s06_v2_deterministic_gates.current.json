@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-06",
+  "candidateBundleSha256": "64dab47b1260e5b903ad302d80ec19c9d0cb8378fe733e8da2c12bf7a6bb1beb",
+  "contentReceiptSha256": "9acf19b252cf9206c3773e02028d836bc47b2dde25a7b1d0212cac68a920c584",
+  "candidateInventorySha256": "1d5e8e050871cbf7e1ffcc63c8ae0edcd0424e19e5c0937e56df7307fe8efc41",
+  "sourceFingerprint": "35896d18856e2779a0ffa85fc889398629e1e00c3f9e4f215a170e3aa407d524",
+  "verdict": "PASS",
+  "gates": [
+    {
+      "id": "focused_regression_suite",
+      "verdict": "PASS",
+      "command": "node --test build_session_candidate_receipt, session_acceptance_receipt, l01s06_feedback_repair",
+      "exitCode": 0,
+      "tests": 36,
+      "failures": 0
+    },
+    {
+      "id": "receipt_inventory_and_bundle_rehash",
+      "verdict": "PASS",
+      "command": "content receipt, inventory and bundle rehash",
+      "exitCode": 0,
+      "files": 22,
+      "failures": 0
+    },
+    {
+      "id": "locale_projection_parity",
+      "verdict": "PASS",
+      "command": "RU/UK source, batch, interaction and wrong-only feedback parity checks",
+      "exitCode": 0,
+      "correctAnswerFeedbackRows": 0,
+      "introPagesPerLocale": 3,
+      "practiceInteractionsPerLocale": 19
+    }
+  ]
+}

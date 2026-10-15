@@ -288,7 +288,7 @@ test('mockup renders the S03 trap intro without an internal kind label in RU and
   }
 });
 
-test('mockup renders the selected intro response token analysis and diagnostic contrast', () => {
+test('mockup does not show an explanation after a correct intro answer', () => {
   const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
   const fn = source.slice(source.indexOf('function renderIntro('), source.indexOf('function renderTask('));
   const analysisSource = source.slice(source.indexOf('function completeTextAnalysisV1('), source.indexOf('function renderCard('));
@@ -323,29 +323,111 @@ test('mockup renders the selected intro response token analysis and diagnostic c
       acceptabilityBoundaryByLocale: { ru: 'В другом контексте here возможно.' },
     } },
   }] });
-  const json = JSON.stringify(rendered);
   const feedbackRegion = rendered.children.find((node) => node?.props?.class?.startsWith("fb "));
-  assert.equal(feedbackRegion?.props?.role, "status");
-  assert.equal(feedbackRegion?.props?.["aria-live"], "polite");
-  assert.equal(feedbackRegion?.props?.["aria-atomic"], "true");
-  assert.match(json, /Разбор here./u);
-  assert.match(json, /наречие/u);
-  assert.match(json, /Сообщает о месте./u);
-  assert.match(json, /Не here, а there./u);
+  assert.equal(feedbackRegion, undefined);
+  assert.equal(rendered.children.find((node) => node?.props?.class === 'actions')?.children[1]?.props?.disabled, false);
+});
+
+test('correct intro answer needs no explanation while a wrong answer needs specific feedback', () => {
+  const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
+  const fn = source.slice(source.indexOf('function renderIntro('), source.indexOf('function renderTask('));
+  const state = { answered: true, picked: 'r1', ok: true, locale: 'ru', step: 0 };
+  const scope = {
+    S: state, ui: key => key === 'missingIntroExplanation' ? 'Проверенный разбор для этого ответа отсутствует.' : uiFor(key), audioControl: audioControlFor,
+    h: (tag, props, children = []) => {
+      const node = { tag, props, children: [].concat(children || []).filter(Boolean) };
+      node.append = child => node.children.push(child);
+      return node;
+    },
+    document: { createTextNode: text => ({ text }) }, loc: value => value?.ru ?? '', tl: value => value,
+    activeLocaleValue: value => value?.ru ?? value,
+    shuffleChoices: values => values, render: () => {}, resetStep: () => {},
+    nextRow: canNext => ({ tag: 'next', props: { canNext }, children: [] }),
+  };
+  const page = {
+    pageId: 'intro1', titleByLocale: { ru: 'Заголовок' }, bodyByLocale: { ru: 'Текст.' },
+    question: {
+      interactionId: 'intro1:q', promptByLocale: { ru: 'Выберите.' },
+      choicesByLocale: { ru: [{ responseId: 'r1', text: 'I am here.' }] },
+    },
+  };
+  vm.runInNewContext(fn, scope);
+
+  const correct = scope.renderIntro(page, { entries: [] });
+  assert.equal(correct.children.some(node => node?.props?.class?.startsWith('fb ')), false);
+  assert.equal(correct.children.find(node => node?.props?.class === 'actions')?.children[1]?.props?.disabled, false);
+
+  state.ok = false;
+  const wrong = scope.renderIntro(page, { entries: [] });
+  assert.match(wrong.children.find(node => node?.props?.class?.startsWith('fb '))?.props.text ?? '', /разбор для этого ответа отсутствует/u);
+  assert.equal(wrong.children.find(node => node?.props?.class === 'actions')?.children[1]?.props?.disabled, true);
+
+  const specific = scope.renderIntro(page, { entries: [{
+    interactionId: 'intro1:q', responseFeedbackById: { r1: { ru: 'Здесь нужна точная подсказка.' } },
+  }] });
+  assert.equal(specific.children.find(node => node?.props?.class === 'actions')?.children[1]?.props?.disabled, false);
+});
+
+test('wrong intro answer shows only its concise response-specific correction', () => {
+  const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
+  const fn = source.slice(source.indexOf('function renderIntro('), source.indexOf('function renderTask('));
+  const state = { answered: true, picked: 'r2', ok: false, locale: 'ru', step: 0 };
+  const scope = {
+    S: state, ui: uiFor, audioControl: audioControlFor,
+    h: (tag, props, children = []) => {
+      const node = { tag, props, children: [].concat(children || []).filter(Boolean) };
+      node.append = child => node.children.push(child);
+      return node;
+    },
+    document: { createTextNode: text => ({ text }) }, loc: value => value?.ru ?? '', tl: value => value,
+    activeLocaleValue: value => value?.ru ?? value,
+    shuffleChoices: values => values, render: () => {}, resetStep: () => {},
+    nextRow: canNext => ({ tag: 'next', props: { canNext }, children: [] }),
+  };
+  const page = {
+    pageId: 'intro1', titleByLocale: { ru: 'Заголовок' }, bodyByLocale: { ru: 'Текст.' },
+    question: {
+      interactionId: 'intro1:q', promptByLocale: { ru: 'Выберите.' },
+      choicesByLocale: { ru: [
+        { responseId: 'r1', text: 'I am here.' },
+        { responseId: 'r2', text: 'I here.' },
+      ] },
+    },
+  };
+  vm.runInNewContext(fn, scope);
+
+  const rendered = scope.renderIntro(page, { entries: [{
+    interactionId: 'intro1:q',
+    responseFeedbackById: { r2: { ru: 'После I нужно am: I am here.' } },
+    responseAnalysisById: { r2: { ru: 'Полный разбор не должен показываться.' } },
+  }] });
+  const feedbackRegion = rendered.children.find(node => node?.props?.class?.startsWith('fb '));
+  assert.equal(feedbackRegion?.props.text, 'После I нужно am: I am here.');
+  assert.equal(JSON.stringify(rendered).includes('Полный разбор не должен показываться.'), false);
+  assert.equal(rendered.children.find(node => node?.props?.class === 'actions')?.children[1]?.props?.disabled, false);
 });
 
 test('a card with any unsynchronised release material is yellow, not green', () => {
   const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
-  assert.match(source, /const needsRepair = findings\.length \|\| releaseFindings\.length;/u);
-  assert.match(source, /needsRepair \? " needs-repair" : sourceFixed \? " " \+ REVIEWED_CARD_CLASS : ""/u);
+  assert.match(source, /const needsRepair = !sourceFixed/u);
+  assert.match(source, /needsRepair \? " needs-repair" : " " \+ REVIEWED_CARD_CLASS/u);
 });
 
-test('candidate preview has an explicit yellow state and cannot reuse reviewed-source status', () => {
+test('generated mockup embeds fresh readiness and accepts only schema-bound green evidence', () => {
+  const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
+  assert.match(source, /<script id="session-readiness" type="application\/json">/u);
+  assert.match(source, /const SESSION_READINESS = JSON\.parse/u);
+  assert.match(source, /reviewed-card-evidence-v2/u);
+  assert.match(source, /REVIEWED_CARD_EVIDENCE\.schemaVersion === REVIEWED_CARD_EVIDENCE_SCHEMA/u);
+  assert.match(source, /reviewedCardEligible/u);
+});
+
+test('candidate preview marks only changed session cards yellow and cannot reuse reviewed-source status', () => {
   const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
   assert.match(source, /--candidate-preview/u);
   assert.match(source, /ЧЕРНОВИК · НЕ ПРОВЕРЕНО · НЕ ВЫПУСК/u);
-  assert.match(source, /viewSource: CANDIDATE_PREVIEW \? "candidate"/u);
-  assert.match(source, /isCandidate \? " needs-repair candidate"/u);
+  assert.match(source, /candidateChanged \? "candidate" : "release"/u);
+  assert.match(source, /const isCandidate = s\.viewSource === "candidate"/u);
   assert.match(source, /Канонический выпуск не изменён/u);
   assert.match(source, /const REVIEWED_LABEL = CANDIDATE_PREVIEW \? ""/u);
   assert.match(source, /const REVIEWED_CARD_CLASS = CANDIDATE_PREVIEW \? "candidate-review-disabled"/u);
@@ -382,12 +464,7 @@ test('mockup uses the exact authored choice feedback for both outcomes and block
   scope.renderChoice(panel, task, { choiceFeedback: feedback });
   nodes[0].children.find(button => button.children[0].text === 'right').props.onClick();
   nodes = []; scope.renderChoice(panel, task, { choiceFeedback: feedback });
-  assert.match(JSON.stringify(nodes), /Авторский разбор верного ответа./u);
-  assert.match(JSON.stringify(nodes), /Разбор right./u);
-  assert.deepEqual(
-    Object.fromEntries(["role", "aria-live", "aria-atomic"].map((key) => [key, nodes[1].props[key]])),
-    { role: "status", "aria-live": "polite", "aria-atomic": "true" },
-  );
+  assert.doesNotMatch(JSON.stringify(nodes), /Авторский разбор верного ответа|Разбор right/u);
   assert.equal(nodes.at(-1).canNext, true);
 
   nodes = []; state.answered = false; state.picked = null;
@@ -395,7 +472,7 @@ test('mockup uses the exact authored choice feedback for both outcomes and block
   nodes[0].children.find(button => button.children[0].text === 'wrong').props.onClick();
   nodes = []; scope.renderChoice(panel, task, { choiceFeedback: feedback });
   assert.match(JSON.stringify(nodes), /Авторский разбор неверного ответа./u);
-  assert.match(JSON.stringify(nodes), /Разбор wrong./u);
+  assert.doesNotMatch(JSON.stringify(nodes), /Разбор wrong./u);
   assert.equal(nodes.at(-1).canNext, true);
 
   nodes = []; state.answered = false; state.picked = null;
@@ -406,7 +483,7 @@ test('mockup uses the exact authored choice feedback for both outcomes and block
   assert.equal(nodes.at(-1).canNext, false);
 });
 
-test('mockup renders a complete builder explanation and blocks a partial explanation packet', () => {
+test('mockup hides builder explanations after a correct answer and blocks a partial explanation packet', () => {
   const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
   const fn = source.slice(source.indexOf('function renderBuilder('), source.indexOf('function renderPairs('));
   const analysisSource = source.slice(source.indexOf('function completeTextAnalysisV1('), source.indexOf('function renderCard('));
@@ -432,7 +509,7 @@ test('mockup renders a complete builder explanation and blocks a partial explana
     targetPhrase: 'I am here.', orderedTokens: ['I', 'am', 'here'], explanationV1: complete,
   });
   const rendered = JSON.stringify(nodes);
-  for (const text of ['Авторское завершение.', 'Я здесь.', 'Полное объяснение фразы.', 'наречие', 'здесь', 'Сообщает о месте.']) assert.match(rendered, new RegExp(text, 'u'));
+  for (const text of ['Авторское завершение.', 'Я здесь.', 'Полное объяснение фразы.', 'наречие', 'здесь', 'Сообщает о месте.']) assert.doesNotMatch(rendered, new RegExp(text, 'u'));
 
   const invalidNodes = [];
   const invalidPanel = { append: node => invalidNodes.push(node) };
@@ -530,14 +607,14 @@ test('mockup localizes the complete Ukrainian shell and reports an honest audio 
   assert.match(source, /text:loc\(s\.sceneByLocale\) \|\| s\.scene/u);
 });
 
-test('all dynamic builder and pair feedback uses an aria live status region', () => {
+test('negative builder and pair feedback uses an aria live status region', () => {
   const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
   const builder = source.slice(source.indexOf('function renderBuilder('), source.indexOf('function renderPairs('));
   const pairs = source.slice(source.indexOf('function renderPairs('), source.indexOf('function renderSpeak('));
   assert.match(builder, /S\.tileFeedback[\s\S]+role:"status"[\s\S]+aria-live/u);
-  assert.match(builder, /S\.answered[\s\S]+builderWrong[\s\S]+role:"status"/u);
+  assert.match(builder, /!S\.ok[\s\S]+role:"status"[\s\S]+builderWrong/u);
   assert.match(pairs, /S\.pairFeedback[\s\S]+role:"status"[\s\S]+aria-live/u);
-  assert.match(pairs, /S\.answered[\s\S]+role:"status"[\s\S]+allPairs/u);
+  assert.doesNotMatch(pairs, /allPairs/u);
 });
 
 test('S01 final listening prompt identifies the colleague question and the learner answer in both locales', () => {
@@ -557,7 +634,7 @@ test('completion screen reports checked and unverified work without comparing sc
   assert.doesNotMatch(done, /learner\.interactions\.length/u);
 });
 
-test('mockup keeps speed-match identities for authored feedback and blocks a partial analysis packet', () => {
+test('mockup gives a concise correction for the exact mismatched pair and blocks a partial analysis packet', () => {
   const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
   const fn = source.slice(source.indexOf('function renderPairs('), source.indexOf('function renderSpeak('));
   const analysisSource = source.slice(source.indexOf('function completeTextAnalysisV1('), source.indexOf('function renderCard('));
@@ -565,16 +642,16 @@ test('mockup keeps speed-match identities for authored feedback and blocks a par
   let nodes = [];
   const panel = { append: node => nodes.push(node) };
   const analysis = (meaning) => ({
-    lemma: meaning, partOfSpeechLabelByLocale: { ru: 'существительное' }, meaningByLocale: { ru: meaning },
-    functionByLocale: { ru: `Функция ${meaning}.` }, matchExplanationByLocale: { ru: `Верная пара ${meaning}.` },
-    phrase: { text: meaning, meaningByLocale: { ru: meaning }, explanationByLocale: { ru: `Разбор ${meaning}.` }, units: [
-      { text: meaning, start: 0, end: meaning.length, lemma: meaning, partOfSpeechLabelByLocale: { ru: 'существительное' }, meaningByLocale: { ru: meaning }, functionByLocale: { ru: `Функция ${meaning}.` } },
+    lemma: meaning, partOfSpeechLabelByLocale: { ru: 'существительное', uk: 'іменник' }, meaningByLocale: { ru: meaning, uk: meaning },
+    functionByLocale: { ru: `Функция ${meaning}.`, uk: `Функція ${meaning}.` }, matchExplanationByLocale: { ru: `Верная пара ${meaning}.`, uk: `Правильна пара ${meaning}.` },
+    phrase: { text: meaning, meaningByLocale: { ru: meaning, uk: meaning }, explanationByLocale: { ru: `Разбор ${meaning}.`, uk: `Розбір ${meaning}.` }, units: [
+      { text: meaning, start: 0, end: meaning.length, lemma: meaning, partOfSpeechLabelByLocale: { ru: 'существительное', uk: 'іменник' }, meaningByLocale: { ru: meaning, uk: meaning }, functionByLocale: { ru: `Функция ${meaning}.`, uk: `Функція ${meaning}.` } },
     ] },
   });
-  const grid = [
-    { pairId: 'p1', target: 'one', meaningByLocale: { ru: 'один' }, analysisV1: analysis('один') },
-    { pairId: 'p2', target: 'two', meaningByLocale: { ru: 'два' }, analysisV1: analysis('два') },
-  ];
+    const grid = [
+      { pairId: 'p1', target: 'one', meaningByLocale: { ru: 'один', uk: 'один' }, analysisV1: analysis('один') },
+      { pairId: 'p2', target: 'two', meaningByLocale: { ru: 'два', uk: 'два' }, analysisV1: analysis('два') },
+    ];
   const scope = {
     S: state, ui: uiFor, audioControl: audioControlFor, h: (tag, props, children = []) => ({ tag, props, children }),
     shuffle: values => values, avoidAlignedPairs: (_left, right) => right.slice().reverse(),
@@ -587,7 +664,17 @@ test('mockup keeps speed-match identities for authored feedback and blocks a par
   nodes[0].children[0].children.find(button => button.props.text === 'one').props.onClick();
   nodes[0].children[1].children.find(button => button.props.text === 'два').props.onClick();
   const mismatch = JSON.stringify(nodes);
-  for (const text of ['один', 'два', 'Функция один.', 'Функция два.', 'Разбор один.', 'Разбор два.']) assert.match(mismatch, new RegExp(text, 'u'));
+  assert.match(mismatch, /Правильная пара: «one» — «один»\./u);
+  assert.doesNotMatch(mismatch, /«two»|«два»/u);
+  for (const text of ['Функция один.', 'Функция два.', 'Разбор один.', 'Разбор два.']) assert.doesNotMatch(mismatch, new RegExp(text, 'u'));
+
+  state.locale = 'uk';
+  state.pairFeedback = null;
+  scope.render();
+  nodes[0].children[0].children.find(button => button.props.text === 'one').props.onClick();
+  nodes[0].children[1].children.find(button => button.props.text === 'два').props.onClick();
+    assert.match(JSON.stringify(nodes), /Правильна пара: «one» — «один»\./u);
+  assert.doesNotMatch(JSON.stringify(nodes), /«two»|«два»/u);
 
   const invalidNodes = [];
   const invalidPanel = { append: node => invalidNodes.push(node) };

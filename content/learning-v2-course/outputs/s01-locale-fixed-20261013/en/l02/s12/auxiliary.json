@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-12:intro1:r2": {
+          "ru": "Это сообщение. Вопрос начинается с `is`.",
+          "uk": "Це повідомлення. Запитання починається з `is`."
+        },
+        "en:lesson-02:session-12:intro1:r3": {
+          "ru": "После `is` ставят `he`, затем `available`.",
+          "uk": "Після `is` ставлять `he`, потім `available`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-12:intro2:r2": {
+          "ru": "Это сообщение. Вопрос начинается с `is`.",
+          "uk": "Це повідомлення. Запитання починається з `is`."
+        },
+        "en:lesson-02:session-12:intro2:r3": {
+          "ru": "После `is` ставят `she`, затем `missing`.",
+          "uk": "Після `is` ставлять `she`, потім `missing`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-12:intro3:r2": {
+          "ru": "`He` относится к мужчине, а речь о сотруднице.",
+          "uk": "`He` стосується чоловіка, а йдеться про працівницю."
+        },
+        "en:lesson-02:session-12:intro3:r3": {
+          "ru": "Это сообщение, а нужен вопрос с `is` в начале.",
+          "uk": "Це повідомлення, а потрібне запитання з `is` на початку."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ca8e864895ea3af7c7d7a9dc6e74142400930e0385b4d763e983f8f7d5b774d2"
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-09",
+  "candidateBundleSha256": "b215d88fb2527cb7132a44e8a54f3e363a306b68705fc440f64d6244d115ef6b",
+  "contentReceiptSha256": "5df3126f07afe98127dc15d874bab0638d55bc6d3c1da4eee9229fd6a07dff5d",
+  "candidateInventorySha256": "6d9b618ada6be845a862fe085a429c6ddb4c2211e9a0b7b7ea8e56fcf47befcb",
+  "sourceFingerprint": "4b40f8ccbf2b9897aeedce5a4298e41a5e6e3bd9387f09d10562472c5b2755a9",
+  "verdict": "PASS",
+  "gates": [
+    {"id":"focused_candidate_acceptance_source_suite","verdict":"PASS","tests":38,"failures":0,"exitCode":0},
+    {"id":"receipt_inventory_and_bundle_rehash","verdict":"PASS","files":18,"originCount":12,"failures":0,"exitCode":0},
+    {"id":"runtime_answer_visibility_contract","verdict":"PASS","tests":25,"failures":0,"exitCode":0},
+    {"id":"locale_projection_parity","verdict":"PASS","correctAnswerFeedbackRows":0,"introPagesPerLocale":3,"practiceInteractionsPerLocale":21}
+  ]
+}

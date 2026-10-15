@@ -1,0 +1,938 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-39:i01:r1",
+          "text": "grape"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i01:audio",
+          "transcript": "grape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:i01:r1",
+            "targetText": "grape",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grape",
+          "definitionByLocale": {
+            "ru": "«виноградина». Небольшая круглая ягода, растущая гроздьями.",
+            "uk": "«виноградина». Невелика кругла ягода, що росте гронами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i03:audio",
+          "transcript": "lemon"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "lemon",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i05:audio",
+          "transcript": "onion"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "onion",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i02:audio",
+          "transcript": "grape"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "grape",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-39:i04:r1",
+          "text": "lemon"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i04:audio",
+          "transcript": "lemon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:i04:r1",
+            "targetText": "lemon",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lemon",
+          "definitionByLocale": {
+            "ru": "«лимон».",
+            "uk": "«лимон»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i06:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i06:audio",
+          "transcript": "onion"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "onion",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i08:audio",
+          "transcript": "grape"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "grape",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i10",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i10:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i10:audio",
+          "transcript": "lemon"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "lemon",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i11",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i11:audio",
+          "transcript": "onion"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "onion",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями — продукты для заказа",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями — продукты для заказа",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-39:i07:p1",
+            "target": "grape",
+            "meaningByLocale": {
+              "ru": "виноградина",
+              "uk": "виноградина"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-39:i07:p2",
+            "target": "lemon",
+            "meaningByLocale": {
+              "ru": "лимон",
+              "uk": "лимон"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-39:i07:p3",
+            "target": "onion",
+            "meaningByLocale": {
+              "ru": "луковица",
+              "uk": "цибулина"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-39:i07:p4",
+            "target": "apple",
+            "meaningByLocale": {
+              "ru": "яблоко",
+              "uk": "яблуко"
+            }
+          }
+        ],
+        "leftColumn": [
+          "grape",
+          "lemon",
+          "onion",
+          "apple"
+        ],
+        "rightColumn": [
+          "виноградина",
+          "лимон",
+          "луковица",
+          "яблоко"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i09",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте указатель — виноград теперь лежит у дальней стойки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-39:i09:r1",
+          "text": "Those"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i09:r2",
+          "text": "These"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i09:r3",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i09:r4",
+          "text": "This"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте указатель — виноград теперь лежит у дальней стойки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — виноград теперь лежит у дальней стойки",
+          "uk": "Вставте вказівне слово — виноград тепер лежить біля дальньої стійки"
+        },
+        "gappedTargetPhrase": "___ are grapes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-39:i09:r1",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i09:r2",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i09:r3",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i09:r4",
+            "text": "This"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — виноград теперь леж",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — виноград теперь леж",
+            "feedbackByLocale": {
+              "ru": "`These are grapes` подходит для винограда рядом. Эта группа дальше, поэтому нужно `Those`.",
+              "uk": "`These are grapes` підходить для винограду поруч. Ця група далі, тому потрібне `Those`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — виноград теперь леж",
+            "feedbackByLocale": {
+              "ru": "`That` относится к одному предмету и требует `is`. Здесь называют группу.",
+              "uk": "`That` стосується одного предмета й потребує `is`. Тут називають групу."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i09:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — виноград теперь леж",
+            "feedbackByLocale": {
+              "ru": "`This` относится к одному предмету рядом. Здесь группа находится дальше.",
+              "uk": "`This` стосується одного предмета поруч. Тут група розташована далі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i12:s01",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите одну фразу — шаг 1 из 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These are lemons.",
+        "localizedMeaning": {
+          "ru": "Соберите два описания — лимоны рядом, виноград дальше",
+          "uk": "Складіть два описи — лимони поруч, виноград далі"
+        },
+        "orderedTokens": [
+          "These",
+          "are",
+          "lemons."
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "is",
+          "a"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i12:s02",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i12:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i12:s02:audio",
+          "transcript": "Those are grapes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Those are grapes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i13",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение просьбы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-39:i13:r1",
+          "text": "Эти луковицы, пожалуйста"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i13:r2",
+          "text": "Те луковицы, пожалуйста"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i13:r3",
+          "text": "Эти лимоны, пожалуйста"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i13:r4",
+          "text": "Это луковицы"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение просьбы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i13:audio",
+          "transcript": "These onions, please."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:i13:r1",
+            "targetText": "Эти луковицы, пожалуйста",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i13:r2",
+            "targetText": "Те луковицы, пожалуйста",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i13:r3",
+            "targetText": "Эти лимоны, пожалуйста",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i13:r4",
+            "targetText": "Это луковицы",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-39:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "В записи слышно `these`, а не `those`: выбирают близкую группу.",
+              "uk": "У записі чути `these`, а не `those`: вибирають близьку групу."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "Названо `onions` — луковицы, а не `lemons` — лимоны.",
+              "uk": "Названо `onions` — цибулини, а не `lemons` — лимони."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i13:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "В записи нет `are`: это просьба добавить товар, а не сообщение о его названии.",
+              "uk": "У записі немає `are`: це прохання додати товар, а не твердження «Це цибулини»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i14:s01",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите одну фразу — шаг 1 из 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are onions.",
+        "localizedMeaning": {
+          "ru": "Соберите описание и просьбу — лук находится у дальней стойки",
+          "uk": "Складіть опис і прохання — цибуля біля дальньої стійки"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "onions."
+        ],
+        "authoredDistractorTokens": [
+          "These",
+          "is",
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i14:s02",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i14:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i14:s02:audio",
+          "transcript": "Those onions, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Those onions, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i15",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите одну фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i15:audio",
+          "transcript": "Those are onions."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Those are onions.",
+        "orderedTokens": [
+          "Those",
+          "are",
+          "onions."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i16:s01",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i16:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i16:s01:audio",
+          "transcript": "These are grapes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These are grapes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i16:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите одну фразу — шаг 2 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i16:s02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите одну фразу — шаг 2 из 3",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i16:s02:audio",
+          "transcript": "Those are lemons."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Those are lemons.",
+        "orderedTokens": [
+          "Those",
+          "are",
+          "lemons."
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "is",
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i16:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i16:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i16:s03:audio",
+          "transcript": "These are onions."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These are onions.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i17:s01",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите одну фразу — шаг 1 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 3",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are grapes.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "grapes."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i17:s02",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i17:s02:audio",
+          "transcript": "These are lemons."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These are lemons.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i17:s03",
+      "ordinal": 26,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите одну фразу — шаг 3 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those onions, please.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу"
+        },
+        "orderedTokens": [
+          "Those",
+          "onions,",
+          "please."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 23,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cfcaf0820dde2108aad3b67181b6dc21e027be939b7238e4dbc6a8ada2454eff"
+}

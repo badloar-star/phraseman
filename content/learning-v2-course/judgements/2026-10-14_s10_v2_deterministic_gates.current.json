@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-10",
+  "candidateBundleSha256": "a4c9d7751aea864987a92c5f7d38eb70e9f39361b503a69fe59472dc21f016ed",
+  "contentReceiptSha256": "3f62146b12822241b6fb8e606523d9bd44f5bc272f5ba9bb65e486dbb4fe1f09",
+  "candidateInventorySha256": "2434f85713da1e7227169fc18c4fb97a1726e0706135841060f912023893ae91",
+  "sourceFingerprint": "52d5f9a72006a27764114c9b19a68b74905c1781d723d8df1f16927386b44244",
+  "verdict": "PASS",
+  "gates": [
+    {"id":"focused_source_candidate_acceptance_suite","verdict":"PASS","tests":37,"failures":0,"exitCode":0},
+    {"id":"receipt_inventory_and_bundle_rehash","verdict":"PASS","files":18,"failures":0,"exitCode":0},
+    {"id":"locale_projection_wrong_only_feedback","verdict":"PASS","feedbackRows":24,"correctAnswerFeedbackRows":0,"missingWrongAnswerFeedbackRows":0,"introPagesPerLocale":3,"practiceInteractionsPerLocale":20,"exitCode":0},
+    {"id":"runtime_answer_visibility_contract","verdict":"PASS","tests":22,"failures":0,"exitCode":0},
+    {"id":"release_application_parity_route","verdict":"PASS","tests":10,"failures":0,"exitCode":0}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-13",
+  "candidateBundleSha256": "538f4e2004ba4575944a49a00bd80a34d7d1c18407175b49acd7e1f6afb8670b",
+  "contentReceiptSha256": "e3b3cb3ae5757edcbc91e94f1764104df5a8ec614c1e4f9ece35e2435cc1872a",
+  "candidateInventorySha256": "20834a1e4eb19c708c4792e54b8bf46cb143cb4aba2c260ab596c97ce662e54b",
+  "sourceFingerprint": "60d466e971bdf79d303957417673e91dc57aa3c476d8a122fdee68367742de87",
+  "verdict": "PASS",
+  "gates": [
+    {"id":"focused_s13_source_suite","verdict":"PASS","tests":9,"failures":0,"exitCode":0},
+    {"id":"blind_learner_rendered_packet_contract","verdict":"PASS","tests":2,"failures":0,"packetSha256":"d1c70a6262aa8f47f4e868d7a5aab5c444475117d90ad98391b25281fb14d68f","bytes":57515,"exitCode":0},
+    {"id":"generic_session_receipt_builder_suite","verdict":"PASS","tests":29,"failures":0,"exitCode":0},
+    {"id":"session_acceptance_contract_suite","verdict":"PASS","tests":4,"failures":0,"exitCode":0},
+    {"id":"session_promotion_contract_suite","verdict":"PASS","tests":2,"failures":0,"exitCode":0},
+    {"id":"receipt_inventory_and_bundle_write","verdict":"PASS","files":18,"candidateFiles":5,"failures":0,"exitCode":0},
+    {"id":"candidate_preview_build","verdict":"PASS","introPagesPerLocale":3,"practiceInteractionsPerLocale":18,"locales":2,"problems":0,"exitCode":0},
+    {"id":"ru_uk_source_projection_parity","verdict":"PASS","tests":1,"failures":0,"exitCode":0}
+  ]
+}

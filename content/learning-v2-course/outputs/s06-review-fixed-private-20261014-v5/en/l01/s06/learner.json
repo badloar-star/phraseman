@@ -1,0 +1,1056 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — home",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — home",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i01:audio",
+          "transcript": "home"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-06:i01:r1",
+            "targetText": "home",
+            "meaningByLocale": {
+              "ru": "«дома». Не здание, а то место, где вы наконец сели.",
+              "uk": "«вдома». Не будинок, а те місце, де ви нарешті сіли."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "home",
+          "definitionByLocale": {
+            "ru": "«дома». Не здание, а то место, где вы наконец сели.",
+            "uk": "«вдома». Не будинок, а те місце, де ви нарешті сіли."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-06:i02:r1",
+          "text": "home"
+        },
+        {
+          "responseId": "en:lesson-01:session-06:i02:r2",
+          "text": "hope"
+        },
+        {
+          "responseId": "en:lesson-01:session-06:i02:r3",
+          "text": "hole"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i02:audio",
+          "transcript": "home"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-06:i02:r1",
+            "targetText": "home",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i02:r2",
+            "targetText": "hope",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i02:r3",
+            "targetText": "hole",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — home",
+            "feedbackByLocale": {
+              "ru": "`hope` значит «надеяться», а здесь нужно `home` — «дома».",
+              "uk": "`hope` означає «сподіватися», а тут потрібно `home` — «вдома»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — home",
+            "feedbackByLocale": {
+              "ru": "`hole` значит «дыра», а здесь нужно `home` — «дома».",
+              "uk": "`hole` означає «дірка», а тут потрібно `home` — «вдома»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — back",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — back",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i03:audio",
+          "transcript": "back"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-06:i03:r1",
+            "targetText": "back",
+            "meaningByLocale": {
+              "ru": "«снова здесь». Вас здесь не было — и вот вы снова здесь.",
+              "uk": "«знову тут». Вас тут не було — і ось ви знову тут."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "back",
+          "definitionByLocale": {
+            "ru": "«снова здесь». Вас здесь не было — и вот вы снова здесь.",
+            "uk": "«знову тут». Вас тут не було — і ось ви знову тут."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-06:i04:r1",
+          "text": "back"
+        },
+        {
+          "responseId": "en:lesson-01:session-06:i04:r2",
+          "text": "bag"
+        },
+        {
+          "responseId": "en:lesson-01:session-06:i04:r3",
+          "text": "bad"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i04:audio",
+          "transcript": "back"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-06:i04:r1",
+            "targetText": "back",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i04:r2",
+            "targetText": "bag",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i04:r3",
+            "targetText": "bad",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — back",
+            "feedbackByLocale": {
+              "ru": "`bag` значит «сумка», а здесь нужно `back` — «снова здесь».",
+              "uk": "`bag` означає «сумка», а тут потрібно `back` — «знову тут»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — back",
+            "feedbackByLocale": {
+              "ru": "`bad` значит «плохой», а здесь нужно `back` — «снова здесь».",
+              "uk": "`bad` означає «поганий», а тут потрібно `back` — «знову тут»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «я дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «я дома»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am home.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я дома»",
+          "uk": "Складіть фразу — «я вдома»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "home"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «я дома»",
+            "feedbackByLocale": {
+              "ru": "с `I` нужна форма `am`",
+              "uk": "з `I` потрібна форма `am`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — done",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — done",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i06:audio",
+          "transcript": "done"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-06:i06:r1",
+            "targetText": "done",
+            "meaningByLocale": {
+              "ru": "«всё готово». Дела завершены, руки свободны.",
+              "uk": "«усе готово». Справи завершено, руки вільні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "done",
+          "definitionByLocale": {
+            "ru": "«всё готово». Дела завершены, руки свободны.",
+            "uk": "«усе готово». Справи завершено, руки вільні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — после дел вы говорите, что с вами всё в порядке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — после дел вы говорите, что с вами всё в порядке",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am ok.",
+        "localizedMeaning": {
+          "ru": "Дела закончены; скажите, что всё в порядке.",
+          "uk": "Справи закінчено; скажіть, що все гаразд."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "ok"
+        ],
+        "authoredDistractorTokens": [
+          "is",
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — после дел вы говорите, что с вами всё в порядке",
+            "feedbackByLocale": {
+              "ru": "с `I` нужна форма `am`",
+              "uk": "з `I` потрібна форма `am`"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i07:tile:d2",
+            "correct": false,
+            "testedDimension": "Соберите фразу — после дел вы говорите, что с вами всё в порядке",
+            "feedbackByLocale": {
+              "ru": "она изменила бы смысл на «со мной не всё в порядке», но по условию всё хорошо",
+              "uk": "вона змінила б зміст на «зі мною не все гаразд», але за умовою все добре"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-06:i08:r1",
+          "text": "done"
+        },
+        {
+          "responseId": "en:lesson-01:session-06:i08:r2",
+          "text": "down"
+        },
+        {
+          "responseId": "en:lesson-01:session-06:i08:r3",
+          "text": "dawn"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i08:audio",
+          "transcript": "done"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-06:i08:r1",
+            "targetText": "done",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i08:r2",
+            "targetText": "down",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i08:r3",
+            "targetText": "dawn",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — done",
+            "feedbackByLocale": {
+              "ru": "`down` значит «вниз», а здесь нужно `done` — «всё готово».",
+              "uk": "`down` означає «вниз», а тут потрібно `done` — «усе готово»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — done",
+            "feedbackByLocale": {
+              "ru": "`dawn` значит «рассвет», а `done` — «всё готово».",
+              "uk": "`dawn` означає «світанок», а `done` — «усе готово»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг спрашивает, всё ли с вами в порядке после долгой дороги",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-06:i09:r1",
+          "text": "ok"
+        },
+        {
+          "responseId": "en:lesson-01:session-06:i09:r2",
+          "text": "home"
+        },
+        {
+          "responseId": "en:lesson-01:session-06:i09:r3",
+          "text": "back"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг спрашивает, всё ли с вами в порядке после долгой дороги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг спрашивает, всё ли с вами в порядке после долгой дороги",
+          "uk": "Вставте слово — друг питає, чи все з вами гаразд після довгої дороги"
+        },
+        "gappedTargetPhrase": "I am ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-06:i09:r1",
+            "text": "ok"
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i09:r2",
+            "text": "home"
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i09:r3",
+            "text": "back"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг спрашивает, всё ли с вами в порядке после долгой дороги",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг спрашивает, всё ли с вами в порядке после долгой дороги",
+            "feedbackByLocale": {
+              "ru": "`home` говорит, где вы, а друг спрашивает о вашем состоянии. Здесь нужно `ok`.",
+              "uk": "`home` каже, де ви, а друг питає про ваш стан. Тут потрібне `ok`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг спрашивает, всё ли с вами в порядке после долгой дороги",
+            "feedbackByLocale": {
+              "ru": "`back` говорит о возвращении, а друг спрашивает о вашем состоянии после дороги. Здесь нужно `ok`.",
+              "uk": "`back` говорить про повернення, а друг питає про ваш стан після дороги. Тут потрібне `ok`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-06:i10:p1",
+            "target": "home",
+            "meaningByLocale": {
+              "ru": "дома",
+              "uk": "вдома"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-06:i10:p2",
+            "target": "back",
+            "meaningByLocale": {
+              "ru": "снова здесь",
+              "uk": "знову тут"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-06:i10:p3",
+            "target": "done",
+            "meaningByLocale": {
+              "ru": "всё готово",
+              "uk": "усе готово"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-06:i10:p4",
+            "target": "ok",
+            "meaningByLocale": {
+              "ru": "нормально",
+              "uk": "нормально"
+            }
+          }
+        ],
+        "leftColumn": [
+          "home",
+          "back",
+          "done",
+          "ok"
+        ],
+        "rightColumn": [
+          "дома",
+          "снова здесь",
+          "всё готово",
+          "нормально"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг спрашивает, как вы там вообще",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-06:i11:r1",
+          "text": "ok"
+        },
+        {
+          "responseId": "en:lesson-01:session-06:i11:r2",
+          "text": "home"
+        },
+        {
+          "responseId": "en:lesson-01:session-06:i11:r3",
+          "text": "back"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг спрашивает, как вы там вообще",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг спрашивает, как вы там вообще",
+          "uk": "Вставте слово — друг питає, як ви там узагалі"
+        },
+        "gappedTargetPhrase": "I am ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-06:i11:r1",
+            "text": "ok"
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i11:r2",
+            "text": "home"
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i11:r3",
+            "text": "back"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг спрашивает, как вы там вообще",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг спрашивает, как вы там вообще",
+            "feedbackByLocale": {
+              "ru": "`home` говорит о месте; вопрос был о состоянии.",
+              "uk": "`home` каже, де ви; питання було про ваш стан."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг спрашивает, как вы там вообще",
+            "feedbackByLocale": {
+              "ru": "«Я снова здесь» — тоже о месте. А вопрос был о состоянии.",
+              "uk": "«Я знову тут» — теж про місце. А питання було про стан."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы пишете Диме, что снова здесь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы пишете Диме, что снова здесь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am back.",
+        "localizedMeaning": {
+          "ru": "Вы снова здесь: скажите это полной фразой.",
+          "uk": "Ви знову тут: скажіть це повною фразою."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "back"
+        ],
+        "authoredDistractorTokens": [
+          "is",
+          "are",
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы пишете Диме, что снова здесь",
+            "feedbackByLocale": {
+              "ru": "с `I` нужна форма `am`",
+              "uk": "з `I` потрібна форма `am`"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i12:tile:d2",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы пишете Диме, что снова здесь",
+            "feedbackByLocale": {
+              "ru": "с `I` нужна форма `am`",
+              "uk": "з `I` потрібна форма `am`"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i12:tile:d3",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы пишете Диме, что снова здесь",
+            "feedbackByLocale": {
+              "ru": "она меняет смысл на «возвращение ещё не состоялось», а по условию вы уже здесь",
+              "uk": "вона змінює зміст на «повернення ще не відбулося», а за умовою ви вже тут"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «всё готово»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «всё готово»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i13:audio",
+          "transcript": "I am done."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am done.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "done"
+        ],
+        "authoredDistractorTokens": [
+          "home"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «всё готово»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно `done` — «всё готово», а `home` значит «дома».",
+              "uk": "Тут потрібно `done` — «усе готово», а `home` означає «вдома»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i14:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i14:audio",
+          "transcript": "I am here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы уже поужинали и больше не хотите есть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы уже поужинали и больше не хотите есть",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not hungry.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы уже поужинали и больше не хотите есть",
+          "uk": "Складіть фразу — ви вже повечеряли й більше не хочете їсти"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "hungry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — вы отвечаете Олегу, что завтра можете пойти гулять",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — вы отвечаете Олегу, что завтра можете пойти гулять",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i16:audio",
+          "transcript": "I am free."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am free.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "free"
+        ],
+        "authoredDistractorTokens": [
+          "is",
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — вы отвечаете Олегу, что завтра можете пойти гулять",
+            "feedbackByLocale": {
+              "ru": "После `I` нужна форма `am`: `I am free`.",
+              "uk": "Після `I` потрібна форма `am`: `I am free`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i16:tile:d2",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — вы отвечаете Олегу, что завтра можете пойти гулять",
+            "feedbackByLocale": {
+              "ru": "`I am not free` отрицает именно `free`; по условию вы завтра можете пойти гулять, поэтому нужно `I am free`.",
+              "uk": "`I am not free` заперечує саме `free`; за умовою ви завтра можете піти гуляти, тому потрібно `I am free`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — после ночного рейса сообщите об усталости",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — после ночного рейса сообщите об усталости",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am tired.",
+        "localizedMeaning": {
+          "ru": "После ночного рейса сообщите об усталости.",
+          "uk": "Після нічного рейсу повідомте про втому."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "tired"
+        ],
+        "authoredDistractorTokens": [
+          "is",
+          "are",
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-06:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — после ночного рейса сообщите об усталости",
+            "feedbackByLocale": {
+              "ru": "с `I` нужна форма `am`",
+              "uk": "з `I` потрібна форма `am`"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i17:tile:d2",
+            "correct": false,
+            "testedDimension": "Соберите фразу — после ночного рейса сообщите об усталости",
+            "feedbackByLocale": {
+              "ru": "с `I` нужна форма `am`",
+              "uk": "з `I` потрібна форма `am`"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-06:i17:tile:d3",
+            "correct": false,
+            "testedDimension": "Соберите фразу — после ночного рейса сообщите об усталости",
+            "feedbackByLocale": {
+              "ru": "`not` меняет сообщение на противоположное; после ночного рейса вы говорите об усталости: `I am tired`.",
+              "uk": "`not` змінює повідомлення на протилежне; після нічного рейсу ви говорите про втому: `I am tired`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините английские слова с их значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините английские слова с их значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-06:i18:p1",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "чувствовать усталость",
+              "uk": "відчувати втому"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-06:i18:p2",
+            "target": "free",
+            "meaningByLocale": {
+              "ru": "иметь свободное время",
+              "uk": "мати вільний час"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-06:i18:p3",
+            "target": "here",
+            "meaningByLocale": {
+              "ru": "здесь",
+              "uk": "тут"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-06:i18:p4",
+            "target": "hungry",
+            "meaningByLocale": {
+              "ru": "хотеть есть",
+              "uk": "хотіти їсти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tired",
+          "free",
+          "here",
+          "hungry"
+        ],
+        "rightColumn": [
+          "чувствовать усталость",
+          "иметь свободное время",
+          "здесь",
+          "хотеть есть"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Дима спрашивает, где вы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-06:i19:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Дима спрашивает, где вы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-06:i19:audio",
+          "transcript": "I am home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1b0771e08979e1d9688900b676b13204d797c6f10eb389f1d9fb781938cef97f"
+}

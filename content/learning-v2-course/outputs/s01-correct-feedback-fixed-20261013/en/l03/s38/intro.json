@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "переносить `these/those` в рыночную ситуацию: называть и выбирать несколько близких или дальних предметов",
+    "uk": "переносити `these/those` у ринкову ситуацію: називати й вибирати кілька близьких або далеких предметів"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Яблоки перед вами",
+        "uk": "Яблука перед вами"
+      },
+      "bodyByLocale": {
+        "ru": "`apple` — «яблоко», `apples` — «яблоки». Перед вами лежит несколько яблок: `These are apples.` — «Это яблоки». Для близкой группы выбирайте `these`, а после него ставьте `are` и название во множественном числе. Считать каждое яблоко отдельно не нужно: фраза сразу называет всю группу.",
+        "uk": "`apple` — «яблуко», `apples` — «яблука». Перед вами лежить кілька яблук: `These are apples.` — «Це яблука». Для близької групи вибирайте `these`, а після нього ставте `are` і назву в множині. Рахувати кожне яблуко окремо не треба: фраза одразу називає всю групу."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Перед вами лежит несколько яблок. Назовите их.",
+          "uk": "Перед вами лежить кілька яблук. Назвіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-38:intro1:r1",
+              "text": "These are apples."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro1:r2",
+              "text": "Those are apples."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro1:r3",
+              "text": "This is an apple."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-38:intro1:r1",
+              "text": "These are apples."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro1:r2",
+              "text": "Those are apples."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro1:r3",
+              "text": "This is an apple."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Перед вами лежит несколько яблок. Назовите их.",
+          "uk": "Перед вами лежить кілька яблук. Назвіть їх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бананы через проход",
+        "uk": "Банани через прохід"
+      },
+      "bodyByLocale": {
+        "ru": "`banana` — «банан», `bananas` — «бананы». Через проход видно несколько бананов: `Those are bananas.` — «Это бананы». Для дальней группы выбирайте `those`; несколько предметов сохраняют пару `those are` и форму `bananas`. Проход широкий, а нужная связка всё равно короткая.",
+        "uk": "`banana` — «банан», `bananas` — «банани». Через прохід видно кілька бананів: `Those are bananas.` — «Це банани». Для далекої групи вибирайте `those`. Для кількох предметів потрібні пара `those are` і форма `bananas`. Прохід широкий, а потрібна зв’язка все одно коротка."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Через проход видно несколько бананов. Назовите их.",
+          "uk": "Через прохід видно кілька бананів. Назвіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-38:intro2:r1",
+              "text": "Those are bananas."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro2:r2",
+              "text": "These are bananas."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro2:r3",
+              "text": "That is a banana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-38:intro2:r1",
+              "text": "Those are bananas."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro2:r2",
+              "text": "These are bananas."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro2:r3",
+              "text": "That is a banana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Через проход видно несколько бананов. Назовите их.",
+          "uk": "Через прохід видно кілька бананів. Назвіть їх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Показать, что положить",
+        "uk": "Показати, що покласти"
+      },
+      "bodyByLocale": {
+        "ru": "`orange` — «апельсин», `oranges` — «апельсины». Дальняя группа называется `Those are oranges.` Для заказа скажите `Those oranges, please.` — «Те апельсины, пожалуйста». В просьбе `those` ставится прямо перед `oranges`: продавец сразу понимает, что положить в пакет, и лекция об апельсинах не начинается.",
+        "uk": "`orange` — «апельсин», `oranges` — «апельсини». `Those are oranges.` — так називаємо далеку групу. Для замовлення скажіть `Those oranges, please.` — «Ті апельсини, будь ласка». У проханні `those` стоїть перед `oranges`: продавець одразу розуміє, що покласти в пакет, і лекція про апельсини не починається."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы показываете на апельсины у дальнего прилавка. Выберите точную просьбу.",
+          "uk": "Ви показуєте на апельсини біля далекого прилавка. Виберіть точне прохання."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-38:intro3:r1",
+              "text": "Those oranges, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro3:r2",
+              "text": "These oranges, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro3:r3",
+              "text": "Those are oranges."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-38:intro3:r1",
+              "text": "Those oranges, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro3:r2",
+              "text": "These oranges, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-38:intro3:r3",
+              "text": "Those are oranges."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы показываете на апельсины у дальнего прилавка. Выберите точную просьбу.",
+          "uk": "Ви показуєте на апельсини біля далекого прилавка. Виберіть точне прохання."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "93efbbaa1b1005772b4a181fe9c4a5afe58d4e7f5effeb9560960b164550e84d"
+}

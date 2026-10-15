@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "один предмет: `a black sofa`; несколько предметов: `white chairs`, `the grey tables`.",
+    "uk": "один предмет: `a black sofa`; кілька предметів: `white chairs`, `the grey tables`."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чёрный диван",
+        "uk": "Чорний диван"
+      },
+      "bodyByLocale": {
+        "ru": "`black` — «чёрный». В комнате вы замечаете один диван: `A black sofa is here.` Когда предмет один и вы говорите о нём впервые, перед цветом и предметом стоит `a`. В английском цвет идёт прямо перед sofa: так один диван сразу отличается от группы стульев в той же комнате.",
+        "uk": "`black` — «чорний». У кімнаті ви помічаєте один диван: `A black sofa is here.` Коли предмет один і ви говорите про нього вперше, перед кольором і предметом стоїть `a`. В англійській колір стоїть просто перед sofa: так один диван одразу відрізняється від групи стільців у тій самій кімнаті."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы впервые видите один чёрный диван. Выберите фразу.",
+          "uk": "Ви вперше бачите один чорний диван. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-50:intro1:r1",
+              "text": "A black sofa is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro1:r2",
+              "text": "Black sofa is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro1:r3",
+              "text": "A sofa black is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-50:intro1:r1",
+              "text": "A black sofa is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro1:r2",
+              "text": "Black sofa is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro1:r3",
+              "text": "A sofa black is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы впервые видите один чёрный диван. Выберите фразу.",
+          "uk": "Ви вперше бачите один чорний диван. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Белые стулья",
+        "uk": "Білі стільці"
+      },
+      "bodyByLocale": {
+        "ru": "`white` — «белый». Рядом стоят несколько стульев: `White chairs are here.` Их больше одного, поэтому chair получает хвост `-s`, а `is` становится `are`. Перед всей группой `a` не нужно: один маленький артикль не справится с несколькими стульями.",
+        "uk": "`white` — «білий». Поруч стоять кілька стільців: `White chairs are here.` Їх більше одного, тому chair отримує хвіст `-s`, а `is` стає `are`. Перед усією групою `a` не потрібен: один маленький артикль не впорається з кількома стільцями."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "В комнате стоят белые стулья. Выберите фразу.",
+          "uk": "У кімнаті стоять білі стільці. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-50:intro2:r1",
+              "text": "White chairs are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro2:r2",
+              "text": "A white chairs are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro2:r3",
+              "text": "White chair is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-50:intro2:r1",
+              "text": "White chairs are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro2:r2",
+              "text": "A white chairs are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro2:r3",
+              "text": "White chair is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В комнате стоят белые стулья. Выберите фразу.",
+          "uk": "У кімнаті стоять білі стільці. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Серые столы",
+        "uk": "Сірі столи"
+      },
+      "bodyByLocale": {
+        "ru": "`grey` — «серый». Друг показывает на конкретную группу серых столов у окна. Теперь вы оба знаете, о каких столах речь: `The grey tables are here.` Цвет остаётся перед tables, а `the` подходит и к нескольким уже понятным предметам.",
+        "uk": "`grey` — «сірий». Друг показує на конкретну групу сірих столів біля вікна. Тепер ви обоє знаєте, про які столи йдеться: `The grey tables are here.` Колір лишається перед tables, а `the` підходить і до кількох уже зрозумілих предметів."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на серые столы у окна. Вы говорите об этих столах. Выберите фразу.",
+          "uk": "Друг показує на сірі столи біля вікна. Ви говорите про ці столи. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-50:intro3:r1",
+              "text": "The grey tables are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro3:r2",
+              "text": "A grey tables are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro3:r3",
+              "text": "The tables grey are here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-50:intro3:r1",
+              "text": "The grey tables are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro3:r2",
+              "text": "A grey tables are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-50:intro3:r3",
+              "text": "The tables grey are here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на серые столы у окна. Вы говорите об этих столах. Выберите фразу.",
+          "uk": "Друг показує на сірі столи біля вікна. Ви говорите про ці столи. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "942d1d9c0e09e75dcec6995f0069f1aad6657769ebe5e73d8a5b8c44f3eaaa75"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-16:intro1:r2": {
+          "ru": "После `you` нужно `are`: без него английская фраза неполная.",
+          "uk": "Після `you` потрібне `are`: без нього англійська фраза неповна."
+        },
+        "en:lesson-01:session-16:intro1:r3": {
+          "ru": "`is` — не для `you`. Про собеседника всегда `are`.",
+          "uk": "`is` — не для `you`. Про співрозмовника завжди `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-16:intro2:r2": {
+          "ru": "Сначала `are`, затем `not`: `You are not wrong`.",
+          "uk": "Спершу `are`, потім `not`: `You are not wrong`."
+        },
+        "en:lesson-01:session-16:intro2:r3": {
+          "ru": "`not` в конце не работает. Его место сразу за `are`.",
+          "uk": "`not` у кінці не працює. Його місце одразу за `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-16:intro3:r2": {
+          "ru": "После `you` нужно `are`: `You are brave`.",
+          "uk": "Після `you` потрібне `are`: `You are brave`."
+        },
+        "en:lesson-01:session-16:intro3:r3": {
+          "ru": "`am` живёт только рядом с `I`. Про него — `are`.",
+          "uk": "`am` живе тільки поряд з `I`. Про нього — `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dd6b71e37c839449b3ec845586ef92088cabab3ed373905ce68a61f8d003a54d"
+}

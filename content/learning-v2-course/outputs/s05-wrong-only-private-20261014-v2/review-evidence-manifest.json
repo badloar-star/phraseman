@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "learning_v2_session_review_evidence_manifest_v1",
+  "courseSessionId": "en:lesson-01:session-05",
+  "candidateRoot": "content/learning-v2-course/outputs/s05-wrong-only-private-20261014-v2",
+  "candidateBundleSha256": "bb0e7e12311f5023850d833b681135f8f8530aa4fb56a629e13570e70a1d6413",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s05-wrong-only-private-20261014-v2/content-receipt.json",
+  "candidateReceiptInventorySha256": "f7e450d24702c3f560af365dfc51b9eed1bba87d5b6c48473663a94297eb8353",
+  "requiredRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "eligibleRoles": [],
+  "missingRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "roles": [],
+  "textReviewComplete": false,
+  "releaseAuthority": false
+}

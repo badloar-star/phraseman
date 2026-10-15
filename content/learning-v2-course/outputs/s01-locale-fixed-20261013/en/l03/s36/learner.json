@@ -1,0 +1,847 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-36:i01:r1",
+          "text": "tree"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i01:audio",
+          "transcript": "tree"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-36:i01:r1",
+            "targetText": "tree",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tree",
+          "definitionByLocale": {
+            "ru": "«дерево». Высокое растение с твёрдым стволом и ветвями.",
+            "uk": "«дерево». Висока рослина з твердим стовбуром і гілками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i03:audio",
+          "transcript": "flower"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "flower",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i05:audio",
+          "transcript": "bicycle"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "bicycle",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i02:audio",
+          "transcript": "tree"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "tree",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-36:i04:r1",
+          "text": "flower"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i04:audio",
+          "transcript": "flower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-36:i04:r1",
+            "targetText": "flower",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flower",
+          "definitionByLocale": {
+            "ru": "«цветок».",
+            "uk": "«квітка»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i06:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i06:audio",
+          "transcript": "bicycle"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "bicycle",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i08:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i08:audio",
+          "transcript": "tree"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "tree",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i09",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i09:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i09:audio",
+          "transcript": "flower"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "flower",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i10",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i10:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i10:audio",
+          "transcript": "bicycle"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "bicycle",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями — сезонная витрина",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями — сезонная витрина",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-36:i07:p1",
+            "target": "tree",
+            "meaningByLocale": {
+              "ru": "дерево",
+              "uk": "дерево"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-36:i07:p2",
+            "target": "flower",
+            "meaningByLocale": {
+              "ru": "цветок",
+              "uk": "квітка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-36:i07:p3",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-36:i07:p4",
+            "target": "frame",
+            "meaningByLocale": {
+              "ru": "рамка",
+              "uk": "рамка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tree",
+          "flower",
+          "bicycle",
+          "frame"
+        ],
+        "rightColumn": [
+          "дерево",
+          "цветок",
+          "велосипед",
+          "рамка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — за стеклом один цветок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — за стеклом один цветок",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i11:audio",
+          "transcript": "That is a flower."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That is a flower.",
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "flower"
+        ],
+        "authoredDistractorTokens": [
+          "Those",
+          "are",
+          "flowers"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение фразы о велосипеде",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-36:i12:r1",
+          "text": "Это велосипед"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i12:r2",
+          "text": "Это велосипеды"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i12:r3",
+          "text": "Это дерево"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i12:r4",
+          "text": "Это цветы"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение фразы о велосипеде",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i12:audio",
+          "transcript": "That is a bicycle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-36:i12:r1",
+            "targetText": "Это велосипед",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i12:r2",
+            "targetText": "Это велосипеды",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i12:r3",
+            "targetText": "Это дерево",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i12:r4",
+            "targetText": "Это цветы",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "`That is` и `a bicycle` указывают на один велосипед.",
+              "uk": "`That is` і `a bicycle` указують на один велосипед."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Число совпадает, но в записи назван `bicycle`, а не `tree`.",
+              "uk": "Число збігається, але в записі названо `bicycle`, а не `tree`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i12:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи один предмет и слово `bicycle`; цветов было бы несколько.",
+              "uk": "У записі один предмет і слово `bicycle`; квітів було б кілька."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте форму — за стеклом несколько велосипедов",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-36:i13:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i13:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i13:r3",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i13:r4",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте форму — за стеклом несколько велосипедов",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте форму — за стеклом несколько велосипедов",
+          "uk": "Вставте форму — за склом кілька велосипедів"
+        },
+        "gappedTargetPhrase": "Those ___ bicycles.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i13:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i13:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i13:r3",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i13:r4",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вставьте форму — за стеклом несколько ве",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-36:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте форму — за стеклом несколько ве",
+            "feedbackByLocale": {
+              "ru": "`is` относится к одному предмету. После `those` нужна форма `are`.",
+              "uk": "`is` стосується одного предмета. Після `those` потрібна форма `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте форму — за стеклом несколько ве",
+            "feedbackByLocale": {
+              "ru": "`am` работает с `I`, а здесь речь о нескольких велосипедах.",
+              "uk": "`am` працює з `I`, а тут ідеться про кілька велосипедів."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i13:r4",
+            "correct": false,
+            "testedDimension": "Вставьте форму — за стеклом несколько ве",
+            "feedbackByLocale": {
+              "ru": "В этой фразе нужна готовая форма `are`, а не словарная форма `be`.",
+              "uk": "У цій фразі потрібна готова форма `are`, а не словникова форма `be`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите описание — за стеклом несколько велосипедов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите описание — за стеклом несколько велосипедов",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are bicycles.",
+        "localizedMeaning": {
+          "ru": "Соберите описание — за стеклом несколько велосипедов",
+          "uk": "Складіть опис — за склом кілька велосипедів"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "bicycles"
+        ],
+        "authoredDistractorTokens": [
+          "That",
+          "is",
+          "a",
+          "bicycle"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i15:audio",
+          "transcript": "That is a tree."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is a tree.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i16:s01",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите одну фразу — несколько цветов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i16:s01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите одну фразу — несколько цветов",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i16:s01:audio",
+          "transcript": "Those are flowers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Those are flowers.",
+        "orderedTokens": [
+          "Those",
+          "are",
+          "flowers"
+        ],
+        "authoredDistractorTokens": [
+          "photo"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i16:s02",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i16:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i16:s02:audio",
+          "transcript": "Those are photos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Those are photos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i17:s01",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите одну фразу — шаг 1 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 3",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are trees.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "trees."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i17:s02:audio",
+          "transcript": "That is a flower."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is a flower.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i17:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите одну фразу — шаг 3 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i17:s03:audio",
+          "transcript": "Those are bicycles."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Those are bicycles.",
+        "orderedTokens": [
+          "Those",
+          "are",
+          "bicycles."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "40b5191c85c7e8fff107d3729cf22fba4b32715d82a7e4df45f9cadd68128f07"
+}

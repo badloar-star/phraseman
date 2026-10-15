@@ -1,0 +1,1173 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i01:audio",
+          "transcript": "shy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i01:r1",
+            "targetText": "shy",
+            "meaningByLocale": {
+              "ru": "«стеснительный». Хочет заговорить, но не решается. Не молчун по характеру, а человек, которому трудно начать.",
+              "uk": "«сором'язливий». Хоче заговорити, але не наважується. Не мовчун за вдачею, а людина, якій важко почати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shy",
+          "definitionByLocale": {
+            "ru": "«стеснительный». Хочет заговорить, но не решается. Не молчун по характеру, а человек, которому трудно начать.",
+            "uk": "«сором'язливий». Хоче заговорити, але не наважується. Не мовчун за вдачею, а людина, якій важко почати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-18:i02:r1",
+          "text": "shy"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i02:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i02:r3",
+          "text": "sky"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i02:audio",
+          "transcript": "shy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i02:r1",
+            "targetText": "shy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i02:r2",
+            "targetText": "she",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i02:r3",
+            "targetText": "sky",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — shy",
+            "feedbackByLocale": {
+              "ru": "«Она». Похоже на слух, но в `shy` на конце «ай», а не «и».",
+              "uk": "«Вона». Схоже на слух, але в `shy` на кінці «ай», а не «і»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — shy",
+            "feedbackByLocale": {
+              "ru": "«Небо». Лишний звук «к» в середине.",
+              "uk": "«Небо». Зайвий звук «к» усередині."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "`shy` — правильный ответ: в аудио слышно звук `sh`, затем «ай». Это `shy`.",
+              "uk": "`shy` — правильна відповідь: в аудіо чути звук `sh`, потім «ай». Це `shy`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — loud",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — loud",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i03:audio",
+          "transcript": "loud"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i03:r1",
+            "targetText": "loud",
+            "meaningByLocale": {
+              "ru": "«громкий». Человека слышно с другого конца комнаты, хотя он просто разговаривает.",
+              "uk": "«гучний». Людину чути з іншого кінця кімнати, хоча вона просто розмовляє."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loud",
+          "definitionByLocale": {
+            "ru": "«громкий». Человека слышно с другого конца комнаты, хотя он просто разговаривает.",
+            "uk": "«гучний». Людину чути з іншого кінця кімнати, хоча вона просто розмовляє."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-18:i04:r1",
+          "text": "loud"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i04:r2",
+          "text": "load"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i04:r3",
+          "text": "lost"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i04:audio",
+          "transcript": "loud"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i04:r1",
+            "targetText": "loud",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i04:r2",
+            "targetText": "load",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i04:r3",
+            "targetText": "lost",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-18:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — loud",
+            "feedbackByLocale": {
+              "ru": "Другая гласная: там «оу», а в `loud` — «ау».",
+              "uk": "Інша голосна: там «оу», а в `loud` — «ау»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — loud",
+            "feedbackByLocale": {
+              "ru": "«Потерялся». Общее только начало.",
+              "uk": "«Загубився». Спільний тільки початок."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "`loud` — «громкий». В записи после /l/ слышно /aʊ/: `loud`.",
+              "uk": "`loud` — «гучний». У записі після /l/ чути /aʊ/: `loud`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quiet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quiet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i05:audio",
+          "transcript": "quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i05:r1",
+            "targetText": "quiet",
+            "meaningByLocale": {
+              "ru": "«тихий». Говорит мало и негромко. Не потому что боится — просто такой человек.",
+              "uk": "«тихий». Говорить мало і неголосно. Не тому що боїться — просто така людина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quiet",
+          "definitionByLocale": {
+            "ru": "«тихий». Говорит мало и негромко. Не потому что боится — просто такой человек.",
+            "uk": "«тихий». Говорить мало і неголосно. Не тому що боїться — просто така людина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Макс весь обед просидел молча, но спокойно, без всякого смущения",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-18:i06:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i06:r2",
+          "text": "loud"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i06:r3",
+          "text": "shy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Макс весь обед просидел молча, но спокойно, без всякого смущения",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Макс весь обед просидел молча, но спокойно, без всякого смущения",
+          "uk": "Вставте слово — Макс весь обід просидів мовчки, але спокійно, без жодного зніяковіння"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-18:i06:r1",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i06:r2",
+            "text": "loud"
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i06:r3",
+            "text": "shy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — парень весь обед просид",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-18:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Макс весь обед просидел молча, но спокойно, без всякого смущения",
+            "feedbackByLocale": {
+              "ru": "Макс молчит, поэтому он `quiet` — тихий: `He is quiet.`",
+              "uk": "Макс мовчить, тому він `quiet` — тихий: `He is quiet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — парень весь обед просид",
+            "feedbackByLocale": {
+              "ru": "«Громкий» — прямо наоборот.",
+              "uk": "«Гучний» — прямо навпаки."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Макс весь обед просидел молча, но спокойно, без всякого смущения",
+            "feedbackByLocale": {
+              "ru": "`shy` — «стеснительный», но в подсказке прямо сказано, что Макс не смущался; здесь нужен `quiet`.",
+              "uk": "`shy` — «сором’язливий», але в підказці прямо сказано, що Макс не ніяковів; тут потрібне `quiet`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i07",
+      "ordinal": 10,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Макс третий день не решается заговорить",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Макс третий день не решается заговорить",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is shy.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "shy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Прослушайте A и B. Какое слово звучит в образце A?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-18:i08:r1",
+          "text": "loud"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i08:r2",
+          "text": "load"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i08:audioA",
+        "en:lesson-01:session-18:i08:audioB"
+      ],
+      "accessibilityLabel": "Различите звуки — loud или load",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "loud",
+        "contrastB": "load",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-18:i08:audioA",
+          "transcript": "loud"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-18:i08:audioB",
+          "transcript": "load"
+        },
+        "testedPhoneticContrast": "Прослушайте A и B. Какое слово звучит в образце A?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Прослушайте A и B. Какое слово звучит в образце A?",
+            "feedbackByLocale": {
+              "ru": "В образце A слышно `loud` с «ау». В образце B — `load` с «оу».",
+              "uk": "У зразку A чути `loud` з «ау». У зразку B — `load` з «оу»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i08:r1",
+            "correct": true,
+            "testedDimension": "Прослушайте A и B. Какое слово звучит в образце A?",
+            "feedbackByLocale": {
+              "ru": "В образце A слышно `loud`: в середине «ау». В образце B — `load` с «оу».",
+              "uk": "У зразку A чути `loud`: усередині «ау». У зразку B — `load` з «оу»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clever",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clever",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i09:audio",
+          "transcript": "clever"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i09:r1",
+            "targetText": "clever",
+            "meaningByLocale": {
+              "ru": "«сообразительный». Не про диплом, а про скорость: другие ещё думают, а он уже придумал.",
+              "uk": "«кмітливий». Не про диплом, а про швидкість: інші ще думають, а він уже придумав."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clever",
+          "definitionByLocale": {
+            "ru": "«сообразительный». Не про диплом, а про скорость: другие ещё думают, а он уже придумал.",
+            "uk": "«кмітливий». Не про диплом, а про швидкість: інші ще думають, а він уже придумав."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-18:i10:r1",
+          "text": "clever"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i10:r2",
+          "text": "cleaner"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i10:r3",
+          "text": "clear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i10:audio",
+          "transcript": "clever"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i10:r1",
+            "targetText": "clever",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i10:r2",
+            "targetText": "cleaner",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i10:r3",
+            "targetText": "clear",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-18:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — clever",
+            "feedbackByLocale": {
+              "ru": "Похожее начало, но там длинное «и»: «кли-нер».",
+              "uk": "Схожий початок, але там довге «і»: «клі-нер»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — clever",
+            "feedbackByLocale": {
+              "ru": "Один слог. `clever` — два: «кле-вер».",
+              "uk": "Один склад. `clever` — два: «кле-вер»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i10:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "`clever` — правильный ответ: в аудио слышно два слога «кле-вер».",
+              "uk": "`clever` — правильна відповідь: в аудіо чути два склади «кле-вер»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bossy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bossy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i11:audio",
+          "transcript": "bossy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i11:r1",
+            "targetText": "bossy",
+            "meaningByLocale": {
+              "ru": "«командует всеми». Всем говорит, что делать, хотя его никто не назначал главным.",
+              "uk": "«командує всіма». Усім каже, що робити, хоча його ніхто не призначав головним."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bossy",
+          "definitionByLocale": {
+            "ru": "«командует всеми». Всем говорит, что делать, хотя его никто не назначал главным.",
+            "uk": "«командує всіма». Усім каже, що робити, хоча його ніхто не призначав головним."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — Лина говорит: «Макс умный»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — Лина говорит: «Макс умный»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i12:audio",
+          "transcript": "He is clever."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is clever.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "clever"
+        ],
+        "authoredDistractorTokens": [
+          "She"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-18:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — Лина говорит: «М",
+            "feedbackByLocale": {
+              "ru": "`She` лишнее: речь о Максе, поэтому нужна фраза `He is clever.`",
+              "uk": "`She` зайве: йдеться про Макса, тому потрібна фраза `He is clever`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-18:i13:p1",
+            "target": "shy",
+            "meaningByLocale": {
+              "ru": "стеснительный",
+              "uk": "сором'язливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-18:i13:p2",
+            "target": "loud",
+            "meaningByLocale": {
+              "ru": "громкий",
+              "uk": "гучний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-18:i13:p3",
+            "target": "clever",
+            "meaningByLocale": {
+              "ru": "сообразительный",
+              "uk": "кмітливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-18:i13:p4",
+            "target": "quiet",
+            "meaningByLocale": {
+              "ru": "тихий",
+              "uk": "тихий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shy",
+          "loud",
+          "clever",
+          "quiet"
+        ],
+        "rightColumn": [
+          "стеснительный",
+          "громкий",
+          "сообразительный",
+          "тихий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — funny",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — funny",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i14:audio",
+          "transcript": "funny"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i14:r1",
+            "targetText": "funny",
+            "meaningByLocale": {
+              "ru": "«смешной». С таким человеком смеются, а не над ним: сам расскажет так, что все хохочут.",
+              "uk": "«смішний». З такою людиною сміються, а не з неї: сам розкаже так, що всі регочуть."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "funny",
+          "definitionByLocale": {
+            "ru": "«смешной». С таким человеком смеются, а не над ним: сам расскажет так, что все хохочут.",
+            "uk": "«смішний». З такою людиною сміються, а не з неї: сам розкаже так, що всі регочуть."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Лина говорит: «Саша смешная». Передайте её характеристику по-английски",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-18:i15:r1",
+          "text": "funny"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i15:r2",
+          "text": "bossy"
+        },
+        {
+          "responseId": "en:lesson-01:session-18:i15:r3",
+          "text": "shy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Лина говорит: «Саша смешная». Передайте её характеристику по-английски",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Лина говорит: «Саша смешная». Передайте её характеристику по-английски",
+          "uk": "Вставте слово — Ліна каже: «Саша смішна». Передайте її характеристику англійською"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-18:i15:r1",
+            "text": "funny"
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i15:r2",
+            "text": "bossy"
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i15:r3",
+            "text": "shy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коллега пересказала ане",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-18:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Лина говорит: «Саша смешная». Передайте её характеристику по-английски",
+            "feedbackByLocale": {
+              "ru": "В подсказке Саша названа «смешной»: `funny` и значит «смешная».",
+              "uk": "У підказці Сашу названо «смішною»: `funny` і означає «смішна»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега пересказала ане",
+            "feedbackByLocale": {
+              "ru": "`bossy` — «командует всеми», а в подсказке сказано «смешная».",
+              "uk": "`bossy` — «командує всіма», а в підказці сказано «смішна»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-18:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега пересказала ане",
+            "feedbackByLocale": {
+              "ru": "`shy` — «стеснительная», а в подсказке сказано «смешная».",
+              "uk": "`shy` — «сором'язлива», а в підказці сказано «смішна»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i16:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i16:audio",
+          "transcript": "kind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i16:r1",
+            "targetText": "kind",
+            "meaningByLocale": {
+              "ru": "«добрый». Замечает, что другому неудобно, и делает что-то без просьбы.",
+              "uk": "«добрий». Помічає, що іншому незручно, і робить щось без прохання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kind",
+          "definitionByLocale": {
+            "ru": "«добрый». Замечает, что другому неудобно, и делает что-то без просьбы.",
+            "uk": "«добрий». Помічає, що іншому незручно, і робить щось без прохання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Макс принёс всем кофе, хотя его не просили",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Макс принёс всем кофе, хотя его не просили",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is kind.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Макс принёс всем кофе, хотя его не просили",
+          "uk": "Зберіть фразу — Макс приніс усім каву, хоча його не просили"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "kind"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-18:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Макс принёс всем кофе, ",
+            "feedbackByLocale": {
+              "ru": "`am` лишнее: с `He` ставят `is`: `He is kind.`",
+              "uk": "`am` зайве: з `He` ставлять `is`: `He is kind`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Анна раздаёт указания, хотя руководитель её об этом не просил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Анна раздаёт указания, хотя руководитель её об этом не просил",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i18:audio",
+          "transcript": "She is bossy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is bossy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — smart",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i19:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — smart",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i19:audio",
+          "transcript": "smart"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:i19:r1",
+            "targetText": "smart",
+            "meaningByLocale": {
+              "ru": "«умный». Знает много и соображает: за минуту разберётся в том, на что у других уходит день.",
+              "uk": "«розумний». Знає багато і кмітує: за хвилину розбереться в тому, на що в інших іде день."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smart",
+          "definitionByLocale": {
+            "ru": "«умный». Знает много и соображает: за минуту разберётся в том, на что у других уходит день.",
+            "uk": "«розумний». Знає багато і кмітує: за хвилину розбереться в тому, на що в інших іде день."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i20",
+      "ordinal": 23,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Лина говорит: «Макс умный». Передайте её характеристику по-английски",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Лина говорит: «Макс умный». Передайте её характеристику по-английски",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is smart.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "smart"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-18:i21:p1",
+            "target": "bossy",
+            "meaningByLocale": {
+              "ru": "командует",
+              "uk": "командує"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-18:i21:p2",
+            "target": "funny",
+            "meaningByLocale": {
+              "ru": "смешной",
+              "uk": "смішний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-18:i21:p3",
+            "target": "kind",
+            "meaningByLocale": {
+              "ru": "добрый",
+              "uk": "добрий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-18:i21:p4",
+            "target": "smart",
+            "meaningByLocale": {
+              "ru": "умный",
+              "uk": "розумний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bossy",
+          "funny",
+          "kind",
+          "smart"
+        ],
+        "rightColumn": [
+          "командует",
+          "смешной",
+          "добрый",
+          "умный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i22",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Анна у кофемашины говорит так громко, что её слышит вся кухня",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i22:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Анна у кофемашины говорит так громко, что её слышит вся кухня",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i22:audio",
+          "transcript": "She is loud."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is loud.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 22,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d6c9a33a33fab8ecc500ba173815456cc9688ba7141373daf9af074fc6182733"
+}

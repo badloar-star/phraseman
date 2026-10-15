@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — `Is he …?` / `Is she …?` / `Is it …?` и короткие ответы",
+    "uk": "повторення — `Is he …?` / `Is she …?` / `Is it …?` і короткі відповіді"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`elegant` — стильно и точно",
+        "uk": "`elegant` — стильно й точно"
+      },
+      "bodyByLocale": {
+        "ru": "`elegant` — «элегантный, изящный»: стильный и продуманный, без лишних деталей. Так можно сказать о человеке, одежде или простом и точном решении. Ценник это слово не проверяет: недорогой костюм тоже может выглядеть `elegant`. В английском ударение падает на первый слог. Здесь вы спросите `Is he elegant?`.",
+        "uk": "`elegant` — «елегантний, вишуканий»: стильний і продуманий, без зайвих деталей. Так можна сказати про людину, одяг або просте й точне рішення. Цінник це слово не перевіряє: недорогий костюм теж може виглядати `elegant`. В англійській наголос падає на перший склад. Тут ви запитаєте `Is he elegant?`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "За столиком у окна мужчина в идеально сидящем костюме. Спросите спутника, элегантен ли он.",
+          "uk": "За столиком біля вікна чоловік у бездоганно припасованому костюмі. Запитайте супутника, чи він елегантний."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r1",
+              "text": "Is he elegant?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r2",
+              "text": "He is elegant?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r3",
+              "text": "Is elegant he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r1",
+              "text": "Is he elegant?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r2",
+              "text": "He is elegant?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r3",
+              "text": "Is elegant he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За столиком у окна мужчина в идеально сидящем костюме. Спросите спутника, элегантен ли он.",
+          "uk": "За столиком біля вікна чоловік у бездоганно припасованому костюмі. Запитайте супутника, чи він елегантний."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`plain` — просто, без украшений",
+        "uk": "`plain` — просто, без оздоблення"
+      },
+      "bodyByLocale": {
+        "ru": "`plain` — «простой, без украшений»: без рисунка, узора или лишних деталей. Так говорят о белой чашке без рисунка, однотонной рубашке или обычной воде без газа. О человеке `plain` может значить «невзрачный», поэтому здесь спрашиваем только про вещь. Для чашки вопрос звучит `Is it plain?`: `it` относится к вещи.",
+        "uk": "`plain` — «простий, без оздоблення»: без малюнка, візерунка чи зайвих деталей. Так кажуть про білу чашку без малюнка, однотонну сорочку або звичайну воду без газу. Про людину `plain` може означати «непоказний», тому тут питаємо лише про річ. Для чашки запитання звучить `Is it plain?`: `it` стосується речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "На соседнем столе стоит белая чашка без единого рисунка. Спросите про неё: для вещи используют `it`.",
+          "uk": "На сусідньому столі стоїть біла чашка без жодного малюнка. Запитайте про неї: для речі використовують `it`."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r1",
+              "text": "Is it plain?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r2",
+              "text": "Is he plain?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r3",
+              "text": "It is plain?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r1",
+              "text": "Is it plain?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r2",
+              "text": "Is he plain?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r3",
+              "text": "It is plain?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На соседнем столе стоит белая чашка без единого рисунка. Спросите про неё: для вещи используют `it`.",
+          "uk": "На сусідньому столі стоїть біла чашка без жодного малюнка. Запитайте про неї: для речі використовують `it`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Короткий ответ про `elegant`",
+        "uk": "Коротка відповідь про `elegant`"
+      },
+      "bodyByLocale": {
+        "ru": "`Yes, she is.` — короткое «да» на вопрос `Is she elegant?`. Вопрос уже назвал женщину и слово `elegant`, поэтому в ответе остаются `she` и `is`: сначала человек, потом связка. Одного `Yes` тоже достаточно, но здесь тренируем полную короткую форму. Для мужчины было бы `Yes, he is.`",
+        "uk": "`Yes, she is.` — коротке «так» на запитання `Is she elegant?`. Запитання вже назвало жінку й слово `elegant`, тому у відповіді лишаються `she` та `is`: спочатку людина, потім зв'язка. Одного `Yes` теж достатньо, але тут тренуємо повну коротку форму. Про чоловіка було б `Yes, he is.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Женщина у стойки одета просто и изящно. Спутник спрашивает: `Is she elegant?` Ответьте коротко.",
+          "uk": "Жінка біля стійки вдягнена просто й вишукано. Супутник питає: `Is she elegant?` Дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r1",
+              "text": "Yes, she is."
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r2",
+              "text": "Yes, she."
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r3",
+              "text": "Yes, is she."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r1",
+              "text": "Yes, she is."
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r2",
+              "text": "Yes, she."
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r3",
+              "text": "Yes, is she."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Женщина у стойки одета просто и изящно. Спутник спрашивает: `Is she elegant?` Ответьте коротко.",
+          "uk": "Жінка біля стійки вдягнена просто й вишукано. Супутник питає: `Is she elegant?` Дайте коротку відповідь."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4cda2f9a91414d53fe6b1014f12f582d06c294121abf03ac328d75b7cbd81d3f"
+}

@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hungry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hungry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i01:audio",
+          "transcript": "hungry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-03:i01:r1",
+            "targetText": "hungry",
+            "meaningByLocale": {
+              "ru": "«голодный». Живот напоминает о себе, а до обеда ещё час.",
+              "uk": "«голодний». Живіт нагадує про себе, а до обіду ще година."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hungry",
+          "definitionByLocale": {
+            "ru": "«голодный». Живот напоминает о себе, а до обеда ещё час.",
+            "uk": "«голодний». Живіт нагадує про себе, а до обіду ще година."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-03:i02:r1",
+          "text": "hungry"
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i02:r2",
+          "text": "angry"
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i02:r3",
+          "text": "hurry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i02:audio",
+          "transcript": "hungry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-03:i02:r1",
+            "targetText": "hungry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i02:r2",
+            "targetText": "angry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i02:r3",
+            "targetText": "hurry",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — hungry",
+            "feedbackByLocale": {
+              "ru": "В начале hungry слышен легкий выдох h; в angry его нет.",
+              "uk": "`angry` починається з голосного звука, а `hungry` — з видиху `h`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — hungry",
+            "feedbackByLocale": {
+              "ru": "«Спешить». Без «н» в середине. Hungry — «хан-гри».",
+              "uk": "У `hurry` немає `n`, а в `hungry` ця літера є."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cold",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cold",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i03:audio",
+          "transcript": "cold"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-03:i03:r1",
+            "targetText": "cold",
+            "meaningByLocale": {
+              "ru": "«холодно, замёрз». Мира включила кондиционер слишком сильно.",
+              "uk": "«холодно, змерз». Міра ввімкнула кондиціонер надто сильно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cold",
+          "definitionByLocale": {
+            "ru": "«холодно, замёрз». Мира включила кондиционер слишком сильно.",
+            "uk": "«холодно, змерз». Міра ввімкнула кондиціонер надто сильно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Спочатку звучить sure, потім shirt. Яке слово звучить першим?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-03:i04:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i04:r2",
+          "text": "shirt"
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i04:r3",
+          "text": "sugar"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i04:audioA",
+        "en:lesson-01:session-03:i04:audioB"
+      ],
+      "accessibilityLabel": "Спочатку звучить sure, потім shirt. Яке слово звучить першим?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "sure",
+        "contrastB": "shirt",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-03:i04:audioA",
+          "transcript": "sure"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-03:i04:audioB",
+          "transcript": "shirt"
+        },
+        "testedPhoneticContrast": "Спочатку звучить sure, потім shirt. Яке слово звучить першим?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i04:r2",
+            "correct": false,
+            "testedDimension": "Спочатку звучить sure, потім shirt. Яке слово звучить першим?",
+            "feedbackByLocale": {
+              "ru": "shirt звучит вторым. Первым было sure.",
+              "uk": "shirt звучить другим. Першим було sure."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i04:r3",
+            "correct": false,
+            "testedDimension": "Спочатку звучить sure, потім shirt. Яке слово звучить першим?",
+            "feedbackByLocale": {
+              "ru": "`sugar` не звучало первым: первым было sure.",
+              "uk": "`sugar` не звучало першим: першим було sure."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-03:i05:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i05:r2",
+          "text": "shirt"
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i05:r3",
+          "text": "sugar"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i05:audio",
+          "transcript": "sure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-03:i05:r1",
+            "targetText": "sure",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i05:r2",
+            "targetText": "shirt",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i05:r3",
+            "targetText": "sugar",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — sure",
+            "feedbackByLocale": {
+              "ru": "«Рубашка». В конце слышно t, а у sure этого звука нет.",
+              "uk": "shirt — «сорочка». Наприкінці чути t, а в sure цього звука немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — sure",
+            "feedbackByLocale": {
+              "ru": "«Сахар». Слишком длинно — два слога вместо одного.",
+              "uk": "«Цукор». Задовге — два склади замість одного."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — alone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — alone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i06:audio",
+          "transcript": "alone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-03:i06:r1",
+            "targetText": "alone",
+            "meaningByLocale": {
+              "ru": "«один, сам по себе». Не «одинокий», а просто без компании.",
+              "uk": "«сам, без компанії». Не «самотній», а просто без нікого поруч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alone",
+          "definitionByLocale": {
+            "ru": "«один, сам по себе». Не «одинокий», а просто без компании.",
+            "uk": "«сам, без компанії». Не «самотній», а просто без нікого поруч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте пари",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте пари",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-03:i07:p1",
+            "target": "hungry",
+            "meaningByLocale": {
+              "ru": "голодный",
+              "uk": "голодний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-03:i07:p2",
+            "target": "cold",
+            "meaningByLocale": {
+              "ru": "замёрз",
+              "uk": "змерз"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-03:i07:p3",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "упевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-03:i07:p4",
+            "target": "alone",
+            "meaningByLocale": {
+              "ru": "один",
+              "uk": "сам"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hungry",
+          "cold",
+          "sure",
+          "alone"
+        ],
+        "rightColumn": [
+          "голодный",
+          "замёрз",
+          "уверен",
+          "один"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — «я не голодний»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — «я не голодний»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not hungry.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я не голоден»",
+          "uk": "Складіть фразу — «я не голодний»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "hungry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — вам холодно? Ні.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-03:i09:r1",
+          "text": "not"
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i09:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — вам холодно? Ні.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вам холодно? Нет.",
+          "uk": "Вставте слово — вам холодно? Ні."
+        },
+        "gappedTargetPhrase": "I am ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-03:i09:r1",
+            "text": "not"
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i09:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставте слово — вам холодно? Ні.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — вам холодно? Ні.",
+            "feedbackByLocale": {
+              "ru": "No — ответ одним словом. Внутри фразы — not.",
+              "uk": "No — відповідь одним словом. Усередині фрази — not."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — вам холодно? Ні.",
+            "feedbackByLocale": {
+              "ru": "Am уже стоит. Второе не нужно, нужно not.",
+              "uk": "Am уже стоїть. Другого не треба, треба not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви ще в офісі й не самі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви ще в офісі й не самі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not alone.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы всё ещё в офисе и не один",
+          "uk": "Складіть фразу — ви ще в офісі й не самі"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "alone"
+        ],
+        "authoredDistractorTokens": [
+          "sure"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви ще в офісі й не самі",
+            "feedbackByLocale": {
+              "ru": "«уверен», но здесь вы сообщаете: «я не один»",
+              "uk": "«впевнений», але тут ви повідомляєте: «я не сам»"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть — «я не впевнений»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — «я не впевнений»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i11:audio",
+          "transcript": "I am not sure."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not sure.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "sure"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть — «я не впевнений»",
+            "feedbackByLocale": {
+              "ru": "это отдельный ответ, а внутри фразы нужно not",
+              "uk": "це окрема відповідь, а всередині фрази потрібне not"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Міра спитала, чи ви втомилися",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-03:i12:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Міра спитала, чи ви втомилися",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы не устали",
+          "uk": "Вставте слово — Міра спитала, чи ви втомилися"
+        },
+        "gappedTargetPhrase": "I ___ not tired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-03:i12:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставте слово — Міра спитала, чи ви втомилися",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Міра спитала, чи ви втомилися",
+            "feedbackByLocale": {
+              "ru": "С `I` нужно `am`, затем `not`: `I am not tired`.",
+              "uk": "З `I` потрібне `am`, потім `not`: `I am not tired`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Міра спитала, чи ви втомилися",
+            "feedbackByLocale": {
+              "ru": "С I нужна форма am: I am not tired.",
+              "uk": "Для `I` потрібна форма `am`: `I am not tired`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ствердження чи заперечення? Ви запізнилися — визнайте це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ствердження чи заперечення? Ви запізнилися — визнайте це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am late.",
+        "localizedMeaning": {
+          "ru": "Утверждение или отрицание? Вы опоздали — признайте это",
+          "uk": "Ствердження чи заперечення? Ви запізнилися — визнайте це"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "late"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Ствердження чи заперечення? Ви запізнилися — визнайте це",
+            "feedbackByLocale": {
+              "ru": "она дала бы `I am not late` — «я не опоздал». Здесь нужно признать, что вы опоздали.",
+              "uk": "вона змінила б зміст на «я не запізнився». Тут треба визнати, що ви запізнилися."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть точну фразу — ви більше не зайняті",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-03:i14:r1",
+          "text": "I am not busy."
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i14:r2",
+          "text": "I am busy."
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i14:r3",
+          "text": "I am not late."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть точну фразу — ви більше не зайняті",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i14:audio",
+          "transcript": "I am not busy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-03:i14:r1",
+            "targetText": "I am not busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i14:r2",
+            "targetText": "I am busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i14:r3",
+            "targetText": "I am not late.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть точну фразу — ви більше не зайняті",
+            "feedbackByLocale": {
+              "ru": "В аудио после am слышно not. Ответ означает «я не занят», а не «я занят».",
+              "uk": "В аудіо після am чути not. Відповідь означає «я не зайнятий», а не «я зайнятий»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть точну фразу — ви більше не зайняті",
+            "feedbackByLocale": {
+              "ru": "В аудио последнее слово busy, не late: речь о занятости, не об опоздании.",
+              "uk": "В аудіо останнє слово busy, не late: йдеться про зайнятість, а не про запізнення."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i15:s01",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте фразу — Міра пропонує ввімкнути обігрівач; скажіть, що вам не холодно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i15:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте фразу — Міра пропонує ввімкнути обігрівач; скажіть, що вам не холодно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i15:s01:audio",
+          "transcript": "I am not cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i15:s02",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — «у мене все добре»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — «у мене все добре»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am fine.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «у меня всё хорошо»",
+          "uk": "Складіть фразу — «у мене все добре»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i15:s02:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — «у мене все добре»",
+            "feedbackByLocale": {
+              "ru": "здесь «у меня всё хорошо», без отрицания",
+              "uk": "тут «у мене все добре», без заперечення"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i16",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте пари — слова, які вже ваші",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте пари — слова, які вже ваші",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-03:i16:p1",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал",
+              "uk": "втомився"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-03:i16:p2",
+            "target": "busy",
+            "meaningByLocale": {
+              "ru": "занят",
+              "uk": "зайнятий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-03:i16:p3",
+            "target": "late",
+            "meaningByLocale": {
+              "ru": "опаздываю",
+              "uk": "запізнююся"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-03:i16:p4",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готов",
+              "uk": "готовий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tired",
+          "busy",
+          "late",
+          "ready"
+        ],
+        "rightColumn": [
+          "устал",
+          "занят",
+          "опаздываю",
+          "готов"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i17:s01",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте фразу — Міра питає, чи ви втомилися після зустрічі; скажіть, що ні",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте фразу — Міра питає, чи ви втомилися після зустрічі; скажіть, що ні",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i17:s01:audio",
+          "transcript": "I am not tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть точну фразу — ви не голодні",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-03:i17:s02:r1",
+          "text": "I am not hungry."
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i17:s02:r2",
+          "text": "I am hungry."
+        },
+        {
+          "responseId": "en:lesson-01:session-03:i17:s02:r3",
+          "text": "I am not cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть точну фразу — ви не голодні",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i17:s02:audio",
+          "transcript": "I am not hungry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-03:i17:s02:r1",
+            "targetText": "I am not hungry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i17:s02:r2",
+            "targetText": "I am hungry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i17:s02:r3",
+            "targetText": "I am not cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i17:s02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть точну фразу — ви не голодні",
+            "feedbackByLocale": {
+              "ru": "В аудио после am слышно not. Это «я не голоден», не «я голоден».",
+              "uk": "В аудіо після am чути not. Це «я не голодний», а не «я голодний»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-03:i17:s02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть точну фразу — ви не голодні",
+            "feedbackByLocale": {
+              "ru": "Последнее слово hungry, не cold: речь о еде, а не о температуре.",
+              "uk": "Останнє слово hungry, не cold: йдеться про їжу, а не про температуру."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i17:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте фразу — Міра бачить, що ви чекаєте на колегу; скажіть, що ви не самі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте фразу — Міра бачить, що ви чекаєте на колегу; скажіть, що ви не самі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i17:s03:audio",
+          "transcript": "I am not alone."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not alone.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i17:s04",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — «я готовий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — «я готовий»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am ready.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я готов»",
+          "uk": "Складіть фразу — «я готовий»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-03:i17:s04:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — «я готовий»",
+            "feedbackByLocale": {
+              "ru": "здесь вы говорите «я готов»",
+              "uk": "тут ви кажете «я готовий»"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "85cbbaeebb063e0dbeb940e4bbcce501e556e9419748709faf88dbd056056173"
+}

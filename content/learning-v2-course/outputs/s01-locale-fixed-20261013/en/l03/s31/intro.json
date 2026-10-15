@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "словарная отработка с быстрым переносом — `This/That + один предмет, please` в театральной костюмерной",
+    "uk": "словникове тренування зі швидким перенесенням — `This/That + один предмет, please` у театральній костюмерній"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Шляпа перед вами",
+        "uk": "Капелюх перед вами"
+      },
+      "bodyByLocale": {
+        "ru": "`hat` — «шляпа». Она лежит на столе перед вами, поэтому скажите костюмеру: `This hat, please.` — «Эту шляпу, пожалуйста».\n\nЕсли её перенесут к дальней стене, скажите `That hat, please.` Первое слово показывает расстояние: `this` — рядом, `that` — дальше. `hat` не меняется, `please` остаётся в конце. Сцена не ждёт.",
+        "uk": "`hat` — «капелюх». Він лежить на столі перед вами, тому скажіть костюмерові: `This hat, please.` — «Цей капелюх, будь ласка».\n\nЯкщо його перенесуть до дальньої стіни, скажіть `That hat, please.` Перше слово вказує на відстань: `this` — поруч, `that` — далі. `hat` не змінюється, `please` залишається в кінці. Сцена не чекає."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Нужная шляпа лежит прямо перед вами. Выберите её.",
+          "uk": "Потрібний капелюх лежить просто перед вами. Виберіть його."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-31:intro1:r1",
+              "text": "This hat, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro1:r2",
+              "text": "That hat, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro1:r3",
+              "text": "This is a hat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-31:intro1:r1",
+              "text": "This hat, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro1:r2",
+              "text": "That hat, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro1:r3",
+              "text": "This is a hat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Нужная шляпа лежит прямо перед вами. Выберите её.",
+          "uk": "Потрібний капелюх лежить просто перед вами. Виберіть його."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ремень у дальней стены",
+        "uk": "Ремінь біля дальньої стіни"
+      },
+      "bodyByLocale": {
+        "ru": "`belt` — «ремень». Нужный ремень висит у дальней стены, поэтому начните с `that` и скажите: `That belt, please.` — «Тот ремень, пожалуйста».\n\nМежду `that` и `belt` не нужны ни `is`, ни `a`. Это короткая просьба: указатель, один предмет, `please`.\n\nНе добавляйте артикль даже в спешке: `that belt`, а не `that a belt`.",
+        "uk": "`belt` — «ремінь». Потрібний ремінь висить біля дальньої стіни, тому почніть із `that` і скажіть: `That belt, please.` — «Той ремінь, будь ласка».\n\nМіж `that` і `belt` не потрібні ані `is`, ані `a`. Це коротке прохання: вказівне слово, один предмет, `please`.\n\nНе додавайте артикль навіть поспіхом: `that belt`, а не `that a belt`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Ремень висит у дальней стены. Выберите его короткой просьбой.",
+          "uk": "Ремінь висить біля дальньої стіни. Виберіть його коротким проханням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-31:intro2:r1",
+              "text": "That belt, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro2:r2",
+              "text": "This belt, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro2:r3",
+              "text": "That is belt, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-31:intro2:r1",
+              "text": "That belt, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro2:r2",
+              "text": "This belt, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro2:r3",
+              "text": "That is belt, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ремень висит у дальней стены. Выберите его короткой просьбой.",
+          "uk": "Ремінь висить біля дальньої стіни. Виберіть його коротким проханням."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сапог меняет место",
+        "uk": "Чобіт змінює місце"
+      },
+      "bodyByLocale": {
+        "ru": "`boot` — «сапог». Для сапога вдали скажите `That boot, please.`, а для сапога перед вами — `This boot, please.`\n\nСмотрите на положение вещи сейчас. Название остаётся тем же, а первое слово меняется вместе с расстоянием.",
+        "uk": "`boot` — «чобіт». Для чобота вдалині скажіть `That boot, please.`, а для чобота перед вами — `This boot, please.`\n\nДивіться на положення речі зараз. Назва залишається тією самою, а перше слово змінюється разом із відстанню."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Сапог уже поставили прямо перед вами. Выберите его.",
+          "uk": "Чобіт уже поставили просто перед вами. Виберіть його."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-31:intro3:r1",
+              "text": "This boot, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro3:r2",
+              "text": "That boot, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro3:r3",
+              "text": "This a boot, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-31:intro3:r1",
+              "text": "This boot, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro3:r2",
+              "text": "That boot, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-31:intro3:r3",
+              "text": "This a boot, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сапог уже поставили прямо перед вами. Выберите его.",
+          "uk": "Чобіт уже поставили просто перед вами. Виберіть його."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7ddd5a8fbac321861da3b97d4bd5a208d691431618ceb1c879c103327de7b0ec"
+}

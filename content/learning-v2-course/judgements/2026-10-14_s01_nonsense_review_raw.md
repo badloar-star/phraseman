@@ -1,0 +1,1 @@
+PASS. No concrete content defects found across the intro and 20 practice interactions in the Russian and Ukrainian projections. The scenes, answers, and feedback align; audio remains unverified because no playable audio was supplied. Preference only: none material; idiomatic variants such as Ukrainian «У мене все добре»/«усе гаразд» are acceptable.

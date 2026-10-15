@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "несколько предметов: `these/those + adjective + plural noun`, например `These metal chairs, please.`",
+    "uk": "кілька предметів: `these/those + adjective + plural noun`, наприклад `These metal chairs, please.`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Металлические стулья рядом",
+        "uk": "Металеві стільці поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`metal` — «металлический». На ближнем стеллаже стоят несколько стульев. Сотрудник ждёт, какую группу вы заберёте. Скажите `These metal chairs, please.`: `These` выбирает несколько вещей рядом, `metal` их описывает, а `chairs` называет все стулья. `A` здесь не нужно.",
+        "uk": "`metal` — «металевий». На ближньому стелажі стоять кілька стільців. Працівник чекає, яку групу ви заберете. Скажіть `These metal chairs, please.`: `These` вибирає кілька речей поруч, `metal` їх описує, а `chairs` називає всі стільці. `A` тут не потрібен."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Металлические стулья стоят на ближнем стеллаже. Выберите их.",
+          "uk": "Металеві стільці стоять на ближньому стелажі. Оберіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-53:intro1:r1",
+              "text": "These metal chairs, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro1:r2",
+              "text": "Those metal chairs, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro1:r3",
+              "text": "These chairs metal, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-53:intro1:r1",
+              "text": "These metal chairs, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro1:r2",
+              "text": "Those metal chairs, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro1:r3",
+              "text": "These chairs metal, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Металлические стулья стоят на ближнем стеллаже. Выберите их.",
+          "uk": "Металеві стільці стоять на ближньому стелажі. Оберіть їх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пластиковые столы дальше",
+        "uk": "Пластикові столи далі"
+      },
+      "bodyByLocale": {
+        "ru": "`plastic` — «пластиковый». Несколько столов стоят на дальнем стеллаже. Чтобы сотрудник принёс именно их, скажите `Those plastic tables, please.` `Those` выбирает несколько предметов дальше от вас. После него сразу идут `plastic` и `tables`, без `a`.",
+        "uk": "`plastic` — «пластиковий». Кілька столів стоять на дальньому стелажі. Щоб працівник приніс саме їх, скажіть `Those plastic tables, please.` `Those` вибирає кілька предметів далі від вас. Після нього одразу йдуть `plastic` і `tables`, без `a`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Пластиковые столы стоят на дальнем стеллаже. Выберите их.",
+          "uk": "Пластикові столи стоять на дальньому стелажі. Оберіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-53:intro2:r1",
+              "text": "Those plastic tables, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro2:r2",
+              "text": "These plastic tables, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro2:r3",
+              "text": "Those tables plastic, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-53:intro2:r1",
+              "text": "Those plastic tables, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro2:r2",
+              "text": "These plastic tables, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro2:r3",
+              "text": "Those tables plastic, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Пластиковые столы стоят на дальнем стеллаже. Выберите их.",
+          "uk": "Пластикові столи стоять на дальньому стелажі. Оберіть їх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мягкие подушки у стойки",
+        "uk": "М’які подушки біля стійки"
+      },
+      "bodyByLocale": {
+        "ru": "`soft` — «мягкий». Подушки лежат у стойки рядом с вами. Скажите `These soft cushions, please.` `These` выбирает несколько подушек рядом, а `soft` описывает их. Подушки мягкие, но правило в этой короткой просьбе твёрдое: описание идёт перед `cushions`.",
+        "uk": "`soft` — «м’який». Подушки лежать біля стійки поруч із вами. Скажіть `These soft cushions, please.` `These` вибирає кілька подушок поруч, а `soft` їх описує. Подушки м’які, але правило в цьому короткому проханні тверде: опис іде перед `cushions`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Мягкие подушки лежат у стойки рядом с вами. Выберите их.",
+          "uk": "М’які подушки лежать біля стійки поруч із вами. Оберіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-53:intro3:r1",
+              "text": "These soft cushions, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro3:r2",
+              "text": "Those soft cushions, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro3:r3",
+              "text": "These cushions soft, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-53:intro3:r1",
+              "text": "These soft cushions, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro3:r2",
+              "text": "Those soft cushions, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-53:intro3:r3",
+              "text": "These cushions soft, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мягкие подушки лежат у стойки рядом с вами. Выберите их.",
+          "uk": "М’які подушки лежать біля стійки поруч із вами. Оберіть їх."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "72d434b132d4179afc43e21e314c614f78b728d249aed170ee6454748664ea46"
+}

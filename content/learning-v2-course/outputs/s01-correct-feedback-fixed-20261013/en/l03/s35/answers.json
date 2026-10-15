@@ -1,0 +1,112 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-35:i01",
+    "correctText": "photo",
+    "correctResponseId": "en:lesson-03:session-35:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i03",
+    "correctText": "album",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i05",
+    "correctText": "frame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i02",
+    "correctText": "photo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i04",
+    "correctText": "album",
+    "correctResponseId": "en:lesson-03:session-35:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i06",
+    "correctText": "frame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i08",
+    "correctText": "photo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i09",
+    "correctText": "album",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i10",
+    "correctText": "frame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i07",
+    "correctText": "en:lesson-03:session-35:i07:p1=photo\nen:lesson-03:session-35:i07:p2=album\nen:lesson-03:session-35:i07:p3=frame\nen:lesson-03:session-35:i07:p4=screen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i11",
+    "correctText": "This is a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i12",
+    "correctText": "Это фотографии",
+    "correctResponseId": "en:lesson-03:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i13",
+    "correctText": "These",
+    "correctResponseId": "en:lesson-03:session-35:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i14",
+    "correctText": "These are frames.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i15",
+    "correctText": "This is an album.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i16",
+    "correctText": "These frames, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i17:s01",
+    "correctText": "These are photos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i17:s02",
+    "correctText": "This is an album.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i17:s03",
+    "correctText": "These are frames.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i17:s04",
+    "correctText": "This photo, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i17:s05",
+    "correctText": "This album, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i17:s06",
+    "correctText": "These frames, please.",
+    "correctResponseId": null
+  }
+]

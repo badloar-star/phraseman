@@ -1,0 +1,1508 @@
+{
+  "schemaVersion": "learning_v2_blind_learner_rendered_packet_v1",
+  "courseSessionId": "en:lesson-01:session-15",
+  "reviewBoundary": {
+    "answerFree": true,
+    "audioReviewed": false,
+    "omittedFields": [
+      "answers",
+      "evaluator",
+      "correct flags",
+      "targetPhrase",
+      "hiddenTargetPhrase",
+      "audio transcripts"
+    ]
+  },
+  "candidateBinding": {
+    "candidateBundleSha256": "09d0af421b6f98c8363e1461715d4d9edab340e6de7af3d8ffb1e4b8daa6044f",
+    "contentReceiptSha256": "a0159bbb90d429427eb46d301ba7583ad8cdf96f11bf8887ed82ca6c79f0e624",
+    "candidateInventorySha256": "f169621a8173b47d713b8882c982d3a4ff44d537170ddeab4fa106e36ffaaebd",
+    "sourceFingerprint": "c7deed670c47b05a9d1b4408fc7e68e6926c88edb4db35828fda26aaf457bc60"
+  },
+  "intro": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Polite — «вежливый»",
+        "uk": "Polite — «ввічливий»"
+      },
+      "bodyByLocale": {
+        "ru": "Так называют человека, который говорит «пожалуйста» и «спасибо» и относится к людям учтиво.\n\nПро себя — `I am polite`. Про собеседника — `You are polite`. Меняется только `am` на `are`, само слово одно и то же.",
+        "uk": "Так називають людину, яка каже «будь ласка» і «дякую» та ввічливо ставиться до інших.\n\nПро себе — `I am polite`. Про співрозмовника — `You are polite`. Змінюється тільки `am` на `are`, саме слово те саме."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Вика весь день благодарила коллег и пропускала их вперёд у двери. Скажите ей, что она вежливая.",
+          "uk": "Віка весь день дякувала колегам і пропускала їх уперед біля дверей. Скажіть їй, що вона ввічлива."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r1",
+              "text": "You are polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r2",
+              "text": "You polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r3",
+              "text": "You am polite."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r1",
+              "text": "You are polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r2",
+              "text": "You polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r3",
+              "text": "You am polite."
+            }
+          ]
+        }
+      },
+      "feedbackByResponseId": {
+        "en:lesson-01:session-15:intro1:r2": {
+          "ru": "После `you` нужно `are`: без него английская фраза неполная.",
+          "uk": "Після `you` потрібне `are`: без нього англійська фраза неповна."
+        },
+        "en:lesson-01:session-15:intro1:r3": {
+          "ru": "`am` живёт только рядом с `I`. Про собеседника — всегда `are`.",
+          "uk": "`am` живе тільки поруч із `I`. Про співрозмовника — завжди `are`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Serious — «серьёзный»",
+        "uk": "Serious — «серйозний»"
+      },
+      "bodyByLocale": {
+        "ru": "`serious` — «серьёзный». Человек не шутит: он правда собирается это сделать.\n\nКогда вы объясняете, что не говорили всерьёз, поставьте `not` сразу после `am`.\n\n`I am not serious` — «я не говорю всерьёз». Три слова вместо нашего «да шучу я».",
+        "uk": "`serious` — «серйозний». Людина не жартує і не відмахується: вона справді збирається це зробити.\n\nКоли ви пояснюєте, що не говорили серйозно, поставте `not` одразу після `am`. `I am not serious` — «я кажу це несерйозно», три слова замість нашого «та я жартую»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы пошутили, и Вика решила, что это правда. Уточните: «я говорю не всерьёз».",
+          "uk": "Ви пожартували, і Віка вирішила, що це правда. Уточніть: «я жартую»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r1",
+              "text": "I am not serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r2",
+              "text": "I not am serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r3",
+              "text": "I am no serious."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r1",
+              "text": "I am not serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r2",
+              "text": "I not am serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r3",
+              "text": "I am no serious."
+            }
+          ]
+        }
+      },
+      "feedbackByResponseId": {
+        "en:lesson-01:session-15:intro2:r2": {
+          "ru": "Сначала `I am`, затем `not`: `I am not serious`.",
+          "uk": "Спершу `I am`, потім `not`: `I am not serious`."
+        },
+        "en:lesson-01:session-15:intro2:r3": {
+          "ru": "В этой фразе отрицание — `not`: `I am not serious`.",
+          "uk": "У цій фразі заперечення — `not`: `I am not serious`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Lucky и sad",
+        "uk": "Lucky і sad — про везіння й сум"
+      },
+      "bodyByLocale": {
+        "ru": "`lucky` — «везучий» или «везучая»: человеку просто повезло.\n\n`sad` — «грустный». Это слово о грусти; `lucky` — о том, что человеку повезло.\n\nВ этих фразах перед признаком человека стоит `I am`: `I am sad`, `I am lucky`.",
+        "uk": "`lucky` — «везуча»: людині просто пощастило. Це не те саме, що бути щасливою.\n\n`sad` — «сумний» або «сумна». У цих фразах перед ознакою людини стоїть `I am`: `I am sad`, `I am lucky`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "На розыгрыше среди коллег Вика вытянула призовой билет. Скажите ей: «ты везучая».",
+          "uk": "На розіграші серед колег Віка витягнула призовий квиток. Скажіть їй: «ти везуча»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r1",
+              "text": "You are lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r2",
+              "text": "You is lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r3",
+              "text": "You lucky are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r1",
+              "text": "You are lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r2",
+              "text": "You is lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r3",
+              "text": "You lucky are."
+            }
+          ]
+        }
+      },
+      "feedbackByResponseId": {
+        "en:lesson-01:session-15:intro3:r2": {
+          "ru": "После `you` нужно `are`, не `is`.",
+          "uk": "Після `you` потрібне `are`, не `is`."
+        },
+        "en:lesson-01:session-15:intro3:r3": {
+          "ru": "`are` стоит сразу после `you`, а не в хвосте.",
+          "uk": "`are` стоїть одразу після `you`, а не в хвості."
+        }
+      }
+    }
+  ],
+  "locales": {
+    "ru": {
+      "interactions": [
+        {
+          "interactionId": "en:lesson-01:session-15:i01",
+          "ordinal": 4,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — polite",
+          "accessibilityLabel": "Карточка слова — polite",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i01:r1",
+              "targetText": "polite",
+              "meaning": "«вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится."
+            }
+          ],
+          "wordCard": {
+            "word": "polite",
+            "definition": "«вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i02",
+          "ordinal": 5,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте и выберите",
+          "accessibilityLabel": "Послушайте и выберите",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i02:r1",
+              "text": "polite"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i02:r2",
+              "text": "pilot"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i02:r3",
+              "text": "plate"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i02:r1",
+              "targetText": "polite",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i02:r2",
+              "targetText": "pilot",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i02:r3",
+              "targetText": "plate",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i02:r2",
+              "text": "`pilot` — пилот, а `polite` — вежливый; это разные слова и значения."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i02:r3",
+              "text": "`plate` — тарелка, а `polite` описывает вежливого человека."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i03",
+          "ordinal": 6,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — serious",
+          "accessibilityLabel": "Карточка слова — serious",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i03:r1",
+              "targetText": "serious",
+              "meaning": "«серьёзный». Не шутит, не отмахивается — говорит как есть."
+            }
+          ],
+          "wordCard": {
+            "word": "serious",
+            "definition": "«серьёзный». Не шутит, не отмахивается — говорит как есть."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i04",
+          "ordinal": 7,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте и выберите",
+          "accessibilityLabel": "Послушайте и выберите",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i04:r1",
+              "text": "serious"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i04:r2",
+              "text": "series"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i04:r3",
+              "text": "service"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i04:r1",
+              "targetText": "serious",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i04:r2",
+              "targetText": "series",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i04:r3",
+              "targetText": "service",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i04:r2",
+              "text": "`series` — серия, а `serious` значит «серьёзный»."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i04:r3",
+              "text": "`service` — обслуживание, а `serious` описывает серьёзное отношение."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i05",
+          "ordinal": 8,
+          "purpose": "supported_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»",
+          "accessibilityLabel": "Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i05:r1",
+              "text": "polite"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i05:r2",
+              "text": "serious"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i05:r3",
+              "text": "tired"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»",
+          "gappedText": "You are ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i05:r1",
+              "text": "polite"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i05:r2",
+              "text": "serious"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i05:r3",
+              "text": "tired"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i05:r2",
+              "text": "«Серьёзный» — про другое. Тут человек вежливый."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i05:r3",
+              "text": "«Уставшая» — про силы, а не про манеры. Тут Вика благодарит коллег."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i06",
+          "ordinal": 9,
+          "purpose": "supported_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Соберите фразу — «я не серьёзен»",
+          "accessibilityLabel": "Соберите фразу — «я не серьёзен»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "am",
+            "serious",
+            "not",
+            "I"
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i07",
+          "ordinal": 10,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — lucky",
+          "accessibilityLabel": "Карточка слова — lucky",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i07:r1",
+              "targetText": "lucky",
+              "meaning": "«везучий» или «везучая»: человеку просто повезло."
+            }
+          ],
+          "wordCard": {
+            "word": "lucky",
+            "definition": "«везучий» или «везучая»: человеку просто повезло."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i08",
+          "ordinal": 11,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте и выберите",
+          "accessibilityLabel": "Послушайте и выберите",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i08:r1",
+              "text": "lucky"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i08:r2",
+              "text": "luck"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i08:r3",
+              "text": "lock"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i08:r1",
+              "targetText": "lucky",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i08:r2",
+              "targetText": "luck",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i08:r3",
+              "targetText": "lock",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i08:r2",
+              "text": "`luck` — удача, а `lucky` — везучая."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i08:r3",
+              "text": "`lock` — замок, а `lucky` значит «везучая»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i09",
+          "ordinal": 12,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — sad",
+          "accessibilityLabel": "Карточка слова — sad",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i09:r1",
+              "targetText": "sad",
+              "meaning": "«грустный». Не в слезах, но радости в человеке сейчас ноль."
+            }
+          ],
+          "wordCard": {
+            "word": "sad",
+            "definition": "«грустный». Не в слезах, но радости в человеке сейчас ноль."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i10",
+          "ordinal": 13,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте и выберите",
+          "accessibilityLabel": "Послушайте и выберите",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i10:r1",
+              "text": "sad"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i10:r2",
+              "text": "said"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i10:r3",
+              "text": "sand"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i10:r1",
+              "targetText": "sad",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i10:r2",
+              "targetText": "said",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i10:r3",
+              "targetText": "sand",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i10:r2",
+              "text": "`said` значит «сказал», а `sad` — «грустный»."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i10:r3",
+              "text": "`sand` значит «песок», а `sad` — «грустный»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i11",
+          "ordinal": 14,
+          "purpose": "guided_practice",
+          "family": "speed_match",
+          "inputMode": "pair_grid",
+          "prompt": "Соедините пары",
+          "accessibilityLabel": "Соедините пары",
+          "responseOptions": [],
+          "audio": "none",
+          "visiblePairColumns": {
+            "left": [
+              "serious",
+              "sad",
+              "lucky",
+              "polite"
+            ],
+            "right": [
+              "серьёзный",
+              "грустный / грустная",
+              "везучий / везучая",
+              "вежливый"
+            ]
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i12",
+          "ordinal": 15,
+          "purpose": "guided_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово",
+          "accessibilityLabel": "Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i12:r3",
+              "text": "is"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово",
+          "gappedText": "You ___ lucky.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i12:r3",
+              "text": "is"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i12:r2",
+              "text": "`am` бывает только при `I`. Про собеседника — `are`."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i12:r3",
+              "text": "`is` не подходит к обращению `you`; здесь нужно `are`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i13",
+          "ordinal": 16,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Вика говорит, что просто устала и не грустит. Скажите ей: «ты не грустная»",
+          "accessibilityLabel": "Вика говорит, что просто устала и не грустит. Скажите ей: «ты не грустная»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "am",
+            "are",
+            "not",
+            "sad",
+            "You"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i13:tile:d1",
+              "text": "с `you` употребляется `are`; `am` используют с `I`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i14",
+          "ordinal": 17,
+          "purpose": "retrieval_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — calm",
+          "accessibilityLabel": "Карточка слова — calm",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i14:r1",
+              "targetText": "calm",
+              "meaning": "«спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была."
+            }
+          ],
+          "wordCard": {
+            "word": "calm",
+            "definition": "«спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i15",
+          "ordinal": 18,
+          "purpose": "guided_practice",
+          "family": "sound_contrast",
+          "inputMode": "single_choice",
+          "prompt": "Поезд отменили, но Вика спокойно читает. Какое слово означает «спокойная»?",
+          "accessibilityLabel": "Поезд отменили, но Вика спокойно читает. Какое слово означает «спокойная»?",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i15:r1",
+              "text": "calm"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i15:r2",
+              "text": "come"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i15:r2",
+              "text": "`come` — «приходить». Здесь описано состояние человека: `calm`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i16",
+          "ordinal": 19,
+          "purpose": "retrieval_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — honest",
+          "accessibilityLabel": "Карточка слова — honest",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i16:r1",
+              "targetText": "honest",
+              "meaning": "«честный». Говорит как есть, даже когда правда невыгодна ему самому."
+            }
+          ],
+          "wordCard": {
+            "word": "honest",
+            "definition": "«честный». Говорит как есть, даже когда правда невыгодна ему самому."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i17:s01",
+          "ordinal": 20,
+          "purpose": "independent_check",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Соберите фразу — Вика честно призналась, что не успела ответить; скажите ей: «ты честная»",
+          "accessibilityLabel": "Соберите фразу — Вика честно призналась, что не успела ответить; скажите ей: «ты честная»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "is",
+            "You",
+            "honest",
+            "are"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i17:s01:tile:d1",
+              "text": "`is` не подходит к обращению `you`; здесь нужно `are`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i17:s02",
+          "ordinal": 21,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Вика думает, что вы расстроены; скажите ей, что вы не грустите",
+          "accessibilityLabel": "Вика думает, что вы расстроены; скажите ей, что вы не грустите",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "sad",
+            "not",
+            "is",
+            "I",
+            "am"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i17:s02:tile:d1",
+              "text": "когда говорите о себе, используйте `I am`, не `I is`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i18",
+          "ordinal": 22,
+          "purpose": "independent_check",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — kind",
+          "accessibilityLabel": "Карточка слова — kind",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i18:r1",
+              "targetText": "kind",
+              "meaning": "«добрый». Помогает, когда его не просили и ему за это ничего не будет."
+            }
+          ],
+          "wordCard": {
+            "word": "kind",
+            "definition": "«добрый». Помогает, когда его не просили и ему за это ничего не будет."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i19:s01",
+          "ordinal": 23,
+          "purpose": "independent_check",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Соберите фразу — Вика помогла человеку с коробками; скажите ей: «ты добрая»",
+          "accessibilityLabel": "Соберите фразу — Вика помогла человеку с коробками; скажите ей: «ты добрая»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "kind",
+            "are",
+            "You"
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i19:s02",
+          "ordinal": 24,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Послушайте и соберите — Вика зовёт гулять, но вы весь день носили коробки; скажите, что вы устали",
+          "accessibilityLabel": "Послушайте и соберите — Вика зовёт гулять, но вы весь день носили коробки; скажите, что вы устали",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "tired",
+            "am",
+            "I",
+            "is"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i19:s02:tile:d1",
+              "text": "когда говорите о себе, используйте `I am`, не `I is`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i20",
+          "ordinal": 25,
+          "purpose": "independent_check",
+          "family": "scripted_repeat_compare",
+          "inputMode": "tap_record_compare",
+          "prompt": "Скажите вслух — Вика придержала дверь для человека с коробками и сказала «спасибо»; скажите Вике: «ты вежливая»",
+          "accessibilityLabel": "Скажите вслух — Вика придержала дверь для человека с коробками и сказала «спасибо»; скажите Вике: «ты вежливая»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played"
+        }
+      ]
+    },
+    "uk": {
+      "interactions": [
+        {
+          "interactionId": "en:lesson-01:session-15:i01",
+          "ordinal": 4,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — polite",
+          "accessibilityLabel": "Картка слова — polite",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i01:r1",
+              "targetText": "polite",
+              "meaning": "«ввічливий». Той, хто притримає двері й скаже «дякую», навіть коли поспішає."
+            }
+          ],
+          "wordCard": {
+            "word": "polite",
+            "definition": "«ввічливий». Той, хто притримає двері й скаже «дякую», навіть коли поспішає."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i02",
+          "ordinal": 5,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послухайте і виберіть",
+          "accessibilityLabel": "Послухайте і виберіть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i02:r1",
+              "text": "polite"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i02:r2",
+              "text": "pilot"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i02:r3",
+              "text": "plate"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i02:r1",
+              "targetText": "polite",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i02:r2",
+              "targetText": "pilot",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i02:r3",
+              "targetText": "plate",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i02:r2",
+              "text": "`pilot` — пілот, а `polite` — ввічлива; це різні слова й значення."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i02:r3",
+              "text": "`plate` — тарілка, а `polite` описує ввічливу людину."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i03",
+          "ordinal": 6,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — serious",
+          "accessibilityLabel": "Картка слова — serious",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i03:r1",
+              "targetText": "serious",
+              "meaning": "«серйозний». Не жартує, не відмахується — каже як є."
+            }
+          ],
+          "wordCard": {
+            "word": "serious",
+            "definition": "«серйозний». Не жартує, не відмахується — каже як є."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i04",
+          "ordinal": 7,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послухайте і виберіть",
+          "accessibilityLabel": "Послухайте і виберіть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i04:r1",
+              "text": "serious"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i04:r2",
+              "text": "series"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i04:r3",
+              "text": "service"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i04:r1",
+              "targetText": "serious",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i04:r2",
+              "targetText": "series",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i04:r3",
+              "targetText": "service",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i04:r2",
+              "text": "`series` — серія, а `serious` означає «серйозний»."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i04:r3",
+              "text": "`service` — обслуговування, а `serious` описує серйозне ставлення."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i05",
+          "ordinal": 8,
+          "purpose": "supported_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вставте слово — Віка всім каже «дякую»; ви кажете їй: «ти ввічлива»",
+          "accessibilityLabel": "Вставте слово — Віка всім каже «дякую»; ви кажете їй: «ти ввічлива»",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i05:r1",
+              "text": "polite"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i05:r2",
+              "text": "serious"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i05:r3",
+              "text": "tired"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вставте слово — Віка всім каже «дякую»; ви кажете їй: «ти ввічлива»",
+          "gappedText": "You are ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i05:r1",
+              "text": "polite"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i05:r2",
+              "text": "serious"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i05:r3",
+              "text": "tired"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i05:r2",
+              "text": "«Серйозний» — про інше. Тут людина ввічлива."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i05:r3",
+              "text": "«Втомлений» — про сили, а не про манери. Тут людина дякує."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i06",
+          "ordinal": 9,
+          "purpose": "supported_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Складіть фразу — «я не серйозний»",
+          "accessibilityLabel": "Складіть фразу — «я не серйозний»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "serious",
+            "not",
+            "am",
+            "I"
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i07",
+          "ordinal": 10,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — lucky",
+          "accessibilityLabel": "Картка слова — lucky",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i07:r1",
+              "targetText": "lucky",
+              "meaning": "«везучий» або «везуча»: людині просто пощастило."
+            }
+          ],
+          "wordCard": {
+            "word": "lucky",
+            "definition": "«везучий» або «везуча»: людині просто пощастило."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i08",
+          "ordinal": 11,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послухайте і виберіть",
+          "accessibilityLabel": "Послухайте і виберіть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i08:r1",
+              "text": "lucky"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i08:r2",
+              "text": "luck"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i08:r3",
+              "text": "lock"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i08:r1",
+              "targetText": "lucky",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i08:r2",
+              "targetText": "luck",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i08:r3",
+              "targetText": "lock",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i08:r2",
+              "text": "`luck` — удача, а `lucky` — везуча."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i08:r3",
+              "text": "`lock` — замок, а `lucky` означає «везуча»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i09",
+          "ordinal": 12,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — sad",
+          "accessibilityLabel": "Картка слова — sad",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i09:r1",
+              "targetText": "sad",
+              "meaning": "«сумний». Не в сльозах, але радості в людині зараз нуль."
+            }
+          ],
+          "wordCard": {
+            "word": "sad",
+            "definition": "«сумний». Не в сльозах, але радості в людині зараз нуль."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i10",
+          "ordinal": 13,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послухайте і виберіть",
+          "accessibilityLabel": "Послухайте і виберіть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i10:r1",
+              "text": "sad"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i10:r2",
+              "text": "said"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i10:r3",
+              "text": "sand"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i10:r1",
+              "targetText": "sad",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i10:r2",
+              "targetText": "said",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i10:r3",
+              "targetText": "sand",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i10:r2",
+              "text": "`said` означає «сказав», а `sad` — «сумний»."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i10:r3",
+              "text": "`sand` означає «пісок», а `sad` — «сумний»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i11",
+          "ordinal": 14,
+          "purpose": "guided_practice",
+          "family": "speed_match",
+          "inputMode": "pair_grid",
+          "prompt": "З'єднайте пари",
+          "accessibilityLabel": "З'єднайте пари",
+          "responseOptions": [],
+          "audio": "none",
+          "visiblePairColumns": {
+            "left": [
+              "sad",
+              "polite",
+              "serious",
+              "lucky"
+            ],
+            "right": [
+              "везучий / везуча",
+              "сумний / сумна",
+              "серйозний",
+              "ввічливий"
+            ]
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i12",
+          "ordinal": 15,
+          "purpose": "guided_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Віка витягла призовий квиток. Скажіть їй: «ти везуча» — вставте слово",
+          "accessibilityLabel": "Віка витягла призовий квиток. Скажіть їй: «ти везуча» — вставте слово",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i12:r3",
+              "text": "is"
+            }
+          ],
+          "audio": "none",
+          "scene": "Віка витягла призовий квиток. Скажіть їй: «ти везуча» — вставте слово",
+          "gappedText": "You ___ lucky.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i12:r3",
+              "text": "is"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i12:r2",
+              "text": "`am` буває тільки при `I`. Про співрозмовника — `are`."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i12:r3",
+              "text": "`is` не підходить до звертання `you`; тут потрібно `are`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i13",
+          "ordinal": 16,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Віка каже, що просто втомилася й не сумує. Скажіть їй: «ти не сумна»",
+          "accessibilityLabel": "Віка каже, що просто втомилася й не сумує. Скажіть їй: «ти не сумна»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "not",
+            "sad",
+            "You",
+            "are",
+            "am"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i13:tile:d1",
+              "text": "з `you` вживається `are`; `am` вживають з `I`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i14",
+          "ordinal": 17,
+          "purpose": "retrieval_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — calm",
+          "accessibilityLabel": "Картка слова — calm",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i14:r1",
+              "targetText": "calm",
+              "meaning": "«спокійний». Голос рівний, руки не тремтять, хоча причина понервувати була."
+            }
+          ],
+          "wordCard": {
+            "word": "calm",
+            "definition": "«спокійний». Голос рівний, руки не тремтять, хоча причина понервувати була."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i15",
+          "ordinal": 18,
+          "purpose": "guided_practice",
+          "family": "sound_contrast",
+          "inputMode": "single_choice",
+          "prompt": "Поїзд скасували, але Віка спокійно читає. Яке слово означає «спокійна»?",
+          "accessibilityLabel": "Поїзд скасували, але Віка спокійно читає. Яке слово означає «спокійна»?",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i15:r1",
+              "text": "calm"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i15:r2",
+              "text": "come"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i15:r2",
+              "text": "`come` — «приходити». Тут описано стан людини: `calm`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i16",
+          "ordinal": 19,
+          "purpose": "retrieval_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — honest",
+          "accessibilityLabel": "Картка слова — honest",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i16:r1",
+              "targetText": "honest",
+              "meaning": "«чесний». Каже як є, навіть коли правда невигідна йому самому."
+            }
+          ],
+          "wordCard": {
+            "word": "honest",
+            "definition": "«чесний». Каже як є, навіть коли правда невигідна йому самому."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i17:s01",
+          "ordinal": 20,
+          "purpose": "independent_check",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Складіть фразу — Віка чесно зізналася, що не встигла відповісти; скажіть їй: «ти чесна»",
+          "accessibilityLabel": "Складіть фразу — Віка чесно зізналася, що не встигла відповісти; скажіть їй: «ти чесна»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "You",
+            "is",
+            "honest",
+            "are"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i17:s01:tile:d1",
+              "text": "`is` не підходить до звертання `you`; тут потрібно `are`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i17:s02",
+          "ordinal": 21,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Віка думає, що ви засмучені; скажіть їй, що ви не сумуєте",
+          "accessibilityLabel": "Віка думає, що ви засмучені; скажіть їй, що ви не сумуєте",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "sad",
+            "am",
+            "not",
+            "is",
+            "I"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i17:s02:tile:d1",
+              "text": "коли говорите про себе, використовуйте `I am`, а не `I is`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i18",
+          "ordinal": 22,
+          "purpose": "independent_check",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — kind",
+          "accessibilityLabel": "Картка слова — kind",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i18:r1",
+              "targetText": "kind",
+              "meaning": "«добрий». Допомагає, коли його не просили і йому за це нічого не буде."
+            }
+          ],
+          "wordCard": {
+            "word": "kind",
+            "definition": "«добрий». Допомагає, коли його не просили і йому за це нічого не буде."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i19:s01",
+          "ordinal": 23,
+          "purpose": "independent_check",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Складіть фразу — Віка допомогла людині з коробками; скажіть їй: «ти добра»",
+          "accessibilityLabel": "Складіть фразу — Віка допомогла людині з коробками; скажіть їй: «ти добра»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "are",
+            "kind",
+            "You"
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i19:s02",
+          "ordinal": 24,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Послухайте й складіть — Віка кличе гуляти, але ви весь день носили коробки; скажіть, що ви втомилися",
+          "accessibilityLabel": "Послухайте й складіть — Віка кличе гуляти, але ви весь день носили коробки; скажіть, що ви втомилися",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "am",
+            "I",
+            "is",
+            "tired"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i19:s02:tile:d1",
+              "text": "коли говорите про себе, використовуйте `I am`, а не `I is`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-15:i20",
+          "ordinal": 25,
+          "purpose": "independent_check",
+          "family": "scripted_repeat_compare",
+          "inputMode": "tap_record_compare",
+          "prompt": "Скажіть уголос — Віка притримала двері для людини з коробками й сказала «дякую»; скажіть Віці: «ти ввічлива»",
+          "accessibilityLabel": "Скажіть уголос — Віка притримала двері для людини з коробками й сказала «дякую»; скажіть Віці: «ти ввічлива»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played"
+        }
+      ]
+    }
+  }
+}

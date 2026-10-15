@@ -240,7 +240,10 @@ function addEligibleRole({ fixtureCourse, manifest, status, role }) {
   return current;
 }
 
-test("S01 review ledger validates current content identity and derives missing roles from eligible PASS evidence", () => {
+// This fixture validates the internal consistency of the historical i13 review ledger.
+// It does not establish that the mutable S01 source/status is current; the content-receipt
+// verifier and session-readiness gates perform the live-byte checks separately.
+test("S01 review ledger validates historical candidate identity and derives missing roles from eligible PASS evidence", () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(SESSION, "review-evidence-manifest.json"), "utf8"));
   const status = JSON.parse(fs.readFileSync(path.join(SESSION, "status.json"), "utf8"));
   const result = validateReviewLedger({ courseRoot: COURSE, manifest, status });

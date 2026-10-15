@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "learning_v2_session_source_snapshot_v1",
+  "courseSessionId": "en:lesson-01:session-03",
+  "entries": [
+    {
+      "category": "evidence",
+      "originalPath": "content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md",
+      "bytes": 61933,
+      "sha256": "3fb075a8ff5fcf5e6847c87a44241bfc01a1951399ba6fdd41c19a52930ac499"
+    },
+    {
+      "category": "evidence",
+      "originalPath": "content/learning-v2-course/migration/single-phrase-2026-10-03/preservation-ledger.json",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/migration/single-phrase-2026-10-03/preservation-ledger.json",
+      "bytes": 1566978,
+      "sha256": "a4682c16403e0aa2a915ccfbe2935e428b01d96f4539bb382b556b932e75c60c"
+    },
+    {
+      "category": "contract",
+      "originalPath": "content/learning-v2-course/pipeline/build_release.mjs",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/pipeline/build_release.mjs",
+      "bytes": 120371,
+      "sha256": "26f3f6011ffc4a6759673fa5f41ac9268ef24b9dcefb0e79828261d3d1545fbe"
+    },
+    {
+      "category": "contract",
+      "originalPath": "content/learning-v2-course/pipeline/build_session_candidate_receipt.mjs",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/pipeline/build_session_candidate_receipt.mjs",
+      "bytes": 17997,
+      "sha256": "f5d2e360e0929638a5e120ae8ea85e4ded9eb3262e9b3bbe3b931c63880846a5"
+    },
+    {
+      "category": "contract",
+      "originalPath": "content/learning-v2-course/pipeline/build_session_candidate_receipt.test.mjs",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/pipeline/build_session_candidate_receipt.test.mjs",
+      "bytes": 13067,
+      "sha256": "a80f26032ac0dbb8544a663628574479c451619a3dc61da23355274441e28d98"
+    },
+    {
+      "category": "contract",
+      "originalPath": "content/learning-v2-course/pipeline/l01s03_feedback_repair.test.mjs",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/pipeline/l01s03_feedback_repair.test.mjs",
+      "bytes": 21729,
+      "sha256": "537f9dc4f6b05de36d82b3fd892cd6eb86386553506b693dad6011315c0abbc6"
+    },
+    {
+      "category": "contract",
+      "originalPath": "content/learning-v2-course/pipeline/practice_explanations_v1.mjs",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/pipeline/practice_explanations_v1.mjs",
+      "bytes": 25698,
+      "sha256": "5b410ad4cdd57e274edcad8f4aca58120bd570a62f7f3b295df71b6a761a442a"
+    },
+    {
+      "category": "source",
+      "originalPath": "content/learning-v2-course/sessions/en/l01/s03/final.ru.md",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/sessions/en/l01/s03/final.ru.md",
+      "bytes": 11191,
+      "sha256": "08411be1b4ccdb377aad4041265effb2536256a1eb0324ae210aceef8b999363"
+    },
+    {
+      "category": "source",
+      "originalPath": "content/learning-v2-course/sessions/en/l01/s03/final.uk.md",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/sessions/en/l01/s03/final.uk.md",
+      "bytes": 10723,
+      "sha256": "5ae9b0666c58e62a9b27e97a211e49ba13de50de0c20b09aecf011fc2d4d16af"
+    },
+    {
+      "category": "source",
+      "originalPath": "content/learning-v2-course/sessions/en/l01/s03/locales_batch.md",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/sessions/en/l01/s03/locales_batch.md",
+      "bytes": 10737,
+      "sha256": "36d7fdd5b56d0b12ae4329439b142f31dc8c17f5ea790cb1f756952a6357f3fb"
+    },
+    {
+      "category": "source",
+      "originalPath": "content/learning-v2-course/sessions/en/l01/s03/practice.atomic.json",
+      "snapshotPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/source-snapshot/content/learning-v2-course/sessions/en/l01/s03/practice.atomic.json",
+      "bytes": 89832,
+      "sha256": "c928af660663853dd2f44655b253ea4cc100363b753779862f61d1836422c431"
+    }
+  ]
+}

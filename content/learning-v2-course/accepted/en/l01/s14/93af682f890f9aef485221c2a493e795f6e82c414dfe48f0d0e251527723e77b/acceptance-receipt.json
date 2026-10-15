@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "learning_v2_session_acceptance_receipt_v1",
+  "session": "en/l01/s14",
+  "courseSessionId": "en:lesson-01:session-14",
+  "state": "TEXT_CANONICAL",
+  "candidateRoot": "content/learning-v2-course/outputs/s14-review-fixed-private-20261015-v2",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s14-review-fixed-private-20261015-v2/content-receipt.json",
+  "candidateReceiptSha256": "43dc2d37aeea838e86d96eded51222d89e6f47465f0b204eaa576f874fdffc1d",
+  "candidateBundleSha256": "93af682f890f9aef485221c2a493e795f6e82c414dfe48f0d0e251527723e77b",
+  "candidateInventorySha256": "b037571b16cd3efab63028a0a9daa46c60a6dab6758425d7851537e9f6eda6e3",
+  "sourceFingerprint": "ddce8016386338237deb4fbfd145fb2169a0bcef9ec38e9e19d131439e27cdde",
+  "deterministicGateReport": {
+    "path": "content/learning-v2-course/judgements/2026-10-15_s14_v2_deterministic_gates.current.json",
+    "sha256": "d7f870e54226719a6c27f888a76f4defc00f1a47ca3552bc94ba744cda37d647",
+    "bytes": 1599
+  },
+  "reviewEvidence": [
+    {
+      "dimension": "blind_learner",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-15_s14_v2_blind_learner.current.json",
+      "artifactSha256": "1d6fc6eddd89cd03decccec4cc6269d3e527397196e68d36f47000f34e77f98e",
+      "artifactBytes": 974,
+      "dispatchProvenance": {
+        "agent": "/root/review_s14_blind_luna",
+        "configuredModel": "gpt-6-luna"
+      }
+    },
+    {
+      "dimension": "language_pedagogy_locale",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-15_s14_v2_language_pedagogy_locale.current.json",
+      "artifactSha256": "75763c81e49bf21f721f7608305178e75d070e548ea6707364ee3f0571be53d4",
+      "artifactBytes": 783,
+      "dispatchProvenance": {
+        "agent": "/root/review_s14_locale_luna",
+        "configuredModel": "gpt-6-luna"
+      }
+    }
+  ],
+  "localeEvidence": {
+    "path": "content/learning-v2-course/outputs/s14-review-fixed-private-20261015-v2/source-snapshot/content/learning-v2-course/sessions/en/l01/s14/locales_batch.md",
+    "sha256": "c3982ec3d9d80ab178bfaec8a33af6c23ec69ff877295f528a513393700b2332",
+    "bytes": 10388
+  },
+  "audioTechnicalEvidence": null,
+  "semanticAudioVerified": false,
+  "releaseAuthority": false,
+  "immutableContentOnly": true
+}

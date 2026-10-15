@@ -1,164 +1,154 @@
 ===LOCALE: uk===
-# Англійська · Урок 1 · Заняття 9 — «You are»
+# Англійська · Урок 1 · Заняття 9 — «He is, She is, It is»
 
-**Ситуація.** Уранці Міра приносить вам каву. Ви дякуєте їй і говорите
-короткі фрази про неї: що вона добра, має рацію або смішна.
+**Ситуація.** Фотографка Лена готує підписи до портретів для виставки. Ви допомагаєте їй назвати людей і показати, де лежить картка з підписом.
 
-**Що ви опануєте:** як сказати про співрозмовника з `You are + слово`
-**Нові слова:** welcome, kind, funny
-**Повертаються:** tired, sorry, sure, early, new, right
+**Що ви опануєте:** як сказати, який вигляд має людина чи предмет, використовуючи `he/she/it + is`.
+**Нові слова:** tall, short, young
+**Повертаються:** angry, scared, calm, here, ready, fine, happy
 
 ---
 
 ## Інтро 1
 
-### З you використовують are
+### Спочатку — про кого йдеться
 
-Про себе — `I am`. Про людину навпроти — `You are`.
+`He` — він, `she` — вона, `it` — предмет або тварина. Після кожного з них у цій фразі йде `is`.
 
-Після `you` ставлять `are`; `am` використовують лише після `I`.
+`Tall` означає «високий», `short` — «низький». Лена підписує портрети: `He is tall` — «Він високий», `She is short` — «Вона невисока».
 
-Слово після `are` не змінюється. `tired` — «втомлений» і для вас, і для співрозмовника: `I am tired`, `You are tired`.
+**На спільному фото Лев вищий за інших. Допоможіть Лені підписати його портрет: «він високий».**
 
-**Колега втретє тре очі. Скажіть їй: «ти втомлена».**
-
-- ✅ **You are tired.**
-- ❌ You am tired. — *`am` використовують лише після `I`. Після `you` потрібне `are`.*
-- ❌ You tired. — *Після `you` потрібне `are`: `You are tired`.*
+- ✅ **He is tall.**
+- ❌ He tall. — *Після `He` потрібно поставити `is`: `He is tall`.*
 
 ---
 
 ## Інтро 2
 
-### Слово, яким відповідають на «дякую»
+### Три слова для опису
 
-`You are welcome` — це відповідь на «дякую», наше «нема за що».
+Схема коротка: `he`, `she` або `it` + `is` + слово про людину чи предмет.
 
-Дослівно виходить «ти бажаний», майже освідчення. Англійці так відповідають касиру, і нікому не ніяково.
+`Young` означає «молодий». Наприклад: `He is young` — «Він молодий». Слово після `is` не змінюється за родом.
 
-Слово в кінці вирішує все: `You are sorry` — це вже не ввічливість, а докір.
+**Лена підписує портрет восьмирічного Олега. Скажіть про нього: «він молодий».**
 
-**Ви подякували колезі за каву. Що вона відповість?**
-
-- ✅ **You are welcome.**
-- ❌ You are sorry. — *Це «тобі шкода». Так кажуть не у відповідь на «дякую», а наприкінці сварки.*
-- ❌ You welcome. — *`are` загубилася. Повна фраза — три слова, і перші два завжди разом.*
+- ✅ **He is young.**
+- ❌ He are young. — *З `He` тут потрібна форма `is`: `He is young`.*
 
 ---
 
 ## Інтро 3
 
-### Комплімент, який не звучить як залицяння
+### Не пропускайте `is`
 
-`funny` — «смішний». `You are funny` — похвала жарту, а не діагноз.
+Перед словом про людину чи предмет залиште `is`: `She is short`, `It is here`.
 
-`kind` — «добрий». Обидва слова про людину навпроти, обидва йдуть після `are`.
+У `It is here` слово `it` вказує на одну вже зрозумілу річ, а `here` означає «тут».
 
-Українською хочеться сказати двома словами: «ти смішна». Англійською без `are` фраза не стоїть.
+**Лена шукає картку з ім’ям Олега. Ви бачите картку поруч із нею; скажіть: «вона тут».**
 
-**Колега пожартувала, ви засміялися. Скажіть їй: «ти смішна».**
-
-- ✅ **You are funny.**
-- ❌ You funny. — *Після `you` потрібне `are`: `You are funny`.*
-- ❌ You is funny. — *`is` не використовують після `you`; тут потрібне `are`.*
+- ✅ **It is here.**
+- ❌ It here. — *Між `It` і `here` потрібно `is`: `It is here`.*
 
 ---
 
-## Практика (перші завдання)
+## Практика (17 завдань)
 
-**1 · Картка слова — welcome**
-<!-- interaction_id: en:lesson-01:session-09:i01; family: listen_choose -->
-> **welcome** — «будь ласка» у відповідь на «дякую». Дослівно «бажаний», але так ніхто не думає.
+**1 · Складіть фразу — Лев вищий за інших на спільному фото; підпишіть його портрет**
+<!-- interaction_id: en:lesson-01:session-09:i01; family: phrase_builder -->
+Плитки: `He` `is` `tall` `are` → **He is tall.**
+*(Зайва плитка `are`: після `He` у цій фразі потрібно `is`.)*
 
-**2 · Послухайте і виберіть — welcome**
+**2 · Послухайте й оберіть значення — Лена підписує портрет Каті**
 <!-- interaction_id: en:lesson-01:session-09:i02; family: listen_choose -->
-🔊 *welcome* → **welcome** · well · walk
-- well — *«Добре». Занадто коротко: у `welcome` два склади, «уел-кам».*
-- walk — *«Йти пішки». Початок схожий, але далі нічого спільного.*
+🔊 *She is short.*
+Варіанти: «вона невисока» · «він високий» · «він молодий»
+- «він високий» — *Це опис чоловіка; у записі йдеться про Катю.*
+- «він молодий» — *Це про вік, а запис описує зріст Каті.*
 
-**3 · Картка слова — kind**
-<!-- interaction_id: en:lesson-01:session-09:i03; family: listen_choose -->
-> **kind** — «добрий». Про людину, яка робить дрібниці, про які її не просили.
+**3 · Олегу вісім років; він наймолодший учасник фотозйомки**
+<!-- interaction_id: en:lesson-01:session-09:i03; family: context_gap_grammar -->
+He is ___ . → **young** · tall · short
+- tall — *`tall` описує зріст; тут важливий вік Олега.*
+- short — *`short` описує зріст; тут важливий вік Олега.*
 
-**4 · Послухайте і виберіть — kind**
-<!-- interaction_id: en:lesson-01:session-09:i04; family: listen_choose -->
-🔊 *kind* → **kind** · kid · find
-- kid — *Коротке «кід». У `kind` голосна тягнеться: «кайнд».*
-- find — *Майже те саме звучання, але починається з «ф». Слухайте перший звук.*
+**4 · З’єднайте фразу зі значенням — Лена перевіряє підпис до портрета Ніни перед зйомкою**
+<!-- interaction_id: en:lesson-01:session-09:i04; family: speed_match -->
+Пари: `tall` — «високий» · `short` — «низький» · `young` — «молодий»
 
-**5 · Складіть фразу — Міра поставила каву, ви вдячні**
-<!-- interaction_id: en:lesson-01:session-09:i05; family: phrase_builder -->
-Плитки: `are` `kind` `You` → **You are kind.**
+**5 · Послухайте запис про Лева й складіть почуту фразу**
+<!-- interaction_id: en:lesson-01:session-09:i05; family: listen_build_dictation -->
+🔊 *He is tall.*
+Плитки: `He` `is` `tall` `young` → **He is tall.**
 
-**6 · Вставте слово — Міра втомилася**
-<!-- interaction_id: en:lesson-01:session-09:i06; family: context_gap_grammar -->
-You ___ tired. → **are** · am · is
-- am — *`am` живе тільки з `I`. Віддати його співрозмовнику не можна.*
-- is — *Не для `you`. Про людину навпроти — завжди `are`.*
+**6 · Складіть фразу — на портреті Лена нижча за Лева; підпишіть її зріст**
+<!-- interaction_id: en:lesson-01:session-09:i06; family: phrase_builder -->
+Плитки: `She` `is` `short` `are` → **She is short.**
+*(Зайва плитка `are`: після `She` у цій фразі потрібно `is`.)*
 
-**7 · Картка слова — right**
-<!-- interaction_id: en:lesson-01:session-09:i07; family: listen_choose -->
-> **right** — «має рацію». Коли співрозмовник влучив у ціль і сперечатися нема про що.
+**7 · Повторіть за записом — на картці восьмирічний Олег**
+<!-- interaction_id: en:lesson-01:session-09:i07; family: scripted_repeat_compare -->
+🎙 Скажіть: **He is young.**
 
-**8 · Послухайте і виберіть — right**
-<!-- interaction_id: en:lesson-01:session-09:i08; family: listen_choose -->
-🔊 *right* → **right** · red · read
-- red — *«Червоний». Одна коротка голосна, ніякого «ай».*
-- read — *«Читати». Тягнеться «і», а в `right` — «ай»: «райт».*
+**8 · Вставте слово — Ніна зібрала камеру й стала на місце для портрета**
+<!-- interaction_id: en:lesson-01:session-09:i08; family: context_gap_grammar -->
+She is ___ . → **ready** · calm · happy
+- calm — *`calm` описує спокій; Ніна вже готова до зйомки.*
+- happy — *`happy` описує настрій; тут важливо, що Ніна може починати.*
 
-**9 · Складіть фразу — ви сказали Мірі «дякую», вона відповідає**
-<!-- interaction_id: en:lesson-01:session-09:i09; family: phrase_builder -->
-Плитки: `welcome` `are` `You` → **You are welcome.**
+**9 · Послухайте запис про Павла й оберіть значення почутої фрази**
+<!-- interaction_id: en:lesson-01:session-09:i09; family: listen_choose -->
+🔊 *He is angry.*
+Варіанти: «він сердиться» · «він спокійний» · «він наляканий»
+- «він спокійний» — *У записі описано роздратування, а не спокій.*
+- «він наляканий» — *У записі описано злість, а не страх.*
 
-**10 · Картка слова — funny**
-<!-- interaction_id: en:lesson-01:session-09:i10; family: listen_choose -->
-> **funny** — «смішний». Про жарт, а не про дивний запах у холодильнику.
+**10 · З’єднайте фразу зі значенням — Лена добирає підпис до портрета Іри біля тихого вікна**
+<!-- interaction_id: en:lesson-01:session-09:i10; family: speed_match -->
+Пари: `angry` — «сердиться» · `scared` — «наляканий» · `calm` — «спокійний»
 
-**11 · Вставте слово — Міра розповіла жарт, і ви все ще смієтеся**
-<!-- interaction_id: en:lesson-01:session-09:i11; family: context_gap_grammar -->
-You are ___ . → **funny** · sorry · early
-- sorry — *«Вибач». За вдалий жарт не вибачаються.*
-- early — *«Рано». Це про час, а не про сміх.*
+**11 · Послухайте й складіть — Лена перевіряє самопочуття Іллі після довгої зйомки**
+<!-- interaction_id: en:lesson-01:session-09:i11; family: listen_build_dictation -->
+🔊 *He is fine.*
+Плитки: `He` `is` `fine` `angry` → **He is fine.**
 
-**12 · Послухайте і складіть — «ти маєш рацію»**
-<!-- interaction_id: en:lesson-01:session-09:i12; family: listen_build_dictation -->
-🔊 *You are right.* Плитки: `right` `are` `You` → **You are right.**
+**12 · Складіть фразу — Лена шукає картку Ніни, а ви показуєте на стіл поруч**
+<!-- interaction_id: en:lesson-01:session-09:i12; family: phrase_builder -->
+Плитки: `It` `is` `here` `ready` → **It is here.**
+*(Зайва плитка `ready`: картку вже знайдено; тут потрібно вказати її місце.)*
 
-**13 · Складіть фразу — Міра звірила список покупок і правильно назвала кількість молока**
-<!-- interaction_id: en:lesson-01:session-09:i13; family: phrase_builder -->
-Плитки: `You` `are` `right` `am` `not` → **You are right.**
+**13 · Скажіть фразу слідом за записом — Лев спокійно чекає своєї черги біля вікна**
+<!-- interaction_id: en:lesson-01:session-09:i13; family: scripted_repeat_compare -->
+🎙 Скажіть: **He is calm.**
 
-**14 · Скажіть уголос — Міра прийшла до відкриття офісу; скажіть їй, що вона прийшла рано**
-<!-- interaction_id: en:lesson-01:session-09:i14; family: scripted_repeat_compare -->
-🎙 Скажіть: **You are early.**
+**14 · Вставте слово — після вдалого портрета Іра усміхається й плескає в долоні**
+<!-- interaction_id: en:lesson-01:session-09:i14; family: context_gap_grammar -->
+She is ___ . → **happy** · ready · calm
+- ready — *`ready` означає, що людина готова; Іра радіє вдалому портрету.*
+- calm — *`calm` означає «спокійна»; Іра явно радіє.*
 
-**15 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-09:i15; family: speed_match -->
-welcome — нема за що · kind — добрий · right — має рацію · funny — смішний
+**15 · Послухайте запис про Артема й оберіть значення почутої фрази**
+<!-- interaction_id: en:lesson-01:session-09:i15; family: listen_choose -->
+🔊 *He is scared.*
+Варіанти: «він наляканий» · «він сердиться» · «він спокійний»
+- «він сердиться» — *У записі йдеться про страх перед виходом на сцену.*
+- «він спокійний» — *Артемові страшно перед виходом, тож потрібно scared, а не calm.*
 
-**16 · Складіть фразу — Міра питає, о котрій збори. Ви не знаєте**
-<!-- interaction_id: en:lesson-01:session-09:i16; family: phrase_builder -->
-Складіть: `am` `I` `not` `sure` `are` → **I am not sure.**
-*(плитка `are` зайва: вона лишилася від розмови про співрозмовницю)*
+**16 · З’єднайте слова зі значеннями — Міла перевіряє картки біля входу до ботанічного саду перед приходом відвідувачів**
+<!-- interaction_id: en:lesson-01:session-09:i16; family: speed_match; purpose: independent_check -->
+Пари: `here` — «тут» · `ready` — «готовий» · `fine` — «почувається добре» · `happy` — «щасливий»
 
-**17 · Вставте слово — ви штовхнули її ліктем, кава хлюпнула на стіл**
-<!-- interaction_id: en:lesson-01:session-09:i17; family: context_gap_grammar -->
-I am ___ . → **sorry** · early · new
-- early — *«Рано». Про час, а не про вибачення.*
-- new — *«Новенький» — правда, але за розлиту каву вибачаються словом `sorry`.*
-
-**18 · Скажіть уголос — Міра звірила час зустрічі за календарем, і ви підтверджуєте її розрахунок**
-<!-- interaction_id: en:lesson-01:session-09:i18; family: scripted_repeat_compare -->
-🎙 Скажіть: **You are right.**
+**17 · Скажіть одну коротку фразу — Віра записує фразу про Олю для аудіотеки мовного клубу**
+<!-- interaction_id: en:lesson-01:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 Скажіть: **She is angry.**
 
 ---
 
-## Для сборщика
+## Для збирача
 
-new_words:
-welcome — нема за що (будь ласка) — «будь ласка» у відповідь на «дякую». Дослівно «бажаний», але так ніхто не думає.
-kind — добрий — про людину, яка робить дрібниці, про які її не просили.
-right — має рацію — коли співрозмовник влучив у ціль і сперечатися нема про що.
-funny — смішний — про жарт, а не про дивний запах у холодильнику.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=word_card, 8=listen_choose, 9=phrase_builder, 10=word_card, 11=context_gap_grammar, 12=listen_build_dictation, 13=phrase_builder, 14=scripted_repeat_compare, 15=speed_match, 16=phrase_builder, 17=context_gap_grammar, 18=scripted_repeat_compare
+Нові senses: `tall`, `short`, `young`.
+Retrieval senses: `angry`, `scared`, `calm`, `here`, `ready`, `fine`, `happy`.
+Grammar: `he/she/it + is + complement`.
+Порядок режимів: phrase_builder, listen_choose, context_gap_grammar, speed_match, listen_build_dictation, phrase_builder, scripted_repeat_compare, context_gap_grammar, listen_choose, speed_match, phrase_builder, listen_choose, speed_match, listen_build_dictation, phrase_builder, scripted_repeat_compare, scripted_repeat_compare.

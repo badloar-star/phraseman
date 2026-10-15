@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "learning_v2_session_acceptance_receipt_v1",
+  "session": "en/l01/s06",
+  "courseSessionId": "en:lesson-01:session-06",
+  "state": "TEXT_CANONICAL",
+  "candidateRoot": "content/learning-v2-course/outputs/s06-review-fixed-private-20261014-v5",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s06-review-fixed-private-20261014-v5/content-receipt.json",
+  "candidateReceiptSha256": "9dacda8fecb1f6e8b2b090e93b4c1f047961eb95331f752ef84ee0c548a55b44",
+  "candidateBundleSha256": "0dd511080e4b05b022dff13e80ef934a3bc94f9141efa584faf411daad01e755",
+  "candidateInventorySha256": "44db61e00c7fdfa3bd5f43290deacfa3eb5c1539a6de9afda3a430c4a8130ede",
+  "sourceFingerprint": "ba05bd51452469b24b1e2f5914fff69a52487c41ea2992d1352382e2b5b98396",
+  "deterministicGateReport": {
+    "path": "content/learning-v2-course/judgements/2026-10-14_s06_v5_deterministic_gates.current.json",
+    "sha256": "c575fa173f168ff234e08e0a22a5f1364560b2fa61ff8bf5c4a936dc792bd0d3",
+    "bytes": 1302
+  },
+  "reviewEvidence": [
+    {
+      "dimension": "blind_learner",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-14_s06_v5_blind_learner.current.json",
+      "artifactSha256": "c65bb90c2f27605b1dcb5fad1b110ca5a829f07c0926235b69d20df270194d72",
+      "artifactBytes": 1169,
+      "dispatchProvenance": {
+        "agent": "/root/s06_v5_blind",
+        "configuredModel": "gpt-6-luna"
+      }
+    },
+    {
+      "dimension": "language_pedagogy_locale",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-14_s06_v5_language_pedagogy_locale.current.json",
+      "artifactSha256": "42ee9bef0d4f7a480d5afda6101794fbe00a1552227887aa1fd18653b98befad",
+      "artifactBytes": 1148,
+      "dispatchProvenance": {
+        "agent": "/root/s06_v5_locale",
+        "configuredModel": "gpt-6-luna"
+      }
+    }
+  ],
+  "localeEvidence": {
+    "path": "content/learning-v2-course/outputs/s06-review-fixed-private-20261014-v5/source-snapshot/content/learning-v2-course/sessions/en/l01/s06/locales_batch.md",
+    "sha256": "c567a4a6f3c04902cf26b291e83c778ca3302a55dc6bce292e2230cca7cfadb1",
+    "bytes": 11156
+  },
+  "audioTechnicalEvidence": null,
+  "semanticAudioVerified": false,
+  "releaseAuthority": false,
+  "immutableContentOnly": true
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-54:intro1:r2": {
+          "ru": "Пропала скрепка `am`, без которой фраза не стоит.",
+          "uk": "Зникла скріпка `am`, без якої фраза не стоїть."
+        },
+        "en:lesson-01:session-54:intro1:r3": {
+          "ru": "`is` — не для `I`. Про себя — `am`.",
+          "uk": "`is` — не для `I`. Про себе — `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-54:intro2:r2": {
+          "ru": "`calm` — «спокоен», про нервы. Хорошее слово, но спросили про ваши силы.",
+          "uk": "`calm` — «спокійний», про нерви. Гарне слово, але спитали про ваші сили."
+        },
+        "en:lesson-01:session-54:intro2:r3": {
+          "ru": "`am` снова потерялось. Про себя — `I am`, целиком.",
+          "uk": "`am` знову загубилося. Про себе — `I am`, повністю."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-54:intro3:r2": {
+          "ru": "`honest` — «честен». Хорошее слово, но ответ не про характер, а про язык.",
+          "uk": "`honest` — «чесний». Гарне слово, але відповідь не про вдачу, а про мовлення."
+        },
+        "en:lesson-01:session-54:intro3:r3": {
+          "ru": "Между `I` и `fluent` нужно `am`.",
+          "uk": "Між `I` та `fluent` потрібне `am`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "97e16ef3af779457b1e2048fe62f091822cbf4b0b9a304a9ff4280ec6e556292"
+}

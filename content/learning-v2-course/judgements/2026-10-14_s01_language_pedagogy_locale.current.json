@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "language_review_v1",
+  "sessionId": "en:lesson-01:session-01",
+  "candidateBundleSha256": "f537e8fe7e168549d1e1bc2299d4c26ac038d2bfc11575f5ce50ab7a1acd9207",
+  "learnerJsonSha256": "4fc99fc331648c168131844a39c394072a0282654719a2eb0d5889909fba47e9",
+  "reviewerModel": "gpt-6-luna",
+  "dimension": "language_pedagogy_locale",
+  "verdict": "PASS",
+  "blockers": [],
+  "notes": ["Manifest, receipt, inventory, bundle, and candidate-file hashes matched. Reviewed all three RU/UK intros and all 20 tasks; selectable answers were unique and authored feedback was limited to incorrect selections. Transcript text matched its intended spoken phrase; recording playback was not reviewed."],
+  "taskCount": 20,
+  "taskIds": [
+    "en:lesson-01:session-01:i01", "en:lesson-01:session-01:i02", "en:lesson-01:session-01:i03", "en:lesson-01:session-01:i04",
+    "en:lesson-01:session-01:i05", "en:lesson-01:session-01:i06", "en:lesson-01:session-01:i07", "en:lesson-01:session-01:i07:a01",
+    "en:lesson-01:session-01:i08", "en:lesson-01:session-01:i09", "en:lesson-01:session-01:i13", "en:lesson-01:session-01:i10",
+    "en:lesson-01:session-01:i12", "en:lesson-01:session-01:i11", "en:lesson-01:session-01:i14", "en:lesson-01:session-01:i15",
+    "en:lesson-01:session-01:i16", "en:lesson-01:session-01:i17:s01", "en:lesson-01:session-01:i17:s02", "en:lesson-01:session-01:i17:s03"
+  ]
+}

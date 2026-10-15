@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-29:i01",
+    "correctText": "heavy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i02",
+    "correctText": "heavy",
+    "correctResponseId": "en:lesson-01:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i03",
+    "correctText": "light",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i04",
+    "correctText": "light",
+    "correctResponseId": "en:lesson-01:session-29:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i05",
+    "correctText": "It is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i06",
+    "correctText": "clean",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i07",
+    "correctText": "clean",
+    "correctResponseId": "en:lesson-01:session-29:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i08",
+    "correctText": "dirty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i09",
+    "correctText": "dirty",
+    "correctResponseId": "en:lesson-01:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i10",
+    "correctText": "en:lesson-01:session-29:i10:p1=heavy\nen:lesson-01:session-29:i10:p2=light\nen:lesson-01:session-29:i10:p3=clean\nen:lesson-01:session-29:i10:p4=dirty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i11",
+    "correctText": "empty",
+    "correctResponseId": "en:lesson-01:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i12",
+    "correctText": "It is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i13",
+    "correctText": "It is dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i14",
+    "correctText": "broken",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i15",
+    "correctText": "It is broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i16",
+    "correctText": "small",
+    "correctResponseId": "en:lesson-01:session-29:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i17",
+    "correctText": "en:lesson-01:session-29:i17:p1=small\nen:lesson-01:session-29:i17:p2=new\nen:lesson-01:session-29:i17:p3=empty\nen:lesson-01:session-29:i17:p4=broken",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i18:s01",
+    "correctText": "It is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i18:s02",
+    "correctText": "It is dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i18:s03",
+    "correctText": "It is empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i18:s04",
+    "correctText": "It is new.",
+    "correctResponseId": null
+  }
+]

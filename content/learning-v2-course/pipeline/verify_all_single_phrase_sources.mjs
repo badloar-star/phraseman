@@ -22,6 +22,7 @@ import {
 import { parseSessionHeader } from "./session_header.mjs";
 import { strictProjectionContractIssues } from "./prejudge_choreography.mjs";
 import { isSinglePhraseMigrationLesson } from "./single_phrase_scope.mjs";
+import { auditFactoryIntroPractice } from "./factory_intro_practice_gate.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -32,6 +33,12 @@ const { projectLearnerVisiblePromptV1 } = createRequire(import.meta.url)(
 const BUILD_ALL = process.argv.includes("--build-all");
 const sha = (value) => crypto.createHash("sha256").update(typeof value === "string" ? value : JSON.stringify(value)).digest("hex");
 const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
+
+const factoryIntroPracticeReport = auditFactoryIntroPractice({ sessionsRoot: path.join(ROOT, "sessions", "en") });
+if (factoryIntroPracticeReport.verdict !== "PASS") {
+  console.error(JSON.stringify(factoryIntroPracticeReport, null, 2));
+  throw new Error(`factory_intro_practice_all_source_hold:${factoryIntroPracticeReport.findingCount}`);
+}
 
 function markdownPracticeRows(markdown) {
   const practice = (markdown.split(/^##\s*[ИІ]нтро\s*3[^\n]*$/mi)[1] ?? markdown)

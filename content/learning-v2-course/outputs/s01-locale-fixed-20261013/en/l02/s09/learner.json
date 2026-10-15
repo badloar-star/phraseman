@@ -1,0 +1,1056 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — handsome",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — handsome",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i01:audio",
+          "transcript": "handsome"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-09:i01:r1",
+            "targetText": "handsome",
+            "meaningByLocale": {
+              "ru": "«красивый, привлекательный». Так чаще говорят о мужчине с приятной внешностью.",
+              "uk": "«вродливий, привабливий». Так частіше кажуть про чоловіка з приємною зовнішністю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "handsome",
+          "definitionByLocale": {
+            "ru": "«красивый, привлекательный». Так чаще говорят о мужчине с приятной внешностью.",
+            "uk": "«вродливий, привабливий». Так частіше кажуть про чоловіка з приємною зовнішністю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — handsome",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-09:i02:r1",
+          "text": "handsome"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i02:r2",
+          "text": "pretty"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i02:r3",
+          "text": "curious"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — handsome",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i02:audio",
+          "transcript": "handsome"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-09:i02:r1",
+            "targetText": "handsome",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i02:r2",
+            "targetText": "pretty",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i02:r3",
+            "targetText": "curious",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — handsome",
+            "feedbackByLocale": {
+              "ru": "Pretty обычно описывает красивую женщину или приятную на вид вещь; handsome чаще описывает привлекательного мужчину.",
+              "uk": "Pretty зазвичай описує гарну жінку або приємну на вигляд річ; handsome частіше описує вродливого чоловіка."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — handsome",
+            "feedbackByLocale": {
+              "ru": "Curious означает «любопытный»; handsome означает «красивый, привлекательный».",
+              "uk": "Curious означає «допитливий»; handsome означає «вродливий, привабливий»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pretty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pretty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i03:audio",
+          "transcript": "pretty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-09:i03:r1",
+            "targetText": "pretty",
+            "meaningByLocale": {
+              "ru": "«красивая, привлекательная». Так часто говорят о женщине или о приятной на вид вещи.",
+              "uk": "«гарна, приваблива». Так часто кажуть про жінку або про приємну на вигляд річ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pretty",
+          "definitionByLocale": {
+            "ru": "«красивая, привлекательная». Так часто говорят о женщине или о приятной на вид вещи.",
+            "uk": "«гарна, приваблива». Так часто кажуть про жінку або про приємну на вигляд річ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — pretty",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-09:i04:r1",
+          "text": "pretty"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i04:r2",
+          "text": "handsome"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i04:r3",
+          "text": "cold"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — pretty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i04:audio",
+          "transcript": "pretty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-09:i04:r1",
+            "targetText": "pretty",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i04:r2",
+            "targetText": "handsome",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i04:r3",
+            "targetText": "cold",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-09:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — pretty",
+            "feedbackByLocale": {
+              "ru": "Handsome чаще описывает привлекательного мужчину; pretty — красивую женщину или приятную на вид вещь.",
+              "uk": "Handsome частіше описує вродливого чоловіка; pretty — гарну жінку або приємну на вигляд річ."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — pretty",
+            "feedbackByLocale": {
+              "ru": "Cold означает «замёрзший»; pretty означает «красивая, привлекательная».",
+              "uk": "Cold означає «змерзлий»; pretty означає «гарна, приваблива»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова и значения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова и значения",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-09:i05:p1",
+            "target": "handsome",
+            "meaningByLocale": {
+              "ru": "привлекательный мужчина",
+              "uk": "привабливий чоловік"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-09:i05:p2",
+            "target": "pretty",
+            "meaningByLocale": {
+              "ru": "привлекательная женщина",
+              "uk": "приваблива жінка"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-09:i05:p3",
+            "target": "cold",
+            "meaningByLocale": {
+              "ru": "замёрзший",
+              "uk": "змерзлий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-09:i05:p4",
+            "target": "curious",
+            "meaningByLocale": {
+              "ru": "любопытный",
+              "uk": "допитливий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "handsome",
+          "pretty",
+          "cold",
+          "curious"
+        ],
+        "rightColumn": [
+          "привлекательный мужчина",
+          "привлекательная женщина",
+          "замёрзший",
+          "любопытный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос о мужчине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос о мужчине",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i06:audio",
+          "transcript": "Is he handsome?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is he handsome?",
+        "orderedTokens": [
+          "Is",
+          "he",
+          "handsome?"
+        ],
+        "authoredDistractorTokens": [
+          "she"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cheerful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cheerful",
+      "modePayload": {
+        "family": "listen_choose",
+        "localizedScene": {
+          "ru": "Значение: «весёлый». Так описывают человека, чьё хорошее настроение видно по поведению.",
+          "uk": "Значення: «веселий». Так описують людину, чий добрий настрій видно з поведінки."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i07:audio",
+          "transcript": "cheerful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-09:i07:r1",
+            "targetText": "cheerful",
+            "meaningByLocale": {
+              "ru": "«весёлый». Так описывают человека, чьё хорошее настроение видно по поведению.",
+              "uk": "«веселий». Так описують людину, чий добрий настрій видно з поведінки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cheerful",
+          "definitionByLocale": {
+            "ru": "«весёлый». Так описывают человека, чьё хорошее настроение видно по поведению.",
+            "uk": "«веселий». Так описують людину, чий добрий настрій видно з поведінки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i08",
+      "ordinal": 11,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — curious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — curious",
+      "modePayload": {
+        "family": "listen_choose",
+        "localizedScene": {
+          "ru": "Значение: «любопытный». Так описывают человека, которому интересно и который это показывает: разглядывает или переспрашивает.",
+          "uk": "Значення: «допитливий». Так описують людину, якій цікаво й яка це показує: розглядає або перепитує."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i08:audio",
+          "transcript": "curious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-09:i08:r1",
+            "targetText": "curious",
+            "meaningByLocale": {
+              "ru": "«любопытный». Так описывают человека, которому интересно и который это показывает: разглядывает или переспрашивает.",
+              "uk": "«допитливий». Так описують людину, якій цікаво й яка це показує: розглядає або перепитує."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "curious",
+          "definitionByLocale": {
+            "ru": "«любопытный». Так описывают человека, которому интересно и который это показывает: разглядывает или переспрашивает.",
+            "uk": "«допитливий». Так описують людину, якій цікаво й яка це показує: розглядає або перепитує."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мужчина в аккуратном костюме кажется привлекательным",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-09:i09:r1",
+          "text": "handsome"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i09:r2",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i09:r3",
+          "text": "curious"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мужчина в аккуратном костюме кажется привлекательным",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мужчина в аккуратном костюме кажется привлекательным.",
+          "uk": "Чоловік в охайному костюмі здається привабливим."
+        },
+        "gappedTargetPhrase": "Is he ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i09:r1",
+            "text": "handsome"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i09:r2",
+            "text": "cold"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i09:r3",
+            "text": "curious"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мужчина в аккуратном костюме кажется привлекательным",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мужчина в аккуратном костюме кажется привлекательным",
+            "feedbackByLocale": {
+              "ru": "Сцена не говорит, что ему холодно.",
+              "uk": "Сцена не говорить, що йому холодно."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мужчина в аккуратном костюме кажется привлекательным",
+            "feedbackByLocale": {
+              "ru": "Сцена описывает внешность, а не любопытство.",
+              "uk": "Сцена описує зовнішність, а не допитливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — женщина за столиком читает меню и без конца поглядывает на соседний столик",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-09:i10:r1",
+          "text": "curious"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i10:r2",
+          "text": "cheerful"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i10:r3",
+          "text": "pretty"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — женщина за столиком читает меню и без конца поглядывает на соседний столик",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — женщина за столиком читает меню и без конца поглядывает на соседний столик",
+          "uk": "Вставте слово — жінка за столиком читає меню і безперестанку позирає на сусідній столик"
+        },
+        "gappedTargetPhrase": "Is she ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i10:r1",
+            "text": "curious"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i10:r2",
+            "text": "cheerful"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i10:r3",
+            "text": "pretty"
+          }
+        ],
+        "testedDimension": "Вставьте слово — женщина за столиком читает меню",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-09:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — женщина за столиком читает меню",
+            "feedbackByLocale": {
+              "ru": "«Весёлая». Здесь женщина не смеётся, а с любопытством наблюдает за соседним столиком.",
+              "uk": "«Весела». Тут жінка не сміється, а з цікавістю спостерігає за сусіднім столиком."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — женщина за столиком читает меню",
+            "feedbackByLocale": {
+              "ru": "«Красивая». Здесь нужно описать интерес женщины, а не её внешность.",
+              "uk": "«Гарна». Тут треба описати цікавість жінки, а не її зовнішність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — upset",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — upset",
+      "modePayload": {
+        "family": "listen_choose",
+        "localizedScene": {
+          "ru": "Значение: «расстроенный». Что-то пошло не так, и настроение испортилось.",
+          "uk": "Значення: «засмучений». Щось пішло не так, і настрій зіпсувався."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i11:audio",
+          "transcript": "upset"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-09:i11:r1",
+            "targetText": "upset",
+            "meaningByLocale": {
+              "ru": "«расстроенный». Что-то пошло не так, и настроение испортилось.",
+              "uk": "«засмучений». Щось пішло не так, і настрій зіпсувався."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "upset",
+          "definitionByLocale": {
+            "ru": "«расстроенный». Что-то пошло не так, и настроение испортилось.",
+            "uk": "«засмучений». Щось пішло не так, і настрій зіпсувався."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мужчина отодвинул чашку и молча смотрит в стол",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-09:i12:r1",
+          "text": "upset"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i12:r2",
+          "text": "handsome"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i12:r3",
+          "text": "curious"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мужчина отодвинул чашку и молча смотрит в стол",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мужчина отодвинул чашку и молча смотрит в стол",
+          "uk": "Вставте слово — чоловік відсунув чашку і мовчки дивиться в стіл"
+        },
+        "gappedTargetPhrase": "Is he ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i12:r1",
+            "text": "upset"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i12:r2",
+            "text": "handsome"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i12:r3",
+            "text": "curious"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мужчина отодвинул чашку и молча смотрит в стол",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мужчина отодвинул чашку и молча смотрит в стол",
+            "feedbackByLocale": {
+              "ru": "«Красивый» описывает внешность. Здесь видно, что мужчина расстроен.",
+              "uk": "«Гарний» описує зовнішність. Тут видно, що чоловік засмучений."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мужчина отодвинул чашку и молча смотрит в стол",
+            "feedbackByLocale": {
+              "ru": "«Любопытный» — тот, кому интересно и кто рассматривает вокруг. Здесь мужчина расстроен, а не любопытен.",
+              "uk": "«Допитливий» — той, кому цікаво й хто розглядає довкола. Тут чоловік засмучений, а не допитливий."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос: «Ей холодно?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос: «Ей холодно?»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "localizedScene": {
+          "ru": "Собеседница кутается в шарф у входа в кафе. Спросите, холодно ли ей.",
+          "uk": "Співрозмовниця кутається в шарф біля входу до кав’ярні. Запитайте, чи холодно їй."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i13:audio",
+          "transcript": "Is she cold?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is she cold?",
+        "orderedTokens": [
+          "Is",
+          "she",
+          "cold"
+        ],
+        "authoredDistractorTokens": [
+          "he"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте два слова и выберите слово, с которого начинается вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-09:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i14:r2",
+          "text": "his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i14:audioA",
+        "en:lesson-02:session-09:i14:audioB"
+      ],
+      "accessibilityLabel": "Послушайте два слова и выберите слово, с которого начинается вопрос",
+      "modePayload": {
+        "family": "sound_contrast",
+        "localizedScene": {
+          "ru": "Слушайте начало: в `his` перед гласным слышится согласный звук [h], а в `is` его нет.",
+          "uk": "Слухайте початок: у `his` перед голосним чути приголосний звук [h], а у `is` його немає."
+        },
+        "contrastA": "is",
+        "contrastB": "his",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-09:i14:audioA",
+          "transcript": "is"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-09:i14:audioB",
+          "transcript": "his"
+        },
+        "testedPhoneticContrast": "is / his",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-09:i14:r2",
+            "correct": false,
+            "testedDimension": "is / his",
+            "feedbackByLocale": {
+              "ru": "«Его». В начале есть звук [h]; в вопросе `Is she cold?` нужно короткое `is` без него.",
+              "uk": "«Його». На початку є звук [h]; у запитанні `Is she cold?` потрібне коротке `is` без нього."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова и их значения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова и их значения",
+      "modePayload": {
+        "family": "speed_match",
+        "localizedScene": {
+          "ru": "Сопоставьте четыре уже изученных слова с их значениями.",
+          "uk": "Зіставте чотири вже вивчені слова з їхніми значеннями."
+        },
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-09:i15:p1",
+            "target": "handsome",
+            "meaningByLocale": {
+              "ru": "привлекательный мужчина",
+              "uk": "привабливий чоловік"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-09:i15:p2",
+            "target": "pretty",
+            "meaningByLocale": {
+              "ru": "красивая, привлекательная",
+              "uk": "гарна, приваблива"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-09:i15:p3",
+            "target": "cheerful",
+            "meaningByLocale": {
+              "ru": "весёлый",
+              "uk": "веселий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-09:i15:p4",
+            "target": "curious",
+            "meaningByLocale": {
+              "ru": "любопытный",
+              "uk": "допитливий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "handsome",
+          "pretty",
+          "cheerful",
+          "curious"
+        ],
+        "rightColumn": [
+          "привлекательный мужчина",
+          "красивая, привлекательная",
+          "весёлый",
+          "любопытный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — подруга смотрит на женщину, которая сидит одна и плачет",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-09:i16:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i16:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-02:session-09:i16:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — подруга смотрит на женщину, которая сидит одна и плачет",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подруга смотрит на женщину, которая сидит одна и плачет",
+          "uk": "Вставте слово — подруга дивиться на жінку, яка сидить сама й плаче"
+        },
+        "gappedTargetPhrase": "___ she upset?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i16:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i16:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i16:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "is + she",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-09:i16:r2",
+            "correct": false,
+            "testedDimension": "is + she",
+            "feedbackByLocale": {
+              "ru": "`Are` сочетается с `you` и `we`; с `she` в вопросе нужен `is`.",
+              "uk": "`Are` вживають з `you` і `we`; з `she` у запитанні потрібне `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i16:r3",
+            "correct": false,
+            "testedDimension": "is + she",
+            "feedbackByLocale": {
+              "ru": "`Am` бывает только с `I`; с `she` в вопросе нужен `is`.",
+              "uk": "`Am` буває лише з `I`; з `she` у запитанні потрібне `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вопрос о парне у стойки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вопрос о парне у стойки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "localizedScene": {
+          "ru": "Парень у стойки кажется вам привлекательным. Спросите о нём.",
+          "uk": "Хлопець біля стійки здається вам привабливим. Запитайте про нього."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i17:s01:audio",
+          "transcript": "Is he handsome?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is he handsome?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вопрос о женщине у окна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вопрос о женщине у окна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "localizedScene": {
+          "ru": "Женщина у окна с интересом наблюдает за соседним столиком. Спросите о ней.",
+          "uk": "Жінка біля вікна з цікавістю спостерігає за сусіднім столиком. Запитайте про неї."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i17:s02:audio",
+          "transcript": "Is she curious?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is she curious?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вопрос о мужчине с чашкой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вопрос о мужчине с чашкой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "localizedScene": {
+          "ru": "Мужчина с чашкой у входа в кафе дрожит и застёгивает пальто. Спросите о нём.",
+          "uk": "Чоловік із чашкою біля входу до кав’ярні тремтить і застібає пальто. Запитайте про нього."
+        },
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-09:i17:s03:audio",
+          "transcript": "Is he cold?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is he cold?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2f988acdae8a85fd43da39d00041c2e8ba111dcb8684b19afaf0d6f22fa0a527"
+}

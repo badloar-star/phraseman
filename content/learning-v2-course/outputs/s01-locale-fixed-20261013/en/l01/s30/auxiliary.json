@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-30:intro1:r2": {
+          "ru": "Между `it` и словом нужна форма `is`.",
+          "uk": "Між `it` і словом потрібна форма `is`."
+        },
+        "en:lesson-01:session-30:intro1:r3": {
+          "ru": "С `it` используют `is`, а не `are`.",
+          "uk": "З `it` використовують `is`, а не `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-30:intro2:r2": {
+          "ru": "Ровно наоборот: `quiet` — это тишина, а в автобусе шум.",
+          "uk": "Рівно навпаки: `quiet` — це тиша, а в автобусі гамір."
+        },
+        "en:lesson-01:session-30:intro2:r3": {
+          "ru": "`It` потерялось, и непонятно, что громкое. Место надо назвать.",
+          "uk": "`It` загубилося, і незрозуміло, що гучне. Місце треба назвати."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-30:intro3:r2": {
+          "ru": "Между `it` и словом нужна форма `is`.",
+          "uk": "Між `it` і словом потрібна форма `is`."
+        },
+        "en:lesson-01:session-30:intro3:r3": {
+          "ru": "`busy` — это «занято», а столик как раз пустой.",
+          "uk": "`busy` — це «зайнято», а столик якраз порожній."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1ee003507fa27e17919a381715598f32a2e60561d5e6a75979d72f7ed7651529"
+}

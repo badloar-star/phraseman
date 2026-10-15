@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать `There is` для одного места и `There are` для нескольких зданий.",
+    "uk": "обрати `There is` для одного місця й `There are` для кількох будинків."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Площадка во дворе",
+        "uk": "Майданчик у дворі"
+      },
+      "bodyByLocale": {
+        "ru": "`playground` — «площадка»: место во дворе, где играют дети. Это отдельное место, а не здание: у него могут быть качели, горка или мяч, но не лестничная клетка. Слово `playground` называет именно площадку; двор без неё просто немного тише.",
+        "uk": "`playground` — «майданчик»: місце у дворі, де граються діти. Це окреме місце, а не будівля: там можуть бути гойдалки, гірка або м’яч, але не сходова клітка. Слово `playground` називає саме майданчик; двір без нього просто трохи тихіший."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Во дворе одна площадка. Выберите слово.",
+          "uk": "У дворі один майданчик. Оберіть слово."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-07:intro1:r1",
+              "text": "playground"
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro1:r2",
+              "text": "building"
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro1:r3",
+              "text": "shop"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-07:intro1:r1",
+              "text": "playground"
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro1:r2",
+              "text": "building"
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro1:r3",
+              "text": "shop"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Во дворе одна площадка. Выберите слово.",
+          "uk": "У дворі один майданчик. Оберіть слово."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одна площадка",
+        "uk": "Один майданчик"
+      },
+      "bodyByLocale": {
+        "ru": "`There is a playground in the courtyard.` — «Во дворе есть площадка». `There is` идёт с одним местом; перед `playground` нужен `a`. Одна площадка требует одну форму. `In the courtyard` говорит, где она находится, но не превращает одну площадку в несколько.",
+        "uk": "`There is a playground in the courtyard.` — «У дворі є майданчик». `There is` іде з одним місцем; перед `playground` потрібен `a`. Один майданчик потребує однієї форми. `In the courtyard` каже, де він є, але не перетворює один майданчик на кілька."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Во дворе есть одна площадка. Выберите сообщение.",
+          "uk": "У дворі є один майданчик. Оберіть повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-07:intro2:r1",
+              "text": "There is a playground in the courtyard."
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro2:r2",
+              "text": "There are a playground in the courtyard."
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro2:r3",
+              "text": "There is playground in the courtyard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-07:intro2:r1",
+              "text": "There is a playground in the courtyard."
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro2:r2",
+              "text": "There are a playground in the courtyard."
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro2:r3",
+              "text": "There is playground in the courtyard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Во дворе есть одна площадка. Выберите сообщение.",
+          "uk": "У дворі є один майданчик. Оберіть повідомлення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дома рядом",
+        "uk": "Будинки поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`There are buildings near the playground.` — «Рядом с площадкой есть здания». Слово `are` на своём месте: зданий больше одного, а площадка остаётся одна. Сначала посмотрите, что именно считаете: `buildings` с `-s` ведёт к `There are`; площадка здесь лишь ориентир, не главный бухгалтер.",
+        "uk": "`There are buildings near the playground.` — «Біля майданчика є будівлі». Слово `are` на своєму місці: будівель більше однієї, а майданчик лишається один. Спершу подивіться, що саме рахуєте: `buildings` з `-s` веде до `There are`; майданчик тут лише орієнтир, не головний бухгалтер."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Рядом с площадкой несколько домов. Выберите сообщение.",
+          "uk": "Поруч із майданчиком кілька будинків. Оберіть повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-07:intro3:r1",
+              "text": "There are buildings near the playground."
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro3:r2",
+              "text": "There is buildings near the playground."
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro3:r3",
+              "text": "There are a building near the playground."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-07:intro3:r1",
+              "text": "There are buildings near the playground."
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro3:r2",
+              "text": "There is buildings near the playground."
+            },
+            {
+              "responseId": "en:lesson-04:session-07:intro3:r3",
+              "text": "There are a building near the playground."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Рядом с площадкой несколько домов. Выберите сообщение.",
+          "uk": "Поруч із майданчиком кілька будинків. Оберіть повідомлення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b0c12ecc714d144e9acff6f597190973879aa1c49769a00c628cfb1a4a63da96"
+}

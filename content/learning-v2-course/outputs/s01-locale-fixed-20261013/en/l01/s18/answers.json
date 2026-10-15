@@ -1,0 +1,112 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-18:i01",
+    "correctText": "shy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i02",
+    "correctText": "shy",
+    "correctResponseId": "en:lesson-01:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i03",
+    "correctText": "loud",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i04",
+    "correctText": "loud",
+    "correctResponseId": "en:lesson-01:session-18:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i05",
+    "correctText": "quiet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i06",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i07",
+    "correctText": "He is shy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i08",
+    "correctText": "loud",
+    "correctResponseId": "en:lesson-01:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i09",
+    "correctText": "clever",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i10",
+    "correctText": "clever",
+    "correctResponseId": "en:lesson-01:session-18:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i11",
+    "correctText": "bossy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i12",
+    "correctText": "He is clever.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i13",
+    "correctText": "en:lesson-01:session-18:i13:p1=shy\nen:lesson-01:session-18:i13:p2=loud\nen:lesson-01:session-18:i13:p3=clever\nen:lesson-01:session-18:i13:p4=quiet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i14",
+    "correctText": "funny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i15",
+    "correctText": "funny",
+    "correctResponseId": "en:lesson-01:session-18:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i16",
+    "correctText": "kind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i17",
+    "correctText": "He is kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i18",
+    "correctText": "She is bossy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i19",
+    "correctText": "smart",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i20",
+    "correctText": "He is smart.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i21",
+    "correctText": "en:lesson-01:session-18:i21:p1=bossy\nen:lesson-01:session-18:i21:p2=funny\nen:lesson-01:session-18:i21:p3=kind\nen:lesson-01:session-18:i21:p4=smart",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i22",
+    "correctText": "She is loud.",
+    "correctResponseId": null
+  }
+]

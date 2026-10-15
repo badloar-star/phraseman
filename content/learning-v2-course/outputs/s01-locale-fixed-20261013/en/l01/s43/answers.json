@@ -1,0 +1,97 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-43:i01",
+    "correctText": "bad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i02",
+    "correctText": "bad",
+    "correctResponseId": "en:lesson-01:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i03",
+    "correctText": "We're ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i04",
+    "correctText": "real",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i05",
+    "correctText": "real",
+    "correctResponseId": "en:lesson-01:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i06",
+    "correctText": "true",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i07",
+    "correctText": "true",
+    "correctResponseId": "en:lesson-01:session-43:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i08",
+    "correctText": "They are funny.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i09",
+    "correctText": "They aren't late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i10",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-43:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i11",
+    "correctText": "She is funny.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i12",
+    "correctText": "We aren't late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i13",
+    "correctText": "I am not wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i14",
+    "correctText": "wrong",
+    "correctResponseId": "en:lesson-01:session-43:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i15",
+    "correctText": "ok",
+    "correctResponseId": "en:lesson-01:session-43:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i16",
+    "correctText": "en:lesson-01:session-43:i16:p1=bad\nen:lesson-01:session-43:i16:p2=real\nen:lesson-01:session-43:i16:p3=true\nen:lesson-01:session-43:i16:p4=ok",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i17:s01",
+    "correctText": "We're ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i17:s02",
+    "correctText": "They aren't late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i17:s03",
+    "correctText": "It isn't bad.",
+    "correctResponseId": null
+  }
+]

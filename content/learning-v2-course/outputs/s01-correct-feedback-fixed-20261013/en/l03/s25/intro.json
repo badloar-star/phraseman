@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "`This is a + предмет` — назвать один предмет рядом с вами",
+    "uk": "`This is a + предмет` — назвати один предмет поруч"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Показываем на вещь рядом",
+        "uk": "Показуємо на річ поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`this` — «это, вот это» для одного предмета в руке или перед вами. Вы берёте со стойки `phone` — «телефон».\n\nНазовите его: `This is a phone.` — «Это телефон». Нужны четыре части: `this` указывает, `is` соединяет, `a` показывает один предмет, `phone` называет его.",
+        "uk": "`this` — «це, ось це», коли один предмет поруч: у руці або просто перед вами. Ви берете зі стійки `phone` — «телефон».\n\nЩоб назвати його, скажіть `This is a phone.` — «Це телефон». Тут потрібні всі чотири частини: `this` указує на річ, `is` з'єднує фразу, `a` показує, що телефон один, а `phone` називає предмет."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы взяли со стойки телефон и показываете его мастеру. Назовите вещь.",
+          "uk": "Ви взяли зі стійки телефон і показуєте його майстрові. Назвіть річ."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-25:intro1:r1",
+              "text": "This is a phone."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro1:r2",
+              "text": "This a phone."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro1:r3",
+              "text": "This is phone."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-25:intro1:r1",
+              "text": "This is a phone."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro1:r2",
+              "text": "This a phone."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro1:r3",
+              "text": "This is phone."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы взяли со стойки телефон и показываете его мастеру. Назовите вещь.",
+          "uk": "Ви взяли зі стійки телефон і показуєте його майстрові. Назвіть річ."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Четыре части по порядку",
+        "uk": "Чотири частини по черзі"
+      },
+      "bodyByLocale": {
+        "ru": "`charger` — «зарядка». Если она рядом и вы на неё показываете, скажите `This is a charger.` — «Это зарядка».\n\nПорядок такой: `this`, `is`, `a`, название предмета. В `This a charger` пропущено `is`; в `This is charger` — `a`. Мастер чинит технику, но фразу за вас не соберёт.",
+        "uk": "`charger` — «зарядний пристрій». Якщо він поруч і ви на нього показуєте, скажіть `This is a charger.` — «Це зарядний пристрій».\n\nПорядок такий: `this`, `is`, `a`, назва предмета. У `This a charger` пропущено `is`; у `This is charger` — `a`. Майстер ремонтує техніку, але фразу за вас не складе."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы подняли зарядку со стойки, а мастер ждёт названия. Скажите: «Это зарядка».",
+          "uk": "Ви підняли зарядний пристрій зі стійки, а майстер чекає на назву. Скажіть: «Це зарядний пристрій»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-25:intro2:r1",
+              "text": "This is a charger."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro2:r2",
+              "text": "This are a charger."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro2:r3",
+              "text": "This is charger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-25:intro2:r1",
+              "text": "This is a charger."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro2:r2",
+              "text": "This are a charger."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro2:r3",
+              "text": "This is charger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы подняли зарядку со стойки, а мастер ждёт названия. Скажите: «Это зарядка».",
+          "uk": "Ви підняли зарядний пристрій зі стійки, а майстер чекає на назву. Скажіть: «Це зарядний пристрій»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Один предмет — значит `a`",
+        "uk": "Один предмет — отже `a`"
+      },
+      "bodyByLocale": {
+        "ru": "`cable` — «провод». Один провод рядом — `This is a cable.` Слово `a` стоит прямо перед названием одного предмета.\n\nЕсли сказать `This is cables`, получится сразу две ошибки: `cables` называет несколько проводов, а `this` здесь указывает на один. Для одного провода произносите всю фразу: `This is a cable.`",
+        "uk": "`cable` — «шнур». Один шнур поруч — `This is a cable.` Слово `a` стоїть просто перед назвою одного предмета.\n\nЯкщо сказати `This is cables`, вийдуть одразу дві помилки: `cables` називає кілька шнурів, а `this` тут указує на один. Для одного шнура вимовляйте всю фразу: `This is a cable.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "На краю стойки лежит один провод. Назовите его мастеру.",
+          "uk": "На краю стійки лежить один шнур. Назвіть його майстрові."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-25:intro3:r1",
+              "text": "This is a cable."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro3:r2",
+              "text": "This a cable."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro3:r3",
+              "text": "This is cables."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-25:intro3:r1",
+              "text": "This is a cable."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro3:r2",
+              "text": "This a cable."
+            },
+            {
+              "responseId": "en:lesson-03:session-25:intro3:r3",
+              "text": "This is cables."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На краю стойки лежит один провод. Назовите его мастеру.",
+          "uk": "На краю стійки лежить один шнур. Назвіть його майстрові."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b3a107cdbb8ec749a66ef305c9c22b83753fd09d5728322cf60d526bf3e13907"
+}

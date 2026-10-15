@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "learning_v2_factory_checkpoint_v1",
+  "phase": "audit",
+  "nextSession": "en/l01/s01",
+  "inputRoot": "C:\\",
+  "inputs": [
+    {
+      "kind": "curriculum",
+      "path": "appsprojects\\phraseman\\content\\learning-v2-course\\curriculum\\en\\ПЛАН_КУРСА.md",
+      "sha256": "3fb075a8ff5fcf5e6847c87a44241bfc01a1951399ba6fdd41c19a52930ac499"
+    },
+    {
+      "kind": "vocabulary",
+      "path": "appsprojects\\phraseman\\content\\learning-v2-course\\curriculum\\en\\ПЛАН_КУРСА.md",
+      "sha256": "3fb075a8ff5fcf5e6847c87a44241bfc01a1951399ba6fdd41c19a52930ac499"
+    },
+    {
+      "kind": "grammar",
+      "path": "appsprojects\\phraseman\\content\\learning-v2-course\\judgements\\2026-10-13_l01_s01_source_evidence.md",
+      "sha256": "0a726074365642e21bd7b3a16c32ab93f0a2b552072df3426981605371258da3"
+    },
+    {
+      "kind": "scenes",
+      "path": "appsprojects\\phraseman\\content\\learning-v2-course\\curriculum\\en\\ПЛАН_КУРСА.md",
+      "sha256": "3fb075a8ff5fcf5e6847c87a44241bfc01a1951399ba6fdd41c19a52930ac499"
+    },
+    {
+      "kind": "policy",
+      "path": "Users\\badlo\\.codex\\skills\\learning-v2-factory\\scripts\\policy.json",
+      "sha256": "7207fed85a9f7860222c5aa3b00851ba65888b4a3d7bd8193fe2bc5945b3abc0"
+    }
+  ],
+  "packageDigests": {
+    "SKILL.md": "13f0123c61ae2189aa201f3cb8933e9b5ab74e57dd888557d52f5536d735b792",
+    "references/contract.md": "23358fa10ab088edc5242de2824f9a83491edb8c6c333da42c3624e4786bfa93",
+    "scripts/policy.json": "7207fed85a9f7860222c5aa3b00851ba65888b4a3d7bd8193fe2bc5945b3abc0",
+    "scripts/packet-gate.mjs": "bcdbc588c869d87588aa321852bff432a53addbc409601f213fc317bffc21817",
+    "scripts/factory.mjs": "09256d18d34a0add7a805f0e81c91ef96fa2908bef462f3569054e639509c235"
+  },
+  "completedChecks": [],
+  "pendingChecks": [
+    "canonical adapters",
+    "model calibration",
+    "immutable run provenance",
+    "rendered parity"
+  ],
+  "createdAt": "2026-10-13T20:48:00.127Z"
+}

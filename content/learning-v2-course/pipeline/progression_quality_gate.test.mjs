@@ -141,6 +141,59 @@ new_words: cable — провод — соединение
   assert.equal(result.status, 0, result.stdout + result.stderr);
 });
 
+test("blocks an intro answer when atomic practice has only the same operation with different words", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "v2-progression-intro-exact-"));
+  writeSession(root, 25, `# S25
+
+**Сцена сессии.** Первый рабочий день.
+## Интро 1
+here: \`I am here.\`
+**Скажите, что вы на месте.**
+- ✅ **I am here.**
+## Интро 2
+ready: \`I am ready.\`
+**Скажите, что вы готовы.**
+- ✅ **I am ready.**
+## Интро 3
+early: \`I am early.\`
+**Скажите, что вы пришли рано.**
+- ✅ **I am early.**
+## Практика — по одной целевой фразе
+**1 · Соберите одну фразу**
+Цель: \`I am here.\`
+**2 · Соберите одну фразу**
+Цель: \`I am ready.\`
+**3 · Соберите одну фразу**
+Цель: \`I am early.\`
+## Для сборщика
+new_words: here — здесь — место
+new_words: ready — готов — состояние
+new_words: early — рано — время
+`);
+  const interaction = (id, targetPhrase, purpose = "guided_practice") => ({
+    interactionId: id,
+    purpose,
+    family: "phrase_builder",
+    modePayload: { targetPhrase },
+  });
+  writeAtomic(root, 25, {
+    interactionsByLocale: {
+      ru: [
+        interaction("en:lesson-03:session-25:i01", "I am ready."),
+        interaction("en:lesson-03:session-25:i02", "I am ready."),
+        interaction("en:lesson-03:session-25:i03", "I am early."),
+        interaction("en:lesson-03:session-25:i12", "I am early.", "independent_check"),
+      ],
+    },
+    answers: [],
+  });
+  const result = run(root);
+  assert.equal(result.status, 1, result.stdout + result.stderr);
+  assert.match(result.stdout, /интро 1: правильный ответ I am here\. не является дословным target/);
+  assert.doesNotMatch(result.stdout, /интро 2: правильный ответ .* не является дословным target/);
+  assert.doesNotMatch(result.stdout, /интро 3: правильный ответ .* не является дословным target/);
+});
+
 test("accepts a 12-task atomic session with an independent-check final stage", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "v2-progression-atomic-12-"));
   writeSession(root, 25, `# S25
@@ -203,8 +256,8 @@ laundrettes: \`Are there laundrettes nearby?\`
   });
   const interactions = [
     interaction(1, "There is a laundrette near the hotel."),
-    interaction(2, "Is there a laundrette near the shop?"),
-    interaction(3, "Are there laundrettes near the building?"),
+    interaction(2, "Is there a laundrette nearby?"),
+    interaction(3, "Are there laundrettes nearby?"),
     ...Array.from({ length: 7 }, (_, index) => interaction(index + 4, `Practice target ${index + 4}.`)),
     interaction(11, "There are two laundrettes near the platform.", "independent_check"),
     interaction(12, "Are there laundrettes near the hotel?", "independent_check"),
@@ -255,7 +308,8 @@ new_words: laundrette — прачечная самообслуживания �
   writeAtomic(root, 25, {
     interactionsByLocale: {
       ru: [
-        ...Array.from({ length: 10 }, (_, index) => interaction(index + 1, "Is there a laundrette near the shop?")),
+        interaction(1, "Is there a laundrette nearby?"),
+        ...Array.from({ length: 9 }, (_, index) => interaction(index + 2, "Is there a laundrette near the shop?")),
         interaction(11, "Is there a laundrette near the platform?", "independent_check"),
         interaction(12, "Is there a laundrette near the hotel?", "independent_check"),
       ],
@@ -264,9 +318,9 @@ new_words: laundrette — прачечная самообслуживания �
   });
   const result = run(root);
   assert.equal(result.status, 1);
-  assert.doesNotMatch(result.stdout, /интро 1: операция/);
-  assert.match(result.stdout, /интро 2: операция question\|is the не является правильным target/);
-  assert.match(result.stdout, /интро 3: операция question\|are не является правильным target/);
+  assert.doesNotMatch(result.stdout, /интро 1: правильный ответ .* не является дословным target/);
+  assert.match(result.stdout, /интро 2: правильный ответ Is there the laundrette nearby\? не является дословным target/);
+  assert.match(result.stdout, /интро 3: правильный ответ Are there laundrettes nearby\? не является дословным target/);
 });
 
 test("reports the supported-practice range before a 12-task independent-check stage", () => {
@@ -310,7 +364,7 @@ new_words: laundrette — прачечная самообслуживания �
   });
   const result = run(root);
   assert.equal(result.status, 1);
-  assert.match(result.stdout, /не является правильным target в заданиях 1–10/);
+  assert.match(result.stdout, /не является дословным target в заданиях 1–10/);
   assert.doesNotMatch(result.stdout, /заданиях 1–16/);
 });
 
@@ -477,7 +531,7 @@ new_words: phone — телефон — связь
 `);
   const result = run(root);
   assert.equal(result.status, 1);
-  assert.match(result.stdout, /интро 1: операция .* не является правильным target в заданиях 1–1/);
+  assert.match(result.stdout, /интро 1: правильный ответ .* не является дословным target в заданиях 1–1/);
 });
 
 test("requires exactly three intro pages", () => {

@@ -12,6 +12,9 @@ const ROOT = path.resolve(HERE, "..");
 const onlyScope = process.argv.includes("--scope") ? process.argv[process.argv.indexOf("--scope") + 1] : null;
 const onlyLesson = process.argv.includes("--lesson") ? process.argv[process.argv.indexOf("--lesson") + 1] : null;
 const onlySession = process.argv.includes("--session") ? process.argv[process.argv.indexOf("--session") + 1] : null;
+const sessionsRootArg = process.argv.includes("--sessions-root") ? process.argv[process.argv.indexOf("--sessions-root") + 1] : null;
+const sessionsRoot = sessionsRootArg ? fs.realpathSync(path.resolve(sessionsRootArg)) : path.join(ROOT, "sessions");
+const relativeRoot = path.dirname(sessionsRoot);
 // Сборщик читает исключительно final.<locale>.md.  Черновики сохраняются как
 // исторические свидетельства, но не являются кандидатами на показ ученику и
 // не должны блокировать пересборку проверенного final.  Для отдельной чистки
@@ -37,7 +40,7 @@ function walk(dir) {
     ) files.push(full);
   }
 }
-walk(path.join(ROOT, "sessions"));
+walk(sessionsRoot);
 
 // Формы запрещены только в инструкциях/сценах, а не внутри объяснения грамматики
 // или прямой цитаты. Каждая находка требует переписать строку с названным актором.
@@ -233,7 +236,7 @@ function directAddressCueFindings(text, relative, locale, lineOffset = 0) {
 }
 
 for (const file of files) {
-  const relative = path.relative(ROOT, file).replaceAll("\\", "/");
+  const relative = path.relative(relativeRoot, file).replaceAll("\\", "/");
   // `--scope en` and `--scope en/l03` select a tree of sessions, not a
   // directory containing the Markdown file directly.  The previous equality
   // check silently selected zero files for a language-wide audit.

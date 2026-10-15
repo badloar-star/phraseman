@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "learning_v2_blind_learner_review_v1",
+  "sessionId": "en:lesson-01:session-03",
+  "candidateRoot": "content/learning-v2-course/outputs/s03-not-scope-private-20261014-v1",
+  "contentReceiptSha256": "04a22cdc61585f10f87eae8b58c5dcf83d4d051a74a34ab0e1d0c2e05a8799bd",
+  "candidateBundleSha256": "2957755fba8272749258e92cc473dbb1618d299fc074b19e702d95168a5ffca6",
+  "learnerJsonSha256": "74f9741ec4456e81b883d439534e5dc8ef7ac6caa7f2a197aa8a009ff9214aa8",
+  "learnerUkJsonSha256": "5e974ad60b659b05185e6c720254e812cc14cde82228df956e6d6808c6e53b0d",
+  "learnerFingerprint": "49ae477d3a0d52da4ee738cd04dce8fbe35387acd8ee36b2d98aca3395baca89",
+  "learnerUkFingerprint": "6738adf4f7a103909bbb865b09d5d356738493b2388d709a2e08255320e55d3b",
+  "dimension": "blind_learner",
+  "verdict": "PASS",
+  "findings": [],
+  "notes": [
+    "The owner manifest’s receipt digest matches the current receipt file; its bundle hash matches the receipt and an independent recomputation from candidate entries.",
+    "Reviewed all 21 learner tasks in Russian and Ukrainian. IDs, ordinals, and interaction families align across locales.",
+    "i02’s distractor feedback distinguishes initial /h/ and /ŋ/ followed by audible /g/; Ukrainian feedback preserves the same contrast.",
+    "i04 asks which word occurs in the first recording; the preview labels recordings A/B, with no transcript in the visible controls. Wrong-answer feedback identifies the correct first word after selection.",
+    "i12 presents the same negative-answer intent in both locales, and the gap sentence makes the required response form clear.",
+    "Intro 1 scopes the placement rule to “I am + a state word” and says “here”; its examples and feedback stay within that construction.",
+    "Minor wording note: Ukrainian Intro 2 says “Скажіть, що ні” (“Say no”), while Russian explicitly asks for “I am not cold.” The Ukrainian choices still make the intended full-sentence answer clear."
+  ],
+  "taskCount": 21,
+  "taskIds": ["i01", "i02", "i03", "i04", "i05", "i06", "i07", "i08", "i09", "i10", "i11", "i12", "i13", "i14", "i15:s01", "i15:s02", "i16", "i17:s01", "i17:s02", "i17:s03", "i17:s04"]
+}

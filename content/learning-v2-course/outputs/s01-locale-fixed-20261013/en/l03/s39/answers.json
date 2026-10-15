@@ -1,0 +1,117 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-39:i01",
+    "correctText": "grape",
+    "correctResponseId": "en:lesson-03:session-39:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i03",
+    "correctText": "lemon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i05",
+    "correctText": "onion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i02",
+    "correctText": "grape",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i04",
+    "correctText": "lemon",
+    "correctResponseId": "en:lesson-03:session-39:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i06",
+    "correctText": "onion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i08",
+    "correctText": "grape",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i10",
+    "correctText": "lemon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i11",
+    "correctText": "onion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i07",
+    "correctText": "en:lesson-03:session-39:i07:p1=grape\nen:lesson-03:session-39:i07:p2=lemon\nen:lesson-03:session-39:i07:p3=onion\nen:lesson-03:session-39:i07:p4=apple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i09",
+    "correctText": "Those",
+    "correctResponseId": "en:lesson-03:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i12:s01",
+    "correctText": "These are lemons.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i12:s02",
+    "correctText": "Those are grapes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i13",
+    "correctText": "Эти луковицы, пожалуйста",
+    "correctResponseId": "en:lesson-03:session-39:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i14:s01",
+    "correctText": "Those are onions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i14:s02",
+    "correctText": "Those onions, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i15",
+    "correctText": "Those are onions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i16:s01",
+    "correctText": "These are grapes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i16:s02",
+    "correctText": "Those are lemons.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i16:s03",
+    "correctText": "These are onions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i17:s01",
+    "correctText": "Those are grapes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i17:s02",
+    "correctText": "These are lemons.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i17:s03",
+    "correctText": "Those onions, please.",
+    "correctResponseId": null
+  }
+]

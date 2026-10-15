@@ -16,7 +16,11 @@ test('release refuses multi-sentence builders and dictation before writing any p
   });
   const here = path.dirname(fileURLToPath(import.meta.url));
   fs.mkdirSync(path.join(root, 'pipeline'));
-  for (const name of ['build_release.mjs', 'single_phrase_release.mjs', 'session_readiness.mjs', 'owner_quality.mjs', 'progression_quality_gate.mjs', 'write_mockup_file.mjs']) fs.copyFileSync(path.join(here, name), path.join(root, 'pipeline', name));
+  for (const name of ['build_release.mjs', 'single_phrase_release.mjs', 'session_readiness.mjs', 'session_header.mjs', 'owner_quality.mjs', 'progression_quality_gate.mjs', 'write_mockup_file.mjs', 'practice_explanations_v1.mjs', 'audit_actor_clarity.mjs']) fs.copyFileSync(path.join(here, name), path.join(root, 'pipeline', name));
+  const visibleTextModule = path.resolve(here, '../../../modules/learning-v2/content/learner_visible_text_v1.js');
+  const fixtureVisibleTextModule = path.join(root, 'modules/learning-v2/content/learner_visible_text_v1.js');
+  fs.mkdirSync(path.dirname(fixtureVisibleTextModule), { recursive: true });
+  fs.copyFileSync(visibleTextModule, fixtureVisibleTextModule);
   const dir = path.join(root, 'sessions/en/l02/s51');
   fs.mkdirSync(dir, { recursive: true });
   const intro = [1, 2, 3].map(n => `## Интро ${n}\n\n### Пример\n\nПояснение.\n\n**Выберите.**\n\n- ✅ **is**\n- ❌ are — *Другая форма.*\n- ❌ am — *Про себя.*\n\n---`).join('\n\n');
@@ -24,6 +28,7 @@ test('release refuses multi-sentence builders and dictation before writing any p
   const out = path.join(root, 'preview');
   const source = path.join(dir, 'final.ru.md');
   let markdown = fs.readFileSync(source, 'utf8');
+  markdown = markdown.replace('# Test\n\n', '# Test\n\n**Новые слова:** —\n\n');
   markdown = markdown.replace('`is fine now` →', '`is fine now` `his is` →');
   markdown = markdown.replace('modes: 1=', '**4 · Соберите фразу**\nПлитки: `She` `is` `ready` `he` → **She is ready.**\n\nmodes: 1=');
   markdown = markdown.replace('3=phrase_builder', '3=phrase_builder, 4=phrase_builder');

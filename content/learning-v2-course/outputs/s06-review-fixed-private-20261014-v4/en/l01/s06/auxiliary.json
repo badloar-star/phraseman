@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-06:intro1:r2": {
+          "ru": "Русское «в» просочилось. `home` уже значит «дома», `in` тут лишнее.",
+          "uk": "Прийменник тут зайвий. `home` уже означає «вдома», `in` нічого не додає."
+        },
+        "en:lesson-01:session-06:intro1:r3": {
+          "ru": "После I нужно `am`: о себе говорим `I am`.",
+          "uk": "Після I потрібне `am`: про себе кажемо `I am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-06:intro2:r2": {
+          "ru": "`to` перед `home` здесь лишнее: скажите `I am back`.",
+          "uk": "Перед `home` не ставлять `to`: `home` тут уже означає «додому»."
+        },
+        "en:lesson-01:session-06:intro2:r3": {
+          "ru": "После `I` нужно `am`: говорят `I am back`.",
+          "uk": "Після `I` потрібне `am`: кажуть `I am back`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-06:intro3:r2": {
+          "ru": "`I am here` грамматически верно, но здесь не подходит по контексту: спрашивают, готова ли работа, а не где вы.",
+          "uk": "`I am here` граматично правильно, але тут не відповідає контексту: питають, чи роботу завершено, а не де ви."
+        },
+        "en:lesson-01:session-06:intro3:r3": {
+          "ru": "Это «работа ещё не завершена» — ровно наоборот: `not` меняет смысл фразы.",
+          "uk": "Це «роботу ще не завершено» — рівно навпаки: `not` змінює зміст фрази."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ecaa3b68d85ba5f02b24f55adba39bceac1edb64ae63b4ddea93a2322c9f8019"
+}

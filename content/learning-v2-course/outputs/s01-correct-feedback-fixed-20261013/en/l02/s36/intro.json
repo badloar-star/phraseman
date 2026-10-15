@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `Who is…?` на слух и вслух; различение с `Where is…?`",
+    "uk": "повторення `Who is…?` на слух і вголос; розрізнення з `Where is…?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Услышать, о чём вопрос",
+        "uk": "Почути, про що запитують"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is he?` — «Кто он?» А `Where is he?` — «Где он?» Прислушайтесь к началу: дальше в обоих вопросах одно и то же `is he`. С `Who` нужно объяснить, кто этот человек. С `Where` — где он находится. Окончание легко узнать, но для ответа важнее не пропустить первое слово.",
+        "uk": "`Who is he?` — «Хто він?», а `Where is he?` — «Де він?» Прислухайтеся до початку: далі в обох запитаннях те саме `is he`. З `Who` треба пояснити, хто ця людина. З `Where` — де вона перебуває. Закінчення легко впізнати, але для правильної відповіді важливіше не пропустити перше слово."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "В шумной комнате вы видите незнакомого мужчину у колонки. Спросите друга, кто он.",
+          "uk": "У галасливій кімнаті ви бачите незнайомого чоловіка біля колонки. Запитайте друга, хто він."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-36:intro1:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro1:r2",
+              "text": "Where is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro1:r3",
+              "text": "Is he here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-36:intro1:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro1:r2",
+              "text": "Where is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro1:r3",
+              "text": "Is he here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В шумной комнате вы видите незнакомого мужчину у колонки. Спросите друга, кто он.",
+          "uk": "У галасливій кімнаті ви бачите незнайомого чоловіка біля колонки. Запитайте друга, хто він."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дослушать до конца",
+        "uk": "Дослухати до кінця"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is she?` — «Кто она?» Последнее слово здесь `she` — «она». Сравните: `Who is he?` — «Кто он?» Дослушайте вопрос до конца. Иначе можно прекрасно рассказать о мужчине в ответ на «Кто она?» — и зря стараться. Спрашивая сами, ставьте `is` перед `she` или `he`.",
+        "uk": "`Who is she?` — «Хто вона?» Останнє слово тут `she` — «вона». Порівняйте: `Who is he?` — «Хто він?» Дослухайте запитання до кінця. Інакше можна чудово розповісти про чоловіка у відповідь на «Хто вона?» — і дарма старатися. Коли запитуєте самі, ставте `is` перед `she` або `he`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг указывает на женщину у колонки. Спросите, кто она.",
+          "uk": "Друг указує на жінку біля колонки. Запитайте, хто вона."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-36:intro2:r1",
+              "text": "Who is she?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro2:r2",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro2:r3",
+              "text": "Who she is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-36:intro2:r1",
+              "text": "Who is she?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro2:r2",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro2:r3",
+              "text": "Who she is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг указывает на женщину у колонки. Спросите, кто она.",
+          "uk": "Друг указує на жінку біля колонки. Запитайте, хто вона."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнать хозяина",
+        "uk": "З’ясувати, хто господар"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is the host?` — «Кто хозяин вечера?» `host` — тот, кто принимает гостей. По-русски «Кто хозяин?» звучит вполне законченно, так и хочется сэкономить на `is`. Но в полном английском вопросе его оставляем: `Who is`, затем `the host`. Нам нужно узнать, кто хозяин, поэтому `Who`.",
+        "uk": "`Who is the host?` — «Хто господар вечора?» `host` — той, хто приймає гостей. Українською «Хто господар?» звучить цілком завершено, тож так і хочеться заощадити на `is`. Але в повному англійському запитанні його залишаємо: `Who is`, потім `the host`. Нам треба дізнатися, хто господар, тому беремо `Who`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Рядом несколько гостей. Узнайте у друга, кто из них хозяин вечера.",
+          "uk": "Поруч кілька гостей. Дізнайтеся в друга, хто з них господар вечора."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-36:intro3:r1",
+              "text": "Who is the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro3:r2",
+              "text": "Who the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro3:r3",
+              "text": "Where is the host?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-36:intro3:r1",
+              "text": "Who is the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro3:r2",
+              "text": "Who the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:intro3:r3",
+              "text": "Where is the host?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Рядом несколько гостей. Узнайте у друга, кто из них хозяин вечера.",
+          "uk": "Поруч кілька гостей. Дізнайтеся в друга, хто з них господар вечора."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "768c94032c9ff5b28de3bbf3b22fbd13b1ddbc3b8ae188d9d16b46ecf310d3a4"
+}

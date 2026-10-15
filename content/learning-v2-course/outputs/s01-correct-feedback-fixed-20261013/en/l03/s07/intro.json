@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "называем предметы с `a + noun`, чередуем знакомые утверждения, вопросы и отрицания с меньшей опорой",
+    "uk": "називаємо предмети за допомогою `a + noun`, чергуємо знайомі твердження, запитання й заперечення з меншою підтримкою"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ящик, который выдвигается",
+        "uk": "Шухляда, яку висувають"
+      },
+      "bodyByLocale": {
+        "ru": "`drawer` — «выдвижной ящик»: часть стола или шкафа, которую тянут на себя. Это не название всей мебели. Можно сказать коротко `a drawer` или полной фразой `It is a drawer` — «Это выдвижной ящик». Так вы называете именно ящик, даже если его вынули и держите отдельно.",
+        "uk": "`drawer` — «висувна шухляда»: частина стола або шафи, яку тягнуть на себе. Це назва не всього предмета меблів, а лише його висувної частини. Можна сказати коротко `a drawer` або повною фразою `It is a drawer` — «Це висувна шухляда». Так ви називаєте саме шухляду, навіть якщо її вийняли й тримають окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг вынул из стола ящик, чтобы протереть его. Назовите эту часть мебели полной фразой.",
+          "uk": "Друг вийняв зі стола шухляду, щоб її протерти. Назвіть цю частину меблів повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-07:intro1:r1",
+              "text": "It is a drawer."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro1:r2",
+              "text": "It is drawer."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro1:r3",
+              "text": "It a drawer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-07:intro1:r1",
+              "text": "It is a drawer."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro1:r2",
+              "text": "It is drawer."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro1:r3",
+              "text": "It a drawer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг вынул из стола ящик, чтобы протереть его. Назовите эту часть мебели полной фразой.",
+          "uk": "Друг вийняв зі стола шухляду, щоб її протерти. Назвіть цю частину меблів повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шкаф с полками",
+        "uk": "Шафа з полицями"
+      },
+      "bodyByLocale": {
+        "ru": "`cupboard` — «шкаф» с дверцами для хранения вещей. Здесь это кухонный шкаф с полками для посуды. Называя его `a cupboard`, вы говорите о шкафе целиком, а не о выдвижном ящике `a drawer`. Полная фраза — `It is a cupboard`: «Это кухонный шкаф».",
+        "uk": "`cupboard` — широка назва шафи з дверцятами, де зберігають речі. Тут це кухонна шафа з полицями для посуду. Називаючи її `a cupboard`, ви говорите про всю шафу, а не про висувну шухляду `a drawer`. Повна фраза — `It is a cupboard`: «Це кухонна шафа»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на кухонный шкаф с полками для посуды. Назовите его полной фразой.",
+          "uk": "Друг показує на кухонну шафу з полицями для посуду. Назвіть її повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-07:intro2:r1",
+              "text": "It is a cupboard."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro2:r2",
+              "text": "It are a cupboard."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro2:r3",
+              "text": "It is cupboard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-07:intro2:r1",
+              "text": "It is a cupboard."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro2:r2",
+              "text": "It are a cupboard."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro2:r3",
+              "text": "It is cupboard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на кухонный шкаф с полками для посуды. Назовите его полной фразой.",
+          "uk": "Друг показує на кухонну шафу з полицями для посуду. Назвіть її повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одежде тоже есть куда переехать",
+        "uk": "Одягу теж є куди переїхати"
+      },
+      "bodyByLocale": {
+        "ru": "`wardrobe` — «шкаф для одежды». В нём можно повесить куртку или убрать сложенные вещи. Стул, заваленный одеждой, всё ещё `a chair`: от вашей привычки мебель не переименовывается. Для настоящего шкафа с местом для одежды скажите `It is a wardrobe` — «Это шкаф для одежды».",
+        "uk": "`wardrobe` — «шафа для одягу». У ній можна повісити куртку або скласти речі. Стілець, завалений одягом, усе одно `a chair`, хоч як старанно ви робите з нього шафу. Про справжню шафу з місцем для одягу скажіть `It is a wardrobe` — «Це шафа для одягу»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, что стоит в спальне: высокая мебель с дверцами и перекладиной для вешалок. Назовите шкаф для одежды.",
+          "uk": "Друг запитує, що стоїть у спальні: високі меблі з дверцятами й перекладиною для вішаків. Назвіть шафу для одягу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-07:intro3:r1",
+              "text": "It is a wardrobe."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro3:r2",
+              "text": "It is wardrobe."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro3:r3",
+              "text": "It am a wardrobe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-07:intro3:r1",
+              "text": "It is a wardrobe."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro3:r2",
+              "text": "It is wardrobe."
+            },
+            {
+              "responseId": "en:lesson-03:session-07:intro3:r3",
+              "text": "It am a wardrobe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, что стоит в спальне: высокая мебель с дверцами и перекладиной для вешалок. Назовите шкаф для одежды.",
+          "uk": "Друг запитує, що стоїть у спальні: високі меблі з дверцятами й перекладиною для вішаків. Назвіть шафу для одягу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4836d741aa63060f1385032c3dd5442e5ebb329e7efacab7c4661042f9f455b0"
+}

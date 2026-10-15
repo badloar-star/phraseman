@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "применение вопросов о себе при проверке слышимости и разборчивости речи",
+    "uk": "застосування запитань про себе під час перевірки чутності й розбірливості мовлення"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Доходит ли голос",
+        "uk": "Чи чути голос"
+      },
+      "bodyByLocale": {
+        "ru": "`audible` — «слышимый»: звук достаточно громкий, чтобы его услышать. `Am I audible?` — «Меня слышно?» Это формальный вопрос, уместный при проверке связи. Он помогает выяснить, слышен ли ваш голос. Разборчивость пока остаётся под вопросом: слышать голос и разбирать слова — разные вещи.",
+        "uk": "`audible` — «чутний»: звук досить гучний, щоб його почули. `Am I audible?` — «Мене чути?» Це формальне запитання, доречне під час перевірки зв’язку. Воно допомагає з’ясувати, чи чутний ваш голос. Розбірливість іще не перевірена: чути голос і розбирати слова — різні речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Ведущий попросил проверить звук перед интервью. Спросите, слышен ли ему ваш голос.",
+          "uk": "Ведучий попросив перевірити звук перед інтерв’ю. Запитайте, чи він чує ваш голос."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-46:intro1:r1",
+              "text": "Am I audible?"
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro1:r2",
+              "text": "Am I ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro1:r3",
+              "text": "Are you audible?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-46:intro1:r1",
+              "text": "Am I audible?"
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro1:r2",
+              "text": "Am I ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro1:r3",
+              "text": "Are you audible?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ведущий попросил проверить звук перед интервью. Спросите, слышен ли ему ваш голос.",
+          "uk": "Ведучий попросив перевірити звук перед інтерв’ю. Запитайте, чи він чує ваш голос."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слышно — а слова понятны?",
+        "uk": "Голос чути — а слова зрозумілі?"
+      },
+      "bodyByLocale": {
+        "ru": "`clear` — «разборчивый, понятный». При проверке связи `Am I clear?` — «Я говорю разборчиво?» В другом разговоре это может прозвучать строго: «Я понятно выразился?» Поэтому полезно обозначить, что проверяете звук: вы хотите наладить связь, а не воспитать собеседника.",
+        "uk": "`clear` — «розбірливий, зрозумілий». Під час перевірки зв’язку `Am I clear?` — «Я говорю розбірливо?» В іншій розмові це може прозвучати суворо: «Я зрозуміло висловився?» Тому варто уточнити, що ви перевіряєте звук: хочете налагодити зв’язок, а не виховувати співрозмовника."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Ведущий подтвердил, что голос слышен. Теперь уточните, разборчиво ли звучат ваши слова.",
+          "uk": "Ведучий підтвердив, що голос чути. Тепер уточніть, чи розбірливо звучать ваші слова."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-46:intro2:r1",
+              "text": "Am I clear?"
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro2:r2",
+              "text": "Am I audible?"
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro2:r3",
+              "text": "Are you clear?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-46:intro2:r1",
+              "text": "Am I clear?"
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro2:r2",
+              "text": "Am I audible?"
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro2:r3",
+              "text": "Are you clear?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ведущий подтвердил, что голос слышен. Теперь уточните, разборчиво ли звучат ваши слова.",
+          "uk": "Ведучий підтвердив, що голос чути. Тепер уточніть, чи розбірливо звучать ваші слова."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить у собеседника",
+        "uk": "Перевірити в співрозмовника"
+      },
+      "bodyByLocale": {
+        "ru": "`I am not sure` — «Я не уверен». Так можно сообщить, что вы пока сомневаетесь в результате проверки. Себя вы слышите, но за собеседника ответить не можете. У него уточняют `Am I audible?` — «Меня слышно?» Он и скажет, доходит ли ваш голос до другого конца связи.",
+        "uk": "`I am not sure` — «Я не впевнений». Так можна повідомити, що ви ще сумніваєтеся в результаті перевірки. Себе ви чуєте, але за співрозмовника відповісти не можете. У нього запитують `Am I audible?` — «Мене чути?» Саме він скаже, чи доходить ваш голос до іншого кінця зв’язку."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Ведущий спрашивает, уверены ли вы, что проверка связи закончена. Вы ещё сомневаетесь. Скажите об этом.",
+          "uk": "Ведучий запитує, чи впевнені ви, що перевірку зв’язку завершено. Ви ще сумніваєтеся. Скажіть про це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-46:intro3:r1",
+              "text": "I am not sure."
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro3:r2",
+              "text": "I am sure."
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro3:r3",
+              "text": "Am I audible?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-46:intro3:r1",
+              "text": "I am not sure."
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro3:r2",
+              "text": "I am sure."
+            },
+            {
+              "responseId": "en:lesson-02:session-46:intro3:r3",
+              "text": "Am I audible?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ведущий спрашивает, уверены ли вы, что проверка связи закончена. Вы ещё сомневаетесь. Скажите об этом.",
+          "uk": "Ведучий запитує, чи впевнені ви, що перевірку зв’язку завершено. Ви ще сумніваєтеся. Скажіть про це."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b60bde9f4e781aed266fea8d0f067b9f4f1d3a621d3773af9f215f7a0f1a408a"
+}

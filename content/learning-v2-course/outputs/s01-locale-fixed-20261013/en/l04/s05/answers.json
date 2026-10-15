@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-05:i01",
+    "correctText": "supermarket",
+    "correctResponseId": "en:lesson-04:session-05:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i02",
+    "correctText": "supermarket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i03",
+    "correctText": "supermarket",
+    "correctResponseId": "en:lesson-04:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i04",
+    "correctText": "There is a supermarket near the house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i05",
+    "correctText": "There are shops near the house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i07",
+    "correctText": "There are shops near a supermarket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i08",
+    "correctText": "p1=supermarket\np2=shop\np3=near\np4=house",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i10",
+    "correctText": "There is a supermarket near a shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i11",
+    "correctText": "There are shops near a house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-05:i12",
+    "correctText": "There is a supermarket near two shops.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "переносим выбор `a/the/this/that/these/those` по числу, расстоянию и известности.",
+    "uk": "обираємо `a/the/this/that/these/those` залежно від кількості, відстані й того, чи предмет уже відомий."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Форма уже в листе",
+        "uk": "Форма вже в листі"
+      },
+      "bodyByLocale": {
+        "ru": "`shape` — «форма»: контур или вид предмета. В фразе `The shape is round.` слово `the` показывает, что форма уже известна, `shape` называет её, а `round` описывает. Получается «Форма круглая». `The` здесь как отметка в листе: речь именно об этой форме, а не о любой.",
+        "uk": "`shape` — «форма»: контур або вигляд предмета. У фразі `The shape is round.` слово `the` показує, що форма вже відома, `shape` називає її, а `round` описує. Разом це означає «Форма кругла». `The` тут як позначка в акті: йдеться саме про цю форму, а не про будь-яку."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "В листе уже есть форма этого зеркала. Выберите точную подпись.",
+          "uk": "У листі вже є форма цього дзеркала. Оберіть точний підпис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-55:intro1:r1",
+              "text": "The shape is round."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro1:r2",
+              "text": "A shape is round."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro1:r3",
+              "text": "The shapes are round."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-55:intro1:r1",
+              "text": "The shape is round."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro1:r2",
+              "text": "A shape is round."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro1:r3",
+              "text": "The shapes are round."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В листе уже есть форма этого зеркала. Выберите точную подпись.",
+          "uk": "У листі вже є форма цього дзеркала. Оберіть точний підпис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Образец рядом",
+        "uk": "Зразок поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`material` — «материал»: то, из чего сделан предмет. Фраза `This material is soft.` означает «Этот материал мягкий». `This` показывает на один образец рядом и уже занимает место перед `material`. Если добавить туда ещё и `a`, у существительного окажется два начальника.",
+        "uk": "`material` — «матеріал»: те, з чого зроблено предмет. Фраза `This material is soft.` означає «Цей матеріал м’який». `This` указує на один зразок поруч і вже займає місце перед `material`. Якщо додати ще й `a`, в іменника буде одразу два начальники."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Образец у вас в руке. Выберите точную подпись.",
+          "uk": "Зразок у вас у руці. Оберіть точний підпис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-55:intro2:r1",
+              "text": "This material is soft."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro2:r2",
+              "text": "This a material is soft."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro2:r3",
+              "text": "These material are soft."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-55:intro2:r1",
+              "text": "This material is soft."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro2:r2",
+              "text": "This a material is soft."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro2:r3",
+              "text": "These material are soft."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Образец у вас в руке. Выберите точную подпись.",
+          "uk": "Зразок у вас у руці. Оберіть точний підпис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узор у дальней стены",
+        "uk": "Візерунок біля дальньої стіни"
+      },
+      "bodyByLocale": {
+        "ru": "`pattern` — «узор»: повторяющийся рисунок на поверхности. Фраза `That pattern is striped.` означает «Тот узор полосатый». `That` указывает на один далёкий предмет, а `striped` сообщает, что узор состоит из полос. После `That` слово `the` не нужно: одного указателя вполне достаточно.",
+        "uk": "`pattern` — «візерунок»: повторюваний рисунок на поверхні. Фраза `That pattern is striped.` означає «Той візерунок смугастий». `That` указує на один далекий предмет, а `striped` повідомляє, що візерунок складається зі смуг. Після `That` слово `the` не потрібне: одного вказівника цілком достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Один узор виден у дальней стены. Выберите точную подпись.",
+          "uk": "Один візерунок видно біля дальньої стіни. Оберіть точний підпис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-55:intro3:r1",
+              "text": "That pattern is striped."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro3:r2",
+              "text": "That the pattern is striped."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro3:r3",
+              "text": "Those pattern are striped."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-55:intro3:r1",
+              "text": "That pattern is striped."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro3:r2",
+              "text": "That the pattern is striped."
+            },
+            {
+              "responseId": "en:lesson-03:session-55:intro3:r3",
+              "text": "Those pattern are striped."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Один узор виден у дальней стены. Выберите точную подпись.",
+          "uk": "Один візерунок видно біля дальньої стіни. Оберіть точний підпис."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "00d9330abdd2196d2d5239a48c916c36d1814d62ba2b6452b4ac656a5d73fd05"
+}

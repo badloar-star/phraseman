@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "learning_v2_session_acceptance_receipt_v1",
+  "session": "en/l01/s15",
+  "courseSessionId": "en:lesson-01:session-15",
+  "state": "TEXT_CANONICAL",
+  "candidateRoot": "content/learning-v2-course/outputs/s15-review-fixed-private-20261015-v3",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s15-review-fixed-private-20261015-v3/content-receipt.json",
+  "candidateReceiptSha256": "830982882eba644a7b0290be742793ca964a1dd6725d7f5cabc323d13751bcbc",
+  "candidateBundleSha256": "a7dc0771ac43c4e9682b6eaf2ba91b1fb88dffa0f1d59a8d1523f8b41377266f",
+  "candidateInventorySha256": "efa884665acc812d82815ad6bfb182d1a9c646272578cf82ad71295f519475fd",
+  "sourceFingerprint": "f888b059c8ab2e9c52020d5a78c519d07231b232e58e2854ef5e1edd83f2930d",
+  "deterministicGateReport": {
+    "path": "content/learning-v2-course/judgements/2026-10-15_s15_v3_deterministic_gates.current.json",
+    "sha256": "a9a965d1b6adb99337d89e865d1208b0b85d1ba1323d1e1ee1643033027b250b",
+    "bytes": 1702
+  },
+  "reviewEvidence": [
+    {
+      "dimension": "blind_learner",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-15_s15_v3_blind_learner.current.json",
+      "artifactSha256": "01ffef65c244d8948f6f947162ea44fde4be44c66238da4914c506dd23c8d488",
+      "artifactBytes": 1047,
+      "dispatchProvenance": {
+        "agent": "/root/review_s15_v3_blind_luna",
+        "configuredModel": "gpt-6-luna"
+      }
+    },
+    {
+      "dimension": "language_pedagogy_locale",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-15_s15_v3_language_pedagogy_locale.current.json",
+      "artifactSha256": "7ee6c0b7648c6a05a66fe4c950b74ce7d5d171b3b39dae04b788b4b7a0a8eedf",
+      "artifactBytes": 857,
+      "dispatchProvenance": {
+        "agent": "/root/review_s15_v3_locale_luna_retry",
+        "configuredModel": "gpt-6-luna"
+      }
+    }
+  ],
+  "localeEvidence": {
+    "path": "content/learning-v2-course/outputs/s15-review-fixed-private-20261015-v3/source-snapshot/content/learning-v2-course/sessions/en/l01/s15/locales_batch.md",
+    "sha256": "6013b826dbc4239153c049164be95e6b9b9db5f96c4f3503720399109a577788",
+    "bytes": 12048
+  },
+  "audioTechnicalEvidence": null,
+  "semanticAudioVerified": false,
+  "releaseAuthority": false,
+  "immutableContentOnly": true
+}

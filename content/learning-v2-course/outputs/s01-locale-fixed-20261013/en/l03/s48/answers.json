@@ -1,0 +1,102 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-48:i01",
+    "correctText": "item",
+    "correctResponseId": "en:lesson-03:session-48:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i03",
+    "correctText": "order",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i05",
+    "correctText": "total",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i02",
+    "correctText": "item",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i04",
+    "correctText": "order",
+    "correctResponseId": "en:lesson-03:session-48:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i06",
+    "correctText": "total",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i08",
+    "correctText": "item",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i10",
+    "correctText": "order",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i11",
+    "correctText": "total",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i07",
+    "correctText": "en:lesson-03:session-48:i07:p1=item\nen:lesson-03:session-48:i07:p2=items\nen:lesson-03:session-48:i07:p3=order\nen:lesson-03:session-48:i07:p4=total",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i09",
+    "correctText": "An",
+    "correctResponseId": "en:lesson-03:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i12",
+    "correctText": "The order is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i13",
+    "correctText": "Итоговая сумма неверная",
+    "correctResponseId": "en:lesson-03:session-48:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i14",
+    "correctText": "The items are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i15",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-48:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i16",
+    "correctText": "Эта позиция неверная",
+    "correctResponseId": "en:lesson-03:session-48:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i17:s01",
+    "correctText": "An item is wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i17:s02",
+    "correctText": "An",
+    "correctResponseId": "en:lesson-03:session-48:i17:s02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i17:s03",
+    "correctText": "The total is wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:i17:s04",
+    "correctText": "items",
+    "correctResponseId": "en:lesson-03:session-48:i17:s04:r1"
+  }
+]

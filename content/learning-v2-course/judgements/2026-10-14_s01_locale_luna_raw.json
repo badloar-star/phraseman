@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "learning_v2_independent_locale_judgement_v1",
+  "reviewer": "/root/s01_locale_luna",
+  "model": "gpt-5.6-luna",
+  "reasoningEffort": "low",
+  "reviewedAt": "2026-10-14",
+  "candidateRoot": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014",
+  "inventorySha256": "362658ddc6a17ae37cde5d4bf3529a5f5f0cf400480c9c2efb6aa581d85eee17",
+  "reviewBundleSha256": "0548773ad10f1aa6be9416311070227ca1a536891c37c6a264185b2f1c8fecd9",
+  "role": "locale",
+  "scope": [
+    "intro text, prompts, choices, learner-visible feedback, and locale-keyed analysis for ru and uk",
+    "UK accidental-Russian checks",
+    "exact field-quote verification"
+  ],
+  "verdict": "PASS",
+  "locales": {
+    "ru": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "Intro titles, explanations, prompts, accessibility labels, choices, and feedback are grammatical and semantically aligned with the English targets.",
+        "Russian learner-visible feedback consistently distinguishes here, ready, fine, and happy in the supplied scenes."
+      ]
+    },
+    "uk": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "Intro titles, explanations, prompts, accessibility labels, choices, and feedback use natural Ukrainian and preserve the intended meanings.",
+        "The learner.uk payload contains RU strings only in explicit internal byLocale.ru branches; learner-visible UK fields are Ukrainian. No accidental Russian was found in UK-selected fields.",
+        "RU and UK preserve the same interaction IDs, English answer choices, ordering, and task semantics."
+      ]
+    }
+  },
+  "structureIdentical": true,
+  "englishTargetsIdentical": true,
+  "languagePurity": true,
+  "semanticParity": true,
+  "findings": [],
+  "exactFieldQuotesChecked": [
+    "intro.pages[0].question.promptByLocale.uk = \"Міра шукає вас біля входу. Ви вже в офісі, і вона кличе вас. Скажіть «я тут».\"",
+    "intro.pages[1].bodyByLocale.uk = \"`ready` — «готовий / готова», `fine` — «усе добре, гаразд». `I am ready` — «я готовий / готова».\"",
+    "learner.uk interactions[1].modePayload.localizedScene.uk = \"Вставте слово — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут\"",
+    "learner.uk interactions[1].modePayload.choiceFeedback[2].feedbackByLocale.uk = \"Fine означає «усе добре». Так відповідають на «Як справи?», але Міра питає, чи ви вже дісталися офісу. Скажіть, що ви вже тут: I am here.\""
+  ],
+  "limitations": [
+    "No audio, visual rendering, or release projection tested."
+  ]
+}

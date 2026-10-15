@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить об ограниченном количестве предметов через `There are some + plural noun`.",
+    "uk": "повідомити про обмежену кількість предметів через `There are some + plural noun`."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`container` — контейнер",
+        "uk": "`container` — контейнер"
+      },
+      "bodyByLocale": {
+        "ru": "`container` — «контейнер», ёмкость для хранения еды или вещей. Когда контейнеров несколько, слово получает окончание `-s`: `containers`.\n\nОбразец на столе один: назовите одну ёмкость, прежде чем говорить о нескольких в следующем шаге.",
+        "uk": "`container` — «контейнер», ємність для зберігання їжі або речей. Коли контейнерів кілька, слово отримує закінчення `-s`: `containers`.\n\nЗразок на столі один: назвіть одну ємність, перш ніж говорити про кілька на наступному кроці."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "После рынка на столе стоит одна ёмкость для ягод. Выберите слово.",
+          "uk": "Після ринку на столі стоїть одна ємність для ягід. Оберіть слово."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-17:intro1:r1",
+              "text": "container"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro1:r2",
+              "text": "containers"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro1:r3",
+              "text": "berry"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-17:intro1:r1",
+              "text": "container"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro1:r2",
+              "text": "containers"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro1:r3",
+              "text": "berry"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "После рынка на столе стоит одна ёмкость для ягод. Выберите слово.",
+          "uk": "Після ринку на столі стоїть одна ємність для ягід. Оберіть слово."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`some` перед несколькими предметами",
+        "uk": "`some` перед кількома предметами"
+      },
+      "bodyByLocale": {
+        "ru": "`There are some containers.` — «Есть несколько контейнеров». `There are` показывает несколько, а `some` — ограниченное количество. Перед одним контейнером говорим `There is a container`. Полная фраза звучит так: `There are some containers.`",
+        "uk": "`There are some containers.` — «Є кілька контейнерів». `There are` показує кілька, а `some` — обмежену кількість. Перед одним контейнером кажемо `There is a container`. Повна фраза звучить так: `There are some containers.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите полное сообщение.",
+          "uk": "Оберіть повне повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-17:intro2:r1",
+              "text": "There are some containers"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro2:r2",
+              "text": "There is a container."
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro2:r3",
+              "text": "There are a container."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-17:intro2:r1",
+              "text": "There are some containers"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro2:r2",
+              "text": "There is a container."
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro2:r3",
+              "text": "There are a container."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите полное сообщение.",
+          "uk": "Оберіть повне повідомлення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ягоды возвращаются в новой конструкции",
+        "uk": "Ягоди повертаються в новій конструкції"
+      },
+      "bodyByLocale": {
+        "ru": "`berry` мы уже встречали. Для ягод на столе есть несколько новых контейнеров: `There are some containers for berries.` Новая цель сессии — поставить `some` перед множественным числом и начать сообщение с `There are`; `berry` здесь остаётся знакомым словом.",
+        "uk": "`berry` ми вже зустрічали. Для ягід на столі є кілька нових контейнерів: `There are some containers for berries.` Нова ціль сесії — поставити `some` перед множиною і почати повідомлення з `There are`; `berry` тут залишається знайомим словом."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "На столе стоит несколько контейнеров для ягод. Выберите сообщение о них.",
+          "uk": "На столі стоїть кілька контейнерів для ягід. Оберіть повідомлення про них."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-17:intro3:r1",
+              "text": "There are some containers for berries."
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro3:r2",
+              "text": "There is a container."
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro3:r3",
+              "text": "There are containers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-17:intro3:r1",
+              "text": "There are some containers for berries."
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro3:r2",
+              "text": "There is a container."
+            },
+            {
+              "responseId": "en:lesson-04:session-17:intro3:r3",
+              "text": "There are containers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На столе стоит несколько контейнеров для ягод. Выберите сообщение о них.",
+          "uk": "На столі стоїть кілька контейнерів для ягід. Оберіть повідомлення про них."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b68dc1cbc5bdd1e69f70a85d4e6b95f3a7aaba089a630d60cd51808c95b07964"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "`Who is` + человек",
+    "uk": "`Who is` + людина"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`host` — хозяин вечера",
+        "uk": "`host` — господар вечора"
+      },
+      "bodyByLocale": {
+        "ru": "`host` — «хозяин вечера», тот, кто принимает гостей. `Who is the host?` — «Кто хозяин?» Хозяина ещё нужно найти, а для `is` место уже известно: сразу после `Who`, перед `the host`. По-русски хватает «Кто хозяин?», но в этом английском вопросе `is` не пропускаем.",
+        "uk": "`host` — «господар вечора», людина, яка приймає гостей. `Who is the host?` — «Хто господар?» Господаря ще треба знайти, а місце для `is` уже відоме: одразу після `Who`, перед `the host`. Українською досить «Хто господар?», але в англійському запитанні `is` не пропускаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы хотите поблагодарить хозяина за вечер, но не знаете, кто из присутствующих хозяин. Спросите.",
+          "uk": "Ви хочете подякувати господареві за вечір, але не знаєте, хто з присутніх господар. Запитайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-33:intro1:r1",
+              "text": "Who is the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro1:r2",
+              "text": "Who the host is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro1:r3",
+              "text": "Who the host?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-33:intro1:r1",
+              "text": "Who is the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro1:r2",
+              "text": "Who the host is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro1:r3",
+              "text": "Who the host?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы хотите поблагодарить хозяина за вечер, но не знаете, кто из присутствующих хозяин. Спросите.",
+          "uk": "Ви хочете подякувати господареві за вечір, але не знаєте, хто з присутніх господар. Запитайте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`guest` — гость",
+        "uk": "`guest` — гість"
+      },
+      "bodyByLocale": {
+        "ru": "`guest` — «гость», а `guests` — «гости». Про одного гостя спрашиваем `Who is the guest?` — «Кто гость?» Вопрос начинается с `Who is`: меняем только `the host` на `the guest`. Важно, кого ищем: хозяин принимает людей, а гостя пригласили. Для одного гостя здесь нужно `is`.",
+        "uk": "`guest` — «гість», а `guests` — «гості». Про одного гостя запитуємо `Who is the guest?` — «Хто гість?» Запитання починається з `Who is`: замініть лише `the host` на `the guest`. Спершу визначте, кого шукаєте: господар приймає людей, а гостя запросили. Для одного гостя тут потрібне `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Сосед говорит, что из трёх мужчин один гость, а двое живут здесь. Спросите, кто гость.",
+          "uk": "Сусід каже, що з трьох чоловіків один — гість, а двоє тут живуть. Запитайте, хто гість."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-33:intro2:r1",
+              "text": "Who is the guest?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro2:r2",
+              "text": "Who is the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro2:r3",
+              "text": "Who are the guest?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-33:intro2:r1",
+              "text": "Who is the guest?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro2:r2",
+              "text": "Who is the host?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro2:r3",
+              "text": "Who are the guest?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед говорит, что из трёх мужчин один гость, а двое живут здесь. Спросите, кто гость.",
+          "uk": "Сусід каже, що з трьох чоловіків один — гість, а двоє тут живуть. Запитайте, хто гість."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`Who is he?` — кто он?",
+        "uk": "`Who is he?` — хто він?"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is he?` — «Кто он?» Так можно спросить о мужчине, которого вы видите, но пока не знаете. В этом отдельном вопросе `is` стоит перед `he` — «он». А `Where is he?` означает «Где он?». Выберите, что хотите выяснить: кто этот человек или где он находится.",
+        "uk": "`Who is he?` — «Хто він?» Так можна запитати про чоловіка, якого ви бачите, але ще не знаєте. В окремому запитанні `is` стоїть перед `he` — «він». А `Where is he?` означає «Де він?» Спочатку вирішіть, що хочете з’ясувати: хто ця людина чи де вона перебуває."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Незнакомый мужчина машет вам через комнату. Спросите соседа: «Кто он?»",
+          "uk": "Незнайомий чоловік махає вам через усю кімнату. Запитайте сусіда: «Хто він?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-33:intro3:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro3:r2",
+              "text": "Where is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro3:r3",
+              "text": "Who he is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-33:intro3:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro3:r2",
+              "text": "Where is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-33:intro3:r3",
+              "text": "Who he is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Незнакомый мужчина машет вам через комнату. Спросите соседа: «Кто он?»",
+          "uk": "Незнайомий чоловік махає вам через усю кімнату. Запитайте сусіда: «Хто він?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a2174c213b3a590403f6b4fc877921cdd94b449056862eee43bca4a237d9d293"
+}

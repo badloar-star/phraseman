@@ -24,10 +24,10 @@ import {
   wordCardDefinitionIssues,
 } from "./single_phrase_release.mjs";
 
-test("builder feedback is bound to each physical distractor tile, not a choice ID", () => {
-  const interaction = (feedback) => ({
+test("builder and dictation feedback is bound to each physical distractor tile, not a choice ID", () => {
+  const interaction = (feedback, family = "phrase_builder") => ({
     interactionId: "en:lesson-01:session-01:i09",
-    family: "phrase_builder",
+    family,
     inputMode: "ordered_tokens",
     responseOptions: [],
     modePayload: {
@@ -41,10 +41,22 @@ test("builder feedback is bound to each physical distractor tile, not a choice I
     { responseId: "en:lesson-01:session-01:i09:tile:d2", correct: false, feedbackByLocale: { ru: "Второй ready лишний.", uk: "Другий ready зайвий." } },
   ];
   assert.deepEqual(feedbackLocaleParityIssues({ ru: [interaction(feedback)], uk: [interaction(feedback)] }), []);
+  assert.deepEqual(feedbackLocaleParityIssues({
+    ru: [interaction(feedback, "listen_build_dictation")],
+    uk: [interaction(feedback, "listen_build_dictation")],
+  }), []);
   assert.ok(feedbackLocaleParityIssues({ ru: [interaction(feedback.slice(0, 1))], uk: [interaction(feedback.slice(0, 1))] })
     .some((issue) => issue.reason === "slot_feedback_missing" && issue.responseId.endsWith(":tile:d2")));
   assert.ok(feedbackLocaleParityIssues({ ru: [interaction([{ ...feedback[0], responseId: "en:lesson-01:session-01:i09:r1" }, feedback[1]])], uk: [interaction(feedback)] })
     .some((issue) => issue.reason === "slot_feedback_unknown_tile"));
+  assert.ok(feedbackLocaleParityIssues({ ru: [interaction([feedback[0], feedback[0], feedback[1]])], uk: [interaction(feedback)] })
+    .some((issue) => issue.reason === "slot_feedback_duplicate"));
+  assert.ok(feedbackLocaleParityIssues({ ru: [interaction([{ ...feedback[0], correct: true }, feedback[1]])], uk: [interaction(feedback)] })
+    .some((issue) => issue.reason === "slot_feedback_wrong_contract"));
+  assert.ok(feedbackLocaleParityIssues({ ru: [interaction([{ ...feedback[0], feedbackByLocale: { ru: "Первый ready лишний.", uk: "" } }, feedback[1]])], uk: [interaction(feedback)] })
+    .some((issue) => issue.reason === "slot_feedback_locale_value_missing" && issue.locale === "uk"));
+  assert.ok(feedbackLocaleParityIssues({ ru: [interaction(feedback)], uk: [interaction([{ ...feedback[0], feedbackByLocale: { ru: "Иное.", uk: "Інше." } }, feedback[1]])] })
+    .some((issue) => issue.reason === "slot_feedback_locale_map_mismatch"));
 });
 
 test("a word card derives its answer from the reviewed word card payload when legacy correctText is empty", () => {
@@ -1167,7 +1179,7 @@ test("choice feedback locale maps must match across locale projections", () => {
   }).some((issue) => issue.reason === "choice_feedback_locale_value_missing"));
 });
 
-test("single-choice feedback covers every selectable option, including the correct answer", () => {
+test("single-choice feedback covers only wrong options and rejects correct targets", () => {
   const interactionId = "en:lesson-03:session-46:i16";
   const correctResponseId = `${interactionId}:r1`;
   const wrongResponseId = `${interactionId}:r2`;
@@ -1192,28 +1204,53 @@ test("single-choice feedback covers every selectable option, including the corre
   const answers = [{ interactionId, correctResponseId }];
 
   assert.deepEqual(feedbackLocaleParityIssues({
-    ru: [item(feedback)],
-    uk: [item(structuredClone(feedback))],
-  }, { answers }), []);
-
-  const missingCorrectIssues = feedbackLocaleParityIssues({
     ru: [item(feedback.slice(1))],
     uk: [item(structuredClone(feedback.slice(1)))],
+  }, { answers }), []);
+
+  const correctTargetIssues = feedbackLocaleParityIssues({
+    ru: [item(feedback)],
+    uk: [item(structuredClone(feedback))],
   }, { answers });
-  assert.ok(missingCorrectIssues.some((issue) => (
+  assert.ok(correctTargetIssues.some((issue) => (
     issue.responseId === correctResponseId
-    && issue.reason === "choice_feedback_missing"
+    && issue.reason === "feedback_target_invalid"
   )));
 
-  const mislabeledCorrect = structuredClone(feedback);
-  mislabeledCorrect[0].correct = false;
-  assert.ok(feedbackLocaleParityIssues({
-    ru: [item(mislabeledCorrect)],
-    uk: [item(structuredClone(mislabeledCorrect))],
-  }, { answers }).some((issue) => (
-    issue.responseId === correctResponseId
-    && issue.reason === "choice_feedback_wrong_contract"
-  )));
+  const missingWrongIssues = feedbackLocaleParityIssues({
+    ru: [item([])],
+    uk: [item([])],
+  }, { answers });
+  assert.ok(missingWrongIssues.some((issue) => issue.responseId === wrongResponseId && issue.reason === "choice_feedback_missing"));
+});
+
+test("single-choice feedback rejects duplicate answer authority before projection", () => {
+  const interactionId = "en:lesson-03:session-46:i16";
+  const correctResponseId = `${interactionId}:r1`;
+  const wrongResponseId = `${interactionId}:r2`;
+  const interaction = {
+    interactionId,
+    inputMode: "single_choice",
+    responseOptions: [{ responseId: correctResponseId }, { responseId: wrongResponseId }],
+    modePayload: {
+      choiceFeedback: [{
+        responseId: wrongResponseId,
+        correct: false,
+        feedbackByLocale: { ru: "Неверная форма.", uk: "Неправильна форма." },
+      }],
+    },
+  };
+  const answer = { interactionId, correctResponseId };
+
+  for (const answers of [
+    [answer, structuredClone(answer)],
+    [answer, { ...answer, correctResponseId: wrongResponseId }],
+  ]) {
+    assert.ok(feedbackLocaleParityIssues({
+      ru: [interaction],
+      uk: [structuredClone(interaction)],
+    }, { answers }).some((issue) => issue.reason === "choice_feedback_answer_duplicate"));
+  }
 });
 
 test("intro questions block every multi-phrase choice in every locale", () => {
@@ -1347,6 +1384,66 @@ test("answer contract rejects unrelated correctText and unknown correctResponseI
   });
   assert.ok(answerContractIssues([choice], [{ interactionId: choice.interactionId, correctText: "back", correctResponseId: "missing" }])
     .some((issue) => issue.reason === "correct_response_missing"));
+});
+
+test("choice answer authority is unique and visible before audit or projection", () => {
+  const id = "en:lesson-99:session-97:i01";
+  const choice = baseInteraction({
+    interactionId: id,
+    family: "listen_choose",
+    inputMode: "single_choice",
+    responseOptions: [
+      { responseId: `${id}:r1`, text: "back" },
+      { responseId: `${id}:r2`, text: "bank" },
+    ],
+    audioTargetIds: [`${id}:audio`],
+    modePayload: {
+      referenceAudio: { audioTargetId: `${id}:audio`, transcript: "back" },
+      localizedMeaningChoices: [
+        { responseId: `${id}:r1`, targetText: "back", meaningByLocale: null },
+        { responseId: `${id}:r2`, targetText: "bank", meaningByLocale: null },
+      ],
+      isWordCard: false,
+      choiceFeedback: [],
+    },
+  });
+  const valid = answer(id, `${id}:r1`, "back");
+  const invalidCases = [
+    { answers: [], reason: "answer_missing" },
+    { answers: [answer(id, null, "back")], reason: "correct_response_missing" },
+    { answers: [answer(id, `${id}:stale`, "back")], reason: "correct_response_missing" },
+    { answers: [valid, structuredClone(valid)], reason: "answer_duplicate" },
+    { answers: [valid, answer(id, `${id}:r2`, "bank")], reason: "answer_duplicate" },
+  ];
+
+  for (const { answers, reason } of invalidCases) {
+    assert.ok(answerContractIssues([choice], answers).some((issue) => issue.interactionId === id && issue.reason === reason));
+    assert.throws(
+      () => projectSinglePhraseRelease({ interactions: [choice], answers }),
+      new RegExp(`single_phrase_projection_hold:${id}:${reason}`, "u"),
+    );
+  }
+  assert.doesNotThrow(() => projectSinglePhraseRelease({ interactions: [choice], answers: [valid] }));
+});
+
+test("non-choice duplicate rows with null correctness remain compatible", () => {
+  const id = "en:lesson-99:session-97:i02";
+  const builder = baseInteraction({
+    interactionId: id,
+    family: "phrase_builder",
+    inputMode: "ordered_tokens",
+    responseOptions: [],
+    audioTargetIds: [],
+    modePayload: {
+      targetPhrase: "I am back.",
+      orderedTokens: ["I", "am", "back"],
+      authoredDistractorTokens: [],
+    },
+  });
+  const duplicateAnswers = [answer(id, null, "I am back."), answer(id, null, "I am back.")];
+
+  assert.deepEqual(answerContractIssues([builder], duplicateAnswers), []);
+  assert.doesNotThrow(() => projectSinglePhraseRelease({ interactions: [builder], answers: duplicateAnswers }));
 });
 
 test("single-word listening rejects hidden lists without semicolons", () => {
@@ -2021,6 +2118,36 @@ test("single-phrase registry keeps the classified common word card schema out of
     },
   });
   assert.equal(singlePhraseReleaseIssues([interaction]).some((issue) => issue.reason === "unknown_learner_facing_payload"), false);
+});
+
+test("scripted-repeat reveal policy is closed, versioned structural metadata", () => {
+  const policy = {
+    schemaVersion: "learning-v2-scripted-repeat-reveal-policy.v1",
+    revealAfter: "first_submitted_attempt",
+    answerExposedBeforeAttempt: false,
+    targetPhraseVisibleBeforeAttempt: false,
+    referenceAudioAvailableBeforeAttempt: false,
+    modelPlaybackAvailableBeforeAttempt: false,
+  };
+  const valid = baseInteraction({
+    interactionId: "en:lesson-03:session-55:i106",
+    modePayload: { targetPhrase: "This is one.", scriptedRepeatRevealPolicy: policy },
+  });
+  assert.deepEqual(singlePhraseReleaseIssues([valid]), []);
+
+  for (const malformed of [
+    { ...policy, answerExposedBeforeAttempt: true },
+    { ...policy, schemaVersion: "legacy" },
+    { ...policy, unexpected: false },
+  ]) {
+    const interaction = {
+      ...valid,
+      modePayload: { ...valid.modePayload, scriptedRepeatRevealPolicy: malformed },
+    };
+    assert.ok(singlePhraseReleaseIssues([interaction]).some((issue) =>
+      issue.field.startsWith("modePayload.scriptedRepeatRevealPolicy")
+      && issue.reason === "invalid_nested_learner_schema"));
+  }
 });
 
 test("builder completion feedback is a closed localized learner field", () => {

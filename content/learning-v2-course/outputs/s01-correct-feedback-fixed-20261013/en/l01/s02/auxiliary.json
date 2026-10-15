@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro1:r2": {
+          "ru": "После I нужно am: I am tired.",
+          "uk": "Після I потрібне am: I am tired."
+        },
+        "en:lesson-01:session-02:intro1:r3": {
+          "ru": "Нужно tired — «устал». Tire без -d означает «шина».",
+          "uk": "Потрібне tired — «втомлений». Tire без -d означає «шина»."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro2:r2": {
+          "ru": "Here означает «здесь». Вы уже здесь, но важно объяснить, что вы опоздали.",
+          "uk": "Here означає «тут». Ви вже тут, але важливо пояснити, що ви запізнилися."
+        },
+        "en:lesson-01:session-02:intro2:r3": {
+          "ru": "После I нужно am: I am late.",
+          "uk": "Після I потрібне am: I am late."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro3:r2": {
+          "ru": "После I нужно am: I am sorry.",
+          "uk": "Після I потрібне am: I am sorry."
+        },
+        "en:lesson-01:session-02:intro3:r3": {
+          "ru": "Am уже есть после I; второго am не нужно.",
+          "uk": "Am уже є після I; другого am не потрібно."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fd9a7d364f76e3787264caf1ec4353c9398e5c7eca32eb63435435c5a4bd0359"
+}

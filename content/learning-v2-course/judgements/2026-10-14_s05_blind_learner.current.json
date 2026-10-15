@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "learning_v2_blind_learner_review_v1",
+  "sessionId": "en:lesson-01:session-05",
+  "candidateRoot": "content/learning-v2-course/outputs/s05-review-fixed-private-20261014-v6",
+  "contentReceiptSha256": "fc8726a4e7840cd9ac89bf6054c14fbbf9adfb6cb11979837490c3093c4fdaa4",
+  "candidateBundleSha256": "86fd1363db86f190546b013309532e4a8d2c21d0d8cc3ac84e6c1a4bc8b6538a",
+  "learnerJsonSha256": "15508c69868a4d294d74644b9aff8989c2ab92b1dbab3cfef66b062d91223271",
+  "learnerUkJsonSha256": "56f108709df1629ed705cbd989cc9a3201e3366e26485b1d95c6b5c3ec7e2522",
+  "dimension": "blind_learner",
+  "verdict": "PASS",
+  "findings": [],
+  "notes": [
+    "Independently recomputed the receipt, all 22 inventory entries, the inventory hash, and the candidate bundle before review.",
+    "Reviewed all three intro pages and all 20 learner interactions in Russian and Ukrainian.",
+    "The previously reported intro, listening-feedback, lost, new, ready, and not-hot defects are resolved.",
+    "No ambiguous instruction, impossible scene, internal mode terminology, gender assumption, or answer leak was found.",
+    "Audio semantics were not judged in this text-only blind review."
+  ],
+  "taskCount": 20
+}

@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-09:intro2:r2": {
-          "ru": "Это «тебе жаль». Так говорят не в ответ на спасибо, а в конце ссоры.",
-          "uk": "Це «тобі шкода». Так кажуть не у відповідь на «дякую», а наприкінці сварки."
+          "ru": "Это значит «тебе жаль». В ответ на спасибо так не говорят; здесь уместно `You are welcome`.",
+          "uk": "Це означає «тобі шкода». У відповідь на «дякую» так не кажуть; тут доречне `You are welcome`."
         },
         "en:lesson-01:session-09:intro2:r3": {
           "ru": "`are` потерялась. Полная фраза — три слова, и первые два всегда вместе.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "4527735e547baad8064dce6460e63a0c7eca51d87ba313daf0e641128426ff87"
+  "auxiliaryFingerprint": "2479a007a3de1c2f07cd5f00195ab1bacb5b7a722c3ad18b6cbe6a4eda1ce71f"
 }

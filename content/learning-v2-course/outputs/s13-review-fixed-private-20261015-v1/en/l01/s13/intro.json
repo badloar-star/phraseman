@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "как выбирать `am` после `I` и `are` после `you`",
+    "uk": "як обирати `am` після `I` і `are` після `you`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "I am и You are",
+        "uk": "I am і You are"
+      },
+      "bodyByLocale": {
+        "ru": "`ready` — «готов/готова». О себе говорят `I am ready`. О собеседнике — `You are ready`.\n\nВ утвердительной фразе о себе говорят `I am ready`. Обращаясь к собеседнику, говорят `You are ready`.",
+        "uk": "`ready` — «готовий/готова». Про себе кажуть `I am ready`. До співрозмовника звертаються `You are ready`.\n\nУ стверджувальному реченні про себе кажуть `I am ready`. Звертаючись до співрозмовника, кажуть `You are ready`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега спрашивает, идёте ли вы. Ответьте: «я готов/готова».",
+          "uk": "Колега питає, чи ви йдете. Відповідайте: «я готовий/готова»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r1",
+              "text": "I am ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r2",
+              "text": "I are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r3",
+              "text": "I ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r1",
+              "text": "I am ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r2",
+              "text": "I are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r3",
+              "text": "I ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега спрашивает, идёте ли вы. Ответьте: «я готов/готова».",
+          "uk": "Колега питає, чи ви йдете. Відповідайте: «я готовий/готова»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Young и old",
+        "uk": "Young і old"
+      },
+      "bodyByLocale": {
+        "ru": "`young` — «молодой/молодая», `old` — «старый/старая». Возраст описывают так же: `I am young`, `You are old`.\n\nВ этих утвердительных фразах после `I` стоит `am`, а после `you` — `are`.\n\n`old` описывает возраст; говоря о себе, можно сказать `I am old`.",
+        "uk": "`young` — «молодий/молода», `old` — «старий/стара». Вік описують так само: `I am young`, `You are old`.\n\n`old` описує вік; про себе можна сказати `I am old`.\n\nУ цих стверджувальних фразах після `I` стоїть `am`, а після `you` — `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Коллега вздыхает, что она уже немолодая. Возразите: «ты молодая».",
+          "uk": "Колега зітхає, що вона вже немолода. Заперечте: «ти молода»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r1",
+              "text": "You are young."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r2",
+              "text": "You am young."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r3",
+              "text": "You young."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r1",
+              "text": "You are young."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r2",
+              "text": "You am young."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r3",
+              "text": "You young."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега вздыхает, что она уже немолодая. Возразите: «ты молодая».",
+          "uk": "Колега зітхає, що вона вже немолода. Заперечте: «ти молода»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Strong и tall",
+        "uk": "Strong і tall"
+      },
+      "bodyByLocale": {
+        "ru": "`strong` — «сильный/сильная», `tall` — «высокий/высокая». `tall` подходит и для человека, и для дерева, и для здания.\n\nО своём росте говорят `I am tall`.\n\nПосле `I` в таких фразах ставят `am`, после `you` — `are`.",
+        "uk": "`strong` — «сильний/сильна», `tall` — «високий/висока».\n\n`tall` описує високий зріст людини, дерево або будівлю.\n\nУ таких фразах після `I` ставлять `am`, після `you` — `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы достали книгу с верхней полки без стремянки; коллега отмечает ваш высокий рост. Скажите о себе: «я высокий/высокая».",
+          "uk": "Ви дістали книжку з верхньої полиці без драбини; колега відзначає ваш високий зріст. Скажіть про себе: «я високий/висока»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r1",
+              "text": "I am tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r2",
+              "text": "I are tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r3",
+              "text": "Am I tall."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r1",
+              "text": "I am tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r2",
+              "text": "I are tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r3",
+              "text": "Am I tall."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы достали книгу с верхней полки без стремянки; коллега отмечает ваш высокий рост. Скажите о себе: «я высокий/высокая».",
+          "uk": "Ви дістали книжку з верхньої полиці без драбини; колега відзначає ваш високий зріст. Скажіть про себе: «я високий/висока»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f2d0fd8f452b4ac39b9088f7cca91ed69dd42de00b5959598c6064dc94f077d8"
+}

@@ -14,7 +14,6 @@ const authoritativeInteractionIds = (locale) => Array.from(
     .matchAll(/<!-- interaction_id:\s*([^;\s]+);/gu),
   (match) => match[1],
 );
-const missingCorrectFeedback = ["i02", "i04", "i06", "i07:a01", "i13"];
 
 test("L01/S01 explains fine precisely and uses one sentence-ending mark", () => {
   const byId = explanations().interactions;
@@ -30,6 +29,45 @@ test("L01/S01 explains fine precisely and uses one sentence-ending mark", () => 
   }
 });
 
+test("L01/S01 wrong-answer feedback uses complete, natural RU/UK wording for here and fine", () => {
+  const expected = {
+    i02: {
+      ru: "Fine — «всё хорошо». Здесь спрашивают, добрались ли вы: I am here.",
+      uk: "Fine — «усе добре». Тут питають, чи ви вже дісталися: I am here.",
+    },
+    i10: {
+      ru: "Here означает «здесь» и указывает на место. Коллега спрашивает, как вы себя чувствуете: I am fine.",
+      uk: "Here означає «тут» і вказує на місце. Колега питає, як ви почуваєтеся: I am fine.",
+    },
+  };
+  const atomicData = atomic();
+  const sidecar = explanations();
+
+  for (const locale of ["ru", "uk"]) {
+    const i02 = atomicData.interactionsByLocale[locale]
+      .find((entry) => entry.interactionId === "en:lesson-01:session-01:i02");
+    const i02Feedback = i02?.modePayload?.choiceFeedback
+      ?.find((entry) => entry.responseId === "en:lesson-01:session-01:i02:r3");
+    assert.equal(i02Feedback?.feedbackByLocale?.[locale], expected.i02[locale]);
+    assert.equal(sidecar.interactions["en:lesson-01:session-01:i02"]?.responses
+      ?.find((entry) => entry.responseId === "en:lesson-01:session-01:i02:r3")
+      ?.whyWrongHereByLocale?.[locale], expected.i02[locale]);
+
+    const i10 = atomicData.interactionsByLocale[locale]
+      .find((entry) => entry.interactionId === "en:lesson-01:session-01:i10");
+    const i10Feedback = i10?.modePayload?.slotFeedback
+      ?.find((entry) => entry.responseId === "en:lesson-01:session-01:i10:tile:d2");
+    assert.equal(i10Feedback?.feedbackByLocale?.[locale], expected.i10[locale]);
+    assert.equal(sidecar.interactions["en:lesson-01:session-01:i10"]?.responses
+      ?.find((entry) => entry.responseId === "en:lesson-01:session-01:i10:tile:d2")
+      ?.whyWrongHereByLocale?.[locale], expected.i10[locale]);
+
+    const finalCopy = fs.readFileSync(path.join(sessionDir, `final.${locale}.md`), "utf8");
+    assert.ok(finalCopy.includes(expected.i02[locale]));
+    assert.ok(finalCopy.includes(expected.i10[locale]));
+  }
+});
+
 test("L01/S01 i17:s03 ready tile explains the real competing phrase without inventing a scene", () => {
   const ready = explanations().interactions["en:lesson-01:session-01:i17:s03"].responses
     .find((entry) => entry.responseId.endsWith(":tile:d1"));
@@ -37,7 +75,7 @@ test("L01/S01 i17:s03 ready tile explains the real competing phrase without inve
     ru: "`ready` образует правильную фразу `I am ready`, поэтому плитка выглядит правдоподобно. Но в задании нужно ответить на вопрос «как дела?», поэтому здесь выбирается `fine`.",
     uk: "`ready` утворює правильну фразу `I am ready`, тому плитка виглядає правдоподібно. Але в завданні треба відповісти на запитання «як справи?», тому тут обирається `fine`.",
   });
-  assert.doesNotMatch(JSON.stringify(ready), /встреч|зустріч/u);
+  assert.doesNotMatch(JSON.stringify(ready), /безопасн.*плитк|безпечн.*плитк/u);
 });
 
 test("L01/S01 Ukrainian token analysis keeps Ukrainian lemmas", () => {
@@ -47,7 +85,7 @@ test("L01/S01 Ukrainian token analysis keeps Ukrainian lemmas", () => {
   assert.match(units, /"text":"все"[^}]*"lemma":"все"/u);
 });
 
-test("L01/S01 gives every visible intro answer its own localized explanation", () => {
+test("L01/S01 keeps intro explanations on wrong answers only", () => {
   for (const locale of ["ru", "uk"]) {
     const source = fs.readFileSync(path.join(sessionDir, `final.${locale}.md`), "utf8");
     const pages = parseIntro(source);
@@ -56,42 +94,104 @@ test("L01/S01 gives every visible intro answer its own localized explanation", (
       assert.equal(page.options.length, 3, `${locale}:intro${pageIndex + 1} has three visible answers`);
       assert.equal(page.options.filter((option) => option.correct).length, 1, `${locale}:intro${pageIndex + 1} has exactly one correct answer`);
       for (const [optionIndex, option] of page.options.entries()) {
-        assert.ok(option.feedback.trim(), `${locale}:intro${pageIndex + 1}:r${optionIndex + 1} needs authored feedback`);
-        assert.match(option.feedback, /`[^`]+`/u, `${locale}:intro${pageIndex + 1}:r${optionIndex + 1} explains marked-up English`);
+        if (option.correct) {
+          assert.equal(option.feedback.trim(), "", `${locale}:intro${pageIndex + 1}:r${optionIndex + 1} must leave the correct verdict to runtime`);
+        } else {
+          assert.ok(option.feedback.trim(), `${locale}:intro${pageIndex + 1}:r${optionIndex + 1} needs wrong-answer feedback`);
+          assert.match(option.feedback, /`[^`]+`/u, `${locale}:intro${pageIndex + 1}:r${optionIndex + 1} explains the relevant English`);
+        }
       }
     }
   }
 });
 
-test("L01/S01 explains every correct response that a learner can select", () => {
-  const data = atomic();
+test("L01/S01 fine word card stays within the supported contextual meaning", () => {
+  const expected = {
+    ru: "«хорошо, в порядке». Ответ на «как дела?»",
+    uk: "«добре, гаразд». Відповідь на «як справи?»",
+  };
+  const atomicData = atomic();
   for (const locale of ["ru", "uk"]) {
-    for (const suffix of missingCorrectFeedback) {
-      const interactionId = `en:lesson-01:session-01:${suffix}`;
-      const interaction = data.interactionsByLocale[locale].find((entry) => entry.interactionId === interactionId);
-      const answer = data.answers.find((entry) => entry.interactionId === interactionId);
-      const feedback = interaction?.modePayload?.choiceFeedback?.find((entry) => entry.responseId === answer?.correctResponseId);
-      assert.equal(feedback?.correct, true, `${locale}:${suffix} needs feedback for the correct choice`);
-      assert.ok(feedback?.feedbackByLocale?.ru?.trim(), `${locale}:${suffix} needs Russian correct-choice feedback`);
-      assert.ok(feedback?.feedbackByLocale?.uk?.trim(), `${locale}:${suffix} needs Ukrainian correct-choice feedback`);
+    const source = fs.readFileSync(path.join(sessionDir, `final.${locale}.md`), "utf8");
+    const card = source.match(/^> \*\*fine\*\* — (.+)$/mu)?.[1];
+    assert.equal(card, expected[locale], `${locale} Markdown fine card must use the supported concise meaning`);
+
+    const interaction = atomicData.interactionsByLocale[locale].find((entry) => entry.interactionId.endsWith(":i05"));
+    for (const meaningLocale of ["ru", "uk"]) {
+      assert.equal(interaction?.modePayload?.wordCard?.definitionByLocale?.[meaningLocale], expected[meaningLocale], `${locale} word-card ${meaningLocale} definition`);
+      assert.equal(interaction?.modePayload?.localizedMeaningChoices?.[0]?.meaningByLocale?.[meaningLocale], expected[meaningLocale], `${locale} localized ${meaningLocale} meaning choice`);
     }
   }
+  const serialized = JSON.stringify(atomicData.interactionsByLocale);
+  assert.doesNotMatch(serialized, /вдаваться в подробности не хочется|вдаватися в подробиці не хочеться/u);
+});
+
+test("L01/S01 Ukrainian intro 3 feedback is natural and consistent with evaluator copies", () => {
+  const expected = "Самого `I am` недостатньо: ще не сказано, що ви раді. Потрібне `I am happy`.";
+  const source = fs.readFileSync(path.join(sessionDir, "final.uk.md"), "utf8");
+  const [intro3] = parseIntro(source).slice(2);
+  const wrongAnswer = intro3.options.find((option) => option.text.trim() === "I am.");
+  assert.equal(wrongAnswer?.feedback.trim(), expected);
+
+  const response = explanations().introResponses.find((entry) => entry.responseId === "en:lesson-01:session-01:intro3:r3");
+  assert.equal(response?.analysisByLocale?.uk?.explanationByLocale?.uk, expected);
+  assert.equal(response?.analysisByLocale?.ru?.explanationByLocale?.uk, expected);
+  assert.equal(response?.whyWrongHereByLocale?.uk, expected);
+  assert.doesNotMatch(JSON.stringify(response), /фраза не говорить, що ви раді/u);
+});
+
+test("L01/S01 keeps practice explanations on wrong choices only in both locales", () => {
+  const data = atomic();
+  const answerById = new Map(data.answers.map((answer) => [answer.interactionId, answer]));
+  for (const locale of ["ru", "uk"]) {
+    const interactions = data.interactionsByLocale[locale];
+    assert.equal(interactions.length, 20, `${locale}: the complete practice inventory is covered`);
+    for (const interaction of interactions) {
+      const selectableIds = (interaction.responseOptions ?? []).map((option) => option.responseId).filter(Boolean);
+      if (interaction.inputMode === "single_choice" && selectableIds.length > 1) {
+        const answer = answerById.get(interaction.interactionId);
+        assert.ok(answer?.correctResponseId, `${locale}:${interaction.interactionId} needs one keyed correct response`);
+        const expectedWrongIds = selectableIds.filter((id) => id !== answer.correctResponseId).sort();
+        const feedbackRows = interaction.modePayload?.choiceFeedback ?? [];
+        assert.deepEqual(feedbackRows.map((row) => row.responseId).sort(), expectedWrongIds, `${locale}:${interaction.interactionId} feedback must exactly cover wrong selectable responses`);
+        assert.equal(feedbackRows.some((row) => row.responseId === answer.correctResponseId), false, `${locale}:${interaction.interactionId} must omit authored correct feedback`);
+      }
+      for (const [index, feedback] of (interaction.modePayload?.choiceFeedback ?? []).entries()) {
+        assert.equal(feedback.correct, false, `${locale}:${interaction.interactionId}:choiceFeedback[${index}] must target a wrong response`);
+        for (const feedbackLocale of ["ru", "uk"]) {
+          const text = feedback.feedbackByLocale?.[feedbackLocale]?.trim() ?? "";
+          assert.ok(text, `${locale}:${interaction.interactionId}:choiceFeedback[${index}] ${feedbackLocale} needs wrong-answer feedback`);
+        }
+      }
+    }
+  }
+});
+
+test("L01/S01 Markdown correct options omit authored verdict suffixes", () => {
+  for (const locale of ["ru", "uk"]) {
+    const source = fs.readFileSync(path.join(sessionDir, `final.${locale}.md`), "utf8");
+    assert.doesNotMatch(source, /^- ✅ .*? — .+$/mu, `${locale} practice correct options must not carry any feedback suffix`);
+  }
+  const ukSource = fs.readFileSync(path.join(sessionDir, "final.uk.md"), "utf8");
+  const batch = fs.readFileSync(path.join(sessionDir, "locales_batch.md"), "utf8").split("===LOCALE: uk===\n")[1] ?? "";
+  const checkedOptions = (text) => text.split(/\r?\n/u).filter((line) => line.startsWith("- ✅"));
+  assert.deepEqual(checkedOptions(batch), checkedOptions(ukSource), "UK locale batch correct options must match the authored source exactly");
 });
 
 test("L01/S01 explains every authored extra tile", () => {
   const data = atomic();
   for (const locale of ["ru", "uk"]) {
-    for (const suffix of ["i09", "i10", "i11", "i12", "i15", "i16"]) {
-      const interactionId = `en:lesson-01:session-01:${suffix}`;
-      const interaction = data.interactionsByLocale[locale].find((entry) => entry.interactionId === interactionId);
+    for (const interaction of data.interactionsByLocale[locale]) {
+      const interactionId = interaction.interactionId;
       const feedback = interaction?.modePayload?.slotFeedback;
+      const feedbackRows = feedback ?? [];
       const distractors = interaction?.modePayload?.authoredDistractorTokens ?? [];
-      assert.equal(feedback?.length, distractors.length, `${locale}:${suffix} needs one explanation per authored extra tile`);
-      for (const [index, item] of feedback.entries()) {
-        assert.equal(item?.correct, false, `${locale}:${suffix} extra tile ${index + 1} must be marked wrong`);
-        assert.equal(item?.responseId, `${interactionId}:tile:d${index + 1}`, `${locale}:${suffix} feedback must identify the physical extra tile`);
-        assert.ok(item?.feedbackByLocale?.ru?.trim(), `${locale}:${suffix} tile ${index + 1} needs Russian feedback`);
-        assert.ok(item?.feedbackByLocale?.uk?.trim(), `${locale}:${suffix} tile ${index + 1} needs Ukrainian feedback`);
+      assert.equal(feedbackRows.length, distractors.length, `${locale}:${interactionId} needs one explanation per authored extra tile`);
+      for (const [index, item] of feedbackRows.entries()) {
+        assert.equal(item?.correct, false, `${locale}:${interactionId} extra tile ${index + 1} must be marked wrong`);
+        assert.equal(item?.responseId, `${interactionId}:tile:d${index + 1}`, `${locale}:${interactionId} feedback must identify the physical extra tile`);
+        assert.ok(item?.feedbackByLocale?.ru?.trim(), `${locale}:${interactionId} tile ${index + 1} needs Russian feedback`);
+        assert.ok(item?.feedbackByLocale?.uk?.trim(), `${locale}:${interactionId} tile ${index + 1} needs Ukrainian feedback`);
       }
     }
   }
@@ -281,22 +381,22 @@ test("L01/S01 i13 keeps the listening prompt neutral while feedback explains the
   }
 });
 
-test("L01/S01 i13 feedback stays speaker-neutral and the four later listening scenes avoid invented claims", () => {
+test("L01/S01 i13 leaves the correct verdict to runtime and the later listening scenes avoid invented claims", () => {
   const data = atomic();
   const sidecar = explanations();
-  const expectedCorrect = {
+  const expectedAnalysis = {
     ru: "Верно: `I am here` означает «я здесь»: here сообщает о месте.",
     uk: "Правильно: `I am here` означає «я тут»: here повідомляє про місце.",
   };
   const expectedReadyBoundary = {
-    ru: "`I am ready` означает «я готов / готова»; в записи звучит here, поэтому реплика сообщает о месте.",
-    uk: "`I am ready` означає «я готовий / готова»; у записі звучить here, тому репліка повідомляє про місце.",
+    ru: "«Я готов / готова» верно переводит ready; в записи звучит here, которое сообщает о месте.",
+    uk: "«Я готовий / готова» правильно перекладає ready; у записі звучить here, яке повідомляє про місце.",
   };
   const i13Sidecar = sidecar.interactions["en:lesson-01:session-01:i13"];
   const correct = i13Sidecar.responses.find((entry) => entry.responseId.endsWith(":r1"));
   const ready = i13Sidecar.responses.find((entry) => entry.responseId.endsWith(":r2"));
   for (const analysis of Object.values(correct.analysisByLocale)) {
-    assert.deepEqual(analysis.explanationByLocale, expectedCorrect);
+    assert.deepEqual(analysis.explanationByLocale, expectedAnalysis);
   }
   assert.deepEqual(ready.acceptabilityBoundaryByLocale, expectedReadyBoundary);
 
@@ -326,7 +426,9 @@ test("L01/S01 i13 feedback stays speaker-neutral and the four later listening sc
       assert.deepEqual(unsupportedCurrentSceneClaims(currentSceneFields), [], `${locale}:${suffix} invents an unsupported current-scene claim`);
     }
     const i13 = byId.get("en:lesson-01:session-01:i13");
-    assert.deepEqual(i13.modePayload.choiceFeedback.find((entry) => entry.correct).feedbackByLocale, expectedCorrect);
+    const correctResponseId = data.answers.find((entry) => entry.interactionId === i13.interactionId)?.correctResponseId;
+    assert.equal(i13.modePayload.choiceFeedback.some((entry) => entry.responseId === correctResponseId), false);
+    assert.equal(i13.modePayload.choiceFeedback.length, i13.responseOptions.length - 1);
   }
 });
 
@@ -427,7 +529,7 @@ test("L01/S01 keeps the preserved speed match while repairing the remaining mean
     const answerById = new Map(data.answers.map((item) => [item.interactionId, item]));
     const i06 = byId.get("en:lesson-01:session-01:i06");
     assert.deepEqual(i06?.responseOptions.map((item) => item.text), ["fine", "here", "ready"]);
-    assert.equal(i06?.modePayload?.choiceFeedback?.length, 3);
+    assert.equal(i06?.modePayload?.choiceFeedback?.length, 2);
     assert.ok(i06?.modePayload?.choiceFeedback?.every((item) => item.feedbackByLocale?.ru && item.feedbackByLocale?.uk));
 
     const i08 = byId.get("en:lesson-01:session-01:i08");
@@ -660,12 +762,10 @@ test("L01/S01 keeps every learner self-reference inclusive and feedback dimensio
   const data = atomic();
   const expected = {
     ru: {
-      happyFeedback: "Верно: happy означает «рад / рада». После хорошей новости I am happy прямо сообщает о вашей радости.",
       i10Prompt: "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
       i08Meanings: ["здесь", "готов / готова", "хорошо", "рад / рада"],
     },
     uk: {
-      happyFeedback: "Правильно: happy означає «радий / рада». Після хорошої новини I am happy прямо повідомляє про вашу радість.",
       i10Prompt: "Складіть фразу — колега запитав, як ваші справи; скажіть, що все добре",
       i08Meanings: ["тут", "готовий / готова", "добре", "радий / рада"],
     },
@@ -674,8 +774,8 @@ test("L01/S01 keeps every learner self-reference inclusive and feedback dimensio
   for (const locale of ["ru", "uk"]) {
     const byId = new Map(data.interactionsByLocale[locale].map((interaction) => [interaction.interactionId, interaction]));
     const happy = byId.get("en:lesson-01:session-01:i07:a01");
-    const happyCorrect = happy?.modePayload?.choiceFeedback?.find((entry) => entry.correct === true);
-    assert.equal(happyCorrect?.feedbackByLocale?.[locale], expected[locale].happyFeedback);
+    const happyCorrectId = data.answers.find((entry) => entry.interactionId === happy?.interactionId)?.correctResponseId;
+    assert.equal(happy?.modePayload?.choiceFeedback?.some((entry) => entry.responseId === happyCorrectId), false);
 
     const i08 = byId.get("en:lesson-01:session-01:i08");
     const pairMeanings = i08?.modePayload?.pairGrid?.map((pair) => pair.meaningByLocale?.[locale]);
@@ -695,12 +795,12 @@ test("L01/S01 keeps every learner self-reference inclusive and feedback dimensio
     ru: [
       "Ответьте: «Я готов / готова».",
       "ready — готов / готова · fine — хорошо · happy — рад / рада",
-      "ready означает «готов / готова»",
+      "Ready означает «готов / готова»",
       "«Я готов / готова»",
     ],
     uk: [
       "ready — готовий / готова · fine — добре · happy — радий / рада",
-      "ready означає «готовий / готова»",
+      "Ready означає «готовий / готова»",
       "«Я готовий / готова»",
     ],
   };
@@ -837,7 +937,7 @@ test("L01/S01 explains bare I am as insufficient here without teaching it as uni
   assert.ok(response, "intro3 bare I am response must remain authored");
   assert.deepEqual(response.whyWrongHereByLocale, {
     ru: "`I am` здесь недостаточно: фраза не говорит, что вы рады. Нужно `I am happy`.",
-    uk: "`I am` тут недостатньо: фраза не говорить, що ви раді. Потрібне `I am happy`.",
+    uk: "Самого `I am` недостатньо: ще не сказано, що ви раді. Потрібне `I am happy`.",
   });
   assert.deepEqual(response.whyTemptingByLocale, {
     ru: "Фраза начинается правильно, поэтому легко остановиться слишком рано.",
@@ -845,7 +945,7 @@ test("L01/S01 explains bare I am as insufficient here without teaching it as uni
   });
   assert.deepEqual(response.acceptabilityBoundaryByLocale, {
     ru: "`I am` может быть полным ответом, когда нужный смысл уже задан вопросом. Здесь нужно назвать состояние, поэтому требуется `happy`.",
-    uk: "`I am` може бути повною відповіддю, коли потрібний зміст уже заданий запитанням. Тут потрібно назвати стан, тому потрібне `happy`.",
+    uk: "`I am` може бути повною відповіддю, коли потрібний зміст вже заданий запитанням. Тут потрібно назвати стан, тому потрібне `happy`.",
   });
   for (const analysis of Object.values(response.analysisByLocale)) {
     const am = analysis.units.find((unit) => unit.text === "am");

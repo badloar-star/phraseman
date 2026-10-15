@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 
 import { familyChoreographyIssues, familyChoreographyRequiredForSession, preJudgeChoreographyIssues, preservationLedgerIssues } from "./single_phrase_release.mjs";
@@ -10,6 +11,10 @@ import { parseSessionHeader } from "./session_header.mjs";
 import { writeMockupFile } from "./write_mockup_file.mjs";
 
 const COURSE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const PROJECT_ROOT = path.resolve(COURSE_ROOT, "..", "..");
+const { projectLearnerVisiblePromptV1 } = createRequire(import.meta.url)(
+  path.resolve(PROJECT_ROOT, "modules/learning-v2/content/learner_visible_text_v1.js"),
+);
 
 function embeddedJson(html, id) {
   const escapedId = id.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
@@ -228,7 +233,13 @@ function sourceProjectionFindings({ key, directory, atomic }) {
         reason: "исходный текст задания не совпадает с проверенным вариантом",
       };
       const expectedId = task.interactionId || `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
-      const differs = task.ordinal !== index + 1 || task.title !== interaction.prompt ||
+      const expectedLearnerPrompt = projectLearnerVisiblePromptV1({
+        title: task.title,
+        family: task.family,
+        correctText: task.options.find((option) => option.correct)?.text ?? task.target ?? task.card?.word ?? interaction.modePayload?.wordCard?.word ?? "",
+        isWordCard: Boolean(task.card) || Boolean(interaction.modePayload?.isWordCard),
+      });
+      const differs = task.ordinal !== index + 1 || expectedLearnerPrompt !== interaction.prompt ||
         expectedId !== interaction.interactionId || runtimeFamily(task.family) !== interaction.family;
       return differs ? {
         interactionId: `source_projection:${index}`,

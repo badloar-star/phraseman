@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "спросить об одном месте или специалисте: `Is there a/an + singular noun?`",
+    "uk": "запитати про одне місце або одного фахівця: `Is there a/an + singular noun?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Стоматолог",
+        "uk": "Стоматолог"
+      },
+      "bodyByLocale": {
+        "ru": "`dentist` — «стоматолог», врач, который лечит зубы. В справочной это название специалиста, которого ищут при зубной боли, осмотре или лечении. Слово `dentist` называет именно врача, а `clinic` — место. Перед названием одного специалиста в вопросе будет `a dentist`.",
+        "uk": "`dentist` — «стоматолог», лікар, який лікує зуби. Біля інформаційної стійки ви шукаєте саме цього фахівця через зубний біль. Слово `dentist` називає лікаря, а `clinic` — місце. Перед назвою одного фахівця в запитанні буде `a dentist`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Вам нужен врач для зубов. Выберите слово.",
+          "uk": "Вам потрібен лікар для зубів. Оберіть слово."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r1",
+              "text": "dentist"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r2",
+              "text": "clinic"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r3",
+              "text": "pharmacy"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r1",
+              "text": "dentist"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r2",
+              "text": "clinic"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r3",
+              "text": "pharmacy"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам нужен врач для зубов. Выберите слово.",
+          "uk": "Вам потрібен лікар для зубів. Оберіть слово."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Есть ли стоматолог?",
+        "uk": "Чи є стоматолог?"
+      },
+      "bodyByLocale": {
+        "ru": "`Is there a dentist?` — «Есть стоматолог?». Это вопрос об одном нужном специалисте. В английском `is` ставят перед `there`, затем добавляют `a dentist`: артикль `a` показывает, что речь об одном стоматологе. Этот вопрос лучше успеть задать до того, как больной зуб начнёт отвечать за вас.",
+        "uk": "`Is there a dentist?` — «Є стоматолог?». Це запитання про одного потрібного фахівця. В англійській `is` ставлять перед `there`, а потім додають `a dentist`: артикль `a` показує, що йдеться про одного стоматолога. Це краще запитати до того, як хворий зуб почне відповідати за вас."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, есть ли здесь стоматолог. Выберите вопрос.",
+          "uk": "Запитайте, чи є тут стоматолог. Оберіть питання."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r1",
+              "text": "Is there a dentist?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r2",
+              "text": "There is a dentist?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r3",
+              "text": "Is there dentist?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r1",
+              "text": "Is there a dentist?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r2",
+              "text": "There is a dentist?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r3",
+              "text": "Is there dentist?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, есть ли здесь стоматолог. Выберите вопрос.",
+          "uk": "Запитайте, чи є тут стоматолог. Оберіть питання."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Есть ли стоматолог в здании?",
+        "uk": "Чи є стоматолог у будівлі?"
+      },
+      "bodyByLocale": {
+        "ru": "`Is there a dentist in the building?` — «В здании есть стоматолог?». Порядок вопроса: сначала `Is there`, затем `a dentist`, потом место `in the building`. Артикль `a` показывает одного специалиста. Утверждение начиналось бы с `There is`, а вопрос начинается с `Is there`.",
+        "uk": "`Is there a dentist in the building?` — «У будівлі є стоматолог?». Порядок запитання: спочатку `Is there`, потім `a dentist`, далі місце `in the building`. Артикль `a` показує одного фахівця. Твердження починалося б із `There is`, а запитання починається з `Is there`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, есть ли в здании стоматолог. Выберите вопрос.",
+          "uk": "Запитайте, чи є в будівлі стоматолог. Оберіть запитання."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r1",
+              "text": "Is there a dentist in the building?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r2",
+              "text": "There is a dentist in the building?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r3",
+              "text": "Is there dentist in the building?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r1",
+              "text": "Is there a dentist in the building?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r2",
+              "text": "There is a dentist in the building?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r3",
+              "text": "Is there dentist in the building?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, есть ли в здании стоматолог. Выберите вопрос.",
+          "uk": "Запитайте, чи є в будівлі стоматолог. Оберіть запитання."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9e07aa65252fc617c651c8e56992ad37bdfca9757fef205f59bbfba8d2c9a430"
+}

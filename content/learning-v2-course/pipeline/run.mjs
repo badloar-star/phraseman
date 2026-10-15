@@ -26,14 +26,27 @@ import { fileURLToPath } from "node:url";
 import { bindTasteReceiptToSource, isWellFormedBeShortAnswer, sessionIdFromDirectory, shortAnswerConstructionFacts, sourceBytesSha256, sourceSha256 } from "./owner_quality.mjs";
 import { requirePreJudgeChoreography } from "./prejudge_choreography.mjs";
 import { parseIntro, parsePractice } from "./build_release.mjs";
-import { CANONICAL_BINDING_SCHEMA_VERSION, judgeIssues, judgeReceiptContractIssues, requiredJudgesForSession, sessionReadiness } from "./session_readiness.mjs";
-import { preauthoringDocumentManifest, requirePreauthoringReceipt } from "./preauthoring_guard.mjs";
+import { CANONICAL_BINDING_SCHEMA_VERSION, judgeIssues, judgeReceiptContractIssues, requiredJudgesForSession } from "./session_readiness.mjs";
+import { acquirePreauthoringSessionLock } from "./preauthoring_guard.mjs";
+import {
+  APPROVED_ENGLISH_PLAN_SHA256,
+  buildAuthoringAdmission,
+  captureMandatoryAuthoringSources,
+  collectAcceptedPrefixPrerequisiteCoverage,
+  parseBlueprintAuthoringContract,
+  runEnglishBlueprintIntegrityGate,
+} from "./authoring_admission.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
+const REPO_ROOT = path.resolve(ROOT, "../..");
+const DESKTOP_CODEX_ROOT = process.env.PHRASEMAN_CODEX_START_DIR || "C:/Users/badlo/OneDrive/Desktop/Codex";
 const WORK_DIR = process.env.FACTORY_WORK_DIR || path.join(process.env.TEMP || process.env.TMP || "C:/Temp", "learning-v2-factory");
 const LOG = (...a) => console.log("[FACTORY]", ...a);
 const WARN = (...a) => console.warn("[FACTORY][WARN]", ...a);
+let CURRENT_AUTHORING_ADMISSION = null;
+let CURRENT_AUTHORING_SOURCE_SNAPSHOTS = null;
+let CURRENT_AUTHORING_SOURCE_INVENTORY = null;
 
 // ---------- аргументы ----------
 const args = process.argv.slice(2);
@@ -64,7 +77,36 @@ const WAIT_ON_LIMIT = !args.includes("--no-wait");
 const LOCALES = (opt("locales", "uk")).split(",").map((s) => s.trim()).filter(Boolean);
 
 // ---------- файлы ----------
-const read = (p) => fs.readFileSync(p, "utf8");
+const isProtectedAuthoringSource = (p) => {
+  const resolved = path.resolve(p);
+  const protectedRoots = [
+    DESKTOP_CODEX_ROOT,
+    path.join(REPO_ROOT, "docs", "v2"),
+    path.join(ROOT, "judgements", "owner"),
+    path.join(ROOT, "exemplars"),
+    path.join(ROOT, "curriculum"),
+    path.join(HERE, "prompts"),
+  ].map((root) => `${path.resolve(root)}${path.sep}`);
+  const protectedFiles = new Set([
+    path.join(REPO_ROOT, "AGENTS.md"),
+    path.join(ROOT, "ГЛАВНОЕ_ТРЕБОВАНИЕ.md"),
+    path.join(ROOT, "КОНСТИТУЦИЯ.md"),
+    path.join(ROOT, "МЕТОД_РАБОТЫ.md"),
+    path.join(ROOT, "СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md"),
+    path.join(ROOT, "КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md"),
+    path.join(ROOT, "IMPROVEMENT_LOG.md"),
+    path.join(HERE, "КОНСТИТУЦИЯ_ДЛЯ_СУДЕЙ.md"),
+  ].map((file) => path.resolve(file)));
+  return protectedFiles.has(resolved) || protectedRoots.some((root) => resolved.startsWith(root));
+};
+const read = (p) => {
+  const resolved = path.resolve(p);
+  if (CURRENT_AUTHORING_SOURCE_SNAPSHOTS?.has(resolved)) return CURRENT_AUTHORING_SOURCE_SNAPSHOTS.get(resolved);
+  if (CURRENT_AUTHORING_SOURCE_SNAPSHOTS && isProtectedAuthoringSource(resolved)) {
+    throw new Error(`AUTHORING HOLD: unbound protected source read: ${resolved}`);
+  }
+  return fs.readFileSync(resolved, "utf8");
+};
 const exists = (p) => fs.existsSync(p);
 const write = (p, s) => {
   fs.mkdirSync(path.dirname(p), { recursive: true });
@@ -77,8 +119,15 @@ let mockLocaleCommitMutationConsumed = false;
 let mockLocaleCorrectionCommitMutationConsumed = false;
 let mockLocaleJudgeCallCount = 0;
 let mockCallCount = 0;
-const listDir = (d, filter = () => true) =>
-  exists(d) ? fs.readdirSync(d).filter(filter).sort().map((f) => path.join(d, f)) : [];
+const listDir = (d, filter = () => true) => {
+  const resolved = path.resolve(d);
+  if (CURRENT_AUTHORING_SOURCE_INVENTORY && isProtectedAuthoringSource(path.join(resolved, "inventory-entry"))) {
+    return [...CURRENT_AUTHORING_SOURCE_INVENTORY]
+      .filter((file) => path.dirname(file) === resolved && filter(path.basename(file)))
+      .sort();
+  }
+  return exists(resolved) ? fs.readdirSync(resolved).filter(filter).sort().map((f) => path.join(resolved, f)) : [];
+};
 
 function applyMockMutation(envName, consumed) {
   const mutateFile = process.env[envName]?.trim();
@@ -99,8 +148,7 @@ function applyMockMutation(envName, consumed) {
 const MAIN_REQUIREMENT_PATH = path.join(ROOT, "ГЛАВНОЕ_ТРЕБОВАНИЕ.md");
 const mainRequirement = () => {
   if (!exists(MAIN_REQUIREMENT_PATH)) {
-    LOG("ранний выход: нет ГЛАВНОЕ_ТРЕБОВАНИЕ.md — без него промпты не собираются");
-    process.exit(2);
+    throw new Error("ранний выход: нет ГЛАВНОЕ_ТРЕБОВАНИЕ.md — без него промпты не собираются");
   }
   return read(MAIN_REQUIREMENT_PATH);
 };
@@ -151,8 +199,7 @@ function parseSession(id) {
 function loadPlan(lang, lesson) {
   const p = path.join(ROOT, "curriculum", lang, "ПЛАН_КУРСА.md");
   if (!exists(p)) {
-    LOG("ранний выход: нет плана", p);
-    process.exit(2);
+    throw new Error(`ранний выход: нет плана ${p}`);
   }
   // зачем: СЕКЦИЯ УРОКА. Параметр lesson принимался, но не использовался —
   // читались все главы подряд и бралось первое совпадение по номеру. Урок 2
@@ -164,7 +211,7 @@ function loadPlan(lang, lesson) {
   let lines;
   if (startIdx < 0) {
     if (lessonNum === 1) lines = all;
-    else { LOG("ранний выход: в плане нет раздела «## Урок " + lessonNum + "»"); process.exit(2); }
+    else { throw new Error("ранний выход: в плане нет раздела «## Урок " + lessonNum + "»"); }
   } else {
     let endIdx = all.findIndex((l, k) => k > startIdx && /^## Урок \d+/.test(l));
     if (endIdx < 0) endIdx = all.length;
@@ -677,12 +724,32 @@ function courseContext(lang) {
   return { constitution, constitutionShort, exemplars, verdicts, langFeatures, langName };
 }
 
+const BLUEPRINT_ROLE_EXEMPLAR_KEYS = Object.freeze({
+  introduce_grammar: "l01_s01",
+  introduce_or_guided_extension: "l01_s02",
+  introduce_or_diagnostic_contrast: "l01_s03",
+  guided_application: "l01_s02",
+  diagnostic_repair: "l01_s03",
+  listening_retrieval: "l01_s02",
+  spoken_production: "l01_s02",
+  checkpoint: "l01_s02",
+});
+
+export function exemplarKeyForBlueprintRole(role) {
+  const key = BLUEPRINT_ROLE_EXEMPLAR_KEYS[role];
+  if (!key) throw new Error(`blueprint_role_exemplar_missing:${role}`);
+  return key;
+}
+
 function exemplarOfSameType(lang, row) {
   // зачем: судья-редактор сравнивает парно с эталоном ТОГО ЖЕ типа
   const map = { новая: "l01_s01", применение: "l01_s02", "голос/слух": "l01_s02", контраст: "l01_s03", перенос: "l01_s02", слова: "l01_s02", checkpoint: "l01_s02", тонкость: "l01_s03" };
-  const key = Object.keys(map).find((k) => row.type.startsWith(k)) || "применение";
+  const exactBlueprintRole = Object.hasOwn(BLUEPRINT_ROLE_EXEMPLAR_KEYS, row.type);
+  const key = Object.keys(map).find((candidate) => row.type.startsWith(candidate)) || "применение";
   // сессия с новой операцией поверх известной — эталон 3
-  const id = row.type.startsWith("новая") && row.n > 1 ? "l01_s03" : map[key];
+  const id = exactBlueprintRole
+    ? exemplarKeyForBlueprintRole(row.type)
+    : row.type.startsWith("новая") && row.n > 1 ? "l01_s03" : map[key];
   const f = path.join(ROOT, "exemplars", lang, `${id}.ru.md`);
   LOG(`эталон того же типа для «${row.type}»: ${id}`);
   return read(f);
@@ -1031,7 +1098,6 @@ function ladderBrief(lesson) {
 }
 
 function buildVars(ctx, plan, row, known, S) {
-  const preauthoringPath = path.join(S.dir, "preauthoring.json");
   return {
     КОНСТИТУЦИЯ: ctx.constitution,
     ЭТАЛОНЫ: ctx.exemplars,
@@ -1042,12 +1108,18 @@ function buildVars(ctx, plan, row, known, S) {
     ОСОБЕННОСТИ_ЯЗЫКА: ctx.langFeatures,
     СТРОКА_ПЛАНА: `Урок ${S.lesson}, сессия ${row.n} · тип: ${row.type} · грамматика: ${row.grammar} · новые слова: ${row.words} · момент сцены: ${row.moment}`,
     СЦЕНА_ГЛАВЫ: row.scene,
-    АРКА_УРОКА: plan.arc,
+    АРКА_УРОКА: CURRENT_AUTHORING_ADMISSION
+      ? CURRENT_AUTHORING_ADMISSION.authoritativePlan.arc
+      : plan.arc,
     ПРОЙДЕННЫЕ_ОПЕРАЦИИ: known.ops.join("; ") || "(ничего)",
     ПРОЙДЕННЫЕ_СЛОВА: known.words.join(", ") || "(ничего)",
-    СОСЕДНИЕ_СЕССИИ_КРАТКО: neighborsSummary(S.lang, S.lesson, row.n),
+    СОСЕДНИЕ_СЕССИИ_КРАТКО: CURRENT_AUTHORING_ADMISSION
+      ? "(exact blueprint packet is authoritative; legacy plan neighbors are reference-only)"
+      : neighborsSummary(S.lang, S.lesson, row.n),
     ЛЕСТНИЦА_СЛОЖНОСТИ: ladderBrief(S.lesson),
-    ПРЕДАВТОРСКИЙ_ПАКЕТ: exists(preauthoringPath) ? read(preauthoringPath) : "(PREAUTHORING PASS отсутствует)",
+    АВТОМАТИЧЕСКИЙ_ПАКЕТ_ДОПУСКА: CURRENT_AUTHORING_ADMISSION
+      ? JSON.stringify(CURRENT_AUTHORING_ADMISSION, null, 2)
+      : "(машинный пакет допуска доступен только внутри draft/edit/full)",
   };
 }
 
@@ -1772,6 +1844,7 @@ async function main() {
     process.exit(2);
   }
   const S = parseSession(SESSION);
+  const authoringCommand = ["preflight", "draft", "edit", "full"].includes(cmd);
   if (cmd === "review-export") {
     const { exportReviewPacket } = await import("./review_renewal.mjs");
     const out = opt("out", null);
@@ -1807,63 +1880,78 @@ async function main() {
     LOG(`status finalized: converged=${status.converged}; sourceSha256=${status.sourceSha256}`);
     return;
   }
+  let authoringLock = authoringCommand
+    ? acquirePreauthoringSessionLock(SESSION)
+    : null;
+  const releaseAuthoringLock = () => {
+    if (!authoringLock) return;
+    const heldLock = authoringLock;
+    authoringLock = null;
+    heldLock.release();
+  };
+  try {
+  const mandatorySources = authoringCommand
+    ? captureMandatoryAuthoringSources({
+        repoRoot: REPO_ROOT,
+        factoryRoot: ROOT,
+        desktopCodexRoot: DESKTOP_CODEX_ROOT,
+        language: S.lang,
+      })
+    : null;
+  if (mandatorySources) {
+    CURRENT_AUTHORING_SOURCE_SNAPSHOTS = mandatorySources.snapshots;
+    CURRENT_AUTHORING_SOURCE_INVENTORY = new Set(mandatorySources.snapshots.keys());
+  }
   const plan = loadPlan(S.lang, S.lesson);
-  const row = plan.rows.get(S.session);
+  let row = plan.rows.get(S.session);
   if (!row) {
-    LOG(`ранний выход: в плане урока ${S.lesson} нет сессии ${S.session}`);
-    process.exit(2);
+    throw new Error(`ранний выход: в плане урока ${S.lesson} нет сессии ${S.session}`);
   }
   const previousPlans = Array.from({ length: S.lesson - 1 }, (_, index) => loadPlan(S.lang, index + 1));
-  const known = knownBefore(plan, S.session, previousPlans);
+  let known = knownBefore(plan, S.session, previousPlans);
   LOG(`сессия ${SESSION}: тип «${row.type}», грамматика «${row.grammar}», слова «${row.words}»; известно операций ${known.ops.length}, слов ${known.words.length}`);
   const ctx = courseContext(S.lang);
-  fs.mkdirSync(S.dir, { recursive: true });
 
   const curriculumRow = `Урок ${S.lesson}, сессия ${row.n} · тип: ${row.type} · грамматика: ${row.grammar} · новые слова: ${row.words} · момент сцены: ${row.moment}`;
-  const previousSession = S.session > 1
-    ? `${S.lang}/l${String(S.lesson).padStart(2, "0")}/s${String(S.session - 1).padStart(2, "0")}`
-    : (S.lesson > 1 ? `${S.lang}/l${String(S.lesson - 1).padStart(2, "0")}/s56` : "none");
-  const plannedNewWords = String(row.words || "")
-    .replace(/^новое:\s*/i, "")
-    .split(/;\s*возврат:/i)[0]
-    .split(",")
-    .map((word) => word.trim())
-    .filter(Boolean);
-  const priorRangeIssues = [];
-  if (S.lang === "en" && S.lesson === 3 && S.session > 25) {
-    for (let prior = 25; prior < S.session; prior += 1) {
-      const id = `en/l03/s${String(prior).padStart(2, "0")}`;
-      const dir = path.join(ROOT, "sessions", "en", "l03", `s${String(prior).padStart(2, "0")}`);
-      const readiness = sessionReadiness(dir, ["uk"], { sessionId: id });
-      if (!readiness.ready) priorRangeIssues.push(`${id}: ${readiness.issues.slice(0, 2).join(", ")}`);
+  if (authoringCommand) {
+    const planPath = path.join(ROOT, "curriculum", S.lang, "ПЛАН_КУРСА.md");
+    const blueprintGate = S.lang === "en"
+      ? runEnglishBlueprintIntegrityGate(REPO_ROOT, SESSION)
+      : { status: 1, stdout: "", stderr: `automatic admission is not configured for ${S.lang}` };
+    let acceptedPrefixCoverage = null;
+    try {
+      const blueprintContract = parseBlueprintAuthoringContract(blueprintGate, SESSION);
+      acceptedPrefixCoverage = await collectAcceptedPrefixPrerequisiteCoverage({
+        repoRoot: REPO_ROOT,
+        sessionsRoot: path.join(ROOT, "sessions"),
+        session: SESSION,
+        blueprintContract,
+      });
+    } catch {
+      // buildAuthoringAdmission records the exact blueprint-contract failure.
     }
-  }
-  const preauthoringExpected = {
-    session: SESSION,
-    curriculumRow,
-    previousSession,
-    expectedNewWords: plannedNewWords,
-    priorRangeReady: priorRangeIssues.length === 0,
-    priorRangeIssues,
-  };
-  if (cmd === "preflight") {
-    console.log(JSON.stringify({
-      verdict: "BLOCK",
+    const admission = buildAuthoringAdmission({
       session: SESSION,
-      documentHashes: preauthoringDocumentManifest(),
+      row,
       curriculumRow,
-      previousSession,
-      instruction: "Передайте этот пакет независимому PREAUTHORING GUARDIAN; автор не заполняет его сам.",
-    }, null, 2));
-    return;
-  }
-  if (["draft", "edit", "full"].includes(cmd)) {
-    const gate = requirePreauthoringReceipt(S.dir, preauthoringExpected);
-    if (!gate.ready) {
-      WARN(`PREAUTHORING HOLD — автору запрещено начинать:\n  ${gate.issues.join("\n  ")}`);
-      process.exit(2);
+      planPath,
+      expectedPlanSha256: S.lang === "en" ? APPROVED_ENGLISH_PLAN_SHA256 : "",
+      sessionsRoot: path.join(ROOT, "sessions"),
+      mandatorySources,
+      blueprintGate,
+      acceptedPrefixCoverage,
+    });
+    if (!admission.ready) {
+      throw new Error(`AUTHORING HOLD — автоматический допуск отклонён:\n  ${admission.issues.join("\n  ")}`);
     }
-    LOG(`PREAUTHORING PASS: ${SESSION}; обязательные документы и строка плана подтверждены`);
+    CURRENT_AUTHORING_ADMISSION = admission.packet;
+    row = admission.packet.authoritativeRow;
+    known = admission.packet.authoritativeKnown;
+    LOG(`AUTHORING ADMISSION PASS: ${SESSION}; blueprint=${admission.packet.blueprintFingerprint}; row=${admission.packet.curriculumRowSha256}`);
+    if (cmd === "preflight") {
+      console.log(JSON.stringify(admission.packet, null, 2));
+      return;
+    }
   }
 
   if (cmd === "draft") return stageDraft(S, ctx, plan, row, known);
@@ -1875,7 +1963,7 @@ async function main() {
   // чтобы вызывающий отличал «фактов нет» от «скрипт упал».
   if (cmd === "facts") {
     const f = path.join(S.dir, opt("file", "final.ru.md"));
-    if (!fs.existsSync(f)) { console.error("НЕТ ФАЙЛА " + f); process.exit(2); }
+    if (!fs.existsSync(f)) throw new Error("НЕТ ФАЙЛА " + f);
     const hard = machineFacts(f, SESSION).split("\n").filter((l) => HARD_FACT_RE.test(l));
     for (const l of hard) console.log(l);
     return;
@@ -2018,8 +2106,13 @@ async function main() {
     } catch (e) { WARN(`автосборка макета не запустилась: ${e.message}`); }
     return;
   }
-  LOG("ранний выход: неизвестная команда", cmd);
-  process.exit(2);
+  throw new Error(`ранний выход: неизвестная команда ${cmd}`);
+  } finally {
+    CURRENT_AUTHORING_ADMISSION = null;
+    CURRENT_AUTHORING_SOURCE_SNAPSHOTS = null;
+    CURRENT_AUTHORING_SOURCE_INVENTORY = null;
+    releaseAuthoringLock();
+  }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

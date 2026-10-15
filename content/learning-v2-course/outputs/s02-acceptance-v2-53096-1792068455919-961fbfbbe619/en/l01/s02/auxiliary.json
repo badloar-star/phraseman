@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro1:r2": {
+          "ru": "Sad значит «грустный»; Том хочет сказать, что ему нужен отдых.",
+          "uk": "Sad означає «сумний»; Том хоче сказати, що йому потрібен відпочинок."
+        },
+        "en:lesson-01:session-02:intro1:r3": {
+          "ru": "В полной фразе о состоянии между `I` и `tired` нужно `am`.",
+          "uk": "У повному реченні про стан між `I` та `tired` потрібне `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro2:r2": {
+          "ru": "Happy значит «рад»; Том расстроен из-за отмены вечера.",
+          "uk": "Happy означає «радий»; Том засмучений через скасування вечора."
+        },
+        "en:lesson-01:session-02:intro2:r3": {
+          "ru": "В полной фразе о состоянии перед `sad` нужно `am`.",
+          "uk": "У повному реченні про стан перед `sad` потрібне `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro3:r2": {
+          "ru": "Здесь пропущено `am`: полная фраза — `I am tired`.",
+          "uk": "Тут пропущено `am`: повне речення — `I am tired`."
+        },
+        "en:lesson-01:session-02:intro3:r3": {
+          "ru": "Эта фраза значит «мне грустно», а Том хочет сказать, что ему нужен отдых.",
+          "uk": "Це речення означає «мені сумно», а Том хоче сказати, що йому потрібен відпочинок."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ee75f110feb17fcc5b6cf23bc0fd1813d958934c898ac3bbe3e62636386a9f0d"
+}

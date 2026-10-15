@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "learning_v2_session_acceptance_receipt_v1",
+  "session": "en/l01/s04",
+  "courseSessionId": "en:lesson-01:session-04",
+  "state": "TEXT_CANONICAL",
+  "candidateRoot": "content/learning-v2-course/outputs/s04-corrections-private-20261014-v9-projection",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s04-corrections-private-20261014-v9-projection/content-receipt.json",
+  "candidateReceiptSha256": "b9fea6332a22f6bd295625b2fca97d85197672071ca95ae997c77c15a6f97686",
+  "candidateBundleSha256": "a154b2ad0b9cee08a7a38d7a758a0d8f5e990961d54507ffa8c6bf1ba4b8b2aa",
+  "candidateInventorySha256": "220c20643c43ca76e3e07ffa38931280cdad73c571b6211df73c79818e81233b",
+  "sourceFingerprint": "1d2b12c9a02aa1aa3654c22cd36237bb49ca5b5893a0f15efeac245cbf26b73a",
+  "deterministicGateReport": {
+    "path": "content/learning-v2-course/judgements/2026-10-14_s04_deterministic_gates.current.json",
+    "sha256": "157c49d6d493fa57bdf1eec80c02117000bc7b159b71d7b27f4df9e9fcb40ffd",
+    "bytes": 1580
+  },
+  "reviewEvidence": [
+    {
+      "dimension": "blind_learner",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-14_s04_blind_learner.current.json",
+      "artifactSha256": "f8b7cff4887a5f82a0d4806634c747f6cbfcbf6711bf7b00d5fc791d8ae5bdb4",
+      "artifactBytes": 1318,
+      "dispatchProvenance": {
+        "agent": "/root/blind_review_s04_v9",
+        "configuredModel": "gpt-6-luna"
+      }
+    },
+    {
+      "dimension": "language_pedagogy_locale",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-14_s04_language_pedagogy_locale.current.json",
+      "artifactSha256": "edf2029f3b27729876f39bf4ee59d7713bf327b674eeb683faada1516cc5c69d",
+      "artifactBytes": 1340,
+      "dispatchProvenance": {
+        "agent": "/root/language_review_s04_v9",
+        "configuredModel": "gpt-6-luna"
+      }
+    }
+  ],
+  "localeEvidence": {
+    "path": "content/learning-v2-course/outputs/s04-corrections-private-20261014-v9-projection/source-snapshot/content/learning-v2-course/sessions/en/l01/s04/locales_batch.md",
+    "sha256": "3424c2a6e1f95a386cb92c6229337c1f3b42b42082170275322aa36da9313f0d",
+    "bytes": 13245
+  },
+  "audioTechnicalEvidence": null,
+  "semanticAudioVerified": false,
+  "releaseAuthority": false,
+  "immutableContentOnly": true
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "learning_v2_session_immutable_private_head_v2",
+  "courseSessionId": "en:lesson-01:session-02",
+  "releaseAuthority": false,
+  "reviewStatus": "HOLD",
+  "textVerified": false,
+  "textReviewEvidencePersisted": false,
+  "candidateRoot": "content/learning-v2-course/outputs/s02-d956-machine-20261015-v5",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s02-d956-machine-20261015-v5/content-receipt.json",
+  "candidateReceiptInventorySha256": "ac44d16bcf74b47ee86377f62dbffe39ac327a99f7e8d3b55bacfbd908407a03",
+  "contentReceiptSha256": "539f72f05faba3a70736b392e33d63ac2bb13aa8fc90d3a67efe54b662167b16",
+  "candidateBundleSha256": "0cd7ef1f6f5a5f5c231b0d98072de961a1159dcf15c07223491d739f4ac05e0c",
+  "candidateFiles": [
+    {
+      "path": "en/l01/s02/answers.json",
+      "bytes": 2751,
+      "sha256": "226277fdc9af98967e7e58a8b0ee3f699d68b23cf2dba6dfa0e26facecff38ba"
+    },
+    {
+      "path": "en/l01/s02/auxiliary.json",
+      "bytes": 2363,
+      "sha256": "11491519173e694d20ef22000bd715bfb6753a684955ae101e4853ba2de3c400"
+    },
+    {
+      "path": "en/l01/s02/intro.json",
+      "bytes": 9235,
+      "sha256": "47dd49bfab27a3d3d3a3912c43b1b200b004cdd518cc4eaa7a9fba7987638449"
+    },
+    {
+      "path": "en/l01/s02/learner.json",
+      "bytes": 34848,
+      "sha256": "b86c233e786791a2d276ba81a6c8507bf44b5b95b7baf15ea06f90e2e21107af"
+    },
+    {
+      "path": "en/l01/s02/learner.uk.json",
+      "bytes": 35045,
+      "sha256": "99d100873f01b42fc9097d4eb17407456ccfcc1d57b0a4fb6db8a5b79a788d3e"
+    }
+  ],
+  "holdReason": "Current independent text reviews are not persisted as artifacts bound to this exact content receipt. This private preview is not release authority.",
+  "revisionPredecessorReceiptPath": "content/learning-v2-course/outputs/s02-wrong-only-private-20261014-v2/content-receipt.json",
+  "revisionPredecessorReceiptSha256": "242494cb156b75798c55589eccab1c586e0cf0f3b20b39355ab0c1cf7ad1f27b",
+  "immutable": true,
+  "mutablePointerAuthority": false
+}

@@ -1,0 +1,97 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-46:i01",
+    "correctText": "roof",
+    "correctResponseId": "en:lesson-03:session-46:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i03",
+    "correctText": "lift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i05",
+    "correctText": "stairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i02",
+    "correctText": "roof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i04",
+    "correctText": "lift",
+    "correctResponseId": "en:lesson-03:session-46:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i06",
+    "correctText": "stairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i08",
+    "correctText": "roof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i09",
+    "correctText": "lift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i10",
+    "correctText": "stairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i07",
+    "correctText": "en:lesson-03:session-46:i07:p1=roof\nen:lesson-03:session-46:i07:p2=lift\nen:lesson-03:session-46:i07:p3=stairs\nen:lesson-03:session-46:i07:p4=door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i11",
+    "correctText": "The lift is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i12",
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i13",
+    "correctText": "The stairs are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i14",
+    "correctText": "The stairs are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i15",
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-46:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i16",
+    "correctText": "Крыша старая",
+    "correctResponseId": "en:lesson-03:session-46:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i17:s01",
+    "correctText": "The roof is old.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i17:s02",
+    "correctText": "The lift is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:i17:s03",
+    "correctText": "The stairs are here.",
+    "correctResponseId": null
+  }
+]

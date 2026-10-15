@@ -5,6 +5,7 @@ import test from "node:test";
 
 import {
   applyPracticeExplanationsV1,
+  parseIntroOptionsFromMarkdown,
   projectIntroResponseAnalysesV1,
   projectIntroResponseDiagnosticsV1,
   validatePracticeExplanationsV1,
@@ -23,6 +24,26 @@ function readJson(file) {
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
+
+test("intro Markdown accepts a correct option without feedback but rejects a wrong option without feedback", () => {
+  const valid = parseIntroOptionsFromMarkdown([
+    "## Интро 1",
+    "- ✅ **I am happy.**",
+    "- ❌ **I happy.** — *После I нужна форма am.*",
+  ].join("\n"), "ru");
+  assert.deepEqual(valid.issues, []);
+  assert.deepEqual(valid.options.map(({ text, correct, feedback }) => ({ text, correct, feedback })), [
+    { text: "I am happy.", correct: true, feedback: "" },
+    { text: "I happy.", correct: false, feedback: "После I нужна форма am." },
+  ]);
+
+  const invalid = parseIntroOptionsFromMarkdown([
+    "## Интро 1",
+    "- ✅ **I am happy.**",
+    "- ❌ **I happy.**",
+  ].join("\n"), "ru");
+  assert.ok(invalid.issues.some((issue) => issue.includes("intro1:r2:wrong_feedback_missing:ru")));
+});
 
 test("S01 has a source-bound RU/UK explanation packet for every builder, dictation, and speed pair", () => {
   assert.equal(fs.existsSync(SIDECAR), true, "practice.explanations.v1.json missing");
@@ -413,15 +434,15 @@ test("S01 wrong-answer diagnostics are misconception-specific and state a truthf
   assert.ok(new Set(wrong.map((entry) => entry.acceptabilityBoundaryByLocale.ru)).size >= Math.ceil(wrong.length * 0.75));
 
   const shortAnswer = sidecar.introResponses.find((entry) => entry.textByLocale.ru === "I am.");
-  assert.match(shortAnswer.analysisByLocale.ru.explanationByLocale.ru, /кратк(?:ий|ого) ответ/iu);
-  assert.match(shortAnswer.analysisByLocale.uk.explanationByLocale.uk, /коротк(?:а|ої) відповід/iu);
-  assert.match(shortAnswer.whyWrongHereByLocale.ru, /не отвечает.*рад/iu);
-  assert.match(shortAnswer.whyWrongHereByLocale.uk, /не відповідає.*рад/iu);
+  assert.match(shortAnswer.whyWrongHereByLocale.ru, /недостаточно.*рад/iu);
+  assert.match(shortAnswer.whyWrongHereByLocale.uk, /недостатньо.*раді/iu);
+  assert.match(shortAnswer.acceptabilityBoundaryByLocale.ru, /может быть полным ответом.*смысл.*задан вопросом/iu);
+  assert.match(shortAnswer.acceptabilityBoundaryByLocale.uk, /може бути повною відповіддю.*зміст.*заданий запитанням/iu);
   for (const locale of ["ru", "uk"]) {
     const am = shortAnswer.analysisByLocale[locale].units.find((unit) => unit.text === "am");
-    assert.doesNotMatch(am.functionByLocale.ru, /не закончен|не хватает слова/iu);
-    assert.doesNotMatch(am.functionByLocale.uk, /не завершен|бракує слова/iu);
-    assert.match(am.functionByLocale[locale], locale === "ru" ? /кратк.*ответ.*эмоц/iu : /коротк.*відповід.*емоці/iu);
+    assert.match(am.functionByLocale[locale], locale === "ru"
+      ? /без happy состояние не названо/iu
+      : /без happy стан не названо/iu);
   }
 });
 
@@ -499,8 +520,10 @@ test("S01 localized I am fine paraphrase binds every RU/UK unit to exact evidenc
   }
 });
 
-test("S01 task 11 keeps the listening clue neutral and identifies the learner in feedback", () => {
+test("S01 task 11 keeps the listening clue neutral and authors feedback for wrong answers only", () => {
   const atomic = readJson(ATOMIC);
+  const answer = atomic.answers.find((entry) => entry.interactionId === "en:lesson-01:session-01:i13");
+  assert.equal(answer.correctResponseId, "en:lesson-01:session-01:i13:r1");
   for (const locale of ["ru", "uk"]) {
     const interaction = atomic.interactionsByLocale[locale].find((entry) => entry.ordinal === 11);
     assert.equal(interaction.interactionId, "en:lesson-01:session-01:i13");
@@ -508,8 +531,13 @@ test("S01 task 11 keeps the listening clue neutral and identifies the learner in
     assert.equal(interaction.modePayload.localizedScene[locale], locale === "ru"
       ? "Вы разговариваете с Мирой; выберите смысл услышанной реплики."
       : "Ви розмовляєте з Мірою; виберіть зміст почутої репліки.");
-    const correct = interaction.modePayload.choiceFeedback.find((entry) => entry.correct);
-    assert.match(correct.feedbackByLocale[locale], locale === "ru" ? /вы отвечаете/iu : /ви відповідаєте/iu);
+    assert.equal(
+      interaction.modePayload.choiceFeedback.some((entry) => entry.responseId === answer.correctResponseId),
+      false,
+      "runtime owns the localized correct verdict",
+    );
+    assert.equal(interaction.modePayload.choiceFeedback.every((entry) => entry.correct === false), true);
+    assert.equal(interaction.modePayload.choiceFeedback.every((entry) => entry.feedbackByLocale[locale]?.trim()), true);
   }
 });
 
@@ -639,16 +667,16 @@ test("S01 learner explanations use only admitted English constructions", () => {
   }
 });
 
-test("S01 I am distractor is classified as contextually incomplete and every token note states that boundary", () => {
+test("S01 I am distractor is insufficient for this prompt while unit notes stay context-specific", () => {
   const sidecar = readJson(SIDECAR);
   const response = sidecar.introResponses.find((entry) => entry.textByLocale.ru === "I am.");
   assert.equal(response.errorType, "meaning_incomplete");
   for (const locale of ["ru", "uk"]) {
     const analysis = response.analysisByLocale[locale];
-    for (const unit of analysis.units) {
-      assert.match(unit.functionByLocale.ru, /happy/u, `${locale}:${unit.text}: RU note must state the whole-answer boundary`);
-      assert.match(unit.functionByLocale.uk, /happy/u, `${locale}:${unit.text}: UK note must state the whole-answer boundary`);
-    }
+    const am = analysis.units.find((unit) => unit.text === "am");
+    assert.match(am.functionByLocale[locale], locale === "ru"
+      ? /без happy состояние не названо/iu
+      : /без happy стан не названо/iu);
     assert.match(analysis.units[0].functionByLocale.ru, /подлежащ/u);
     assert.match(analysis.units[0].functionByLocale.uk, /підмет/u);
     assert.match(analysis.units.at(-1).functionByLocale.ru, /предложен/u);

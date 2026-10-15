@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-08:intro1:r2": {
+          "ru": "В полной фразе о себе перед прилагательным нужно `am`: `I am ready`.",
+          "uk": "У повному реченні про себе перед прикметником потрібне `am`: `I am ready`."
+        },
+        "en:lesson-01:session-08:intro1:r3": {
+          "ru": "`not` в конце не живёт. Ему место сразу после `am`.",
+          "uk": "`not` у кінці не живе. Його місце одразу після `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-08:intro2:r2": {
+          "ru": "В этой фразе после `I` нужно `am`, а `not` ставится сразу за ним.",
+          "uk": "У цій фразі після `I` потрібне `am`, а `not` ставиться одразу за ним."
+        },
+        "en:lesson-01:session-08:intro2:r3": {
+          "ru": "`No` обычно ставят перед существительным: `no time`. Перед прилагательным после `am` нужно `not`: `I am not sure`.",
+          "uk": "`No` зазвичай ставлять перед іменником: `no time`. Перед прикметником після `am` потрібно `not`: `I am not sure`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-08:intro3:r2": {
+          "ru": "Правда наоборот. Вы закончили — а так вас оставят ещё на час.",
+          "uk": "Правда навпаки. Ви закінчили — а так вас залишать ще на годину."
+        },
+        "en:lesson-01:session-08:intro3:r3": {
+          "ru": "В полной фразе о себе перед `am` нужно назвать себя: `I am done`.",
+          "uk": "У повному реченні про себе перед `am` потрібно назвати себе: `I am done`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b56e051c504a488b7a7be0636df5007ea066a9a120c1a4c679158165c7e00ad2"
+}

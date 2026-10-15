@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-10",
+  "candidateBundleSha256": "34d031698c739436525647f0fd94f884546a2105de2562a38b9b64819fb53f6b",
+  "contentReceiptSha256": "f851a2de2d4483360c5c46724f28c8bbf924501781ffcb23c50de62f8a24f204",
+  "candidateInventorySha256": "73f2ebc368c1ff697a8d9a43351b5d84db0d253ef17964a7cf8e703e9fe5b656",
+  "sourceFingerprint": "47be0d22036036c15b5ea487830e1e4597cfadff198d532433e5b78261bca4d8",
+  "verdict": "PASS",
+  "gates": [
+    {"id":"focused_source_candidate_acceptance_suite","verdict":"PASS","tests":35,"failures":0,"exitCode":0},
+    {"id":"receipt_inventory_and_bundle_rehash","verdict":"PASS","files":18,"failures":0,"exitCode":0},
+    {"id":"locale_projection_wrong_only_feedback","verdict":"PASS","feedbackRows":24,"correctAnswerFeedbackRows":0,"missingWrongAnswerFeedbackRows":0,"introPagesPerLocale":3,"practiceInteractionsPerLocale":20,"exitCode":0}
+  ]
+}

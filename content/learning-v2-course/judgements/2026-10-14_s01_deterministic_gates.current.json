@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-01",
+  "candidateBundleSha256": "f537e8fe7e168549d1e1bc2299d4c26ac038d2bfc11575f5ce50ab7a1acd9207",
+  "contentReceiptSha256": "a61233a87a51664b38c3d9d4e3b19d5fd3b0b3c5feca95148c21c914b85f5501",
+  "candidateInventorySha256": "a9961ffe087c1970017e58bb4e12146a49ef2aa31097ea75fe1ace4dfdd02d58",
+  "sourceFingerprint": "914ae29bb356197229ea051490a1643db2347222cd82daf088ae99a981a9b832",
+  "verdict": "PASS",
+  "runLog": { "path": ".codex-tmp/acceptance-gates/s01.log", "sha256": "8494f8fad0b8cb41a048a022b279c8e30277a73ff3f69324834fa3484a8b25e4" },
+  "gates": [
+    { "id": "focused_and_explanation_tests", "verdict": "PASS", "command": "node --test content/learning-v2-course/pipeline/l01s01_feedback_repair.test.mjs content/learning-v2-course/pipeline/practice_explanations_v1.test.mjs", "exitCode": 0, "tests": 56, "failures": 0 },
+    { "id": "locale_batch_parity", "verdict": "PASS", "command": "node content/learning-v2-course/pipeline/audit_locale_batch_parity.mjs --scope en/l01/s01", "exitCode": 0 },
+    { "id": "source_selectable_feedback", "verdict": "PASS", "command": "auditSelectableFeedback(en/l01/s01):source", "exitCode": 0, "sourceIssues": 0, "releaseIssuesOutOfScope": 14, "mockupIssuesOutOfScope": 14 },
+    { "id": "factory_intro_practice", "verdict": "PASS", "command": "auditFactoryIntroPractice(en/l01/s01)", "exitCode": 0, "findingCount": 0 }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "короткая просьба о предмете: `this/that + adjective + singular noun`, например `This round table, please.`",
+    "uk": "коротке прохання про предмет: `this/that + adjective + singular noun`, наприклад `This round table, please.`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Круглый стол рядом",
+        "uk": "Круглий стіл поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`round` — «круглый». У окна стоит стол после доставки. Он рядом с вами, и мастер ждёт, какой предмет оставить здесь. Скажите `This round table, please.`: сначала `This`, затем форма `round`, потом один предмет `table`. Артикль не нужен: `This` уже указывает на стол.",
+        "uk": "`round` — «круглий». Біля вікна стоїть стіл після доставки. Він поруч із вами, і майстер чекає, який предмет залишити тут. Скажіть `This round table, please.`: спочатку `This`, потім форма `round`, далі один предмет `table`. Артикль не потрібен: `This` уже вказує на стіл."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Круглый стол стоит рядом с вами. Выберите короткую просьбу мастеру.",
+          "uk": "Круглий стіл стоїть поруч із вами. Оберіть коротке прохання майстру."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-52:intro1:r1",
+              "text": "This round table, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro1:r2",
+              "text": "That round table, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro1:r3",
+              "text": "This table round, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-52:intro1:r1",
+              "text": "This round table, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro1:r2",
+              "text": "That round table, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro1:r3",
+              "text": "This table round, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Круглый стол стоит рядом с вами. Выберите короткую просьбу мастеру.",
+          "uk": "Круглий стіл стоїть поруч із вами. Оберіть коротке прохання майстру."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Квадратное зеркало дальше",
+        "uk": "Квадратне дзеркало далі"
+      },
+      "bodyByLocale": {
+        "ru": "`square` — «квадратный». Зеркало стоит дальше, у стены. Чтобы мастер взял именно его, скажите `That square mirror, please.` `That` указывает на предмет дальше от вас. После него сразу идут `square` и `mirror`: это одна короткая просьба, без `a`.",
+        "uk": "`square` — «квадратний». Дзеркало стоїть далі, біля стіни. Щоб майстер узяв саме його, скажіть `That square mirror, please.` `That` указує на предмет далі від вас. Після нього одразу йдуть `square` і `mirror`: це одне коротке прохання без `a`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Квадратное зеркало стоит у дальней стены. Выберите его.",
+          "uk": "Квадратне дзеркало стоїть біля дальньої стіни. Оберіть його."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-52:intro2:r1",
+              "text": "That square mirror, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro2:r2",
+              "text": "This square mirror, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro2:r3",
+              "text": "That a square mirror, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-52:intro2:r1",
+              "text": "That square mirror, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro2:r2",
+              "text": "This square mirror, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro2:r3",
+              "text": "That a square mirror, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Квадратное зеркало стоит у дальней стены. Выберите его.",
+          "uk": "Квадратне дзеркало стоїть біля дальньої стіни. Оберіть його."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Деревянный стул у окна",
+        "uk": "Дерев’яний стілець біля вікна"
+      },
+      "bodyByLocale": {
+        "ru": "`wooden` — «деревянный». Стул у окна, рядом. Скажите `This wooden chair, please.` `This` выбирает этот стул, `wooden` описывает материал, а `chair` называет вещь. Доставка закончилась, но стул всё ещё не переставит себя сам.",
+        "uk": "`wooden` — «дерев’яний». Стілець біля вікна, поруч. Скажіть `This wooden chair, please.` `This` вибирає цей стілець, `wooden` описує матеріал, а `chair` називає річ. Доставка закінчилася, але стілець і досі не переставить себе сам."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Деревянный стул стоит рядом у окна. Выберите его короткой просьбой.",
+          "uk": "Дерев’яний стілець стоїть поруч біля вікна. Оберіть його коротким проханням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-52:intro3:r1",
+              "text": "This wooden chair, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro3:r2",
+              "text": "That wooden chair, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro3:r3",
+              "text": "This chair wooden, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-52:intro3:r1",
+              "text": "This wooden chair, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro3:r2",
+              "text": "That wooden chair, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-52:intro3:r3",
+              "text": "This chair wooden, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Деревянный стул стоит рядом у окна. Выберите его короткой просьбой.",
+          "uk": "Дерев’яний стілець стоїть поруч біля вікна. Оберіть його коротким проханням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "17cc2f7d000dfbd8f8c7832f1dcf18ea6410dbbaa1db3b2d51e7afb7e8de01e6"
+}

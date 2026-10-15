@@ -181,7 +181,7 @@ function introAlignmentIssues(source, words, id, atomic = null, locale = "ru") {
   const scoredTargets = atomicTargets.length
     ? atomicTargets.filter((item) => !item.final).map((item) => item.target)
     : scoredPracticeTargets(practiceBeforeFinal(practiceSource));
-  const scoredSignatures = scoredTargets.map(operationSignature);
+  const scoredTargetSet = new Set(scoredTargets.map(unmark));
   const atomicFinalTargets = atomicTargets.filter((item) => item.final).map((item) => item.target);
   const finalSource = atomicFinalTargets.length ? atomicFinalTargets.join("\n") : finalTaskSource(practiceSource);
   const finalActions = atomicFinalTargets.length
@@ -220,12 +220,8 @@ function introAlignmentIssues(source, words, id, atomic = null, locale = "ru") {
     if (!targetSentences.length || !targetSentences.every((sentence) => normalizedExplanation.includes(sentence))) {
       findings.push(`${id}: интро ${index + 1}: правильный ответ ${target} не разобран над вопросом`);
     }
-    const signature = operationSignature(cleanTarget);
-    const shortReplyOperationCovered = signature === "statement|is"
-      && shortExistentialReply
-      && scoredSignatures.some((candidate) => candidate.startsWith("statement|is "));
-    if (!scoredSignatures.includes(signature) && !shortReplyOperationCovered) {
-      findings.push(`${id}: интро ${index + 1}: операция ${signature} не является правильным target в заданиях ${practiceRange}`);
+    if (!scoredTargetSet.has(cleanTarget)) {
+      findings.push(`${id}: интро ${index + 1}: правильный ответ ${cleanTarget} не является дословным target в заданиях ${practiceRange}`);
     }
     const requiredAction = actionKind(cleanTarget);
     if (!finalActions.includes(requiredAction)) {

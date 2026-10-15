@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "learning_v2_session_review_evidence_manifest_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "candidateRoot": "content/learning-v2-course/outputs/s02-minimal-feedback-fixed-20261014",
+  "candidateBundleSha256": "6ac43357c1a956de0cb41ffe549957cab114964f3717bc3d115889a0fef20768",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s02-minimal-feedback-fixed-20261014/content-receipt.json",
+  "candidateReceiptInventorySha256": "efda20055caf8be16915a52279a0078c92539ef385d668fe4da7c6582d2b372e",
+  "requiredRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "eligibleRoles": [],
+  "missingRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "roles": [],
+  "textReviewComplete": false,
+  "releaseAuthority": false
+}

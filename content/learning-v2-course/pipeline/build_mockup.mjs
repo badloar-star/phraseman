@@ -18,9 +18,13 @@ import { spawnSync } from "node:child_process";
 import { auditSinglePhraseRelease } from "./single_phrase_release.mjs";
 import { parseSessionHeader } from "./session_header.mjs";
 import { writeMockupFile } from "./write_mockup_file.mjs";
-import { syncMockupReadiness } from "./sync_mockup_readiness.mjs";
 import { sourceReleaseFindings, syncMockupSourceReleaseFindings } from "./sync_mockup_source_release_findings.mjs";
 import { sourceQualityFindings } from "./sync_mockup_source_quality_findings.mjs";
+import { sessionProjectionChanged } from "./candidate_preview_status.mjs";
+import { auditFactoryIntroPractice } from "./factory_intro_practice_gate.mjs";
+import { sessionReadiness } from "./session_readiness.mjs";
+import { reviewedProjectionFreshness } from "./reviewed_projection_freshness.mjs";
+import { REVIEWED_CARD_EVIDENCE_SCHEMA, reviewedCardEligible } from "./reviewed_card_evidence.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -138,25 +142,35 @@ const REVIEWED_SOURCE = path.join(ROOT, "mockup", "reviewed-source");
 // per-card before/after evidence even if the release is correctly blocked
 // below, so it never describes an older state of the course.
 if (!CANDIDATE_PREVIEW) {
-  const readinessSync = await syncMockupReadiness({
-    mockupPath: OUT,
-    sessionsRoot: path.join(ROOT, "sessions"),
-    locales: ["uk"],
-  });
-  if (readinessSync.updated) LOG(`обновлено доказательство по карточкам: ${readinessSync.cards}`);
   const paritySync = await syncMockupSourceReleaseFindings({ mockupPath: OUT });
   if (paritySync.updated) LOG(`обновлены карточки с расхождениями: ${paritySync.findings}`);
 } else {
   LOG("черновой просмотр: сведения о готовности и выпуске не переписываются");
 }
 
+const factoryIntroPracticeReport = !CANDIDATE_PREVIEW
+  ? auditFactoryIntroPractice({ sessionsRoot: path.join(ROOT, "sessions", "en") })
+  : null;
+if (factoryIntroPracticeReport?.verdict === "HOLD") {
+  WARN(`factory_intro_practice_mockup_hold:${factoryIntroPracticeReport.findingCount}:${JSON.stringify(factoryIntroPracticeReport.findings[0])}; макет строится только для проверки, выпуск остаётся остановлен`);
+}
 const report = auditSinglePhraseRelease(RELEASE);
 const releaseAuditHeld = Boolean(
+  factoryIntroPracticeReport?.verdict === "HOLD" ||
   report.violationCount || report.compositeGapAnswers || report.dictationAudioMismatches ||
   report.answerContractViolations || report.preservationLedgerViolations || report.feedbackLocaleParityViolations,
 );
+const factoryIntroPracticeHold = factoryIntroPracticeReport?.verdict === "HOLD"
+  ? {
+      schemaVersion: factoryIntroPracticeReport.schemaVersion,
+      verdict: factoryIntroPracticeReport.verdict,
+      auditedSessionCount: factoryIntroPracticeReport.auditedSessionCount,
+      findingCount: factoryIntroPracticeReport.findingCount,
+      firstFinding: factoryIntroPracticeReport.findings[0] ?? null,
+    }
+  : null;
 if (releaseAuditHeld) {
-  const first = report.issues[0] ?? report.compositeGapIssues[0] ?? report.dictationIssues[0] ??
+  const first = factoryIntroPracticeReport?.findings[0] ?? report.issues[0] ?? report.compositeGapIssues[0] ?? report.dictationIssues[0] ??
     report.answerIssues[0] ?? report.preservationIssues[0] ?? report.feedbackLocaleParity[0];
   // Макет — не выпуск. Даже при остановленном выпуске он обязан показать
   // последнюю собранную версию занятия и статус блокировки, иначе владелец
@@ -209,8 +223,17 @@ function collect() {
       if (!fs.statSync(lessonDir).isDirectory()) continue;
       for (const session of fs.readdirSync(lessonDir).sort()) {
         const releasedDir = path.join(lessonDir, session);
+        const candidateChanged = CANDIDATE_PREVIEW && sessionProjectionChanged(
+          releasedDir,
+          path.join(ROOT, "release", lang, lesson, session),
+        );
         const reviewedDir = path.join(REVIEWED_SOURCE, lang, lesson, session);
         const reviewedReady = ["learner.json", "intro.json"].every((name) => fs.existsSync(path.join(reviewedDir, name)));
+        const reviewedProjection = reviewedProjectionFreshness({
+          courseRoot: ROOT,
+          sessionKey: `${lang}/${lesson}/${session}`,
+          reviewedDir,
+        });
         const d = CANDIDATE_PREVIEW ? releasedDir : (reviewedReady ? reviewedDir : releasedDir);
         const learner = path.join(d, "learner.json");
         const intro = path.join(d, "intro.json");
@@ -243,7 +266,11 @@ function collect() {
           key: `${lang}/${lesson}/${session}`, lang, lesson, session, title, scene, titleByLocale, sceneByLocale,
           // Явно несём источник отображения до интерфейса: зелёный статус
           // означает, что открыта проверенная правка, не старый релиз.
-          viewSource: CANDIDATE_PREVIEW ? "candidate" : (reviewedReady ? "reviewed_source" : "release"),
+          viewSource: CANDIDATE_PREVIEW
+            ? (candidateChanged ? "candidate" : "release")
+            : (reviewedReady ? "reviewed_source" : "release"),
+          reviewedProjectionFresh: reviewedProjection.fresh,
+          reviewedProjectionIssue: reviewedProjection.reason,
           lessonTitle: lessonTitles.get(lesson) ?? "",
           lessonTitleByLocale: lessonTitleByLocale(lang, lesson, lessonTitles.get(lesson) ?? ""),
           intro: JSON.parse(fs.readFileSync(intro, "utf8")),
@@ -275,14 +302,31 @@ const sourceRelease = sourceReleaseFindings({
   releaseRoot: RELEASE,
 });
 LOG(`карточек, где открываемый вариант расходится с исходником: ${Object.keys(sourceRelease).length}`);
+const sessionReadinessByKey = Object.fromEntries(sessions.map((session) => {
+  const result = sessionReadiness(path.join(ROOT, "sessions", ...session.key.split("/")), ["uk"]);
+  return [session.key, {
+    ready: result.ready,
+    unresolvedQualityItems: result.issues.length,
+    firstUnresolvedItem: result.issues[0] ?? null,
+  }];
+}));
 // A green card is evidence-based, not a calendar/ledger guess: it must open a
 // complete reviewed projection and have no outstanding source or projection
 // finding.  The preservation ledger remains a global release gate, but it is
 // not an adequate per-card receipt of what this UI actually opens.
-const reviewedCards = Object.fromEntries(sessions
-  .filter(() => !CANDIDATE_PREVIEW)
-  .filter((session) => session.viewSource === "reviewed_source")
-  .map((session) => [session.key, true]));
+const reviewedCards = {
+  schemaVersion: REVIEWED_CARD_EVIDENCE_SCHEMA,
+  cards: Object.fromEntries(sessions
+    .filter((session) => reviewedCardEligible({
+      candidate: CANDIDATE_PREVIEW,
+      viewSource: session.viewSource,
+      projectionFresh: session.reviewedProjectionFresh,
+      readiness: sessionReadinessByKey[session.key],
+      sourceQualityFindings: sourceQuality[session.key] ?? [],
+      sourceReleaseFindings: sourceRelease[session.key] ?? [],
+    }))
+    .map((session) => [session.key, true])),
+};
 // Embed the candidate state in the output so a draft file cannot carry green
 // review labels from the normal renderer.
 const REVIEWED_SOURCE_MARKER = CANDIDATE_PREVIEW ? "" : "reviewed_source";
@@ -300,7 +344,7 @@ const HOME_DESCRIPTION_BY_LOCALE = CANDIDATE_PREVIEW
 
 // ---------- HTML ----------
 const html = `<!doctype html>
-<html lang="ru" data-learning-v2-mockup="v1">
+<html lang="ru" data-learning-v2-mockup="v1" data-factory-intro-practice-verdict="${factoryIntroPracticeHold?.verdict ?? (CANDIDATE_PREVIEW ? "NOT_RUN_CANDIDATE" : "PASS")}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -339,6 +383,8 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
   background-repeat:no-repeat;background-position:right 12px center;color:var(--text)}
 
 .shell{width:min(100%,900px);margin:0 auto;padding:26px 20px 90px}
+.release-hold-banner{width:min(calc(100% - 40px),860px);margin:18px auto 0;padding:14px 18px;border:2px solid #d99a11;
+  border-radius:var(--r);background:#fff4c9;color:#775200;font-size:14px;font-weight:750;line-height:1.45}
 
 /* ---- дом ---- */
 .hero{padding:18px 4px 26px}
@@ -474,6 +520,7 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
     <button class="pill" id="home" hidden>К списку</button>
   </div>
 </div>
+${factoryIntroPracticeHold ? `<div class="release-hold-banner" role="alert">Выпуск остановлен: вводные ответы ещё не закреплены практикой. Проверено занятий: ${factoryIntroPracticeHold.auditedSessionCount}; найдено несоответствий: ${factoryIntroPracticeHold.findingCount}.</div>` : ""}
 <div class="shell" id="app">
   <noscript><div class="panel"><h2>Не выполняется JavaScript</h2><p class="body">Макет интерактивный: включите JavaScript или откройте файл в обычном браузере (Chrome, Edge).</p></div></noscript>
   <div class="panel" id="boot"><h2>Загрузка…</h2><p class="body" id="boot-msg">Если этот текст остался — скрипт не выполнился. Откройте файл двойным кликом в Chrome или Edge.</p></div>
@@ -482,8 +529,10 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
 <script id="data" type="application/json">${JSON.stringify(sessions).replace(/</g, "\\u003c")}</script>
 <script id="source-quality-findings" type="application/json">${JSON.stringify(sourceQuality).replace(/</g, "\\u003c")}</script>
 <script id="source-release-findings" type="application/json">${JSON.stringify(sourceRelease).replace(/</g, "\\u003c")}</script>
+<script id="session-readiness" type="application/json">${JSON.stringify(sessionReadinessByKey).replace(/</g, "\\u003c")}</script>
 <script id="reviewed-cards" type="application/json">${JSON.stringify(reviewedCards).replace(/</g, "\\u003c")}</script>
 <script id="preview-state" type="application/json">${JSON.stringify({ candidate: CANDIDATE_PREVIEW }).replace(/</g, "\\u003c")}</script>
+<script id="factory-intro-practice-hold" type="application/json">${JSON.stringify(factoryIntroPracticeHold).replace(/</g, "\\u003c")}</script>
 <script>
 // зачем: макет открывали и видели пустой экран без единой ошибки в консоли.
 // Любой сбой запуска обязан быть виден НА СТРАНИЦЕ, а не только в консоли.
@@ -495,7 +544,13 @@ window.addEventListener("error", (e) => {
 const DATA = JSON.parse(document.getElementById("data").textContent);
 const SOURCE_QUALITY = JSON.parse(document.getElementById("source-quality-findings")?.textContent || "{}");
 const SOURCE_RELEASE = JSON.parse(document.getElementById("source-release-findings")?.textContent || "{}");
-const REVIEWED_CARDS = JSON.parse(document.getElementById("reviewed-cards")?.textContent || "{}");
+const SESSION_READINESS = JSON.parse(document.getElementById("session-readiness")?.textContent || "{}");
+const REVIEWED_CARD_EVIDENCE = JSON.parse(document.getElementById("reviewed-cards")?.textContent || "{}");
+const REVIEWED_CARD_EVIDENCE_SCHEMA = "reviewed-card-evidence-v2";
+const REVIEWED_CARDS = REVIEWED_CARD_EVIDENCE.schemaVersion === REVIEWED_CARD_EVIDENCE_SCHEMA &&
+  REVIEWED_CARD_EVIDENCE.cards && typeof REVIEWED_CARD_EVIDENCE.cards === "object"
+  ? REVIEWED_CARD_EVIDENCE.cards
+  : {};
 const PREVIEW_STATE = JSON.parse(document.getElementById("preview-state")?.textContent || "{}");
 const REVIEWED_SOURCE_MARKER = ${JSON.stringify(REVIEWED_SOURCE_MARKER)};
 const REVIEWED_CARD_CLASS = ${JSON.stringify(REVIEWED_CARD_CLASS)};
@@ -673,6 +728,9 @@ function renderHome() {
     ...groupByLesson(),
   );
 }
+function freshCardEvidenceText(readiness) {
+  return readiness?.ready ? "" : "Пока не собрано подтверждение качества для текущего варианта занятия.";
+}
 function groupByLesson() {
   const out = [];
   const byLesson = {};
@@ -683,11 +741,12 @@ function groupByLesson() {
     out.push(h("div", {class:"cards"}, list.map(s => {
       const findings = SOURCE_QUALITY[s.key] || [];
       const releaseFindings = SOURCE_RELEASE[s.key] || [];
-      const isCandidate = Boolean(PREVIEW_STATE.candidate) || s.viewSource === "candidate";
-      const sourceFixed = !isCandidate && Boolean(REVIEWED_CARDS[s.key]) && !findings.length;
+      const readiness = SESSION_READINESS[s.key];
+      const isCandidate = s.viewSource === "candidate";
+      const sourceFixed = !isCandidate && REVIEWED_CARDS[s.key] === true;
       // A reviewed projection is useful evidence, but it cannot turn the whole
       // card green while the version that would be released still differs.
-      const needsRepair = findings.length || releaseFindings.length;
+      const needsRepair = !sourceFixed;
       const numbers = findings.map(item => item.taskNumber).filter(Number.isInteger);
       const hasUnnumberedFinding = findings.some(item => !Number.isInteger(item.taskNumber));
       const findingTarget = hasUnnumberedFinding
@@ -695,12 +754,13 @@ function groupByLesson() {
         : "задания " + (numbers.length ? numbers.join(", ") : "без номера");
       const summary = isCandidate
         ? ui("candidateSummary")
-        : sourceFixed && releaseFindings.length
-        ? "Выпуск ещё содержит старый текст; здесь открывается проверенная правка. Нажмите «Показать изменения», чтобы увидеть точную замену."
+        : s.viewSource === REVIEWED_SOURCE_MARKER && s.reviewedProjectionFresh !== true
+        ? "Этот вариант пока нельзя отметить зелёным: не подтверждено, что он собран из текущих файлов занятия."
         : findings.length
         ? "Нужно исправить " + findingTarget + ": " + [...new Set(findings.map(item => item.reason))].join("; ")
-        : releaseFindings[0] || "";
-      return h("button", {class:"card" + (isCandidate ? " needs-repair candidate" : needsRepair ? " needs-repair" : sourceFixed ? " " + REVIEWED_CARD_CLASS : ""), onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
+        : releaseFindings[0]
+        || freshCardEvidenceText(readiness);
+      return h("button", {class:"card" + (isCandidate ? " needs-repair candidate" : needsRepair ? " needs-repair" : " " + REVIEWED_CARD_CLASS), onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
         h("h3", {text:displayTitle(loc(s.titleByLocale) || s.title)}),
         h("p", {class:"scene", text:loc(s.sceneByLocale) || s.scene}),
         h("div", {class:"meta"}, [
@@ -748,53 +808,24 @@ function renderIntro(page, auxiliary) {
       onClick: () => { S.answered = true; S.picked = c.responseId; S.ok = c.correct; render(); },
     }, [document.createTextNode(c.text)]))),
   ]);
-  if (S.answered) {
+  if (S.answered && !S.ok) {
     const auxiliaryEntry = (auxiliary?.entries || []).find((entry) => entry.interactionId === page.question.interactionId);
     const selectedFeedback = loc(auxiliaryEntry?.responseFeedbackById?.[S.picked]);
-    const selectedAnalysis = activeLocaleValue(auxiliaryEntry?.responseAnalysisById?.[S.picked]);
-    const selectedDiagnostic = auxiliaryEntry?.responseDiagnosticsById?.[S.picked];
-    const analysisRequired = Boolean(auxiliaryEntry?.responseAnalysisById);
-    const analysisComplete = !analysisRequired || completeTextAnalysisV1(selectedAnalysis);
-    const diagnosticRequired = !S.ok && Boolean(auxiliaryEntry?.responseDiagnosticsById);
-    const diagnosticComplete = !diagnosticRequired || Boolean(
-      selectedDiagnostic?.errorType &&
-      loc(selectedDiagnostic.whyTemptingByLocale) &&
-      loc(selectedDiagnostic.whyWrongHereByLocale) &&
-      loc(selectedDiagnostic.minimalContrastByLocale) &&
-      loc(selectedDiagnostic.acceptabilityBoundaryByLocale),
-    );
     panel.append(h("div", {
-      class:"fb " + (selectedFeedback && analysisComplete && diagnosticComplete ? (S.ok ? "ok" : "no") : "no"),
+      class:"fb no",
       role:"status",
       "aria-live":"polite",
       "aria-atomic":"true",
-      text:selectedFeedback && analysisComplete && diagnosticComplete
-        ? selectedFeedback
-        : ui("missingIntroExplanation"),
+      text:selectedFeedback || ui("missingIntroExplanation"),
     }));
-    if (selectedFeedback && analysisComplete && diagnosticComplete && selectedAnalysis) {
-      panel.append(renderTextAnalysisV1(selectedAnalysis));
-      if (selectedDiagnostic) panel.append(h("div", {
-        class:"explanation",
-        html:tl(loc(selectedDiagnostic.minimalContrastByLocale)),
-      }));
-    }
   }
   const selectedAuxiliaryEntry = S.answered
     ? (auxiliary?.entries || []).find((entry) => entry.interactionId === page.question.interactionId)
     : null;
-  const selectedFeedback = loc(selectedAuxiliaryEntry?.responseFeedbackById?.[S.picked]);
-  const selectedAnalysisComplete = !selectedAuxiliaryEntry?.responseAnalysisById ||
-    completeTextAnalysisV1(activeLocaleValue(selectedAuxiliaryEntry.responseAnalysisById[S.picked]));
-  const selectedDiagnostic = selectedAuxiliaryEntry?.responseDiagnosticsById?.[S.picked];
-  const selectedDiagnosticComplete = S.ok || !selectedAuxiliaryEntry?.responseDiagnosticsById || Boolean(
-    selectedDiagnostic?.errorType &&
-    loc(selectedDiagnostic.whyTemptingByLocale) &&
-    loc(selectedDiagnostic.whyWrongHereByLocale) &&
-    loc(selectedDiagnostic.minimalContrastByLocale) &&
-    loc(selectedDiagnostic.acceptabilityBoundaryByLocale),
-  );
-  panel.append(nextRow(S.answered && Boolean(selectedFeedback) && selectedAnalysisComplete && selectedDiagnosticComplete));
+  const selectedFeedback = !S.ok
+    ? loc(selectedAuxiliaryEntry?.responseFeedbackById?.[S.picked])
+    : "";
+  panel.append(nextRow(S.answered && (S.ok || Boolean(selectedFeedback))));
   return panel;
 }
 
@@ -888,12 +919,14 @@ function renderChoice(panel, it, p) {
     onClick:() => { S.answered = true; S.picked = o.responseId; S.ok = o.responseId === correctId; S.ok ? S.right++ : S.wrong++; render(); },
   }, [document.createTextNode(visibleChoiceText(o))]))));
   if (S.answered) {
+    if (S.ok) {
+      panel.append(nextRow(true));
+      return;
+    }
     const fb = (p.choiceFeedback || []).find(f => f.responseId === S.picked);
     const feedback = loc(fb?.feedbackByLocale);
-    const analysisRequired = Boolean(fb && Object.prototype.hasOwnProperty.call(fb, "analysisV1"));
-    const analysisComplete = !analysisRequired || completeTextAnalysisV1(fb.analysisV1);
     const feedbackIsComplete = Boolean(
-      fb && typeof fb.correct === "boolean" && fb.correct === S.ok && feedback && analysisComplete,
+      fb && fb.correct === false && feedback,
     );
     panel.append(h("div", {
       class:"fb " + (feedbackIsComplete && S.ok ? "ok" : "no"),
@@ -904,7 +937,6 @@ function renderChoice(panel, it, p) {
         ? tl(feedback)
         : ui("missingExplanation"),
     }));
-    if (feedbackIsComplete && fb.analysisV1) panel.append(renderTextAnalysisV1(fb.analysisV1));
     panel.append(nextRow(feedbackIsComplete));
     return;
   }
@@ -956,24 +988,13 @@ function renderBuilder(panel, it, p) {
   })));
   if (S.tileFeedback) {
     const slotFeedback = loc(S.tileFeedback.feedbackByLocale);
-    const analysisRequired = Object.prototype.hasOwnProperty.call(S.tileFeedback, "analysisV1");
-    const analysisComplete = !analysisRequired || completeTextAnalysisV1(S.tileFeedback.analysisV1);
-    panel.append(h("div", {class:"fb no", role:"status", "aria-live":"polite", "aria-atomic":"true", text:slotFeedback && analysisComplete ? slotFeedback : ui("missingTileExplanation")}));
-    if (slotFeedback && analysisComplete && S.tileFeedback.analysisV1) panel.append(renderTextAnalysisV1(S.tileFeedback.analysisV1));
+    panel.append(h("div", {class:"fb no", role:"status", "aria-live":"polite", "aria-atomic":"true", text:slotFeedback || ui("missingTileExplanation")}));
   }
 
   const ready = S.assembled.length === ordered.length;
   if (S.answered) {
-    if (S.ok && completeExplanation) {
-      const phrase = explanation.phrase;
-      panel.append(h("div", {class:"explanation"}, [
-        h("div", {class:"fb ok", role:"status", "aria-live":"polite", "aria-atomic":"true", html:tl(loc(explanation.completionFeedbackByLocale))}),
-        renderTextAnalysisV1(phrase),
-      ]));
-    } else if (!S.ok) {
+    if (!S.ok) {
       panel.append(h("div", {class:"fb no", role:"status", "aria-live":"polite", "aria-atomic":"true", text:ui("builderWrong")}));
-    } else {
-      panel.append(h("div", {class:"fb ok", role:"status", "aria-live":"polite", "aria-atomic":"true", text:loc({ru:"Верно.",uk:"Правильно."})}));
     }
   }
   panel.append(h("div", {class:"actions"}, [
@@ -993,6 +1014,21 @@ function renderBuilder(panel, it, p) {
 function renderPairs(panel, it, p) {
   const grid = p.pairGrid || [];
   if (!grid.length) return WARNBOX(panel, "Нет пар для соединения.");
+  const mismatchFeedback = (feedback) => {
+    const leftPair = grid.find((row) => row.pairId === feedback.leftId);
+    const rightPair = grid.find((row) => row.pairId === feedback.rightId);
+    const leftMeaning = loc(leftPair?.meaningByLocale);
+    if (!leftPair?.target || !rightPair?.target || !leftMeaning) {
+      return loc({
+        ru: "Эта пара не подходит. Попробуйте другой вариант.",
+        uk: "Ця пара не підходить. Спробуйте інший варіант.",
+      });
+    }
+    return loc({
+      ru: "Правильная пара: «" + leftPair.target + "» — «" + leftMeaning + "».",
+      uk: "Правильна пара: «" + leftPair.target + "» — «" + leftMeaning + "».",
+    });
+  };
   const analysisPresent = grid.some((row) => Object.prototype.hasOwnProperty.call(row, "analysisV1"));
   const localized = (value) => Boolean(loc(value));
   const completeAnalysis = (analysis) => Boolean(
@@ -1006,7 +1042,6 @@ function renderPairs(panel, it, p) {
     panel.append(nextRow(false));
     return;
   }
-  const analysisById = new Map(grid.map((row) => [row.pairId, row.analysisV1]));
   const left = shuffle(grid.map(g => ({id:g.pairId, text:g.target})), it.interactionId + "L");
   const right = avoidAlignedPairs(
     left,
@@ -1032,23 +1067,9 @@ function renderPairs(panel, it, p) {
     h("div", {style:"display:grid;gap:9px"}, left.map(i => cell(i, "L"))),
     h("div", {style:"display:grid;gap:9px"}, right.map(i => cell(i, "R"))),
   ]));
-  if (S.pairFeedback && analysisPresent) {
-    const pairIds = S.pairFeedback.correct
-      ? [S.pairFeedback.leftId]
-      : [S.pairFeedback.leftId, S.pairFeedback.rightId];
-    panel.append(h("div", {class:"explanation", role:"status", "aria-live":"polite", "aria-atomic":"true"}, pairIds.map((pairId) => {
-      const analysis = analysisById.get(pairId);
-      return h("div", {class:"speed-analysis"}, [
-        h("div", {class:"scene-line", html:tl(
-          analysis.lemma + " — " + loc(analysis.partOfSpeechLabelByLocale) + ": " +
-          loc(analysis.meaningByLocale) + (/[.!?…]$/u.test(loc(analysis.meaningByLocale)) ? " " : ". ") + loc(analysis.functionByLocale) +
-          (S.pairFeedback.correct ? " " + loc(analysis.matchExplanationByLocale) : ""),
-        )}),
-        analysis.phrase ? renderTextAnalysisV1(analysis.phrase) : null,
-      ]);
-    })));
+  if (S.pairFeedback && !S.pairFeedback.correct) {
+    panel.append(h("div", {class:"fb no", role:"status", "aria-live":"polite", "aria-atomic":"true", text:mismatchFeedback(S.pairFeedback)}));
   }
-  if (S.answered) panel.append(h("div", {class:"fb ok", role:"status", "aria-live":"polite", "aria-atomic":"true", text:ui("allPairs")}));
   panel.append(nextRow());
 }
 
@@ -1134,7 +1155,7 @@ LOG(`записан ${OUT} (${(html.length / 1024).toFixed(0)} КБ)`);
 LOG(`записан ${path.join(dir, "external.html")} — вариант с внешними файлами (если инлайн заблокирован)`);
 const canonicalMockup = path.resolve(ROOT, "mockup", "index.html");
 const nativeManifestBuilder = path.resolve(ROOT, "..", "..", "scripts", "build_learning_v2_factory_native_manifest.mjs");
-if (!CANDIDATE_PREVIEW && OUT === canonicalMockup && fs.existsSync(nativeManifestBuilder)) {
+if (!CANDIDATE_PREVIEW && !factoryIntroPracticeHold && OUT === canonicalMockup && fs.existsSync(nativeManifestBuilder)) {
   const native = spawnSync(process.execPath, [nativeManifestBuilder], { encoding: "utf8" });
   if (native.status !== 0) {
     WARN(`native manifest не собран: ${(native.stderr || native.stdout || "unknown").trim()}`);
@@ -1143,3 +1164,4 @@ if (!CANDIDATE_PREVIEW && OUT === canonicalMockup && fs.existsSync(nativeManifes
   LOG("native manifest обновлён из того же canonical release");
 }
 LOG("открой index.html двойным кликом в Chrome или Edge — сервер не нужен");
+if (!CANDIDATE_PREVIEW && factoryIntroPracticeHold) process.exitCode = 1;

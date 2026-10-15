@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-05:intro1:r2": {
+          "ru": "В сочетании `I` с прилагательным пропущено `am`.",
+          "uk": "У поєднанні `I` з прикметником пропущено `am`."
+        },
+        "en:lesson-01:session-05:intro1:r3": {
+          "ru": "Перед `am` в этой фразе нужно подлежащее `I`.",
+          "uk": "Перед `am` у цьому реченні потрібен підмет `I`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-05:intro2:r2": {
+          "ru": "В этой конструкции `no` не заменяет `not`: отрицание ставят после `am`.",
+          "uk": "У цій конструкції `no` не замінює `not`: заперечення ставлять після `am`."
+        },
+        "en:lesson-01:session-05:intro2:r3": {
+          "ru": "`not` убежал в конец. Его место — сразу после `am`, перед словом о вас.",
+          "uk": "`not` утік у кінець. Його місце — одразу після `am`, перед словом про вас."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-05:intro3:r2": {
+          "ru": "Перед прилагательным `new` пропущено `am`.",
+          "uk": "Перед прикметником `new` пропущено `am`."
+        },
+        "en:lesson-01:session-05:intro3:r3": {
+          "ru": "`not` меняет смысл на отрицание; здесь нужно утвердить, что вы недавно в команде.",
+          "uk": "`not` змінює зміст на заперечення; тут потрібно ствердити, що ви нещодавно в команді."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3d83c8881220034d81afd030199bbf05d78851804bed8764bb1a59f200998676"
+}

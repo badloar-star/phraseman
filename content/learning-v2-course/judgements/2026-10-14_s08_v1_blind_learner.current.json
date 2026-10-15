@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "learning_v2_blind_learner_review_v1",
+  "sessionId": "en:lesson-01:session-08",
+  "candidateRoot": "content/learning-v2-course/outputs/s08-review-fixed-private-20261014-v1",
+  "contentReceiptSha256": "db5dcb3c7f72734b7934488c9242a93bf7e74df20cfcacf9ad2583a69a8174b9",
+  "candidateBundleSha256": "abcc1794aea92f92e2df4cf5f0a3a33f560d0140865f80026ead97752cd57477",
+  "learnerJsonSha256": "ac0303fe6062edb15c933109801240a52d2a5bda6d3c108ae23ec4cc6303db94",
+  "learnerUkJsonSha256": "57ff22da96e40f81c6881485c7113e22adb76c196333e2590d88e8dbcbb5b741",
+  "dimension": "blind_learner",
+  "verdict": "PASS",
+  "findings": [],
+  "notes": [
+    "Reviewed all three intro pages and all 21 learner interactions in Russian and Ukrainian.",
+    "The learner-visible flows are solvable and unambiguous; no nonsense, missing cues, answer leaks, or misleading feedback were found.",
+    "Audio presence and listening were outside this text-only review."
+  ],
+  "taskCount": 21
+}

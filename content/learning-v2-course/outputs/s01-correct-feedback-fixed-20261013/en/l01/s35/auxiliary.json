@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-35:intro1:r2": {
+          "ru": "Сначала `are`, затем `not`: We are not late.",
+          "uk": "Спершу `are`, потім `not`: We are not late."
+        },
+        "en:lesson-01:session-35:intro1:r3": {
+          "ru": "`not` убежал в конец. Его место сразу после `are`, до слова о вас.",
+          "uk": "`not` утік у кінець. Його місце одразу після `are`, до слова про вас."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-35:intro2:r2": {
+          "ru": "Внутри фразы используйте `not`: We are not sure.",
+          "uk": "Усередині фрази використовуйте `not`: We are not sure."
+        },
+        "en:lesson-01:session-35:intro2:r3": {
+          "ru": "Слова те же, порядок сломан. После `are` сразу `not`, потом `sure`.",
+          "uk": "Слова ті самі, порядок зламано. Після `are` одразу `not`, потім `sure`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-35:intro3:r2": {
+          "ru": "После `we` нужны `are not`: We are not wrong.",
+          "uk": "Після `we` потрібні `are not`: We are not wrong."
+        },
+        "en:lesson-01:session-35:intro3:r3": {
+          "ru": "`late` — про время, «опаздываем». Про ошибку — `wrong`.",
+          "uk": "`late` — про час, «запізнюємося». Про помилку — `wrong`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6978ce3b38c926ab368b86b20d42f60dbc02eccc330a5bc3309cd2766ffe9092"
+}

@@ -101,28 +101,19 @@
           {
             "responseId": "en:lesson-01:session-15:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — polite",
+            "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "«Пилот». Ударение в начале: PIE-lot. В `polite` — в конце: po-LITE.",
-              "uk": "«Пілот». Наголос на початку: PIE-lot. У `polite` — у кінці: po-LITE."
+              "ru": "`pilot` — пилот, а `polite` — вежливый; это разные слова и значения.",
+              "uk": "`pilot` — пілот, а `polite` — ввічлива; це різні слова й значення."
             }
           },
           {
             "responseId": "en:lesson-01:session-15:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — polite",
-            "feedbackByLocale": {
-              "ru": "«Тарелка». Один слог вместо двух.",
-              "uk": "«Тарілка». Один склад замість двох."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-15:i02:r1",
-            "correct": true,
             "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "`polite` — «вежливый». В записи ударение падает на второй слог: po-LITE.",
-              "uk": "`polite` — «ввічливий». У записі наголос падає на другий склад: po-LITE."
+              "ru": "`plate` — тарелка, а `polite` описывает вежливого человека.",
+              "uk": "`plate` — тарілка, а `polite` описує ввічливу людину."
             }
           }
         ],
@@ -229,28 +220,19 @@
           {
             "responseId": "en:lesson-01:session-15:i04:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — serious",
+            "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "«Серия». Начало то же, а конец другой: SI-riz в два слога против SI-ri-es в три.",
-              "uk": "«Серія». Початок той самий, а кінець інший: SI-riz у два склади проти SI-ri-es у три."
+              "ru": "`series` — серия, а `serious` значит «серьёзный».",
+              "uk": "`series` — серія, а `serious` означає «серйозний»."
             }
           },
           {
             "responseId": "en:lesson-01:session-15:i04:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — serious",
-            "feedbackByLocale": {
-              "ru": "«Обслуживание». Первый слог тянется без «и», у `serious` — чёткое «си».",
-              "uk": "«Обслуговування». Перший склад звучить як «сер», у `serious` — як «сі»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-15:i04:r1",
-            "correct": true,
             "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "`serious` — «серьёзный». В этом слове три слога: SI-ri-es.",
-              "uk": "`serious` — «серйозний». У цьому слові три склади: SI-ri-es."
+              "ru": "`service` — обслуживание, а `serious` описывает серьёзное отношение.",
+              "uk": "`service` — обслуговування, а `serious` описує серйозне ставлення."
             }
           }
         ],
@@ -307,18 +289,9 @@
         "testedDimension": "Вставте слово — колега всім каже «дякую»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-15:i05:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — Віка всім каже «дякую»; ви кажете їй: «ти ввічлива»",
-            "feedbackByLocale": {
-              "ru": "Вика благодарит людей, значит она вежливая: `You are polite.`",
-              "uk": "Віка дякує людям, отже вона ввічлива: `You are polite`."
-            }
-          },
-          {
             "responseId": "en:lesson-01:session-15:i05:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — колега всім каже «дякую»",
+            "testedDimension": "Вставте слово — Віка всім каже «дякую»; ви кажете їй: «ти ввічлива»",
             "feedbackByLocale": {
               "ru": "«Серьёзный» — про другое. Тут человек вежливый.",
               "uk": "«Серйозний» — про інше. Тут людина ввічлива."
@@ -327,9 +300,9 @@
           {
             "responseId": "en:lesson-01:session-15:i05:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — колега всім каже «дякую»",
+            "testedDimension": "Вставте слово — Віка всім каже «дякую»; ви кажете їй: «ти ввічлива»",
             "feedbackByLocale": {
-              "ru": "«Устал» — про силы, а не про манеры. Тут человек благодарит.",
+              "ru": "«Уставшая» — про силы, а не про манеры. Тут Вика благодарит коллег.",
               "uk": "«Втомлений» — про сили, а не про манери. Тут людина дякує."
             }
           }
@@ -362,7 +335,12 @@
           "serious"
         ],
         "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "slotFeedback": [],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -391,8 +369,8 @@
             "responseId": "en:lesson-01:session-15:i07:r1",
             "targetText": "lucky",
             "meaningByLocale": {
-              "ru": "«везучий». Не заслужил, не рассчитал — просто повезло.",
-              "uk": "«щасливий». Не заслужив, не розрахував — просто пощастило."
+              "ru": "«везучий» или «везучая»: человеку просто повезло.",
+              "uk": "«везучий» або «везуча»: людині просто пощастило."
             }
           }
         ],
@@ -402,8 +380,8 @@
         "wordCard": {
           "word": "lucky",
           "definitionByLocale": {
-            "ru": "«везучий». Не заслужил, не рассчитал — просто повезло.",
-            "uk": "«щасливий». Не заслужив, не розрахував — просто пощастило."
+            "ru": "«везучий» или «везучая»: человеку просто повезло.",
+            "uk": "«везучий» або «везуча»: людині просто пощастило."
           }
         }
       },
@@ -464,28 +442,19 @@
           {
             "responseId": "en:lesson-01:session-15:i08:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — lucky",
+            "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "«Удача». Без хвоста «-и» на конце.",
-              "uk": "«Удача». Без хвостика «-і» в кінці."
+              "ru": "`luck` — удача, а `lucky` — везучая.",
+              "uk": "`luck` — удача, а `lucky` — везуча."
             }
           },
           {
             "responseId": "en:lesson-01:session-15:i08:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — lucky",
-            "feedbackByLocale": {
-              "ru": "«Замок». Похоже на слух, но гласная другая: в `lock` она ближе к «о», в `lucky` — к «а». И `lock` в один слог.",
-              "uk": "«Замок». Схоже на слух, але голосна інша: у `lock` вона ближча до «о», у `lucky` — до «а». І `lock` в один склад."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-15:i08:r1",
-            "correct": true,
             "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "`lucky` — «удачливый». В конце слышно `-y`, которого нет в `luck`.",
-              "uk": "`lucky` — «щасливий». Наприкінці чути `-y`, якого немає в `luck`."
+              "ru": "`lock` — замок, а `lucky` значит «везучая».",
+              "uk": "`lock` — замок, а `lucky` означає «везуча»."
             }
           }
         ],
@@ -592,28 +561,19 @@
           {
             "responseId": "en:lesson-01:session-15:i10:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — sad",
+            "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "«Сказал». Гласная другая: в `said` — как в «мэр», в `sad` рот открывается шире.",
-              "uk": "«Сказав». Голосна інша: у `said` — як в «мер», у `sad` рот відкривається ширше."
+              "ru": "`said` значит «сказал», а `sad` — «грустный».",
+              "uk": "`said` означає «сказав», а `sad` — «сумний»."
             }
           },
           {
             "responseId": "en:lesson-01:session-15:i10:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — sad",
-            "feedbackByLocale": {
-              "ru": "«Песок». Лишний звук «н» в середине.",
-              "uk": "«Пісок». Зайвий звук «н» усередині."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-15:i10:r1",
-            "correct": true,
             "testedDimension": "Послухайте і виберіть",
             "feedbackByLocale": {
-              "ru": "`sad` — «грустный». В нём нет звука `n`, как в `sand`.",
-              "uk": "`sad` — «сумний». У ньому немає звука `n`, як у `sand`."
+              "ru": "`sand` значит «песок», а `sad` — «грустный».",
+              "uk": "`sand` означає «пісок», а `sad` — «сумний»."
             }
           }
         ],
@@ -656,16 +616,16 @@
             "pairId": "en:lesson-01:session-15:i11:p3",
             "target": "lucky",
             "meaningByLocale": {
-              "ru": "везучий",
-              "uk": "щасливий"
+              "ru": "везучий / везучая",
+              "uk": "везучий / везуча"
             }
           },
           {
             "pairId": "en:lesson-01:session-15:i11:p4",
             "target": "sad",
             "meaningByLocale": {
-              "ru": "грустный",
-              "uk": "сумний"
+              "ru": "грустный / грустная",
+              "uk": "сумний / сумна"
             }
           }
         ],
@@ -676,10 +636,10 @@
           "sad"
         ],
         "rightColumn": [
-          "вежливый",
-          "серьёзный",
-          "везучий",
-          "грустный"
+          "ввічливий",
+          "серйозний",
+          "везучий / везуча",
+          "сумний / сумна"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -691,7 +651,8 @@
           "speed",
           "accuracy",
           "personal_best"
-        ]
+        ],
+        "choiceFeedback": []
       },
       "scriptedAlternate": null
     },
@@ -701,7 +662,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — ви кажете Віці, що їй пощастило",
+      "prompt": "Віка витягла призовий квиток. Скажіть їй: «ти везуча» — вставте слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-15:i12:r1",
@@ -718,12 +679,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — ви кажете Віці, що їй пощастило",
+      "accessibilityLabel": "Віка витягла призовий квиток. Скажіть їй: «ти везуча» — вставте слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вы говорите Вике, что ей повезло",
-          "uk": "Вставте слово — ви кажете Віці, що їй пощастило"
+          "ru": "Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово",
+          "uk": "Віка витягла призовий квиток. Скажіть їй: «ти везуча» — вставте слово"
         },
         "gappedTargetPhrase": "You ___ lucky.",
         "gapOptions": [
@@ -743,18 +704,9 @@
         "testedDimension": "Оберіть потрібне слово після `you`.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-15:i12:r1",
-            "correct": true,
-            "testedDimension": "Вставте слово — ви кажете Віці, що їй пощастило",
-            "feedbackByLocale": {
-              "ru": "После `you` нужно `are`: `You are lucky.` — «тебе повезло».",
-              "uk": "Після `you` потрібне `are`: `You are lucky` — «тобі пощастило»."
-            }
-          },
-          {
             "responseId": "en:lesson-01:session-15:i12:r2",
             "correct": false,
-            "testedDimension": "Оберіть потрібне слово після `you`.",
+            "testedDimension": "Віка витягла призовий квиток. Скажіть їй: «ти везуча» — вставте слово",
             "feedbackByLocale": {
               "ru": "`am` бывает только при `I`. Про собеседника — `are`.",
               "uk": "`am` буває тільки при `I`. Про співрозмовника — `are`."
@@ -763,10 +715,10 @@
           {
             "responseId": "en:lesson-01:session-15:i12:r3",
             "correct": false,
-            "testedDimension": "Оберіть потрібне слово після `you`.",
+            "testedDimension": "Віка витягла призовий квиток. Скажіть їй: «ти везуча» — вставте слово",
             "feedbackByLocale": {
-              "ru": "После `you` нужно `are`.",
-              "uk": "Після `you` потрібне `are`."
+              "ru": "`is` не подходит к обращению `you`; здесь нужно `are`.",
+              "uk": "`is` не підходить до звертання `you`; тут потрібно `are`."
             }
           }
         ]
@@ -779,13 +731,13 @@
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте і складіть — Віка мовчить після важкого дзвінка; скажіть їй: «ти не сумна»",
+      "prompt": "Віка каже, що просто втомилася й не сумує. Скажіть їй: «ти не сумна»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-15:i13:audio"
       ],
-      "accessibilityLabel": "Послухайте і складіть — Віка мовчить після важкого дзвінка; скажіть їй: «ти не сумна»",
+      "accessibilityLabel": "Віка каже, що просто втомилася й не сумує. Скажіть їй: «ти не сумна»",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -807,13 +759,18 @@
           {
             "responseId": "en:lesson-01:session-15:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — Вика молчит посл",
+            "testedDimension": "Віка каже, що просто втомилася й не сумує. Скажіть їй: «ти не сумна»",
             "feedbackByLocale": {
-              "ru": "`am` здесь лишнее: к Вике обращаются `You are not sad.`",
-              "uk": "`am` тут зайве: до Віки звертаються `You are not sad`."
+              "ru": "с `you` употребляется `are`; `am` используют с `I`.",
+              "uk": "з `you` вживається `are`; `am` вживають з `I`."
             }
           }
-        ]
+        ],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -866,7 +823,7 @@
       "purpose": "guided_practice",
       "family": "sound_contrast",
       "inputMode": "single_choice",
-      "prompt": "Розрізніть звуки — поїзд скасували, а Віка спокійно читає; яке слово її описує?",
+      "prompt": "Прослухайте перший запис і виберіть почуте слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-15:i15:r1",
@@ -882,7 +839,7 @@
         "en:lesson-01:session-15:i15:audioA",
         "en:lesson-01:session-15:i15:audioB"
       ],
-      "accessibilityLabel": "Розрізніть звуки — поїзд скасували, а Віка спокійно читає; яке слово її описує?",
+      "accessibilityLabel": "Прослухайте перший запис і виберіть почуте слово",
       "modePayload": {
         "family": "sound_contrast",
         "contrastA": "calm",
@@ -897,24 +854,15 @@
           "audioTargetId": "en:lesson-01:session-15:i15:audioB",
           "transcript": "come"
         },
-        "testedPhoneticContrast": "Поїзд скасували, а Віка спокійно читає; виберіть `calm` або `come`.",
+        "testedPhoneticContrast": "Прослухайте перший запис і виберіть почуте слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-15:i15:r2",
             "correct": false,
-            "testedDimension": "calm or come",
+            "testedDimension": "Прослухайте перший запис і виберіть почуте слово",
             "feedbackByLocale": {
-              "ru": "`come` — «приходить». Здесь описано состояние человека: `calm`.",
-              "uk": "`come` — «приходити». Тут описано стан людини: `calm`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-15:i15:r1",
-            "correct": true,
-            "testedDimension": "Розрізніть звуки — поїзд скасували, а Віка спокійно читає; яке слово її описує?",
-            "feedbackByLocale": {
-              "ru": "`calm` — «спокойная». По ситуации Вика спокойно читает, поэтому подходит `calm`.",
-              "uk": "`calm` — «спокійна». За ситуацією Віка спокійно читає, тому підходить `calm`."
+              "ru": "`come` стоит во второй записи; в первой записи — `calm`.",
+              "uk": "`come` стоїть у другому записі; у першому записі — `calm`."
             }
           }
         ]
@@ -994,13 +942,18 @@
           {
             "responseId": "en:lesson-01:session-15:i17:s01:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Вика честно призналась,",
+            "testedDimension": "Складіть фразу — Віка чесно зізналася, що не встигла відповісти; скажіть їй: «ти чесна»",
             "feedbackByLocale": {
-              "ru": "`is` здесь лишнее: после `you` ставят `are`, поэтому `You are honest.`",
-              "uk": "`is` тут зайве: після `you` ставлять `are`, тому `You are honest`."
+              "ru": "`is` не подходит к обращению `you`; здесь нужно `are`.",
+              "uk": "`is` не підходить до звертання `you`; тут потрібно `are`."
             }
           }
-        ]
+        ],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -1010,13 +963,13 @@
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть — Віка думає, що ви засмучені; скажіть, що вам не сумно",
+      "prompt": "Віка думає, що ви засмучені; скажіть їй, що ви не сумуєте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-15:i17:s02:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть — Віка думає, що ви засмучені; скажіть, що вам не сумно",
+      "accessibilityLabel": "Віка думає, що ви засмучені; скажіть їй, що ви не сумуєте",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -1038,13 +991,18 @@
           {
             "responseId": "en:lesson-01:session-15:i17:s02:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — Вика думает, что",
+            "testedDimension": "Віка думає, що ви засмучені; скажіть їй, що ви не сумуєте",
             "feedbackByLocale": {
-              "ru": "`is` здесь лишнее: о себе говорят `I am not sad.`",
-              "uk": "`is` тут зайве: про себе кажуть `I am not sad`."
+              "ru": "когда говорите о себе, используйте `I am`, не `I is`.",
+              "uk": "коли говорите про себе, використовуйте `I am`, а не `I is`."
             }
           }
-        ]
+        ],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -1115,7 +1073,12 @@
           "kind"
         ],
         "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "slotFeedback": [],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -1152,13 +1115,18 @@
           {
             "responseId": "en:lesson-01:session-15:i19:s02:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — Вика зовёт гулят",
+            "testedDimension": "Послухайте й складіть — Віка кличе гуляти, але ви весь день носили коробки; скажіть, що ви втомилися",
             "feedbackByLocale": {
-              "ru": "`is` здесь лишнее: о себе говорят `I am tired.`",
-              "uk": "`is` тут зайве: про себе кажуть `I am tired`."
+              "ru": "когда говорите о себе, используйте `I am`, не `I is`.",
+              "uk": "коли говорите про себе, використовуйте `I am`, а не `I is`."
             }
           }
-        ]
+        ],
+        "choiceFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -1191,7 +1159,8 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        ],
+        "choiceFeedback": []
       },
       "scriptedAlternate": null
     }
@@ -1202,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f1c1daf18cac3e4089bc333bb03996d5f8f25a7905f95cff716ec104d2a0c8e0"
+  "learnerFingerprint": "672c388f9538bcb2ab9f3c63d7c84e973b64853764cb8494f1e9f4f136c470ab"
 }

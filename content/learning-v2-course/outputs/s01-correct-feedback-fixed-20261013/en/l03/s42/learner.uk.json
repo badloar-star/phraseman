@@ -1,0 +1,928 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — handle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — handle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i01:audio",
+          "transcript": "handle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-42:i01:r1",
+            "targetText": "handle",
+            "meaningByLocale": {
+              "ru": "«ручка двери». Деталь, за которую тянут, чтобы открыть дверь.",
+              "uk": "«ручка дверей». Деталь, за яку тягнуть, щоб відчинити двері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "handle",
+          "definitionByLocale": {
+            "ru": "«ручка двери». Деталь, за которую тянут, чтобы открыть дверь.",
+            "uk": "«ручка дверей». Деталь, за яку тягнуть, щоб відчинити двері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i03:audio",
+          "transcript": "lock"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "lock",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i05:audio",
+          "transcript": "bell"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "bell",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i02:audio",
+          "transcript": "handle"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "handle",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-42:i04:r1",
+          "text": "lock"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i04:r2",
+          "text": "rock"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i04:r3",
+          "text": "log"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i04:r4",
+          "text": "luck"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i04:audio",
+          "transcript": "lock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-42:i04:r1",
+            "targetText": "lock",
+            "meaningByLocale": {
+              "ru": "замок",
+              "uk": "замок"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i04:r2",
+            "targetText": "rock",
+            "meaningByLocale": {
+              "ru": "камень",
+              "uk": "камінь"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i04:r3",
+            "targetText": "log",
+            "meaningByLocale": {
+              "ru": "бревно",
+              "uk": "колода"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i04:r4",
+            "targetText": "luck",
+            "meaningByLocale": {
+              "ru": "удача",
+              "uk": "удача"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-42:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`rock` начинается со звука /r/, а `lock` — с /l/.",
+              "uk": "`rock` починається зі звуку /r/, а `lock` — з /l/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`log` заканчивается звуком /ɡ/, а `lock` — /k/.",
+              "uk": "`log` закінчується звуком /ɡ/, а `lock` — /k/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "В `luck` гласный /ʌ/, а в `lock` — /ɒ/ или /ɑː/.",
+              "uk": "У `luck` голосний /ʌ/, а в `lock` — /ɒ/ або /ɑː/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i06:audio",
+          "transcript": "bell"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "bell",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слово зі значенням — деталі вхідних дверей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слово зі значенням — деталі вхідних дверей",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-42:i07:p1",
+            "target": "handle",
+            "meaningByLocale": {
+              "ru": "ручка двери",
+              "uk": "ручка дверей"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-42:i07:p2",
+            "target": "lock",
+            "meaningByLocale": {
+              "ru": "замок",
+              "uk": "замок"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-42:i07:p3",
+            "target": "bell",
+            "meaningByLocale": {
+              "ru": "звонок",
+              "uk": "дзвінок"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-42:i07:p4",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          }
+        ],
+        "leftColumn": [
+          "handle",
+          "lock",
+          "bell",
+          "receipt"
+        ],
+        "rightColumn": [
+          "ручка дверей",
+          "замок",
+          "дзвінок",
+          "чек"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i08:audio",
+          "transcript": "handle"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "handle",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i09:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i09:audio",
+          "transcript": "lock"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "lock",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i10:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i10:audio",
+          "transcript": "bell"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "bell",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте маленьке слово — ручка цих дверей заїла",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-42:i11:r1",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i11:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i11:r3",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i11:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте маленьке слово — ручка цих дверей заїла",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте маленькое слово — ручка этой двери заела",
+          "uk": "Вставте маленьке слово — ручка цих дверей заїла"
+        },
+        "gappedTargetPhrase": "___ handle is stuck.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i11:r1",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i11:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i11:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i11:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте маленькое слово — ручка этой дв",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — ручка этой дв",
+            "feedbackByLocale": {
+              "ru": "`a handle` не называет ручку, которую вы оба сейчас видите. Для неё нужно `the`.",
+              "uk": "`a handle` не називає ручку, яку ви обоє зараз бачите. Для неї потрібне `the`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — ручка этой дв",
+            "feedbackByLocale": {
+              "ru": "`handle` начинается согласным звуком /h/, но здесь главное: речь о конкретной ручке, поэтому `the`.",
+              "uk": "`handle` починається приголосним звуком /h/, але тут головне: ідеться про конкретну ручку, тому `the`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i11:r4",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — ручка этой дв",
+            "feedbackByLocale": {
+              "ru": "Вы говорите об одной ручке этой двери, которую видите оба, поэтому перед `handle` нужно `the`.",
+              "uk": "Ви говорите про одну ручку цих дверей, яку бачите обоє, тому перед `handle` потрібне `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точне значення фрази",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-42:i12:r1",
+          "text": "Замок сломан"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i12:r2",
+          "text": "Какой-то замок сломан"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i12:r3",
+          "text": "Ручка заела"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i12:r4",
+          "text": "Звонок молчит"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точне значення фрази",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i12:audio",
+          "transcript": "The lock is broken."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-42:i12:r1",
+            "targetText": "Замок сломан",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i12:r2",
+            "targetText": "Какой-то замок сломан",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i12:r3",
+            "targetText": "Ручка заела",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i12:r4",
+            "targetText": "Звонок молчит",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "`the lock` — конкретный замок, который понятен обоим, а не какой-то неизвестный.",
+              "uk": "`the lock` — конкретний замок, зрозумілий обом, а не якийсь невідомий."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `lock` — «замок», а не `handle` — «ручка двери».",
+              "uk": "У записі звучить `lock` — «замок», а не `handle` — «ручка дверей»."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i12:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Фраза говорит о замке и `broken`, а не о звонке и `silent`.",
+              "uk": "Фраза говорить про замок і `broken`, а не про дзвінок і `silent`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i13:audio",
+          "transcript": "The handle is stuck."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The handle is stuck.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i14:audio",
+          "transcript": "The lock is broken."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The lock is broken.",
+        "orderedTokens": [
+          "The",
+          "lock",
+          "is",
+          "broken"
+        ],
+        "authoredDistractorTokens": [
+          "A",
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте маленьке слово — дзвінок біля цих дверей мовчить",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-42:i15:r1",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i15:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i15:r3",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i15:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте маленьке слово — дзвінок біля цих дверей мовчить",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте маленькое слово — звонок у этой двери молчит",
+          "uk": "Вставте маленьке слово — дзвінок біля цих дверей мовчить"
+        },
+        "gappedTargetPhrase": "___ bell is silent.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i15:r1",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте маленькое слово — звонок у этой",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-42:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — звонок у этой",
+            "feedbackByLocale": {
+              "ru": "`a bell` не показывает на звонок, который вы оба только что проверили. Здесь нужна `the bell`.",
+              "uk": "`a bell` не показує на дзвінок, який ви обоє щойно перевірили. Тут потрібне `the bell`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — звонок у этой",
+            "feedbackByLocale": {
+              "ru": "`bell` начинается согласным звуком /b/, но конкретный звонок в общей ситуации получает `the`.",
+              "uk": "`bell` починається приголосним звуком /b/, але конкретний дзвінок у спільній ситуації отримує `the`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r4",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — звонок у этой",
+            "feedbackByLocale": {
+              "ru": "Вы говорите об одном звонке у этой двери, который видите оба, поэтому перед `bell` нужно `the`.",
+              "uk": "Ви говорите про один дзвінок біля цих дверей, який бачите обоє, тому перед `bell` потрібне `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — повідомте працівникові про дзвінок, що мовчить",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — повідомте працівникові про дзвінок, що мовчить",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bell is silent.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сообщите сотруднику о молчащем звонке",
+          "uk": "Складіть фразу — повідомте працівникові про дзвінок, що мовчить"
+        },
+        "orderedTokens": [
+          "The",
+          "bell",
+          "is",
+          "silent"
+        ],
+        "authoredDistractorTokens": [
+          "A",
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 1 із 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 1 із 3",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i17:s01:audio",
+          "transcript": "The handle is stuck."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The handle is stuck.",
+        "orderedTokens": [
+          "The",
+          "handle",
+          "is",
+          "stuck."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i17:s02:audio",
+          "transcript": "The lock is broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The lock is broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 3 із 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 3 із 3",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i17:s03:audio",
+          "transcript": "The bell is silent."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bell is silent.",
+        "orderedTokens": [
+          "The",
+          "bell",
+          "is",
+          "silent."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a35d1313f82141e6ae26f3683dbbc4469bd0f503c174615cd9b21cc208729edb"
+}

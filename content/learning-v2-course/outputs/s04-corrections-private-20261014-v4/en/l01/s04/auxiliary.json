@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-04:intro1:r2": {
+          "ru": "В английском предложении нужен глагол между подлежащим и описанием.",
+          "uk": "В англійському реченні потрібне дієслово між підметом та описом."
+        },
+        "en:lesson-01:session-04:intro1:r3": {
+          "ru": "Прилагательное не получает окончание множественного числа `-s`.",
+          "uk": "Прикметник не отримує закінчення множини `-s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-04:intro2:r2": {
+          "ru": "`Right` и `wrong` имеют противоположные значения.",
+          "uk": "`Right` і `wrong` мають протилежні значення."
+        },
+        "en:lesson-01:session-04:intro2:r3": {
+          "ru": "`Late` описывает время прихода, а не точность расчёта.",
+          "uk": "`Late` описує час приходу, а не точність розрахунку."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-04:intro3:r2": {
+          "ru": "`Not` меняет значение фразы на противоположное.",
+          "uk": "`Not` змінює значення фрази на протилежне."
+        },
+        "en:lesson-01:session-04:intro3:r3": {
+          "ru": "В английском предложении нужен глагол между подлежащим и описанием.",
+          "uk": "В англійському реченні потрібне дієслово між підметом та описом."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5bbf7a348b144650439cee68a2c9f04d34f511695b5da7e6f2140f182adf3a2d"
+}

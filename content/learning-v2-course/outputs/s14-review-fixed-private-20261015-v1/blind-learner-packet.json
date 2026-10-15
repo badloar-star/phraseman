@@ -1,0 +1,1302 @@
+{
+  "schemaVersion": "learning_v2_blind_learner_rendered_packet_v1",
+  "courseSessionId": "en:lesson-01:session-14",
+  "reviewBoundary": {
+    "answerFree": true,
+    "audioReviewed": false,
+    "omittedFields": [
+      "answers",
+      "evaluator",
+      "correct flags",
+      "targetPhrase",
+      "hiddenTargetPhrase",
+      "audio transcripts"
+    ]
+  },
+  "candidateBinding": {
+    "candidateBundleSha256": "b9d3a34d4c719ba411bfcad1921d27e8989a48b058e437be2b0d54be7195bd46",
+    "contentReceiptSha256": "e637114678541b251988abd759bd282aaac70e0ec8e6b20eaa67b88c21b36207",
+    "candidateInventorySha256": "bd46e39f2e25cb4f39f3eaba3927657a47708bc3f14e9c11f9b29ca1cd95d2fa",
+    "sourceFingerprint": "29ec3cf219f397047adc4a69d55e88744e5769618eb6dd7f05698585cfdbea38"
+  },
+  "intro": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Safe — «в безопасности»",
+        "uk": "Safe — «у безпеці»"
+      },
+      "bodyByLocale": {
+        "ru": "`safe` — «в безопасности». Человеку больше ничего не грозит: он под крышей, рядом свои.\n\nДругому человеку говорят `You are safe`. После `you` нужно `are`: по-русски в «ты в безопасности» глагола нет, а по-английски он нужен.",
+        "uk": "`safe` — «у безпеці». Людині більше нічого не загрожує: вона під дахом, поруч свої.\n\nІншій людині кажуть `You are safe`. Після `you` потрібне `are`: українською в «ти у безпеці» дієслова немає, а англійською воно потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Алекс нашёл вход в вокзал и ждёт вас под крышей. Скажите ему: «Ты в безопасности».",
+          "uk": "Алекс знайшов вхід до вокзалу й чекає на вас під дахом. Скажіть йому: «Ти в безпеці»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r1",
+              "text": "You are safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r2",
+              "text": "You safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r3",
+              "text": "You am safe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r1",
+              "text": "You are safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r2",
+              "text": "You safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r3",
+              "text": "You am safe."
+            }
+          ]
+        }
+      },
+      "feedbackByResponseId": {
+        "en:lesson-01:session-14:intro1:r2": {
+          "ru": "После `you` нужно `are`: You are safe.",
+          "uk": "Після `you` потрібне `are`: You are safe."
+        },
+        "en:lesson-01:session-14:intro1:r3": {
+          "ru": "`am` бывает только рядом с `I`. Про собеседника — всегда `are`.",
+          "uk": "`am` буває тільки поруч з `I`. Про співрозмовника — завжди `are`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Warm и dry",
+        "uk": "Warm і dry"
+      },
+      "bodyByLocale": {
+        "ru": "`warm` — «тепло», `dry` — «сухой». Слова про разное: одно про тепло, другое про воду.\n\nПод дождём это заметно: можно быть сухим и всё равно мёрзнуть. Тогда `cold`, а не `dry`.\n\nМеняется только последнее слово, а `You are` стоит на месте.",
+        "uk": "`warm` — «тепло», `dry` — «сухий». Слова про різне: одне про тепло, друге про воду.\n\nПід дощем це помітно: можна бути сухим і все одно мерзнути. Тоді `cold`, а не `dry`.\n\nЗмінюється тільки останнє слово, а `You are` стоїть на місці."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы дали Алексу зонт. Он сухой, но всё ещё мёрзнет. Скажите ему, что он сухой.",
+          "uk": "Ви дали Алексові парасольку. Він сухий, але йому все ще холодно. Скажіть йому, що він сухий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r1",
+              "text": "You are dry."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r2",
+              "text": "You are warm."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r3",
+              "text": "You dry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r1",
+              "text": "You are dry."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r2",
+              "text": "You are warm."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r3",
+              "text": "You dry."
+            }
+          ]
+        }
+      },
+      "feedbackByResponseId": {
+        "en:lesson-01:session-14:intro2:r2": {
+          "ru": "«Тебе тепло» — но зонт греет плохо. Он спас от воды: `dry`.",
+          "uk": "«Тобі тепло» — але парасолька гріє погано. Вона врятувала від води: `dry`."
+        },
+        "en:lesson-01:session-14:intro2:r3": {
+          "ru": "Без `are` это не фраза. Про собеседника — `You are`, и только потом слово.",
+          "uk": "Без `are` це не фраза. Про співрозмовника — `You are`, і аж потім слово."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ready — «готов»",
+        "uk": "Ready — «готовий»"
+      },
+      "bodyByLocale": {
+        "ru": "`ready` — «готов». Не «умелый» и не «согласен», а про эту самую секунду: можно идти.\n\n`You are ready` говорят тому, кто уже собрался и стоит у двери. Умение тут ни при чём.\n\nО себе говорят `I am ready`. Английское `ready` означает, что можно идти прямо сейчас.",
+        "uk": "`ready` — «готовий». Не «умілий» і не «згоден», а про цю саму секунду: можна йти.\n\n`You are ready` кажуть тому, хто вже зібрався і стоїть біля дверей. Уміння тут ні до чого.\n\nПро себе кажуть `I am ready`. Англійське `ready` означає, що можна йти просто зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Алекс застегнул куртку, взял сумку и кивнул вам. Скажите ему, что он готов идти.",
+          "uk": "Алекс застібнув куртку, узяв сумку і кивнув вам. Скажіть йому, що він готовий іти."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r1",
+              "text": "You are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r2",
+              "text": "You are not ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r3",
+              "text": "You ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r1",
+              "text": "You are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r2",
+              "text": "You are not ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r3",
+              "text": "You ready."
+            }
+          ]
+        }
+      },
+      "feedbackByResponseId": {
+        "en:lesson-01:session-14:intro3:r2": {
+          "ru": "`not` переворачивает фразу в «ты не готов» — а он застегнулся и кивнул.",
+          "uk": "`not` перевертає фразу на «ти не готовий» — а він застібнувся і кивнув."
+        },
+        "en:lesson-01:session-14:intro3:r3": {
+          "ru": "После `you` нужно `are`: You are ready.",
+          "uk": "Після `you` потрібне `are`: You are ready."
+        }
+      }
+    }
+  ],
+  "locales": {
+    "ru": {
+      "interactions": [
+        {
+          "interactionId": "en:lesson-01:session-14:i01",
+          "ordinal": 4,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — safe",
+          "accessibilityLabel": "Карточка слова — safe",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i01:r1",
+              "targetText": "safe",
+              "meaning": "«в безопасности». Ничего больше не грозит: дождь снаружи, вы под крышей."
+            }
+          ],
+          "wordCard": {
+            "word": "safe",
+            "definition": "«в безопасности». Ничего больше не грозит: дождь снаружи, вы под крышей."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i02",
+          "ordinal": 5,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте и выберите",
+          "accessibilityLabel": "Послушайте и выберите",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i02:r1",
+              "text": "safe"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i02:r2",
+              "text": "save"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i02:r3",
+              "text": "sad"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i02:r1",
+              "targetText": "safe",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i02:r2",
+              "targetText": "save",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i02:r3",
+              "targetText": "sad",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i02:r2",
+              "text": "`save` — «спасать», а `safe` — «в безопасности»."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i02:r3",
+              "text": "`sad` — «грустный», а `safe` — «в безопасности»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i03",
+          "ordinal": 6,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — warm",
+          "accessibilityLabel": "Карточка слова — warm",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i03:r1",
+              "targetText": "warm",
+              "meaning": "«тепло». Не жара, а то состояние, когда перестаёшь ёжиться."
+            }
+          ],
+          "wordCard": {
+            "word": "warm",
+            "definition": "«тепло». Не жара, а то состояние, когда перестаёшь ёжиться."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i04",
+          "ordinal": 7,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте и выберите",
+          "accessibilityLabel": "Послушайте и выберите",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i04:r1",
+              "text": "warm"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i04:r2",
+              "text": "worm"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i04:r3",
+              "text": "war"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i04:r1",
+              "targetText": "warm",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i04:r2",
+              "targetText": "worm",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i04:r3",
+              "targetText": "war",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i04:r2",
+              "text": "`worm` — «червяк», а `warm` — «тёплый»."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i04:r3",
+              "text": "`war` — «война», а `warm` — «тёплый»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i05",
+          "ordinal": 8,
+          "purpose": "supported_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Соберите фразу — скажите Алексу: «Ты в безопасности»",
+          "accessibilityLabel": "Соберите фразу — скажите Алексу: «Ты в безопасности»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "are",
+            "You",
+            "am",
+            "safe"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i05:tile:d1",
+              "text": "С `you` нельзя `am`: правильная фраза — `You are safe.`"
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i06",
+          "ordinal": 9,
+          "purpose": "supported_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вставьте слово — Алекс не знает, где вокзал и как туда попасть",
+          "accessibilityLabel": "Вставьте слово — Алекс не знает, где вокзал и как туда попасть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i06:r1",
+              "text": "lost"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i06:r2",
+              "text": "safe"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i06:r3",
+              "text": "ready"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вставьте слово — Алекс не знает, где вокзал и как туда попасть",
+          "gappedText": "You are ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i06:r1",
+              "text": "lost"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i06:r2",
+              "text": "safe"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i06:r3",
+              "text": "ready"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i06:r2",
+              "text": "`safe` значит «в безопасности», но Алекс не знает, где вокзал: он `lost`."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i06:r3",
+              "text": "«Ты готов» — а он даже не знает, в какую сторону идти."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i07",
+          "ordinal": 10,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — dry",
+          "accessibilityLabel": "Карточка слова — dry",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i07:r1",
+              "targetText": "dry",
+              "meaning": "«сухой». Ни капли не попало — ни на куртку, ни за шиворот."
+            }
+          ],
+          "wordCard": {
+            "word": "dry",
+            "definition": "«сухой». Ни капли не попало — ни на куртку, ни за шиворот."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i08",
+          "ordinal": 11,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте и выберите",
+          "accessibilityLabel": "Послушайте и выберите",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i08:r1",
+              "text": "dry"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i08:r2",
+              "text": "try"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i08:r3",
+              "text": "day"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i08:r1",
+              "targetText": "dry",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i08:r2",
+              "targetText": "try",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i08:r3",
+              "targetText": "day",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i08:r2",
+              "text": "`try` — «попробовать», а `dry` — «сухой»."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i08:r3",
+              "text": "`day` — «день», а `dry` — «сухой»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i09",
+          "ordinal": 12,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — ready",
+          "accessibilityLabel": "Карточка слова — ready",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i09:r1",
+              "targetText": "ready",
+              "meaning": "«готов». Всё собрано, можно выходить в эту же секунду."
+            }
+          ],
+          "wordCard": {
+            "word": "ready",
+            "definition": "«готов». Всё собрано, можно выходить в эту же секунду."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i10",
+          "ordinal": 13,
+          "purpose": "guided_practice",
+          "family": "sound_contrast",
+          "inputMode": "single_choice",
+          "prompt": "Выберите слово со значением «сухой»",
+          "accessibilityLabel": "Выберите слово со значением «сухой»",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i10:r1",
+              "text": "dry"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i10:r2",
+              "text": "drive"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i10:r2",
+              "text": "`drive` значит «ехать за рулём», а `dry` — «сухой»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i11",
+          "ordinal": 14,
+          "purpose": "guided_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Скажите Алексу: «Ты в безопасности» — вставьте пропущенное слово",
+          "accessibilityLabel": "Скажите Алексу: «Ты в безопасности» — вставьте пропущенное слово",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i11:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i11:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i11:r3",
+              "text": "is"
+            }
+          ],
+          "audio": "none",
+          "scene": "Скажите Алексу: «Ты в безопасности» — вставьте пропущенное слово",
+          "gappedText": "You ___ safe.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i11:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i11:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i11:r3",
+              "text": "is"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i11:r2",
+              "text": "`am` употребляется в `I am`; здесь обращение `you`, поэтому нужно `are`."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i11:r3",
+              "text": "`is` относится к `he/she/it`; здесь обращение `you`, поэтому нужно `are`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i12",
+          "ordinal": 15,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Послушайте и соберите — «тебе тепло»",
+          "accessibilityLabel": "Послушайте и соберите — «тебе тепло»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "warm",
+            "dry",
+            "You",
+            "are"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i12:tile:d1",
+              "text": "`dry` значит «сухой», а `warm` — «тёплый»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i13",
+          "ordinal": 16,
+          "purpose": "retrieval_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Соберите фразу — Алекс кивнул и взял сумку; скажите ему: «ты готов идти»",
+          "accessibilityLabel": "Соберите фразу — Алекс кивнул и взял сумку; скажите ему: «ты готов идти»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "are",
+            "ready",
+            "You",
+            "not"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i13:tile:d1",
+              "text": "`not` изменит смысл на «ты не готов». Нужна фраза `You are ready.`"
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i14",
+          "ordinal": 17,
+          "purpose": "retrieval_practice",
+          "family": "speed_match",
+          "inputMode": "pair_grid",
+          "prompt": "Соедините английские слова с их значениями",
+          "accessibilityLabel": "Соедините английские слова с их значениями",
+          "responseOptions": [],
+          "audio": "none",
+          "visiblePairColumns": {
+            "left": [
+              "warm",
+              "dry",
+              "ready",
+              "safe"
+            ],
+            "right": [
+              "тепло",
+              "готов",
+              "сухой",
+              "в безопасности"
+            ]
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i15",
+          "ordinal": 18,
+          "purpose": "guided_practice",
+          "family": "sound_contrast",
+          "inputMode": "single_choice",
+          "prompt": "Выберите слово со значением «холодный»",
+          "accessibilityLabel": "Выберите слово со значением «холодный»",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i15:r1",
+              "text": "cold"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i15:r2",
+              "text": "called"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i15:r2",
+              "text": "`called` значит «позвал» или «назвал», а `cold` — «холодный»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i16",
+          "ordinal": 19,
+          "purpose": "retrieval_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Машина резко сигналит, Алекс испугался. Скажите ему: «Ты испугался»",
+          "accessibilityLabel": "Машина резко сигналит, Алекс испугался. Скажите ему: «Ты испугался»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "You",
+            "is",
+            "are",
+            "scared"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i16:tile:d1",
+              "text": "После `you` нужно `are`, не `is`: `You are scared.`"
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i17",
+          "ordinal": 20,
+          "purpose": "independent_check",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Соберите фразу со значением «Тебе холодно»",
+          "accessibilityLabel": "Соберите фразу со значением «Тебе холодно»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "cold",
+            "You",
+            "scared",
+            "are"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i17:tile:d1",
+              "text": "`scared` значит «испуган», а `cold` — «холодно»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i18",
+          "ordinal": 21,
+          "purpose": "independent_check",
+          "family": "scripted_repeat_compare",
+          "inputMode": "tap_record_compare",
+          "prompt": "Алекс стоит с вами под крышей. Скажите ему: «Ты в безопасности»",
+          "accessibilityLabel": "Алекс стоит с вами под крышей. Скажите ему: «Ты в безопасности»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played"
+        }
+      ]
+    },
+    "uk": {
+      "interactions": [
+        {
+          "interactionId": "en:lesson-01:session-14:i01",
+          "ordinal": 4,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — safe",
+          "accessibilityLabel": "Картка слова — safe",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i01:r1",
+              "targetText": "safe",
+              "meaning": "«у безпеці». Нічого більше не загрожує: дощ надворі, ви під дахом."
+            }
+          ],
+          "wordCard": {
+            "word": "safe",
+            "definition": "«у безпеці». Нічого більше не загрожує: дощ надворі, ви під дахом."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i02",
+          "ordinal": 5,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послухайте і виберіть",
+          "accessibilityLabel": "Послухайте і виберіть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i02:r1",
+              "text": "safe"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i02:r2",
+              "text": "save"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i02:r3",
+              "text": "sad"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i02:r1",
+              "targetText": "safe",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i02:r2",
+              "targetText": "save",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i02:r3",
+              "targetText": "sad",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i02:r2",
+              "text": "`save` — «рятувати», а `safe` — «у безпеці»."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i02:r3",
+              "text": "`sad` — «сумний», а `safe` — «у безпеці»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i03",
+          "ordinal": 6,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — warm",
+          "accessibilityLabel": "Картка слова — warm",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i03:r1",
+              "targetText": "warm",
+              "meaning": "«тепло». Не спека, а той стан, коли перестаєш щулитися."
+            }
+          ],
+          "wordCard": {
+            "word": "warm",
+            "definition": "«тепло». Не спека, а той стан, коли перестаєш щулитися."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i04",
+          "ordinal": 7,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послухайте і виберіть",
+          "accessibilityLabel": "Послухайте і виберіть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i04:r1",
+              "text": "warm"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i04:r2",
+              "text": "worm"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i04:r3",
+              "text": "war"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i04:r1",
+              "targetText": "warm",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i04:r2",
+              "targetText": "worm",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i04:r3",
+              "targetText": "war",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i04:r2",
+              "text": "`worm` — «черв'як», а `warm` — «теплий»."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i04:r3",
+              "text": "`war` — «війна», а `warm` — «теплий»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i05",
+          "ordinal": 8,
+          "purpose": "supported_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Складіть фразу — скажіть Алексові: «Ти в безпеці»",
+          "accessibilityLabel": "Складіть фразу — скажіть Алексові: «Ти в безпеці»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "am",
+            "are",
+            "You",
+            "safe"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i05:tile:d1",
+              "text": "З `you` не можна `am`: правильна фраза — `You are safe`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i06",
+          "ordinal": 9,
+          "purpose": "supported_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вставте слово — Алекс не знає, де вокзал і як туди дістатися",
+          "accessibilityLabel": "Вставте слово — Алекс не знає, де вокзал і як туди дістатися",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i06:r1",
+              "text": "lost"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i06:r2",
+              "text": "safe"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i06:r3",
+              "text": "ready"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вставте слово — Алекс не знає, де вокзал і як туди дістатися",
+          "gappedText": "You are ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i06:r1",
+              "text": "lost"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i06:r2",
+              "text": "safe"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i06:r3",
+              "text": "ready"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i06:r2",
+              "text": "`safe` означає «у безпеці», але Алекс не знає, де вокзал: він `lost`."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i06:r3",
+              "text": "«Ти готовий» — а він навіть не знає, у який бік іти."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i07",
+          "ordinal": 10,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — dry",
+          "accessibilityLabel": "Картка слова — dry",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i07:r1",
+              "targetText": "dry",
+              "meaning": "«сухий». Ні краплі не потрапило — ні на куртку, ні за комір."
+            }
+          ],
+          "wordCard": {
+            "word": "dry",
+            "definition": "«сухий». Ні краплі не потрапило — ні на куртку, ні за комір."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i08",
+          "ordinal": 11,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послухайте і виберіть",
+          "accessibilityLabel": "Послухайте і виберіть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i08:r1",
+              "text": "dry"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i08:r2",
+              "text": "try"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i08:r3",
+              "text": "day"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i08:r1",
+              "targetText": "dry",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i08:r2",
+              "targetText": "try",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i08:r3",
+              "targetText": "day",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i08:r2",
+              "text": "`try` — «спробувати», а `dry` — «сухий»."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i08:r3",
+              "text": "`day` — «день», а `dry` — «сухий»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i09",
+          "ordinal": 12,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — ready",
+          "accessibilityLabel": "Картка слова — ready",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-14:i09:r1",
+              "targetText": "ready",
+              "meaning": "«готовий». Усе зібрано, можна виходити цієї ж секунди."
+            }
+          ],
+          "wordCard": {
+            "word": "ready",
+            "definition": "«готовий». Усе зібрано, можна виходити цієї ж секунди."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i10",
+          "ordinal": 13,
+          "purpose": "guided_practice",
+          "family": "sound_contrast",
+          "inputMode": "single_choice",
+          "prompt": "Виберіть слово зі значенням «сухий»",
+          "accessibilityLabel": "Виберіть слово зі значенням «сухий»",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i10:r1",
+              "text": "dry"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i10:r2",
+              "text": "drive"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i10:r2",
+              "text": "`drive` означає «їхати за кермом», а `dry` — «сухий»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i11",
+          "ordinal": 14,
+          "purpose": "guided_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Скажіть Алексові: «Ти в безпеці» — вставте пропущене слово",
+          "accessibilityLabel": "Скажіть Алексові: «Ти в безпеці» — вставте пропущене слово",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i11:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i11:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i11:r3",
+              "text": "is"
+            }
+          ],
+          "audio": "none",
+          "scene": "Скажіть Алексові: «Ти в безпеці» — вставте пропущене слово",
+          "gappedText": "You ___ safe.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i11:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i11:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i11:r3",
+              "text": "is"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i11:r2",
+              "text": "`am` вживається в `I am`; тут звертаємося до `you`, тому потрібно `are`."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i11:r3",
+              "text": "`is` стосується `he/she/it`; тут звертаємося до `you`, тому потрібно `are`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i12",
+          "ordinal": 15,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Послухайте і складіть — «тобі тепло»",
+          "accessibilityLabel": "Послухайте і складіть — «тобі тепло»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "You",
+            "are",
+            "dry",
+            "warm"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i12:tile:d1",
+              "text": "`dry` означає «сухий», а `warm` — «теплий»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i13",
+          "ordinal": 16,
+          "purpose": "retrieval_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Складіть фразу — Алекс кивнув і взяв сумку; скажіть йому: «ти готовий іти»",
+          "accessibilityLabel": "Складіть фразу — Алекс кивнув і взяв сумку; скажіть йому: «ти готовий іти»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "not",
+            "are",
+            "ready",
+            "You"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i13:tile:d1",
+              "text": "`not` змінить зміст на «ти не готовий». Потрібна фраза `You are ready`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i14",
+          "ordinal": 17,
+          "purpose": "retrieval_practice",
+          "family": "speed_match",
+          "inputMode": "pair_grid",
+          "prompt": "З'єднайте англійські слова з їхніми значеннями",
+          "accessibilityLabel": "З'єднайте англійські слова з їхніми значеннями",
+          "responseOptions": [],
+          "audio": "none",
+          "visiblePairColumns": {
+            "left": [
+              "safe",
+              "dry",
+              "ready",
+              "warm"
+            ],
+            "right": [
+              "тепло",
+              "готовий",
+              "сухий",
+              "у безпеці"
+            ]
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i15",
+          "ordinal": 18,
+          "purpose": "guided_practice",
+          "family": "sound_contrast",
+          "inputMode": "single_choice",
+          "prompt": "Виберіть слово зі значенням «холодний»",
+          "accessibilityLabel": "Виберіть слово зі значенням «холодний»",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-14:i15:r1",
+              "text": "cold"
+            },
+            {
+              "responseId": "en:lesson-01:session-14:i15:r2",
+              "text": "called"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i15:r2",
+              "text": "`called` означає «покликав» або «назвав», а `cold` — «холодний»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i16",
+          "ordinal": 19,
+          "purpose": "retrieval_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Автомобіль різко сигналить, Алекс злякався. Скажіть йому: «Ти злякався»",
+          "accessibilityLabel": "Автомобіль різко сигналить, Алекс злякався. Скажіть йому: «Ти злякався»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "scared",
+            "are",
+            "is",
+            "You"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i16:tile:d1",
+              "text": "Після `you` потрібне `are`, не `is`: `You are scared`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i17",
+          "ordinal": 20,
+          "purpose": "independent_check",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Складіть фразу зі значенням «Тобі холодно»",
+          "accessibilityLabel": "Складіть фразу зі значенням «Тобі холодно»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "cold",
+            "scared",
+            "are",
+            "You"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-14:i17:tile:d1",
+              "text": "`scared` означає «наляканий», а `cold` — «холодно»."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-14:i18",
+          "ordinal": 21,
+          "purpose": "independent_check",
+          "family": "scripted_repeat_compare",
+          "inputMode": "tap_record_compare",
+          "prompt": "Алекс стоїть із вами під дахом. Скажіть йому: «Ти в безпеці»",
+          "accessibilityLabel": "Алекс стоїть із вами під дахом. Скажіть йому: «Ти в безпеці»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,97 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-44:i01",
+    "correctText": "customer",
+    "correctResponseId": "en:lesson-03:session-44:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i03",
+    "correctText": "seller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i05",
+    "correctText": "assistant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i02",
+    "correctText": "customer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i04",
+    "correctText": "seller",
+    "correctResponseId": "en:lesson-03:session-44:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i06",
+    "correctText": "assistant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i08",
+    "correctText": "customer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i10",
+    "correctText": "seller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i11",
+    "correctText": "assistant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i07",
+    "correctText": "en:lesson-03:session-44:i07:p1=customer\nen:lesson-03:session-44:i07:p2=seller\nen:lesson-03:session-44:i07:p3=assistant\nen:lesson-03:session-44:i07:p4=receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i09",
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i12",
+    "correctText": "A seller is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i13",
+    "correctText": "An assistant is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i14",
+    "correctText": "The assistant is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i15",
+    "correctText": "An",
+    "correctResponseId": "en:lesson-03:session-44:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i16",
+    "correctText": "Этот покупатель здесь",
+    "correctResponseId": "en:lesson-03:session-44:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i17:s01",
+    "correctText": "A customer is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i17:s02",
+    "correctText": "The seller is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:i17:s03",
+    "correctText": "An assistant is here.",
+    "correctResponseId": null
+  }
+]

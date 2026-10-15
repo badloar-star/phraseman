@@ -42,6 +42,14 @@ test("L01/S08 permits only its exact documented historical repeat", () => {
   const data = atomic();
   const evidence = { ledger: ledger() };
   const findings = sourceQualityFindings({ root, sessionKeys: new Set(["en/l01/s08"]), preservationEvidence: evidence });
+  assert.deepEqual(
+    findings["en/l01/s08"]?.filter((finding) => (
+      (finding.taskNumber === 2 || finding.taskNumber === 9)
+      && finding.reason === "исходный текст задания не совпадает с проверенным вариантом"
+    )) ?? [],
+    [],
+    "answer-bearing Markdown tails removed by the canonical learner projection are not source mismatches",
+  );
   assert.deepEqual(findings, {});
   const altered = structuredClone(evidence);
   altered.ledger.protectedHistoricalRepeatExceptions[0].occurrences[1].newInteractionId = "en:lesson-01:session-08:i17:s04";

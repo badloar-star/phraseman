@@ -1,0 +1,1790 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-01:intro1:r2": {
+          "ru": "В полной фразе не хватает `am`: `I am here`.",
+          "uk": "У повній фразі бракує `am`: `I am here`."
+        },
+        "en:lesson-01:session-01:intro1:r3": {
+          "ru": "Не хватает `I`: нужно назвать, кто здесь.",
+          "uk": "Бракує `I`: треба назвати, хто тут."
+        }
+      },
+      "responseAnalysisById": {
+        "en:lesson-01:session-01:intro1:r1": {
+          "ru": {
+            "text": "I am here.",
+            "meaningByLocale": {
+              "ru": "Я здесь.",
+              "uk": "Я тут."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о месте, а here сообщает, что говорящий находится здесь.",
+              "uk": "I називає мовця, am пов'язує його зі словом про місце, а here повідомляє, що мовець перебуває тут."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk"
+                ]
+              },
+              {
+                "text": "here",
+                "start": 5,
+                "end": 9,
+                "lemma": "here",
+                "partOfSpeech": "adverb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "наречие",
+                  "uk": "прислівник"
+                },
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "functionByLocale": {
+                  "ru": "Сообщает о месте, где находится говорящий.",
+                  "uk": "Повідомляє про місце, де перебуває мовець."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#here-adverb-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          },
+          "uk": {
+            "text": "I am here.",
+            "meaningByLocale": {
+              "ru": "Я здесь.",
+              "uk": "Я тут."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о месте, а here сообщает, что говорящий находится здесь.",
+              "uk": "I називає мовця, am пов'язує його зі словом про місце, а here повідомляє, що мовець перебуває тут."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk"
+                ]
+              },
+              {
+                "text": "here",
+                "start": 5,
+                "end": 9,
+                "lemma": "here",
+                "partOfSpeech": "adverb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "наречие",
+                  "uk": "прислівник"
+                },
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "functionByLocale": {
+                  "ru": "Сообщает о месте, где находится говорящий.",
+                  "uk": "Повідомляє про місце, де перебуває мовець."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#here-adverb-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        },
+        "en:lesson-01:session-01:intro1:r2": {
+          "ru": {
+            "text": "I here.",
+            "meaningByLocale": {
+              "ru": "Задумано как «я здесь», но в полной английской фразе пропущено am.",
+              "uk": "Задумано як «я тут», але в повній англійській фразі пропущено am."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, а here сообщает место; для полной фразы между ними нужна форма am.",
+              "uk": "I називає мовця, а here повідомляє місце; для повної фрази між ними потрібна форма am."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "here",
+                "start": 2,
+                "end": 6,
+                "lemma": "here",
+                "partOfSpeech": "adverb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "наречие",
+                  "uk": "прислівник"
+                },
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "functionByLocale": {
+                  "ru": "Без am слово here не образует с I полную английскую фразу.",
+                  "uk": "Без am слово here не утворює з I повну англійську фразу."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#here-adverb-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 6,
+                "end": 7,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          },
+          "uk": {
+            "text": "I here.",
+            "meaningByLocale": {
+              "ru": "Задумано как «я здесь», но в полной английской фразе пропущено am.",
+              "uk": "Задумано як «я тут», але в повній англійській фразі пропущено am."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, а here сообщает место; для полной фразы между ними нужна форма am.",
+              "uk": "I називає мовця, а here повідомляє місце; для повної фрази між ними потрібна форма am."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "here",
+                "start": 2,
+                "end": 6,
+                "lemma": "here",
+                "partOfSpeech": "adverb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "наречие",
+                  "uk": "прислівник"
+                },
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "functionByLocale": {
+                  "ru": "Без am слово here не образует с I полную английскую фразу.",
+                  "uk": "Без am слово here не утворює з I повну англійську фразу."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#here-adverb-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 6,
+                "end": 7,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        },
+        "en:lesson-01:session-01:intro1:r3": {
+          "ru": {
+            "text": "Am here.",
+            "meaningByLocale": {
+              "ru": "Задумано как «я здесь», но не назван говорящий I.",
+              "uk": "Задумано як «я тут», але не названо мовця I."
+            },
+            "explanationByLocale": {
+              "ru": "am связывает говорящего со словом here, но в утверждении не назван говорящий I.",
+              "uk": "am пов'язує мовця зі словом here, але у твердженні не названо мовця I."
+            },
+            "units": [
+              {
+                "text": "Am",
+                "start": 0,
+                "end": 2,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Без I у формы am нет подлежащего: в полной фразе нужно I am here.",
+                  "uk": "Без I форма am не має підмета: у повній фразі потрібно I am here."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk"
+                ]
+              },
+              {
+                "text": "here",
+                "start": 3,
+                "end": 7,
+                "lemma": "here",
+                "partOfSpeech": "adverb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "наречие",
+                  "uk": "прислівник"
+                },
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "functionByLocale": {
+                  "ru": "Сообщает о месте, где находится говорящий.",
+                  "uk": "Повідомляє про місце, де перебуває мовець."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#here-adverb-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 7,
+                "end": 8,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          },
+          "uk": {
+            "text": "Am here.",
+            "meaningByLocale": {
+              "ru": "Задумано как «я здесь», но не назван говорящий I.",
+              "uk": "Задумано як «я тут», але не названо мовця I."
+            },
+            "explanationByLocale": {
+              "ru": "am связывает говорящего со словом here, но в утверждении не назван говорящий I.",
+              "uk": "am пов'язує мовця зі словом here, але у твердженні не названо мовця I."
+            },
+            "units": [
+              {
+                "text": "Am",
+                "start": 0,
+                "end": 2,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Без I у формы am нет подлежащего: в полной фразе нужно I am here.",
+                  "uk": "Без I форма am не має підмета: у повній фразі потрібно I am here."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk"
+                ]
+              },
+              {
+                "text": "here",
+                "start": 3,
+                "end": 7,
+                "lemma": "here",
+                "partOfSpeech": "adverb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "наречие",
+                  "uk": "прислівник"
+                },
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "functionByLocale": {
+                  "ru": "Сообщает о месте, где находится говорящий.",
+                  "uk": "Повідомляє про місце, де перебуває мовець."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#here-adverb-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 7,
+                "end": 8,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "responseDiagnosticsById": {
+        "en:lesson-01:session-01:intro1:r2": {
+          "errorType": "grammar_form",
+          "whyTemptingByLocale": {
+            "ru": "Русская фраза «я здесь» обходится без связки, поэтому рука тянется поставить рядом только I и here.",
+            "uk": "Українська фраза «я тут» обходиться без зв'язки, тому хочеться поставити поруч лише I та here."
+          },
+          "whyWrongHereByLocale": {
+            "ru": "В полной фразе не хватает `am`: `I am here`.",
+            "uk": "У повній фразі бракує `am`: `I am here`."
+          },
+          "minimalContrastByLocale": {
+            "ru": "I here — пропущено am; I am here — полное утверждение «я здесь».",
+            "uk": "I here — пропущено am; I am here — повне твердження «я тут»."
+          },
+          "acceptabilityBoundaryByLocale": {
+            "ru": "I here возможно как намеренно обрывочная речь в особом контексте; для нейтрального ответа у входа нужна полная форма I am here.",
+            "uk": "I here можливе як навмисно уривчасте мовлення в особливому контексті; для нейтральної відповіді біля входу потрібна повна форма I am here."
+          }
+        },
+        "en:lesson-01:session-01:intro1:r3": {
+          "errorType": "grammar_form",
+          "whyTemptingByLocale": {
+            "ru": "Am here сохраняет слово о месте и на слух напоминает конец правильной фразы, поэтому отсутствие подлежащего I можно пропустить.",
+            "uk": "Am here зберігає слово про місце й на слух нагадує кінець правильної фрази, тому відсутність підмета I можна не помітити."
+          },
+          "whyWrongHereByLocale": {
+            "ru": "Не хватает `I`: нужно назвать, кто здесь.",
+            "uk": "Бракує `I`: треба назвати, хто тут."
+          },
+          "minimalContrastByLocale": {
+            "ru": "Am here — не назван говорящий; I am here — говорящий назван словом I.",
+            "uk": "Am here — не названо мовця; I am here — мовця названо словом I."
+          },
+          "acceptabilityBoundaryByLocale": {
+            "ru": "Am here может встречаться лишь как обрывок или помета; самостоятельное нейтральное утверждение о себе начинается с I.",
+            "uk": "Am here може траплятися лише як уривок або позначка; самостійне нейтральне твердження про себе починається з I."
+          }
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-01:intro2:r2": {
+          "ru": "Порядок такой: `I`, затем `am`, затем слово о себе.",
+          "uk": "Порядок такий: `I`, потім `am`, потім слово про себе."
+        },
+        "en:lesson-01:session-01:intro2:r3": {
+          "ru": "В полной фразе между `I` и `ready` не хватает `am`: I am ready.",
+          "uk": "У повній фразі між `I` та `ready` бракує `am`: I am ready."
+        }
+      },
+      "responseAnalysisById": {
+        "en:lesson-01:session-01:intro2:r1": {
+          "ru": {
+            "text": "I am ready.",
+            "meaningByLocale": {
+              "ru": "Я готов / готова.",
+              "uk": "Я готовий / готова."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а ready сообщает о готовности.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а ready повідомляє про готовність."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk"
+                ]
+              },
+              {
+                "text": "ready",
+                "start": 5,
+                "end": 10,
+                "lemma": "ready",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "functionByLocale": {
+                  "ru": "Описывает готовность говорящего начать.",
+                  "uk": "Описує готовність мовця почати."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#ready-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          },
+          "uk": {
+            "text": "I am ready.",
+            "meaningByLocale": {
+              "ru": "Я готов / готова.",
+              "uk": "Я готовий / готова."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а ready сообщает о готовности.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а ready повідомляє про готовність."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk"
+                ]
+              },
+              {
+                "text": "ready",
+                "start": 5,
+                "end": 10,
+                "lemma": "ready",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "functionByLocale": {
+                  "ru": "Описывает готовность говорящего начать.",
+                  "uk": "Описує готовність мовця почати."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#ready-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        },
+        "en:lesson-01:session-01:intro2:r2": {
+          "ru": {
+            "text": "I ready am.",
+            "meaningByLocale": {
+              "ru": "Слова относятся к готовности, но стоят в неверном порядке.",
+              "uk": "Слова стосуються готовності, але стоять у неправильному порядку."
+            },
+            "explanationByLocale": {
+              "ru": "Все нужные слова присутствуют, но в утверждении am должно стоять сразу после I.",
+              "uk": "Усі потрібні слова є, але у твердженні am має стояти одразу після I."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "ready",
+                "start": 2,
+                "end": 7,
+                "lemma": "ready",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "functionByLocale": {
+                  "ru": "Ready должно идти после I am, а не разрывать I и am.",
+                  "uk": "Ready має стояти після I am, а не розривати I та am."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#ready-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 8,
+                "end": 10,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Am должно стоять сразу после I; в конце этого варианта порядок нарушен.",
+                  "uk": "Am має стояти одразу після I; наприкінці цього варіанта порядок порушено."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          },
+          "uk": {
+            "text": "I ready am.",
+            "meaningByLocale": {
+              "ru": "Слова относятся к готовности, но стоят в неверном порядке.",
+              "uk": "Слова стосуються готовності, але стоять у неправильному порядку."
+            },
+            "explanationByLocale": {
+              "ru": "Все нужные слова присутствуют, но в утверждении am должно стоять сразу после I.",
+              "uk": "Усі потрібні слова є, але у твердженні am має стояти одразу після I."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "ready",
+                "start": 2,
+                "end": 7,
+                "lemma": "ready",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "functionByLocale": {
+                  "ru": "Ready должно идти после I am, а не разрывать I и am.",
+                  "uk": "Ready має стояти після I am, а не розривати I та am."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#ready-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 8,
+                "end": 10,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Am должно стоять сразу после I; в конце этого варианта порядок нарушен.",
+                  "uk": "Am має стояти одразу після I; наприкінці цього варіанта порядок порушено."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        },
+        "en:lesson-01:session-01:intro2:r3": {
+          "ru": {
+            "text": "I ready.",
+            "meaningByLocale": {
+              "ru": "Задумано как «я готов / готова», но пропущено am.",
+              "uk": "Задумано як «я готовий / готова», але пропущено am."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, а ready описывает готовность; для полной фразы между ними нужна форма am.",
+              "uk": "I називає мовця, а ready описує готовність; для повної фрази між ними потрібна форма am."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "ready",
+                "start": 2,
+                "end": 7,
+                "lemma": "ready",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "functionByLocale": {
+                  "ru": "Без am прилагательное ready не образует с I полную фразу этого урока.",
+                  "uk": "Без am прикметник ready не утворює з I повну фразу цього уроку."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#ready-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 7,
+                "end": 8,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          },
+          "uk": {
+            "text": "I ready.",
+            "meaningByLocale": {
+              "ru": "Задумано как «я готов / готова», но пропущено am.",
+              "uk": "Задумано як «я готовий / готова», але пропущено am."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, а ready описывает готовность; для полной фразы между ними нужна форма am.",
+              "uk": "I називає мовця, а ready описує готовність; для повної фрази між ними потрібна форма am."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "ready",
+                "start": 2,
+                "end": 7,
+                "lemma": "ready",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "functionByLocale": {
+                  "ru": "Без am прилагательное ready не образует с I полную фразу этого урока.",
+                  "uk": "Без am прикметник ready не утворює з I повну фразу цього уроку."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#ready-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 7,
+                "end": 8,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "responseDiagnosticsById": {
+        "en:lesson-01:session-01:intro2:r2": {
+          "errorType": "grammar_form",
+          "whyTemptingByLocale": {
+            "ru": "В I ready am есть все три нужных слова, и ученик может проверить только набор слов, не проверив их порядок.",
+            "uk": "У I ready am є всі три потрібні слова, і учень може перевірити лише набір слів, не перевіривши їхній порядок."
+          },
+          "whyWrongHereByLocale": {
+            "ru": "Порядок такой: `I`, затем `am`, затем слово о себе.",
+            "uk": "Порядок такий: `I`, потім `am`, потім слово про себе."
+          },
+          "minimalContrastByLocale": {
+            "ru": "I ready am — ready разрывает I am; I am ready — am стоит сразу после I.",
+            "uk": "I ready am — ready розриває I am; I am ready — am стоїть одразу після I."
+          },
+          "acceptabilityBoundaryByLocale": {
+            "ru": "Инверсия I ready am не является обычным утверждением; в отрабатываемой нейтральной фразе порядок фиксирован: I am ready.",
+            "uk": "Інверсія I ready am не є звичайним твердженням; у нейтральній фразі, яку відпрацьовують, порядок фіксований: I am ready."
+          }
+        },
+        "en:lesson-01:session-01:intro2:r3": {
+          "errorType": "grammar_form",
+          "whyTemptingByLocale": {
+            "ru": "I ready похоже на дословное «я готов», где в русском связка в настоящем времени не произносится.",
+            "uk": "I ready схоже на дослівне «я готовий», де в українській зв'язка в теперішньому часі не вимовляється."
+          },
+          "whyWrongHereByLocale": {
+            "ru": "В полной фразе между `I` и `ready` не хватает `am`: I am ready.",
+            "uk": "У повній фразі між `I` та `ready` бракує `am`: I am ready."
+          },
+          "minimalContrastByLocale": {
+            "ru": "I ready — нет am; I am ready — am связывает I и ready.",
+            "uk": "I ready — немає am; I am ready — am пов'язує I та ready."
+          },
+          "acceptabilityBoundaryByLocale": {
+            "ru": "I ready может быть понятным учебным обрывком, но не нейтральным полным ответом о готовности; здесь требуется I am ready.",
+            "uk": "I ready може бути зрозумілим навчальним уривком, але не нейтральною повною відповіддю про готовність; тут потрібне I am ready."
+          }
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-01:intro3:r2": {
+          "ru": "Не хватает `am`: когда вы рады, правильно `I am happy`.",
+          "uk": "Бракує `am`: коли ви раді, правильно `I am happy`."
+        },
+        "en:lesson-01:session-01:intro3:r3": {
+          "ru": "`I am` здесь недостаточно: фраза не говорит, что вы рады. Нужно `I am happy`.",
+          "uk": "Самого `I am` недостатньо: ще не сказано, що ви раді. Потрібне `I am happy`."
+        }
+      },
+      "responseAnalysisById": {
+        "en:lesson-01:session-01:intro3:r1": {
+          "ru": {
+            "text": "I am happy.",
+            "meaningByLocale": {
+              "ru": "Я рад / рада.",
+              "uk": "Я радий / рада."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а happy сообщает, что говорящий рад.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а happy повідомляє, що мовець радий."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk"
+                ]
+              },
+              {
+                "text": "happy",
+                "start": 5,
+                "end": 10,
+                "lemma": "happy",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "рад / рада",
+                  "uk": "радий / рада"
+                },
+                "functionByLocale": {
+                  "ru": "После am описывает радость говорящего.",
+                  "uk": "Після am описує радість мовця."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#happy-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          },
+          "uk": {
+            "text": "I am happy.",
+            "meaningByLocale": {
+              "ru": "Я рад / рада.",
+              "uk": "Я радий / рада."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а happy сообщает, что говорящий рад.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а happy повідомляє, що мовець радий."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk"
+                ]
+              },
+              {
+                "text": "happy",
+                "start": 5,
+                "end": 10,
+                "lemma": "happy",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "рад / рада",
+                  "uk": "радий / рада"
+                },
+                "functionByLocale": {
+                  "ru": "После am описывает радость говорящего.",
+                  "uk": "Після am описує радість мовця."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#happy-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        },
+        "en:lesson-01:session-01:intro3:r2": {
+          "ru": {
+            "text": "I happy.",
+            "meaningByLocale": {
+              "ru": "Задумано как «я рад / рада», но пропущено am.",
+              "uk": "Задумано як «я радий / рада», але пропущено am."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, а happy описывает его состояние; для полной фразы между ними нужна форма am.",
+              "uk": "I називає мовця, а happy описує його стан; для повної фрази між ними потрібна форма am."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "happy",
+                "start": 2,
+                "end": 7,
+                "lemma": "happy",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "рад / рада",
+                  "uk": "радий / рада"
+                },
+                "functionByLocale": {
+                  "ru": "Без am прилагательное happy не образует с I полную фразу этого урока.",
+                  "uk": "Без am прикметник happy не утворює з I повну фразу цього уроку."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#happy-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 7,
+                "end": 8,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          },
+          "uk": {
+            "text": "I happy.",
+            "meaningByLocale": {
+              "ru": "Задумано как «я рад / рада», но пропущено am.",
+              "uk": "Задумано як «я радий / рада», але пропущено am."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, а happy описывает его состояние; для полной фразы между ними нужна форма am.",
+              "uk": "I називає мовця, а happy описує його стан; для повної фрази між ними потрібна форма am."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "happy",
+                "start": 2,
+                "end": 7,
+                "lemma": "happy",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "рад / рада",
+                  "uk": "радий / рада"
+                },
+                "functionByLocale": {
+                  "ru": "Без am прилагательное happy не образует с I полную фразу этого урока.",
+                  "uk": "Без am прикметник happy не утворює з I повну фразу цього уроку."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#happy-adjective-ru-uk"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 7,
+                "end": 8,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        },
+        "en:lesson-01:session-01:intro3:r3": {
+          "ru": {
+            "text": "I am.",
+            "meaningByLocale": {
+              "ru": "Для этой ситуации фраза неполна: состояние не названо.",
+              "uk": "Для цієї ситуації фраза неповна: стан не названо."
+            },
+            "explanationByLocale": {
+              "ru": "`I am` здесь недостаточно: фраза не говорит, что вы рады. Нужно `I am happy`.",
+              "uk": "Самого `I am` недостатньо: ще не сказано, що ви раді. Потрібне `I am happy`."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "I называет говорящего и служит подлежащим, но без happy весь ответ не называет нужную эмоцию.",
+                  "uk": "I називає мовця й слугує підметом, але без happy вся відповідь не називає потрібну емоцію."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с состоянием; без happy состояние не названо.",
+                  "uk": "Пов'язує I зі станом; без happy стан не названо."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk",
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#short-answer-i-am"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 4,
+                "end": 5,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Точка завершает предложение, но без happy весь ответ не называет нужную эмоцию.",
+                  "uk": "Крапка завершує речення, але без happy вся відповідь не називає потрібну емоцію."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          },
+          "uk": {
+            "text": "I am.",
+            "meaningByLocale": {
+              "ru": "Для этой ситуации фраза неполна: состояние не названо.",
+              "uk": "Для цієї ситуації фраза неповна: стан не названо."
+            },
+            "explanationByLocale": {
+              "ru": "`I am` здесь недостаточно: фраза не говорит, что вы рады. Нужно `I am happy`.",
+              "uk": "Самого `I am` недостатньо: ще не сказано, що ви раді. Потрібне `I am happy`."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "I называет говорящего и служит подлежащим, но без happy весь ответ не называет нужную эмоцию.",
+                  "uk": "I називає мовця й слугує підметом, але без happy вся відповідь не називає потрібну емоцію."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#i-pronoun-ru-uk"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с состоянием; без happy состояние не названо.",
+                  "uk": "Пов'язує I зі станом; без happy стан не названо."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#be-i-am-ru-uk",
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#short-answer-i-am"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 4,
+                "end": 5,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Точка завершает предложение, но без happy весь ответ не называет нужную эмоцию.",
+                  "uk": "Крапка завершує речення, але без happy вся відповідь не називає потрібну емоцію."
+                },
+                "sourceRefs": [
+                  "judgements/2026-10-13_l01_s01_source_evidence.md#punctuation-full-stop"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "responseDiagnosticsById": {
+        "en:lesson-01:session-01:intro3:r2": {
+          "errorType": "grammar_form",
+          "whyTemptingByLocale": {
+            "ru": "I happy копирует безглагольную модель «я рад», поэтому короткое am легко потерять между I и happy.",
+            "uk": "I happy копіює бездієслівну модель «я радий», тому коротке am легко загубити між I та happy."
+          },
+          "whyWrongHereByLocale": {
+            "ru": "Не хватает `am`: когда вы рады, правильно `I am happy`.",
+            "uk": "Бракує `am`: коли ви раді, правильно `I am happy`."
+          },
+          "minimalContrastByLocale": {
+            "ru": "I happy — пропущено am; I am happy — полная фраза о радости.",
+            "uk": "I happy — пропущено am; I am happy — повна фраза про радість."
+          },
+          "acceptabilityBoundaryByLocale": {
+            "ru": "I happy допустимо только как намеренный обрывок; сообщая о своей эмоции нейтральной фразой, говорят I am happy.",
+            "uk": "I happy припустиме лише як навмисний уривок; повідомляючи про свою емоцію нейтральною фразою, кажуть I am happy."
+          }
+        },
+        "en:lesson-01:session-01:intro3:r3": {
+          "errorType": "meaning_incomplete",
+          "whyTemptingByLocale": {
+            "ru": "Фраза начинается правильно, поэтому легко остановиться слишком рано.",
+            "uk": "Фраза починається правильно, тому легко зупинитися надто рано."
+          },
+          "whyWrongHereByLocale": {
+            "ru": "`I am` здесь недостаточно: фраза не говорит, что вы рады. Нужно `I am happy`.",
+            "uk": "Самого `I am` недостатньо: ще не сказано, що ви раді. Потрібне `I am happy`."
+          },
+          "minimalContrastByLocale": {
+            "ru": "`I am` не называет состояние; `I am happy` сообщает, что вы рады.",
+            "uk": "`I am` не називає стан; `I am happy` повідомляє, що ви раді."
+          },
+          "acceptabilityBoundaryByLocale": {
+            "ru": "`I am` может быть полным ответом, когда нужный смысл уже задан вопросом. Здесь нужно назвать состояние, поэтому требуется `happy`.",
+            "uk": "`I am` може бути повною відповіддю, коли потрібний зміст вже заданий запитанням. Тут потрібно назвати стан, тому потрібне `happy`."
+          }
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "637c02312cbd7aa4f8900d861b1ea4e39e27f63a8effd869dc023e8636be2410"
+}

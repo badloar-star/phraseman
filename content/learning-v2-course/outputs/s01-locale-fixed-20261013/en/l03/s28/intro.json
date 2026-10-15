@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "различать `this` и `that` в короткой просьбе о вещи рядом или вдали",
+    "uk": "розрізняти `this` та `that` у короткому проханні про річ поруч або вдалині"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбрать вещь рядом",
+        "uk": "Вибрати річ поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`suitcase` — «чемодан». Чемодан стоит рядом с вами у кассы: `This suitcase, please.` — «Этот чемодан, пожалуйста».\n\nПосле `this` сразу идёт название вещи, без `a`: `this suitcase`. Слово `this` показывает, что нужен именно ближний чемодан, а не другой у входа.",
+        "uk": "`suitcase` — «валіза». Валіза стоїть поруч із вами біля каси: `This suitcase, please.` — «Ця валіза, будь ласка».\n\nПісля `this` одразу йде назва речі, без `a`: `this suitcase`. Слово `this` показує, що потрібна саме ближня валіза, а не інша біля входу."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Чемодан стоит прямо перед вами у кассы. Выберите этот чемодан короткой просьбой.",
+          "uk": "Валіза стоїть просто перед вами біля каси. Виберіть цю валізу коротким проханням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r1",
+              "text": "This suitcase, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r2",
+              "text": "That suitcase, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r3",
+              "text": "This a suitcase, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r1",
+              "text": "This suitcase, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r2",
+              "text": "That suitcase, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r3",
+              "text": "This a suitcase, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Чемодан стоит прямо перед вами у кассы. Выберите этот чемодан короткой просьбой.",
+          "uk": "Валіза стоїть просто перед вами біля каси. Виберіть цю валізу коротким проханням."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбрать вещь вдали",
+        "uk": "Вибрати річ вдалині"
+      },
+      "bodyByLocale": {
+        "ru": "`backpack` — «рюкзак». Рюкзак остался у входа. Для дальней вещи выбираем `that`: `That backpack, please.` — «Тот рюкзак, пожалуйста».\n\nВ короткой просьбе `this` выбирает предмет рядом, а `that` — предмет дальше. В конце называем вещь: `this suitcase`, `that backpack`.",
+        "uk": "`backpack` — «рюкзак». Рюкзак залишився біля входу. Для далекої речі вибираємо `that`: `That backpack, please.` — «Той рюкзак, будь ласка».\n\nУ короткому проханні `this` вибирає предмет поруч, а `that` — предмет далі. Наприкінці називаємо річ: `this suitcase`, `that backpack`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Рюкзак остался на стойке у входа. Выберите тот рюкзак короткой просьбой.",
+          "uk": "Рюкзак залишився на стійці біля входу. Виберіть той рюкзак коротким проханням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r1",
+              "text": "That backpack, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r2",
+              "text": "This backpack, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r3",
+              "text": "That a backpack, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r1",
+              "text": "That backpack, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r2",
+              "text": "This backpack, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r3",
+              "text": "That a backpack, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Рюкзак остался на стойке у входа. Выберите тот рюкзак короткой просьбой.",
+          "uk": "Рюкзак залишився на стійці біля входу. Виберіть той рюкзак коротким проханням."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Услышать `this` или `that`",
+        "uk": "Почути `this` або `that`"
+      },
+      "bodyByLocale": {
+        "ru": "`wallet` — «кошелёк». Для вещи рядом скажите `This wallet, please.`, вдали — `That wallet, please.`\n\nНе угадывайте по началу: дослушайте `this` или `that` целиком и смотрите, где лежит вещь. Касса не любит лотерей: одно слово решает, какой кошелёк поедет с вами.",
+        "uk": "`wallet` — «гаманець». Для речі поруч скажіть `This wallet, please.`, вдалині — `That wallet, please.`\n\nНе вгадуйте за початком: дослухайте `this` або `that` до кінця й дивіться, де лежить річ. Каса не любить лотерей: одне слово вирішує, який гаманець поїде з вами."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Кошелёк лежит прямо перед вами на прилавке. Выберите этот кошелёк короткой просьбой.",
+          "uk": "Гаманець лежить просто перед вами на прилавку. Виберіть цей гаманець коротким проханням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r1",
+              "text": "This wallet, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r2",
+              "text": "That wallet, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r3",
+              "text": "This a wallet, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r1",
+              "text": "This wallet, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r2",
+              "text": "That wallet, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r3",
+              "text": "This a wallet, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Кошелёк лежит прямо перед вами на прилавке. Выберите этот кошелёк короткой просьбой.",
+          "uk": "Гаманець лежить просто перед вами на прилавку. Виберіть цей гаманець коротким проханням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "aa3c62b8dcbc4bc07127f8a3a18dd83f89aac83e5e1bdb6162a88e9986c8d14c"
+}

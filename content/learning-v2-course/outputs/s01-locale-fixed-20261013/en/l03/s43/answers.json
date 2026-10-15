@@ -1,0 +1,112 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-43:i01",
+    "correctText": "book",
+    "correctResponseId": "en:lesson-03:session-43:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i03",
+    "correctText": "magazine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i05",
+    "correctText": "newspaper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i02",
+    "correctText": "book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i04",
+    "correctText": "magazine",
+    "correctResponseId": "en:lesson-03:session-43:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i06",
+    "correctText": "newspaper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i08",
+    "correctText": "book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i10",
+    "correctText": "magazine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i11",
+    "correctText": "newspaper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i07",
+    "correctText": "en:lesson-03:session-43:i07:p1=book\nen:lesson-03:session-43:i07:p2=magazine\nen:lesson-03:session-43:i07:p3=newspaper\nen:lesson-03:session-43:i07:p4=receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i09",
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i12",
+    "correctText": "Newspapers are fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i13",
+    "correctText": "The newspapers are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i14",
+    "correctText": "The magazines are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i15",
+    "correctText": "без артикля",
+    "correctResponseId": "en:lesson-03:session-43:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i16",
+    "correctText": "Книги подойдут",
+    "correctResponseId": "en:lesson-03:session-43:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i17:s01",
+    "correctText": "Books are fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i17:s02",
+    "correctText": "The books are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i17:s03",
+    "correctText": "Magazines are fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i17:s04",
+    "correctText": "The magazines are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i17:s05",
+    "correctText": "Newspapers are fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i17:s06",
+    "correctText": "The newspapers are here.",
+    "correctResponseId": null
+  }
+]

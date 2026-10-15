@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="ru" data-learning-v2-mockup="v1" data-factory-intro-practice-verdict="NOT_RUN_CANDIDATE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#eef2e9">
+<title>Learning V2 · Пройти урок</title>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#eef2e9; --surface:#fbfdf7; --surface-2:#e7ede4; --sunken:#dde5da;
+  --text:#12231d; --muted:#5d6b65; --accent:#17715a; --target:#0b8264;
+  --danger:#c0413f; --gold:#b77813;
+  --shadow-sm:0 2px 8px rgba(20,44,34,.06);
+  --shadow:0 12px 36px rgba(20,44,34,.10);
+  --shadow-lg:0 24px 70px rgba(20,44,34,.16);
+  --r-sm:12px; --r:18px; --r-lg:26px;
+  --ease:cubic-bezier(.23,1,.32,1);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --z-sticky:20; --z-overlay:40;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{min-height:100vh;background:radial-gradient(circle at 50% -25%,#fff 0,#eef2e9 46%,#dde7dc 100%);color:var(--text);-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+button:disabled{cursor:default}
+
+.topbar{position:sticky;top:0;z-index:var(--z-sticky);display:flex;align-items:center;gap:14px;
+  height:60px;padding:0 max(18px,calc((100vw - 900px)/2));
+  background:rgba(251,253,247,.82);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(18,35,29,.07)}
+.brand{font-weight:800;letter-spacing:-.02em;font-size:15px}
+.brand span{display:block;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-top:1px}
+.build-stamp{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.02em;white-space:nowrap}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.pill{background:var(--surface-2);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235d6b65' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;color:var(--text)}
+
+.shell{width:min(100%,900px);margin:0 auto;padding:26px 20px 90px}
+.release-hold-banner{width:min(calc(100% - 40px),860px);margin:18px auto 0;padding:14px 18px;border:2px solid #d99a11;
+  border-radius:var(--r);background:#fff4c9;color:#775200;font-size:14px;font-weight:750;line-height:1.45}
+
+/* ---- дом ---- */
+.hero{padding:18px 4px 26px}
+.hero h1{margin:0 0 8px;font-size:clamp(26px,4.6vw,38px);letter-spacing:-.035em;line-height:1.08;text-wrap:balance}
+.hero p{margin:0;color:var(--muted);font-size:15px;max-width:62ch;line-height:1.5}
+.lesson-title{margin:26px 4px 12px;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--muted)}
+.cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(268px,1fr))}
+.card{position:relative;text-align:left;padding:18px 18px 16px;border-radius:var(--r);
+  background:var(--surface);box-shadow:var(--shadow-sm);
+  transition:transform .32s var(--ease),box-shadow .32s var(--ease)}
+.card.needs-repair{background:#fff4c9;box-shadow:inset 0 0 0 2px #d99a11,var(--shadow-sm)}
+.card.candidate-review-disabled{background:#e4f5eb;box-shadow:inset 0 0 0 2px #16835f,var(--shadow-sm)}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card:active{transform:translateY(-1px) scale(.995)}
+.card h3{margin:0 0 6px;font-size:16px;letter-spacing:-.02em;line-height:1.25}
+.card .scene{margin:0;font-size:13px;color:var(--muted);line-height:1.45;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .meta{margin-top:12px;display:flex;gap:8px;align-items:center}
+.chip{font-size:11px;font-weight:700;letter-spacing:.02em;padding:4px 9px;border-radius:999px;
+  background:var(--surface-2);color:var(--muted)}
+.chip.k{background:rgba(11,130,100,.11);color:var(--target)}
+.chip.fixed{background:#bce8d1;color:#075b40}
+.chip.pending{background:#ffe9a6;color:#775200}
+.fix-summary{margin:10px 0 0;font-size:12px;line-height:1.42;color:#775200;font-weight:700}
+
+/* ---- прохождение ---- */
+.progress{display:flex;gap:4px;margin:0 0 22px}
+.progress i{height:4px;flex:1;border-radius:2px;background:var(--sunken);transition:background .3s var(--ease)}
+.progress i.done{background:var(--target)}
+.progress i.now{background:var(--accent)}
+
+.panel{background:var(--surface);border-radius:var(--r-lg);padding:26px;box-shadow:var(--shadow);
+  animation:rise .42s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.kind{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.panel h2{margin:0 0 14px;font-size:clamp(20px,3.4vw,26px);letter-spacing:-.03em;line-height:1.18;text-wrap:balance}
+.body{font-size:16px;line-height:1.62;color:var(--text);max-width:64ch;text-wrap:pretty}
+/* целевой язык внутри объяснения — цветом, а не кавычками (владелец 03.09) */
+.tl{color:var(--target);font-weight:600;white-space:nowrap}
+.body p{margin:0 0 13px}
+.body p:last-child{margin-bottom:0}
+.question{margin:24px 0 14px;font-size:16px;font-weight:650;line-height:1.4}
+.task-prompt{margin:0 0 18px;font-size:17px;font-weight:650;letter-spacing:-.01em;line-height:1.35}
+.scene-line{margin:0 0 16px;font-size:14px;color:var(--muted);line-height:1.5}
+
+.opts{display:grid;gap:9px}
+.opt{position:relative;text-align:left;padding:15px 17px;border-radius:var(--r);
+  background:var(--surface-2);font-size:16px;font-weight:550;
+  transition:transform .2s var(--ease),background .2s var(--ease),box-shadow .2s var(--ease)}
+.opt:not(:disabled):hover{background:var(--sunken);transform:translateX(2px)}
+.opt:not(:disabled):active{transform:scale(.985)}
+.opt.right{background:rgba(11,130,100,.14);color:var(--target);font-weight:700}
+.opt.wrong{background:rgba(192,65,63,.11);color:var(--danger)}
+.opt.dim{opacity:.5}
+
+/* разбор ответа — НЕ похож на кнопку варианта: без фона-плашки, с чертой слева
+   по тону и иконкой (владелец 03.09 принял «Верно.» за четвёртый вариант) */
+.fb{margin-top:14px;padding:4px 0 0 14px;font-size:14.5px;line-height:1.5;color:var(--muted);
+  box-shadow:inset 3px 0 0 var(--sunken);animation:rise .3s var(--ease) both}
+.fb::before{content:"→ ";font-weight:700}
+.fb.ok{color:var(--target);box-shadow:inset 3px 0 0 var(--target)}
+.fb.ok::before{content:"✓ "}
+.fb.no{color:#8f3230;box-shadow:inset 3px 0 0 var(--danger)}
+.fb.no::before{content:"✗ "}
+
+/* плитки */
+.slot{min-height:56px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  padding:12px;border-radius:var(--r);background:var(--sunken);margin-bottom:14px}
+.slot:empty::after{content:attr(data-hint);color:var(--muted);font-size:14px}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{padding:11px 15px;border-radius:14px;background:var(--surface-2);font-size:16px;font-weight:600;
+  box-shadow:var(--shadow-sm);transition:transform .2s var(--ease),opacity .2s var(--ease)}
+.tile:not(:disabled):hover{transform:translateY(-2px)}
+.tile:not(:disabled):active{transform:scale(.95)}
+.tile.used{opacity:.28;pointer-events:none}
+.slot .tile{background:var(--surface);box-shadow:none}
+
+/* пары */
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.pair{padding:14px;border-radius:var(--r);background:var(--surface-2);font-size:15px;font-weight:600;text-align:center;
+  transition:transform .2s var(--ease),background .2s var(--ease)}
+.pair.sel{background:rgba(23,113,90,.16);color:var(--accent)}
+.pair.gone{opacity:.25;pointer-events:none}
+.pair:not(:disabled):active{transform:scale(.96)}
+
+/* аудио и голос */
+.play{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:999px;
+  background:var(--accent);color:#fff;font-weight:650;font-size:15px;box-shadow:var(--shadow-sm);
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.play:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.play:active{transform:scale(.96)}
+.target-phrase{font-size:clamp(22px,4vw,30px);font-weight:700;letter-spacing:-.02em;margin:18px 0;color:var(--target)}
+.card-word{font-size:clamp(26px,5vw,36px);font-weight:800;letter-spacing:-.03em;color:var(--target);margin:6px 0 10px}
+.card-def{font-size:16px;line-height:1.55;color:var(--text);max-width:52ch}
+
+.actions{display:flex;gap:10px;margin-top:22px;align-items:center}
+.btn{padding:14px 24px;border-radius:999px;font-weight:700;font-size:15px;
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease),opacity .2s}
+.btn.primary{background:var(--accent);color:#fff;box-shadow:var(--shadow-sm)}
+.btn.primary:not(:disabled):hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn.primary:not(:disabled):active{transform:scale(.97)}
+.btn.primary:disabled{opacity:.4}
+.btn.ghost{background:var(--surface-2);color:var(--muted)}
+.btn.ghost:hover{background:var(--sunken)}
+.spacer{margin-left:auto}
+
+/* финал */
+.done-wrap{text-align:center;padding:40px 20px}
+.done-mark{font-size:56px;line-height:1;margin-bottom:16px;animation:pop .6s var(--ease) both}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}60%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+.done-wrap h2{margin:0 0 10px;font-size:28px;letter-spacing:-.03em}
+.done-wrap p{margin:0 0 24px;color:var(--muted);font-size:16px}
+.stats{display:flex;gap:26px;justify-content:center;margin-bottom:28px}
+.stat b{display:block;font-size:26px;letter-spacing:-.02em}
+.stat span{font-size:12px;color:var(--muted);font-weight:600}
+
+@media (max-width:560px){
+  .shell{padding:18px 14px 80px}
+  .panel{padding:20px 18px;border-radius:var(--r)}
+  .pairs{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">Learning V2<span id="brandSubtitle">Пройти урок</span></div>
+  <div class="topbar-right">
+    <span class="build-stamp" id="buildStamp"></span>
+    <select class="pill" id="locale" aria-label="Язык объяснений"></select>
+    <button class="pill" id="home" hidden>К списку</button>
+  </div>
+</div>
+
+<div class="shell" id="app">
+  <noscript><div class="panel"><h2>Не выполняется JavaScript</h2><p class="body">Макет интерактивный: включите JavaScript или откройте файл в обычном браузере (Chrome, Edge).</p></div></noscript>
+  <div class="panel" id="boot"><h2>Загрузка…</h2><p class="body" id="boot-msg">Если этот текст остался — скрипт не выполнился. Откройте файл двойным кликом в Chrome или Edge.</p></div>
+</div>
+
+<script id="data" type="application/json">[{"key":"en/l01/s05","lang":"en","lesson":"l01","session":"s05","title":"Урок 1 · Занятие 5 — «Три слова вместо двух»","scene":"Во второй день работы Марина знакомит вас с коллегами на офисной кухне. Она спрашивает, как вы себя чувствуете и давно ли вы работаете здесь. Вы отвечаете о себе полными фразами.","titleByLocale":{"ru":"Урок 1 · Занятие 5 — «Три слова вместо двух»","uk":"Урок 1 · Заняття 5 — «Три слова замість двох»"},"sceneByLocale":{"ru":"Во второй день работы Марина знакомит вас с коллегами на офисной кухне. Она спрашивает, как вы себя чувствуете и давно ли вы работаете здесь. Вы отвечаете о себе полными фразами.","uk":"Другого дня роботи Марина знайомить вас із колегами на офісній кухні. Вона питає, як ви почуваєтеся і чи давно ви тут працюєте. Ви відповідаєте про себе повними реченнями."},"viewSource":"candidate","reviewedProjectionFresh":false,"reviewedProjectionIssue":"source_missing:practice.explanations.v1.json","lessonTitle":"Present be: утверждение + not","lessonTitleByLocale":{"ru":"Present be: утверждение + not","uk":"Present be: ствердження + not"},"intro":{"schemaVersion":"learning_v2_course_session_intro_child_v1","courseSessionId":"en:lesson-01:session-05","learningOutcomeByLocale":{"ru":"как сказать о себе с `I am` и как поставить `not` после `am`","uk":"як сказати про себе з `I am` і як поставити `not` після `am`"},"pages":[{"pageOrdinal":1,"pageId":"en:lesson-01:session-05:intro1","kind":"concept","titleByLocale":{"ru":"Слово, которое проглатывают","uk":"Слово, яке ковтають"},"bodyByLocale":{"ru":"В короткой фразе о себе после `I` ставят `am`, а затем слово о состоянии или качестве. Например: `I am tired` — о сильной усталости после долгого дня.\n\nЗдесь мы разбираем сочетание `I am` перед прилагательным. Это не правило для любой фразы с `I`: например, `I work` — «я работаю» — обходится без `am`.","uk":"У короткому реченні про себе після `I` ставлять `am`, а потім слово про стан або якість. Наприклад: `I am tired` — про втому після довгого дня.\n\nТут ми розглядаємо поєднання `I am` перед прикметником. Це не правило для будь-якого речення з `I`: наприклад, `I work` — «я працюю» — обходиться без `am`."},"question":{"interactionId":"en:lesson-01:session-05:intro1:q","promptByLocale":{"ru":"Коллега Марина спрашивает возле чайника, как вы себя чувствуете. Вы в порядке — ответьте полной фразой.","uk":"Колега Марина питає біля чайника, як ви почуваєтеся. У вас усе гаразд — скажіть повним реченням."},"choicesByLocale":{"ru":[{"responseId":"en:lesson-01:session-05:intro1:r1","text":"I am fine."},{"responseId":"en:lesson-01:session-05:intro1:r2","text":"I fine."},{"responseId":"en:lesson-01:session-05:intro1:r3","text":"Am fine."}],"uk":[{"responseId":"en:lesson-01:session-05:intro1:r1","text":"I am fine."},{"responseId":"en:lesson-01:session-05:intro1:r2","text":"I fine."},{"responseId":"en:lesson-01:session-05:intro1:r3","text":"Am fine."}]},"accessibilityLabelByLocale":{"ru":"Коллега Марина спрашивает возле чайника, как вы себя чувствуете. Вы в порядке — ответьте полной фразой.","uk":"Колега Марина питає біля чайника, як ви почуваєтеся. У вас усе гаразд — скажіть повним реченням."}}},{"pageOrdinal":2,"pageId":"en:lesson-01:session-05:intro2","kind":"formula","titleByLocale":{"ru":"Not не работает в одиночку","uk":"Not сам не працює"},"bodyByLocale":{"ru":"В нейтральной фразе о себе отрицание строится так: `I am not` + прилагательное. Например: `I am not sick` — «я не болею».\n\n`No` обычно отвечает на вопрос «да или нет». В отрицательной фразе `not` ставят после `am` и перед прилагательным.","uk":"У нейтральному реченні про себе заперечення будується так: `I am not` + прикметник. Наприклад: `I am not sick` — «я не хворію».\n\n`No` зазвичай відповідає на запитання «так чи ні». У заперечному реченні `not` ставлять після `am` і перед прикметником."},"question":{"interactionId":"en:lesson-01:session-05:intro2:q","promptByLocale":{"ru":"Марина предлагает вам кофе и спрашивает, понравился ли он вам. Вы его ещё не пробовали.","uk":"Марина пропонує вам каву й питає, чи сподобалася вона вам. Ви її ще не куштували."},"choicesByLocale":{"ru":[{"responseId":"en:lesson-01:session-05:intro2:r1","text":"I am not sure."},{"responseId":"en:lesson-01:session-05:intro2:r2","text":"I no sure."},{"responseId":"en:lesson-01:session-05:intro2:r3","text":"I am sure not."}],"uk":[{"responseId":"en:lesson-01:session-05:intro2:r1","text":"I am not sure."},{"responseId":"en:lesson-01:session-05:intro2:r2","text":"I no sure."},{"responseId":"en:lesson-01:session-05:intro2:r3","text":"I am sure not."}]},"accessibilityLabelByLocale":{"ru":"Марина предлагает вам кофе и спрашивает, понравился ли он вам. Вы его ещё не пробовали.","uk":"Марина пропонує вам каву й питає, чи сподобалася вона вам. Ви її ще не куштували."}}},{"pageOrdinal":3,"pageId":"en:lesson-01:session-05:intro3","kind":"trap","titleByLocale":{"ru":"I am — сочетание для описания состояния","uk":"I am — поєднання для опису стану"},"bodyByLocale":{"ru":"`I am` перед прилагательным — цельный шаблон: после него ставят описание состояния или качества. Значение `lost` зависит от контекста: `I am lost` описывает, что человек не знает, куда идти; `I lost my keys` означает, что человек потерял ключи.\n\nВ коротком `I lost` без дополнения смысл не всегда ясен; для значения «потерял ключи» обычно называют, что именно потеряли.","uk":"`I am` перед прикметником — цілісний шаблон: після нього ставлять опис стану або якості. Значення `lost` залежить від контексту: `I am lost` описує, що людина не знає, куди йти; `I lost my keys` означає, що людина загубила ключі.\n\nУ короткому `I lost` без додатка зміст не завжди зрозумілий; щоб сказати про загублені ключі, зазвичай називають, що саме загубили."},"question":{"interactionId":"en:lesson-01:session-05:intro3:q","promptByLocale":{"ru":"Лина знакомит вас с Антоном и просит представиться. Сегодня ваш первый день в компании — скажите, что вы недавно пришли в команду.","uk":"Ліна знайомить вас з Антоном і просить представитися. Сьогодні ваш перший день у компанії — скажіть, що ви нещодавно приєдналися до команди."},"choicesByLocale":{"ru":[{"responseId":"en:lesson-01:session-05:intro3:r1","text":"I am new."},{"responseId":"en:lesson-01:session-05:intro3:r2","text":"I new."},{"responseId":"en:lesson-01:session-05:intro3:r3","text":"I am not new."}],"uk":[{"responseId":"en:lesson-01:session-05:intro3:r1","text":"I am new."},{"responseId":"en:lesson-01:session-05:intro3:r2","text":"I new."},{"responseId":"en:lesson-01:session-05:intro3:r3","text":"I am not new."}]},"accessibilityLabelByLocale":{"ru":"Лина знакомит вас с Антоном и просит представиться. Сегодня ваш первый день в компании — скажите, что вы недавно пришли в команду.","uk":"Ліна знайомить вас з Антоном і просить представитися. Сьогодні ваш перший день у компанії — скажіть, що ви нещодавно приєдналися до команди."}}}],"pageCount":3,"embeddedQuestionCount":3,"practiceStartOrdinal":4,"questionPolicy":"one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate","answerDataPolicy":"none_server_evaluator_child_only","runtimeAuthority":"none_active_release_join_required","releaseAuthority":false,"introFingerprint":"f6da071e52495a107d4c8c5fa6f8cb466977a865ae46a12b902182e69eff7a27"},"learner":{"schemaVersion":"learning_v2_course_session_learner_child_v1","courseSessionId":"en:lesson-01:session-05","targetLanguage":"en","interactions":[{"interactionId":"en:lesson-01:session-05:i01","ordinal":4,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Карточка слова — hot","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i01:audio"],"accessibilityLabel":"Карточка слова — hot","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i01:audio","transcript":"hot"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i01:r1","targetText":"hot","meaningByLocale":{"ru":"«жарко, мне жарко». Батарея в офисе не знает, что уже не зима.","uk":"«спекотно, мені жарко». Батарея в офісі не знає, що вже не зима."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"hot","definitionByLocale":{"ru":"«жарко, мне жарко». Батарея в офисе не знает, что уже не зима.","uk":"«спекотно, мені жарко». Батарея в офісі не знає, що вже не зима."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i02","ordinal":5,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послушайте и выберите","responseOptions":[{"responseId":"en:lesson-01:session-05:i02:r1","text":"hot"},{"responseId":"en:lesson-01:session-05:i02:r2","text":"hat"},{"responseId":"en:lesson-01:session-05:i02:r3","text":"hurt"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i02:audio"],"accessibilityLabel":"Послушайте и выберите","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i02:audio","transcript":"hot"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i02:r1","targetText":"hot","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i02:r2","targetText":"hat","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i02:r3","targetText":"hurt","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i02:r2","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"Вы выбрали `hat`. В этом слове другой гласный; в записи звучит `hot`. Переслушайте контраст `hat` — `hot`.","uk":"Ви вибрали `hat`. У цьому слові інший голосний; у записі звучить `hot`. Переслухайте контраст `hat` — `hot`."}},{"responseId":"en:lesson-01:session-05:i02:r3","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"Вы выбрали `hurt`. Это другое слово. В нём другой гласный; в записи звучит `hot`. Переслушайте контраст `hurt` — `hot`.","uk":"Ви вибрали `hurt`. Це інше слово. У ньому інший голосний; у записі звучить `hot`. Переслухайте контраст `hurt` — `hot`."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i03","ordinal":6,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Карточка слова — sick","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i03:audio"],"accessibilityLabel":"Карточка слова — sick","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i03:audio","transcript":"sick"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i03:r1","targetText":"sick","meaningByLocale":{"ru":"«болею». Так можно написать коллеге, если сегодня остаетесь дома из-за болезни.","uk":"«хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"sick","definitionByLocale":{"ru":"«болею». Так можно написать коллеге, если сегодня остаетесь дома из-за болезни.","uk":"«хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i04","ordinal":7,"purpose":"supported_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Соберите фразу — в комнате душно, и вы снимаете свитер","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соберите фразу — в комнате душно, и вы снимаете свитер","modePayload":{"family":"phrase_builder","targetPhrase":"I am hot.","localizedMeaning":{"ru":"Соберите фразу — в комнате душно, и вы снимаете свитер","uk":"Складіть фразу — у кімнаті душно, і ви знімаєте светр"},"orderedTokens":["I","am","hot"],"authoredDistractorTokens":[],"slotFeedback":[]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i05","ordinal":8,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Карточка слова — lost","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i05:audio"],"accessibilityLabel":"Карточка слова — lost","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i05:audio","transcript":"lost"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i05:r1","targetText":"lost","meaningByLocale":{"ru":"не знать, где находишься.","uk":"не знати, де перебуваєш."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"lost","definitionByLocale":{"ru":"не знать, где находишься.","uk":"не знати, де перебуваєш."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i06","ordinal":9,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послушайте и выберите","responseOptions":[{"responseId":"en:lesson-01:session-05:i06:r1","text":"lost"},{"responseId":"en:lesson-01:session-05:i06:r2","text":"last"},{"responseId":"en:lesson-01:session-05:i06:r3","text":"list"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i06:audio"],"accessibilityLabel":"Послушайте и выберите","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i06:audio","transcript":"lost"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i06:r1","targetText":"lost","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i06:r2","targetText":"last","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i06:r3","targetText":"list","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i06:r2","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"Вы выбрали `last`. В этом слове другой гласный; в записи звучит `lost`. Переслушайте контраст `last` — `lost`.","uk":"Ви вибрали `last`. У цьому слові інший голосний; у записі звучить `lost`. Переслухайте контраст `last` — `lost`."}},{"responseId":"en:lesson-01:session-05:i06:r3","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"Вы выбрали `list`. В этом слове другой гласный; в записи звучит `lost`. Переслушайте контраст `list` — `lost`.","uk":"Ви вибрали `list`. У цьому слові інший голосний; у записі звучить `lost`. Переслухайте контраст `list` — `lost`."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i07","ordinal":10,"purpose":"guided_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Карточка слова — new","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i07:audio"],"accessibilityLabel":"Карточка слова — new","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i07:audio","transcript":"new"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i07:r1","targetText":"new","meaningByLocale":{"ru":"«новый». О человеке, недавно присоединившемся к группе или команде.","uk":"«новий»; про людину, яка нещодавно приєдналася до групи чи команди."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"new","definitionByLocale":{"ru":"«новый». О человеке, недавно присоединившемся к группе или команде.","uk":"«новий»; про людину, яка нещодавно приєдналася до групи чи команди."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i08","ordinal":11,"purpose":"guided_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послушайте и выберите","responseOptions":[{"responseId":"en:lesson-01:session-05:i08:r1","text":"sick"},{"responseId":"en:lesson-01:session-05:i08:r2","text":"six"},{"responseId":"en:lesson-01:session-05:i08:r3","text":"seek"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i08:audio"],"accessibilityLabel":"Послушайте и выберите","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i08:audio","transcript":"sick"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i08:r1","targetText":"sick","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i08:r2","targetText":"six","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i08:r3","targetText":"seek","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i08:r2","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"Это «шесть». Слушайте конец: у `sick` там «к», а не «кс».","uk":"Це «шість». Слухайте кінець: у `sick` там «к», а не «кс»."}},{"responseId":"en:lesson-01:session-05:i08:r3","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"Гласная длиннее, как «и-и». У `sick` она короткая и резкая.","uk":"Голосна довша, як «і-і». У `sick` вона коротка й різка."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i09","ordinal":12,"purpose":"guided_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Соберите фразу — вы только начали работать в команде","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соберите фразу — вы только начали работать в команде","modePayload":{"family":"phrase_builder","targetPhrase":"I am new.","localizedMeaning":{"ru":"Вы здесь недавно: соберите полную фразу.","uk":"Ви тут недавно: складіть повну фразу."},"orderedTokens":["I","am","new"],"authoredDistractorTokens":["is","not"],"slotFeedback":[{"responseId":"en:lesson-01:session-05:i09:tile:d1","correct":false,"testedDimension":"Соберите фразу — вы только начали работать в команде","feedbackByLocale":{"ru":"с I нужна форма am","uk":"з I потрібна форма am"}},{"responseId":"en:lesson-01:session-05:i09:tile:d2","correct":false,"testedDimension":"Соберите фразу — вы только начали работать в команде","feedbackByLocale":{"ru":"добавление `not` превратило бы фразу в отрицание; контекст говорит, что вы недавно присоединились к команде","uk":"додавання `not` перетворило б фразу на заперечення; контекст говорить, що ви нещодавно приєдналися до команди"}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i10","ordinal":13,"purpose":"guided_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставьте слово — вы потерялись между этажами","responseOptions":[{"responseId":"en:lesson-01:session-05:i10:r1","text":"am"},{"responseId":"en:lesson-01:session-05:i10:r2","text":"is"},{"responseId":"en:lesson-01:session-05:i10:r3","text":"not"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставьте слово — вы потерялись между этажами","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — вы потерялись между этажами","uk":"Вставте слово — ви загубилися між поверхами"},"gappedTargetPhrase":"I ___ lost.","gapOptions":[{"responseId":"en:lesson-01:session-05:i10:r1","text":"am"},{"responseId":"en:lesson-01:session-05:i10:r2","text":"is"},{"responseId":"en:lesson-01:session-05:i10:r3","text":"not"}],"testedDimension":"Вставьте слово — вы потерялись между этажами","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i10:r2","correct":false,"testedDimension":"Вставьте слово — вы потерялись между этажами","feedbackByLocale":{"ru":"С `I` используется `am`, не `is`: `I am lost`.","uk":"З `I` використовується `am`, а не `is`: `I am lost`."}},{"responseId":"en:lesson-01:session-05:i10:r3","correct":false,"testedDimension":"Вставьте слово — вы потерялись между этажами","feedbackByLocale":{"ru":"`not` — это «не», а вы как раз заблудились. И без `am` он всё равно не встанет.","uk":"`not` — це «не», а ви якраз заблукали. І без `am` він усе одно не стане."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i11","ordinal":14,"purpose":"guided_practice","family":"speed_match","inputMode":"pair_grid","prompt":"Соедините пары","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соедините пары","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-01:session-05:i11:p1","target":"hot","meaningByLocale":{"ru":"жарко","uk":"спекотно"}},{"pairId":"en:lesson-01:session-05:i11:p2","target":"sick","meaningByLocale":{"ru":"болею","uk":"хворію"}},{"pairId":"en:lesson-01:session-05:i11:p3","target":"lost","meaningByLocale":{"ru":"не знать, где находишься","uk":"не знати, де перебуваєш."}},{"pairId":"en:lesson-01:session-05:i11:p4","target":"new","meaningByLocale":{"ru":"человек, недавно присоединившийся к команде","uk":"людина, яка нещодавно приєдналася до команди"}}],"leftColumn":["hot","sick","lost","new"],"rightColumn":["жарко","болею","не знать, где находишься","человек, недавно присоединившийся к команде"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i12","ordinal":15,"purpose":"guided_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставьте слово — коллега приболел, а вы здоровы","responseOptions":[{"responseId":"en:lesson-01:session-05:i12:r1","text":"not"},{"responseId":"en:lesson-01:session-05:i12:r2","text":"no"},{"responseId":"en:lesson-01:session-05:i12:r3","text":"am"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставьте слово — коллега приболел, а вы здоровы","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — коллега приболел, а вы здоровы","uk":"Вставте слово — колега занедужав, а ви здорові"},"gappedTargetPhrase":"I am ___ .","gapOptions":[{"responseId":"en:lesson-01:session-05:i12:r1","text":"not"},{"responseId":"en:lesson-01:session-05:i12:r2","text":"no"},{"responseId":"en:lesson-01:session-05:i12:r3","text":"am"}],"testedDimension":"Вставьте слово — коллега приболел, а вы здоровы","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i12:r2","correct":false,"testedDimension":"Вставьте слово — коллега приболел, а вы здоровы","feedbackByLocale":{"ru":"В этой конструкции `no` не подходит: для «я не болею» нужно `not` после `am`.","uk":"У цій конструкції `no` не підходить: для «я не хворію» потрібне `not` після `am`."}},{"responseId":"en:lesson-01:session-05:i12:r3","correct":false,"testedDimension":"Вставьте слово — коллега приболел, а вы здоровы","feedbackByLocale":{"ru":"`am` уже стоит в начале. Второй не нужен, нужен `not`.","uk":"`am` уже стоїть на початку. Другий не потрібен, потрібен `not`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i13","ordinal":16,"purpose":"retrieval_practice","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послушайте и соберите — «я не знаю наверняка»","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i13:audio"],"accessibilityLabel":"Послушайте и соберите — «я не уверен»","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i13:audio","transcript":"I am not sure."},"slowReferenceAudio":null,"hiddenTargetPhrase":"I am not sure.","orderedTokens":["I","am","not","sure"],"authoredDistractorTokens":["no"],"slotFeedback":[{"responseId":"en:lesson-01:session-05:i13:tile:d1","correct":false,"testedDimension":"Послушайте и соберите — «я не знаю наверняка»","feedbackByLocale":{"ru":"в этой фразе отрицание — `not`, сразу после `am`","uk":"у цій фразі заперечення — `not`, одразу після `am`"}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i14","ordinal":17,"purpose":"retrieval_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Соберите фразу — вам НЕ жарко, у окна сквозняк","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соберите фразу — вам НЕ жарко, у окна сквозняк","modePayload":{"family":"phrase_builder","targetPhrase":"I am not hot.","localizedMeaning":{"ru":"Соберите фразу — вам НЕ жарко, у окна сквозняк","uk":"Складіть фразу — вам НЕ жарко, від вікна тягне"},"orderedTokens":["I","am","not","hot"],"authoredDistractorTokens":[],"slotFeedback":[]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i15","ordinal":18,"purpose":"retrieval_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставьте слово — Марина спрашивает, как вы себя чувствуете; всё в порядке","responseOptions":[{"responseId":"en:lesson-01:session-05:i15:r1","text":"am"},{"responseId":"en:lesson-01:session-05:i15:r2","text":"is"},{"responseId":"en:lesson-01:session-05:i15:r3","text":"are"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставьте слово — Марина спрашивает, как вы себя чувствуете; всё в порядке","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — Марина спрашивает, как вы себя чувствуете; всё в порядке","uk":"Вставте слово — Марина питає, як ви почуваєтеся; усе гаразд"},"gappedTargetPhrase":"I ___ fine.","gapOptions":[{"responseId":"en:lesson-01:session-05:i15:r1","text":"am"},{"responseId":"en:lesson-01:session-05:i15:r2","text":"is"},{"responseId":"en:lesson-01:session-05:i15:r3","text":"are"}],"testedDimension":"Вставьте слово — Марина спрашивает, как вы себя чувствуете; всё в порядке","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i15:r2","correct":false,"testedDimension":"Вставьте слово — Марина спрашивает, как вы себя чувствуете; всё в порядке","feedbackByLocale":{"ru":"С `I` используется `am`, не `is`: `I am fine`.","uk":"З `I` використовується `am`, а не `is`: `I am fine`."}},{"responseId":"en:lesson-01:session-05:i15:r3","correct":false,"testedDimension":"Вставьте слово — Марина спрашивает, как вы себя чувствуете; всё в порядке","feedbackByLocale":{"ru":"Не для `I`. Что бы ни стояло дальше, начало одно: `I am`.","uk":"Не для `I`. Що б не стояло далі, початок один: `I am`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i16","ordinal":19,"purpose":"retrieval_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Соберите фразу: после долгого дня сообщите, что чувствуете усталость","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Правда или отрицание? Вы правда устали — признайтесь честно","modePayload":{"family":"phrase_builder","targetPhrase":"I am tired.","localizedMeaning":{"ru":"Соберите фразу: после долгого дня сообщите, что чувствуете усталость","uk":"Складіть фразу: після довгого дня повідомте, що відчуваєте втому"},"orderedTokens":["I","am","tired"],"authoredDistractorTokens":["not"],"slotFeedback":[{"responseId":"en:lesson-01:session-05:i16:tile:d1","correct":false,"testedDimension":"Соберите фразу: после долгого дня сообщите, что чувствуете усталость","feedbackByLocale":{"ru":"с ней фраза отрицала бы усталость","uk":"з нею фраза заперечувала б втому"}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i17","ordinal":20,"purpose":"independent_check","family":"speed_match","inputMode":"pair_grid","prompt":"Соедините английские слова с их значением","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соедините пары — слова, которые уже ваши","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-01:session-05:i17:p1","target":"fine","meaningByLocale":{"ru":"в порядке","uk":"гаразд"}},{"pairId":"en:lesson-01:session-05:i17:p2","target":"sure","meaningByLocale":{"ru":"без сомнений","uk":"без сумнівів"}},{"pairId":"en:lesson-01:session-05:i17:p3","target":"ready","meaningByLocale":{"ru":"готовность начать","uk":"готовність почати"}},{"pairId":"en:lesson-01:session-05:i17:p4","target":"sorry","meaningByLocale":{"ru":"извините","uk":"вибачте"}}],"leftColumn":["fine","sure","ready","sorry"],"rightColumn":["в порядке","без сомнений","готовность начать","извините"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i18:s01","ordinal":21,"purpose":"independent_check","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Скажите вслух — вы задели коллегу в коридоре","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i18:s01:audio"],"accessibilityLabel":"Скажите вслух — вы задели коллегу в коридоре","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i18:s01:audio","transcript":"I am sorry."},"slowReferenceAudio":null,"targetPhrase":"I am sorry.","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i18:s02","ordinal":22,"purpose":"independent_check","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послушайте и соберите — вы пришли после начала встречи","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i18:s02:audio"],"accessibilityLabel":"Послушайте и соберите — вы пришли после начала встречи","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i18:s02:audio","transcript":"I am late."},"slowReferenceAudio":null,"hiddenTargetPhrase":"I am late.","orderedTokens":["I","am","late"],"authoredDistractorTokens":["is","not"],"slotFeedback":[{"responseId":"en:lesson-01:session-05:i18:s02:tile:d1","correct":false,"testedDimension":"Послушайте и соберите — вы пришли после начала встречи","feedbackByLocale":{"ru":"с I нужна форма am","uk":"з I потрібна форма am"}},{"responseId":"en:lesson-01:session-05:i18:s02:tile:d2","correct":false,"testedDimension":"Послушайте и соберите — вы пришли после начала встречи","feedbackByLocale":{"ru":"фраза отрицала бы, что вы опоздали","uk":"фраза заперечувала б, що ви запізнилися"}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i19","ordinal":23,"purpose":"independent_check","family":"speed_match","inputMode":"pair_grid","prompt":"Итог — соедините фразы со значениями","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Итог — соедините фразы с фактами","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-01:session-05:i19:p1","target":"I am hot.","meaningByLocale":{"ru":"мне жарко","uk":"мені жарко"}},{"pairId":"en:lesson-01:session-05:i19:p2","target":"I am not sick.","meaningByLocale":{"ru":"я не болею","uk":"я не хворію"}},{"pairId":"en:lesson-01:session-05:i19:p3","target":"I am ready.","meaningByLocale":{"ru":"я могу начать","uk":"я можу почати"}},{"pairId":"en:lesson-01:session-05:i19:p4","target":"I am not hot.","meaningByLocale":{"ru":"мне не жарко","uk":"мені не спекотно"}}],"leftColumn":["I am hot.","I am not sick.","I am ready.","I am not hot."],"rightColumn":["мне жарко","я не болею","я могу начать","мне не жарко"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":false,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["accuracy"]},"scriptedAlternate":null}],"practiceInteractionCount":20,"firstPracticeOrdinal":4,"evaluatorPayload":"absent_by_exact_schema","acceptedAnswerPayload":"absent_by_exact_schema","runtimeAuthority":"none_active_release_join_required","releaseAuthority":false,"learnerFingerprint":"ef9cabaec164074491fffbd943e869ba34e06fa8b7b019f6902168eb0dd57983"},"learnerByLocale":{"uk":{"schemaVersion":"learning_v2_course_session_learner_child_v1","courseSessionId":"en:lesson-01:session-05","targetLanguage":"en","interactions":[{"interactionId":"en:lesson-01:session-05:i01","ordinal":4,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Картка слова — hot","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i01:audio"],"accessibilityLabel":"Картка слова — hot","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i01:audio","transcript":"hot"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i01:r1","targetText":"hot","meaningByLocale":{"ru":"«жарко, мне жарко». Батарея в офисе не знает, что уже не зима.","uk":"«спекотно, мені жарко». Батарея в офісі не знає, що вже не зима."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"hot","definitionByLocale":{"ru":"«жарко, мне жарко». Батарея в офисе не знает, что уже не зима.","uk":"«спекотно, мені жарко». Батарея в офісі не знає, що вже не зима."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i02","ordinal":5,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послухайте і виберіть","responseOptions":[{"responseId":"en:lesson-01:session-05:i02:r1","text":"hot"},{"responseId":"en:lesson-01:session-05:i02:r2","text":"hat"},{"responseId":"en:lesson-01:session-05:i02:r3","text":"hurt"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i02:audio"],"accessibilityLabel":"Послухайте і виберіть","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i02:audio","transcript":"hot"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i02:r1","targetText":"hot","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i02:r2","targetText":"hat","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i02:r3","targetText":"hurt","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i02:r2","correct":false,"testedDimension":"Послухайте і виберіть","feedbackByLocale":{"ru":"Вы выбрали `hat`. В этом слове другой гласный; в записи звучит `hot`. Переслушайте контраст `hat` — `hot`.","uk":"Ви вибрали `hat`. У цьому слові інший голосний; у записі звучить `hot`. Переслухайте контраст `hat` — `hot`."}},{"responseId":"en:lesson-01:session-05:i02:r3","correct":false,"testedDimension":"Послухайте і виберіть","feedbackByLocale":{"ru":"Вы выбрали `hurt`. Это другое слово. В нём другой гласный; в записи звучит `hot`. Переслушайте контраст `hurt` — `hot`.","uk":"Ви вибрали `hurt`. Це інше слово. У ньому інший голосний; у записі звучить `hot`. Переслухайте контраст `hurt` — `hot`."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i03","ordinal":6,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Картка слова — sick","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i03:audio"],"accessibilityLabel":"Картка слова — sick","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i03:audio","transcript":"sick"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i03:r1","targetText":"sick","meaningByLocale":{"ru":"«болею». Так можно написать коллеге, если сегодня остаетесь дома из-за болезни.","uk":"«хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"sick","definitionByLocale":{"ru":"«болею». Так можно написать коллеге, если сегодня остаетесь дома из-за болезни.","uk":"«хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i04","ordinal":7,"purpose":"supported_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Складіть фразу — у кімнаті душно, і ви знімаєте светр","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Складіть фразу — у кімнаті душно, і ви знімаєте светр","modePayload":{"family":"phrase_builder","targetPhrase":"I am hot.","localizedMeaning":{"ru":"Соберите фразу — в комнате душно, и вы снимаете свитер","uk":"Складіть фразу — у кімнаті душно, і ви знімаєте светр"},"orderedTokens":["I","am","hot"],"authoredDistractorTokens":[],"slotFeedback":[]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i05","ordinal":8,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Картка слова — lost","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i05:audio"],"accessibilityLabel":"Картка слова — lost","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i05:audio","transcript":"lost"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i05:r1","targetText":"lost","meaningByLocale":{"ru":"не знать, где находишься","uk":"не знати, де перебуваєш."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"lost","definitionByLocale":{"ru":"не знать, где находишься","uk":"не знати, де перебуваєш."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i06","ordinal":9,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послухайте і виберіть","responseOptions":[{"responseId":"en:lesson-01:session-05:i06:r1","text":"lost"},{"responseId":"en:lesson-01:session-05:i06:r2","text":"last"},{"responseId":"en:lesson-01:session-05:i06:r3","text":"list"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i06:audio"],"accessibilityLabel":"Послухайте і виберіть","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i06:audio","transcript":"lost"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i06:r1","targetText":"lost","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i06:r2","targetText":"last","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i06:r3","targetText":"list","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i06:r2","correct":false,"testedDimension":"Послухайте і виберіть","feedbackByLocale":{"ru":"Вы выбрали `last`. В этом слове другой гласный; в записи звучит `lost`. Переслушайте контраст `last` — `lost`.","uk":"Ви вибрали `last`. У цьому слові інший голосний; у записі звучить `lost`. Переслухайте контраст `last` — `lost`."}},{"responseId":"en:lesson-01:session-05:i06:r3","correct":false,"testedDimension":"Послухайте і виберіть","feedbackByLocale":{"ru":"Вы выбрали `list`. В этом слове другой гласный; в записи звучит `lost`. Переслушайте контраст `list` — `lost`.","uk":"Ви вибрали `list`. У цьому слові інший голосний; у записі звучить `lost`. Переслухайте контраст `list` — `lost`."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i07","ordinal":10,"purpose":"guided_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Картка слова — new","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i07:audio"],"accessibilityLabel":"Картка слова — new","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i07:audio","transcript":"new"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i07:r1","targetText":"new","meaningByLocale":{"ru":"«новый». О человеке, недавно присоединившемся к группе или команде.","uk":"«новий»; про людину, яка нещодавно приєдналася до групи чи команди."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"new","definitionByLocale":{"ru":"«новый». О человеке, недавно присоединившемся к группе или команде.","uk":"«новий»; про людину, яка нещодавно приєдналася до групи чи команди."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i08","ordinal":11,"purpose":"guided_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послухайте і виберіть","responseOptions":[{"responseId":"en:lesson-01:session-05:i08:r1","text":"sick"},{"responseId":"en:lesson-01:session-05:i08:r2","text":"six"},{"responseId":"en:lesson-01:session-05:i08:r3","text":"seek"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i08:audio"],"accessibilityLabel":"Послухайте і виберіть","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i08:audio","transcript":"sick"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-05:i08:r1","targetText":"sick","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i08:r2","targetText":"six","meaningByLocale":null},{"responseId":"en:lesson-01:session-05:i08:r3","targetText":"seek","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i08:r2","correct":false,"testedDimension":"Послухайте і виберіть","feedbackByLocale":{"ru":"Это «шесть». Слушайте конец: у `sick` там «к», а не «кс».","uk":"Це «шість». Слухайте кінець: у `sick` там «к», а не «кс»."}},{"responseId":"en:lesson-01:session-05:i08:r3","correct":false,"testedDimension":"Послухайте і виберіть","feedbackByLocale":{"ru":"Гласная длиннее, как «и-и». У `sick` она короткая и резкая.","uk":"Голосна довша, як «і-і». У `sick` вона коротка й різка."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i09","ordinal":12,"purpose":"guided_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Складіть фразу — ви щойно почали працювати в команді","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Складіть фразу — ви щойно почали працювати в команді","modePayload":{"family":"phrase_builder","targetPhrase":"I am new.","localizedMeaning":{"ru":"Вы здесь недавно: соберите полную фразу.","uk":"Ви тут недавно: складіть повну фразу."},"orderedTokens":["I","am","new"],"authoredDistractorTokens":["is","not"],"slotFeedback":[{"responseId":"en:lesson-01:session-05:i09:tile:d1","correct":false,"testedDimension":"Складіть фразу — ви щойно почали працювати в команді","feedbackByLocale":{"ru":"с I нужна форма am","uk":"з I потрібна форма am"}},{"responseId":"en:lesson-01:session-05:i09:tile:d2","correct":false,"testedDimension":"Складіть фразу — ви щойно почали працювати в команді","feedbackByLocale":{"ru":"добавление `not` превратило бы фразу в отрицание; контекст говорит, что вы недавно присоединились к команде","uk":"додавання `not` перетворило б фразу на заперечення; контекст говорить, що ви нещодавно приєдналися до команди"}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i10","ordinal":13,"purpose":"guided_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставте слово — ви загубилися між поверхами","responseOptions":[{"responseId":"en:lesson-01:session-05:i10:r1","text":"am"},{"responseId":"en:lesson-01:session-05:i10:r2","text":"is"},{"responseId":"en:lesson-01:session-05:i10:r3","text":"not"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставте слово — ви загубилися між поверхами","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — вы потерялись между этажами","uk":"Вставте слово — ви загубилися між поверхами"},"gappedTargetPhrase":"I ___ lost.","gapOptions":[{"responseId":"en:lesson-01:session-05:i10:r1","text":"am"},{"responseId":"en:lesson-01:session-05:i10:r2","text":"is"},{"responseId":"en:lesson-01:session-05:i10:r3","text":"not"}],"testedDimension":"Вставте слово — ви загубилися між поверхами","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i10:r2","correct":false,"testedDimension":"Вставте слово — ви загубилися між поверхами","feedbackByLocale":{"ru":"С `I` используется `am`, не `is`: `I am lost`.","uk":"З `I` використовується `am`, а не `is`: `I am lost`."}},{"responseId":"en:lesson-01:session-05:i10:r3","correct":false,"testedDimension":"Вставте слово — ви загубилися між поверхами","feedbackByLocale":{"ru":"`not` — это «не», а вы как раз заблудились. И без `am` он всё равно не встанет.","uk":"`not` — це «не», а ви якраз заблукали. І без `am` він усе одно не стане."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i11","ordinal":14,"purpose":"guided_practice","family":"speed_match","inputMode":"pair_grid","prompt":"З'єднайте пари","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"З'єднайте пари","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-01:session-05:i11:p1","target":"hot","meaningByLocale":{"ru":"жарко","uk":"спекотно"}},{"pairId":"en:lesson-01:session-05:i11:p2","target":"sick","meaningByLocale":{"ru":"болею","uk":"хворію"}},{"pairId":"en:lesson-01:session-05:i11:p3","target":"lost","meaningByLocale":{"ru":"не знать, где находишься","uk":"не знати, де перебуваєш"}},{"pairId":"en:lesson-01:session-05:i11:p4","target":"new","meaningByLocale":{"ru":"человек, недавно присоединившийся к команде","uk":"людина, яка нещодавно приєдналася до команди"}}],"leftColumn":["hot","sick","lost","new"],"rightColumn":["спекотно","хворію","не знати, де перебуваєш","людина, яка нещодавно приєдналася до команди"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i12","ordinal":15,"purpose":"guided_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставте слово — колега занедужав, а ви здорові","responseOptions":[{"responseId":"en:lesson-01:session-05:i12:r1","text":"not"},{"responseId":"en:lesson-01:session-05:i12:r2","text":"no"},{"responseId":"en:lesson-01:session-05:i12:r3","text":"am"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставте слово — колега занедужав, а ви здорові","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — коллега приболел, а вы здоровы","uk":"Вставте слово — колега занедужав, а ви здорові"},"gappedTargetPhrase":"I am ___ .","gapOptions":[{"responseId":"en:lesson-01:session-05:i12:r1","text":"not"},{"responseId":"en:lesson-01:session-05:i12:r2","text":"no"},{"responseId":"en:lesson-01:session-05:i12:r3","text":"am"}],"testedDimension":"Вставте слово — колега занедужав, а ви здорові","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i12:r2","correct":false,"testedDimension":"Вставте слово — колега занедужав, а ви здорові","feedbackByLocale":{"ru":"В этой конструкции `no` не подходит: для «я не болею» нужно `not` после `am`.","uk":"У цій конструкції `no` не підходить: для «я не хворію» потрібне `not` після `am`."}},{"responseId":"en:lesson-01:session-05:i12:r3","correct":false,"testedDimension":"Вставте слово — колега занедужав, а ви здорові","feedbackByLocale":{"ru":"`am` уже стоит в начале. Второй не нужен, нужен `not`.","uk":"`am` уже стоїть на початку. Другий не потрібен, потрібен `not`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i13","ordinal":16,"purpose":"retrieval_practice","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послухайте і складіть — «я не знаю напевно»","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i13:audio"],"accessibilityLabel":"Послухайте і складіть — «я не знаю напевно»","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i13:audio","transcript":"I am not sure."},"slowReferenceAudio":null,"hiddenTargetPhrase":"I am not sure.","orderedTokens":["I","am","not","sure"],"authoredDistractorTokens":["no"],"slotFeedback":[{"responseId":"en:lesson-01:session-05:i13:tile:d1","correct":false,"testedDimension":"Послухайте і складіть — «я не знаю напевно»","feedbackByLocale":{"ru":"в этой фразе отрицание — `not`, сразу после `am`","uk":"у цій фразі заперечення — `not`, одразу після `am`"}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i14","ordinal":17,"purpose":"retrieval_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Складіть фразу — вам НЕ жарко, від вікна тягне","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Складіть фразу — вам НЕ жарко, від вікна тягне","modePayload":{"family":"phrase_builder","targetPhrase":"I am not hot.","localizedMeaning":{"ru":"Соберите фразу — вам НЕ жарко, у окна сквозняк","uk":"Складіть фразу — вам НЕ жарко, від вікна тягне"},"orderedTokens":["I","am","not","hot"],"authoredDistractorTokens":[],"slotFeedback":[]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i15","ordinal":18,"purpose":"retrieval_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставте слово — Марина питає, як ви почуваєтеся; усе гаразд","responseOptions":[{"responseId":"en:lesson-01:session-05:i15:r1","text":"am"},{"responseId":"en:lesson-01:session-05:i15:r2","text":"is"},{"responseId":"en:lesson-01:session-05:i15:r3","text":"are"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставте слово — Марина питає, як ви почуваєтеся; усе гаразд","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — Марина спрашивает, как вы себя чувствуете; всё в порядке","uk":"Вставте слово — Марина питає, як ви почуваєтеся; усе гаразд"},"gappedTargetPhrase":"I ___ fine.","gapOptions":[{"responseId":"en:lesson-01:session-05:i15:r1","text":"am"},{"responseId":"en:lesson-01:session-05:i15:r2","text":"is"},{"responseId":"en:lesson-01:session-05:i15:r3","text":"are"}],"testedDimension":"Вставте слово — Марина питає, як ви почуваєтеся; усе гаразд","choiceFeedback":[{"responseId":"en:lesson-01:session-05:i15:r2","correct":false,"testedDimension":"Вставте слово — Марина питає, як ви почуваєтеся; усе гаразд","feedbackByLocale":{"ru":"С `I` используется `am`, не `is`: `I am fine`.","uk":"З `I` використовується `am`, а не `is`: `I am fine`."}},{"responseId":"en:lesson-01:session-05:i15:r3","correct":false,"testedDimension":"Вставте слово — Марина питає, як ви почуваєтеся; усе гаразд","feedbackByLocale":{"ru":"Не для `I`. Что бы ни стояло дальше, начало одно: `I am`.","uk":"Не для `I`. Що б не стояло далі, початок один: `I am`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i16","ordinal":19,"purpose":"retrieval_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Складіть фразу: після довгого дня повідомте, що відчуваєте втому","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Правда чи заперечення? Ви справді втомилися — визнайте це чесно","modePayload":{"family":"phrase_builder","targetPhrase":"I am tired.","localizedMeaning":{"ru":"Соберите фразу: после долгого дня сообщите, что чувствуете усталость","uk":"Складіть фразу: після довгого дня повідомте, що відчуваєте втому"},"orderedTokens":["I","am","tired"],"authoredDistractorTokens":["not"],"slotFeedback":[{"responseId":"en:lesson-01:session-05:i16:tile:d1","correct":false,"testedDimension":"Складіть фразу: після довгого дня повідомте, що відчуваєте втому","feedbackByLocale":{"ru":"с ней фраза отрицала бы усталость","uk":"з нею фраза заперечувала б втому"}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i17","ordinal":20,"purpose":"independent_check","family":"speed_match","inputMode":"pair_grid","prompt":"З'єднайте англійські слова з їхнім значенням","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"З'єднайте пари — слова, які вже ваші","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-01:session-05:i17:p1","target":"fine","meaningByLocale":{"ru":"в порядке","uk":"гаразд"}},{"pairId":"en:lesson-01:session-05:i17:p2","target":"sure","meaningByLocale":{"ru":"без сомнений","uk":"без сумнівів"}},{"pairId":"en:lesson-01:session-05:i17:p3","target":"ready","meaningByLocale":{"ru":"готовность начать","uk":"готовність почати"}},{"pairId":"en:lesson-01:session-05:i17:p4","target":"sorry","meaningByLocale":{"ru":"извините","uk":"вибачте"}}],"leftColumn":["fine","sure","ready","sorry"],"rightColumn":["гаразд","без сумнівів","готовність почати","вибачте"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i18:s01","ordinal":21,"purpose":"independent_check","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Скажіть уголос — ви зачепили колегу в коридорі","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i18:s01:audio"],"accessibilityLabel":"Скажіть уголос — ви зачепили колегу в коридорі","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i18:s01:audio","transcript":"I am sorry."},"slowReferenceAudio":null,"targetPhrase":"I am sorry.","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i18:s02","ordinal":22,"purpose":"independent_check","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послухайте й складіть — ви прийшли після початку зустрічі","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-05:i18:s02:audio"],"accessibilityLabel":"Послухайте й складіть — ви прийшли після початку зустрічі","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-01:session-05:i18:s02:audio","transcript":"I am late."},"slowReferenceAudio":null,"hiddenTargetPhrase":"I am late.","orderedTokens":["I","am","late"],"authoredDistractorTokens":["is","not"],"slotFeedback":[{"responseId":"en:lesson-01:session-05:i18:s02:tile:d1","correct":false,"testedDimension":"Послухайте й складіть — ви прийшли після початку зустрічі","feedbackByLocale":{"ru":"с I нужна форма am","uk":"з I потрібна форма am"}},{"responseId":"en:lesson-01:session-05:i18:s02:tile:d2","correct":false,"testedDimension":"Послухайте й складіть — ви прийшли після початку зустрічі","feedbackByLocale":{"ru":"фраза отрицала бы, что вы опоздали","uk":"фраза заперечувала б, що ви запізнилися"}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-05:i19","ordinal":23,"purpose":"independent_check","family":"speed_match","inputMode":"pair_grid","prompt":"Підсумок — з'єднайте фрази зі значеннями","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Підсумок — з'єднайте фрази зі значеннями","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-01:session-05:i19:p1","target":"I am hot.","meaningByLocale":{"ru":"мне жарко","uk":"мені жарко"}},{"pairId":"en:lesson-01:session-05:i19:p2","target":"I am not sick.","meaningByLocale":{"ru":"я не болею","uk":"я не хворію"}},{"pairId":"en:lesson-01:session-05:i19:p3","target":"I am ready.","meaningByLocale":{"ru":"я могу начать","uk":"я можу почати"}},{"pairId":"en:lesson-01:session-05:i19:p4","target":"I am not hot.","meaningByLocale":{"ru":"мне не жарко","uk":"мені не спекотно"}}],"leftColumn":["I am hot.","I am not sick.","I am ready.","I am not hot."],"rightColumn":["мені жарко","я не хворію","я можу почати","мені не спекотно"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":false,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["accuracy"]},"scriptedAlternate":null}],"practiceInteractionCount":20,"firstPracticeOrdinal":4,"evaluatorPayload":"absent_by_exact_schema","acceptedAnswerPayload":"absent_by_exact_schema","runtimeAuthority":"none_active_release_join_required","releaseAuthority":false,"learnerFingerprint":"80caa036a760ef0c2be49e1bded322dd93695f00c119ba31b9b7911df1037e90"}},"answers":[{"interactionId":"en:lesson-01:session-05:i01","correctText":"hot","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i02","correctText":"hot","correctResponseId":"en:lesson-01:session-05:i02:r1"},{"interactionId":"en:lesson-01:session-05:i03","correctText":"sick","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i04","correctText":"I am hot.","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i05","correctText":"lost","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i06","correctText":"lost","correctResponseId":"en:lesson-01:session-05:i06:r1"},{"interactionId":"en:lesson-01:session-05:i07","correctText":"new","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i08","correctText":"sick","correctResponseId":"en:lesson-01:session-05:i08:r1"},{"interactionId":"en:lesson-01:session-05:i09","correctText":"I am new.","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i10","correctText":"am","correctResponseId":"en:lesson-01:session-05:i10:r1"},{"interactionId":"en:lesson-01:session-05:i11","correctText":"en:lesson-01:session-05:i11:p1=hot\nen:lesson-01:session-05:i11:p2=sick\nen:lesson-01:session-05:i11:p3=lost\nen:lesson-01:session-05:i11:p4=new","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i12","correctText":"not","correctResponseId":"en:lesson-01:session-05:i12:r1"},{"interactionId":"en:lesson-01:session-05:i13","correctText":"I am not sure.","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i14","correctText":"I am not hot.","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i15","correctText":"am","correctResponseId":"en:lesson-01:session-05:i15:r1"},{"interactionId":"en:lesson-01:session-05:i16","correctText":"I am tired.","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i17","correctText":"en:lesson-01:session-05:i17:p1=fine\nen:lesson-01:session-05:i17:p2=sure\nen:lesson-01:session-05:i17:p3=ready\nen:lesson-01:session-05:i17:p4=sorry","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i18:s01","correctText":"I am sorry.","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i18:s02","correctText":"I am late.","correctResponseId":null},{"interactionId":"en:lesson-01:session-05:i19","correctText":"en:lesson-01:session-05:i19:p1=I am hot.\nen:lesson-01:session-05:i19:p2=I am not sick.\nen:lesson-01:session-05:i19:p3=I am ready.\nen:lesson-01:session-05:i19:p4=I am not hot.","correctResponseId":null}],"auxiliary":{"schemaVersion":"learning_v2_release_auxiliary_projection_v1","courseSessionId":"en:lesson-01:session-05","entries":[{"interactionId":"en:lesson-01:session-05:intro1:q","responseFeedbackById":{"en:lesson-01:session-05:intro1:r2":{"ru":"В сочетании `I` с прилагательным пропущено `am`.","uk":"У поєднанні `I` з прикметником пропущено `am`."},"en:lesson-01:session-05:intro1:r3":{"ru":"Перед `am` в этой фразе нужно подлежащее `I`.","uk":"Перед `am` у цьому реченні потрібен підмет `I`."}}},{"interactionId":"en:lesson-01:session-05:intro2:q","responseFeedbackById":{"en:lesson-01:session-05:intro2:r2":{"ru":"В этой конструкции `no` не заменяет `not`: отрицание ставят после `am`.","uk":"У цій конструкції `no` не замінює `not`: заперечення ставлять після `am`."},"en:lesson-01:session-05:intro2:r3":{"ru":"`not` убежал в конец. Его место — сразу после `am`, перед словом о вас.","uk":"`not` утік у кінець. Його місце — одразу після `am`, перед словом про вас."}}},{"interactionId":"en:lesson-01:session-05:intro3:q","responseFeedbackById":{"en:lesson-01:session-05:intro3:r2":{"ru":"Перед прилагательным `new` пропущено `am`.","uk":"Перед прикметником `new` пропущено `am`."},"en:lesson-01:session-05:intro3:r3":{"ru":"`not` меняет смысл на отрицание; здесь нужно утвердить, что вы недавно в команде.","uk":"`not` змінює зміст на заперечення; тут потрібно ствердити, що ви нещодавно в команді."}}}],"auxiliaryFingerprint":"3d83c8881220034d81afd030199bbf05d78851804bed8764bb1a59f200998676"}}]</script>
+<script id="source-quality-findings" type="application/json">{}</script>
+<script id="source-release-findings" type="application/json">{"en/l01/s05":["Текст карточки и то, что открывается ученику, не совпадают. Всего расхождений в этой карточке: 23.","Исправлю все 23 расхождений этой карточки, затем заново сверю текст, тип задания, ответ, варианты, аудио и объяснение в обеих версиях."]}</script>
+<script id="session-readiness" type="application/json">{"en/l01/s05":{"ready":false,"unresolvedQualityItems":65,"firstUnresolvedItem":"legacy ledger: en/l01/s05 not allowlisted"}}</script>
+<script id="reviewed-cards" type="application/json">{"schemaVersion":"reviewed-card-evidence-v2","cards":{}}</script>
+<script id="preview-state" type="application/json">{"candidate":true}</script>
+<script id="factory-intro-practice-hold" type="application/json">null</script>
+<script>
+// зачем: макет открывали и видели пустой экран без единой ошибки в консоли.
+// Любой сбой запуска обязан быть виден НА СТРАНИЦЕ, а не только в консоли.
+window.addEventListener("error", (e) => {
+  const box = document.getElementById("boot-msg");
+  if (box) box.textContent = "Ошибка: " + (e.message || e.error?.message || "неизвестная") + " · " + (e.filename || "") + ":" + (e.lineno || "?");
+  console.error("[mockup] ошибка запуска:", e.message, e.error);
+});
+const DATA = JSON.parse(document.getElementById("data").textContent);
+const SOURCE_QUALITY = JSON.parse(document.getElementById("source-quality-findings")?.textContent || "{}");
+const SOURCE_RELEASE = JSON.parse(document.getElementById("source-release-findings")?.textContent || "{}");
+const SESSION_READINESS = JSON.parse(document.getElementById("session-readiness")?.textContent || "{}");
+const REVIEWED_CARD_EVIDENCE = JSON.parse(document.getElementById("reviewed-cards")?.textContent || "{}");
+const REVIEWED_CARD_EVIDENCE_SCHEMA = "reviewed-card-evidence-v2";
+const REVIEWED_CARDS = REVIEWED_CARD_EVIDENCE.schemaVersion === REVIEWED_CARD_EVIDENCE_SCHEMA &&
+  REVIEWED_CARD_EVIDENCE.cards && typeof REVIEWED_CARD_EVIDENCE.cards === "object"
+  ? REVIEWED_CARD_EVIDENCE.cards
+  : {};
+const PREVIEW_STATE = JSON.parse(document.getElementById("preview-state")?.textContent || "{}");
+const REVIEWED_SOURCE_MARKER = "";
+const REVIEWED_CARD_CLASS = "candidate-review-disabled";
+const REVIEWED_LABEL = "";
+const HOME_DESCRIPTION_BY_LOCALE = {"ru":"Откройте занятие и проверьте его глазами ученика. Это черновой просмотр: канонический выпуск не изменён.","uk":"Відкрийте заняття й перевірте його очима учня. Це чернетковий перегляд: канонічний випуск не змінено."};
+const LOCALES = ["ru","uk"];
+const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
+const BUILT_AT = "14.10, 19:52";
+// зачем: показать свежесть макета с одного взгляда — владелец час смотрел на старую сборку
+const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], tileFeedback: null, pairSel: null, pairFeedback: null, pairsDone: [], audioAttempt: null, right: 0, wrong: 0, unverified: 0 };
+const UI = {
+  brandSubtitle:{ru:"Пройти урок",uk:"Пройти урок"}, explanationLanguage:{ru:"Язык объяснений",uk:"Мова пояснень"}, home:{ru:"К списку",uk:"До списку"},
+  preparedLessons:{ru:"Пройдите любой подготовленный урок",uk:"Пройдіть будь-який підготовлений урок"}, lesson:{ru:"Урок",uk:"Урок"}, activity:{ru:"Занятие",uk:"Заняття"}, tasks:{ru:"заданий",uk:"завдань"},
+  back:{ru:"Назад",uk:"Назад"}, next:{ru:"Дальше",uk:"Далі"}, understood:{ru:"Понятно",uk:"Зрозуміло"}, task:{ru:"Задание",uk:"Завдання"}, check:{ru:"Проверить",uk:"Перевірити"}, retry:{ru:"Попробовать ещё раз",uk:"Спробувати ще раз"},
+  newWord:{ru:"Новое слово",uk:"Нове слово"}, listenChoose:{ru:"Послушайте и выберите",uk:"Послухайте й виберіть"}, gap:{ru:"Вставьте слово",uk:"Вставте слово"}, sound:{ru:"Различите звуки",uk:"Розрізніть звуки"}, build:{ru:"Соберите фразу",uk:"Складіть фразу"}, listenBuild:{ru:"Послушайте и соберите",uk:"Послухайте й складіть"}, pairs:{ru:"Соедините пары",uk:"З'єднайте пари"}, speak:{ru:"Скажите вслух",uk:"Скажіть уголос"},
+  listen:{ru:"Прослушать",uk:"Прослухати"}, listenSample:{ru:"Прослушать образец",uk:"Прослухати зразок"}, audioSynthetic:{ru:"Звучит синтезированный образец; он не заменяет проверенную запись произношения.",uk:"Звучить синтезований зразок; він не замінює перевірений запис вимови."}, audioFallback:{ru:"Аудио недоступно. Текст для чтения:",uk:"Аудіо недоступне. Текст для читання:"},
+  missingExplanation:{ru:"Для выбранного ответа нет проверенного объяснения. Нельзя перейти дальше, пока задание не исправлено.",uk:"Для вибраної відповіді немає перевіреного пояснення. Не можна перейти далі, доки завдання не виправлено."},
+  missingTileExplanation:{ru:"Для этой лишней плитки нет полного объяснения.",uk:"Для цієї зайвої плитки немає повного пояснення."}, builderWrong:{ru:"Фраза не совпадает с заданием. Соберите её ещё раз.",uk:"Фраза не збігається із завданням. Складіть її ще раз."}, tileHint:{ru:"Нажимайте плитки, чтобы собрать фразу",uk:"Натискайте плитки, щоб скласти фразу"},
+  allPairs:{ru:"Все пары соединены.",uk:"Усі пари з'єднано."}, speakUnavailable:{ru:"Запись голоса и автоматическая проверка сейчас недоступны. Произнесите фразу вслух; результат не будет оценён автоматически.",uk:"Запис голосу й автоматична перевірка зараз недоступні. Вимовте фразу вголос; результат не буде оцінено автоматично."}, markSpoken:{ru:"Я произнёс(ла) фразу",uk:"Я вимовив(ла) фразу"}, unverified:{ru:"Выполнено без автоматической проверки.",uk:"Виконано без автоматичної перевірки."},
+  completed:{ru:"Урок пройден",uk:"Урок пройдено"}, correctActions:{ru:"верных действий",uk:"правильних дій"}, errors:{ru:"ошибок",uk:"помилок"}, checkedActions:{ru:"проверено действий",uk:"перевірено дій"}, unverifiedActions:{ru:"без автоматической проверки",uk:"без автоматичної перевірки"}, lessonsList:{ru:"К списку уроков",uk:"До списку уроків"},
+  candidateBadge:{ru:"ЧЕРНОВИК · НЕ ПРОВЕРЕНО · НЕ ВЫПУСК",uk:"ЧЕРНЕТКА · НЕ ПЕРЕВІРЕНО · НЕ ВИПУСК"},
+  candidateSummary:{ru:"Канонический выпуск не изменён. Это черновой просмотр текущего исходника; его нельзя считать проверенным или выпущенным.",uk:"Канонічний випуск не змінено. Це чернетковий перегляд поточного вихідного тексту; його не можна вважати перевіреним або випущеним."},
+  missingIntroExplanation:{ru:"Проверенный разбор для этого ответа отсутствует.",uk:"Перевірений розбір для цієї відповіді відсутній."},
+  missingContrastAudio:{ru:"У задания на различение звуков нет двух аудиообразцов.",uk:"У завданні на розрізнення звуків немає двох аудіозразків."},
+  missingOptions:{ru:"У задания нет вариантов ответа — сборщик не нашёл их в тексте.",uk:"У завданні немає варіантів відповіді — збирач не знайшов їх у тексті."},
+  missingBuilderExplanation:{ru:"У задания нет полного авторского объяснения. Нельзя продолжить, пока задание не исправлено.",uk:"У завданні немає повного авторського пояснення. Не можна продовжити, доки завдання не виправлено."},
+  missingTiles:{ru:"У задания нет плиток — сборщик не нашёл целевую фразу.",uk:"У завданні немає плиток — збирач не знайшов цільову фразу."},
+  missingPairsExplanation:{ru:"У задания нет полного авторского разбора пар. Нельзя продолжить, пока задание не исправлено.",uk:"У завданні немає повного авторського розбору пар. Не можна продовжити, доки завдання не виправлено."},
+  missingPhraseExplanation:{ru:"У задания нет полного авторского разбора фразы. Нельзя продолжить, пока задание не исправлено.",uk:"У завданні немає повного авторського розбору фрази. Не можна продовжити, доки завдання не виправлено."},
+  renderFailure:{ru:"Сбой отрисовки",uk:"Помилка відтворення"},
+};
+const ui = (key) => UI[key]?.[S.locale] ?? UI[key]?.ru ?? key;
+function activityCountLabel(count) {
+  if (S.locale === "uk") return count + " " + (count === 1 ? "заняття" : count >= 2 && count <= 4 ? "заняття" : "занять");
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  const noun = mod10 === 1 && mod100 !== 11 ? "занятие" :
+    mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14) ? "занятия" : "занятий";
+  return count + " " + noun;
+}
+function applyUiChrome() {
+  document.documentElement.lang = S.locale;
+  document.getElementById("brandSubtitle").textContent = ui("brandSubtitle");
+  sel.setAttribute("aria-label", ui("explanationLanguage"));
+  homeBtn.textContent = ui("home");
+  document.getElementById("buildStamp").textContent = activityCountLabel(DATA.length) + " · " + BUILT_AT;
+}
+const learnerForSession = (s, locale = S.locale) => s.learnerByLocale?.[locale] ?? s.learner;
+
+const app = document.getElementById("app");
+const sel = document.getElementById("locale");
+const homeBtn = document.getElementById("home");
+LOCALES.forEach(l => { const o = document.createElement("option"); o.value = l; o.textContent = LOC_NAME[l] || l; sel.append(o); });
+sel.value = S.locale;
+sel.onchange = () => { S.locale = sel.value; localStorage.setItem("mockup.locale", S.locale); render(); };
+homeBtn.onclick = () => { S.session = null; render(); };
+
+const h = (tag, attrs, kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (k === "class") e.className = v;
+    else if (k === "text") e.textContent = v;
+    else if (k === "html") e.innerHTML = v;
+    else if (k.startsWith("on")) e[k.toLowerCase()] = v;
+    else if (v !== null && v !== false) e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const kid of [].concat(kids || [])) if (kid) e.append(kid);
+  return e;
+};
+const loc = (byLocale) => !byLocale ? "" : (byLocale[S.locale] ?? byLocale.ru ?? Object.values(byLocale)[0] ?? "");
+const activeLocaleValue = (value) => value && typeof value === "object" && !Array.isArray(value) && !("text" in value) && ("ru" in value || "uk" in value)
+  ? (value[S.locale] ?? value.ru ?? Object.values(value)[0])
+  : value;
+// Служебное слово «сессия» не должно попадать в интерфейс ученика даже если
+// оно осталось в заголовке исходного файла. Номер занятия сохраняется.
+const displayTitle = (value) => String(value ?? "").replace(/(^|[^p{L}])сессия(?=$|[^p{L}])/giu, "$1Занятие");
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+// зачем: целевой язык размечен в тексте обратными кавычками — красим его
+// акцентом, чтобы английское сразу отличалось от объяснения на своём языке
+const MARK = String.fromCharCode(1); // служебный символ-заглушка, в текстах не встречается
+const tl = (s) => {
+  let out = esc(s);
+  // 1) явная разметка автора
+  const BT = String.fromCharCode(96); // обратная кавычка: в шаблоне генератора её нельзя писать буквально
+  // зачем: размеченные куски прячем в плейсхолдеры, чтобы второй проход
+  // (латиница без разметки) не покрасил их повторно и не дал вложенные теги
+  const kept = [];
+  out = out.replace(new RegExp(BT + "([^" + BT + "]+)" + BT, "g"), (m, inner) => {
+    kept.push(inner);
+    return MARK + (kept.length - 1) + MARK;
+  });
+  // 2) латиница без разметки внутри кириллического текста (разборы ошибок
+  //    пишут «Am выпало», «Not не заменяет») — красим, если рядом кириллица
+  //    и фрагмент ещё не покрашен
+  if (/[А-Яа-яЁё]/.test(out)) {
+    const Q = String.fromCharCode(34), AP = String.fromCharCode(39);
+    // дефис только последним символом класса — иначе «—–-"» читается как диапазон
+    const BOUND = "\\s(«„>—–" + Q + AP + "-";
+    const AFTER = "\\s.,!?:;)»<—–" + Q + AP + "-";
+    const W = "[A-Za-z][A-Za-z" + AP + "]*";
+    const LAT = new RegExp("(^|[" + BOUND + "])(" + W + "(?:\\s+" + W + "){0,4})(?=[" + AFTER + "]|$)", "g");
+    out = out.replace(LAT, (m, pre, word) => /^(span|class|tl|amp|lt|gt)$/i.test(word) ? m : pre + '<span class="tl">' + word + '</span>');
+  }
+  return out.replace(new RegExp(MARK + "(\\d+)" + MARK, "g"), (m, i) => '<span class="tl">' + kept[+i] + '</span>');
+};
+const speak = (text) => {
+  try {
+    if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance !== "function") return false;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US"; u.rate = .85;
+    speechSynthesis.speak(u);
+    return true;
+  } catch (e) { console.warn("[mockup] речь недоступна:", e.message); return false; }
+};
+function audioControl(transcript, labelKey = "listen") {
+  const attempted = S.audioAttempt?.transcript === transcript ? S.audioAttempt : null;
+  return h("div", {class:"audio-control"}, [
+    h("button", {class:"play", onClick:() => { S.audioAttempt = {transcript, available:speak(transcript)}; render(); }}, [document.createTextNode("▶  " + ui(labelKey))]),
+    h("div", {class:"scene-line", text:ui("audioSynthetic")}),
+    attempted && !attempted.available ? h("div", {class:"fb no", role:"status", "aria-live":"polite", "aria-atomic":"true", text:ui("audioFallback") + " " + transcript}) : null,
+  ]);
+}
+const shuffle = (arr, seed) => {
+  let s = 0; for (const c of String(seed)) s = (s * 31 + c.charCodeAt(0)) >>> 0;
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) { s = (s * 1664525 + 1013904223) >>> 0; const j = s % (i + 1); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+};
+const shuffleChoices = (arr, seed) => {
+  const a = shuffle(arr, seed);
+  // Автор хранит правильный вариант первым для ревью. Даже редкая identity-
+  // перестановка не должна превращать это в подсказку ученику.
+  if (a.length > 1 && a[0] === arr[0]) a.push(a.shift());
+  return a;
+};
+const sanitizeLearnerPrompt = (value) => String(value || "")
+  .trim()
+  .replace(/s*(?:[,;]|—|-)s*(?:среди|серед)s+(?:плиток|слів)(?=s|$)[^.!?]*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:(?:одна|две|дві)s+)?(?:лишн|чуж|зайв)[^.!?]*(?:плитк|скрепк|скріпк|слов|форм)[^.!?]*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:с|із|зі)s+[^.!?]*(?:лишн|чуж|зайв)[^.!?]*(?:плитк|скрепк|скріпк|слов|форм)[^.!?]*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:есть|є)s+[^.!?]*(?:лишн|чуж|зайв)[^.!?]*(?:плитк|слов|вопрос|питан)[^.!?]*$/iu, "")
+  .replace(/s*([^)]*(?:лишн|чуж|зайв)[^)]*(?:плитк|скрепк|скріпк|слов|форм)[^)]*)s*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:among the tiles|with (?:an?|one|two) extra tiles?|there (?:is|are) extra tiles?)[^.!?]*$/iu, "")
+  .replace(/^(?:проверьтеs+себя|проверьs+себя|перевіртеs+себе|перевірs+себе|checks+yourself|comprueba|compruébalo|verifique|confira|sprawdźs+się)s*[:—-]?s*/iu, "")
+  .replace(/(^|[s(])(соберите|собери|складіть|склади)s+безs+(?:подсказк[иу]|підказк[иу]|опоры|опори)(?=s|$)/giu, "$1$2 фразу")
+  .replace(/s+(?:безs+(?:подсказк[иу]|підказк[иу]|опоры|опори)|самостоятельно|самостійно|withouts+(?:as+)?hints?|ons+yours+own|sins+(?:pistas?|ayuda)|sems+(?:dicas?|ajuda)|bezs+podpowiedzi|samodzielnie)(?=s*(?:[—,:;-]|$))/giu, "")
+  .replace(/^[а-яіїє]/u, (letter) => letter.toLocaleUpperCase())
+  .replace(/[,:;]s*$/u, "")
+  .trim();
+const avoidAlignedPairs = (left, right) => {
+  if (left.length < 2 || left.length !== right.length) return right;
+  const candidate = right.slice();
+  for (let shift = 0; shift < candidate.length; shift++) {
+    if (candidate.every((item, row) => item.id !== left[row].id)) return candidate;
+    candidate.push(candidate.shift());
+  }
+  const rightById = new Map(right.map(item => [item.id, item]));
+  if (rightById.size === right.length && left.every(item => rightById.has(item.id))) {
+    return left.map((_, row) => rightById.get(left[(row + 1) % left.length].id));
+  }
+  return right;
+};
+
+function resetStep() { S.answered = false; S.ok = null; S.picked = null; S.assembled = []; S.tileFeedback = null; S.pairSel = null; S.pairFeedback = null; S.pairsDone = []; S.audioAttempt = null; }
+
+// ---------- экраны ----------
+function renderHome() {
+  homeBtn.hidden = true;
+  app.replaceChildren(
+    h("div", {class:"hero"}, [
+      h("h1", {text:ui("preparedLessons")}),
+      h("p", {text:loc(HOME_DESCRIPTION_BY_LOCALE)}),
+    ]),
+    ...groupByLesson(),
+  );
+}
+function freshCardEvidenceText(readiness) {
+  return readiness?.ready ? "" : "Пока не собрано подтверждение качества для текущего варианта занятия.";
+}
+function groupByLesson() {
+  const out = [];
+  const byLesson = {};
+  for (const s of DATA) (byLesson[s.lesson] ??= []).push(s);
+  for (const [lesson, list] of Object.entries(byLesson)) {
+    const lessonTitle = loc(list[0].lessonTitleByLocale) || list[0].lessonTitle;
+    out.push(h("div", {class:"lesson-title", text:ui("lesson") + " " + lesson.replace(/^l0?/, "") + (lessonTitle ? " · " + lessonTitle : "")}));
+    out.push(h("div", {class:"cards"}, list.map(s => {
+      const findings = SOURCE_QUALITY[s.key] || [];
+      const releaseFindings = SOURCE_RELEASE[s.key] || [];
+      const readiness = SESSION_READINESS[s.key];
+      const isCandidate = s.viewSource === "candidate";
+      const sourceFixed = !isCandidate && REVIEWED_CARDS[s.key] === true;
+      // A reviewed projection is useful evidence, but it cannot turn the whole
+      // card green while the version that would be released still differs.
+      const needsRepair = !sourceFixed;
+      const numbers = findings.map(item => item.taskNumber).filter(Number.isInteger);
+      const hasUnnumberedFinding = findings.some(item => !Number.isInteger(item.taskNumber));
+      const findingTarget = hasUnnumberedFinding
+        ? (numbers.length ? "вводный текст и задания " + numbers.join(", ") : "вводный текст")
+        : "задания " + (numbers.length ? numbers.join(", ") : "без номера");
+      const summary = isCandidate
+        ? ui("candidateSummary")
+        : s.viewSource === REVIEWED_SOURCE_MARKER && s.reviewedProjectionFresh !== true
+        ? "Этот вариант пока нельзя отметить зелёным: не подтверждено, что он собран из текущих файлов занятия."
+        : findings.length
+        ? "Нужно исправить " + findingTarget + ": " + [...new Set(findings.map(item => item.reason))].join("; ")
+        : releaseFindings[0]
+        || freshCardEvidenceText(readiness);
+      return h("button", {class:"card" + (isCandidate ? " needs-repair candidate" : needsRepair ? " needs-repair" : " " + REVIEWED_CARD_CLASS), onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
+        h("h3", {text:displayTitle(loc(s.titleByLocale) || s.title)}),
+        h("p", {class:"scene", text:loc(s.sceneByLocale) || s.scene}),
+        h("div", {class:"meta"}, [
+          h("span", {class:"chip k", text:ui("activity") + " " + s.session.replace(/^s0?/, "")}),
+          h("span", {class:"chip", text:learnerForSession(s).interactions.length + " " + ui("tasks")}),
+           isCandidate ? h("span", {class:"chip pending", text:ui("candidateBadge")}) : null,
+           sourceFixed ? h("span", {class:"chip fixed", text:s.viewSource === REVIEWED_SOURCE_MARKER ? REVIEWED_LABEL : "Исходник исправлен"}) : null,
+           releaseFindings.length ? h("span", {class:"chip pending", text:"Выпуск надо синхронизировать"}) : null,
+        ]),
+        isCandidate || findings.length || releaseFindings.length ? h("p", {class:"fix-summary", text:summary}) : null,
+      ]);
+    })));
+  }
+  return out;
+}
+
+function renderSession() {
+  homeBtn.hidden = false;
+  const s = S.session;
+  const learner = learnerForSession(s);
+  const total = 3 + learner.interactions.length;
+  if (S.step >= total) return renderDone();
+
+  const bar = h("div", {class:"progress"}, Array.from({length:total}, (_, i) =>
+    h("i", {class: i < S.step ? "done" : i === S.step ? "now" : ""})));
+
+  const panel = S.step < 3 ? renderIntro(s.intro.pages[S.step], s.auxiliary) : renderTask(learner.interactions[S.step - 3]);
+  app.replaceChildren(bar, panel);
+}
+
+function renderIntro(page, auxiliary) {
+  // зачем (владелец, 03.09): правильный ответ шёл первым на каждой странице —
+  // можно было угадывать, не читая. Тасуем устойчиво (порядок один и тот же
+  // при перерисовке), верный ответ помним по исходному индексу 0.
+  const raw = loc(page.question.choicesByLocale) || [];
+  const choices = shuffleChoices(raw.map((c, i) => ({...c, correct: i === 0})), page.pageId + S.locale);
+  const body = loc(page.bodyByLocale).split(/\n\n+/).filter(Boolean);
+  const panel = h("div", {class:"panel"}, [
+    h("h2", {text:loc(page.titleByLocale)}),
+    h("div", {class:"body"}, body.map(p => h("p", {html:tl(p)}))),
+    h("div", {class:"question", html:tl(loc(page.question.promptByLocale))}),
+    h("div", {class:"opts"}, choices.map((c, i) => h("button", {
+      class:"opt" + (S.answered ? (c.correct ? " right" : (S.picked === c.responseId ? " wrong" : " dim")) : ""),
+      disabled: S.answered,
+      onClick: () => { S.answered = true; S.picked = c.responseId; S.ok = c.correct; render(); },
+    }, [document.createTextNode(c.text)]))),
+  ]);
+  if (S.answered && !S.ok) {
+    const auxiliaryEntry = (auxiliary?.entries || []).find((entry) => entry.interactionId === page.question.interactionId);
+    const selectedFeedback = loc(auxiliaryEntry?.responseFeedbackById?.[S.picked]);
+    panel.append(h("div", {
+      class:"fb no",
+      role:"status",
+      "aria-live":"polite",
+      "aria-atomic":"true",
+      text:selectedFeedback || ui("missingIntroExplanation"),
+    }));
+  }
+  const selectedAuxiliaryEntry = S.answered
+    ? (auxiliary?.entries || []).find((entry) => entry.interactionId === page.question.interactionId)
+    : null;
+  const selectedFeedback = !S.ok
+    ? loc(selectedAuxiliaryEntry?.responseFeedbackById?.[S.picked])
+    : "";
+  panel.append(nextRow(S.answered && (S.ok || Boolean(selectedFeedback))));
+  return panel;
+}
+
+function nextRow(canNext = S.answered, label = "Дальше") {
+  return h("div", {class:"actions"}, [
+    h("button", {class:"btn ghost", disabled:S.step === 0, onClick:() => { if (S.step > 0) { S.step--; resetStep(); render(); } }, text:ui("back")}),
+    h("button", {class:"btn primary spacer", disabled:!canNext, onClick:() => { S.step++; resetStep(); render(); }, text:label === "Дальше" ? ui("next") : label}),
+  ]);
+}
+
+function renderTask(it) {
+  const p = it.modePayload || {};
+  const taskNumber = Math.max(1, S.step - 2);
+  const panel = h("div", {class:"panel"}, [
+    h("div", {class:"kind", text:ui("task") + " " + taskNumber + " · " + familyName(it.family, p)}),
+    h("div", {class:"task-prompt", html:tl(sanitizeLearnerPrompt(it.prompt))}),
+  ]);
+  if (p.isWordCard) { renderCard(panel, it, p); return panel; }
+  const R = {
+    listen_choose: renderChoice, context_gap_grammar: renderChoice, sound_contrast: renderChoice,
+    phrase_builder: renderBuilder, listen_build_dictation: renderBuilder,
+    speed_match: renderPairs, scripted_repeat_compare: renderSpeak,
+  }[it.family];
+  if (R) R(panel, it, p);
+  else { WARNBOX(panel, "Неизвестная механика: " + it.family); }
+  return panel;
+}
+function WARNBOX(panel, msg) { panel.append(h("div", {class:"fb no", text:msg})); panel.append(nextRow(true)); }
+const familyName = (f, p) => p?.isWordCard ? ui("newWord") : ({listen_choose:ui("listenChoose"), context_gap_grammar:ui("gap"), sound_contrast:ui("sound"), phrase_builder:ui("build"), listen_build_dictation:ui("listenBuild"), speed_match:ui("pairs"), scripted_repeat_compare:ui("speak")})[f] || f;
+
+function completeTextAnalysisV1(analysis) {
+  return Boolean(
+    analysis && typeof analysis.text === "string" && analysis.text &&
+    loc(analysis.meaningByLocale) && loc(analysis.explanationByLocale) &&
+    Array.isArray(analysis.units) && analysis.units.length &&
+    analysis.units.every((unit) =>
+      Number.isInteger(unit?.start) && Number.isInteger(unit?.end) && unit.start >= 0 && unit.end > unit.start &&
+      analysis.text.slice(unit.start, unit.end) === unit.text &&
+      typeof unit.lemma === "string" && unit.lemma &&
+      loc(unit.partOfSpeechLabelByLocale) && loc(unit.meaningByLocale) && loc(unit.functionByLocale)),
+  );
+}
+
+function renderTextAnalysisV1(analysis) {
+  return h("div", {class:"explanation"}, [
+    h("div", {class:"target-phrase", text:analysis.text}),
+    h("div", {class:"scene-line", html:tl(loc(analysis.meaningByLocale))}),
+    h("div", {class:"scene-line", html:tl(loc(analysis.explanationByLocale))}),
+    h("div", {class:"explanation-units"}, analysis.units.map((unit) => h("div", {
+      class:"scene-line",
+      html:tl(unit.text + " — " + loc(unit.partOfSpeechLabelByLocale) + ": " + loc(unit.meaningByLocale) + ". " + loc(unit.functionByLocale)),
+    }))),
+  ]);
+}
+
+function renderCard(panel, it, p) {
+  const w = p.wordCard || {};
+  panel.append(h("div", {class:"card-word", text:w.word || ""}));
+  panel.append(audioControl(w.word || ""));
+  panel.append(h("div", {class:"card-def", style:"margin-top:16px", html:tl(loc(w.definitionByLocale))}));
+  S.answered = true;
+  panel.append(nextRow(true, ui("understood")));
+}
+
+function renderChoice(panel, it, p) {
+  if (it.family === "sound_contrast") {
+    const contrastAudio = [p.audioA?.transcript, p.audioB?.transcript];
+    if (contrastAudio.some(audio => !audio)) return WARNBOX(panel, ui("missingContrastAudio"));
+    panel.append(h("div", {class:"actions sound-contrast-audio"}, contrastAudio.map((audio, index) => h("button", {
+      class:"play",
+      onClick:() => speak(audio),
+      "aria-label":"Прослушать вариант " + (index ? "B" : "A"),
+    }, [document.createTextNode("▶  " + ui("listen") + " " + (index ? "B" : "A"))]))));
+  } else {
+    const audio = p.referenceAudio?.transcript;
+    if (audio) panel.append(audioControl(audio));
+  }
+  if (p.gappedTargetPhrase) panel.append(h("div", {class:"target-phrase", text:p.gappedTargetPhrase}));
+  if (p.localizedScene && loc(p.localizedScene)) panel.append(h("div", {class:"scene-line", html:tl(sanitizeLearnerPrompt(loc(p.localizedScene)))}));
+  const opts = shuffleChoices(it.responseOptions, it.interactionId + S.locale);
+  if (!opts.length) return WARNBOX(panel, ui("missingOptions"));
+  const correctId = correctIdOf(it);
+  const visibleChoiceText = (option) => {
+    if (it.family !== "listen_choose") return option.text;
+    const authored = (p.localizedMeaningChoices || []).find(choice => choice.responseId === option.responseId);
+    return authored?.meaningByLocale ? (loc(authored.meaningByLocale) || option.text) : option.text;
+  };
+  panel.append(h("div", {class:"opts", style:"margin-top:16px"}, opts.map(o => h("button", {
+    class:"opt" + (S.answered ? (o.responseId === correctId ? " right" : (S.picked === o.responseId ? " wrong" : " dim")) : ""),
+    disabled:S.answered,
+    onClick:() => { S.answered = true; S.picked = o.responseId; S.ok = o.responseId === correctId; S.ok ? S.right++ : S.wrong++; render(); },
+  }, [document.createTextNode(visibleChoiceText(o))]))));
+  if (S.answered) {
+    if (S.ok) {
+      panel.append(nextRow(true));
+      return;
+    }
+    const fb = (p.choiceFeedback || []).find(f => f.responseId === S.picked);
+    const feedback = loc(fb?.feedbackByLocale);
+    const feedbackIsComplete = Boolean(
+      fb && fb.correct === false && feedback,
+    );
+    panel.append(h("div", {
+      class:"fb " + (feedbackIsComplete && S.ok ? "ok" : "no"),
+      role:"status",
+      "aria-live":"polite",
+      "aria-atomic":"true",
+      html: feedbackIsComplete
+        ? tl(feedback)
+        : ui("missingExplanation"),
+    }));
+    panel.append(nextRow(feedbackIsComplete));
+    return;
+  }
+  panel.append(nextRow());
+}
+function correctIdOf(it) {
+  const a = S.session.answers.find(x => x.interactionId === it.interactionId);
+  if (a?.correctResponseId) return a.correctResponseId;
+  return it.responseOptions[0]?.responseId;
+}
+
+function renderBuilder(panel, it, p) {
+  const target = p.targetPhrase || p.hiddenTargetPhrase || "";
+  const ordered = p.orderedTokens || [];
+  const explanationPresent = Object.prototype.hasOwnProperty.call(p, "explanationV1");
+  const explanation = p.explanationV1;
+  const localized = (value) => Boolean(loc(value));
+  const completeExplanation = Boolean(
+    explanation && localized(explanation.completionFeedbackByLocale) && completeTextAnalysisV1(explanation.phrase),
+  );
+  const failClosed = (message) => {
+    panel.append(h("div", {class:"fb no", text:message}));
+    panel.append(nextRow(false));
+  };
+  if (explanationPresent && !completeExplanation) {
+    failClosed(ui("missingBuilderExplanation"));
+    return;
+  }
+  if (p.referenceAudio?.transcript) panel.append(audioControl(p.referenceAudio.transcript));
+  else if (p.localizedMeaning && loc(p.localizedMeaning)) panel.append(h("div", {class:"scene-line", text:loc(p.localizedMeaning)}));
+  if (!ordered.length) return WARNBOX(panel, ui("missingTiles"));
+
+  const slot = h("div", {class:"slot", "data-hint":ui("tileHint")},
+    S.assembled.map((tile, i) => h("button", {class:"tile", disabled:S.answered, onClick:() => { S.assembled.splice(i, 1); S.tileFeedback = null; render(); }, text:tile.text})));
+  panel.append(h("div", {style:"margin-top:16px"}, [slot]));
+
+  // Tile identity is independent from its visible text: two physical extra
+  // tiles may display the same word but require different explanations.
+  const feedbackByTileId = new Map((p.slotFeedback || []).map((row) => [row.responseId, row]));
+  const all = shuffle([
+    ...ordered.map((text, index) => ({ tileId:it.interactionId + ":tile:t" + (index + 1), text, kind:"target" })),
+    ...(p.authoredDistractorTokens || []).map((text, index) => ({ tileId:it.interactionId + ":tile:d" + (index + 1), text, kind:"distractor" })),
+  ], it.interactionId);
+  const used = new Set(S.assembled.map((tile) => tile.tileId));
+  panel.append(h("div", {class:"tiles"}, all.map((tile) => {
+    const isUsed = used.has(tile.tileId);
+    return h("button", {class:"tile" + (isUsed ? " used" : ""), disabled:S.answered || isUsed,
+      onClick:() => { S.assembled.push(tile); S.tileFeedback = tile.kind === "distractor" ? feedbackByTileId.get(tile.tileId) || {missing:true} : null; render(); }, text:tile.text});
+  })));
+  if (S.tileFeedback) {
+    const slotFeedback = loc(S.tileFeedback.feedbackByLocale);
+    panel.append(h("div", {class:"fb no", role:"status", "aria-live":"polite", "aria-atomic":"true", text:slotFeedback || ui("missingTileExplanation")}));
+  }
+
+  const ready = S.assembled.length === ordered.length;
+  if (S.answered) {
+    if (!S.ok) {
+      panel.append(h("div", {class:"fb no", role:"status", "aria-live":"polite", "aria-atomic":"true", text:ui("builderWrong")}));
+    }
+  }
+  panel.append(h("div", {class:"actions"}, [
+    h("button", {class:"btn ghost", disabled:S.step === 0, onClick:() => { if (S.step > 0) { S.step--; resetStep(); render(); } }, text:ui("back")}),
+    S.answered
+      ? (S.ok
+        ? h("button", {class:"btn primary spacer", onClick:() => { S.step++; resetStep(); render(); }, text:ui("next")})
+        : h("button", {class:"btn primary spacer", onClick:() => { S.answered = false; S.ok = null; S.assembled = []; S.tileFeedback = null; render(); }, text:ui("retry")}))
+      : h("button", {class:"btn primary spacer", disabled:!ready, onClick:() => {
+          const got = S.assembled.map((tile) => tile.text).join(" ").replace(/[.?!]$/, "").toLowerCase();
+          const want = ordered.join(" ").replace(/[.?!]$/, "").toLowerCase();
+          S.answered = true; S.ok = got === want; S.ok ? S.right++ : S.wrong++; render();
+        }, text:ui("check")}),
+  ]));
+}
+
+function renderPairs(panel, it, p) {
+  const grid = p.pairGrid || [];
+  if (!grid.length) return WARNBOX(panel, "Нет пар для соединения.");
+  const mismatchFeedback = (feedback) => {
+    const leftPair = grid.find((row) => row.pairId === feedback.leftId);
+    const rightPair = grid.find((row) => row.pairId === feedback.rightId);
+    const leftMeaning = loc(leftPair?.meaningByLocale);
+    if (!leftPair?.target || !rightPair?.target || !leftMeaning) {
+      return loc({
+        ru: "Эта пара не подходит. Попробуйте другой вариант.",
+        uk: "Ця пара не підходить. Спробуйте інший варіант.",
+      });
+    }
+    return loc({
+      ru: "Правильная пара: «" + leftPair.target + "» — «" + leftMeaning + "».",
+      uk: "Правильна пара: «" + leftPair.target + "» — «" + leftMeaning + "».",
+    });
+  };
+  const analysisPresent = grid.some((row) => Object.prototype.hasOwnProperty.call(row, "analysisV1"));
+  const localized = (value) => Boolean(loc(value));
+  const completeAnalysis = (analysis) => Boolean(
+    analysis && typeof analysis.lemma === "string" && analysis.lemma &&
+    localized(analysis.partOfSpeechLabelByLocale) && localized(analysis.meaningByLocale) &&
+    localized(analysis.functionByLocale) && localized(analysis.matchExplanationByLocale) &&
+    (!Object.prototype.hasOwnProperty.call(analysis, "phrase") || completeTextAnalysisV1(analysis.phrase)),
+  );
+  if (analysisPresent && !grid.every((row) => completeAnalysis(row.analysisV1))) {
+    panel.append(h("div", {class:"fb no", text:ui("missingPairsExplanation")}));
+    panel.append(nextRow(false));
+    return;
+  }
+  const left = shuffle(grid.map(g => ({id:g.pairId, text:g.target})), it.interactionId + "L");
+  const right = avoidAlignedPairs(
+    left,
+    shuffle(grid.map(g => ({id:g.pairId, text:loc(g.meaningByLocale)})), it.interactionId + "R"),
+  );
+  const cell = (item, side) => h("button", {
+    class:"pair" + (S.pairsDone.includes(item.id) ? " gone" : (S.pairSel?.id === item.id && S.pairSel.side === side ? " sel" : "")),
+    disabled:S.pairsDone.includes(item.id),
+    onClick:() => {
+      if (!S.pairSel) { S.pairSel = {...item, side}; return render(); }
+      if (S.pairSel.side === side) { S.pairSel = {...item, side}; return render(); }
+      const selected = S.pairSel;
+      const leftItem = side === "L" ? item : selected;
+      const rightItem = side === "R" ? item : selected;
+      const correct = selected.id === item.id;
+      S.pairFeedback = {correct, leftId:leftItem.id, rightId:rightItem.id};
+      if (correct) { S.pairsDone.push(item.id); S.right++; } else { S.wrong++; }
+      S.pairSel = null;
+      if (S.pairsDone.length === grid.length) S.answered = true;
+      render();
+    }, text:item.text});
+  panel.append(h("div", {class:"pairs", style:"margin-top:16px"}, [
+    h("div", {style:"display:grid;gap:9px"}, left.map(i => cell(i, "L"))),
+    h("div", {style:"display:grid;gap:9px"}, right.map(i => cell(i, "R"))),
+  ]));
+  if (S.pairFeedback && !S.pairFeedback.correct) {
+    panel.append(h("div", {class:"fb no", role:"status", "aria-live":"polite", "aria-atomic":"true", text:mismatchFeedback(S.pairFeedback)}));
+  }
+  panel.append(nextRow());
+}
+
+function renderSpeak(panel, it, p) {
+  const phrase = p.targetPhrase || p.referenceAudio?.transcript || "";
+  if (!phrase) return WARNBOX(panel, "Нет фразы для произнесения.");
+  const analysisPresent = Boolean(p.explanationV1 && Object.prototype.hasOwnProperty.call(p.explanationV1, "phrase"));
+  const analysisComplete = !analysisPresent || completeTextAnalysisV1(p.explanationV1.phrase);
+  if (!analysisComplete) {
+    panel.append(h("div", {class:"fb no", text:ui("missingPhraseExplanation")}));
+    panel.append(nextRow(false));
+    return;
+  }
+  panel.append(h("div", {class:"target-phrase", text:phrase}));
+  panel.append(audioControl(phrase, "listenSample"));
+  panel.append(h("div", {class:"scene-line", style:"margin-top:14px", text:ui("speakUnavailable")}));
+  if (analysisPresent) panel.append(renderTextAnalysisV1(p.explanationV1.phrase));
+  if (S.answered) {
+    panel.append(h("div", {class:"fb no", role:"status", "aria-live":"polite", "aria-atomic":"true", text:ui("unverified")}));
+  } else {
+    panel.append(h("button", {class:"btn primary", onClick:() => { S.answered = true; S.ok = null; S.unverified++; render(); }, text:ui("markSpoken")}));
+  }
+  panel.append(nextRow(S.answered));
+}
+
+function renderDone() {
+  homeBtn.hidden = false;
+  const s = S.session;
+  const checkedActions = S.right + S.wrong;
+  app.replaceChildren(h("div", {class:"panel"}, [
+    h("div", {class:"done-wrap"}, [
+      h("div", {class:"done-mark", text:"✓"}),
+      h("h2", {text:ui("completed")}),
+      h("p", {text:loc(s.titleByLocale) || s.title}),
+      h("div", {class:"stats"}, [
+        h("div", {class:"stat"}, [h("b", {text:String(S.right)}), h("span", {text:ui("correctActions")})]),
+        h("div", {class:"stat"}, [h("b", {text:String(S.wrong)}), h("span", {text:ui("errors")})]),
+        h("div", {class:"stat"}, [h("b", {text:String(checkedActions)}), h("span", {text:ui("checkedActions")})]),
+        h("div", {class:"stat"}, [h("b", {text:String(S.unverified)}), h("span", {text:ui("unverifiedActions")})]),
+      ]),
+      h("button", {class:"btn primary", onClick:() => { S.session = null; render(); }, text:ui("lessonsList")}),
+    ]),
+  ]));
+}
+
+function render() {
+  try {
+    applyUiChrome();
+    S.session ? renderSession() : renderHome();
+    window.scrollTo({top:0, behavior:"instant"});
+  } catch (e) {
+    console.error("[mockup] сбой отрисовки:", e);
+    app.replaceChildren(h("div", {class:"panel"}, [
+      h("h2", {text:ui("renderFailure")}),
+      h("div", {class:"body", text:String(e && e.message || e)}),
+      h("div", {class:"actions"}, [h("button", {class:"btn ghost", onClick:() => { S.session = null; render(); }, text:ui("home")})]),
+    ]));
+  }
+}
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,1220 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — early",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — early",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i01:audio",
+          "transcript": "early"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i01:r1",
+            "targetText": "early",
+            "meaningByLocale": {
+              "ru": "«рано». Вы пришли до назначенного времени.",
+              "uk": "«рано». Ви прийшли до призначеного часу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "early",
+          "definitionByLocale": {
+            "ru": "«рано». Вы пришли до назначенного времени.",
+            "uk": "«рано». Ви прийшли до призначеного часу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — Ліна вимовляє одне слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-04:i02:r1",
+          "text": "early"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i02:r2",
+          "text": "earn"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i02:r3",
+          "text": "really"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — Ліна вимовляє одне слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i02:audio",
+          "transcript": "early"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i02:r1",
+            "targetText": "early",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i02:r2",
+            "targetText": "earn",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i02:r3",
+            "targetText": "really",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — Ліна вимовляє одне слово",
+            "feedbackByLocale": {
+              "ru": "Earn значит «зарабатывать»; это не слово из записи.",
+              "uk": "Earn означає «заробляти»; це не слово з аудіозапису."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — Ліна вимовляє одне слово",
+            "feedbackByLocale": {
+              "ru": "Really значит «действительно»; это не слово из записи.",
+              "uk": "Really означає «справді»; це не слово з аудіозапису."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — right",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — right",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i03:audio",
+          "transcript": "right"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i03:r1",
+            "targetText": "right",
+            "meaningByLocale": {
+              "ru": "«верно, правильно». Вы проверили расчёт, и он сошёлся.",
+              "uk": "«правильно». Ви перевірили розрахунок, і він зійшовся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "right",
+          "definitionByLocale": {
+            "ru": "«верно, правильно». Вы проверили расчёт, и он сошёлся.",
+            "uk": "«правильно». Ви перевірили розрахунок, і він зійшовся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — Ліна вимовляє одне слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-04:i04:r1",
+          "text": "right"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i04:r2",
+          "text": "white"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i04:r3",
+          "text": "ride"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — Ліна вимовляє одне слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i04:audio",
+          "transcript": "right"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i04:r1",
+            "targetText": "right",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i04:r2",
+            "targetText": "white",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i04:r3",
+            "targetText": "ride",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — Ліна вимовляє одне слово",
+            "feedbackByLocale": {
+              "ru": "White начинается со звука /w/, а запись — со звука /r/.",
+              "uk": "White починається зі звука /w/, а запис — зі звука /r/."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — Ліна вимовляє одне слово",
+            "feedbackByLocale": {
+              "ru": "Ride заканчивается на /d/, а запись — на /t/.",
+              "uk": "Ride закінчується на /d/, а запис — на /t/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wrong",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wrong",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i05:audio",
+          "transcript": "wrong"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i05:r1",
+            "targetText": "wrong",
+            "meaningByLocale": {
+              "ru": "«неверно, ошибаюсь». В начале слова буква w не произносится.",
+              "uk": "«неправильно, помиляюся». На початку слова літера w не вимовляється."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrong",
+          "definitionByLocale": {
+            "ru": "«неверно, ошибаюсь». В начале слова буква w не произносится.",
+            "uk": "«неправильно, помиляюся». На початку слова літера w не вимовляється."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — Ліна вимовляє одне слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-04:i06:r1",
+          "text": "wrong"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i06:r2",
+          "text": "long"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i06:r3",
+          "text": "ring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — Ліна вимовляє одне слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i06:audio",
+          "transcript": "wrong"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i06:r1",
+            "targetText": "wrong",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i06:r2",
+            "targetText": "long",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i06:r3",
+            "targetText": "ring",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — Ліна вимовляє одне слово",
+            "feedbackByLocale": {
+              "ru": "Long начинается с /l/; в записи начальный звук /r/. В wrong буква w не произносится.",
+              "uk": "Long починається з /l/; у записі початковий звук /r/. У wrong літера w не вимовляється."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — Ліна вимовляє одне слово",
+            "feedbackByLocale": {
+              "ru": "В ring краткий /ɪ/, как в sit; вслушайтесь в гласный.",
+              "uk": "У ring короткий /ɪ/, як у sit; прислухайтеся до голосного."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — free",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i07:audio",
+          "transcript": "free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i07:r1",
+            "targetText": "free",
+            "meaningByLocale": {
+              "ru": "«свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.",
+              "uk": "«вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "free",
+          "definitionByLocale": {
+            "ru": "«свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.",
+            "uk": "«вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте дві аудіозаписи. Яке слово звучить у другій?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-04:i08:r1",
+          "text": "right"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i08:r2",
+          "text": "wrong"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i08:audioA",
+        "en:lesson-01:session-04:i08:audioB"
+      ],
+      "accessibilityLabel": "Послухайте дві аудіозаписи. Яке слово звучить у другій?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "right",
+        "contrastB": "wrong",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-04:i08:audioA",
+          "transcript": "right"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-04:i08:audioB",
+          "transcript": "wrong"
+        },
+        "testedPhoneticContrast": "Послухайте дві аудіозаписи. Яке слово звучить у другій?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i08:r1",
+            "correct": false,
+            "testedDimension": "Послухайте дві аудіозаписи. Яке слово звучить у другій?",
+            "feedbackByLocale": {
+              "ru": "Right звучит в первой записи; во второй звучит wrong.",
+              "uk": "Right звучить у першому записі; у другому звучить wrong."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — Ліна вимовляє одне слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-04:i09:r1",
+          "text": "free"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i09:r2",
+          "text": "three"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i09:r3",
+          "text": "fry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — Ліна вимовляє одне слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i09:audio",
+          "transcript": "free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i09:r1",
+            "targetText": "free",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i09:r2",
+            "targetText": "three",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i09:r3",
+            "targetText": "fry",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — Ліна вимовляє одне слово",
+            "feedbackByLocale": {
+              "ru": "Three начинается со звука /θ/, а free — со звука /f/.",
+              "uk": "Three починається зі звука /θ/, а free — зі звука /f/."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — Ліна вимовляє одне слово",
+            "feedbackByLocale": {
+              "ru": "Fry заканчивается звуком /aɪ/, а free — /iː/.",
+              "uk": "Fry закінчується звуком /aɪ/, а free — /iː/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте пари",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте пари",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-04:i10:p1",
+            "target": "early",
+            "meaningByLocale": {
+              "ru": "рано",
+              "uk": "рано"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-04:i10:p2",
+            "target": "right",
+            "meaningByLocale": {
+              "ru": "прав/права",
+              "uk": "маю рацію"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-04:i10:p3",
+            "target": "wrong",
+            "meaningByLocale": {
+              "ru": "не прав/не права",
+              "uk": "помиляюся"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-04:i10:p4",
+            "target": "free",
+            "meaningByLocale": {
+              "ru": "свободен/свободна",
+              "uk": "вільний/вільна"
+            }
+          }
+        ],
+        "leftColumn": [
+          "early",
+          "right",
+          "wrong",
+          "free"
+        ],
+        "rightColumn": [
+          "рано",
+          "маю рацію",
+          "помиляюся",
+          "вільний/вільна"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ліна питає, чи прийшли ви до початку зустрічі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ліна питає, чи прийшли ви до початку зустрічі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i11:audio",
+          "transcript": "I am early."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am early.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і зберіть — ви відповідаєте на перевірку розрахунку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте і зберіть — ви відповідаєте на перевірку розрахунку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i12:audio",
+          "transcript": "I am not wrong."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not wrong.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "wrong"
+        ],
+        "authoredDistractorTokens": [
+          "right"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і зберіть — ви відповідаєте на перевірку розрахунку",
+            "feedbackByLocale": {
+              "ru": "Right здесь означает, что расчёт верен; проверка подтвердила его.",
+              "uk": "Right тут означає, що розрахунок правильний; перевірка це підтвердила."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виправте фразу Антона",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-04:i13:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i13:r2",
+          "text": "not"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i13:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виправте фразу Антона",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "🗣 Антон признаёт свою ошибку и говорит: **«I wrong.»** Выберите слово, чтобы исправить его фразу.",
+          "uk": "🗣 Антон визнає свою помилку й каже: **«I wrong.»** Виберіть слово, щоб виправити його фразу."
+        },
+        "gappedTargetPhrase": "I ___ wrong.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-04:i13:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i13:r2",
+            "text": "not"
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i13:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Виправте фразу Антона",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i13:r2",
+            "correct": false,
+            "testedDimension": "Виправте фразу Антона",
+            "feedbackByLocale": {
+              "ru": "В I not wrong пропущено am: после I нужна форма am; not не заменяет глагол.",
+              "uk": "У I not wrong пропущено am: після I потрібна форма am; not не замінює дієслово."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i13:r3",
+            "correct": false,
+            "testedDimension": "Виправте фразу Антона",
+            "feedbackByLocale": {
+              "ru": "С I нужна форма am; is употребляется с he, she или it.",
+              "uk": "З I потрібна форма am; is вживається з he, she або it."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що ви не запізнилися",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що ви не запізнилися",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not late.",
+        "localizedMeaning": {
+          "ru": "Сейчас я не опаздываю.",
+          "uk": "Зараз я не запізнююся."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "late"
+        ],
+        "authoredDistractorTokens": [
+          "early"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажіть, що ви не запізнилися",
+            "feedbackByLocale": {
+              "ru": "Early означает «раньше времени»; вы пришли ровно к началу.",
+              "uk": "Early означає «раніше часу»; ви прийшли рівно на початок."
+            }
+          }
+        ],
+        "localizedScene": {
+          "ru": "Лина спрашивает, задержала ли вас дорога. Вы пришли ровно к началу встречи.",
+          "uk": "Ліна питає, чи затримала вас дорога. Ви прийшли рівно на початок зустрічі."
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть — що ви щойно почули",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-04:i15:r1",
+          "text": "I am not sure."
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i15:r2",
+          "text": "I am sure."
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i15:r3",
+          "text": "I am not free."
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i15:r4",
+          "text": "I am not tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть — що ви щойно почули",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i15:audio",
+          "transcript": "I am not sure."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i15:r1",
+            "targetText": "I am not sure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i15:r2",
+            "targetText": "I am sure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i15:r3",
+            "targetText": "I am not free.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i15:r4",
+            "targetText": "I am not tired.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — що ви щойно почули",
+            "feedbackByLocale": {
+              "ru": "В записи звучит not между am и sure.",
+              "uk": "У записі звучить not між am і sure."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — що ви щойно почули",
+            "feedbackByLocale": {
+              "ru": "Вы услышали not, но последнее слово — sure, не free.",
+              "uk": "Ви почули not, але останнє слово — sure, не free."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i15:r4",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — що ви щойно почули",
+            "feedbackByLocale": {
+              "ru": "Sure начинается со звука /ʃ/; tired — со звука /t/ и имеет два слога.",
+              "uk": "Sure починається зі звука /ʃ/; tired — зі звука /t/ і має два склади."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що ви не втомилися",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що ви не втомилися",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not tired.",
+        "localizedMeaning": {
+          "ru": "Я не чувствую усталости.",
+          "uk": "Я не відчуваю втоми."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "tired"
+        ],
+        "authoredDistractorTokens": [
+          "happy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажіть, що ви не втомилися",
+            "feedbackByLocale": {
+              "ru": "Happy описывает настроение, а здесь речь об усталости.",
+              "uk": "Happy описує настрій, а тут ідеться про втому."
+            }
+          }
+        ],
+        "localizedScene": {
+          "ru": "Мира спрашивает, нужна ли вам передышка после смены. Вы хорошо отдохнули и чувствуете себя бодро.",
+          "uk": "Міра питає, чи потрібна вам перерва після зміни. Ви добре відпочили й почуваєтеся бадьоро."
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте англійські слова з українськими значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте англійські слова з українськими значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-04:i17:p1",
+            "target": "busy",
+            "meaningByLocale": {
+              "ru": "занят/занята",
+              "uk": "зайнятий/зайнята"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-04:i17:p2",
+            "target": "alone",
+            "meaningByLocale": {
+              "ru": "один/одна",
+              "uk": "сам/сама"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-04:i17:p3",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал/устала",
+              "uk": "втомлений/втомлена"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-04:i17:p4",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен/уверена",
+              "uk": "упевнений/упевнена"
+            }
+          }
+        ],
+        "leftColumn": [
+          "busy",
+          "alone",
+          "tired",
+          "sure"
+        ],
+        "rightColumn": [
+          "зайнятий/зайнята",
+          "сам/сама",
+          "втомлений/втомлена",
+          "упевнений/упевнена"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i19",
+      "ordinal": 21,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — Ліна питає, чи можете ви підмінити колегу в п'ятницю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — Ліна питає, чи можете ви підмінити колегу в п'ятницю",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am free.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "free"
+        ],
+        "authoredDistractorTokens": [
+          "busy"
+        ],
+        "localizedMeaning": {
+          "ru": "Я свободен/свободна в пятницу.",
+          "uk": "Я вільний/вільна в п'ятницю."
+        },
+        "localizedScene": {
+          "ru": "**Лина просит вас подменить коллегу в пятницу. Вы проверили календарь — в этот день вы свободны.**",
+          "uk": "**Ліна просить вас підмінити колегу в п'ятницю. Ви перевірили календар — цього дня ви вільні.**"
+        },
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i19:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — Ліна питає, чи можете ви підмінити колегу в п'ятницю",
+            "feedbackByLocale": {
+              "ru": "Busy обозначает текущую занятость; по календарю вы можете подменить коллегу.",
+              "uk": "Busy означає, що зараз у вас є поточні справи; за календарем ви можете підмінити колегу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i18",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що ви не самі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що ви не самі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not alone.",
+        "localizedMeaning": {
+          "ru": "Я не один/одна.",
+          "uk": "Я не сам/сама."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "alone"
+        ],
+        "authoredDistractorTokens": [
+          "fine"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i18:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажіть, що ви не самі",
+            "feedbackByLocale": {
+              "ru": "Fine означает, что всё хорошо; здесь важно, что рядом коллега.",
+              "uk": "Fine означає, що все гаразд; тут важливо, що поруч колега."
+            }
+          }
+        ],
+        "localizedScene": {
+          "ru": "Лина спрашивает, ждёте ли вы кого-то в одиночестве у стойки. Рядом с вами стоит коллега.",
+          "uk": "Ліна питає, чи чекаєте ви когось наодинці біля стійки. Поруч із вами стоїть колега."
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що ви мали рацію",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що ви мали рацію",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am right.",
+        "localizedMeaning": {
+          "ru": "Моя версия правильна.",
+          "uk": "Я маю рацію."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "right"
+        ],
+        "authoredDistractorTokens": [
+          "wrong"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i20:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажіть, що ви мали рацію",
+            "feedbackByLocale": {
+              "ru": "Wrong здесь обозначает ошибку в ответе; проверка подтвердила ваш расчёт.",
+              "uk": "Wrong тут позначає помилку у відповіді; перевірка підтвердила ваш розрахунок."
+            }
+          }
+        ],
+        "localizedScene": {
+          "ru": "Коллега проверил названный вами расчёт и подтвердил его.",
+          "uk": "Колега перевірив названий вами розрахунок і підтвердив його."
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Відповідь керівникові про нове завдання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-04:i21:r1",
+          "text": "not busy"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i21:r2",
+          "text": "busy"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i21:r3",
+          "text": "not free"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Відповідь керівникові про нове завдання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "**У вас не осталось текущих задач. Руководитель спрашивает, можете ли вы взять ещё одну.**",
+          "uk": "**У вас не залишилося поточних завдань. Керівник питає, чи можете ви взяти ще одне.**"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-04:i21:r1",
+            "text": "not busy"
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i21:r2",
+            "text": "busy"
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i21:r3",
+            "text": "not free"
+          }
+        ],
+        "testedDimension": "Відповідь керівникові про нове завдання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i21:r2",
+            "correct": false,
+            "feedbackByLocale": {
+              "ru": "Busy означает отсутствие свободного времени; по условию у вас не осталось задач.",
+              "uk": "Busy означає відсутність вільного часу; за умовою у вас не залишилося завдань."
+            },
+            "testedDimension": "Відповідь керівникові про нове завдання"
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i21:r3",
+            "correct": false,
+            "feedbackByLocale": {
+              "ru": "Not free значит, что сейчас вы недоступны; по условию вы можете взять задачу.",
+              "uk": "Not free означає, що зараз ви не можете взяти завдання; за умовою це можливо."
+            },
+            "testedDimension": "Відповідь керівникові про нове завдання"
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "20606f40b7366dedc106d82f562257a1260afca5aea85fb83c11e222185ba08d"
+}

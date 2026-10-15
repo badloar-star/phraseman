@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "learning_v2_session_review_evidence_manifest_v1",
+  "courseSessionId": "en:lesson-01:session-03",
+  "candidateRoot": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1",
+  "candidateBundleSha256": "fb19b89a53c29b23aa375e267ac6d0ed89a6f105ef251c93f154d8c6388f79ba",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s03-first-word-private-20261014-v1/content-receipt.json",
+  "candidateReceiptInventorySha256": "471df4ca6f680a08b37af3a93bebae6f5107c3669bc5c1ddd7a43666c07391d8",
+  "requiredRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "eligibleRoles": [],
+  "missingRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "roles": [],
+  "textReviewComplete": false,
+  "releaseAuthority": false
+}

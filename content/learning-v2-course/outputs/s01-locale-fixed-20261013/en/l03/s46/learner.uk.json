@@ -1,0 +1,926 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — roof",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — roof",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i01:audio",
+          "transcript": "roof"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-46:i01:r1",
+            "targetText": "roof",
+            "meaningByLocale": {
+              "ru": "«крыша». Верхняя часть дома.",
+              "uk": "«дах». Верхня частина будинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roof",
+          "definitionByLocale": {
+            "ru": "«крыша». Верхняя часть дома.",
+            "uk": "«дах». Верхня частина будинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i03:audio",
+          "transcript": "lift"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "lift",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i05:audio",
+          "transcript": "stairs"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "stairs",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i02:audio",
+          "transcript": "roof"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "roof",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-46:i04:r1",
+          "text": "lift"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i04:r2",
+          "text": "left"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i04:r3",
+          "text": "lived"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i04:r4",
+          "text": "list"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i04:audio",
+          "transcript": "lift"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-46:i04:r1",
+            "targetText": "lift",
+            "meaningByLocale": {
+              "ru": "лифт",
+              "uk": "ліфт"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i04:r2",
+            "targetText": "left",
+            "meaningByLocale": {
+              "ru": "левый",
+              "uk": "лівий"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i04:r3",
+            "targetText": "lived",
+            "meaningByLocale": {
+              "ru": "жил",
+              "uk": "жив"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i04:r4",
+            "targetText": "list",
+            "meaningByLocale": {
+              "ru": "список.",
+              "uk": "список."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-46:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В `left` гласный /e/, а в `lift` — /ɪ/.",
+              "uk": "У `left` голосний /e/, а в `lift` — /ɪ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "`lived` заканчивается /d/, а `lift` — /t/.",
+              "uk": "`lived` закінчується /d/, а `lift` — /t/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В `list` после /lɪ/ слышен /s/, а в `lift` — /f/.",
+              "uk": "У `list` після /lɪ/ чути /s/, а в `lift` — /f/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i06:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i06:audio",
+          "transcript": "stairs"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "stairs",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i08:audio",
+          "transcript": "roof"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "roof",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i09",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i09:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i09:audio",
+          "transcript": "lift"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "lift",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i10",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i10:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i10:audio",
+          "transcript": "stairs"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "stairs",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слово зі значенням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слово зі значенням",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-46:i07:p1",
+            "target": "roof",
+            "meaningByLocale": {
+              "ru": "крыша",
+              "uk": "дах"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-46:i07:p2",
+            "target": "lift",
+            "meaningByLocale": {
+              "ru": "лифт",
+              "uk": "ліфт"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-46:i07:p3",
+            "target": "stairs",
+            "meaningByLocale": {
+              "ru": "лестница",
+              "uk": "сходи"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-46:i07:p4",
+            "target": "door",
+            "meaningByLocale": {
+              "ru": "дверь",
+              "uk": "двері"
+            }
+          }
+        ],
+        "leftColumn": [
+          "roof",
+          "lift",
+          "stairs",
+          "door"
+        ],
+        "rightColumn": [
+          "дах",
+          "ліфт",
+          "сходи",
+          "двері"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ліфт у будинку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ліфт у будинку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The lift is here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — лифт в доме",
+          "uk": "Складіть фразу — ліфт у будинку"
+        },
+        "orderedTokens": [
+          "The",
+          "lift",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "A"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте початок — зрозумілий ліфт у холі",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-46:i12:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i12:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i12:r3",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i12:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте початок — зрозумілий ліфт у холі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте начало — понятный лифт в холле",
+          "uk": "Вставте початок — зрозумілий ліфт у холі"
+        },
+        "gappedTargetPhrase": "___ lift is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i12:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i12:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i12:r3",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i12:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте начало — понятный лифт в холле",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте начало — понятный лифт в холле",
+            "feedbackByLocale": {
+              "ru": "В холле вы указываете на лифт этого дома.",
+              "uk": "У холі ви вказуєте на ліфт цього будинку."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте начало — понятный лифт в холле",
+            "feedbackByLocale": {
+              "ru": "Перед `lift` нужен не `an`.",
+              "uk": "Перед `lift` потрібен не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i12:r4",
+            "correct": false,
+            "testedDimension": "Вставьте начало — понятный лифт в холле",
+            "feedbackByLocale": {
+              "ru": "Для понятного лифта нужен `the`.",
+              "uk": "Для зрозумілого ліфта потрібен `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i13:audio",
+          "transcript": "The stairs are here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The stairs are here.",
+        "orderedTokens": [
+          "The",
+          "stairs",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — сходи між поверхами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — сходи між поверхами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The stairs are here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — лестница между этажами",
+          "uk": "Складіть фразу — сходи між поверхами"
+        },
+        "orderedTokens": [
+          "The",
+          "stairs",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "A"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте початок — сходи зрозумілі в будинку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-46:i15:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i15:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i15:r3",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i15:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте початок — сходи зрозумілі в будинку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте начало — лестница понятна в доме",
+          "uk": "Вставте початок — сходи зрозумілі в будинку"
+        },
+        "gappedTargetPhrase": "___ stairs are here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-46:i15:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i15:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i15:r3",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i15:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте начало — лестница понятна в дом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-46:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте начало — лестница понятна в дом",
+            "feedbackByLocale": {
+              "ru": "Перед множественным `stairs` не ставят `a`.",
+              "uk": "Перед множинним `stairs` не ставлять `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте начало — лестница понятна в дом",
+            "feedbackByLocale": {
+              "ru": "Перед `stairs` не ставят `an`.",
+              "uk": "Перед `stairs` не ставлять `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i15:r4",
+            "correct": false,
+            "testedDimension": "Вставьте начало — лестница понятна в дом",
+            "feedbackByLocale": {
+              "ru": "Для лестницы этого дома нужен `the`.",
+              "uk": "Для сходів цього будинку потрібен `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-46:i16:r1",
+          "text": "Крыша старая"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i16:r2",
+          "text": "Крыша новая"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i16:r3",
+          "text": "Лифт старый"
+        },
+        {
+          "responseId": "en:lesson-03:session-46:i16:r4",
+          "text": "Где крыша?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i16:audio",
+          "transcript": "The roof is old."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-46:i16:r1",
+            "targetText": "Крыша старая",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i16:r2",
+            "targetText": "Крыша новая",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i16:r3",
+            "targetText": "Лифт старый",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i16:r4",
+            "targetText": "Где крыша?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-46:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Звучит `old`, не `new`.",
+              "uk": "Звучить `old`, а не `new`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Звучит `roof`, не `lift`.",
+              "uk": "Звучить `roof`, а не `lift`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-46:i16:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Это утверждение, не вопрос.",
+              "uk": "Це твердження, не запитання."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i17:s01:audio",
+          "transcript": "The roof is old."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The roof is old.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 2 із 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 2 із 3",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i17:s02:audio",
+          "transcript": "The lift is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The lift is here.",
+        "orderedTokens": [
+          "The",
+          "lift",
+          "is",
+          "here."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-46:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-46:i17:s03:audio",
+          "transcript": "The stairs are here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The stairs are here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "42e899c4c80434d646a347421b2646c31d1d52f56f8acfe50907546f7235f1af"
+}

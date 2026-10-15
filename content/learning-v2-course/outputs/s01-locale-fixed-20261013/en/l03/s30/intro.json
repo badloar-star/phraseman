@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "`This/That + один предмет, please` — выбрать одну вещь рядом или вдали",
+    "uk": "`This/That + один предмет, please` — вибрати одну річ поруч або вдалині"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбрать вещь рядом",
+        "uk": "Вибрати річ поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`sweater` — «свитер». Он лежит рядом на стойке; продавец видит десятки вещей и мысли не читает, поэтому скажите: `This sweater, please.` — «Этот свитер, пожалуйста».\n\nВ короткой просьбе `this` сразу стоит перед названием вещи, а `please` делает выбор вежливым.",
+        "uk": "`sweater` — «светр». Він лежить поруч на стійці; продавець бачить десятки речей і думок не читає, тому скажіть: `This sweater, please.` — «Цей светр, будь ласка».\n\nУ короткому проханні `this` одразу стоїть перед назвою речі, а `please` робить вибір ввічливим."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Свитер лежит прямо перед вами. Попросите именно его.",
+          "uk": "Светр лежить просто перед вами. Попросіть саме його."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-30:intro1:r1",
+              "text": "This sweater, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro1:r2",
+              "text": "That sweater, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro1:r3",
+              "text": "This is sweater, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-30:intro1:r1",
+              "text": "This sweater, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro1:r2",
+              "text": "That sweater, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro1:r3",
+              "text": "This is sweater, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Свитер лежит прямо перед вами. Попросите именно его.",
+          "uk": "Светр лежить просто перед вами. Попросіть саме його."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбрать вещь вдали",
+        "uk": "Вибрати річ вдалині"
+      },
+      "bodyByLocale": {
+        "ru": "`scarf` — «шарф». Он висит у дальней стены, поэтому покажите продавцу на него словами `That scarf, please.` — «Тот шарф, пожалуйста».\n\nПервое слово показывает расстояние: `this` — рядом, `that` — дальше. Затем сразу идёт название вещи и вежливое `please`.",
+        "uk": "`scarf` — «шарф». Він висить біля дальньої стіни, тому попросіть саме його: `That scarf, please.` — «Той шарф, будь ласка».\n\nПерше слово показує відстань: `this` — поруч, `that` — далі. Потім одразу йде назва речі та ввічливе `please`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Нужный шарф висит у дальней стены. Попросите именно его.",
+          "uk": "Потрібний шарф висить біля дальньої стіни. Попросіть саме його."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-30:intro2:r1",
+              "text": "That scarf, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro2:r2",
+              "text": "This scarf, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro2:r3",
+              "text": "That is scarf, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-30:intro2:r1",
+              "text": "That scarf, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro2:r2",
+              "text": "This scarf, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro2:r3",
+              "text": "That is scarf, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Нужный шарф висит у дальней стены. Попросите именно его.",
+          "uk": "Потрібний шарф висить біля дальньої стіни. Попросіть саме його."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Без `a` между указателем и вещью",
+        "uk": "Без `a` між вказівним словом і річчю"
+      },
+      "bodyByLocale": {
+        "ru": "`glove` — «перчатка». Она лежит рядом на ближней полке, поэтому попросите её так: `This glove, please.` — «Эту перчатку, пожалуйста».\n\nЗдесь между `this` и `glove` не нужны `is` и `a`: фраза не называет вещь, а сразу выбирает её.",
+        "uk": "`glove` — «рукавичка». Вона лежить поруч на ближній полиці, тому попросіть її так: `This glove, please.` — «Цю рукавичку, будь ласка».\n\nТут між `this` і `glove` не потрібні `is` та `a`: фраза не називає річ, а одразу вибирає її."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Перчатка лежит рядом. Выберите её короткой вежливой просьбой.",
+          "uk": "Рукавичка лежить поруч. Виберіть її коротким ввічливим проханням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-30:intro3:r1",
+              "text": "This glove, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro3:r2",
+              "text": "This a glove, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro3:r3",
+              "text": "This is a glove, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-30:intro3:r1",
+              "text": "This glove, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro3:r2",
+              "text": "This a glove, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-30:intro3:r3",
+              "text": "This is a glove, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Перчатка лежит рядом. Выберите её короткой вежливой просьбой.",
+          "uk": "Рукавичка лежить поруч. Виберіть її коротким ввічливим проханням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9c1c55a8c814fd87be17779a040cf2283afe0026b453b150a44611c56c600e1f"
+}

@@ -1,0 +1,1097 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-40:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-40:i01:r1",
+          "text": "barcode"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i01:audio",
+          "transcript": "barcode"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-40:i01:r1",
+            "targetText": "barcode",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barcode",
+          "definitionByLocale": {
+            "ru": "«штрихкод». Ряд тёмных полос и цифр на упаковке, по которому определяют товар.",
+            "uk": "«штрихкод». Ряд темних смуг і цифр на упаковці, за яким визначають товар."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i03:audio",
+          "transcript": "seal"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "seal",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i05:audio",
+          "transcript": "coupon"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "coupon",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i02:audio",
+          "transcript": "barcode"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "barcode",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-40:i04:r1",
+          "text": "seal"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i04:audio",
+          "transcript": "seal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-40:i04:r1",
+            "targetText": "seal",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seal",
+          "definitionByLocale": {
+            "ru": "«защитная пломба».",
+            "uk": "«захисна пломба»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i06:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i06:audio",
+          "transcript": "coupon"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "coupon",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i08:audio",
+          "transcript": "barcode"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "barcode",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i10",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i10:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i10:audio",
+          "transcript": "seal"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "seal",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i11",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i11:audio",
+          "transcript": "coupon"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "coupon",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте слова зі значеннями — перевірка упаковки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте слова зі значеннями — перевірка упаковки",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-40:i07:p1",
+            "target": "barcode",
+            "meaningByLocale": {
+              "ru": "штрихкод",
+              "uk": "штрихкод"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-40:i07:p2",
+            "target": "seal",
+            "meaningByLocale": {
+              "ru": "защитная пломба",
+              "uk": "захисна пломба"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-40:i07:p3",
+            "target": "coupon",
+            "meaningByLocale": {
+              "ru": "купон",
+              "uk": "купон"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-40:i07:p4",
+            "target": "package",
+            "meaningByLocale": {
+              "ru": "упаковка",
+              "uk": "упаковка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "barcode",
+          "seal",
+          "coupon",
+          "package"
+        ],
+        "rightColumn": [
+          "штрихкод",
+          "захисна пломба",
+          "купон",
+          "упаковка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i09",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте вказівне слово — кілька штрихкодів лежать з іншого боку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-40:i09:r1",
+          "text": "Those"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i09:r2",
+          "text": "These"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i09:r3",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i09:r4",
+          "text": "This"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте вказівне слово — кілька штрихкодів лежать з іншого боку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — несколько штрихкодов лежат у дальней стороны",
+          "uk": "Вставте вказівне слово — кілька штрихкодів лежать з іншого боку"
+        },
+        "gappedTargetPhrase": "___ are barcodes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-40:i09:r1",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i09:r2",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i09:r3",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i09:r4",
+            "text": "This"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — несколько штрихкодо",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — несколько штрихкодо",
+            "feedbackByLocale": {
+              "ru": "`These are barcodes` подходит для штрихкодов рядом. Эта группа дальше, поэтому нужно `Those`.",
+              "uk": "`These are barcodes` підходить для штрихкодів поруч. Ця група далі, тому потрібне `Those`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — несколько штрихкодо",
+            "feedbackByLocale": {
+              "ru": "`That` относится к одному предмету и требует `is`. Здесь штрихкодов несколько.",
+              "uk": "`That` стосується одного предмета й потребує `is`. Тут штрихкодів кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i09:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — несколько штрихкодо",
+            "feedbackByLocale": {
+              "ru": "`This` относится к одному предмету рядом. Здесь называют далёкую группу.",
+              "uk": "`This` стосується одного предмета поруч. Тут називають віддалену групу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i12:s01",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 1 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a seal.",
+        "localizedMeaning": {
+          "ru": "Соберите два описания — пломба рядом, несколько пломб дальше",
+          "uk": "Складіть одну фразу — крок 1 із 2"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "seal."
+        ],
+        "authoredDistractorTokens": [
+          "These",
+          "that"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i12:s02",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i12:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i12:s02:audio",
+          "transcript": "Those are seals."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Those are seals.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i13",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точне значення фрази",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-40:i13:r1",
+          "text": "Это купоны"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i13:r2",
+          "text": "Это купон"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i13:r3",
+          "text": "Это штрихкоды"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i13:r4",
+          "text": "Это защитные пломбы"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точне значення фрази",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i13:audio",
+          "transcript": "Those are coupons."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-40:i13:r1",
+            "targetText": "Это купоны",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i13:r2",
+            "targetText": "Это купон",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i13:r3",
+            "targetText": "Это штрихкоды",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i13:r4",
+            "targetText": "Это защитные пломбы",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-40:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи слышны `those are` и `coupons`: называют несколько купонов.",
+              "uk": "У записі чути `those are` і `coupons`: називають кілька купонів."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Названы `coupons` — купоны, а не `barcodes` — штрихкоды.",
+              "uk": "Названо `coupons` — купони, а не `barcodes` — штрихкоди."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i13:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Названы `coupons`, а защитные пломбы — `seals`.",
+              "uk": "Названо `coupons`, а захисні пломби — `seals`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i14:s01",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 1 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a coupon.",
+        "localizedMeaning": {
+          "ru": "Соберите два описания — один купон дальше, несколько рядом",
+          "uk": "Складіть одну фразу — крок 1 із 2"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "coupon."
+        ],
+        "authoredDistractorTokens": [
+          "Those",
+          "this"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i14:s02",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i14:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i14:s02:audio",
+          "transcript": "These are coupons."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These are coupons.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i15:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 1 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a barcode.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 1 із 2"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "barcode."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i15:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i15:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i15:s02:audio",
+          "transcript": "Those are coupons."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Those are coupons.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i16:s01",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 1 із 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i16:s01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 1 із 4",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i16:s01:audio",
+          "transcript": "This is a barcode."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a barcode.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "barcode."
+        ],
+        "authoredDistractorTokens": [
+          "coupon"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i16:s02",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i16:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i16:s02:audio",
+          "transcript": "That is a seal."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is a seal.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i16:s03",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 3 із 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i16:s03:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 3 із 4",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i16:s03:audio",
+          "transcript": "These are coupons."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These are coupons.",
+        "orderedTokens": [
+          "These",
+          "are",
+          "coupons."
+        ],
+        "authoredDistractorTokens": [
+          "coupon"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i16:s04",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i16:s04:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i16:s04:audio",
+          "transcript": "Those are barcodes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Those are barcodes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i17:s01",
+      "ordinal": 26,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 1 із 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 1 із 4",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a barcode.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 1 із 4"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "barcode."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i17:s02",
+      "ordinal": 27,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i17:s02:audio",
+          "transcript": "This is a seal."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a seal.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i17:s03",
+      "ordinal": 28,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 3 із 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 3 із 4",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are barcodes.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 3 із 4"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "barcodes."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i17:s04",
+      "ordinal": 29,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте одну фразу — крок 4 із 4",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-40:i17:s04:r1",
+          "text": "These are coupons."
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i17:s04:r2",
+          "text": "barcode"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i17:s04:r3",
+          "text": "seal"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i17:s04:r4",
+          "text": "coupon"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Послухайте одну фразу — крок 4 із 4",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i17:s04:audio",
+          "transcript": "These are coupons."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-40:i17:s04:r1",
+            "targetText": "These are coupons.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i17:s04:r2",
+            "targetText": "barcode",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i17:s04:r3",
+            "targetText": "seal",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i17:s04:r4",
+            "targetText": "coupon",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-40:i17:s04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `These are coupons.`, а не `barcode`.",
+              "uk": "У записі звучить `These are coupons.`, а не `barcode`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i17:s04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `These are coupons.`, а не `seal`.",
+              "uk": "У записі звучить `These are coupons.`, а не `seal`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i17:s04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `These are coupons.`, а не `coupon`.",
+              "uk": "У записі звучить `These are coupons.`, а не `coupon`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 26,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4ef75e38d977c4c33138db46f0c3f7f67ad56a593753b6cace6c5ca016e24863"
+}

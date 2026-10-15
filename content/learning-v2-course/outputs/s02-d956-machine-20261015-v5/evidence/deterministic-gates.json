@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-02",
+  "candidateBundleSha256": "0cd7ef1f6f5a5f5c231b0d98072de961a1159dcf15c07223491d739f4ac05e0c",
+  "contentReceiptSha256": "539f72f05faba3a70736b392e33d63ac2bb13aa8fc90d3a67efe54b662167b16",
+  "candidateInventorySha256": "ac44d16bcf74b47ee86377f62dbffe39ac327a99f7e8d3b55bacfbd908407a03",
+  "sourceFingerprint": "e9d633260ee457ee8ff5d9164f03089584464335911b987cedac4b76c60f88fa",
+  "verdict": "PASS",
+  "gates": [
+    {
+      "id": "blueprint_authority",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-d956-machine-20261015-v5/content-receipt.json --check blueprint_authority",
+      "verdict": "PASS",
+      "exitCode": 0
+    },
+    {
+      "id": "s02_exact_packet",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-d956-machine-20261015-v5/content-receipt.json --check s02_exact_packet",
+      "verdict": "PASS",
+      "exitCode": 0
+    },
+    {
+      "id": "feedback_locale_parity",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-d956-machine-20261015-v5/content-receipt.json --check feedback_locale_parity",
+      "verdict": "PASS",
+      "exitCode": 0
+    },
+    {
+      "id": "actor_clarity",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-d956-machine-20261015-v5/content-receipt.json --check actor_clarity",
+      "verdict": "PASS",
+      "exitCode": 0
+    },
+    {
+      "id": "candidate_build_source_projection",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-d956-machine-20261015-v5/content-receipt.json --check candidate_build_source_projection",
+      "verdict": "PASS",
+      "exitCode": 0
+    },
+    {
+      "id": "receipt_history",
+      "command": "node content/learning-v2-course/pipeline/verify_session_candidate_receipt_v2.mjs --candidate-receipt content/learning-v2-course/outputs/s02-d956-machine-20261015-v5/content-receipt.json --check receipt_history",
+      "verdict": "PASS",
+      "exitCode": 0
+    }
+  ]
+}

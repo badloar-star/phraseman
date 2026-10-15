@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "применение `Am I…?` для проверки времени прихода и отношения к вам",
+    "uk": "застосування `Am I…?` для перевірки часу приходу й ставлення до вас"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рано или поздно",
+        "uk": "Раніше чи із запізненням"
+      },
+      "bodyByLocale": {
+        "ru": "`Am I early?` — «Я рано?» Так проверяют, не пришли ли раньше нужного времени. `early` — «рано», а `late` — «поздно, с опозданием». Вопрос `Am I late?` значит «Я опоздал?» Оба начинаются с `Am I`: вы спрашиваете о себе. Последнее слово выбирайте по тому, что хотите уточнить.",
+        "uk": "`Am I early?` — «Я прийшов раніше запланованого?» Так перевіряють, чи прийшли раніше запланованого часу. `early` — «рано», а `late` — «пізно, із запізненням». Запитання `Am I late?` означає «Я запізнився?» Обидва починаються з `Am I`: ви запитуєте про себе. Останнє слово обирайте за тим, що хочете уточнити."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "В парке у места встречи пока мало людей. Спросите друга, не рано ли вы пришли.",
+          "uk": "У парку біля місця зустрічі поки мало людей. Запитайте друга, чи прийшли ви раніше запланованого часу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-42:intro1:r1",
+              "text": "Am I early?"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro1:r2",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro1:r3",
+              "text": "Are you early?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-42:intro1:r1",
+              "text": "Am I early?"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro1:r2",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro1:r3",
+              "text": "Are you early?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В парке у места встречи пока мало людей. Спросите друга, не рано ли вы пришли.",
+          "uk": "У парку біля місця зустрічі поки мало людей. Запитайте друга, чи прийшли ви раніше запланованого часу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Как вас принимают",
+        "uk": "Як вас приймають"
+      },
+      "bodyByLocale": {
+        "ru": "`Am I welcome here?` — «Мне здесь рады?» Здесь `welcome` — «желанный», а `here` — «здесь». Вы спрашиваете, как относятся к вашему приходу. Слово «рано» сообщает о времени; переводить его про себя как «вам не рады» — значит додумать за собеседника целый ответ.",
+        "uk": "`Am I welcome here?` — «Мені тут раді?» Тут `welcome` — «бажаний», а `here` — «тут». Ви запитуєте, як люди ставляться до вашого приходу. Слово «рано» стосується лише часу; вирішити, що воно означає «вам не раді», — це додумати за співрозмовника цілу відповідь."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг привёл вас в незнакомую компанию в парке. Уточните у него, рады ли вам здесь.",
+          "uk": "Друг привів вас у незнайому компанію в парку. Запитайте його, чи вам тут раді."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-42:intro2:r1",
+              "text": "Am I welcome here?"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro2:r2",
+              "text": "Am I early?"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro2:r3",
+              "text": "Are you welcome here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-42:intro2:r1",
+              "text": "Am I welcome here?"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro2:r2",
+              "text": "Am I early?"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro2:r3",
+              "text": "Are you welcome here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг привёл вас в незнакомую компанию в парке. Уточните у него, рады ли вам здесь.",
+          "uk": "Друг привів вас у незнайому компанію в парку. Запитайте його, чи вам тут раді."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сомнение или сообщение",
+        "uk": "Сумнів чи повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "`I am not late` — «Я не опоздал». Так вы сообщаете, что успели вовремя. Сначала `I am`, затем `not`, потом `late`: отрицание относится к опозданию. А `Am I late?` — «Я опоздал?» — поможет это уточнить. Решите, нужен ли вам ответ собеседника или вы уже сообщаете ему результат.",
+        "uk": "`I am not late` — «Я не запізнився». Так ви повідомляєте, що встигли вчасно. Спочатку `I am`, далі `not`, потім `late`: заперечення стосується запізнення. А `Am I late?` — «Я запізнився?» — допоможе це уточнити. Вирішіть, чи потрібна вам відповідь співрозмовника, чи ви вже повідомляєте йому результат."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Организатор объяснил, что до начала прогулки ещё десять минут. Сообщите другу, что вы не опоздали.",
+          "uk": "Організатор пояснив, що до початку прогулянки ще десять хвилин. Повідомте другові, що ви не запізнилися."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-42:intro3:r1",
+              "text": "I am not late."
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro3:r2",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro3:r3",
+              "text": "I am late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-42:intro3:r1",
+              "text": "I am not late."
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro3:r2",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:intro3:r3",
+              "text": "I am late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Организатор объяснил, что до начала прогулки ещё десять минут. Сообщите другу, что вы не опоздали.",
+          "uk": "Організатор пояснив, що до початку прогулянки ще десять хвилин. Повідомте другові, що ви не запізнилися."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dbff4decc68512ab9e908d4f69ad79f7e7f6f181d46d841e50f70c0af4fa96a5"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "коротко ответить на вопрос `Are you …?`: `Yes, I am.` или `No, I am not.`",
+    "uk": "коротко відповісти на запитання `Are you …?`: `Yes, I am.` або `No, I am not.`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`worried` — когда вы волнуетесь",
+        "uk": "`worried` — коли ви хвилюєтеся"
+      },
+      "bodyByLocale": {
+        "ru": "`worried` — «обеспокоенный, встревоженный»: так вы чувствуете себя, когда не знаете, всё ли будет хорошо. Это не обязательно страх перед опасностью; волноваться можно и из-за опоздания. Рюкзак молчит, зато расписание уже успело вас встревожить. На вопрос `Are you worried?` короткое «да» — `Yes, I am.`.",
+        "uk": "`worried` — «стурбований, схвильований»: так ви почуваєтеся, коли не знаєте, чи все буде добре. Це не обов’язково страх перед небезпекою; хвилюватися можна й через запізнення. Рюкзак мовчить, зате розклад уже встиг вас стривожити. На запитання `Are you worried?` коротке «так» — `Yes, I am.`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Автобус задерживается, и вы волнуетесь. Сосед спрашивает: `Are you worried?` Ответьте коротко.",
+          "uk": "Автобус затримується, і ви хвилюєтеся. Сусід питає: `Are you worried?` Дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r2",
+              "text": "Yes, I."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r3",
+              "text": "Yes, am I."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r2",
+              "text": "Yes, I."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r3",
+              "text": "Yes, am I."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Автобус задерживается, и вы волнуетесь. Сосед спрашивает: `Are you worried?` Ответьте коротко.",
+          "uk": "Автобус затримується, і ви хвилюєтеся. Сусід питає: `Are you worried?` Дайте коротку відповідь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`prepared` — всё нужное готово",
+        "uk": "`prepared` — усе потрібне готове"
+      },
+      "bodyByLocale": {
+        "ru": "`prepared` — «подготовленный, готовый»: нужные вещи собраны, и вы знаете, что делать дальше. Это про подготовку, а не только про желание начать. Рюкзак может выглядеть готовым раньше вас — он уже стоит у двери. На вопрос `Are you prepared?` короткое «нет» — `No, I am not.`.",
+        "uk": "`prepared` — «підготовлений, готовий»: потрібні речі зібрані, і ви знаєте, що робити далі. Це про підготовку, а не лише про бажання почати. Рюкзак може виглядати готовим раніше за вас — він уже стоїть біля дверей. На запитання `Are you prepared?` коротке «ні» — `No, I am not.`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Билет ещё на стойке, поэтому вы не готовы. Сосед спрашивает: `Are you prepared?` Ответьте коротко.",
+          "uk": "Квиток ще на стійці, тому ви не готові. Сусід питає: `Are you prepared?` Дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r2",
+              "text": "No, I not am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r3",
+              "text": "No, not I am."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r2",
+              "text": "No, I not am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r3",
+              "text": "No, not I am."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Билет ещё на стойке, поэтому вы не готовы. Сосед спрашивает: `Are you prepared?` Ответьте коротко.",
+          "uk": "Квиток ще на стійці, тому ви не готові. Сусід питає: `Are you prepared?` Дайте коротку відповідь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Короткий ответ оставляет главное",
+        "uk": "Коротка відповідь залишає головне"
+      },
+      "bodyByLocale": {
+        "ru": "На `Are you worried?` можно ответить `Yes, I am.`, а на `Are you prepared?` — `No, I am not.`. Слова `worried` и `prepared` уже прозвучали в вопросе, поэтому в коротком ответе их не повторяют. Для ответа о себе после `Yes` или `No` говорят `I am`; в отрицании `not` стоит после `am`.",
+        "uk": "На `Are you worried?` можна відповісти `Yes, I am.`, а на `Are you prepared?` — `No, I am not.`. Слова `worried` і `prepared` уже прозвучали в запитанні, тому в короткій відповіді їх не повторюють. Для відповіді про себе після `Yes` або `No` кажуть `I am`; у запереченні `not` стоїть після `am`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Билет уже в кармане, вещи собраны. На вопрос `Are you prepared?` ответьте коротко.",
+          "uk": "Квиток уже в кишені, речі зібрані. На запитання `Are you prepared?` дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r2",
+              "text": "Yes, I."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r3",
+              "text": "Yes, am I."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r2",
+              "text": "Yes, I."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r3",
+              "text": "Yes, am I."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Билет уже в кармане, вещи собраны. На вопрос `Are you prepared?` ответьте коротко.",
+          "uk": "Квиток уже в кишені, речі зібрані. На запитання `Are you prepared?` дайте коротку відповідь."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9acd825c757540c7cc140002a4a82ff8483406cf545d234656f23de3461fffb6"
+}

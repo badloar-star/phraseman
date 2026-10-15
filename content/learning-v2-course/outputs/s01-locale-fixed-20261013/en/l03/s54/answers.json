@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-54:i01",
+    "correctText": "bright",
+    "correctResponseId": "en:lesson-03:session-54:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i03",
+    "correctText": "pale",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i07",
+    "correctText": "striped",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i02",
+    "correctText": "bright",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i04",
+    "correctText": "pale",
+    "correctResponseId": "en:lesson-03:session-54:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i08",
+    "correctText": "striped",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i05",
+    "correctText": "bright",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i06",
+    "correctText": "pale",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i10",
+    "correctText": "striped",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i09",
+    "correctText": "en:lesson-03:session-54:i09:p1=bright\nen:lesson-03:session-54:i09:p2=pale\nen:lesson-03:session-54:i09:p3=striped\nen:lesson-03:session-54:i09:p4=lamp\nen:lesson-03:session-54:i09:p5=rug\nen:lesson-03:session-54:i09:p6=cushions\nen:lesson-03:session-54:i09:p7=here",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i11",
+    "correctText": "This bright lamp is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i12",
+    "correctText": "That",
+    "correctResponseId": "en:lesson-03:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i13",
+    "correctText": "These bright lamps are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i14",
+    "correctText": "striped",
+    "correctResponseId": "en:lesson-03:session-54:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i15",
+    "correctText": "This pale rug is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i16",
+    "correctText": "That striped rug is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-54:i17",
+    "correctText": "Those bright lamps are here.",
+    "correctResponseId": null
+  }
+]

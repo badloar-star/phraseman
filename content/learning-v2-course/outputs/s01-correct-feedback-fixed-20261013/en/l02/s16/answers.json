@@ -1,0 +1,112 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-16:i01",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-16:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i02",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i03",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i04",
+    "correctText": "Is it noisy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i05",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i06",
+    "correctText": "en:lesson-02:session-16:i06:p1=thirsty\nen:lesson-02:session-16:i06:p2=crowded\nen:lesson-02:session-16:i06:p3=noisy\nen:lesson-02:session-16:i06:p4=curious",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i07",
+    "correctText": "handsome",
+    "correctResponseId": "en:lesson-02:session-16:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i08",
+    "correctText": "handsome",
+    "correctResponseId": "en:lesson-02:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i09",
+    "correctText": "Is she curious?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i10",
+    "correctText": "comfortable",
+    "correctResponseId": "en:lesson-02:session-16:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i11",
+    "correctText": "Yes, she is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i12",
+    "correctText": "dizzy",
+    "correctResponseId": "en:lesson-02:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i13",
+    "correctText": "lost",
+    "correctResponseId": "en:lesson-02:session-16:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i14",
+    "correctText": "Is it noisy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i15",
+    "correctText": "en:lesson-02:session-16:i15:p1=handsome\nen:lesson-02:session-16:i15:p2=dizzy\nen:lesson-02:session-16:i15:p3=lost\nen:lesson-02:session-16:i15:p4=comfortable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i16",
+    "correctText": "Is she cheerful?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i17:s01",
+    "correctText": "Is he thirsty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i17:s02",
+    "correctText": "Yes, he is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i17:s03",
+    "correctText": "Is she awake?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i17:s04",
+    "correctText": "No, she is not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i17:s05",
+    "correctText": "Is it crowded?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i17:s06",
+    "correctText": "Yes, it is.",
+    "correctResponseId": null
+  }
+]

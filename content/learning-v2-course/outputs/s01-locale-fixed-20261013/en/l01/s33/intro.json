@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "Скажете о вашей группе: `We are` + слово.",
+    "uk": "Скажете про вашу групу: `We are` + слово."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`we` — «мы»: после него ставим `are`",
+        "uk": "`we` — «ми»: після нього ставимо `are`"
+      },
+      "bodyByLocale": {
+        "ru": "`we` — это «мы». После `we` ставим `are`: `We are ready`.\n\nТут легко промахнуться. Про себя одного говорят `I am`, и рука по привычке тянет `am` дальше: `We am`. Так не бывает. Как только людей больше одного — только `are`.",
+        "uk": "`we` — це «ми». Після `we` ставимо `are`: `We are ready`.\n\nТут легко схибити. Про себе одного кажуть `I am`, і рука за звичкою тягне `am` далі: `We am`. Так не буває. Щойно людей більше ніж одна — тільки `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Ира видит вас, Олега и Мию в куртках у двери и спрашивает: «Ready?» Ответьте за всех.",
+          "uk": "Іра бачить вас, Олега й Мію в куртках біля дверей і питає: «Ready?» Відповідайте за всіх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-33:intro1:r1",
+              "text": "We are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro1:r2",
+              "text": "We am ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro1:r3",
+              "text": "We ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-33:intro1:r1",
+              "text": "We are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro1:r2",
+              "text": "We am ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro1:r3",
+              "text": "We ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ира видит вас, Олега и Мию в куртках у двери и спрашивает: «Ready?» Ответьте за всех.",
+          "uk": "Іра бачить вас, Олега й Мію в куртках біля дверей і питає: «Ready?» Відповідайте за всіх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`hungry` — «голодный»",
+        "uk": "`hungry` — «голодний»"
+      },
+      "bodyByLocale": {
+        "ru": "`hungry` — «голодный». Не «хочу перекусить», а честное «пора есть».\n\nПро четверых говорят ровно теми же тремя словами, что про одного: `We are hungry`. И `hungry` не отращивает `-s`, сколько бы народу ни ждало обед.",
+        "uk": "`hungry` — «голодний». Не «хочу перекусити», а чесне «час їсти».\n\nПро чотирьох кажуть саме тими трьома словами, що й про одного: `We are hungry`. І `hungry` не відрощує `-s`, скільки б людей не чекало на обід."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Ира спрашивает у двери, почему вы с Олегом и Мией ещё не ушли на обед. Скажите, что вы голодные.",
+          "uk": "Іра питає біля дверей, чому ви з Олегом і Мією ще не пішли обідати. Скажіть, що ви голодні."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-33:intro2:r1",
+              "text": "We are hungry."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro2:r2",
+              "text": "We is hungry."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro2:r3",
+              "text": "We are hungrys."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-33:intro2:r1",
+              "text": "We are hungry."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro2:r2",
+              "text": "We is hungry."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro2:r3",
+              "text": "We are hungrys."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ира спрашивает у двери, почему вы с Олегом и Мией ещё не ушли на обед. Скажите, что вы голодные.",
+          "uk": "Іра питає біля дверей, чому ви з Олегом і Мією ще не пішли обідати. Скажіть, що ви голодні."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`together` — «вместе»",
+        "uk": "`together` — «разом»"
+      },
+      "bodyByLocale": {
+        "ru": "`together` — «вместе», то есть одной компанией, а не по отдельности.\n\n`We are together` говорят и про столик в кафе, и про дорогу домой: одно слово закрывает всё, где вы не поодиночке. Само `together` не меняется никогда.",
+        "uk": "`together` — «разом», тобто одним гуртом, а не поодинці.\n\n`We are together` кажуть і про столик у кав'ярні, і про дорогу додому: одне слово закриває все, де ви не поодинці. Саме `together` не змінюється ніколи."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Хостес Лера в кафе спрашивает Иру, Олега, Мию и вас: один стол или два? Скажите, что вы одна компания.",
+          "uk": "Хостес Лера в кав'ярні питає Іру, Олега, Мію і вас: один стіл чи два? Скажіть, що ви один гурт."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-33:intro3:r1",
+              "text": "We are together."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro3:r2",
+              "text": "We together are."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro3:r3",
+              "text": "We are togethers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-33:intro3:r1",
+              "text": "We are together."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro3:r2",
+              "text": "We together are."
+            },
+            {
+              "responseId": "en:lesson-01:session-33:intro3:r3",
+              "text": "We are togethers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Хостес Лера в кафе спрашивает Иру, Олега, Мию и вас: один стол или два? Скажите, что вы одна компания.",
+          "uk": "Хостес Лера в кав'ярні питає Іру, Олега, Мію і вас: один стіл чи два? Скажіть, що ви один гурт."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e840f097d5928cf7726550493abfe90826798ae78c0c8d37db1bfee24122276c"
+}

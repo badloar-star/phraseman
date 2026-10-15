@@ -26,7 +26,9 @@ export function parseSessionHeader(markdown) {
     if (EXPLICIT_NONE.test(newWordsRaw)) {
       newWordsDeclaration = "explicit_none";
     } else {
-      const entries = newWordsRaw.split(",").map(normalizeLine);
+      const entries = newWordsRaw.split(/[;,]/u).map((entry) => normalizeLine(entry)
+        .split(/\s+[—–-]\s+/u, 1)[0]
+        .replace(/[.]$/u, ""));
       const invalid = !newWordsRaw || entries.some((entry) => !entry || EXPLICIT_NONE.test(entry));
       if (invalid) {
         newWordsDeclaration = "invalid";

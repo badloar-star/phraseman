@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-12:intro2:r2": {
-          "ru": "Смелым был он, а не вы. Про человека напротив — `you are`.",
-          "uk": "Сміливим був він, а не ви. Про людину навпроти — `you are`."
+          "ru": "`I am` говорят о себе: «я смелый/смелая». Здесь вы обращаетесь к коллеге — `you are`.",
+          "uk": "`I am` кажуть про себе: «я сміливий/смілива». Тут ви звертаєтеся до колеги — `you are`."
         },
         "en:lesson-01:session-12:intro2:r3": {
           "ru": "`not` ставят сразу после `are`. Но здесь он и не нужен — вы его хвалите.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "368cc9f8b38f3eb406a48bd06686c42fd40511e1224bd7833ac4d0518653d5aa"
+  "auxiliaryFingerprint": "481f9716dc73cb36317aaa77390b32e47e8da4f2f9e816a0924186bf930c1576"
 }

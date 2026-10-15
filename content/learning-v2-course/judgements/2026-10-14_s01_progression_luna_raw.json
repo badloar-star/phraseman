@@ -1,0 +1,39 @@
+{
+  "reviewer": "progression",
+  "model": "gpt-5.6-luna",
+  "status": "PASS",
+  "candidateRoot": "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014",
+  "courseSessionId": "en:lesson-01:session-01",
+  "contentInventorySha256": "362658ddc6a17ae37cde5d4bf3529a5f5f0cf400480c9c2efb6aa581d85eee17",
+  "reviewBundleDigest": "0548773ad10f1aa6be9416311070227ca1a536891c37c6a264185b2f1c8fecd9",
+  "sourceEvidence": [
+    "content/learning-v2-course/judgements/2026-10-13_l01_s01_source_evidence.md",
+    "modules/learning-v2/curriculum/en/grammar_operations_en_v2.ts",
+    "modules/learning-v2/curriculum/en/session_lexical_assignments_en_v2.ts",
+    "modules/learning-v2/curriculum/en/lexical_senses_en_v2.ts",
+    "modules/learning-v2/curriculum/en/lexical_progression_en_v2.ts",
+    "content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md",
+    "content/learning-v2-course/curriculum/en/ОСОБЕННОСТИ_ЯЗЫКА.md"
+  ],
+  "checks": {
+    "receiptIdentity": "PASS: content receipt inventory and review bundle digest match supplied values; releaseAuthority=false",
+    "row": "PASS: session is en:lesson-01:session-01, absolute ordinal 1, grammar operation en.grammar.present_be_affirmative.i_am",
+    "admittedVocabulary": "PASS: target lexical set is here, ready, fine, happy; no retrieval lexical senses are required for S01",
+    "admittedGrammar": "PASS: all target statements use I + am + complement; no later grammar operation is assessed",
+    "ordering": "PASS: practice ordinals are exactly 4 through 23; 20 interactions are ordered monotonically",
+    "retrieval": "PASS: no pre-S01 retrieval target is introduced; phrase set remains within the S01 row",
+    "noFutureKnowledge": "PASS: inspected target/analysis vocabulary is limited to S01 targets and required localized rendering terms; no later target grammar is assessed",
+    "ruCoverage": "PASS: 20/20 interactions have RU learner-facing payloads",
+    "ukCoverage": "PASS: 20/20 interactions have UK learner-facing payloads with matching interaction IDs and order",
+    "crossLocaleParity": "PASS: RU and UK interaction counts are both 20 and IDs are positionally identical"
+  },
+  "counts": {
+    "ruInteractions": 20,
+    "ukInteractions": 20,
+    "practiceOrdinalFirst": 4,
+    "practiceOrdinalLast": 23,
+    "targetLexicalSenses": 4,
+    "retrievalLexicalSenses": 0
+  },
+  "findings": []
+}

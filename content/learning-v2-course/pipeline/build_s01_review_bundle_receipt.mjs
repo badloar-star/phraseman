@@ -4,8 +4,15 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { collectS01NoDriftBoundary, verifyS01ContentReceipt } from "./build_s01_candidate_receipt.mjs";
-import { writeMockupFile } from "./write_mockup_file.mjs";
+import {
+  assertS01CanonicalWritableCandidate,
+  collectS01NoDriftBoundary,
+  createS01ReceiptFile,
+  readS01RegularFile,
+  S01_WRITABLE_CANDIDATE_NAME,
+  verifyS01ContentReceipt,
+  withS01ReceiptPublicationLock,
+} from "./build_s01_candidate_receipt.mjs";
 
 const PIPELINE = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_REPO = path.resolve(PIPELINE, "../../..");
@@ -14,11 +21,35 @@ const READER2_SUCCESSOR = path.join(DEFAULT_REPO, "content/learning-v2-course/ou
 const SUCCESSOR_HISTORICAL_V2 = "content/learning-v2-course/outputs/s01-reader2-fixed-20261013/review-bundle-receipt.json";
 const COMBINED_SUCCESSOR_NAME = "s01-combined-review-fixed-20261013";
 const I13_SUCCESSOR_NAME = "s01-i13-scene-fixed-20261013";
+const LOCALE_SUCCESSOR_NAME = "s01-locale-fixed-20261013";
+const CORRECT_FEEDBACK_SUCCESSOR_NAME = "s01-correct-feedback-fixed-20261013";
+const CURRENT_FINAL_SUCCESSOR_NAME = "s01-feedback-locale-final-fixed-20261013";
+const LOCALE_BATCH_SUCCESSOR_NAME = "s01-locale-batch-parity-fixed-20261014";
+const FINAL_SUCCESSOR_NAME = S01_WRITABLE_CANDIDATE_NAME;
 const READER2_STABLE_V3 = "content/learning-v2-course/outputs/s01-reader2-fixed-20261013/review-content-bundle-receipt.v3.json";
 const COMBINED_STABLE_V3 = "content/learning-v2-course/outputs/s01-combined-review-fixed-20261013/review-content-bundle-receipt.v3.json";
+const I13_STABLE_V3 = "content/learning-v2-course/outputs/s01-i13-scene-fixed-20261013/review-content-bundle-receipt.v3.json";
+const LOCALE_STABLE_V3 = "content/learning-v2-course/outputs/s01-locale-fixed-20261013/review-content-bundle-receipt.v3.json";
+const LOCALE_STABLE_V3_SHA256 = "a72a8611c2cd38ee17c529cdd37c6998fef7ef1241129b72258d521836cccc14";
+const CORRECT_FEEDBACK_STABLE_V3 = "content/learning-v2-course/outputs/s01-correct-feedback-fixed-20261013/review-content-bundle-receipt.v3.json";
+const CORRECT_FEEDBACK_STABLE_V3_SHA256 = "5a4c2bb59f531c34e205b00ac5840e7650534b3e828ed9ac568ce2263bab6909";
+const CURRENT_FINAL_STABLE_V3 = "content/learning-v2-course/outputs/s01-feedback-locale-final-fixed-20261013/review-content-bundle-receipt.v3.json";
+const CURRENT_FINAL_STABLE_V3_SHA256 = "0e093e65d0d1c90b0a7dd8202b1fe5875b246e10ac48f9e128ed389739a249c4";
+const LOCALE_BATCH_STABLE_V3 = "content/learning-v2-course/outputs/s01-locale-batch-parity-fixed-20261014/review-content-bundle-receipt.v3.json";
+const LOCALE_BATCH_STABLE_V3_SHA256 = "fab4d25424ba630d1250dd6b1724bee397cc94d9c099aaccc54cbeccf8549a86";
+const NATURALNESS_STABLE_V3 = "content/learning-v2-course/outputs/s01-feedback-naturalness-fixed-20261014/review-content-bundle-receipt.v3.json";
+const NATURALNESS_STABLE_V3_SHA256 = "6201b585f1ed65d7431bf18eb8da40289e29155c79b009eb3a0f0fbfbce9e01c";
+export const S01_REVIEW_SUCCESSOR_PREDECESSOR = Object.freeze({
+  candidateName: FINAL_SUCCESSOR_NAME,
+  path: NATURALNESS_STABLE_V3,
+  sha256: NATURALNESS_STABLE_V3_SHA256,
+});
 const LEGACY_RECEIPT = "hash-receipt.json";
 const CONTENT_RECEIPT = "content-receipt.json";
+const NO_DRIFT_BASELINE = "no-drift-baseline.json";
 const STABLE_CONTENT_BUNDLE_RECEIPT = "review-content-bundle-receipt.v3.json";
+const USAGE = `Usage: node build_s01_review_bundle_receipt.mjs [--candidate <registered-candidate-directory>]
+       node build_s01_review_bundle_receipt.mjs --help`;
 const RAW_RECEIPTS = Object.freeze(["content/learning-v2-course/judgements/2026-10-13_l01_s01_learner_audit6_raw.md"]);
 const TOOLCHAIN = Object.freeze([
   "content/learning-v2-course/pipeline/build_s01_candidate_receipt.mjs",
@@ -69,9 +100,17 @@ const BUNDLE_FILES = Object.freeze([
 const sha256 = (bytes) => crypto.createHash("sha256").update(bytes).digest("hex");
 const relative = (repoRoot, absolute) => path.relative(repoRoot, absolute).split(path.sep).join("/");
 const hash = (repoRoot, relativePath) => {
-  const bytes = fs.readFileSync(path.join(repoRoot, ...relativePath.split("/")));
+  const bytes = readS01RegularFile({ repoRoot, relativePath });
   return { path: relativePath, bytes: bytes.length, sha256: sha256(bytes) };
 };
+
+function assertPinnedPredecessor(repoRoot, predecessorPath, expectedSha256) {
+  const predecessor = hash(repoRoot, predecessorPath);
+  if (predecessor.sha256 !== expectedSha256) {
+    throw new Error(`predecessor_receipt_sha256_mismatch:${predecessorPath}:${expectedSha256}:${predecessor.sha256}`);
+  }
+  return predecessor;
+}
 
 function candidateBundle(repoRoot, candidateRoot) {
   const prefix = relative(repoRoot, candidateRoot);
@@ -80,6 +119,15 @@ function candidateBundle(repoRoot, candidateRoot) {
     return { ...hashed, path: entry };
   });
   return { files, sha256: sha256(JSON.stringify(files.map(({ path: file, bytes, sha256: digest }) => ({ path: file, bytes, sha256: digest })))) };
+}
+
+function verifyCurrentNoDriftBaseline(repoRoot, candidateRoot, currentBoundary) {
+  const baselinePath = path.join(candidateRoot, NO_DRIFT_BASELINE);
+  if (!fs.existsSync(baselinePath)) throw new Error(`no_drift_baseline_missing:${relative(repoRoot, baselinePath)}`);
+  const baseline = JSON.parse(readS01RegularFile({ repoRoot, absolutePath: baselinePath }).toString("utf8"));
+  if (baseline.boundarySha256 !== currentBoundary.boundarySha256 || JSON.stringify(baseline.files) !== JSON.stringify(currentBoundary.files)) {
+    throw new Error(`no_drift_boundary_changed:${baseline.boundarySha256}:${currentBoundary.boundarySha256}`);
+  }
 }
 
 export function buildS01V2ToV3MigrationReceipt({ repoRoot = DEFAULT_REPO, candidateRoot = DEFAULT_CANDIDATE } = {}) {
@@ -136,9 +184,51 @@ export function buildS01ReviewBundleReceipt({ repoRoot = DEFAULT_REPO, candidate
             reason: "successor removes the independently confirmed unsupported i13 scene claim while preserving the prior immutable receipt head",
             frozenToolchain: null,
           }
+      : candidateName === LOCALE_SUCCESSOR_NAME
+        ? {
+            predecessorPath: I13_STABLE_V3,
+            reason: "successor repairs independently confirmed S01 locale findings while preserving the exact prior immutable receipt head",
+            frozenToolchain: null,
+            requireCurrentNoDriftBaseline: true,
+          }
+      : candidateName === CORRECT_FEEDBACK_SUCCESSOR_NAME
+        ? {
+            predecessorPath: LOCALE_STABLE_V3,
+            expectedPredecessorSha256: LOCALE_STABLE_V3_SHA256,
+            reason: "successor repairs independently confirmed S01 feedback findings while preserving the exact prior immutable receipt head",
+            frozenToolchain: null,
+            requireCurrentNoDriftBaseline: true,
+          }
+      : candidateName === CURRENT_FINAL_SUCCESSOR_NAME
+        ? {
+            predecessorPath: CORRECT_FEEDBACK_STABLE_V3,
+            expectedPredecessorSha256: CORRECT_FEEDBACK_STABLE_V3_SHA256,
+            reason: "successor repairs independently confirmed S01 feedback and locale findings while preserving the exact prior immutable receipt head",
+            frozenToolchain: null,
+            requireCurrentNoDriftBaseline: true,
+          }
+      : candidateName === LOCALE_BATCH_SUCCESSOR_NAME
+        ? {
+            predecessorPath: CURRENT_FINAL_STABLE_V3,
+            expectedPredecessorSha256: CURRENT_FINAL_STABLE_V3_SHA256,
+            reason: "successor restores S01 locale-batch parity while preserving the exact current immutable receipt head",
+            frozenToolchain: null,
+            requireCurrentNoDriftBaseline: true,
+          }
+      : candidateName === FINAL_SUCCESSOR_NAME
+        ? {
+            predecessorPath: S01_REVIEW_SUCCESSOR_PREDECESSOR.path,
+            expectedPredecessorSha256: S01_REVIEW_SUCCESSOR_PREDECESSOR.sha256,
+            reason: "successor materializes the concise-feedback S01 source revision while preserving the exact prior immutable receipt head",
+            frozenToolchain: null,
+            requireCurrentNoDriftBaseline: true,
+          }
       : null;
   if (stableSuccessor) {
-    const predecessor = hash(repoRoot, stableSuccessor.predecessorPath);
+    if (stableSuccessor.requireCurrentNoDriftBaseline) verifyCurrentNoDriftBaseline(repoRoot, candidateRoot, boundary);
+    const predecessor = stableSuccessor.expectedPredecessorSha256
+      ? assertPinnedPredecessor(repoRoot, stableSuccessor.predecessorPath, stableSuccessor.expectedPredecessorSha256)
+      : hash(repoRoot, stableSuccessor.predecessorPath);
     const stableToolchain = stableSuccessor.frozenToolchain
       ? stableSuccessor.frozenToolchain.map((entry) => ({ ...entry }))
       : SUCCESSOR_STABLE_TOOLCHAIN.map((entry) => hash(repoRoot, entry));
@@ -158,7 +248,7 @@ export function buildS01ReviewBundleReceipt({ repoRoot = DEFAULT_REPO, candidate
       },
       contentReceipt: {
         path: `${relative(repoRoot, candidateRoot)}/${CONTENT_RECEIPT}`,
-        sha256: sha256(fs.readFileSync(path.join(candidateRoot, CONTENT_RECEIPT))),
+        sha256: sha256(readS01RegularFile({ repoRoot, absolutePath: path.join(candidateRoot, CONTENT_RECEIPT) })),
         inventorySha256: content.inventorySha256,
         fileCount: content.fileCount,
       },
@@ -181,7 +271,7 @@ export function buildS01ReviewBundleReceipt({ repoRoot = DEFAULT_REPO, candidate
     appendOnly: true,
     contentReceipt: {
       path: `${relative(repoRoot, candidateRoot)}/${CONTENT_RECEIPT}`,
-      sha256: sha256(fs.readFileSync(path.join(candidateRoot, CONTENT_RECEIPT))),
+      sha256: sha256(readS01RegularFile({ repoRoot, absolutePath: path.join(candidateRoot, CONTENT_RECEIPT) })),
       inventorySha256: content.inventorySha256,
       fileCount: content.fileCount,
     },
@@ -206,15 +296,77 @@ export function verifyS01ReviewContentBundleReceipt({ repoRoot = DEFAULT_REPO, c
   return expected;
 }
 
-async function main() {
-  const candidateRoot = process.argv[2] ? path.resolve(process.argv[2]) : DEFAULT_CANDIDATE;
-  const successor = [path.basename(READER2_SUCCESSOR), COMBINED_SUCCESSOR_NAME, I13_SUCCESSOR_NAME].includes(path.basename(candidateRoot));
-  const migration = successor ? null : buildS01V2ToV3MigrationReceipt({ candidateRoot });
-  const bundle = buildS01ReviewBundleReceipt({ candidateRoot, migration });
-  if (migration) await writeMockupFile(path.join(candidateRoot, "legacy-v2-to-content-v3-migration.json"), `${JSON.stringify(migration, null, 2)}\n`);
-  const output = successor ? STABLE_CONTENT_BUNDLE_RECEIPT : "review-bundle-receipt.json";
-  await writeMockupFile(path.join(candidateRoot, output), `${JSON.stringify(bundle, null, 2)}\n`);
-  console.log(JSON.stringify({ migration: migration?.v3Content.inventorySha256 ?? null, bundle: bundle.candidateBundle.sha256, releaseAuthority: false }));
+function parseCliArgs(args) {
+  const options = { candidate: null, help: false };
+  const seen = new Set();
+  for (let index = 0; index < args.length; index++) {
+    const argument = args[index];
+    if (argument === "--help") {
+      if (seen.has(argument)) throw new Error(`duplicate argument: ${argument}`);
+      seen.add(argument);
+      options.help = true;
+      continue;
+    }
+    if (argument === "--candidate") {
+      if (seen.has(argument) || seen.has("positional-candidate")) throw new Error(`duplicate argument: ${argument}`);
+      const value = args[index + 1];
+      if (!value || value.startsWith("--")) throw new Error(`missing value for ${argument}`);
+      seen.add(argument);
+      options.candidate = value;
+      index++;
+      continue;
+    }
+    if (argument.startsWith("--")) throw new Error(`unknown argument: ${argument}`);
+    if (options.candidate !== null) throw new Error(`unexpected positional argument: ${argument}`);
+    seen.add("positional-candidate");
+    options.candidate = argument;
+  }
+  return options;
+}
+
+export function publishS01ReviewBundleReceipt({ repoRoot = DEFAULT_REPO, candidateRoot, beforeInputRead } = {}) {
+  const canonicalCandidate = assertS01CanonicalWritableCandidate({ repoRoot, candidateRoot });
+  return withS01ReceiptPublicationLock({ repoRoot, candidateRoot: canonicalCandidate }, (publicationLock) => {
+    if (beforeInputRead !== undefined) {
+      if (typeof beforeInputRead !== "function") throw new Error("receipt_before_input_read_callback_invalid");
+      beforeInputRead();
+    }
+    const bundle = buildS01ReviewBundleReceipt({ repoRoot, candidateRoot: canonicalCandidate });
+    const output = createS01ReceiptFile({
+      repoRoot,
+      candidateRoot: canonicalCandidate,
+      receiptName: STABLE_CONTENT_BUNDLE_RECEIPT,
+      contents: `${JSON.stringify(bundle, null, 2)}\n`,
+      beforePublish: () => assertPinnedPredecessor(
+        repoRoot,
+        S01_REVIEW_SUCCESSOR_PREDECESSOR.path,
+        S01_REVIEW_SUCCESSOR_PREDECESSOR.sha256,
+      ),
+      publicationLock,
+    });
+    return { bundle, output };
+  });
+}
+
+async function main(args = process.argv.slice(2)) {
+  let cli;
+  try {
+    cli = parseCliArgs(args);
+  } catch (error) {
+    console.error(`[S01_REVIEW_RECEIPT][ERROR] ${error.message}`);
+    console.error(USAGE);
+    return 2;
+  }
+  if (cli.help) {
+    console.log(USAGE);
+    return 0;
+  }
+  const candidateRoot = cli.candidate
+    ? path.resolve(cli.candidate)
+    : path.join(DEFAULT_REPO, "content/learning-v2-course/outputs", S01_WRITABLE_CANDIDATE_NAME);
+  const result = publishS01ReviewBundleReceipt({ candidateRoot });
+  console.log(JSON.stringify({ migration: null, bundle: result.bundle.candidateBundle.sha256, releaseAuthority: false }));
+  return 0;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) process.exitCode = await main();

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "отдельно ответить на вопрос о нескольких местах: `Yes, there are.` или `No, there aren't.`",
+    "uk": "окремо відповісти на питання про кілька місць: `Yes, there are.` або `No, there aren't.`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Платформа",
+        "uk": "Платформа"
+      },
+      "bodyByLocale": {
+        "ru": "`platform` — «платформа», место у железнодорожных путей, где пассажиры ждут поезд. Одна такая точка на табло — `a platform`, а несколько — `platforms`. Не путайте платформу с поездом: поезд приходит к платформе.",
+        "uk": "`platform` — «платформа», місце біля залізничних колій, де пасажири чекають на поїзд. Одна така точка на табло — `a platform`, а кілька — `platforms`. Не плутайте платформу з поїздом: поїзд прибуває до платформи."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "На табло показано одно место, где ждут поезд. Выберите слова.",
+          "uk": "На табло показано одне місце, де чекають на поїзд. Оберіть слова."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-12:intro1:r1",
+              "text": "a platform"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro1:r2",
+              "text": "a train"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro1:r3",
+              "text": "a tram"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-12:intro1:r1",
+              "text": "a platform"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro1:r2",
+              "text": "a train"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro1:r3",
+              "text": "a tram"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На табло показано одно место, где ждут поезд. Выберите слова.",
+          "uk": "На табло показано одне місце, де чекають на поїзд. Оберіть слова."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Короткое «да» о нескольких платформах",
+        "uk": "Коротке «так» про кілька платформ"
+      },
+      "bodyByLocale": {
+        "ru": "`Yes, there are.` — «Да, есть». Так отвечают на `Are there two platforms?`: слова `two platforms` уже прозвучали, повторять их не нужно. Остаётся `Yes, there are`; `are` показывает, что платформ несколько. Короткий ответ умеет вовремя остановиться: экономит слова, а не смысл.",
+        "uk": "`Yes, there are.` — «Так, є». Так відповідають на `Are there two platforms?`: слова `two platforms` уже прозвучали, повторювати їх не потрібно. Залишається `Yes, there are`; `are` показує, що платформ кілька. Коротка відповідь уміє вчасно зупинитися: заощаджує слова, а не зміст."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "На табло две платформы. На вопрос `Are there two platforms?` выберите короткий ответ.",
+          "uk": "На табло дві платформи. На питання `Are there two platforms?` оберіть коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-12:intro2:r1",
+              "text": "Yes, there are."
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro2:r2",
+              "text": "Yes, there are there."
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro2:r3",
+              "text": "Yes, are there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-12:intro2:r1",
+              "text": "Yes, there are."
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro2:r2",
+              "text": "Yes, there are there."
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro2:r3",
+              "text": "Yes, are there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На табло две платформы. На вопрос `Are there two platforms?` выберите короткий ответ.",
+          "uk": "На табло дві платформи. На питання `Are there two platforms?` оберіть коротку відповідь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Короткое «нет» о нескольких платформах",
+        "uk": "Коротке «ні» про кілька платформ"
+      },
+      "bodyByLocale": {
+        "ru": "`No, there aren't.` — «Нет». Это короткий ответ на `Are there two platforms?`: количество уже названо в вопросе, поэтому его не повторяют. `Aren't` — это `are not`, сказанное короче; форма `are` нужна, потому что вопрос о нескольких платформах.",
+        "uk": "`No, there aren't.` — «Ні». Це коротка відповідь на `Are there two platforms?`: кількість уже названо в питанні, тому її не повторюють. `Aren't` — це `are not`, сказане коротше; форма `are` потрібна, бо питання про кілька платформ."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "На табло одна платформа. На вопрос `Are there two platforms?` выберите короткий ответ.",
+          "uk": "На табло одна платформа. На питання `Are there two platforms?` оберіть коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-12:intro3:r1",
+              "text": "No, there aren't."
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro3:r2",
+              "text": "No, there aren't there."
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro3:r3",
+              "text": "No, aren't there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-12:intro3:r1",
+              "text": "No, there aren't."
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro3:r2",
+              "text": "No, there aren't there."
+            },
+            {
+              "responseId": "en:lesson-04:session-12:intro3:r3",
+              "text": "No, aren't there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На табло одна платформа. На вопрос `Are there two platforms?` выберите короткий ответ.",
+          "uk": "На табло одна платформа. На питання `Are there two platforms?` оберіть коротку відповідь."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5befecc4dcaf82141db3bd232b989a3b5580c741639180630a1b7f02fc66ce3a"
+}

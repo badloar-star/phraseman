@@ -1,0 +1,112 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-15:i01",
+    "correctText": "elegant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i02",
+    "correctText": "elegant",
+    "correctResponseId": "en:lesson-02:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i03",
+    "correctText": "plain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i04",
+    "correctText": "plain",
+    "correctResponseId": "en:lesson-02:session-15:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i05",
+    "correctText": "handsome",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i06",
+    "correctText": "crowded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i07",
+    "correctText": "elegant",
+    "correctResponseId": "en:lesson-02:session-15:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i08",
+    "correctText": "Is it plain?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i09",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i10",
+    "correctText": "plain",
+    "correctResponseId": "en:lesson-02:session-15:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i11",
+    "correctText": "handsome",
+    "correctResponseId": "en:lesson-02:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i12",
+    "correctText": "Is she pretty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i13",
+    "correctText": "en:lesson-02:session-15:i13:p1=elegant\nen:lesson-02:session-15:i13:p2=plain\nen:lesson-02:session-15:i13:p3=handsome\nen:lesson-02:session-15:i13:p4=crowded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i14",
+    "correctText": "noisy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i15",
+    "correctText": "noisy",
+    "correctResponseId": "en:lesson-02:session-15:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i16",
+    "correctText": "Is he hungry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i17",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-15:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i18",
+    "correctText": "Yes, she is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i19",
+    "correctText": "Is it plain?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i20:s01",
+    "correctText": "Is he elegant?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i20:s02",
+    "correctText": "Is it plain?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i20:s03",
+    "correctText": "The cafe is noisy.",
+    "correctResponseId": null
+  }
+]

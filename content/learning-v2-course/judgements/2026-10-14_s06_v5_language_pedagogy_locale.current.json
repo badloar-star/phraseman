@@ -1,0 +1,20 @@
+{
+  "identity": {
+    "course_session_id": "en:lesson-01:session-06",
+    "candidate_receipt_sha256": "9dacda8fecb1f6e8b2b090e93b4c1f047961eb95331f752ef84ee0c548a55b44",
+    "candidate_bundle_sha256": "0dd511080e4b05b022dff13e80ef934a3bc94f9141efa584faf411daad01e755",
+    "learner_ru_sha256": "626cb849d89e3b070e9a3d629e105a69632b85ad1b9cf598524e8d1026857ee2",
+    "learner_uk_sha256": "261afedcdb6b950ccdde83de0cbf676cee848452c8259dcd40ccb67ad8ca6429"
+  },
+  "dimension": "language_pedagogy_locale",
+  "verdict": "PASS",
+  "findings": [],
+  "notes": [
+    "Independently recomputed all 22 receipt entries, the inventory hash, and the candidate bundle before review.",
+    "Reviewed all three intro pages and all 19 interactions in both Russian and Ukrainian learner projections.",
+    "The locales teach the same English targets and preserve interaction parity.",
+    "Back and home are distinguished accurately; pronunciation claims and learner-gender assumptions are absent.",
+    "Feedback is concise, specific to wrong responses, and contains no internal mode terminology.",
+    "Audio and listening were outside this language review."
+  ]
+}

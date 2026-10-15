@@ -1,0 +1,97 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-56:i01",
+    "correctText": "mat",
+    "correctResponseId": "en:lesson-03:session-56:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i02",
+    "correctText": "tray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i03",
+    "correctText": "hook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i04",
+    "correctText": "mat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i05",
+    "correctText": "tray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i06",
+    "correctText": "hook",
+    "correctResponseId": "en:lesson-03:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i07",
+    "correctText": "mat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i08",
+    "correctText": "en:lesson-03:session-56:i08:p1=mat\nen:lesson-03:session-56:i08:p2=tray\nen:lesson-03:session-56:i08:p3=hook\nen:lesson-03:session-56:i08:p4=rug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i09",
+    "correctText": "hook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i10",
+    "correctText": "tray",
+    "correctResponseId": "en:lesson-03:session-56:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i11",
+    "correctText": "This is a mat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i12",
+    "correctText": "That tray is wooden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i13",
+    "correctText": "metal",
+    "correctResponseId": "en:lesson-03:session-56:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i14",
+    "correctText": "That tray is wooden.",
+    "correctResponseId": "en:lesson-03:session-56:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i15",
+    "correctText": "This mat is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i16",
+    "correctText": "These hooks are metal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i17",
+    "correctText": "Those",
+    "correctResponseId": "en:lesson-03:session-56:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i18",
+    "correctText": "These trays are wooden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i19",
+    "correctText": "Those are the hooks.",
+    "correctResponseId": null
+  }
+]

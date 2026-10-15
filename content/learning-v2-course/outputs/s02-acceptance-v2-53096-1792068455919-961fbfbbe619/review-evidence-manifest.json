@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "learning_v2_session_review_evidence_manifest_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "candidateRoot": "content/learning-v2-course/outputs/s02-acceptance-v2-53096-1792068455919-961fbfbbe619",
+  "candidateBundleSha256": "977d5715d74d9e0031f6c75a4cd1a59e7fd6adfab133ccb994118798740be72a",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s02-acceptance-v2-53096-1792068455919-961fbfbbe619/content-receipt.json",
+  "candidateReceiptInventorySha256": "5be5bd3c3f7a7abe1ff5ac15c54c4ad65e48d645be6e4a01fcc7dc0337642e98",
+  "requiredRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "eligibleRoles": [],
+  "missingRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "roles": [],
+  "textReviewComplete": false,
+  "releaseAuthority": false
+}

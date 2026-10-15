@@ -50,13 +50,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-01:i10",
-    "correctText": "fine",
-    "correctResponseId": "en:lesson-01:session-01:i10:r1"
+    "interactionId": "en:lesson-01:session-01:i13",
+    "correctText": "Я здесь.",
+    "correctResponseId": "en:lesson-01:session-01:i13:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-01:i11",
-    "correctText": "I am ready.",
+    "interactionId": "en:lesson-01:session-01:i10",
+    "correctText": "I am fine.",
     "correctResponseId": null
   },
   {
@@ -65,13 +65,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-01:i13",
-    "correctText": "I",
-    "correctResponseId": "en:lesson-01:session-01:i13:r1"
+    "interactionId": "en:lesson-01:session-01:i11",
+    "correctText": "I am ready.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-01:i14",
-    "correctText": "I am happy.",
+    "correctText": "I am here.",
     "correctResponseId": null
   },
   {
@@ -81,18 +81,18 @@
   },
   {
     "interactionId": "en:lesson-01:session-01:i16",
-    "correctText": "I am fine.",
+    "correctText": "I am happy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-01:i17:s01",
-    "correctText": "I am here.",
+    "correctText": "en:lesson-01:session-01:i17:s01:p1=I am here.\nen:lesson-01:session-01:i17:s01:p2=I am ready.\nen:lesson-01:session-01:i17:s01:p3=I am fine.\nen:lesson-01:session-01:i17:s01:p4=I am happy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-01:i17:s02",
-    "correctText": "ready",
-    "correctResponseId": "en:lesson-01:session-01:i17:s02:r1"
+    "correctText": "I am ready.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-01:i17:s03",

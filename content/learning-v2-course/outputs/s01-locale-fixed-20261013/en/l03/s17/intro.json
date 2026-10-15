@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "обычная форма для нескольких предметов с добавлением `s`: `tickets`, `coins`, `cards`; знакомые рамки `They are`, `Are they`, `They are not`",
+    "uk": "звичайна форма для кількох предметів із додаванням `s`: `tickets`, `coins`, `cards`; знайомі рамки `They are`, `Are they`, `They are not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна буква для целой пачки",
+        "uk": "Одна літера для цілої пачки"
+      },
+      "bodyByLocale": {
+        "ru": "`ticket` — «билет». Когда билетов несколько, к названию добавляем `s`: `tickets` — «билеты». Билетов может быть целая пачка, а дописать нужно всего одну букву. Про них скажем `They are tickets` — «Это билеты»; `they` здесь относится к билетам.",
+        "uk": "`ticket` — «квиток». Коли квитків кілька, до назви додаємо `s`: `tickets` — «квитки». Квитків може бути ціла пачка, а дописати треба лише одну літеру. Про них скажемо `They are tickets` — «Це квитки»; `they` тут означає саме квитки."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Курьер передал вам пачку билетов на мероприятие. Коллега спрашивает, что это; назовите их полной фразой.",
+          "uk": "Кур’єр передав вам пачку квитків на захід. Колега питає, що це; назвіть їх повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-17:intro1:r1",
+              "text": "They are tickets."
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro1:r2",
+              "text": "They are ticket."
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro1:r3",
+              "text": "They is tickets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-17:intro1:r1",
+              "text": "They are tickets."
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro1:r2",
+              "text": "They are ticket."
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro1:r3",
+              "text": "They is tickets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Курьер передал вам пачку билетов на мероприятие. Коллега спрашивает, что это; назовите их полной фразой.",
+          "uk": "Кур’єр передав вам пачку квитків на захід. Колега питає, що це; назвіть їх повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить о монетах",
+        "uk": "Спитати про монети"
+      },
+      "bodyByLocale": {
+        "ru": "`coin` — «монета». Когда монет несколько, дописываем к слову `s`: `coins` — «монеты». Чтобы уточнить, монеты ли перед вами, спросите `Are they coins?` — «Это монеты?» Начинаем с `Are they`, а дальше называем предметы. В вопросе буква `s` тоже остаётся: монет несколько.",
+        "uk": "`coin` — «монета». Коли монет кілька, дописуємо до слова `s`: `coins` — «монети». Щоб уточнити, чи перед вами монети, запитайте `Are they coins?` — «Це монети?» Починаємо з `Are they`, а далі називаємо предмети. У питанні літера `s` теж лишається: монет кілька."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "У кассы готовят сдачу и жетоны для участников. Укажите коллеге на несколько металлических кружков в лотке и уточните: «Это монеты?»",
+          "uk": "Біля каси готують решту й жетони для учасників. Покажіть колезі на кілька металевих кружалець у лотку й уточніть: «Це монети?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-17:intro2:r1",
+              "text": "Are they coins?"
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro2:r2",
+              "text": "Are they coin?"
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro2:r3",
+              "text": "Is they coins?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-17:intro2:r1",
+              "text": "Are they coins?"
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro2:r2",
+              "text": "Are they coin?"
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro2:r3",
+              "text": "Is they coins?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У кассы готовят сдачу и жетоны для участников. Укажите коллеге на несколько металлических кружков в лотке и уточните: «Это монеты?»",
+          "uk": "Біля каси готують решту й жетони для учасників. Покажіть колезі на кілька металевих кружалець у лотку й уточніть: «Це монети?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сказать, что это не карточки",
+        "uk": "Сказати, що це не картки"
+      },
+      "bodyByLocale": {
+        "ru": "`card` — «карточка», здесь для доступа в помещение. Несколько таких карточек — `cards`, с добавленным `s`. Чтобы сказать «не», после `They are` ставим `not`. Букву `s` сохраняем: речь по-прежнему о нескольких предметах. `They are not cards` — «Это не карточки».",
+        "uk": "`card` — «картка», тут — для доступу до приміщення. Кілька таких карток — `cards`, із доданою `s`. Щоб сказати «не», після `They are` ставимо `not`. Літеру `s` зберігаємо: предметів усе ще кілька. `They are not cards` — «Це не картки»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега спрашивает, карточки ли доступа лежат в открытом конверте. Там билеты; скажите «Это не карточки».",
+          "uk": "Колега питає, чи в розкритому конверті лежать картки доступу. Там квитки; скажіть «Це не картки»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-17:intro3:r1",
+              "text": "They are not cards."
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro3:r2",
+              "text": "They are not card."
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro3:r3",
+              "text": "They is not cards."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-17:intro3:r1",
+              "text": "They are not cards."
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro3:r2",
+              "text": "They are not card."
+            },
+            {
+              "responseId": "en:lesson-03:session-17:intro3:r3",
+              "text": "They is not cards."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега спрашивает, карточки ли доступа лежат в открытом конверте. Там билеты; скажите «Это не карточки».",
+          "uk": "Колега питає, чи в розкритому конверті лежать картки доступу. Там квитки; скажіть «Це не картки»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "24dde38b232ef48947c4bd5bee6c22b9fa848bb5d71639b1c6ebf5ec099709a3"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "ставить `the`, когда предмет уже понятен обоим из общей ситуации.",
+    "uk": "ставити `the`, коли предмет уже зрозумілий обом зі спільної ситуації."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ручка, за которую вы только что взялись",
+        "uk": "Ручка, за яку ви щойно взялися"
+      },
+      "bodyByLocale": {
+        "ru": "`handle` — «ручка двери». Вы и сотрудник смотрите на эту ручку одной двери. Не нужно сначала вводить её через `a`: из ситуации уже ясно, о какой ручке речь. С `a handle` пришлось бы уточнять, о какой ручке речь; эта уже перед вами, поэтому `the handle`. Скажите: `The handle is stuck.`",
+        "uk": "`handle` — «ручка дверей». Ви й працівник дивитеся на цю ручку одних дверей. Не треба спочатку вводити її через `a`: із ситуації вже зрозуміло, про яку ручку йдеться. Із `a handle` довелося б уточнювати, про яку ручку йдеться; ця вже перед вами, тому `the handle`. Скажіть: `The handle is stuck.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы тянете ручку входной двери, но она не двигается. Как сообщить сотруднику о конкретной ручке?",
+          "uk": "Ви тягнете ручку вхідних дверей, але вона не рухається. Як повідомити працівникові про конкретну ручку?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r1",
+              "text": "The handle is stuck."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r2",
+              "text": "A handle is stuck."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r3",
+              "text": "The handle are stuck."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r1",
+              "text": "The handle is stuck."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r2",
+              "text": "A handle is stuck."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r3",
+              "text": "The handle are stuck."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы тянете ручку входной двери, но она не двигается. Как сообщить сотруднику о конкретной ручке?",
+          "uk": "Ви тягнете ручку вхідних дверей, але вона не рухається. Як повідомити працівникові про конкретну ручку?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Замок на той же двери",
+        "uk": "Замок на тих самих дверях"
+      },
+      "bodyByLocale": {
+        "ru": "`lock` — «замок». Сотрудник уже осматривает замок на этой входной двери прямо вместе с вами. Он находится на той же двери, поэтому предмет понятен без `a`. `The lock` сразу означает конкретный замок, а не любой замок где-то ещё. Скажите: `The lock is broken.`",
+        "uk": "`lock` — «замок». Працівник уже оглядає замок на цих вхідних дверях просто разом із вами. Він на цих самих дверях, тому предмет зрозумілий без `a`. `The lock` одразу означає конкретний замок, а не будь-який замок десь іще. Скажіть: `The lock is broken.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Сотрудник проверяет замок на этой двери и видит поломку. Как сказать о конкретном замке?",
+          "uk": "Працівник перевіряє замок на цих дверях і бачить несправність. Як сказати про конкретний замок?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r1",
+              "text": "The lock is broken."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r2",
+              "text": "A lock is broken."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r3",
+              "text": "The lock are broken."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r1",
+              "text": "The lock is broken."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r2",
+              "text": "A lock is broken."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r3",
+              "text": "The lock are broken."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник проверяет замок на этой двери и видит поломку. Как сказать о конкретном замке?",
+          "uk": "Працівник перевіряє замок на цих дверях і бачить несправність. Як сказати про конкретний замок?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Звонок рядом с дверью",
+        "uk": "Дзвінок біля дверей"
+      },
+      "bodyByLocale": {
+        "ru": "`bell` — «звонок». Вы оба видите звонок рядом с входной дверью и уже пробовали его нажать. Поэтому сразу выбираем `the bell`: это тот самый звонок, который должен был подать звук. Скажите: `The bell is silent.` Звонок молчит так убедительно, будто это его новая работа; `the` всё равно указывает именно на этого молчуна.",
+        "uk": "`bell` — «дзвінок». Ви обоє бачите дзвінок поруч із вхідними дверима й уже пробували його натиснути. Тому одразу вибираємо `the bell`: це той самий дзвінок, який мав подати звук. Скажіть: `The bell is silent.` Дзвінок мовчить так переконливо, наче це його нова робота; `the` усе одно вказує саме на цього мовчуна."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы нажали звонок у этой двери, но звука нет. Как сказать о конкретном звонке?",
+          "uk": "Ви натиснули дзвінок біля цих дверей, але звуку немає. Як сказати про конкретний дзвінок?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r1",
+              "text": "The bell is silent."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r2",
+              "text": "A bell is silent."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r3",
+              "text": "The bell are silent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r1",
+              "text": "The bell is silent."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r2",
+              "text": "A bell is silent."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r3",
+              "text": "The bell are silent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы нажали звонок у этой двери, но звука нет. Как сказать о конкретном звонке?",
+          "uk": "Ви натиснули дзвінок біля цих дверей, але звуку немає. Як сказати про конкретний дзвінок?"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cc9da561676a4f4b982156bbb411abe5d43fb0b418249980241d2a2e3ed7cebd"
+}

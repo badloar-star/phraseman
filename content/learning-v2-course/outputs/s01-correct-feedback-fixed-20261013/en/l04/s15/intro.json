@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "смешать `Is there…?` и `Are there…?` без готового каркаса.",
+    "uk": "змішати `Is there…?` і `Are there…?` без готового каркаса."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`gym` — тренажёрный зал",
+        "uk": "`gym` — тренажерний зал"
+      },
+      "bodyByLocale": {
+        "ru": "`gym` — «тренажёрный зал», место, где люди занимаются спортом. В слове всего один короткий слог: не путайте `gym` с `garden`, хотя оба места могут быть в доме или рядом с ним. Можно сказать `a gym` об одном зале; дальше мы научимся спрашивать, есть ли он внутри дома или рядом с ним.",
+        "uk": "`gym` — «тренажерний зал», місце, де люди займаються спортом. У слові лише один короткий склад: не плутайте `gym` із `garden`, хоча обидва місця можуть бути в будинку або поруч із ним. Кажемо `a gym` про один зал; далі навчимося питати, чи є він усередині будинку або поруч із ним."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "На экскурсии хозяин показывает комнату для тренировок. Выберите название.",
+          "uk": "На екскурсії господар показує кімнату для тренувань. Оберіть назву."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-15:intro1:r1",
+              "text": "gym"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro1:r2",
+              "text": "garden"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro1:r3",
+              "text": "building"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-15:intro1:r1",
+              "text": "gym"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro1:r2",
+              "text": "garden"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro1:r3",
+              "text": "building"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На экскурсии хозяин показывает комнату для тренировок. Выберите название.",
+          "uk": "На екскурсії господар показує кімнату для тренувань. Оберіть назву."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вопрос об одном месте начинается с `Is`",
+        "uk": "Питання про одне місце починається з `Is`"
+      },
+      "bodyByLocale": {
+        "ru": "`There is a gym here.` — это сообщение об одном месте. Если спрашиваем, есть ли этот зал здесь, `is` выходит вперёд: `Is there a gym here?` Перед одним местом остаётся `a`. Сначала определите, что речь об одном зале, а затем выберите `Is`, даже если ответ пока неизвестен.",
+        "uk": "`There is a gym here.` — це повідомлення про одне місце. Якщо питаємо, чи є цей зал тут, `is` виходить наперед: `Is there a gym here?` Перед одним місцем залишається `a`. Спочатку визначте, що йдеться про один зал, а потім оберіть `Is`, навіть якщо відповідь поки невідома."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Хозяин показывает одну комнату. Спросите, есть ли здесь тренажёрный зал.",
+          "uk": "Господар показує одну кімнату. Запитайте, чи є тут тренажерний зал."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-15:intro2:r1",
+              "text": "Is there a gym here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro2:r2",
+              "text": "Are there gyms here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro2:r3",
+              "text": "There is a gym here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-15:intro2:r1",
+              "text": "Is there a gym here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro2:r2",
+              "text": "Are there gyms here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro2:r3",
+              "text": "There is a gym here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Хозяин показывает одну комнату. Спросите, есть ли здесь тренажёрный зал.",
+          "uk": "Господар показує одну кімнату. Запитайте, чи є тут тренажерний зал."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вопрос о нескольких комнатах начинается с `Are`",
+        "uk": "Питання про кілька кімнат починається з `Are`"
+      },
+      "bodyByLocale": {
+        "ru": "`There are rooms near the gym.` — сообщение о нескольких комнатах. В вопросе `are` переходит вперёд: `Are there rooms near the gym?` Слово `rooms` уже во множественном числе, поэтому артикль `a` перед ним не ставится.",
+        "uk": "`There are rooms near the gym.` — повідомлення про кілька кімнат. У питанні `are` переходить наперед: `Are there rooms near the gym?` Слово `rooms` уже в множині, тому артикль `a` перед ним не ставиться. Отже, дивіться на число місць: одне веде до `Is`, кілька — до `Are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "На плане видно несколько комнат рядом с залом. Спросите о них.",
+          "uk": "На плані видно кілька кімнат біля залу. Запитайте про них."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-15:intro3:r1",
+              "text": "Are there rooms near the gym?"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro3:r2",
+              "text": "Is there a room near the gym?"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro3:r3",
+              "text": "There are rooms near the gym."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-15:intro3:r1",
+              "text": "Are there rooms near the gym?"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro3:r2",
+              "text": "Is there a room near the gym?"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:intro3:r3",
+              "text": "There are rooms near the gym."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На плане видно несколько комнат рядом с залом. Спросите о них.",
+          "uk": "На плані видно кілька кімнат біля залу. Запитайте про них."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2d72a694cb56bdeb5bf8b75cec8ab339d65679bc2a25f865777780749b4cb938"
+}

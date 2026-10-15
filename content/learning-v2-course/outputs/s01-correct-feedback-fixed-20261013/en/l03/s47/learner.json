@@ -1,0 +1,1001 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-47:i01:r1",
+          "text": "screw"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i01:audio",
+          "transcript": "screw"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-47:i01:r1",
+            "targetText": "screw",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "screw",
+          "definitionByLocale": {
+            "ru": "«винт». Деталь с резьбой, которую вкручивают.",
+            "uk": "«гвинт». Деталь із різьбою, яку вкручують."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i03:audio",
+          "transcript": "nail"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "nail",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i05:audio",
+          "transcript": "hammer"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "hammer",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i02:audio",
+          "transcript": "screw"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "screw",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-47:i04:r1",
+          "text": "nail"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i04:audio",
+          "transcript": "nail"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-47:i04:r1",
+            "targetText": "nail",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nail",
+          "definitionByLocale": {
+            "ru": "«гвоздь».",
+            "uk": "«цвях»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i06:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i06:audio",
+          "transcript": "hammer"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "hammer",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i07:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i07:audio",
+          "transcript": "screw"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "screw",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i09",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i09:audio",
+          "transcript": "nail"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "nail",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i10",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i10:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i10:audio",
+          "transcript": "hammer"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "hammer",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i11",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-47:i11:p1",
+            "target": "screw",
+            "meaningByLocale": {
+              "ru": "винт",
+              "uk": "гвинт"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-47:i11:p2",
+            "target": "nail",
+            "meaningByLocale": {
+              "ru": "гвоздь",
+              "uk": "цвях"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-47:i11:p3",
+            "target": "hammer",
+            "meaningByLocale": {
+              "ru": "молоток",
+              "uk": "молоток"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-47:i11:p4",
+            "target": "box",
+            "meaningByLocale": {
+              "ru": "коробка",
+              "uk": "коробка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "screw",
+          "nail",
+          "hammer",
+          "box"
+        ],
+        "rightColumn": [
+          "винт",
+          "гвоздь",
+          "молоток",
+          "коробка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте начало — винт уже назвали",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-47:i08:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i08:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i08:r3",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i08:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте начало — винт уже назвали",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте начало — винт уже назвали",
+          "uk": "Вставте початок — гвинт уже назвали"
+        },
+        "gappedTargetPhrase": "___ screw is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-47:i08:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i08:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i08:r3",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i08:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте начало — винт уже назвали",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте начало — винт уже назвали",
+            "feedbackByLocale": {
+              "ru": "Винт уже назвали.",
+              "uk": "Гвинт уже назвали."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте начало — винт уже назвали",
+            "feedbackByLocale": {
+              "ru": "Перед `screw` нужен не `an`.",
+              "uk": "Перед `screw` потрібен не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i08:r4",
+            "correct": false,
+            "testedDimension": "Вставьте начало — винт уже назвали",
+            "feedbackByLocale": {
+              "ru": "Для уже понятного винта нужен `the`.",
+              "uk": "Для вже зрозумілого гвинта потрібен `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — показываете молоток",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — показываете молоток",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Here is a hammer.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — показываете молоток",
+          "uk": "Складіть фразу — показуєте молоток"
+        },
+        "orderedTokens": [
+          "Here",
+          "is",
+          "a",
+          "hammer"
+        ],
+        "authoredDistractorTokens": [
+          "A"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-47:i13:r1",
+          "text": "Вот винт"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i13:r2",
+          "text": "Вот гвоздь"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i13:r3",
+          "text": "Где винт?"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i13:r4",
+          "text": "Винта здесь нет"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i13:audio",
+          "transcript": "Here is a screw."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-47:i13:r1",
+            "targetText": "Вот винт",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i13:r2",
+            "targetText": "Вот гвоздь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i13:r3",
+            "targetText": "Где винт?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i13:r4",
+            "targetText": "Винта здесь нет",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-47:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Звучит `screw`, а не `nail`.",
+              "uk": "Звучить `screw`, а не `nail`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Это утверждение, а не вопрос.",
+              "uk": "Це твердження, а не запитання."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i13:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Фраза показывает предмет, а не отрицает его наличие.",
+              "uk": "Фраза показує предмет, а не заперечує його наявність."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — новый гвоздь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — новый гвоздь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Here is a nail.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — новый гвоздь",
+          "uk": "Складіть фразу — новий цвях"
+        },
+        "orderedTokens": [
+          "Here",
+          "is",
+          "a",
+          "nail"
+        ],
+        "authoredDistractorTokens": [
+          "the"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте начало — гвоздь уже понятен",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-47:i15:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i15:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i15:r3",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i15:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте начало — гвоздь уже понятен",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте начало — гвоздь уже понятен",
+          "uk": "Вставте початок — цвях уже зрозумілий"
+        },
+        "gappedTargetPhrase": "___ nail is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-47:i15:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i15:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i15:r3",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i15:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте начало — гвоздь уже понятен",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-47:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте начало — гвоздь уже понятен",
+            "feedbackByLocale": {
+              "ru": "Гвоздь уже назвали.",
+              "uk": "Цвях уже назвали."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте начало — гвоздь уже понятен",
+            "feedbackByLocale": {
+              "ru": "Перед `nail` нужен не `an`.",
+              "uk": "Перед `nail` потрібен не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i15:r4",
+            "correct": false,
+            "testedDimension": "Вставьте начало — гвоздь уже понятен",
+            "feedbackByLocale": {
+              "ru": "Для уже понятного гвоздя нужен `the`.",
+              "uk": "Для вже зрозумілого цвяха потрібен `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-47:i16:r1",
+          "text": "Этот молоток здесь"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i16:r2",
+          "text": "Здесь есть молоток"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i16:r3",
+          "text": "Этот гвоздь здесь"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i16:r4",
+          "text": "Где молоток?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i16:audio",
+          "transcript": "The hammer is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-47:i16:r1",
+            "targetText": "Этот молоток здесь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i16:r2",
+            "targetText": "Здесь есть молоток",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i16:r3",
+            "targetText": "Этот гвоздь здесь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i16:r4",
+            "targetText": "Где молоток?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-47:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи есть `the`.",
+              "uk": "У записі є `the`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Звучит `hammer`, не `nail`.",
+              "uk": "Звучить `hammer`, а не `nail`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i16:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Это утверждение, не вопрос.",
+              "uk": "Це твердження, а не запитання."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте один ответ в одну фразу — шаг 1 из 3",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-47:i17:s01:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i17:s01:r2",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i17:s01:r3",
+          "text": "An"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте один ответ в одну фразу — шаг 1 из 3",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Финал — выберите детали для ремонта",
+          "uk": "Фінал — виберіть деталі для ремонту"
+        },
+        "gappedTargetPhrase": "Here is ___ screw.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-47:i17:s01:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i17:s01:r2",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i17:s01:r3",
+            "text": "An"
+          }
+        ],
+        "testedDimension": "Финал — выберите детали для ремонта",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-47:i17:s01:r2",
+            "correct": false,
+            "testedDimension": "Финал — выберите детали для ремонта",
+            "feedbackByLocale": {
+              "ru": "Винт называют впервые, а молоток уже понятен.",
+              "uk": "Гвинт називають уперше, а молоток уже зрозумілий."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i17:s01:r3",
+            "correct": false,
+            "testedDimension": "Финал — выберите детали для ремонта",
+            "feedbackByLocale": {
+              "ru": "Перед `screw` нужен `a`, а не `an`.",
+              "uk": "Перед `screw` потрібен `a`, а не `an`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-47:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-47:i17:s02:audio",
+          "transcript": "Here is a nail."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Here is a nail.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте один ответ в одну фразу — шаг 3 из 3",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-47:i17:s03:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i17:s03:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-47:i17:s03:r3",
+          "text": "An"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте один ответ в одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Финал — выберите детали для ремонта",
+          "uk": "Фінал — виберіть деталі для ремонту"
+        },
+        "gappedTargetPhrase": "___ hammer is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-47:i17:s03:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i17:s03:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i17:s03:r3",
+            "text": "An"
+          }
+        ],
+        "testedDimension": "Финал — выберите детали для ремонта",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-47:i17:s03:r2",
+            "correct": false,
+            "testedDimension": "Финал — выберите детали для ремонта",
+            "feedbackByLocale": {
+              "ru": "Винт называют впервые, а молоток уже понятен.",
+              "uk": "Гвинт називають уперше, а молоток уже зрозумілий."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-47:i17:s03:r3",
+            "correct": false,
+            "testedDimension": "Финал — выберите детали для ремонта",
+            "feedbackByLocale": {
+              "ru": "Перед `hammer` нужен `a`, но здесь предмет уже известен: нужен `the`.",
+              "uk": "Перед `hammer` потрібен `a`, але тут предмет уже відомий: потрібен `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "702888a587e853250c961ca7f31ee873289d328d8abc252f9ac33d2ef2c5f675"
+}

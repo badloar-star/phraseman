@@ -1,0 +1,8 @@
+{
+  "sessionId": "en:lesson-01:session-02",
+  "candidateBundleSha256": "977d5715d74d9e0031f6c75a4cd1a59e7fd6adfab133ccb994118798740be72a",
+  "contentReceiptSha256": "6bd52919d7916683e8075fdde84928b35f8d2b44518e790e13d5d29c40a7ba7a",
+  "dimension": "blind_learner",
+  "verdict": "PASS",
+  "findings": []
+}

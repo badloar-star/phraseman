@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "learning_v2_session_immutable_private_head_v2",
+  "courseSessionId": "en:lesson-01:session-02",
+  "releaseAuthority": false,
+  "reviewStatus": "HOLD",
+  "textVerified": false,
+  "textReviewEvidencePersisted": false,
+  "candidateRoot": "content/learning-v2-course/outputs/s02-acceptance-v2-53096-1792068455919-961fbfbbe619",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s02-acceptance-v2-53096-1792068455919-961fbfbbe619/content-receipt.json",
+  "candidateReceiptInventorySha256": "5be5bd3c3f7a7abe1ff5ac15c54c4ad65e48d645be6e4a01fcc7dc0337642e98",
+  "contentReceiptSha256": "6bd52919d7916683e8075fdde84928b35f8d2b44518e790e13d5d29c40a7ba7a",
+  "candidateBundleSha256": "977d5715d74d9e0031f6c75a4cd1a59e7fd6adfab133ccb994118798740be72a",
+  "candidateFiles": [
+    {
+      "path": "en/l01/s02/answers.json",
+      "bytes": 2751,
+      "sha256": "226277fdc9af98967e7e58a8b0ee3f699d68b23cf2dba6dfa0e26facecff38ba"
+    },
+    {
+      "path": "en/l01/s02/auxiliary.json",
+      "bytes": 2363,
+      "sha256": "11491519173e694d20ef22000bd715bfb6753a684955ae101e4853ba2de3c400"
+    },
+    {
+      "path": "en/l01/s02/intro.json",
+      "bytes": 9235,
+      "sha256": "47dd49bfab27a3d3d3a3912c43b1b200b004cdd518cc4eaa7a9fba7987638449"
+    },
+    {
+      "path": "en/l01/s02/learner.json",
+      "bytes": 34848,
+      "sha256": "b86c233e786791a2d276ba81a6c8507bf44b5b95b7baf15ea06f90e2e21107af"
+    },
+    {
+      "path": "en/l01/s02/learner.uk.json",
+      "bytes": 35045,
+      "sha256": "99d100873f01b42fc9097d4eb17407456ccfcc1d57b0a4fb6db8a5b79a788d3e"
+    }
+  ],
+  "holdReason": "Current independent text reviews are not persisted as artifacts bound to this exact content receipt. This private preview is not release authority.",
+  "revisionPredecessorReceiptPath": "content/learning-v2-course/outputs/s02-wrong-only-private-20261014-v2/content-receipt.json",
+  "revisionPredecessorReceiptSha256": "242494cb156b75798c55589eccab1c586e0cf0f3b20b39355ab0c1cf7ad1f27b",
+  "immutable": true,
+  "mutablePointerAuthority": false
+}

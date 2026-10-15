@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "как сказать о себе вслух с `I am` и `I am not`",
+    "uk": "як сказати про себе вголос з `I am` і `I am not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Early — «рано»",
+        "uk": "Early — «рано»"
+      },
+      "bodyByLocale": {
+        "ru": "`early` значит «рано». Если вы пришли до назначенного времени, можно сказать\r\n`I am early`.",
+        "uk": "`early` означає «рано». Якщо ви прийшли до призначеного часу, можна сказати\r\n`I am early`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Лина спрашивает, успели ли вы к началу встречи. Вы пришли до её начала. Ответьте о себе.",
+          "uk": "Ліна питає, чи встигли ви на початок зустрічі. Ви прийшли до її початку. Скажіть про себе."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r1",
+              "text": "I am early."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r2",
+              "text": "I early."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r3",
+              "text": "I am earlys."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r1",
+              "text": "I am early."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r2",
+              "text": "I early."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r3",
+              "text": "I am earlys."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Лина спрашивает, успели ли вы к началу встречи. Вы пришли до её начала. Ответьте о себе.",
+          "uk": "Ліна питає, чи встигли ви на початок зустрічі. Ви прийшли до її початку. Скажіть про себе."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Right и wrong — верно или неверно",
+        "uk": "Right і wrong — правильно чи неправильно"
+      },
+      "bodyByLocale": {
+        "ru": "`right` значит «верно», а `wrong` — «неверно». В начале слова `wrong` буква\r\n`w` не произносится.",
+        "uk": "`right` означає «правильно», а `wrong` — «неправильно». На початку слова\r\n`wrong` літера `w` не вимовляється."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Лина сверяет расчёт, который вы назвали. После проверки видно, что ваша цифра неверна. Скажите, что вы ошиблись.",
+          "uk": "Ліна перевіряє розрахунок, який назвали ви. Після перевірки видно, що ваша цифра неправильна. Скажіть, що ви помилилися."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r1",
+              "text": "I am wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r2",
+              "text": "I am right."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r3",
+              "text": "I am late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r1",
+              "text": "I am wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r2",
+              "text": "I am right."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r3",
+              "text": "I am late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Лина сверяет расчёт, который вы назвали. После проверки видно, что ваша цифра неверна. Скажите, что вы ошиблись.",
+          "uk": "Ліна перевіряє розрахунок, який назвали ви. Після перевірки видно, що ваша цифра неправильна. Скажіть, що ви помилилися."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Free — свободен/свободна, не занят/не занята",
+        "uk": "Free — вільний/вільна, не зайнятий/не зайнята"
+      },
+      "bodyByLocale": {
+        "ru": "`free` значит «свободен/свободна, не занят/не занята». В рабочем контексте\r\n`I am free` сообщает, что у вас есть время и возможность взять новое дело.",
+        "uk": "`free` означає «вільний/вільна, не зайнятий/не зайнята». У робочому контексті\r\n`I am free` повідомляє, що у вас є час і можливість узяти нову справу."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Руководитель спрашивает, кто может взять новую задачу. Вы закончили свои дела и готовы помочь. Ответьте о себе.",
+          "uk": "Керівник питає, хто може взяти нове завдання. Ви закінчили свої справи й готові допомогти. Дайте відповідь про себе."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r1",
+              "text": "I am free."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r2",
+              "text": "I am not free."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r3",
+              "text": "I free."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r1",
+              "text": "I am free."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r2",
+              "text": "I am not free."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r3",
+              "text": "I free."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Руководитель спрашивает, кто может взять новую задачу. Вы закончили свои дела и готовы помочь. Ответьте о себе.",
+          "uk": "Керівник питає, хто може взяти нове завдання. Ви закінчили свої справи й готові допомогти. Дайте відповідь про себе."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6fa79dbfc46907fa7644b2cb67be145b237c9ca38598c9dec302486657bc79ba"
+}

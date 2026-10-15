@@ -1,0 +1,21 @@
+{
+  "identity": {
+    "course_session_id": "en:lesson-01:session-04",
+    "candidate_receipt_sha256": "b9fea6332a22f6bd295625b2fca97d85197672071ca95ae997c77c15a6f97686",
+    "candidate_bundle_sha256": "a154b2ad0b9cee08a7a38d7a758a0d8f5e990961d54507ffa8c6bf1ba4b8b2aa",
+    "learner_ru_sha256": "ccd9ebfcda21a7d1e783b1e7a056db1b7035838a15c4c56512f556695ed66bea",
+    "learner_uk_sha256": "8f567445ed24776f93e70dee3797a0ae14638c72d1adbd22fae7d146c492bcc8"
+  },
+  "dimension": "language_pedagogy_locale",
+  "verdict": "PASS",
+  "findings": [],
+  "notes": [
+    "Independently recomputed the receipt, all 21 inventory entries, and the candidate bundle before language review.",
+    "Russian and Ukrainian versions teach the same English targets and preserve exact interaction parity.",
+    "The silent-letter explanation distinguishes right from wrong correctly; not is scoped as negation rather than an unconditional opposite.",
+    "i08, i13, i17, and i19 are grammatically sound, pedagogically supported, and localized without answer leakage.",
+    "The i17 pair grid and right-column meanings agree in both locales for occupied, alone, tired, and sure.",
+    "Correct answers have no redundant explanation; wrong-answer feedback addresses the learner's specific error.",
+    "Audio semantics were not judged in this language review."
+  ]
+}

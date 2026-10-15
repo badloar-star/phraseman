@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-29:intro1:r2": {
+          "ru": "`It` пропало. Без него непонятно, кто тяжёлый.",
+          "uk": "`It` зникло. Без нього незрозуміло, хто важкий."
+        },
+        "en:lesson-01:session-29:intro1:r3": {
+          "ru": "Между `it` и словом нужна форма `is`.",
+          "uk": "Між `it` і словом потрібна форма `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-29:intro2:r2": {
+          "ru": "Чемодан не мужчина. `he` — только про людей, про вещь — `it`.",
+          "uk": "Валіза не чоловік. `he` — тільки про людей, про річ — `it`."
+        },
+        "en:lesson-01:session-29:intro2:r3": {
+          "ru": "`she` — тоже только про людей. Для чемодана есть `it`.",
+          "uk": "`she` — теж тільки про людей. Для валізи є `it`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-29:intro3:r2": {
+          "ru": "`clean` — это когда мыть нечего. Засохший кофе на дне — как раз есть что.",
+          "uk": "`clean` — це коли мити нічого. Засохла кава на дні — якраз є що."
+        },
+        "en:lesson-01:session-29:intro3:r3": {
+          "ru": "Между `it` и словом нужна форма `is`.",
+          "uk": "Між `it` і словом потрібна форма `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c83ef2fc6df96f8069ee781668c7d70f212cef1fe020b5241c6d9855a98008bb"
+}

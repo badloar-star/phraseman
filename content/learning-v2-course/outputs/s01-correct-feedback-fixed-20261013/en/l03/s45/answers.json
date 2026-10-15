@@ -1,0 +1,97 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-45:i01",
+    "correctText": "size",
+    "correctResponseId": "en:lesson-03:session-45:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i03",
+    "correctText": "colour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i05",
+    "correctText": "model",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i02",
+    "correctText": "size",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i04",
+    "correctText": "colour",
+    "correctResponseId": "en:lesson-03:session-45:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i06",
+    "correctText": "model",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i08",
+    "correctText": "size",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i10",
+    "correctText": "colour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i11",
+    "correctText": "model",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i07",
+    "correctText": "en:lesson-03:session-45:i07:p1=size\nen:lesson-03:session-45:i07:p2=colour\nen:lesson-03:session-45:i07:p3=model\nen:lesson-03:session-45:i07:p4=receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i09",
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i12",
+    "correctText": "It is a small size.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i13",
+    "correctText": "It is an old model.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i14",
+    "correctText": "The model is old.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i15",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-45:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i16",
+    "correctText": "Этот размер маленький",
+    "correctResponseId": "en:lesson-03:session-45:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i17:s01",
+    "correctText": "It is a dark colour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i17:s02",
+    "correctText": "The size is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-45:i17:s03",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-45:i17:s03:r1"
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-18:intro1:r2": {
+          "ru": "`Berry` — ягода, а не молоко.",
+          "uk": "`Berry` — ягода, а не молоко."
+        },
+        "en:lesson-04:session-18:intro1:r3": {
+          "ru": "`Container` — ёмкость, а не продукт.",
+          "uk": "`Container` — ємність, а не продукт."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-18:intro2:r2": {
+          "ru": "`Berries` — это несколько ягод; здесь названо молоко.",
+          "uk": "`Berries` — це кілька ягід; тут названо молоко."
+        },
+        "en:lesson-04:session-18:intro2:r3": {
+          "ru": "`Containers` — это ёмкости; здесь названо молоко.",
+          "uk": "`Containers` — це ємності; тут названо молоко."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-18:intro3:r2": {
+          "ru": "Это сообщение о нескольких ёмкостях, а не о молоке.",
+          "uk": "Це повідомлення про кілька ємностей, а не про молоко."
+        },
+        "en:lesson-04:session-18:intro3:r3": {
+          "ru": "Это сообщение о нескольких ягодах, а не о молоке.",
+          "uk": "Це повідомлення про кілька ягід, а не про молоко."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a4f401ebb9c6fe720aaca523ab165808c319587769020f27b564cd9f24c215be"
+}

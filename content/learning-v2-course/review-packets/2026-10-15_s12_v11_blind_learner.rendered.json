@@ -1,0 +1,1422 @@
+{
+  "schemaVersion": "learning_v2_blind_learner_rendered_packet_v1",
+  "courseSessionId": "en:lesson-01:session-12",
+  "reviewBoundary": {
+    "answerFree": true,
+    "audioReviewed": false,
+    "omittedFields": [
+      "answers",
+      "evaluator",
+      "correct flags",
+      "targetPhrase",
+      "hiddenTargetPhrase",
+      "audio transcripts"
+    ]
+  },
+  "candidateBinding": {
+    "candidateBundleSha256": "e427c91429689df9ba09d1e32b7c6e388e90b57cd014606d0a4ad15a5e4f7b0e",
+    "contentReceiptSha256": "4916aa7acfbe2e5c6d2501092803922db7573892291dfbd26c722ea8f4a49eea",
+    "candidateInventorySha256": "3017ec9e3f4a0209aec0b6599042736470e685f424d0e95b5d19dda082861ef0",
+    "sourceFingerprint": "37575011d5ab7de7ac3c03180e9104158a4a4de0a4ff2236df8433df78c4b22d"
+  },
+  "intro": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Am и are — что когда",
+        "uk": "Am і are — що коли"
+      },
+      "bodyByLocale": {
+        "ru": "`calm` — «спокойный»: не повысил голос там, где мог.\n\nСамо слово не меняется. Про себя: `I am calm`. Про собеседника: `You are calm`.\n\n`am` дальше `I` не уходит. Заговорили о другом человеке — берите `are`.",
+        "uk": "`calm` — «спокійний»: не підвищив голос там, де міг.\n\nСаме слово не змінюється. Про себе: `I am calm`. Про співрозмовника: `You are calm`.\n\n`am` далі за `I` не ходить. Заговорили про іншу людину — беріть `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега весь спор говорил ровным голосом. Скажите ему: «ты спокойный».",
+          "uk": "Колега під час суперечки жодного разу не підвищив голос. Скажіть йому: «ти спокійний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-12:intro1:r1",
+              "text": "You are calm."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro1:r2",
+              "text": "You am calm."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro1:r3",
+              "text": "You calm."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-12:intro1:r1",
+              "text": "You are calm."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro1:r2",
+              "text": "You am calm."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro1:r3",
+              "text": "You calm."
+            }
+          ]
+        }
+      },
+      "feedbackByResponseId": {
+        "en:lesson-01:session-12:intro1:r2": {
+          "ru": "`am` не ходит дальше `I`. Для `you` — только `are`.",
+          "uk": "`am` не ходить далі за `I`. Для `you` — лише `are`."
+        },
+        "en:lesson-01:session-12:intro1:r3": {
+          "ru": "После `you` нужно `are`. По-русски мы говорим «ты спокойный» без связки, а по-английски она нужна.",
+          "uk": "Після `you` потрібне `are`. Українською зв'язки в цій фразі немає, а англійською вона потрібна."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Brave — не только про подвиги",
+        "uk": "Brave — не тільки про подвиги"
+      },
+      "bodyByLocale": {
+        "ru": "`brave` — «смелый», и не только про подвиги: сказать неприятное вслух — уже `brave`.\n\nХорошая новость для уставших от окончаний: «смелый» и «смелая» — одно слово.\n\nО себе говорят `I am brave`, о другом человеке — `You are brave`.",
+        "uk": "`brave` — «сміливий», і не тільки про подвиги: сказати неприємне вголос — уже `brave`.\n\nІ ще одне полегшення: «сміливий» і «смілива» — одне слово.\n\n`I am brave` кажуть про себе, `You are brave` — про іншу людину."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Ваш коллега сказал начальнику, что тот неправ. Обратитесь к коллеге: «ты смелый».",
+          "uk": "Ваш колега сказав начальнику, що той неправий. Зверніться до колеги: «ти сміливий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-12:intro2:r1",
+              "text": "You are brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro2:r2",
+              "text": "I am brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro2:r3",
+              "text": "You are brave not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-12:intro2:r1",
+              "text": "You are brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro2:r2",
+              "text": "I am brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro2:r3",
+              "text": "You are brave not."
+            }
+          ]
+        }
+      },
+      "feedbackByResponseId": {
+        "en:lesson-01:session-12:intro2:r2": {
+          "ru": "`I am` говорят о себе: «я смелый/смелая». Здесь вы обращаетесь к коллеге — `you are`.",
+          "uk": "`I am` кажуть про себе: «я сміливий/смілива». Тут ви звертаєтеся до колеги — `you are`."
+        },
+        "en:lesson-01:session-12:intro2:r3": {
+          "ru": "`not` ставят сразу после `are`. Но здесь он и не нужен — вы его хвалите.",
+          "uk": "`not` ставлять одразу після `are`. Але тут він і не потрібен — ви його хвалите."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Honest и smart — два разных «хороший»",
+        "uk": "Honest і smart — два різні «хороший»"
+      },
+      "bodyByLocale": {
+        "ru": "`honest` — «честный»: говорит правду, даже если так хуже для него.\n\n`smart` — «умный». Оба слова хвалят, но за разное: `honest` — сказал как есть, `smart` — быстро сообразил.\n\nПро себя говорят `I am`, о собеседнике — `You are`.",
+        "uk": "`honest` — «чесний»: каже правду, навіть якщо так гірше для нього.\n\n`smart` — «розумний». Обидва слова хвалять, але за різне: `honest` — сказав як є, `smart` — швидко зметикував.\n\nПро себе кажуть `I am`, про співрозмовника — `You are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега нашёл решение, пока остальные спорили. Скажите ему: «ты умный».",
+          "uk": "Колега знайшов рішення, поки решта сперечалася. Скажіть йому: «ти розумний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-12:intro3:r1",
+              "text": "You are smart."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro3:r2",
+              "text": "You are honest."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro3:r3",
+              "text": "You smart."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-12:intro3:r1",
+              "text": "You are smart."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro3:r2",
+              "text": "You are honest."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro3:r3",
+              "text": "You smart."
+            }
+          ]
+        }
+      },
+      "feedbackByResponseId": {
+        "en:lesson-01:session-12:intro3:r2": {
+          "ru": "Честный — это когда сказал правду. Здесь он быстро придумал выход, а это `smart`.",
+          "uk": "Чесний — це коли сказав правду. Тут він швидко придумав вихід, а це `smart`."
+        },
+        "en:lesson-01:session-12:intro3:r3": {
+          "ru": "После `you` нужно `are`: You are smart.",
+          "uk": "Після `you` потрібне `are`: You are smart."
+        }
+      }
+    }
+  ],
+  "locales": {
+    "ru": {
+      "interactions": [
+        {
+          "interactionId": "en:lesson-01:session-12:i01",
+          "ordinal": 4,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — calm",
+          "accessibilityLabel": "Карточка слова — calm",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i01:r1",
+              "targetText": "calm",
+              "meaning": "«спокойный»: голос ровный, руки не трясутся."
+            }
+          ],
+          "wordCard": {
+            "word": "calm",
+            "definition": "«спокойный»: голос ровный, руки не трясутся."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i02",
+          "ordinal": 5,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте и выберите",
+          "accessibilityLabel": "Послушайте и выберите",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i02:r1",
+              "text": "calm"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i02:r2",
+              "text": "come"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i02:r3",
+              "text": "car"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i02:r1",
+              "targetText": "calm",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i02:r2",
+              "targetText": "come",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i02:r3",
+              "targetText": "car",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i02:r2",
+              "text": "В `come` другая гласная, чем в `calm`; слушайте гласную."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i02:r3",
+              "text": "В `calm` на конце слышен m; у `car` этого звука нет. Слушайте конец слова."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i03",
+          "ordinal": 6,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — brave",
+          "accessibilityLabel": "Карточка слова — brave",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i03:r1",
+              "targetText": "brave",
+              "meaning": "«смелый». Так говорят о человеке, который решается сказать важное, даже если это непросто."
+            }
+          ],
+          "wordCard": {
+            "word": "brave",
+            "definition": "«смелый». Так говорят о человеке, который решается сказать важное, даже если это непросто."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i04",
+          "ordinal": 7,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте и выберите",
+          "accessibilityLabel": "Послушайте и выберите",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i04:r1",
+              "text": "brave"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i04:r2",
+              "text": "brain"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i04:r3",
+              "text": "grave"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i04:r1",
+              "targetText": "brave",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i04:r2",
+              "targetText": "brain",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i04:r3",
+              "targetText": "grave",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i04:r2",
+              "text": "Слова `brain` и `brave` начинаются одинаково; слушайте конец: n или v."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i04:r3",
+              "text": "Слушайте первый звук: `brave` начинается с b, `grave` — с g."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i05",
+          "ordinal": 8,
+          "purpose": "supported_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вставьте слово — все побоялись сказать клиенту, что срок сорван, но Никита всё же сказал об этом",
+          "accessibilityLabel": "Вставьте слово — все побоялись сказать клиенту, что срок сорван, но Никита всё же сказал об этом",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i05:r1",
+              "text": "brave"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i05:r2",
+              "text": "calm"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i05:r3",
+              "text": "tired"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вставьте слово — все побоялись сказать клиенту, что срок сорван, но Никита всё же сказал об этом",
+          "gappedText": "You are ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i05:r1",
+              "text": "brave"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i05:r2",
+              "text": "calm"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i05:r3",
+              "text": "tired"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i05:r2",
+              "text": "Никита не промолчал и сообщил клиенту о пропущенном сроке; это смелость, а не спокойствие."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i05:r3",
+              "text": "`tired` означает «уставший», но Никита решился сообщить клиенту о пропущенном сроке."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i06",
+          "ordinal": 9,
+          "purpose": "supported_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Соберите фразу — «я спокоен/спокойна» (про себя)",
+          "accessibilityLabel": "Соберите фразу — «я спокоен/спокойна» (про себя)",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "am",
+            "calm",
+            "I",
+            "are"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i06:tile:d1",
+              "text": "После I ставят am, поэтому are здесь лишнее."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i07",
+          "ordinal": 10,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — honest",
+          "accessibilityLabel": "Карточка слова — honest",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i07:r1",
+              "targetText": "honest",
+              "meaning": "«честный»: говорит правду, даже если так хуже для него."
+            }
+          ],
+          "wordCard": {
+            "word": "honest",
+            "definition": "«честный»: говорит правду, даже если так хуже для него."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i08",
+          "ordinal": 11,
+          "purpose": "guided_practice",
+          "family": "sound_contrast",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте начало слов: в каком после s слышится m?",
+          "accessibilityLabel": "Послушайте начало слов: в каком после s слышится m?",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i08:r1",
+              "text": "smart"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i08:r2",
+              "text": "start"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i08:r2",
+              "text": "После начального s в `smart` идет m, а в `start` — t; слушайте начало слова."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i09",
+          "ordinal": 12,
+          "purpose": "retrieval_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вставьте слово — Нина прямо сказала клиенту, что сроки сорваны; обратитесь к Нине напрямую: «ты честная»",
+          "accessibilityLabel": "Вставьте слово — Нина прямо сказала клиенту, что сроки сорваны; обратитесь к Нине напрямую: «ты честная»",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i09:r3",
+              "text": "is"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вставьте слово — Нина прямо сказала клиенту, что сроки сорваны; обратитесь к Нине напрямую: «ты честная»",
+          "gappedText": "You ___ honest.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i09:r3",
+              "text": "is"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i09:r2",
+              "text": "С `you` нужно `are`, не `am`: `am` используют с `I`."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i09:r3",
+              "text": "`is` говорят про he, she или it. С Ниной напрямую — `you are`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i10",
+          "ordinal": 13,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послушайте и выберите",
+          "accessibilityLabel": "Послушайте и выберите",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i10:r1",
+              "text": "smart"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i10:r2",
+              "text": "start"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i10:r3",
+              "text": "small"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i10:r1",
+              "targetText": "smart",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i10:r2",
+              "targetText": "start",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i10:r3",
+              "targetText": "small",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i10:r2",
+              "text": "После начального s в `smart` идет m, а в `start` — t; слушайте начало слова."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i10:r3",
+              "text": "На слух различайте окончания: `smart` заканчивается на t, а `small` — на l."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i11",
+          "ordinal": 14,
+          "purpose": "guided_practice",
+          "family": "speed_match",
+          "inputMode": "pair_grid",
+          "prompt": "Соедините пары",
+          "accessibilityLabel": "Соедините пары",
+          "responseOptions": [],
+          "audio": "none",
+          "visiblePairColumns": {
+            "left": [
+              "honest",
+              "brave",
+              "smart",
+              "calm"
+            ],
+            "right": [
+              "спокойный",
+              "умный",
+              "смелый",
+              "честный"
+            ]
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i12",
+          "ordinal": 15,
+          "purpose": "retrieval_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Соберите фразу — Нина прямо сказала клиенту, что сроки сорваны; обратитесь к Нине напрямую: «ты честная»",
+          "accessibilityLabel": "Соберите фразу — Нина прямо сказала клиенту, что сроки сорваны; обратитесь к Нине напрямую: «ты честная»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "is",
+            "are",
+            "honest",
+            "You"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i12:tile:d1",
+              "text": "После You ставят are, а не is."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i13",
+          "ordinal": 16,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Послушайте и соберите — Никита нашёл решение; скажите ему: «ты умный»",
+          "accessibilityLabel": "Послушайте и соберите — «ты умный»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "You",
+            "are",
+            "am",
+            "smart"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i13:tile:d1",
+              "text": "Про Никиту говорят You are smart, не You am smart."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i14",
+          "ordinal": 17,
+          "purpose": "retrieval_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Карточка слова — quiet",
+          "accessibilityLabel": "Карточка слова — quiet",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i14:r1",
+              "targetText": "quiet",
+              "meaning": "«тихий», про негромкий голос. Так он и рассказывает сейчас: вполголоса, будто извиняясь."
+            }
+          ],
+          "wordCard": {
+            "word": "quiet",
+            "definition": "«тихий», про негромкий голос. Так он и рассказывает сейчас: вполголоса, будто извиняясь."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i15",
+          "ordinal": 18,
+          "purpose": "retrieval_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вставьте слово — вы проверили время отправления в билете и хотите сказать о себе: «Я уверен/уверена»",
+          "accessibilityLabel": "Вставьте слово — вы проверили время отправления в билете и хотите сказать о себе: «Я уверен/уверена»",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i15:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i15:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i15:r3",
+              "text": "is"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вставьте слово — вы проверили время отправления в билете и хотите сказать о себе: «Я уверен/уверена»",
+          "gappedText": "I ___ sure.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i15:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i15:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i15:r3",
+              "text": "is"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i15:r2",
+              "text": "`are` — для `you`. В настоящем времени с `I` используйте `am`."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i15:r3",
+              "text": "`is` не сочетается с `I`: про себя говорите `I am`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i16",
+          "ordinal": 19,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Послушайте и соберите — в библиотеке Лина говорит вполголоса; скажите: «ты тихая»",
+          "accessibilityLabel": "Послушайте и соберите — в библиотеке Лина говорит вполголоса; скажите: «ты тихая»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "You",
+            "is",
+            "are",
+            "quiet"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i16:tile:d1",
+              "text": "После You ставят are, а не is."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i17",
+          "ordinal": 20,
+          "purpose": "independent_check",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Соберите фразу — Никита сверил решение с инструкцией и уверен, что оно верное. Скажите ему: «ты уверен»",
+          "accessibilityLabel": "Соберите фразу — «ты уверен» (он сам говорит, что решение верное)",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "am",
+            "are",
+            "You",
+            "sure"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i17:tile:d1",
+              "text": "После You ставят are, поэтому am лишнее."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i18",
+          "ordinal": 21,
+          "purpose": "independent_check",
+          "family": "scripted_repeat_compare",
+          "inputMode": "tap_record_compare",
+          "prompt": "Произнесите одну фразу — Никита показывает вам расчёт; вы сверили его и говорите ему: «ты прав»",
+          "accessibilityLabel": "Произнесите одну фразу",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played"
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i19",
+          "ordinal": 22,
+          "purpose": "independent_check",
+          "family": "speed_match",
+          "inputMode": "pair_grid",
+          "prompt": "Соедините пары — слова и фразы, которые уже ваши",
+          "accessibilityLabel": "Соедините пары — слова и фразы, которые уже ваши",
+          "responseOptions": [],
+          "audio": "none",
+          "visiblePairColumns": {
+            "left": [
+              "tired",
+              "You are right.",
+              "sure",
+              "quiet"
+            ],
+            "right": [
+              "уверен/уверена",
+              "Ты прав/права.",
+              "тихий/тихая",
+              "устал/устала"
+            ]
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i20",
+          "ordinal": 23,
+          "purpose": "independent_check",
+          "family": "scripted_repeat_compare",
+          "inputMode": "tap_record_compare",
+          "prompt": "Скажите вслух Лине — она защитила коллегу на встрече, хотя боялась возразить; скажите ей: «ты смелая»",
+          "accessibilityLabel": "Скажите вслух Лине — она защитила коллегу на встрече, хотя боялась возразить; скажите ей: «ты смелая»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played"
+        }
+      ]
+    },
+    "uk": {
+      "interactions": [
+        {
+          "interactionId": "en:lesson-01:session-12:i01",
+          "ordinal": 4,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — calm",
+          "accessibilityLabel": "Картка слова — calm",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i01:r1",
+              "targetText": "calm",
+              "meaning": "«спокійний»: голос рівний, руки не тремтять."
+            }
+          ],
+          "wordCard": {
+            "word": "calm",
+            "definition": "«спокійний»: голос рівний, руки не тремтять."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i02",
+          "ordinal": 5,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послухайте і виберіть",
+          "accessibilityLabel": "Послухайте і виберіть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i02:r1",
+              "text": "calm"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i02:r2",
+              "text": "come"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i02:r3",
+              "text": "car"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i02:r1",
+              "targetText": "calm",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i02:r2",
+              "targetText": "come",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i02:r3",
+              "targetText": "car",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i02:r2",
+              "text": "У `come` інша голосна, ніж у `calm`; слухайте голосну."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i02:r3",
+              "text": "У `calm` наприкінці чути m; у `car` цього звука немає. Слухайте кінець слова."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i03",
+          "ordinal": 6,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — brave",
+          "accessibilityLabel": "Картка слова — brave",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i03:r1",
+              "targetText": "brave",
+              "meaning": "«сміливий». Так кажуть про людину, яка наважується сказати важливе, навіть коли це непросто."
+            }
+          ],
+          "wordCard": {
+            "word": "brave",
+            "definition": "«сміливий». Так кажуть про людину, яка наважується сказати важливе, навіть коли це непросто."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i04",
+          "ordinal": 7,
+          "purpose": "supported_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послухайте і виберіть",
+          "accessibilityLabel": "Послухайте і виберіть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i04:r1",
+              "text": "brave"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i04:r2",
+              "text": "brain"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i04:r3",
+              "text": "grave"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i04:r1",
+              "targetText": "brave",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i04:r2",
+              "targetText": "brain",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i04:r3",
+              "targetText": "grave",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i04:r2",
+              "text": "Слова `brain` і `brave` починаються однаково; слухайте кінець: n чи v."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i04:r3",
+              "text": "Слухайте перший звук: `brave` починається з b, `grave` — з g."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i05",
+          "ordinal": 8,
+          "purpose": "supported_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вставте слово — усі побоялися сказати клієнту, що команда не вклалася у встановлений строк, але Микита все ж повідомив про це",
+          "accessibilityLabel": "Вставте слово — усі побоялися сказати клієнту, що команда не вклалася у встановлений строк, але Микита все ж повідомив про це",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i05:r1",
+              "text": "brave"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i05:r2",
+              "text": "calm"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i05:r3",
+              "text": "tired"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вставте слово — усі побоялися сказати клієнту, що команда не вклалася у встановлений строк, але Микита все ж повідомив про це",
+          "gappedText": "You are ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i05:r1",
+              "text": "brave"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i05:r2",
+              "text": "calm"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i05:r3",
+              "text": "tired"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i05:r2",
+              "text": "Микита не промовчав і повідомив клієнту, що команда не вклалася у встановлений строк; тут ідеться про сміливість, а не про спокій."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i05:r3",
+              "text": "`tired` означає «втомлений», але Микита наважився повідомити клієнту, що команда не вклалася у встановлений строк."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i06",
+          "ordinal": 9,
+          "purpose": "supported_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Складіть фразу — «я спокійний/спокійна» (про себе)",
+          "accessibilityLabel": "Складіть фразу — «я спокійний/спокійна» (про себе)",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "I",
+            "are",
+            "calm",
+            "am"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i06:tile:d1",
+              "text": "Після I ставлять am, тому are тут зайве."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i07",
+          "ordinal": 10,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — honest",
+          "accessibilityLabel": "Картка слова — honest",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i07:r1",
+              "targetText": "honest",
+              "meaning": "«чесний»: каже правду, навіть якщо так гірше для нього."
+            }
+          ],
+          "wordCard": {
+            "word": "honest",
+            "definition": "«чесний»: каже правду, навіть якщо так гірше для нього."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i08",
+          "ordinal": 11,
+          "purpose": "guided_practice",
+          "family": "sound_contrast",
+          "inputMode": "single_choice",
+          "prompt": "Прослухайте початок слів: у якому після s чути m?",
+          "accessibilityLabel": "Прослухайте початок слів: у якому після s чути m?",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i08:r1",
+              "text": "smart"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i08:r2",
+              "text": "start"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i08:r2",
+              "text": "Після початкового s у `smart` далі m, а у `start` — t; слухайте початок слова."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i09",
+          "ordinal": 12,
+          "purpose": "retrieval_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вставте слово — Ніна прямо сказала клієнту, що команда не вклалася у встановлений строк; зверніться до Ніни напряму: «ти чесна»",
+          "accessibilityLabel": "Вставте слово — Ніна прямо сказала клієнту, що команда не вклалася у встановлений строк; зверніться до Ніни напряму: «ти чесна»",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i09:r3",
+              "text": "is"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вставте слово — Ніна прямо сказала клієнту, що команда не вклалася у встановлений строк; зверніться до Ніни напряму: «ти чесна»",
+          "gappedText": "You ___ honest.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i09:r3",
+              "text": "is"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i09:r2",
+              "text": "З `you` потрібне `are`, не `am`: `am` уживають з `I`."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i09:r3",
+              "text": "`is` кажуть про he, she або it. З Ніною напряму — `you are`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i10",
+          "ordinal": 13,
+          "purpose": "guided_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Послухайте і виберіть",
+          "accessibilityLabel": "Послухайте і виберіть",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i10:r1",
+              "text": "smart"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i10:r2",
+              "text": "start"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i10:r3",
+              "text": "small"
+            }
+          ],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i10:r1",
+              "targetText": "smart",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i10:r2",
+              "targetText": "start",
+              "meaning": null
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i10:r3",
+              "targetText": "small",
+              "meaning": null
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i10:r2",
+              "text": "Після початкового s у `smart` далі m, а у `start` — t; слухайте початок слова."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i10:r3",
+              "text": "На слух розрізняйте закінчення: `smart` закінчується на t, а `small` — на l."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i11",
+          "ordinal": 14,
+          "purpose": "guided_practice",
+          "family": "speed_match",
+          "inputMode": "pair_grid",
+          "prompt": "З'єднайте пари",
+          "accessibilityLabel": "З'єднайте пари",
+          "responseOptions": [],
+          "audio": "none",
+          "visiblePairColumns": {
+            "left": [
+              "honest",
+              "brave",
+              "calm",
+              "smart"
+            ],
+            "right": [
+              "розумний",
+              "сміливий",
+              "чесний",
+              "спокійний"
+            ]
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i12",
+          "ordinal": 15,
+          "purpose": "retrieval_practice",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Складіть фразу — Ніна прямо сказала клієнту, що команда не вклалася у встановлений строк; зверніться до Ніни напряму: «ти чесна»",
+          "accessibilityLabel": "Складіть фразу — Ніна прямо сказала клієнту, що команда не вклалася у встановлений строк; зверніться до Ніни напряму: «ти чесна»",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "are",
+            "You",
+            "honest",
+            "is"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i12:tile:d1",
+              "text": "Після You ставлять are, а не is."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i13",
+          "ordinal": 16,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Послухайте і складіть — Микита знайшов рішення; скажіть йому: «ти розумний»",
+          "accessibilityLabel": "Послухайте і складіть — «ти розумний»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "smart",
+            "am",
+            "are",
+            "You"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i13:tile:d1",
+              "text": "Про Микиту кажуть You are smart, а не You am smart."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i14",
+          "ordinal": 17,
+          "purpose": "retrieval_practice",
+          "family": "listen_choose",
+          "inputMode": "single_choice",
+          "prompt": "Картка слова — quiet",
+          "accessibilityLabel": "Картка слова — quiet",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i14:r1",
+              "targetText": "quiet",
+              "meaning": "«тихий», коли людина говорить неголосно. Він і зараз розповідає тихо, ніби перепрошуючи."
+            }
+          ],
+          "wordCard": {
+            "word": "quiet",
+            "definition": "«тихий», коли людина говорить неголосно. Він і зараз розповідає тихо, ніби перепрошуючи."
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i15",
+          "ordinal": 18,
+          "purpose": "retrieval_practice",
+          "family": "context_gap_grammar",
+          "inputMode": "single_choice",
+          "prompt": "Вставте слово — ви перевірили час відправлення в квитку й хочете сказати про себе: «Я впевнений/впевнена»",
+          "accessibilityLabel": "Вставте слово — ви перевірили час відправлення в квитку й хочете сказати про себе: «Я впевнений/впевнена»",
+          "responseOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i15:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i15:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i15:r3",
+              "text": "is"
+            }
+          ],
+          "audio": "none",
+          "scene": "Вставте слово — ви перевірили час відправлення в квитку й хочете сказати про себе: «Я впевнений/впевнена»",
+          "gappedText": "I ___ sure.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-12:i15:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i15:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i15:r3",
+              "text": "is"
+            }
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i15:r2",
+              "text": "`are` — для `you`. У теперішньому часі з `I` вживайте `am`."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:i15:r3",
+              "text": "`is` не вживають з `I`: про себе кажіть `I am`."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i16",
+          "ordinal": 19,
+          "purpose": "retrieval_practice",
+          "family": "listen_build_dictation",
+          "inputMode": "ordered_tokens",
+          "prompt": "Послухайте й складіть — у бібліотеці Ліна говорить упівголоса; скажіть: «ти тиха»",
+          "accessibilityLabel": "Послухайте й складіть — у бібліотеці Ліна говорить упівголоса; скажіть: «ти тиха»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played",
+          "visibleTiles": [
+            "are",
+            "You",
+            "is",
+            "quiet"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i16:tile:d1",
+              "text": "Після You ставлять are, а не is."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i17",
+          "ordinal": 20,
+          "purpose": "independent_check",
+          "family": "phrase_builder",
+          "inputMode": "ordered_tokens",
+          "prompt": "Складіть фразу — Микита звірив рішення з інструкцією і впевнений, що воно правильне. Скажіть йому: «ти впевнений»",
+          "accessibilityLabel": "Складіть фразу — «ти впевнений» (він сам каже, що рішення правильне)",
+          "responseOptions": [],
+          "audio": "none",
+          "visibleTiles": [
+            "are",
+            "am",
+            "You",
+            "sure"
+          ],
+          "feedback": [
+            {
+              "responseId": "en:lesson-01:session-12:i17:tile:d1",
+              "text": "Після You ставлять are, тому am зайве."
+            }
+          ]
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i18",
+          "ordinal": 21,
+          "purpose": "independent_check",
+          "family": "scripted_repeat_compare",
+          "inputMode": "tap_record_compare",
+          "prompt": "Промовте одну фразу — Микита показує вам розрахунок; ви звірили його й кажете йому: «ти маєш рацію»",
+          "accessibilityLabel": "Промовте одну фразу",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played"
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i19",
+          "ordinal": 22,
+          "purpose": "independent_check",
+          "family": "speed_match",
+          "inputMode": "pair_grid",
+          "prompt": "З'єднайте пари — слова й фрази, які вже ваші",
+          "accessibilityLabel": "З'єднайте пари — слова й фрази, які вже ваші",
+          "responseOptions": [],
+          "audio": "none",
+          "visiblePairColumns": {
+            "left": [
+              "You are right.",
+              "quiet",
+              "tired",
+              "sure"
+            ],
+            "right": [
+              "утомлений/утомлена",
+              "впевнений/впевнена",
+              "Ти маєш рацію.",
+              "тихий/тиха"
+            ]
+          }
+        },
+        {
+          "interactionId": "en:lesson-01:session-12:i20",
+          "ordinal": 23,
+          "purpose": "independent_check",
+          "family": "scripted_repeat_compare",
+          "inputMode": "tap_record_compare",
+          "prompt": "Скажіть уголос Ліні — вона захистила колегу на зустрічі, хоча боялася заперечити; скажіть їй: «ти смілива»",
+          "accessibilityLabel": "Скажіть уголос Ліні — вона захистила колегу на зустрічі, хоча боялася заперечити; скажіть їй: «ти смілива»",
+          "responseOptions": [],
+          "audio": "present_not_transcribed_or_played"
+        }
+      ]
+    }
+  }
+}

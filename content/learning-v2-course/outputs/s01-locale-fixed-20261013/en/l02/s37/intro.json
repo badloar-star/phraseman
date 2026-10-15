@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "контраст `who` ↔ `whose` в знакомых вопросах о людях и принадлежности вещи",
+    "uk": "контраст `who` ↔ `whose` у знайомих питаннях про людей і належність речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два разных «кто»",
+        "uk": "Два різні «хто»"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is he?` — «Кто он?» Так узнают, что это за человек. А `Whose is it?` — «Чьё это?» — помогает найти владельца вещи. По-русски можно сказать «Кто хозяин этой вещи?», но здесь берём вопрос с `Whose`. Сначала решите, что вас интересует: сам человек или чья-то вещь.",
+        "uk": "`Who is he?` — «Хто він?» Так з’ясовують, що це за людина. А `Whose is it?` — «Чиє це?» — допомагає знайти власника речі. Українською можна сказати «Хто власник цієї речі?», але тут беремо запитання з `Whose`. Спершу вирішіть, що вас цікавить: сама людина чи чиясь річ."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "В прихожей незнакомый мужчина надевает куртку. Вы хотите узнать у друга, кто этот мужчина.",
+          "uk": "У передпокої незнайомий чоловік надягає куртку. Ви хочете дізнатися в друга, хто цей чоловік."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-37:intro1:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro1:r2",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro1:r3",
+              "text": "Where is he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-37:intro1:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro1:r2",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro1:r3",
+              "text": "Where is he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В прихожей незнакомый мужчина надевает куртку. Вы хотите узнать у друга, кто этот мужчина.",
+          "uk": "У передпокої незнайомий чоловік надягає куртку. Ви хочете дізнатися в друга, хто цей чоловік."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вещь можно показать",
+        "uk": "Річ можна просто показати"
+      },
+      "bodyByLocale": {
+        "ru": "`Whose is it?` — «Чьё это?» Можно показать на вещь и задать этот вопрос целиком. Забытое английское название не помешает найти того, кто забыл саму вещь. Здесь `it` значит «это», а `is` остаётся перед ним. Про куртку и про шарф спрашиваем одинаково: `Whose is it?`",
+        "uk": "`Whose is it?` — «Чиє це?» Можна вказати на річ і поставити це запитання повністю. Забута англійська назва не завадить знайти того, хто забув саму річ. Тут `it` означає «це», а `is` лишається перед ним. Про куртку й шарф запитуємо однаково: `Whose is it?`"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Гость показывает вам оставленный шарф. Вы не знаете, чей он. Спросите об этом хозяина вечера.",
+          "uk": "Гість показує вам залишений шарф. Ви не знаєте, чий він. Запитайте про це господаря вечірки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-37:intro2:r1",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro2:r2",
+              "text": "Who is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro2:r3",
+              "text": "Whose it?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-37:intro2:r1",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro2:r2",
+              "text": "Who is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro2:r3",
+              "text": "Whose it?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Гость показывает вам оставленный шарф. Вы не знаете, чей он. Спросите об этом хозяина вечера.",
+          "uk": "Гість показує вам залишений шарф. Ви не знаєте, чий він. Запитайте про це господаря вечірки."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Людей несколько, вопрос всё ещё «кто»",
+        "uk": "Людей кілька, а питання все одно «хто»"
+      },
+      "bodyByLocale": {
+        "ru": "`Who are these people?` — «Кто эти люди?» Вы хотите узнать, кто эти люди, поэтому начинаем с `Who`. Их несколько: дальше ставим `are`, затем `these people`. Даже если незнакомцев много, вопрос «кто?» не превращается в «чьи?». Для принадлежности вещи оставляем `whose`.",
+        "uk": "`Who are these people?` — «Хто ці люди?» Ви хочете дізнатися, хто вони, тому починаємо з `Who`. Людей кілька: далі ставимо `are`, а потім `these people`. Навіть якщо незнайомців багато, запитання «хто?» не перетворюється на «чиї?». Коли хочемо дізнатися, кому належить річ, беремо `whose`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "В прихожую зашла незнакомая компания. Покажите на них другу и спросите: «Кто эти люди?»",
+          "uk": "До передпокою зайшла незнайома компанія. Покажіть на них другові й запитайте: «Хто ці люди?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-37:intro3:r1",
+              "text": "Who are these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro3:r2",
+              "text": "Whose are these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro3:r3",
+              "text": "Who is these people?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-37:intro3:r1",
+              "text": "Who are these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro3:r2",
+              "text": "Whose are these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:intro3:r3",
+              "text": "Who is these people?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В прихожую зашла незнакомая компания. Покажите на них другу и спросите: «Кто эти люди?»",
+          "uk": "До передпокою зайшла незнайома компанія. Покажіть на них другові й запитайте: «Хто ці люди?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cf74475b4e575f90d7176ef8387d2f39b41d48de7e13bb9a724e603ff181ccfb"
+}

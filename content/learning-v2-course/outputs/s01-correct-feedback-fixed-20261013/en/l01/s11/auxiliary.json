@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-11:intro1:r2": {
+          "ru": "После `you` нужно `are`. `not` его не заменяет: оно стоит после `are`.",
+          "uk": "Після `you` потрібне `are`. `not` його не заміняє: воно стоїть після `are`."
+        },
+        "en:lesson-01:session-11:intro1:r3": {
+          "ru": "`not` уехал в конец. Его место — сразу после `are`, перед словом.",
+          "uk": "`not` поїхав у кінець. Його місце — одразу після `are`, перед словом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-11:intro2:r2": {
+          "ru": "`no` — это ответ «нет» на вопрос. Внутри фразы «не» — `not`; после `you` также нужно `are`.",
+          "uk": "`no` — це відповідь «ні» на запитання. Усередині фрази «не» — `not`; після `you` також потрібне `are`."
+        },
+        "en:lesson-01:session-11:intro2:r3": {
+          "ru": "Почти. Но после `are` идёт именно `not`; `no` живёт отдельно, одним словом.",
+          "uk": "Майже. Але після `are` іде саме `not`; `no` — це ціла відповідь, а не частинка всередині фрази."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-11:intro3:r2": {
+          "ru": "`late` — «опаздываешь», про время. Речь про правоту: `wrong`.",
+          "uk": "`late` — «спізнюєшся», про час. Ідеться про правоту: `wrong`."
+        },
+        "en:lesson-01:session-11:intro3:r3": {
+          "ru": "Без `are` фраза разваливается. Сначала `You are`, потом `not`.",
+          "uk": "Без `are` фраза розвалюється. Спочатку `You are`, потім `not`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "18be09a453fba5662ad5b11e23f0da8739a6dbf1abc58c5b11e9656b6c7317ce"
+}

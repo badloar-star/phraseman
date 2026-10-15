@@ -1,0 +1,1334 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i01:r1",
+          "text": "receipt"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i01:audio",
+          "transcript": "receipt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i01:r1",
+            "targetText": "receipt",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "receipt",
+          "definitionByLocale": {
+            "ru": "«чек». Напечатанная запись о том, что и за что заплатили.",
+            "uk": "«чек». Надрукований запис про те, що й за що заплатили."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i03:audio",
+          "transcript": "counter"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "counter",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i05:audio",
+          "transcript": "cashier"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "cashier",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i02:audio",
+          "transcript": "receipt"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "receipt",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i04:r1",
+          "text": "counter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i04:audio",
+          "transcript": "counter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i04:r1",
+            "targetText": "counter",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "counter",
+          "definitionByLocale": {
+            "ru": "«стойка».",
+            "uk": "«стійка»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i06:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i06:audio",
+          "transcript": "cashier"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "cashier",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i08:s01",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i08:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i08:s01:audio",
+          "transcript": "receipt"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "receipt",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i08:s02",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i08:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i08:s02:audio",
+          "transcript": "counter"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "counter",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i09:s02",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i09:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i09:s02:audio",
+          "transcript": "cashier"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "cashier",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слово зі значенням — біля стійки обслуговування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слово зі значенням — біля стійки обслуговування",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-41:i07:p1",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-41:i07:p2",
+            "target": "counter",
+            "meaningByLocale": {
+              "ru": "стойка",
+              "uk": "стійка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-41:i07:p3",
+            "target": "cashier",
+            "meaningByLocale": {
+              "ru": "кассир",
+              "uk": "касир"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-41:i07:p4",
+            "target": "sticker",
+            "meaningByLocale": {
+              "ru": "наклейка",
+              "uk": "наліпка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "receipt",
+          "counter",
+          "cashier",
+          "sticker"
+        ],
+        "rightColumn": [
+          "чек",
+          "стійка",
+          "касир",
+          "наліпка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i09:s01",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте одну відповідь в одну фразу — крок 1 із 2",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i09:s01:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i09:s01:r2",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i09:s01:r3",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i09:s01:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте одну відповідь в одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте артикли — расскажите о том же чеке",
+          "uk": "Вставте одну відповідь в одну фразу — крок 1 із 2"
+        },
+        "gappedTargetPhrase": "This is ___ receipt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i09:s01:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:s01:r2",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:s01:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:s01:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте артикли — расскажите о том же ч",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i09:s01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте артикли — расскажите о том же ч",
+            "feedbackByLocale": {
+              "ru": "Первый чек ещё не назван, поэтому нужен `a`; во второй фразе это уже тот же чек, поэтому `The`.",
+              "uk": "Перший чек ще не названо, тому потрібне `a`; у другій фразі це вже той самий чек, тому `The`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:s01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте артикли — расскажите о том же ч",
+            "feedbackByLocale": {
+              "ru": "`receipt` начинается со звука /r/, поэтому перед ним `a`, а не `an`.",
+              "uk": "`receipt` починається звуком /r/, тому перед ним `a`, а не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:s01:r4",
+            "correct": false,
+            "testedDimension": "Вставьте артикли — расскажите о том же ч",
+            "feedbackByLocale": {
+              "ru": "Перед первым одним чеком нужен `a`; уже названный чек требует `The`.",
+              "uk": "Коли вперше називаємо один чек, потрібне `a`; для вже названого чека — `The`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i10:s01",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 1 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i10:s01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i10:s01:audio",
+          "transcript": "That is a receipt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That is a receipt.",
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "receipt."
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i10:s02",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i10:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i10:s02:audio",
+          "transcript": "The receipt is wrong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The receipt is wrong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i11",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точне значення фрази",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i11:r1",
+          "text": "Этот чек с ошибкой"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i11:r2",
+          "text": "Какой-то чек с ошибкой"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i11:r3",
+          "text": "Эта стойка с ошибкой"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i11:r4",
+          "text": "Этот кассир ошибается"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точне значення фрази",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i11:audio",
+          "transcript": "The receipt is wrong."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i11:r1",
+            "targetText": "Этот чек с ошибкой",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i11:r2",
+            "targetText": "Какой-то чек с ошибкой",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i11:r3",
+            "targetText": "Эта стойка с ошибкой",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i11:r4",
+            "targetText": "Этот кассир ошибается",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "`the receipt` — уже названный конкретный чек, а не какой-то новый.",
+              "uk": "`the receipt` — уже названий конкретний чек, а не якийсь новий."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `receipt` — «чек», а не `counter` — «стойка».",
+              "uk": "У записі звучить `receipt` — «чек», а не `counter` — «стійка»."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i11:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Фраза говорит о чеке, `receipt`, а не о кассире, `cashier`.",
+              "uk": "Фраза говорить про чек, `receipt`, а не про касира, `cashier`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i12:s01",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 1 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is a cashier.",
+        "localizedMeaning": {
+          "ru": "Соберите две фразы — сначала назовите профессию, затем вернитесь к тому же человеку",
+          "uk": "Складіть одну фразу — крок 1 із 2"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "a",
+          "cashier."
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i12:s02",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i12:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i12:s02:audio",
+          "transcript": "The cashier is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cashier is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i13:s01",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте одну відповідь в одну фразу — крок 1 із 2",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i13:s01:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i13:s01:r2",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i13:s01:r3",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i13:s01:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте одну відповідь в одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте артикли — тот же кассир рядом",
+          "uk": "Вставте одну відповідь в одну фразу — крок 1 із 2"
+        },
+        "gappedTargetPhrase": "She is ___ cashier.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i13:s01:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i13:s01:r2",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i13:s01:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i13:s01:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте артикли — тот же кассир рядом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i13:s01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте артикли — тот же кассир рядом",
+            "feedbackByLocale": {
+              "ru": "Сначала вы называете профессию одной женщины: `a cashier`; затем говорите о ней же: `The cashier`.",
+              "uk": "Спершу ви називаєте професію однієї жінки: `a cashier`; потім говорите про неї ж: `The cashier`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i13:s01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте артикли — тот же кассир рядом",
+            "feedbackByLocale": {
+              "ru": "`cashier` начинается со звука /k/, поэтому нужен `a`, а не `an`.",
+              "uk": "`cashier` починається звуком /k/, тому потрібне `a`, а не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i13:s01:r4",
+            "correct": false,
+            "testedDimension": "Вставьте артикли — тот же кассир рядом",
+            "feedbackByLocale": {
+              "ru": "Профессия одного человека требует `a`; уже названный кассир требует `The`.",
+              "uk": "Коли називаємо професію однієї людини, потрібне `a`; для вже названого касира — `The`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i13:s02",
+      "ordinal": 21,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 2 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 2 із 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cashier is here.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу"
+        },
+        "orderedTokens": [
+          "The",
+          "cashier",
+          "is",
+          "here."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i14:s01",
+      "ordinal": 22,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 1 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i14:s01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i14:s01:audio",
+          "transcript": "He is a cashier."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is a cashier.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "a",
+          "cashier."
+        ],
+        "authoredDistractorTokens": [
+          "She",
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i14:s02",
+      "ordinal": 23,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте одну фразу — крок 2 із 2",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i14:s02:r1",
+          "text": "The cashier is here."
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i14:s02:r2",
+          "text": "receipt"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i14:s02:r3",
+          "text": "counter"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i14:s02:r4",
+          "text": "cashier"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i14:s02:audio"
+      ],
+      "accessibilityLabel": "Послухайте одну фразу — крок 2 із 2",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i14:s02:audio",
+          "transcript": "The cashier is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i14:s02:r1",
+            "targetText": "The cashier is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i14:s02:r2",
+            "targetText": "receipt",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i14:s02:r3",
+            "targetText": "counter",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i14:s02:r4",
+            "targetText": "cashier",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i14:s02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `The cashier is here.`, а не `receipt`.",
+              "uk": "У записі звучить `The cashier is here.`, а не `receipt`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i14:s02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `The cashier is here.`, а не `counter`.",
+              "uk": "У записі звучить `The cashier is here.`, а не `counter`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i14:s02:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `The cashier is here.`, а не `cashier`.",
+              "uk": "У записі звучить `The cashier is here.`, а не `cashier`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i15:s01",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте одну відповідь в одну фразу — крок 1 із 2",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i15:s01:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i15:s01:r2",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i15:s01:r3",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i15:s01:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте одну відповідь в одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте артикли — стойка уже названа",
+          "uk": "Вставте одну відповідь в одну фразу — крок 1 із 2"
+        },
+        "gappedTargetPhrase": "That is ___ counter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i15:s01:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:s01:r2",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:s01:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:s01:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте артикли — стойка уже названа",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i15:s01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте артикли — стойка уже названа",
+            "feedbackByLocale": {
+              "ru": "Первую стойку вы только называете: `a counter`. Во второй фразе это та же стойка: `The counter`.",
+              "uk": "Спочатку ви лише називаєте стійку: `a counter`. У другій фразі це та сама стійка: `The counter`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:s01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте артикли — стойка уже названа",
+            "feedbackByLocale": {
+              "ru": "`counter` начинается со звука /k/, поэтому перед ним нужен `a`.",
+              "uk": "`counter` починається звуком /k/, тому перед ним потрібне `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:s01:r4",
+            "correct": false,
+            "testedDimension": "Вставьте артикли — стойка уже названа",
+            "feedbackByLocale": {
+              "ru": "Одна впервые названная стойка требует `a`; знакомая стойка — `The`.",
+              "uk": "Коли вперше називаємо одну стійку, потрібне `a`; для вже названої стійки — `The`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i15:s02",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i15:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i15:s02:audio",
+          "transcript": "The counter is open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The counter is open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i16:s01",
+      "ordinal": 26,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 1 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a counter.",
+        "localizedMeaning": {
+          "ru": "Соберите две фразы — сначала назовите стойку, затем продолжите говорить о ней",
+          "uk": "Складіть одну фразу — крок 1 із 2"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "counter."
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i16:s02",
+      "ordinal": 27,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 2 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i16:s02:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 2 із 2",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i16:s02:audio",
+          "transcript": "The counter is open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The counter is open.",
+        "orderedTokens": [
+          "The",
+          "counter",
+          "is",
+          "open."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i17:s01",
+      "ordinal": 28,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i17:s01:audio",
+          "transcript": "That is a receipt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is a receipt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i17:s02",
+      "ordinal": 29,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 2 із 6",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 2 із 6",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The receipt is wrong.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу"
+        },
+        "orderedTokens": [
+          "The",
+          "receipt",
+          "is",
+          "wrong."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i17:s03",
+      "ordinal": 30,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i17:s03:audio",
+          "transcript": "He is a cashier."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is a cashier.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i17:s04",
+      "ordinal": 31,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 4 із 6",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 4 із 6",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i17:s04:audio",
+          "transcript": "The cashier is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cashier is here.",
+        "orderedTokens": [
+          "The",
+          "cashier",
+          "is",
+          "here."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i17:s05",
+      "ordinal": 32,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i17:s05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i17:s05:audio",
+          "transcript": "This is a counter."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a counter.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i17:s06",
+      "ordinal": 33,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 6 із 6",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 6 із 6",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The counter is open.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 6 із 6"
+        },
+        "orderedTokens": [
+          "The",
+          "counter",
+          "is",
+          "open."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 30,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "adfea702bf508386bf09c45da869944df4e4e7f495599852fce125910b61a041"
+}

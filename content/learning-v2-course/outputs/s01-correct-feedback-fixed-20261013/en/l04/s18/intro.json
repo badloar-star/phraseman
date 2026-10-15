@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить об ограниченном количестве неисчисляемой еды через `There is some + noncount food`.",
+    "uk": "повідомити про обмежену кількість незлічуваної їжі через `There is some + noncount food`."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`milk` — молоко",
+        "uk": "`milk` — молоко"
+      },
+      "bodyByLocale": {
+        "ru": "`milk` — «молоко», неисчисляемая еда. Назовите продукт перед тем, как добавить к нему слово количества.\n\nВ сцене это молоко на общей кухне. Оно может стоять в бутылке или быть налито в контейнер, но `milk` не получает окончания множественного числа. Сначала назовите продукт, затем добавим количество.",
+        "uk": "`milk` — «молоко», незлічувана їжа. Назвіть продукт, перш ніж додавати до нього слово кількості.\n\nУ сцені це молоко на спільній кухні. Воно може стояти в пляшці або бути налитим у контейнер, але `milk` не отримує закінчення множини. Спочатку назвіть продукт, а потім додамо кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Перед завтраком на полке стоит молоко. Выберите слово.",
+          "uk": "Перед сніданком на полиці стоїть молоко. Оберіть слово."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-18:intro1:r1",
+              "text": "milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro1:r2",
+              "text": "berry"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro1:r3",
+              "text": "container"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-18:intro1:r1",
+              "text": "milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro1:r2",
+              "text": "berry"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro1:r3",
+              "text": "container"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Перед завтраком на полке стоит молоко. Выберите слово.",
+          "uk": "Перед сніданком на полиці стоїть молоко. Оберіть слово."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`some` перед неисчисляемой едой",
+        "uk": "`some` перед незлічуваною їжею"
+      },
+      "bodyByLocale": {
+        "ru": "`some milk` — «немного молока» или «некоторое количество молока». Здесь `some` показывает ограниченное количество, а `milk` остаётся неисчисляемым словом.\n\nТак мы говорим о части молока на кухне. `Some` относится к количеству, а не к контейнеру или ягодам; дальше это сочетание войдёт в полное сообщение.",
+        "uk": "`some milk` — «трохи молока» або «певна кількість молока». Тут `some` показує обмежену кількість, а `milk` залишається незлічуваним словом.\n\nТак ми говоримо про частину молока на кухні. `Some` стосується кількості, а не контейнера чи ягід; далі це сполучення увійде до повного повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите сочетание для молока в холодильнике.",
+          "uk": "Оберіть сполучення для молока в холодильнику."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-18:intro2:r1",
+              "text": "some milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro2:r2",
+              "text": "some berries"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro2:r3",
+              "text": "some containers"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-18:intro2:r1",
+              "text": "some milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro2:r2",
+              "text": "some berries"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro2:r3",
+              "text": "some containers"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите сочетание для молока в холодильнике.",
+          "uk": "Оберіть сполучення для молока в холодильнику."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Контейнеры и ягоды возвращаются",
+        "uk": "Контейнери та ягоди повертаються"
+      },
+      "bodyByLocale": {
+        "ru": "`container` и `berry` мы уже встречали. Возвращаем их в сообщении `There are some containers for berries.` Новая цель — добавить `some` к `milk`.\n\nФраза `There is some milk on the shelf.` сообщает, где есть ограниченное количество продукта. Здесь `some` стоит перед неисчисляемым `milk`, а `There is` показывает наличие.",
+        "uk": "`container` і `berry` ми вже зустрічали. Повертаємо їх у повідомленні `There are some containers for berries.` Нова ціль — додати `some` до `milk`.\n\nФраза `There is some milk on the shelf.` повідомляє, де є обмежена кількість продукту. Тут `some` стоїть перед незлічуваним `milk`, а `There is` показує наявність."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "На полке есть молоко. Выберите сообщение о продукте.",
+          "uk": "На полиці є молоко. Оберіть повідомлення про продукт."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-18:intro3:r1",
+              "text": "There is some milk on the shelf."
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro3:r2",
+              "text": "There are some containers."
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro3:r3",
+              "text": "There are some berries."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-18:intro3:r1",
+              "text": "There is some milk on the shelf."
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro3:r2",
+              "text": "There are some containers."
+            },
+            {
+              "responseId": "en:lesson-04:session-18:intro3:r3",
+              "text": "There are some berries."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На полке есть молоко. Выберите сообщение о продукте.",
+          "uk": "На полиці є молоко. Оберіть повідомлення про продукт."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "95fa87351981c23b93367f81738e2a302ec7d0796cecb785772a89f8b0481212"
+}

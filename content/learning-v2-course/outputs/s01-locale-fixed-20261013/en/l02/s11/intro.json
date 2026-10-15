@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "коротко ответить о мужчине: `Yes, he is.` или `No, he is not.`",
+    "uk": "коротко відповісти про чоловіка: `Yes, he is.` або `No, he is not.`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`helpful` — готов помочь",
+        "uk": "`helpful` — готовий допомогти"
+      },
+      "bodyByLocale": {
+        "ru": "`helpful` — «готовый помочь, полезный». О человеке так говорят, когда он замечает проблему и делает что-то полезное: объясняет, приносит нужное, показывает дорогу. Это не просто вежливость. Сотрудник так быстро подаёт меню, будто читает мысли — но заказ всё же лучше произнести. Вопрос: `Is he helpful?`.",
+        "uk": "`helpful` — «готовий допомогти, корисний». Про людину так кажуть, коли вона помічає проблему й робить щось корисне: пояснює, приносить потрібне, показує дорогу. Це не просто ввічливість. Працівник так швидко подає меню, ніби читає думки — але замовлення все ж краще вимовити. Запитання: `Is he helpful?`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Сотрудник принёс меню и помог выбрать столик. Спутник спрашивает: `Is he helpful?` Ответьте коротко.",
+          "uk": "Працівник приніс меню й допоміг вибрати столик. Супутник питає: `Is he helpful?` Дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r1",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r2",
+              "text": "Yes, he."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r3",
+              "text": "Yes, is he."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r1",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r2",
+              "text": "Yes, he."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r3",
+              "text": "Yes, is he."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник принёс меню и помог выбрать столик. Спутник спрашивает: `Is he helpful?` Ответьте коротко.",
+          "uk": "Працівник приніс меню й допоміг вибрати столик. Супутник питає: `Is he helpful?` Дайте коротку відповідь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`confused` — не понимает, что происходит",
+        "uk": "`confused` — не розуміє, що відбувається"
+      },
+      "bodyByLocale": {
+        "ru": "`confused` — «растерянный, сбитый с толку». Человек так себя чувствует, когда объяснение непонятно или события не складываются в ясную картину. Это не значит «глупый». На вопрос `Is he confused?` короткое отрицание звучит `No, he is not.`: после `he` идёт `is`, затем `not`.",
+        "uk": "`confused` — «розгублений, збитий з пантелику». Людина так почувається, коли пояснення незрозуміле або події не складаються в ясну картину. Це не означає «дурний». На запитання `Is he confused?` коротке заперечення звучить `No, he is not.`: після `he` іде `is`, потім `not`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Сотрудник точно повторил заказ и знает номер столика. Спутник спрашивает: `Is he confused?` Ответьте коротко.",
+          "uk": "Працівник точно повторив замовлення й знає номер столика. Супутник питає: `Is he confused?` Дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r1",
+              "text": "No, he is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r2",
+              "text": "No, he not is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r3",
+              "text": "No, he not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r1",
+              "text": "No, he is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r2",
+              "text": "No, he not is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r3",
+              "text": "No, he not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник точно повторил заказ и знает номер столика. Спутник спрашивает: `Is he confused?` Ответьте коротко.",
+          "uk": "Працівник точно повторив замовлення й знає номер столика. Супутник питає: `Is he confused?` Дайте коротку відповідь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ берёт `he is` из вопроса",
+        "uk": "Відповідь бере `he is` із запитання"
+      },
+      "bodyByLocale": {
+        "ru": "На `Is he helpful?` отвечают `Yes, he is.`, а на `Is he confused?` можно ответить `No, he is not.`. Слова `helpful` и `confused` уже есть в вопросах, поэтому короткий ответ их не повторяет. В утвердительном ответе остаётся `he is`; в отрицательном после `is` добавляется `not`.",
+        "uk": "На `Is he helpful?` відповідають `Yes, he is.`, а на `Is he confused?` можна відповісти `No, he is not.`. Слова `helpful` і `confused` уже є в запитаннях, тому коротка відповідь їх не повторює. У ствердній відповіді лишається `he is`; у заперечній після `is` додається `not`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Сотрудник не понял номер столика и дважды переспросил. Вопрос: `Is he confused?` Ответьте коротко.",
+          "uk": "Працівник не зрозумів номер столика й двічі перепитав. Запитання: `Is he confused?` Дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r1",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r2",
+              "text": "Yes, he."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r3",
+              "text": "Yes, is he."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r1",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r2",
+              "text": "Yes, he."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r3",
+              "text": "Yes, is he."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник не понял номер столика и дважды переспросил. Вопрос: `Is he confused?` Ответьте коротко.",
+          "uk": "Працівник не зрозумів номер столика й двічі перепитав. Запитання: `Is he confused?` Дайте коротку відповідь."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "db8edfa2df0c03965de88e690459e8fdb68bc7774d265e36ea03354279d63d85"
+}

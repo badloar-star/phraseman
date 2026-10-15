@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно выбрать singular или plural в вопросе о наличии.",
+    "uk": "самостійно вибрати singular або plural у питанні про наявність."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`laundrette` — прачечная самообслуживания",
+        "uk": "`laundrette` — пральня самообслуговування"
+      },
+      "bodyByLocale": {
+        "ru": "`laundrette` — «прачечная самообслуживания», место, где можно самому постирать вещи. В британском английском это обычное название такой услуги. Буква `t` внутри слова не прячется: она помогает отличить название места от общего `laundry` — стирки или белья.",
+        "uk": "`laundrette` — «пральня самообслуговування», місце, де можна самостійно випрати речі. У британській англійській це звичайна назва такої послуги. Літера `t` усередині слова не ховається: вона допомагає відрізнити назву місця від загального `laundry` — прання або білизни."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "На карте киоска отмечено одно место для стирки. Выберите название.",
+          "uk": "На карті кіоску позначено одне місце для прання. Оберіть назву."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-14:intro1:r1",
+              "text": "laundrette"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro1:r2",
+              "text": "laundry"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro1:r3",
+              "text": "landmark"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-14:intro1:r1",
+              "text": "laundrette"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro1:r2",
+              "text": "laundry"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro1:r3",
+              "text": "landmark"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На карте киоска отмечено одно место для стирки. Выберите название.",
+          "uk": "На карті кіоску позначено одне місце для прання. Оберіть назву."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вопрос об одном месте начинается с `Is`",
+        "uk": "Питання про одне місце починається з `Is`"
+      },
+      "bodyByLocale": {
+        "ru": "`There is a laundrette nearby.` — это сообщение об одном месте. Если мы спрашиваем о нём, `is` выходит вперёд. Артикль `a` остаётся перед одним местом, а `nearby` значит «поблизости» и не меняется: `Is there a laundrette nearby?` Если мест несколько, меняются число и глагол: `Are there laundrettes nearby?`",
+        "uk": "`There is a laundrette nearby.` — це повідомлення про одне місце. Якщо ми питаємо про нього, `is` виходить наперед. Артикль `a` залишається перед одним місцем, а `nearby` означає «поблизу» і не змінюється: `Is there a laundrette nearby?` Якщо місць кілька, змінюються число й дієслово: `Are there laundrettes nearby?`"
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "На карте видна одна отметка. Спросите, есть ли рядом прачечная.",
+          "uk": "На карті видно одну позначку. Запитайте, чи є поруч пральня."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-14:intro2:r1",
+              "text": "Is there a laundrette nearby?"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro2:r2",
+              "text": "Are there laundrettes nearby?"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro2:r3",
+              "text": "There is a laundrette nearby."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-14:intro2:r1",
+              "text": "Is there a laundrette nearby?"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro2:r2",
+              "text": "Are there laundrettes nearby?"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro2:r3",
+              "text": "There is a laundrette nearby."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На карте видна одна отметка. Спросите, есть ли рядом прачечная.",
+          "uk": "На карті видно одну позначку. Запитайте, чи є поруч пральня."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вопрос о нескольких местах начинается с `Are`",
+        "uk": "Питання про кілька місць починається з `Are`"
+      },
+      "bodyByLocale": {
+        "ru": "`There are laundrettes nearby.` — сообщение о нескольких местах. В вопросе `are` переходит вперёд: `Are there laundrettes nearby?` Артикль `a` исчезает, потому что `laundrettes` — множественное число. Лишняя буква `s` здесь показывает: на карте больше одной точки.",
+        "uk": "`There are laundrettes nearby.` — повідомлення про кілька місць. У питанні `are` переходить наперед: `Are there laundrettes nearby?` Артикль `a` зникає, бо `laundrettes` — множина. Зайва літера `s` тут показує: на карті більше однієї точки."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "На карте рядом отмечены несколько мест. Спросите о них.",
+          "uk": "На карті поруч позначено кілька місць. Запитайте про них."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-14:intro3:r1",
+              "text": "Are there laundrettes nearby?"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro3:r2",
+              "text": "Is there a laundrette nearby?"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro3:r3",
+              "text": "There are laundrettes nearby."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-14:intro3:r1",
+              "text": "Are there laundrettes nearby?"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro3:r2",
+              "text": "Is there a laundrette nearby?"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:intro3:r3",
+              "text": "There are laundrettes nearby."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На карте рядом отмечены несколько мест. Спросите о них.",
+          "uk": "На карті поруч позначено кілька місць. Запитайте про них."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "04551bac8aa09941b658978e118b3160531dcacf1dfe2b420b62affb8733f451"
+}

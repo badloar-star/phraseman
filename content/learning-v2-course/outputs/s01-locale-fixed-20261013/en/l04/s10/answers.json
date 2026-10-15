@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-10:i01",
+    "correctText": "hotel",
+    "correctResponseId": "en:lesson-04:session-10:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i02",
+    "correctText": "hotel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i03",
+    "correctText": "p1=hotel\np2=bank\np3=post office\np4=supermarket\np5=street\np6=dentist\np7=shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i04",
+    "correctText": "Is there a hotel near the library?",
+    "correctResponseId": "en:lesson-04:session-10:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i05",
+    "correctText": "Is there a hotel near the pharmacy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i06",
+    "correctText": "No, there is not.",
+    "correctResponseId": "en:lesson-04:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i07",
+    "correctText": "Is there a bank near the dentist?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i08",
+    "correctText": "Is there a post office near the supermarket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i09",
+    "correctText": "p1=playground\np2=bakery\np3=garden\np4=neighbourhood\np5=library\np6=building\np7=clinic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i10",
+    "correctText": "Is there a hotel near the garden?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i11",
+    "correctText": "Yes, there is.",
+    "correctResponseId": "en:lesson-04:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i12",
+    "correctText": "No, there isn't.",
+    "correctResponseId": null
+  }
+]

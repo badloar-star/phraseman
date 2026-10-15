@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "learning_v2_session_acceptance_receipt_v1",
+  "session": "en/l01/s12",
+  "courseSessionId": "en:lesson-01:session-12",
+  "state": "TEXT_CANONICAL",
+  "candidateRoot": "content/learning-v2-course/outputs/s12-review-fixed-private-20261015-v12",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s12-review-fixed-private-20261015-v12/content-receipt.json",
+  "candidateReceiptSha256": "315c1a6a2805920edb01eb6ae540f5a58fc3945a2a1532442b3e0e27f6c7e6b8",
+  "candidateBundleSha256": "e10d6dc1a99359d29755c4ec20af69c36cf16d6391659a794e57b0d1762f4ca3",
+  "candidateInventorySha256": "7ee4463c5a6b5e754e953072847c6bd0c85e32832d06cd836a03a14771202fe6",
+  "sourceFingerprint": "fda42c7340351c5abec8e951013187a9f5844d420d82fb2faaa1938aa3464b7f",
+  "deterministicGateReport": {
+    "path": "content/learning-v2-course/judgements/2026-10-15_s12_v12_deterministic_gates.current.json",
+    "sha256": "6a0fd1ce7633b79e06baa72a5c713dea60d06d1bc256ba512590fa0eefee141b",
+    "bytes": 1607
+  },
+  "reviewEvidence": [
+    {
+      "dimension": "blind_learner",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-15_s12_v12_blind_learner.current.json",
+      "artifactSha256": "04b8d0c2a399b160b42e08553c003b152fc88c1552a23c18f2b3b69f1296ab41",
+      "artifactBytes": 986,
+      "dispatchProvenance": {
+        "agent": "/root/activate_s11_green/s12_blind_v12",
+        "configuredModel": "gpt-6-luna"
+      }
+    },
+    {
+      "dimension": "language_pedagogy_locale",
+      "verdict": "PASS",
+      "artifactPath": "content/learning-v2-course/judgements/2026-10-15_s12_v12_language_pedagogy_locale.current.json",
+      "artifactSha256": "f4db64d674fb6d9bc2b9a5103d98d73052c52652f2c1b139cf8cd60ccd5f3a14",
+      "artifactBytes": 794,
+      "dispatchProvenance": {
+        "agent": "/root/activate_s11_green/s12_locale_v12",
+        "configuredModel": "gpt-6-luna"
+      }
+    }
+  ],
+  "localeEvidence": {
+    "path": "content/learning-v2-course/outputs/s12-review-fixed-private-20261015-v12/source-snapshot/content/learning-v2-course/sessions/en/l01/s12/locales_batch.md",
+    "sha256": "d11b589177ef4e61011e190c4c1a1db7c64f912abb4746e958e554843fef74b5",
+    "bytes": 12289
+  },
+  "audioTechnicalEvidence": null,
+  "semanticAudioVerified": false,
+  "releaseAuthority": false,
+  "immutableContentOnly": true
+}

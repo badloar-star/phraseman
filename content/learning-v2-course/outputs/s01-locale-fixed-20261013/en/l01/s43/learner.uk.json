@@ -1,0 +1,1013 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i01:audio",
+          "transcript": "bad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-43:i01:r1",
+            "targetText": "bad",
+            "meaningByLocale": {
+              "ru": "«плохой, скверный». Не катастрофа, просто так себе: погода, кофе, настроение.",
+              "uk": "«поганий, кепський». Не катастрофа, просто так собі: погода, кава, настрій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bad",
+          "definitionByLocale": {
+            "ru": "«плохой, скверный». Не катастрофа, просто так себе: погода, кофе, настроение.",
+            "uk": "«поганий, кепський». Не катастрофа, просто так собі: погода, кава, настрій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-43:i02:r1",
+          "text": "bad"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i02:r2",
+          "text": "bed"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i02:r3",
+          "text": "bag"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i02:audio",
+          "transcript": "bad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-43:i02:r1",
+            "targetText": "bad",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i02:r2",
+            "targetText": "bed",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i02:r3",
+            "targetText": "bag",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — bad",
+            "feedbackByLocale": {
+              "ru": "Это «кровать». В `bad` рот открыт шире.",
+              "uk": "Це «ліжко». У `bad` рот відкритий ширше."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — bad",
+            "feedbackByLocale": {
+              "ru": "«Сумка». Разница в последнем звуке: `bad` кончается на «д».",
+              "uk": "«Сумка». Різниця в останньому звуці: `bad` закінчується на «д»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i02:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `bad`: оно звучит в аудио и значит «плохой».",
+              "uk": "Обрано слово `bad`: воно звучить в аудіо й означає «поганий»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — «ми готові»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — «ми готові»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We're ready.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «мы готовы»",
+          "uk": "Складіть фразу — «ми готові»"
+        },
+        "orderedTokens": [
+          "We're",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-43:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «мы готовы»",
+            "feedbackByLocale": {
+              "ru": "она уже спрятана внутри `we're`",
+              "uk": "це слово вже сховане всередині `we're`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — real",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — real",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i04:audio",
+          "transcript": "real"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-43:i04:r1",
+            "targetText": "real",
+            "meaningByLocale": {
+              "ru": "«настоящий». То, что существует на самом деле, а не выдумка и не подделка.",
+              "uk": "«справжній». Те, що існує насправді, а не вигадка і не підробка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "real",
+          "definitionByLocale": {
+            "ru": "«настоящий». То, что существует на самом деле, а не выдумка и не подделка.",
+            "uk": "«справжній». Те, що існує насправді, а не вигадка і не підробка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-43:i05:r1",
+          "text": "real"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i05:r2",
+          "text": "rail"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i05:r3",
+          "text": "reel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i05:audio",
+          "transcript": "real"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-43:i05:r1",
+            "targetText": "real",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i05:r2",
+            "targetText": "rail",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i05:r3",
+            "targetText": "reel",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — real",
+            "feedbackByLocale": {
+              "ru": "«Рельс». Звучит «рэйл» — с «эй» в середине. В `real` слышно «ри-эл».",
+              "uk": "«Рейка». Звучить «рейл» — з «ей» посередині. У `real` чути «рі-ел»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — real",
+            "feedbackByLocale": {
+              "ru": "«Катушка». Один долгий «и». В `real` два звука: «ри-эл».",
+              "uk": "«Котушка». Один довгий «і». У `real` два звуки: «рі-ел»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i05:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `real`: в аудио слышно `real`, «настоящий».",
+              "uk": "Обрано слово `real`: в аудіо чути `real`, «справжній»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — true",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — true",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i06:audio",
+          "transcript": "true"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-43:i06:r1",
+            "targetText": "true",
+            "meaningByLocale": {
+              "ru": "«правда, правдиво». Так и есть, никто не приврал.",
+              "uk": "«правда, правдиво». Так і є, ніхто не прибрехав."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "true",
+          "definitionByLocale": {
+            "ru": "«правда, правдиво». Так и есть, никто не приврал.",
+            "uk": "«правда, правдиво». Так і є, ніхто не прибрехав."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — приятель клянеться, що це не вигадка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-43:i07:r1",
+          "text": "true"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i07:r2",
+          "text": "bad"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i07:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — приятель клянеться, що це не вигадка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — приятель клянётся, что это не выдумка",
+          "uk": "Вставте слово — приятель клянеться, що це не вигадка"
+        },
+        "gappedTargetPhrase": "It's ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-43:i07:r1",
+            "text": "true"
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i07:r2",
+            "text": "bad"
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i07:r3",
+            "text": "ready"
+          }
+        ],
+        "testedDimension": "Вставте слово — приятель клянеться, що ц",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-43:i07:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — приятель клянеться, що це не вигадка",
+            "feedbackByLocale": {
+              "ru": "История не выдумана, значит она `true` — «правда».",
+              "uk": "Історія не вигадана, отже вона `true` — «правда»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — приятель клянеться, що ц",
+            "feedbackByLocale": {
+              "ru": "Это «плохой». Про «так и есть» — `true`.",
+              "uk": "Це «поганий». Про «так і є» — `true`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — приятель клянеться, що ц",
+            "feedbackByLocale": {
+              "ru": "«Готов», можно начинать. Про правдивость истории — `true`.",
+              "uk": "«Готовий», можна починати. Про правдивість історії — `true`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — кілька колег за сусіднім столом усіх розсмішили",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — кілька колег за сусіднім столом усіх розсмішили",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are funny.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "funny"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-43:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — несколько коллег за сос",
+            "feedbackByLocale": {
+              "ru": "`is` не подходит к `They`: нужно `They are funny.`",
+              "uk": "`is` не підходить до `They`: потрібно `They are funny`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть — «вони не запізнюються»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — «вони не запізнюються»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i09:audio",
+          "transcript": "They aren't late."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They aren't late.",
+        "orderedTokens": [
+          "They",
+          "aren't",
+          "late"
+        ],
+        "authoredDistractorTokens": [
+          "isn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-43:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «они не опаздыва",
+            "feedbackByLocale": {
+              "ru": "`isn't` не подходит к `They`: в аудио `They aren't late.`",
+              "uk": "`isn't` не підходить до `They`: в аудіо `They aren't late`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — приятель боїться, що історія вигадана. Заспокойте: вона справжня",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-43:i10:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i10:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i10:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — приятель боїться, що історія вигадана. Заспокойте: вона справжня",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — приятель боится, что история выдумана. Успокойте: она настоящая",
+          "uk": "Вставте слово — приятель боїться, що історія вигадана. Заспокойте: вона справжня"
+        },
+        "gappedTargetPhrase": "It ___ real.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-43:i10:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i10:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i10:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставте слово — приятель боїться, що іст",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-43:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — приятель боїться, що історія вигадана. Заспокойте: вона справжня",
+            "feedbackByLocale": {
+              "ru": "С `it` говорят `is`: `It is real.`",
+              "uk": "З `it` кажуть `is`: `It is real`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — приятель боїться, що іст",
+            "feedbackByLocale": {
+              "ru": "`are` — про нескольких. Про одну вещь — `is`.",
+              "uk": "`are` — про кількох. Про одну річ — `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — приятель боїться, що іст",
+            "feedbackByLocale": {
+              "ru": "`am` идёт только с `I`. Про вещь — `is`.",
+              "uk": "`am` іде тільки з `I`. Про річ — `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть — одна колега всіх розсмішила",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — одна колега всіх розсмішила",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i11:audio",
+          "transcript": "She is funny."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is funny.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "funny"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — «ми не запізнюємося»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — «ми не запізнюємося»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We aren't late.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «мы не опаздываем»",
+          "uk": "Складіть фразу — «ми не запізнюємося»"
+        },
+        "orderedTokens": [
+          "We",
+          "aren't",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть — приятель помилково каже, що ви неправі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — приятель помилково каже, що ви неправі",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i13:audio",
+          "transcript": "I am not wrong."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not wrong.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "wrong"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — приятель називає вашу відповідь хибною, а вона правильна",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-43:i14:r1",
+          "text": "wrong"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i14:r2",
+          "text": "true"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i14:r3",
+          "text": "real"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — приятель називає вашу відповідь хибною, а вона правильна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — приятель называет ваш ответ ошибочным, а он верный",
+          "uk": "Вставте слово — приятель називає вашу відповідь хибною, а вона правильна"
+        },
+        "gappedTargetPhrase": "You aren't ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-43:i14:r1",
+            "text": "wrong"
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i14:r2",
+            "text": "true"
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i14:r3",
+            "text": "real"
+          }
+        ],
+        "testedDimension": "Вставте слово — приятель називає вашу ві",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-43:i14:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — приятель називає вашу відповідь хибною, а вона правильна",
+            "feedbackByLocale": {
+              "ru": "Верный ответ: `You aren't wrong.` — «ты не ошибаешься».",
+              "uk": "Правильна відповідь: `You aren't wrong` — «ти не помиляєшся»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — приятель називає вашу ві",
+            "feedbackByLocale": {
+              "ru": "«Правда» — про историю, а не про того, кто в споре прав.",
+              "uk": "«Правда» — про історію, а не про того, хто має рацію в суперечці."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — приятель називає вашу ві",
+            "feedbackByLocale": {
+              "ru": "«Настоящий» — про вещи и истории, а не про правоту в споре.",
+              "uk": "«Справжній» — про речі й історії, а не про правоту в суперечці."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-43:i15:r1",
+          "text": "ok"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i15:r2",
+          "text": "oak"
+        },
+        {
+          "responseId": "en:lesson-01:session-43:i15:r3",
+          "text": "old"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i15:audio",
+          "transcript": "ok"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-43:i15:r1",
+            "targetText": "ok",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i15:r2",
+            "targetText": "oak",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i15:r3",
+            "targetText": "old",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-43:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — ok",
+            "feedbackByLocale": {
+              "ru": "«Дуб». Один слог вместо двух: `ok` — «оу-кей».",
+              "uk": "«Дуб». Один склад замість двох: `ok` — «оу-кей»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — ok",
+            "feedbackByLocale": {
+              "ru": "«Старый». Кончается на «д», а `ok` — на «й».",
+              "uk": "«Старий». Закінчується на «д», а `ok` — на «й»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-43:i15:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано `ok`: в аудио два звука — `o-k`.",
+              "uk": "Обрано `ok`: в аудіо два звуки — `o-k`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте пари",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте пари",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-43:i16:p1",
+            "target": "bad",
+            "meaningByLocale": {
+              "ru": "плохой",
+              "uk": "поганий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-43:i16:p2",
+            "target": "real",
+            "meaningByLocale": {
+              "ru": "настоящий",
+              "uk": "справжній"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-43:i16:p3",
+            "target": "true",
+            "meaningByLocale": {
+              "ru": "правда",
+              "uk": "правда"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-43:i16:p4",
+            "target": "ok",
+            "meaningByLocale": {
+              "ru": "нормально",
+              "uk": "нормально"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bad",
+          "real",
+          "true",
+          "ok"
+        ],
+        "rightColumn": [
+          "плохой",
+          "настоящий",
+          "правда",
+          "нормально"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i17:s01:audio",
+          "transcript": "We're ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We're ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i17:s02:audio",
+          "transcript": "They aren't late."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They aren't late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i17:s03:audio",
+          "transcript": "It isn't bad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It isn't bad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bcfce2534f9fced55a86e4d1ed209c143d6799e9d1f290b0a774fce53728a00e"
+}

@@ -1,0 +1,441 @@
+import {
+  LEARNING_V2_ACTIVE_MODE_FAMILIES_V2,
+  type LearningV2ModeFamilyV2,
+  type LearningV2SessionRoleV2,
+  type LearningV2SupportV2,
+} from "../contracts/course_blueprint_v2";
+import { LEARNING_V2_ENGLISH_CHAPTER_BLUEPRINTS_V2 } from "./chapter_blueprints_en_v2";
+import { LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2 } from "./grammar_operations_en_v2";
+import {
+  LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2,
+  LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2,
+} from "./lexical_progression_en_v2";
+import { LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2 } from "./session_lexical_assignments_en_v2";
+
+export type LearningV2EnglishIntroPlanItemV2 = Readonly<{
+  slot: 1 | 2 | 3;
+  purpose: "concept" | "formula" | "trap";
+  operationIds: readonly string[];
+  testedDimension: "meaning" | "form" | "diagnostic_error";
+  learnerCopyStatus: "REQUIRES_MANUAL_AUTHORING";
+}>;
+
+export type LearningV2EnglishActivityPlanItemV2 = Readonly<{
+  slot: number;
+  modeFamily: LearningV2ModeFamilyV2;
+  operationIds: readonly string[];
+  targetLexicalSenseIds: readonly string[];
+  canonicalExample: string;
+  support: LearningV2SupportV2;
+  independentEvidence: boolean;
+  scored: boolean;
+  learnerPayloadStatus: "REQUIRES_MANUAL_AUTHORING";
+}>;
+
+export type LearningV2EnglishExactSessionPacketV2 = Readonly<{
+  sessionId: `lesson-${string}:session:${string}`;
+  absoluteSessionOrdinal: number;
+  lessonOrdinal: number;
+  chapterOrdinal: 1 | 2 | 3 | 4 | 5 | 6 | 7;
+  sessionOrdinal: number;
+  sessionWithinChapter: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  role: LearningV2SessionRoleV2;
+  grammarOperationIds: readonly string[];
+  reviewOperationIds: readonly string[];
+  prerequisiteSessionIds: readonly string[];
+  learningDeltaRu: string;
+  phraseFrames: readonly string[];
+  forbiddenOperationIds: readonly string[];
+  newLexicalSenseIds: readonly string[];
+  retrievalLexicalSenseIds: readonly string[];
+  lexicalPlanRu: string;
+  canonicalExamples: readonly string[];
+  introPlan: readonly LearningV2EnglishIntroPlanItemV2[];
+  activityPlan: readonly LearningV2EnglishActivityPlanItemV2[];
+  independentProbe: Readonly<{
+    changedContextRequired: true;
+    copiedTrainingPromptForbidden: true;
+    support: "minimal" | "none";
+    trainingPromptSignature: string;
+    probePromptSignature: string;
+  }>;
+  sourceEvidenceRefs: readonly string[];
+  learnerFacingAuthoringStatus: "PLANNED_NOT_AUTHORED";
+}>;
+
+const SESSION_ROLES = Object.freeze([
+  "introduce_grammar",
+  "introduce_or_guided_extension",
+  "introduce_or_diagnostic_contrast",
+  "guided_application",
+  "diagnostic_repair",
+  "listening_retrieval",
+  "spoken_production",
+  "checkpoint",
+] as const satisfies readonly LearningV2SessionRoleV2[]);
+
+const LEARNING_DELTAS_RU = Object.freeze([
+  "Впервые связать точный смысл с одной prerequisite-safe грамматической операцией.",
+  "Применить уже объяснённую операцию с меньшей опорой и изменённым лексическим слотом.",
+  "Отличить целевую операцию от ближайшей уже знакомой формы по одной диагностической подсказке.",
+  "Самостоятельно выбрать и построить форму в новом бытовом контексте.",
+  "Распознать типичную ошибку, исправить её и объяснить решающий признак.",
+  "Извлечь знакомую грамматику на слух без показа готового target-текста.",
+  "Произнести собственный короткий ответ по знакомой операции без единственного блокирующего score.",
+  "Доказать перенос изученного review-набора в изменённой ситуации без новой грамматики.",
+] as const);
+
+const MODE_SEQUENCE: readonly LearningV2ModeFamilyV2[] = Object.freeze([
+  "phrase_builder",
+  "listen_choose",
+  "context_gap_grammar",
+  "speed_match",
+  "listen_build_dictation",
+  "phrase_builder",
+  "scripted_repeat_compare",
+  "context_gap_grammar",
+  "listen_choose",
+  "speed_match",
+  "listen_build_dictation",
+  "phrase_builder",
+  "scripted_repeat_compare",
+  "context_gap_grammar",
+  "listen_choose",
+  "speed_match",
+  "scripted_repeat_compare",
+]);
+
+const SUPPORT_SEQUENCE: readonly LearningV2SupportV2[] = Object.freeze([
+  "maximum",
+  "high",
+  "high",
+  "medium",
+  "medium",
+  "medium",
+  "medium",
+  "low",
+  "low",
+  "low",
+  "low",
+  "minimal",
+  "minimal",
+  "minimal",
+  "minimal",
+  "none",
+  "none",
+]);
+
+if (new Set(MODE_SEQUENCE).size !== LEARNING_V2_ACTIVE_MODE_FAMILIES_V2.length) {
+  throw new Error("learning_v2_exact_packets_mode_sequence_incomplete");
+}
+
+const operationById = new Map(
+  LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2.map((operation) => [operation.id, operation]),
+);
+const lexicalAssignmentBySessionId = new Map(
+  LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2.map((assignment) => [
+    assignment.sessionId,
+    assignment,
+  ]),
+);
+
+const sessionId = (lessonOrdinal: number, sessionOrdinal: number): `lesson-${string}:session:${string}` =>
+  `lesson-${String(lessonOrdinal).padStart(2, "0")}:session:${String(sessionOrdinal).padStart(2, "0")}`;
+
+const unique = (values: readonly string[]): readonly string[] => Object.freeze([...new Set(values)]);
+
+const introductionSessionByOperationId = new Map<string, string>();
+for (const chapter of LEARNING_V2_ENGLISH_CHAPTER_BLUEPRINTS_V2) {
+  const chapterFirstSessionOrdinal = ((chapter.chapterOrdinal - 1) * 8) + 1;
+  for (const operationId of chapter.newOperationIds) {
+    introductionSessionByOperationId.set(
+      operationId,
+      sessionId(chapter.lessonOrdinal, chapterFirstSessionOrdinal),
+    );
+  }
+}
+
+const normalizedWords = (value: string): string =>
+  ` ${value.toLowerCase().replace(/[^a-z]+/g, " ").trim()} `;
+
+const thirdPersonSingular = (verb: string): string => {
+  if (verb === "have") return "has";
+  if (/[^aeiou]y$/.test(verb)) return `${verb.slice(0, -1)}ies`;
+  if (/(?:s|x|z|ch|sh|o)$/.test(verb)) return `${verb}es`;
+  return `${verb}s`;
+};
+
+const PRESENT_PARTICIPLE_OVERRIDES = new Map<string, string>([
+  ["queue", "queuing"],
+  ["shiver", "shivering"],
+  ["wander", "wandering"],
+  ["murmur", "murmuring"],
+  ["mutter", "muttering"],
+  ["garden", "gardening"],
+  ["water", "watering"],
+  ["snorkel", "snorkeling"],
+  ["crochet", "crocheting"],
+  ["journal", "journaling"],
+]);
+
+const presentParticiple = (verb: string): string => {
+  const override = PRESENT_PARTICIPLE_OVERRIDES.get(verb);
+  if (override) return override;
+  if (/ie$/.test(verb)) return `${verb.slice(0, -2)}ying`;
+  if (/[^aeiou]e$/.test(verb) && !/(?:ee|ye)$/.test(verb)) {
+    return `${verb.slice(0, -1)}ing`;
+  }
+  // The bounded CVC rule covers the ordinary present-continuous examples in
+  // this course (dig→digging, clap→clapping) without treating every final
+  // consonant as a doubled spelling pattern.
+  if (/[^aeiou][aeiou][^aeiouwxy]$/.test(verb) && verb.length >= 3) {
+    return `${verb}${verb.at(-1)}ing`;
+  }
+  return `${verb}ing`;
+};
+
+const regularPast = (verb: string): string => {
+  if (/e$/.test(verb)) return `${verb}d`;
+  if (/[^aeiou]y$/.test(verb)) return `${verb.slice(0, -1)}ied`;
+  if (/[^aeiou][aeiou][^aeiouwxy]$/.test(verb) && verb.length >= 3) {
+    return `${verb}${verb.at(-1)}ed`;
+  }
+  return `${verb}ed`;
+};
+
+const IRREGULAR_PAST_FORMS = new Map<string, string>([
+  ["choose", "chose"],
+  ["grow", "grew"],
+  ["hide", "hid"],
+  ["rise", "rose"],
+  ["shake", "shook"],
+  ["steal", "stole"],
+  ["throw", "threw"],
+]);
+
+export function learningV2EnglishLexicalSenseOccursInExamplesV2(
+  english: string,
+  partOfSpeech: string,
+  examples: readonly string[],
+): boolean {
+  const normalizedEnglish = english.toLowerCase().replace(/[^a-z]+/g, " ").trim();
+  if (!normalizedEnglish) return false;
+  const corpus = normalizedWords(examples.join(" "));
+  if (corpus.includes(` ${normalizedEnglish} `)) return true;
+
+  // A lexical sense is stored as a lemma. The approved grammar operations may
+  // surface that same verb as a regular third-person form or a present
+  // participle, or a regular past form; each is lexical grounding, not a
+  // second sense.
+  return partOfSpeech === "verb" && !normalizedEnglish.includes(" ")
+    ? [
+      thirdPersonSingular(normalizedEnglish),
+      presentParticiple(normalizedEnglish),
+      regularPast(normalizedEnglish),
+      IRREGULAR_PAST_FORMS.get(normalizedEnglish),
+    ].filter((form): form is string => Boolean(form))
+      .some((form) => corpus.includes(` ${form} `))
+    : false;
+}
+
+function canonicalExamplesForPacket(
+  operationIds: readonly string[],
+  preferredExamples: readonly string[],
+  newLexicalSenseIds: readonly string[],
+): readonly string[] {
+  const operationExamples = unique(operationIds.flatMap((operationId) => {
+    const operation = operationById.get(operationId);
+    return operation
+      ? [...operation.positiveExamples, ...operation.canonicalLexicalExamples]
+      : [];
+  })).filter((example) => /[.!?]$/u.test(example.trim()));
+  const groundingExamples = unique(newLexicalSenseIds.flatMap((senseId) => {
+    const sense = LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2.find(
+      (candidate) => candidate.id === senseId,
+    );
+    if (!sense) return [];
+    const groundingExample = operationExamples.find((example) =>
+      learningV2EnglishLexicalSenseOccursInExamplesV2(
+        sense.english,
+        sense.partOfSpeech,
+        [example],
+      )
+    );
+    return groundingExample ? [groundingExample] : [];
+  }));
+
+  // The exact manual context remains authoritative and first. Grammar-owned
+  // contexts only fill the packet to its required 2–4 examples; for an
+  // auto-ledger sense, a context containing that sense is selected first.
+  return unique([
+    ...preferredExamples,
+    ...groundingExamples,
+    ...operationExamples,
+  ]).slice(0, 4);
+}
+
+function phraseFrames(operationIds: readonly string[]): readonly string[] {
+  return unique(operationIds.flatMap((operationId) => operationById.get(operationId)?.formBoundary ?? []))
+    .slice(0, 4);
+}
+
+function sourceEvidenceRefs(operationIds: readonly string[], chapterRefs: readonly string[]): readonly string[] {
+  return unique([
+    ...chapterRefs,
+    ...operationIds.flatMap((operationId) => operationById.get(operationId)?.sourceEvidenceRefs ?? []),
+  ]);
+}
+
+function introPlan(operationIds: readonly string[]): readonly LearningV2EnglishIntroPlanItemV2[] {
+  return Object.freeze([
+    Object.freeze({
+      slot: 1 as const,
+      purpose: "concept" as const,
+      operationIds,
+      testedDimension: "meaning" as const,
+      learnerCopyStatus: "REQUIRES_MANUAL_AUTHORING" as const,
+    }),
+    Object.freeze({
+      slot: 2 as const,
+      purpose: "formula" as const,
+      operationIds,
+      testedDimension: "form" as const,
+      learnerCopyStatus: "REQUIRES_MANUAL_AUTHORING" as const,
+    }),
+    Object.freeze({
+      slot: 3 as const,
+      purpose: "trap" as const,
+      operationIds,
+      testedDimension: "diagnostic_error" as const,
+      learnerCopyStatus: "REQUIRES_MANUAL_AUTHORING" as const,
+    }),
+  ]);
+}
+
+function activityPlan(
+  operationIds: readonly string[],
+  examples: readonly string[],
+  lexicalSenseIds: readonly string[],
+): readonly LearningV2EnglishActivityPlanItemV2[] {
+  return Object.freeze(MODE_SEQUENCE.map((modeFamily, index) => Object.freeze({
+    slot: index + 4,
+    modeFamily,
+    operationIds,
+    targetLexicalSenseIds: lexicalSenseIds,
+    canonicalExample: examples[index % examples.length] ?? "[MANUAL EXAMPLE REQUIRED]",
+    support: SUPPORT_SEQUENCE[index],
+    independentEvidence: index >= 15,
+    scored: index >= 3,
+    learnerPayloadStatus: "REQUIRES_MANUAL_AUTHORING" as const,
+  })));
+}
+
+function lexicalSenseIdsAt(
+  absoluteSessionOrdinal: number,
+  kind: "new" | "retrieval",
+): readonly string[] {
+  if (kind === "new") {
+    return Object.freeze(
+      LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2
+        .filter((sense) => sense.introductionAbsoluteSessionOrdinal === absoluteSessionOrdinal)
+        .map((sense) => sense.id),
+    );
+  }
+  return unique(
+    LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2
+      .filter((edge) => edge.targetAbsoluteSessionOrdinal === absoluteSessionOrdinal)
+      .map((edge) => edge.senseId),
+  );
+}
+
+export const LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2: readonly LearningV2EnglishExactSessionPacketV2[] = Object.freeze(
+  LEARNING_V2_ENGLISH_CHAPTER_BLUEPRINTS_V2.flatMap((chapter) =>
+    SESSION_ROLES.map((defaultRole, sessionIndex) => {
+      const sessionWithinChapter = (sessionIndex + 1) as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+      const sessionOrdinal = ((chapter.chapterOrdinal - 1) * 8) + sessionWithinChapter;
+      const absoluteSessionOrdinal = ((chapter.lessonOrdinal - 1) * 56) + sessionOrdinal;
+      const introducesGrammar = sessionWithinChapter === 1 && chapter.newOperationIds.length > 0;
+      const role: LearningV2SessionRoleV2 =
+        sessionWithinChapter === 1 && !introducesGrammar ? "guided_application" : defaultRole;
+      const grammarOperationIds = introducesGrammar
+        ? Object.freeze([...chapter.newOperationIds])
+        : Object.freeze([]);
+      const reviewOperationIds = introducesGrammar
+        ? Object.freeze([])
+        : unique([...chapter.reviewOperationIds, ...chapter.newOperationIds]);
+      const focusOperationIds = grammarOperationIds.length > 0
+        ? grammarOperationIds
+        : reviewOperationIds;
+      const exactSessionId = sessionId(chapter.lessonOrdinal, sessionOrdinal);
+      const lexicalAssignment = lexicalAssignmentBySessionId.get(exactSessionId);
+      const newLexicalSenseIds = lexicalAssignment
+        ? Object.freeze(lexicalAssignment.newSenses.map((sense) => sense.id))
+        : role === "checkpoint"
+          ? Object.freeze([])
+          : lexicalSenseIdsAt(absoluteSessionOrdinal, "new");
+      const retrievalLexicalSenseIds = unique([
+        ...(lexicalAssignment?.retrievalSenseIds ?? []),
+        ...lexicalSenseIdsAt(absoluteSessionOrdinal, "retrieval"),
+      ]);
+      const groundedLexicalSenseIds = unique([
+        ...newLexicalSenseIds,
+        ...retrievalLexicalSenseIds,
+      ]);
+      const lexicalGroundingOperationIds = lexicalAssignment
+        ? [lexicalAssignment.grammarOperationId]
+        : newLexicalSenseIds.flatMap((senseId) => {
+          const sense = LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2.find(
+            (candidate) => candidate.id === senseId,
+          );
+          return sense ? [sense.groundingOperationId] : [];
+        });
+      const examples = canonicalExamplesForPacket(
+        unique([...lexicalGroundingOperationIds, ...focusOperationIds]),
+        lexicalAssignment?.canonicalExamples ?? [],
+        newLexicalSenseIds,
+      );
+      const prerequisiteSessionIds = unique(
+        focusOperationIds.flatMap((operationId) =>
+          (operationById.get(operationId)?.prerequisiteOperationIds ?? [])
+            .map((prerequisiteId) => introductionSessionByOperationId.get(prerequisiteId))
+            .filter((value): value is string => value !== undefined),
+        ),
+      );
+
+      return Object.freeze({
+        sessionId: exactSessionId,
+        absoluteSessionOrdinal,
+        lessonOrdinal: chapter.lessonOrdinal,
+        chapterOrdinal: chapter.chapterOrdinal,
+        sessionOrdinal,
+        sessionWithinChapter,
+        role,
+        grammarOperationIds,
+        reviewOperationIds,
+        prerequisiteSessionIds,
+        learningDeltaRu: LEARNING_DELTAS_RU[sessionIndex],
+        phraseFrames: phraseFrames(focusOperationIds),
+        forbiddenOperationIds: chapter.prohibitedOperationIds,
+        newLexicalSenseIds,
+        retrievalLexicalSenseIds,
+        lexicalPlanRu: newLexicalSenseIds.length > 0
+          ? "Новые senses вводятся только внутри канонических примеров текущей грамматики; затем планируются changed-context retrieval edges."
+          : retrievalLexicalSenseIds.length > 0
+            ? "Новых senses нет: знакомая лексика извлекается в изменённом контексте."
+            : "Новых senses нет: используются только уже известные слова, необходимые для чистой проверки грамматики.",
+        canonicalExamples: examples,
+        introPlan: introPlan(focusOperationIds),
+        activityPlan: activityPlan(focusOperationIds, examples, groundedLexicalSenseIds),
+        independentProbe: Object.freeze({
+          changedContextRequired: true as const,
+          copiedTrainingPromptForbidden: true as const,
+          support: role === "checkpoint" ? "none" as const : "minimal" as const,
+          trainingPromptSignature: `${exactSessionId}:training-context`,
+          probePromptSignature: `${exactSessionId}:changed-transfer-context`,
+        }),
+        sourceEvidenceRefs: sourceEvidenceRefs(focusOperationIds, chapter.sourceEvidenceRefs),
+        learnerFacingAuthoringStatus: "PLANNED_NOT_AUTHORED" as const,
+      });
+    }),
+  ),
+);

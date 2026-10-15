@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Маленькое слово перед названием",
+        "uk": "Маленьке слово перед назвою"
+      },
+      "bodyByLocale": {
+        "ru": "`a chair` — «стул». В полной фразе `It is a chair` («Это стул») маленькое `a` стоит перед названием одного предмета. По-русски хватает «Это стул», поэтому и в английском хочется сократить фразу до `It is chair`. Сэкономили одну букву — получили целую ошибку.",
+        "uk": "`a chair` — «стілець». У повній фразі `It is a chair` («Це стілець») маленьке `a` стоїть перед назвою одного предмета. Українською досить сказати «Це стілець», тож в англійській теж кортить скоротити до `It is chair`. Заощадили одну літеру — отримали цілу помилку."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, что вы достали. Ответьте полной фразой: «Это стул».",
+          "uk": "Друг запитує, що ви дістали. Відповідайте повною фразою: «Це стілець»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-01:intro1:r1",
+              "text": "It is a chair."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro1:r2",
+              "text": "It is chair."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro1:r3",
+              "text": "It a chair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-01:intro1:r1",
+              "text": "It is a chair."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro1:r2",
+              "text": "It is chair."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro1:r3",
+              "text": "It a chair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, что вы достали. Ответьте полной фразой: «Это стул».",
+          "uk": "Друг запитує, що ви дістали. Відповідайте повною фразою: «Це стілець»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Два маленьких слова в полной фразе",
+        "uk": "Два маленькі слова в повній фразі"
+      },
+      "bodyByLocale": {
+        "ru": "`a table` — «стол». Чтобы сказать «Это стол», соедините `It is` и `a table`: `It is a table`. В готовой фразе остаются оба маленьких слова, `is` и `a`: первое связывает `It` с названием, второе стоит перед `table`. Одно не заменяет другое.",
+        "uk": "`a table` — «стіл». Щоб сказати «Це стіл», поєднайте `It is` і `a table`: `It is a table`. У готовій фразі залишаються обидва маленькі слова: `is` з’єднує `It` із назвою, а `a` стоїть перед `table`. Одне слово не може працювати за двох."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы сняли упаковку со стола. Скажите другу полной фразой: «Это стол».",
+          "uk": "Ви зняли упаковку зі столу. Скажіть другові повною фразою: «Це стіл»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-01:intro2:r1",
+              "text": "It is a table."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro2:r2",
+              "text": "It is table."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro2:r3",
+              "text": "It am a table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-01:intro2:r1",
+              "text": "It is a table."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro2:r2",
+              "text": "It is table."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro2:r3",
+              "text": "It am a table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы сняли упаковку со стола. Скажите другу полной фразой: «Это стол».",
+          "uk": "Ви зняли упаковку зі столу. Скажіть другові повною фразою: «Це стіл»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Название или состояние",
+        "uk": "Назва чи стан"
+      },
+      "bodyByLocale": {
+        "ru": "`a lamp` — «лампа». Сравните: `It is a lamp` — «Это лампа», `It is ready` — «Она готова». В первой фразе вы называете предмет, во второй сообщаете о его состоянии. Поэтому в названии `a lamp` есть `a`, а перед одним словом `ready` оно не нужно.",
+        "uk": "`a lamp` — «лампа». Порівняйте: `It is a lamp` — «Це лампа», а `It is ready` — «Вона готова». У першій фразі ви називаєте річ, у другій кажете про її стан. Тому в назві `a lamp` є `a`, а перед самим словом `ready` воно не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на включённую вещь. Скажите полной фразой: «Это лампа».",
+          "uk": "Друг показує на ввімкнену річ. Скажіть повною фразою: «Це лампа»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-01:intro3:r1",
+              "text": "It is a lamp."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro3:r2",
+              "text": "It is lamp."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro3:r3",
+              "text": "It are a lamp."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-01:intro3:r1",
+              "text": "It is a lamp."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro3:r2",
+              "text": "It is lamp."
+            },
+            {
+              "responseId": "en:lesson-03:session-01:intro3:r3",
+              "text": "It are a lamp."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на включённую вещь. Скажите полной фразой: «Это лампа».",
+          "uk": "Друг показує на ввімкнену річ. Скажіть повною фразою: «Це лампа»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8a5cb2b52e4b1750ae22df04314601ff85dde5818588c4598bfb09eae2c74556"
+}

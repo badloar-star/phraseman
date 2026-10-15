@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "learning_v2_session_deterministic_gate_report_v1",
+  "sessionId": "en:lesson-01:session-04",
+  "candidateBundleSha256": "a154b2ad0b9cee08a7a38d7a758a0d8f5e990961d54507ffa8c6bf1ba4b8b2aa",
+  "contentReceiptSha256": "b9fea6332a22f6bd295625b2fca97d85197672071ca95ae997c77c15a6f97686",
+  "candidateInventorySha256": "220c20643c43ca76e3e07ffa38931280cdad73c571b6211df73c79818e81233b",
+  "sourceFingerprint": "1d2b12c9a02aa1aa3654c22cd36237bb49ca5b5893a0f15efeac245cbf26b73a",
+  "verdict": "PASS",
+  "gates": [
+    {
+      "id": "focused_regression_suite",
+      "verdict": "PASS",
+      "command": "node --test focused Learning V2 session-04 suites",
+      "exitCode": 0,
+      "tests": 65,
+      "failures": 0
+    },
+    {
+      "id": "receipt_inventory_and_bundle_rehash",
+      "verdict": "PASS",
+      "command": "independent content receipt, inventory and bundle rehash",
+      "exitCode": 0,
+      "files": 21,
+      "failures": 0
+    },
+    {
+      "id": "locale_projection_parity",
+      "verdict": "PASS",
+      "command": "RU/UK task, feedback and i17 projection equality checks",
+      "exitCode": 0,
+      "correctAnswerFeedbackRows": 0,
+      "introPagesPerLocale": 3,
+      "practiceInteractionsPerLocale": 21
+    },
+    {
+      "id": "audio_asset_integrity",
+      "verdict": "PASS",
+      "command": "global audio manifest mapping, byte/hash validation and ffprobe decode",
+      "exitCode": 0,
+      "transcripts": 7,
+      "voicesPerTranscript": 4,
+      "filesChecked": 28,
+      "failures": 0,
+      "semanticAudioVerified": false
+    }
+  ]
+}

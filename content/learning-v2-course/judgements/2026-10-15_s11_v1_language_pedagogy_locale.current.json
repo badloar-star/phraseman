@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "learning_v2_independent_review_v1",
+  "sessionId": "en:lesson-01:session-11",
+  "dimension": "language_pedagogy_locale",
+  "verdict": "PASS",
+  "findings": [],
+  "candidateBundleSha256": "1445fa85a7dc2eb496a574ec93c379f1f616019628bbb95fd7f6cb0a5b60c35d",
+  "contentReceiptSha256": "763585397f9fc1bf44c2ded41cd62ae17405c27371ceaffa020606173a9b2492",
+  "candidateInventorySha256": "7727d5907be25e14ad9e096b567d723e50d1145c2684261d782a0f36166967ce",
+  "sourceFingerprint": "008df004914edab6d237219fdf2e0d05b54759fa180d917dd5886e0cbef5c553",
+  "deterministicReportSha256": "f7a2a02ea69e6f5b3f965909a31a26350d551c1191132ba623525cde0db36105",
+  "audioReviewed": false,
+  "dispatchProvenance": {"agent":"/root/s11_locale_review_luna","configuredModel":"gpt-6-luna"}
+}

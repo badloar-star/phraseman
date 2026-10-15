@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "learning_v2_session_review_evidence_manifest_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "candidateRoot": "content/learning-v2-course/outputs/s02-d956-machine-20261015-v2",
+  "candidateBundleSha256": "7b08da7741de40a527ed93c45fb6e23848652aa624e32368582d81472e4dfbfa",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s02-d956-machine-20261015-v2/content-receipt.json",
+  "candidateReceiptInventorySha256": "e07c5bf32dd92e905509a32697a9ca22792de0f8dde017194fd507b5a3735889",
+  "requiredRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "eligibleRoles": [],
+  "missingRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "roles": [],
+  "textReviewComplete": false,
+  "releaseAuthority": false
+}

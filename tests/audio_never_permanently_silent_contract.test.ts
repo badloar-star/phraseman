@@ -286,6 +286,9 @@ describe('источники отказа звука объясняют прич
     const allowed = new Set([
       // Короткие UI-эффекты: свой слой (SoundDirector), намеренно микшируются.
       'modules/audio/expo_sfx_backend.ts',
+      // зачем (координатор 15.10): эффекты V2 — тот же класс, что expo_sfx_backend: короткие UI-звуки, намеренно микшируются, владение речью им не нужно
+      // (claimSpokenAudio остановил бы озвучку). Гейт речи/записи/выключения — в этом файле (isVoiceActive, isRecordingActive, onSilenceNeeded), см. тест ниже.
+      'modules/sound_v2/sound_v2_runtime.ts',
       // Фон и сцены празднования: собственная ambient-претензия и самоочистка.
       'modules/audio/celebrationBackgroundPlayer.ts',
       'modules/audio/celebrationScenePlayer.ts',
@@ -316,6 +319,18 @@ describe('источники отказа звука объясняют прич
     for (const root of ['app', 'components', 'hooks', 'modules']) walk(path.join(ROOT, root));
 
     expect(offenders).toEqual([]);
+  });
+
+  test('эффекты V2 уважают речь, запись и выключатель звуков (рантайм вне карты владения)', () => {
+    const runtime = read('modules', 'sound_v2', 'sound_v2_runtime.ts');
+    expect(runtime).toContain('getAudioActivitySnapshot().spokenActive');
+    expect(runtime).toContain('getAudioActivitySnapshot().recordingActive');
+    expect(runtime).toContain('effectsEnabled');
+    const bank = read('modules', 'sound_v2', 'sound_bank.ts');
+    expect(bank).toContain("this.skip(event, 'voice_active'");
+    expect(bank).toContain('isVoiceActive: () => rt().isVoiceActive()');
+    // эффекты не берут владение речью: иначе остановили бы озвучку
+    expect(runtime).not.toMatch(/claimSpokenAudio|acquireAudioActivity/);
   });
 
   test('ни одна аренда звука не берётся анонимно', () => {

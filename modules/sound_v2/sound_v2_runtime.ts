@@ -37,19 +37,50 @@ export function isRecordingActive(): boolean {
   return getAudioActivitySnapshot().recordingActive || getManagedAudioModeSnapshot().recordingActive;
 }
 
+// зачем (координатор 15.10, условие включения sound_v2): эффекты V2 не звучат поверх озвучки фраз (TTS) — те же правила, что у SoundArbiter:
+// пока идёт речь и ещё POST_VOICE_GAP_MS после неё эффект молчит. Владение речью эффектам не нужно (аренда голоса остановила бы саму озвучку),
+// поэтому рантайм только читает общую картину активности звука (audio_activity), как и для записи.
+export const POST_VOICE_GAP_MS = 250;
+let voiceWasActive = false;
+let voiceEndedAt = 0;
+
+/** Запоминает момент конца речи; зовётся при каждом чтении и из подписки на тишину. */
+function noteVoice(spokenActive: boolean, now: number): void {
+  if (voiceWasActive && !spokenActive) voiceEndedAt = now;
+  voiceWasActive = spokenActive;
+}
+
+export function isVoiceActive(now: number = Date.now()): boolean {
+  const spoken = getAudioActivitySnapshot().spokenActive;
+  noteVoice(spoken, now);
+  return spoken || now - voiceEndedAt < POST_VOICE_GAP_MS;
+}
+
+export function resetVoiceGateForTests(): void {
+  voiceWasActive = false;
+  voiceEndedAt = 0;
+}
+
 /** Тишина по требованию: выключили звуки или началась запись — банк гасит все играющие клипы сразу. */
-export function onSilenceNeeded(listener: (reason: 'effects_disabled' | 'quiet_recording') => void): () => void {
+export function onSilenceNeeded(listener: (reason: 'effects_disabled' | 'quiet_recording' | 'voice_active') => void): () => void {
   let effects = isEffectsEnabled();
   let recording = isRecordingActive();
+  let voice = getAudioActivitySnapshot().spokenActive;
+  noteVoice(voice, Date.now());
   const check = () => {
     const nextEffects = isEffectsEnabled();
     const nextRecording = isRecordingActive();
+    const nextVoice = getAudioActivitySnapshot().spokenActive;
+    noteVoice(nextVoice, Date.now());
+    const voiceOn = !voice && nextVoice;
+    voice = nextVoice;
     const effectsOff = effects && !nextEffects;
     const recordingOn = !recording && nextRecording;
     effects = nextEffects;
     recording = nextRecording;
     if (effectsOff) listener('effects_disabled');
     else if (recordingOn) listener('quiet_recording');
+    else if (voiceOn) listener('voice_active');
   };
   const unsubscribers = [
     subscribeSoundSettings(check),

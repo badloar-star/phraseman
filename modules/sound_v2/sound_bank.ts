@@ -54,6 +54,7 @@ export type SoundV2SkipReason =
   | 'flag_off'
   | 'effects_disabled'
   | 'quiet_recording'
+  | 'voice_active'
   | 'player_unavailable';
 
 export type SoundV2PlayResult = Readonly<{
@@ -93,6 +94,11 @@ export type SoundBankDeps = {
   isEffectsEnabled(): boolean;
   /** Тихий режим: идёт запись микрофона. */
   isQuiet(): boolean;
+  /**
+   * Звучит озвучка фразы (TTS) или с её конца прошло меньше паузы арбитра (250 мс). Эффекты V2 не звучат поверх речи — то же правило,
+   * что у SoundArbiter для старых эффектов. Нет зависимости → считаем, что речи нет.
+   */
+  isVoiceActive?(): boolean;
   rng: RandomSource;
   now(): number;
   setTimer(callback: () => void, ms: number): unknown;
@@ -104,7 +110,7 @@ export type SoundBankDeps = {
   /** Поддерживает ли платформа смену скорости воспроизведения (Android < 6 — нет). Нет зависимости → считаем, что да. */
   isRateSupported?(): boolean;
   /** Подписка на «пора замолчать» (звук выключили / началась запись). Возвращает отписку. */
-  onSilenceNeeded?(listener: (reason: 'effects_disabled' | 'quiet_recording') => void): () => void;
+  onSilenceNeeded?(listener: (reason: 'effects_disabled' | 'quiet_recording' | 'voice_active') => void): () => void;
 };
 
 type Playback = {
@@ -257,6 +263,8 @@ export class SoundBank {
     }
     if (!this.deps.isEffectsEnabled()) return this.skip(event, 'effects_disabled', 'uiSounds=false');
     if (this.deps.isQuiet()) return this.skip(event, 'quiet_recording', 'recordingActive=true');
+    // зачем (координатор 15.10, условие включения sound_v2): эффект не перебивает озвучку фраз и не звучит поверх неё
+    if (this.deps.isVoiceActive?.()) return this.skip(event, 'voice_active', 'spokenActive=true');
 
     const def = SOUND_V2_CATALOG[event];
     const step = options.step !== undefined ? this.normalizeStep(def, options.step) : this.streaks.get(event);
@@ -320,7 +328,7 @@ export class SoundBank {
   }
 
   private canPlayNow(): boolean {
-    return !this.disposed && this.deps.isFlagEnabled() && this.deps.isEffectsEnabled() && !this.deps.isQuiet();
+    return !this.disposed && this.deps.isFlagEnabled() && this.deps.isEffectsEnabled() && !this.deps.isQuiet() && !this.deps.isVoiceActive?.();
   }
 
   private ensureSilenceSubscription(): void {
@@ -608,6 +616,7 @@ function defaultDeps(): SoundBankDeps {
     isFlagEnabled: isSoundV2Enabled,
     isEffectsEnabled: () => rt().isEffectsEnabled(),
     isQuiet: () => rt().isRecordingActive(),
+    isVoiceActive: () => rt().isVoiceActive(),
     isRateSupported: () => rt().isRateSupported(),
     rng: Math.random,
     now: Date.now,

@@ -41,12 +41,12 @@ type Harness = {
   players: FakePlayer[];
   played: string[];
   deps: SoundBankDeps;
-  state: { flag: boolean; effects: boolean; quiet: boolean; createFails: number; asyncSeek: boolean; noStatus: boolean };
+  state: { flag: boolean; effects: boolean; quiet: boolean; voice: boolean; createFails: number; asyncSeek: boolean; noStatus: boolean };
   logs: string[];
   warns: string[];
   finishAll(): void;
   advanceTime(ms: number): void;
-  silence?: (reason: 'effects_disabled' | 'quiet_recording') => void;
+  silence?: (reason: 'effects_disabled' | 'quiet_recording' | 'voice_active') => void;
 };
 
 function makeHarness(rng: () => number = mulberry32(1), maxPlayers = SOUND_V2_MAX_PLAYERS): Harness {
@@ -54,7 +54,7 @@ function makeHarness(rng: () => number = mulberry32(1), maxPlayers = SOUND_V2_MA
   const played: string[] = [];
   const logs: string[] = [];
   const warns: string[] = [];
-  const state = { flag: true, effects: true, quiet: false, createFails: 0, asyncSeek: false, noStatus: false };
+  const state = { flag: true, effects: true, quiet: false, voice: false, createFails: 0, asyncSeek: false, noStatus: false };
   let nowMs = 1_000;
   let timerSeq = 0;
   const timers = new Map<number, { at: number; fn: () => void }>();
@@ -103,6 +103,7 @@ function makeHarness(rng: () => number = mulberry32(1), maxPlayers = SOUND_V2_MA
     isFlagEnabled: () => state.flag,
     isEffectsEnabled: () => state.effects,
     isQuiet: () => state.quiet,
+    isVoiceActive: () => state.voice,
     rng,
     now: () => nowMs,
     setTimer: (fn, ms) => {
@@ -364,6 +365,24 @@ describe('SoundBank: флаг, переключатель звука, тихий
     expect(r).toMatchObject({ played: false, reason: 'quiet_recording' });
     expect(h.bank.streaks.get('correct')).toBe(1);
     expect(h.players).toHaveLength(0);
+  });
+
+  it('звучит озвучка фразы — эффект молчит и пишет причину voice_active; речь кончилась — играет', () => {
+    const h = makeHarness();
+    h.state.voice = true;
+    const r = h.bank.playEvent('correct');
+    expect(r).toMatchObject({ played: false, reason: 'voice_active' });
+    expect(h.players).toHaveLength(0);
+    h.state.voice = false;
+    expect(h.bank.playEvent('correct').played).toBe(true);
+  });
+
+  it('начало речи (сигнал voice_active) гасит играющий эффект', () => {
+    const h = makeHarness();
+    h.bank.playEvent('lesson_done');
+    const pause = jest.spyOn(h.players[0], 'pause');
+    h.silence?.('voice_active');
+    expect(pause).toHaveBeenCalledTimes(1);
   });
 
   it('сигнал «замолчать» гасит играющее (pause + освобождение слота), плееры остаются в пуле', () => {

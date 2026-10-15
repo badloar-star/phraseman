@@ -309,6 +309,8 @@ export type DevStateRequest = Readonly<{
   lv2voice?: number | 'off';
   /** [WINBACK-FREEZE]: гейт winback считает, что человек не заходил N дней (3 / 8 / 30) или снять. Только память. */
   winbackaway?: '3' | '8' | '30' | 'off';
+  /** D193 (полная проверка 15.10): окно «С возвращением» — «не заходил N дней» для гейта окна (нужен moments=v3). Только память. */
+  welcomeback?: '3' | '8' | '30' | 'off';
   /** settings-gap-034: показ «Обучения» с «Автопроверка вкл, 1,0x» как в образце. Только память. */
   edu?: 'parity' | 'off';
   /** Язык изучения гостя (dev_state_study_target.ts): только dev, только одноразовый гость, локально и без выгрузки в облако. Нужен кадру «Нет карточек» (у en всегда есть «Первые 50»). */
@@ -451,6 +453,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   // зачем (координатор 15.10, съёмка D194 voice-limit-001…006): остаток голоса на сегодня в курсе — только память
   request.lv2voice = intOrWord('lv2voice', ['off'] as const, 3);
   request.winbackaway = pick('winbackaway', ['3', '8', '30', 'off'] as const);
+  request.welcomeback = pick('welcomeback', ['3', '8', '30', 'off'] as const);
   request.edu = pick('edu', ['parity', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.hint = pick('hint', ['show', 'seen'] as const);
@@ -1024,6 +1027,14 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('winbackaway', request.winbackaway, async () => {
       const { setDevWinbackAwayDays } = await import('./winback_offer');
       return setDevWinbackAwayDays(request.winbackaway === 'off' ? null : Number(request.winbackaway));
+    });
+  }
+  if (request.welcomeback !== undefined) {
+    // зачем (координатор 15.10, полная проверка: dev-ссылка на каждое окно моментов): подмена окна «С возвращением» была
+    // (setDevWelcomeBackAwayDays), но к ссылке не подключена — Сверка не могла снять окно без недели ожидания.
+    await step('welcomeback', request.welcomeback, async () => {
+      const { setDevWelcomeBackAwayDays } = await import('../modules/welcome_back/welcome_back_signal');
+      return setDevWelcomeBackAwayDays(request.welcomeback === 'off' ? null : Number(request.welcomeback));
     });
   }
   if (request.edu !== undefined) {

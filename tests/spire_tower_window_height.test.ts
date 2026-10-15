@@ -2,7 +2,7 @@
 // «Комната недели» переехала наверх. Окно башни теперь ровно до дока, но не ниже 260 и не выше 400 по макету.
 import fs from 'node:fs';
 import path from 'node:path';
-import { SPIRE_WINDOW_MAX, SPIRE_WINDOW_MIN, spireTowerWindowHeight } from '../components/spire/spire_tower_window';
+import { SPIRE_COMPACT_FLOOR_INFO_ENABLED, SPIRE_WINDOW_MAX, SPIRE_WINDOW_MIN, spireFloorInfoCompact, spireTowerWindowHeight } from '../components/spire/spire_tower_window';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
@@ -37,5 +37,21 @@ describe('высота окна башни до дока', () => {
     expect(tower).toContain('{ height: windowHeight, backgroundColor: g.plateFillFrom }');
     expect(tower).toContain("scrollToFloor(myFloor, false, 'окно-изменило-высоту')");
     expect(tower).not.toMatch(/WINDOW_HEIGHT \/ 2/); // центр считается по актуальной высоте окна (windowHeightRef), а не по константе
+  });
+});
+
+// зачем (решение координатора 15.10): запасной вариант «Этаж N» компактной строкой при шрифте 1.3 и окне < 180 dp подготовлен, но ВЫКЛЮЧЕН до кадров Макетов — включается одним флагом
+describe('запасной вариант: компактная карточка этажа', () => {
+  it('флаг выключен — карточка прежняя при любых размерах', () => {
+    expect(SPIRE_COMPACT_FLOOR_INFO_ENABLED).toBe(false);
+    expect(spireFloorInfoCompact(1.3, 130)).toBe(false);
+    expect(spireFloorInfoCompact(1.0, 130)).toBe(false);
+  });
+
+  it('при включённом флаге: только шрифт ≥ 1.3 и окно < 180', () => {
+    expect(spireFloorInfoCompact(1.3, 130, true)).toBe(true);
+    expect(spireFloorInfoCompact(1.3, 180, true)).toBe(false);
+    expect(spireFloorInfoCompact(1.0, 130, true)).toBe(false);
+    expect(spireFloorInfoCompact(1.3, 0, true)).toBe(false);
   });
 });

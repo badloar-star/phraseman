@@ -8,7 +8,7 @@
 // других на этаже нет — блока нет. Журнал карты — [SPIRE-RIVALS] (use_spire_rivals.ts).
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import { V2_TYPE } from '../../constants/v2Style';
 import type { SpireCoinsConfig } from '../../modules/spire/config_contract';
@@ -18,6 +18,7 @@ import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { spireStepsCount, spireStepsWordAfterOf } from './spire_plurals';
 import { spireFloorCoinsOf, spireIsGuard, spireIsSummit, spireStepsIn, type SpireRival } from './spire_tower_model';
+import { spireFloorInfoCompact } from './spire_tower_window';
 
 type Props = Readonly<{
   lang: Lang;
@@ -29,6 +30,8 @@ type Props = Readonly<{
   coins: SpireCoinsConfig;
   /** Кто ещё на этом этаже (кэш комнаты недели, без новых чтений); до 4 кружков. */
   others?: readonly SpireRival[];
+  /** Высота окна башни, dp: при крупном шрифте и узком окне (флаг SPIRE_COMPACT_FLOOR_INFO_ENABLED) карточка — компактная строка. */
+  windowH?: number;
 }>;
 
 const WHO_MAX = 4;
@@ -53,9 +56,20 @@ export function spireFloorSubtitle(lang: Lang, floor: number, myFloor: number | 
   return `${status} · ${spireFloorCoinsOf(floor, coins)} ${spireText(lang, 'coinsPerFloor')}${guardMark}${summitMark}`;
 }
 
-function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins, others = [] }: Props) {
+function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins, others = [], windowH = 0 }: Props) {
   const p = useSpirePalette();
   const g = useShadowGlass();
+  const compact = spireFloorInfoCompact(useWindowDimensions().fontScale, windowH);
+  if (compact) {
+    // зачем (запасной вариант 15.10, выключен): одна строка — «Этаж N · ступень» без подписи и без кружков соперников; окно башни получает освободившееся место
+    const one = myFloor !== null && floor === myFloor && stepInFloor !== null ? `${spireFloorTitle(lang, floor)} · ${stepInFloor}/${spireStepsIn(floor)}` : spireFloorTitle(lang, floor);
+    return (
+      <View style={[s.compactCard, { boxShadow: plateBoxShadow(g) }]} accessible accessibilityRole="text" accessibilityLabel={one} testID="spire-floor-info-compact">
+        <PlateFill g={g} radius={14} />
+        <Text numberOfLines={1} style={[s.title, { color: p.text }]}>{one}</Text>
+      </View>
+    );
+  }
   return (
     <View
       // зачем (владелец 12.10, стиль «Тень»): карточка этажа — плашка с тенью, без кромки.
@@ -84,6 +98,7 @@ function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins, others = [] 
 const s = StyleSheet.create({
   // Тонкая (1px) полупрозрачная кромка карточки, как .finfo макета.
   card: { marginTop: 12, minHeight: 72, paddingHorizontal: 16, paddingVertical: 14, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  compactCard: { marginTop: 8, minHeight: 44, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 14, justifyContent: 'center' },
   text: { flex: 1, minWidth: 0 },
   who: { flexDirection: 'row' },
   whoOverlap: { marginLeft: -8 },

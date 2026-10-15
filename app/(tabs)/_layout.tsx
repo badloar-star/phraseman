@@ -612,6 +612,8 @@ function TabScaffold({
   const tabScrollLastYRef = useRef(0);
   const tabScrollLastToggleAtRef = useRef(0);
   const previousVisualIdxRef = useRef(visualIdx);
+  const visualIdxRef = useRef(visualIdx);
+  visualIdxRef.current = visualIdx;
 
   const animateTabChrome = useCallback((collapsed: boolean, immediate = false) => {
     // зачем: тот же ранний-выход и кулдаун, что и в дореформенном коде — иначе
@@ -621,6 +623,8 @@ function TabScaffold({
     const now = Date.now();
     if (!immediate && now - tabScrollLastToggleAtRef.current < TAB_SCROLL_TOGGLE_COOLDOWN_MS) return;
     tabScrollLastToggleAtRef.current = now;
+    // зачем (координатор 15.10, «сперва логи»: капсула в Настройках сужается при прокрутке): какая вкладка и в какую сторону меняет ширину капсулы; сжатие 0,9 — по утверждённому макету tabbar-variants.html (`.bar-wrap.collapsed`), только dev
+    if (typeof __DEV__ !== 'undefined' && __DEV__) console.log('[TABBAR-COLLAPSE]', JSON.stringify({ tab: visualIdxRef.current, collapsed, immediate, y: Math.round(tabScrollLastYRef.current), scale: collapsed ? TAB_SCROLL_COLLAPSED_SCALE : 1 })); // guard-ok: dev-журнал сжатия капсулы
     tabScrollCollapsedRef.current = collapsed;
     tabScrollProgress.stopAnimation();
     if (immediate || reduceMotion) {

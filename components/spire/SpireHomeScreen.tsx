@@ -325,7 +325,7 @@ export default function SpireHomeScreen() {
         <View style={s.towerWrap} onLayout={(e) => { const y = Math.round(e.nativeEvent.layout.y); setTowerTop((prev) => (prev === y ? prev : y)); }}>
           <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} windowHeight={towerWindowH} />
         </View>
-        <View onLayout={(e) => { const h = Math.round(e.nativeEvent.layout.height); setInfoH((prev) => (prev === h ? prev : h)); }}><SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} /></View>
+        <View onLayout={(e) => { const h = Math.round(e.nativeEvent.layout.height); setInfoH((prev) => (prev === h ? prev : h)); }}><SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} windowH={towerWindowH} /></View>
         {/* Нет сети: свой маркер живой, чужие цифры приглушены (макет §11). */}
         <View
           style={offline ? s.dim : null}

@@ -19,6 +19,18 @@ export const SPIRE_WINDOW_MIN_TALL = 120;
 export const SPIRE_TALL_SCREEN_H = 800;
 
 /**
+ * Запасной вариант (решение координатора 15.10, ВЫКЛЮЧЕН до кадров Макетов): при крупном шрифте и узком окне башни карточка «Этаж N» переходит в компактную строку (этаж + прогресс), а окно
+ * башни получает освободившееся место. Включается ОДНИМ флагом — когда на кадре Макетов этаж в окне ~130 dp не читается.
+ */
+export const SPIRE_COMPACT_FLOOR_INFO_ENABLED = false;
+export const SPIRE_COMPACT_FONT_SCALE = 1.3;
+export const SPIRE_COMPACT_WINDOW_H = 180;
+
+export function spireFloorInfoCompact(fontScale: number, windowH: number, enabled: boolean = SPIRE_COMPACT_FLOOR_INFO_ENABLED): boolean {
+  return enabled && fontScale >= SPIRE_COMPACT_FONT_SCALE && windowH > 0 && windowH < SPIRE_COMPACT_WINDOW_H;
+}
+
+/**
  * towerTop — верх окна башни в содержимом страницы; dockTop — верх дока в той же системе координат (страница в положении 0); gap — зазор над доком.
  * Не измерено (0) — прежняя высота по макету, чтобы первый кадр не прыгал в сторону уменьшения без данных.
  */

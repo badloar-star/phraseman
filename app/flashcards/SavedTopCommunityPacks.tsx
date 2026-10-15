@@ -12,6 +12,8 @@ import { useLoadGate } from '../use_load_gate';
 import { packCategoryIonIcon, packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
+import { useStudyTarget } from '../../components/StudyTargetContext';
+import { normalizePackLanguage, packMatchesLanguageFilter, type PackLanguage } from './pack_languages';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 
 const COLS = 3;
@@ -49,9 +51,12 @@ export function pickTopCommunityPacks(
   catalog: readonly FlashcardMarketPack[],
   /* Default three is also used by the training setup suggestions. */
   limit = COLS,
+  /** зачем (аудит Карточек 🟡, 15.10): витрина показывала топ всех языков — набор чужого языка попадал в предложения; «без языка» проходит (D127). */
+  language?: PackLanguage,
 ): FlashcardMarketPack[] {
   return catalog
     .filter((p) => !!p?.isCommunityUgc && !isLocalAuthorPackId(p.id))
+    .filter((p) => language === undefined || packMatchesLanguageFilter(p.packLanguage ?? p.studyTarget, language))
     .sort((a, b) => {
       const likes = (b.likesCount ?? 0) - (a.likesCount ?? 0);
       if (likes !== 0) return likes;
@@ -185,7 +190,8 @@ export default function SavedTopCommunityPacks({
   const catalogGate = useSilentCatalogRetry(catalog.length === 0, loading, onRetry);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
-  const top = useMemo(() => pickTopCommunityPacks(catalog, SHOWN), [catalog]);
+  const { studyTarget: topStudyTarget } = useStudyTarget();
+  const top = useMemo(() => pickTopCommunityPacks(catalog, SHOWN, normalizePackLanguage(topStudyTarget)), [catalog, topStudyTarget]);
   const ownedSet = useMemo(() => new Set(ownedCommunityPackIds), [ownedCommunityPackIds]);
 
   const heading = triLang(lang, {

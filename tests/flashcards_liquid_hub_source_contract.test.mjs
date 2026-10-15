@@ -191,6 +191,12 @@ function createRenderHarness(source, expose, { themeId = 'graphite' } = {}) {
     },
     '../community_packs/packAuthorNames': { useCommunityAuthorName: pack => pack.authorName },
     '../community_packs/localAuthorPacks': { isLocalAuthorPackId: id => id.startsWith('local:') },
+    // зачем (аудит Карточек 🟡, 15.10): витрина фильтрует по языку обучения; в харнессе — английский, «без языка» проходит.
+    '../../components/StudyTargetContext': { useStudyTarget: () => ({ studyTarget: 'en' }) },
+    './pack_languages': {
+      normalizePackLanguage: value => (['en', 'fr', 'de', 'es', 'it', 'none'].includes(value) ? value : 'en'),
+      packMatchesLanguageFilter: (value, selected) => { const language = ['en', 'fr', 'de', 'es', 'it', 'none'].includes(value) ? value : 'en'; return language === 'none' || language === selected; },
+    },
     './packMarketplaceIcons': { bundledPackTilePng: () => 'legacy-png', packTileImageForPack: () => 'legacy-art' },
     '../community_packs/CommunityPackSocialBar': { __esModule: true, default: host('CommunityPackSocialBar') },
     // зачем (D158, 04.10): секция использует общий useLoadGate; здесь он не исчерпан — рисуется скелетон, как раньше.
@@ -247,7 +253,7 @@ test('community highlights use real cover tiles in horizontal rail and preserve 
   for (const token of ['packTitleForInterface(pack, lang)', 'useCommunityAuthorName(pack, lang)', 'pack.cardCount', 'openingPackId', 'onRetry', 'loading', 'CommunityPackSocialBar pack={pack}']) {
     assert.ok(source.includes(token), `missing real-data state: ${token}`);
   }
-  assert.ok(source.includes('pickTopCommunityPacks(catalog, SHOWN)'), 'horizontal rail must keep additional real packs beyond the first three visible tiles');
+  assert.ok(source.includes('pickTopCommunityPacks(catalog, SHOWN, normalizePackLanguage(topStudyTarget))'), 'horizontal rail must keep additional real packs beyond the first three visible tiles');
   assert.match(source, /limit = COLS/, 'training setup keeps its existing three-suggestion default');
   assert.ok(source.includes('fc-cards-hub-see-all'), 'community section opens full catalog');
   assert.ok(source.includes('horizontal'), 'highlights are a horizontal rail');

@@ -1257,7 +1257,8 @@ export default function CardPackShardPaywallModal({
                                 handleClose();
                                 await hideCommunityPackOnDevice(pack.id, studyTarget);
                                 await onCommunityPackHiddenOnDevice?.(null);
-                              } catch {
+                              } catch (error: unknown) {
+                                console.warn(`[PACK-HIDE] hide on device FAILED pack=${pack.id} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя (был пустой catch)
                                 await onCommunityPackHiddenOnDevice?.(null);
                               }
                             }}

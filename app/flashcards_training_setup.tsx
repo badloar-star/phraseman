@@ -37,7 +37,7 @@ import {
 } from './flashcards/fc_lang_filter';
 import { useOtherLanguageDecks } from './flashcards/use_other_language_decks';
 import type { LearningLanguageTarget } from './learning_language_contour';
-import type { PackLanguage } from './flashcards/pack_languages';
+import { normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
 import { FC_PACKS_ROUTE } from './flashcards/tabbar_state';
 import {
   deckSelectionLabel,
@@ -230,7 +230,7 @@ export default function FlashcardsTrainingSetupScreen() {
    * возникал рывком.
    */
   const [suggestedPacks, setSuggestedPacks] = useState<FlashcardMarketPack[]>(
-    () => pickTopCommunityPacks(peekPublishedCommunityMarketPacks(studyTarget) ?? []),
+    () => pickTopCommunityPacks(peekPublishedCommunityMarketPacks(studyTarget) ?? [], undefined, normalizePackLanguage(studyTarget)),
   );
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);
   const openingPackRef = useRef<string | null>(null);
@@ -428,7 +428,7 @@ export default function FlashcardsTrainingSetupScreen() {
       try {
         const catalog = await loadPublishedCommunityMarketPacks(studyTarget);
         if (cancelled) return;
-        setSuggestedPacks(pickTopCommunityPacks(catalog));
+        setSuggestedPacks(pickTopCommunityPacks(catalog, undefined, normalizePackLanguage(studyTarget)));
       } catch (e) {
         // Немой catch запрещён: пустая витрина обязана объясняться в логах.
         console.warn('[FC-TRAIN-SETUP] suggested packs failed', String((e as Error)?.message ?? e));

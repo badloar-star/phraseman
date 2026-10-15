@@ -29,3 +29,12 @@ describe('аудит Карточек', () => {
     expect(src).toContain('hit.ownedVersion !== ownedPackIdsVersion()');
   });
 });
+
+describe('витрина топ-наборов по языку (🟡 Хаб/наборы, 15.10)', () => {
+  it('pickTopCommunityPacks получает язык, «без языка» проходит, пустой catch скрытия пишет причину', () => {
+    const top = read('app/flashcards/SavedTopCommunityPacks.tsx');
+    expect(top).toContain('packMatchesLanguageFilter(p.packLanguage ?? p.studyTarget, language)');
+    expect(read('app/flashcards_training_setup.tsx')).toContain('normalizePackLanguage(studyTarget)');
+    expect(read('app/flashcards/CardPackShardPaywallModal.tsx')).toContain('[PACK-HIDE] hide on device FAILED');
+  });
+});

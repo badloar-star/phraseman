@@ -247,6 +247,7 @@ async function preload(
       }),
     );
   }
+  const ownFileCount = files.size;
   for (const entry of supplementalAudio) {
     if (!ID_RE.test(entry.supplementalId) || supplementalFileFingerprints.has(entry.supplementalId))
       fail("supplemental_id_invalid_or_duplicate", {
@@ -262,6 +263,26 @@ async function preload(
     (sum, file) => sum + file.byteSize,
     0,
   );
+  // зачем (координатор 15.10, урок 1 V2 целиком s01–s56): подготовка слов идёт по всем занятиям ≤ текущего, бюджет растёт с курсом.
+  // Замер s56 — ≈140 файлов / ≈3,5 МБ из 512 / 32 МБ. Одна строка на подготовку, предупреждение при заполнении >75% — рост виден
+  // заранее, а не по отказу preload_budget_exceeded. Поведение не меняется.
+  const budgetPct = Math.round(100 * Math.max(
+    orderedFiles.length / LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_MAX_FILES_V1,
+    selectedByteSize / LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_MAX_BYTES_V1,
+  ));
+  const budgetLine = JSON.stringify({
+    courseSessionId: audioChild.courseSessionId,
+    files: orderedFiles.length,
+    maxFiles: LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_MAX_FILES_V1,
+    bytes: selectedByteSize,
+    maxBytes: LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_MAX_BYTES_V1,
+    ownFiles: ownFileCount,
+    supplementalFiles: orderedFiles.length - ownFileCount,
+    supplementalEntries: supplementalAudio.length,
+    pct: budgetPct,
+  });
+  if (budgetPct > 75) console.warn("[AUDIO-PRELOAD] budget_high", budgetLine); // guard-ok: бюджет на подходе к потолку
+  else console.log("[AUDIO-PRELOAD] budget", budgetLine); // guard-ok: одна строка на подготовку
   if (
     orderedFiles.length >
       LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_MAX_FILES_V1 ||

@@ -25,6 +25,13 @@ const BOOK: IconEl[] = [
 
 const DIALOG_BUBBLE = 'M10 10 H38 A4 4 0 0 1 42 14 V28 A4 4 0 0 1 38 32 H20 L12 39 V32 H10 A4 4 0 0 1 6 28 V14 A4 4 0 0 1 10 10 Z';
 
+// эталон kit.js `layers` (viewBox 24) ×2 под сетку 48
+const LAYERS: IconEl[] = [
+  { t: 'p', d: 'M24 8 L41 16.6 L24 25.2 L7 16.6 Z' },
+  { t: 'p', d: 'M7 24.4 L24 33 L41 24.4' },
+  { t: 'p', d: 'M7 32 L24 40.6 L41 32' },
+];
+
 const GENERIC: IconEl[] = [
   { t: 'p', d: 'M24 5 C30 9 33 15 33 22 V31 H15 V22 C15 15 18 9 24 5 Z' },
   { t: 'c', cx: 24, cy: 19, r: 4 },
@@ -39,11 +46,8 @@ const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
   no_energy: [{ t: 'p', d: 'M26 6 L12 27 H22 L20 42 L36 20 H25 Z' }],
   course_after_lesson3: BOOK,
   lesson_b1: BOOK,
-  flashcard_limit: [
-    { t: 'r', x: 16, y: 9, w: 24, h: 17, rx: 3, o: 0.5 },
-    { t: 'r', x: 8, y: 20, w: 24, h: 17, rx: 3 },
-    { t: 'p', d: 'M14 28.5 H22', o: 0.7 },
-  ],
+  // зачем (Сверка paywall-gap-001/007/009/010/011, 15.10): значок входа — стопка слоёв и «+» как в эталоне paywall-gaps-states (kit `layers` / `plus`, сетка 24 ×2).
+  flashcard_limit: LAYERS,
   flashcard_training: [
     { t: 'p', d: 'M14 18 A12.5 12.5 0 0 1 36 20' },
     { t: 'p', d: 'M36 12 V20 H28' },
@@ -60,18 +64,11 @@ const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
   // зачем: «создать свою карточку» — карточка с плюсом. Геометрия центрирована
   // вокруг (24,24), как требует остальной набор глифов.
   flashcard_create: [
-    { t: 'r', x: 8, y: 12, w: 24, h: 17, rx: 3 },
-    { t: 'p', d: 'M13 20.5 H21', o: 0.7 },
-    { t: 'p', d: 'M34 27 V39' },
-    { t: 'p', d: 'M28 33 H40' },
+    { t: 'p', d: 'M24 10 V38' },
+    { t: 'p', d: 'M10 24 H38' },
   ],
   // зачем: «создать свой набор» — стопка карточек с плюсом.
-  pack_create: [
-    { t: 'r', x: 14, y: 8, w: 22, h: 15, rx: 3, o: 0.5 },
-    { t: 'r', x: 8, y: 15, w: 22, h: 15, rx: 3 },
-    { t: 'p', d: 'M32 29 V41' },
-    { t: 'p', d: 'M26 35 H38' },
-  ],
+  pack_create: LAYERS,
   // зачем: пламя было выше центра (y 6..32, offY=-5) — низ капсулы казался
   // пустым. Сдвинуто на +5 по Y, симметрично вокруг (24,24).
   streak: [

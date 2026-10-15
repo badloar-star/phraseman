@@ -16,6 +16,7 @@
 import React, { memo, useCallback, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Svg, { Path } from 'react-native-svg';
 
 import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -100,6 +101,22 @@ export const PAYWALL_COMPARISON_VISIBLE_ROWS = 6;
 
 type SectionProps = Readonly<{ lang: Lang; g: GlassTokens }>;
 
+// зачем (Сверка paywall-gap-001, 15.10): у AI в эталоне две искры, у заморозки — звёздочка (paywall-gaps-states `IC.sparkles` / `IC.snow`), а не стоковые три искры и снежинка Ionicons.
+const EMBER_GLYPHS: Readonly<Record<string, readonly string[]>> = {
+  'sparkles-outline': ['M10 4l1.6 4.4L16 10l-4.4 1.6L10 16l-1.6-4.4L4 10l4.4-1.6z', 'M18 14l.8 2.2L21 17l-2.2.8L18 20l-.8-2.2L15 17l2.2-.8z'],
+  'snow-outline': ['M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9', 'M9.5 4.5L12 6.5l2.5-2M9.5 19.5L12 17.5l2.5 2'],
+};
+
+function BenefitGlyph({ name, color }: { name: keyof typeof Ionicons.glyphMap; color: string }) {
+  const paths = EMBER_GLYPHS[name as string];
+  if (!paths) return <Ionicons name={name} size={20} color={color} />;
+  return (
+    <Svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+      {paths.map((d) => <Path key={d} d={d} />)}
+    </Svg>
+  );
+}
+
 export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g }: SectionProps) {
   const glass = { backgroundColor: paywallPlateBg(g) }; // зачем: на шторке поверхности сплошные (светлая тема, Сверка 11.10)
   // зачем: общий список «Что входит» — только у входа без своего текста; контекстная выгода рисуется в PaywallPlusDetails (макет paywall-context-redesign #c1).
@@ -109,7 +126,7 @@ export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g }
         <View key={benefit.icon} style={S.benefitRow}>
           {index > 0 ? <RowDivider color={g.line} /> : null}
           <View style={[S.iconTile, { backgroundColor: paywallPlateBg(g) }]}>
-            <Ionicons name={benefit.icon} size={20} color={g.text} />
+            <BenefitGlyph name={benefit.icon} color={g.text} />
           </View>
           <View style={S.benefitCopy}>
             <Text style={[S.benefitTitle, { color: g.text }]}>{pick(lang, benefit.title)}</Text>

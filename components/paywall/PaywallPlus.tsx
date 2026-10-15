@@ -444,7 +444,8 @@ const S = StyleSheet.create({
   promoPrice: { fontSize: 21, fontWeight: '800', fontVariant: ['tabular-nums'] },
   promoStandard: { fontSize: 13, fontWeight: '700', textDecorationLine: 'line-through', fontVariant: ['tabular-nums'] },
   promoThen: { fontSize: 13, lineHeight: 21, marginTop: 9, textAlign: 'center' },
-  planNameRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8 },
+  // зачем (Сверка paywall-gap-001/009, 15.10): «Выгоднее всего» рядом с «Год» в одну строку, как в эталоне; плашка на 3 dp компактнее по полям и зазору, чтобы строка помещалась в плитке на реальных экранах (прежняя ширина 153 dp держала её на границе и переносила под слово).
+  planNameRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 6 },
   planName: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   planSmall: { marginTop: 3, fontSize: 13, lineHeight: 18 },
   // зачем: сумма за год — самая крупная цена экрана (22), месяц — меньше (18),
@@ -454,7 +455,7 @@ const S = StyleSheet.create({
   priceMonth: { fontSize: 16, lineHeight: 22, fontWeight: '700', fontVariant: ['tabular-nums'] },
   priceSmall: { fontSize: 13, lineHeight: 18 },
   priceStrike: { fontSize: 13, lineHeight: 18, textDecorationLine: 'line-through', fontVariant: ['tabular-nums'] },
-  badge: { minHeight: 22, paddingHorizontal: 9, borderRadius: 11, justifyContent: 'center' },
+  badge: { minHeight: 22, paddingHorizontal: 8, borderRadius: 11, justifyContent: 'center' },
   badgeText: { fontSize: 13, fontWeight: '700' },
   skeleton: { borderRadius: 22 },
   noteBox: { alignItems: 'center', justifyContent: 'center' },

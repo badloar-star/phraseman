@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-40:i01",
-    "correctText": "en:lesson-01:session-40:i01:p1=friendly\nen:lesson-01:session-40:i01:p2=loud\nen:lesson-01:session-40:i01:p3=kind\nen:lesson-01:session-40:i01:p4=new",
+    "correctText": "I'm okay.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i02",
-    "correctText": "are",
+    "correctText": "She's ill.",
     "correctResponseId": "en:lesson-01:session-40:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-40:i03",
-    "correctText": "They are loud.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-40:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-40:i04",
-    "correctText": "kind",
-    "correctResponseId": "en:lesson-01:session-40:i04:r1"
+    "correctText": "en:lesson-01:session-40:i04:p1=okay\nen:lesson-01:session-40:i04:p2=afraid\nen:lesson-01:session-40:i04:p3=ill\nen:lesson-01:session-40:i04:p4=sleepy",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i05",
-    "correctText": "We are kind.",
+    "correctText": "They are lonely.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i06",
-    "correctText": "We are new.",
+    "correctText": "It is weak.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i07",
-    "correctText": "funny",
-    "correctResponseId": "en:lesson-01:session-40:i07:r1"
+    "correctText": "You're brave.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i08",
-    "correctText": "kind",
+    "correctText": "lonely",
     "correctResponseId": "en:lesson-01:session-40:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-40:i09",
-    "correctText": "mean",
+    "correctText": "We are afraid.",
     "correctResponseId": "en:lesson-01:session-40:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-40:i10",
-    "correctText": "mean",
-    "correctResponseId": "en:lesson-01:session-40:i10:r1"
+    "correctText": "en:lesson-01:session-40:i10:p1=I'm\nen:lesson-01:session-40:i10:p2=You're\nen:lesson-01:session-40:i10:p3=It's\nen:lesson-01:session-40:i10:p4=They're",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i11",
-    "correctText": "They are not quiet.",
+    "correctText": "We're okay.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i12",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-40:i12:r1"
+    "correctText": "She is afraid.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i13",
-    "correctText": "They are my colleagues.",
+    "correctText": "We are ill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i14",
-    "correctText": "We are kind.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-40:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-40:i15",
-    "correctText": "en:lesson-01:session-40:i15:p1=funny\nen:lesson-01:session-40:i15:p2=quiet\nen:lesson-01:session-40:i15:p3=colleagues\nen:lesson-01:session-40:i15:p4=mean",
-    "correctResponseId": null
+    "correctText": "He's weak.",
+    "correctResponseId": "en:lesson-01:session-40:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-40:i16",
-    "correctText": "We are friendly.",
+    "correctText": "en:lesson-01:session-40:i16:p1=lonely\nen:lesson-01:session-40:i16:p2=weak\nen:lesson-01:session-40:i16:p3=brave\nen:lesson-01:session-40:i16:p4=afraid",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-40:i17:s01",
-    "correctText": "We are new.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-40:i17:s02",
-    "correctText": "We are kind.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-40:i17:s03",
-    "correctText": "They are loud.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-40:i17:s04",
-    "correctText": "They are not mean.",
+    "interactionId": "en:lesson-01:session-40:i17",
+    "correctText": "I am sleepy.",
     "correctResponseId": null
   }
 ]

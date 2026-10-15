@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-40:intro1:r2": {
-          "ru": "После `we` нужно `are`: `We are friendly.`",
-          "uk": "Після `we` потрібне `are`: `We are friendly.`"
+          "ru": "Это про него, а нужно о себе: `I'm`.",
+          "uk": "Це про нього, а потрібно про себе: `I'm`."
         },
         "en:lesson-01:session-40:intro1:r3": {
-          "ru": "`is` — про одного человека со стороны. Про «мы» — `are`.",
-          "uk": "`is` — про одну людину збоку. Про «ми» — `are`."
+          "ru": "В короткой форме остаётся `'m`: `I'm okay`.",
+          "uk": "У короткій формі залишається `'m`: `I'm okay`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-40:intro2:r2": {
-          "ru": "`is` — когда человек один. `they` — это несколько, значит `are`.",
-          "uk": "`is` — коли людина одна. `they` — це кілька, отже `are`."
+          "ru": "`ill` — «болеет». Здесь нужно `sleepy`: хочется спать.",
+          "uk": "`ill` — «хворіє». Тут потрібно `sleepy`: хочеться спати."
         },
         "en:lesson-01:session-40:intro2:r3": {
-          "ru": "Для англичанина это обрывок: он ждёт продолжения, а фраза уже кончилась.",
-          "uk": "Для англійця це уривок: він чекає продовження, а фраза вже скінчилася."
+          "ru": "После `He` нужна форма `is`.",
+          "uk": "Після `He` потрібна форма `is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-40:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-40:intro3:r2": {
-          "ru": "`not` идёт после `are`, а не перед ним.",
-          "uk": "`not` іде після `are`, а не перед ним."
+          "ru": "Это про страх. Здесь нужно похвалить смелость: `brave`.",
+          "uk": "Це про страх. Тут треба похвалити сміливість: `brave`."
         },
         "en:lesson-01:session-40:intro3:r3": {
-          "ru": "В этой фразе нужно `not` после `are`: `They are not kind.`",
-          "uk": "У цій фразі потрібне `not` після `are`: `They are not kind.`"
+          "ru": "`lonely` — «одиноко». Здесь речь о смелости: `brave`.",
+          "uk": "`lonely` — «самотньо». Тут ідеться про сміливість: `brave`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1874907932d7afff19f14d7f8ee369b60812077a1edf5fd1e19e7654b7b624a4"
+  "auxiliaryFingerprint": "cb5b731fa334fc05d5ad2d705a673094fb679f54db91530f6478f2523ce46d30"
 }

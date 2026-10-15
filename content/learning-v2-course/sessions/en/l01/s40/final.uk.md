@@ -1,171 +1,138 @@
-# Англійська · Урок 1 · Заняття 40 — «Розкажіть про свою команду»
+# Англійська · Урок 1 · Заняття 40 — Спільний дзвінок друзів
 
-**Ситуація.** На обіді Іра знайомить вас та Олега з командою Мії за сусіднім столом. Мія питає, які ви колеги й які люди сидять біля вікна.
-**Сьогодні.** Скажете про свою та іншу групу: `we are`, `they are`, `we are not`, `they are not`.
+**Ситуація.** У неділю ви зідзвонюєтеся з друзями з різних міст. Кожен розповідає про самопочуття та події тижня, а ви допомагаєте передати новини тим, хто приєднався пізніше.
+
+**Що ви опануєте:** вибрати слова глави та повні або короткі форми без нової граматики
 **Нові слова:** —
-**Повертаються:** friendly, loud, kind, new, funny, quiet, colleagues, mean
 
 ---
 
 ## Інтро 1
 
-### `we` — це «ми», і слово після нього не змінюється
+### Хто говорить і про кого
 
-`we` — «ми». `friendly` — «привітні». Між ними стоїть `are`: `we are friendly`.
+Про себе — `I am`, коротко `I'm`. Про нього — `He is`, коротко `He's`. Про неї — `She is`, коротко `She's`. Зміст під час скорочення залишається тим самим. Сьогодні повертаємо знайомі слова: нові вчити не потрібно.
 
-Українською слово про нас має закінчення — «привітні», а не «привітний». Англійською закінчення немає: `friendly` однакове і для одного, і для десятьох. Одна форма на всіх — тут англійська простіша за українську.
+**Ви хочете сказати коротко, що з вами все гаразд. Виберіть фразу про себе.**
 
-**Мія питає Іру та Олега, яка у вас команда. Скажіть: «Ми привітні».**
-
-- ✅ **We are friendly.**
-- ❌ We friendly. — *Після `we` потрібне `are`: `We are friendly.`*
-- ❌ We is friendly. — *`is` — про одну людину збоку. Про «ми» — `are`.*
+- ✅ **I'm okay.**
+- ❌ He's okay. — *Це про нього, а потрібно про себе: `I'm`.*
+- ❌ I okay. — *У короткій формі залишається `'m`: `I'm okay`.*
 
 ---
 
 ## Інтро 2
 
-### `they` — про тих, кого кілька і вас серед них немає
+### Називаємо потрібний стан
 
-`they` — «вони»: людей кілька, і ви до них не належите. Про свій стіл — `we`, про тих, хто біля вікна, — `they`. `loud` — «гучні».
+`ill` — «хворіє», `sleepy` — «хочеться спати», `weak` — «слабкий». Це різні описи. Хворому може хотітися спати, але саме слово `sleepy` не означає хворобу. Якщо ви кажете, що вам хочеться спати, це ще не означає, що ви хворієте. Діагноз за позіханням не ставимо.
 
-Після `we` та після `they` ставимо `are`. Форма однакова, змінюється лише той, про кого ви говорите.
+**Олег здоровий, але хоче спати після раннього підйому. Назвіть саме бажання спати.**
 
-**Іра показує на команду Мії біля вікна: звідти весь ранок чути сміх. Скажіть про них.**
-
-- ✅ **They are loud.**
-- ❌ They is loud. — *`is` — коли людина одна. `they` — це кілька, отже `are`.*
-- ❌ They loud. — *Для англійця це уривок: він чекає продовження, а фраза вже скінчилася.*
+- ✅ **He is sleepy.**
+- ❌ He is ill. — *`ill` — «хворіє». Тут потрібно `sleepy`: хочеться спати.*
+- ❌ He are sleepy. — *Після `He` потрібна форма `is`.*
 
 ---
 
 ## Інтро 3
 
-### `not` тримається за `are`
+### Страх, сміливість і самотність
 
-`kind` — «добрі». Щоб сказати, що це не так, потрібне `not`: `They are not kind.`
+`afraid` — «боїться», `brave` — «сміливий», `lonely` — «відчуває самотність». Смілива людина може боятися; самотній людині може бракувати спілкування навіть серед людей. У відповіді називайте те почуття або якість, про яку просять.
 
-В англійській `not` стоїть після `are`: `They are not kind.` Так ми говоримо: «Вони не добрі».
+**Подруга боялася виступати, але наважилася. Зверніться до неї та відзначте її сміливість.**
 
-**Мія вважає, що всі біля вікна добрі. Іра працювала з ними й знає, що це не так. Скажіть про команду біля вікна.**
-
-- ✅ **They are not kind.**
-- ❌ They not are kind. — *`not` іде після `are`, а не перед ним.*
-- ❌ They no kind. — *У цій фразі потрібне `not` після `are`: `They are not kind.`*
+- ✅ **You are brave.**
+- ❌ You are afraid. — *Це про страх. Тут треба похвалити сміливість: `brave`.*
+- ❌ You are lonely. — *`lonely` — «самотньо». Тут ідеться про сміливість: `brave`.*
 
 ---
 
-## Практика (20 завдань, підказок стає менше)
+## Практика (17 завдань)
 
-**1 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-40:i01; family: speed_match -->
-friendly — привітний · loud — гучний · kind — добрий · new — новий
+**1 · У вас усе гаразд. Складіть коротку фразу про себе**
+<!-- interaction_id: en:lesson-01:session-40:i01; family: phrase_builder -->
+Плитки: `okay` `I'm` `He's` → **I'm okay.**
+*(плитка `He's` зайва: тут потрібно `I'm` — `I'm okay.`)*
 
-**2 · Виберіть форму після `we` — ви говорите за весь свій стіл**
-<!-- interaction_id: en:lesson-01:session-40:i02; family: context_gap_grammar -->
-We ___ friendly. → **are** · is · am
-- is — *`is` про одного: `he is`, `she is`. А вас кілька.*
-- am — *`am` тільки про себе одного. «Ми» — це `are`.*
+**2 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-40:i02; family: listen_choose -->
+🔊 *She's ill.* → **She's ill.** · He's ill. · She's sleepy.
+- He's ill. — *У записі перше слово — `She's`, а в цьому варіанті — `He's`.*
+- She's sleepy. — *У записі останнє слово — `ill`, а в цьому варіанті — `sleepy`.*
 
-**3 · Складіть фразу — з-за стіни весь день гримить сміх**
-<!-- interaction_id: en:lesson-01:session-40:i03; family: phrase_builder -->
-Плитки: `They` `are` `loud` `is` → **They are loud.**
-*(плитка `is` зайва: `is` зайве: з `They` кажуть `They are loud`.)*
+**3 · Олегові хочеться спати. Доповніть фразу про нього**
+<!-- interaction_id: en:lesson-01:session-40:i03; family: context_gap_grammar -->
+He ___ sleepy. → **is** · am · are
+- am — *Після `He` потрібно `is`.*
+- are — *Тут `He is sleepy`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-40:i04; family: speed_match -->
+okay — у порядку · afraid — боїться · ill — хворіє · sleepy — хочеться спати
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-40:i04; family: listen_choose -->
-🔊 *kind* → **kind** · kid · king
-- kid — *«Кід», коротка голосна і без «н» у кінці. І значить «дитина».*
-- king — *У кінці «нґ», а не «нд». І це «король».*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-01:session-40:i05; family: listen_build_dictation -->
+🔊 *They are lonely.* Плитки: `lonely` `are` `They` `is` → **They are lonely.**
+*(плитка `is` зайва: тут потрібно `are` — `They are lonely.`)*
 
-**5 · Складіть фразу — за вашим столом усі добрі**
-<!-- interaction_id: en:lesson-01:session-40:i05; family: phrase_builder -->
-Плитки: `are` `kind` `We` `is` → **We are kind.**
-*(плитка `is` зайва: `is` зайве: з `We` кажуть `We are kind`.)*
+**6 · Сигнал зв’язку слабкий. Складіть фразу саме про сигнал**
+<!-- interaction_id: en:lesson-01:session-40:i06; family: phrase_builder -->
+Плитки: `weak` `is` `It` `He` → **It is weak.**
+*(плитка `He` зайва: тут потрібно `It` — `It is weak.`)*
 
+**7 · Друг наважився на виступ попри страх. Коротко похваліть його за сміливість, звертаючись до нього**
+<!-- interaction_id: en:lesson-01:session-40:i07; family: scripted_repeat_compare -->
+🎙 **You're brave.**
 
-**6 · Послухайте і складіть — ваша команда щойно вийшла на цю роботу**
-<!-- interaction_id: en:lesson-01:session-40:i06; family: listen_build_dictation -->
-🔊 *We are new.* Плитки: `new` `We` `are` → **We are new.**
+**8 · Вам бракує близького спілкування. Назвіть відчуття самотності**
+<!-- interaction_id: en:lesson-01:session-40:i08; family: context_gap_grammar -->
+I am ___ . → **lonely** · sleepy · ill
+- sleepy — *`sleepy` — «хочеться спати». Самотність — `lonely`.*
+- ill — *`ill` — «хворію». Тут треба назвати самотність: `lonely`.*
 
-**7 · Вставте слово — за вашим столом цілий обід сміються**
-<!-- interaction_id: en:lesson-01:session-40:i07; family: context_gap_grammar -->
-We are ___ . → **funny** · quiet · late
-- quiet — *«Тихі» — а у вас за столом сміх.*
-- late — *«Спізнюємося» — це про годинник, а не про те, які ви.*
-
-**8 · Розрізніть звуки — яке з двох про «добрий»?**
-<!-- interaction_id: en:lesson-01:session-40:i08; family: sound_contrast -->
-🔊 Два слова поспіль.
-*kind · kid* → **kind**
-- kid — *Це «дитина». `kind` — «кайнд», голосна «ай» і «нд» у кінці; `kid` — «кід», коротке «і».*
-
-**9 · Послухайте і виберіть**
+**9 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-40:i09; family: listen_choose -->
-🔊 *mean* → **mean** · man · main
-- man — *«Мен» — це «чоловік», голосна коротка.*
-- main — *«Мейн» — інша голосна. `mean` — «мін», довге «і».*
+🔊 *We are afraid.* → **We are afraid.** · They are afraid. · We are brave.
+- They are afraid. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
+- We are brave. — *У записі останнє слово — `afraid`, а в цьому варіанті — `brave`.*
 
-**10 · Вставте слово — ви не згодні, що ваш відділ злий**
-<!-- interaction_id: en:lesson-01:session-40:i10; family: context_gap_grammar -->
-We are not ___ . → **mean** · kind · friendly
-- kind — *Вийде «ми не добрі» — а ви кажете протилежне.*
-- friendly — *Теж навпаки: ви якраз привітні.*
+**10 · З’єднайте короткі початки з повними**
+<!-- interaction_id: en:lesson-01:session-40:i10; family: speed_match -->
+I'm — I am · You're — You are · It's — It is · They're — They are
 
-**11 · Складіть фразу — про сусідній відділ: вони не тихі**
-<!-- interaction_id: en:lesson-01:session-40:i11; family: phrase_builder -->
-Плитки: `not` `They` `quiet` `are` → **They are not quiet.**
+**11 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-40:i11; family: listen_build_dictation -->
+🔊 *We're okay.* Плитки: `okay` `We're` `They're` → **We're okay.**
+*(плитка `They're` зайва: тут потрібно `We're` — `We're okay.`)*
 
-**12 · Виберіть форму після `they` — ви розповідаєте про людей з іншого відділу**
-<!-- interaction_id: en:lesson-01:session-40:i12; family: context_gap_grammar -->
-They ___ funny. → **are** · is · am
-- is — *Їх там цілий відділ — одним `is` не обійтися.*
-- am — *`am` — тільки про себе.*
+**12 · Сестра зізналася, що боїться майбутнього виступу. Складіть фразу саме про її страх**
+<!-- interaction_id: en:lesson-01:session-40:i12; family: phrase_builder -->
+Плитки: `afraid` `is` `She` `are` → **She is afraid.**
+*(плитка `are` зайва: тут потрібно `is` — `She is afraid.`)*
 
-**13 · Складіть фразу — ви працюєте з цими людьми в одному відділі**
-<!-- interaction_id: en:lesson-01:session-40:i13; family: phrase_builder -->
-Плитки: `They` `are` `my` `colleagues` `is` → **They are my colleagues.**
-*(плитка `is` зайва: `is` зайве: з `They` кажуть `They are my colleagues`.)*
+**13 · Ви та брат хворієте й тому залишилися вдома. Поясніть друзям вашу спільну причину скасування зустрічі**
+<!-- interaction_id: en:lesson-01:session-40:i13; family: scripted_repeat_compare -->
+🎙 **We are ill.**
 
+**14 · Двоє друзів чесно зізналися в помилці, хоча боялися. Відзначте їхню сміливість**
+<!-- interaction_id: en:lesson-01:session-40:i14; family: context_gap_grammar -->
+They ___ brave. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Тут `They are brave`.*
 
-**14 · Послухайте і складіть — «ми добрі»**
-<!-- interaction_id: en:lesson-01:session-40:i14; family: listen_build_dictation -->
-🔊 *We are kind.* Плитки: `are` `kind` `We` → **We are kind.**
+**15 · Послухайте й виберіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-40:i15; family: listen_choose -->
+🔊 *He's weak.* → **He's weak.** · She's weak. · He's sleepy.
+- She's weak. — *У записі перше слово — `He's`, а в цьому варіанті — `She's`.*
+- He's sleepy. — *У записі останнє слово — `weak`, а в цьому варіанті — `sleepy`.*
 
-**15 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-40:i15; family: speed_match -->
-funny — смішний · quiet — тихий · colleagues — колеги · mean — злий
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-40:i16; family: speed_match -->
+lonely — відчуває самотність · weak — слабкий · brave — сміливий · afraid — боїться
 
-**16 · Складіть фразу — ви зустрічаєте новачків привітно; скажіть, які ви**
-<!-- interaction_id: en:lesson-01:session-40:i16; family: phrase_builder -->
-Плитки: `We` `friendly` `are` `not` → **We are friendly.**
-*(плитка `not` зайва: `not` зайве: ви кажете, що ви привітні — `We are friendly`.)*
-
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-40:i17:s01; family: scripted_repeat_compare -->
-Мія питає, чи давно ви з Олегом у команді. 🎙 **We are new.**
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-40:i17:s02; family: scripted_repeat_compare -->
-Іра просить сказати, які ви з Олегом колеги. 🎙 **We are kind.**
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-40:i17:s03; family: scripted_repeat_compare -->
-Іра показує на людей біля вікна: вони голосно сміються. 🎙 **They are loud.**
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-40:i17:s04; family: scripted_repeat_compare -->
-Мія називає людей біля вікна злими, а Іра не згодна. 🎙 **They are not mean.**
-
----
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=speed_match, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=phrase_builder, 6=listen_build_dictation, 7=context_gap_grammar, 8=sound_contrast, 9=listen_choose, 10=context_gap_grammar, 11=phrase_builder, 12=context_gap_grammar, 13=phrase_builder, 14=listen_build_dictation, 15=speed_match, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
+**17 · Увечері ви читаєте книжку, але вас хилить на сон. Назвіть близькій людині свій стан**
+<!-- interaction_id: en:lesson-01:session-40:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **I am sleepy.**
 

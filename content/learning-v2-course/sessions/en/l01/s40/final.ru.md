@@ -1,171 +1,138 @@
-# Английский · Урок 1 · Занятие 40 — «Расскажите о своей команде»
+# Английский · Урок 1 · Занятие 40 — Общий звонок друзей
 
-**Ситуация.** На обеде Ира знакомит вас и Олега с командой Мии за соседним столом. Мия спрашивает, какие вы коллеги и какие люди сидят у окна.
-**Сегодня.** Скажете о своей группе и о другой: `we are`, `they are`, `we are not`, `they are not`.
+**Ситуация.** В воскресенье вы созваниваетесь с друзьями из разных городов. Каждый рассказывает о самочувствии и событиях недели, а вы помогаете передать новости тем, кто подключился позже.
+
+**Что вы освоите:** выбрать слова главы и полные или короткие формы без новой грамматики
 **Новые слова:** —
-**Возвращаются:** friendly, loud, kind, new, funny, quiet, colleagues, mean
 
 ---
 
 ## Интро 1
 
-### `we` — это «мы», и слово после него не меняется
+### Кто говорит и о ком
 
-`we` — «мы». `friendly` — «дружелюбные». Между ними стоит `are`: `we are friendly`.
+Про себя — `I am`, коротко `I'm`. Про него — `He is`, коротко `He's`. Про неё — `She is`, коротко `She's`. Смысл при сокращении остаётся тем же. Сегодня возвращаем знакомые слова: новые учить не нужно.
 
-По-русски слово о нас получает хвост — «дружелюбные», не «дружелюбный». По-английски хвоста нет: `friendly` одинаковое и для одного, и для десяти. Одна форма на всех — тут английский проще русского.
+**Вы хотите сказать коротко, что с вами всё нормально. Выберите фразу о себе.**
 
-**Мия спрашивает Иру и Олега, какая у вас команда. Скажите: «Мы дружелюбные».**
-
-- ✅ **We are friendly.**
-- ❌ We friendly. — *После `we` нужно `are`: `We are friendly.`*
-- ❌ We is friendly. — *`is` — про одного человека со стороны. Про «мы» — `are`.*
+- ✅ **I'm okay.**
+- ❌ He's okay. — *Это про него, а нужно о себе: `I'm`.*
+- ❌ I okay. — *В короткой форме остаётся `'m`: `I'm okay`.*
 
 ---
 
 ## Интро 2
 
-### `they` — про тех, кого несколько и вас среди них нет
+### Называем нужное состояние
 
-`they` — «они»: людей несколько, и вы к ним не относитесь. Про свой стол — `we`, про тех, кто у окна, — `they`. `loud` — «шумные».
+`ill` — «болеет», `sleepy` — «хочется спать», `weak` — «слабый». Это разные описания. Больному может хотеться спать, но само слово `sleepy` не означает болезнь. Если вы говорите, что вам хочется спать, это ещё не означает, что вы болеете. Диагноз по зевку не ставим.
 
-После `we` и после `they` ставим `are`. Форма одинаковая, меняется только тот, о ком вы говорите.
+**Олег здоров, но хочет спать после раннего подъёма. Назовите именно желание спать.**
 
-**Ира показывает на команду Мии у окна: оттуда всё утро слышен смех. Скажите о них.**
-
-- ✅ **They are loud.**
-- ❌ They is loud. — *`is` — когда человек один. `they` — это несколько, значит `are`.*
-- ❌ They loud. — *Для англичанина это обрывок: он ждёт продолжения, а фраза уже кончилась.*
+- ✅ **He is sleepy.**
+- ❌ He is ill. — *`ill` — «болеет». Здесь нужно `sleepy`: хочется спать.*
+- ❌ He are sleepy. — *После `He` нужна форма `is`.*
 
 ---
 
 ## Интро 3
 
-### `not` держится за `are`
+### Страх, смелость и одиночество
 
-`kind` — «добрые». Чтобы сказать, что это не так, нужно `not`: `They are not kind.`
+`afraid` — «боится», `brave` — «смелый», `lonely` — «чувствует одиночество». Смелый человек может бояться; одинокому человеку может не хватать общения даже среди людей. В ответе называйте то чувство или качество, о котором просят.
 
-В английском `not` стоит после `are`: `They are not kind.` Так мы говорим: «Они не добрые».
+**Подруга боялась выступать, но решилась. Обратитесь к ней и отметьте её смелость.**
 
-**Мия считает, что все у окна добрые. Ира работала с ними и знает, что это не так. Скажите о команде у окна.**
-
-- ✅ **They are not kind.**
-- ❌ They not are kind. — *`not` идёт после `are`, а не перед ним.*
-- ❌ They no kind. — *В этой фразе нужно `not` после `are`: `They are not kind.`*
+- ✅ **You are brave.**
+- ❌ You are afraid. — *Это про страх. Здесь нужно похвалить смелость: `brave`.*
+- ❌ You are lonely. — *`lonely` — «одиноко». Здесь речь о смелости: `brave`.*
 
 ---
 
-## Практика (20 заданий, подсказок становится меньше)
+## Практика (17 заданий)
 
-**1 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-40:i01; family: speed_match -->
-friendly — дружелюбный · loud — шумный · kind — добрый · new — новый
+**1 · У вас всё нормально. Соберите короткую фразу о себе**
+<!-- interaction_id: en:lesson-01:session-40:i01; family: phrase_builder -->
+Плитки: `okay` `I'm` `He's` → **I'm okay.**
+*(плитка `He's` лишняя: здесь нужно `I'm` — `I'm okay.`)*
 
-**2 · Выберите форму после `we` — вы говорите за весь свой стол**
-<!-- interaction_id: en:lesson-01:session-40:i02; family: context_gap_grammar -->
-We ___ friendly. → **are** · is · am
-- is — *`is` про одного: `he is`, `she is`. Вас несколько.*
-- am — *`am` только про себя одного. «Мы» — это `are`.*
+**2 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-40:i02; family: listen_choose -->
+🔊 *She's ill.* → **She's ill.** · He's ill. · She's sleepy.
+- He's ill. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*
+- She's sleepy. — *В записи последнее слово — `ill`, а в этом варианте — `sleepy`.*
 
-**3 · Соберите фразу — из-за стены весь день гремит смех**
-<!-- interaction_id: en:lesson-01:session-40:i03; family: phrase_builder -->
-Плитки: `They` `are` `loud` `is` → **They are loud.**
-*(плитка `is` лишняя: `is` лишнее: с `They` говорят `They are loud.`)*
+**3 · Олегу хочется спать. Дополните фразу о нём**
+<!-- interaction_id: en:lesson-01:session-40:i03; family: context_gap_grammar -->
+He ___ sleepy. → **is** · am · are
+- am — *После `He` нужно `is`.*
+- are — *Здесь `He is sleepy`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-40:i04; family: speed_match -->
+okay — в порядке · afraid — боится · ill — болеет · sleepy — хочется спать
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-40:i04; family: listen_choose -->
-🔊 *kind* → **kind** · kid · king
-- kid — *«Кид», короткая гласная и без «н» на конце. И значит «ребёнок».*
-- king — *На конце «нг», а не «нд». И это «король».*
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-01:session-40:i05; family: listen_build_dictation -->
+🔊 *They are lonely.* Плитки: `lonely` `are` `They` `is` → **They are lonely.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are lonely.`)*
 
-**5 · Соберите фразу — за вашим столом все добрые**
-<!-- interaction_id: en:lesson-01:session-40:i05; family: phrase_builder -->
-Плитки: `are` `kind` `We` `is` → **We are kind.**
-*(плитка `is` лишняя: `is` лишнее: с `We` говорят `We are kind.`)*
+**6 · Сигнал связи слабый. Соберите фразу именно о сигнале**
+<!-- interaction_id: en:lesson-01:session-40:i06; family: phrase_builder -->
+Плитки: `weak` `is` `It` `He` → **It is weak.**
+*(плитка `He` лишняя: здесь нужно `It` — `It is weak.`)*
 
+**7 · Друг решился на выступление несмотря на страх. Коротко похвалите его за смелость, обращаясь к нему**
+<!-- interaction_id: en:lesson-01:session-40:i07; family: scripted_repeat_compare -->
+🎙 **You're brave.**
 
-**6 · Послушайте и соберите — ваша команда только вышла на эту работу**
-<!-- interaction_id: en:lesson-01:session-40:i06; family: listen_build_dictation -->
-🔊 *We are new.* Плитки: `new` `We` `are` → **We are new.**
+**8 · Вам не хватает близкого общения. Назовите чувство одиночества**
+<!-- interaction_id: en:lesson-01:session-40:i08; family: context_gap_grammar -->
+I am ___ . → **lonely** · sleepy · ill
+- sleepy — *`sleepy` — «хочется спать». Одиночество — `lonely`.*
+- ill — *`ill` — «болею». Здесь нужно назвать одиночество: `lonely`.*
 
-**7 · Вставьте слово — за вашим столом весь обед смеются**
-<!-- interaction_id: en:lesson-01:session-40:i07; family: context_gap_grammar -->
-We are ___ . → **funny** · quiet · late
-- quiet — *«Тихие» — а у вас за столом смех.*
-- late — *«Опаздываем» — это про часы, а не про то, какие вы.*
-
-**8 · Различите звуки — какое из двух про «добрый»?**
-<!-- interaction_id: en:lesson-01:session-40:i08; family: sound_contrast -->
-🔊 Два слова подряд.
-*kind · kid* → **kind**
-- kid — *Это «ребёнок». `kind` — «кайнд», гласная «ай» и «нд» на конце; `kid` — «кид», короткое «и».*
-
-**9 · Послушайте и выберите**
+**9 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-40:i09; family: listen_choose -->
-🔊 *mean* → **mean** · man · main
-- man — *«Мэн» — это «мужчина», гласная короткая.*
-- main — *«Мэйн» — другая гласная. `mean` — «мин», долгое «и».*
+🔊 *We are afraid.* → **We are afraid.** · They are afraid. · We are brave.
+- They are afraid. — *В записи первое слово — `We`, а в этом варианте — `They`.*
+- We are brave. — *В записи последнее слово — `afraid`, а в этом варианте — `brave`.*
 
-**10 · Вставьте слово — вы не согласны, что ваш отдел злой**
-<!-- interaction_id: en:lesson-01:session-40:i10; family: context_gap_grammar -->
-We are not ___ . → **mean** · kind · friendly
-- kind — *Получится «мы не добрые» — вы говорите обратное.*
-- friendly — *Тоже наоборот: вы как раз дружелюбные.*
+**10 · Соедините короткие начала с полными**
+<!-- interaction_id: en:lesson-01:session-40:i10; family: speed_match -->
+I'm — I am · You're — You are · It's — It is · They're — They are
 
-**11 · Соберите фразу — про соседний отдел: они не тихие**
-<!-- interaction_id: en:lesson-01:session-40:i11; family: phrase_builder -->
-Плитки: `not` `They` `quiet` `are` → **They are not quiet.**
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-40:i11; family: listen_build_dictation -->
+🔊 *We're okay.* Плитки: `okay` `We're` `They're` → **We're okay.**
+*(плитка `They're` лишняя: здесь нужно `We're` — `We're okay.`)*
 
-**12 · Выберите форму после `they` — вы рассказываете про людей из другого отдела**
-<!-- interaction_id: en:lesson-01:session-40:i12; family: context_gap_grammar -->
-They ___ funny. → **are** · is · am
-- is — *Их там целый отдел — одним `is` не обойтись.*
-- am — *`am` — только про себя.*
+**12 · Сестра призналась, что боится предстоящего выступления. Соберите фразу именно о её страхе**
+<!-- interaction_id: en:lesson-01:session-40:i12; family: phrase_builder -->
+Плитки: `afraid` `is` `She` `are` → **She is afraid.**
+*(плитка `are` лишняя: здесь нужно `is` — `She is afraid.`)*
 
-**13 · Соберите фразу — вы работаете с этими людьми в одном отделе**
-<!-- interaction_id: en:lesson-01:session-40:i13; family: phrase_builder -->
-Плитки: `They` `are` `my` `colleagues` `is` → **They are my colleagues.**
-*(плитка `is` лишняя: `is` лишнее: с `They` говорят `They are my colleagues.`)*
+**13 · Вы и брат болеете и поэтому остались дома. Объясните друзьям вашу общую причину отмены встречи**
+<!-- interaction_id: en:lesson-01:session-40:i13; family: scripted_repeat_compare -->
+🎙 **We are ill.**
 
+**14 · Двое друзей честно признались в ошибке, хотя боялись. Отметьте их смелость**
+<!-- interaction_id: en:lesson-01:session-40:i14; family: context_gap_grammar -->
+They ___ brave. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Здесь `They are brave`.*
 
-**14 · Послушайте и соберите — «мы добрые»**
-<!-- interaction_id: en:lesson-01:session-40:i14; family: listen_build_dictation -->
-🔊 *We are kind.* Плитки: `are` `kind` `We` → **We are kind.**
+**15 · Послушайте и выберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-40:i15; family: listen_choose -->
+🔊 *He's weak.* → **He's weak.** · She's weak. · He's sleepy.
+- She's weak. — *В записи первое слово — `He's`, а в этом варианте — `She's`.*
+- He's sleepy. — *В записи последнее слово — `weak`, а в этом варианте — `sleepy`.*
 
-**15 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-40:i15; family: speed_match -->
-funny — смешной · quiet — тихий · colleagues — коллеги · mean — злой
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-40:i16; family: speed_match -->
+lonely — чувствует одиночество · weak — слабый · brave — смелый · afraid — боится
 
-**16 · Соберите фразу — вы встречаете новичков приветливо; скажите, какие вы**
-<!-- interaction_id: en:lesson-01:session-40:i16; family: phrase_builder -->
-Плитки: `We` `friendly` `are` `not` → **We are friendly.**
-*(плитка `not` лишняя: `not` лишнее: вы говорите, что вы приветливые — `We are friendly.`)*
-
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-40:i17:s01; family: scripted_repeat_compare -->
-Мия спрашивает, давно ли вы с Олегом в команде. 🎙 **We are new.**
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-40:i17:s02; family: scripted_repeat_compare -->
-Ира просит сказать, какие вы с Олегом коллеги. 🎙 **We are kind.**
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-40:i17:s03; family: scripted_repeat_compare -->
-Ира показывает на людей у окна: они громко смеются. 🎙 **They are loud.**
-
-**20 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-40:i17:s04; family: scripted_repeat_compare -->
-Мия называет людей у окна злыми, а Ира не согласна. 🎙 **They are not mean.**
-
----
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=speed_match, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=phrase_builder, 6=listen_build_dictation, 7=context_gap_grammar, 8=sound_contrast, 9=listen_choose, 10=context_gap_grammar, 11=phrase_builder, 12=context_gap_grammar, 13=phrase_builder, 14=listen_build_dictation, 15=speed_match, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
+**17 · Вечером вы читаете книгу, но вас клонит в сон. Назовите близкому человеку своё состояние**
+<!-- interaction_id: en:lesson-01:session-40:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **I am sleepy.**
 

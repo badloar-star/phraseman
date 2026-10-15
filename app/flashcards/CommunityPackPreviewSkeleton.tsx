@@ -25,7 +25,7 @@ export default memo(function CommunityPackPreviewSkeleton({ lang, onBack }: Read
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
   return (
     <View testID={COMMUNITY_PACK_PREVIEW_SKELETON_TEST_ID} style={styles.root}>
-      <ScrollView scrollEnabled={false} contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+      <ScrollView decelerationRate="fast" scrollEnabled={false} contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         <PackTopBarRow left={<PackBackBare g={g} testID="pack-preview-back" label={backLabel} onPress={onBack} />} />
         <View style={styles.title}><SkeletonBlock width="62%" height={34} borderRadius={10} /></View>
         <View style={styles.authorRow}>

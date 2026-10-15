@@ -24,6 +24,7 @@ function LessonMenuGateSkeletonBase({ glass, bottomInset }: Props) {
   return (
     <ScrollView
       testID="lesson-menu-gate-skeleton"
+      decelerationRate="fast"
       scrollEnabled={false}
       pointerEvents="none"
       accessibilityElementsHidden

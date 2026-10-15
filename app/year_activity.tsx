@@ -94,7 +94,7 @@ function YearActivityScreen() {
           <View style={styles.header}>
             <ResultsGlassBackButton glass={glass} testID="year-activity-back" accessibilityLabel={triLang(lang, COPY.back)} onPress={() => safeRouterBack(router)} />
           </View>
-          <ScrollView testID="year-activity-screen" contentContainerStyle={{ paddingHorizontal: SCREEN_PADDING, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+          <ScrollView testID="year-activity-screen" decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: SCREEN_PADDING, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
             <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '800', lineHeight: Math.round(f.h1 * 1.12), marginTop: 6 }}>
               {triLang(lang, COPY.title)}
             </Text>

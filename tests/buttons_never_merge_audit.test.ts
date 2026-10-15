@@ -96,6 +96,22 @@ describe('кнопки нигде не сливаются: основные ≥ 
     fs.writeFileSync(out, lines.join('\n') + '\n', 'utf8');
   });
 
+  it('новая базовая линия (BUTTON_AUDIT_BASELINE_OUT) — только по явной просьбе, вне репозитория', () => {
+    const out = process.env.BUTTON_AUDIT_BASELINE_OUT;
+    if (!out) return;
+    const body = { note: 'Красное аудита «кнопки не сливаются» по двум уровням (основные ≥ 3:1, тоновые плашки ≥ 1,5:1, подпись ≥ 4,5:1), обновлено 15.10 (отключённые теперь тоже ≥ 1,5:1). Список может только уменьшаться.', red: red.map(keyOf) };
+    fs.writeFileSync(out, `${JSON.stringify(body, null, 1)}
+`, 'utf8');
+  });
+
+  it('отключённые кнопки не сливаются ни в одной теме: ≥ 1,5 : 1 к каждой поверхности, подпись ≥ 4,5 : 1 (координатор 15.10)', () => {
+    const disabledRed = red.filter((r) => r.button === 'V2 отключённая').map(keyOf);
+    expect(disabledRed).toEqual([]);
+    const baselinePath = path.join(__dirname, '..', 'config', 'buttons-never-merge-baseline.json');
+    const base = JSON.parse(fs.readFileSync(baselinePath, 'utf8')) as { red: string[] };
+    expect(base.red.filter((k) => k.includes('V2 отключённая'))).toEqual([]);
+  });
+
   it('число красных не растёт сверх зафиксированного (RED_BASELINE)', () => {
     const baselinePath = path.join(__dirname, '..', 'config', 'buttons-never-merge-baseline.json');
     if (!fs.existsSync(baselinePath)) { console.log(`[BUTTONS-AUDIT] красных ${red.length} из ${rows.length}; базовой линии ещё нет`); return; } // guard-ok: аудит до фиксации базы

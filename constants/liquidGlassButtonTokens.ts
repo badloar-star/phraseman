@@ -33,7 +33,10 @@ export type LiquidGlassButtonRoles = Readonly<{
   ctaFill: string;
 }>;
 
-const SURFACE_MIN = 1.6;
+const SURFACE_MIN = 1.7;
+// зачем (координатор 15.10, правило владельца «кнопки не сливаются» для НЕАКТИВНЫХ): отключённая кнопка тоже ≥ 1,5 : 1 к любой поверхности под ней;
+// вторичная поднята до 1,9 : 1, чтобы отключённая (≥ 1,5) оставалась от неё отличимой (≥ 1,25 : 1) и читалась как «выключена», а не как «другая кнопка».
+const DISABLED_SURFACE_MIN = 1.5;
 const TEXT_MIN = 4.6;
 // зачем: правило владельца 13.10 "кнопки не сливаются", аудит 15.10 — заливка главной кнопки не слабее 3 : 1 к странице, карточке и шторке (фон кнопки как графика); раньше 1,8 и в 10 светлых градиентных темах было 2,1–2,9
 const CTA_SURFACE_MIN = 3.0;
@@ -81,11 +84,30 @@ const TONE_SHARE = 0.3;
  * зачем (координатор 14.10, находка Макетов): в светлых градиентных темах opaqueControl нейтрально-серый (#AAAAAD), рядом с отключённой (#D5D5D6) вторичная читалась как ОТКЛЮЧЁННАЯ —
  * владелец такое уже браковал. Если поверхность нейтральна, а акцент темы цветной, подмешиваем акцент (и в тёмный конец сдвига) — вторичная получает тон темы; «Спокойно» (акцент нейтрален) не меняется.
  */
+/** Линия заливок кнопок: от opaqueControl (с тоном темы там, где поверхность серая) к тексту темы — по ней идут вторичная и отключённая. */
+function fillLine(t: Surfaces): Readonly<{ start: string; toward: string }> {
+  const tone = chroma(t.opaqueControl) < NEUTRAL_CHROMA_MAX && chroma(t.cta) >= ACCENT_CHROMA_MIN;
+  return { start: tone ? mix(t.opaqueControl, t.cta, TONE_SHARE) : hex6(t.opaqueControl), toward: tone ? mix(t.text, t.cta, 0.2) : t.text };
+}
+
+/**
+ * Отключённая заливка: от вторичной в сторону шторки (плоше, мягче), пока ещё ≥ 1,5 : 1 к каждой поверхности под кнопкой — дальше начинается «слилась с фоном».
+ * Идём подряд от вторичной и останавливаемся на последнем шаге, где порог держится; вторичная при этом ≥ 1,9 : 1, поэтому отличие от неё остаётся заметным.
+ */
+function disabledFill(t: Surfaces, secondary: string): string {
+  const under = underSurfaces(t);
+  let best = secondary;
+  for (let k = 0.02; k <= 1.0001; k += 0.02) {
+    const c = mix(secondary, t.opaqueSheet, k);
+    if (minOver(c, under) < DISABLED_SURFACE_MIN) break;
+    best = c;
+  }
+  return best;
+}
+
 function secondaryFill(t: Surfaces): string {
   const under = underSurfaces(t);
-  const tone = chroma(t.opaqueControl) < NEUTRAL_CHROMA_MAX && chroma(t.cta) >= ACCENT_CHROMA_MIN;
-  const start = tone ? mix(t.opaqueControl, t.cta, TONE_SHARE) : hex6(t.opaqueControl);
-  const toward = tone ? mix(t.text, t.cta, 0.2) : t.text;
+  const { start, toward } = fillLine(t);
   let best = start;
   let bestScore = -1;
   for (let k = 0; k <= 0.9001; k += 0.02) {
@@ -138,7 +160,7 @@ function dangerRoles(t: Surfaces): Readonly<{ dangerFill: string; dangerInk: str
 
 export function deriveLiquidGlassButtonRoles(t: Surfaces): LiquidGlassButtonRoles {
   const buttonFill = secondaryFill(t);
-  const buttonFillDisabled = mix(buttonFill, t.opaqueSheet, 0.5);
+  const buttonFillDisabled = disabledFill(t, buttonFill);
   // подпись приглушаем (отличие от активной), но не ниже порога: берём последнюю смесь, которая ещё держит DISABLED_INK_TARGET
   let buttonInkDisabled = hex6(t.text);
   for (let a = 0.98; a >= 0.2; a -= 0.02) {

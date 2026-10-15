@@ -28,7 +28,7 @@ describe('lesson menu access check is fail-closed', () => {
     expect(lockCheck.indexOf('setIsLessonLocked(true);')).toBeLessThan(lockCheck.indexOf('(async () =>'));
     expect(accessCatch).toBeGreaterThan(accessTry);
     expect(accessFinally).toBeGreaterThan(accessCatch);
-    expect(lockCheck.slice(accessCatch, accessFinally)).toContain('setIsLessonLocked(true);');
+    expect(lockCheck.slice(accessCatch, accessFinally)).toContain('gatedSetLocked(true);');
     expect(lockCheck.slice(accessCatch, accessFinally)).toContain("setLockReason('progress');");
 
     for (const handler of ['openLessonFromMenu', 'handleStartLesson', 'handleReplayIntroAndContinue']) {

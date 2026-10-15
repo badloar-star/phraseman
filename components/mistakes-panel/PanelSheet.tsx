@@ -78,7 +78,16 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
             end={{ x: 0.5, y: 1 }}
             style={[StyleSheet.absoluteFill, styles.edge]}
           />
-        ) : null}
+        ) : (
+          // зачем (решение владельца 15.10, 10А / cards-gap-022): шторка выбора набора — тот же мягкий перелив в тоне темы, чуть светлее основы, что у остальных шторок (HybridSheetShell: selected → прозрачный, 0,0 → 0,8·1); плоской заливки opaqueSheet недостаточно
+          <LinearGradient
+            pointerEvents="none"
+            colors={[g.selected, 'transparent']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0.8, y: 1 }}
+            style={[StyleSheet.absoluteFill, styles.edge]}
+          />
+        )}
         <View style={[styles.grab, { backgroundColor: `${g.text}40` }]} />
         {children}
       </Animated.View>

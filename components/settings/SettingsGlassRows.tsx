@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { switchOffTrackTone } from './switch_chrome';
+import { switchOffTrackTone, switchOnTone } from './switch_chrome';
 import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
@@ -197,6 +197,7 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
 }
 
 /** Переключатель тем же устройством, что на «Настройках обучения»: нейтральный, не зелёный, 48 dp. */
+// зачем (решение владельца 15.10, 11А / settings-gap-016): включено = светлая дорожка + тёмный кружок, как на эталоне, во всех темах — общий токен switchOnTone, как на экранах приватности, обучения и уведомлений.
 export function SettingsGlassSwitch({ value, onValueChange, testID, accessibilityLabel, glass }: {
   value: boolean;
   onValueChange: (next: boolean) => void;
@@ -217,8 +218,8 @@ export function SettingsGlassSwitch({ value, onValueChange, testID, accessibilit
       style={{ width: 48, minWidth: 48, minHeight: 48, alignSelf: 'center' }}
       contentStyle={{ width: 48, minHeight: 48, justifyContent: 'center', alignItems: 'center' }}
     >
-      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? glass.selected : switchOffTrackTone(glass).track /* зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном */ }}>
-        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? glass.lightTint : switchOffTrackTone(glass).knob, transform: [{ translateX: value ? 19 : 0 }] }} />
+      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? switchOnTone(glass).track : switchOffTrackTone(glass).track /* зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном */ }}>
+        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? switchOnTone(glass).knob : switchOffTrackTone(glass).knob, transform: [{ translateX: value ? 19 : 0 }] }} />
       </View>
     </PressableHybrid>
   );

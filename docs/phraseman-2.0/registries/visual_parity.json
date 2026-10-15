@@ -44494,6 +44494,222 @@
         "coverage": "ready",
         "coverage_note": "решение координатора 13.10 (Дизайн CARDS_LAYOUT_ROWS_R1 п.5): строка-карточка «Продолжить создание набора ›» (testID flashcards-packs-continue-draft) показывается в каталоге при недоделанном черновике; образец cards-v2 №89. Снять: открыть «Новый набор», ввести название, выйти, зайти в каталог Сообщества."
       }
+    },
+    {
+      "id": "whats-new-001",
+      "source": "OWNER_15_10_WHATS_NEW",
+      "mockup": {
+        "file": "docs/design/v2-app/whats-new-coins.html",
+        "phone": 1,
+        "label": "WN-1 · (а) опыт, жемчуг и вращения · «Сумерки»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Окно «Встречайте PhraseMan 2.0» · пересчёт старых бонусов в монеты",
+      "state": "(а) опыт, жемчуг и вращения · «Сумерки»",
+      "code": [
+        "components/legacy_bonus/LegacyBonusWelcomeSheet.tsx",
+        "components/legacy_bonus/LegacyBonusRow.tsx",
+        "modules/legacy_bonus/legacy_bonus_view.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "шторка выезжает; строки по очереди сгорают в монеты (отсчёт числа, полёт 6 монет по дуге, чип «+N монет»), итог докручивается, блик и кольцо на большой монете"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+    },
+    {
+      "id": "whats-new-002",
+      "source": "OWNER_15_10_WHATS_NEW",
+      "mockup": {
+        "file": "docs/design/v2-app/whats-new-coins.html",
+        "phone": 2,
+        "label": "WN-2 · (а) опыт, жемчуг и вращения · «Океан»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Окно «Встречайте PhraseMan 2.0» · пересчёт старых бонусов в монеты",
+      "state": "(а) опыт, жемчуг и вращения · «Океан»",
+      "code": [
+        "components/legacy_bonus/LegacyBonusWelcomeSheet.tsx",
+        "components/legacy_bonus/LegacyBonusRow.tsx",
+        "modules/legacy_bonus/legacy_bonus_view.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "шторка выезжает; строки по очереди сгорают в монеты (отсчёт числа, полёт 6 монет по дуге, чип «+N монет»), итог докручивается, блик и кольцо на большой монете"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+    },
+    {
+      "id": "whats-new-003",
+      "source": "OWNER_15_10_WHATS_NEW",
+      "mockup": {
+        "file": "docs/design/v2-app/whats-new-coins.html",
+        "phone": 3,
+        "label": "WN-3 · (б) только жемчуг · «Сумерки»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Окно «Встречайте PhraseMan 2.0» · пересчёт старых бонусов в монеты",
+      "state": "(б) только жемчуг · «Сумерки»",
+      "code": [
+        "components/legacy_bonus/LegacyBonusWelcomeSheet.tsx",
+        "components/legacy_bonus/LegacyBonusRow.tsx",
+        "modules/legacy_bonus/legacy_bonus_view.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "шторка выезжает; строки по очереди сгорают в монеты (отсчёт числа, полёт 6 монет по дуге, чип «+N монет»), итог докручивается, блик и кольцо на большой монете"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+    },
+    {
+      "id": "whats-new-004",
+      "source": "OWNER_15_10_WHATS_NEW",
+      "mockup": {
+        "file": "docs/design/v2-app/whats-new-coins.html",
+        "phone": 4,
+        "label": "WN-4 · (б) только жемчуг · «Океан»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Окно «Встречайте PhraseMan 2.0» · пересчёт старых бонусов в монеты",
+      "state": "(б) только жемчуг · «Океан»",
+      "code": [
+        "components/legacy_bonus/LegacyBonusWelcomeSheet.tsx",
+        "components/legacy_bonus/LegacyBonusRow.tsx",
+        "modules/legacy_bonus/legacy_bonus_view.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "шторка выезжает; строки по очереди сгорают в монеты (отсчёт числа, полёт 6 монет по дуге, чип «+N монет»), итог докручивается, блик и кольцо на большой монете"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+    },
+    {
+      "id": "whats-new-005",
+      "source": "OWNER_15_10_WHATS_NEW",
+      "mockup": {
+        "file": "docs/design/v2-app/whats-new-coins.html",
+        "phone": 5,
+        "label": "WN-5 · (в) ничего не начислено — только заголовок · «Сумерки»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Окно «Встречайте PhraseMan 2.0» · пересчёт старых бонусов в монеты",
+      "state": "(в) ничего не начислено — только заголовок · «Сумерки»",
+      "code": [
+        "components/legacy_bonus/LegacyBonusWelcomeSheet.tsx",
+        "components/legacy_bonus/LegacyBonusRow.tsx",
+        "modules/legacy_bonus/legacy_bonus_view.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "шторка выезжает; заголовок проявляется"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
+    },
+    {
+      "id": "whats-new-006",
+      "source": "OWNER_15_10_WHATS_NEW",
+      "mockup": {
+        "file": "docs/design/v2-app/whats-new-coins.html",
+        "phone": 6,
+        "label": "WN-6 · (в) ничего не начислено — только заголовок · «Океан»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Окно «Встречайте PhraseMan 2.0» · пересчёт старых бонусов в монеты",
+      "state": "(в) ничего не начислено — только заголовок · «Океан»",
+      "code": [
+        "components/legacy_bonus/LegacyBonusWelcomeSheet.tsx",
+        "components/legacy_bonus/LegacyBonusRow.tsx",
+        "modules/legacy_bonus/legacy_bonus_view.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "шторка выезжает; заголовок проявляется"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "added_reason": "владелец 15.10: окно — только заголовок + пересчёт в монеты; 09:12 — суммы только начисленные сервером, нули не показываются; кадры (а)/(б)/(в) × темы по умолчанию"
     }
   ]
 }

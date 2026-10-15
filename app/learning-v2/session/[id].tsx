@@ -457,6 +457,8 @@ function LearningV2LegacySessionScreen() {
       const outcome = await actionSession.controlVoice(command, interaction);
       if (outcome.kind !== "voice_result") return;
       if (outcome.outcome === "started") {
+        // зачем (координатор 15.10, D196): этот микрофон живёт только в не-direct режимах старого экрана курса (в выпуске всегда direct_v1 → плеер с цифрой); общий дневной счётчик он НЕ списывает и цифры не рисует — фиксируем в журнале, чтобы такое включение было видно
+        console.warn("[VOICE-LIMIT] ungated_legacy_mic", JSON.stringify({ screen: "learning-v2/session", command, interaction })); // guard-ok: единственная строка на старт записи
         setVoiceRecording(true);
         setActionMessage(copy.voiceSpeaking);
       } else {

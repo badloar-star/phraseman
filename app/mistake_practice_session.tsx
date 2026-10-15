@@ -1082,7 +1082,13 @@ function MistakePracticeSessionScreen() {
     }
   }, [accountScope, entrySource, params.planDayIndex, params.planId, params.planInstanceId, params.planTaskId, pendingSession, persistSession, reviewPool, studyTarget, wrongAnswers]);
 
+  const commitVoiceAttempt = voiceGate.commitStartedAttempt;
+  const speechStatusRef = useRef<SpeakingPanelStatus>('idle');
   const onSpeechStatus = useCallback((status: SpeakingPanelStatus) => {
+    // зачем (координатор 15.10, правило владельца D194 «попытка = НАЧАТАЯ запись»): тап только проверяет лимит (при нуле — пейвол), а попытка списывается, когда запись реально пошла (статус «listening»): отказ микрофона и отмена до старта не списывают; один переход в listening = одна попытка
+    const previousSpeechStatus = speechStatusRef.current;
+    speechStatusRef.current = status;
+    if (status === 'listening' && previousSpeechStatus !== 'listening') commitVoiceAttempt();
     if (status === 'denied' || status === 'unavailable' || status === 'no_speech' || status === 'stalled') {
       attempts.registerVerdict({
         answerAttemptId: `${session?.sessionId ?? attemptSessionId}:voice-status:${status}:${voiceNeutralSequenceRef.current++}`,
@@ -1092,7 +1098,7 @@ function MistakePracticeSessionScreen() {
     } else {
       setSpeechRecovery(null);
     }
-  }, [attemptSessionId, attempts.registerVerdict, copy, session?.sessionId]);
+  }, [attemptSessionId, attempts.registerVerdict, commitVoiceAttempt, copy, session?.sessionId]);
 
   const onSpeechClose = useCallback(() => {
     setSpeechHeld(false);
@@ -1614,7 +1620,7 @@ function MistakePracticeSessionScreen() {
               <Pressable
                 accessibilityRole="button"
                 accessibilityLabel={copy.holdToSpeak}
-                onPressIn={() => { if (!voiceGate.tryStartAttempt()) return; setSpeechHeld(true); }}
+                onPressIn={() => { if (!voiceGate.canStartAttempt()) return; setSpeechHeld(true); }}
                 onPressOut={() => setSpeechHeld(false)}
                 style={({ pressed }) => [styles.mic, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 34, spreadDistance: -12, color: `${g.accent}B3` }] }, pressed && { opacity: 0.9 }]}
               >

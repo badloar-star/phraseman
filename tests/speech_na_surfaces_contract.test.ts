@@ -60,7 +60,7 @@ describe('Learning V2: занятие с голосовым шагом на ус
 describe('отключённое состояние на всех голосовых местах', () => {
   it('урок: «Устно» перечёркнуто, тап не тратит попытку и не ведёт на пейвол', () => {
     const source = read('app', 'lesson1.tsx');
-    expectBefore(source, 'if (speechNa) {', 'if (!speakingGate.tryStartAttempt()) return;');
+    expectBefore(source, 'if (speechNa) {', 'if (!speakingGate.canStartAttempt()) return;');
     expect(source).toContain("name={speechNa ? 'mic-off-outline' : 'mic-outline'}");
     // Панель не открывается: на NA-устройстве startSpeakingHold выходит до setSpeakingOpen(true).
     expectBefore(source, 'if (speechNa) {', 'setSpeakingOpen(true);');
@@ -68,7 +68,7 @@ describe('отключённое состояние на всех голосов
 
   it('кнопка «Зажми и говори» (карточки, Learning V2) отключена и не трогает квоту', () => {
     const source = read('app', 'flashcards', 'SpeakHoldButton.tsx');
-    expectBefore(source, 'if (speechNa) {', 'speakingGate.tryStartAttempt()');
+    expectBefore(source, 'if (speechNa) {', 'allowance.onSpentPress()');
     expect(source).toContain("speechNa ? 'mic-off-outline'");
     expect(source).toContain('const disabled = disabledProp || speechNa;');
   });

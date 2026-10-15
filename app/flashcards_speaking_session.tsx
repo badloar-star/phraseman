@@ -63,6 +63,7 @@ import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/
 import { PracticeCta } from '../components/practice/PracticeStates';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio } from '../hooks/use-audio';
+import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useTrainingStudyTarget } from './flashcards/use_training_study_target';
@@ -1085,8 +1086,15 @@ export default function FlashcardsSpeakingSession() {
     () => new Set(['no_speech', 'stalled', 'denied', 'unavailable']),
     [],
   );
+  // зачем (координатор 15.10, правило владельца D194 «попытка = НАЧАТАЯ запись»): тап только проверяет лимит (при нуле — пейвол), а попытка списывается, когда запись реально пошла (статус «listening»): отказ микрофона и отмена до старта не списывают; один переход панели в listening = одна попытка из общего дневного счётчика
+  const cardsVoiceGate = useVoiceAttemptGate({ surface: 'cards_speaking', source: 'flashcards_speak_hold' });
+  const commitCardsVoiceAttempt = cardsVoiceGate.commitStartedAttempt;
+  const panelStatusRef = useRef('idle');
   const onPanelStatusChange = useCallback(
     (status: string) => {
+      const previousPanelStatus = panelStatusRef.current;
+      panelStatusRef.current = status;
+      if (status === 'listening' && previousPanelStatus !== 'listening') commitCardsVoiceAttempt();
       fcSpeakTrace('panel:status', {
         status, phase: sessionRef.current.phase, index: sessionRef.current.index,
         deadEnd: DEAD_END_STATUSES.has(status),
@@ -1100,7 +1108,7 @@ export default function FlashcardsSpeakingSession() {
         });
       }
     },
-    [attemptSessionId, attempts, DEAD_END_STATUSES],
+    [attemptSessionId, attempts, commitCardsVoiceAttempt, DEAD_END_STATUSES],
   );
 
   const onRetry = useCallback(() => {

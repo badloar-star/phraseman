@@ -674,7 +674,7 @@ const LessonContent = React.memo(function LessonContent({
       setSpeechNaNoteKey(speakingPhraseKey);
       return;
     }
-    if (!speakingGate.tryStartAttempt()) return;
+    if (!speakingGate.canStartAttempt()) return; // зачем (координатор 15.10, правило владельца D194 «попытка = НАЧАТАЯ запись»): тап только проверяет лимит (при нуле — пейвол), а попытка списывается, когда запись реально пошла (статус «listening»): отказ микрофона и отмена до старта не списывают; списание — в onSpeakingPanelStatus
     // Замораживаем авто-переход у родителя: панель произносит эталон в фоне и даёт
     // «Моя запись» / «Сказать ещё раз», и 4-сек таймер не должен увести урок
     // вперёд, пока панель открыта. Переход дальше — только по явному действию юзера.
@@ -686,6 +686,14 @@ const LessonContent = React.memo(function LessonContent({
   }, [speakingGate, onSpeakingActiveChange, speakingPhraseKey, speechNa]);
 
   const endSpeakingHold = useCallback(() => setSpeakingHoldActive(false), []);
+  const commitSpeakingAttempt = speakingGate.commitStartedAttempt;
+  const speakingStatusRef = useRef('idle');
+  // зачем (координатор 15.10, правило владельца D194 «попытка = НАЧАТАЯ запись»): тап только проверяет лимит (при нуле — пейвол), а попытка списывается, когда запись реально пошла (статус «listening»): отказ микрофона и отмена до старта не списывают; один переход в listening = одна попытка
+  const onSpeakingPanelStatus = useCallback((status: string) => {
+    const previous = speakingStatusRef.current;
+    speakingStatusRef.current = status;
+    if (status === 'listening' && previous !== 'listening') commitSpeakingAttempt();
+  }, [commitSpeakingAttempt]);
 
   const closeSpeaking = useCallback(() => {
     speakingOpenedForPhraseRef.current = null;
@@ -1374,6 +1382,7 @@ const LessonContent = React.memo(function LessonContent({
                   theme={buildSpeakingPanelTheme(t)}
                   presentation="inline"
                   holdActive={speakingHoldActive}
+                  onStatusChange={onSpeakingPanelStatus}
                   onScore={handleSpeakingScore}
                   onPass={({ score }) => {
                     void trackFeatureSuccess('speaking', 'attempt', { lessonId, score }, 'lesson1');

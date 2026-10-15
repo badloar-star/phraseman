@@ -1,0 +1,10 @@
+10-15 23:11:32.222 I/ReactNativeJS( 3324): [V2-START] tap {"lesson":1,"session":1,"skipIntro":false,"prepared":true}
+10-15 23:11:32.535 I/ReactNativeJS( 3324): [V2-START] ready {"lesson":1,"session":1,"tapToReadyMs":313}
+10-15 23:11:32.626 I/ReactNativeJS( 3324): '[V2-PAGE] push:session', '{"sessionId":"lesson-01:session:01","sessionRunId":"ef9e22a0-486a-4cac-8f9d-fba28c91a10f","from":"lessons.tsx:modalLaunch"}'
+10-15 23:11:32.664 I/ReactNativeJS( 3324): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"learning-v2/session/[id]","noop":false,"atMs":148022,"stack":"anonymous@148226:34 | forEach | anonymous@148226:25 | anonymous@145542:19 | apply | latestCallbac
+10-15 23:11:32.875 I/ReactNativeJS( 3324): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#ZfqyN5*[(tabs)#vdSyaQ,learning-v2/session/[id]#_Ht8I0*]","atMs":148233}'
+10-15 23:11:33.197 I/ReactNativeJS( 3324): [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/learning-v2/session/lesson-01:session:01 tab=/(tabs)/lessons routeIsTab=false"}
+10-15 23:11:33.334 W/ReactNativeJS( 3324): [NAV-PAINT] group=training route=/learning-v2/session/lesson-01:session:01 ms=456
+10-15 23:11:35.190 I/ReactNativeJS( 3324): '[MEM-TICK]', '{"tSec":150,"route":"/learning-v2/session/lesson-01:session:01","heapMb":72,"gc":"21gc/147ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsT
+10-15 23:11:40.223 I/ReactNativeJS( 3324): '[MEM-TICK]', '{"tSec":155,"route":"/learning-v2/session/lesson-01:session:01","heapMb":72,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTrac
+10-15 23:11:45.244 I/ReactNativeJS( 3324): '[MEM-TICK]', '{"tSec":160,"route":"/learning-v2/session/lesson-01:session:01","heapMb":72,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- installForegroundUsageMsTrac

@@ -134,7 +134,11 @@ async function sampleVariant(pg, vid, total, partSel) {
   const br = await chromium.launch(); const meta = {}; const data = {};
   for (const [tn, clicks, tk] of THEMES) {
     const pg = await br.newPage({ viewport: { width: 1400, height: 1100 } }); const errs = []; pg.on('pageerror', (e) => errs.push(e.message.slice(0, 120)));
-    await pg.goto(BASE + PAGE + '?v=' + Date.now(), { waitUntil: 'load' }); await pg.waitForTimeout(1200);
+    // зачем (сбой 15.10 06:12: page.goto 'load' 30 с — страница с роликами не успевает «load»): грузим как проверка разметки —
+    // domcontentloaded + ждём фреймворк EM, 2 попытки; не загрузилась — падаем с понятной причиной, листы не перезаписываются
+    let loaded = false; for (let k = 0; k < 2 && !loaded; k++) { try { await pg.goto(BASE + PAGE + '?v=' + Date.now(), { waitUntil: 'domcontentloaded', timeout: 60000 }); await pg.waitForFunction(() => window.EM && document.querySelector('[data-vid]'), null, { timeout: 30000 }); loaded = true; } catch (e) { console.warn('[ACCEPT-SHEET] загрузка', PAGE, 'попытка', k + 1, e.message.split(String.fromCharCode(10))[0]); } }
+    if (!loaded) throw new Error(`[ACCEPT-SHEET] ${PAGE} не загрузился за 2 попытки — листы не обновлены`);
+    await pg.waitForTimeout(1200);
     for (let k = 0; k < clicks; k++) { await pg.click('#em-theme'); await pg.waitForTimeout(200); }
     await pg.addStyleTag({ content: '.em-ph { width: 412px !important; height: 915px !important; } .em-toc, .em-top { position: static !important; }' });
     const ms = await pg.evaluate((ids) => EM.MOMENTS.filter((m) => ids.includes(m.id)).map((m) => ({ id: m.id, title: m.title, lead: (m.lead || '').replace(/<[^>]+>/g, ''),

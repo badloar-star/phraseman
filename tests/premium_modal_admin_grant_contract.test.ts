@@ -3,7 +3,8 @@ import path from 'path';
 
 describe('premium modal dispatcher contract', () => {
   const root = process.cwd();
-  const dispatcher = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8');
+  // CRLF в рабочей копии Windows — нормализуем: проверка entryToShow многострочная (сторож source_guard_eol_normalized)
+  const dispatcher = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8').replace(/\r\n/g, '\n');
   const navigation = fs.readFileSync(path.join(root, 'app', 'paywall_navigation.ts'), 'utf8');
   const manageSubscription = fs.readFileSync(path.join(root, 'app', 'manage_subscription.tsx'), 'utf8');
   const purchase = fs.readFileSync(path.join(root, 'app', 'paywall_purchase.ts'), 'utf8');

@@ -4,7 +4,8 @@ import path from 'path';
 const root = process.cwd();
 
 function readAppFile(fileName: string) {
-  return fs.readFileSync(path.join(root, 'app', fileName), 'utf8');
+  // CRLF в рабочей копии Windows — нормализуем: проверка entryToShow многострочная (сторож source_guard_eol_normalized)
+  return fs.readFileSync(path.join(root, 'app', fileName), 'utf8').replace(/\r\n/g, '\n');
 }
 
 function listSourceFiles(dir: string): string[] {

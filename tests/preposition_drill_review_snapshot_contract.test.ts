@@ -4,7 +4,8 @@ import path from 'node:path';
 // зачем (аудит R58 #9, координатор 15.10): «Повторить ошибки» строил список из живого wrongIds. Верный ответ убирал вопрос
 // из wrongIds → список сжимался → индекс +1 перепрыгивал следующий вопрос, часть ошибок не показывалась.
 // Сторож: в режиме повтора список — снимок id, сделанный при входе в повтор, а не живой wrongIds.
-const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'preposition_drill.tsx'), 'utf8');
+// CRLF в рабочей копии Windows — нормализуем (сторож source_guard_eol_normalized)
+const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'preposition_drill.tsx'), 'utf8').replace(/\r\n/g, '\n');
 
 describe('preposition drill: review of mistakes uses a frozen snapshot', () => {
   it('activeItems in review mode filters by reviewIds, not by the live wrongIds', () => {

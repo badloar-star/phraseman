@@ -4,7 +4,8 @@ import path from 'node:path';
 // зачем (аудит R58 #11, координатор 15.10): «Пройти ещё раз» в диагностике сбрасывал счёт, но не массив ответов —
 // он рос до 2×N, getResult уходил с поуровневого расчёта на грубый по баллу, и сохранялся неверный уровень.
 // Сторож: и первый старт, и повтор очищают answersRef ДО перехода в фазу вопросов.
-const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'diagnostic_test.tsx'), 'utf8');
+// CRLF в рабочей копии Windows — нормализуем, иначе поиск по переводу строки ломается (сторож source_guard_eol_normalized)
+const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'diagnostic_test.tsx'), 'utf8').replace(/\r\n/g, '\n');
 
 function body(name: string): string {
   const start = src.indexOf(`const ${name} = async () => {`);

@@ -1117,10 +1117,12 @@ export default function FlashcardsBlitzSession() {
   const restart = useCallback(() => {
     blitzExplicitlyAbandonedRef.current = false;
     blitzSpentOperationRef.current = null;
+    // зачем (аудит Карточек 🟡 «второй раунд без startNewCompletion», 15.10): как в «Вспомнить» — второй раунд идёт на свежей записи начисления и цене повтора, а не на квитанции первого.
+    practiceRunes.startNewCompletion();
     setResult(null);
     setEnergyGate('checking');
     setRoundId((r) => r + 1);
-  }, []);
+  }, [practiceRunes]);
 
   // ── §6: выбор наборов ПРЯМО ИЗ БЛИЦА (FIX владельца, 2026-08-13) ──────────
   //

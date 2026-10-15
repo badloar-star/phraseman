@@ -1127,6 +1127,9 @@ export default function FlashcardsRecallSession() {
                   selectionColor={recallGlass.accentGraphic}
                   maxLength={MAX_INPUT_LENGTH}
                   multiline
+                  // зачем (аудит Карточек 🟡 «Enter в multiline», 15.10): в многострочном поле Enter вставлял перенос и onSubmitEditing не срабатывал — «Проверить» с клавиатуры не работало.
+                  submitBehavior="submit"
+                  returnKeyType="done"
                   autoCorrect={false}
                   autoCapitalize="sentences"
                   keyboardAppearance={statusBarLight ? 'dark' : 'light'}

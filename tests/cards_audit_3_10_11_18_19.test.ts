@@ -38,3 +38,13 @@ describe('витрина топ-наборов по языку (🟡 Хаб/на
     expect(read('app/flashcards/CardPackShardPaywallModal.tsx')).toContain('[PACK-HIDE] hide on device FAILED');
   });
 });
+
+describe('Тренировки 🟡 (15.10)', () => {
+  it('«Вспомнить»: Enter в многострочном поле отправляет ответ', () => {
+    expect(read('app/flashcards_recall_session.tsx')).toContain('submitBehavior="submit"');
+  });
+  it('Блиц: «Ещё разок» начинает новое начисление рун', () => {
+    const src = read('app/flashcards_blitz_session.tsx');
+    expect(src.slice(src.indexOf('const restart = useCallback'), src.indexOf('const restart = useCallback') + 700)).toContain('practiceRunes.startNewCompletion();');
+  });
+});

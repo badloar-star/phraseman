@@ -1,112 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-50:i01",
-    "correctText": "job",
+    "correctText": "It is expensive.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-50:i02",
-    "correctText": "job",
+    "correctText": "It is expensive.",
     "correctResponseId": "en:lesson-01:session-50:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-50:i03",
-    "correctText": "boss",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-50:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-50:i04",
-    "correctText": "boss",
-    "correctResponseId": "en:lesson-01:session-50:i04:r1"
+    "correctText": "en:lesson-01:session-50:i04:p1=expensive\nen:lesson-01:session-50:i04:p2=cheap\nen:lesson-01:session-50:i04:p3=polite\nen:lesson-01:session-50:i04:p4=honest",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-50:i05",
-    "correctText": "new",
-    "correctResponseId": "en:lesson-01:session-50:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i06",
-    "correctText": "He's kind.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i07",
-    "correctText": "flat",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i08",
-    "correctText": "flat",
-    "correctResponseId": "en:lesson-01:session-50:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i09",
-    "correctText": "city",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i10",
-    "correctText": "city",
-    "correctResponseId": "en:lesson-01:session-50:i10:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i11",
-    "correctText": "en:lesson-01:session-50:i11:p1=job\nen:lesson-01:session-50:i11:p2=boss\nen:lesson-01:session-50:i11:p3=flat\nen:lesson-01:session-50:i11:p4=city",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i12",
-    "correctText": "expensive",
-    "correctResponseId": "en:lesson-01:session-50:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i13",
-    "correctText": "It isn't small.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i14",
-    "correctText": "He isn't kind.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i15",
-    "correctText": "tired",
-    "correctResponseId": "en:lesson-01:session-50:i15:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i16:s01",
-    "correctText": "It's small.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-50:i16:s02",
     "correctText": "It's expensive.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-50:i16:s03",
-    "correctText": "It's new.",
+    "interactionId": "en:lesson-01:session-50:i06",
+    "correctText": "They are expensive.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-50:i17:s01",
-    "correctText": "It's new.",
+    "interactionId": "en:lesson-01:session-50:i07",
+    "correctText": "It's expensive.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-50:i17:s02",
-    "correctText": "He's kind.",
+    "interactionId": "en:lesson-01:session-50:i08",
+    "correctText": "polite",
+    "correctResponseId": "en:lesson-01:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i09",
+    "correctText": "She is polite.",
+    "correctResponseId": "en:lesson-01:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i10",
+    "correctText": "en:lesson-01:session-50:i10:p1=It's\nen:lesson-01:session-50:i10:p2=They're\nen:lesson-01:session-50:i10:p3=She's\nen:lesson-01:session-50:i10:p4=You're",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-50:i17:s03",
-    "correctText": "It's small.",
+    "interactionId": "en:lesson-01:session-50:i11",
+    "correctText": "They're expensive.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-50:i17:s04",
-    "correctText": "I'm tired.",
+    "interactionId": "en:lesson-01:session-50:i12",
+    "correctText": "It is cheap.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i13",
+    "correctText": "You are polite.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-50:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i15",
+    "correctText": "It's expensive.",
+    "correctResponseId": "en:lesson-01:session-50:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i16",
+    "correctText": "en:lesson-01:session-50:i16:p1=expensive\nen:lesson-01:session-50:i16:p2=cheap\nen:lesson-01:session-50:i16:p3=polite\nen:lesson-01:session-50:i16:p4=useful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i17",
+    "correctText": "It is expensive.",
     "correctResponseId": null
   }
 ]

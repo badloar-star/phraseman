@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-50:intro1:r2": {
+          "ru": "`cheap` — недорого. Здесь цена высокая: `expensive`.",
+          "uk": "`cheap` — недорого. Тут ціна висока: `expensive`."
+        },
+        "en:lesson-01:session-50:intro1:r3": {
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-50:intro2:r2": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        },
+        "en:lesson-01:session-50:intro2:r3": {
+          "ru": "Это о пользе. Здесь нужно назвать высокую цену: `expensive`.",
+          "uk": "Це про користь. Тут треба назвати високу ціну: `expensive`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-50:intro3:r2": {
+          "ru": "Это не оценка вежливости. Здесь нужно `polite`.",
+          "uk": "Це не оцінка ввічливості. Тут потрібно `polite`."
+        },
+        "en:lesson-01:session-50:intro3:r3": {
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0ec5f7079c05907d6e22e15d0a278bfefcbf6a262c97545e85d6f4f4abe9070e"
+}

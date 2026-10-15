@@ -1,228 +1,138 @@
-# Англійська · Урок 1 · Заняття 50 — «Робота, начальник і дім»
+# Англійська · Урок 1 · Заняття 50 — Подарунок із цінником
 
-**Ситуація.** У неділю ви телефонуєте мамі з Дубліна. Вона питає про нову роботу, начальника, квартиру й місто.
-**Сьогодні.** Скажіть короткими англійськими фразами про роботу, начальника, квартиру, місто й себе.
-**Нові слова:** job, boss, flat, city
-**Повертаються:** new, small, expensive, kind, tired
+**Ситуація.** Ви з другом вибираєте подарунок. Продавчиня показує кілька речей, а ви обговорюєте ціни та її ввічливість.
+
+**Що ви опануєте:** назвати річ дорогою за ціною й відрізнити цю оцінку від ввічливості людини
+**Нові слова:** expensive
 
 ---
 
 ## Інтро 1
 
-### `It is` можна стиснути до `It's`
+### Дорого коштує
 
-`job` — «робота» або «посада»: те, чим ви заробляєте на життя. Про роботу говорять `it`.
+`expensive` — «дорогий» за ціною. `It is expensive` — «Це дорого» або «Вона дорога», якщо говоримо про річ. Ви дивитеся на маленьку вазу: розмір скромний, ціна — зовсім ні.
 
-`It is new` — «вона нова». У швидкій мові два слова злипаються: `It's new`. Обидві форми правильні.
+**Ваза коштує дорого. Скажіть другові про її високу ціну.**
 
-А от `its` без апострофа — зовсім інше слово: «його» або «її». Апостроф стоїть замість букви `i` зі слова `is`.
-
-**Мама не знає, чи давно ви там. Скажіть, що робота нова.**
-
-- ✅ **It's new.**
-- ❌ It new. — *Після `it` бракує `is`. У короткій формі воно ховається в `It's`.*
-- ❌ Its new. — *Без апострофа `its` означає «його» або «її». Тут потрібно `it's`: коротке `it is`.*
+- ✅ **It is expensive.**
+- ❌ It is cheap. — *`cheap` — недорого. Тут ціна висока: `expensive`.*
+- ❌ It are expensive. — *Після `It` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### Про людину — `he` або `she`
+### Дві речі — та сама оцінка
 
-`boss` — «начальник». Це людина, отже `he` або `she`, а не `it`.
+Про дві дорогі речі — `They are expensive`. Коротко: `They're expensive`. До слова `expensive` нічого додавати не потрібно. Висока ціна сама по собі не доводить ані користі, ані якості речі.
 
-`kind` — «добрий». `He is kind`, або коротко — `He's kind`. У короткій формі `is` приєднується до `he`.
+**Дві рамки коштують дорого. Назвіть їхню високу ціну однією фразою.**
 
-Начальник не добрий? Тоді `He isn't kind`: тут `is` злиплося з `not`.
-
-**Мама питає, який він. Він вам подобається — скажіть, що добрий.**
-
-- ✅ **He's kind.**
-- ❌ He kind. — *Після `he` бракує `is`. Англійською потрібно `He is kind` або `He's kind`.*
-- ❌ He's isn't kind. — *Тут `is` двічі. Щось одне: `He's kind` або `He isn't kind`.*
+- ✅ **They are expensive.**
+- ❌ They is expensive. — *Після `They` потрібно `are`.*
+- ❌ They are useful. — *Це про користь. Тут треба назвати високу ціну: `expensive`.*
 
 ---
 
 ## Інтро 3
 
-### Сказати «не» можна двома шляхами
+### Ціна речі й поведінка людини
 
-`flat` — «квартира», `city` — «місто». І квартиру, і місто в таких фразах називають словом `it`.
+`polite` — «ввічливий». Продавчиня уважно слухає, не перебиває й дякує вам: `She is polite`. Це оцінка її поведінки. Навіть якщо подарунок дорогий, продавчиня може бути ввічливою — одне не скасовує іншого.
 
-Квартира маленька — `It's small`. Дорога — `It's expensive`.
+**Продавчиня звертається до вас шанобливо й не перебиває. Назвіть саме її ввічливість.**
 
-А «не дорога» збирається двома способами: `It isn't expensive` або `It's not expensive`. Значення однакове, беріть будь-який.
-
-**Мама питає про квартиру. Вона маленька — скажіть так.**
-
-- ✅ **It's small.**
-- ❌ It small. — *Без `is` чи `'s` фраза не стоїть. Одне з двох обов'язкове.*
-- ❌ It's isn't small. — *Двічі `is` в одній короткій фразі. Або `It's small`, або `It isn't small`.*
+- ✅ **She is polite.**
+- ❌ She is expensive. — *Це не оцінка ввічливості. Тут потрібно `polite`.*
+- ❌ She are polite. — *Після `She` потрібно `is`.*
 
 ---
 
-## Практика (22 завдання, підтримка спадає)
+## Практика (17 завдань)
 
-**1 · Картка слова — job**
-<!-- interaction_id: en:lesson-01:session-50:i01; family: listen_choose -->
-> **job** — «робота» або «посада»: те, чим ви заробляєте на життя.
+**1 · Ваза коштує дорого. Складіть фразу про її високу ціну**
+<!-- interaction_id: en:lesson-01:session-50:i01; family: phrase_builder -->
+Плитки: `expensive` `is` `It` `are` → **It is expensive.**
+*(плитка `are` зайва: тут потрібно `is` — `It is expensive.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-50:i02; family: listen_choose -->
-🔊 *job* → **job** · jog · joke
-- jog — *«Біг підтюпцем» — це заняття, а не робота або посада.*
-- joke — *«Жарт». Схоже початком, але це не про роботу.*
+🔊 *It is expensive.* → **It is expensive.** · It is cheap. · It is useful.
+- It is cheap. — *У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`.*
+- It is useful. — *У записі останнє слово — `expensive`, а в цьому варіанті — `useful`.*
 
-**3 · Картка слова — boss**
-<!-- interaction_id: en:lesson-01:session-50:i03; family: listen_choose -->
-> **boss** — «начальник». Той, хто каже, що робити, і підписує відпустку.
+**3 · Дві рамки коштують дорого. Доповніть оцінку їхньої ціни**
+<!-- interaction_id: en:lesson-01:session-50:i03; family: context_gap_grammar -->
+They ___ expensive. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про дві рамки — `They are`.*
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-50:i04; family: listen_choose -->
-🔊 *boss* → **boss** · bus · box
-- bus — *«Автобус» — транспорт, а не людина.*
-- box — *«Коробка». Теж річ, а `boss` — людина.*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-50:i04; family: speed_match -->
+expensive — дорогий за ціною · cheap — недорогий · polite — ввічливий · honest — чесний
 
-**5 · Вставте слово — мама питає, яка робота**
-<!-- interaction_id: en:lesson-01:session-50:i05; family: context_gap_grammar -->
-It's ___ . → **new** · kind · tired
-- kind — *«Добрий» — це про людину. Робота доброю не буває.*
-- tired — *«Втомлений» — теж про людину. Втомлюватися може людина, а не робота.*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-50:i05; family: listen_build_dictation -->
+🔊 *It's expensive.* Плитки: `expensive` `It's` `He's` → **It's expensive.**
+*(плитка `He's` зайва: тут потрібно `It's` — `It's expensive.`)*
 
-**6 · Складіть фразу — мама питає про начальника; він до вас добре ставиться**
+**6 · Обидві настільні лампи коштують дорого. Скажіть про їхню високу ціну**
 <!-- interaction_id: en:lesson-01:session-50:i06; family: phrase_builder -->
-Плитки: `kind` `He's` `not` `is` → **He's kind.**
-*(плитка `not` зайва: вона змінює зміст на «він не добрий», а тут ви його хвалите)*
-*(плитка `is` зайва: у `He's` уже є `he is`, друге `is` не потрібне)*
+Плитки: `expensive` `are` `They` `is` → **They are expensive.**
+*(плитка `is` зайва: тут потрібно `are` — `They are expensive.`)*
 
-**7 · Картка слова — flat**
-<!-- interaction_id: en:lesson-01:session-50:i07; family: listen_choose -->
-> **flat** — «квартира». Так кажуть у Британії та Ірландії; американці скажуть `apartment`. У Дубліні звичніше `flat`.
-
-**8 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-50:i08; family: listen_choose -->
-🔊 *flat* → **flat** · fat · flag
-- fat — *«Товстий» — про людину, а не про житло.*
-- flag — *Це «прапор». Прозвучало `flat` — «квартира».*
-
-**9 · Картка слова — city**
-<!-- interaction_id: en:lesson-01:session-50:i09; family: listen_choose -->
-> **city** — «місто». Велике, з вулицями і людьми, — Дублін, Київ, Варшава.
-
-**10 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-50:i10; family: listen_choose -->
-🔊 *city* → **city** · sit · seat
-- sit — *Це «сидіти». Прозвучало `city` — «місто».*
-- seat — *Це «сидіння». Прозвучало `city` — «місто».*
-
-**11 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-50:i11; family: speed_match -->
-job — робота · boss — начальник · flat — квартира · city — місто
-
-**12 · Вставте слово — квартира коштує більше, ніж ви розраховували**
-<!-- interaction_id: en:lesson-01:session-50:i12; family: context_gap_grammar -->
-It's ___ . → **expensive** · small · new
-- small — *«Маленька» — правда, але мама спитала про ціну, а не про метри.*
-- new — *«Нова» — не про гроші. Дорого — це `expensive`.*
-
-**13 · Послухайте і зберіть — «воно не мале», про місто**
-<!-- interaction_id: en:lesson-01:session-50:i13; family: listen_build_dictation -->
-🔊 *It isn't small.* Плитки: `isn't` `It` `small` `is` → **It isn't small.**
-*(плитка `is` зайва: у `isn't` уже є `is not`, друге `is` не потрібне)*
-
-**14 · Зберіть фразу — «начальник не добрий»**
-<!-- interaction_id: en:lesson-01:session-50:i14; family: phrase_builder -->
-Плитки: `He` `isn't` `kind` `is` → **He isn't kind.**
-*(плитка `is` зайва: у `isn't` уже є `is not`, друге `is` не потрібне)*
-
-**15 · Вставте слово — мама питає, як ви після тижня**
-<!-- interaction_id: en:lesson-01:session-50:i15; family: context_gap_grammar -->
-I'm ___ . → **tired** · expensive · small
-- expensive — *«Дорогий» — про ціну речей. Про себе так не кажуть.*
-- small — *«Маленький» — про розмір. Мама питала про сили.*
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-50:i16:s01; family: scripted_repeat_compare -->
-Мама питає про вашу квартиру. Скажіть, що вона маленька.
-
-🎙 **It's small.**
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-50:i16:s02; family: scripted_repeat_compare -->
-Мама питає про ціну квартири. Скажіть, що вона дорога.
-
+**7 · Коротко скажіть, що вибрана рамка коштує дорого**
+<!-- interaction_id: en:lesson-01:session-50:i07; family: scripted_repeat_compare -->
 🎙 **It's expensive.**
 
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-50:i16:s03; family: scripted_repeat_compare -->
-Мама питає про вашу роботу. Скажіть, що вона нова.
+**8 · Продавчиня звертається шанобливо й не перебиває. Оцініть саме її ввічливість**
+<!-- interaction_id: en:lesson-01:session-50:i08; family: context_gap_grammar -->
+She is ___ . → **polite** · expensive · curious
+- expensive — *Це про високу ціну, а потрібна ввічливість: `polite`.*
+- curious — *Це про допитливість. Тут потрібно `polite`.*
 
-🎙 **It's new.**
+**9 · Послухайте фразу про продавчиню**
+<!-- interaction_id: en:lesson-01:session-50:i09; family: listen_choose -->
+🔊 *She is polite.* → **She is polite.** · She is honest. · She is patient.
+- She is honest. — *У записі останнє слово — `polite`, а в цьому варіанті — `honest`.*
+- She is patient. — *У записі останнє слово — `polite`, а в цьому варіанті — `patient`.*
 
-**19 · Складіть фразу — ви показуєте другові нову річ**
-<!-- interaction_id: en:lesson-01:session-50:i17:s01; family: phrase_builder -->
-Плитки: `It's` `new.` `small.` `are` → **It's new.**
-*(плитка `small.` зайва: `small` означає «маленька», а ви кажете, що річ нова)*
-*(плитка `are` зайва: `It's` уже означає `it is`; `are` потрібне для кількох)*
+**10 · З’єднайте короткі початки з повними**
+<!-- interaction_id: en:lesson-01:session-50:i10; family: speed_match -->
+It's — It is · They're — They are · She's — She is · You're — You are
 
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-50:i17:s02; family: scripted_repeat_compare -->
-Мама питає про начальника. Скажіть, що він добрий.
+**11 · Послухайте й складіть коротку фразу про речі**
+<!-- interaction_id: en:lesson-01:session-50:i11; family: listen_build_dictation -->
+🔊 *They're expensive.* Плитки: `expensive` `They're` `We're` → **They're expensive.**
+*(плитка `We're` зайва: тут потрібно `They're` — `They're expensive.`)*
 
-🎙 **He's kind.**
+**12 · Поруч лежить листівка за низькою ціною. Скажіть, що вона недорога**
+<!-- interaction_id: en:lesson-01:session-50:i12; family: phrase_builder -->
+Плитки: `cheap` `is` `It` `are` → **It is cheap.**
+*(плитка `are` зайва: тут потрібно `is` — `It is cheap.`)*
 
-**21 · Складіть фразу — ви описуєте маленьку річ на столі**
-<!-- interaction_id: en:lesson-01:session-50:i17:s03; family: phrase_builder -->
-Плитки: `It's` `small.` `new.` `are` → **It's small.**
-*(плитка `new.` зайва: `new` означає «нова», а ви описуєте розмір речі)*
-*(плитка `are` зайва: `It's` уже означає `it is`; `are` потрібне для кількох)*
+**13 · Друг шанобливо подякував продавчині. Зверніться до нього: «Ти ввічливий»**
+<!-- interaction_id: en:lesson-01:session-50:i13; family: scripted_repeat_compare -->
+🎙 **You are polite.**
 
-**22 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-50:i17:s04; family: scripted_repeat_compare -->
-Мама питає, як ви після першого тижня. Скажіть, що втомилися.
+**14 · Один свічник коштує дорого. Доповніть фразу про його ціну**
+<!-- interaction_id: en:lesson-01:session-50:i14; family: context_gap_grammar -->
+It ___ expensive. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Про один свічник — `It is`.*
 
-🎙 **I'm tired.**
+**15 · Послухайте коротку оцінку й виберіть її**
+<!-- interaction_id: en:lesson-01:session-50:i15; family: listen_choose -->
+🔊 *It's expensive.* → **It's expensive.** · It's cheap. · It's useless.
+- It's cheap. — *У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`.*
+- It's useless. — *У записі останнє слово — `expensive`, а в цьому варіанті — `useless`.*
 
----
+**16 · З’єднайте слова з їхніми значеннями тут**
+<!-- interaction_id: en:lesson-01:session-50:i16; family: speed_match -->
+expensive — висока ціна · cheap — низька ціна · polite — ввічливий · useful — корисний
 
-## Для сборщика
-
-new_words:
-job — робота або посада — те, чим ви заробляєте на життя
-boss — начальник — той, хто каже, що робити, і підписує відпустку
-flat — квартира — так кажуть у Британії та Ірландії; американці скажуть apartment, у Дубліні звичніше flat
-city — місто — велике, з вулицями і людьми: Дублін, Київ, Варшава
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=word_card, 8=listen_choose, 9=word_card, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=phrase_builder, 20=scripted_repeat_compare, 21=phrase_builder, 22=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| new | 5, 12 (пастка), 16, 17 | 5 — правильний варіант |
-| small | 12 (пастка), 13, 15 (пастка), 16, 17 | 13 — частина правильного складання, 16 і 17 — правильна фраза |
-| expensive | 12, 15 (пастка), 16 | 12 — правильний варіант |
-| kind | 5 (пастка), 6, 14, 17 | 6 і 14 — правильне складання, 17 — правильна фраза |
-| tired | 5 (пастка), 15, 17 | 15 — правильний варіант |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | `It's new` | так — `It is new` / `It's new` розібрані в тексті |
-| Інтро 2 | `He's kind` | так — `He is kind` і `He's kind` у тексті |
-| Інтро 3 | `It's small` | так — `It's small` прямо в тексті |
-
-**3. Дошка пар (завдання 11)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| job | 1 | 2 (слух), 5 (фраза про роботу) |
-| boss | 3 | 4 (слух), 6 (фраза про начальника) |
-| flat | 7 | 8 (слух) |
-| city | 9 | 10 (слух) |
+**17 · В іншому магазині наплічник продається за високою ціною. Скажіть супутникові саме про високу ціну наплічника**
+<!-- interaction_id: en:lesson-01:session-50:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is expensive.**
 

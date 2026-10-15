@@ -44976,12 +44976,12 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
-        "taps": "новый день, попыток не тратить",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&lv2voice=3&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "дойти до голосового задания",
         "log": ""
       },
       "added_reason": "владелец D194 15.10 через координатора",
-      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong"
+      "note": "остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f), снять — lv2voice=off; цифру на микрофоне в плеер курса вешает Дизайн (решение координатора 15.10)"
     },
     {
       "id": "voice-limit-002",
@@ -45016,12 +45016,12 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
-        "taps": "зажать микрофон",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&lv2voice=3&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "дойти до голосового задания → зажать микрофон (3 → 2)",
         "log": ""
       },
       "added_reason": "владелец D194 15.10 через координатора",
-      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong"
+      "note": "остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f), снять — lv2voice=off; цифру на микрофоне в плеер курса вешает Дизайн (решение координатора 15.10)"
     },
     {
       "id": "voice-limit-003",
@@ -45054,12 +45054,12 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
-        "taps": "потратить 2 попытки",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&lv2voice=1&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "дойти до голосового задания",
         "log": ""
       },
       "added_reason": "владелец D194 15.10 через координатора",
-      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong"
+      "note": "остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f), снять — lv2voice=off; цифру на микрофоне в плеер курса вешает Дизайн (решение координатора 15.10)"
     },
     {
       "id": "voice-limit-004",
@@ -45092,12 +45092,12 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
-        "taps": "потратить 3 попытки",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&lv2voice=0&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "дойти до голосового задания",
         "log": ""
       },
       "added_reason": "владелец D194 15.10 через координатора",
-      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong"
+      "note": "остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f), снять — lv2voice=off; цифру на микрофоне в плеер курса вешает Дизайн (решение координатора 15.10)"
     },
     {
       "id": "voice-limit-005",
@@ -45135,7 +45135,7 @@
         "log": ""
       },
       "added_reason": "владелец D194 15.10 через координатора",
-      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong"
+      "note": "остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f), снять — lv2voice=off; цифру на микрофоне в плеер курса вешает Дизайн (решение координатора 15.10)"
     },
     {
       "id": "voice-limit-006",
@@ -45170,12 +45170,12 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
-        "taps": "0 попыток → тап по микрофону",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&energy=5&lv2voice=0&next=/learning-v2/session/en%3Alesson-01%3Asession-07%3FruntimeMode%3Ddirect_v1%26previewOrigin%3Dcourse%26lessonOrdinal%3D1%26sessionOrdinal%3D7",
+        "taps": "дойти до голосового задания → тап по микрофону",
         "log": ""
       },
       "added_reason": "владелец D194 15.10 через координатора",
-      "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong; эталон пейвола = ai_voice_input (координатор 15.10: дневной голос; кадр assets/d194/paywall_ai_voice_input_now.png). Подзаголовок «весь диалог вслух» для входа из курса — оставлен до релиза (улучшение владельцу)"
+      "note": "остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f), снять — lv2voice=off; цифру на микрофоне в плеер курса вешает Дизайн (решение координатора 15.10); эталон пейвола = ai_voice_input (кадр assets/d194/paywall_ai_voice_input_now.png)"
     },
     {
       "id": "streak-milestone-d0001",
@@ -46070,13 +46070,13 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
         "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
         "taps": "открыть Главную; кадр шапки",
-        "log": "[STORY-EVENTS]"
+        "log": "[DEV-STATE] step stories=flag=on seed=… · [STORY-EVENTS] dev-flag/dev-seed",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home"
       },
       "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
-      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+      "note": "подмены Ядра 5095efc6f: stories=on (флаг в памяти, без особой сборки) и storyseed=all|seen|none — ссылка link работает; засев all: итог недели вверх (этаж 1, 3/30, 470 монет, +100), серия 30 дней, ранг монеты 6, ачивка «7 дней подряд»; после съёмки — storyseed=off. link_fallback — запасной путь"
     },
     {
       "id": "stories-s1-b",
@@ -46112,13 +46112,13 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=seen&next=/(tabs)/home",
         "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
         "taps": "досмотреть сторис до конца → вернуться на Главную",
-        "log": "[STORY-EVENTS]"
+        "log": "[DEV-STATE] step stories=flag=on seed=… · [STORY-EVENTS] dev-flag/dev-seed",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=seen&next=/(tabs)/home"
       },
       "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
-      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+      "note": "подмены Ядра 5095efc6f: stories=on (флаг в памяти, без особой сборки) и storyseed=all|seen|none — ссылка link работает; засев all: итог недели вверх (этаж 1, 3/30, 470 монет, +100), серия 30 дней, ранг монеты 6, ачивка «7 дней подряд»; после съёмки — storyseed=off. link_fallback — запасной путь"
     },
     {
       "id": "stories-s1-c",
@@ -46151,13 +46151,13 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=none&next=/(tabs)/home",
         "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&next=/(tabs)/home",
         "taps": "открыть Главную",
-        "log": "[STORY-EVENTS]"
+        "log": "[DEV-STATE] step stories=flag=on seed=… · [STORY-EVENTS] dev-flag/dev-seed",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=none&next=/(tabs)/home"
       },
       "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
-      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+      "note": "подмены Ядра 5095efc6f: stories=on (флаг в памяти, без особой сборки) и storyseed=all|seen|none — ссылка link работает; засев all: итог недели вверх (этаж 1, 3/30, 470 монет, +100), серия 30 дней, ранг монеты 6, ачивка «7 дней подряд»; после съёмки — storyseed=off. link_fallback — запасной путь"
     },
     {
       "id": "stories-s2-a",
@@ -46193,13 +46193,13 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
         "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
         "taps": "тап по аватару; видео всего потока",
-        "log": "[STORY-EVENTS]"
+        "log": "[DEV-STATE] step stories=flag=on seed=… · [STORY-EVENTS] dev-flag/dev-seed",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home"
       },
       "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
-      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+      "note": "подмены Ядра 5095efc6f: stories=on (флаг в памяти, без особой сборки) и storyseed=all|seen|none — ссылка link работает; засев all: итог недели вверх (этаж 1, 3/30, 470 монет, +100), серия 30 дней, ранг монеты 6, ачивка «7 дней подряд»; после съёмки — storyseed=off. link_fallback — запасной путь"
     },
     {
       "id": "stories-s3-1",
@@ -46234,13 +46234,13 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
         "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
         "taps": "тап по аватару → кадр 1",
-        "log": "[STORY-EVENTS]"
+        "log": "[DEV-STATE] step stories=flag=on seed=… · [STORY-EVENTS] dev-flag/dev-seed",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home"
       },
       "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
-      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+      "note": "подмены Ядра 5095efc6f: stories=on (флаг в памяти, без особой сборки) и storyseed=all|seen|none — ссылка link работает; засев all: итог недели вверх (этаж 1, 3/30, 470 монет, +100), серия 30 дней, ранг монеты 6, ачивка «7 дней подряд»; после съёмки — storyseed=off. link_fallback — запасной путь"
     },
     {
       "id": "stories-s3-2",
@@ -46275,13 +46275,13 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
         "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
         "taps": "тап по аватару → кадр «Серия»",
-        "log": "[STORY-EVENTS]"
+        "log": "[DEV-STATE] step stories=flag=on seed=… · [STORY-EVENTS] dev-flag/dev-seed",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home"
       },
       "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
-      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+      "note": "подмены Ядра 5095efc6f: stories=on (флаг в памяти, без особой сборки) и storyseed=all|seen|none — ссылка link работает; засев all: итог недели вверх (этаж 1, 3/30, 470 монет, +100), серия 30 дней, ранг монеты 6, ачивка «7 дней подряд»; после съёмки — storyseed=off. link_fallback — запасной путь"
     },
     {
       "id": "stories-s3-3",
@@ -46316,13 +46316,13 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
         "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
         "taps": "тап по аватару → кадр «Ранг монеты»",
-        "log": "[STORY-EVENTS]"
+        "log": "[DEV-STATE] step stories=flag=on seed=… · [STORY-EVENTS] dev-flag/dev-seed",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home"
       },
       "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
-      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+      "note": "подмены Ядра 5095efc6f: stories=on (флаг в памяти, без особой сборки) и storyseed=all|seen|none — ссылка link работает; засев all: итог недели вверх (этаж 1, 3/30, 470 монет, +100), серия 30 дней, ранг монеты 6, ачивка «7 дней подряд»; после съёмки — storyseed=off. link_fallback — запасной путь"
     },
     {
       "id": "stories-s3-4",
@@ -46357,13 +46357,13 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
         "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
         "taps": "тап по аватару → кадр «Ачивка»",
-        "log": "[STORY-EVENTS]"
+        "log": "[DEV-STATE] step stories=flag=on seed=… · [STORY-EVENTS] dev-flag/dev-seed",
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home"
       },
       "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
-      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+      "note": "подмены Ядра 5095efc6f: stories=on (флаг в памяти, без особой сборки) и storyseed=all|seen|none — ссылка link работает; засев all: итог недели вверх (этаж 1, 3/30, 470 монет, +100), серия 30 дней, ранг монеты 6, ачивка «7 дней подряд»; после съёмки — storyseed=off. link_fallback — запасной путь"
     }
   ]
 }

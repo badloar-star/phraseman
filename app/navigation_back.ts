@@ -159,6 +159,8 @@ const SCREEN_OWNED_ANDROID_BACK_PATHS: ReadonlySet<string> = new Set([
   '/lesson1',
   '/lesson_complete',
   '/lesson_words',
+  // зачем (Сверка 15.10): тренировка «Ошибок» сама решает «Назад» — сначала прячет клавиатуру, потом выход в хаб «Ошибок»
+  '/mistake_practice_session',
   '/pack_opening',
   '/shards_shop',
 ]);

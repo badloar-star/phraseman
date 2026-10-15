@@ -15,6 +15,9 @@ import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_p
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  BackHandler,
+  Keyboard,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -586,11 +589,34 @@ function MistakePracticeSessionScreen() {
   const persistSession = entrySource === 'cards';
   // зачем (бета-тест Б8, координатор 15.10): при входе из хаба «Мои ошибки» запасной путь назад — хаб, а не «Карточки»
   // (если истории нет, например вход по dev-ссылке). Решение «назад» дополнительно пишет [NAV-BACK].
-  const backFallback = params.from === 'hub' ? '/mistakes_hub' : '/flashcards';
+  // зачем (Сверка 15.10, evidence/more_n2_1015): без истории выход вёл на «/flashcards», и системная «Назад» выкидывала из раздела
+  // (на вкладку «Видео»). Тренировка живёт в «Ошибках» — запасной путь всегда хаб «Ошибок».
+  const backFallback = '/mistakes_hub';
   const leavePractice = () => {
     console.log(`[MISTAKES-FLOW] крестик: вход=${params.from ?? 'не указан'} источник=${entrySource} запасной путь=${backFallback}`); // guard-ok: журнал выхода
     safeRouterBack(router, backFallback as never);
   };
+  const leavePracticeRef = useRef(leavePractice);
+  leavePracticeRef.current = leavePractice;
+  // зачем (Сверка 15.10; [NAV-BACK]): системная «Назад» при открытой клавиатуре закрывала тренировку глобальным обработчиком
+  // (_layout → раздел «Карточки» → Главная/«Видео»). Экран сам владеет «Назад» (navigation_back SCREEN_OWNED_ANDROID_BACK_PATHS):
+  // клавиатура открыта — первая «Назад» только прячет её; закрыта — выход в хаб «Ошибок» тем же путём, что крестик.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return undefined;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      const keyboardVisible = Keyboard.isVisible();
+      console.log('[NAV-BACK] mistake_practice_session', JSON.stringify({ keyboardVisible, from: params.from ?? null, entrySource, fallback: backFallback })); // guard-ok: каждая «Назад» с решением
+      if (keyboardVisible) {
+        console.log('[NAV-BACK] → прячу клавиатуру, тренировка остаётся'); // guard-ok: ветка решения
+        Keyboard.dismiss();
+        return true;
+      }
+      console.log('[NAV-BACK] → выход из тренировки (как крестик)'); // guard-ok: ветка решения
+      leavePracticeRef.current();
+      return true;
+    });
+    return () => sub.remove();
+  }, [backFallback, entrySource, params.from]);
 
   useEffect(() => {
     analyticsSessionRef.current = session;

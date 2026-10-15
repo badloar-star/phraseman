@@ -13,9 +13,18 @@ describe('Б8 · «Мои ошибки»: шторка → тренировка 
     expect(hub).toContain("const flowParams = { length: 'all', from: 'hub', expect: String(sheetReady), ...gate.takeQuotaReceiptParam() };");
     expect(hub).toContain("[MISTAKES-FLOW] хаб → тренировка");
   });
-  it('крестик и отказ в энергии: из хаба запасной путь — хаб ошибок', () => {
-    expect(session).toContain("const backFallback = params.from === 'hub' ? '/mistakes_hub' : '/flashcards';");
+  it('крестик, «Назад» и отказ в энергии: запасной путь — всегда хаб ошибок', () => {
+    // Сверка 15.10: «/flashcards» без истории выкидывал из раздела («Видео»); тренировка живёт в «Ошибках»
+    expect(session).toContain("const backFallback = '/mistakes_hub';");
     expect(session).not.toContain("safeRouterBack(router, '/flashcards' as never)");
+  });
+  it('системная «Назад»: экран владеет ею — открытая клавиатура только прячется, иначе выход как крестик', () => {
+    const nav = read('app/navigation_back.ts');
+    expect(nav).toMatch(/SCREEN_OWNED_ANDROID_BACK_PATHS[\s\S]*?'\/mistake_practice_session'/);
+    const handler = session.slice(session.indexOf("BackHandler.addEventListener('hardwareBackPress'"), session.indexOf('return () => sub.remove();'));
+    expect(handler).toMatch(/if \(keyboardVisible\) \{[\s\S]*?Keyboard\.dismiss\(\);\s*return true;/);
+    expect(handler).toContain('leavePracticeRef.current();');
+    expect(handler).toContain('[NAV-BACK] mistake_practice_session');
   });
   it('тренировка сверяет шторку с сессией и называет причину расхождения', () => {
     expect(session).toContain("prepared.resumed ? 'resumed' : isDevMistakesDemoOn() ? 'demo' : 'unknown'");

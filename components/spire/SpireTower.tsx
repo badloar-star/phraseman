@@ -7,7 +7,7 @@
 // Если локальной недели нет, маркера нет вовсе — не выдумываем этаж.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
+import { Animated, Easing, ScrollView, StyleSheet, Text, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
 import { colorWithAlpha } from '../v2/plateAlpha';
 import AvatarView from '../AvatarView';
@@ -32,6 +32,8 @@ const MARKER_SIZE = 40;
 /** Высота мягкого затухания у верхнего края окна, dp, и порог смещения, с которого выше окна есть этажи. */
 const TOP_FADE_H = 36;
 const TOP_FADE_THRESHOLD = 4;
+/** Доля полосы затухания у кромки окна, где фон непрозрачен (14 из 36 dp). */
+const TOP_FADE_SOLID = 0.4;
 
 type Props = Readonly<{
   lang: Lang;
@@ -55,29 +57,33 @@ type Props = Readonly<{
 const RIVAL = 22;
 const RIVAL_STEP = 13;
 const RIVAL_SHOWN = 2;
+const RIVAL_GAP = 10;
+/** Шрифт от этого множителя: у башни одна монета и «+N» — слева от этажа помещаются подпись этажа, монеты и счётчик (Макеты 15.10: «+20» заходил на кладку). */
+const RIVAL_BIG_FONT = 1.15;
 
 /**
  * Соперники слева от этажа (floorSvg макета): до двух кружков внахлёст и «+N».
  * зачем: монета ранга участника (владелец 13.10), неизвестный ранг — базовая монета, не буква. Слой RN поверх SVG, без касаний (тап по этажу проходит насквозь).
  */
-const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim }: Readonly<{ rivals: ReadonlyMap<number, readonly SpireRival[]>; scale: number; dim: boolean }>) {
+const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth, singleCoin }: Readonly<{ rivals: ReadonlyMap<number, readonly SpireRival[]>; scale: number; dim: boolean; renderWidth: number; singleCoin: boolean }>) {
   const p = useSpirePalette();
   const items: React.ReactNode[] = [];
   for (const fl of SPIRE_TOWER_GEOM.floors) {
     const list = rivals.get(fl.f);
     if (!list || list.length === 0) continue;
-    const shown = Math.min(list.length, RIVAL_SHOWN);
+    const shown = Math.min(list.length, singleCoin ? 1 : RIVAL_SHOWN);
     const extra = list.length - shown;
-    const ax = fl.x0 - 10 - (RIVAL + (shown - 1) * RIVAL_STEP) - (extra ? 22 : 0);
     const top = (fl.y + fl.h / 2 - RIVAL / 2) * scale;
+    // зачем (Макеты 15.10, кадры v3_p8_fs10/v2_p8_fs13: «+20» заходил на тело башни): ряд (монеты + «+N») привязан ПРАВЫМ краем в 10 единицах левее тела этажа, а не левым с запасом 22 на текст, —
+    // ширина «+N» берётся настоящая (и растёт со шрифтом), налезть на кладку она не может.
     items.push(
-      <View key={`rivals-${fl.f}`} style={[s.rivals, { left: ax * scale, top, opacity: dim ? 0.55 : 1 }]}>
+      <View key={`rivals-${fl.f}`} style={[s.rivals, { right: renderWidth - (fl.x0 - RIVAL_GAP) * scale, top, opacity: dim ? 0.55 : 1 }]}>
         {list.slice(0, shown).map((m, k) => (
           <View key={m.uid} style={{ marginLeft: k === 0 ? 0 : (RIVAL_STEP - RIVAL) * scale }}>
             <SpireRankCoin rank={m.coinRank} size={RIVAL * scale} />
           </View>
         ))}
-        {extra > 0 ? <Text style={[s.rivalExtra, { color: p.textSecondary }]}>{`+${extra}`}</Text> : null}
+        {extra > 0 ? <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[s.rivalExtra, { color: p.textSecondary }]}>{`+${extra}`}</Text> : null}
       </View>,
     );
   }
@@ -119,6 +125,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   const p = useSpirePalette();
   const g = useShadowGlass();
   const reduceMotion = useReduceMotion();
+  const fontScale = useWindowDimensions().fontScale;
   const scrollRef = useRef<ScrollView>(null);
   const [width, setWidth] = useState(0);
   // зачем (владелец 13.10: одна башня Оникса в 12 «нарядах»): наряд по лиге игрока, объект стабилен по ссылке — memo башни не перерисовывается зря;
@@ -307,7 +314,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
             <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} />
             {rivalsByFloor && rivalsByFloor.size > 0 ? (
               <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-                <RivalsLayer rivals={rivalsByFloor} scale={scale} dim={dimRivals} />
+                <RivalsLayer rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} />
               </View>
             ) : null}
             {myFloor !== null ? (
@@ -327,7 +334,10 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
         <LinearGradient
           pointerEvents="none"
           testID="spire-tower-top-fade"
-          colors={[g.plateFillFrom, colorWithAlpha(g.plateFillFrom, 0)]}
+          // зачем (Макеты 15.10, срезанный кружок у верха окна; правило владельца «аватары не обрезаются»): верхние ~40 % полосы непрозрачны — всё, что пересекает самую кромку окна, скрыто целиком,
+          // ниже — плавное растворение (раньше альфа росла от 0 к верху, и «обрезок» монеты оставался видимым)
+          colors={[g.plateFillFrom, g.plateFillFrom, colorWithAlpha(g.plateFillFrom, 0)]}
+          locations={[0, TOP_FADE_SOLID, 1]}
           style={s.topFade}
         />
       ) : null}

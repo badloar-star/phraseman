@@ -29,7 +29,7 @@ type Props = Readonly<{
   rankBy?: SpireRankByView;
   /** Комната недели ещё грузится: вместо пустоты — скелет той же высоты, чтобы башня и карточка этажа не прыгали, когда подиум появится (координатор 15.10, 🔴 Pixel 8). */
   loading?: boolean;
-  /** Места на первом экране мало (ступень ужатия 1–2, use_spire_tower_budget): монеты 44/36 и плиты 60/46/34 вместо 56/46 и 88/66/50 — высота подиума ниже на 40 dp (SPIRE_PODIUM_COMPACT_SAVE). */
+  /** Места на первом экране мало (ступень ужатия 1–2, use_spire_tower_budget): монеты 44/36 и плиты 60/50/42 вместо 56/46 и 88/66/50 — высота подиума ниже на 40 dp (SPIRE_PODIUM_COMPACT_SAVE). */
   compact?: boolean;
 }>;
 
@@ -88,7 +88,7 @@ function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps', loading = fal
                 ) : (
                   <Text style={[s.steps, { color: p.textSecondary }]}>{stepsScore(m)}</Text>
                 )}
-                <View style={[s.block, { height: blk, backgroundColor: place === 1 ? p.cardRaised : p.card }, sh.plate]}>
+                <View style={[s.block, { minHeight: blk, backgroundColor: place === 1 ? p.cardRaised : p.card }, sh.plate]}>
                   <Text style={[s.place, { color: p.text }]}>{place}</Text>
                 </View>
               </View>
@@ -121,7 +121,7 @@ const s = StyleSheet.create({
   skelName: { width: '70%', height: 21, borderRadius: 8 },
   skelScore: { width: '50%', height: 16, borderRadius: 8 },
   scoreRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
-  block: { width: '100%', borderTopLeftRadius: 14, borderTopRightRadius: 14, borderBottomLeftRadius: 6, borderBottomRightRadius: 6, alignItems: 'center', paddingTop: 10 },
+  block: { width: '100%', borderTopLeftRadius: 14, borderTopRightRadius: 14, borderBottomLeftRadius: 6, borderBottomRightRadius: 6, alignItems: 'center', paddingTop: 10, paddingBottom: 8 }, // зачем (Макеты 15.10): плита растёт по цифре — «3» не режется ни при 1.0, ни при крупном шрифте
   place: { fontSize: 20, fontWeight: '700' },
   all: { marginTop: 16, minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
   allText: { fontSize: 16, fontWeight: '600' },

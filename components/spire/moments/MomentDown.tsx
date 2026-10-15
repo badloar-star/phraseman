@@ -66,7 +66,8 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
   const runtimeActive = useRuntimeActive(true);
   useEffect(() => {
     if (reduceMotion || awake || !runtimeActive) { cancelAnimation(ring); ring.value = 0; return; }
-    ring.value = withRepeat(withTiming(1, { duration: 1200, easing: Easing.out(Easing.quad) }), -1, false);
+    // зачем (сторож motion_allowlist, координатор 15.10 после R08): вечный цикл съедал кадры в фоне — конечное число повторов покрывает время показа
+    ring.value = withRepeat(withTiming(1, { duration: 1200, easing: Easing.out(Easing.quad) }), 8, false);
     return () => cancelAnimation(ring);
   }, [awake, reduceMotion, ring, runtimeActive]);
 

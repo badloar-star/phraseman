@@ -235,7 +235,7 @@ describe('тексты и исходники', () => {
     }
     const ring = read('components/stories/StoryRing.tsx');
     expect(ring).toContain('useRuntimeActive');
-    expect(ring).toContain('-1, false');
+    expect(ring).toContain('4, false'); // 15.10: конечное «дыхание» (сторож motion_allowlist после R08)
     expect(read('components/stories/StoryViewer.tsx')).not.toContain('withRepeat');
   });
 

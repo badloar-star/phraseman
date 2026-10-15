@@ -152,7 +152,8 @@ function MomentCoin(props: MomentCoinProps) {
     const segs = track.frames.slice(1).map((f, i) => withTiming(i + 1, { duration: (f.at - track.frames[i].at) * track.ms, easing: track.easing }));
     const run = segs.length === 1 ? segs[0] : withSequence(...segs);
     progress.value = 0;
-    progress.value = track.loop ? withRepeat(run, -1, false) : run;
+    // зачем (сторож motion_allowlist, координатор 15.10 после R08): вечный цикл съедал кадры в фоне — конечное число повторов покрывает время показа
+    progress.value = track.loop ? withRepeat(run, 8, false) : run;
     return () => cancelAnimation(progress);
   }, [last, mood, moodKey, progress, reduceMotion, runtimeActive, track]);
 
@@ -260,7 +261,7 @@ function Glint({ style, delayMs, on }: Readonly<{ style: ViewStyle; delayMs: num
     cancelAnimation(p);
     if (!on) { p.value = 1; return; }
     const cycle = withSequence(withTiming(1, { duration: 700, easing: CSS_EASE_IN_OUT }), withTiming(2, { duration: 700, easing: CSS_EASE_IN_OUT }));
-    p.value = withDelay(delayMs, withSequence(withTiming(0, { duration: 0 }), withRepeat(cycle, -1, false)));
+    p.value = withDelay(delayMs, withSequence(withTiming(0, { duration: 0 }), withRepeat(cycle, 8, false))); // конечный цикл (см. выше)
     return () => cancelAnimation(p);
   }, [delayMs, on, p]);
   const st = useAnimatedStyle(() => {
@@ -281,8 +282,8 @@ function Zz({ on, color }: Readonly<{ on: boolean; color: string }>) {
     if (!on) { move.value = 0; fade.value = 1; return; }
     move.value = 0;
     fade.value = 0;
-    move.value = withRepeat(withTiming(1, { duration: 2200, easing: CSS_EASE_IN_OUT }), -1, false);
-    fade.value = withRepeat(withSequence(withTiming(1, { duration: 880, easing: CSS_EASE_IN_OUT }), withTiming(2, { duration: 1320, easing: CSS_EASE_IN_OUT })), -1, false);
+    move.value = withRepeat(withTiming(1, { duration: 2200, easing: CSS_EASE_IN_OUT }), 6, false); // конечный цикл
+    fade.value = withRepeat(withSequence(withTiming(1, { duration: 880, easing: CSS_EASE_IN_OUT }), withTiming(2, { duration: 1320, easing: CSS_EASE_IN_OUT })), 6, false);
     return () => { cancelAnimation(move); cancelAnimation(fade); };
   }, [fade, move, on]);
   const st = useAnimatedStyle(() => ({
@@ -298,7 +299,7 @@ function CoinShadow({ size, on }: Readonly<{ size: number; on: boolean }>) {
   useEffect(() => {
     cancelAnimation(p);
     if (!on) { p.value = 0; return; }
-    p.value = withRepeat(withSequence(withTiming(1, { duration: 1400, easing: CSS_EASE_IN_OUT }), withTiming(0, { duration: 1400, easing: CSS_EASE_IN_OUT })), -1, false);
+    p.value = withRepeat(withSequence(withTiming(1, { duration: 1400, easing: CSS_EASE_IN_OUT }), withTiming(0, { duration: 1400, easing: CSS_EASE_IN_OUT })), 5, false); // конечный цикл
     return () => cancelAnimation(p);
   }, [on, p]);
   const st = useAnimatedStyle(() => ({ opacity: 0.45 - 0.15 * p.value, transform: [{ scaleX: 1 - 0.2 * p.value }] }));

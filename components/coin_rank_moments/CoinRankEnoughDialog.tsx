@@ -69,7 +69,8 @@ function CoinRankEnoughDialog({ lang, coinRank, coins, onUpgrade, onLater, testI
   // следующая монета пульсирует (образец emPulse 1,6 с), но только пока экран виден
   useEffect(() => {
     if (reduceMotion || !runtimeActive) { cancelAnimation(pulse); pulse.value = 0; return; }
-    pulse.value = withRepeat(withSequence(withTiming(1, { duration: 800, easing: Easing.inOut(Easing.quad) }), withTiming(0, { duration: 800, easing: Easing.inOut(Easing.quad) })), -1, false);
+    // зачем (сторож motion_allowlist, координатор 15.10 после R08): вечный цикл съедал кадры в фоне — конечное число повторов покрывает время показа
+    pulse.value = withRepeat(withSequence(withTiming(1, { duration: 800, easing: Easing.inOut(Easing.quad) }), withTiming(0, { duration: 800, easing: Easing.inOut(Easing.quad) })), 6, false);
     return () => cancelAnimation(pulse);
   }, [pulse, reduceMotion, runtimeActive]);
 

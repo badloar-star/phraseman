@@ -35,7 +35,7 @@ function StoryRing({ children, testID = 'story-ring' }: StoryRingProps) {
   useEffect(() => {
     if (reduceMotion || !runtimeActive) { cancelAnimation(breath); breath.value = 0; return; }
     const ease = Easing.inOut(Easing.quad);
-    breath.value = withRepeat(withSequence(withTiming(1, { duration: BREATH_HALF_MS, easing: ease }), withTiming(0, { duration: BREATH_HALF_MS, easing: ease })), -1, false);
+    breath.value = withRepeat(withSequence(withTiming(1, { duration: BREATH_HALF_MS, easing: ease }), withTiming(0, { duration: BREATH_HALF_MS, easing: ease })), 4, false); // зачем (сторож motion_allowlist, координатор 15.10 после R08): вечный цикл съедал кадры в фоне — конечное число повторов покрывает время показа
     return () => cancelAnimation(breath);
   }, [breath, reduceMotion, runtimeActive]);
 

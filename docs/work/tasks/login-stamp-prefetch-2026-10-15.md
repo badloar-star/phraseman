@@ -2,6 +2,7 @@
 
 Governance-ID: TG-7E9855736D15
 Governance-ID: TG-B9F75050A6DC
+Governance-ID: TG-78E46854D5AB
 Status: Модуль и тесты — на диске; вшивка в app/auth_provider.ts — патчем, ждёт ревью Ядра (контракт nonce M-1)
 Owner: 5 · АВТОРИЗАЦИЯ
 
@@ -61,6 +62,21 @@ Out of scope: сервер (`authStampAnonOwnership`, TTL метки), прод-
 каждый вход с предвыборкой — по журналу считать долю впустую потраченных вызовов. >80% впустую → запуск только при признаке
 «Google уже занят». Реализация: `settleStampPrefetch(signInResult)` в finally входа; дополнительно `wasted_error` (вход упал не
 отменой), `wasted_<исход приёма>` (принимали, но промах), `not_sent` (запрос не ушёл — вызова не было).
+
+## Инцидент окна 08:30 (15.10) и что дальше
+
+- 08:30:02 патч наложен на рабочую копию для прогона; 08:30:24 коммит Ядра 26c6b38e2 взял app/auth_provider.ts целиком вместе с ним.
+- Прогон с патчем: 9 FAIL. Из них 2 (auth_provider_behavior: «account switch … quarantined», «… local wipe fails» — ensureAnonUser вызван)
+  есть и на чистом HEAD — зона Ядра, передано. Мои 7 — сторожа прежнего устройства:
+  - auth_provider_behavior ×3: `authStampAnonOwnership` не вызывается при linked_in_place / сохранении анонима / блоке MAX —
+    теперь метка уходит на тапе (одобрено Ядром и координатором) → тест должен проверять «nonce не принят, sequential не было»;
+  - legacy_callsite_guard ×2: перепись `getStableId` 11→12 (stableIdentityReads 20→21), `acceptAnonMergeStampResponse` 1→2;
+  - auth_provider_stable_link ×1: порядок «stamp раньше credential» в исходнике (функция сдвинулась);
+  - s2b_auth_provider_guard ×1: строка payload внутри `stampAnonOwnershipBeforeSignIn`.
+- e995ece45 снял только мои строки (сверено построчно). Предвыборка НЕ включена.
+- Переделка: один вызов `acceptAnonMergeStampResponse`; payload остаётся в старой функции; чтение stableId до окна — на решение Ядра
+  (поднять перепись 20→21 или читать один раз до окна). Патч проверяется целиком на overlay/копии ДО окна и кладётся на диск
+  одной командой с коммитом.
 
 ## Technical debt
 

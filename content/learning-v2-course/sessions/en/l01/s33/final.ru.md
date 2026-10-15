@@ -1,198 +1,138 @@
-# Английский · Урок 1 · Занятие 33 — «We are»
+# Английский · Урок 1 · Занятие 33 — После репетиции
 
-**Ситуация.** В обед Ира ведёт Олега, Мию и вас в кафе. По дороге она уточняет, готовы ли вы, голодны ли и идёте ли вместе.
-**Сегодня.** Скажете о вашей группе: `We are` + слово.
-**Новые слова:** together
-**Возвращаются:** hungry, ready, late
+**Ситуация.** Вы с друзьями репетируете короткую сценку. Маша довольна выступлением, а Олег смутился из-за забытой реплики. В перерыве вы обсуждаете, как всё прошло.
+
+**Что вы освоите:** сократить знакомые I am, you are, he is и другие начала фраз
+**Новые слова:** okay
 
 ---
 
 ## Интро 1
 
-### `we` — «мы»: после него ставим `are`
+### Со мной всё нормально
 
-`we` — это «мы». После `we` ставим `are`: `We are ready`.
+`okay` — «в порядке», «нормально». `I am okay` можно сказать короче: `I'm okay`. Смысл тот же. В `I'm` знак `'` стоит вместо пропущенной буквы. Вы забыли реплику, но уже не переживаете: `I'm okay`. Текст пока помнит суфлёр — хоть кто-то.
 
-Тут легко промахнуться. Про себя одного говорят `I am`, и рука по привычке тянет `am` дальше: `We am`. Так не бывает. Как только людей больше одного — только `are`.
+**После заминки вы успокоились. Выберите короткую фразу о себе: «Со мной всё нормально».**
 
-**Ира видит вас, Олега и Мию в куртках у двери и спрашивает: «Ready?» Ответьте за всех.**
-
-- ✅ **We are ready.**
-- ❌ We am ready. — *`am` — только для `I`, для одного себя. Про «мы» — `are`.*
-- ❌ We ready. — *После `we` в английском нужно `are`: We are ready.*
+- ✅ **I'm okay.**
+- ❌ I okay. — *В короткой форме остаётся `'m`: `I'm okay`.*
+- ❌ He's okay. — *Это про него, а вы говорите о себе: `I'm`.*
 
 ---
 
 ## Интро 2
 
-### `hungry` — «голодный»
+### Он, она и это
 
-`hungry` — «голодный». Не «хочу перекусить», а честное «пора есть».
+`He is` сокращается до `he's`, `She is` — до `she's`, `It is` — до `it's`. Например, `She's proud` — «Она гордится». Начало по-прежнему показывает, о ком речь. Полные формы тоже правильные: сейчас учимся узнавать и говорить короткие.
 
-Про четверых говорят ровно теми же тремя словами, что про одного: `We are hungry`. И `hungry` не отращивает `-s`, сколько бы народу ни ждало обед.
+**Подруга гордится своим выступлением. Выберите короткую фразу о ней.**
 
-**Ира спрашивает у двери, почему вы с Олегом и Мией ещё не ушли на обед. Скажите, что вы голодные.**
-
-- ✅ **We are hungry.**
-- ❌ We is hungry. — *`is` — про одного: он, она, оно. Про нас — `are`.*
-- ❌ We are hungrys. — *Слово о нас не отращивает `-s`. Оно одно на всех.*
+- ✅ **She's proud.**
+- ❌ He's proud. — *`He's` — про него; про подругу нужно `She's`.*
+- ❌ She's ashamed. — *`ashamed` — «стыдно». Здесь подруга гордится: `proud`.*
 
 ---
 
 ## Интро 3
 
-### `together` — «вместе»
+### Ты, мы и они
 
-`together` — «вместе», то есть одной компанией, а не по отдельности.
+`You are` — `you're`, `We are` — `we're`, `They are` — `they're`. Например, `We're surprised` — «Мы удивлены». `You're` подходит и одному собеседнику, и нескольким — как знакомое `you are`. Знак `'` нужен и на письме: `we're`, а не `were`.
 
-`We are together` говорят и про столик в кафе, и про дорогу домой: одно слово закрывает всё, где вы не поодиночке. Само `together` не меняется никогда.
+**Вы и друзья удивлены тем, как хорошо прошла репетиция. Выберите короткую фразу от всех вас.**
 
-**Хостес Лера в кафе спрашивает Иру, Олега, Мию и вас: один стол или два? Скажите, что вы одна компания.**
-
-- ✅ **We are together.**
-- ❌ We together are. — *`are` не уезжает в конец. Её место сразу после `we`, перед словом о нас.*
-- ❌ We are togethers. — *`-s` тут лишнее. `together` не меняется никогда.*
+- ✅ **We're surprised.**
+- ❌ They're surprised. — *Это про них. Вы говорите за себя и друзей: `We're`.*
+- ❌ We're ashamed. — *`ashamed` означает, что вам стыдно. Здесь нужно назвать удивление: `surprised`.*
 
 ---
 
-## Практика (19 заданий, поддержка убывает)
+## Практика (17 заданий)
 
-**1 · Карточка слова — together**
-<!-- interaction_id: en:lesson-01:session-33:i01; family: word_card -->
-> **together** — «вместе». Одной компанией: идём вместе, сидим вместе, ждём вместе.
+**1 · После заминки вы уже в порядке. Соберите короткую фразу о себе**
+<!-- interaction_id: en:lesson-01:session-33:i01; family: phrase_builder -->
+Плитки: `okay` `I'm` `He's` → **I'm okay.**
+*(плитка `He's` лишняя: здесь нужно `I'm` — `I'm okay.`)*
 
-**2 · Послушайте и выберите — вы с Олегом идёте на обед вместе**
+**2 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-33:i02; family: listen_choose -->
-🔊 *together* → **together** · tomorrow · to get
-- tomorrow — *Другое слово, «завтра». Начало похоже, а дальше расходятся: слушайте конец.*
-- to get — *На слух начало то же. Слушайте, что идёт дальше: в `together` есть окончание `-er`.*
-- ✅ together — *`together` — «вместе»: вы с Олегом идёте не поодиночке.*
+🔊 *She's proud.* → **She's proud.** · He's proud. · She's ashamed.
+- He's proud. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*
+- She's ashamed. — *В записи последнее слово — `proud`, а в этом варианте — `ashamed`.*
 
-**3 · Вставьте слово — команда собралась у двери**
+**3 · Вы и ваш партнёр удивлены. Скажите за вас обоих: «Мы удивлены»**
 <!-- interaction_id: en:lesson-01:session-33:i03; family: context_gap_grammar -->
-We ___ ready. → **are** · am · is
-- am — *`am` держится только за `I`. Для «мы» — `are`.*
-- is — *`is` — про одного: он или она. Нас несколько.*
-- ✅ are — *Команда — это несколько людей, поэтому `We are`.*
+___ surprised. → **We're** · They're · You're
+- They're — *Это «они», а нужно «мы»: `We're`.*
+- You're — *Это «ты/вы», а от вашей группы — `We're`.*
 
-**4 · Соберите фразу — «мы голодные»**
-<!-- interaction_id: en:lesson-01:session-33:i04; family: phrase_builder -->
-Плитки: `hungry` `are` `We` → **We are hungry.**
+**4 · Соедините короткие начала с полными**
+<!-- interaction_id: en:lesson-01:session-33:i04; family: speed_match -->
+I'm — I am · He's — He is · She's — She is · It's — It is
 
-**5 · Вставьте слово — вы вышли из офиса всей компанией, не поодиночке**
-<!-- interaction_id: en:lesson-01:session-33:i05; family: context_gap_grammar -->
-We are ___ . → **together** · ready · hungry
-- ready — *«Готовы» — это про сборы, а не про то, что вы одной компанией.*
-- hungry — *Про еду вопроса не было. Про компанию — `together`.*
-- ✅ together — *Вышли всей компанией: `together` — «вместе».*
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-01:session-33:i05; family: listen_build_dictation -->
+🔊 *He's okay.* Плитки: `okay` `He's` `She's` → **He's okay.**
+*(плитка `She's` лишняя: здесь нужно `He's` — `He's okay.`)*
 
-**6 · Послушайте и соберите — «мы вместе»**
-<!-- interaction_id: en:lesson-01:session-33:i06; family: listen_build_dictation -->
-🔊 *We are together.* Плитки: `together` `We` `am` `are` → **We are together.**
-*(плитка `am` лишняя: с `We` ставят `are` — `We are together.`)*
+**6 · Двое друзей гордятся своими выступлениями. Вы рассказываете о них. Соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-33:i06; family: phrase_builder -->
+Плитки: `proud` `They're` `We're` → **They're proud.**
+*(плитка `We're` лишняя: здесь нужно `They're` — `They're proud.`)*
 
-**7 · Вставьте слово — коллега смотрит на часы: перерыв начался десять минут назад**
-<!-- interaction_id: en:lesson-01:session-33:i07; family: context_gap_grammar -->
-We are ___ . → **late** · early · ready
-- early — *Это «рано». А вы уже задержались.*
-- ready — *«Готовы» — про сборы. Про время — `late`.*
-- ✅ late — *Перерыв начался раньше, значит вы `late` — «опоздали».*
+**7 · Партнёр переживает, что выглядит растерянным. Вы видите, что с ним всё нормально. Скажите ему об этом короткой фразой**
+<!-- interaction_id: en:lesson-01:session-33:i07; family: scripted_repeat_compare -->
+🎙 **You're okay.**
 
-**8 · Соедините пары — сопоставьте фразы с их смыслом**
-<!-- interaction_id: en:lesson-01:session-33:i08; family: speed_match -->
-together — вместе · hungry — голодный · ready — готов · late — опаздываю
+**8 · Вы проверили освещение сцены: с ним всё нормально. Скажите об освещении короткой фразой**
+<!-- interaction_id: en:lesson-01:session-33:i08; family: context_gap_grammar -->
+___ okay. → **It's** · I'm · They're
+- I'm — *Это о себе. Про освещение — `It's`.*
+- They're — *Это «они». Здесь об освещении в целом — `It's`.*
 
-**9 · Соберите фразу — «мы опаздываем»**
-<!-- interaction_id: en:lesson-01:session-33:i09; family: phrase_builder -->
-Плитки: `late` `We` `are` → **We are late.**
+**9 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-33:i09; family: listen_choose -->
+🔊 *They're surprised.* → **They're surprised.** · We're surprised. · They're ashamed.
+- We're surprised. — *В записи первое слово — `They're`, а в этом варианте — `We're`.*
+- They're ashamed. — *В записи последнее слово — `surprised`, а в этом варианте — `ashamed`.*
 
-**10 · Вставьте слово — в кафе смотрят на вас четверых: один столик или разные?**
-<!-- interaction_id: en:lesson-01:session-33:i10; family: context_gap_grammar -->
-___ are together. → **We** · I · He
-- I — *`I` — это один человек, поэтому с ним было бы `am`. А вас в кафе четверо.*
-- He — *Это один мужчина, поэтому здесь было бы `is`.*
-- ✅ We — *Вас четверо за одним столом: `We` — «мы».*
+**10 · Найдите полную форму каждого короткого начала**
+<!-- interaction_id: en:lesson-01:session-33:i10; family: speed_match -->
+You're — You are · We're — We are · They're — They are · I'm — I am
 
-**11 · Соберите фразу — «мы готовы»**
-<!-- interaction_id: en:lesson-01:session-33:i11; family: phrase_builder -->
-Плитки: `are` `ready` `We` → **We are ready.**
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-01:session-33:i11; family: listen_build_dictation -->
+🔊 *We're okay.* Плитки: `okay` `We're` `They're` → **We're okay.**
+*(плитка `They're` лишняя: здесь нужно `We're` — `We're okay.`)*
 
-**12 · Произнесите одну фразу — у входа в кафе Ира спрашивает, голодны ли вы все**
-<!-- interaction_id: en:lesson-01:session-33:i12:s01; family: scripted_repeat_compare -->
-🎙 **We are hungry.**
+**12 · Вы перебили партнёра и теперь испытываете стыд. Соберите короткую фразу о себе**
+<!-- interaction_id: en:lesson-01:session-33:i12; family: phrase_builder -->
+Плитки: `ashamed` `I'm` `She's` → **I'm ashamed.**
+*(плитка `She's` лишняя: здесь нужно `I'm` — `I'm ashamed.`)*
 
-**13 · Произнесите одну фразу — Ира видит, что вы уже в куртках у выхода**
-<!-- interaction_id: en:lesson-01:session-33:i12:s02; family: scripted_repeat_compare -->
-🎙 **We are ready.**
+**13 · Друг удивлён аплодисментами. Скажите о его удивлении короткой фразой**
+<!-- interaction_id: en:lesson-01:session-33:i13; family: scripted_repeat_compare -->
+🎙 **He's surprised.**
 
-**14 · Послушайте и соберите — вы всё ещё сидите за столом, никто никуда не спешит**
-<!-- interaction_id: en:lesson-01:session-33:i13; family: listen_build_dictation -->
-🔊 *We are hungry.* Плитки: `are` `We` `hungry` `is` → **We are hungry.**
-*(плитка `is` лишняя: с `We` нужна форма `are`.)*
-
-**15 · Вставьте слово — Ира зовёт всю команду обедать**
+**14 · После суматошной сцены Маша и Ира выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»**
 <!-- interaction_id: en:lesson-01:session-33:i14; family: context_gap_grammar -->
-We are ___ . → **hungry** · together · late
-- together — *Про компанию тут и так понятно. Вопрос был про еду.*
-- late — *Никто не опаздывает, все просто голодные.*
-- ✅ hungry — *Команда идёт обедать, потому что `hungry` — «голодные».*
+___ okay. → **You're** · We're · She's
+- We're — *Это включает говорящего: «мы». К собеседницам — `You're`.*
+- She's — *Это рассказ об одной женщине. Обращение к ним обеим — `You're`.*
 
-**16 · Произнесите одну фразу — официант уже принёс счёт, а вы опаздываете на встречу**
-<!-- interaction_id: en:lesson-01:session-33:i15; family: scripted_repeat_compare -->
-🎙 **We are late.**
+**15 · Послушайте короткую фразу**
+<!-- interaction_id: en:lesson-01:session-33:i15; family: listen_choose -->
+🔊 *It's okay.* → **It's okay.** · He's okay. · She's okay.
+- He's okay. — *В записи первое слово — `It's`, а в этом варианте — `He's`.*
+- She's okay. — *В записи первое слово — `It's`, а в этом варианте — `She's`.*
 
-**17 · Послушайте и выберите фразу — вся команда хочет есть**
-<!-- interaction_id: en:lesson-01:session-33:i16:s01; family: listen_choose -->
-🔊 *We are hungry.* → **We are hungry.** · We are late. · We are ready.
-- ✅ We are hungry. — *Вся команда хочет есть: `We are hungry.`*
-- We are late. — *Здесь речь не об опоздании: все хотят есть.*
-- We are ready. — *Готовность — другое значение. Здесь все голодны.*
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-33:i16; family: speed_match -->
+okay — в порядке · proud — гордится · ashamed — испытывает стыд · surprised — удивлён
 
-**18 · Произнесите одну фразу — вы стоите у выхода всей командой**
-<!-- interaction_id: en:lesson-01:session-33:i16:s02; family: scripted_repeat_compare -->
-🎙 **We are together.**
+**17 · На прогулке вы споткнулись, но не ушиблись. Друг волнуется за вас. Скажите коротко, что с вами всё нормально**
+<!-- interaction_id: en:lesson-01:session-33:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **I'm okay.**
 
-**19 · Послушайте и соберите — вся команда уже в куртках и ждёт у двери**
-<!-- interaction_id: en:lesson-01:session-33:i16:s03; family: listen_build_dictation -->
-🔊 *We are ready.* Плитки: `ready` `We` `are` `is` → **We are ready.**
-*(плитка `is` лишняя: `We are ready.`)*
-
----
-
-## Для сборщика
-
-new_words:
-together — вместе — «вместе». Одной компанией: идём вместе, сидим вместе, ждём вместе.
-
-modes: 1=word_card, 2=listen_choose, 3=context_gap_grammar, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=context_gap_grammar, 8=speed_match, 9=phrase_builder, 10=context_gap_grammar, 11=phrase_builder, 12=scripted_repeat_compare, 13=scripted_repeat_compare, 14=listen_build_dictation, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=listen_choose, 18=scripted_repeat_compare, 19=listen_build_dictation
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| hungry | 4, 5 (ловушка), 8, 12, 13, 14, 16 | 4 (сборка), 13 (сборка), 14 (пропуск) |
-| ready | 3, 5 (ловушка), 7 (ловушка), 8, 11, 12, 16 | 11 (сборка), 12 (голос), 16 (финал) |
-| late | 7, 8, 9, 13 (ловушка), 14 (ловушка), 15 | 7 (пропуск), 9 (сборка), 15 (сборка) |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | We are ready | да — `We are ready` в первом абзаце |
-| Интро 2 | We are hungry | да — `hungry` разбирается, `We are hungry` в тексте |
-| Интро 3 | We are together | да — `together` разбирается, `We are together` в тексте |
-
-**3. Доска пар (задание 8)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| together | 1 | 2 (слух), 5 (пропуск), 6 (сборка) |
-| hungry | из прошлых сессий | 4 (сборка) |
-| ready | из прошлых сессий | 3 (пропуск) |
-| late | из прошлых сессий | 7 (пропуск) |
-
----

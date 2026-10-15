@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-33:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-33:intro1:r2": {
-          "ru": "`am` — только для `I`, для одного себя. Про «мы» — `are`.",
-          "uk": "`am` — тільки для `I`, для себе одного. Про «ми» — `are`."
+          "ru": "В короткой форме остаётся `'m`: `I'm okay`.",
+          "uk": "У короткій формі залишається `'m`: `I'm okay`."
         },
         "en:lesson-01:session-33:intro1:r3": {
-          "ru": "После `we` в английском нужно `are`: We are ready.",
-          "uk": "Після `we` в англійській потрібне `are`: We are ready."
+          "ru": "Это про него, а вы говорите о себе: `I'm`.",
+          "uk": "Це про нього, а ви говорите про себе: `I'm`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-33:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-33:intro2:r2": {
-          "ru": "`is` — про одного: он, она, оно. Про нас — `are`.",
-          "uk": "`is` — про одного: він, вона, воно. Про нас — `are`."
+          "ru": "`He's` — про него; про подругу нужно `She's`.",
+          "uk": "`He's` — про нього; про подругу потрібно `She's`."
         },
         "en:lesson-01:session-33:intro2:r3": {
-          "ru": "Слово о нас не отращивает `-s`. Оно одно на всех.",
-          "uk": "Слово про нас не відрощує `-s`. Воно одне на всіх."
+          "ru": "`ashamed` — «стыдно». Здесь подруга гордится: `proud`.",
+          "uk": "`ashamed` — «соромно». Тут подруга пишається: `proud`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-33:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-33:intro3:r2": {
-          "ru": "`are` не уезжает в конец. Её место сразу после `we`, перед словом о нас.",
-          "uk": "`are` не від'їжджає в кінець. Її місце одразу після `we`, перед словом про нас."
+          "ru": "Это про них. Вы говорите за себя и друзей: `We're`.",
+          "uk": "Це про них. Ви говорите за себе та друзів: `We're`."
         },
         "en:lesson-01:session-33:intro3:r3": {
-          "ru": "`-s` тут лишнее. `together` не меняется никогда.",
-          "uk": "`-s` тут зайве. `together` не змінюється ніколи."
+          "ru": "`ashamed` означает, что вам стыдно. Здесь нужно назвать удивление: `surprised`.",
+          "uk": "`ashamed` означає, що вам соромно. Тут треба назвати здивування: `surprised`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2e7ec793624a0d2783a706e806b863a0bf355fd6ca8adb429e00edf8e73d3934"
+  "auxiliaryFingerprint": "5557afcc3c5656e5ed0cf8d3a9f8b99789589d7b13c2ab01143146d7fc9ea283"
 }

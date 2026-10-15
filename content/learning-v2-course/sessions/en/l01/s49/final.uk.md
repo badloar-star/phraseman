@@ -1,231 +1,138 @@
-# Англійська · Урок 1 · Заняття 49 — «Хто говорить — така й форма»
+# Англійська · Урок 1 · Заняття 49 — На ярмарку
 
-**Ситуація.** У неділю ви телефонуєте мамі з Дубліна. Вона питає про вашу роботу, колег, сусідів і сім'ю.
-**Сьогодні.** Вибирайте `am`, `is` або `are` за тим, про кого йдеться.
-**Нові слова:** everyone, nobody, people, family
-**Повертаються:** kind, busy, tired, loud, fine
+**Ситуація.** На невеликому ярмарку ви з другом вибираєте горнятка й листівки. Обговорюєте низькі ціни та чесність продавця.
+
+**Що ви опануєте:** сказати, що річ коштує недорого, й окремо оцінити чесність людини
+**Нові слова:** cheap
 
 ---
 
 ## Інтро 1
 
-### Про кого мова — така й форма
+### Низька ціна
 
-`I am tired` — «я втомився». Українською ми кажемо просто «я зайнятий», «я готовий», без окремого слова посередині. Англійською після `I` обов'язково ставлять `am`.
+`cheap` — «дешевий», «недорогий». `It is cheap` — «Це недорого» або «Воно дешеве», якщо говоримо, наприклад, про горнятко. Тут оцінюємо ціну. Горнятко коштує менше, ніж кава, яку ви збираєтеся в нього налити.
 
-Таких слів три: `am`, `is`, `are`. Їх вибирають не навмання, а за тим, про кого йдеться. Про себе завжди кажуть `am`.
+**Ціна горнятка низька. Скажіть саме про його невисоку ціну.**
 
-**Мама питає, як ви після тижня. Скажіть чесно, що сил уже немає.**
-
-- ✅ **I am tired.**
-- ❌ I is tired. — *`is` іде до когось третього. Про себе — `am`.*
-- ❌ I tired. — *Після `I` бракує `am`. Англійською потрібно `I am tired`.*
+- ✅ **It is cheap.**
+- ❌ It is useful. — *`useful` — корисне. Низьку ціну тут передає `cheap`.*
+- ❌ It are cheap. — *Після `It` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### Після everyone — is
+### Ціна — не вся історія
 
-`everyone` — «всі». `kind` — «добрий», про того, хто допомагає без прохання. Усі такі — `everyone is kind`.
+У цьому занятті `cheap` говорить про низьку ціну. Це саме по собі не доводить поганої якості. Недороге горнятко цілком може вам подобатися. Про два недорогі горнятка — `They are cheap`, коротко `They're cheap`.
 
-Після `everyone` кажуть `is`, хоча українське «всі» звучить як кілька людей. В англійській `everyone` потребує форми для одного.
+**Обидва горнятка коштують недорого. Назвіть їхню низьку ціну однією фразою.**
 
-**Мама питає про ваших нових колег. Скажіть, що кожен із них доброзичливий.**
-
-- ✅ **Everyone is kind.**
-- ❌ Everyone are kind. — *`are` ставлять після `we`, `you` або `they`. Після `everyone` потрібно `is`.*
-- ❌ Everyone kind. — *Між `everyone` і `kind` потрібно `is`.*
+- ✅ **They are cheap.**
+- ❌ They is cheap. — *Після `They` потрібно `are`.*
+- ❌ They are useless. — *`useless` — марні. З низької ціни це не випливає: тут потрібно `cheap`.*
 
 ---
 
 ## Інтро 3
 
-### People — багато, family — одна
+### Чесна оцінка людини
 
-`people` — «люди». Їх багато, тому після `people` кажуть `are`. `loud` — «гучний»: `people are loud`.
+`honest` — «чесний». Продавець сам показує невеликий дефект: ви можете оцінити його чесність фразою `He is honest`. `He is cheap` не означає «Він продає недорого»: про людину так можуть сказати, маючи на увазі скупість. Ціну речі описуйте через `It` або `They`.
 
-А `family` — «сім'я». В англійській сім'ю вважають одним цілим, тому після `family` кажуть `is`, хоча людей у сім'ї багато: `my family is fine` — «у мене в сім'ї все добре».
+**Продавець сам попередив про непомітну тріщину. Назвіть його чесним.**
 
-**Мама питає про сусідів за стіною. Скажіть, що їх чути весь вечір.**
-
-- ✅ **People are loud.**
-- ❌ People is loud. — *`is` кажуть про одну людину або предмет. `people` — це кілька людей, тому потрібно `are`.*
-- ❌ People am loud. — *`am` буває тільки після `I`. Тут ідеться про сусідів.*
+- ✅ **He is honest.**
+- ❌ He is cheap. — *Так не кажуть, що в продавця низькі ціни. Тут оцінюємо чесність: `honest`.*
+- ❌ He are honest. — *Після `He` потрібно `is`.*
 
 ---
 
-## Практика (21 завдання, підтримка спадає)
+## Практика (17 завдань)
 
-**1 · Картка слова — everyone**
-<!-- interaction_id: en:lesson-01:session-49:i01; family: listen_choose -->
-> **everyone** — «всі». Не натовп на площі, а всі свої: усі в кімнаті, усі на роботі.
+**1 · Горнятко коштує недорого. Складіть фразу про його ціну**
+<!-- interaction_id: en:lesson-01:session-49:i01; family: phrase_builder -->
+Плитки: `cheap` `is` `It` `are` → **It is cheap.**
+*(плитка `are` зайва: тут потрібно `is` — `It is cheap.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-49:i02; family: listen_choose -->
-🔊 *everyone* → **everyone** · every · everything
-- every — *«Кожен» — про одного за раз. `everyone` — про всіх одразу.*
-- everything — *Це «все» про речі, а не про людей.*
+🔊 *It is cheap.* → **It is cheap.** · It is useful. · It is dangerous.
+- It is useful. — *У записі останнє слово — `cheap`, а в цьому варіанті — `useful`.*
+- It is dangerous. — *У записі останнє слово — `cheap`, а в цьому варіанті — `dangerous`.*
 
-**3 · Картка слова — nobody**
-<!-- interaction_id: en:lesson-01:session-49:i03; family: listen_choose -->
-> **nobody** — «ніхто». Жодної людини: кімната порожня, дзвонити нікому.
+**3 · Дві листівки коштують недорого. Доповніть оцінку їхньої ціни**
+<!-- interaction_id: en:lesson-01:session-49:i03; family: context_gap_grammar -->
+They ___ cheap. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про дві листівки — `They are`.*
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-49:i04; family: listen_choose -->
-🔊 *nobody* → **nobody** · body · nobly
-- body — *«Тіло». Слово про людину, але про одну й живу, а ви кажете, що немає нікого.*
-- nobly — *«Шляхетно» — оцінка вчинку, а `nobody` — про людей, яких немає.*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-49:i04; family: speed_match -->
+cheap — недорогий · honest — чесний · useful — корисний · polite — ввічливий
 
-**5 · Вставте слово — усі на роботі добрі**
-<!-- interaction_id: en:lesson-01:session-49:i05; family: context_gap_grammar -->
-Everyone ___ kind. → **is** · are · am
-- are — *Тягне слово «всі». Але `everyone` іде з `is`.*
-- am — *`am` буває тільки про себе.*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-49:i05; family: listen_build_dictation -->
+🔊 *It's cheap.* Плитки: `cheap` `It's` `He's` → **It's cheap.**
+*(плитка `He's` зайва: тут потрібно `It's` — `It's cheap.`)*
 
-**6 · Картка слова — people**
-<!-- interaction_id: en:lesson-01:session-49:i06; family: listen_choose -->
-> **people** — «люди». Просто багато людей: в автобусі, у черзі, за стіною.
+**6 · Обидва блокноти коштують недорого. Скажіть про їхню низьку ціну**
+<!-- interaction_id: en:lesson-01:session-49:i06; family: phrase_builder -->
+Плитки: `cheap` `are` `They` `is` → **They are cheap.**
+*(плитка `is` зайва: тут потрібно `are` — `They are cheap.`)*
 
-**7 · Картка слова — family**
-<!-- interaction_id: en:lesson-01:session-49:i07; family: listen_choose -->
-> **family** — «сім'я». Мама, тато, брати-сестри — усі разом, одним словом.
+**7 · Коротко скажіть, що вибрана листівка коштує недорого**
+<!-- interaction_id: en:lesson-01:session-49:i07; family: scripted_repeat_compare -->
+🎙 **It's cheap.**
 
-**8 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-01:session-49:i08; family: listen_choose -->
-🔊 *family* → **family** · funny · fairly
-- funny — *«Смішний». Про жарт, а не про рідню.*
-- fairly — *«Доволі» — слово-оцінка, не про людей.*
+**8 · Продавець сам розповів про дефект. Оцініть саме його чесність**
+<!-- interaction_id: en:lesson-01:session-49:i08; family: context_gap_grammar -->
+He is ___ . → **honest** · cheap · curious
+- cheap — *Це не оцінка чесності. Тут потрібно `honest`.*
+- curious — *Це про допитливість, а тут потрібна чесність: `honest`.*
 
-**9 · Вставте слово — люди за стіною шумлять**
-<!-- interaction_id: en:lesson-01:session-49:i09; family: context_gap_grammar -->
-People ___ loud. → **are** · is · am
-- is — *`people` — це вже багато, до них `are`.*
-- am — *`am` — тільки про себе, а ви про сусідів.*
+**9 · Послухайте фразу про продавця**
+<!-- interaction_id: en:lesson-01:session-49:i09; family: listen_choose -->
+🔊 *He is honest.* → **He is honest.** · He is polite. · He is patient.
+- He is polite. — *У записі останнє слово — `honest`, а в цьому варіанті — `polite`.*
+- He is patient. — *У записі останнє слово — `honest`, а в цьому варіанті — `patient`.*
 
-**10 · Складіть фразу — «у сім'ї все добре»**
-<!-- interaction_id: en:lesson-01:session-49:i10; family: phrase_builder -->
-Мама питає, як справи у вашій сім'ї. Складіть відповідь.
+**10 · З’єднайте короткі початки з повними**
+<!-- interaction_id: en:lesson-01:session-49:i10; family: speed_match -->
+It's — It is · They're — They are · He's — He is · She's — She is
 
-Плитки: `is` `family` `My` `fine` `are` → **My family is fine.**
-*(плитка `are` зайва: `family` — одна сім'я як ціле, тому тут потрібне `is`)*
-*(`my` — «мій»; одна плитка зайва)*
+**11 · Послухайте й складіть коротку фразу про покупки**
+<!-- interaction_id: en:lesson-01:session-49:i11; family: listen_build_dictation -->
+🔊 *They're cheap.* Плитки: `cheap` `They're` `We're` → **They're cheap.**
+*(плитка `We're` зайва: тут потрібно `They're` — `They're cheap.`)*
 
-**11 · Вставте слово — в офісі о шостій вечора порожньо**
-<!-- interaction_id: en:lesson-01:session-49:i11; family: context_gap_grammar -->
-Мама питає, чи є в офісі люди о шостій вечора. Відповідайте, що там нікого немає.
+**12 · Продавчиня сама помітила, що взяла зайві гроші, й повернула їх. Назвіть її чесною**
+<!-- interaction_id: en:lesson-01:session-49:i12; family: phrase_builder -->
+Плитки: `honest` `is` `She` `are` → **She is honest.**
+*(плитка `are` зайва: тут потрібно `is` — `She is honest.`)*
 
-___ is here. → **Nobody** · Everyone · People
-- Everyone — *Це «всі», а в офісі не лишилося нікого.*
-- People — *«Люди» — теж про тих, хто є, а ви кажете, що їх немає.*
+**13 · Куплений блокнот допомагає записувати важливі справи. Оцініть його користь, а не ціну**
+<!-- interaction_id: en:lesson-01:session-49:i13; family: scripted_repeat_compare -->
+🎙 **It is useful.**
 
-**12 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-49:i12; family: speed_match -->
-everyone — всі · nobody — ніхто · people — люди · family — сім'я
+**14 · Один значок коштує недорого. Доповніть фразу про його ціну**
+<!-- interaction_id: en:lesson-01:session-49:i14; family: context_gap_grammar -->
+It ___ cheap. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Про один значок — `It is`.*
 
-**13 · Послухайте і складіть — «усі зайняті»**
-<!-- interaction_id: en:lesson-01:session-49:i13; family: listen_build_dictation -->
-Мама питає про колег. Послухайте й складіть відповідь: усі зайняті.
+**15 · Послухайте коротку оцінку й виберіть її**
+<!-- interaction_id: en:lesson-01:session-49:i15; family: listen_choose -->
+🔊 *It's cheap.* → **It's cheap.** · It's useful. · It's useless.
+- It's useful. — *У записі останнє слово — `cheap`, а в цьому варіанті — `useful`.*
+- It's useless. — *У записі останнє слово — `cheap`, а в цьому варіанті — `useless`.*
 
-🔊 *Everyone is busy.* Плитки: `is` `busy` `everyone` `are` → **Everyone is busy.**
-*(плитка `are` зайва: `everyone` потребує `is`, навіть коли йдеться про всіх)*
-*(`busy` — «зайнятий»)*
+**16 · З’єднайте слова з їхніми значеннями тут**
+<!-- interaction_id: en:lesson-01:session-49:i16; family: speed_match -->
+cheap — низька ціна · honest — чесний · useful — приносить користь · useless — не приносить користі
 
-**14 · Складіть фразу — робочий день скінчився, і сил не лишилося**
-<!-- interaction_id: en:lesson-01:session-49:i14; family: phrase_builder -->
-Мама питає, як ви після робочого дня. Складіть відповідь.
+**17 · У сусідньому кіоску парасоля продається за низькою ціною. Скажіть супутникові саме про невисоку ціну парасолі**
+<!-- interaction_id: en:lesson-01:session-49:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is cheap.**
 
-Плитки: `tired` `I` `is` `am` → **I am tired.**
-*(плитка `is` зайва: після `I` потрібна форма `am`)*
-
-**15 · Вставте слово — про себе після тижня**
-<!-- interaction_id: en:lesson-01:session-49:i15; family: context_gap_grammar -->
-I ___ fine. → **am** · is · are
-- is — *`is` іде до когось третього.*
-- are — *`are` — про кількох. Про себе `am`.*
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-49:i16:s01; family: scripted_repeat_compare -->
-Мама питає про нових колег. Скажіть, що кожен із них доброзичливий.
-
-🎙 **Everyone is kind.**
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-49:i16:s02; family: scripted_repeat_compare -->
-Мама питає про сусідів. Скажіть, що зараз ніхто не шумить.
-
-🎙 **Nobody is loud.**
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-49:i17:s01; family: scripted_repeat_compare -->
-Мама питає про сусідів за стіною. Скажіть, що вони гучні.
-
-🎙 **People are loud.**
-
-**19 · Складіть фразу — ви описуєте всю дружню команду**
-<!-- interaction_id: en:lesson-01:session-49:i17:s02; family: phrase_builder -->
-Плитки: `Everyone` `is` `kind` `are` → **Everyone is kind.**
-*(плитка `are` зайва: після `everyone` потрібна форма `is`)*
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-49:i17:s03; family: scripted_repeat_compare -->
-Мама питає, як справи у вашій сім'ї. Відповідайте, що все добре.
-
-🎙 **My family is fine.**
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-49:i17:s04; family: scripted_repeat_compare -->
-Мама питає, як ви після першого тижня. Скажіть, що втомилися.
-
-🎙 **I am tired.**
-
----
-
-## Для сборщика
-
-new_words:
-everyone — всі — «всі». Не натовп на площі, а всі свої: усі в кімнаті, усі на роботі.
-nobody — ніхто — «ніхто». Жодної людини: кімната порожня, дзвонити нікому.
-people — люди — «люди». Просто багато людей: в автобусі, у черзі, за стіною.
-family — сім'я — «сім'я». Мама, тато, брати-сестри — усі разом, одним словом.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=word_card, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=context_gap_grammar, 12=speed_match, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=phrase_builder, 20=scripted_repeat_compare, 21=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| kind | інтро 2, 5, 16, 17 | інтро 2 — правильна відповідь; 5 — фраза з `kind` |
-| busy | інтро 1, 13 | 13 — правильна відповідь складання |
-| tired | інтро 1 (✅), 14, 17 | інтро 1 і 14 — правильна відповідь |
-| loud | інтро 3 (✅), 9, 16, 17 | інтро 3 і 9 — правильна відповідь |
-| fine | 10, 15, 17 | 10 і 15 — правильна відповідь |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть ключ у тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | I am tired | `tired` — перша ж фраза сторінки: «`I am tired` — „я втомився“» |
-| Інтро 2 | Everyone is kind | `kind` пояснено в тексті; питання каже «допомагають і ніхто не гарчить» |
-| Інтро 3 | People are loud | `loud` пояснено в тексті; питання каже «чути крізь стіну» |
-
-**3. Дошка пар (завдання 12)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| everyone | 1 | 2 (слух), 5 (скріпка) |
-| nobody | 3 | 4 (слух), 11 (вибір слова) |
-| people | 6 | 9 (скріпка), 11 (дистрактор) |
-| family | 7 | 8 (слух), 10 (складання фрази) |
-
----
-
-- Зроблено українську версію сесії 49 — одну, як і просили.
-- Англійські слова, фрази, пастки, порядок і номери завдань, механіки та блок для сборщика лишились без змін.
-- Пояснення переписані живою українською: опора йде на українську мову («я зайнятий», «я готовий»), а не на російську.
-- Пастка з `everyone are` збережена — для українця вона така сама природна, бо «всі» теж тягне за собою множину.
-- Українською `my family is fine` пояснено окремо: сім'я — багато людей, але скріпка одна.

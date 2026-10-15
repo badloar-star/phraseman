@@ -1,152 +1,138 @@
-# Англійська · Урок 3 · Заняття 7 — «Куди прибрати речі»
+# Англійська · Урок 3 · Заняття 7 — Розписати чашку
 
-**Сцена заняття.** Ви з другом розбираєте останню коробку після переїзду. Шукаєте місце для дрібниць, посуду й одягу та з’ясовуєте, які меблі для чого потрібні.
+**Ситуація.** Ви з Анною прийшли розписувати кераміку. Ви обрали чашку. Олег сердиться через пляму на рукаві, а собака господині злякався грому. Фартух потрібен, щоб захистити одяг. Старий таймер постійно збивається, на нього не можна покластися.
 
-**Як сказати:** називаємо предмети за допомогою `a + noun`, чергуємо знайомі твердження, запитання й заперечення з меншою підтримкою  
-**Нові слова:** drawer, cupboard, wardrobe  
-**Повертаються:** lamp, open, closed
+**Що ви опануєте:** назвати чашку, запитати про предмет і описати знайомі стани
+**Нові слова:** cup
 
 ---
 
 ## Інтро 1
 
-### Шухляда, яку висувають
+### Чашка чекає на малюнок
 
-`drawer` — «висувна шухляда»: частина стола або шафи, яку тягнуть на себе. Це назва не всього предмета меблів, а лише його висувної частини. Можна сказати коротко `a drawer` або повною фразою `It is a drawer` — «Це висувна шухляда». Так ви називаєте саме шухляду, навіть якщо її вийняли й тримають окремо.
+`cup` — «чашка», з неї п’ють чай або каву. `It is a cup` — «Це чашка». Перший звук у `cup` приголосний, тому `a cup`. Олег намалював на чашці печиво. До чаю воно, на жаль, не підійде. Малюнок змінює вигляд чашки, але не її назву: `a cup`.
 
-**Друг вийняв зі стола шухляду, щоб її протерти. Назвіть цю частину меблів повною фразою.**
+**Ви обрали чашку для розпису. Назвіть предмет повною фразою.**
 
-- ✅ **It is a drawer.**
-- ❌ It is drawer. — *Коли називаємо один такий предмет, перед `drawer` ставимо `a`: `It is a drawer`.*
-- ❌ It a drawer. — *Коротка назва `a drawer` уже є, але після `It` для повної фрази потрібне `is`.*
+- ✅ **It is a cup.**
+- ❌ It is cup. — *Перед `cup` у цій назві потрібно `a`.*
+- ❌ It is an cup. — *Перед приголосним звуком у `cup` потрібно `a`, не `an`.*
 
 ---
 
 ## Інтро 2
 
-### Шафа з полицями
+### Що вона обрала
 
-`cupboard` — широка назва шафи з дверцятами, де зберігають речі. Тут це кухонна шафа з полицями для посуду. Називаючи її `a cupboard`, ви говорите про всю шафу, а не про висувну шухляду `a drawer`. Повна фраза — `It is a cupboard`: «Це кухонна шафа».
+`What is it?` — «Що це?» Ви не знаєте, який предмет обрала Анна. Якщо вже припускаєте чашку, запитайте `Is it a cup?` — «Це чашка?» У відповіді-запереченні `It is not a cup` зберігаємо назву `a cup`: `not` стоїть перед нею, а не замість `a`.
 
-**Друг показує на кухонну шафу з полицями для посуду. Назвіть її повною фразою.**
+**Анна тримає невеликий предмет, його закриває упаковка. Запитайте, чи це чашка.**
 
-- ✅ **It is a cupboard.**
-- ❌ It are a cupboard. — *Тут називаємо предмет через `It is`. Після `It` форма `are` не підходить.*
-- ❌ It is cupboard. — *Перед назвою однієї шафи в цій фразі потрібне `a`: `a cupboard`.*
+- ✅ **Is it a cup?**
+- ❌ Is it cup? — *У назві `a cup` зникло `a`.*
+- ❌ It is a cup. — *Це повідомлення. Для запитання почніть з `Is it`.*
 
 ---
 
 ## Інтро 3
 
-### Одягу теж є куди переїхати
+### Пляма, грім і таймер
 
-`wardrobe` — «шафа для одягу». У ній можна повісити куртку або скласти речі. Стілець, завалений одягом, усе одно `a chair`, хоч як старанно ви робите з нього шафу. Про справжню шафу з місцем для одягу скажіть `It is a wardrobe` — «Це шафа для одягу».
+`angry` — «сердитий»: Олег сердиться через пляму. `scared` — «наляканий»: собака злякався грому. `necessary` — «необхідний»: фартух потрібен для захисту одягу. `unreliable` — «ненадійний»: старий таймер часто збивається. У `It is necessary` описуємо необхідність предмета; перед окремим `necessary` не ставимо `a`.
 
-**Друг запитує, що стоїть у спальні: високі меблі з дверцятами й перекладиною для вішаків. Назвіть шафу для одягу.**
+**Фартух потрібен для захисту одягу від фарби. Скажіть повною фразою, що він необхідний.**
 
-- ✅ **It is a wardrobe.**
-- ❌ It is wardrobe. — *У цій повній фразі перед назвою `wardrobe` потрібне `a`.*
-- ❌ It am a wardrobe. — *Про предмет говоримо `It is`. Форма `am` тут не підходить: вона вживається з `I`.*
+- ✅ **It is necessary.**
+- ❌ It is a necessary. — *Перед окремим `necessary` тут не потрібно `a`.*
+- ❌ It are necessary. — *З `It` потрібно `is`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — drawer**
-<!-- interaction_id: en:lesson-03:session-07:i01; family: listen_choose -->
-Ціль: `drawer`
+**1 · Ви показуєте обрану чашку. Назвіть предмет повною фразою**
+<!-- interaction_id: en:lesson-03:session-07:i01; family: phrase_builder -->
+Плитки: `cup` `a` `is` `It` `are` → **It is a cup.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a cup.`)*
 
-**2 · Послухайте й виберіть — що вимовив друг, поки ви розбираєте речі**
+**2 · Послухайте фразу про Олега**
 <!-- interaction_id: en:lesson-03:session-07:i02; family: listen_choose -->
-Ціль: `drawer`
-Варіанти: `drawer` · `drier` · `dream`
-- drier — *У `drier` чути рухомий голосний, схожий на «ай». У `drawer` голосний звучить рівніше й з округленими губами. У записі — `drawer`.*
-- dream — *У `dream` голосний вимовляють із розтягнутими губами, а в `drawer` — з округленими. Тут звучить `drawer`.*
+🔊 *He is angry.* → **He is angry.** · He is scared. · He is calm.
+- He is scared. — *У записі останнє слово — `angry`, а в цьому варіанті — `scared`.*
+- He is calm. — *У записі останнє слово — `angry`, а в цьому варіанті — `calm`.*
 
+**3 · Доповніть назву чашки**
+<!-- interaction_id: en:lesson-03:session-07:i03; family: context_gap_grammar -->
+It is ___ cup. → **a** · an · is
+- an — *Перед приголосним звуком у `cup` потрібно `a`.*
+- is — *`is` уже є; перед `cup` потрібно `a`.*
 
-**3 · Картка слова — cupboard**
-<!-- interaction_id: en:lesson-03:session-07:i03; family: listen_choose -->
-Ціль: `cupboard`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-07:i04; family: speed_match -->
+cup — чашка · angry — сердитий · scared — наляканий · necessary — необхідний
 
-**4 · Послухайте й виберіть — яке слово вимовив друг**
-<!-- interaction_id: en:lesson-03:session-07:i04; family: listen_choose -->
-Ціль: `cupboard`
-Варіанти: `cupboard` · `covered` · `coward`
-- covered — *У середині `covered` для звука `v` нижня губа торкається верхніх зубів. У `cupboard` для `b` змикаються обидві губи. У записі — `cupboard`.*
-- coward — *На початку `coward` голосний помітно ковзає, наче в «ау». У `cupboard` він короткий, а потім губи змикаються для `b`. Тут — `cupboard`.*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-07:i05; family: listen_build_dictation -->
+🔊 *It is a cup.* Плитки: `cup` `a` `is` `It` `are` → **It is a cup.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a cup.`)*
 
+**6 · Анна дістала обраний предмет, але вам його не видно. Запитайте, що це**
+<!-- interaction_id: en:lesson-03:session-07:i06; family: phrase_builder -->
+Плитки: `it` `is` `What` `Where` → **What is it?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is it?`)*
 
-**5 · Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»**
-<!-- interaction_id: en:lesson-03:session-07:i05; family: phrase_builder -->
-Ціль: `It is a drawer.`
-Варіанти: `is`
+**7 · Таймер постійно збивається, на нього не можна покластися. Скажіть «Він ненадійний» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-07:i07; family: scripted_repeat_compare -->
+🎙 **It's unreliable.**
 
-**6 · Картка слова — wardrobe**
-<!-- interaction_id: en:lesson-03:session-07:i06; family: listen_choose -->
-Ціль: `wardrobe`
+**8 · Фартух потрібен, щоб не забруднити одяг. Повідомте, що він необхідний**
+<!-- interaction_id: en:lesson-03:session-07:i08; family: context_gap_grammar -->
+It ___ necessary. → **is** · is a · are
+- is a — *Перед окремим `necessary` тут не потрібно `a`.*
+- are — *З `It` потрібно `is`.*
 
-**7 · Послухайте й виберіть — яке слово вимовив друг**
-<!-- interaction_id: en:lesson-03:session-07:i07; family: listen_choose -->
-Ціль: `wardrobe`
-Варіанти: `wardrobe` · `warble` · `warlock`
-- warble — *У `warble` далі чути `b`, а в `wardrobe` — `d` та англійське `/r/`: язик не торкається піднебіння, на відміну від українського «р». Тут — `wardrobe`.*
-- warlock — *Після схожого початку в `warlock` чути `l`, а в `wardrobe` — `d` та англійське `/r/`. Тут — `wardrobe`.*
+**9 · Послухайте запитання про пса господині**
+<!-- interaction_id: en:lesson-03:session-07:i09; family: listen_choose -->
+🔊 *Is he scared?* → **Is he scared?** · Is he angry? · Is he calm?
+- Is he angry? — *У записі останнє слово — `scared`, а в цьому варіанті — `angry`.*
+- Is he calm? — *У записі останнє слово — `scared`, а в цьому варіанті — `calm`.*
 
-
-**8 · Послухайте й складіть — друг говорить про меблі біля коробки**
-<!-- interaction_id: en:lesson-03:session-07:i08; family: listen_build_dictation -->
-Ціль: `It is a cupboard.`
-Варіанти: `drawer`
-
-**9 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-07:i09; family: scripted_repeat_compare -->
-Ціль: `It is a lamp.`
-
-**10 · З’єднайте англійські назви з українськими значеннями**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-07:i10; family: speed_match -->
-Пари: `drawer` — висувна шухляда · `cupboard` — кухонна шафа · `wardrobe` — шафа для одягу · `lamp` — лампа
-Ціль: `drawer · cupboard · wardrobe · lamp`
+unreliable — ненадійний · cup — чашка · pen — ручка · scared — наляканий
 
-**11 · Складіть запитання — друг стоїть біля шафи; запитайте «Вона відчинена?» (`open` — «відчинена»)**
-<!-- interaction_id: en:lesson-03:session-07:i11; family: phrase_builder -->
-Ціль: `Is it open?`
-Варіанти: `Are`
+**11 · Послухайте й складіть фразу про додатковий фартух**
+<!-- interaction_id: en:lesson-03:session-07:i11; family: listen_build_dictation -->
+🔊 *It is not necessary.* Плитки: `necessary` `not` `is` `It` `are` → **It is not necessary.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not necessary.`)*
 
-**12 · Вставте слово — друг не бачить дверцят за коробкою; повідомте «Вона зачинена» (`closed` — «зачинена»)**
-<!-- interaction_id: en:lesson-03:session-07:i12; family: context_gap_grammar -->
-Ціль: `It ___ closed.`
-Варіанти: `is` · `are` · `am`
-- are — *Для цієї фрази потрібне `It is closed`. Форма `are` з `It` не вживається.*
-- am — *Форма `am` підходить до `I`. Про шафу тут говоримо `It is closed`.*
+**12 · У коробці видно край керамічного предмета. Запитайте, чи це чашка**
+<!-- interaction_id: en:lesson-03:session-07:i12; family: phrase_builder -->
+Плитки: `cup` `a` `it` `Is` `Are` → **Is it a cup?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it a cup?`)*
 
-
-**13 · Промовте одну фразу**
+**13 · Олег сердиться через пляму на рукаві. Повідомте це зі скороченням**
 <!-- interaction_id: en:lesson-03:session-07:i13; family: scripted_repeat_compare -->
-Ціль: `Is it closed?`
+🎙 **He's angry.**
 
-**14 · Складіть заперечення — друг хоче повісити куртку в кухонну шафу для посуду; поясніть «Це не шафа для одягу»**
-<!-- interaction_id: en:lesson-03:session-07:i14; family: phrase_builder -->
-Ціль: `It is not a wardrobe.`
-Варіанти: `am`
+**14 · Анна прийняла маленьку вазу за чашку. Доповніть «Це не чашка»**
+<!-- interaction_id: en:lesson-03:session-07:i14; family: context_gap_grammar -->
+It is not ___ cup. → **a** · an · is
+- an — *Після `not` зберігаємо `a cup`.*
+- is — *Перед `cup` потрібно `a`; `is` уже є.*
 
-**15 · Вставте слово — друг запитує про висувну шухляду; повідомте «Вона відчинена»**
-<!-- interaction_id: en:lesson-03:session-07:i15; family: context_gap_grammar -->
-Ціль: `___ is open.`
-Варіанти: `It` · `Is` · `Am`
-- Is — *`is` уже стоїть перед `open`. Спочатку вкажіть на предмет за допомогою `It`.*
-- Am — *Для фрази про шухляду потрібне `It is open`; починати її з `Am` тут не можна.*
+**15 · Послухайте запитання про таймер**
+<!-- interaction_id: en:lesson-03:session-07:i15; family: listen_choose -->
+🔊 *Is it unreliable?* → **Is it unreliable?** · Is it necessary? · Is it reliable?
+- Is it necessary? — *У записі останнє слово — `unreliable`, а в цьому варіанті — `necessary`.*
+- Is it reliable? — *У записі останнє слово — `unreliable`, а в цьому варіанті — `reliable`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-07:i16; family: speed_match -->
+cup — чашка · book — книжка · necessary — необхідний · unreliable — ненадійний
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-07:i16; family: scripted_repeat_compare -->
-Ціль: `It is a wardrobe.`
-
-**17 · Складіть запитання — під кришкою нового стола видно ручку; уточніть у друга «Це висувна шухляда?»**
-<!-- interaction_id: en:lesson-03:session-07:i17; family: phrase_builder -->
-Ціль: `Is it a drawer?`
-Варіанти: `Are`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=scripted_repeat_compare, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Пізніше ви показуєте другові фотографію розписаної чашки. Назвіть предмет: «Це чашка», зі скороченням**
+<!-- interaction_id: en:lesson-03:session-07:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It's a cup.**
 

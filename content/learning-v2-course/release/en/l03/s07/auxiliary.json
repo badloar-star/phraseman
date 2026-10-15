@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-07:intro1:r2": {
+          "ru": "Перед `cup` в этом названии нужно `a`.",
+          "uk": "Перед `cup` у цій назві потрібно `a`."
+        },
+        "en:lesson-03:session-07:intro1:r3": {
+          "ru": "Перед согласным звуком в `cup` нужно `a`, не `an`.",
+          "uk": "Перед приголосним звуком у `cup` потрібно `a`, не `an`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-07:intro2:r2": {
+          "ru": "В названии `a cup` пропало `a`.",
+          "uk": "У назві `a cup` зникло `a`."
+        },
+        "en:lesson-03:session-07:intro2:r3": {
+          "ru": "Это сообщение. Для вопроса начните с `Is it`.",
+          "uk": "Це повідомлення. Для запитання почніть з `Is it`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-07:intro3:r2": {
+          "ru": "Перед отдельным `necessary` здесь не нужно `a`.",
+          "uk": "Перед окремим `necessary` тут не потрібно `a`."
+        },
+        "en:lesson-03:session-07:intro3:r3": {
+          "ru": "С `It` нужно `is`.",
+          "uk": "З `It` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "65e7dfc49ba326d7ef09bd1dfad97c99a0123a46b71e8b0bf67bc218092e65d5"
+}

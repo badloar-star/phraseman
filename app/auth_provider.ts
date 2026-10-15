@@ -3785,9 +3785,19 @@ function scheduleSameStablePostAuthRefresh(
       }
     };
 
+    // зачем (бета А5 15.10, authfetch_on_r7g: restoreFromCloud FAIL по потолку 20 с, а [LOGIN-BONUS-RESTORE] шёл ещё через 3 с):
+    // withTimeout не отменяет восстановление — пишем, чем оно кончилось после потолка. Сперва логи; событие обновления экрана — по фактам.
+    const restorePromise = restoreFromCloudDetailed();
     restoreResult = (await step('restoreFromCloud', () =>
-      withTimeout(restoreFromCloudDetailed(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, stage),
+      withTimeout(restorePromise, SIGNIN_CLOUD_SYNC_TIMEOUT_MS, stage),
     )) ?? 'failed';
+    if (restoreResult === 'failed') {
+      const lateFrom = Date.now();
+      void restorePromise.then(
+        (late) => console.log(`[SIGNIN] bg:${stage}:restoreFromCloud late=${late} afterTimeoutMs=${Date.now() - lateFrom} current=${isCurrent()}`),
+        (e) => console.warn(`[SIGNIN] bg:${stage}:restoreFromCloud late_fail afterTimeoutMs=${Date.now() - lateFrom} reason=${identityErrorCode(e)}`),
+      );
+    }
     if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_restore`); return; }
     // зачем (PM-289, D70/D84/D103): жемчуг удалён в 2.0 без компенсации — баланс нигде
     // не показывается и не тратится, начислений (в т.ч. оплаченных пакетов) больше нет.

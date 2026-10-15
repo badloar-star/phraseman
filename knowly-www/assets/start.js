@@ -485,8 +485,8 @@
     if (remotePrices) return remotePrices;
     var p = cfg().webPrices || {};
     return {
-      monthly: p.monthly || { amount: 3.99, label: '€3.99' },
-      yearly: p.yearly || { amount: 27.99, label: '€27.99', perMonth: '€2.33' },
+      monthly: p.monthly || { amount: 7.99, label: '€7.99' },
+      yearly: p.yearly || { amount: 39.99, label: '€39.99', perMonth: '€3.33' },
       lifetime: p.lifetime || { amount: 99.99, label: '€99.99' },
     };
   }
@@ -789,7 +789,7 @@
       h('div', { class: 'qplans' }, [
         planOption('monthly', 'Месяц', isGift ? 'разовый платёж — 31 день' : 'попробовать в своём темпе', p.monthly.label, isGift ? 'один раз' : 'в месяц', null),
         planOption('yearly', 'Год', isGift ? 'разовый платёж — целый год' : 'самый популярный выбор', p.yearly.label, p.yearly.perMonth ? '≈ ' + p.yearly.perMonth + '/мес' : 'в год', 'Выгоднее 58%'),
-        planOption('lifetime', 'Навсегда', 'один платёж — доступ навсегда', p.lifetime.label, 'один раз', null),
+        /* зачем: владелец 15.10 — тариф «навсегда» с сайта убран (оплата только месяц/год) */
       ]),
       h('div', { class: 'qpay-fields' }, [
         h('div', { class: 'field' }, [

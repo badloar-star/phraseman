@@ -1,217 +1,138 @@
-# Английский · Урок 2 · Занятие 4 — «Are you» в шуме
+# Английский · Урок 2 · Занятие 4 — Где же вход
 
-**Сцена занятия.** В общей кухне хостела гремит чайник. Сосед Том спрашивает вас короткими вопросами, пока Мира готовит чай; нужно расслышать именно вопрос Тома.
+**Ситуация.** Вы с другом ищете вход на небольшую выставку. Сверяете указатель, карту и объяснение организатора.
 
-**Как сказать:** повторение `Are you + слово` — узнавание на слух
-**Новые слова:** curious, cheerful
-**Возвращаются:** awake, thirsty, cold
+**Что вы освоите:** сказать, что предмет не виден, не спрятан или объяснение непонятно
+**Новые слова:** visible, hidden, clear
 
 ---
 
 ## Интро 1
 
-### Что слышно первым
+### Не видно
 
-Вопрос `Are you awake?` начинается с `are`. Это и есть главная примета: `are` вперёд, `you` сразу за ним, слово о человеке — последним. `awake` — «проснулся»: глаза открыл, но ещё не встал.
+`visible` — «видимый»: то, что можно увидеть. `It is not visible` — «Его не видно», если речь об указателе. За большим деревом указатель может быть не виден с вашего места. Указатель есть; осталось найти указатель на указатель.
 
-Поймали `are you` — дальше ждите ровно одно слово. В нём и будет весь вопрос.
+**С вашего места указатель полностью закрыт деревом. Скажите, что его не видно.**
 
-**На кухне гремит чайник. Сосед машет рукой и что-то спрашивает про сон. Что вы услышали?**
-
-- ✅ **Are you awake?**
-- ❌ You are awake? — *Слова стоят как в сообщении. В вопросе `are` выходит вперёд.*
-- ❌ Are awake you? — *`you` оторвано от `are`. Эти двое идут парой: сначала `are you`, потом само слово.*
+- ✅ **It is not visible.**
+- ❌ It is visible. — *Это «Его видно». Здесь нужно `not` после `is`.*
+- ❌ It not visible. — *Нужна связка `is`: `It is not visible`.*
 
 ---
 
 ## Интро 2
 
-### curious — «любопытно»
+### Не спрятано
 
-`curious` — «любопытно», «интересно». Тот интерес, из-за которого человек лезет посмотреть, что там в кастрюле.
+`hidden` — «спрятанный», «скрытый». `It is not hidden` — «Это не спрятано». Предмет может быть не виден из-за расстояния или темноты, хотя никто его не прятал. Поэтому `not visible` и `hidden` не всегда говорят об одном и том же.
 
-В вопросе оно стоит последним, как и все слова о человеке: `Are you curious?`. Отвечают на такой вопрос коротко: `Yes, I am` или `No, I am not`.
+**Карта лежит открыто на столе. Друг думает, что её спрятали. Скажите, что она не спрятана.**
 
-**Сосед достал из рюкзака странную банку и держит её так, чтобы вы точно заметили. Он спрашивает, интересно ли вам.**
-
-- ✅ **Are you curious?**
-- ❌ Are you thirsty? — *`thirsty` — «хочу пить». Про банку он спрашивает не поэтому.*
-- ❌ You curious? — *Так бросают на бегу, но это обрубок. Полный вопрос начинается с `are`.*
+- ✅ **It is not hidden.**
+- ❌ It is hidden. — *Это «Она спрятана». Здесь нужно отрицание: `is not hidden`.*
+- ❌ It not hidden. — *`is` сохраняется: `It is not hidden`.*
 
 ---
 
 ## Интро 3
 
-### cheerful — «весёлый»
+### Слова видны, смысл неясен
 
-`cheerful` — «весёлый», «в хорошем настроении». Про человека, у которого утро явно удалось.
+`clear` здесь — «ясный», «понятный». `It is not clear` — «Это непонятно», если обсуждаем объяснение. Коротко: `It's not clear`. Все слова можно видеть, но всё равно не понимать, куда идти.
 
-`cheerful` и `cold` в вопросе стоят на одном месте — последними, и в шуме до вас долетает как раз это место. Разбирайтесь по смыслу: `cheerful` про настроение, `cold` про температуру.
+**Объяснение маршрута запутанное: вы не понимаете, где свернуть. Коротко скажите, что объяснение непонятно.**
 
-**Вы приплясываете у плиты и подпеваете радио. Сосед смеётся и спрашивает про ваше настроение.**
-
-- ✅ **Are you cheerful?**
-- ❌ Are you cold? — *`cold` — «холодно». Вы пляшете от настроения, а не от холода.*
-- ❌ Are cheerful you? — *`you` снова уехало в конец. Держите `are you` вместе.*
+- ✅ **It's not clear.**
+- ❌ It's clear. — *Это «Понятно». Здесь нужно `not`.*
+- ❌ It's not visible. — *Это «Не видно». В задании неясен смысл: `clear`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — curious**
-<!-- interaction_id: en:lesson-02:session-04:i01; family: listen_choose -->
-Цель: `curious`
+**1 · Указатель полностью закрыт деревом с вашего места. Скажите, что его не видно**
+<!-- interaction_id: en:lesson-02:session-04:i01; family: phrase_builder -->
+Плитки: `visible` `not` `is` `It` `are` → **It is not visible.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not visible.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-02:session-04:i02; family: listen_choose -->
-Цель: `curious`
-Варианты: `curious` · `courage` · `curly`
-- courage — *«Смелость». Другое слово, и звучит оно иначе с середины.*
-- curly — *«Кудрявый». Начало похожее, но `curly` короче: два слога против трёх.*
+🔊 *It is not hidden.* → **It is not hidden.** · It is not visible. · It is not clear.
+- It is not visible. — *В записи последнее слово — `hidden`, а в этом варианте — `visible`.*
+- It is not clear. — *В записи последнее слово — `hidden`, а в этом варианте — `clear`.*
 
+**3 · С вашего места не видно двух указателей. Дополните фразу**
+<!-- interaction_id: en:lesson-02:session-04:i03; family: context_gap_grammar -->
+They ___ not visible. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Про два указателя — `They are not`.*
 
-**3 · Карточка слова — cheerful**
-<!-- interaction_id: en:lesson-02:session-04:i03; family: listen_choose -->
-Цель: `cheerful`
+**4 · Соедините слова с их значениями здесь**
+<!-- interaction_id: en:lesson-02:session-04:i04; family: speed_match -->
+visible — видимый · hidden — спрятанный · clear — понятный · aware — в курсе
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-02:session-04:i04; family: listen_choose -->
-Цель: `cheerful`
-Варианты: `cheerful` · `careful` · `cheap`
-- careful — *«Осторожный». Начинается с «кэр-», а не с «чи-».*
-- cheap — *«Дешёвый». Один слог, и на конце нет «-фул».*
+**5 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-04:i05; family: listen_build_dictation -->
+🔊 *It's not clear.* Плитки: `clear` `not` `It's` `He's` → **It's not clear.**
+*(плитка `He's` лишняя: здесь нужно `It's` — `It's not clear.`)*
 
-
-**5 · Различите звуки — какое из двух про настроение?**
-<!-- interaction_id: en:lesson-02:session-04:i05; family: sound_contrast -->
-Варианты: `cheerful` · `careful`
-- careful — *Это «осторожный». `cheerful` начинается с «ч», как в слове «чай».*
-
-
-**6 · Соберите фразу — спросите про настроение**
+**6 · Карта открыто лежит на столе. Скажите другу, что она не спрятана**
 <!-- interaction_id: en:lesson-02:session-04:i06; family: phrase_builder -->
-Цель: `Are you cheerful?`
-Плитки: `Are` · `you` · `cheerful` · `am`
-*Плитка `am` лишняя: с `you` нужна форма `are`; `am` употребляется с `I`.*
+Плитки: `hidden` `not` `is` `It` `are` → **It is not hidden.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not hidden.`)*
 
-**7 · Послушайте и соберите — «тебе любопытно?»**
-<!-- interaction_id: en:lesson-02:session-04:i07; family: listen_build_dictation -->
-Цель: `Are you curious?`
-🔊 *Are you curious?* Плитки: `Are` · `you` · `curious` · `cold`
-*Плитка `cold` лишняя: вопрос спрашивает о любопытстве, поэтому нужно `curious`: `Are you curious?`*
+**7 · Объяснение маршрута запутанное. Коротко скажите, что оно непонятно**
+<!-- interaction_id: en:lesson-02:session-04:i07; family: scripted_repeat_compare -->
+🎙 **It's not clear.**
 
-**8 · Послушайте и выберите — что спросил сосед**
-<!-- interaction_id: en:lesson-02:session-04:i08; family: listen_choose -->
-Цель: `Are you awake?`
-Варианты: `Are you awake?` · `Are you cold?` · `You are awake.`
-- Are you cold? — *Последнее слово другое. `awake` — «проснулся», `cold` — «холодно».*
-- You are awake. — *Это сообщение, а не вопрос: `are` стоит вторым.*
+**8 · Олег ещё не знает о переносе входа. Вы обсуждаете эту новость. Дополните «Он не в курсе»**
+<!-- interaction_id: en:lesson-02:session-04:i08; family: context_gap_grammar -->
+He ___ not aware. → **is** · am · are
+- am — *После `He` нужно `is`.*
+- are — *Про Олега — `He is not`.*
 
+**9 · Послушайте и выберите фразу**
+<!-- interaction_id: en:lesson-02:session-04:i09; family: listen_choose -->
+🔊 *I am not concerned.* → **I am not concerned.** · I am not convinced. · I am not hungry.
+- I am not convinced. — *В записи последнее слово — `concerned`, а в этом варианте — `convinced`.*
+- I am not hungry. — *В записи последнее слово — `concerned`, а в этом варианте — `hungry`.*
 
-**9 · Вставьте слово — сосед второй час пьёт чай и молчит, а вы всё утро без единого глотка**
-<!-- interaction_id: en:lesson-02:session-04:i09; family: context_gap_grammar -->
-Цель: `Are you ___ ?`
-Варианты: `thirsty` · `curious` · `awake`
-- curious — *«Любопытно» — про интерес, а не про сухое горло.*
-- awake — *«Проснулся» — вы давно на ногах, вопрос не об этом.*
+**10 · Соедините знакомые слова со значениями**
+<!-- interaction_id: en:lesson-02:session-04:i10; family: speed_match -->
+hungry — голодный · thirsty — хочет пить · sick — больной · light — лёгкий по весу
 
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-04:i11; family: listen_build_dictation -->
+🔊 *They're not visible.* Плитки: `visible` `not` `They're` `He's` → **They're not visible.**
+*(плитка `He's` лишняя: здесь нужно `They're` — `They're not visible.`)*
 
-**10 · Послушайте и соберите — «ты весёлый?»**
-<!-- interaction_id: en:lesson-02:session-04:i10; family: listen_build_dictation -->
-Цель: `Are you cheerful?`
-Плитки: `Are` · `you` · `cheerful` · `is`
-*Плитка `is` лишняя: с `you` нужна форма `are`: `Are you cheerful?`*
+**12 · Вы только что попили и больше не хотите пить. Скажите об этом**
+<!-- interaction_id: en:lesson-02:session-04:i12; family: phrase_builder -->
+Плитки: `thirsty` `not` `am` `I` `is` → **I am not thirsty.**
+*(плитка `is` лишняя: здесь нужно `am` — `I am not thirsty.`)*
 
-**11 · Соберите вопрос — сосед в футболке стоит у открытого окна и обхватил себя руками**
-<!-- interaction_id: en:lesson-02:session-04:i11; family: phrase_builder -->
-Цель: `Are you cold?`
-Плитки: `Are` · `you` · `cold` · `cheerful`
-*Плитка `cheerful` лишняя: в этой сцене спрашивают, холодно ли человеку: `Are you cold?`*
+**13 · Сумка с вещами много весит. Скажите, что она не лёгкая**
+<!-- interaction_id: en:lesson-02:session-04:i13; family: scripted_repeat_compare -->
+🎙 **It is not light.**
 
-**12 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-04:i12; family: speed_match -->
-Пары: `curious` — любопытно · `cheerful` — весёлый · `awake` — проснулся · `cold` — холодно
-Цель: `curious · cheerful · awake · cold`
+**14 · Доводы организатора о новом маршруте вас с другом пока не убедили. Дополните фразу**
+<!-- interaction_id: en:lesson-02:session-04:i14; family: context_gap_grammar -->
+We ___ not convinced. → **are** · am · is
+- am — *После `We` нужно `are`.*
+- is — *Про нас — `We are not`.*
 
-**13 · Вставьте слово — сосед в футболке стоит у открытого окна и обхватил себя руками**
-<!-- interaction_id: en:lesson-02:session-04:i13; family: context_gap_grammar -->
-Цель: `Are you ___ ?`
-Варианты: `cold` · `cheerful` · `thirsty`
-- cheerful — *«Весёлый» — но человек не улыбается, он ёжится.*
-- thirsty — *«Хочу пить». Человек у окна ёжится от холода, про жажду в сцене ничего нет.*
-
-
-**14 · Соберите вопрос — в комнате темно и тихо; спросите, не спит ли он**
-<!-- interaction_id: en:lesson-02:session-04:i14; family: phrase_builder -->
-Цель: `Are you awake?`
-Плитки: `Are` · `you` · `awake` · `not`
-*Плитка `not` лишняя: это обычный вопрос о состоянии, без отрицания: `Are you awake?`*
-
-**15 · Послушайте и выберите — про воду или про интерес**
+**15 · Послушайте короткую фразу и выберите её**
 <!-- interaction_id: en:lesson-02:session-04:i15; family: listen_choose -->
-Цель: `Are you thirsty?`
-Варианты: `Are you thirsty?` · `Are you curious?` · `Are you cheerful?`
-- Are you curious? — *Другое последнее слово: `curious` — «любопытно».*
-- Are you cheerful? — *`cheerful` — «весёлый». Тут прозвучало слово про жажду.*
+🔊 *It's not visible.* → **It's not visible.** · It's not hidden. · It's not clear.
+- It's not hidden. — *В записи последнее слово — `visible`, а в этом варианте — `hidden`.*
+- It's not clear. — *В записи последнее слово — `visible`, а в этом варианте — `clear`.*
 
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-04:i16; family: speed_match -->
+visible — можно увидеть · hidden — скрытый · clear — понятный · concerned — обеспокоенный
 
-**16 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-04:i16:s01; family: scripted_repeat_compare -->
-Цель: `Are you awake?`
+**17 · Дома вы читаете объяснение правил настольной игры, но не понимаете, как начать. Скажите другу, что объяснение непонятно**
+<!-- interaction_id: en:lesson-02:session-04:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is not clear.**
 
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-04:i16:s02; family: scripted_repeat_compare -->
-Цель: `Are you thirsty?`
-
-**18 · Послушайте и соберите — «ты не спишь?»**
-<!-- interaction_id: en:lesson-02:session-04:i17:s01; family: listen_build_dictation -->
-Цель: `Are you awake?`
-🔊 *Are you awake?* Плитки: `Are` · `you` · `awake` · `is`
-*Плитка `is` лишняя: с `you` нужна форма `are`: `Are you awake?`*
-
-**19 · Обратитесь к Тому и произнесите вслух вопрос: не холодно ли ему**
-<!-- interaction_id: en:lesson-02:session-04:i17:s02; family: scripted_repeat_compare -->
-Цель: `Tom, are you cold?`
-
-**20 · Обратитесь к Мире и произнесите вслух вопрос: в хорошем ли она настроении**
-<!-- interaction_id: en:lesson-02:session-04:i17:s03; family: scripted_repeat_compare -->
-Цель: `Mira, are you cheerful?`
-
-## Для сборщика
-
-new_words:
-curious — любопытно — «любопытно». Когда очень хочется заглянуть в чужую банку, но неловко.
-cheerful — весёлый — «весёлый». Человек, который в семь утра уже напевает.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=sound_contrast, 6=phrase_builder, 7=listen_build_dictation, 8=listen_choose, 9=context_gap_grammar, 10=listen_build_dictation, 11=phrase_builder, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_choose, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| awake | 8, 12, 14, 16, 17 | 8 (верный вариант), 14 (сборка) |
-| thirsty | 9, 15, 16 | 9 (верный вариант), 15 (верный вариант) |
-| cold | 11, 12, 13, 17 | 11 (сборка), 13 (верный вариант) |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | awake | да — `awake` — «проснулся» в первом абзаце |
-| Интро 2 | curious | да — разобрано целиком, включая `Are you curious?` |
-| Интро 3 | cheerful | да — разобрано целиком, вместе с контрастом к `cold` |
-
-**3. Доска пар (задание 12)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| curious | 1 | 2 (слух), 7 (сборка) |
-| cheerful | 3 | 4 (слух), 5 (звуки), 6 (сборка), 10 (вставка) |
-| awake | из прошлых занятий | 8 (выбор на слух) |
-| cold | из прошлых занятий | 11 (сборка на слух) |
-
----

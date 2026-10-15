@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-04:i01",
-    "correctText": "curious",
+    "correctText": "It is not visible.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-04:i02",
-    "correctText": "curious",
+    "correctText": "It is not hidden.",
     "correctResponseId": "en:lesson-02:session-04:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-04:i03",
-    "correctText": "cheerful",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-04:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-04:i04",
-    "correctText": "cheerful",
-    "correctResponseId": "en:lesson-02:session-04:i04:r1"
+    "correctText": "en:lesson-02:session-04:i04:p1=visible\nen:lesson-02:session-04:i04:p2=hidden\nen:lesson-02:session-04:i04:p3=clear\nen:lesson-02:session-04:i04:p4=aware",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-04:i05",
-    "correctText": "cheerful",
-    "correctResponseId": "en:lesson-02:session-04:i05:r1"
+    "correctText": "It's not clear.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-04:i06",
-    "correctText": "Are you cheerful?",
+    "correctText": "It is not hidden.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-04:i07",
-    "correctText": "Are you curious?",
+    "correctText": "It's not clear.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-04:i08",
-    "correctText": "Are you awake?",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-04:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-04:i09",
-    "correctText": "thirsty",
+    "correctText": "I am not concerned.",
     "correctResponseId": "en:lesson-02:session-04:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-04:i10",
-    "correctText": "Are",
-    "correctResponseId": "en:lesson-02:session-04:i10:r1"
+    "correctText": "en:lesson-02:session-04:i10:p1=hungry\nen:lesson-02:session-04:i10:p2=thirsty\nen:lesson-02:session-04:i10:p3=sick\nen:lesson-02:session-04:i10:p4=light",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-04:i11",
-    "correctText": "Are you cold?",
+    "correctText": "They're not visible.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-04:i12",
-    "correctText": "en:lesson-02:session-04:i12:p1=curious\nen:lesson-02:session-04:i12:p2=cheerful\nen:lesson-02:session-04:i12:p3=awake\nen:lesson-02:session-04:i12:p4=cold",
+    "correctText": "I am not thirsty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-04:i13",
-    "correctText": "cold",
-    "correctResponseId": "en:lesson-02:session-04:i13:r1"
+    "correctText": "It is not light.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-04:i14",
-    "correctText": "Are you awake?",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-04:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-04:i15",
-    "correctText": "Are you thirsty?",
+    "correctText": "It's not visible.",
     "correctResponseId": "en:lesson-02:session-04:i15:r1"
   },
   {
-    "interactionId": "en:lesson-02:session-04:i16:s01",
-    "correctText": "Are you awake?",
+    "interactionId": "en:lesson-02:session-04:i16",
+    "correctText": "en:lesson-02:session-04:i16:p1=visible\nen:lesson-02:session-04:i16:p2=hidden\nen:lesson-02:session-04:i16:p3=clear\nen:lesson-02:session-04:i16:p4=concerned",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-04:i16:s02",
-    "correctText": "Are you thirsty?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-04:i17:s01",
-    "correctText": "Are you awake?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-04:i17:s02",
-    "correctText": "Are you cold?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-04:i17:s03",
-    "correctText": "Are you cheerful?",
+    "interactionId": "en:lesson-02:session-04:i17",
+    "correctText": "It is not clear.",
     "correctResponseId": null
   }
 ]

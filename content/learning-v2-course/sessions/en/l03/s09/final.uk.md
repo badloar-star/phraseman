@@ -1,155 +1,138 @@
-# Англійська · Урок 3 · Заняття 9 — «Ще одна літера, той самий предмет»
+# Англійська · Урок 3 · Заняття 9 — Вхід до майстерні
 
-**Сцена заняття.** Ви з другом вибираєте речі для нової квартири в магазині товарів для дому. Йдете через відділи меблів і кухонної техніки, а біля каси помічаєте парасолі. Називаєте товари й уточнюєте, що друг розгледів здалеку.
+**Ситуація.** Ви з Анною стоїте біля входу до майстерні. Ви обоє дивитеся на ті самі двері. Потрібний ключ щойно знайшли. Високий Олег і його невисокий молодий помічник готують приміщення. Ви обговорюєте, чи можна почати зустріч раніше.
 
-**Як сказати:** вибір між `a` й `an`, коли називаємо предмет перед собою: перед голосним звуком беремо `an`; застосування у знайомих твердженнях, запитаннях і запереченнях  
-**Нові слова:** armchair, oven, umbrella  
-**Повертаються:** chair, lamp
+**Що ви опануєте:** говорити про конкретний зрозумілий співрозмовнику предмет з the
+**Нові слова:** door
 
 ---
 
 ## Інтро 1
 
-### Як назвати крісло
+### Двері, про які ми обоє знаємо
 
-`armchair` — «крісло». Коли називаємо предмет перед собою, вибираємо між `a` й `an` за першим звуком назви: тут він голосний, тому `an armchair`. Крісло одне, а маленьке слово перед ним теж доведеться обрати. Додайте на початку `It is`: `It is an armchair` — «Це крісло».
+`door` — «двері». `It is a door` називає предмет: «Це двері». Тепер ви обоє дивитеся на двері майстерні й говорите саме про них: `The door is open` — «Двері відчинені». `the` показує, що співрозмовнику зрозуміло, які двері ви маєте на увазі. Тут важлива не кількість дверей у місті, а зрозумілий вам обом предмет.
 
-**Друг біля входу показує на крісло. Назвіть його повною фразою.**
+**Ви з Анною дивитеся на двері майстерні. Вони відчинені. Повідомте про ці двері повною фразою.**
 
-- ✅ **It is an armchair.**
-- ❌ It is a armchair. — *`armchair` починається з голосного звука. Перед ним тут ставимо `an`, а не `a`.*
-- ❌ It is armchair. — *Українською досить слова «крісло». У цій англійській фразі перед `armchair` потрібне маленьке `an`.*
+- ✅ **The door is open.**
+- ❌ The door are open. — *Українською «двері», але в цій англійській фразі один предмет `door` поєднується з `is`.*
+- ❌ The door open. — *Між `The door` і `open` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### Уточнити, що за техніка
+### Той самий ключ
 
-`oven` — «духовка». Хочете уточнити, що перед вами? Почніть з `Is it` — так «це» перетворюється на «це?». Потім назвіть предмет: між `a` й `an` вибираємо `an`, адже перший звук в `oven` голосний. Вийде `Is it an oven?` — «Це духовка?» Тут ми запитуємо, а не стверджуємо.
+`The key is here` — «Ключ тут». Ви маєте на увазі потрібний ключ, який щойно шукали. Олег перевірив усі кишені, а ключ увесь час тримав у руці. Слово `the` не означає «найближчий» і не вимагає другої спроби назвати річ: головне, щоб було зрозуміло, про який ключ ідеться.
 
-**Друг помітив техніку в сусідньому ряду. Запитайте «Це духовка?».**
+**Ви знайшли потрібний ключ і показуєте його Анні. Ви обоє знаєте, який ключ шукали. Повідомте «Ключ тут».**
 
-- ✅ **Is it an oven?**
-- ❌ Is it a oven? — *Запитання не змінює вибір перед `oven`: слово починається з голосного звука, тому потрібне `an`.*
-- ❌ Is an oven? — *У такому запитанні після `Is` потрібне `it`: `Is it an oven?` Без `it` початок неповний.*
+- ✅ **The key is here.**
+- ❌ The key are here. — *З одним ключем тут потрібно `is`.*
+- ❌ The key here. — *Після `The key` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### Заперечуємо, але залишаємо an
+### Запитання про ті самі двері
 
-`umbrella` — «парасоля». Щоб заперечити «це не парасоля», додайте `not` після `It is`. Тут `not` змінює вашу відповідь, але назви не торкається: залишається `an umbrella`, з `an` перед голосним звуком. Повністю виходить `It is not an umbrella` — «Це не парасоля».
+`Is the door open?` — «Двері відчинені?» У запитанні `Is` стоїть перед `the door`, а назва залишається разом. Для ключа можна запитати `Where is the key?` — «Де ключ?» Повторимо `tall` — «високий», `short` — «невисокий», `young` — «молодий», `possible` — «можливий». `the` потрібне перед назвою зрозумілого предмета, а не перед окремим описом у `He is young`.
 
-**Друг прийняв тростину покупця за парасолю. Скажіть повною фразою «Це не парасоля».**
+**Анна відійшла до знайомих вам обом дверей майстерні. Запитайте, чи двері відчинені.**
 
-- ✅ **It is not an umbrella.**
-- ❌ It is not a umbrella. — *Після `not` назва залишається з `an`: перший звук в `umbrella` голосний.*
-- ❌ It not an umbrella. — *Між `It` і `not` пропущено `is`. Початок повного заперечення — `It is not`.*
+- ✅ **Is the door open?**
+- ❌ Are the door open? — *Про один предмет `door` тут запитуємо з `Is`.*
+- ❌ The door is open. — *Це повідомлення. У запитанні почніть з `Is the door`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — armchair**
-<!-- interaction_id: en:lesson-03:session-09:i01; family: listen_choose -->
-Ціль: `armchair`
+**1 · Ви обоє дивитеся на двері майстерні. Вони відчинені. Повідомте про ці двері**
+<!-- interaction_id: en:lesson-03:session-09:i01; family: phrase_builder -->
+Плитки: `open` `is` `door` `The` `are` → **The door is open.**
+*(плитка `are` зайва: тут потрібно `is` — `The door is open.`)*
 
-**2 · Послухайте й виберіть — яке слово вимовив продавець**
+**2 · Послухайте відповідь про раніший початок зустрічі**
 <!-- interaction_id: en:lesson-03:session-09:i02; family: listen_choose -->
-Ціль: `armchair`
-Варіанти: `armchair` · `archer` · `armband`
-- archer — *В `armchair` безпосередньо перед звуком «ч» чути «м». В `archer` цього звука немає. Прислухайтеся до середини слова.*
-- armband — *Початок у слів спільний. Далі в `armband` чути «б», а в `armchair` — «ч». Слухайте звук одразу після «м».*
+🔊 *It is possible.* → **It is possible.** · It is necessary. · It is unfair.
+- It is necessary. — *У записі останнє слово — `possible`, а в цьому варіанті — `necessary`.*
+- It is unfair. — *У записі останнє слово — `possible`, а в цьому варіанті — `unfair`.*
 
+**3 · Доповніть повідомлення про відчинені двері майстерні**
+<!-- interaction_id: en:lesson-03:session-09:i03; family: context_gap_grammar -->
+The door ___ open. → **is** · am · are
+- am — *З `The door` потрібно `is`.*
+- are — *Один предмет `door`: `The door is open`.*
 
-**3 · Картка слова — oven**
-<!-- interaction_id: en:lesson-03:session-09:i03; family: listen_choose -->
-Ціль: `oven`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-09:i04; family: speed_match -->
+door — двері · key — ключ · tall — високий · short — невисокий
 
-**4 · Послухайте й виберіть — яке слово вимовив друг**
-<!-- interaction_id: en:lesson-03:session-09:i04; family: listen_choose -->
-Ціль: `oven`
-Варіанти: `oven` · `even` · `coven`
-- even — *В `even` перший голосний довгий, а рот майже закритий. В `oven` він короткий і відкритіший: відрізняються і звук, і тривалість.*
-- coven — *У `coven` спочатку чути «к», а вже потім голосний. Потрібне слово починається відразу з голосного: `oven`.*
+**5 · Послухайте й складіть повідомлення про ключ**
+<!-- interaction_id: en:lesson-03:session-09:i05; family: listen_build_dictation -->
+🔊 *The key is here.* Плитки: `here` `is` `key` `The` `are` → **The key is here.**
+*(плитка `are` зайва: тут потрібно `is` — `The key is here.`)*
 
+**6 · Ви з Анною шукаєте потрібний ключ від майстерні. Запитайте, де ключ**
+<!-- interaction_id: en:lesson-03:session-09:i06; family: phrase_builder -->
+Плитки: `key` `the` `is` `Where` `What` → **Where is the key?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where is the key?`)*
 
-**5 · Картка слова — umbrella**
-<!-- interaction_id: en:lesson-03:session-09:i05; family: listen_choose -->
-Ціль: `umbrella`
+**7 · Ви обоє знаєте, про які двері майстерні йдеться. Тепер вони зачинені. Повідомте «Двері зачинені»**
+<!-- interaction_id: en:lesson-03:session-09:i07; family: scripted_repeat_compare -->
+🎙 **The door is closed.**
 
-**6 · Послухайте й виберіть — яке слово вимовив продавець**
-<!-- interaction_id: en:lesson-03:session-09:i06; family: listen_choose -->
-Ціль: `umbrella`
-Варіанти: `umbrella` · `umbra` · `embrace`
-- umbra — *В `umbra` два склади, наголос падає на перший. В `umbrella` три склади, сильніше звучить середній. Не зупиняйтеся на схожому початку.*
-- embrace — *В `embrace` два склади, наголос падає на останній. В `umbrella` три склади: після наголошеного середнього чути ще один.*
+**8 · Помічник Олега молодий. Повідомте це**
+<!-- interaction_id: en:lesson-03:session-09:i08; family: context_gap_grammar -->
+He ___ young. → **is** · is the · are
+- is the — *Перед окремим `young` у цій фразі не потрібно `the`.*
+- are — *З `He` потрібно `is`.*
 
+**9 · Послухайте повідомлення про двері**
+<!-- interaction_id: en:lesson-03:session-09:i09; family: listen_choose -->
+🔊 *The door is open.* → **The door is open.** · The door is closed. · The door is tall.
+- The door is closed. — *У записі останнє слово — `open`, а в цьому варіанті — `closed`.*
+- The door is tall. — *У записі останнє слово — `open`, а в цьому варіанті — `tall`.*
 
-**7 · Вставте слово — поруч стоїть стілець; назвіть його повною фразою (`chair` — «стілець»)**
-<!-- interaction_id: en:lesson-03:session-09:i07; family: context_gap_grammar -->
-Ціль: `It is ___ chair.`
-Варіанти: `a` · `an` · `is`
-- an — *`chair` починається зі звука «ч», він приголосний. Для цієї назви потрібне `a chair`.*
-- is — *`is` уже стоїть після `It`. Перед назвою одного стільця тут потрібне `a`.*
-
-
-**8 · Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»**
-<!-- interaction_id: en:lesson-03:session-09:i08; family: phrase_builder -->
-Ціль: `It is an armchair.`
-Варіанти: `A`
-
-**9 · Вставте слово — друг указує на лампу; назвіть її повною фразою (`lamp` — «лампа»)**
-<!-- interaction_id: en:lesson-03:session-09:i09; family: context_gap_grammar -->
-Ціль: `It ___ a lamp.`
-Варіанти: `is` · `an` · `am`
-- an — *Перед `lamp` уже є `a`. Зараз бракує слова після `It`: повний початок — `It is`.*
-- am — *`am` підходить до `I`. Тут говоримо про предмет, тому початок — `It is`.*
-
-
-**10 · З’єднайте назви з українськими значеннями — товари в магазині**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-09:i10; family: speed_match -->
-Пари: `armchair` — крісло · `oven` — духовка · `umbrella` — парасоля · `chair` — стілець
-Ціль: `armchair · oven · umbrella · chair`
+possible — можливий · young — молодий · door — двері · key — ключ
 
-**11 · Послухайте й складіть — продавець говорить про товар**
+**11 · Послухайте й складіть повідомлення**
 <!-- interaction_id: en:lesson-03:session-09:i11; family: listen_build_dictation -->
-Ціль: `It is an oven.`
-Варіанти: `a`
+🔊 *The door is not open.* Плитки: `open` `not` `is` `door` `The` `are` → **The door is not open.**
+*(плитка `are` зайва: тут потрібно `is` — `The door is not open.`)*
 
-**12 · Складіть заперечення — друг прийняв тростину за парасолю; скажіть «Це не парасоля»**
+**12 · Анна стоїть біля дверей майстерні, про які ви вже говорили. Запитайте, чи двері відчинені**
 <!-- interaction_id: en:lesson-03:session-09:i12; family: phrase_builder -->
-Ціль: `It is not an umbrella.`
-Варіанти: `a`
+Плитки: `open` `door` `the` `Is` `Are` → **Is the door open?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is the door open?`)*
 
-**13 · Промовте запитання — друг помітив за вітриною ще один предмет для сидіння; уточніть, чи це крісло**
+**13 · Помічник Олега невисокий. Повідомте це зі скороченням**
 <!-- interaction_id: en:lesson-03:session-09:i13; family: scripted_repeat_compare -->
-Ціль: `Is it an armchair?`
+🎙 **He's short.**
 
-**14 · Послухайте й виберіть — що друг сказав продавцеві**
-<!-- interaction_id: en:lesson-03:session-09:i14; family: listen_choose -->
-Ціль: `Is it an oven?`
-Варіанти: `Is it an oven?` · `It is an oven.` · `Is it an umbrella?`
-- It is an oven. — *Цей варіант починається з `It is`. У записі порядок інший: спочатку `Is`, потім `it` — це запитання.*
-- Is it an umbrella? — *Початок запитання збігається. Але наприкінці запису звучить двоскладове `oven`, а не трискладове `umbrella`.*
+**14 · Ви говорите саме про потрібний ключ, який обоє щойно шукали. Доповніть «Ключ тут»**
+<!-- interaction_id: en:lesson-03:session-09:i14; family: context_gap_grammar -->
+___ key is here. → **The** · A · An
+- A — *`A key` повідомляє про якийсь ключ. Тут потрібен відомий вам обом ключ: `The key`.*
+- An — *Перед `key` форма `an` не підходить; для потрібного вам обом ключа тут `The`.*
 
+**15 · Послухайте запитання про Олега**
+<!-- interaction_id: en:lesson-03:session-09:i15; family: listen_choose -->
+🔊 *Is he tall?* → **Is he tall?** · Is he short? · Is he young?
+- Is he short? — *У записі останнє слово — `tall`, а в цьому варіанті — `short`.*
+- Is he young? — *У записі останнє слово — `tall`, а в цьому варіанті — `young`.*
 
-**15 · Складіть заперечення — друг указує на маленький холодильник; виправте його: «Це не духовка»**
-<!-- interaction_id: en:lesson-03:session-09:i15; family: phrase_builder -->
-Ціль: `It is not an oven.`
-Варіанти: `a`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-09:i16; family: speed_match -->
+door — двері · young — молодий · possible — можливий · tall — високий
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-09:i16; family: scripted_repeat_compare -->
-Ціль: `It is a lamp.`
+**17 · Після зустрічі ви з Анною збираєтеся зачинити майстерню. Ви обоє знаєте, який ключ потрібен. Запитайте, де ключ**
+<!-- interaction_id: en:lesson-03:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where is the key?**
 
-**17 · Складіть фразу — друг показує на розкриту парасолю біля дверей і запитує, що це; назвіть предмет повною фразою**
-<!-- interaction_id: en:lesson-03:session-09:i17; family: phrase_builder -->
-Ціль: `It is an umbrella.`
-Варіанти: `a`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=listen_choose, 6=listen_choose, 7=context_gap_grammar, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=listen_build_dictation, 12=phrase_builder, 13=scripted_repeat_compare, 14=listen_choose, 15=phrase_builder, 16=scripted_repeat_compare, 17=phrase_builder

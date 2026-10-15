@@ -1,0 +1,985 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-24:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте «Є трохи молока» із some",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте «Є трохи молока» із some",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is some milk.",
+        "localizedMeaning": {
+          "ru": "Сообщите «Есть немного молока» с some",
+          "uk": "Повідомте «Є трохи молока» із some"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "some",
+          "milk"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-24:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Повідомте «Є трохи молока» із some",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is some milk.`",
+              "uk": "тут потрібно `is` — `There is some milk.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-24:i02:r1",
+          "text": "yoghurt"
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i02:r2",
+          "text": "cheese"
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i02:r3",
+          "text": "juice"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-24:i02:audio",
+          "transcript": "yoghurt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-24:i02:r1",
+            "targetText": "yoghurt",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i02:r2",
+            "targetText": "cheese",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i02:r3",
+            "targetText": "juice",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `yoghurt`, а в этом варианте — `cheese`.",
+              "uk": "У записі перше слово — `yoghurt`, а в цьому варіанті — `cheese`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `yoghurt`, а в этом варианте — `juice`.",
+              "uk": "У записі перше слово — `yoghurt`, а в цьому варіанті — `juice`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть йогурт одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-24:i03:r1",
+          "text": "yoghurt"
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i03:r2",
+          "text": "milk"
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i03:r3",
+          "text": "soup"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть йогурт одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите йогурт одним словом",
+          "uk": "Назвіть йогурт одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i03:r1",
+            "text": "yoghurt"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i03:r2",
+            "text": "milk"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i03:r3",
+            "text": "soup"
+          }
+        ],
+        "testedDimension": "Назвіть йогурт одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть йогурт одним словом",
+            "feedbackByLocale": {
+              "ru": "`milk` — молоко; йогурт — `yoghurt`.",
+              "uk": "`milk` — молоко; йогурт — `yoghurt`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть йогурт одним словом",
+            "feedbackByLocale": {
+              "ru": "`soup` — суп; йогурт — `yoghurt`.",
+              "uk": "`soup` — суп; йогурт — `yoghurt`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте продукти зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте продукти зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-24:i04:p1",
+            "target": "yoghurt",
+            "meaningByLocale": {
+              "ru": "йогурт",
+              "uk": "йогурт"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-24:i04:p2",
+            "target": "berry",
+            "meaningByLocale": {
+              "ru": "ягода",
+              "uk": "ягода"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-24:i04:p3",
+            "target": "milk",
+            "meaningByLocale": {
+              "ru": "молоко",
+              "uk": "молоко"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-24:i04:p4",
+            "target": "soup",
+            "meaningByLocale": {
+              "ru": "суп",
+              "uk": "суп"
+            }
+          }
+        ],
+        "leftColumn": [
+          "yoghurt",
+          "berry",
+          "milk",
+          "soup"
+        ],
+        "rightColumn": [
+          "йогурт",
+          "ягода",
+          "молоко",
+          "суп"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-24:i05:audio",
+          "transcript": "Is there any yoghurt?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there any yoghurt?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "any",
+          "yoghurt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На обід залишився суп. Повідомте «Тут є трохи супу» із some",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На обід залишився суп. Повідомте «Тут є трохи супу» із some",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is some soup here.",
+        "localizedMeaning": {
+          "ru": "На обед остался суп. Сообщите «Здесь есть немного супа» с some",
+          "uk": "На обід залишився суп. Повідомте «Тут є трохи супу» із some"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "some",
+          "soup",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-24:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "На обід залишився суп. Повідомте «Тут є трохи супу» із some",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is some soup here.`",
+              "uk": "тут потрібно `is` — `There is some soup here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви шукаєте напій. Запитайте «Тут є сік?» з any",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-24:i07:audio"
+      ],
+      "accessibilityLabel": "Ви шукаєте напій. Запитайте «Тут є сік?» з any",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-24:i07:audio",
+          "transcript": "Is there any juice here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there any juice here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Повідомте «Тут є трохи йогурту»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-24:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i08:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте «Тут є трохи йогурту»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите «Здесь есть немного йогурта»",
+          "uk": "Повідомте «Тут є трохи йогурту»"
+        },
+        "gappedTargetPhrase": "There ___ some yoghurt here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Повідомте «Тут є трохи йогурту»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут є трохи йогурту»",
+            "feedbackByLocale": {
+              "ru": "О йогурте как продукте говорим `There is some yoghurt here`.",
+              "uk": "Про йогурт як продукт кажемо `There is some yoghurt here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут є трохи йогурту»",
+            "feedbackByLocale": {
+              "ru": "Наличие йогурта передаём через `There is`.",
+              "uk": "Наявність йогурту передаємо через `There is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-24:i09:r1",
+          "text": "Is there any cheese?"
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i09:r2",
+          "text": "Is there any milk?"
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i09:r3",
+          "text": "Is there any soup?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-24:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-24:i09:audio",
+          "transcript": "Is there any cheese?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-24:i09:r1",
+            "targetText": "Is there any cheese?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i09:r2",
+            "targetText": "Is there any milk?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i09:r3",
+            "targetText": "Is there any soup?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cheese`, а в этом варианте — `milk`.",
+              "uk": "У записі останнє слово — `cheese`, а в цьому варіанті — `milk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cheese`, а в этом варианте — `soup`.",
+              "uk": "У записі останнє слово — `cheese`, а в цьому варіанті — `soup`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте продукти зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте продукти зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-24:i10:p1",
+            "target": "mushroom",
+            "meaningByLocale": {
+              "ru": "гриб",
+              "uk": "гриб"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-24:i10:p2",
+            "target": "juice",
+            "meaningByLocale": {
+              "ru": "сок",
+              "uk": "сік"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-24:i10:p3",
+            "target": "carrot",
+            "meaningByLocale": {
+              "ru": "морковка",
+              "uk": "морквина"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-24:i10:p4",
+            "target": "cheese",
+            "meaningByLocale": {
+              "ru": "сыр",
+              "uk": "сир"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mushroom",
+          "juice",
+          "carrot",
+          "cheese"
+        ],
+        "rightColumn": [
+          "гриб",
+          "сік",
+          "морквина",
+          "сир"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-24:i11:audio",
+          "transcript": "Is there a swimming pool here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a swimming pool here?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "swimming",
+          "pool",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знайшли йогурт. Повідомте «Є трохи йогурту» із some",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайшли йогурт. Повідомте «Є трохи йогурту» із some",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is some yoghurt.",
+        "localizedMeaning": {
+          "ru": "Вы нашли йогурт. Сообщите «Есть немного йогурта» с some",
+          "uk": "Ви знайшли йогурт. Повідомте «Є трохи йогурту» із some"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "some",
+          "yoghurt"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-24:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви знайшли йогурт. Повідомте «Є трохи йогурту» із some",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is some yoghurt.`",
+              "uk": "тут потрібно `is` — `There is some yoghurt.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про інший стіл. Повідомте «Там є трохи йогурту» із some",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-24:i13:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про інший стіл. Повідомте «Там є трохи йогурту» із some",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-24:i13:audio",
+          "transcript": "There is some yoghurt there."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is some yoghurt there.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Тут є йогурт?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-24:i14:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i14:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i14:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Тут є йогурт?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Здесь есть йогурт?»",
+          "uk": "Запитайте «Тут є йогурт?»"
+        },
+        "gappedTargetPhrase": "___ there any yoghurt here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i14:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Запитайте «Тут є йогурт?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-24:i14:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Тут є йогурт?»",
+            "feedbackByLocale": {
+              "ru": "О йогурте как продукте спрашиваем `Is there any yoghurt here?`.",
+              "uk": "Про йогурт як продукт запитуємо `Is there any yoghurt here?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i14:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Тут є йогурт?»",
+            "feedbackByLocale": {
+              "ru": "Вопрос о наличии йогурта начинается с `Is there`.",
+              "uk": "Запитання про наявність йогурту починається з `Is there`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що назвав друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-24:i15:r1",
+          "text": "This is yoghurt."
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i15:r2",
+          "text": "This is milk."
+        },
+        {
+          "responseId": "en:lesson-04:session-24:i15:r3",
+          "text": "This is cheese."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що назвав друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-24:i15:audio",
+          "transcript": "This is yoghurt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-24:i15:r1",
+            "targetText": "This is yoghurt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i15:r2",
+            "targetText": "This is milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i15:r3",
+            "targetText": "This is cheese.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-24:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що назвав друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yoghurt`, а в этом варианте — `milk`.",
+              "uk": "У записі останнє слово — `yoghurt`, а в цьому варіанті — `milk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що назвав друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yoghurt`, а в этом варианте — `cheese`.",
+              "uk": "У записі останнє слово — `yoghurt`, а в цьому варіанті — `cheese`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-24:i16:p1",
+            "target": "swimming pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-24:i16:p2",
+            "target": "berry",
+            "meaningByLocale": {
+              "ru": "ягода",
+              "uk": "ягода"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-24:i16:p3",
+            "target": "mushroom",
+            "meaningByLocale": {
+              "ru": "гриб",
+              "uk": "гриб"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-24:i16:p4",
+            "target": "carrot",
+            "meaningByLocale": {
+              "ru": "морковка",
+              "uk": "морквина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "swimming pool",
+          "berry",
+          "mushroom",
+          "carrot"
+        ],
+        "rightColumn": [
+          "басейн",
+          "ягода",
+          "гриб",
+          "морквина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В іншій подорожі ви обираєте сніданок на спільній кухні. Запитайте «Тут є йогурт?» з any",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "В іншій подорожі ви обираєте сніданок на спільній кухні. Запитайте «Тут є йогурт?» з any",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-24:i17:audio",
+          "transcript": "Is there any yoghurt here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there any yoghurt here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "445c741b548ecc0fc2a57bcffb9b133b9f5f790ec24f2b068d1411c5e707b2aa"
+}

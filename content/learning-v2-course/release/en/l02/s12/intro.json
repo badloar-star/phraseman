@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-12",
   "learningOutcomeByLocale": {
-    "ru": "различить на слух быстрые вопросы `Is he …?` и `Is she …?`",
-    "uk": "розрізнити на слух швидкі запитання `Is he …?` і `Is she …?`"
+    "ru": "сказать, что информация личная, и уточнить это вопросом",
+    "uk": "сказати, що інформація особиста, і уточнити це запитанням"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`available` — свободен сейчас",
-        "uk": "`available` — вільний зараз"
+        "ru": "Личное",
+        "uk": "Особисте"
       },
       "bodyByLocale": {
-        "ru": "`available` — «свободен, доступен». О человеке так говорят, когда он сейчас может поговорить или помочь: он не занят другим делом. Это не значит «ничего не делает весь день». В кафе свободный сотрудник иногда исчезает ровно в тот момент, когда вы поднимаете руку. Вопрос про мужчину: `Is he available?`.",
-        "uk": "`available` — «вільний, доступний». Про людину так кажуть, коли вона зараз може поговорити чи допомогти: вона не зайнята іншою справою. Це не означає «нічого не робить увесь день». У кав’ярні вільний працівник іноді зникає саме тоді, коли ви піднімаєте руку. Запитання про чоловіка: `Is he available?`."
+        "ru": "`private` — «личный, не для посторонних». Про письмо можно сказать `It is private` — «Это личное». Коротко — `It's private`. Письмо лежит на столе, но это не приглашение читать его вслух. Даже самым выразительным голосом.",
+        "uk": "`private` — «особистий, не для сторонніх». Про лист можна сказати `It is private` — «Це особисте». Коротко — `It's private`. Лист лежить на столі, але це не запрошення читати його вголос. Навіть найвиразнішим голосом."
       },
       "question": {
         "interactionId": "en:lesson-02:session-12:intro1:q",
         "promptByLocale": {
-          "ru": "Администратор закончил разговор и может помочь. Спросите: свободен ли он сейчас.",
-          "uk": "Адміністратор закінчив розмову й може допомогти. Запитайте, чи вільний він зараз."
+          "ru": "Друг тянется к вашему личному письму. Коротко скажите, что это личное.",
+          "uk": "Друг тягнеться до вашого особистого листа. Коротко скажіть, що це особисте."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-12:intro1:r1",
-              "text": "Is he available?"
+              "text": "It's private."
             },
             {
               "responseId": "en:lesson-02:session-12:intro1:r2",
-              "text": "He is available?"
+              "text": "It's not private."
             },
             {
               "responseId": "en:lesson-02:session-12:intro1:r3",
-              "text": "Is available he?"
+              "text": "They're private."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-12:intro1:r1",
-              "text": "Is he available?"
+              "text": "It's private."
             },
             {
               "responseId": "en:lesson-02:session-12:intro1:r2",
-              "text": "He is available?"
+              "text": "It's not private."
             },
             {
               "responseId": "en:lesson-02:session-12:intro1:r3",
-              "text": "Is available he?"
+              "text": "They're private."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Администратор закончил разговор и может помочь. Спросите: свободен ли он сейчас.",
-          "uk": "Адміністратор закінчив розмову й може допомогти. Запитайте, чи вільний він зараз."
+          "ru": "Друг тянется к вашему личному письму. Коротко скажите, что это личное.",
+          "uk": "Друг тягнеться до вашого особистого листа. Коротко скажіть, що це особисте."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`missing` — не там, где ожидали",
-        "uk": "`missing` — не там, де очікували"
+        "ru": "Лучше уточнить",
+        "uk": "Краще уточнити"
       },
       "bodyByLocale": {
-        "ru": "`missing` — «отсутствующий, пропавший»: человека или вещь не находят там, где они должны быть. О человеке слово может звучать серьёзно, поэтому здесь речь просто о сотруднице, которая должна быть у стойки, но её нет. Быстрый вопрос `Is she missing?` начинается с `is she`, а затем идёт `missing`.",
-        "uk": "`missing` — «відсутній, зниклий»: людину або річ не знаходять там, де вони мають бути. Про людину слово може звучати серйозно, тому тут ідеться просто про працівницю, яка має бути біля стійки, але її немає. Швидке запитання `Is she missing?` починається з `is she`, а далі йде `missing`."
+        "ru": "`Is it private?` — «Это личное?» Например, вы спрашиваете о записи, прежде чем включить её в общий альбом. Сначала `Is`, потом `it`, затем `private`.",
+        "uk": "`Is it private?` — «Це особисте?» Наприклад, ви запитуєте про запис, перш ніж додати його до спільного альбому. Спочатку `Is`, потім `it`, далі `private`."
       },
       "question": {
         "interactionId": "en:lesson-02:session-12:intro2:q",
         "promptByLocale": {
-          "ru": "Сотрудница должна быть у стойки, но её нигде не видно. Спросите, отсутствует ли она.",
-          "uk": "Працівниця має бути біля стійки, але її ніде не видно. Запитайте, чи вона відсутня."
+          "ru": "На снимке видна записка друга. Вы не знаете, можно ли её показывать другим. Спросите, личное ли это.",
+          "uk": "На знімку видно записку друга. Ви не знаєте, чи можна її показувати іншим. Запитайте, чи це особисте."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-12:intro2:r1",
-              "text": "Is she missing?"
+              "text": "Is it private?"
             },
             {
               "responseId": "en:lesson-02:session-12:intro2:r2",
-              "text": "She is missing?"
+              "text": "Are it private?"
             },
             {
               "responseId": "en:lesson-02:session-12:intro2:r3",
-              "text": "Is missing she?"
+              "text": "Is private it?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-12:intro2:r1",
-              "text": "Is she missing?"
+              "text": "Is it private?"
             },
             {
               "responseId": "en:lesson-02:session-12:intro2:r2",
-              "text": "She is missing?"
+              "text": "Are it private?"
             },
             {
               "responseId": "en:lesson-02:session-12:intro2:r3",
-              "text": "Is missing she?"
+              "text": "Is private it?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сотрудница должна быть у стойки, но её нигде не видно. Спросите, отсутствует ли она.",
-          "uk": "Працівниця має бути біля стійки, але її ніде не видно. Запитайте, чи вона відсутня."
+          "ru": "На снимке видна записка друга. Вы не знаете, можно ли её показывать другим. Спросите, личное ли это.",
+          "uk": "На знімку видно записку друга. Ви не знаєте, чи можна її показувати іншим. Запитайте, чи це особисте."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Услышьте, о ком спрашивают",
-        "uk": "Почуйте, про кого питають"
+        "ru": "Личное и спрятанное — разные вещи",
+        "uk": "Особисте й сховане — різні речі"
       },
       "bodyByLocale": {
-        "ru": "В `Is he available?` второе слово `he` показывает, что речь о мужчине. В `Is she missing?` слово `she` указывает на женщину. В шуме не угадывайте вопрос по одному звуку: слушайте связку `is he` или `is she` и последнее слово — `available` либо `missing`. Порядок вопроса всегда начинается с `is`.",
-        "uk": "У `Is he available?` друге слово `he` показує, що йдеться про чоловіка. У `Is she missing?` слово `she` вказує на жінку. У шумі не вгадуйте запитання за одним звуком: слухайте зв’язку `is he` або `is she` й останнє слово — `available` чи `missing`. Порядок запитання завжди починається з `is`."
+        "ru": "`private` не значит `hidden` — «спрятанный». Личное письмо может лежать на виду. `visible` — «видимый»: текст видно, но он всё равно может быть личным. `It is not private` — «Это не личное», например о заметке, написанной для всех гостей.",
+        "uk": "`private` не означає `hidden` — «схований». Особистий лист може лежати на видноті. `visible` — «видимий»: текст видно, але він однаково може бути особистим. `It is not private` — «Це не особисте», наприклад про нотатку, написану для всіх гостей."
       },
       "question": {
         "interactionId": "en:lesson-02:session-12:intro3:q",
         "promptByLocale": {
-          "ru": "Ваш коллега Артём замечает сотрудницу у стойки и спрашивает, свободна ли она. Выберите точный вопрос.",
-          "uk": "Ваш колега Артем помічає працівницю біля стійки й питає, чи вона вільна. Оберіть точне запитання."
+          "ru": "Друг написал заметку для всех гостей. Скажите, что это не личное.",
+          "uk": "Друг написав нотатку для всіх гостей. Скажіть, що це не особисте."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-12:intro3:r1",
-              "text": "Is she available?"
+              "text": "It is not private."
             },
             {
               "responseId": "en:lesson-02:session-12:intro3:r2",
-              "text": "Is he available?"
+              "text": "It is private."
             },
             {
               "responseId": "en:lesson-02:session-12:intro3:r3",
-              "text": "She is available."
+              "text": "It not private."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-12:intro3:r1",
-              "text": "Is she available?"
+              "text": "It is not private."
             },
             {
               "responseId": "en:lesson-02:session-12:intro3:r2",
-              "text": "Is he available?"
+              "text": "It is private."
             },
             {
               "responseId": "en:lesson-02:session-12:intro3:r3",
-              "text": "She is available."
+              "text": "It not private."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ваш коллега Артём замечает сотрудницу у стойки и спрашивает, свободна ли она. Выберите точный вопрос.",
-          "uk": "Ваш колега Артем помічає працівницю біля стійки й питає, чи вона вільна. Оберіть точне запитання."
+          "ru": "Друг написал заметку для всех гостей. Скажите, что это не личное.",
+          "uk": "Друг написав нотатку для всіх гостей. Скажіть, що це не особисте."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b3a26065bd197576e41b2c3dbe3a8a9dc7059b09f78fd59de4395ebac4c3d761"
+  "introFingerprint": "306919aab91900f1f24dbcf9c37dca9a193894897625f2d870b25bc585ada476"
 }

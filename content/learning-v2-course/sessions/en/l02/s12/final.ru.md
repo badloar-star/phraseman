@@ -1,195 +1,138 @@
-# Английский · Урок 2 · Занятие 12 — «Is he / Is she на слух»
+# Английский · Урок 2 · Занятие 12 — Не для всех
 
-**Сцена занятия.** В шумном кафе вы через столик уточняете, кто из сотрудников свободен и кого нет на месте.
-**Как сказать:** различить на слух быстрые вопросы `Is he …?` и `Is she …?`
-**Новые слова:** available, missing
-**Возвращаются:** tired, hungry, cold, awake
+**Ситуация.** Вы с другом выбираете фотографии для общего альбома. Среди них есть снимок личного письма, который нельзя показывать всем.
+
+**Что вы освоите:** сказать, что информация личная, и уточнить это вопросом
+**Новые слова:** private
 
 ---
 
 ## Интро 1
 
-### `available` — свободен сейчас
+### Личное
 
-`available` — «свободен, доступен». О человеке так говорят, когда он сейчас может поговорить или помочь: он не занят другим делом. Это не значит «ничего не делает весь день». В кафе свободный сотрудник иногда исчезает ровно в тот момент, когда вы поднимаете руку. Вопрос про мужчину: `Is he available?`.
+`private` — «личный, не для посторонних». Про письмо можно сказать `It is private` — «Это личное». Коротко — `It's private`. Письмо лежит на столе, но это не приглашение читать его вслух. Даже самым выразительным голосом.
 
-**Администратор закончил разговор и может помочь. Спросите: свободен ли он сейчас.**
+**Друг тянется к вашему личному письму. Коротко скажите, что это личное.**
 
-- ✅ **Is he available?**
-- ❌ He is available? — *Это сообщение. Вопрос начинается с `is`.*
-- ❌ Is available he? — *После `is` ставят `he`, затем `available`.*
+- ✅ **It's private.**
+- ❌ It's not private. — *Это означает, что письмо не личное. Здесь нужно `private` без `not`.*
+- ❌ They're private. — *Речь об одном письме: `It's private`.*
 
 ---
 
 ## Интро 2
 
-### `missing` — не там, где ожидали
+### Лучше уточнить
 
-`missing` — «отсутствующий, пропавший»: человека или вещь не находят там, где они должны быть. О человеке слово может звучать серьёзно, поэтому здесь речь просто о сотруднице, которая должна быть у стойки, но её нет. Быстрый вопрос `Is she missing?` начинается с `is she`, а затем идёт `missing`.
+`Is it private?` — «Это личное?» Например, вы спрашиваете о записи, прежде чем включить её в общий альбом. Сначала `Is`, потом `it`, затем `private`.
 
-**Сотрудница должна быть у стойки, но её нигде не видно. Спросите, отсутствует ли она.**
+**На снимке видна записка друга. Вы не знаете, можно ли её показывать другим. Спросите, личное ли это.**
 
-- ✅ **Is she missing?**
-- ❌ She is missing? — *Это сообщение. Вопрос начинается с `is`.*
-- ❌ Is missing she? — *После `is` ставят `she`, затем `missing`.*
+- ✅ **Is it private?**
+- ❌ Are it private? — *С `it` нужно `is`: `Is it private?`.*
+- ❌ Is private it? — *После `Is` идёт `it`, затем `private`.*
 
 ---
 
 ## Интро 3
 
-### Услышьте, о ком спрашивают
+### Личное и спрятанное — разные вещи
 
-В `Is he available?` второе слово `he` показывает, что речь о мужчине. В `Is she missing?` слово `she` указывает на женщину. В шуме не угадывайте вопрос по одному звуку: слушайте связку `is he` или `is she` и последнее слово — `available` либо `missing`. Порядок вопроса всегда начинается с `is`.
+`private` не значит `hidden` — «спрятанный». Личное письмо может лежать на виду. `visible` — «видимый»: текст видно, но он всё равно может быть личным. `It is not private` — «Это не личное», например о заметке, написанной для всех гостей.
 
-**Ваш коллега Артём замечает сотрудницу у стойки и спрашивает, свободна ли она. Выберите точный вопрос.**
+**Друг написал заметку для всех гостей. Скажите, что это не личное.**
 
-- ✅ **Is she available?**
-- ❌ Is he available? — *`He` относится к мужчине, а речь о сотруднице.*
-- ❌ She is available. — *Это сообщение, а нужен вопрос с `is` в начале.*
+- ✅ **It is not private.**
+- ❌ It is private. — *Это «Личное». Заметка предназначена для всех, нужно `not private`.*
+- ❌ It not private. — *После `It` сохраняем `is`: `It is not private`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите — вопрос или сообщение**
-<!-- interaction_id: en:lesson-02:session-12:i01; family: listen_choose -->
-Цель: `Is he tired?`
-Варианты: `Is he tired?` · `He is tired.` · `Is she tired?`
-- He is tired. — *В записи первым идёт `is`, а не `he`. Значит спрашивают.*
-- Is she tired? — *«Ш» в записи не слышно — значит `is he`, про мужчину.*
+**1 · На снимке ваше личное письмо. Скажите другу, что это личное**
+<!-- interaction_id: en:lesson-02:session-12:i01; family: phrase_builder -->
+Плитки: `private` `is` `It` `are` → **It is private.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is private.`)*
 
-**2 · Соберите вопрос — Мира пропустила обед; спросите, голодна ли она**
-<!-- interaction_id: en:lesson-02:session-12:i02; family: phrase_builder -->
-Цель: `Is she hungry?`
-Плитки: `Is` `she` `hungry` `he`
-*Плитка `he` лишняя: в сцене Мира, поэтому нужен `she`: `Is she hungry?`*
+**2 · Послушайте вопрос о тексте на фотографии**
+<!-- interaction_id: en:lesson-02:session-12:i02; family: listen_choose -->
+🔊 *Is it visible?* → **Is it visible?** · Is it hidden? · Is it clear?
+- Is it hidden? — *В записи последнее слово — `visible`, а в этом варианте — `hidden`.*
+- Is it clear? — *В записи последнее слово — `visible`, а в этом варианте — `clear`.*
 
-**3 · Различите звуки — где начало вопроса про женщину?**
-<!-- interaction_id: en:lesson-02:session-12:i03; family: sound_contrast -->
-Цель: `is she`
-*is he · is she* → **is she**
-- is he — *Это про мужчину: у `is he` нет звука «ш». В `is she` он слышен.*
+**3 · Вы не знаете, для кого написана записка. Спросите, личное ли это**
+<!-- interaction_id: en:lesson-02:session-12:i03; family: context_gap_grammar -->
+___ it private? → **Is** · Am · Are
+- Am — *С `it` нужно `Is`.*
+- Are — *Вопрос начинается с `Is it`.*
 
-**4 · Вставьте слово — Том у окна кутается в шарф внутри тёплого зала**
-<!-- interaction_id: en:lesson-02:session-12:i04; family: context_gap_grammar -->
-Цель: `he`
-Is ___ cold? → **he** · she · it
-- she — *Это вопрос про женщину. У окна сидит Том.*
-- it — *`it` — про вещь или погоду, не про человека у окна.*
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-12:i04; family: speed_match -->
+private — личный, не для посторонних · visible — видимый · hidden — спрятанный · clear — понятный
 
-**5 · Послушайте и соберите — «она голодна?»**
+**5 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-02:session-12:i05; family: listen_build_dictation -->
-Цель: `Is she hungry?`
-🔊 *Is she hungry?* Плитки: `Is` `she` `hungry` `he`
-*Плитка `he` лишняя: вопрос о женщине, поэтому нужен `she`: `Is she hungry?`*
+🔊 *It's private.* Плитки: `private` `It's` `They're` → **It's private.**
+*(плитка `They're` лишняя: здесь нужно `It's` — `It's private.`)*
 
-**6 · Карточка слова — lost**
-<!-- interaction_id: en:lesson-02:session-12:i06; family: listen_choose -->
-Цель: `lost`
+**6 · Письмо лежит на виду. Скажите, что оно не спрятано**
+<!-- interaction_id: en:lesson-02:session-12:i06; family: phrase_builder -->
+Плитки: `hidden` `not` `is` `It` `are` → **It is not hidden.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not hidden.`)*
 
-**7 · Послушайте и выберите — вопрос или сообщение**
-<!-- interaction_id: en:lesson-02:session-12:i07; family: listen_choose -->
-Цель: `He is lost.`
-Варианты: `He is lost.` · `Is he lost?` · `Is she lost?`
-- Is he lost? — *В записи первым идёт `he`, а не `is`. Значит это сообщение, а не вопрос.*
-- Is she lost? — *Это вопрос, да ещё про женщину. В записи же сообщение про мужчину.*
+**7 · Анна собирается помочь с альбомом. Вы ещё с ней не знакомы. Спросите друга, дружелюбная ли она**
+<!-- interaction_id: en:lesson-02:session-12:i07; family: scripted_repeat_compare -->
+🎙 **Is she friendly?**
 
+**8 · Олег говорит тихо. Дополните фразу о том, что он не шумный**
+<!-- interaction_id: en:lesson-02:session-12:i08; family: context_gap_grammar -->
+He ___ not loud. → **is** · am · are
+- am — *После `He` нужно `is`.*
+- are — *Про него — `He is not`.*
 
-**8 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-12:i08; family: speed_match -->
-Пары: `tired` — устал · `hungry` — голоден · `cold` — холодно · `lost` — заблудился
-Цель: `tired · hungry · cold · lost`
+**9 · Послушайте фразу об Анне**
+<!-- interaction_id: en:lesson-02:session-12:i09; family: listen_choose -->
+🔊 *She is helpful.* → **She is helpful.** · She is friendly. · She is loud.
+- She is friendly. — *В записи последнее слово — `helpful`, а в этом варианте — `friendly`.*
+- She is loud. — *В записи последнее слово — `helpful`, а в этом варианте — `loud`.*
 
-**9 · Вставьте слово — Мира у двери держит карту и сверяет её с вывеской**
-<!-- interaction_id: en:lesson-02:session-12:i09; family: context_gap_grammar -->
-Цель: `Is she ___ ?`
-Варианты: `lost` · `pretty` · `hungry`
-- pretty — *«Красивая» — это про внешность. А человек с картой ищет дорогу: про это говорят `lost`.*
-- hungry — *`hungry` — «голоден». Карту сверяют с вывеской не из-за голода.*
+**10 · Соедините описания со значениями**
+<!-- interaction_id: en:lesson-02:session-12:i10; family: speed_match -->
+loud — шумный · friendly — дружелюбный · helpful — охотно помогающий · private — личный, не для посторонних
 
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-12:i11; family: listen_build_dictation -->
+🔊 *It's not clear.* Плитки: `clear` `not` `It's` `They're` → **It's not clear.**
+*(плитка `They're` лишняя: здесь нужно `It's` — `It's not clear.`)*
 
-**10 · Карточка слова — curious**
-<!-- interaction_id: en:lesson-02:session-12:i10; family: listen_choose -->
-Цель: `curious`
-
-**11 · Послушайте и выберите — «он любопытный?»**
-<!-- interaction_id: en:lesson-02:session-12:i11; family: listen_choose -->
-Цель: `Is he curious?`
-Плитки: `Is` `he` `curious` `she`
-*Плитка `she` лишняя: Том — мужчина, поэтому нужен `he`: `Is he curious?`*
-Варианты: `Is he curious?` · `Is she curious?` · `He is curious.`
-- Is she curious? — *«Ш» в записи не слышно — значит `is he`, про мужчину.*
-- He is curious. — *Сообщение. Вопрос начинается с `is`.*
-
-
-**12 · Соберите фразу — Том за стойкой всё время оглядывается на дверь**
+**12 · Вы обсуждаете две подписи на фото. Спросите друга, видны ли они**
 <!-- interaction_id: en:lesson-02:session-12:i12; family: phrase_builder -->
-Цель: `Is he curious?`
-Плитки: `Is` `he` `curious` `she`
-*Плитка `she` лишняя: Том — мужчина, поэтому нужен `he`: `Is he curious?`*
+Плитки: `visible` `they` `Are` `Is` → **Are they visible?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are they visible?`)*
 
-**13 · Карточка слова — upset**
-<!-- interaction_id: en:lesson-02:session-12:i13; family: listen_choose -->
-Цель: `upset`
+**13 · Записка предназначена для всех гостей. Скажите, что это не личное**
+<!-- interaction_id: en:lesson-02:session-12:i13; family: scripted_repeat_compare -->
+🎙 **It is not private.**
 
-**14 · Послушайте и соберите — «она расстроена?»**
-<!-- interaction_id: en:lesson-02:session-12:i14; family: listen_build_dictation -->
-Цель: `Is she upset?`
-🔊 *Is she upset?* Плитки: `Is` `she` `upset` `he`
-*Плитка `he` лишняя: вопрос о женщине, поэтому нужен `she`: `Is she upset?`*
+**14 · Друг предлагает позвать Олега для работы с альбомом. Спросите, охотно ли он помогает другим**
+<!-- interaction_id: en:lesson-02:session-12:i14; family: context_gap_grammar -->
+___ he helpful? → **Is** · Am · Are
+- Am — *С `he` нужно `Is`.*
+- Are — *Про Олега — `Is he`.*
 
-**15 · Вставьте слово — спутник спрашивает «Is she upset?», и вы согласны**
-<!-- interaction_id: en:lesson-02:session-12:i15; family: context_gap_grammar -->
-Цель: `___ , she is.`
-Варианты: `Yes` · `No` · `Is`
-- No — *`No` — это несогласие. Вы согласны.*
-- Is — *С `is` получается снова вопрос, а вас просят ответить.*
+**15 · Послушайте вопрос об объяснении**
+<!-- interaction_id: en:lesson-02:session-12:i15; family: listen_choose -->
+🔊 *Is it clear?* → **Is it clear?** · Is it private? · Is it hidden?
+- Is it private? — *В записи последнее слово — `clear`, а в этом варианте — `private`.*
+- Is it hidden? — *В записи последнее слово — `clear`, а в этом варианте — `hidden`.*
 
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-12:i16; family: speed_match -->
+visible — видимый · hidden — спрятанный · friendly — дружелюбный · helpful — охотно помогающий
 
-**16 · Соберите короткий ответ — «Is he hungry?» Он только что съел два бургера**
-<!-- interaction_id: en:lesson-02:session-12:i16; family: phrase_builder -->
-Цель: `No, he is not.`
+**17 · Друг показывает фотографию письма. Прежде чем добавить её в общий альбом, спросите, личное ли это**
+<!-- interaction_id: en:lesson-02:session-12:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it private?**
 
-**17 · Карточка слова — pretty**
-<!-- interaction_id: en:lesson-02:session-12:i17; family: listen_choose -->
-Цель: `pretty`
-
-**18 · Послушайте и выберите — «она красивая?»**
-<!-- interaction_id: en:lesson-02:session-12:i18; family: listen_choose -->
-Цель: `Is she pretty?`
-Плитки: `Is` `she` `pretty` `not`
-*Плитка `not` лишняя: это вопрос о внешности без отрицания: `Is she pretty?`*
-Варианты: `Is she pretty?` · `Is he pretty?` · `She is pretty.`
-- Is he pretty? — *Это `is he`, про мужчину. А спрашивают про женщину: `is she`.*
-- She is pretty. — *Сообщение, а не вопрос. В вопросе `is` идёт первым.*
-
-
-**19 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-12:i19; family: speed_match -->
-Пары: `upset` — расстроен · `curious` — любопытный · `pretty` — красивый · `she` — она
-Цель: `upset · curious · pretty · she`
-
-**20 · Соберите фразу — спутник показывает фото сестры; спросите, красивая ли она**
-<!-- interaction_id: en:lesson-02:session-12:i20; family: phrase_builder -->
-Цель: `Is she pretty?`
-Плитки: `Is` `she` `pretty` `not`
-*Плитка `not` лишняя: это вопрос о внешности без отрицания: `Is she pretty?`*
-
-**21 · Произнесите одну фразу. спросите и ответьте**
-<!-- interaction_id: en:lesson-02:session-12:i21:s01; family: scripted_repeat_compare -->
-Цель: `Is he tired?`
-🎙 **Is he tired?**
-
-**22 · Произнесите одну фразу. спросите и ответьте**
-<!-- interaction_id: en:lesson-02:session-12:i21:s02; family: scripted_repeat_compare -->
-Цель: `Yes, he is.`
-🎙 **Yes, he is.**
-
-## Для сборщика
-
-atomic_practice: practice.atomic.json
-new_words:
-available — свободен, доступен — Сейчас может поговорить или помочь.
-missing — отсутствует, пропал — Не там, где его ожидают.
-
-modes: 1=listen_choose, 2=phrase_builder, 3=sound_contrast, 4=context_gap_grammar, 5=listen_build_dictation, 6=listen_choose, 7=listen_choose, 8=speed_match, 9=context_gap_grammar, 10=listen_choose, 11=listen_choose, 12=phrase_builder, 13=listen_choose, 14=listen_build_dictation, 15=context_gap_grammar, 16=phrase_builder, 17=listen_choose, 18=listen_choose, 19=speed_match, 20=phrase_builder, 21=scripted_repeat_compare, 22=scripted_repeat_compare

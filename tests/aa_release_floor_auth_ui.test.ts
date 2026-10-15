@@ -5,6 +5,8 @@
  */
 import fs from 'fs';
 import path from 'path';
+// зачем (15.10, красный HEAD): рабочая копия в CRLF — вырезки до закрывающей скобки функции были пустыми; читаем исходники с нормализованными концами строк
+import { normalizeEol } from './helpers/read_source';
 
 const queued: Array<{ title: string; message: string; actions: Array<{ label: string; value: string; ghost?: boolean }> }> = [];
 let nextChoice = 'switch';
@@ -42,7 +44,7 @@ import {
 } from '../app/cloud_profile_refresh_state';
 
 const root = path.join(__dirname, '..');
-const read = (rel: string) => fs.readFileSync(path.join(root, rel), 'utf8');
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(root, rel), 'utf8'));
 
 beforeEach(() => {
   queued.length = 0;
@@ -198,7 +200,11 @@ describe('смена аккаунта в онбординге — с кнопк�
     expect(auth).toContain('} else if (options.captureAccountSwitchResume) {');
     expect(auth).toContain("discardAccountSwitchResumeCredential('provider_sign_out');");
     expect(auth).toContain("discardAccountSwitchResumeCredential('account_delete');");
-    expect(auth).toContain('signOut: async (): Promise<void> => { await signOutCurrentProviderKeepingSwitchResume(); },');
+    // зачем (15.10, 414bb1713 Ядра): выход внутри смены по-прежнему сохраняет пропуск, но перед ним теперь снимается push-токен A
+    // (LOGOUT_WIPE_AUDIT, приватность). Проверяем смысл: в signOut смены — сначала снятие push, затем выход с сохранением пропуска.
+    const switchSignOut = auth.slice(auth.indexOf('    signOut: async (): Promise<void> => {'), auth.indexOf('    wipeLocalData: async (): Promise<void> =>'));
+    expect(switchSignOut.indexOf('await clearAccountPushBeforeSwitchSignOut();')).toBeGreaterThan(0);
+    expect(switchSignOut.indexOf('await signOutCurrentProviderKeepingSwitchResume();')).toBeGreaterThan(switchSignOut.indexOf('await clearAccountPushBeforeSwitchSignOut();'));
     // Ревью L-3/M-2: пропуск сгорает при любом исходе продолжения; две ошибки идут как есть.
     const resume = auth.slice(auth.indexOf('export async function resumeSignInAfterAccountSwitch('));
     const settled = resume.indexOf("discardAccountSwitchResumeCredential('resume_settled');");
@@ -225,7 +231,7 @@ describe('смена аккаунта в онбординге — с кнопк�
       expect(onboardingAccountSwitchFailureText(lang, 'backup_failed')).not.toBe(onboardingAccountSwitchFailureText('ru', 'backup_failed'));
       expect(onboardingAccountSwitchFailureText(lang, 'recovery_required')).not.toBe(onboardingAccountSwitchFailureText('ru', 'recovery_required'));
     }
-    const source = fs.readFileSync(path.join(__dirname, '../app/onboarding_account_switch_confirm.ts'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/onboarding_account_switch_confirm.ts'), 'utf8'));
     expect(source).not.toMatch(/switch_threw reason=\$\{[^}]*\.message/);
     expect(source).toContain('identityErrorCode(error)');
   });

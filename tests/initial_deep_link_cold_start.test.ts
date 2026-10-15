@@ -1,5 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
+// зачем (15.10, красный HEAD): в CRLF строки длиннее на знак — replace выпадал за окно 2600 знаков; читаем с нормализованными концами строк
+import { normalizeEol } from './helpers/read_source';
 
 // зачем (Сверка 10.10 21:55): холодный `phraseman://video` распознавался как `/(tabs)/video`, но стартовый переход
 // «корень → Главная» в app/_layout.tsx съедал ссылку. Сторож держит оба случая: холодная ссылка открывается вместо
@@ -39,7 +41,7 @@ test('протухшая (старше минуты) или не-вкладоч�
 });
 
 test('стартовый переход с корня открывает ссылку холодного старта вместо Главной', () => {
-  const layout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
+  const layout = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8'));
   const start = layout.indexOf("traceLessonExit('layout:rootIndex_replace_home'");
   const block = layout.slice(Math.max(0, start - 600), start + 2600); // зачем (R1): между трассировкой и replace встала ветка navigate без пересоздания каркаса
   expect(block).toContain('consumeInitialDeepLinkTarget()');

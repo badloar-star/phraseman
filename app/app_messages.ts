@@ -698,6 +698,8 @@ export type AppMessage = {
   messageEn: string;
   createdAt: string;
   createdAtMs: number;
+  /** false — в данных сервера даты создания не было (createdAt подставлен «сейчас»); такие объявления окном не показываем. */
+  createdAtKnown?: boolean;
   updatedAt: string;
   updatedAtMs: number;
   expiresAt: string;
@@ -1022,6 +1024,9 @@ function normalizeAppMessagePoll(
 export function normalizeAppMessage(id: string, data: Record<string, unknown>, nowMs = Date.now()): AppMessage {
   const createdAt = cleanText(data.createdAt, new Date(nowMs).toISOString());
   const createdAtMs = toMs(data.createdAtMs ?? data.createdAt, Date.parse(createdAt) || nowMs);
+  // зачем (координатор 15.10, анонсы 1.6.x в 2.0): без исходной даты createdAt подставляется «сейчас» — такое объявление
+  // прошло бы нижнюю границу окна. Помечаем, была ли дата в данных сервера.
+  const createdAtKnown = Number.isFinite(toMs(data.createdAtMs ?? data.createdAt, Number.NaN));
   const updatedAt = cleanText(data.updatedAt, createdAt);
   const updatedAtMs = toMs(data.updatedAtMs ?? data.updatedAt, createdAtMs);
   const backupExpiresMs = createdAtMs + APP_MESSAGE_TTL_MS;
@@ -1083,6 +1088,7 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
     messageEn: cleanText(data.messageEn, ''),
     createdAt,
     createdAtMs,
+    createdAtKnown,
     updatedAt,
     updatedAtMs,
     expiresAt,

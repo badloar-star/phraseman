@@ -6,9 +6,10 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 }));
 
 import { ANNOUNCEMENT_FLOOR_KEY, readOrInitAnnouncementFloor, skipAnnouncementsBeforeFloor } from '../app/announcement_version_floor';
+import { normalizeAppMessage } from '../app/app_messages';
 
 const NOW = 1_800_000_000_000;
-const msg = (id: string, createdAtMs: number, targetAppVersions: string[] = []) => ({ id, createdAtMs, targetAppVersions });
+const msg = (id: string, createdAtMs: number, createdAtKnown = true) => ({ id, createdAtMs, createdAtKnown });
 
 beforeEach(() => { Object.keys(store).forEach((k) => delete store[k]); });
 
@@ -26,8 +27,14 @@ describe('announcement floor (2.0)', () => {
     await expect(readOrInitAnnouncementFloor(NOW)).resolves.toBe(NOW);
   });
 
-  it('old "all versions" announcements do not pop up; new ones and version-targeted ones do', () => {
-    const queue = [msg('old-1.6', NOW - 10 * 24 * 3600_000), msg('new', NOW + 1000), msg('release-2.0', NOW - 3600_000, ['2.0.0'])];
-    expect(skipAnnouncementsBeforeFloor(queue, NOW).map((m) => m.id)).toEqual(['new', 'release-2.0']);
+  it('only announcements created after the first 2.0 launch pop up; no date — not shown', () => {
+    const queue = [msg('old-1.6', NOW - 10 * 24 * 3600_000), msg('new', NOW + 1000), msg('same-ms', NOW), msg('no-date', NOW + 5000, false)];
+    expect(skipAnnouncementsBeforeFloor(queue, NOW).map((m) => m.id)).toEqual(['new']);
+  });
+
+  it('normalizeAppMessage marks a server message without createdAt as unknown (it used to become "now")', () => {
+    expect(normalizeAppMessage('a', { titleRu: 't' }, NOW).createdAtKnown).toBe(false);
+    expect(normalizeAppMessage('b', { titleRu: 't', createdAtMs: NOW - 1000 }, NOW).createdAtKnown).toBe(true);
+    expect(normalizeAppMessage('c', { titleRu: 't', createdAt: '2026-08-01T10:00:00Z' }, NOW).createdAtKnown).toBe(true);
   });
 });

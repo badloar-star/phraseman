@@ -5,9 +5,9 @@
  * времён 1.6.x, ещё активный и не истёкший, всплыл бы окном в 2.0 у того, кто его не подтверждал (новая установка старше
  * суток, человек не открывал 1.6.x после рассылки). При первом обращении сборка 2.0 запоминает время на устройстве; окном
  * показываются только объявления, созданные позже. Старые остаются во «Входящих» — пропадает только всплывающее окно.
- * Сообщение, явно нацеленное на текущую версию (targetAppVersions непуст — фильтр версии его уже пропустил), идёт без
- * границы: так релизный анонс 2.0 дойдёт и до обновившихся позже рассылки. Прод не трогаем, сеть не нужна.
- * Логи: [APP-MESSAGE] floor … / skip reason=created_before_2_0_floor.
+ * Правила координатора 15.10: без даты создания в данных сервера — не показываем; исключений по версии нет (релизный
+ * анонс создаётся после выхода 2.0). Прод не трогаем, сеть не нужна.
+ * Логи: [APP-MESSAGE] floor … / modal {id, createdAt, firstLaunch2At, decision}.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -31,16 +31,23 @@ export async function readOrInitAnnouncementFloor(nowMs: number = Date.now()): P
   }
 }
 
-/** Убрать из очереди окна объявления «всем», созданные раньше границы. Чистая функция — тестируется без хранилища. */
-export function skipAnnouncementsBeforeFloor<T extends Readonly<{ id: string; createdAtMs: number; targetAppVersions: readonly string[] }>>(
+/** Решение окна по одному объявлению: показать только созданное позже первого запуска 2.0 и с известной датой. */
+export function announcementFloorDecision(
+  message: Readonly<{ createdAtMs: number; createdAtKnown?: boolean }>,
+  floorMs: number,
+): 'show' | 'skip_no_created_at' | 'skip_created_before_2_0' {
+  if (message.createdAtKnown === false || !Number.isFinite(message.createdAtMs) || message.createdAtMs <= 0) return 'skip_no_created_at';
+  return message.createdAtMs > floorMs ? 'show' : 'skip_created_before_2_0';
+}
+
+/** Отфильтровать очередь окна по границе; одна строка журнала на объявление. Чистая — тестируется без хранилища. */
+export function skipAnnouncementsBeforeFloor<T extends Readonly<{ id: string; createdAtMs: number; createdAtKnown?: boolean }>>(
   queue: T[],
   floorMs: number,
 ): T[] {
-  if (queue.length === 0) return queue;
-  const kept = queue.filter((message) => message.targetAppVersions.length > 0 || message.createdAtMs >= floorMs);
-  if (kept.length !== queue.length) {
-    const skipped = queue.filter((message) => !kept.includes(message));
-    console.log(`[APP-MESSAGE] skip reason=created_before_2_0_floor count=${skipped.length} ids=${skipped.map((m) => m.id).join(',')} floorMs=${floorMs}`); // guard-ok: пропуск пишет причину
-  }
-  return kept;
+  return queue.filter((message) => {
+    const decision = announcementFloorDecision(message, floorMs);
+    console.log('[APP-MESSAGE] modal', JSON.stringify({ id: message.id, createdAt: message.createdAtKnown === false ? null : message.createdAtMs, firstLaunch2At: floorMs, decision })); // guard-ok: решение по каждому объявлению
+    return decision === 'show';
+  });
 }

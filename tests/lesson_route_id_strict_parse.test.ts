@@ -3,6 +3,7 @@
 jest.mock('../modules/lesson_first_frame', () => ({ __esModule: true, default: () => null }));
 jest.mock('../components/StudyTargetContext', () => ({ useStudyTarget: () => ({ studyTarget: 'en' }) }));
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: {} }) }));
+jest.mock('../components/PremiumContext', () => ({ usePremium: () => ({ hasPremiumAccess: false, accessResolved: true }) }));
 
 import fs from 'fs';
 import path from 'path';

@@ -1,10 +1,11 @@
-import React, { useEffect, useState, type ComponentType } from 'react';
+import React, { useEffect, useRef, useState, type ComponentType } from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import LessonFirstFrame from '../modules/lesson_first_frame';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
+import { usePremium } from '../components/PremiumContext';
 import {
   openLessonAccessGate,
   openLessonPremiumPaywall,
@@ -23,6 +24,12 @@ export function useLessonRuntimeAccessAuthorization(
 ): boolean {
   const routeKey = `${studyTarget ?? 'en'}:${lessonId}`;
   const [authorizedRouteKey, setAuthorizedRouteKey] = useState<string | null>(null);
+  // зачем (координатор/Ревизор d0de15329, 15.10): у платящего загрузочное восстановление может идти дольше 5 с, и полная
+  // проверка урока отвечает premium_required по ещё не доехавшим данным — Plus один раз упирался в замок. Как в
+  // lesson_next_access (7293bbe1e): решение сверяется с PremiumContext в момент ответа (ref — свежее значение без перезапуска).
+  const { hasPremiumAccess } = usePremium();
+  const contextPremiumRef = useRef(hasPremiumAccess);
+  contextPremiumRef.current = hasPremiumAccess;
 
   useEffect(() => {
     let cancelled = false;
@@ -40,6 +47,11 @@ export function useLessonRuntimeAccessAuthorization(
           return;
         }
         if (gate === 'premium_required') {
+          if (contextPremiumRef.current) {
+            console.log(`[LESSON-GATE-FIRSTFRAME] boundary ${routeKey}: проверка сказала premium_required, контекст=Plus → урок открыт`); // guard-ok: ветка решения
+            setAuthorizedRouteKey(routeKey);
+            return;
+          }
           openLessonPremiumPaywall(router, lessonId);
           return;
         }

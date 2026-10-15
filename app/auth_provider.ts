@@ -3794,7 +3794,19 @@ function scheduleSameStablePostAuthRefresh(
     if (restoreResult === 'failed') {
       const lateFrom = Date.now();
       void restorePromise.then(
-        (late) => console.log(`[SIGNIN] bg:${stage}:restoreFromCloud late=${late} afterTimeoutMs=${Date.now() - lateFrom} current=${isCurrent()}`),
+        (late) => {
+          const current = isCurrent();
+          console.log(`[SIGNIN] bg:${stage}:restoreFromCloud late=${late} afterTimeoutMs=${Date.now() - lateFrom} current=${current}`);
+          // зачем (координатор 15.10, п.2 RESTORE): данные облака, доехавшие после потолка 20 с, уже лежат на диске, но экраны
+          // о них не знали — Главная показывала старые серию/монеты до перезапуска. Тот же сигнал, что у вовремя пришедшего
+          // восстановления (Главная перечитывает диск с дебаунсом), только для текущего владельца.
+          if (late === 'restored' && current) {
+            console.log(`[SIGNIN] restore_late_applied stage=${stage} afterTimeoutMs=${Date.now() - lateFrom}`);
+            emitAppEvent('cloud_profile_hydrated');
+          } else {
+            console.log(`[SIGNIN] restore_late_skipped stage=${stage} late=${late} current=${current}`);
+          }
+        },
         (e) => console.warn(`[SIGNIN] bg:${stage}:restoreFromCloud late_fail afterTimeoutMs=${Date.now() - lateFrom} reason=${identityErrorCode(e)}`),
       );
     }

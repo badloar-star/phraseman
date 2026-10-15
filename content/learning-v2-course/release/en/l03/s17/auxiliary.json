@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-17:intro1:r2": {
+          "ru": "`book` называет одну книгу. Здесь книг несколько: `books`.",
+          "uk": "`book` називає одну книжку. Тут книжок кілька: `books`."
+        },
+        "en:lesson-03:session-17:intro1:r3": {
+          "ru": "`a book` тоже называет одну книгу, а не всю группу.",
+          "uk": "`a book` теж називає одну книжку, а не всю групу."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-17:intro2:r2": {
+          "ru": "Книг несколько, поэтому нужно `books` с `s`.",
+          "uk": "Книжок кілька, тому потрібно `books` з `s`."
+        },
+        "en:lesson-03:session-17:intro2:r3": {
+          "ru": "С `They` здесь нужно `are`.",
+          "uk": "З `They` тут потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-17:intro3:r2": {
+          "ru": "Вопрос с `they` здесь начинается с `Are`.",
+          "uk": "Запитання з `they` тут починається з `Are`."
+        },
+        "en:lesson-03:session-17:intro3:r3": {
+          "ru": "Спрашиваем о нескольких предметах: нужно `books`.",
+          "uk": "Запитуємо про кілька предметів: потрібно `books`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c29b950fe6e709e5a05f48f8890083da7f33aac47b794e7e25ecdf68f802b700"
+}

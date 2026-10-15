@@ -1,6 +1,7 @@
 # Task packet: предвыборка метки владения (stamp) на время окна выбора Google
 
 Governance-ID: TG-7E9855736D15
+Governance-ID: TG-B9F75050A6DC
 Status: Модуль и тесты — на диске; вшивка в app/auth_provider.ts — патчем, ждёт ревью Ядра (контракт nonce M-1)
 Owner: 5 · АВТОРИЗАЦИЯ
 
@@ -53,6 +54,13 @@ Out of scope: сервер (`authStampAnonOwnership`, TTL метки), прод-
 3) Висячая метка безвредна: без nonce → nonce_required, TTL 10 мин; побочно 10 мин закрыта legacy-дверь relink для 1.6.24 на
    этом stableId — на том же телефоне сборка 2.0+.
 💸 Каждая предвыборка = вызов + запись users/{id} + инвокация usersWriteRouter; push_token_dedupe выходит рано.
+
+## Слово координатора — ДА (15.10, ~08:10)
+
+Применить в окне 08:30 с прогонами. Условие: итоговый лог `[LOGIN-STAMP] outcome=used|wasted_no_conflict|wasted_cancel` на
+каждый вход с предвыборкой — по журналу считать долю впустую потраченных вызовов. >80% впустую → запуск только при признаке
+«Google уже занят». Реализация: `settleStampPrefetch(signInResult)` в finally входа; дополнительно `wasted_error` (вход упал не
+отменой), `wasted_<исход приёма>` (принимали, но промах), `not_sent` (запрос не ушёл — вызова не было).
 
 ## Technical debt
 

@@ -5,7 +5,7 @@
  } from '../modules/account-authority-v2/account_authority_anon_merge_nonce';
  import {
 +  consumeStampPrefetch,
-+  invalidateStampPrefetch,
++  settleStampPrefetch,
 +  startStampPrefetch,
 +  type StampPrefetch,
 +} from './auth_stamp_prefetch';
@@ -66,16 +66,24 @@
      acceptAnonMergeStampResponse(localStableId, response);
    } catch (e) {
      // Лог без текста ошибки и без stableId: только вид и код (S1-логгер).
-@@ -2541,6 +2566,8 @@
+@@ -2536,9 +2561,15 @@
+   resumeCredential: NativeAuthCredential | null = null,
+ ): Promise<SignInResult> {
+   const handoffLeaseScope: ProviderHandoffLeaseScope = { lease: null, release: null };
++  let settledResult: SignInResult['result'] | null = null;
+   try {
+-    return await runSignInWithProviderWhileOwningHandoffLease(provider, options, handoffLeaseScope, resumeCredential);
++    const result = await runSignInWithProviderWhileOwningHandoffLease(provider, options, handoffLeaseScope, resumeCredential);
++    settledResult = result.result;
++    return result;
    } finally {
++    // зачем (координатор 15.10, [LOGIN-STAMP]): поздний ответ предвыборки после конца входа никуда не кладётся, а итог
++    // outcome=used|wasted_no_conflict|wasted_cancel|… считает долю впустую потраченных вызовов (>80% — запуск только при конфликте).
++    settleStampPrefetch(settledResult);
      // зачем (AA S2b, пункт 9): nonce M-1 нужен только внутри одного входа —
      // успех (merge/relink), отказ или отмена одинаково его стирают.
-+    // [LOGIN-STAMP]: поздний ответ предвыборки после конца входа только логируется и никуда не кладётся.
-+    invalidateStampPrefetch('sign_in_settled');
      forgetAllAnonMergeNonces('sign_in_settled');
-     await handoffLeaseScope.release?.();
-   }
-@@ -2663,6 +2690,20 @@
+@@ -2663,6 +2694,20 @@
    const anonPreparation = deferIdentityPreparation
      ? Promise.resolve(null)
      : ensureAnonUser();
@@ -96,7 +104,7 @@
  
    // 1. Native / OAuth sign-in
    let cred: NativeAuthCredential | { cancelled: true };
-@@ -2861,7 +2902,7 @@
+@@ -2861,7 +2906,7 @@
            );
            console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:handoff_credential_ready', ms: Date.now() - handoffStepStartedAtMs }));
            const stampStartedAtMs = Date.now();

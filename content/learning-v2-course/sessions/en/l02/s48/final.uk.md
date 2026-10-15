@@ -1,152 +1,138 @@
-# Англійська · Урок 2 · Заняття 48 — «Перед виступом»
+# Англійська · Урок 2 · Заняття 48 — Останні рішення перед виставкою
 
-**Сцена заняття.** У неділю після обіду ви з другом готуєте короткий виступ у районному центрі. Організатор допомагає перевірити мікрофон і порядок виходу. До початку треба уточнити час, перевірити мовлення й переконатися, що ви обоє готові.
+**Ситуація.** Ви з Анною завершуєте підготовку виставки. Перевіряєте підписи до знімків, якість друку й текст привітання. У вигаданій історії також обговорюються два способи використання чужої фотографії: законність кожного задана в умові.
 
-**Як сказати:** перевірка запитань про себе `Am I…?` і про свою компанію `Are we…?`
+**Що ви опануєте:** повторити сім слів розділу під час оцінювання різних варіантів
 **Нові слова:** —
-**Повертаються:** late, early, ready, sure, wrong, audible, clear, polite, rude
 
 ---
 
 ## Інтро 1
 
-### Чий прихід і який час
+### Точність і сумнів
 
-`Am I late?` — «Я запізнився?», а `Are we early?` — «Ми прийшли рано?» З `Am I` йдеться лише про вас, а з `Are we` — про вас із супутником. `late` означає «запізнився», `early` — «рано». Не обирайте запитання лише за першим знайомим словом: важливо і те, про чий прихід ідеться, і те, який час ви перевіряєте.
+`accurate` — «точний», `inaccurate` — «неточний». Підпис із правильною датою: `It is accurate`. З помилкою в даті: `It is inaccurate`. Якщо ви ще не перевірили дату й сумніваєтеся, скажіть `I am uncertain` — «Я не впевнений». Сумнів у голові та помилка на папері — не те саме.
 
-**Ви з другом прийшли до зали, де ще розставляють стільці. Запитайте організатора, чи ви обоє прийшли рано.**
+**Ви ще не перевірили дату й сумніваєтеся в ній. Коротко повідомте, що не впевнені.**
 
-- ✅ **Are we early?**
-- ❌ Am I late? — *Це запитання лише про ваше запізнення. Тут ви уточнюєте, чи ви обоє прийшли рано.*
-- ❌ Are we late? — *Це «Ми запізнюємося?» Ви хочете перевірити ранній прихід, тому потрібне `early`.*
+- ✅ **I'm uncertain.**
+- ❌ It's inaccurate. — *Це твердження про помилку в підписі. Ви поки лише сумніваєтеся.*
+- ❌ I'm patient. — *Це «Я терплячий». Потрібно сказати про сумнів.*
 
 ---
 
 ## Інтро 2
 
-### Дві перевірки мікрофона
+### Дві різні умови
 
-`Am I audible?` — «Мене чути?» Це формальна перевірка чутності: `audible` означає «чутний». А `Am I clear?` — «Я говорю розбірливо?» — уточнює, чи легко розібрати слова; `clear` тут означає «розбірливий». Під час налаштування звуку корисно перевірити і одне, й інше.
+`legal` — «законний», `illegal` — «незаконний». У нашій вигаданій історії перший спосіб використання фотографії дозволений законом: `It is legal`. Другий прямо заборонений: `It is illegal`. Це умови навчальних завдань; вигляд фотографії не повідомляє, який спосіб дозволено.
 
-**Організатор увімкнув мікрофон. Спочатку запитайте, чи чути ваш голос у залі.**
+**За умовою історії другий спосіб використання фотографії прямо заборонений законом. Скажіть повною фразою, що це незаконно.**
 
-- ✅ **Am I audible?**
-- ❌ Am I clear? — *Це запитання про розбірливість слів. Зараз ви починаєте з перевірки, чи чути голос: `audible`.*
-- ❌ Are you audible? — *Це запитання про голос організатора. Ви перевіряєте свій: `Am I audible?`*
+- ✅ **It is illegal.**
+- ❌ It is legal. — *Це «законно». За умовою другий спосіб заборонений.*
+- ❌ It illegal. — *Між `It` і `illegal` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### Оцінити манеру спілкування
+### Доречно й прийнятно
 
-`polite` — «ввічливий», `rude` — «грубий». Запитання `Am I polite?` просить оцінити вашу манеру спілкування. А `Are we rude?` — «Ми грубі?» — охоплює вас разом з усією компанією. Після «ми» вже важко вдавати, ніби йдеться лише про решту. Ви запитуєте чужу думку про всю вашу компанію, включно із собою.
+`appropriate` — «доречний»: шанобливий тон підходить привітанню гостей, `It is appropriate`. `acceptable` — «прийнятний»: якість відбитка достатньо добра для виставки, `It is acceptable`. Він може мати невеликий недолік. Прийняти фотографію й назвати її шедевром — різні обіцянки.
 
-**Ви з другом обговорюєте, як ваша команда зазвичай відповідає на зауваження. Запитайте організатора: «Ми грубі?»**
+**Відбиток трохи темніший, ніж хотілося б, але відповідає вимогам виставки. Коротко скажіть, що він прийнятний.**
 
-- ✅ **Are we rude?**
-- ❌ Am I polite? — *Це запитання про вашу особисту ввічливість. Тут ви запитуєте про грубість усієї команди.*
-- ❌ Are you rude? — *Так ви запитаєте про організатора. Щоб запитати і про себе, і про свою команду, потрібне `we`.*
+- ✅ **It's acceptable.**
+- ❌ It's inaccurate. — *Це «неточний». Тут ви оцінюєте прийнятність якості друку.*
+- ❌ It's illegal. — *Це «незаконно». Про порушення закону в умові нічого немає.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте й виберіть — яка репліка прозвучала під час входу до зали**
-<!-- interaction_id: en:lesson-02:session-48:i01; family: listen_choose -->
-Ціль: `Am I late?`
-Варіанти: `Am I late?` · `Are we late?` · `Am I early?`
-- Are we late? — *Це запитання про кількох людей. Запис починається з `Am I`: людина запитує лише про себе.*
-- Am I early? — *Це «Я прийшов рано?» Останнє слово в записі — `late`, «із запізненням».*
+**1 · Ви звірили підпис: дату й назву місця вказано правильно. Скажіть повною фразою, що підпис точний**
+<!-- interaction_id: en:lesson-02:session-48:i01; family: phrase_builder -->
+Плитки: `accurate` `is` `It` `are` → **It is accurate.**
+*(плитка `are` зайва: тут потрібно `is` — `It is accurate.`)*
 
+**2 · Послухайте фразу про підпис**
+<!-- interaction_id: en:lesson-02:session-48:i02; family: listen_choose -->
+🔊 *It is inaccurate.* → **It is inaccurate.** · It is accurate. · It is acceptable.
+- It is accurate. — *У записі останнє слово — `inaccurate`, а в цьому варіанті — `accurate`.*
+- It is acceptable. — *У записі останнє слово — `inaccurate`, а в цьому варіанті — `acceptable`.*
 
-**2 · Вставте слово — ви з другом бачите, що залу ще готують; запитайте організатора, чи рано ви прийшли**
-<!-- interaction_id: en:lesson-02:session-48:i02; family: context_gap_grammar -->
-Ціль: `Are we ___ ?`
-Варіанти: `early` · `ready` · `late`
-- ready — *Це запитання про готовність. Зараз ви уточнюєте час вашого приходу: `early`.*
-- late — *Це запитання про запізнення. Ви хочете дізнатися, чи прийшли раніше запланованого часу.*
+**3 · Запитайте Анну, чи вона не впевнена в даті**
+<!-- interaction_id: en:lesson-02:session-48:i03; family: context_gap_grammar -->
+___ you uncertain? → **Are** · Am · Is
+- Am — *З `you` потрібно `Are`.*
+- Is — *Запитання — `Are you uncertain?`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-48:i04; family: speed_match -->
+accurate — точний · inaccurate — неточний · uncertain — невпевнений · appropriate — доречний
 
-**3 · Складіть фразу — організатор перевірив ваші нотатки; запитайте, чи ви самі готові до виступу**
-<!-- interaction_id: en:lesson-02:session-48:i03; family: phrase_builder -->
-Ціль: `Am I ready?`
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-48:i05; family: listen_build_dictation -->
+🔊 *Yes, I am.* Плитки: `am` `I` `Yes,` `No,` → **Yes, I am.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, I am.`)*
 
-**4 · Промовте фразу — друг запитує, чи пам’ятаєте ви точний час виходу; ви сумніваєтеся**
-<!-- interaction_id: en:lesson-02:session-48:i04; family: scripted_repeat_compare -->
-Ціль: `I am not sure.`
+**6 · Перед організатором кілька варіантів друку. Запитайте, що прийнятно**
+<!-- interaction_id: en:lesson-02:session-48:i06; family: phrase_builder -->
+Плитки: `acceptable` `is` `What` `Where` → **What is acceptable?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is acceptable?`)*
 
-**5 · Вставте слово — ви назвали час виступу, але не впевнені в ньому; запитайте організатора: «Я помиляюся?»**
-<!-- interaction_id: en:lesson-02:session-48:i05; family: context_gap_grammar -->
-Ціль: `Am I ___ ?`
-Варіанти: `wrong` · `clear` · `polite`
-- clear — *Це запитання про зрозумілість або розбірливість. Зараз ви перевіряєте, чи не помилилися щодо часу: `wrong`.*
-- polite — *Це «ввічливий». Ви уточнюєте правильність своїх відомостей, а не манеру спілкування.*
+**7 · Ви поки не перевірили дату знімка й сумніваєтеся. Коротко скажіть, що не впевнені**
+<!-- interaction_id: en:lesson-02:session-48:i07; family: scripted_repeat_compare -->
+🎙 **I'm uncertain.**
 
+**8 · За умовою історії перший спосіб дозволений законом. На «Is it legal?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-48:i08; family: context_gap_grammar -->
+Yes, it ___. → **is** · am · are
+- am — *З `it` потрібно `is`.*
+- are — *Відповідь — `Yes, it is`.*
 
-**6 · Послухайте й складіть — ви з другом перевіряєте порядок реплік перед репетицією**
-<!-- interaction_id: en:lesson-02:session-48:i06; family: listen_build_dictation -->
-Ціль: `Are we sure?`
+**9 · Послухайте фразу про другий спосіб**
+<!-- interaction_id: en:lesson-02:session-48:i09; family: listen_choose -->
+🔊 *It is illegal.* → **It is illegal.** · It is legal. · It is appropriate.
+- It is legal. — *У записі останнє слово — `illegal`, а в цьому варіанті — `legal`.*
+- It is appropriate. — *У записі останнє слово — `illegal`, а в цьому варіанті — `appropriate`.*
 
-**7 · З’єднайте пари — час і впевненість**
-<!-- interaction_id: en:lesson-02:session-48:i07; family: speed_match -->
-Пари: `late` — із запізненням · `early` — рано · `wrong` — неправий · `sure` — впевнений
-Ціль: `late · early · wrong · sure`
-
-**8 · Послухайте й виберіть — яка репліка прозвучала під час перевірки мікрофона**
-<!-- interaction_id: en:lesson-02:session-48:i08; family: listen_choose -->
-Ціль: `Am I audible?`
-Варіанти: `Am I audible?` · `Am I clear?` · `Are you audible?`
-- Am I clear? — *Це запитання про розбірливість. Останнє слово в записі — `audible`: перевіряють чутність.*
-- Are you audible? — *Це запитання до співрозмовника. У записі людина починає з `Am I` й перевіряє власний голос.*
-
-
-**9 · Складіть фразу — організатор підтвердив, що голос чути; тепер перевірте, чи розбірливо звучать ваші слова через мікрофон**
-<!-- interaction_id: en:lesson-02:session-48:i09; family: phrase_builder -->
-Ціль: `Am I clear?`
-
-**10 · З’єднайте пари — звук, готовність і спілкування**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-48:i10; family: speed_match -->
-Пари: `ready` — готовий · `audible` — чутний · `clear` — розбірливий · `polite` — ввічливий
-Ціль: `ready · audible · clear · polite`
+legal — законний · illegal — незаконний · acceptable — прийнятний · inaccurate — неточний
 
-**11 · Вставте слово — ви хочете дізнатися думку організатора про свою манеру спілкування; запитайте, чи вважає він вас ввічливим**
-<!-- interaction_id: en:lesson-02:session-48:i11; family: context_gap_grammar -->
-Ціль: `Am I ___ ?`
-Варіанти: `polite` · `rude` · `sure`
-- rude — *Це «грубий». Ви запитуєте саме про ввічливість, тому потрібне `polite`.*
-- sure — *Це запитання про впевненість. Тут ви просите оцінити вашу манеру спілкування.*
+**11 · Послухайте й складіть фразу про тон привітання**
+<!-- interaction_id: en:lesson-02:session-48:i11; family: listen_build_dictation -->
+🔊 *It is not appropriate.* Плитки: `appropriate` `not` `is` `It` `are` → **It is not appropriate.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not appropriate.`)*
 
+**12 · Анна запропонувала новий спосіб використання фотографії. Запитайте, чи це законно**
+<!-- interaction_id: en:lesson-02:session-48:i12; family: phrase_builder -->
+Плитки: `legal` `it` `Is` `Are` → **Is it legal?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it legal?`)*
 
-**12 · Послухайте й складіть — друг говорить про організатора**
-<!-- interaction_id: en:lesson-02:session-48:i12; family: listen_build_dictation -->
-Ціль: `He is not rude.`
+**13 · Шанобливий тон підходить привітанню гостей. Коротко скажіть, що він доречний**
+<!-- interaction_id: en:lesson-02:session-48:i13; family: scripted_repeat_compare -->
+🎙 **It's appropriate.**
 
-**13 · Послухайте й виберіть — яка репліка прозвучала після перевірки голосу організатора**
-<!-- interaction_id: en:lesson-02:session-48:i13; family: listen_choose -->
-Ціль: `You are clear.`
-Варіанти: `You are clear.` · `Are you clear?` · `You are not clear.`
-- Are you clear? — *Це запитання. Запис починається з `You are`: співрозмовник дає оцінку.*
-- You are not clear. — *Заперечення `not` змінює зміст. У записі його немає: мовлення організатора розбірливе.*
+**14 · Розмитий відбиток не відповідає вимогам виставки. Скажіть, що він неприйнятний**
+<!-- interaction_id: en:lesson-02:session-48:i14; family: context_gap_grammar -->
+It ___ not acceptable. → **is** · am · are
+- am — *З `It` потрібно `is`.*
+- are — *Фраза — `It is not acceptable`.*
 
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-48:i15; family: listen_choose -->
+🔊 *Is it accurate?* → **Is it accurate?** · Is it inaccurate? · Is it acceptable?
+- Is it inaccurate? — *У записі останнє слово — `accurate`, а в цьому варіанті — `inaccurate`.*
+- Is it acceptable? — *У записі останнє слово — `accurate`, а в цьому варіанті — `acceptable`.*
 
-**14 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-48:i14; family: scripted_repeat_compare -->
-Ціль: `Are we rude?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-48:i16; family: speed_match -->
+appropriate — доречний · acceptable — прийнятний · uncertain — невпевнений · illegal — незаконний
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-48:i15; family: scripted_repeat_compare -->
-Ціль: `I am ready.`
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-48:i16; family: scripted_repeat_compare -->
-Ціль: `You are polite.`
-
-**17 · Складіть фразу — до виходу залишилося небагато часу; свої нотатки ви перевірили, але друг іще не підтвердив готовність. Запитайте, чи ви обоє готові**
-<!-- interaction_id: en:lesson-02:session-48:i17; family: phrase_builder -->
-Ціль: `Are we ready?`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=scripted_repeat_compare, 5=context_gap_grammar, 6=listen_build_dictation, 7=speed_match, 8=listen_choose, 9=phrase_builder, 10=speed_match, 11=context_gap_grammar, 12=listen_build_dictation, 13=listen_choose, 14=scripted_repeat_compare, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Анна принесла останній варіант відбитка. Запитайте організатора, чи прийнятна його якість**
+<!-- interaction_id: en:lesson-02:session-48:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it acceptable?**
 

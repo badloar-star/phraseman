@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-48:i01",
-    "correctText": "Am I late?",
-    "correctResponseId": "en:lesson-02:session-48:i01:r1"
+    "correctText": "It is accurate.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i02",
-    "correctText": "early",
+    "correctText": "It is inaccurate.",
     "correctResponseId": "en:lesson-02:session-48:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-48:i03",
-    "correctText": "Am I ready?",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-48:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-48:i04",
-    "correctText": "I am not sure.",
+    "correctText": "en:lesson-02:session-48:i04:p1=accurate\nen:lesson-02:session-48:i04:p2=inaccurate\nen:lesson-02:session-48:i04:p3=uncertain\nen:lesson-02:session-48:i04:p4=appropriate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i05",
-    "correctText": "wrong",
-    "correctResponseId": "en:lesson-02:session-48:i05:r1"
+    "correctText": "Yes, I am.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i06",
-    "correctText": "sure",
-    "correctResponseId": "en:lesson-02:session-48:i06:r1"
+    "correctText": "What is acceptable?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i07",
-    "correctText": "en:lesson-02:session-48:i07:p1=late\nen:lesson-02:session-48:i07:p2=early\nen:lesson-02:session-48:i07:p3=wrong\nen:lesson-02:session-48:i07:p4=sure",
+    "correctText": "I'm uncertain.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i08",
-    "correctText": "Am I audible?",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-48:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-48:i09",
-    "correctText": "Am I clear?",
-    "correctResponseId": null
+    "correctText": "It is illegal.",
+    "correctResponseId": "en:lesson-02:session-48:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-48:i10",
-    "correctText": "en:lesson-02:session-48:i10:p1=ready\nen:lesson-02:session-48:i10:p2=audible\nen:lesson-02:session-48:i10:p3=clear\nen:lesson-02:session-48:i10:p4=polite",
+    "correctText": "en:lesson-02:session-48:i10:p1=legal\nen:lesson-02:session-48:i10:p2=illegal\nen:lesson-02:session-48:i10:p3=acceptable\nen:lesson-02:session-48:i10:p4=inaccurate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i11",
-    "correctText": "polite",
-    "correctResponseId": "en:lesson-02:session-48:i11:r1"
+    "correctText": "It is not appropriate.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i12",
-    "correctText": "He is not rude.",
+    "correctText": "Is it legal?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i13",
-    "correctText": "You are clear.",
-    "correctResponseId": "en:lesson-02:session-48:i13:r1"
+    "correctText": "It's appropriate.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i14",
-    "correctText": "Are we rude?",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-48:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-48:i15",
-    "correctText": "I am ready.",
-    "correctResponseId": null
+    "correctText": "Is it accurate?",
+    "correctResponseId": "en:lesson-02:session-48:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-48:i16",
-    "correctText": "You are polite.",
+    "correctText": "en:lesson-02:session-48:i16:p1=appropriate\nen:lesson-02:session-48:i16:p2=acceptable\nen:lesson-02:session-48:i16:p3=uncertain\nen:lesson-02:session-48:i16:p4=illegal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i17",
-    "correctText": "Are we ready?",
+    "correctText": "Is it acceptable?",
     "correctResponseId": null
   }
 ]

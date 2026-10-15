@@ -149,7 +149,14 @@ function useNavActionTraceImpl(navigationRef: NavTraceRef): void {
         removeAction = ref.addListener('__unsafe_action__', (e) => {
           const action = e?.data?.action;
           const payload = action?.payload ?? {};
-          const stack = (new Error().stack ?? '').split('\n').slice(2, 11).map((line) => line.trim().replace(/^at\s+/, '').slice(0, 90)).join(' | ');
+          // зачем (координатор 15.10, r7p: NAVIGATE «(tabs)» дважды за 1–3 мс): кадр нёс адрес бандла и резался на 90 знаках —
+          // имени вызывающего не было видно. Теперь кадр = имя@строка:столбец без адреса, глубина до 18 кадров.
+          const stack = (new Error().stack ?? '').split('\n').slice(2, 20).map((line) => {
+            const frame = line.trim().replace(/^at\s+/, '');
+            const pos = frame.match(/:(\d+):(\d+)\)?$/);
+            const fn = frame.replace(/\s*\(.*\)$/, '').slice(0, 48);
+            return pos ? `${fn}@${pos[1]}:${pos[2]}` : fn;
+          }).join(' | ');
           console.log('[PERF-R1-NAV]', JSON.stringify({ event: 'action', type: action?.type, name: payload.name, path: payload.path, noop: e?.data?.noop ?? null, atMs: Date.now() - MODULE_T0, stack })); // guard-ok: трассировка навигации, только dev
         });
         removeState = ref.addListener('state', () => {

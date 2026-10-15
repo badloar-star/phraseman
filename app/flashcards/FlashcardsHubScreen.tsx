@@ -647,7 +647,7 @@ export default function FlashcardsHubScreen() {
     router.push({ pathname: '/flashcards_training_setup', params: { mode } } as never);
   }, [router]);
 
-  const hubParams = useLocalSearchParams<{ train?: string; deck?: string; cnt?: string; returnTo?: string }>();
+  const hubParams = useLocalSearchParams<{ train?: string; deck?: string; cnt?: string }>();
   // зачем (Ревизор 935f6a931 🟡): защёлка «окно режимов ИЛИ прямой старт» — не оба. Окно открылось → fallback не стартует; fallback стартовал → окно позже не открываем поверх сессии.
   const trainAttemptRef = useRef<{ sheetOpened: boolean; fallbackAtMs: number | null } | null>(null);
   useEffect(() => {
@@ -843,16 +843,11 @@ export default function FlashcardsHubScreen() {
   const hubLabels = useMemo(() => ({ back: copy.back, create: copy.create, trainA11y: trainAccessibilityLabel }), [copy.back, copy.create, trainAccessibilityLabel]);
   const onTrainPressRef = useRef(onTrainPress);
   onTrainPressRef.current = onTrainPress;
-  // зачем (Макеты c1_video3, 15.10: «Назад» с хаба вёл в список «Видео», экрана ролика не было): хаб — корень раздела, свой журнал «назад» при входе в него обнуляется; если хаб открыт из ролика
-  // (параметр returnTo), возвращаемся штатным шагом назад по стеку — ролик под хабом остался (push), он и откроется.
+  // зачем (координатор 15.10, сторож navigation_back_underlay): «Назад» хаба — только через safeRouterBack. Возврат к ролику (c1_video3) держится шторкой режимов
+  // прямо на ролике (da5862532): хаб из ролика больше не открывается, поэтому ветка returnTo → голый router.back() была мёртвой и удалена.
   const handleHubBack = useCallback(() => {
-    if (hubParams.returnTo === 'video_watch' && router.canGoBack()) {
-      console.log('[NAV-BACK] hub:return_to_video_watch'); // guard-ok: возврат к ролику, из которого открыли хаб
-      router.back();
-      return;
-    }
     safeRouterBack(router, '/(tabs)/home' as never);
-  }, [hubParams.returnTo, router]);
+  }, [router]);
   const handleHubTrain = useCallback(() => { pendingDeckRef.current = null; onTrainPressRef.current(); }, []);
 
   return (

@@ -193,6 +193,15 @@ import {
 } from "../../modules/learning-v2/map/course_accordion_map_model_v1";
 import { createLearningV2CourseLocalProgressStoreV1 } from "../../modules/learning-v2/progress/course_local_progress_v1";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../../modules/learning-v2/progress/progress_account_scope";
+import { logFounderNick, nextFounderNickState, visibleFounderNickname, type FounderNickState } from "../founder_nickname_scope";
+
+/** Область текущего аккаунта для ника «Пропуска основателя» (null — аккаунт ещё не активен). */
+function currentFounderAccountScope(): string | null {
+  const account = captureAccountGeneration();
+  return account.phase === "active" && account.stableId
+    ? deriveLocalOfflineProgressAccountScopeHash(account.stableId)
+    : null;
+}
 import {
   loadLearningV2ActiveCourseCatalogV1,
   peekLearningV2ActiveCourseCatalogV1,
@@ -2650,10 +2659,24 @@ export default function LessonsTab({
   const legacyCoinRankSource = isValidCoinRank(legacyCoinRank)
     ? coinRankRowForDisplay(legacyCoinRank).source
     : null;
-  const [learningV2FounderNickname, setLearningV2FounderNickname] =
-    useState<string | null>(() =>
+  // зачем (координатор 15.10, изоляция аккаунтов): ник был липким и без владельца — после смены аккаунта новый человек видел
+  // «＠ник» прошлого гостя/аккаунта. Ник хранится с областью аккаунта и показывается только ей (app/founder_nickname_scope.ts).
+  const [learningV2FounderNickState, setLearningV2FounderNickState] =
+    useState<FounderNickState>(() => nextFounderNickState(
+      { scope: null, value: null },
+      currentFounderAccountScope(),
       normalizeLearningV2FounderNicknameV1(learningV2SnapshotNickname),
-    );
+    ));
+  const [learningV2FounderAccountScope, setLearningV2FounderAccountScope] =
+    useState<string | null>(() => currentFounderAccountScope());
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration(() => {
+      const scope = currentFounderAccountScope();
+      setLearningV2FounderAccountScope((previous) => (previous === scope ? previous : scope));
+    });
+    return () => subscription.remove();
+  }, []);
+  const learningV2FounderNickname = visibleFounderNickname(learningV2FounderNickState, learningV2FounderAccountScope);
   const [learningV2FounderReceipt, setLearningV2FounderReceipt] = useState<{
     accountScopeHash: string | null;
     seen: boolean | null;
@@ -2665,7 +2688,9 @@ export default function LessonsTab({
     const nickname = normalizeLearningV2FounderNicknameV1(
       learningV2SnapshotNickname,
     );
-    if (nickname) setLearningV2FounderNickname(nickname);
+    const scope = currentFounderAccountScope();
+    logFounderNick(nickname ? "snapshot" : "none", scope, nickname);
+    setLearningV2FounderNickState((previous) => nextFounderNickState(previous, scope, nickname));
   }, [learningV2SnapshotNickname]);
 
   // зачем: здесь жили дев-счётчики входа (devEntryOrdinal /
@@ -2700,10 +2725,12 @@ export default function LessonsTab({
           cancelled ||
           !isCurrentAccountGeneration(account, account.stableId)
         ) return;
-        const nickname =
-          normalizeLearningV2FounderNicknameV1(learningV2SnapshotNickname) ??
-          normalizeLearningV2FounderNicknameV1(storedNickname);
-        setLearningV2FounderNickname(nickname);
+        // Запасной путь user_name — аккаунтный ключ (SYNC_KEYS, стирается при смене) и читается под проверкой поколения выше.
+        const snapshotNickname = normalizeLearningV2FounderNicknameV1(learningV2SnapshotNickname);
+        const storageNickname = normalizeLearningV2FounderNicknameV1(storedNickname);
+        const nickname = snapshotNickname ?? storageNickname;
+        logFounderNick(snapshotNickname ? "snapshot" : storageNickname ? "storage_user_name" : "none", accountScopeHash, nickname);
+        setLearningV2FounderNickState((previous) => nextFounderNickState(previous, accountScopeHash, nickname));
         // зачем: раньше сюда каждый фокус приходил НОВЫЙ объект с тем же
         // содержимым — React считал состояние изменённым и перерисовывал весь
         // экран с картой. Меняем состояние только когда оно реально другое.

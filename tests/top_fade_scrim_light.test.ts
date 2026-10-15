@@ -52,7 +52,7 @@ describe('скрим под статус-баром (TopFadeMask)', () => {
   it('компонент берёт цвет через topFadeScrim и пишет [HOME-PLATE] topscrim со значением скрима', () => {
     const src = readFileSync(join(__dirname, '..', 'components', 'TopFadeMask.tsx'), 'utf8');
     expect(src).toMatch(/topFadeScrim\(glass\.isLight, glass\.bgTop, maxOpacity, tone\)/);
-    expect(src).toMatch(/\[HOME-PLATE\] topscrim theme=\$\{liquidGlassThemeId\} isLight=.*scrim=\$\{scrim\}/);
+    expect(src).toMatch(/\[HOME-PLATE\] topscrim theme=\$\{liquidGlassThemeId\} isLight=.*scrim=\$\{useCanvas \? 'canvas-copy' : scrim\}/);
     expect(src).not.toMatch(/const resolvedTone = tone \?\? 'dark'/);
   });
 });

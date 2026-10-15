@@ -1,165 +1,138 @@
-# Английский · Урок 3 · Занятие 39 — «Проверяем собранный заказ»
+# Английский · Урок 3 · Занятие 39 — Бутылки для прогулки
 
-**Сцена занятия.** Вы с другом забираете предварительный заказ у стойки выдачи на крытом рынке; продавец складывает в коробку виноград, лимоны и лук, разложенные ближе и дальше на упаковочном столе. Нужно проверить содержимое и точно сказать продавцу, что уже лежит перед вами, что стоит дальше и что добавить в коробку.
+**Ситуация.** Вы с Анной собираете вещи для прогулки. Одни бутылки стоят рядом, другие — на дальнем столе. На карте отмечены парки. Анна боится выступать перед группой, но всё же решается объяснить маршрут; её замечание помогает выбрать парк.
 
-**Как сказать:** называть и выбирать группы предметов через `these/those` с меньшей опорой
-**Новые слова:** grape, lemon, onion
-**Для повторения:** these, those, are, apple
+**Что вы освоите:** назвать несколько бутылок рядом или дальше и связать указатель с формой are
+**Новые слова:** bottles
 
 ---
 
 ## Интро 1
 
-### Виноград уже на столе
+### Несколько бутылок
 
-`grape` — «виноградина», `grapes` — «виноград». Несколько гроздей лежат перед вами: `These are grapes.` — «Это виноград». `These` указывает на близкую группу, `are` связывает её с формой `grapes`. Коробка ещё пустая, зато нужная фраза уже собрана.
+`bottles` — «бутылки», одна — `bottle`. Для нескольких добавляем `s`. `These are bottles` — «Это бутылки»: показываем на несколько рядом. Здесь нужно `are`, потому что бутылок несколько. Даже пустая бутылка считается: для выбора `is` или `are` считаем бутылки, а не воду.
 
-**Виноград лежит рядом на упаковочном столе. Назовите его.**
+**Назовите несколько бутылок одним английским словом.**
 
-- ✅ **These are grapes.**
-- ❌ Those are grapes. — *Так называют виноград дальше. Эта группа лежит перед вами, поэтому нужен `these`.*
-- ❌ This is a grape. — *Так называют одну виноградину рядом. Здесь перед вами несколько гроздей, поэтому нужны `these are` и `grapes`.*
+- ✅ **bottles**
+- ❌ bottle — *`bottle` — одна бутылка. Несколько — `bottles`.*
+- ❌ boxes — *`boxes` — коробки. Бутылки — `bottles`.*
 
 ---
 
 ## Интро 2
 
-### Лимоны на дальней стойке
+### Эти здесь, те там
 
-`lemon` — «лимон», `lemons` — «лимоны». Несколько лимонов стоят дальше: `Those are lemons.` — «Это лимоны». Для дальней группы выбирайте `those`, а форма `lemons` показывает, что предметов несколько. Стойка далеко, но фраза до неё добирается за три слова.
+`These bottles are here` — «Эти бутылки здесь». `Those bottles are there` — «Те бутылки там». `These` указывает на несколько рядом, `those` — на несколько дальше. После `these bottles` и `those bottles` нужно `are`. Перед названием не добавляем `a`: оно относится к одному предмету.
 
-**На дальней стойке стоят несколько лимонов. Назовите их.**
+**Несколько бутылок стоят на дальнем столе. Скажите «Те бутылки там».**
 
-- ✅ **Those are lemons.**
-- ❌ These are lemons. — *Так называют лимоны рядом. Нужная группа стоит на дальней стойке, поэтому нужен `those`.*
-- ❌ That is a lemon. — *Так называют один лимон дальше. Здесь лимонов несколько, поэтому нужны `those are` и `lemons`.*
+- ✅ **Those bottles are there.**
+- ❌ That bottles are there. — *`That` — один предмет. Бутылок несколько и они дальше: `Those`.*
+- ❌ Those bottles is there. — *Бутылок несколько: нужно `are`.*
 
 ---
 
 ## Интро 3
 
-### Что положить в коробку
+### Смелость и полезное замечание
 
-`onion` — «луковица», `onions` — «луковицы». `These are onions.` называет близкую группу, а `These onions, please.` — «Эти луковицы, пожалуйста» — просит положить её в заказ. В короткой просьбе `are` не нужно: `these` стоит прямо перед `onions`, и продавец понимает ваш выбор.
+`brave` — «смелый». Анне страшно говорить перед группой, но она решается: `She is brave` — «Она смелая». Смелость не обязательно означает отсутствие страха. `relevant` — «относящийся к делу, уместный». Об её замечании по выбору парка: `It is relevant` — «Оно относится к делу». На карте можно показать несколько парков: `Those are parks` — «Это парки», если они дальше от вас на карте.
 
-**Ящик с луком стоит рядом. Попросите положить этот лук в коробку.**
+**Анна решается говорить перед группой, несмотря на страх. Скажите «Она смелая».**
 
-- ✅ **These onions, please.**
-- ❌ Those onions, please. — *Так просят лук, который находится дальше. Ящик стоит рядом, поэтому нужен `these`.*
-- ❌ These are onions. — *Эта фраза только называет группу. Для просьбы поставьте `these` прямо перед `onions` и добавьте `please`.*
+- ✅ **She is brave.**
+- ❌ She is weak. — *`weak` — слабая. Здесь описываем смелость: `brave`.*
+- ❌ She are brave. — *С `She` нужно `is`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-39:i01; family: listen_choose -->
-Цель: `grape`
-Варианты: `grape`
+**1 · Вы показываете на несколько парков в дальней части карты. Скажите «Это парки» со словом для нескольких дальше**
+<!-- interaction_id: en:lesson-03:session-39:i01; family: phrase_builder -->
+Плитки: `parks` `are` `Those` `is` → **Those are parks.**
+*(плитка `is` лишняя: здесь нужно `are` — `Those are parks.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-39:i03; family: scripted_repeat_compare -->
-Цель: `lemon`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-39:i02; family: listen_choose -->
+🔊 *bottles* → **bottles** · boxes · tables
+- boxes — *В записи первое слово — `bottles`, а в этом варианте — `boxes`.*
+- tables — *В записи первое слово — `bottles`, а в этом варианте — `tables`.*
 
-**3 · Послушайте и выберите овощ — у упаковочного стола**
-<!-- interaction_id: en:lesson-03:session-39:i05; family: listen_choose -->
-Цель: `onion`
-Варианты: `onion`
+**3 · Назовите несколько бутылок одним английским словом**
+<!-- interaction_id: en:lesson-03:session-39:i03; family: context_gap_grammar -->
+___ → **bottles** · bottle · boxes
+- bottle — *`bottle` — одна бутылка. Несколько — `bottles`.*
+- boxes — *`boxes` — коробки. Бутылки — `bottles`.*
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-39:i02; family: scripted_repeat_compare -->
-Цель: `grape`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-39:i04; family: speed_match -->
+bottles — бутылки · brave — смелый · relevant — относящийся к делу · parks — парки
 
-**5 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-39:i04; family: listen_choose -->
-Цель: `lemon`
-Варианты: `lemon`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-39:i05; family: listen_build_dictation -->
+🔊 *These are bottles.* Плитки: `bottles` `are` `These` `is` → **These are bottles.**
+*(плитка `is` лишняя: здесь нужно `are` — `These are bottles.`)*
 
-**6 · Произнесите слово — лук лежит рядом**
-<!-- interaction_id: en:lesson-03:session-39:i06; family: scripted_repeat_compare -->
-Цель: `onion`
+**6 · Бутылки стоят на дальнем столе. Скажите «Те бутылки там»**
+<!-- interaction_id: en:lesson-03:session-39:i06; family: phrase_builder -->
+Плитки: `there` `are` `bottles` `Those` `is` → **Those bottles are there.**
+*(плитка `is` лишняя: здесь нужно `are` — `Those bottles are there.`)*
 
-**7 · Соедините слова со значениями — продукты для заказа**
-<!-- interaction_id: en:lesson-03:session-39:i08; family: speed_match -->
-Пары: `grape` — виноградина · `lemon` — лимон · `onion` — луковица · `apple` — яблоко
-Цель: `grape · lemon · onion · apple`
+**7 · Анна преодолела страх выступить. Скажите «Она смелая» с сокращением**
+<!-- interaction_id: en:lesson-03:session-39:i07; family: scripted_repeat_compare -->
+🎙 **She's brave.**
 
-**8 · Послушайте и соберите просьбу — лук на дальней стойке**
-<!-- interaction_id: en:lesson-03:session-39:i10; family: listen_build_dictation -->
-Цель: `Those onions, please.`
+**8 · Вы показываете на несколько бутылок прямо рядом с вами**
+<!-- interaction_id: en:lesson-03:session-39:i08; family: context_gap_grammar -->
+___ are bottles. → **These** · This · That
+- This — *`This` — один предмет. Для нескольких рядом нужно `These`.*
+- That — *`That` — один дальше. Здесь несколько рядом: `These`.*
 
-**9 · Произнесите фразу — яблоки лежат рядом**
-<!-- interaction_id: en:lesson-03:session-39:i11; family: scripted_repeat_compare -->
-Цель: `These are apples.`
+**9 · Послушайте оценку замечания Анны**
+<!-- interaction_id: en:lesson-03:session-39:i09; family: listen_choose -->
+🔊 *It is relevant.* → **It is relevant.** · It is official. · It is informal.
+- It is official. — *В записи последнее слово — `relevant`, а в этом варианте — `official`.*
+- It is informal. — *В записи последнее слово — `relevant`, а в этом варианте — `informal`.*
 
-**10 · Соберите описание — лук лежит рядом**
-<!-- interaction_id: en:lesson-03:session-39:i07; family: phrase_builder -->
-Цель: `These are onions.`
+**10 · Соедините слова со значениями для наших примеров**
+<!-- interaction_id: en:lesson-03:session-39:i10; family: speed_match -->
+bottles — бутылки · parks — парки · these — эти, несколько рядом · those — те, несколько дальше
 
-**11 · Вставьте указатель — виноград теперь лежит у дальней стойки**
-<!-- interaction_id: en:lesson-03:session-39:i09; family: context_gap_grammar -->
-Цель: `___ are grapes.`
-Варианты: `Those` · `These` · `That` · `This`
-- These — *`These are grapes` подходит для винограда рядом. Эта группа дальше, поэтому нужно `Those`.*
-- That — *`That` относится к одному предмету и требует `is`. Здесь называют группу.*
-- This — *`This` относится к одному предмету рядом. Здесь группа находится дальше.*
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-39:i11; family: listen_build_dictation -->
+🔊 *These parks are here.* Плитки: `here` `are` `parks` `These` `is` → **These parks are here.**
+*(плитка `is` лишняя: здесь нужно `are` — `These parks are here.`)*
 
+**12 · Вы показываете на бутылки прямо перед вами. Скажите «Эти бутылки здесь»**
+<!-- interaction_id: en:lesson-03:session-39:i12; family: phrase_builder -->
+Плитки: `here` `are` `bottles` `These` `is` → **These bottles are here.**
+*(плитка `is` лишняя: здесь нужно `are` — `These bottles are here.`)*
 
-**12 · Соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i12:s01; family: phrase_builder -->
-Цель: `These are lemons.`
+**13 · Замечание Анны касается именно выбора парка. Скажите о замечании «Оно относится к делу» с сокращением**
+<!-- interaction_id: en:lesson-03:session-39:i13; family: scripted_repeat_compare -->
+🎙 **It's relevant.**
 
-**13 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i12:s02; family: scripted_repeat_compare -->
-Цель: `Those are grapes.`
+**14 · Вы говорите о нескольких бутылках на дальнем столе**
+<!-- interaction_id: en:lesson-03:session-39:i14; family: context_gap_grammar -->
+Those bottles ___ there. → **are** · is · am
+- is — *Бутылок несколько: `Those bottles are there`.*
+- am — *С `Those bottles` нужно `are`.*
 
-**14 · Послушайте и выберите точное значение просьбы**
-<!-- interaction_id: en:lesson-03:session-39:i13; family: listen_choose -->
-Цель: `These onions, please.`
-Варианты: `Эти луковицы, пожалуйста` · `Те луковицы, пожалуйста` · `Эти лимоны, пожалуйста` · `Это луковицы`
-- Те луковицы, пожалуйста — *В записи слышно `these`, а не `those`: выбирают близкую группу.*
-- Эти лимоны, пожалуйста — *Названо `onions` — луковицы, а не `lemons` — лимоны.*
-- Это луковицы — *В записи нет `are`: это просьба добавить товар, а не сообщение о его названии.*
+**15 · Послушайте описание Анны**
+<!-- interaction_id: en:lesson-03:session-39:i15; family: listen_choose -->
+🔊 *She is brave.* → **She is brave.** · She is weak. · She is afraid.
+- She is weak. — *В записи последнее слово — `brave`, а в этом варианте — `weak`.*
+- She is afraid. — *В записи последнее слово — `brave`, а в этом варианте — `afraid`.*
 
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-39:i16; family: speed_match -->
+bottles — бутылки · brave — смелый · relevant — относящийся к делу · parks — парки
 
-**15 · Соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i14:s01; family: phrase_builder -->
-Цель: `Those are onions.`
+**17 · На пикнике друг спрашивает о нескольких предметах на дальнем столе. Это бутылки. Назовите их полной фразой, начав с указателя на несколько предметов дальше**
+<!-- interaction_id: en:lesson-03:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Those are bottles.**
 
-**16 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i14:s02; family: scripted_repeat_compare -->
-Цель: `Those onions, please.`
-
-**17 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i15; family: listen_build_dictation -->
-Цель: `Those are onions.`
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i16:s01; family: scripted_repeat_compare -->
-Цель: `These are grapes.`
-
-**19 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i16:s02; family: listen_build_dictation -->
-Цель: `Those are lemons.`
-
-**20 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i16:s03; family: scripted_repeat_compare -->
-Цель: `These are onions.`
-
-**21 · Соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i17:s01; family: phrase_builder -->
-Цель: `Those are grapes.`
-
-**22 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i17:s02; family: scripted_repeat_compare -->
-Цель: `These are lemons.`
-
-**23 · Соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-39:i17:s03; family: phrase_builder -->
-Цель: `Those onions, please.`
-
-## Для сборщика
-new_words: grape — виноградина — Небольшая круглая ягода, растущая гроздьями.
-new_words: lemon — лимон — Жёлтый цитрусовый фрукт с кислым соком.
-new_words: onion — луковица — Круглый овощ из нескольких плотных слоёв.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=phrase_builder, 11=context_gap_grammar, 12=phrase_builder, 13=scripted_repeat_compare, 14=listen_choose, 15=phrase_builder, 16=scripted_repeat_compare, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=listen_build_dictation, 20=scripted_repeat_compare, 21=phrase_builder, 22=scripted_repeat_compare, 23=phrase_builder

@@ -35,6 +35,8 @@ export function useSpireWeekMoment(input: UseSpireWeekMomentInput): UseSpireWeek
   const [decision, setDecision] = useState<SpireWeekMomentShow | null>(null);
   const visible = useOverlayVisible('spireWeekMoment', decision !== null);
   const markedRef = useRef<string | null>(null);
+  // зачем (координатор 15.10, аудит Optimistic UI): «Напомнить позже» — синхронная защёлка: два быстрых тапа до размонтирования окна ставили напоминание дважды (оба читали прежний id до записи первого)
+  const remindFiredRef = useRef(false);
   const [remindAvailable, setRemindAvailable] = useState(false);
 
   useEffect(() => {
@@ -64,12 +66,19 @@ export function useSpireWeekMoment(input: UseSpireWeekMomentInput): UseSpireWeek
     void markSpireWeekMomentShown(decision);
   }, [visible, decision]);
 
+  useEffect(() => { if (decision) remindFiredRef.current = false; }, [decision]);
+
   const close = useCallback(() => {
     DebugLogger.info('[SPIRE]', '[D191-GATE] окно закрыто');
     setDecision(null);
   }, []);
 
   const scheduleRemind = useCallback(() => {
+    if (remindFiredRef.current) {
+      DebugLogger.info('[SPIRE]', '[D191-REMIND] повторное нажатие погашено');
+      return;
+    }
+    remindFiredRef.current = true;
     // Окно закрывается сразу (мгновенный отклик), напоминание ставится фоном; итог — в [D191-REMIND].
     void scheduleSpireWeekRemindWithFeedback(uiLang);
     setDecision(null);

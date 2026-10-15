@@ -110,6 +110,8 @@ export function trackSectionPathname(pathname: string | null | undefined): void 
 }
 
 function trackSection(next: LanguageSection | null, where: string): void {
+  // зачем (🔴 Макеты 15.10: язык «Карточек» не сбрасывается, строк reset нет вообще; сперва логи): каждый вызов — что вычислено, что было, какие override живы
+  console.log(`[SECTION-LANG] ${JSON.stringify({ event: 'track', next, lastSection, cardsOverride: overrides.cards, videoOverride: overrides.video, where })}`); // guard-ok: трассировка трекера
   if (next === lastSection) return;
   const left = lastSection;
   lastSection = next;

@@ -78,3 +78,9 @@ describe('защёлка «окно режимов ИЛИ прямой стар�
     expect(hub).toContain('attempt.fallbackAtMs = Date.now();');
   });
 });
+
+describe('подпись языка набора на экране ролика (Макеты 15.10)', () => {
+  it('язык: канал → язык набора ролика → язык раздела', () => {
+    expect(read('app/lingman_video_watch.tsx')).toContain("languageTags?.[0]?.split('-')[0] ?? pack?.packLanguage ?? studyTarget");
+  });
+});

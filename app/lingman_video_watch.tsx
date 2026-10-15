@@ -74,11 +74,12 @@ export default function LingmanVideoWatchScreen() {
   const catalog = useMemo(() => peekYoutubeCatalogScreenSnapshot(token), [token]);
   const video = useMemo(() => catalog?.videos.find((item) => item.id === videoId) ?? null, [catalog, videoId]);
   const channelName = catalog && (!video || catalog.channel.id === video.channelId) ? catalog.channel.displayName : '';
-  const packLanguage = normalizePackLanguage(catalog?.channel.languageTags?.[0]?.split('-')[0] ?? studyTarget);
   const title = video?.title || (typeof params.title === 'string' ? params.title : '');
   const startSec = typeof params.startSec === 'string' && Number.isFinite(Number(params.startSec)) ? Number(params.startSec) : undefined;
 
   const [pack, setPack] = useState<FlashcardMarketPack | null>(() => findPackForVideo(peekVideoMarketPacks(studyTarget), videoId));
+  // зачем (Макеты 15.10): английский ролик подписывался «Испанский» — при пустом каталоге язык брался из языка раздела. Порядок: канал → язык самого набора ролика → язык раздела.
+  const packLanguage = normalizePackLanguage(catalog?.channel.languageTags?.[0]?.split('-')[0] ?? pack?.packLanguage ?? studyTarget);
   // зачем (аудит кнопок Карточек #14/#15, 15.10): набор ролика уже добавлен — кнопка «Тренировать», а не «Добавить» (из локальных id, без Firestore)
   const packOwned = useOwnedPack(pack?.id ?? `video:${videoId}`);
   const packFromRef = useRef<string>(peekVideoMarketPacks(studyTarget) ? 'memory' : 'pending');

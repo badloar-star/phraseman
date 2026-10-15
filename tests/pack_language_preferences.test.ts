@@ -129,3 +129,15 @@ describe('язык раздела: вкладки и маршруты (🔴 R70,
     }
   });
 });
+
+describe('трассировка трекера раздела (Макеты 15.10)', () => {
+  it('каждый вызов трекера пишет [SECTION-LANG] track с next/lastSection/override/where', () => {
+    const sectionModule = require('../app/section_language') as typeof import('../app/section_language');
+    const log = jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    sectionModule.trackCurrentSection({ pathname: '/home', routeIsTab: true, activeTabRoute: '/(tabs)/home' });
+    const line = log.mock.calls.map((call) => String(call[0])).find((text) => text.includes('"event":"track"'));
+    expect(line).toBeTruthy();
+    expect(line).toContain('"where":"pathname=/home tab=/(tabs)/home routeIsTab=true"');
+    log.mockRestore();
+  });
+});

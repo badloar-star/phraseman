@@ -89,8 +89,10 @@ function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, reques
   // зачем (ревью R3): после выбора шторка уезжает 440 мс — второй тап в это время не должен запустить второй выбор.
   const dismissingRef = useRef(false);
   const sub = useMemo(() => ({
-    selected: triLang(lang, { ru: 'Учу · выбран', uk: 'Вчу · обрано', en: 'Learning · selected', es: 'Aprendiendo · elegido', 'pt-BR': 'Aprendendo · escolhido', vi: 'Đang học · đã chọn', id: 'Dipelajari · dipilih', tr: 'Öğreniyorum · seçili', pl: 'Uczę się · wybrany' }),
-    learning: triLang(lang, { ru: 'Учу', uk: 'Вчу', en: 'Learning', es: 'Aprendiendo', 'pt-BR': 'Aprendendo', vi: 'Đang học', id: 'Dipelajari', tr: 'Öğreniyorum', pl: 'Uczę się' }),
+    // зачем (Сверка → координатор 15.10): «Учу · выбран» звучало странно и дублировало отметку — у текущего языка одно «Сейчас учу»,
+    // у начатых, но не текущих — «Начат», чтобы рядом не стояли два «учу».
+    selected: triLang(lang, { ru: 'Сейчас учу', uk: 'Зараз вчу', en: 'Learning now', es: 'Aprendiendo ahora', 'pt-BR': 'Aprendendo agora', vi: 'Đang học', id: 'Sedang dipelajari', tr: 'Şu an öğreniyorum', pl: 'Uczę się teraz' }),
+    learning: triLang(lang, { ru: 'Начат', uk: 'Розпочато', en: 'Started', es: 'Empezado', 'pt-BR': 'Iniciado', vi: 'Đã bắt đầu', id: 'Sudah dimulai', tr: 'Başlandı', pl: 'Rozpoczęty' }),
   }), [lang]);
 
   const closeAnimated = useCallback((reason: string) => {

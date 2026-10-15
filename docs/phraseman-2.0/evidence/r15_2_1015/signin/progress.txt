@@ -1,0 +1,3 @@
+21:10:54 pick mrl***@***  com.google.android.gms:id/account_name
+21:11:05 после выбора
+21:11:30 готово

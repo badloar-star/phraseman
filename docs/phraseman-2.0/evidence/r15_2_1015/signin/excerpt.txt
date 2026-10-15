@@ -1,0 +1,49 @@
+10-15 21:10:01.957 I/ReactNativeJS(12714): [SIGNIN] ui:tap provider=google context=settings
+10-15 21:10:02.048 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:35842130","localStable":"h:7927c189","requireOwnership":false,"t":13614414}
+10-15 21:10:11.760 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":13624114}
+10-15 21:10:11.766 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:35842130","preProviderStable":"h:7927c189","t":13624127}
+10-15 21:10:12.353 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":13624719}
+10-15 21:10:12.472 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":103,"getAllKeysMs":4,"selected":2220,"filterMs":15,"multiGetMs":87,"bytes":3783,"top5":"achievements_v1=2504 user_profile=266 level_spin_star_projection_v1:<id>=199 cli","t":13624838}
+10-15 21:10:12.476 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":14,"t":13624842}
+10-15 21:10:12.496 I/ReactNativeJS(12714): [GUEST-CLEAN] summary dirty=14 default=8 service=6 progress=0 decision=clean_by_defaults
+10-15 21:10:12.497 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"clean_by_defaults","dirty":14,"progress":0,"t":13624863}
+10-15 21:10:12.497 W/ReactNativeJS(12714): [WARNING] [AUTH-LINK-GOOGLE] clean_proof decision: [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"clean_by_defaults","dirty":14,"progress":0,"t":13624863}
+10-15 21:10:12.504 I/ReactNativeJS(12714): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":true,"postCompletionHandoff":false,"stableId":"5de4b19d"}'
+10-15 21:10:12.976 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":107,"getAllKeysMs":192,"selected":2220,"filterMs":60,"multiGetMs":114,"bytes":3783,"top5":"achievements_v1=2504 user_profile=266 level_spin_star_projection_v1:<id>=199 cli","t":13625343}
+10-15 21:10:12.979 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":14,"t":13625345}
+10-15 21:10:12.988 I/ReactNativeJS(12714): [GUEST-CLEAN] summary dirty=14 default=8 service=6 progress=0 decision=clean_by_defaults
+10-15 21:10:12.988 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"clean_by_defaults","dirty":14,"progress":0,"t":13625355}
+10-15 21:10:12.989 W/ReactNativeJS(12714): [WARNING] [AUTH-LINK-GOOGLE] clean_proof decision: [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"clean_by_defaults","dirty":14,"progress":0,"t":13625355}
+10-15 21:10:12.989 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] clean_proof recheck {"provider":"google","localClean":true,"t":13625356}
+10-15 21:10:12.989 W/ReactNativeJS(12714): [WARNING] [AUTH-LINK-GOOGLE] clean_proof recheck: [AUTH-LINK-GOOGLE] clean_proof recheck {"provider":"google","localClean":true,"t":13625356}
+10-15 21:10:12.996 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":true,"postCompletionHandoff":false,"t":13625363}
+10-15 21:10:13.700 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] handoff signed_in {"provider":"google","sourceUid":"h:35842130","targetUid":"h:d9408b9b","uidChanged":true,"t":13626066}
+10-15 21:10:14.003 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] link_lookup result {"provider":"google","completed":true,"found":true,"providerUid":"h:d9408b9b","localStable":"h:7927c189","remoteStable":"h:de10a251","branch":"remote","t":13626370}
+10-15 21:10:17.759 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] ensure_link remote {"provider":"google","ok":true,"failure":null,"source":"callable","stableUid":"h:de10a251","nonceRejection":null,"t":13630126}
+10-15 21:10:17.760 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] outcome {"provider":"google","kind":"merged_swap_to_remote","handoffMarker":true,"target":"h:de10a251","t":13630126}
+10-15 21:10:17.761 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage local_data_checked {"provider":"google","tookMs":0,"sinceStartMs":15714,"preserveLocalProgress":false,"handoff":true,"t":13630128}
+10-15 21:10:17.761 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap presync_skipped {"provider":"google","reason":"handoff","t":13630128}
+10-15 21:10:17.762 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage presync_phase_done {"provider":"google","tookMs":0,"sinceStartMs":15714,"t":13630128}
+10-15 21:10:17.762 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage server_merge_done {"provider":"google","tookMs":0,"sinceStartMs":15714,"called":false,"t":13630128}
+10-15 21:10:17.763 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap merge_result {"provider":"google","called":false,"ok":false,"canonical":"none","canonicalIsRemote":false,"alreadyMerged":false,"t":13630129}
+10-15 21:10:17.764 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage authoritative_link_reused {"provider":"google","tookMs":2,"sinceStartMs":15716,"source":"callable","ageMs":4,"t":13630130}
+10-15 21:10:17.765 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":13630131}
+10-15 21:10:17.766 W/ReactNativeJS(12714): [WARNING] [AUTH-LINK-GOOGLE] swap merge_skipped_fallback: [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":13630131}
+10-15 21:10:17.767 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage sync_quiesced {"provider":"google","tookMs":4,"sinceStartMs":15720,"t":13630134}
+10-15 21:10:17.771 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage entitlement_transition_begun {"provider":"google","tookMs":3,"sinceStartMs":15723,"t":13630137}
+10-15 21:10:17.772 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage transition_lock_acquired {"provider":"google","tookMs":1,"sinceStartMs":15724,"t":13630138}
+10-15 21:10:18.217 I/ReactNativeJS(12714): [ACC-SWITCH-WIPE] survivors={"before":110,"knownLeak":[],"otherCount":67,"otherShapeCount":67,"other":{"account_switch_backup_gc_last_run_v1":1,"account_switch_shelved_prune_last_run_v1":1,"achievements_progress_backfill_v4":1,"age_consent_cloud_pending_v1":1,"analytics_consent_v1":1,"app_content_schema_version":1,"app_health_last_14kq968":1,"app_health_l
+10-15 21:10:18.326 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage wipe_done {"provider":"google","tookMs":554,"sinceStartMs":16278,"t":13630692}
+10-15 21:10:18.425 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage set_stable_id_done {"provider":"google","tookMs":100,"sinceStartMs":16378,"t":13630792}
+10-15 21:10:18.552 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage handoff_cleared {"provider":"google","tookMs":126,"sinceStartMs":16504,"t":13630918}
+10-15 21:10:18.557 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage generation_begun {"provider":"google","tookMs":6,"sinceStartMs":16510,"t":13630924}
+10-15 21:10:18.558 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage stable_id_installed {"provider":"google","tookMs":0,"sinceStartMs":16510,"t":13630924}
+10-15 21:10:18.558 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] swap stage auth_user_ready {"provider":"google","tookMs":1,"sinceStartMs":16511,"t":13630925}
+10-15 21:10:18.561 W/ReactNativeJS(12714): [AUTH-LINK-GOOGLE] result merged_devices {"provider":"google","from":"h:7927c189","to":"h:de10a251","tookMs":16514,"t":13630928}
+10-15 21:10:18.637 I/ReactNativeJS(12714): [SIGNIN] ui:returned provider=google result=merged_devices in=16679ms
+10-15 21:10:28.262 I/ReactNativeJS(12714): [SIGNIN] bg:swap_restore:restoreFromCloud ok 9702ms
+10-15 21:10:28.291 I/ReactNativeJS(12714): [ACC-SWITCH-RESTORE] owner_match=n/a status=no_backup restored=[] present=0
+10-15 21:10:28.303 I/ReactNativeJS(12714): [SIGNIN] bg:swap_restore:switchBackup ok 39ms
+10-15 21:10:28.378 I/ReactNativeJS(12714): [SIGNIN] bg:swap_restore:markOnboarded ok 74ms
+10-15 21:10:28.382 I/ReactNativeJS(12714): [SIGNIN] bg:swap_restore:revenueCat ok 3ms
+10-15 21:10:30.059 I/ReactNativeJS(12714): [SIGNIN] bg:swap_restore done total=11500ms restore=restored

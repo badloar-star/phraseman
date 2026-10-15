@@ -200,6 +200,7 @@ import {
   fiftyFiftyUsageKey,
   flashcardsCommunityOwnedPacksKey,
   flashcardsCommunityOwnedPackTitlesKey,
+  flashcardsCommunityOwnedTombstonesKey,
   flashcardsAchievementFlipCountKey,
   flashcardsAchievementSavedCountKey,
   flashcardsAchievementSourceSetKey,
@@ -354,6 +355,7 @@ export const FRENCH_TARGET_SYNC_KEYS = [
   flashcardsSavedKey('fr'),
   customFlashcardsKey('fr'),
   flashcardsCommunityOwnedPacksKey('fr'),
+  flashcardsCommunityOwnedTombstonesKey('fr'),
   flashcardsOwnedPacksKey('fr'),
   flashcardsProgressKey('fr'),
   flashcardsPackTrialGiftKey('fr'),
@@ -402,6 +404,7 @@ function buildTargetFlashcardSyncKeys(target: Exclude<LearningLanguageTarget, 'e
     flashcardsSavedKey(target),
     customFlashcardsKey(target),
     flashcardsCommunityOwnedPacksKey(target),
+    flashcardsCommunityOwnedTombstonesKey(target),
     flashcardsOwnedPacksKey(target),
     flashcardsProgressKey(target),
     flashcardsPackTrialGiftKey(target),
@@ -600,6 +603,7 @@ export const SYNC_KEYS = [
   'flashcards_progress_v1',
   'flashcards_owned_packs_v1',
   'community_owned_pack_ids_v1',
+  'community_owned_pack_tombstones_v1', // R47: надгробия «убрано из моих» — без них объединение вернёт убранный набор
   irregularVerbsGlobalKey('en'),
 
   // зачем (PM-289, D70/D78): ключи жемчуга (shards_one_time_events,
@@ -908,6 +912,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     flashcardsMarketDevActivePackKey(target),
     flashcardsCommunityOwnedPacksKey(target),
     flashcardsCommunityOwnedPackTitlesKey(target),
+    flashcardsCommunityOwnedTombstonesKey(target),
     flashcardsLocalAuthorPacksKey(target),
     flashcardsHiddenCommunityPacksKey(target),
     flashcardsOwnedPacksKey(target),
@@ -1642,6 +1647,7 @@ const OWNED_UNION_RESTORE_BASE_KEYS = new Set<string>([
   'custom_avatar_owned_v1',        // {[id]: 'gradient:logoColor'}
   'flashcards_owned_packs_v1',     // ["packId", ...]
   'community_owned_pack_ids_v1',   // ["packId", ...]
+  'community_owned_pack_tombstones_v1', // {packId: время*2(+1 = убрано)} — максимум по id
   'level_up_shown_levels_v1',      // [2, 3, ...] — acknowledged modals are strictly additive
   // зачем (аудит 2026-08-24): темы, купленные за 200 жемчужин, и темы «дедушек» —
   // такое же владение, как паки и ауры. Одной FC_RESTORE_MERGE_STRATEGIES было

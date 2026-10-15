@@ -83,6 +83,7 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^achievement_flashcards_source_set_v1$/,
   /^achievement_share_count$/,
   /^community_owned_pack_ids_v1$/,
+  /^community_owned_pack_tombstones_v1$/,
   /^community_local_author_packs_v1$/,
   new RegExp(`^${FLASHCARDS_MARKET_DEV_OWNED_KEY}$`),
   /^flashcards_owned_packs_v1$/,
@@ -570,6 +571,15 @@ export function flashcardsCommunityOwnedPacksKey(studyTarget?: RuntimeStudyTarge
 /** Заголовки community-паков рядом с их id — см. `communityOwnedStorage.ts`. */
 export function flashcardsCommunityOwnedPackTitlesKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('community_owned_pack_titles_v1', 'flashcards', studyTarget);
+}
+
+/**
+ * Надгробия «убрано из моих» рядом с id наборов сообщества: {packId: n}, n = время*2 (+1 = убрано, чётное = добавлено).
+ * зачем (R47, координатор 15.10): легаси-синк склеивает community_owned_pack_ids_v1 объединением — убранный набор возвращался при восстановлении.
+ * Слияние — максимум по id (позднее событие побеждает), см. communityOwnedStorage.ts.
+ */
+export function flashcardsCommunityOwnedTombstonesKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('community_owned_pack_tombstones_v1', 'flashcards', studyTarget);
 }
 
 export function flashcardsLocalAuthorPacksKey(studyTarget?: RuntimeStudyTarget): string {

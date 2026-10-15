@@ -16,6 +16,7 @@ import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from '../
 import { BoundedScopeCache, parseStrictArrayJson } from '../flashcards/myPacksDataIntegrity';
 import { devCommunityMarkOwned, getDevCommunityOwnedIds, isDevCommunityPackId } from '../dev_cards_state';
 import { notifyOwnedPackIdsChanged } from './owned_pack_ids_signal';
+import { hideRemovedOwnedIds, loadOwnedTombstones, stampOwnedTombstone } from './community_owned_tombstones';
 
 const warmOwnedIdsByKey = new BoundedScopeCache<string[]>(16);
 
@@ -51,10 +52,17 @@ export async function loadCommunityOwnedPackIdsResult(
       return { ids: [], status: 'stale' };
     }
     if (parsed.status === 'ready') {
-      warmOwnedIdsByKey.set(cacheKey, parsed.items);
+      // зачем (R47): объединение при восстановлении возвращает убранный набор — прячем id, чьё победившее событие «убрано» (надгробие новее добавления).
+      const tombstones = await loadOwnedTombstones(studyTarget);
+      const visibleItems = hideRemovedOwnedIds(parsed.items, tombstones);
+      if (visibleItems.length !== parsed.items.length) {
+        console.log(`[MY-PACKS] tombstone hide key=${key} raw=${parsed.items.length} visible=${visibleItems.length} hidden=${parsed.items.filter((id) => !visibleItems.includes(id)).join(',')}`); // guard-ok: какие id спрятаны
+      }
+      if (!isCurrentAccountGeneration(accountToken)) return { ids: [], status: 'stale' };
+      warmOwnedIdsByKey.set(cacheKey, visibleItems);
       // зачем (съёмка R1): «добавленные» в памяти демо-наборы (dev `community=`) видны рядом с настоящими; в хранилище их нет.
-      const devOwned = getDevCommunityOwnedIds().filter((id) => !parsed.items.includes(id));
-      return { ids: devOwned.length ? [...parsed.items, ...devOwned] : parsed.items, status: 'ready' };
+      const devOwned = getDevCommunityOwnedIds().filter((id) => !visibleItems.includes(id));
+      return { ids: devOwned.length ? [...visibleItems, ...devOwned] : visibleItems, status: 'ready' };
     }
     console.warn('[PACKS-OWNED] load:unreadable -> warm copy', JSON.stringify({ key, parseStatus: parsed.status }));
     return { ids: warmOwnedIdsByKey.get(cacheKey) ?? [], status: 'stale' };
@@ -141,6 +149,10 @@ export async function addCommunityOwnedPackId(
     if (cacheKey && isCurrentAccountGeneration(token)) warmOwnedIdsByKey.set(cacheKey, next);
     packIds = next;
     libraryChanged = true;
+    // зачем (R47): добавление — событие «добавлено» со своим временем: оно перебивает более раннее надгробие (на этом и других устройствах); права на платный набор не при чём.
+    await stampOwnedTombstone(id, false, studyTarget).catch((error: unknown) => {
+      console.warn(`[MY-PACKS] tombstone add-stamp FAILED pack=${id} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+    });
   }
   // зачем: сохраняем название рядом с id в момент добавления набора — единственный
   // надёжный момент, когда оно точно есть под рукой, без похода в сеть позже
@@ -221,6 +233,13 @@ export async function removeCommunityOwnedPackId(
     DebugLogger.error('communityOwnedStorage:remove_titles', e instanceof Error ? e : new Error(String(e)), 'warning');
   }
   const target = storageStudyTarget(studyTarget);
+  // зачем (R47): надгробие для легаси-синка + выгрузка существующим путём (без отдельного документа).
+  await stampOwnedTombstone(id, true, studyTarget).catch((error: unknown) => {
+    console.warn(`[MY-PACKS] tombstone remove-stamp FAILED pack=${id} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+  });
+  void import('../cloud_sync').then((mod) => mod.syncToCloud()).catch((error: unknown) => {
+    console.warn(`[MY-PACKS] tombstone syncToCloud FAILED pack=${id} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+  });
   emitLibrarySnapshot(v2Owner, target, next, titles);
   notifyOwnedPackIdsChanged(); // строки видео-наборов и экран ролика сразу снова предлагают «Добавить»
   console.log(`[MY-PACKS] remove pack=${id} result=removed owned_before=${loaded.ids.length} owned_after=${next.length} target=${target} synced=tombstone_via_snapshot`); // guard-ok: итог убирания

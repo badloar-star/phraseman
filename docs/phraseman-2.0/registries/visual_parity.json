@@ -45146,6 +45146,845 @@
       },
       "added_reason": "владелец D194 15.10 через координатора",
       "note": "хук useLearningV2VoiceAllowance (app/voice_daily_allowance.ts) в плеере курса пока НЕ подключён (импортёров нет) — до подключения кадр = отличие; счётчик общий с Диалогами (D165), dev-подмены остатка нет: тратить попытки голосом или speech=wrong; эталон пейвола = ai_voice_input (координатор 15.10: дневной голос; кадр assets/d194/paywall_ai_voice_input_now.png). Подзаголовок «весь диалог вслух» для входа из курса — оставлен до релиза (улучшение владельцу)"
+    },
+    {
+      "id": "streak-milestone-d0001",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d1-A · Рубеж 1 · малый",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 1 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneToast.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 1 · малый — тост без блокировки касаний, ≤1,5 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=1&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0003",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d3-A · Рубеж 3 · малый",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 3 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneToast.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 3 · малый — тост без блокировки касаний, ≤1,5 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=3&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0007",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d7-A · Рубеж 7 · большой",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 7 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 7 · большой — сцена в Modal, ≈5 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=7&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0014",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d14-A · Рубеж 14 · малый",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 14 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneToast.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 14 · малый — тост без блокировки касаний, ≤1,5 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=14&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0030",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d30-A · Рубеж 30 · большой",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 30 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 30 · большой — сцена в Modal, ≈5 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=30&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0050",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d50-A · Рубеж 50 · средний",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 50 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 50 · средний — сцена в Modal, ≈3 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=50&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0100",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d100-A · Рубеж 100 · большой",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 100 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 100 · большой — сцена в Modal, ≈5 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=100&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0150",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d150-A · Рубеж 150 · малый",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 150 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneToast.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 150 · малый — тост без блокировки касаний, ≤1,5 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=150&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0200",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d200-A · Рубеж 200 · средний",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 200 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 200 · средний — сцена в Modal, ≈3 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=200&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0250",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d250-A · Рубеж 250 · малый",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 250 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneToast.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 250 · малый — тост без блокировки касаний, ≤1,5 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=250&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0300",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d300-A · Рубеж 300 · средний",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 300 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 300 · средний — сцена в Modal, ≈3 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=300&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0365",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d365-A · Рубеж 365 · огромный · Год",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 365 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 365 · огромный · Год — сцена в Modal, ≈8–9 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=365&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0400",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d400-A · Рубеж 400 · средний",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 400 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 400 · средний — сцена в Modal, ≈3 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=400&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0500",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d500-A · Рубеж 500 · большой · своя сцена",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 500 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 500 · большой · своя сцена — сцена в Modal, ≈8–9 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=500&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0600",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d600-A · Рубеж 600 · средний",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 600 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 600 · средний — сцена в Modal, ≈3 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=600&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0730",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d730-A · Рубеж 730 · огромный · Два года",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 730 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 730 · огромный · Два года — сцена в Modal, ≈8–9 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=730&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0800",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d800-A · Рубеж 800 · средний",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 800 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 800 · средний — сцена в Modal, ≈3 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=800&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d0900",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d900-A · Рубеж 900 · средний",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 900 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 900 · средний — сцена в Modal, ≈3 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=900&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "streak-milestone-d1000",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "d1000-A · Рубеж 1000 · легенда",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "серия стала 1000 дней",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx",
+        "components/streak/moments/streak_milestones.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "рубеж 1000 · легенда — сцена в Modal, ≈8–9 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=1000&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает"
+    },
+    {
+      "id": "moments-v3-m19",
+      "source": "COORDINATOR_2026-10-15_MOMENTS_V3",
+      "mockup": {
+        "file": "docs/design/v2-app/engagement-moments-v3-all.html",
+        "phone": null,
+        "label": "m19-A…C · 7 дней — морф + ачивка / 30 дней — календарь / 100 дней",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Координатор 15.10: рубежи серии v3 (раздел «Рубежи серии · 19» engagement-moments-v3-all.html) — эталон = вариант по id (d<N>-A / m19-A…C), нумерации телефонов нет",
+      "screen": "Рубеж серии дней — окно поверх итога",
+      "state": "витрина рубежей 7 / 30 / 100 (те же дни, что d7 / d30 / d100)",
+      "code": [
+        "components/streak/moments/StreakMilestoneMoment.tsx",
+        "components/streak/moments/StreakMilestoneScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "m19-A ~3,5 с, B ~4 с, C ~4 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&streak=7&next=/lesson1?id=1%26from=lesson_menu",
+        "taps": "пройти урок до конца → рубеж поверх итога; видео",
+        "log": "[DEV-STREAK-MILESTONE] · [STREAK-MILESTONE]"
+      },
+      "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
+      "note": "показ на итоге урока/разговора/карточек/«Моих ошибок» через StreakMilestoneHost и подмена streak=N (app/dev_streak_milestone.ts) — в работе у Тем, на 15.10 ~10:10 не закоммичены; до коммита ссылка не сработает; кадры снимать ссылками d7/d30/d100 (streak=7/30/100) и сверять ещё и с m19-A/B/C; если вариант m19 и d-кадр того же дня расходятся — решает Дизайн"
     }
   ]
 }

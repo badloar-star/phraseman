@@ -20,6 +20,7 @@ import V2Backdrop from './v2/V2Backdrop';
 import { noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const V2_BACKDROP_ENABLED = true;
+const loggedBleed = new Set<string>();
 const GradientActiveCtx = React.createContext(false);
 
 const { width: W, height: H } = Dimensions.get('window');
@@ -731,6 +732,10 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
 
   // зачем (R69 «шов под статус-баром», Сверка 15.10: Главная — зона #eaebfe (y0–23) → #f3f4fd, граница y=24): оболочка вкладок сдвигала слой фона вниз на HOME_ENTRANCE.bgDriftPx (9 dp = 24 px на Pixel 8)
   // ради «дрейфа» Главной, а полотно 2.0 (V2Backdrop) статично и под ним лежит bgPrimary — верхние 9 dp открывали другой тон, девять уровней шва. Полотно 2.0 не двигается: сдвиг игнорируется.
+  if (bleedTop > 0 && !loggedBleed.has(`${themeMode}/${Math.round(bleedTop)}`)) {
+    loggedBleed.add(`${themeMode}/${Math.round(bleedTop)}`);
+    console.log(`[STATUSBAR-CANVAS] page-canvas theme=${themeMode} bleedTop=${Math.round(bleedTop)} fullBleed=${String(!!forceFullBleed)} v2=${String(V2_BACKDROP_ENABLED)} — слой полотна страницы поднят над её верхом (геометрия как у полотна оболочки)`); // guard-ok: одна строка на тему — какой слой рисует верх под статус-баром
+  }
   const staticY = V2_BACKDROP_ENABLED ? undefined : staticParallaxY;
   const animatedY =
     SCREEN_GRADIENT_MOTION_ENABLED && staticParallaxY === undefined ? (entranceOffsetY ?? defaultEntranceY) : undefined;

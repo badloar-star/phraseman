@@ -3389,6 +3389,9 @@ function LessonScreen() {
       // НЕ сбрасываем phraseOrderRef здесь: пока экран «результат» виден, phrase =
       // getPhraseForCell(cellIndex) ещё должен использовать тот же shuffle — иначе русский/
       // эталон EN перескакивают на LESSON_DATA[cell], а selectedWords остаются от реальной фразы.
+      // зачем (Ревизор 15.10, 🟡 к e85eb2ccb): сбой перехода на итог возвращает ссылку, и повтор снова проходит весь путь — счётчик дня и
+      // аналитика успеха засчитались бы дважды. Флаг живёт в замыкании прохода: повтор того же прохода их пропускает.
+      let completionStatsCounted = false;
       const runLessonCompletionNavigation = async () => {
         const resetShuffleForNextPass = () => {
           phraseOrderRef.current = [];
@@ -3468,14 +3471,19 @@ function LessonScreen() {
         if (markLessonAttemptTerminal(analyticsAttempt, 'complete')) {
           logLessonComplete(lessonId, analyticsAttempt.id, lessonAttemptElapsedMs(analyticsAttempt));
         }
-        void trackFeatureSuccess('lesson', 'complete', {
-          lessonId,
-          finalScore,
-          didUnlock,
-          correct,
-          effectiveTotal,
-        }, 'lesson1');
-        void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
+        if (completionStatsCounted) {
+          console.log('[LESSON-RESULT] retry_skip_stats', JSON.stringify({ lessonId })); // guard-ok: повтор перехода
+        } else {
+          completionStatsCounted = true;
+          void trackFeatureSuccess('lesson', 'complete', {
+            lessonId,
+            finalScore,
+            didUnlock,
+            correct,
+            effectiveTotal,
+          }, 'lesson1');
+          void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
+        }
 
         // зачем: диагнозы тренера удалены вместе с разделом «Моя практика»
         // (осколок коммита 4ccd8c4f4) — маршрут больше не несёт coach-параметров.

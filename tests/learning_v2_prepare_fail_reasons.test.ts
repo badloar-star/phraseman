@@ -35,3 +35,15 @@ describe('[V2-PLAYER] · у плеера V2 нет немых catch', () => {
     expect(player).toContain('function logPlayerSwallowed(where: string, id: string, error: unknown): void {');
   });
 });
+
+describe('[V2-FINISH] · сбой сохранения после звёзд: совет про интернет — только при сетевой ошибке', () => {
+  it('сеть → «Проверь интернет», иначе → «Не получилось сохранить результат»', () => {
+    const player = fs.readFileSync(path.join(__dirname, '..', 'app', 'learning_v2_direct_session_player_v1.tsx'), 'utf8');
+    const at = player.indexOf('"[V2-FINISH] save_failed_after_stars"');
+    expect(at).toBeGreaterThan(-1);
+    const block = player.slice(at - 600, at + 1600);
+    expect(block).toContain('const networkFailure = /network|offline|timeout|timed out|unavailable|fetch|internet|connection/i.test(');
+    expect(block).toContain('actionToastTri("error", networkFailure ? {');
+    expect(block).toContain('ru: "Не получилось сохранить результат"');
+  });
+});

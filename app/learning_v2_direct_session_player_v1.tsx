@@ -2324,8 +2324,13 @@ export default function LearningV2DirectSessionPlayerV1() {
         }));
       } else {
         // зачем (Ревизор 15.10, 🟡 к #40): звёзды уже засчитаны, но сбой при сохранении проходил молча — человек должен знать.
-        console.warn("[V2-FINISH] save_failed_after_stars", JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: причина в журнале
-        emitAppEvent("action_toast", actionToastTri("error", {
+        // зачем (Ревизор 15.10, 🟡 к e85eb2ccb): «Проверь интернет» — только когда виновата сеть; локальный сбой (диск, данные) тот же совет
+        // дал бы ложный след. Сеть узнаём по коду/тексту ошибки; всё прочее — нейтральное «не получилось сохранить результат».
+        const reason = error instanceof Error ? error.message : String(error);
+        const code = typeof (error as { code?: unknown } | null)?.code === "string" ? (error as { code: string }).code : "";
+        const networkFailure = /network|offline|timeout|timed out|unavailable|fetch|internet|connection/i.test(`${code} ${reason}`);
+        console.warn("[V2-FINISH] save_failed_after_stars", JSON.stringify({ reason, code: code || null, networkFailure })); // guard-ok: причина в журнале
+        emitAppEvent("action_toast", actionToastTri("error", networkFailure ? {
           ru: "Не получилось сохранить. Проверь интернет",
           uk: "Не вдалося зберегти. Перевір інтернет",
           en: "We couldn't save. Check your connection",
@@ -2335,6 +2340,16 @@ export default function LearningV2DirectSessionPlayerV1() {
           id: "Gagal menyimpan. Periksa koneksimu",
           tr: "Kaydedilemedi. Bağlantını kontrol et",
           pl: "Nie udało się zapisać. Sprawdź połączenie",
+        } : {
+          ru: "Не получилось сохранить результат",
+          uk: "Не вдалося зберегти результат",
+          en: "We couldn't save your result",
+          es: "No pudimos guardar tu resultado",
+          "pt-BR": "Não conseguimos salvar seu resultado",
+          vi: "Không lưu được kết quả",
+          id: "Hasilmu gagal disimpan",
+          tr: "Sonucun kaydedilemedi",
+          pl: "Nie udało się zapisać wyniku",
         }));
       }
     } finally {

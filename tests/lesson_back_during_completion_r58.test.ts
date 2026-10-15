@@ -37,3 +37,16 @@ describe('R58 #27 · сбой перехода на итог не оставля
     expect(src.slice(at, at + 400)).toContain('lessonCompletionNavigateRef.current = () => { void runLessonCompletionNavigation(); };');
   });
 });
+
+describe('R58 #27 · повтор перехода на итог не считает статистику дважды', () => {
+  it('счётчик дня и аналитика успеха — один раз на проход', () => {
+    expect(src).toContain('let completionStatsCounted = false;');
+    const at = src.indexOf('if (completionStatsCounted) {');
+    expect(at).toBeGreaterThan(-1);
+    const block = src.slice(at, at + 700);
+    expect(block).toContain("'[LESSON-RESULT] retry_skip_stats'");
+    expect(block).toContain('completionStatsCounted = true;');
+    expect(block.indexOf('completionStatsCounted = true;')).toBeLessThan(block.indexOf("void bumpStatsDaily('lessons_completed'"));
+    expect(block.indexOf('completionStatsCounted = true;')).toBeLessThan(block.indexOf("void trackFeatureSuccess('lesson', 'complete'"));
+  });
+});

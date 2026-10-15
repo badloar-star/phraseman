@@ -3527,23 +3527,30 @@ function LessonScreen() {
           resetShuffleForNextPass();
           rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);
           lessonWrongMistakesRef.current = [];
-          markNextNavigationAsReplace();
-          router.replace({
-            pathname: '/lesson_complete',
-            params: {
-              id: String(lessonId),
-              unlocked: '0',
-              completedAttemptId,
-              repeatAttemptId: nextAttemptId,
-              passed: finalScore >= 2.5 ? '1' : '0',
-              runeCompletionOrdinal: String(passCount + 1),
-              // зачем (координатор 13.10): счёт прохода едет в маршруте — итог не зависит от хранилища прогресса и не рисуется пустым.
-              resultCorrect: String(correct),
-              resultTotal: String(effectiveTotal),
-              ...(devRunesSeedParam ? { devRunesSeed: devRunesSeedParam } : {}),
-              ...comboRouteParams,
-            },
-          });
+          try {
+            markNextNavigationAsReplace();
+            router.replace({
+              pathname: '/lesson_complete',
+              params: {
+                id: String(lessonId),
+                unlocked: '0',
+                completedAttemptId,
+                repeatAttemptId: nextAttemptId,
+                passed: finalScore >= 2.5 ? '1' : '0',
+                runeCompletionOrdinal: String(passCount + 1),
+                // зачем (координатор 13.10): счёт прохода едет в маршруте — итог не зависит от хранилища прогресса и не рисуется пустым.
+                resultCorrect: String(correct),
+                resultTotal: String(effectiveTotal),
+                ...(devRunesSeedParam ? { devRunesSeed: devRunesSeedParam } : {}),
+                ...comboRouteParams,
+              },
+            });
+          } catch (replaceError) {
+            // зачем (Ревизор 15.10, 🟡 к #27): переход на итог упал — ссылка уже обнулена, и «Дальше» молчал до перезахода
+            // (isCompletingRef держит урок в завершении). Возвращаем ссылку: следующий тап «Дальше»/«Назад» повторит переход.
+            console.warn('[LESSON-RESULT] replace_failed', JSON.stringify({ lessonId, reason: replaceError instanceof Error ? replaceError.message : String(replaceError) })); // guard-ok: причина в журнале
+            lessonCompletionNavigateRef.current = () => { void runLessonCompletionNavigation(); };
+          }
         }
       };
 

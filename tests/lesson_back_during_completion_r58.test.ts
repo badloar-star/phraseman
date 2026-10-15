@@ -29,3 +29,11 @@ describe('R58 #27 · «Дальше» во время завершения ур�
     expect(goNext).toContain("'[LESSON-RESULT] next_ignored'");
   });
 });
+
+describe('R58 #27 · сбой перехода на итог не оставляет «Дальше» немым', () => {
+  it('при падении router.replace ссылка на переход возвращается и причина пишется в журнал', () => {
+    const at = src.indexOf("'[LESSON-RESULT] replace_failed'");
+    expect(at).toBeGreaterThan(-1);
+    expect(src.slice(at, at + 400)).toContain('lessonCompletionNavigateRef.current = () => { void runLessonCompletionNavigation(); };');
+  });
+});

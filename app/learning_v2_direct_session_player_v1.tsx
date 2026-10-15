@@ -2307,6 +2307,20 @@ export default function LearningV2DirectSessionPlayerV1() {
           tr: "Yıldızlar hesaplanamadı. Oturumu tekrar yap",
           pl: "Nie udało się policzyć gwiazdek. Przejdź zajęcia jeszcze raz",
         }));
+      } else {
+        // зачем (Ревизор 15.10, 🟡 к #40): звёзды уже засчитаны, но сбой при сохранении проходил молча — человек должен знать.
+        console.warn("[V2-FINISH] save_failed_after_stars", JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: причина в журнале
+        emitAppEvent("action_toast", actionToastTri("error", {
+          ru: "Не получилось сохранить. Проверь интернет",
+          uk: "Не вдалося зберегти. Перевір інтернет",
+          en: "We couldn't save. Check your connection",
+          es: "No pudimos guardar. Revisa tu conexión",
+          "pt-BR": "Não conseguimos salvar. Verifique sua conexão",
+          vi: "Không lưu được. Hãy kiểm tra kết nối",
+          id: "Gagal menyimpan. Periksa koneksimu",
+          tr: "Kaydedilemedi. Bağlantını kontrol et",
+          pl: "Nie udało się zapisać. Sprawdź połączenie",
+        }));
       }
     } finally {
       // A completed learning interaction never turns into a save-error screen.

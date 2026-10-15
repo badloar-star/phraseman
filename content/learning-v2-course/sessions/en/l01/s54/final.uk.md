@@ -1,224 +1,138 @@
-# Англійська · Урок 1 · Заняття 54 — «Розмова телефоном»
+# Англійська · Урок 1 · Заняття 54 — Коробка старих фотографій
 
-**Ситуація.** Під час телефонної співбесіди рекрутер просить коротко розповісти про себе.
-**Що ви опануєте:** Сказати, що ви хвилюєтеся, упевнені в собі або вільно говорите англійською.
-**Нові слова:** confident, nervous, fluent
-**Повертаються:** honest, calm, ready
+**Ситуація.** Ви із сестрою розбираєте старі фотографії. На одних знайомі місця, на інших — вулиці, яких ви раніше не бачили. Ім’я автора одного знімка з’ясувати не вдалося.
+
+**Що ви опануєте:** розрізнити впізнаване, незнайоме й те, про що відомостей поки немає
+**Нові слова:** familiar, unfamiliar, unknown
 
 ---
 
 ## Інтро 1
 
-### `nervous` — «хвилююся»
+### Упізнаю це
 
-`nervous` — «хвилююся, нервуюся». Слово про зараз, а не про вдачу: сьогодні перед дзвінком хвилююся, завтра вже ні.
+`familiar` — «знайомий», «упізнаваний». `It is familiar` — «Це знайоме». Ви бачили цей двір раніше й упізнаєте його. Здається, навіть лавка досі стоїть там, де ви залишили на ній рукавичку.
 
-Ми кажемо «я хвилююся» — і все, більше нічого не треба. Роботу бере на себе саме закінчення дієслова: `-юся` вже показує, що йдеться про мене. А `nervous` — не дієслово, воно нічого на себе не бере, тому англійською поруч обов'язково стає `am`: `I am nervous`.
+**Ви впізнаєте двір на фотографії: бували там багато разів. Скажіть, що він вам знайомий.**
 
-**Голос у слухавці: «Готові починати?» Ви чесно кажете, що хвилюєтеся.**
-
-- ✅ **I am nervous.**
-- ❌ I nervous. — *Після `I` перед `nervous` потрібне `am`.*
-- ❌ I is nervous. — *`is` — не для `I`. Про себе — `am`.*
+- ✅ **It is familiar.**
+- ❌ It is unfamiliar. — *`unfamiliar` — незнайомий. Тут ви впізнаєте двір: `familiar`.*
+- ❌ It are familiar. — *Після `It` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### `confident` — «упевнений у собі»
+### Бачу вперше
 
-`confident` — «упевнений у собі». Не «я знаю відповідь», а «я спокійно говорю про те, що вмію».
+`unfamiliar` — «незнайомий», «незвичний». `It is unfamiliar` — «Це незнайоме». Вулицю на іншому знімку ви бачите вперше. Інша людина цілком може її впізнати: йдеться про ваше знайомство з нею.
 
-Поруч стоїть схоже `ready` — «готовий». Але `ready` про цю мить: можна починати. А `confident` — про вас загалом, незалежно від хвилини. Тому `I am ready` ви скажете у дверях, а `I am confident` — про всю свою роботу.
+**Цієї вулиці ви раніше не бачили й не впізнаєте. Скажіть, що вона вам незнайома.**
 
-**Рекрутер питає, чи впораєтеся ви з новою роботою. Скажіть, що ви впевнені в собі.**
-
-- ✅ **I am confident.**
-- ❌ I am calm. — *`calm` — «спокійний», про нерви. Гарне слово, але спитали про ваші сили.*
-- ❌ I confident. — *`am` знову загубилося. Про себе — `I am`, повністю.*
+- ✅ **It is unfamiliar.**
+- ❌ It is familiar. — *`familiar` — знайома. Тут ви не впізнаєте вулицю: `unfamiliar`.*
+- ❌ It are unfamiliar. — *Після `It` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### `fluent` — «говорю вільно»
+### Відомостей немає
 
-`fluent` — «говорю вільно». Слово тільки про мовлення: не затинаюся, не добираю слова по пів години.
+`unknown` — «невідомий». `It is unknown` — «Це невідомо». Про дату без відомостей підходить `unknown`; про вулицю, яку особисто ви не впізнаєте, зазвичай точніше `unfamiliar`. Значення можуть перетинатися — вибирайте за ситуацією.
 
-Поруч стоїть `confident` — але воно про вас цілком, а `fluent` — про одну вашу мову. Можна бути `confident` і при цьому не `fluent`, і навпаки.
+**Ні на знімку, ні в сімейних записах немає дати; коли його зроблено, з’ясувати не вдалося. Скажіть, що дата невідома.**
 
-**Рекрутер питає про вашу англійську. Ви говорите вільно — скажіть це.**
-
-- ✅ **I am fluent.**
-- ❌ I am honest. — *`honest` — «чесний». Гарне слово, але відповідь не про вдачу, а про мовлення.*
-- ❌ I fluent. — *Між `I` та `fluent` потрібне `am`.*
+- ✅ **It is unknown.**
+- ❌ It is familiar. — *Дату не вдалося встановити. Тут потрібно `unknown`.*
+- ❌ It are unknown. — *Після `It` потрібно `is`.*
 
 ---
 
-## Практика (перші завдання)
+## Практика (17 завдань)
 
-**1 · Картка слова — nervous**
-<!-- interaction_id: en:lesson-01:session-54:i01; family: listen_choose -->
-> **nervous** — «хвилююся». Руки холодні, голос трохи вищий, ніж зазвичай, а розмова ще навіть не почалася.
+**1 · Ви впізнаєте будинок, де часто бували. Скажіть, що він вам знайомий**
+<!-- interaction_id: en:lesson-01:session-54:i01; family: phrase_builder -->
+Плитки: `familiar` `is` `It` `are` → **It is familiar.**
+*(плитка `are` зайва: тут потрібно `is` — `It is familiar.`)*
 
-**2 · Послухайте та оберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-54:i02; family: listen_choose -->
-🔊 *nervous* → **nervous** · nurse · number
-- nervous — *Правильно: `nervous` — «хвилююся».*
-- nurse — *«Медсестра» — професія, а не стан людини.*
-- number — *«Число». Починається інакше: `number` — як «на-», а `nervous` — як «ньо-».*
+🔊 *It is unfamiliar.* → **It is unfamiliar.** · It is familiar. · It is unknown.
+- It is familiar. — *У записі останнє слово — `unfamiliar`, а в цьому варіанті — `familiar`.*
+- It is unknown. — *У записі останнє слово — `unfamiliar`, а в цьому варіанті — `unknown`.*
 
-**3 · Картка слова — confident**
-<!-- interaction_id: en:lesson-01:session-54:i03; family: listen_choose -->
-> **confident** — «упевнений у собі». Людина говорить про свої вміння рівно, без вихваляння й без виправдань.
+**3 · На двох знімках двори, які ви впізнаєте. Доповніть фразу про двори**
+<!-- interaction_id: en:lesson-01:session-54:i03; family: context_gap_grammar -->
+They ___ familiar. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про два двори — `They are`.*
 
-**4 · Послухайте та оберіть**
-<!-- interaction_id: en:lesson-01:session-54:i04; family: listen_choose -->
-🔊 *confident* → **confident** · comfort · content
-- confident — *Правильно: `confident` — «упевнений у собі».*
-- comfort — *«Зручність» — про крісло й обстановку, а не про людину.*
-- content — *«Задоволений» — близька тема, але це про вдоволеність, а не про впевненість у своїх силах.*
+**4 · З’єднайте слова з основними значеннями**
+<!-- interaction_id: en:lesson-01:session-54:i04; family: speed_match -->
+familiar — знайомий · unfamiliar — незнайомий · unknown — невідомий · useless — марний
 
-**5 · Вставте слово — Анна питає, чи впораєтеся ви: ви робили це сто разів**
-<!-- interaction_id: en:lesson-01:session-54:i05; family: context_gap_grammar -->
-I am ___ . → **confident** · fluent · honest
-- confident — *Правильно: `confident` — «упевнений у собі»; тут ви кажете, що впораєтеся з роботою.*
-- fluent — *«Вільно говорю» — про мовлення, а спитали про ваші сили.*
-- honest — *«Чесний» — про правдивість, а не про впевненість у справі.*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-54:i05; family: listen_build_dictation -->
+🔊 *It's unknown.* Плитки: `unknown` `It's` `He's` → **It's unknown.**
+*(плитка `He's` зайва: тут потрібно `It's` — `It's unknown.`)*
 
-**6 · Картка слова — fluent**
-<!-- interaction_id: en:lesson-01:session-54:i06; family: listen_choose -->
-> **fluent** — «говорю вільно». Мовлення йде саме, без пауз на пошук слова.
+**6 · Ви вперше бачите цей провулок на фото. Назвіть його незнайомим вам**
+<!-- interaction_id: en:lesson-01:session-54:i06; family: phrase_builder -->
+Плитки: `unfamiliar` `is` `It` `are` → **It is unfamiliar.**
+*(плитка `are` зайва: тут потрібно `is` — `It is unfamiliar.`)*
 
-**7 · Послухайте та оберіть**
-<!-- interaction_id: en:lesson-01:session-54:i07; family: listen_choose -->
-🔊 *fluent* → **fluent** · flat · floor
-- fluent — *Правильно: `fluent` — «говорю вільно».*
-- flat — *«Квартира» — про житло, а не про мовлення.*
-- floor — *«Підлога». Обривається одразу, а у `fluent` після першої частини є ще одна.*
+**7 · Коротко скажіть про знайомий вам двір на знімку**
+<!-- interaction_id: en:lesson-01:session-54:i07; family: scripted_repeat_compare -->
+🎙 **It's familiar.**
 
-**8 · Складіть фразу — «я хвилююся»**
-<!-- interaction_id: en:lesson-01:session-54:i08; family: phrase_builder -->
-Плитки: `nervous` `I` `am` `is` → **I am nervous.**
-*Правильно: `I am nervous.` — після `I` потрібна форма `am`.*
-*Плитка `is` зайва: з `I` кажуть `am`, не `is`.*
+**8 · Ім’я автора знімка встановити не вдалося. Назвіть ім’я невідомим**
+<!-- interaction_id: en:lesson-01:session-54:i08; family: context_gap_grammar -->
+It is ___ . → **unknown** · familiar · useless
+- familiar — *Знайоме ім’я впізнають. Тут ім’я не встановлене: `unknown`.*
+- useless — *Це про марність. Тут немає відомостей про ім’я: `unknown`.*
 
-**9 · Вставте слово — Анна питає про вашу англійську**
-<!-- interaction_id: en:lesson-01:session-54:i09; family: context_gap_grammar -->
-I am ___ . → **fluent** · nervous · honest
-- fluent — *Правильно: `fluent` — «говорю вільно»: це відповідь про те, як ви говорите англійською.*
-- nervous — *«Хвилююся» — про стан, а питання було про мовлення.*
-- honest — *«Чесний» — про вдачу. Про мовлення кажуть `fluent`.*
+**9 · Послухайте фразу про місце**
+<!-- interaction_id: en:lesson-01:session-54:i09; family: listen_choose -->
+🔊 *It is familiar.* → **It is familiar.** · It is unfamiliar. · It is unknown.
+- It is unfamiliar. — *У записі останнє слово — `familiar`, а в цьому варіанті — `unfamiliar`.*
+- It is unknown. — *У записі останнє слово — `familiar`, а в цьому варіанті — `unknown`.*
 
-**10 · Складіть фразу — «я впевнений у собі»**
-<!-- interaction_id: en:lesson-01:session-54:i10; family: phrase_builder -->
-Плитки: `I` `am` `confident.` `are` `is` → **I am confident.**
-*Правильно: `I am confident.` — після `I` потрібна форма `am`.*
-*Плитка `are` зайва: з `I` кажуть `am`, не `are`.*
-*Плитка `is` зайва: з `I` кажуть `am`, не `is`.*
+**10 · З’єднайте короткі початки з повними**
+<!-- interaction_id: en:lesson-01:session-54:i10; family: speed_match -->
+It's — It is · They're — They are · He's — He is · She's — She is
 
-**11 · Послухайте та складіть — «я говорю вільно»**
+**11 · Послухайте й складіть фразу про місця**
 <!-- interaction_id: en:lesson-01:session-54:i11; family: listen_build_dictation -->
-🔊 *I am fluent.* Плитки: `fluent` `I` `am` `nervous` → **I am fluent.**
-*Правильно: `I am fluent.` — `fluent` описує вільне мовлення.*
-*Плитка `nervous` зайва: вона означає «хвилююся», а тут ідеться про мову.*
+🔊 *They're unfamiliar.* Плитки: `unfamiliar` `They're` `We're` → **They're unfamiliar.**
+*(плитка `We're` зайва: тут потрібно `They're` — `They're unfamiliar.`)*
 
-**12 · Вставте слово — вас спитали, чи завжди ви кажете правду**
-<!-- interaction_id: en:lesson-01:session-54:i12; family: context_gap_grammar -->
-I am ___ . → **honest** · calm · fluent
-- honest — *Правильно: `honest` — «чесний»: вас спитали, чи завжди ви кажете правду.*
-- calm — *`calm` — «спокійний». Про нерви, а не про правду.*
-- fluent — *«Говорю вільно» — про те, як звучить мовлення, а не про чесність.*
+**12 · Підпис повністю стерся й не допомагає дізнатися дату. Оцініть його марність для пошуку дати**
+<!-- interaction_id: en:lesson-01:session-54:i12; family: phrase_builder -->
+Плитки: `useless` `is` `It` `are` → **It is useless.**
+*(плитка `are` зайва: тут потрібно `is` — `It is useless.`)*
 
-**13 · Складіть фразу — вас спитали, чи не панікуєте ви у важкий день**
-<!-- interaction_id: en:lesson-01:session-54:i13; family: phrase_builder -->
-Плитки: `calm` `I` `am` `not` → **I am calm.**
-*Правильно: `I am calm.` — після `I` потрібна форма `am`, а `calm` означає «спокійний».*
-*(Плитка `not` зайва: ви відповідаєте, що спокійні, а не навпаки.)*
+**13 · На двох фото місця, де ви часто гуляли й які одразу впізнаєте. Скажіть, що місця вам знайомі**
+<!-- interaction_id: en:lesson-01:session-54:i13; family: scripted_repeat_compare -->
+🎙 **They are familiar.**
 
-**14 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-54:i14:s01; family: scripted_repeat_compare -->
-Рекрутер питає, чи хвилюєтеся ви перед розмовою. Скажіть, що хвилюєтеся.
+**14 · Одна вулиця на знімку вам незнайома. Доповніть фразу**
+<!-- interaction_id: en:lesson-01:session-54:i14; family: context_gap_grammar -->
+It ___ unfamiliar. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Про одну вулицю — `It is`.*
 
-🎙 **I am nervous.**
+**15 · Послухайте коротку фразу й виберіть її**
+<!-- interaction_id: en:lesson-01:session-54:i15; family: listen_choose -->
+🔊 *It's unknown.* → **It's unknown.** · It's familiar. · It's unfamiliar.
+- It's familiar. — *У записі останнє слово — `unknown`, а в цьому варіанті — `familiar`.*
+- It's unfamiliar. — *У записі останнє слово — `unknown`, а в цьому варіанті — `unfamiliar`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-54:i14:s02; family: scripted_repeat_compare -->
-Рекрутер просить відповідати правдиво. Скажіть, що ви чесні.
-
-🎙 **I am honest.**
-
-**16 · Складіть фразу — рекрутер питає, чи можна починати**
-<!-- interaction_id: en:lesson-01:session-54:i15; family: phrase_builder -->
-Плитки: `ready` `I` `am` `are` → **I am ready.**
-*Правильно: `I am ready.` — з `I` потрібна форма `am`; `ready` означає «готовий».*
-*Плитка `are` зайва: з `I` кажуть `am`.*
-
-**17 · З'єднайте пари**
+**16 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-54:i16; family: speed_match -->
-nervous — хвилююся · confident — упевнений у собі · fluent — говорю вільно · honest — чесний
+familiar — упізнаваний · unfamiliar — незнайомий · unknown — невідомий · useless — не приносить користі
 
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-54:i17:s01; family: scripted_repeat_compare -->
-Рекрутер просить сказати про ваше ставлення до роботи. Скажіть, що ви впевнені в собі.
-
-🎙 **I am confident.**
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-54:i17:s02; family: scripted_repeat_compare -->
-Рекрутер питає, як ви говорите англійською. Скажіть, що вільно.
-
-🎙 **I am fluent.**
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-54:i17:s03; family: scripted_repeat_compare -->
-Рекрутер питає, чи ви спокійні у важкий день. Скажіть, що спокійні.
-
-🎙 **I am calm.**
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-54:i17:s04; family: scripted_repeat_compare -->
-Рекрутер питає, чи готові ви почати. Скажіть, що готові.
-
-🎙 **I am ready.**
-
----
-
-## Для сборщика
-
-new_words:
-confident — упевнений у собі — «упевнений у собі». Людина говорить про свої вміння рівно, без вихваляння й без виправдань.
-nervous — хвилююся — «хвилююся». Руки холодні, голос трохи вищий, ніж зазвичай, а розмова ще навіть не почалася.
-fluent — говорю вільно — «говорю вільно». Мовлення йде саме, без пауз на пошук слова.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=word_card, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=phrase_builder, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=scripted_repeat_compare, 15=scripted_repeat_compare, 16=phrase_builder, 17=speed_match, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| honest | 9 (пастка), 12 (✅), 14 (голос), 16 (дошка) | 12, 14 |
-| calm | 12 (пастка), 13 (✅), 17 (фінал) | 13, 17 |
-| ready | 5 (пастка), 15 (✅), 17 (фінал) | 15, 17 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | nervous | так, уся сторінка про `nervous` |
-| Інтро 2 | confident | так, уся сторінка про `confident` |
-| Інтро 3 | fluent | так, уся сторінка про `fluent` |
-
-**3. Дошка пар (завдання 16)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| nervous | 1 | 2 (слух), 8 (складання), 14 (голос) |
-| confident | 3 | 4 (слух), 5 (пропуск), 10 (скріпка) |
-| fluent | 6 | 7 (слух), 9 (пропуск), 11 (складання на слух) |
-| honest | з попередніх сесій | 9 (пастка), 12 (правильна відповідь), 14 (голос) |
+**17 · У музеї біля старої картини немає імені художника: працівники поки не встановили його. Скажіть, що ім’я невідоме**
+<!-- interaction_id: en:lesson-01:session-54:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is unknown.**
 

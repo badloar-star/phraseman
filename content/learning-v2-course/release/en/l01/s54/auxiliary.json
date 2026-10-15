@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-54:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-54:intro1:r2": {
-          "ru": "Пропала скрепка `am`, без которой фраза не стоит.",
-          "uk": "Зникла скріпка `am`, без якої фраза не стоїть."
+          "ru": "`unfamiliar` — незнакомый. Здесь вы узнаёте двор: `familiar`.",
+          "uk": "`unfamiliar` — незнайомий. Тут ви впізнаєте двір: `familiar`."
         },
         "en:lesson-01:session-54:intro1:r3": {
-          "ru": "`is` — не для `I`. Про себя — `am`.",
-          "uk": "`is` — не для `I`. Про себе — `am`."
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-54:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-54:intro2:r2": {
-          "ru": "`calm` — «спокоен», про нервы. Хорошее слово, но спросили про ваши силы.",
-          "uk": "`calm` — «спокійний», про нерви. Гарне слово, але спитали про ваші сили."
+          "ru": "`familiar` — знакомая. Здесь вы не узнаёте улицу: `unfamiliar`.",
+          "uk": "`familiar` — знайома. Тут ви не впізнаєте вулицю: `unfamiliar`."
         },
         "en:lesson-01:session-54:intro2:r3": {
-          "ru": "`am` снова потерялось. Про себя — `I am`, целиком.",
-          "uk": "`am` знову загубилося. Про себе — `I am`, повністю."
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-54:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-54:intro3:r2": {
-          "ru": "`honest` — «честен». Хорошее слово, но ответ не про характер, а про язык.",
-          "uk": "`honest` — «чесний». Гарне слово, але відповідь не про вдачу, а про мовлення."
+          "ru": "Дату не удалось установить. Здесь нужно `unknown`.",
+          "uk": "Дату не вдалося встановити. Тут потрібно `unknown`."
         },
         "en:lesson-01:session-54:intro3:r3": {
-          "ru": "Между `I` и `fluent` нужно `am`.",
-          "uk": "Між `I` та `fluent` потрібне `am`."
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "97e16ef3af779457b1e2048fe62f091822cbf4b0b9a304a9ff4280ec6e556292"
+  "auxiliaryFingerprint": "a151a4f6af34f9b84a4509b5193cfa87997443713bc36ad546b621f7803823f4"
 }

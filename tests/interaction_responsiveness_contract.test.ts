@@ -92,7 +92,9 @@ describe('instant interaction response contract', () => {
     expect(frameIndex).toBeGreaterThanOrEqual(0);
     expect(prewarmIndex).toBeGreaterThan(frameIndex);
     expect(mountBlock.match(/requestAnimationFrame/g)).toHaveLength(2);
-    expect(navigateBlock).toContain('router.navigate(target as any);');
+    // e878b5e85 (TABS_RENDER_1): роутер читается из ref в момент вызова — переход по-прежнему синхронный, без await/таймера
+    expect(navigateBlock).toMatch(/(?:routerRef\.current|router)\.navigate\(target as any\);/);
+    expect(navigateBlock).not.toMatch(/await\s+(?:routerRef\.current|router)\.navigate/);
     expect(navigateBlock).not.toContain('setTimeout');
   });
 

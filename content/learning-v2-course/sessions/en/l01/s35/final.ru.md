@@ -1,208 +1,138 @@
-# Английский · Урок 1 · Занятие 35 — «We are not»
+# Английский · Урок 1 · Занятие 35 — Отменяем встречу
 
-**Ситуация.** Ира, Олег и вы идёте в кафе. Олег ошибочно думает, что вы опаздываете, а Ира не уверена, открыто ли кафе.
+**Ситуация.** Вы собирались встретиться с друзьями, но заболели и остались дома. Объясняете причину отмены и договариваетесь о звонке, когда отдохнёте.
 
-**Сегодня.** Скажете о вашей группе, что это не так: `We are not` + слово.
-**Новые слова:** sure, wrong, free, alone
-**Возвращаются:** late, ready, hungry, busy, alone, wrong, sure, free
+**Что вы освоите:** сказать о болезни знакомой полной или короткой фразой и повторить состояния сна и доступности
+**Новые слова:** ill
 
 ---
 
 ## Интро 1
 
-### `not` встаёт после `are`
+### Я болею
 
-`we` — «мы». После него ставим `are`: `We are late` — «мы опаздываем».
+`ill` — «болен», «болеет». `I am ill` — «Я болею». Это сообщение о состоянии, без названия болезни. Коротко можно сказать `I'm ill`. Если по-русски хватает «болею», в английской фразе всё равно нужны `I am` или `I'm`.
 
-Чтобы получилось «не», добавляем `not`. Место у него жёсткое: сразу за `are`, перед словом о вас. Не перед `are`, не в конец — `We are not late`.
+**Вы отменяете встречу, потому что болеете. Скажите об этом полной фразой.**
 
-**Олег по дороге говорит: «Мы же опаздываем?» До встречи ещё двадцать минут. Скажите, что нет.**
-
-- ✅ **We are not late.**
-- ❌ We not are late. — *Сначала `are`, затем `not`: We are not late.*
-- ❌ We are late not. — *`not` убежал в конец. Его место сразу после `are`, до слова о вас.*
+- ✅ **I am ill.**
+- ❌ I ill. — *Нужно `I am ill`: после `I` остаётся `am`.*
+- ❌ I am asleep. — *`asleep` — «сплю». Здесь причина отмены — болезнь: `ill`.*
 
 ---
 
 ## Интро 2
 
-### `sure` — «уверен»
+### Он тоже болеет
 
-`sure` — «уверен, знаю точно». `We are sure` — «мы уверены».
+Про брата скажите `He is ill`, про сестру — `She is ill`. Про себя и брата вместе — `We are ill`. К `ill` не добавляем `s`. Болеете вдвоём, но слово то же — больше теперь нужно только носовых платков.
 
-Отрицание к нему пригодится чаще самого слова: `We are not sure` — «мы не уверены». Это вежливое «понятия не имею»: и правду не соврали, и виноватым никто не выглядит.
+**Брат тоже заболел. Скажите именно о брате.**
 
-**Ира спрашивает, открыто ли кафе через дорогу. Вы с Олегом этого не знаете. Ответьте за всех.**
-
-- ✅ **We are not sure.**
-- ❌ We no sure. — *Внутри фразы используйте `not`: We are not sure.*
-- ❌ We are sure not. — *Слова те же, порядок сломан. После `are` сразу `not`, потом `sure`.*
+- ✅ **He is ill.**
+- ❌ He are ill. — *После `He` нужно `is`.*
+- ❌ She is ill. — *`She` — про неё. Про брата нужно `He`.*
 
 ---
 
 ## Интро 3
 
-### `wrong` — «неправ»
+### Болеет, спит или свободен для звонка
 
-`wrong` — «неправ, ошибся». Сказал уверенно — и мимо.
+`awake` — «не спит», `asleep` — «спит», `available` — «доступен», например для звонка. Больной человек может и спать, и бодрствовать. `I am available` в разговоре о звонке значит, что вы можете поговорить, а не что вы уже выздоровели.
 
-Слово это про человека, а не про дело: `We are wrong` — «мы ошибаемся», а не «у нас что-то сломалось». И спорить им можно за всю компанию сразу: `We are not wrong`.
+**Вы отдохнули и теперь можете поговорить по телефону. Скажите именно о доступности для звонка.**
 
-**Олег говорит, что вы с Ирой перепутали адрес кафе. Вы проверили карту и знаете, что адрес верный. Скажите это.**
-
-- ✅ **We are not wrong.**
-- ❌ We not wrong. — *После `we` нужны `are not`: We are not wrong.*
-- ❌ We are not late. — *`late` — про время, «опаздываем». Про ошибку — `wrong`.*
+- ✅ **I am available.**
+- ❌ I am asleep. — *Спящий человек сейчас не готов к разговору. Нужное слово — `available`.*
+- ❌ I am ill. — *Это сообщает о болезни. Здесь нужно сообщить, что вы доступны для звонка: `available`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (17 заданий)
 
-**1 · Карточка слова — sure**
-<!-- interaction_id: en:lesson-01:session-35:i01; family: listen_choose -->
-> **sure** — «уверен, знаю точно». Не про готовность, а про знание: знаешь — `sure`.
+**1 · Вы болеете и отменяете встречу. Соберите фразу о себе**
+<!-- interaction_id: en:lesson-01:session-35:i01; family: phrase_builder -->
+Плитки: `ill` `am` `I` `is` → **I am ill.**
+*(плитка `is` лишняя: здесь нужно `am` — `I am ill.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-35:i02; family: listen_choose -->
-🔊 *sure* → **sure** · sugar · shoe
-- sugar — *«Сахар». Начало то же — «шу», но дальше слышно «г»: шу-гэр. В `sure` после «шу» сразу «р».*
-- shoe — *«Ботинок». Начало похоже, но `shoe` на этом и заканчивается, а в `sure` есть «р».*
+🔊 *He is ill.* → **He is ill.** · She is ill. · He is awake.
+- She is ill. — *В записи первое слово — `He`, а в этом варианте — `She`.*
+- He is awake. — *В записи последнее слово — `ill`, а в этом варианте — `awake`.*
 
-**3 · Карточка слова — wrong**
-<!-- interaction_id: en:lesson-01:session-35:i03; family: listen_choose -->
-> **wrong** — «неправ, ошибается». Сказал уверенно — и мимо.
+**3 · Сестра заболела. Дополните фразу о ней**
+<!-- interaction_id: en:lesson-01:session-35:i03; family: context_gap_grammar -->
+She ___ ill. → **is** · am · are
+- am — *После `She` нужно `is`.*
+- are — *Про сестру здесь `She is`.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-35:i04; family: listen_choose -->
-🔊 *wrong* → **wrong** · long · ring
-- long — *«Длинный». Отличается только первым звуком, слушайте начало.*
-- ring — *«Кольцо». Гласная другая: в `ring` слышно «и», в `wrong` — «о».*
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-35:i04; family: speed_match -->
+ill — болеет · awake — не спит · asleep — спит · available — доступен для разговора
 
-**5 · Соберите фразу — «мы не опаздываем»**
-<!-- interaction_id: en:lesson-01:session-35:i05; family: phrase_builder -->
-Плитки: `not` `late` `we` `are` → **We are not late.**
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-01:session-35:i05; family: listen_build_dictation -->
+🔊 *We are ill.* Плитки: `ill` `are` `We` `is` → **We are ill.**
+*(плитка `is` лишняя: здесь нужно `are` — `We are ill.`)*
 
-**6 · Карточка слова — free**
-<!-- interaction_id: en:lesson-01:session-35:i06; family: listen_choose -->
-> **free** — «свободен». Дел нет, никто ничего не ждёт.
+**6 · Оба ваших друга болеют. Вы здоровы и рассказываете о них. Соберите фразу**
+<!-- interaction_id: en:lesson-01:session-35:i06; family: phrase_builder -->
+Плитки: `ill` `are` `They` `We` → **They are ill.**
+*(плитка `We` лишняя: здесь нужно `They` — `They are ill.`)*
 
-**7 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-35:i07; family: listen_choose -->
-🔊 *free* → **free** · three · fry
-- three — *«Три». Отличается первым звуком: `free` начинается с «ф».*
-- fry — *«Жарить». Начало то же, а гласная в конце другая.*
+**7 · Назовите причину отмены своей встречи короткой фразой: вы болеете**
+<!-- interaction_id: en:lesson-01:session-35:i07; family: scripted_repeat_compare -->
+🎙 **I'm ill.**
 
-**8 · Карточка слова — alone**
-<!-- interaction_id: en:lesson-01:session-35:i08; family: listen_choose -->
-> **alone** — «один, без компании». Рядом никого — ни хорошо, ни плохо, просто факт.
+**8 · Брат уснул, и вы не хотите его будить ради звонка. Скажите, что он спит**
+<!-- interaction_id: en:lesson-01:session-35:i08; family: context_gap_grammar -->
+He is ___ . → **asleep** · awake · available
+- awake — *`awake` — «не спит». Брат спит: `asleep`.*
+- available — *`available` говорит о доступности. Здесь надо назвать сон: `asleep`.*
 
-**9 · Вставьте слово — вы не уверены, открыто ли кафе**
-<!-- interaction_id: en:lesson-01:session-35:i09; family: context_gap_grammar -->
-We are not ___ . → **sure** · wrong · busy
-- wrong — *«Неправы» — это про ошибку. Про незнание — `sure`.*
-- busy — *«Заняты» — про дела. Не знаете — `not sure`.*
+**9 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-35:i09; family: listen_choose -->
+🔊 *She is awake.* → **She is awake.** · He is awake. · She is asleep.
+- He is awake. — *В записи первое слово — `She`, а в этом варианте — `He`.*
+- She is asleep. — *В записи последнее слово — `awake`, а в этом варианте — `asleep`.*
 
-**10 · Послушайте и соберите — «мы не одни»**
-<!-- interaction_id: en:lesson-01:session-35:i10; family: listen_build_dictation -->
-🔊 *We are not alone.* Плитки: `alone` `are` `not` `we` `no` → **We are not alone.**
-*(плитка `no` лишняя: `no` лишнее: отрицание здесь — `not`: `We are not alone.`)*
+**10 · Соедините короткие начала с полными**
+<!-- interaction_id: en:lesson-01:session-35:i10; family: speed_match -->
+I'm — I am · He's — He is · We're — We are · They're — They are
 
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-35:i11; family: listen_build_dictation -->
+🔊 *She's ill.* Плитки: `ill` `She's` `He's` → **She's ill.**
+*(плитка `He's` лишняя: здесь нужно `She's` — `She's ill.`)*
 
-**11 · Выберите форму — Ира и Олег уже пообедали и не голодны**
-<!-- interaction_id: en:lesson-01:session-35:i11; family: context_gap_grammar -->
-We ___ not hungry. → **are** · am · is
-- am — *`am` только для `I`, про одного себя. Про «мы» — `are`.*
-- is — *`is` — про одного: он, она, оно. Вас несколько, значит `are`.*
+**12 · После отдыха вы можете поговорить. Соберите фразу о своей доступности для звонка**
+<!-- interaction_id: en:lesson-01:session-35:i12; family: phrase_builder -->
+Плитки: `available` `am` `I` `are` → **I am available.**
+*(плитка `are` лишняя: здесь нужно `am` — `I am available.`)*
 
-**12 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-35:i12; family: speed_match -->
-sure — уверен · wrong — неправ · free — свободен · alone — один
+**13 · Вы и брат заболели и остаётесь дома. Назовите вашу общую причину отказа от встречи**
+<!-- interaction_id: en:lesson-01:session-35:i13; family: scripted_repeat_compare -->
+🎙 **We are ill.**
 
-**13 · Вставьте слово — руководитель спрашивает, можем ли мы задержаться: после обеда совещание**
-<!-- interaction_id: en:lesson-01:session-35:i13; family: context_gap_grammar -->
-We are not ___ . → **free** · alone · ready
-- alone — *«Не одни» — про компанию, а не про время.*
-- ready — *«Не готовы» — другое. Времени нет — `not free`.*
+**14 · Вы говорите заболевшему другу: «Ты болеешь». Вставьте слово**
+<!-- interaction_id: en:lesson-01:session-35:i14; family: context_gap_grammar -->
+You ___ ill. → **are** · am · is
+- am — *С `You` нужно `are`.*
+- is — *Даже к одному другу обращаемся `You are`.*
 
-**14 · Утверждение или отрицание? Все уже с куртками, можно идти**
-<!-- interaction_id: en:lesson-01:session-35:i14; family: phrase_builder -->
-Соберите: `are` `ready` `we` `not` → **We are ready.**
-*(плитка `not` лишняя: по сцене вы готовы)*
+**15 · Послушайте и выберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-35:i15; family: listen_choose -->
+🔊 *They're ill.* → **They're ill.** · We're ill. · They're asleep.
+- We're ill. — *В записи первое слово — `They're`, а в этом варианте — `We're`.*
+- They're asleep. — *В записи последнее слово — `ill`, а в этом варианте — `asleep`.*
 
-**15 · Послушайте и соберите — вы закончили все дела и можете уйти**
-<!-- interaction_id: en:lesson-01:session-35:i15; family: listen_build_dictation -->
-🔊 *We are not busy.* Плитки: `busy` `we` `not` `are` `is` → **We are not busy.**
-*(плитка `is` лишняя: `is` лишнее: после `We` ставят `are` — `We are not busy.`)*
+**16 · Соедините слова с нужными значениями в разговоре о звонке**
+<!-- interaction_id: en:lesson-01:session-35:i16; family: speed_match -->
+available — может поговорить сейчас · ill — болен · asleep — спит · awake — бодрствует
 
+**17 · Ваша сестра пропускает занятие, потому что болеет. Объясните преподавателю причину её отсутствия**
+<!-- interaction_id: en:lesson-01:session-35:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **She is ill.**
 
-**16 · Соберите фразу — «мы не ошибаемся»**
-<!-- interaction_id: en:lesson-01:session-35:i16; family: phrase_builder -->
-Плитки: `we` `wrong` `are` `not` → **We are not wrong.**
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-35:i17:s01; family: scripted_repeat_compare -->
-Ира спрашивает, опаздываете ли вы с Олегом. 🎙 **We are not late.**
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-35:i17:s02; family: scripted_repeat_compare -->
-Олег предлагает сначала пообедать. 🎙 **We are hungry.**
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-35:i17:s03; family: scripted_repeat_compare -->
-Ира уточняет, свободны ли вы после обеда. 🎙 **We are not busy.**
-
-**20 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-35:i17:s04; family: scripted_repeat_compare -->
-Олег не знает, открыто ли кафе. 🎙 **We are not sure.**
-
-**21 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-35:i17:s05; family: scripted_repeat_compare -->
-Ира видит, что вы с Олегом уже в куртках у двери. 🎙 **We are ready.**
-
----
-
-## Для сборщика
-
-new_words:
-sure — уверен — «уверен, знаю точно». Не про готовность, а про знание: знаешь — `sure`.
-wrong — неправ — «неправ, ошибается». Сказал уверенно — и мимо.
-free — свободен — «свободен». Дел нет, никто ничего не ждёт.
-alone — один — «один, без компании». Рядом никого — ни хорошо, ни плохо, просто факт.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=word_card, 9=context_gap_grammar, 10=listen_build_dictation, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| late | 5, 17 | 5 (сборка «We are not late»), 17 (финал) |
-| ready | 13 (ловушка), 14, 17 | 14 (сборка «We are ready»), 17 (финал) |
-| hungry | 11, 17 | 11 (пропуск в «We are not hungry»), 17 (финал) |
-| busy | 9 (ловушка), 15, 17 | 15 (сборка «We are not busy»), 17 (финал) |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | late | да — «`We are late` — „мы опаздываем“», «`We are not late`» |
-| Интро 2 | sure | да — «`sure` — „уверен“», «`We are not sure`» |
-| Интро 3 | wrong | да — «`wrong` — „неправ“», «`We are not wrong`» |
-
-**3. Доска пар (задание 12)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| sure | 1 | 2 (слух), 9 (пропуск) |
-| wrong | 3 | 4 (слух) |
-| free | 6 | 7 (слух) |
-| alone | 8 | 10 (сборка на слух) |
-
-**4. Обманки с лишней плиткой**
-
-Лишняя плитка `no` — одна, в задании 10. Обманка на внимательность (`not` при утвердительной сцене) — одна, задание 14.
-
----

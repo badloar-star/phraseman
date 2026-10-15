@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-40",
   "learningOutcomeByLocale": {
-    "ru": "выбирать `this/that/these/those` по числу и расстоянию",
-    "uk": "вибирати `this/that/these/those` за кількістю й відстанню"
+    "ru": "самостоятельно выбрать this, that, these или those с уже знакомыми словами",
+    "uk": "самостійно вибрати this, that, these або those з уже знайомими словами"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Один штрихкод рядом",
-        "uk": "Один штрихкод поруч"
+        "ru": "Сначала один или несколько",
+        "uk": "Спочатку один чи кілька"
       },
       "bodyByLocale": {
-        "ru": "`barcode` — «штрихкод». На пакете перед вами один штрихкод: `This is a barcode.` — «Это штрихкод». `This` указывает на один предмет рядом, поэтому после него ставим `is`. Полос в штрихкоде много, но сам штрихкод один — число считаем по предметам, а не по полосам.",
-        "uk": "`barcode` — «штрихкод». На пакеті перед вами один штрихкод: `This is a barcode.` — «Це штрихкод». `This` вказує на один предмет поруч, тому після нього ставимо `is`. Смужок у штрихкоді багато, але сам штрихкод один — кількість рахуємо за предметами, а не за смужками."
+        "ru": "В этом занятии новых слов нет. Повторяем `phone` — телефон, `wallet` — кошелёк, `photos` — фотографии, `children` — дети, `car` — машина, `ticket` — билет, `bottles` — бутылки. Один предмет рядом: `This is a phone`. Несколько рядом: `These are photos`. Фотографий может быть сто, но им всё равно достаточно одного `are`.",
+        "uk": "У цьому занятті нових слів немає. Повторюємо `phone` — телефон, `wallet` — гаманець, `photos` — фотографії, `children` — діти, `car` — машина, `ticket` — квиток, `bottles` — пляшки. Один предмет поруч: `This is a phone`. Кілька поруч: `These are photos`. Фотографій може бути сто, але їм однаково достатньо одного `are`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-40:intro1:q",
         "promptByLocale": {
-          "ru": "Пакет со штрихкодом лежит перед вами. Назовите штрихкод.",
-          "uk": "Пакет зі штрихкодом лежить перед вами. Назвіть штрихкод."
+          "ru": "Перед вами несколько фотографий. Назовите их, показывая на группу рядом.",
+          "uk": "Перед вами кілька фотографій. Назвіть їх, показуючи на групу поруч."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-40:intro1:r1",
-              "text": "This is a barcode."
+              "text": "These are photos."
             },
             {
               "responseId": "en:lesson-03:session-40:intro1:r2",
-              "text": "That is a barcode."
+              "text": "This is a photo."
             },
             {
               "responseId": "en:lesson-03:session-40:intro1:r3",
-              "text": "These are barcodes."
+              "text": "Those are photos."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-40:intro1:r1",
-              "text": "This is a barcode."
+              "text": "These are photos."
             },
             {
               "responseId": "en:lesson-03:session-40:intro1:r2",
-              "text": "That is a barcode."
+              "text": "This is a photo."
             },
             {
               "responseId": "en:lesson-03:session-40:intro1:r3",
-              "text": "These are barcodes."
+              "text": "Those are photos."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Пакет со штрихкодом лежит перед вами. Назовите штрихкод.",
-          "uk": "Пакет зі штрихкодом лежить перед вами. Назвіть штрихкод."
+          "ru": "Перед вами несколько фотографий. Назовите их, показывая на группу рядом.",
+          "uk": "Перед вами кілька фотографій. Назвіть їх, показуючи на групу поруч."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одна пломба дальше",
-        "uk": "Одна пломба далі"
+        "ru": "Потом рядом или дальше",
+        "uk": "Потім поруч чи далі"
       },
       "bodyByLocale": {
-        "ru": "`seal` здесь означает «защитная пломба на упаковке». На коробке у дальней стороны стола одна пломба: `That is a seal.` — «Это защитная пломба». `That` выбираем для одного предмета дальше, а `is` подтверждает единственное число. Расстояние меняет указатель, но не количество.",
-        "uk": "`seal` тут означає «захисна пломба на упаковці». На коробці з іншого боку столу одна пломба: `That is a seal.` — «Це захисна пломба». `That` вибираємо для одного предмета далі, а `is` підтверджує однину. Відстань змінює вказівне слово, але не кількість."
+        "ru": "Один дальше — `that`: `That is a wallet` — «Это кошелёк». Несколько дальше — `those`: `Those are children` — «Это дети». Для `children` не добавляем ещё одно `s`: это уже несколько детей. Расстояние выбирает `this/that` или `these/those`, а число — `is/are`.",
+        "uk": "Один далі — `that`: `That is a wallet` — «Це гаманець». Кілька далі — `those`: `Those are children` — «Це діти». Для `children` не додаємо ще одне `s`: це вже кілька дітей. Відстань визначає `this/that` або `these/those`, а число — `is/are`."
       },
       "question": {
         "interactionId": "en:lesson-03:session-40:intro2:q",
         "promptByLocale": {
-          "ru": "Коробка с одной защитной пломбой стоит дальше. Назовите пломбу.",
-          "uk": "Коробка з однією захисною пломбою стоїть далі. Назвіть пломбу."
+          "ru": "Кошелёк лежит на дальнем столе. Назовите один предмет дальше.",
+          "uk": "Гаманець лежить на дальньому столі. Назвіть один предмет далі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-40:intro2:r1",
-              "text": "That is a seal."
+              "text": "That is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-40:intro2:r2",
-              "text": "This is a seal."
+              "text": "This is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-40:intro2:r3",
-              "text": "Those are seals."
+              "text": "Those are wallets."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-40:intro2:r1",
-              "text": "That is a seal."
+              "text": "That is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-40:intro2:r2",
-              "text": "This is a seal."
+              "text": "This is a wallet."
             },
             {
               "responseId": "en:lesson-03:session-40:intro2:r3",
-              "text": "Those are seals."
+              "text": "Those are wallets."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коробка с одной защитной пломбой стоит дальше. Назовите пломбу.",
-          "uk": "Коробка з однією захисною пломбою стоїть далі. Назвіть пломбу."
+          "ru": "Кошелёк лежит на дальнем столе. Назовите один предмет дальше.",
+          "uk": "Гаманець лежить на дальньому столі. Назвіть один предмет далі."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Купоны у дальней стороны",
-        "uk": "Купони з іншого боку"
+        "ru": "Назвать или уточнить какой",
+        "uk": "Назвати чи уточнити який"
       },
       "bodyByLocale": {
-        "ru": "`coupon` — «купон», `coupons` — «купоны». Несколько купонов лежат дальше: `Those are coupons.` — «Это купоны». `Those` указывает на далёкую группу, поэтому рядом с ним работает `are`. Если купоны окажутся перед вами, понадобится `these`, но число останется множественным.",
-        "uk": "`coupon` — «купон», `coupons` — «купони». Кілька купонів лежать далі: `Those are coupons.` — «Це купони». `Those` вказує на віддалену групу, тому після нього вживаємо `are`. Якщо купони опиняться перед вами, знадобиться `these`, але купонів усе одно буде кілька."
+        "ru": "`This is a ticket` — «Это билет»: называем предмет. `This ticket is here` — «Этот билет здесь»: `this` стоит прямо перед `ticket`, и ещё одно `a` не нужно. Для нескольких: `Those bottles are there` — «Те бутылки там». Сначала решите, сколько предметов и куда вы показываете.",
+        "uk": "`This is a ticket` — «Це квиток»: називаємо предмет. `This ticket is here` — «Цей квиток тут»: `this` стоїть просто перед `ticket`, і ще одне `a` не потрібне. Для кількох: `Those bottles are there` — «Ті пляшки там». Спочатку вирішіть, скільки предметів і куди ви показуєте."
       },
       "question": {
         "interactionId": "en:lesson-03:session-40:intro3:q",
         "promptByLocale": {
-          "ru": "Несколько купонов лежат у дальней стороны стола. Назовите их.",
-          "uk": "Кілька купонів лежать з іншого боку столу. Назвіть їх."
+          "ru": "Вы показываете на билет в своей руке. Скажите «Этот билет здесь».",
+          "uk": "Ви показуєте на квиток у своїй руці. Скажіть «Цей квиток тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-40:intro3:r1",
-              "text": "Those are coupons."
+              "text": "This ticket is here."
             },
             {
               "responseId": "en:lesson-03:session-40:intro3:r2",
-              "text": "These are coupons."
+              "text": "This a ticket is here."
             },
             {
               "responseId": "en:lesson-03:session-40:intro3:r3",
-              "text": "That is a coupon."
+              "text": "This ticket are here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-40:intro3:r1",
-              "text": "Those are coupons."
+              "text": "This ticket is here."
             },
             {
               "responseId": "en:lesson-03:session-40:intro3:r2",
-              "text": "These are coupons."
+              "text": "This a ticket is here."
             },
             {
               "responseId": "en:lesson-03:session-40:intro3:r3",
-              "text": "That is a coupon."
+              "text": "This ticket are here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Несколько купонов лежат у дальней стороны стола. Назовите их.",
-          "uk": "Кілька купонів лежать з іншого боку столу. Назвіть їх."
+          "ru": "Вы показываете на билет в своей руке. Скажите «Этот билет здесь».",
+          "uk": "Ви показуєте на квиток у своїй руці. Скажіть «Цей квиток тут»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9f36ff1d6a5d409ad8b2fa0e0ad6470bc3ec5866f90892763b065389b763ef6a"
+  "introFingerprint": "8cc222877212da92b17d887a46c2b1052ac2acfe4b2896f1feb4602309a0ff5d"
 }

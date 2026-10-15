@@ -1,181 +1,138 @@
-# Англійська · Урок 3 · Заняття 40 — «Чотири вказівні слова біля виходу»
+# Англійська · Урок 3 · Заняття 40 — Усе на місці перед поїздкою
 
-**Сцена заняття.** Ви з другом зупинилися біля столу перевірки поруч із виходом із критого ринку; працівник розклав ближче й далі пакет зі штрихкодом, коробку із захисною пломбою та кілька купонів. Треба звірити покупки перед виходом і назвати кожен предмет або групу, уживаючи правильне вказівне слово.
+**Ситуація.** Перед поїздкою ви допомагаєте гостеві розібратися, де речі й хто чекає біля машини. Телефон і фотографії поруч, гаманець і пляшки — на дальньому столі. Діти чекають трохи далі. Ви називаєте людей і предмети, не плутаючи число та відстань.
 
-**Як сказати:** вибирати `this/that/these/those` за кількістю й відстанню
-**Нові слова:** barcode, seal, coupon
-**Для повторення:** is, are, this, that, these, those
+**Що ви опануєте:** самостійно вибрати this, that, these або those з уже знайомими словами
+**Нові слова:** —
 
 ---
 
 ## Інтро 1
 
-### Один штрихкод поруч
+### Спочатку один чи кілька
 
-`barcode` — «штрихкод». На пакеті перед вами один штрихкод: `This is a barcode.` — «Це штрихкод». `This` вказує на один предмет поруч, тому після нього ставимо `is`. Смужок у штрихкоді багато, але сам штрихкод один — кількість рахуємо за предметами, а не за смужками.
+У цьому занятті нових слів немає. Повторюємо `phone` — телефон, `wallet` — гаманець, `photos` — фотографії, `children` — діти, `car` — машина, `ticket` — квиток, `bottles` — пляшки. Один предмет поруч: `This is a phone`. Кілька поруч: `These are photos`. Фотографій може бути сто, але їм однаково достатньо одного `are`.
 
-**Пакет зі штрихкодом лежить перед вами. Назвіть штрихкод.**
+**Перед вами кілька фотографій. Назвіть їх, показуючи на групу поруч.**
 
-- ✅ **This is a barcode.**
-- ❌ That is a barcode. — *Так називають один штрихкод далі. Цей пакет лежить перед вами, тому потрібне `this`.*
-- ❌ These are barcodes. — *Так називають кілька штрихкодів поруч. На пакеті зараз один штрихкод, тому потрібні `this is` і `a barcode`.*
+- ✅ **These are photos.**
+- ❌ This is a photo. — *Так називають одну фотографію. Тут кілька поруч: `These are photos`.*
+- ❌ Those are photos. — *`Those` вказує далі. Фотографії просто перед вами: `These`.*
 
 ---
 
 ## Інтро 2
 
-### Одна пломба далі
+### Потім поруч чи далі
 
-`seal` тут означає «захисна пломба на упаковці». На коробці з іншого боку столу одна пломба: `That is a seal.` — «Це захисна пломба». `That` вибираємо для одного предмета далі, а `is` підтверджує однину. Відстань змінює вказівне слово, але не кількість.
+Один далі — `that`: `That is a wallet` — «Це гаманець». Кілька далі — `those`: `Those are children` — «Це діти». Для `children` не додаємо ще одне `s`: це вже кілька дітей. Відстань визначає `this/that` або `these/those`, а число — `is/are`.
 
-**Коробка з однією захисною пломбою стоїть далі. Назвіть пломбу.**
+**Гаманець лежить на дальньому столі. Назвіть один предмет далі.**
 
-- ✅ **That is a seal.**
-- ❌ This is a seal. — *Так називають одну пломбу поруч. Коробка стоїть з іншого боку столу, тому потрібне `that`.*
-- ❌ Those are seals. — *Так називають кілька пломб далі. На цій коробці одна пломба, тому потрібні `that is` і `a seal`.*
+- ✅ **That is a wallet.**
+- ❌ This is a wallet. — *`This` — поруч, а гаманець далі: `That`.*
+- ❌ Those are wallets. — *Так називають кілька гаманців. Тут один: `That is a wallet`.*
 
 ---
 
 ## Інтро 3
 
-### Купони з іншого боку
+### Назвати чи уточнити який
 
-`coupon` — «купон», `coupons` — «купони». Кілька купонів лежать далі: `Those are coupons.` — «Це купони». `Those` вказує на віддалену групу, тому після нього вживаємо `are`. Якщо купони опиняться перед вами, знадобиться `these`, але купонів усе одно буде кілька.
+`This is a ticket` — «Це квиток»: називаємо предмет. `This ticket is here` — «Цей квиток тут»: `this` стоїть просто перед `ticket`, і ще одне `a` не потрібне. Для кількох: `Those bottles are there` — «Ті пляшки там». Спочатку вирішіть, скільки предметів і куди ви показуєте.
 
-**Кілька купонів лежать з іншого боку столу. Назвіть їх.**
+**Ви показуєте на квиток у своїй руці. Скажіть «Цей квиток тут».**
 
-- ✅ **Those are coupons.**
-- ❌ These are coupons. — *Так називають кілька купонів поруч. Купони лежать далі, тому потрібне `those`.*
-- ❌ That is a coupon. — *Так називають один купон далі. Тут купонів кілька, тому потрібні `those are` і `coupons`.*
+- ✅ **This ticket is here.**
+- ❌ This a ticket is here. — *Після `This` перед `ticket` не додаємо `a`.*
+- ❌ This ticket are here. — *Квиток один: потрібне `is`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-40:i01; family: listen_choose -->
-Ціль: `barcode`
-Варіанти: `barcode`
+**1 · Гість запитує про предмет у вас у руці. Це телефон. Назвіть його зі словом для одного поруч**
+<!-- interaction_id: en:lesson-03:session-40:i01; family: phrase_builder -->
+Плитки: `phone` `a` `is` `This` `are` → **This is a phone.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a phone.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-40:i03; family: scripted_repeat_compare -->
-Ціль: `seal`
+**2 · Послухайте й виберіть точну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i02; family: listen_choose -->
+🔊 *That is a wallet.* → **That is a wallet.** · This is a wallet. · That is a ticket.
+- This is a wallet. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
+- That is a ticket. — *У записі останнє слово — `wallet`, а в цьому варіанті — `ticket`.*
 
-**3 · Послухайте та виберіть товар — купони лежать з іншого боку**
-<!-- interaction_id: en:lesson-03:session-40:i05; family: listen_choose -->
-Ціль: `coupon`
-Варіанти: `coupon`
+**3 · Перед вами кілька фотографій. Ви показуєте на них**
+<!-- interaction_id: en:lesson-03:session-40:i03; family: context_gap_grammar -->
+___ are photos. → **These** · This · Those
+- This — *Фотографій кілька: потрібне `These`.*
+- Those — *`Those` — далі. Тут фотографії поруч: `These`.*
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-40:i02; family: scripted_repeat_compare -->
-Ціль: `barcode`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-40:i04; family: speed_match -->
+phone — телефон · wallet — гаманець · photos — фотографії · children — діти
 
-**5 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-40:i04; family: listen_choose -->
-Ціль: `seal`
-Варіанти: `seal`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-40:i05; family: listen_build_dictation -->
+🔊 *Those bottles are there.* Плитки: `there` `are` `bottles` `Those` `is` → **Those bottles are there.**
+*(плитка `is` зайва: тут потрібно `are` — `Those bottles are there.`)*
 
-**6 · Промовте слово — купони лежать далі**
-<!-- interaction_id: en:lesson-03:session-40:i06; family: scripted_repeat_compare -->
-Ціль: `coupon`
+**6 · Ви стоїте біля машини. Назвіть її: «Це машина», використовуючи слово для одного поруч**
+<!-- interaction_id: en:lesson-03:session-40:i06; family: phrase_builder -->
+Плитки: `car` `a` `is` `This` `are` → **This is a car.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a car.`)*
 
-**7 · З'єднайте слова зі значеннями — перевірка упаковки**
-<!-- interaction_id: en:lesson-03:session-40:i08; family: speed_match -->
-Пари: `barcode` — штрихкод · `seal` — захисна пломба · `coupon` — купон · `package` — упаковка
-Ціль: `barcode · seal · coupon · package`
+**7 · Гість запитує про групу людей удалині. Це діти. Назвіть їх зі словом для кількох далі**
+<!-- interaction_id: en:lesson-03:session-40:i07; family: scripted_repeat_compare -->
+🎙 **Those are children.**
 
-**8 · Послухайте та складіть фразу — пломба з іншого боку**
-<!-- interaction_id: en:lesson-03:session-40:i10; family: listen_build_dictation -->
-Ціль: `That is a seal.`
+**8 · Ви говорите про один квиток у вас у руці**
+<!-- interaction_id: en:lesson-03:session-40:i08; family: context_gap_grammar -->
+This ticket ___ here. → **is** · are · am
+- are — *Квиток один: `This ticket is here`.*
+- am — *З `This ticket` потрібне `is`.*
 
-**9 · Промовте фразу — штрихкод поруч**
-<!-- interaction_id: en:lesson-03:session-40:i11; family: scripted_repeat_compare -->
-Ціль: `This is a barcode.`
+**9 · Послухайте й виберіть точну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i09; family: listen_choose -->
+🔊 *These are bottles.* → **These are bottles.** · Those are bottles. · These are photos.
+- Those are bottles. — *У записі перше слово — `These`, а в цьому варіанті — `Those`.*
+- These are photos. — *У записі останнє слово — `bottles`, а в цьому варіанті — `photos`.*
 
-**10 · Складіть фразу — кілька купонів з іншого боку**
-<!-- interaction_id: en:lesson-03:session-40:i07; family: phrase_builder -->
-Ціль: `Those are coupons.`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-40:i10; family: speed_match -->
+car — машина · ticket — квиток · bottles — пляшки · wallet — гаманець
 
-**11 · Вставте вказівне слово — кілька штрихкодів лежать з іншого боку**
-<!-- interaction_id: en:lesson-03:session-40:i09; family: context_gap_grammar -->
-Ціль: `___ are barcodes.`
-Варіанти: `Those` · `These` · `That` · `This`
-- These — *`These are barcodes` підходить для штрихкодів поруч. Ця група далі, тому потрібне `Those`.*
-- That — *`That` стосується одного предмета й потребує `is`. Тут штрихкодів кілька.*
-- This — *`This` стосується одного предмета поруч. Тут називають віддалену групу.*
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-40:i11; family: listen_build_dictation -->
+🔊 *That phone is there.* Плитки: `there` `is` `phone` `That` `are` → **That phone is there.**
+*(плитка `are` зайва: тут потрібно `is` — `That phone is there.`)*
 
+**12 · Фотографії лежать просто перед вами. Скажіть «Ці фотографії тут»**
+<!-- interaction_id: en:lesson-03:session-40:i12; family: phrase_builder -->
+Плитки: `here` `are` `photos` `These` `is` → **These photos are here.**
+*(плитка `is` зайва: тут потрібно `are` — `These photos are here.`)*
 
-**12 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i12:s01; family: phrase_builder -->
-Ціль: `This is a seal.`
+**13 · На дальньому столі один квиток. Назвіть його повною фразою зі словом для одного далі**
+<!-- interaction_id: en:lesson-03:session-40:i13; family: scripted_repeat_compare -->
+🎙 **That is a ticket.**
 
-**13 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i12:s02; family: scripted_repeat_compare -->
-Ціль: `Those are seals.`
+**14 · Ви вперше називаєте один предмет удалині: це машина**
+<!-- interaction_id: en:lesson-03:session-40:i14; family: context_gap_grammar -->
+That is ___ car. → **a** · an · are
+- an — *`car` починається з приголосного звука: `a car`.*
+- are — *Перед назвою однієї машини тут потрібне `a`: `a car`.*
 
-**14 · Послухайте й виберіть точне значення фрази**
-<!-- interaction_id: en:lesson-03:session-40:i13; family: listen_choose -->
-Ціль: `Those are coupons.`
-Варіанти: `Он ті купони.` · `Це купон.` · `Це штрихкоди.` · `Це захисні пломби.`
-- Це купон. — *У записі чути `those are` і `coupons`: називають кілька купонів.*
-- Це штрихкоди. — *Названо `coupons` — купони, а не `barcodes` — штрихкоди.*
-- Це захисні пломби. — *Названо `coupons`, а захисні пломби — `seals`.*
+**15 · Послухайте й виберіть точну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i15; family: listen_choose -->
+🔊 *These children are here.* → **These children are here.** · Those children are here. · The children are here.
+- Those children are here. — *У записі перше слово — `These`, а в цьому варіанті — `Those`.*
+- The children are here. — *У записі перше слово — `These`, а в цьому варіанті — `The`.*
 
+**16 · З’єднайте вказівні слова зі значеннями в наших прикладах**
+<!-- interaction_id: en:lesson-03:session-40:i16; family: speed_match -->
+this — цей, один поруч · that — той, один далі · these — ці, кілька поруч · those — ті, кілька далі
 
-**15 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i14:s01; family: phrase_builder -->
-Ціль: `That is a coupon.`
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i14:s02; family: scripted_repeat_compare -->
-Ціль: `These are coupons.`
-
-**17 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i15:s01; family: phrase_builder -->
-Ціль: `This is a barcode.`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i15:s02; family: scripted_repeat_compare -->
-Ціль: `Those are coupons.`
-
-**19 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i16:s01; family: listen_build_dictation -->
-Ціль: `This is a barcode.`
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i16:s02; family: scripted_repeat_compare -->
-Ціль: `That is a seal.`
-
-**21 · Послухайте та складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i16:s03; family: listen_build_dictation -->
-Ціль: `These are coupons.`
-
-**22 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i16:s04; family: scripted_repeat_compare -->
-Ціль: `Those are barcodes.`
-
-**23 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i17:s01; family: phrase_builder -->
-Ціль: `That is a barcode.`
-
-**24 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i17:s02; family: scripted_repeat_compare -->
-Ціль: `This is a seal.`
-
-**25 · Складіть одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i17:s03; family: phrase_builder -->
-Ціль: `Those are barcodes.`
-
-**26 · Послухайте одну фразу**
-<!-- interaction_id: en:lesson-03:session-40:i17:s04; family: listen_choose -->
-Ціль: `These are coupons.`
-Варіанти: `These are coupons.` · `barcode` · `seal` · `coupon`
-- barcode — *У записі звучить `These are coupons.`, а не `barcode`.*
-- seal — *У записі звучить `These are coupons.`, а не `seal`.*
-- coupon — *У записі звучить `These are coupons.`, а не `coupon`.*
-
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=phrase_builder, 11=context_gap_grammar, 12=phrase_builder, 13=scripted_repeat_compare, 14=listen_choose, 15=phrase_builder, 16=scripted_repeat_compare, 17=phrase_builder, 18=scripted_repeat_compare, 19=listen_build_dictation, 20=scripted_repeat_compare, 21=listen_build_dictation, 22=scripted_repeat_compare, 23=phrase_builder, 24=scripted_repeat_compare, 25=phrase_builder, 26=listen_choose
+**17 · Ви приїхали на пікнік. Друг запитує про кілька предметів на дальньому столі. Це пляшки. Назвіть їх одним повним реченням із вказівним словом для кількох далі**
+<!-- interaction_id: en:lesson-03:session-40:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Those are bottles.**
 

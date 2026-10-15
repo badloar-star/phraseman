@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-56:intro1:r2": {
+          "ru": "Это «неэффективно», а новое напоминание даёт нужный результат.",
+          "uk": "Це «неефективне», а нове нагадування дає потрібний результат."
+        },
+        "en:lesson-02:session-56:intro1:r3": {
+          "ru": "Между `It` и `effective` нужно `is`.",
+          "uk": "Між `It` і `effective` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-56:intro2:r2": {
+          "ru": "Это сообщение, а нужен вопрос.",
+          "uk": "Це повідомлення, а потрібне запитання."
+        },
+        "en:lesson-02:session-56:intro2:r3": {
+          "ru": "Это вопрос о результате, а вы спрашиваете о справедливости.",
+          "uk": "Це запитання про результат, а ви запитуєте про справедливість."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-56:intro3:r2": {
+          "ru": "С `he` нужно `is`.",
+          "uk": "З `he` потрібно `is`."
+        },
+        "en:lesson-02:session-56:intro3:r3": {
+          "ru": "В коротком ответе нужно сохранить `he`: `Yes, he is`.",
+          "uk": "У короткій відповіді потрібно зберегти `he`: `Yes, he is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "930951de3542477f94be8dada3712bff6cddc69fc2fa91dba1af4f4bd25adf5a"
+}

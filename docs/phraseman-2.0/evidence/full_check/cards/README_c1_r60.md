@@ -30,3 +30,16 @@
 | ▶ на карточке «Мои наборы» | ❌ открывается хаб Карточек без окна режимов. Колода готова (`[DECK] video_fallback … source=memory phrases=50 cards=50`), но **параметры тренировки теряются**: `[BLITZ-AUTOOPEN] hub:autotrain-effect {"train":null,"deck":null}` при `router.navigate('/flashcards', {train:'1', deck:'pack:video_…'})` из app/flashcards_my_packs.tsx:875 | c1b_05_play.png |
 
 Итог: исправление a607a2e9c работает на уровне колоды (50 карточек из фраз ролика), но до тренировки человек не доходит ни одним путём — два разрыва навигации (экран ролика без набора; хаб без параметров train/deck).
+
+## Повтор Ц1 на ab5514b03 (Темы: экран ролика находит набор, намерение через train_intent) — 18:08–18:13, 5554
+
+| шаг | итог | кадр |
+|---|---|---|
+| «Мои наборы» → тап по набору | ✅ на экране ролика внизу **«Тренировать фразы ролика»** — `[VIDEO-SCREEN] pack:phrase_set found=true` | c1c_01_my_packs.png, c1c_02_watch.png |
+| «Тренировать фразы ролика» | ⚠️ параметры дошли: `hub:autotrain-effect {"train":"1","deck":"pack:video_OHxgJuazJO0"}`, `[TRAIN-INTENT] consume count=50`, `[FC-TRAIN-ENTRY] tap:train` → `early_tap:waiting` → `early_tap:resolved allowed` (1,3 с). **Но окна режимов на экране нет** (ни через 6 с, ни после тапа по пустому месту) | c1c_03_after_train_tap.png, c1c_04_hub_no_sheet.png |
+| «Назад» из этого хаба | ❌ сразу на Главную — пропущены ролик, «Мои наборы» и первый хаб | — |
+| ▶ на «Моих наборах» | ⚠️ то же: `[TRAIN-INTENT] consume` → `tap:train` → `resolved allowed`, окна на экране нет | c1c_05_play_my_packs.png, c1c_06_play_my_packs_7s.png, c1c_07_after_neutral_tap.png |
+| Ручной тап «Тренироваться» после этого | ❌ `tap:train … trainingEntryReady:true`, окно **всё равно не появляется** — modeSheetVisible уже true (поставлен намерением), повторный setModeSheetVisible(true) ничего не меняет | c1c_08_manual_train_tap.png |
+
+`dumpsys window windows`: окно приложения одно (шторка — слой внутри экрана, FlashcardsTrainingModeSheet с анимацией slide). uiautomator: «could not get idle state» (бесконечное парение карт на хабе).
+Вывод: логика открывает окно, но нативно оно не появляется, когда открытие происходит на переходе экрана (push хаба) — тот же класс, что R08 (коммит React есть, на экране — прежний кадр). Хуже: после этого хаб «залипает», и даже ручная «Тренироваться» не открывает окно, пока не уйти с экрана.

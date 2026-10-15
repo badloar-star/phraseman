@@ -1,210 +1,138 @@
-# Англійська · Урок 2 · Заняття 21 — «Where чи what»
+# Англійська · Урок 2 · Заняття 21 — Лампа не вмикається
 
-**Сцена заняття.** Вокзал у Дубліні, ви шукаєте потрібну платформу і заразом касу. Слів на все бракує, і хочеться спитати хоч якось — а питання виходить не те.
+**Ситуація.** Ви з другом готуєте невелику виставку у двоповерховому будинку. Перевіряєте лампу й шукаєте помічників усередині та надворі.
 
-**Як сказати:** повторення `Where is` + місце (контраст із `What is`)
-**Нові слова:** —
-**Повертаються:** station, street, shops, toilets, near, behind
+**Що ви опануєте:** повідомити про поломку й дати коротку заперечну відповідь
+**Нові слова:** no, broken
 
 ---
 
 ## Інтро 1
 
-### `where` питає про місце
+### Зламано
 
-`where` — «де». Питає лише про одне: у якому місці щось розташоване.
+`broken` — «зламаний, розбитий». `It is broken` — «Це зламано», коротко `It's broken`. Не кожна вимкнена лампа зламана. Але в цієї відірваний дріт: клацнути вимикачем ще десять разів не допоможе йому прирости назад.
 
-`station` — «вокзал». `Where is the station?` — «де вокзал?» Одразу за `where` іде `is`, і тільки потім саме місце.
+**У лампи пошкоджений дріт, і вона не працює. Коротко скажіть, що вона зламана.**
 
-Почнете з `what` — вийде інше питання: `What is the station?` питає не про дорогу, а про те, що таке вокзал.
-
-**Ви біля виходу з метро і не знаєте, у який бік вокзал. Спитайте перехожого.**
-
-- ✅ **Where is the station?**
-- ❌ What is the station? — *Так ви спитали «що таке вокзал?» Перехожий почне пояснювати, що це будівля, де зупиняються поїзди.*
-- ❌ Where the station is? — *`is` стає одразу за `where`, а не в кінець.*
+- ✅ **It's broken.**
+- ❌ It's not broken. — *Це заперечення поломки. За умовою лампа зламана.*
+- ❌ They're broken. — *Йдеться про одну лампу: `It's`.*
 
 ---
 
 ## Інтро 2
 
-### Порядок слів і `the` перед місцем
+### Ні — це no
 
-Порядок в англійському питанні такий: спершу `where`, одразу за ним `is`, і тільки потім саме місце.
+`no` — «ні». Ви вже використовували його у відповідях. На `Is it broken?` відповідь `No, it is not` означає «Ні, не зламано». `No` починає відповідь, а `not` стоїть після `is`. Одне не замінює інше в цій повній короткій формі.
 
-`street` — «вулиця». Питаючи дорогу, перед місцем ставлять маленьке `the`: `Where is the street?` Розбиратися, коли воно потрібне, будемо пізніше — поки що просто запам'ятовуйте питання разом із ним, так заведено.
+**Запасна лампа справна. Друг запитує: `Is it broken?` Дайте коротку відповідь «ні».**
 
-**Вам назвали вулицю, але ви не розумієте, у якому вона боці. Спитайте перехожого.**
-
-- ✅ **Where is the street?**
-- ❌ Where the street is? — *`is` поїхало в кінець. Одразу за `where` — `is`, потім місце.*
-- ❌ Where is street? — *Зникло `the`. Перед місцем воно потрібне: `the street`.*
+- ✅ **No, it is not.**
+- ❌ No, it not. — *Між `it` і `not` потрібно `is`.*
+- ❌ Yes, it is. — *Так ви підтвердите поломку. Запасна лампа справна.*
 
 ---
 
 ## Інтро 3
 
-### Одне місце чи кілька
+### Відповідаємо про тих самих людей
 
-`toilets` — «туалети». На вокзалі їх кілька, і від цього змінюється початок питання.
+`Are they inside?` — «Вони всередині?» Якщо Анна й Олег надворі, дайте відповідь `No, they are not`. А якщо всередині — `Yes, they are`. У короткій відповіді можна не повторювати `inside`, бо місце вже назване в запитанні.
 
-Одне місце — `is`: `Where is the station?` Кілька — `are`: `Where are the toilets?` Саме `where` не змінюється, воно завжди перше.
+**Анна й Олег на подвір’ї. Друг запитує: `Are they inside?` Дайте коротку відповідь «ні».**
 
-**Ви на вокзалі, шукаєте туалети. Спитайте як слід.**
-
-- ✅ **Where are the toilets?**
-- ❌ Where is the toilets? — *Тут їх кілька. Для кількох беруть `are`.*
-- ❌ What are the toilets? — *«Що таке туалети?» Ви знаєте що. Вам треба де — отже `where`.*
+- ✅ **No, they are not.**
+- ❌ No, they is not. — *З `they` потрібно `are`.*
+- ❌ Yes, they are. — *Це підтвердить, що вони всередині. За умовою вони надворі.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Вставте слово — вам потрібна дорога до вокзалу**
-<!-- interaction_id: en:lesson-02:session-21:i01; family: context_gap_grammar -->
-Ціль: `___ is the station?`
-Варіанти: `Where` · `What` · `Is`
-- What — *Це «що таке вокзал?» Про місце питає `where`.*
-- Is — *З `is` виходить «це вокзал?» — питання про те саме, а не про дорогу.*
+**1 · У лампи пошкоджений дріт. Скажіть повною фразою, що вона зламана**
+<!-- interaction_id: en:lesson-02:session-21:i01; family: phrase_builder -->
+Плитки: `broken` `is` `It` `are` → **It is broken.**
+*(плитка `are` зайва: тут потрібно `is` — `It is broken.`)*
 
+**2 · Послухайте запитання про Олега**
+<!-- interaction_id: en:lesson-02:session-21:i02; family: listen_choose -->
+🔊 *Is he upstairs?* → **Is he upstairs?** · Is he inside? · Is he outside?
+- Is he inside? — *У записі останнє слово — `upstairs`, а в цьому варіанті — `inside`.*
+- Is he outside? — *У записі останнє слово — `upstairs`, а в цьому варіанті — `outside`.*
 
-**2 · Складіть запитання — біля каси на табло незнайоме слово, і ви просите працівника пояснити його**
-<!-- interaction_id: en:lesson-02:session-21:i02; family: phrase_builder -->
-Ціль: `What is this?`
+**3 · Запасна лампа працює. На «Is it broken?» доповніть коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-21:i03; family: context_gap_grammar -->
+No, it ___ not. → **is** · am · are
+- am — *З `it` потрібно `is`.*
+- are — *Відповідь — `No, it is not`.*
 
-**3 · Розрізніть звуки — яке з двох про «де»?**
-<!-- interaction_id: en:lesson-02:session-21:i03; family: sound_contrast -->
-Варіанти: `where` · `there`
-- there — *Це «там» — про місце, а не питання. І починається інакше, ніж `where`.*
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-21:i04; family: speed_match -->
+no — ні · broken — зламаний · inside — усередині · outside — зовні
 
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-21:i05; family: listen_build_dictation -->
+🔊 *Yes, she is.* Плитки: `is` `she` `Yes,` `No,` → **Yes, she is.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, she is.`)*
 
-**4 · Складіть фразу — «де вокзал?»**
-<!-- interaction_id: en:lesson-02:session-21:i04; family: phrase_builder -->
-Ціль: `Where is the station?`
-Плитки: `Where` `is` `the` `station` `what`
-*Плитка `what` зайва: `what` означає «що», а щоб запитати про місце, запитання починається з `Where is`.*
+**6 · Анна й Олег на подвір’ї. На «Are they inside?» дайте коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-21:i06; family: phrase_builder -->
+Плитки: `not` `are` `they` `No,` `Yes,` → **No, they are not.**
+*(плитка `Yes,` зайва: тут потрібно `No,` — `No, they are not.`)*
 
-**5 · Вставте слово — крамниці десь далі коридором**
-<!-- interaction_id: en:lesson-02:session-21:i05; family: context_gap_grammar -->
-Ціль: `Where ___ the shops?`
-Варіанти: `are` · `is` · `am`
-- is — *`shops` — не одна крамниця, а кілька. Для кількох — `are`.*
-- am — *`am` іде тільки з `I`. Про крамниці — `are`.*
+**7 · Дві рамки зламалися під час перевезення. Коротко скажіть, що вони зламані**
+<!-- interaction_id: en:lesson-02:session-21:i07; family: scripted_repeat_compare -->
+🎙 **They're broken.**
 
+**8 · Ви уточнюєте, чи можуть на виставку прийти всі. Запитайте, чи вона загальнодоступна**
+<!-- interaction_id: en:lesson-02:session-21:i08; family: context_gap_grammar -->
+___ it public? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Про виставку — `Is it`.*
 
-**6 · Розрізніть звуки — яке з двох про «вулицю»?**
-<!-- interaction_id: en:lesson-02:session-21:i06; family: sound_contrast -->
-Варіанти: `street` · `sweet`
-- sweet — *Це «солодкий», до вулиці стосунку не має.*
+**9 · Послухайте фразу про Анну й Олега**
+<!-- interaction_id: en:lesson-02:session-21:i09; family: listen_choose -->
+🔊 *They are outside.* → **They are outside.** · They are inside. · They are upstairs.
+- They are inside. — *У записі останнє слово — `outside`, а в цьому варіанті — `inside`.*
+- They are upstairs. — *У записі останнє слово — `outside`, а в цьому варіанті — `upstairs`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-21:i10; family: speed_match -->
+upstairs — нагорі, на верхньому поверсі · public — загальнодоступний · broken — зламаний · no — ні
 
-**7 · Вставте слово — вулиця одна, і вам треба, де вона**
-<!-- interaction_id: en:lesson-02:session-21:i07; family: context_gap_grammar -->
-Ціль: `Where ___ the street?`
-Варіанти: `is` · `are` · `what`
-- are — *Вулиця одна. Для одного предмета — `is`.*
-- what — *Після `what` потрібне `is`: питання починається з `what is`.*
+**11 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-21:i11; family: listen_build_dictation -->
+🔊 *It's not broken.* Плитки: `broken` `not` `It's` `They're` → **It's not broken.**
+*(плитка `They're` зайва: тут потрібно `It's` — `It's not broken.`)*
 
+**12 · Олег на верхньому поверсі. На «Is he upstairs?» дайте коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-21:i12; family: phrase_builder -->
+Плитки: `is` `he` `Yes,` `No,` → **Yes, he is.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, he is.`)*
 
-**8 · Складіть фразу — «де туалети?»**
-<!-- interaction_id: en:lesson-02:session-21:i08; family: phrase_builder -->
-Ціль: `Where are the toilets?`
-
-**9 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-21:i09; family: speed_match -->
-Пари: `station` — вокзал · `street` — вулиця · `shops` — крамниці · `toilets` — туалети
-Ціль: `station · street · shops · toilets`
-
-**10 · Вставте слово — вокзал ховається за тим будинком**
-<!-- interaction_id: en:lesson-02:session-21:i10; family: context_gap_grammar -->
-Ціль: `It is ___ the house.`
-Варіанти: `behind` · `near` · `where`
-- near — *Це «поруч». А будинок стоїть перед вокзалом і затуляє його — отже `behind`.*
-- where — *`where` питає. У відповіді воно не потрібне.*
-
-
-**11 · Складіть відповідь — працівник біля каси сказав, що до вокзалу йти дві хвилини**
-<!-- interaction_id: en:lesson-02:session-21:i11; family: phrase_builder -->
-Ціль: `It is near.`
-
-**12 · Послухайте і складіть — «де крамниці?»**
-<!-- interaction_id: en:lesson-02:session-21:i12; family: listen_build_dictation -->
-Ціль: `Where are the shops?`
-🔊 *Where are the shops?* Плитки: `Where` `are` `the` `shops` `is`
-*Плитка `is` зайва: крамниць кілька, тому потрібна форма `are`: `Where are the shops?`*
-
-**13 · Скажіть уголос — на платформі ви показуєте працівнику незнайоме слово на квитку**
+**13 · Ви з другом на подвір’ї. Анна запитує вас обох: «Are you inside?» Дайте коротку відповідь «ні» за двох**
 <!-- interaction_id: en:lesson-02:session-21:i13; family: scripted_repeat_compare -->
-Ціль: `What is this?`
+🎙 **No, we are not.**
 
-**14 · Вставте слово — ви знаєте, що це каса, і питаєте, де вона**
+**14 · Дві запасні лампи справні. Доповніть фразу про те, що вони не зламані**
 <!-- interaction_id: en:lesson-02:session-21:i14; family: context_gap_grammar -->
-Ціль: `___ is it?`
-Варіанти: `Where` · `What` · `Is`
-- What — *`What is it?` означає «що це?». Ви вже знаєте, що це каса; треба спитати, де вона.*
-- Is — *З `Is` вийде `Is is it?`: два `is` поспіль. Запитання про місце починається з `Where`.*
+They ___ not broken. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про дві лампи — `They are not`.*
 
+**15 · Послухайте фразу**
+<!-- interaction_id: en:lesson-02:session-21:i15; family: listen_choose -->
+🔊 *It is not public.* → **It is not public.** · It is not broken. · It is not private.
+- It is not broken. — *У записі останнє слово — `public`, а в цьому варіанті — `broken`.*
+- It is not private. — *У записі останнє слово — `public`, а в цьому варіанті — `private`.*
 
-**15 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-21:i15; family: speed_match -->
-Пари: `where` — де · `what` — що · `near` — поруч · `behind` — за, позаду
-Ціль: `where · what · near · behind`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-21:i16; family: speed_match -->
+inside — усередині · outside — зовні · upstairs — нагорі, на верхньому поверсі · public — загальнодоступний
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-21:i16:s01; family: scripted_repeat_compare -->
-Ціль: `Where is the station?`
+**17 · Друг показує на справну запасну лампу й запитує: «Is it broken?» Дайте коротку відповідь «ні», не повторюючи broken**
+<!-- interaction_id: en:lesson-02:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **No, it is not.**
 
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-21:i16:s02; family: scripted_repeat_compare -->
-Ціль: `It is near.`
-
-**18 · Послухайте й складіть — біля схеми району ви питаєте перехожого, де вокзал**
-<!-- interaction_id: en:lesson-02:session-21:i17:s01; family: listen_build_dictation -->
-Ціль: `Where is the station?`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-21:i17:s02; family: scripted_repeat_compare -->
-Ціль: `Where are the toilets?`
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-21:i17:s03; family: scripted_repeat_compare -->
-Ціль: `Where are the shops?`
-
-## Для сборщика
-
-new_words: —
-modes: 1=context_gap_grammar, 2=phrase_builder, 3=sound_contrast, 4=phrase_builder, 5=context_gap_grammar, 6=sound_contrast, 7=context_gap_grammar, 8=phrase_builder, 9=speed_match, 10=context_gap_grammar, 11=phrase_builder, 12=listen_build_dictation, 13=scripted_repeat_compare, 14=context_gap_grammar, 15=speed_match, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| station | 1, 4, 9, 16, 17 | 4 (складання `Where is the station?`), 16, 17 |
-| street | 6, 7, 9 | 6 (правильне слово у звуковій парі), 7 (фраза про вулицю) |
-| shops | 5, 9, 12, 17 | 12 (складання `Where are the shops?`), 17 |
-| toilets | 8, 9, 17 | 8 (складання `Where are the toilets?`), 17 |
-| near | 10, 11, 15, 16 | 11 (правильна відповідь), 16 |
-| behind | 10, 11, 15 | 10 (правильна відповідь) |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | Where, station | так — `where` і `station` пояснені вище |
-| Інтро 2 | Where, is, street | так — `street` і порядок слів пояснені вище |
-| Інтро 3 | Where, are, toilets | так — `toilets` і правило `is`/`are` над питанням |
-
-**3. Дошка пар**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| station (дошка 9) | з минулих занять | завдання 1, 4 |
-| street (дошка 9) | з минулих занять | завдання 6, 7 |
-| shops (дошка 9) | з минулих занять | завдання 5 |
-| toilets (дошка 9) | з минулих занять | завдання 8 |
-| where (дошка 15) | інтро 1 | завдання 1, 3, 4, 8, 12, 14 |
-| what (дошка 15) | інтро 1 | завдання 2, 13 |
-| near (дошка 15) | з минулих занять | завдання 11 |
-| behind (дошка 15) | з минулих занять | завдання 10 |

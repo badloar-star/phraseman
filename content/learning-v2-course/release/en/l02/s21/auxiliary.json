@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-21:intro1:r2": {
+          "ru": "Это отрицание поломки. В условии лампа сломана.",
+          "uk": "Це заперечення поломки. За умовою лампа зламана."
+        },
+        "en:lesson-02:session-21:intro1:r3": {
+          "ru": "Речь об одной лампе: `It's`.",
+          "uk": "Йдеться про одну лампу: `It's`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-21:intro2:r2": {
+          "ru": "Между `it` и `not` нужно `is`.",
+          "uk": "Між `it` і `not` потрібно `is`."
+        },
+        "en:lesson-02:session-21:intro2:r3": {
+          "ru": "Так вы подтвердите поломку. Запасная лампа исправна.",
+          "uk": "Так ви підтвердите поломку. Запасна лампа справна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-21:intro3:r2": {
+          "ru": "С `they` нужно `are`.",
+          "uk": "З `they` потрібно `are`."
+        },
+        "en:lesson-02:session-21:intro3:r3": {
+          "ru": "Это подтвердит, что они внутри. В условии они снаружи.",
+          "uk": "Це підтвердить, що вони всередині. За умовою вони надворі."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "600b984e9ec10a27bdc1c1e39e241b83c0fc452102078a022dcd19809b9e6ca7"
+}

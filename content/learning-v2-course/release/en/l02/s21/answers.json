@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-21:i01",
-    "correctText": "Where",
-    "correctResponseId": "en:lesson-02:session-21:i01:r1"
+    "correctText": "It is broken.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-21:i02",
-    "correctText": "What",
+    "correctText": "Is he upstairs?",
     "correctResponseId": "en:lesson-02:session-21:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-21:i03",
-    "correctText": "where",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-21:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-21:i04",
-    "correctText": "Where is the station?",
+    "correctText": "en:lesson-02:session-21:i04:p1=no\nen:lesson-02:session-21:i04:p2=broken\nen:lesson-02:session-21:i04:p3=inside\nen:lesson-02:session-21:i04:p4=outside",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-21:i05",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-02:session-21:i05:r1"
+    "correctText": "Yes, she is.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-21:i06",
-    "correctText": "street",
-    "correctResponseId": "en:lesson-02:session-21:i06:r1"
+    "correctText": "No, they are not.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-21:i07",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-02:session-21:i07:r1"
+    "correctText": "They're broken.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-21:i08",
-    "correctText": "Where are the toilets?",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-21:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-21:i09",
-    "correctText": "en:lesson-02:session-21:i09:p1=station\nen:lesson-02:session-21:i09:p2=street\nen:lesson-02:session-21:i09:p3=shops\nen:lesson-02:session-21:i09:p4=toilets",
-    "correctResponseId": null
+    "correctText": "They are outside.",
+    "correctResponseId": "en:lesson-02:session-21:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-21:i10",
-    "correctText": "behind",
-    "correctResponseId": "en:lesson-02:session-21:i10:r1"
+    "correctText": "en:lesson-02:session-21:i10:p1=upstairs\nen:lesson-02:session-21:i10:p2=public\nen:lesson-02:session-21:i10:p3=broken\nen:lesson-02:session-21:i10:p4=no",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-21:i11",
-    "correctText": "near",
-    "correctResponseId": "en:lesson-02:session-21:i11:r1"
+    "correctText": "It's not broken.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-21:i12",
-    "correctText": "Where are the shops?",
+    "correctText": "Yes, he is.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-21:i13",
-    "correctText": "What is this?",
+    "correctText": "No, we are not.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-21:i14",
-    "correctText": "Where",
+    "correctText": "are",
     "correctResponseId": "en:lesson-02:session-21:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-21:i15",
-    "correctText": "en:lesson-02:session-21:i15:p1=where\nen:lesson-02:session-21:i15:p2=what\nen:lesson-02:session-21:i15:p3=near\nen:lesson-02:session-21:i15:p4=behind",
+    "correctText": "It is not public.",
+    "correctResponseId": "en:lesson-02:session-21:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-21:i16",
+    "correctText": "en:lesson-02:session-21:i16:p1=inside\nen:lesson-02:session-21:i16:p2=outside\nen:lesson-02:session-21:i16:p3=upstairs\nen:lesson-02:session-21:i16:p4=public",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-21:i16:s01",
-    "correctText": "Where is the station?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-21:i16:s02",
-    "correctText": "It is near.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-21:i17:s01",
-    "correctText": "Where is the station?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-21:i17:s02",
-    "correctText": "Where are the toilets?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-21:i17:s03",
-    "correctText": "Where are the shops?",
+    "interactionId": "en:lesson-02:session-21:i17",
+    "correctText": "No, it is not.",
     "correctResponseId": null
   }
 ]

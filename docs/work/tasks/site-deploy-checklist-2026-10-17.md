@@ -19,8 +19,9 @@
 
 Юр-страницы: текст документов — английский канон (`legal/*_en.json`); меню, подвал и `<html lang="ru">` остаются русскими,
 английским помечен сам блок `.legal-document`. Генератор `npm run legal:sync` теперь ставит то же самое.
-⚠️ Перед выкладкой НЕ запускать `npm run legal:sync`: он перезаписывает текст внутри `.legal-document` без готового оглавления
-и якорей `id="s…"` (−~60 строк на страницу, 15.10 проверено). Если тексты политики менялись — переносить абзацы вручную.
+`npm run legal:sync` можно запускать: с 15.10 он рендерит оглавление, якоря `id="s…"` и обёртку `.prose` ровно как на страницах.
+На текущем тексте страницы не меняются ни на байт (сторож `node --test tests/legal_sync_idempotent_contract.test.mjs`).
+Если тексты политики менялись — `npm run legal:sync`, затем `git diff knowly-www/legal` должен показать только эти абзацы.
 
 Перед выкладкой повторить: `git diff --stat 36c191b8a..HEAD -- knowly-www` — если появились новые файлы, разобрать их до выкладки.
 `git status --short knowly-www` должен быть пустым (выкладывается рабочая папка, не коммит).
@@ -37,7 +38,7 @@ node scripts/deploy_lock_guard.mjs
 node scripts/verify_website_surface_contract.mjs --require-security-headers
 ```
 ```bash
-npx jest tests/legal_document_liquid_glass_source_contract.test.mjs --maxWorkers=1
+node --test tests/legal_document_liquid_glass_source_contract.test.mjs tests/legal_sync_idempotent_contract.test.mjs
 ```
 
 Результат 15.10:

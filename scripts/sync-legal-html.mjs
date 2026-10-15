@@ -307,33 +307,66 @@ function withSiteTitle(html, siteTitle) {
   return html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(siteTitle)}</title>`);
 }
 
-function writeLegalIntoExistingPage(filePath, { title, sections, date, siteTitle }, fallbackHtml) {
-  if (!fs.existsSync(filePath)) return writeFileEnsured(filePath, fallbackHtml);
-  const current = fs.readFileSync(filePath, 'utf8');
+// зачем (координатор 15.10): sync писал разделы без оглавления, якорей id="s…" и обёртки .prose — страницы 2.0 теряли
+// ~60 строк и левое оглавление (собиралось бы только скриптом в браузере, с другими id). Теперь генератор рендерит ровно
+// ту разметку, что лежит на страницах: id по правилу s{N}-{slug до 40 символов}, <details class="toc" data-toc>, <div class="prose">.
+// Сторож идемпотентности — tests/legal_sync_idempotent_contract.test.mjs.
+const LEGAL_TOC_LABEL = 'Содержание';
+
+function legalSectionId(heading, index) {
+  const slug = String(heading || '').toLowerCase().replace(/[^a-z0-9а-яё]+/gi, '-').replace(/^-+|-+$/g, '').slice(0, 40);
+  return `s${index + 1}${slug ? `-${slug}` : ''}`;
+}
+
+function renderLegalToc(sections) {
+  const links = sections.map((s, i) => `<a href="#${legalSectionId(s.heading, i)}">${escapeHtml(s.heading)}</a>`).join('');
+  return `<details class="toc" open data-toc><summary>${LEGAL_TOC_LABEL}</summary><nav aria-label="${LEGAL_TOC_LABEL}">${links}</nav></details>`;
+}
+
+function renderLegalProse(sections) {
+  return sections
+    .map((s, i) => {
+      const inner = bodyHtmlSimple(s.body);
+      return `        <h2 id="${legalSectionId(s.heading, i)}">${escapeHtml(s.heading)}</h2>\n${inner.split('\n').map((line) => `        ${line}`).join('\n')}`;
+    })
+    .join('\n\n');
+}
+
+/**
+ * Чистая часть sync для редизайн-страницы: текущий HTML + документ → новый HTML (или причина, почему контейнера нет).
+ * Экспорт — для сторожа идемпотентности; файлы не трогает.
+ */
+export function mergeLegalIntoPage(current, { title, sections, date, siteTitle }) {
   const openMatch = LEGAL_DOC_OPEN_RE.exec(current);
   const open = openMatch ? openMatch.index : -1;
   const close = current.indexOf('</main>', open);
-  if (open === -1 || close === -1) return writeFileEnsured(filePath, fallbackHtml);
-  const closeDiv = current.lastIndexOf('</div>', close);
-  if (closeDiv === -1 || closeDiv < open) return writeFileEnsured(filePath, fallbackHtml);
+  if (open === -1 || close === -1) return { ok: false, reason: 'no_legal_document_container' };
+  // конец документа — строка «  </div>…</main>» после закрытия .prose; обёртки страницы за ней не трогаем
+  const docEnd = current.lastIndexOf('\n  </div>', close);
+  if (docEnd === -1 || docEnd < open) return { ok: false, reason: 'no_document_closing_line' };
   const inner =
-    `${LEGAL_DOC_OPEN_EN}
-` +
-    `        <h1>${escapeHtml(title)}</h1>
-` +
-    `        <p class="meta">
-` +
-    `          Application: <strong style="color:var(--km-text)">Phraseman</strong> &middot; Developer:
-` +
-    `          <strong style="color:var(--km-text)">Knowly</strong> &middot; Last updated <strong>${escapeHtml(date)}</strong>.
-` +
-    `        </p>
+    `${LEGAL_DOC_OPEN_EN}\n` +
+    `        <h1>${escapeHtml(title)}</h1>\n` +
+    `        <p class="meta">\n` +
+    `          Application: <strong style="color:var(--km-text)">Phraseman</strong> &middot; Developer:\n` +
+    `          <strong style="color:var(--km-text)">Knowly</strong> &middot; Last updated <strong>${escapeHtml(date)}</strong>.\n` +
+    `        </p>\n` +
+    `        ${renderLegalToc(sections)}\n` +
+    `        <div class="prose">\n\n` +
+    `${renderLegalProse(sections)}\n` +
+    `        </div>\n`;
+  const next = current.slice(0, open) + inner + current.slice(docEnd + 1);
+  return { ok: true, html: siteTitle ? withSiteTitle(next, siteTitle) : next };
+}
 
-` +
-    `${renderLegalBlocks(sections)}
-  `;
-  const next = current.slice(0, open) + inner + current.slice(closeDiv);
-  return writeFileEnsured(filePath, siteTitle ? withSiteTitle(next, siteTitle) : next);
+function writeLegalIntoExistingPage(filePath, doc, fallbackHtml) {
+  if (!fs.existsSync(filePath)) return writeFileEnsured(filePath, fallbackHtml);
+  const merged = mergeLegalIntoPage(fs.readFileSync(filePath, 'utf8'), doc);
+  if (!merged.ok) {
+    console.warn(`[LEGAL-SYNC] ${filePath}: ${merged.reason} — пишу запасной шаблон`); // guard-ok: ранний выход с причиной
+    return writeFileEnsured(filePath, fallbackHtml);
+  }
+  return writeFileEnsured(filePath, merged.html);
 }
 
 /** Страница удаления данных: в редизайн-версии обновляем дату, язык блока документа и <title>. */
@@ -414,4 +447,5 @@ function main() {
   console.log('Wrote app/legal JSON, root, admin, and knowly-www legal HTML from legal/*.json');
 }
 
-main();
+// зачем: импорт из сторожа (mergeLegalIntoPage) не должен перезаписывать файлы — main только при запуске скрипта
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();

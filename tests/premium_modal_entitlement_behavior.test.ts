@@ -18,6 +18,8 @@ jest.mock('react-native', () => ({
   },
   StyleSheet: { create: (styles: unknown) => styles },
   View: 'View',
+  // premium_modal → paywall_close_trace → config читает Platform.OS при загрузке (сьют падал «Cannot read … OS»)
+  Platform: { OS: 'android', select: (spec: Record<string, unknown>) => spec.android ?? spec.default },
 }));
 jest.mock('expo-crypto', () => ({ randomUUID: () => 'pw-test-impression' }));
 jest.mock('expo-router', () => ({

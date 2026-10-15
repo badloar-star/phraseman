@@ -14,6 +14,7 @@ import { PAYWALL_ENTRY_WAIT_CEILING_MS } from './load_gate_config';
 import { getAppSnapshot } from './app_snapshot_store';
 import { createTapLatencyProfilerHandler } from './tap_latency_trace';
 import { paywallCloseMark } from './paywall_close_trace';
+import { paywallOwnsClose } from './paywall_self_close_latch';
 
 // зачем (координатор 14.10, [PAYWALL-CLOSE-JS]; TAP-LAT Сверки: закрытие пейвола из Настроек — корневой «stack» рендерится 2× по 1,1–1,7 с,
 // а панели вкладок дешёвые): отдельный замер экрана пейвола в том же [TAP-LAT]. Без флага EXPO_PUBLIC_TAP_LATENCY_TRACE=1 обработчика нет.
@@ -100,6 +101,16 @@ export default function PremiumModalDispatcher() {
         impressionId: paywallImpressionId,
         cachedEntitlement,
       });
+  // зачем (R58 #12, денежный путь): после СОБСТВЕННОЙ покупки/восстановления доступ становится Plus и решение
+  // переключалось show → dismiss: диспетчер размонтировал пейвол до шага «Напомнить о конце пробного?» и закрывал
+  // маршрут вторым вызовом. Пока пейвол владеет закрытием (paywall_self_close_latch), держим показанный экран.
+  type ShownPaywallEntry = Extract<NonNullable<typeof entryResolution>, { decision: 'show' }>['entry'];
+  const shownEntryRef = useRef<ShownPaywallEntry | null>(null);
+  if (entryResolution?.decision === 'show') shownEntryRef.current = entryResolution.entry;
+  const keepShownForSelfClose = !isManageContext
+    && entryResolution?.decision !== 'show'
+    && shownEntryRef.current !== null
+    && paywallOwnsClose();
   // зачем (владелец 11.10: «пейвол почему-то не открывается»): решение окна со ВСЕМИ значениями, которые его приняли.
   // Раньше «dismiss по Plus» был немым — у человека с доступом окно закрывалось само, и в журнале не было ни строки.
   // Пишем один раз на смену решения, не на каждый кадр.
@@ -156,6 +167,10 @@ export default function PremiumModalDispatcher() {
   useEffect(() => {
     if (!rootNavReady || isManageContext || entryResolution?.decision !== 'dismiss') return;
     if (entitlementDismissedRef.current) return;
+    if (shownEntryRef.current !== null && paywallOwnsClose()) {
+      console.log('[PAYWALL-DISPATCH] dismiss_suppressed reason=paywall_owns_close — закрытие делает сам пейвол после своих шагов'); // guard-ok: ветка решения
+      return;
+    }
     entitlementDismissedRef.current = true;
     const scheduled = scheduleAfterRootNavigationReady(() => {
       dismissPaywallModal(router);
@@ -169,8 +184,11 @@ export default function PremiumModalDispatcher() {
     // Entitlement is the live source of truth. While hydration is unresolved,
     // or when Plus is already active, keep the neutral backing instead of
     // flashing an acquisition screen to a paid user.
-    if (entryResolution?.decision === 'show') {
-      const screen = <PaywallPlusScreen entry={entryResolution.entry} />;
+    const entryToShow = entryResolution?.decision === 'show'
+      ? entryResolution.entry
+      : (keepShownForSelfClose ? shownEntryRef.current : null);
+    if (entryToShow) {
+      const screen = <PaywallPlusScreen entry={entryToShow} />;
       return paywallScreenProfilerOnRender
         ? <Profiler id="screen:premium_modal" onRender={paywallScreenProfilerOnRender}>{screen}</Profiler>
         : screen;

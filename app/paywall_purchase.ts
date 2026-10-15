@@ -91,6 +91,7 @@ import {
   type PaywallPriceCache,
 } from './paywall_price_cache';
 import { paywallCloseMark } from './paywall_close_trace';
+import { clearPaywallOwnsClose, markPaywallOwnsClose } from './paywall_self_close_latch';
 
 /**
  * зачем (D158): ни один вызов магазина на пути к кнопке не имеет права висеть вечно.
@@ -592,6 +593,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // Экран после покупки: «Plus ваш. Напомнить о конце пробного?» (только вне онбординга,
   // только если системного разрешения на уведомления ещё нет).
   const [trialReminderPrompt, setTrialReminderPrompt] = useState<TrialReminderPromptState | null>(null);
+  // зачем (R58 #12): отметка «пейвол закрывает себя сам» живёт до размонтирования экрана пейвола
+  useEffect(() => () => clearPaywallOwnsClose('paywall_unmount'), []);
   const trialReminderPromptBusyRef = useRef(false);
 
   useEffect(() => {
@@ -1340,6 +1343,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         return;
       }
       accessApplied = true;
+      // зачем (R58 #12): доступ применила ЭТА покупка — закрытием владеет пейвол (шаг напоминания о пробном, один dismiss)
+      markPaywallOwnsClose('purchase');
       // зачем (Бандл-диета Ф1): план куплен → сразу фоновый префетч всех его
       // день-строк с сервера, чтобы контент лежал в кэше до входа в любой день.
       // Передаём состояние целиком: присваивание идёт внутри async-колбэка,
@@ -1687,6 +1692,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // владелец попросил короткое видимое подтверждение ДО навигации/закрытия,
         // тем же тост-механизмом. Логику активации/навигации ниже не трогаем.
         emitAppEvent('action_toast', paywallRestoreToast(mode === 'check' ? 'purchase_confirmed' : 'restored'));
+        // зачем (R58 #12): доступ применило ЭТО восстановление — закрытием владеет пейвол, диспетчер не закрывает второй раз
+        markPaywallOwnsClose('restore');
         void trackEvent('subscription_restored', { context, paywall: variant, mode });
         logPaywallFunnel('restore_completed', { variant, context, plan });
         if (source === 'onboarding') {

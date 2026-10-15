@@ -1,67 +1,67 @@
 [
   {
     "interactionId": "en:lesson-01:session-56:i01",
-    "correctText": "tired",
-    "correctResponseId": "en:lesson-01:session-56:i01:r1"
+    "correctText": "It is cheap.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i02",
-    "correctText": "week",
+    "correctText": "They are expensive.",
     "correctResponseId": "en:lesson-01:session-56:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-56:i03",
-    "correctText": "kind",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-56:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-56:i04",
-    "correctText": "It is hard.",
+    "correctText": "en:lesson-01:session-56:i04:p1=cheap\nen:lesson-01:session-56:i04:p2=expensive\nen:lesson-01:session-56:i04:p3=heavy\nen:lesson-01:session-56:i04:p4=light",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i05",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-56:i05:r1"
+    "correctText": "It's full.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i06",
-    "correctText": "I am tired.",
+    "correctText": "It is familiar.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i07",
-    "correctText": "warm",
-    "correctResponseId": "en:lesson-01:session-56:i07:r1"
+    "correctText": "It's unfamiliar.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i08",
-    "correctText": "en:lesson-01:session-56:i08:p1=week\nen:lesson-01:session-56:i08:p2=tired\nen:lesson-01:session-56:i08:p3=kind\nen:lesson-01:session-56:i08:p4=warm",
-    "correctResponseId": null
+    "correctText": "unknown",
+    "correctResponseId": "en:lesson-01:session-56:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-56:i09",
-    "correctText": "I am not alone.",
-    "correctResponseId": null
+    "correctText": "She is responsible.",
+    "correctResponseId": "en:lesson-01:session-56:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-56:i10",
-    "correctText": "alone",
-    "correctResponseId": "en:lesson-01:session-56:i10:r1"
+    "correctText": "en:lesson-01:session-56:i10:p1=familiar\nen:lesson-01:session-56:i10:p2=unfamiliar\nen:lesson-01:session-56:i10:p3=unknown\nen:lesson-01:session-56:i10:p4=full",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i11",
-    "correctText": "warm",
-    "correctResponseId": "en:lesson-01:session-56:i11:r1"
+    "correctText": "We're independent.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i12",
-    "correctText": "The flat is warm.",
+    "correctText": "He is dependent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-56:i13",
-    "correctText": "It is not hard.",
+    "correctText": "I am responsible.",
     "correctResponseId": null
   },
   {
@@ -71,37 +71,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-56:i15",
-    "correctText": "I am not tired.",
+    "correctText": "They're full.",
+    "correctResponseId": "en:lesson-01:session-56:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i16",
+    "correctText": "en:lesson-01:session-56:i16:p1=responsible\nen:lesson-01:session-56:i16:p2=independent\nen:lesson-01:session-56:i16:p3=dependent\nen:lesson-01:session-56:i16:p4=full",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-56:i16:s01",
-    "correctText": "I am not alone.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-56:i16:s02",
-    "correctText": "Everyone is kind.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-56:i17:s01",
-    "correctText": "It is hard.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-56:i17:s02",
-    "correctText": "I am tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-56:i17:s03",
-    "correctText": "I am not alone.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-56:i17:s04",
-    "correctText": "Everyone is kind.",
+    "interactionId": "en:lesson-01:session-56:i17",
+    "correctText": "She is independent.",
     "correctResponseId": null
   }
 ]

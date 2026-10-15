@@ -1,226 +1,138 @@
-# Англійська · Урок 1 · Заняття 56 — «Розмова про тиждень»
+# Англійська · Урок 1 · Заняття 56 — Перед виходом
 
-Після вечері вам телефонує брат. У розмові ви скажете про свій тиждень, колег і квартиру.
+**Ситуація.** Перед сімейною поїздкою ви обговорюєте покупки, багаж, маршрут і те, як кожен готується до дороги.
 
-**Що ви повторите:** `am`, `is`, `are` і заперечення з `not`
+**Що ви опануєте:** вибрати точне слово сьомого розділу й відповідну форму am, is або are
 **Нові слова:** —
-**Повертаються:** week, tired, everyone, kind, flat, warm, alone
 
 ---
 
 ## Інтро 1
 
-### Тиждень — це `it`
+### Ціна, вага чи місце
 
-`week` — «тиждень». Про нього кажуть `it`, а поруч ставлять `is`: `The week is hard` — те саме, що `It is hard`. `hard` — «важко, тяжко».
+`cheap` і `expensive` — про ціну; `light` і `heavy` — про вагу; `full` — про заповненість. Кошик може бути недорогим, легким і повним одночасно. Повний серветок — це ще не повний цегли.
 
-`are` тут не підійде: його беруть, коли мова про кількох. Тиждень один, навіть якщо за відчуттями їх було три.
+**Кошик заповнений серветками, але мало важить. Назвіть саме його невелику вагу.**
 
-**Брат питає, як минув тиждень. Він був важкий — скажіть про тиждень.**
-
-- ✅ **It is hard.**
-- ❌ It are hard. — *`are` — для кількох. Тиждень один, йому потрібне `is`.*
-- ❌ It hard. — *Між `it` і словом-ознакою потрібна форма `is`.*
+- ✅ **It is light.**
+- ❌ It is full. — *Кошик справді повний, але запитання про вагу: `light`.*
+- ❌ It are light. — *Після `It` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### `everyone` — «усі», а дієслово при ньому одне
+### Упізнаю чи ще не знаю
 
-`everyone` — «усі, кожен». Людей багато, і рука сама тягнеться до `are`. Але англійська рахує тут по одному — «кожен», — і ставить `is`: `Everyone is kind`. `kind` — «добрий».
+`familiar` — знайомий; `unfamiliar` — незнайомий. `unknown` підходить, коли відомості не встановлені: наприклад, час відправлення поки невідомий. Розрізняйте особисте впізнавання й відсутність інформації в обговорюваній ситуації.
 
-Помилка живуча: `everyone are` хочеться сказати навіть тим, хто знає правило напам'ять.
+**Час відправлення ще не встановлено. Ви обговорюєте саме цей час. Скажіть, що він невідомий.**
 
-**Брат питає про нових колег. Вони хороші — скажіть про всіх.**
-
-- ✅ **Everyone is kind.**
-- ❌ Everyone are kind. — *Людей багато, але `everyone` означає «кожен», тому потрібна форма `is`.*
-- ❌ Everyone kind. — *Між `everyone` і словом-ознакою потрібна форма `is`.*
+- ✅ **It is unknown.**
+- ❌ It is familiar. — *Тут час не встановлено: `unknown`.*
+- ❌ They are unknown. — *Обговорюється один час відправлення: `It is`.*
 
 ---
 
 ## Інтро 3
 
-### `alone` — «сам»
+### Три оцінки людини
 
-`alone` — «сам, на самоті». Про себе це `I am alone`: форму `am` беруть тільки з `I`, з іншими словами вона не йде.
+`responsible` — відповідальний, `independent` — незалежний, `dependent` — залежний. Той, хто сам вирішує свої повсякденні справи, може бути `independent`. Той, кому постійно потрібна турбота інших, — `dependent`. Відповідальність описує ставлення до обов’язків.
 
-Щоб сказати навпаки, `not` ставлять після `am`: `I am not alone`. Українською «я не сам» обходиться двома словами, і третє здається зайвим — але викиньте `am`, і фраза розсиплеться.
+**Друг серйозно ставиться до обов’язків і виконує обіцянки вчасно. Назвіть саме його відповідальність.**
 
-**Брат хвилюється, що ви там зовсім самі. Заспокойте його.**
-
-- ✅ **I am not alone.**
-- ❌ I not alone. — *Після `I` потрібна форма `am`.*
-- ❌ I am no alone. — *Після `am` для заперечення ставлять `not`, не `no`.*
+- ✅ **He is responsible.**
+- ❌ He is independent. — *Запитання не про незалежність, а про ставлення до обов’язків: `responsible`.*
+- ❌ He are responsible. — *Після `He` потрібно `is`.*
 
 ---
 
-## Практика — 21 завдання
+## Практика (17 завдань)
 
-**1 · Вставте слово — брат телефонує об одинадцятій вечора, ви позіхаєте в слухавку**
-<!-- interaction_id: en:lesson-01:session-56:i01; family: context_gap_grammar -->
-I am ___ . → **tired** · alone · warm
-- alone — *«Сам». Про компанію, а ви позіхаєте від утоми.*
-- warm — *«Тепло». Про температуру, а не про те, що вас хилить на сон.*
+**1 · Куплена листівка коштує недорого. Скажіть про її низьку ціну**
+<!-- interaction_id: en:lesson-01:session-56:i01; family: phrase_builder -->
+Плитки: `cheap` `is` `It` `are` → **It is cheap.**
+*(плитка `are` зайва: тут потрібно `is` — `It is cheap.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-56:i02; family: listen_choose -->
-🔊 *week* → **week** · wick · walk
-- wick — *Інший голосний й інше слово — «ґніт».*
-- walk — *Зовсім інше слово — «іти пішки». У ньому чути «уок».*
+🔊 *They are expensive.* → **They are expensive.** · They are cheap. · They are heavy.
+- They are cheap. — *У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`.*
+- They are heavy. — *У записі останнє слово — `expensive`, а в цьому варіанті — `heavy`.*
 
-**3 · Вставте слово — брат питає про нових колег, вони хороші**
+**3 · Обидві сумки багато важать. Доповніть оцінку ваги**
 <!-- interaction_id: en:lesson-01:session-56:i03; family: context_gap_grammar -->
-Everyone is ___ . → **kind** · tired · alone
-- tired — *«Втомився». Ви кажете не про їхній стан, а про вдачу.*
-- alone — *«Сам». Про всіх одразу так не скажеш.*
+They ___ heavy. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про дві сумки — `They are`.*
 
-**4 · Складіть фразу — «тиждень важкий», про тиждень через `it`**
-<!-- interaction_id: en:lesson-01:session-56:i04; family: phrase_builder -->
-Плитки: `hard` `is` `It` `are` → **It is hard.**
-*Плитка `are` зайва: `it` говорить про один тиждень, тому потрібна форма `is`: `It is hard.`*
+**4 · З’єднайте оцінки ціни й ваги зі значеннями**
+<!-- interaction_id: en:lesson-01:session-56:i04; family: speed_match -->
+cheap — недорогий · expensive — дорогий за ціною · heavy — важкий за вагою · light — легкий за вагою
 
-**5 · Оберіть форму — про всіх колег одразу**
-<!-- interaction_id: en:lesson-01:session-56:i05; family: context_gap_grammar -->
-Everyone ___ kind. → **is** · are · am
-- are — *Людей багато, але `everyone` означає «кожен», тому потрібна форма `is`.*
-- am — *`am` беруть тільки з `I`. Тут мова не про вас.*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-56:i05; family: listen_build_dictation -->
+🔊 *It's full.* Плитки: `full` `It's` `He's` → **It's full.**
+*(плитка `He's` зайва: тут потрібно `It's` — `It's full.`)*
 
-**6 · Послухайте і складіть — «я втомився»**
-<!-- interaction_id: en:lesson-01:session-56:i06; family: listen_build_dictation -->
-🔊 *I am tired.* Плитки: `tired` `am` `I` `is` → **I am tired.**
-*Плитка `is` зайва: після `I` потрібна форма `am`: `I am tired.`*
+**6 · Ви впізнаєте вокзал на фото: бували там багато разів. Назвіть його знайомим вам**
+<!-- interaction_id: en:lesson-01:session-56:i06; family: phrase_builder -->
+Плитки: `familiar` `is` `It` `are` → **It is familiar.**
+*(плитка `are` зайва: тут потрібно `is` — `It is familiar.`)*
 
-**7 · Вставте слово — брат питає про квартиру, там тепло**
-<!-- interaction_id: en:lesson-01:session-56:i07; family: context_gap_grammar -->
-The flat is ___ . → **warm** · kind · tired
-- kind — *`kind` — про вдачу людини, не про кімнату.*
-- tired — *«Втомився». Про квартиру так не кажуть.*
+**7 · Вулицю на іншому знімку ви бачите вперше. Коротко скажіть, що вона вам незнайома**
+<!-- interaction_id: en:lesson-01:session-56:i07; family: scripted_repeat_compare -->
+🎙 **It's unfamiliar.**
 
-**8 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-56:i08; family: speed_match -->
-week — тиждень · tired — втомився · kind — добрий · warm — тепло
+**8 · Ім’я автора старого знімка встановити не вдалося. Назвіть ім’я невідомим**
+<!-- interaction_id: en:lesson-01:session-56:i08; family: context_gap_grammar -->
+It is ___ . → **unknown** · familiar · full
+- familiar — *Ім’я не встановлене: `unknown`.*
+- full — *Це про заповненість. Тут немає відомостей про ім’я: `unknown`.*
 
-**9 · Складіть фразу — поруч із вами друзі; скажіть, що ви не сам**
-<!-- interaction_id: en:lesson-01:session-56:i09; family: phrase_builder -->
-Плитки: `alone` `not` `I` `am` `no` → **I am not alone.**
-*Плитка `no` зайва: заперечення в цій фразі будується словом `not` після `am`: `I am not alone.`*
+**9 · Послухайте фразу про сестру**
+<!-- interaction_id: en:lesson-01:session-56:i09; family: listen_choose -->
+🔊 *She is responsible.* → **She is responsible.** · She is independent. · She is dependent.
+- She is independent. — *У записі останнє слово — `responsible`, а в цьому варіанті — `independent`.*
+- She is dependent. — *У записі останнє слово — `responsible`, а в цьому варіанті — `dependent`.*
 
-**10 · Вставте слово — брат питає, чи не нудно вам у порожній квартирі**
-<!-- interaction_id: en:lesson-01:session-56:i10; family: context_gap_grammar -->
-I am not ___ . → **alone** · warm · kind
-- warm — *«Тепло». Він спитав не про батареї.*
-- kind — *«Добрий». Себе так не заспокоюють.*
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-56:i10; family: speed_match -->
+familiar — знайомий · unfamiliar — незнайомий · unknown — невідомий · full — заповнений
 
-**11 · Розрізніть звуки — яке з двох про «тепло»?**
-<!-- interaction_id: en:lesson-01:session-56:i11; family: sound_contrast -->
-🔊 Два слова поспіль.
-*warm · worm* → **warm**
-- worm — *Це «черв'як». Про квартиру й погоду кажуть `warm`.*
+**11 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-56:i11; family: listen_build_dictation -->
+🔊 *We're independent.* Плитки: `independent` `We're` `He's` → **We're independent.**
+*(плитка `He's` зайва: тут потрібно `We're` — `We're independent.`)*
 
-**12 · Послухайте і складіть — «квартира тепла»**
-<!-- interaction_id: en:lesson-01:session-56:i12; family: listen_build_dictation -->
-🔊 *The flat is warm.* Плитки: `warm` `flat` `is` `The` `are` → **The flat is warm.**
-*Плитка `are` зайва: `flat` — одна квартира, тому потрібна форма `is`: `The flat is warm.`*
+**12 · Ви обговорюєте, чи може малюк обходитися без дорослих. Йому постійно потрібна їхня турбота. Скажіть про його залежність**
+<!-- interaction_id: en:lesson-01:session-56:i12; family: phrase_builder -->
+Плитки: `dependent` `is` `He` `are` → **He is dependent.**
+*(плитка `are` зайва: тут потрібно `is` — `He is dependent.`)*
 
-**13 · Складіть фразу — «тиждень не важкий»**
-<!-- interaction_id: en:lesson-01:session-56:i13; family: phrase_builder -->
-Плитки: `hard` `not` `is` `It` `no` → **It is not hard.**
-*Плитка `no` зайва: заперечення тут будується словом `not` після `is`: `It is not hard.`*
+**13 · Ви уважно виконуєте свої обов’язки. Скажіть про себе: «Я відповідальний»**
+<!-- interaction_id: en:lesson-01:session-56:i13; family: scripted_repeat_compare -->
+🎙 **I am responsible.**
 
-**14 · Оберіть форму — про тиждень, який був легкий**
+**14 · Один порожній наплічник мало важить. Доповніть фразу про вагу**
 <!-- interaction_id: en:lesson-01:session-56:i14; family: context_gap_grammar -->
-It ___ not hard. → **is** · are · am
-- are — *Тиждень один. `are` беруть, коли мова про кількох.*
-- am — *`am` іде тільки з `I`. Тиждень — не ви.*
+It ___ light. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Про один наплічник — `It is`.*
 
-**15 · Складіть фразу — брат: «Ти там втомився?» Дайте відповідь, що ні**
-<!-- interaction_id: en:lesson-01:session-56:i15; family: phrase_builder -->
-Плитки: `tired` `am` `I` `not` `no` → **I am not tired.**
-*Плитка `no` зайва: після `I am` для заперечення потрібне `not`: `I am not tired.`*
+**15 · Послухайте коротку фразу й виберіть її**
+<!-- interaction_id: en:lesson-01:session-56:i15; family: listen_choose -->
+🔊 *They're full.* → **They're full.** · They're heavy. · They're light.
+- They're heavy. — *У записі останнє слово — `full`, а в цьому варіанті — `heavy`.*
+- They're light. — *У записі останнє слово — `full`, а в цьому варіанті — `light`.*
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-56:i16:s01; family: scripted_repeat_compare -->
-Брат хвилюється, що ви самі. Скажіть, що ви не самі.
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-56:i16; family: speed_match -->
+responsible — відповідальний · independent — незалежний · dependent — залежний · full — повний
 
-🎙 **I am not alone.**
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-56:i16:s02; family: scripted_repeat_compare -->
-Розкажіть братові про колег: вони добрі.
-
-🎙 **Everyone is kind.**
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-56:i17:s01; family: scripted_repeat_compare -->
-Брат питає, яким був ваш тиждень. Скажіть, що важким.
-
-🎙 **It is hard.**
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-56:i17:s02; family: scripted_repeat_compare -->
-Брат питає, чи ви втомилися. Скажіть, що втомилися.
-
-🎙 **I am tired.**
-
-**20 · Вставте слово — друг питає, чи ви зараз самі**
-<!-- interaction_id: en:lesson-01:session-56:i17:s03; family: context_gap_grammar -->
-I ___ not alone. → **am** · is · are
-- is — *`is` ставлять після he, she або it. Після `I` потрібне `am`.*
-- are — *`are` ставлять після you, we або they. Після `I` потрібне `am`.*
-
-**21 · Складіть фразу — ви говорите про доброзичливих людей поруч**
-<!-- interaction_id: en:lesson-01:session-56:i17:s04; family: phrase_builder -->
-Плитки: `Everyone` `is` `kind.` `are` → **Everyone is kind.**
-*Плитка `are` зайва: `everyone` говорить про людей по одному, тому потрібна форма `is`: `Everyone is kind.`*
-
----
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=context_gap_grammar, 2=listen_choose, 3=context_gap_grammar, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=context_gap_grammar, 8=speed_match, 9=phrase_builder, 10=context_gap_grammar, 11=sound_contrast, 12=listen_build_dictation, 13=phrase_builder, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=context_gap_grammar, 21=phrase_builder
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| week | 2, 8 | 2 |
-| tired | 1, 6, 8, 15, 17 | 1, 6, 15, 17 |
-| everyone | 3, 5, 16, 17 | 5, 16, 17 |
-| kind | 3, 5, 7, 8, 16, 17 | 3, 8, 16, 17 |
-| flat | 7, 12 | 7, 12 |
-| warm | 7, 8, 10, 11, 12 | 7, 11, 12 |
-| alone | 1, 3, 9, 10, 16 | 9, 10, 16 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть воно в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | It is hard | так — `The week is hard` і переклад `hard` у тексті |
-| Інтро 2 | Everyone is kind | так — `Everyone is kind` цілком |
-| Інтро 3 | I am not alone | так — `I am not alone` цілком |
-
-**3. Дошка пар (завдання 8)**
-
-| слово | відпрацювання ДО дошки |
-|---|---|
-| week | завдання 2 (слух) |
-| tired | завдання 1, 6 |
-| kind | завдання 3, 5 |
-| warm | завдання 7 |
-
-**4. Довжина інтро**
-
-| сторінка | стало |
-|---|---|
-| Інтро 1 | ~270 |
-| Інтро 2 | ~275 |
-| Інтро 3 | ~285 |
+**17 · Після поїздки ви розповідаєте про подругу: вона сама організовує свої повсякденні справи й ухвалює рішення. Назвіть її незалежною**
+<!-- interaction_id: en:lesson-01:session-56:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **She is independent.**
 

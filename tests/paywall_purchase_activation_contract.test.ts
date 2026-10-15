@@ -64,10 +64,14 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
 
     const restoreBody = sharedHook.slice(restoreStart, closeStart);
 
-    expect(restoreBody.indexOf('await syncRevenueCatIdentity(isOperationAccountCurrent)')).toBeGreaterThan(-1);
-    expect(restoreBody.indexOf('await syncRevenueCatIdentity(isOperationAccountCurrent)')).toBeLessThan(
+    // зачем (15.10, d6e5470c9 «Восстановить покупки» не зависает): личность сверяется под потолком awaitWithinInitCap; смысл защиты прежний —
+    // без подтверждённой личности RevenueCat магазин не вызывается, а по таймауту уходит повторная попытка без вызова магазина.
+    const identityCall = "awaitWithinInitCap('syncRevenueCatIdentity', syncRevenueCatIdentity(isOperationAccountCurrent)";
+    expect(restoreBody.indexOf(identityCall)).toBeGreaterThan(-1);
+    expect(restoreBody.indexOf(identityCall)).toBeLessThan(
       restoreBody.indexOf('Purchases.restorePurchases()'),
     );
+    expect(restoreBody).toContain("stopRestoreBeforeStore('syncRevenueCatIdentity'");
     expect(restoreBody).toContain('revenueCatCustomerInfoHasPremiumAccess(info)');
     expect(restoreBody).not.toContain('Object.keys(info.entitlements.active).length > 0');
     expect(restoreBody).toContain('revenueCatPremiumMetadata(info)');

@@ -59,8 +59,10 @@ describe('premium modal dispatcher contract', () => {
     expect(purchaseBody).toContain('revenueCatPremiumMetadata(customerInfo, pkg.product.identifier)');
     expect(purchaseBody).toContain('persistStorePremiumLocally');
 
-    expect(restoreBody).toContain('await initRevenueCat(isOperationAccountCurrent);');
-    expect(restoreBody).toContain('await syncRevenueCatIdentity(isOperationAccountCurrent)');
+    // зачем (15.10, d6e5470c9): инициализация и сверка личности идут под потолком awaitWithinInitCap, по таймауту магазин не вызывается
+    expect(restoreBody).toContain("awaitWithinInitCap('initRevenueCat', initRevenueCat(isOperationAccountCurrent)");
+    expect(restoreBody).toContain("awaitWithinInitCap('syncRevenueCatIdentity', syncRevenueCatIdentity(isOperationAccountCurrent)");
+    expect(restoreBody).toContain("stopRestoreBeforeStore('initRevenueCat'");
     expect(restoreBody).toContain('Purchases.restorePurchases()');
     expect(restoreBody).toContain('inferPremiumPlanFromProductId');
     expect(restoreBody).toContain('persistStorePremiumLocally');

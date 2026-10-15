@@ -9,7 +9,6 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
 import type { Lang } from '../../../constants/i18n';
-import { KIT_MOTION, TOAST } from '../../../constants/motionHybrid';
 import { hapticSuccess, hapticTap } from '../../../hooks/use-haptics';
 import MomentCoin from '../../moments/MomentCoin';
 import StreakMomentFlame from './StreakMomentFlame';
@@ -46,8 +45,8 @@ function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'str
   onDoneRef.current = onDone;
   useEffect(() => {
     playStreakSceneSound('toast');
-    // зачем (координатор 15.10, motion_hybrid): вход тоста — общим движением кита (TOAST.enterMs + кривая шторки KIT_MOTION), как у остальных окон, а не своей пружиной
-    if (!reduceMotion) enter.value = withTiming(1, { duration: TOAST.enterMs, easing: Easing.bezier(...KIT_MOTION.sheetEase) });
+    // зачем (координатор 15.10): вход тоста — ровно движение макета v3-all (emToastIn 600 мс, --em-ease-pop = cubic-bezier(.3,1.6,.5,1)), как у тоста обгона Пика
+    if (!reduceMotion) enter.value = withTiming(1, { duration: 600, easing: Easing.bezier(0.3, 1.6, 0.5, 1) });
     else enter.value = withTiming(1, { duration: 0, easing: Easing.linear });
     const burst = setTimeout(() => {
       setBurstKey(1);

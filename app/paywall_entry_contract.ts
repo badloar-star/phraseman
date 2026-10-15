@@ -20,6 +20,8 @@ export const PAYWALL_SOURCE_VALUES = [
   'flashcards_training_setup',
   // зачем (режим энергии Б 12.10): кнопка Plus в шторке остановки занятия
   'energy_stop_sheet',
+  // зачем: окно "Последний шанс" Пика (моменты v3) — отдельный источник в воронке пейвола
+  'spire_last_chance',
   'card_editor_create',
   'flashcards_hub_speaking',
   'flashcards_hub_training_mode',

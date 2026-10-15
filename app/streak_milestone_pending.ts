@@ -8,7 +8,7 @@
 // Очередь окон на экране итога: сначала рубеж, потом остальное — `hold` (есть ожидающий или открытый рубеж) читают хосты других моментов.
 // Журнал: [STREAK-MILESTONE].
 // ═══════════════════════════════════════════════════════════════════════════
-import { useSyncExternalStore, type ComponentType } from 'react';
+import { useEffect, useSyncExternalStore, type ComponentType } from 'react';
 import { onAccountOwnerChanged } from './account_owner_change';
 import type { Lang } from '../constants/i18n';
 // Пропсы окна рубежа повторены здесь, а не импортированы: в components/streak/moments ходят только разрешённые места (сторож v3).
@@ -94,7 +94,19 @@ export function streakMilestoneHostLoadFailed(error: unknown): { default: Compon
   console.warn('[STREAK-MILESTONE] host_load_failed', error instanceof Error ? error.message : String(error));
   consumeStreakMilestonePending();
   markStreakMilestoneOpen(null);
-  return { default: () => null };
+  return { default: StreakMilestoneHostUnavailable };
+}
+
+// зачем (Ревизор 15.10, 🟡 к edd75a0e3): React.lazy запоминает результат загрузки — после сбоя каждый следующий рубеж в этом процессе
+// получает ту же заглушку, а помощник выше срабатывает лишь раз. Поэтому заглушка сама при КАЖДОМ показе забирает ожидающий рубеж и
+// снимает удержание, иначе экран итога снова висел бы на milestoneHold.
+function StreakMilestoneHostUnavailable(_props: StreakMilestoneHostShape): null {
+  useEffect(() => {
+    const pending = consumeStreakMilestonePending();
+    markStreakMilestoneOpen(null);
+    console.warn('[STREAK-MILESTONE] host_unavailable_release', JSON.stringify({ days: pending?.days ?? null }));
+  }, []);
+  return null;
 }
 
 /** Другие окна на экране итога ждут, пока есть ожидающий или открытый рубеж. */

@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-26:i01",
-    "correctText": "weather",
+    "correctText": "He is careless.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-26:i02",
-    "correctText": "weather",
+    "correctText": "She is confused.",
     "correctResponseId": "en:lesson-02:session-26:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-26:i03",
-    "correctText": "time",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-26:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-26:i04",
-    "correctText": "time",
-    "correctResponseId": "en:lesson-02:session-26:i04:r1"
+    "correctText": "en:lesson-02:session-26:i04:p1=careless\nen:lesson-02:session-26:i04:p2=bored\nen:lesson-02:session-26:i04:p3=confused\nen:lesson-02:session-26:i04:p4=worried",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-26:i05",
-    "correctText": "What is the weather?",
+    "correctText": "Where is she?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-26:i06",
-    "correctText": "time",
-    "correctResponseId": "en:lesson-02:session-26:i06:r1"
+    "correctText": "Is he unwell?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-26:i07",
-    "correctText": "What is the time?",
+    "correctText": "I'm bored.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-26:i08",
-    "correctText": "cold",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-26:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-26:i09",
-    "correctText": "cold",
+    "correctText": "He is unwell.",
     "correctResponseId": "en:lesson-02:session-26:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-26:i10",
-    "correctText": "cold",
-    "correctResponseId": "en:lesson-02:session-26:i10:r1"
+    "correctText": "en:lesson-02:session-26:i10:p1=unwell\nen:lesson-02:session-26:i10:p2=careless\nen:lesson-02:session-26:i10:p3=worried\nen:lesson-02:session-26:i10:p4=confused",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-26:i11",
-    "correctText": "near",
+    "correctText": "They are not worried.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-26:i12",
-    "correctText": "near",
-    "correctResponseId": "en:lesson-02:session-26:i12:r1"
+    "correctText": "Where is it?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-26:i13",
-    "correctText": "station",
+    "correctText": "She's confused.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-26:i14",
-    "correctText": "station",
+    "correctText": "are",
     "correctResponseId": "en:lesson-02:session-26:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-26:i15",
-    "correctText": "en:lesson-02:session-26:i15:p1=weather\nen:lesson-02:session-26:i15:p2=time\nen:lesson-02:session-26:i15:p3=cold\nen:lesson-02:session-26:i15:p4=near",
-    "correctResponseId": null
+    "correctText": "Who is worried?",
+    "correctResponseId": "en:lesson-02:session-26:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-26:i16",
-    "correctText": "station",
-    "correctResponseId": "en:lesson-02:session-26:i16:r1"
+    "correctText": "en:lesson-02:session-26:i16:p1=bored\nen:lesson-02:session-26:i16:p2=confused\nen:lesson-02:session-26:i16:p3=unwell\nen:lesson-02:session-26:i16:p4=careless",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-26:i17",
-    "correctText": "It is cold.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-26:i18:s01",
-    "correctText": "What is the time?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-26:i18:s02",
-    "correctText": "It is cold.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-26:i18:s03",
-    "correctText": "It is near the station.",
+    "correctText": "Who is careless?",
     "correctResponseId": null
   }
 ]

@@ -1,223 +1,138 @@
-# Английский · Урок 2 · Занятие 26 — «What is the weather?»
+# Английский · Урок 2 · Занятие 26 — Краска на рукаве
 
-**Сцена занятия.** Утро выходного в Дублине. Вы стоите у окна гостиницы, спутник ещё не встал, и всё, что нужно выяснить, — сколько сейчас и что там на улице.
+**Ситуация.** Вы с друзьями раскрашиваете деревянные игрушки. Олег оставляет открытые банки у края стола, Анна пытается разобраться в инструкции, а вы ищете пропавшую кисть.
 
-**Как сказать:** `What is + вещь` (время и погода)
-**Новые слова:** weather, time
-**Возвращаются:** cold, near, station
+**Что вы освоите:** сказать о неосторожности и повторить вопросы о людях
+**Новые слова:** careless
 
 ---
 
 ## Интро 1
 
-### Как спросить, что там за окном
+### Не хватает внимания
 
-`weather` — «погода». Дождь, солнце, ветер, туман.
+`careless` — «неосторожный, небрежный». Олег ставит открытую краску на самый край стола и машет рядом рукавом: `He is careless`. Это не значит, что он обязательно плохой человек. Просто за рукавом сейчас стоит следить внимательнее, чем за рисунком.
 
-Спрашивают про неё так: `What is the weather?` Сначала `what`, потом `is`, потом само слово. Перед словом стоит маленькое `the` — пока просто запоминайте вопрос вместе с ним, когда оно нужно, разберём позже.
+**Олег снова оставил открытую банку там, где легко её задеть. Скажите полной фразой, что он неосторожен.**
 
-**За окном серо, и вы не понимаете, что там. Спросите спутника.**
-
-- ✅ **What is the weather?**
-- ❌ What the weather is? — *`is` уехало в конец. Его место второе, сразу за `what`.*
-- ❌ What the weather? — *`is` пропало совсем. Без него это не вопрос, а два слова подряд.*
+- ✅ **He is careless.**
+- ❌ He careless. — *Между `He` и `careless` нужно `is`.*
+- ❌ He is not careless. — *Это отрицает неосторожность. В условии Олег обращается с краской неосторожно.*
 
 ---
 
 ## Интро 2
 
-### То же начало, другое слово
+### Чувство и поведение
 
-`time` — «время». Про часы на стене, про минуты, про «сколько сейчас».
+`worried` — «обеспокоенный», `confused` — «растерянный, запутавшийся». Анна не понимает инструкцию: `She is confused`. Вы волнуетесь за новый рукав Олега: `I am worried`. Эти слова не означают `careless`: можно волноваться и при этом быть внимательным.
 
-Вопрос собирается из тех же деталей: `What is the time?` Начало то же, что и в вопросе про погоду, — меняется только последнее слово. Так же спрашивают про цену: `What is the price?` — «сколько стоит?»
+**Вы переживаете, что краска попадёт на новую одежду. Скажите коротко, что вы обеспокоены.**
 
-**Телефон разрядился, часов на стене нет. Спросите спутника, сколько сейчас.**
-
-- ✅ **What is the time?**
-- ❌ What is time? — *Пропало `the` — то самое маленькое слово из первого вопроса.*
-- ❌ Is what the time? — *`what` идёт первым. Он и открывает вопрос.*
+- ✅ **I'm worried.**
+- ❌ I'm careless. — *Это «Я неосторожен», а вы говорите о беспокойстве.*
+- ❌ He's worried. — *Вы говорите о себе: `I'm`.*
 
 ---
 
 ## Интро 3
 
-### Отвечаем про погоду
+### Кто и где
 
-`cold` — «холодно». Про погоду за окном, про воду в кране, про руки без перчаток.
+`Who is careless?` — «Кто неосторожен?» Здесь нужно назвать человека. `Where is he?` — «Где он?» Здесь нужно назвать место. А на `Is he careless?` можно ответить коротко: `Yes, he is` или `No, he is not`. Начало вопроса показывает, какого ответа ждут.
 
-Спросили `What is the weather?` — отвечают коротко: `It is cold.` По-русски хватило бы одного «холодно», а по-английски перед словом ставят `It is`.
+**Вы не видели, кто оставляет банки на краю. Спросите, кто неосторожен.**
 
-**Вы высунули руку в окно. Пальцы мёрзнут за пять секунд. Скажите спутнику, как там.**
-
-- ✅ **It is cold.**
-- ❌ It cold. — *`is` выпало. Между `it` и словом о погоде оно нужно.*
-- ❌ Is it cold. — *Так вы спрашиваете, а вы отвечаете. Для ответа `it` идёт первым.*
+- ✅ **Who is careless?**
+- ❌ Where is he? — *Это вопрос о месте: «Где он?»*
+- ❌ Is he careless? — *Так вы спрашиваете о конкретном мужчине. Нужно узнать, кто именно неосторожен.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — weather**
-<!-- interaction_id: en:lesson-02:session-26:i01; family: listen_choose -->
-Цель: `weather`
+**1 · Олег не следит, куда ставит открытую краску. Скажите полной фразой, что он неосторожен**
+<!-- interaction_id: en:lesson-02:session-26:i01; family: phrase_builder -->
+Плитки: `careless` `is` `He` `are` → **He is careless.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is careless.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте фразу об Анне**
 <!-- interaction_id: en:lesson-02:session-26:i02; family: listen_choose -->
-Цель: `weather`
-Варианты: `weather` · `water` · `walk`
-- water — *Это «вода». К погоде отношения не имеет.*
-- walk — *Это «идти пешком». Слово про ноги, а не про небо.*
+🔊 *She is confused.* → **She is confused.** · She is worried. · She is bored.
+- She is worried. — *В записи последнее слово — `confused`, а в этом варианте — `worried`.*
+- She is bored. — *В записи последнее слово — `confused`, а в этом варианте — `bored`.*
 
+**3 · Вы хотите узнать, кто обращается с краской неосторожно. Дополните вопрос**
+<!-- interaction_id: en:lesson-02:session-26:i03; family: context_gap_grammar -->
+Who ___ careless? → **is** · am · it
+- am — *Здесь вопрос `Who is careless?`.*
+- it — *После `Who` нужно `is`, а не ещё одно слово о человеке или вещи.*
 
-**3 · Карточка слова — time**
-<!-- interaction_id: en:lesson-02:session-26:i03; family: listen_choose -->
-Цель: `time`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-26:i04; family: speed_match -->
+careless — неосторожный, небрежный · bored — скучающий · confused — растерянный, запутавшийся · worried — обеспокоенный
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-02:session-26:i04; family: listen_choose -->
-Цель: `time`
-Варианты: `time` · `team` · `toy`
-- team — *Это «команда». Гласная звучит «и», а в `time` — «ай».*
-- toy — *Это «игрушка». Начало то же, а дальше «ой» вместо «ай».*
+**5 · Послушайте и соберите вопрос**
+<!-- interaction_id: en:lesson-02:session-26:i05; family: listen_build_dictation -->
+🔊 *Where is she?* Плитки: `she` `is` `Where` `Who` → **Where is she?**
+*(плитка `Who` лишняя: здесь нужно `Where` — `Where is she?`)*
 
+**6 · Олег говорит о плохом самочувствии. Уточните у Анны, нездоровится ли ему**
+<!-- interaction_id: en:lesson-02:session-26:i06; family: phrase_builder -->
+Плитки: `unwell` `he` `Is` `Are` → **Is he unwell?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is he unwell?`)*
 
-**5 · Соберите фразу — спросите про погоду**
-<!-- interaction_id: en:lesson-02:session-26:i05; family: phrase_builder -->
-Цель: `What is the weather?`
+**7 · Вы давно закончили свою игрушку, ждать остальных скучно. Скажите об этом коротко**
+<!-- interaction_id: en:lesson-02:session-26:i07; family: scripted_repeat_compare -->
+🎙 **I'm bored.**
 
-**6 · Вставьте слово — часов нет, спросите спутника**
-<!-- interaction_id: en:lesson-02:session-26:i06; family: context_gap_grammar -->
-Цель: `What is the ___ ?`
-Варианты: `time` · `weather` · `street`
-- weather — *Это «погода». Вы спрашиваете не про улицу, а про часы.*
-- street — *Это «улица». Про неё вы и так знаете, где стоите.*
+**8 · Анна внимательно закрывает банки и убирает их с края. На «Is she careless?» дополните короткое «нет»**
+<!-- interaction_id: en:lesson-02:session-26:i08; family: context_gap_grammar -->
+No, she ___ not. → **is** · am · are
+- am — *С `she` нужно `is`.*
+- are — *Ответ — `No, she is not`.*
 
+**9 · Послушайте фразу об Олеге**
+<!-- interaction_id: en:lesson-02:session-26:i09; family: listen_choose -->
+🔊 *He is unwell.* → **He is unwell.** · He is careless. · He is bored.
+- He is careless. — *В записи последнее слово — `unwell`, а в этом варианте — `careless`.*
+- He is bored. — *В записи последнее слово — `unwell`, а в этом варианте — `bored`.*
 
-**7 · Послушайте и соберите — «сколько сейчас»**
-<!-- interaction_id: en:lesson-02:session-26:i07; family: listen_build_dictation -->
-Цель: `What is the time?`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-26:i10; family: speed_match -->
+unwell — плохо себя чувствующий · careless — неосторожный, небрежный · worried — обеспокоенный · confused — растерянный, запутавшийся
 
-**8 · Карточка слова — cold**
-<!-- interaction_id: en:lesson-02:session-26:i08; family: listen_choose -->
-Цель: `cold`
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-02:session-26:i11; family: listen_build_dictation -->
+🔊 *They are not worried.* Плитки: `worried` `not` `are` `They` `is` → **They are not worried.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are not worried.`)*
 
-**9 · Вставьте слово — рука в окне мёрзнет за пять секунд**
-<!-- interaction_id: en:lesson-02:session-26:i09; family: context_gap_grammar -->
-Цель: `It is ___ .`
-Варианты: `cold` · `near` · `time`
-- near — *Это «близко». Про расстояние, а не про мороз.*
-- time — *Это «время». На вопрос о погоде оно не отвечает.*
+**12 · Вы ищете свою кисть. Спросите, где она**
+<!-- interaction_id: en:lesson-02:session-26:i12; family: phrase_builder -->
+Плитки: `it` `is` `Where` `What` → **Where is it?**
+*(плитка `What` лишняя: здесь нужно `Where` — `Where is it?`)*
 
+**13 · Анна запуталась в инструкции. Коротко скажите, что она растеряна**
+<!-- interaction_id: en:lesson-02:session-26:i13; family: scripted_repeat_compare -->
+🎙 **She's confused.**
 
-**10 · Различите звуки — какое из двух про «холодно»?**
-<!-- interaction_id: en:lesson-02:session-26:i10; family: sound_contrast -->
-Варианты: `cold` · `gold`
-- gold — *Это «золото». Отличие в самом первом звуке: `cold` начинается с «к», `gold` — с «г».*
+**14 · Двое друзей аккуратно убрали все банки. Отрицайте, что они небрежны**
+<!-- interaction_id: en:lesson-02:session-26:i14; family: context_gap_grammar -->
+They ___ not careless. → **are** · am · is
+- am — *С `They` нужно `are`.*
+- is — *Фраза — `They are not careless`.*
 
+**15 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-02:session-26:i15; family: listen_choose -->
+🔊 *Who is worried?* → **Who is worried?** · Who is bored? · Who is careless?
+- Who is bored? — *В записи последнее слово — `worried`, а в этом варианте — `bored`.*
+- Who is careless? — *В записи последнее слово — `worried`, а в этом варианте — `careless`.*
 
-**11 · Карточка слова — near**
-<!-- interaction_id: en:lesson-02:session-26:i11; family: listen_choose -->
-Цель: `near`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-26:i16; family: speed_match -->
+bored — скучающий · confused — растерянный, запутавшийся · unwell — плохо себя чувствующий · careless — неосторожный, небрежный
 
-**12 · Вставьте слово — спутник спрашивает, далеко ли до вокзала; он в двух шагах**
-<!-- interaction_id: en:lesson-02:session-26:i12; family: context_gap_grammar -->
-Цель: `It is ___ .`
-Варианты: `near` · `cold` · `time`
-- cold — *Это «холодно». Про погоду, а не про расстояние.*
-- time — *Это «время». Ответ про дорогу оно не даёт.*
+**17 · Открытая краска снова стоит на самом краю стола. Вы не видели, кто её поставил. Спросите, кто неосторожен**
+<!-- interaction_id: en:lesson-02:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Who is careless?**
 
-
-**13 · Карточка слова — station**
-<!-- interaction_id: en:lesson-02:session-26:i13; family: listen_choose -->
-Цель: `station`
-
-**14 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-02:session-26:i14; family: listen_choose -->
-Цель: `station`
-Варианты: `station` · `stay` · `sun`
-- stay — *Это «остаться». Короче: в `station` два слога, в `stay` один.*
-- sun — *Это «солнце». Гласная другая: в `sun` слышно «а», в `station` — «эй».*
-
-
-**15 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-26:i15; family: speed_match -->
-Пары: `weather` — погода · `time` — время · `cold` — холодно · `near` — близко
-Цель: `weather · time · cold · near`
-
-**16 · Вставьте слово — спутник спрашивает, где кафе; оно рядом с вокзалом**
-<!-- interaction_id: en:lesson-02:session-26:i16; family: context_gap_grammar -->
-Цель: `It is near the ___ .`
-Варианты: `station` · `weather` · `time`
-- weather — *Это «погода». Местом она быть не может.*
-- time — *Это «время». Идти можно к вокзалу, а не ко времени.*
-
-
-**17 · Соберите фразу — ответьте, что на улице мороз**
-<!-- interaction_id: en:lesson-02:session-26:i17; family: phrase_builder -->
-Цель: `It is cold.`
-Плитки: `It` `is` `cold` `what`
-*Плитка `what` лишняя: `what` значит «что» и нужна в вопросе; здесь вы даёте сообщение `It is cold.`*
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-26:i18:s01; family: scripted_repeat_compare -->
-Цель: `What is the time?`
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-26:i18:s02; family: scripted_repeat_compare -->
-Цель: `It is cold.`
-
-**20 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-26:i18:s03; family: scripted_repeat_compare -->
-Цель: `It is near the station.`
-
-## Для сборщика
-
-new_words:
-weather — погода — «погода». То, что за окном: дождь, солнце, ветер.
-time — время — «время». Сколько сейчас на часах и сколько у вас его осталось.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=listen_choose, 9=context_gap_grammar, 10=sound_contrast, 11=listen_choose, 12=context_gap_grammar, 13=listen_choose, 14=listen_choose, 15=speed_match, 16=context_gap_grammar, 17=phrase_builder, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| cold | Интро 3, 8, 9, 10, 12 (ловушка), 15, 17, 18 | 9, 10, 17, 18 |
-| near | 9 (ловушка), 11, 12, 15, 16, 18 | 12, 18 |
-| station | 13, 14, 16, 18 | 14, 16, 18 |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | weather | да — «`weather` — „погода“», `What is the weather?` |
-| Интро 2 | time | да — «`time` — „время“», `What is the time?` |
-| Интро 3 | cold | да — «`cold` — „холодно“», `It is cold.` |
-
-**3. Доска пар (задание 15)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| weather | 1 | 2 (слух), 5 (сборка) |
-| time | 3 | 4 (слух), 6 (пропуск), 7 (сборка) |
-| cold | 8 | 9 (пропуск), 10 (звуки) |
-| near | 11 | 12 (пропуск) |
-
-**4. Слова в целевых ответах**
-
-Все слова целевых фраз (`what`, `is`, `the`, `weather`, `time`, `it`, `cold`, `near`, `station`) введены в этой занятия либо пройдены раньше. `station` получает карточку (13) и узнавание на слух (14) до первого использования во фразе.
-
-**5. Длина интро**
-
-| страница | знаков |
-|---|---|
-| Интро 1 | 289 |
-| Интро 2 | 268 |
-| Интро 3 | 276 |
-
----

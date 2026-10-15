@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-26:intro1:r2": {
+          "ru": "Между `He` и `careless` нужно `is`.",
+          "uk": "Між `He` і `careless` потрібно `is`."
+        },
+        "en:lesson-02:session-26:intro1:r3": {
+          "ru": "Это отрицает неосторожность. В условии Олег обращается с краской неосторожно.",
+          "uk": "Це заперечує необережність. За умовою Олег поводиться з фарбою необережно."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-26:intro2:r2": {
+          "ru": "Это «Я неосторожен», а вы говорите о беспокойстве.",
+          "uk": "Це «Я необережний», а ви говорите про хвилювання."
+        },
+        "en:lesson-02:session-26:intro2:r3": {
+          "ru": "Вы говорите о себе: `I'm`.",
+          "uk": "Ви говорите про себе: `I'm`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-26:intro3:r2": {
+          "ru": "Это вопрос о месте: «Где он?»",
+          "uk": "Це запитання про місце: «Де він?»"
+        },
+        "en:lesson-02:session-26:intro3:r3": {
+          "ru": "Так вы спрашиваете о конкретном мужчине. Нужно узнать, кто именно неосторожен.",
+          "uk": "Так ви запитуєте про конкретного чоловіка. Потрібно дізнатися, хто саме необережний."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ef6ec353085c174e5020e5fd64742cf6bf15d70eefb9c5097d1290165ccbede3"
+}

@@ -1,168 +1,138 @@
-# Английский · Урок 3 · Занятие 26 — «That — вон то, дальше»
+# Английский · Урок 3 · Занятие 26 — Кошки и коробки
 
-**Сцена занятия.** Перед публичной презентацией вы стоите у пульта в конце зала. На сцене вдали уже размещены картина, экран и колонка; вы называете технику помощнику, не покидая своего места.
+**Ситуация.** Вы помогаете Анне подготовить комнату в приюте для кошек. Олег принёс пустые коробки. Пока вы расставляете их, кошки прячутся внутри, а Олег пытается понять, куда все делись.
 
-**Как сказать:** `That is a + предмет` — назвать один предмет вдали
-**Новые слова:** picture, screen, speaker
-**Для повторения:** phone, cup, box
+**Что вы освоите:** назвать нескольких кошек и отличить разговор о кошках вообще от разговора об определённых кошках
+**Новые слова:** cats
 
 ---
 
 ## Интро 1
 
-### Показываем на вещь вдали
+### Кошек несколько
 
-`that` — «то, вон то», когда один предмет находится не рядом, а дальше от вас. На сцене висит картина — `picture`.
+`cat` — «кошка», `cats` — «кошки». `They are cats` — «Это кошки». Перед `cats` не ставим `a`: кошек несколько. Коробки — `boxes`. Олег принёс коробки для вещей, но кошки заселились первыми. Теперь вещи снова без жилья.
 
-Чтобы назвать её, скажите `That is a picture.` — «Вон картина». Здесь `that` указывает вдаль, `is` соединяет фразу, а `a picture` называет один предмет. Фраза достаёт до сцены без прогулки через весь зал.
+**На фотографии несколько кошек. Назовите их одним английским словом.**
 
-**Вы показываете помощнику на одну картину на сцене. Назовите её.**
-
-- ✅ **That is a picture.**
-- ❌ This is a picture. — *Картина находится вдали. Для одного дальнего предмета здесь нужно `That is a picture.`*
-- ❌ That a picture. — *После `that` нужна связка `is`: `That is a picture.`*
+- ✅ **cats**
+- ❌ cat — *`cat` — одна кошка; несколько — `cats`.*
+- ❌ a cats — *Перед названием нескольких кошек не ставим `a`.*
 
 ---
 
 ## Интро 2
 
-### Вся фраза — четыре части
+### Вообще или именно эти
 
-На другом конце зала стоит экран — `screen`. Один предмет вдали называем так: `That is a screen.` — «Вон экран».
+`Cats are different` — «Кошки разные». Так можно сказать о кошках в целом: у них разные привычки и характеры. Перед `cats` здесь нет `the`. `The cats are inside` — «Кошки внутри»: здесь речь об определённых кошках, которых вы ищете. `Where are the cats?` — «Где кошки?»
 
-Порядок остаётся строгим: `that`, затем `is`, потом `a` и название предмета. В `That a screen` потерялось `is`, а в `That is screen` — `a`. Экран далеко, но пропуски в фразе всё равно заметны.
+**Вы говорите, что у кошек вообще разные характеры, без указания на определённую группу. Выберите фразу «Кошки разные».**
 
-**Вы показываете на один экран на сцене. Назовите его.**
-
-- ✅ **That is a screen.**
-- ❌ That are a screen. — *Предмет один. После `that` здесь нужно `is`, а не `are`: `That is a screen.`*
-- ❌ That is screen. — *Перед названием одного предмета нужно `a`: `a screen`.*
+- ✅ **Cats are different.**
+- ❌ The cats are different. — *`The cats` — определённые кошки. Здесь говорим о кошках вообще: `Cats`.*
+- ❌ A cats are different. — *Перед `cats` не ставим `a`.*
 
 ---
 
 ## Интро 3
 
-### Рядом `this`, вдали `that`
+### Куда все делись
 
-`speaker` — «колонка». Для одной колонки рядом скажите `This is a speaker.`, а для одной колонки вдали — `That is a speaker.`
+`confused` — «растерянный, запутавшийся», `worried` — «обеспокоенный», `bored` — «скучающий», `careless` — «невнимательный, неосторожный». Олег не понимает, куда исчезли кошки: `He is confused` — «Он растерян». Анна знает, что они в коробках, поэтому не волнуется. Олег спрашивает её: `Where are the cats?` — «Где кошки?»
 
-Предмет остаётся один, поэтому сохраняются `is` и `a speaker`. По расстоянию меняется только указатель: `this` для вещи рядом, `that` для вещи вдали.
+**Анна знает, каких кошек вы ищете. Спросите, где кошки.**
 
-**Одна колонка стоит на сцене в другом конце зала. Назовите её.**
-
-- ✅ **That is a speaker.**
-- ❌ This is a speaker. — *Колонка находится в другом конце зала. Для предмета вдали нужно `that`.*
-- ❌ That is speaker. — *Колонка одна, поэтому перед `speaker` нужно `a`: `That is a speaker.`*
+- ✅ **Where are the cats?**
+- ❌ Where is the cats? — *Кошек несколько: нужно `are`.*
+- ❌ What are the cats? — *О месте спрашиваем `Where` — «Где».*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — picture**
-<!-- interaction_id: en:lesson-03:session-26:i01; family: listen_choose -->
-Цель: `picture`
+**1 · Олег принёс несколько коробок. Назовите их полной фразой**
+<!-- interaction_id: en:lesson-03:session-26:i01; family: phrase_builder -->
+Плитки: `boxes` `are` `They` `is` → **They are boxes.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are boxes.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-26:i03; family: scripted_repeat_compare -->
-Цель: `screen`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-26:i02; family: listen_choose -->
+🔊 *cats* → **cats** · dogs · cups
+- dogs — *В записи первое слово — `cats`, а в этом варианте — `dogs`.*
+- cups — *В записи первое слово — `cats`, а в этом варианте — `cups`.*
 
-**3 · Вставьте слово — на сцене стоит колонка; выберите её название**
-<!-- interaction_id: en:lesson-03:session-26:i05; family: context_gap_grammar -->
-Цель: `___`
-Варианты: `speaker` · `screen` · `picture`
-- screen — *screen — экран. Здесь нужна колонка: speaker.*
-- picture — *picture — картина. Здесь нужна колонка: speaker.*
+**3 · Назовите нескольких кошек одним английским словом**
+<!-- interaction_id: en:lesson-03:session-26:i03; family: context_gap_grammar -->
+___ → **cats** · cat · a cats
+- cat — *Несколько кошек — `cats`.*
+- a cats — *Перед `cats` не ставим `a`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-26:i04; family: speed_match -->
+cats — кошки · boxes — коробки · bored — скучающий · confused — растерянный
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-26:i02; family: scripted_repeat_compare -->
-Цель: `picture`
+**5 · Послушайте и соберите сообщение**
+<!-- interaction_id: en:lesson-03:session-26:i05; family: listen_build_dictation -->
+🔊 *The cats are inside.* Плитки: `inside` `are` `cats` `The` `is` → **The cats are inside.**
+*(плитка `is` лишняя: здесь нужно `are` — `The cats are inside.`)*
 
-**5 · Послушайте и выберите — какое слово назвал помощник**
-<!-- interaction_id: en:lesson-03:session-26:i04; family: listen_choose -->
-Значения вариантов: `screen` — экран · `green` — зелёный · `scream` — крик · `stream` — поток
-Цель: `screen`
-Варианты: `screen` · `green` · `scream` · `stream`
-- green — *В `green` начало — `gr`; в `screen` перед `r` слышны `s` и `k`: `skr`.*
-- scream — *`scream` заканчивается на `m`, а `screen` — на `n`.*
-- stream — *В `stream` после `s` слышно `t`; в `screen` — сочетание `kr`.*
+**6 · Скажите «Кошки разные», говоря о кошках в целом и их разных характерах**
+<!-- interaction_id: en:lesson-03:session-26:i06; family: phrase_builder -->
+Плитки: `different` `are` `Cats` `is` → **Cats are different.**
+*(плитка `is` лишняя: здесь нужно `are` — `Cats are different.`)*
 
+**7 · Вы пока не знаете, где кошки, и волнуетесь. Скажите «Я обеспокоен» с сокращением**
+<!-- interaction_id: en:lesson-03:session-26:i07; family: scripted_repeat_compare -->
+🎙 **I'm worried.**
 
-**6 · Различите звук — speaker или sticker**
-<!-- interaction_id: en:lesson-03:session-26:i06; family: sound_contrast -->
-Цель: `speaker`
-*speaker · sticker* → **speaker**
-- sticker — *В speaker после `s` слышно `p`; в sticker — `t`.*
+**8 · Вы говорите о разных характерах кошек вообще, без указания на определённых кошек**
+<!-- interaction_id: en:lesson-03:session-26:i08; family: context_gap_grammar -->
+___ are different. → **Cats** · The cats · A cats
+- The cats — *`The cats` — конкретные кошки. Для общего высказывания здесь нужно `Cats`.*
+- A cats — *Перед `cats` не ставим `a`.*
 
+**9 · Послушайте описание Олега**
+<!-- interaction_id: en:lesson-03:session-26:i09; family: listen_choose -->
+🔊 *He is confused.* → **He is confused.** · He is bored. · He is worried.
+- He is bored. — *В записи последнее слово — `confused`, а в этом варианте — `bored`.*
+- He is worried. — *В записи последнее слово — `confused`, а в этом варианте — `worried`.*
 
-**7 · Соедините слова со значениями — предметы на сцене**
-<!-- interaction_id: en:lesson-03:session-26:i07; family: speed_match -->
-Пары: `picture` — картина · `screen` — экран · `speaker` — колонка · `phone` — телефон
-Цель: `picture · screen · speaker · phone`
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-26:i10; family: speed_match -->
+worried — обеспокоенный · careless — невнимательный, неосторожный · cats — кошки · boxes — коробки
 
-**8 · Различите указательное слово — this или that**
-<!-- interaction_id: en:lesson-03:session-26:i08; family: sound_contrast -->
-Цель: `That`
-*That · This* → **That**
-- This — *This указывает на предмет рядом; в задании нужен предмет вдали: that.*
+**11 · Послушайте и соберите сообщение**
+<!-- interaction_id: en:lesson-03:session-26:i11; family: listen_build_dictation -->
+🔊 *The boxes are here.* Плитки: `here` `are` `boxes` `The` `is` → **The boxes are here.**
+*(плитка `is` лишняя: здесь нужно `are` — `The boxes are here.`)*
 
+**12 · Анна знает, каких кошек вы ищете. Спросите, где кошки**
+<!-- interaction_id: en:lesson-03:session-26:i12; family: phrase_builder -->
+Плитки: `cats` `the` `are` `Where` `What` → **Where are the cats?**
+*(плитка `What` лишняя: здесь нужно `Where` — `Where are the cats?`)*
 
-**9 · Вставьте форму — один предмет стоит вдали**
-<!-- interaction_id: en:lesson-03:session-26:i09; family: context_gap_grammar -->
-Цель: `That ___ there.`
-Варианты: `is` · `are`
-- are — *Are используют с несколькими предметами. Здесь предмет один, поэтому is.*
+**13 · Олегу нечем заняться, ему скучно. Скажите «Ему скучно» с сокращением**
+<!-- interaction_id: en:lesson-03:session-26:i13; family: scripted_repeat_compare -->
+🎙 **He's bored.**
 
+**14 · Вы нашли несколько кошек внутри комнаты и сообщаете об этом**
+<!-- interaction_id: en:lesson-03:session-26:i14; family: context_gap_grammar -->
+The cats ___ inside. → **are** · is · am
+- is — *Кошек несколько: нужно `are`.*
+- am — *С `the cats` здесь нужно `are`.*
 
-**10 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-26:i10; family: scripted_repeat_compare -->
-Цель: `That is a speaker.`
+**15 · Послушайте описание Олега**
+<!-- interaction_id: en:lesson-03:session-26:i15; family: listen_choose -->
+🔊 *He is careless.* → **He is careless.** · He is careful. · He is confused.
+- He is careful. — *В записи последнее слово — `careless`, а в этом варианте — `careful`.*
+- He is confused. — *В записи последнее слово — `careless`, а в этом варианте — `confused`.*
 
-**11 · Соберите фразу — картина находится на сцене вдали**
-<!-- interaction_id: en:lesson-03:session-26:i11; family: phrase_builder -->
-Цель: `That is a picture.`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-26:i16; family: speed_match -->
+bored — скучающий · confused — растерянный · worried — обеспокоенный · careless — невнимательный, неосторожный
 
-**12 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-26:i12; family: listen_build_dictation -->
-Цель: `That is a screen.`
+**17 · Вы обсуждаете с другом кошек вообще: у них разные привычки и характеры. Скажите «Кошки разные», не указывая на конкретную группу**
+<!-- interaction_id: en:lesson-03:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Cats are different.**
 
-**13 · Вставьте слово — колонка стоит у дальней стены**
-<!-- interaction_id: en:lesson-03:session-26:i13; family: context_gap_grammar -->
-Цель: `That ___ a speaker.`
-Варианты: `is` · `are` · `am` · `a`
-- are — *Колонка одна. После `That` здесь нужно `is`.*
-- am — *`am` ставят после `I`. Для одного дальнего предмета нужна связка `That is`.*
-- a — *`a` уже стоит перед `speaker`. Между `That` и `a speaker` нужно `is`.*
-
-
-**14 · Послушайте и выберите значение точной фразы**
-<!-- interaction_id: en:lesson-03:session-26:i14; family: listen_choose -->
-Цель: `That is a screen.`
-Варианты: `Это экран` · `Это пружина` · `Это крик` · `Это ручей`
-- Это пружина — *В записи прозвучало `screen` — «экран». Для «пружина» прозвучало бы `spring`, со звуком `p` после `s`.*
-- Это крик — *Услышанное `screen` заканчивается на `n`; слово `scream` — «крик» — заканчивается на `m`.*
-- Это ручей — *В записи звучит сочетание `skr` в `screen`; слово `stream` — «ручей» — начинается с `str`.*
-
-
-**15 · Соберите фразу — колонка стоит далеко от вас**
-<!-- interaction_id: en:lesson-03:session-26:i15; family: phrase_builder -->
-Цель: `That is a speaker.`
-
-**16 · Вставьте указатель — одна картина стоит у дальней стены**
-<!-- interaction_id: en:lesson-03:session-26:i16; family: context_gap_grammar -->
-Цель: `___ is a picture.`
-Варианты: `That` · `This` · `Is` · `A`
-- This — *`this` указывает на предмет рядом. Картина стоит у дальней стены, поэтому нужно `That`.*
-- Is — *Связка `is` уже стоит после пропуска. В начале нужен указатель на дальний предмет — `That`.*
-- A — *Фраза уже содержит `a picture`. В начале нужен дальний указатель `That`.*
-
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-26:i17; family: scripted_repeat_compare -->
-Цель: `That is a screen.`
-
-## Для сборщика
-new_words: picture — картина — Та, которую на сцене повесили ровно, а помощник уже наклонил голову, чтобы проверить.
-new_words: screen — экран — На нём обычно видно всё, кроме нужной кнопки в нужный момент.
-new_words: speaker — колонка — Музыка ещё не играет, а помощник уже проверяет, слышно ли её в последнем ряду.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=sound_contrast, 9=context_gap_grammar, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare

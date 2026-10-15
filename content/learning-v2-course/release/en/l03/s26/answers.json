@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-26:i01",
-    "correctText": "picture",
-    "correctResponseId": "en:lesson-03:session-26:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-26:i03",
-    "correctText": "screen",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-26:i05",
-    "correctText": "speaker",
+    "correctText": "They are boxes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i02",
-    "correctText": "picture",
-    "correctResponseId": null
+    "correctText": "cats",
+    "correctResponseId": "en:lesson-03:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i03",
+    "correctText": "cats",
+    "correctResponseId": "en:lesson-03:session-26:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i04",
-    "correctText": "screen",
-    "correctResponseId": "en:lesson-03:session-26:i04:r1"
+    "correctText": "en:lesson-03:session-26:i04:p1=cats\nen:lesson-03:session-26:i04:p2=boxes\nen:lesson-03:session-26:i04:p3=bored\nen:lesson-03:session-26:i04:p4=confused",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i05",
+    "correctText": "The cats are inside.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i06",
-    "correctText": "speaker",
+    "correctText": "Cats are different.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i07",
-    "correctText": "en:lesson-03:session-26:i07:p1=picture\nen:lesson-03:session-26:i07:p2=screen\nen:lesson-03:session-26:i07:p3=speaker\nen:lesson-03:session-26:i07:p4=phone",
+    "correctText": "I'm worried.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i08",
-    "correctText": "picture",
-    "correctResponseId": null
+    "correctText": "Cats",
+    "correctResponseId": "en:lesson-03:session-26:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i09",
-    "correctText": "screen",
-    "correctResponseId": null
+    "correctText": "He is confused.",
+    "correctResponseId": "en:lesson-03:session-26:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i10",
-    "correctText": "speaker",
+    "correctText": "en:lesson-03:session-26:i10:p1=worried\nen:lesson-03:session-26:i10:p2=careless\nen:lesson-03:session-26:i10:p3=cats\nen:lesson-03:session-26:i10:p4=boxes",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i11",
-    "correctText": "That is a picture.",
+    "correctText": "The boxes are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i12",
-    "correctText": "That is a screen.",
+    "correctText": "Where are the cats?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i13",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-03:session-26:i13:r1"
+    "correctText": "He's bored.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i14",
-    "correctText": "Это экран",
+    "correctText": "are",
     "correctResponseId": "en:lesson-03:session-26:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i15",
-    "correctText": "That is a speaker.",
-    "correctResponseId": null
+    "correctText": "He is careless.",
+    "correctResponseId": "en:lesson-03:session-26:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i16",
-    "correctText": "That",
-    "correctResponseId": "en:lesson-03:session-26:i16:r1"
+    "correctText": "en:lesson-03:session-26:i16:p1=bored\nen:lesson-03:session-26:i16:p2=confused\nen:lesson-03:session-26:i16:p3=worried\nen:lesson-03:session-26:i16:p4=careless",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i17",
-    "correctText": "That is a screen.",
+    "correctText": "Cats are different.",
     "correctResponseId": null
   }
 ]

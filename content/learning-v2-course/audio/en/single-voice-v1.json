@@ -55918,6 +55918,309 @@
           "byteSize": 41088
         }
       ]
+    },
+    "l04/s17/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a berry.",
+          "file": "e86113cb0d88b24411e3a7af651f5dde5a793effccd5a72bf641e659039ce0ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e86113cb0d88b24411e3a7af651f5dde5a793effccd5a72bf641e659039ce0ad.mp3",
+          "contentHash": "5ad51a8e825c7bdfa1a14159b6006f974bd05845d81e8c05e2c58fd48d6d5bbf",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l04/s17/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There are some berries here.",
+          "file": "93fc6923f571296c9dc662abae4239f22c7644adcf7edf7e2a656777739818b2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/93fc6923f571296c9dc662abae4239f22c7644adcf7edf7e2a656777739818b2.mp3",
+          "contentHash": "c8b427de36e88e5bd7ee97d1c9208dfe912cfea768fd9182bad8ec5e34abbbc6",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s17/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Are there any berries here?",
+          "file": "20d397c32b2f4a5a208ff4db94d9c1c0edd439d513561d837d117b054eed7ad3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/20d397c32b2f4a5a208ff4db94d9c1c0edd439d513561d837d117b054eed7ad3.mp3",
+          "contentHash": "fa696fa642a437ef0935e84a7183e5ab1bd7e4c06da22e32ac404cacb1a57f55",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s17/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He is well.",
+          "file": "62ed03b21904a4eefc32636d48693233247ae9a3fdd78b586b8e3ca8bc419084.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/62ed03b21904a4eefc32636d48693233247ae9a3fdd78b586b8e3ca8bc419084.mp3",
+          "contentHash": "ad53468ec1901bf5b22bb88ffb874629a5beb904ab81721cb62e5fcf59c7307a",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l04/s17/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "berry",
+          "file": "991a1e8a1122271ac0c2cc5e820817a2bb3926c5f1e224ad267c6f478e29413a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/991a1e8a1122271ac0c2cc5e820817a2bb3926c5f1e224ad267c6f478e29413a.mp3",
+          "contentHash": "a077222eedf92c36c4702e61bbaa7f711583cde84c75515c4a5185c2e8768877",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l04/s17/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "berry",
+          "file": "8a727da3c2e1f97476617b95fad8b0cafd4216877a6abad3486c12b27a5bb9e3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8a727da3c2e1f97476617b95fad8b0cafd4216877a6abad3486c12b27a5bb9e3.mp3",
+          "contentHash": "f31c6aebfc384a5260c83a41fd9c31058e6493605e83d78bca948b6545f65b6d",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l04/s17/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "berry",
+          "file": "991a1e8a1122271ac0c2cc5e820817a2bb3926c5f1e224ad267c6f478e29413a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/991a1e8a1122271ac0c2cc5e820817a2bb3926c5f1e224ad267c6f478e29413a.mp3",
+          "contentHash": "a077222eedf92c36c4702e61bbaa7f711583cde84c75515c4a5185c2e8768877",
+          "byteSize": 17280
+        },
+        {
+          "text": "well",
+          "file": "1235eb3dce511a7e317bfa33c12f1e9e02014b4621b1899bc2a8c047b83337e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1235eb3dce511a7e317bfa33c12f1e9e02014b4621b1899bc2a8c047b83337e1.mp3",
+          "contentHash": "db6952ecece5cd08fc64f0afcbd5654629eeb99b5201b6ea7854318b17984af1",
+          "byteSize": 34560
+        },
+        {
+          "text": "books",
+          "file": "6af4eb4a62dbff27796ecf00ea7c5c87f0f14ced7825cd2446936efc322f10c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6af4eb4a62dbff27796ecf00ea7c5c87f0f14ced7825cd2446936efc322f10c5.mp3",
+          "contentHash": "60c956fff049ac2f74625299ab4bce91ad874ef9140257887cc7a00b248be12d",
+          "byteSize": 20352
+        },
+        {
+          "text": "dentist",
+          "file": "1d6c8778698a6346522ae9de7d0284e3a4c9b5050cf387b8ac2d262f864d7907.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d6c8778698a6346522ae9de7d0284e3a4c9b5050cf387b8ac2d262f864d7907.mp3",
+          "contentHash": "848516b629de95c592290325e234883a7e87e43944f51048f94f174bd3462803",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s17/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a berry.",
+          "file": "94aabefdd4868235fa2cc0b3342858a8d9fd8fee8b9cdd17b62a2463da876eb8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/94aabefdd4868235fa2cc0b3342858a8d9fd8fee8b9cdd17b62a2463da876eb8.mp3",
+          "contentHash": "44273d7293dc0d5949686e3d7e8b42071485e23b81e7e457601b762d19d5e101",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s17/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There are some books.",
+          "file": "8f1c290c4caff83f508270d762aae516bbcd1f5028b3fe160f4ca7fafffdfa37.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8f1c290c4caff83f508270d762aae516bbcd1f5028b3fe160f4ca7fafffdfa37.mp3",
+          "contentHash": "d244a34e32dbf0fe7b43d7e418864baa8c5befa1932d675c8cfb17ca695eba91",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s17/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Are there any berries?",
+          "file": "fa849ba5b6af248bcb234098daf1127b4e098b5744012de03a6eeb2f1e471696.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fa849ba5b6af248bcb234098daf1127b4e098b5744012de03a6eeb2f1e471696.mp3",
+          "contentHash": "6ae4d338d85a3441d68d1f46ad1eddeb611d5c004439fc4b015bc562c0255d32",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s17/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There are some berries here.",
+          "file": "4f5f873d4fa5a8025545322e9659af8d9687db9a9adbc2ac7dcfd1fa1754876e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f5f873d4fa5a8025545322e9659af8d9687db9a9adbc2ac7dcfd1fa1754876e.mp3",
+          "contentHash": "58ca792d0adade8ed363fc73be1e27cb85a6188ddd27fa1ab2a58bdb04059625",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s17/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Are there any books?",
+          "file": "0b823eaef8a7226ef871b9f1e814a4a959d9f0ed78561086c3d86577b9a4373c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0b823eaef8a7226ef871b9f1e814a4a959d9f0ed78561086c3d86577b9a4373c.mp3",
+          "contentHash": "feb1199c80edd479ba431f32f1cb9cc9c1505a1115f6c3b1f344ba71f5a1564e",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s17/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "berry",
+          "file": "8a727da3c2e1f97476617b95fad8b0cafd4216877a6abad3486c12b27a5bb9e3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8a727da3c2e1f97476617b95fad8b0cafd4216877a6abad3486c12b27a5bb9e3.mp3",
+          "contentHash": "f31c6aebfc384a5260c83a41fd9c31058e6493605e83d78bca948b6545f65b6d",
+          "byteSize": 14976
+        },
+        {
+          "text": "berries",
+          "file": "51db52ca771a1e91d9cc57e3b4a001eeaf2a7042dc73f98bcfd74edd181b6fc5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/51db52ca771a1e91d9cc57e3b4a001eeaf2a7042dc73f98bcfd74edd181b6fc5.mp3",
+          "contentHash": "a536047fe5dad268befec839c3e5c089ce0e91dabc29b92bcf929c1999430cbd",
+          "byteSize": 34560
+        },
+        {
+          "text": "books",
+          "file": "1d59aae7fe93ad1a10867f99cfe21e732d02b159837fdd2aba134933ce658bb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d59aae7fe93ad1a10867f99cfe21e732d02b159837fdd2aba134933ce658bb7.mp3",
+          "contentHash": "f0cc3cc3e74a33ff969db479ce9248292a96f4e90fd53701f49e919bd74b72e1",
+          "byteSize": 18048
+        },
+        {
+          "text": "dentist",
+          "file": "b0d1d861b299eb1c71b11492a5df72900fea1edc34ede755929a143ebc8eec62.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0d1d861b299eb1c71b11492a5df72900fea1edc34ede755929a143ebc8eec62.mp3",
+          "contentHash": "0de297f44aaca6b6e27f8d85272c7a5c470ad1be6e1447cbec70f49609dde169",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l04/s17/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There are some berries.",
+          "file": "68837f826a15616e646fe0e78fff29d2bf880f84dc6adf4f5793651a0872af11.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/68837f826a15616e646fe0e78fff29d2bf880f84dc6adf4f5793651a0872af11.mp3",
+          "contentHash": "82320b6652332d78a612a77fc027689721ff9ff54e0db8c8b5f8803b7b632bb0",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s17/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Are there any books here?",
+          "file": "85f13cd2e035aa3921bb9b2c7bf7b9a0ca432c2bbcd88f47085b87bb6e8b35bd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/85f13cd2e035aa3921bb9b2c7bf7b9a0ca432c2bbcd88f47085b87bb6e8b35bd.mp3",
+          "contentHash": "b4459d0c7a5960544c775a427a8eb0cda2121b8c970167346c2d11caffe247d4",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s17/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He's well.",
+          "file": "40555648c3a064aca92b823c75b88ddbfb865c0368afcc686b8a2dbb55671508.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/40555648c3a064aca92b823c75b88ddbfb865c0368afcc686b8a2dbb55671508.mp3",
+          "contentHash": "35fb370482470597a68bdef669a28cdeac64bf54adb9e040442b5f18726a0540",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l04/s17/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Are there any berries here?",
+          "file": "c15a4602f6263fd32bc54c162e91be8eab6fbe52931a84f5030619917def80d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c15a4602f6263fd32bc54c162e91be8eab6fbe52931a84f5030619917def80d2.mp3",
+          "contentHash": "75d52aafe309e29653712a160bf67b0e87e7d2dc17445c6ac48c01aaba845306",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s17/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He is a dentist.",
+          "file": "dea766af5da87ba519b066166b025faef5ccc72f4b9a2ccd5fd76eed8ce65373.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dea766af5da87ba519b066166b025faef5ccc72f4b9a2ccd5fd76eed8ce65373.mp3",
+          "contentHash": "6c454ad8b1982ddda3a011b8937139af57ca27b00c626d68ce0377fab44da48d",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s17/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "berry",
+          "file": "991a1e8a1122271ac0c2cc5e820817a2bb3926c5f1e224ad267c6f478e29413a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/991a1e8a1122271ac0c2cc5e820817a2bb3926c5f1e224ad267c6f478e29413a.mp3",
+          "contentHash": "a077222eedf92c36c4702e61bbaa7f711583cde84c75515c4a5185c2e8768877",
+          "byteSize": 17280
+        },
+        {
+          "text": "well",
+          "file": "1235eb3dce511a7e317bfa33c12f1e9e02014b4621b1899bc2a8c047b83337e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1235eb3dce511a7e317bfa33c12f1e9e02014b4621b1899bc2a8c047b83337e1.mp3",
+          "contentHash": "db6952ecece5cd08fc64f0afcbd5654629eeb99b5201b6ea7854318b17984af1",
+          "byteSize": 34560
+        },
+        {
+          "text": "books",
+          "file": "6af4eb4a62dbff27796ecf00ea7c5c87f0f14ced7825cd2446936efc322f10c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6af4eb4a62dbff27796ecf00ea7c5c87f0f14ced7825cd2446936efc322f10c5.mp3",
+          "contentHash": "60c956fff049ac2f74625299ab4bce91ad874ef9140257887cc7a00b248be12d",
+          "byteSize": 20352
+        },
+        {
+          "text": "dentist",
+          "file": "1d6c8778698a6346522ae9de7d0284e3a4c9b5050cf387b8ac2d262f864d7907.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d6c8778698a6346522ae9de7d0284e3a4c9b5050cf387b8ac2d262f864d7907.mp3",
+          "contentHash": "848516b629de95c592290325e234883a7e87e43944f51048f94f174bd3462803",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s17/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Are there any berries here?",
+          "file": "93bc6931c50646999ae9f2ba270c9c2f6c55ba439bbea63f918ce5fd1a96e749.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/93bc6931c50646999ae9f2ba270c9c2f6c55ba439bbea63f918ce5fd1a96e749.mp3",
+          "contentHash": "940fef9fb5cfd4ada3ea87fe3a1dab2feb50f2a132e72d3ceb55a31a79206df6",
+          "byteSize": 37248
+        }
+      ]
     }
   },
   "settings": {

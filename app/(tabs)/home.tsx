@@ -124,7 +124,7 @@ import {
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, useHomeContinueMarks } from '../home_continue_mark';
-import { HOME_CONTINUE_V2_ENABLED, launchHomeContinueV2, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
+import { HOME_CONTINUE_V2_ENABLED, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { markHomeFirstPaint } from '../home_paint_marker';
 import { peekStreakDayState, subscribeStreakDayState } from '../streak_day_signal';
@@ -809,6 +809,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (координатор 15.10, поправка 1): «пройдено / выпущено» считается при показе из локального прогресса курса и
     // перечитывается на каждый возврат на Главную (focusTick) — после пройденного занятия число свежее, а не из метки
     const continueV2Progress = useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive);
+    const continueV2Launching = useHomeContinueV2Launching(); // зачем (Ревизор по R09, 🟡): занятие готовится до 12 с — карточка «Продолжить» показывает занятость вместо молчания
     useEffect(() => {
         logHomeContinueChoice(continueChoice, continueInput, String(studyTarget));
         // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал пишется на смену решения или меток, а не на каждый рендер
@@ -2491,6 +2492,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             {priorityCardVisible || continueCardPending ? (
               <HomeV2ContinueCard
                 pending={!priorityCardVisible && continueCardPending}
+                busy={continueV2 !== null && continueV2Launching}
                 title={priorityCardTitle}
                 done={continueV2 && continueV2Progress ? Math.max(0, Math.min(continueV2Progress.total, continueV2Progress.done)) : Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
                 total={continueV2 && continueV2Progress ? Math.max(1, continueV2Progress.total) : 50}

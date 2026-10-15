@@ -34,6 +34,11 @@ type Props = {
    * заготовки. Первый кадр = финальная геометрия (Performance Bible).
    */
   pending?: boolean;
+  /**
+   * зачем (Ревизор по R09, 🟡; Моменты 15.10): занятие V2 готовится до 12 с — карточка не молчит: приглушена (0.72, как primaryBusy итога занятия) и помечена занятой для скринридера.
+   * Геометрия не меняется (это не скелет), повторные тапы гасит сам запуск.
+   */
+  busy?: boolean;
 };
 
 /**
@@ -43,8 +48,8 @@ type Props = {
  * “Продолжить обучение”»): надписи-оверлайна нет, счётчик переехал в строку полосы —
  * две строки вместо четырёх, высота 80 вместо ≈ 158.
  */
-export default function HomeV2ContinueCard({ title, done, total, art, artAccent = null, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
-  useRenderCause('home:continue', () => ({ title, done, total, art, artAccent, artWide, badge, accessibilityLabel, onPress, onLongPress, pending }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
+export default function HomeV2ContinueCard({ title, done, total, art, artAccent = null, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false, busy = false }: Props) {
+  useRenderCause('home:continue', () => ({ title, done, total, art, artAccent, artWide, badge, accessibilityLabel, onPress, onLongPress, pending, busy }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   const shadowGlass = useShadowGlass(); // зачем («Тень» 12.10): значок-плашка и стрелка — вложенные, с малой тенью вместо кромки
@@ -64,13 +69,13 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
       testID={pending ? 'home-continue-lesson-pending' : 'home-continue-lesson'}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
-      accessibilityState={{ busy: pending }}
+      accessibilityState={{ busy: pending || busy }}
       // зачем (координатор 12.10, Optimistic UI R1): на скелете тап раньше был «мёртвым» (disabled — ни сжатия, ни следа). Теперь карточка
       // нажимается (scale 0.98) и ничего не открывает; журнал press:ignored остаётся.
       onPress={pending ? () => { console.warn('[HOME-CONTINUE] press:ignored', JSON.stringify({ reason: 'pending_skeleton' })); } : onPress} // guard-ok: ранний выход называет причину
       onLongPress={pending ? undefined : onLongPress}
       scaleTo={0.98}
-      style={[s.card, glass]}
+      style={[s.card, glass, busy ? s.cardBusy : null]}
       onLayout={logLayout('card')}
     >
       <View pointerEvents="none" onLayout={logLayout('artColumn')} style={[s.art, pending ? s.artPending : null]}>
@@ -115,6 +120,7 @@ const ART_SIZE = 64;
 const ART_SIZE_SOLO = 80;
 
 const s = StyleSheet.create({
+  cardBusy: { opacity: 0.72 },
   // зачем (Ревизор 15.10, R03): при крупном системном шрифте (1.3) фиксированные 96 с overflow hidden резали текст — теперь 96 это минимум, высота растёт по содержимому
   card: {
     minHeight: CARD_HEIGHT,

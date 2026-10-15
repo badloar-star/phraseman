@@ -117,6 +117,10 @@ describe('плеер ролика: пауза мгновенно, переход
     expect(hook).toContain("mode === 'blitz' && !canStartBlitz(options.count)");
     expect(hook).toContain('router.push({ pathname: route.pathname, params: route.params } as never);');
     expect(hook).toContain('FlashcardsTrainingModeSheet');
+    // Ревизор 2.80: двойной тап и push с ушедшего экрана
+    expect(hook).toContain('deck_train_sheet:open:');
+    expect(hook).toContain('deck_train_sheet:start:');
+    expect(hook).toContain('!focusedRef.current');
   });
   it('чип канала: пока ждём каталог, имя ожидаемого канала не показывается (без промежуточного «Английский»)', () => {
     expect(read('app/lingman_videos.tsx')).toContain("? { ...pendingChannel, displayName: '' }");

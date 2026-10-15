@@ -7,10 +7,11 @@
 // Журнал: [DECK-TRAIN-SHEET].
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useRef, useState } from 'react';
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
 import type { Lang } from '../../constants/i18n';
 import { useFlashcardTrainingQuotaPreview } from '../../hooks/useFlashcardTrainingQuotaPreview';
+import { navOnce } from '../nav_once';
 import { openPremiumPaywall } from '../paywall_navigation';
 import { canStartBlitz } from './blitz_logic';
 import { isValidDeckId } from './deck_selection';
@@ -27,6 +28,16 @@ export function useDeckTrainSheet(options: Readonly<{ deckId: string; count: num
   const [visible, setVisible] = useState(false);
   const pendingModeRef = useRef<CardsTrainingMode | null>(null);
   const paywallOpeningRef = useRef(false);
+  // зачем (Ревизор 2.80, координатор 15.10): защита от двойного тапа и от push с ушедшего экрана — шторка открывается поверх экрана ролика, выбор режима стартует тренировку после её закрытия;
+  // за это время человек мог нажать «Назад» (экран потерял фокус) или дважды тапнуть режим. Фокус — в ref; сами переходы — через navOnce.
+  const focusedRef = useRef(true);
+  useFocusEffect(useCallback(() => {
+    focusedRef.current = true;
+    return () => {
+      focusedRef.current = false;
+      pendingModeRef.current = null;
+    };
+  }, []));
 
   const trainingLocked = quotaPreview.status === 'exhausted';
   // как на хабе: квоту прочитать НЕЛЬЗЯ ('unavailable'/'stale_account') — человека не наказываем за нашу аварию; ждём только 'waiting'
@@ -36,6 +47,7 @@ export function useDeckTrainSheet(options: Readonly<{ deckId: string; count: num
     : `${Math.min(quotaPreview.limit, Math.max(0, quotaPreview.used))}/${quotaPreview.limit}`;
 
   const open = useCallback(() => {
+    if (!navOnce(`deck_train_sheet:open:${options.deckId}`, 600)) return; // двойной тап «Тренировать» — одна шторка
     console.log('[DECK-TRAIN-SHEET] open', JSON.stringify({ source: options.source, deckId: options.deckId, quotaStatus: quotaPreview.status, trainingLocked, trainingEntryReady })); // guard-ok: вход
     if (trainingLocked) {
       if (paywallOpeningRef.current) return;
@@ -69,6 +81,11 @@ export function useDeckTrainSheet(options: Readonly<{ deckId: string; count: num
     const mode = pendingModeRef.current;
     pendingModeRef.current = null;
     if (!mode) return;
+    if (!focusedRef.current) {
+      console.log('[DECK-TRAIN-SHEET] start отменён: экран уже потерял фокус', JSON.stringify({ mode, deckId: options.deckId })); // guard-ok: push с ушедшего экрана не делаем
+      return;
+    }
+    if (!navOnce(`deck_train_sheet:start:${options.deckId}`, 1500)) return; // двойной выбор режима — одна тренировка
     if (!isValidDeckId(options.deckId)) {
       console.warn('[DECK-TRAIN-SHEET] deck id не валиден → экран настройки', JSON.stringify({ deckId: options.deckId, mode })); // guard-ok: причина запасного пути
       router.push({ pathname: '/flashcards_training_setup', params: { mode } } as never);

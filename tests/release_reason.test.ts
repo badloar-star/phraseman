@@ -61,7 +61,8 @@ describe('releaseReason wiring in money flows', () => {
   test('purchase and restore failure branches report a code', () => {
     const src = read('app/paywall_purchase.ts');
     expect((src.match(/releaseReason\('purchase', /g) ?? []).length).toBe(11);
-    expect((src.match(/releaseReason\('restore_purchase', /g) ?? []).length).toBe(5);
+    // зачем (d6e5470c9, 15.10): + restore_purchase:load_timeout — потолок ожидания старта магазина при «Восстановить покупки»
+    expect((src.match(/releaseReason\('restore_purchase', /g) ?? []).length).toBe(6);
   });
 
   test('every energy start refusal reports its reason; the gate without deps too', () => {

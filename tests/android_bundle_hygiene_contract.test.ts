@@ -177,10 +177,12 @@ expoAutolinking.useExpoModules()
       };
     }])[1].android?.fonts ?? []);
     expect(androidFonts.map((font) => font.fontFamily)).toEqual(['Inter']);
+    // зачем (0b61ac198, Темы 15.10): Inter ExtraBold 800 добавлен намеренно — заголовки 800 по образцам (раньше Android рисовал 700)
     expect(androidFonts[0]?.fontDefinitions?.map((definition) => definition.weight)).toEqual([
       400,
       600,
       700,
+      800,
       900,
     ]);
   });

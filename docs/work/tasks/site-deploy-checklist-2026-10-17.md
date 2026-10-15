@@ -4,7 +4,7 @@
 > Подготовлено на HEAD `bc35754f3`. Живой сайт сейчас = коммит `36c191b8a` (сверено curl: на `/legal/privacy/` нет «Hugging Face»,
 > `/premium/` грузит `start.js?v=20261015q`, тест уровня — `i18n.js?v=20260803-1`).
 
-## 1. Что уедет (diff `36c191b8a..HEAD -- knowly-www`, 6 файлов, коммиты 7e2077aba, 4f8256f86, ef58fe66f)
+## 1. Что уедет (diff `36c191b8a..HEAD -- knowly-www`, 8 файлов, коммиты 7e2077aba, 4f8256f86, ef58fe66f + коммит «юр-страницы lang=en»)
 
 | Файл | Что меняется |
 |---|---|
@@ -12,8 +12,15 @@
 | `knowly-www/premium/index.html` | `start.js?v=20261015r` (сброс кэша) |
 | `knowly-www/english-level-test/i18n.js` | кнопка жалобы: «Нашлась ошибка?» |
 | `knowly-www/english-level-test/index.html` | `i18n.js?v=20261015r` |
-| `knowly-www/legal/privacy/index.html` | §9 RevenueCat при запуске; §13 голос (Apple / Whisper / Hugging Face); §16 Hugging Face |
-| `knowly-www/legal/privacy-ios/index.html` | те же абзацы §9/§13/§16 |
+| `knowly-www/legal/privacy/index.html` | §9 RevenueCat при запуске; §13 голос (Apple / Whisper / Hugging Face); §16 Hugging Face; блок документа `lang="en"`, `<title>Privacy Policy · Phraseman` |
+| `knowly-www/legal/privacy-ios/index.html` | те же абзацы §9/§13/§16; блок документа `lang="en"` (title уже английский) |
+| `knowly-www/legal/terms/index.html` | только блок документа `lang="en"` и `<title>Terms of Use · Phraseman` |
+| `knowly-www/legal/data-deletion/index.html` | только блок документа `lang="en"` и `<title>Data Deletion · Phraseman` |
+
+Юр-страницы: текст документов — английский канон (`legal/*_en.json`); меню, подвал и `<html lang="ru">` остаются русскими,
+английским помечен сам блок `.legal-document`. Генератор `npm run legal:sync` теперь ставит то же самое.
+⚠️ Перед выкладкой НЕ запускать `npm run legal:sync`: он перезаписывает текст внутри `.legal-document` без готового оглавления
+и якорей `id="s…"` (−~60 строк на страницу, 15.10 проверено). Если тексты политики менялись — переносить абзацы вручную.
 
 Перед выкладкой повторить: `git diff --stat 36c191b8a..HEAD -- knowly-www` — если появились новые файлы, разобрать их до выкладки.
 `git status --short knowly-www` должен быть пустым (выкладывается рабочая папка, не коммит).
@@ -38,7 +45,7 @@ npx jest tests/legal_document_liquid_glass_source_contract.test.mjs --maxWorkers
 - Ссылки: 29 страниц, внутренних битых 0 (файлы, `index.html`, редиректы firebase.json); внешних 35, все HTTP 200.
 - Языки: переключатель сайта — **en/ru** (23 страницы, `assets/site-i18n.locales.js`); тест уровня — 6 языков (ru, en, de, es, it, fr).
   9 языков приложения (ru, uk, en, es, pt-BR, vi, id, tr, pl) на сайте **не заявлены и не появляются этой выкладкой** — это не регресс,
-  юр-страницы одноязычные (ru), как и сейчас в живую.
+  текст юр-страниц один — английский (канон для сторов), обвязка сайта вокруг него русская, как и сейчас в живую.
 
 ## 3. Ссылки из приложения → адреса сайта после выкладки
 
@@ -79,12 +86,17 @@ curl -s https://knowlyapps.com/legal/privacy-ios/ | grep -c "Hugging Face"
 curl -s https://knowlyapps.com/premium/ | grep -o "start.js?v=[0-9a-z]*"
 ```
 ```bash
+for p in privacy privacy-ios terms data-deletion; do curl -s https://knowlyapps.com/legal/$p/ | grep -o '<title>[^<]*\|legal-document" lang="en"'; done
+```
+```bash
 curl -s https://knowlyapps.com/english-level-test/ | grep -o "i18n.js?v=[0-9a-z-]*"
 ```
 
 Ожидание:
 - в политике «Hugging Face» больше 0 и есть абзац про RevenueCat при запуске;
 - `start.js?v=20261015r` и `i18n.js?v=20261015r`;
+- у каждой юр-страницы английский `<title>` (Privacy Policy / Privacy Policy (iOS) / Terms of Use / Data Deletion · Phraseman)
+  и `legal-document" lang="en"`; оглавление слева на месте;
 - `/legal/privacy/`, `/legal/terms/`, `/legal/data-deletion/` — 200, `/phraseman/invite` — 301→200;
 - на /premium/ квиз не просит email, а сразу ведёт к оплате/подарку;
 - из приложения (любая сборка) «Политика конфиденциальности» и «Условия» открываются без ошибки (`[LEGAL-LINK]` в логе).

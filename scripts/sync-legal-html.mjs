@@ -296,16 +296,28 @@ function dataDeletionPage({ date }) {
  * контейнера (заголовок, дата, разделы), а обвязку сайта не трогаем. Старого
  * контейнера нет — пишем полный шаблон, как раньше.
  */
-function writeLegalIntoExistingPage(filePath, { title, sections, date }, fallbackHtml) {
+// зачем (координатор 15.10, к выкладке 17.10): обвязка сайта русская (<html lang="ru">, меню), а текст документов — английский
+// канон. Помечаем сам блок документа lang="en", а <title> — английским, чтобы поисковики, сторы и экранные чтецы читали
+// документ как английский; меню и подвал не трогаем. Открывающий тег ищем с любыми атрибутами — иначе повторный sync
+// не нашёл бы контейнер и перезаписал редизайн-страницу запасным шаблоном.
+const LEGAL_DOC_OPEN_RE = /<div class="legal-document"[^>]*>/;
+const LEGAL_DOC_OPEN_EN = '<div class="legal-document" lang="en">';
+
+function withSiteTitle(html, siteTitle) {
+  return html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(siteTitle)}</title>`);
+}
+
+function writeLegalIntoExistingPage(filePath, { title, sections, date, siteTitle }, fallbackHtml) {
   if (!fs.existsSync(filePath)) return writeFileEnsured(filePath, fallbackHtml);
   const current = fs.readFileSync(filePath, 'utf8');
-  const open = current.indexOf('<div class="legal-document">');
+  const openMatch = LEGAL_DOC_OPEN_RE.exec(current);
+  const open = openMatch ? openMatch.index : -1;
   const close = current.indexOf('</main>', open);
   if (open === -1 || close === -1) return writeFileEnsured(filePath, fallbackHtml);
   const closeDiv = current.lastIndexOf('</div>', close);
   if (closeDiv === -1 || closeDiv < open) return writeFileEnsured(filePath, fallbackHtml);
   const inner =
-    `<div class="legal-document">
+    `${LEGAL_DOC_OPEN_EN}
 ` +
     `        <h1>${escapeHtml(title)}</h1>
 ` +
@@ -321,16 +333,18 @@ function writeLegalIntoExistingPage(filePath, { title, sections, date }, fallbac
     `${renderLegalBlocks(sections)}
   `;
   const next = current.slice(0, open) + inner + current.slice(closeDiv);
-  return writeFileEnsured(filePath, next);
+  return writeFileEnsured(filePath, siteTitle ? withSiteTitle(next, siteTitle) : next);
 }
 
-/** Страница удаления данных: в редизайн-версии обновляем только дату. */
-function writeDataDeletionIntoExistingPage(filePath, { date }, fallbackHtml) {
+/** Страница удаления данных: в редизайн-версии обновляем дату, язык блока документа и <title>. */
+function writeDataDeletionIntoExistingPage(filePath, { date, siteTitle }, fallbackHtml) {
   if (!fs.existsSync(filePath)) return writeFileEnsured(filePath, fallbackHtml);
   const current = fs.readFileSync(filePath, 'utf8');
-  if (!current.includes('<div class="legal-document">')) return writeFileEnsured(filePath, fallbackHtml);
-  const next = current.replace(/Last updated <strong>[^<]*<\/strong>/, `Last updated <strong>${escapeHtml(date)}</strong>`);
-  return writeFileEnsured(filePath, next);
+  if (!LEGAL_DOC_OPEN_RE.test(current)) return writeFileEnsured(filePath, fallbackHtml);
+  const next = current
+    .replace(/Last updated <strong>[^<]*<\/strong>/, `Last updated <strong>${escapeHtml(date)}</strong>`)
+    .replace(LEGAL_DOC_OPEN_RE, LEGAL_DOC_OPEN_EN);
+  return writeFileEnsured(filePath, withSiteTitle(next, siteTitle));
 }
 
 function writeFileEnsured(filePath, contents) {
@@ -373,12 +387,12 @@ function main() {
   writeFileEnsured(path.join(ROOT, 'admin', 'v2', 'oauth-privacy.html'), privacyRoot);
   writeLegalIntoExistingPage(
     path.join(KNOWLY_WWW, 'legal', 'terms', 'index.html'),
-    { title: termsTitle, sections: terms, date: termsDate },
+    { title: termsTitle, sections: terms, date: termsDate, siteTitle: 'Terms of Use · Phraseman' },
     knowlyPage({ title: termsTitle, sections: terms, date: termsDate, active: 'terms' }),
   );
   writeLegalIntoExistingPage(
     path.join(KNOWLY_WWW, 'legal', 'privacy', 'index.html'),
-    { title: privacyTitle, sections: privacy, date: privacyDate },
+    { title: privacyTitle, sections: privacy, date: privacyDate, siteTitle: 'Privacy Policy · Phraseman' },
     knowlyPage({ title: privacyTitle, sections: privacy, date: privacyDate, active: 'privacy' }),
   );
   // зачем (12.10, PRIVACY_R1_GAP): в приложении на iOS показывается privacy_policy_en_ios.json, а на сайте была только
@@ -388,12 +402,12 @@ function main() {
   const privacyIosDate = extractDate(privacyIos);
   writeLegalIntoExistingPage(
     path.join(KNOWLY_WWW, 'legal', 'privacy-ios', 'index.html'),
-    { title: privacyIosTitle, sections: privacyIos, date: privacyIosDate },
+    { title: privacyIosTitle, sections: privacyIos, date: privacyIosDate, siteTitle: 'Privacy Policy (iOS) · Phraseman' },
     knowlyPage({ title: privacyIosTitle, sections: privacyIos, date: privacyIosDate, active: 'privacy' }),
   );
   writeDataDeletionIntoExistingPage(
     path.join(KNOWLY_WWW, 'legal', 'data-deletion', 'index.html'),
-    { date: privacyDate },
+    { date: privacyDate, siteTitle: 'Data Deletion · Phraseman' },
     dataDeletionPage({ date: privacyDate }),
   );
 

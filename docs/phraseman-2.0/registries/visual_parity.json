@@ -46035,6 +46035,335 @@
       },
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
       "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново; кадры снимать ссылками d7/d30/d100 (streak=7/30/100) и сверять ещё и с m19-A/B/C; если вариант m19 и d-кадр того же дня расходятся — решает Дизайн"
+    },
+    {
+      "id": "stories-s1-a",
+      "source": "OWNER_D192_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/stories-avatar.html",
+        "phone": null,
+        "label": "s1-A · Есть новые события",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:00 15.10 (через координатора): сторис D192 включаются 17.10 вместе с моментами v3 — эталон stories-avatar.html, вариант по id (s1-A…C, s2-A, s3-1…4)",
+      "screen": "Главная: красное кольцо вокруг аватара",
+      "state": "есть непросмотренные события — кольцо",
+      "code": [
+        "components/stories/StoryAvatarSlot.tsx",
+        "components/stories/StoryRing.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "кольцо появляется вокруг аватара"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
+        "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
+        "taps": "открыть Главную; кадр шапки",
+        "log": "[STORY-EVENTS]"
+      },
+      "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
+      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+    },
+    {
+      "id": "stories-s1-b",
+      "source": "OWNER_D192_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/stories-avatar.html",
+        "phone": null,
+        "label": "s1-B · Всё просмотрено — кольцо исчезло",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:00 15.10 (через координатора): сторис D192 включаются 17.10 вместе с моментами v3 — эталон stories-avatar.html, вариант по id (s1-A…C, s2-A, s3-1…4)",
+      "screen": "Главная: красное кольцо вокруг аватара",
+      "state": "всё просмотрено — кольца нет",
+      "code": [
+        "components/stories/StoryAvatarSlot.tsx",
+        "components/stories/StoryRing.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "кольцо гаснет после просмотра"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=seen&next=/(tabs)/home",
+        "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
+        "taps": "досмотреть сторис до конца → вернуться на Главную",
+        "log": "[STORY-EVENTS]"
+      },
+      "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
+      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+    },
+    {
+      "id": "stories-s1-c",
+      "source": "OWNER_D192_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/stories-avatar.html",
+        "phone": null,
+        "label": "s1-C · Событий нет — кольца нет",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:00 15.10 (через координатора): сторис D192 включаются 17.10 вместе с моментами v3 — эталон stories-avatar.html, вариант по id (s1-A…C, s2-A, s3-1…4)",
+      "screen": "Главная: красное кольцо вокруг аватара",
+      "state": "событий нет — обычный аватар",
+      "code": [
+        "components/stories/StoryAvatarSlot.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=none&next=/(tabs)/home",
+        "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&next=/(tabs)/home",
+        "taps": "открыть Главную",
+        "log": "[STORY-EVENTS]"
+      },
+      "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
+      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+    },
+    {
+      "id": "stories-s2-a",
+      "source": "OWNER_D192_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/stories-avatar.html",
+        "phone": null,
+        "label": "s2-A · Живой поток",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:00 15.10 (через координатора): сторис D192 включаются 17.10 вместе с моментами v3 — эталон stories-avatar.html, вариант по id (s1-A…C, s2-A, s3-1…4)",
+      "screen": "Тап по аватару → все события подряд",
+      "state": "просмотрщик: события подряд, полоски прогресса, тап — следующее",
+      "code": [
+        "components/stories/StoryViewer.tsx",
+        "components/stories/StorySlides.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "поток ~12 с: полоски заполняются, переходы между кадрами"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
+        "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
+        "taps": "тап по аватару; видео всего потока",
+        "log": "[STORY-EVENTS]"
+      },
+      "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
+      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+    },
+    {
+      "id": "stories-s3-1",
+      "source": "OWNER_D192_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/stories-avatar.html",
+        "phone": null,
+        "label": "s3-1 · Итог недели",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:00 15.10 (через координатора): сторис D192 включаются 17.10 вместе с моментами v3 — эталон stories-avatar.html, вариант по id (s1-A…C, s2-A, s3-1…4)",
+      "screen": "События — по одному кадру",
+      "state": "кадр «Итог недели»",
+      "code": [
+        "components/stories/StorySlides.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "кадр 2,4 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
+        "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
+        "taps": "тап по аватару → кадр 1",
+        "log": "[STORY-EVENTS]"
+      },
+      "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
+      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+    },
+    {
+      "id": "stories-s3-2",
+      "source": "OWNER_D192_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/stories-avatar.html",
+        "phone": null,
+        "label": "s3-2 · Серия",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:00 15.10 (через координатора): сторис D192 включаются 17.10 вместе с моментами v3 — эталон stories-avatar.html, вариант по id (s1-A…C, s2-A, s3-1…4)",
+      "screen": "События — по одному кадру",
+      "state": "кадр «Серия»",
+      "code": [
+        "components/stories/StorySlides.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "кадр 2,4 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
+        "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
+        "taps": "тап по аватару → кадр «Серия»",
+        "log": "[STORY-EVENTS]"
+      },
+      "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
+      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+    },
+    {
+      "id": "stories-s3-3",
+      "source": "OWNER_D192_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/stories-avatar.html",
+        "phone": null,
+        "label": "s3-3 · Ранг монеты",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:00 15.10 (через координатора): сторис D192 включаются 17.10 вместе с моментами v3 — эталон stories-avatar.html, вариант по id (s1-A…C, s2-A, s3-1…4)",
+      "screen": "События — по одному кадру",
+      "state": "кадр «Ранг монеты»",
+      "code": [
+        "components/stories/StorySlides.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "кадр 2,4 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
+        "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
+        "taps": "тап по аватару → кадр «Ранг монеты»",
+        "log": "[STORY-EVENTS]"
+      },
+      "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
+      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
+    },
+    {
+      "id": "stories-s3-4",
+      "source": "OWNER_D192_2026-10-15",
+      "mockup": {
+        "file": "docs/design/v2-app/stories-avatar.html",
+        "phone": null,
+        "label": "s3-4 · Ачивка",
+        "mapping": "pinned"
+      },
+      "mockup_pinned": "Владелец ~11:00 15.10 (через координатора): сторис D192 включаются 17.10 вместе с моментами v3 — эталон stories-avatar.html, вариант по id (s1-A…C, s2-A, s3-1…4)",
+      "screen": "События — по одному кадру",
+      "state": "кадр «Ачивка»",
+      "code": [
+        "components/stories/StorySlides.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "кадр 2,4 с"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "blocked_reason": null,
+      "release": "r1",
+      "emulator": {
+        "link_planned": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&stories=on&storyseed=all&next=/(tabs)/home",
+        "link_fallback": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&moments=v3&streak=7&cards=demo&next=/flashcards_blitz_session?devJumpToFinale=1",
+        "taps": "тап по аватару → кадр «Ачивка»",
+        "log": "[STORY-EVENTS]"
+      },
+      "added_reason": "владелец ~11:00 15.10: сторис D192 включаем 17.10 вместе с моментами v3",
+      "note": "флаг stories_v1 в dev сейчас включается только сборкой с EXPO_PUBLIC_STORIES_DEV=1 (modules/story_events/story_events_store.ts), dev-засева событий нет — у Ядра запрошены stories=on|off и storyseed=all|seen|none; до них link_planned не сработает. Запасной путь (сборка с EXPO_PUBLIC_STORIES_DEV=1): событие «серия» даёт streak=7, «итог недели» — dev_spire_preview?state=weekresult"
     }
   ]
 }

@@ -2439,6 +2439,8 @@ export default function LessonsTab({
   // заново сразу после открытия сессии, initialPage сбрасывается на "lessons"
   // и внутреннее состояние карты V2 теряется. Лог остаётся навсегда.
   const instanceIdRef = useRef(Math.random().toString(36).slice(2, 8));
+  // R08: время последнего касания экрана «Обучения» — прогрев занятия ждёт, пока человек 2,5 с ничего не трогает
+  const lastLessonsTouchAtRef = useRef(Date.now());
   useEffect(() => {
     if (!__DEV__) return;
     console.log(
@@ -3515,14 +3517,25 @@ export default function LessonsTab({
       // зачем (R08 🔴, 15.10): «запускаем сразу» (21.09) клало тяжёлую подготовку на первый кадр карты — JS-поток стоял 6–10 с, карта не
       // появлялась, все касания ждали. Прогрев — после анимаций входа и ещё 600 мс; уход с карты отменяет. Тап по занятию по-прежнему
       // не ждёт прогрев: модалка открывается сразу, подготовка идёт по тапу, если кэша ещё нет.
+      // зачем (R08, замер координатора на 5554, 08b9e168e): подготовка занятия всё ещё держит JS ~13 с (хэш и сборка — у Ядра). Пусть это
+      // окно приходится на паузу, а не на касания: прогрев стартует, когда экран «Обучения» 2,5 с не трогали (касание сбрасывает отсчёт).
+      // Тап по занятию готовит его сам и прогрева не ждёт.
+      const IDLE_BEFORE_PREWARM_MS = 2500;
       const scheduledAt = Date.now();
+      lastLessonsTouchAtRef.current = scheduledAt;
       let timer: ReturnType<typeof setTimeout> | null = null;
+      const waitIdle = () => {
+        const idleMs = Date.now() - lastLessonsTouchAtRef.current;
+        if (idleMs < IDLE_BEFORE_PREWARM_MS) {
+          timer = setTimeout(waitIdle, IDLE_BEFORE_PREWARM_MS - idleMs + 50);
+          return;
+        }
+        timer = null;
+        console.log('[R08-PREP] entry_prewarm:run', JSON.stringify({ sinceScheduledMs: Date.now() - scheduledAt, idleMs })); // guard-ok: одна строка на вход
+        prewarmCurrentLearningV2SessionOnEntry();
+      };
       const task = InteractionManager.runAfterInteractions(() => {
-        timer = setTimeout(() => {
-          timer = null;
-          console.log('[R08-PREP] entry_prewarm:run', JSON.stringify({ sinceScheduledMs: Date.now() - scheduledAt })); // guard-ok: одна строка на вход
-          prewarmCurrentLearningV2SessionOnEntry();
-        }, 600);
+        timer = setTimeout(waitIdle, IDLE_BEFORE_PREWARM_MS);
       });
       return () => {
         task.cancel?.();
@@ -5481,6 +5494,7 @@ export default function LessonsTab({
             flex: 1,
             display: dialogsEnabled && page === "dialogs" ? "none" : "flex",
           }}
+          onTouchStart={() => { lastLessonsTouchAtRef.current = Date.now(); }}
         >
           {page === "v2" ? (
             // зачем: владелец 20.09 — «открываем раздел, запускается анимация

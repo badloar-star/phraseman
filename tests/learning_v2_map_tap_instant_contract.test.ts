@@ -54,9 +54,11 @@ describe("Learning V2 map tap instant contract", () => {
     const from = source.indexOf("prewarmCurrentLearningV2SessionOnEntry();");
     expect(from).toBeGreaterThan(-1);
     const before = source.slice(Math.max(0, from - 700), from);
-    expect(before).toContain("InteractionManager.runAfterInteractions(");
-    expect(before).toContain("timer = setTimeout(() => {");
-    expect(source.slice(from, from + 120)).toContain("}, 600);");
+    expect(source).toMatch(/const task = InteractionManager\.runAfterInteractions\(\(\) => \{\s*timer = setTimeout\(waitIdle, IDLE_BEFORE_PREWARM_MS\);/);
+    // 15.10 вечер (замер 5554): прогрев ждёт 2,5 с без касаний экрана «Обучения» — касание сбрасывает отсчёт
+    expect(source).toContain("const IDLE_BEFORE_PREWARM_MS = 2500;");
+    expect(source).toContain("onTouchStart={() => { lastLessonsTouchAtRef.current = Date.now(); }}");
+    expect(before).toContain("if (idleMs < IDLE_BEFORE_PREWARM_MS) {");
     expect(source).toContain("[R08-PREP] entry_prewarm:run");
     expect(source).toMatch(/const warmAt = \(index: number\): void => \{[\s\S]{0,2600}warmAt\(index \+ 1\);[\s\S]{0,900}warmAt\(0\);/);
   });

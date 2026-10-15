@@ -55,13 +55,13 @@ export function useLessonRuntimeAccessAuthorization(
           openLessonPremiumPaywall(router, lessonId);
           return;
         }
-        openLessonAccessGate(router, lessonId, String(gate));
+        openLessonAccessGate(router, lessonId, String(gate), Date.now() - startedAt);
       })
       .catch((error: unknown) => {
         console.warn(`[LESSON-GATE-FIRSTFRAME] boundary ${routeKey}: проверка упала за ${Date.now() - startedAt} мс (${error instanceof Error ? error.message : String(error)}) → закрыто`); // guard-ok: catch пишет причину
         // Defense in depth: resolver is fail-closed, but an unexpected rejection
         // must still route to a lock surface and must never mount lesson content.
-        if (!cancelled) openLessonAccessGate(router, lessonId, 'resolver_error');
+        if (!cancelled) openLessonAccessGate(router, lessonId, 'resolver_error', Date.now() - startedAt);
       });
 
     return () => { cancelled = true; };

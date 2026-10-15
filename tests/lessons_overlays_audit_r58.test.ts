@@ -105,6 +105,14 @@ describe('🟡 Ревизора 3bed5434c: тупик при подавлени�
     expect(src).toContain('menuLock: { locked: true, reason: lockReason');
     expect(src).toContain("disagree: gateLock !== null && gateLock.gate === 'available'");
     expect(read('app/lesson_premium_gate.ts')).toContain('export function peekLessonGateDecision');
-    expect(read('app/lesson_runtime_access_boundary.tsx')).toContain('openLessonAccessGate(router, lessonId, String(gate));');
+    expect(read('app/lesson_runtime_access_boundary.tsx')).toContain('openLessonAccessGate(router, lessonId, String(gate), Date.now() - startedAt);');
+  });
+});
+
+describe('замок: время решения и расхождение (Моменты/Ревизор 2.77)', () => {
+  it('журнал access_gate несёт decideMs; расхождение пишется и при открытом меню', () => {
+    expect(read('app/lesson_premium_gate.ts')).toContain('decideMs=${decideMs === null ? \'n/a\' : decideMs}');
+    expect(read('app/lesson_runtime_access_boundary.tsx')).toContain('Date.now() - startedAt');
+    expect(read('app/lesson_menu.tsx')).toContain("[LESSON-LOCK] disagree");
   });
 });

@@ -524,6 +524,16 @@ function LessonMenu() {
     router.replace('/(tabs)/lessons' as never);
   }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, lockInfo, router]);
 
+  // зачем (Ревизор 2.77): журнал расхождения был немым — охранник записывает решение только при «закрыто», а сверка шла лишь в ветке закрытия меню. Теперь и при ОТКРЫТОМ меню:
+  // свежее (< 60 с) решение охранника «не available» против «меню открыто» → [LESSON-LOCK] disagree.
+  useEffect(() => {
+    if (!lockStateLoaded || isLessonLocked) return;
+    const gateLock = peekLessonGateDecision(lessonId);
+    if (gateLock && gateLock.ageMs < 60_000 && gateLock.gate !== 'available') {
+      console.log('[LESSON-LOCK] disagree', JSON.stringify({ lessonId, menuLock: { locked: false }, gateLock })); // guard-ok: охранник закрыл, меню открыто
+    }
+  }, [isLessonLocked, lessonId, lockStateLoaded]);
+
   // Служебный флаг первого завершения: после него основной CTA подписывается как replay.
   const [finishedOnce, setFinishedOnce] = useState(false);
   // Первый кадр = финальная геометрия: если флаг уже прочитан в этой сессии, берём его

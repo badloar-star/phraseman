@@ -66,9 +66,11 @@ export function openLessonAccessGate(
   router: any,
   lessonId: number,
   gate: string = 'unknown',
+  decideMs: number | null = null,
 ): void {
   lastGateDecisions.set(lessonId, { gate, atMs: Date.now() });
-  console.log(`[LESSON-LOCK] access_gate → lesson_menu lessonId=${lessonId} gate=${gate}`); // guard-ok: звено цепочки lesson1 → lesson_menu (кто и с каким id зовёт переход)
+  // decideMs (координатор 15.10): сколько мс охранник решал, прежде чем замок «выкинул» человека (один проход lesson1 → меню → список занимал ~5,3 с)
+  console.log(`[LESSON-LOCK] access_gate → lesson_menu lessonId=${lessonId} gate=${gate} decideMs=${decideMs === null ? 'n/a' : decideMs}`); // guard-ok: звено цепочки lesson1 → lesson_menu (кто и с каким id зовёт переход)
   router.replace({
     pathname: '/lesson_menu',
     params: { id: lessonId },

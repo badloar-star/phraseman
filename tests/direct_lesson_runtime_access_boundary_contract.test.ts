@@ -25,7 +25,7 @@ describe('direct lesson screens wait for verified runtime access', () => {
     expect(source).toContain('testID="lesson-runtime-access-pending"');
     expect(source).toContain('openLessonPremiumPaywall(router, lessonId)');
     // 15.10 (Ревизор 3bed5434c): охранник передаёт меню своё решение (gate) — для сверки двух замков в журнале
-    expect(source).toContain('openLessonAccessGate(router, lessonId, String(gate))');
+    expect(source).toContain('openLessonAccessGate(router, lessonId, String(gate), Date.now() - startedAt)');
     expect(source).toContain('export default function __RouteShim() { return null; }');
   });
 

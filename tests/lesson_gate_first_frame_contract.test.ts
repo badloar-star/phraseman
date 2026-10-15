@@ -53,8 +53,8 @@ describe('шлюз входа в урок: скелет урока вместо 
     expect(boundary).toMatch(/if \(gate === 'available'\) \{\n\s*setAuthorizedRouteKey\(routeKey\);\n\s*return;\n\s*\}/);
     expect(boundary).toContain('openLessonPremiumPaywall(router, lessonId);');
     // 15.10 (f81d8c79d): охранник передаёт меню своё решение (gate) для сверки замков в журнале — решение то же: не available → меню замка
-    expect(boundary).toMatch(/openLessonAccessGate\(router, lessonId, String\(gate\)\);\n\s*\}\)\n\s*\.catch\(/);
-    expect(boundary).toMatch(/if \(!cancelled\) openLessonAccessGate\(router, lessonId, 'resolver_error'\);/);
+    expect(boundary).toMatch(/openLessonAccessGate\(router, lessonId, String\(gate\), Date\.now\(\) - startedAt\);\n\s*\}\)\n\s*\.catch\(/);
+    expect(boundary).toMatch(/if \(!cancelled\) openLessonAccessGate\(router, lessonId, 'resolver_error', Date\.now\(\) - startedAt\);/);
     expect(boundary).toContain('return <Screen {...props} />;');
     // экран монтируется строго после проверки authorized
     expect(boundary.indexOf('if (!authorized)')).toBeLessThan(boundary.indexOf('return <Screen {...props} />;'));

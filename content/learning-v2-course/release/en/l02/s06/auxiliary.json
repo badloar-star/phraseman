@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-06:intro1:r2": {
+          "ru": "Это «Он искусственный». Здесь нужен `not` после `is`.",
+          "uk": "Це «Вона штучна». Тут потрібне `not` після `is`."
+        },
+        "en:lesson-02:session-06:intro1:r3": {
+          "ru": "Нужна связка `is`: `It is not fake`.",
+          "uk": "Потрібна зв’язка `is`: `It is not fake`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-06:intro2:r2": {
+          "ru": "Это искусственные цветы. Здесь нужно `not`.",
+          "uk": "Це штучні квіти. Тут потрібно `not`."
+        },
+        "en:lesson-02:session-06:intro2:r3": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-06:intro3:r2": {
+          "ru": "В условии цветок настоящий. Нужно `not fake`.",
+          "uk": "За умовою квітка справжня. Потрібно `not fake`."
+        },
+        "en:lesson-02:session-06:intro3:r3": {
+          "ru": "Это означает «Он не настоящий», что противоречит условию.",
+          "uk": "Це означає «Вона не справжня», що суперечить умові."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dc025c95dc15546420eeb1787e2529415b6b762f47626fdb49740ed010cf063a"
+}

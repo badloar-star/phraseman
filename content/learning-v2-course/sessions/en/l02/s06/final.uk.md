@@ -1,226 +1,138 @@
-# Англійська · Урок 2 · Заняття 6 — «Запитати в перехожого»
+# Англійська · Урок 2 · Заняття 6 — Квіти для сцени
 
-**Сцена заняття.** Ранок суботи, ви вийшли з хостелу і стоїте на перехресті. Мапа не допомагає. Поруч ідуть Іра з телефоном, Ольга з сумкою та Микита без куртки; у кожного можна ввічливо запитати, чи все гаразд.
+**Ситуація.** Ви допомагаєте оформити сцену. Серед штучних квітів опиняється справжній букет, і ви пояснюєте другові, де імітація, а де ні.
 
-**Як сказати:** перенесення `Are you + слово?` на розмову з незнайомцем
-**Нові слова:** —
-**Повертаються:** lost, ok, hungry, thirsty, cold, awake
+**Що ви опануєте:** заперечувати підробленість або штучність речі й відрізняти це від заперечення справжності
+**Нові слова:** fake
 
 ---
 
 ## Інтро 1
 
-### `are you` — початок будь-якого запитання
+### Імітація
 
-`lost` — «заблукав». Коли запитуєте співрозмовника, починайте з двох слів — `are` і `you`. Вони завжди йдуть у цьому порядку, а потрібне слово стає слідом: `Are you lost?`
+`fake` — «підроблений», «штучний», коли річ імітує справжню. Про пластикову квітку можна сказати `It is fake`. Це не завжди обман: на сцені всім може бути відомо, що квіти штучні. Такі квіти переживуть навіть найзабудькуватішого поливальника.
 
-У них одне слово `you` — і для «ти», і для «ви». Приятель, перехожий і поліцейський — усім кажуть однаково, і ніхто не ображається.
+**Серед декорацій стоїть справжня жива квітка. Друг сприйняв її як штучну. Скажіть, що вона не штучна.**
 
-**Іра біля світлофора крутить телефон із мапою і роздивляється будинки. Запитайте Іру, чи не заблукала вона.**
-
-- ✅ **Are you lost?**
-- ❌ You are lost? — *Так ви повідомляєте їй новину, а не запитуєте. У запитанні `are` іде першим.*
-- ❌ Are lost you? — *`you` поїхав у кінець, а його місце одразу після `are`.*
+- ✅ **It is not fake.**
+- ❌ It is fake. — *Це «Вона штучна». Тут потрібне `not` після `is`.*
+- ❌ It not fake. — *Потрібна зв’язка `is`: `It is not fake`.*
 
 ---
 
 ## Інтро 2
 
-### `ok` — слово на всі випадки
+### Стежте за not
 
-`ok` — «в порядку». Ним запитують про найголовніше: чи ціла людина.
+`It is not real` — «Це не справжнє». `It is not fake` — «Це не підробка». Слово `not` заперечує саме те, що йде після нього. Про дві справжні квітки: `They are not fake`, коротко `They're not fake`.
 
-Довгий варіант — `Are you ok?`, він годиться завжди і всім. Коротке `Ok?` теж зрозуміють, але тільки коли й так ясно, про що йдеться: людина вже сидить на асфальті й тримається за коліно.
+**Ці дві квітки справжні, не штучні. Скажіть, що вони не штучні.**
 
-**Ольга попереду перечепилася об бордюр і завмерла. Запитайте Ольгу, чи все з нею гаразд.**
-
-- ✅ **Are you ok?**
-- ❌ Ok you are? — *Слова ті самі, порядок вивернутий. Починаємо з `are you`.*
-- ❌ Is you ok? — *`is` — не для `you`. З `you` завжди `are`.*
+- ✅ **They are not fake.**
+- ❌ They are fake. — *Це штучні квіти. Тут потрібно `not`.*
+- ❌ They is not fake. — *Після `They` потрібно `are`.*
 
 ---
 
 ## Інтро 3
 
-### Змінюється тільки останнє слово
+### Спочатку з’ясуйте
 
-`are` і `you` стоять на місці, а змінюється слово в кінці. `thirsty` — «хоче пити», `hungry` — «голодний», `cold` — «змерз».
+Знайомий вигляд речі ще не доводить її справжності. `familiar` — знайомий, `unfamiliar` — незнайомий, `unknown` — невідомий. У завданнях буде прямо сказано, справжня річ чи імітація: за самим виглядом вгадувати не потрібно.
 
-Вивчили `are you` один раз — і далі просто підставляєте потрібне слово. Переплутаєте останнє — запропонуєте змерзлій людині води.
+**За умовою квітка справжня. Коротко спростуйте припущення друга, що вона штучна.**
 
-**Микита біля зупинки без куртки, руки в рукавах, плечі підняті. Запитайте Микиту, чи не змерз він.**
-
-- ✅ **Are you cold?**
-- ❌ Are you hungry? — *Це «ти голодний?». Він тремтить, а не дивиться на пекарню.*
-- ❌ Is you cold? — *`is` сюди не стає: з `you` іде `are`.*
+- ✅ **It's not fake.**
+- ❌ It's fake. — *За умовою квітка справжня. Потрібно `not fake`.*
+- ❌ It's not real. — *Це означає «Вона не справжня», що суперечить умові.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-06:i01; family: listen_choose -->
-Ціль: `lost`
-Варіанти: `lost` · `lot` · `last`
-- lot — *Інше слово: `a lot` — «багато». У `lost` в кінці чути «ст», у `lot` — тільки «т».*
-- last — *Інша голосна й інше значення: `last` — «останній».*
+**1 · Ця квітка справжня. Скажіть другові, що вона не штучна**
+<!-- interaction_id: en:lesson-02:session-06:i01; family: phrase_builder -->
+Плитки: `fake` `not` `is` `It` `are` → **It is not fake.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not fake.`)*
 
+**2 · Послухайте й виберіть почуте**
+<!-- interaction_id: en:lesson-02:session-06:i02; family: listen_choose -->
+🔊 *It is not fake.* → **It is not fake.** · It is not real. · It is not familiar.
+- It is not real. — *У записі останнє слово — `fake`, а в цьому варіанті — `real`.*
+- It is not familiar. — *У записі останнє слово — `fake`, а в цьому варіанті — `familiar`.*
 
-**2 · Вставте слово — Іра з телефоном-мапою крутиться на місці**
-<!-- interaction_id: en:lesson-02:session-06:i02; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `lost` · `awake` · `hungry`
-- awake — *«Прокинулася?» Вона на ногах посеред вулиці, це й так видно.*
-- hungry — *«Голодна?» Вона шукає дорогу, а не їжу.*
+**3 · Дві квітки справжні, не штучні. Доповніть фразу**
+<!-- interaction_id: en:lesson-02:session-06:i03; family: context_gap_grammar -->
+They ___ not fake. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про дві квітки — `They are not`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-06:i04; family: speed_match -->
+fake — підроблений · real — справжній · familiar — знайомий · unfamiliar — незнайомий
 
-**3 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-06:i03; family: listen_choose -->
-Ціль: `thirsty`
-Варіанти: `thirsty` · `dirty` · `thirty`
-- dirty — *`dirty` — «брудний». Ідеться про людину біля фонтанчика, а не про пляму на куртці.*
-- thirty — *`thirty` — «тридцять». У `thirsty` є «с» перед останньою частиною, у `thirty` його немає.*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-06:i05; family: listen_build_dictation -->
+🔊 *It's not fake.* Плитки: `fake` `not` `It's` `He's` → **It's not fake.**
+*(плитка `He's` зайва: тут потрібно `It's` — `It's not fake.`)*
 
+**6 · На стіл поставили два справжні яблука, не бутафорські. Скажіть, що вони не імітації**
+<!-- interaction_id: en:lesson-02:session-06:i06; family: phrase_builder -->
+Плитки: `fake` `not` `are` `They` `is` → **They are not fake.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not fake.`)*
 
-**4 · Складіть фразу — запитати Іру, чи не хоче вона пити**
-<!-- interaction_id: en:lesson-02:session-06:i04; family: phrase_builder -->
-Ціль: `Are you thirsty?`
-Плитки: `Are` · `you` · `thirsty` · `is`
-*Плитка `is` зайва: з `you` потрібна форма `are`: `Are you thirsty?`*
+**7 · Коротко скажіть про справжній букет, який друг вважав штучним: «Він не штучний»**
+<!-- interaction_id: en:lesson-02:session-06:i07; family: scripted_repeat_compare -->
+🎙 **It's not fake.**
 
-**5 · Вставте слово — Ольга впустила сумку і сіла на лавку**
-<!-- interaction_id: en:lesson-02:session-06:i05; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `ok` · `cold` · `thirsty`
-- cold — *«Змерзла?» Надворі тепло, річ не в холоді.*
-- thirsty — *«Хочеш пити?» Вона щойно впала — спершу запитують, чи ціла.*
-
-
-**6 · Послухайте і складіть — «ти голодний?»**
-<!-- interaction_id: en:lesson-02:session-06:i06; family: listen_build_dictation -->
-Ціль: `Are you hungry?`
-🔊 *Are you hungry?* Плитки: `Are` · `you` · `hungry` · `cold`
-*Плитка `cold` зайва: запитання питає про голод, тому потрібне `hungry`: `Are you hungry?`*
-
-**7 · Розрізніть звуки — яке з двох про «холодно»?**
-<!-- interaction_id: en:lesson-02:session-06:i07; family: sound_contrast -->
-Варіанти: `cold` · `gold`
-- gold — *`gold` — «золото». Слова різняться першим звуком: «к» проти «ґ», як у слові `ґанок`, далі все однаково.*
-
-
-**8 · Вставте слово — Микита без куртки, плечі підняті, руки в рукавах**
+**8 · Перед оформленням сцени ви не нервуєте. Доповніть фразу про себе**
 <!-- interaction_id: en:lesson-02:session-06:i08; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `cold` · `lost` · `ok`
-- lost — *«Заблукав?» Він стоїть на своїй зупинці, дороги не шукає.*
-- ok — *`Are you ok?` запитують, коли людині зле і незрозуміло чому. Тут видно чому — він мерзне.*
+I ___ not nervous. → **am** · is · are
+- is — *Про себе — `I am not`.*
+- are — *Після `I` потрібно `am`.*
 
+**9 · Послухайте фразу про друга**
+<!-- interaction_id: en:lesson-02:session-06:i09; family: listen_choose -->
+🔊 *He is not calm.* → **He is not calm.** · He is not nervous. · He is not excited.
+- He is not nervous. — *У записі останнє слово — `calm`, а в цьому варіанті — `nervous`.*
+- He is not excited. — *У записі останнє слово — `calm`, а в цьому варіанті — `excited`.*
 
-**9 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-06:i09; family: speed_match -->
-Пари: `lost` — заблукав · `ok` — в порядку · `thirsty` — хоче пити · `cold` — змерз
-Ціль: `lost · ok · thirsty · cold`
+**10 · З’єднайте знайомі слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-06:i10; family: speed_match -->
+calm — спокійний · nervous — той, хто нервує · excited — схвильований від передчуття · unknown — невідомий
 
-**10 · Складіть запитання — Микита втретє проходить повз одну вітрину; запитайте Микиту, чи він не заблукав**
-<!-- interaction_id: en:lesson-02:session-06:i10; family: phrase_builder -->
-Ціль: `Are you lost?`
-Плитки: `Are` · `you` · `lost` · `not`
-*Плитка `not` зайва: запитання прямо питає, чи ви заблукали; заперечення не потрібне: `Are you lost?`*
+**11 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-06:i11; family: listen_build_dictation -->
+🔊 *They're not fake.* Плитки: `fake` `not` `They're` `He's` → **They're not fake.**
+*(плитка `He's` зайва: тут потрібно `They're` — `They're not fake.`)*
 
-**11 · Вставте слово — Іра стоїть біля фонтанчика і облизує губи**
-<!-- interaction_id: en:lesson-02:session-06:i11; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `thirsty` · `awake` · `lost`
-- awake — *«Прокинувся?» Він бадьоро стоїть біля води, зі сном це не пов'язано.*
-- lost — *«Заблукав?» Він нікуди не йде, він дивиться на воду.*
+**12 · Ви вперше бачите цей візерунок і не впізнаєте його. Скажіть, що він вам не знайомий**
+<!-- interaction_id: en:lesson-02:session-06:i12; family: phrase_builder -->
+Плитки: `familiar` `not` `is` `It` `are` → **It is not familiar.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not familiar.`)*
 
+**13 · Майбутня репетиція не викликає у вас радісного хвилювання. Коротко скажіть про відсутність цього передчуття**
+<!-- interaction_id: en:lesson-02:session-06:i13; family: scripted_repeat_compare -->
+🎙 **I'm not excited.**
 
-**12 · Послухайте і складіть — «ти в порядку?»**
-<!-- interaction_id: en:lesson-02:session-06:i12; family: listen_build_dictation -->
-Ціль: `Are you ok?`
-🔊 *Are you ok?* Плитки: `Are` · `you` · `ok` · `hungry`
-*Плитка `hungry` зайва: тут питають про самопочуття загалом: `Are you ok?`*
+**14 · Одна квітка справжня. Доповніть заперечення її штучності**
+<!-- interaction_id: en:lesson-02:session-06:i14; family: context_gap_grammar -->
+It ___ not fake. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Про одну квітку — `It is not`.*
 
-**13 · Вставте слово — сусід по кімнаті сидить із заплющеними очима, ви йдете**
-<!-- interaction_id: en:lesson-02:session-06:i13; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `awake` · `cold` · `thirsty`
-- cold — *«Змерз?» У кімнаті звичайна температура, річ не в цьому.*
-- thirsty — *«Хочеш пити?» Ви перевіряєте, спить він чи ні.*
+**15 · Послухайте коротку фразу й виберіть її**
+<!-- interaction_id: en:lesson-02:session-06:i15; family: listen_choose -->
+🔊 *It's not fake.* → **It's not fake.** · It's not real. · It's not unfamiliar.
+- It's not real. — *У записі останнє слово — `fake`, а в цьому варіанті — `real`.*
+- It's not unfamiliar. — *У записі останнє слово — `fake`, а в цьому варіанті — `unfamiliar`.*
 
+**16 · З’єднайте слова з їхніми значеннями тут**
+<!-- interaction_id: en:lesson-02:session-06:i16; family: speed_match -->
+fake — імітація справжнього · real — справжній · familiar — упізнаваний · unknown — невідомий
 
-**14 · Складіть запитання — Микита втретє проходить повз одну вітрину; запитайте Микиту, чи він не заблукав**
-<!-- interaction_id: en:lesson-02:session-06:i14; family: phrase_builder -->
-Ціль: `Are you cold?`
-Плитки: `Are` · `you` · `cold` · `am`
-*Плитка `am` зайва: з `you` потрібна форма `are`; `am` уживається з `I`.*
+**17 · У музеї виставлено справжній старовинний шолом. Друг думає, що це підробка. Скажіть, що шолом не підроблений**
+<!-- interaction_id: en:lesson-02:session-06:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is not fake.**
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-06:i15:s01; family: scripted_repeat_compare -->
-Ціль: `Are you lost?`
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-06:i15:s02; family: scripted_repeat_compare -->
-Ціль: `Are you ok?`
-
-**17 · Складіть запитання — Микита втретє проходить повз одну вітрину; запитайте Микиту, чи він не заблукав**
-<!-- interaction_id: en:lesson-02:session-06:i16; family: phrase_builder -->
-Ціль: `Are you hungry?`
-
-**18 · Послухайте й виберіть — Микита знову йде повз ту саму вітрину, і ви питаєте, чи він не заблукав**
-<!-- interaction_id: en:lesson-02:session-06:i17:s01; family: listen_choose -->
-Ціль: `Are you lost?`
-Варіанти: `Are you lost?` · `You are lost.` · `Are you late?`
-- You are lost. — *У записі першим звучить `Are`, тому це запитання. `You are lost.` — твердження.*
-- Are you late? — *`late` — «запізнився». У записі після `you` звучить `lost`: «заблукав».*
-
-
-**19 · Складіть запитання — Ольга підвелася після падіння; спитайте, чи все з нею гаразд**
-<!-- interaction_id: en:lesson-02:session-06:i17:s02; family: phrase_builder -->
-Ціль: `Are you ok?`
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-06:i17:s03; family: scripted_repeat_compare -->
-Ціль: `Are you thirsty?`
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-06:i17:s04; family: scripted_repeat_compare -->
-Ціль: `Are you cold?`
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=sound_contrast, 8=context_gap_grammar, 9=speed_match, 10=phrase_builder, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder, 18=listen_choose, 19=phrase_builder, 20=scripted_repeat_compare, 21=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| lost | 1, 2, 9, 10, 11 (пастка), 15, 17 | 1, 2, 10, 15, 17 |
-| ok | 5, 8 (пастка), 9, 12, 15, 17 | 5, 12, 15, 17 |
-| hungry | 2 (пастка), 6, 16, 17 | 6, 16 |
-| thirsty | 3, 4, 9, 11, 13 (пастка), 17 | 3, 4, 11, 17 |
-| cold | 5 (пастка), 6 (пастка), 7, 8, 9, 14, 17 | 7, 8, 14, 17 |
-| awake | 2 (пастка), 11 (пастка), 13 | 13 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД запитанням |
-|---|---|---|
-| Інтро 1 | lost | так — «`lost` — „заблукав“», `Are you lost?` |
-| Інтро 2 | ok | так — «`ok` — „в порядку“», `Are you ok?` |
-| Інтро 3 | cold | так — «`cold` — „змерз“» |
-
-**3. Дошка пар (завдання 9)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| lost | ні (не нове) | завдання 1, 2 |
-| ok | ні (не нове) | завдання 5 |
-| thirsty | ні (не нове) | завдання 3, 4 |
-| cold | ні (не нове) | завдання 6, 7, 8 |

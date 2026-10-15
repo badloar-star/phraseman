@@ -1,0 +1,6 @@
+10-15 19:25:42.320 I/AppsFilter(  647): interaction: PackageSetting{e447e8 app.phraseman/10209} -> PackageSetting{c83b85a com.google.android.overlay.permissioncontroller/10060} BLOCKED
+10-15 19:25:46.872 I/AppsFilter(  647): interaction: PackageSetting{e447e8 app.phraseman/10209} -> PackageSetting{c83b85a com.google.android.overlay.permissioncontroller/10060} BLOCKED
+10-15 19:25:50.441 D/ActivityManager(  647): freezing 1306 com.google.android.permissioncontroller
+10-15 19:25:52.153 I/AppsFilter(  647): interaction: PackageSetting{e447e8 app.phraseman/10209} -> PackageSetting{c83b85a com.google.android.overlay.permissioncontroller/10060} BLOCKED
+10-15 19:25:52.174 I/AppsFilter(  647): interaction: PackageSetting{e447e8 app.phraseman/10209} -> PackageSetting{c83b85a com.google.android.overlay.permissioncontroller/10060} BLOCKED
+10-15 19:25:52.199 I/AppsFilter(  647): interaction: PackageSetting{e447e8 app.phraseman/10209} -> PackageSetting{c83b85a com.google.android.overlay.permissioncontroller/10060} BLOCKED

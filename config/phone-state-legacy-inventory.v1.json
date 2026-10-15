@@ -303,6 +303,15 @@
       "sensitivity": "low"
     },
     {
+      "key": "study_target_v1",
+      "domain": "preferences",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
       "key": "app_language",
       "domain": "preferences",
       "scope": "device_only",
@@ -594,6 +603,19 @@
     },
     {
       "key": "community_owned_pack_ids_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "community_owned_pack_tombstones_v1",
       "domain": "cards",
       "scope": "portable",
       "reducer": "union",
@@ -3175,6 +3197,15 @@
       "importSource": [],
       "legacyMirror": false,
       "sensitivity": "low"
+    },
+    {
+      "prefix": "story_events_v1",
+      "domain": "stories",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
     },
     {
       "prefix": "friend_blocked_v1",

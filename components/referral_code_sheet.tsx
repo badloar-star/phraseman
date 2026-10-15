@@ -125,15 +125,15 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'error',
         text: L(
-          'Код сохранён. Приложение применит его автоматически, как только соединение будет готово.',
-          'Код збережено. Застосунок застосує його автоматично, щойно з’єднання буде готове.',
-          'Code saved. The app will apply it automatically once the connection is ready.',
-          'Código guardado. Lo aplicaremos automáticamente cuando la conexión esté lista.',
-          'Código salvo. Vamos aplicar automaticamente quando a conexão estiver pronta.',
-          'Đã lưu mã. Ứng dụng sẽ tự áp dụng khi kết nối sẵn sàng.',
-          'Kode disimpan. Aplikasi akan menerapkannya otomatis saat koneksi siap.',
-          'Kod kaydedildi. Bağlantı hazır olduğunda otomatik uygulanacak.',
-          'Kod zapisany. Aplikacja zastosuje go automatycznie, gdy połączenie będzie gotowe.',
+          'Код сохранён. Он применится сам, как только появится интернет.',
+          'Код збережено. Він застосується сам, щойно з’явиться інтернет.',
+          'Code saved. It’ll apply on its own as soon as you’re online.',
+          'Código guardado. Se aplicará solo en cuanto tengas internet.',
+          'Código salvo. Ele será aplicado sozinho assim que houver internet.',
+          'Đã lưu mã. Mã sẽ tự áp dụng khi có mạng.',
+          'Kode disimpan. Kode akan diterapkan sendiri begitu ada internet.',
+          'Kod kaydedildi. İnternet gelince kendiliğinden uygulanacak.',
+          'Kod zapisany. Zadziała sam, gdy tylko pojawi się internet.',
         ),
       };
     case 'disabled':

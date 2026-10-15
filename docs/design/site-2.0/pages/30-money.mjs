@@ -306,7 +306,15 @@ ${STATE_HOOK}
 /* ====================================================================== */
 /* /premium/                                                              */
 /* ====================================================================== */
-const PREM_STATES = [['plans', 'Цены'], ['flow', 'Выбран тариф']];
+// зачем (владелец 15.10): «Выбрать Plus/Pro» ведёт на такой же шаг оплаты, как в подарке — email + карта/PayPal.
+const PREM_STATES = [
+  ['plans', 'Цены'],
+  ['flow', 'Оплата'],
+  ['p-email-err', 'Нет email'],
+  ['p-busy', 'Открываем оплату'],
+  ['p-pay-err', 'Ошибка карты'],
+  ['p-paypal-err', 'Ошибка PayPal'],
+];
 
 const planCard = (plan, ov, h, price, sub, items, btn, hl = false) => `
     <article class="glass plan p-plan${hl ? ' hl' : ''}" data-plan="${plan}">
@@ -344,16 +352,24 @@ ${marks(PREM_STATES.map((s) => s[0]))}
 </div></section>
 
 <section id="production-flow" class="p-flow" aria-label="Оформление"><div class="wrap">
-  <div class="glass p-flow-card">
-    <div class="qtrk" id="quiz-progress-fill" style="--w:18%"><b></b></div>
-    <div id="quiz-root" class="p-quiz" aria-live="polite" aria-busy="true">
-      <span class="spinner" aria-hidden="true"></span>
-      <span class="skel" style="height:34px;width:min(420px,80%)"></span>
-      <span class="skel" style="height:16px;width:min(320px,64%)"></span>
-      <div class="p-quiz-opts"><span class="skel"></span><span class="skel"></span><span class="skel"></span></div>
-      <span class="skel" style="height:52px;width:min(260px,100%);border-radius:999px"></span>
+  <form class="glass p-flow-card" id="payForm" novalidate>
+    <div class="p-sum">
+      <div><span class="ov">Оформление</span><h2 class="p-sum-h" id="sumName">Год Plus</h2><span class="p-sum-sub" id="sumSub">366 дней доступа</span></div>
+      <div class="p-sum-price" id="sumPrice">€27,99</div>
     </div>
-  </div>
+    <div class="choice cols3 p-switch" role="radiogroup" aria-label="Тариф">
+      <button type="button" class="opt" data-pick="monthly" role="radio" aria-pressed="false"><span class="radio" aria-hidden="true"></span><span class="tx"><span class="tt">Месяц Plus</span><span class="st">€3,99</span></span></button>
+      <button type="button" class="opt" data-pick="yearly" role="radio" aria-pressed="true"><span class="radio" aria-hidden="true"></span><span class="tx"><span class="tt">Год Plus</span><span class="st">€27,99</span></span></button>
+      <button type="button" class="opt" data-pick="lifetime" role="radio" aria-pressed="false"><span class="radio" aria-hidden="true"></span><span class="tx"><span class="tt">Pro навсегда</span><span class="st">€99,99</span></span></button>
+    </div>
+    <label class="field"><span>Твой email — на него придёт код активации</span><input class="input" id="pMail" type="email" required maxlength="200" placeholder="you@example.com" autocomplete="email" inputmode="email"></label>
+    <p class="hint err g-err" id="pErr" role="alert"></p>
+    <div class="g-pay p-pay">
+      <button class="btn btn-primary" type="submit" id="pCard">${ic('card', 's18')}<span id="pCardLbl">Оплатить картой</span></button>
+      <button type="button" class="btn btn-ghost g-pp-btn" id="pPp" aria-label="PayPal"><b>Pay</b><b class="pp2">Pal</b></button>
+    </div>
+    <p class="g-terms">Итоговая сумма и условия отображаются перед оплатой.<br>Карта российского банка не проходит? <a href="russia.html">Оплата в России</a></p>
+  </form>
 </div></section>
 </div>`;
 
@@ -371,16 +387,28 @@ ${MARK_CSS}
 .p-gift-card .h2 { font-size: clamp(28px, 3.4vw, 40px); }
 .p-gift-card p { color: var(--sec); font-size: var(--t-l); margin-top: 8px; }
 .p-flow { display: none; padding-bottom: clamp(48px, 7vw, 96px); scroll-margin-top: 110px; }
-.pp[data-pg="flow"] .p-flow { display: block; animation: stIn 420ms var(--ease); }
-.p-flow-card { padding: clamp(22px, 4vw, 40px); border-radius: 30px; display: grid; gap: 28px; }
-.p-quiz { display: grid; gap: 14px; justify-items: start; min-height: 320px; align-content: start; }
-.p-quiz .spinner { margin-bottom: 6px; }
-.p-quiz-opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; }
-.p-quiz-opts .skel { height: 64px; border-radius: 18px; }
+.pp:not([data-pg="plans"]) .p-flow { display: block; animation: stIn 420ms var(--ease); }
+.p-flow-card { max-width: 620px; margin-inline: auto; padding: clamp(22px, 4vw, 36px); border-radius: 30px; display: grid; gap: 18px; }
+.p-sum { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--track); }
+.p-sum-h { font-size: clamp(26px, 3vw, 32px); letter-spacing: -.03em; line-height: 1.1; margin-top: 6px; }
+.p-sum-sub { display: block; margin-top: 4px; font-size: 14px; color: var(--sec); font-weight: 600; }
+.p-sum-price { font-size: clamp(32px, 4vw, 40px); font-weight: 800; letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; transition: opacity 200ms var(--ease); }
+.p-switch .opt { padding: 12px 14px; gap: 10px; }
+.p-switch .tt { font-size: 15px; }
+.g-err:empty { display: none; }
+.g-pay { display: grid; gap: 10px; }
+.g-pay .btn { width: 100%; }
+.g-pp-btn { min-height: 48px; font-size: 19px; font-style: italic; letter-spacing: -.02em; gap: 0; }
+.g-pp-btn .pp2 { color: var(--fill); }
+.g-pp-btn[aria-busy="true"] { pointer-events: none; opacity: .7; }
+#pCard[aria-busy="true"] { pointer-events: none; filter: saturate(.7) brightness(.92); }
+#pCard[aria-busy="true"] .i { display: none; }
+#pCard .spinner { width: 18px; height: 18px; border-color: color-mix(in srgb, var(--cta-ink) 30%, transparent); border-top-color: var(--cta-ink); }
+.g-terms { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.g-terms a { color: var(--fill); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 @media (max-width: 760px) {
   .p-gift-card { grid-template-columns: minmax(0, 1fr); justify-items: start; }
   .p-gift-card .btn { width: 100%; }
-  .p-quiz-opts { grid-template-columns: minmax(0, 1fr); }
 }
 `;
 
@@ -390,17 +418,69 @@ ${STATE_HOOK}
   var root = document.getElementById('pp');
   if (!root) { console.warn('[PREMIUM] нет корня страницы'); return; }
   var cards = Array.prototype.slice.call(root.querySelectorAll('.p-plan'));
-  var chosen = null;
+  var picks = Array.prototype.slice.call(root.querySelectorAll('[data-pick]'));
+  var PLAN = {
+    monthly: { name: 'Месяц Plus', sub: '31 день доступа', price: '€3,99' },
+    yearly: { name: 'Год Plus', sub: '366 дней доступа', price: '€27,99' },
+    lifetime: { name: 'Pro навсегда', sub: 'Полный доступ навсегда', price: '€99,99' }
+  };
+  var MSG = {
+    email: 'Укажи email — на него придёт код активации.',
+    card: 'Оплата не открылась. Попробуй ещё раз или напиши в поддержку.',
+    paypal: 'PayPal не ответил. Попробуй карту или напиши в поддержку.'
+  };
+  var form = document.getElementById('payForm'), mail = document.getElementById('pMail'), err = document.getElementById('pErr');
+  var card = document.getElementById('pCard'), cardLbl = document.getElementById('pCardLbl'), pp = document.getElementById('pPp');
+  var chosen = null, busy = false, flowTimer = null;
+  // зачем: смена тарифа на шаге оплаты — мгновенно (сводка, цена, карточка наверху), без сети
   function mark(p) {
     chosen = p;
     cards.forEach(function (c) { var on = c.dataset.plan === p; c.classList.toggle('sel', on); var b = c.querySelector('[data-open-plan]'); if (b) b.setAttribute('aria-pressed', String(on)); });
+    picks.forEach(function (o) { o.setAttribute('aria-pressed', String(o.dataset.pick === p)); });
+    var d = PLAN[p]; if (!d) return;
+    document.getElementById('sumName').textContent = d.name;
+    document.getElementById('sumSub').textContent = d.sub;
+    document.getElementById('sumPrice').textContent = d.price;
   }
+  function setErr(t) { err.textContent = t || ''; }
+  function setBusy(on) {
+    busy = on; card.setAttribute('aria-busy', String(on)); card.disabled = on;
+    cardLbl.textContent = on ? 'Открываем оплату…' : 'Оплатить картой';
+    var sp = card.querySelector('.spinner');
+    if (on && !sp) { sp = document.createElement('span'); sp.className = 'spinner'; sp.setAttribute('aria-hidden', 'true'); card.insertBefore(sp, cardLbl); }
+    if (!on && sp) sp.remove();
+  }
+  function emailOk() { return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(mail.value.trim()); }
   var go = pmStateHook('PREMIUM', root, function (s) {
-    if (s === 'flow') { if (!chosen) mark('yearly'); }
-    else mark(null);
+    if (s !== 'p-busy') { clearTimeout(flowTimer); flowTimer = null; }
+    if (s === 'plans') { mark(null); return; }
+    if (!chosen) mark('yearly');
+    mail.classList.remove('err'); setErr(''); setBusy(false); pp.removeAttribute('aria-busy');
+    if ((s === 'p-busy' || s === 'p-pay-err' || s === 'p-paypal-err') && !mail.value) mail.value = 'you@example.com';
+    if (s === 'p-email-err') { mail.value = ''; mail.classList.add('err'); setErr(MSG.email); }
+    if (s === 'p-busy') setBusy(true);
+    if (s === 'p-pay-err') setErr(MSG.card);
+    if (s === 'p-paypal-err') setErr(MSG.paypal);
   });
-  // «Выбрать Plus/Pro»: карточка выделяется мгновенно, раскрывается блок оформления.
-  // На живом сайте блок пуст: /assets/start.js отсутствует — здесь нейтральная загрузка без текста.
+  picks.forEach(function (o) { o.addEventListener('click', function () { if (busy) return; console.log('[PREMIUM] смена тарифа на шаге оплаты:', chosen, '→', o.dataset.pick); mark(o.dataset.pick); }); });
+  mail.addEventListener('input', function () { if (mail.classList.contains('err')) { mail.classList.remove('err'); setErr(''); } });
+  // карта: проверка email → занятая кнопка (защита от двойного клика) → страница «спасибо»
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (busy) { console.log('[PREMIUM] повторный клик — игнор, оплата уже открывается'); return; }
+    if (!emailOk()) { console.log('[PREMIUM] email не прошёл проверку:', JSON.stringify(mail.value)); mail.classList.add('err'); setErr(MSG.email); mail.focus(); return; }
+    console.log('[PREMIUM] оплата картой: тариф', chosen);
+    setBusy(true); go('p-busy');
+    flowTimer = setTimeout(function () { location.href = 'start-thanks.html?plan=' + chosen + '#waiting'; }, 1400);
+  });
+  pp.addEventListener('click', function () {
+    if (busy || pp.getAttribute('aria-busy') === 'true') { console.log('[PREMIUM] PayPal: повторный клик — игнор'); return; }
+    if (!emailOk()) { console.log('[PREMIUM] PayPal: email не прошёл проверку'); mail.classList.add('err'); setErr(MSG.email); mail.focus(); return; }
+    console.log('[PREMIUM] PayPal: тариф', chosen);
+    pp.setAttribute('aria-busy', 'true');
+    setTimeout(function () { location.href = 'start-thanks.html?provider=paypal&plan=' + chosen + '#waiting'; }, 900);
+  });
+  // «Выбрать Plus/Pro»: карточка выделяется мгновенно, открывается шаг оплаты с этим тарифом
   root.querySelectorAll('[data-open-plan]').forEach(function (b) {
     b.addEventListener('click', function (e) {
       e.preventDefault();

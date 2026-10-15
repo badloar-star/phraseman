@@ -78,7 +78,10 @@ test('сервер EAS без исходников курса: сверка па
   const dir = sandbox(EXCLUDING);
   assert.deepEqual(learningV2CourseSourcesAbsentOnBuildServer(dir, { EAS_BUILD: 'true' }), { skip: true, reason: 'course_sources_not_in_eas_archive' });
   assert.equal(learningV2CourseSourcesAbsentOnBuildServer(dir, {}).skip, false);
-  fs.mkdirSync(path.join(dir, 'content', 'learning-v2-course'), { recursive: true });
+  // Архив EAS с 2a033ab6e несёт content/learning-v2-course/activation/ — это НЕ исходники, пропуск обязан остаться (репетиция 15.10).
+  fs.mkdirSync(path.join(dir, 'content', 'learning-v2-course', 'activation', 'en'), { recursive: true });
+  assert.deepEqual(learningV2CourseSourcesAbsentOnBuildServer(dir, { EAS_BUILD: 'true' }), { skip: true, reason: 'course_sources_not_in_eas_archive' });
+  fs.mkdirSync(path.join(dir, 'content', 'learning-v2-course', 'sessions'), { recursive: true });
   assert.equal(learningV2CourseSourcesAbsentOnBuildServer(dir, { EAS_BUILD: 'true' }).skip, false);
 });
 

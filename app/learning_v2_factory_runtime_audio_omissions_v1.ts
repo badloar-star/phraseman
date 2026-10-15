@@ -1,3 +1,5 @@
+import { LEARNING_V2_RUNTIME_AUDIO_OMISSIONS_MANIFEST_V1 } from "./learning_v2_runtime_audio_omissions_v1.generated";
+
 const HEX_64 = /^[a-f0-9]{64}$/u;
 const SESSION_RE = /^en\/l01\/s\d{2}$/u;
 const SOURCE_INTERACTION_RE = /^en:lesson-01:session-\d{2}:i\d{2}(?::s\d{2})?$/u;
@@ -18,7 +20,9 @@ type RawRuntimeAudioOmissionManifestV1 = Readonly<{
   sessions?: unknown;
 }>;
 
-const rawManifest = require("../content/learning-v2-course/activation/en/runtime-audio-omissions.v1.json") as RawRuntimeAudioOmissionManifestV1;
+// зачем (репетиция сборки 15.10): данные из app/*.generated.ts, а не JSON из content/ — на чистой машине (EAS) Metro не видел content/
+// (.watchmanconfig исключает его целиком), бандл не собирался. Источник прежний: scripts/generate_learning_v2_runtime_audio_omissions.mjs.
+const rawManifest = LEARNING_V2_RUNTIME_AUDIO_OMISSIONS_MANIFEST_V1 as RawRuntimeAudioOmissionManifestV1;
 
 function parsePolicy(value: unknown): RuntimeAudioOmissionPolicyV1 {
   if (!value || typeof value !== "object" || Array.isArray(value)) {

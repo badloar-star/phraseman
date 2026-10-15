@@ -87,7 +87,9 @@ export function learningV2StoreSkipDecision(root, env = process.env) {
  */
 export function learningV2CourseSourcesAbsentOnBuildServer(root, env = process.env) {
   if (env.EAS_BUILD !== 'true') return { skip: false, reason: 'not_eas_build_server' };
-  const sources = path.join(root, 'content', 'learning-v2-course');
+  // зачем (репетиция сборки 15.10): с 2a033ab6e .easignore пропускает content/learning-v2-course/activation/ — сама папка курса на EAS
+  // ЕСТЬ, а исходников нет. Признак исходников — папка sessions/ (DEFAULT_SOURCE_ROOT гейта паритета), иначе строгая сверка жгла сборку.
+  const sources = path.join(root, 'content', 'learning-v2-course', 'sessions');
   if (fs.existsSync(sources)) return { skip: false, reason: 'course_sources_present' };
   return { skip: true, reason: 'course_sources_not_in_eas_archive' };
 }

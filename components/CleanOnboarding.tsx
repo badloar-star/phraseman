@@ -3618,6 +3618,13 @@ function CleanOnboarding({
       if (analyticsAllowed) {
         trackOnboarding('onboarding_complete', { level: selectedLevel, target: studyTarget });
       }
+      // зачем (Ядро/координатор 15.10): ответ экрана уровня уходит в серверную статистику админки один раз на человека, фоном и без ожидания сети;
+      // level = null, если экран уровня пропущен (считается в «доле пропустивших»). Согласие, метку «уже отправлено» и отложенную отправку держит сам модуль.
+      void import('../app/onboarding_level_stats')
+        .then((m) => m.recordOnboardingLevelAnswer({ level: level ?? null, target: studyTarget }))
+        .catch((error: unknown) => {
+          console.warn(`[ONB-LEVEL] import_failed reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя подключения
+        });
       // PM-049: приветственная награда и её шторка удалены; первый вход
       // завершается без бонусной выдачи.
       if (authCompletionRef.current.doneCalled) {
@@ -3639,7 +3646,7 @@ function CleanOnboarding({
     } finally {
       finishingRef.current = false;
     }
-  }, [lang, notificationChoice, onDone, selectedLevel, studyTarget]);
+  }, [lang, level, notificationChoice, onDone, selectedLevel, studyTarget]);
   const completeOnboardingRef = useRef(completeOnboarding);
   completeOnboardingRef.current = completeOnboarding;
 

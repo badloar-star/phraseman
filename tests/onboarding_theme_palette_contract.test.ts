@@ -49,6 +49,11 @@ describe('онбординг — исходник', () => {
   it('экран уровня включён', () => {
     expect(src).toContain('const SHOW_ONBOARDING_LEVEL_STEP = true;');
   });
+  it('ответ экрана уровня уходит в серверную статистику: лениво, фоном, level = null при пропуске; белый список журнала активности не расширен', () => {
+    expect(src).toContain("import('../app/onboarding_level_stats')");
+    expect(src).toContain('m.recordOnboardingLevelAnswer({ level: level ?? null, target: studyTarget })');
+    expect(src).toContain("writeToFirestore: action === 'onboarding_source_select',");
+  });
   it('вне иллюстрации телефона и таблицы стилей фиксированных светлых цветов «Bevel» нет', () => {
     const bevel = ['#F5F6FA', '#0C111B', '#5B6270', '#596170', '#17191F', '#E6E8EE', '#EDEFF4', '#C9CDD7'];
     const withoutShadow = src.split("softShadow({ color: '#0C111B'").join('softShadow({');

@@ -1,0 +1,25 @@
+diff --git a/app/stable_safe_area_metrics.ts b/app/stable_safe_area_metrics.ts
+--- a/app/stable_safe_area_metrics.ts
++++ b/app/stable_safe_area_metrics.ts
+@@ -1,3 +1,4 @@
++import { useMemo } from 'react';
+ import Constants from 'expo-constants';
+ import { Dimensions, Platform, StatusBar } from 'react-native';
+ import { initialWindowMetrics, useSafeAreaInsets, type EdgeInsets, type Metrics } from 'react-native-safe-area-context';
+@@ -47,9 +48,11 @@
+ 
+ export function useStableSafeAreaInsets(): EdgeInsets {
+   const insets = useSafeAreaInsets();
+-  return {
+-    ...insets,
+-    top: getStableSafeAreaTopInset(insets.top),
+-    bottom: getStableSafeAreaBottomInset(insets.bottom),
+-  };
++  const top = getStableSafeAreaTopInset(insets.top);
++  const bottom = getStableSafeAreaBottomInset(insets.bottom);
++  const { left, right } = insets;
++  // зачем (координатор 15.10, замер каскада вкладок cfe9e5cc2): хук отдавал НОВЫЙ объект на каждый рендер — у 145 потребителей
++  // он ломал memo/useMemo-зависимости и множил перерисовки (в модели «скачущих» провайдеров разметка вкладок 3 → 7 на переход).
++  // Та же ссылка, пока числа те же; новые числа — новый объект. Объект только для чтения (потребители его не меняют).
++  return useMemo(() => ({ top, right, bottom, left }), [top, right, bottom, left]);
+ }

@@ -7,242 +7,115 @@
       "interactionId": "en:lesson-03:session-30:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — sweater",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з Анною не можете знайти потрібні чашки. Повідомте «Чашки зникли»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-30:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — sweater",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з Анною не можете знайти потрібні чашки. Повідомте «Чашки зникли»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i01:audio",
-          "transcript": "sweater"
+        "family": "phrase_builder",
+        "targetPhrase": "The cups are missing.",
+        "localizedMeaning": {
+          "ru": "Вы с Анной не можете найти нужные чашки. Сообщите «Чашки пропали»",
+          "uk": "Ви з Анною не можете знайти потрібні чашки. Повідомте «Чашки зникли»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "The",
+          "cups",
+          "are",
+          "missing"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-30:i01:r1",
-            "targetText": "sweater",
-            "meaningByLocale": {
-              "ru": "«свитер». Тёплая вязаная одежда с длинными рукавами, которую надевают через голову.",
-              "uk": "«светр». Теплий в'язаний одяг із довгими рукавами, який надягають через голову."
+            "responseId": "en:lesson-03:session-30:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви з Анною не можете знайти потрібні чашки. Повідомте «Чашки зникли»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The cups are missing.`",
+              "uk": "тут потрібно `are` — `The cups are missing.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sweater",
-          "definitionByLocale": {
-            "ru": "«свитер». Тёплая вязаная одежда с длинными рукавами, которую надевают через голову.",
-            "uk": "«светр». Теплий в'язаний одяг із довгими рукавами, який надягають через голову."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-30:i03",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-30:i03:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i03:audio",
-          "transcript": "scarf"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "scarf",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-30:i05",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-30:i05:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i05:audio",
-          "transcript": "glove"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "glove",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-30:i02",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-30:i02:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i02:audio",
-          "transcript": "sweater"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "sweater",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-30:i04",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав продавець",
+      "prompt": "Послухайте й виберіть слово",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-30:i04:r1",
-          "text": "scarf"
+          "responseId": "en:lesson-03:session-30:i02:r1",
+          "text": "windows"
         },
         {
-          "responseId": "en:lesson-03:session-30:i04:r2",
-          "text": "scar"
+          "responseId": "en:lesson-03:session-30:i02:r2",
+          "text": "tables"
         },
         {
-          "responseId": "en:lesson-03:session-30:i04:r3",
-          "text": "scale"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i04:r4",
-          "text": "star"
+          "responseId": "en:lesson-03:session-30:i02:r3",
+          "text": "tickets"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-30:i04:audio"
+        "en:lesson-03:session-30:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав продавець",
+      "accessibilityLabel": "Послухайте й виберіть слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i04:audio",
-          "transcript": "scarf"
+          "audioTargetId": "en:lesson-03:session-30:i02:audio",
+          "transcript": "windows"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-30:i04:r1",
-            "targetText": "scarf",
-            "meaningByLocale": {
-              "ru": "шарф",
-              "uk": "шарф"
-            }
+            "responseId": "en:lesson-03:session-30:i02:r1",
+            "targetText": "windows",
+            "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-30:i04:r2",
-            "targetText": "scar",
-            "meaningByLocale": {
-              "ru": "шрам",
-              "uk": "шрам"
-            }
+            "responseId": "en:lesson-03:session-30:i02:r2",
+            "targetText": "tables",
+            "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-30:i04:r3",
-            "targetText": "scale",
-            "meaningByLocale": {
-              "ru": "шкала",
-              "uk": "шкала"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i04:r4",
-            "targetText": "star",
-            "meaningByLocale": {
-              "ru": "звезда",
-              "uk": "зірка"
-            }
+            "responseId": "en:lesson-03:session-30:i02:r3",
+            "targetText": "tickets",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-30:i04:r2",
+            "responseId": "en:lesson-03:session-30:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "У `scarf` финальный звук — `f`; у `scar` финал — гласный или `r`, в зависимости от акцента.",
-              "uk": "У `scarf` фінальний звук — `f`; у `scar` фінал — голосний або `r`, залежно від акценту."
+              "ru": "В записи первое слово — `windows`, а в этом варианте — `tables`.",
+              "uk": "У записі перше слово — `windows`, а в цьому варіанті — `tables`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-30:i04:r3",
+            "responseId": "en:lesson-03:session-30:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "Оба слова начинаются /sk/. Дальше в `scale` звучит /eɪ/, а в `scarf` — /ɑː~ɑ/ и финальный `f`.",
-              "uk": "Обидва слова починаються /sk/. Далі в `scale` звучить /eɪ/, а в `scarf` — /ɑː~ɑ/ і фінальний `f`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i04:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "`star` начинается сочетанием `st`, а в записи прозвучало начало `sc`.",
-              "uk": "`star` починається сполученням `st`, а в записі прозвучав початок `sc`."
+              "ru": "В записи первое слово — `windows`, а в этом варианте — `tickets`.",
+              "uk": "У записі перше слово — `windows`, а в цьому варіанті — `tickets`."
             }
           }
         ],
@@ -252,96 +125,132 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-03:session-30:i03",
+      "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-30:i06:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i06:audio",
-          "transcript": "glove"
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть кілька вікон одним англійським словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-30:i03:r1",
+          "text": "windows"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "glove",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-03:session-30:i03:r2",
+          "text": "window"
+        },
+        {
+          "responseId": "en:lesson-03:session-30:i03:r3",
+          "text": "a windows"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть кілька вікон одним англійським словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите несколько окон одним английским словом",
+          "uk": "Назвіть кілька вікон одним англійським словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i03:r1",
+            "text": "windows"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i03:r2",
+            "text": "window"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i03:r3",
+            "text": "a windows"
+          }
+        ],
+        "testedDimension": "Назвіть кілька вікон одним англійським словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть кілька вікон одним англійським словом",
+            "feedbackByLocale": {
+              "ru": "Несколько окон — `windows`.",
+              "uk": "Кілька вікон — `windows`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть кілька вікон одним англійським словом",
+            "feedbackByLocale": {
+              "ru": "Перед `windows` не ставим `a`.",
+              "uk": "Перед `windows` не ставимо `a`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями — відділ одягу",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями — відділ одягу",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-30:i07:p1",
-            "target": "sweater",
+            "pairId": "en:lesson-03:session-30:i04:p1",
+            "target": "windows",
             "meaningByLocale": {
-              "ru": "свитер",
-              "uk": "светр"
+              "ru": "окна",
+              "uk": "вікна"
             }
           },
           {
-            "pairId": "en:lesson-03:session-30:i07:p2",
-            "target": "scarf",
+            "pairId": "en:lesson-03:session-30:i04:p2",
+            "target": "cups",
             "meaningByLocale": {
-              "ru": "шарф",
-              "uk": "шарф"
+              "ru": "чашки",
+              "uk": "чашки"
             }
           },
           {
-            "pairId": "en:lesson-03:session-30:i07:p3",
-            "target": "glove",
+            "pairId": "en:lesson-03:session-30:i04:p3",
+            "target": "alive",
             "meaningByLocale": {
-              "ru": "перчатка",
-              "uk": "рукавичка"
+              "ru": "живой",
+              "uk": "живий"
             }
           },
           {
-            "pairId": "en:lesson-03:session-30:i07:p4",
-            "target": "bag",
+            "pairId": "en:lesson-03:session-30:i04:p4",
+            "target": "dead",
             "meaningByLocale": {
-              "ru": "сумка",
-              "uk": "сумка"
+              "ru": "мёртвый, погибший",
+              "uk": "мертвий, загиблий"
             }
           }
         ],
         "leftColumn": [
-          "sweater",
-          "scarf",
-          "glove",
-          "bag"
+          "windows",
+          "cups",
+          "alive",
+          "dead"
         ],
         "rightColumn": [
-          "светр",
-          "шарф",
-          "рукавичка",
-          "сумка"
+          "вікна",
+          "чашки",
+          "живий",
+          "мертвий, загиблий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -358,26 +267,118 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "interactionId": "en:lesson-03:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть повідомлення",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-30:i08:audio"
+        "en:lesson-03:session-30:i05:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:i05:audio",
+          "transcript": "The windows are open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The windows are open.",
+        "orderedTokens": [
+          "The",
+          "windows",
+          "are",
+          "open"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-30:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть повідомлення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The windows are open.`",
+              "uk": "тут потрібно `are` — `The windows are open.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Обговорюючи світло в приміщеннях, скажіть «Вікна важливі» про вікна загалом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Обговорюючи світло в приміщеннях, скажіть «Вікна важливі» про вікна загалом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Windows are important.",
+        "localizedMeaning": {
+          "ru": "Обсуждая свет в помещениях, скажите «Окна важны» об окнах вообще",
+          "uk": "Обговорюючи світло в приміщеннях, скажіть «Вікна важливі» про вікна загалом"
+        },
+        "orderedTokens": [
+          "Windows",
+          "are",
+          "important"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-30:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Обговорюючи світло в приміщеннях, скажіть «Вікна важливі» про вікна загалом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `Windows are important.`",
+              "uk": "тут потрібно `are` — `Windows are important.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна перевірила рослину: вона жива. Повідомте це зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Анна перевірила рослину: вона жива. Повідомте це зі скороченням",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i08:audio",
-          "transcript": "sweater"
+          "audioTargetId": "en:lesson-03:session-30:i07:audio",
+          "transcript": "It's alive."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "sweater",
+        "targetPhrase": "It's alive.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -386,6 +387,75 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-30:i08:r1",
+          "text": "Windows"
+        },
+        {
+          "responseId": "en:lesson-03:session-30:i08:r2",
+          "text": "The windows"
+        },
+        {
+          "responseId": "en:lesson-03:session-30:i08:r3",
+          "text": "A windows"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите об окнах вообще и их роли в освещении помещений, не о конкретных окнах",
+          "uk": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна"
+        },
+        "gappedTargetPhrase": "___ are important.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i08:r1",
+            "text": "Windows"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i08:r2",
+            "text": "The windows"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i08:r3",
+            "text": "A windows"
+          }
+        ],
+        "testedDimension": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна",
+            "feedbackByLocale": {
+              "ru": "`The windows` — определённые окна. Здесь нужно общее `Windows`.",
+              "uk": "`The windows` — певні вікна. Тут потрібне загальне `Windows`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна",
+            "feedbackByLocale": {
+              "ru": "Перед `windows` не ставим `a`.",
+              "uk": "Перед `windows` не ставимо `a`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -394,301 +464,70 @@
       "interactionId": "en:lesson-03:session-30:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте повідомлення про іншу рослину",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-30:i09:r1",
+          "text": "It is dead."
+        },
+        {
+          "responseId": "en:lesson-03:session-30:i09:r2",
+          "text": "It is alive."
+        },
+        {
+          "responseId": "en:lesson-03:session-30:i09:r3",
+          "text": "It is missing."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i09:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i09:audio",
-          "transcript": "scarf"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "scarf",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-30:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-30:i10:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i10:audio",
-          "transcript": "glove"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "glove",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-30:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть прохання — светр лежить перед вами",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть прохання — светр лежить перед вами",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This sweater, please.",
-        "localizedMeaning": {
-          "ru": "Соберите просьбу — свитер лежит перед вами",
-          "uk": "Складіть прохання — светр лежить перед вами"
-        },
-        "orderedTokens": [
-          "This",
-          "sweater,",
-          "please"
-        ],
-        "authoredDistractorTokens": [
-          "That",
-          "a"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-30:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте та складіть одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-30:i12:audio"
-      ],
-      "accessibilityLabel": "Послухайте та складіть одну фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i12:audio",
-          "transcript": "That scarf, please."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "That scarf, please.",
-        "orderedTokens": [
-          "That",
-          "scarf,",
-          "please."
-        ],
-        "distractorTokens": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-30:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте вказівне слово — рукавичка лежить просто перед вами",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-30:i13:r1",
-          "text": "This"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i13:r2",
-          "text": "That"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i13:r3",
-          "text": "It"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i13:r4",
-          "text": "Is"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте вказівне слово — рукавичка лежить просто перед вами",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте указатель — перчатка лежит прямо перед вами",
-          "uk": "Вставте вказівне слово — рукавичка лежить просто перед вами"
-        },
-        "gappedTargetPhrase": "___ glove, please.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-30:i13:r1",
-            "text": "This"
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i13:r2",
-            "text": "That"
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i13:r3",
-            "text": "It"
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i13:r4",
-            "text": "Is"
-          }
-        ],
-        "testedDimension": "Вставьте указатель — перчатка лежит прям",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-30:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — перчатка лежит прям",
-            "feedbackByLocale": {
-              "ru": "`that` указывает на вещь вдали. Перчатка перед вами, поэтому нужен `This`.",
-              "uk": "`that` указує на річ вдалині. Рукавичка перед вами, тому потрібне `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — перчатка лежит прям",
-            "feedbackByLocale": {
-              "ru": "`it glove` не образует просьбу. Перед названием выбранной вещи ставим `This`.",
-              "uk": "`it glove` не утворює прохання. Перед назвою вибраної речі ставимо `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i13:r4",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — перчатка лежит прям",
-            "feedbackByLocale": {
-              "ru": "`Is glove` — сломанное начало вопроса. Здесь нужна короткая просьба `This glove, please`.",
-              "uk": "`Is glove` — неправильний початок запитання. Тут потрібне коротке прохання `This glove, please`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-30:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точне значення прохання",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-30:i14:r1",
-          "text": "Тот свитер, пожалуйста"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i14:r2",
-          "text": "Этот свитер, пожалуйста"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i14:r3",
-          "text": "Тот шарф, пожалуйста"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i14:r4",
-          "text": "Этот шарф, пожалуйста"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-30:i14:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть точне значення прохання",
+      "accessibilityLabel": "Послухайте повідомлення про іншу рослину",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i14:audio",
-          "transcript": "That sweater, please."
+          "audioTargetId": "en:lesson-03:session-30:i09:audio",
+          "transcript": "It is dead."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-30:i14:r1",
-            "targetText": "Тот свитер, пожалуйста",
+            "responseId": "en:lesson-03:session-30:i09:r1",
+            "targetText": "It is dead.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-30:i14:r2",
-            "targetText": "Этот свитер, пожалуйста",
+            "responseId": "en:lesson-03:session-30:i09:r2",
+            "targetText": "It is alive.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-30:i14:r3",
-            "targetText": "Тот шарф, пожалуйста",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i14:r4",
-            "targetText": "Этот шарф, пожалуйста",
+            "responseId": "en:lesson-03:session-30:i09:r3",
+            "targetText": "It is missing.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-30:i14:r2",
+            "responseId": "en:lesson-03:session-30:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
+            "testedDimension": "Послухайте повідомлення про іншу рослину",
             "feedbackByLocale": {
-              "ru": "В записи прозвучало `That`: выбирают дальний свитер, а не ближний.",
-              "uk": "У записі прозвучало `That`: вибирають дальній светр, а не ближній."
+              "ru": "В записи последнее слово — `dead`, а в этом варианте — `alive`.",
+              "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `alive`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-30:i14:r3",
+            "responseId": "en:lesson-03:session-30:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
+            "testedDimension": "Послухайте повідомлення про іншу рослину",
             "feedbackByLocale": {
-              "ru": "Расстояние совпало, но в записи назвали `sweater`, а не `scarf`.",
-              "uk": "Відстань збігається, але в записі назвали `sweater`, а не `scarf`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i14:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
-            "feedbackByLocale": {
-              "ru": "Здесь отличаются оба ключевых слова: прозвучали `That sweater`, а не `This scarf`.",
-              "uk": "Тут відрізняються обидва ключові слова: прозвучали `That sweater`, а не `This scarf`."
+              "ru": "В записи последнее слово — `dead`, а в этом варианте — `missing`.",
+              "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `missing`."
             }
           }
         ],
@@ -698,173 +537,192 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть прохання — рукавичка лежить на дальній полиці",
+      "interactionId": "en:lesson-03:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть прохання — рукавичка лежить на дальній полиці",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "That glove, please.",
-        "localizedMeaning": {
-          "ru": "Соберите просьбу — перчатка лежит на дальней полке",
-          "uk": "Складіть прохання — рукавичка лежить на дальній полиці"
-        },
-        "orderedTokens": [
-          "That",
-          "glove,",
-          "please"
-        ],
-        "authoredDistractorTokens": [
-          "This",
-          "is"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-30:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте вказівне слово — шарф висить в іншому кінці зали",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-30:i16:r1",
-          "text": "That"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i16:r2",
-          "text": "This"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i16:r3",
-          "text": "It"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i16:r4",
-          "text": "Am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте вказівне слово — шарф висить в іншому кінці зали",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте указатель — шарф висит в другом конце зала",
-          "uk": "Вставте вказівне слово — шарф висить в іншому кінці зали"
-        },
-        "gappedTargetPhrase": "___ scarf, please.",
-        "gapOptions": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-03:session-30:i16:r1",
-            "text": "That"
+            "pairId": "en:lesson-03:session-30:i10:p1",
+            "target": "missing",
+            "meaningByLocale": {
+              "ru": "пропавший, отсутствующий",
+              "uk": "зниклий, відсутній"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-30:i16:r2",
-            "text": "This"
+            "pairId": "en:lesson-03:session-30:i10:p2",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-30:i16:r3",
-            "text": "It"
+            "pairId": "en:lesson-03:session-30:i10:p3",
+            "target": "windows",
+            "meaningByLocale": {
+              "ru": "окна",
+              "uk": "вікна"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-30:i16:r4",
-            "text": "Am"
+            "pairId": "en:lesson-03:session-30:i10:p4",
+            "target": "cups",
+            "meaningByLocale": {
+              "ru": "чашки",
+              "uk": "чашки"
+            }
           }
         ],
-        "testedDimension": "Вставьте указатель — шарф висит в другом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-30:i16:r2",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — шарф висит в другом",
-            "feedbackByLocale": {
-              "ru": "`this` выбирает вещь рядом. Шарф находится в другом конце зала, поэтому нужен `That`.",
-              "uk": "`this` вибирає річ поруч. Шарф в іншому кінці зали, тому потрібне `That`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i16:r3",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — шарф висит в другом",
-            "feedbackByLocale": {
-              "ru": "`it scarf` не образует просьбу. Перед названием дальней вещи ставим `That`.",
-              "uk": "`it scarf` не утворює прохання. Перед назвою далекої речі ставимо `That`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i16:r4",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — шарф висит в другом",
-            "feedbackByLocale": {
-              "ru": "`am` используется с `I`, когда говорим о себе. Здесь выбираем дальний шарф словом `That`.",
-              "uk": "`am` уживаємо з `I`, коли говоримо про себе. Тут вибираємо далекий шарф словом `That`."
-            }
-          }
+        "leftColumn": [
+          "missing",
+          "elsewhere",
+          "windows",
+          "cups"
+        ],
+        "rightColumn": [
+          "зниклий, відсутній",
+          "в іншому місці",
+          "вікна",
+          "чашки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i17:s01",
-      "ordinal": 20,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте та складіть одну фразу — крок 1 із 3",
+      "prompt": "Послухайте й складіть повідомлення",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-30:i17:s01:audio"
+        "en:lesson-03:session-30:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 1 із 3",
+      "accessibilityLabel": "Послухайте й складіть повідомлення",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i17:s01:audio",
-          "transcript": "That sweater, please."
+          "audioTargetId": "en:lesson-03:session-30:i11:audio",
+          "transcript": "The cups are elsewhere."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "That sweater, please.",
+        "hiddenTargetPhrase": "The cups are elsewhere.",
         "orderedTokens": [
-          "That",
-          "sweater,",
-          "please."
+          "The",
+          "cups",
+          "are",
+          "elsewhere"
         ],
-        "distractorTokens": []
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-30:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть повідомлення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The cups are elsewhere.`",
+              "uk": "тут потрібно `are` — `The cups are elsewhere.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-30:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви розглядаєте план нової кімнати. Анна знає її розташування. Запитайте, де вікна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви розглядаєте план нової кімнати. Анна знає її розташування. Запитайте, де вікна",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where are the windows?",
+        "localizedMeaning": {
+          "ru": "Вы рассматриваете план новой комнаты. Анна знает её расположение. Спросите, где окна",
+          "uk": "Ви розглядаєте план нової кімнати. Анна знає її розташування. Запитайте, де вікна"
+        },
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "windows"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-30:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви розглядаєте план нової кімнати. Анна знає її розташування. Запитайте, де вікна",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where are the windows?`",
+              "uk": "тут потрібно `Where` — `Where are the windows?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "prompt": "Олег запитує про чашки. Їх прибрали в інше місце. Скажіть «Вони в іншому місці» зі скороченням",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-30:i17:s02:audio"
+        "en:lesson-03:session-30:i13:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Олег запитує про чашки. Їх прибрали в інше місце. Скажіть «Вони в іншому місці» зі скороченням",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i17:s02:audio",
-          "transcript": "This scarf, please."
+          "audioTargetId": "en:lesson-03:session-30:i13:audio",
+          "transcript": "They're elsewhere."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This scarf, please.",
+        "targetPhrase": "They're elsewhere.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -878,41 +736,270 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i17:s03",
-      "ordinal": 22,
+      "interactionId": "en:lesson-03:session-30:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви повідомляєте, що кілька вікон у кімнаті відчинені",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-30:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-30:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-30:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повідомляєте, що кілька вікон у кімнаті відчинені",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сообщаете, что несколько окон в комнате открыты",
+          "uk": "Ви повідомляєте, що кілька вікон у кімнаті відчинені"
+        },
+        "gappedTargetPhrase": "The windows ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви повідомляєте, що кілька вікон у кімнаті відчинені",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-30:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви повідомляєте, що кілька вікон у кімнаті відчинені",
+            "feedbackByLocale": {
+              "ru": "Окон несколько: нужно `are`.",
+              "uk": "Вікон кілька: потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви повідомляєте, що кілька вікон у кімнаті відчинені",
+            "feedbackByLocale": {
+              "ru": "С `the windows` здесь нужно `are`.",
+              "uk": "З `the windows` тут потрібно `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i15",
+      "ordinal": 18,
       "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте та складіть одну фразу — крок 3 із 3",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте повідомлення про рослину біля вікна",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-30:i15:r1",
+          "text": "It is alive."
+        },
+        {
+          "responseId": "en:lesson-03:session-30:i15:r2",
+          "text": "It is dead."
+        },
+        {
+          "responseId": "en:lesson-03:session-30:i15:r3",
+          "text": "It is missing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення про рослину біля вікна",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:i15:audio",
+          "transcript": "It is alive."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-30:i15:r1",
+            "targetText": "It is alive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i15:r2",
+            "targetText": "It is dead.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i15:r3",
+            "targetText": "It is missing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-30:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте повідомлення про рослину біля вікна",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `alive`, а в этом варианте — `dead`.",
+              "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `dead`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте повідомлення про рослину біля вікна",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `alive`, а в этом варианте — `missing`.",
+              "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `missing`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-30:i16:p1",
+            "target": "alive",
+            "meaningByLocale": {
+              "ru": "живой",
+              "uk": "живий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-30:i16:p2",
+            "target": "dead",
+            "meaningByLocale": {
+              "ru": "мёртвый, погибший",
+              "uk": "мертвий, загиблий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-30:i16:p3",
+            "target": "missing",
+            "meaningByLocale": {
+              "ru": "пропавший, отсутствующий",
+              "uk": "зниклий, відсутній"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-30:i16:p4",
+            "target": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте",
+              "uk": "в іншому місці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "alive",
+          "dead",
+          "missing",
+          "elsewhere"
+        ],
+        "rightColumn": [
+          "живий",
+          "мертвий, загиблий",
+          "зниклий, відсутній",
+          "в іншому місці"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обговорюєте з другом, чому приміщенням потрібне денне світло. Скажіть «Вікна важливі» про вікна загалом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-30:i17:s03:audio"
+        "en:lesson-03:session-30:i17:audio"
       ],
-      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 3 із 3",
+      "accessibilityLabel": "Ви обговорюєте з другом, чому приміщенням потрібне денне світло. Скажіть «Вікна важливі» про вікна загалом",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i17:s03:audio",
-          "transcript": "That glove, please."
+          "audioTargetId": "en:lesson-03:session-30:i17:audio",
+          "transcript": "Windows are important."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "That glove, please.",
-        "orderedTokens": [
-          "That",
-          "glove,",
-          "please."
-        ],
-        "distractorTokens": []
+        "targetPhrase": "Windows are important.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "11ab1c317167526c103bc3b16e6bf0a1488f1d9d6f999176bada36aa793c9b31"
+  "learnerFingerprint": "5337788309e7a001796c1a6e7b259f1eeda3a96ff30f079c30773a67e1122ca8"
 }

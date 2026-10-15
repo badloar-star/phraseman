@@ -1,176 +1,138 @@
-# Английский · Урок 3 · Занятие 30 — «Эту вещь, пожалуйста»
+# Английский · Урок 3 · Занятие 30 — Окна в новой комнате
 
-**Сцена занятия.** В отделе одежды продавец помогает вам выбрать одну вещь. Свитер лежит рядом на стойке, шарф висит у дальней стены, а перчатка — на ближней полке; нужно коротко показать продавцу, какую вещь вы берёте.
+**Ситуация.** Вы с Анной осматриваете новую комнату клуба. Олег проверяет окна, а вы ищете чашки для гостей. У окна стоит растение с засохшими листьями: Анна проверяет, живо ли оно.
 
-**Как сказать:** `This/That + один предмет, please` — выбрать одну вещь рядом или вдали
-**Новые слова:** sweater, scarf, glove
-**Для повторения:** bag, box, key, warm, small
+**Что вы освоите:** назвать несколько окон и различать разговор об окнах вообще и конкретных окнах
+**Новые слова:** windows
 
 ---
 
 ## Интро 1
 
-### Выбрать вещь рядом
+### Одно окно и несколько
 
-`sweater` — «свитер». Он лежит рядом на стойке; продавец видит десятки вещей и мысли не читает, поэтому скажите: `This sweater, please.` — «Этот свитер, пожалуйста».
+`window` — «окно», `windows` — «окна». `They are windows` — «Это окна». Для нескольких окон добавляем `s`, перед `windows` не ставим `a`. Олег протёр одно окно и объявил уборку законченной. Остальные окна пока показывают погоду с фильтром. Напомним ему: здесь `windows` — несколько окон.
 
-В короткой просьбе `this` сразу стоит перед названием вещи, а `please` делает выбор вежливым.
+**На фотографии несколько окон. Назовите их одним английским словом.**
 
-**Свитер лежит прямо перед вами. Попросите именно его.**
-
-- ✅ **This sweater, please.**
-- ❌ That sweater, please. — *`that` указывает на вещь вдали. Свитер перед вами, поэтому выбираем `this`.*
-- ❌ This is sweater, please. — *После `is` потребовалось бы `a sweater`. В короткой просьбе здесь проще: `This sweater, please`.*
+- ✅ **windows**
+- ❌ window — *`window` — одно окно; несколько — `windows`.*
+- ❌ a windows — *Перед названием нескольких окон не ставим `a`.*
 
 ---
 
 ## Интро 2
 
-### Выбрать вещь вдали
+### Окна вообще
 
-`scarf` — «шарф». Он висит у дальней стены, поэтому покажите продавцу на него словами `That scarf, please.` — «Тот шарф, пожалуйста».
+`Windows are important` — «Окна важны». Обсуждая свет и проветривание в помещении, можно сказать так об окнах вообще: перед `windows` нет `the`. `The windows are open` — «Окна открыты»: здесь речь об окнах определённой комнаты. `Where are the windows?` — «Где окна?» Так можно спросить, рассматривая план этой комнаты.
 
-Первое слово показывает расстояние: `this` — рядом, `that` — дальше. Затем сразу идёт название вещи и вежливое `please`.
+**Вы обсуждаете свет в помещениях вообще. Скажите «Окна важны», не указывая на конкретные окна.**
 
-**Нужный шарф висит у дальней стены. Попросите именно его.**
-
-- ✅ **That scarf, please.**
-- ❌ This scarf, please. — *`this` отправит продавца к ближнему шарфу. Нужный висит далеко, поэтому говорим `that`.*
-- ❌ That is scarf, please. — *Это сломанная фраза с `is`. Для короткого выбора скажите `That scarf, please`.*
+- ✅ **Windows are important.**
+- ❌ The windows are important. — *`The windows` — определённые окна. Здесь говорим об окнах вообще: `Windows`.*
+- ❌ A windows are important. — *Перед `windows` не ставим `a`.*
 
 ---
 
 ## Интро 3
 
-### Без `a` между указателем и вещью
+### Не всё пропало
 
-`glove` — «перчатка». Она лежит рядом на ближней полке, поэтому попросите её так: `This glove, please.` — «Эту перчатку, пожалуйста».
+`alive` — «живой», `dead` — «мёртвый, погибший». Эти слова можно использовать и о растении. Сухие листья ещё не доказывают, что оно погибло. Анна находит зелёный побег: `It is alive` — «Оно живое». `missing` — «пропавший, отсутствующий», `elsewhere` — «в другом месте». Если чашки не находятся, можно сказать `The cups are missing` — «Чашки пропали». Позже выясняется: `They are elsewhere` — «Они в другом месте».
 
-Здесь между `this` и `glove` не нужны `is` и `a`: фраза не называет вещь, а сразу выбирает её.
+**Анна нашла живой зелёный побег на растении. Сообщите «Оно живое».**
 
-**Перчатка лежит рядом. Выберите её короткой вежливой просьбой.**
-
-- ✅ **This glove, please.**
-- ❌ This a glove, please. — *После `this` название выбранной вещи идёт сразу: `this glove`, без `a`.*
-- ❌ This is a glove, please. — *Так вы называете предмет. Чтобы выбрать его, скажите коротко: `This glove, please`.*
+- ✅ **It is alive.**
+- ❌ It is dead. — *`dead` — «погибшее», а растение живое: `alive`.*
+- ❌ It is missing. — *`missing` означает, что предмет отсутствует или его не могут найти. Растение перед вами и живо: `alive`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — sweater**
-<!-- interaction_id: en:lesson-03:session-30:i01; family: listen_choose -->
-Цель: `sweater`
+**1 · Вы с Анной не можете найти нужные чашки. Сообщите «Чашки пропали»**
+<!-- interaction_id: en:lesson-03:session-30:i01; family: phrase_builder -->
+Плитки: `missing` `are` `cups` `The` `is` → **The cups are missing.**
+*(плитка `is` лишняя: здесь нужно `are` — `The cups are missing.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-30:i03; family: scripted_repeat_compare -->
-Цель: `scarf`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-30:i02; family: listen_choose -->
+🔊 *windows* → **windows** · tables · tickets
+- tables — *В записи первое слово — `windows`, а в этом варианте — `tables`.*
+- tickets — *В записи первое слово — `windows`, а в этом варианте — `tickets`.*
 
-**3 · Выберите название — на ближней полке лежит перчатка**
-<!-- interaction_id: en:lesson-03:session-30:i05; family: context_gap_grammar -->
-Цель: `___`
-Варианты: `glove` · `scarf` · `sweater`
-- scarf — *Scarf — шарф. Здесь нужна перчатка: glove.*
-- sweater — *Sweater — свитер. Здесь нужна перчатка: glove.*
+**3 · Назовите несколько окон одним английским словом**
+<!-- interaction_id: en:lesson-03:session-30:i03; family: context_gap_grammar -->
+___ → **windows** · window · a windows
+- window — *Несколько окон — `windows`.*
+- a windows — *Перед `windows` не ставим `a`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-30:i04; family: speed_match -->
+windows — окна · cups — чашки · alive — живой · dead — мёртвый, погибший
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-30:i02; family: scripted_repeat_compare -->
-Цель: `sweater`
+**5 · Послушайте и соберите сообщение**
+<!-- interaction_id: en:lesson-03:session-30:i05; family: listen_build_dictation -->
+🔊 *The windows are open.* Плитки: `open` `are` `windows` `The` `is` → **The windows are open.**
+*(плитка `is` лишняя: здесь нужно `are` — `The windows are open.`)*
 
-**5 · Послушайте и выберите — какое слово назвал продавец**
-<!-- interaction_id: en:lesson-03:session-30:i04; family: listen_choose -->
-Значения вариантов: `scarf` — шарф · `scar` — шрам · `scale` — шкала · `star` — звезда
-Цель: `scarf`
-Варианты: `scarf` · `scar` · `scale` · `star`
-- scar — *У `scarf` финальный звук — `f`; у `scar` финал — гласный или `r`, в зависимости от акцента.*
-- scale — *Оба слова начинаются /sk/. Дальше в `scale` звучит /eɪ/, а в `scarf` — /ɑː~ɑ/ и финальный `f`.*
-- star — *`star` начинается сочетанием `st`, а в записи прозвучало начало `sc`.*
+**6 · Обсуждая свет в помещениях, скажите «Окна важны» об окнах вообще**
+<!-- interaction_id: en:lesson-03:session-30:i06; family: phrase_builder -->
+Плитки: `important` `are` `Windows` `is` → **Windows are important.**
+*(плитка `is` лишняя: здесь нужно `are` — `Windows are important.`)*
 
+**7 · Анна проверила растение: оно живое. Сообщите это с сокращением**
+<!-- interaction_id: en:lesson-03:session-30:i07; family: scripted_repeat_compare -->
+🎙 **It's alive.**
 
-**6 · Различите слово — glove или love**
-<!-- interaction_id: en:lesson-03:session-30:i06; family: sound_contrast -->
-Цель: `glove`
-Варианты: `glove` · `love`
-- love — *Love — любовь. В записи перед love слышится g: glove.*
-
-
-**7 · Соедините слова со значениями — отдел одежды**
-<!-- interaction_id: en:lesson-03:session-30:i07; family: speed_match -->
-Пары: `sweater` — свитер · `scarf` — шарф · `glove` — перчатка · `bag` — сумка
-Цель: `sweater · scarf · glove · bag`
-
-**8 · Выберите форму — эта вещь лежит здесь**
+**8 · Вы говорите об окнах вообще и их роли в освещении помещений, не о конкретных окнах**
 <!-- interaction_id: en:lesson-03:session-30:i08; family: context_gap_grammar -->
-Цель: `This ___ here.`
-Варианты: `is` · `are`
-- are — *Are — для нескольких предметов. Здесь один предмет: This is here.*
+___ are important. → **Windows** · The windows · A windows
+- The windows — *`The windows` — определённые окна. Здесь нужно общее `Windows`.*
+- A windows — *Перед `windows` не ставим `a`.*
 
+**9 · Послушайте сообщение о другом растении**
+<!-- interaction_id: en:lesson-03:session-30:i09; family: listen_choose -->
+🔊 *It is dead.* → **It is dead.** · It is alive. · It is missing.
+- It is alive. — *В записи последнее слово — `dead`, а в этом варианте — `alive`.*
+- It is missing. — *В записи последнее слово — `dead`, а в этом варианте — `missing`.*
 
-**9 · Различите слово — This или That**
-<!-- interaction_id: en:lesson-03:session-30:i09; family: sound_contrast -->
-Цель: `This`
-Варианты: `This` · `That`
-- That — *That используют для предмета дальше. Здесь предмет рядом: This.*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-30:i10; family: speed_match -->
+missing — пропавший, отсутствующий · elsewhere — в другом месте · windows — окна · cups — чашки
 
+**11 · Послушайте и соберите сообщение**
+<!-- interaction_id: en:lesson-03:session-30:i11; family: listen_build_dictation -->
+🔊 *The cups are elsewhere.* Плитки: `elsewhere` `are` `cups` `The` `is` → **The cups are elsewhere.**
+*(плитка `is` лишняя: здесь нужно `are` — `The cups are elsewhere.`)*
 
-**10 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-30:i10; family: scripted_repeat_compare -->
-Цель: `This glove, please.`
+**12 · Вы рассматриваете план новой комнаты. Анна знает её расположение. Спросите, где окна**
+<!-- interaction_id: en:lesson-03:session-30:i12; family: phrase_builder -->
+Плитки: `windows` `the` `are` `Where` `What` → **Where are the windows?**
+*(плитка `What` лишняя: здесь нужно `Where` — `Where are the windows?`)*
 
-**11 · Соберите просьбу — свитер лежит перед вами**
-<!-- interaction_id: en:lesson-03:session-30:i11; family: phrase_builder -->
-Цель: `This sweater, please.`
+**13 · Олег спрашивает про чашки. Их убрали в другое место. Скажите «Они в другом месте» с сокращением**
+<!-- interaction_id: en:lesson-03:session-30:i13; family: scripted_repeat_compare -->
+🎙 **They're elsewhere.**
 
-**12 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-30:i12; family: listen_build_dictation -->
-Цель: `That scarf, please.`
+**14 · Вы сообщаете, что несколько окон в комнате открыты**
+<!-- interaction_id: en:lesson-03:session-30:i14; family: context_gap_grammar -->
+The windows ___ open. → **are** · is · am
+- is — *Окон несколько: нужно `are`.*
+- am — *С `the windows` здесь нужно `are`.*
 
-**13 · Вставьте указатель — перчатка лежит прямо перед вами**
-<!-- interaction_id: en:lesson-03:session-30:i13; family: context_gap_grammar -->
-Цель: `___ glove, please.`
-Варианты: `This` · `That` · `It` · `Is`
-- That — *`that` указывает на вещь вдали. Перчатка перед вами, поэтому нужен `This`.*
-- It — *`it glove` не образует просьбу. Перед названием выбранной вещи ставим `This`.*
-- Is — *`Is glove` — сломанное начало вопроса. Здесь нужна короткая просьба `This glove, please`.*
+**15 · Послушайте сообщение о растении у окна**
+<!-- interaction_id: en:lesson-03:session-30:i15; family: listen_choose -->
+🔊 *It is alive.* → **It is alive.** · It is dead. · It is missing.
+- It is dead. — *В записи последнее слово — `alive`, а в этом варианте — `dead`.*
+- It is missing. — *В записи последнее слово — `alive`, а в этом варианте — `missing`.*
 
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-30:i16; family: speed_match -->
+alive — живой · dead — мёртвый, погибший · missing — пропавший, отсутствующий · elsewhere — в другом месте
 
-**14 · Послушайте и выберите точное значение просьбы**
-<!-- interaction_id: en:lesson-03:session-30:i14; family: listen_choose -->
-Цель: `That sweater, please.`
-Варианты: `Тот свитер, пожалуйста` · `Этот свитер, пожалуйста` · `Тот шарф, пожалуйста` · `Этот шарф, пожалуйста`
-- Этот свитер, пожалуйста — *В записи прозвучало `That`: выбирают дальний свитер, а не ближний.*
-- Тот шарф, пожалуйста — *Расстояние совпало, но в записи назвали `sweater`, а не `scarf`.*
-- Этот шарф, пожалуйста — *Здесь отличаются оба ключевых слова: прозвучали `That sweater`, а не `This scarf`.*
+**17 · Вы обсуждаете с другом, почему помещениям нужен дневной свет. Скажите «Окна важны» об окнах вообще**
+<!-- interaction_id: en:lesson-03:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Windows are important.**
 
-
-**15 · Соберите просьбу — перчатка лежит на дальней полке**
-<!-- interaction_id: en:lesson-03:session-30:i15; family: phrase_builder -->
-Цель: `That glove, please.`
-
-**16 · Вставьте указатель — шарф висит в другом конце зала**
-<!-- interaction_id: en:lesson-03:session-30:i16; family: context_gap_grammar -->
-Цель: `___ scarf, please.`
-Варианты: `That` · `This` · `It` · `Am`
-- This — *`this` выбирает вещь рядом. Шарф находится в другом конце зала, поэтому нужен `That`.*
-- It — *`it scarf` не образует просьбу. Перед названием дальней вещи ставим `That`.*
-- Am — *`am` используется с `I`, когда говорим о себе. Здесь выбираем дальний шарф словом `That`.*
-
-
-**17 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-30:i17:s01; family: listen_build_dictation -->
-Цель: `That sweater, please.`
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-03:session-30:i17:s02; family: scripted_repeat_compare -->
-Цель: `This scarf, please.`
-
-**19 · Послушайте и соберите одну фразу**
-<!-- interaction_id: en:lesson-03:session-30:i17:s03; family: listen_build_dictation -->
-Цель: `That glove, please.`
-
-## Для сборщика
-new_words: sweater — свитер — Тёплая вязаная одежда с длинными рукавами, которую надевают через голову.
-new_words: scarf — шарф — Длинная полоса ткани, которую носят на шее для тепла.
-new_words: glove — перчатка — Одежда для одной руки с отдельным местом для каждого пальца.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=context_gap_grammar, 9=sound_contrast, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=listen_build_dictation

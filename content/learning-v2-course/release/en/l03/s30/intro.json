@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-30",
   "learningOutcomeByLocale": {
-    "ru": "`This/That + один предмет, please` — выбрать одну вещь рядом или вдали",
-    "uk": "`This/That + один предмет, please` — вибрати одну річ поруч або вдалині"
+    "ru": "назвать несколько окон и различать разговор об окнах вообще и конкретных окнах",
+    "uk": "назвати кілька вікон і розрізняти розмову про вікна загалом та конкретні вікна"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выбрать вещь рядом",
-        "uk": "Вибрати річ поруч"
+        "ru": "Одно окно и несколько",
+        "uk": "Одне вікно й кілька"
       },
       "bodyByLocale": {
-        "ru": "`sweater` — «свитер». Он лежит рядом на стойке; продавец видит десятки вещей и мысли не читает, поэтому скажите: `This sweater, please.` — «Этот свитер, пожалуйста».\n\nВ короткой просьбе `this` сразу стоит перед названием вещи, а `please` делает выбор вежливым.",
-        "uk": "`sweater` — «светр». Він лежить поруч на стійці; продавець бачить десятки речей і думок не читає, тому скажіть: `This sweater, please.` — «Цей светр, будь ласка».\n\nУ короткому проханні `this` одразу стоїть перед назвою речі, а `please` робить вибір ввічливим."
+        "ru": "`window` — «окно», `windows` — «окна». `They are windows` — «Это окна». Для нескольких окон добавляем `s`, перед `windows` не ставим `a`. Олег протёр одно окно и объявил уборку законченной. Остальные окна пока показывают погоду с фильтром. Напомним ему: здесь `windows` — несколько окон.",
+        "uk": "`window` — «вікно», `windows` — «вікна». `They are windows` — «Це вікна». Для кількох вікон додаємо `s`, перед `windows` не ставимо `a`. Олег протер одне вікно й оголосив прибирання завершеним. Решта вікон поки показують погоду з фільтром. Нагадаємо йому: тут `windows` — кілька вікон."
       },
       "question": {
         "interactionId": "en:lesson-03:session-30:intro1:q",
         "promptByLocale": {
-          "ru": "Свитер лежит прямо перед вами. Попросите именно его.",
-          "uk": "Светр лежить просто перед вами. Попросіть саме його."
+          "ru": "На фотографии несколько окон. Назовите их одним английским словом.",
+          "uk": "На фотографії кілька вікон. Назвіть їх одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-30:intro1:r1",
-              "text": "This sweater, please."
+              "text": "windows"
             },
             {
               "responseId": "en:lesson-03:session-30:intro1:r2",
-              "text": "That sweater, please."
+              "text": "window"
             },
             {
               "responseId": "en:lesson-03:session-30:intro1:r3",
-              "text": "This is sweater, please."
+              "text": "a windows"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-30:intro1:r1",
-              "text": "This sweater, please."
+              "text": "windows"
             },
             {
               "responseId": "en:lesson-03:session-30:intro1:r2",
-              "text": "That sweater, please."
+              "text": "window"
             },
             {
               "responseId": "en:lesson-03:session-30:intro1:r3",
-              "text": "This is sweater, please."
+              "text": "a windows"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Свитер лежит прямо перед вами. Попросите именно его.",
-          "uk": "Светр лежить просто перед вами. Попросіть саме його."
+          "ru": "На фотографии несколько окон. Назовите их одним английским словом.",
+          "uk": "На фотографії кілька вікон. Назвіть їх одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выбрать вещь вдали",
-        "uk": "Вибрати річ вдалині"
+        "ru": "Окна вообще",
+        "uk": "Вікна загалом"
       },
       "bodyByLocale": {
-        "ru": "`scarf` — «шарф». Он висит у дальней стены, поэтому покажите продавцу на него словами `That scarf, please.` — «Тот шарф, пожалуйста».\n\nПервое слово показывает расстояние: `this` — рядом, `that` — дальше. Затем сразу идёт название вещи и вежливое `please`.",
-        "uk": "`scarf` — «шарф». Він висить біля дальньої стіни, тому попросіть саме його: `That scarf, please.` — «Той шарф, будь ласка».\n\nПерше слово показує відстань: `this` — поруч, `that` — далі. Потім одразу йде назва речі та ввічливе `please`."
+        "ru": "`Windows are important` — «Окна важны». Обсуждая свет и проветривание в помещении, можно сказать так об окнах вообще: перед `windows` нет `the`. `The windows are open` — «Окна открыты»: здесь речь об окнах определённой комнаты. `Where are the windows?` — «Где окна?» Так можно спросить, рассматривая план этой комнаты.",
+        "uk": "`Windows are important` — «Вікна важливі». Обговорюючи світло й провітрювання в приміщенні, можна сказати так про вікна загалом: перед `windows` немає `the`. `The windows are open` — «Вікна відчинені»: тут ідеться про вікна певної кімнати. `Where are the windows?` — «Де вікна?» Так можна запитати, розглядаючи план цієї кімнати."
       },
       "question": {
         "interactionId": "en:lesson-03:session-30:intro2:q",
         "promptByLocale": {
-          "ru": "Нужный шарф висит у дальней стены. Попросите именно его.",
-          "uk": "Потрібний шарф висить біля дальньої стіни. Попросіть саме його."
+          "ru": "Вы обсуждаете свет в помещениях вообще. Скажите «Окна важны», не указывая на конкретные окна.",
+          "uk": "Ви обговорюєте світло в приміщеннях загалом. Скажіть «Вікна важливі», не вказуючи на конкретні вікна."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-30:intro2:r1",
-              "text": "That scarf, please."
+              "text": "Windows are important."
             },
             {
               "responseId": "en:lesson-03:session-30:intro2:r2",
-              "text": "This scarf, please."
+              "text": "The windows are important."
             },
             {
               "responseId": "en:lesson-03:session-30:intro2:r3",
-              "text": "That is scarf, please."
+              "text": "A windows are important."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-30:intro2:r1",
-              "text": "That scarf, please."
+              "text": "Windows are important."
             },
             {
               "responseId": "en:lesson-03:session-30:intro2:r2",
-              "text": "This scarf, please."
+              "text": "The windows are important."
             },
             {
               "responseId": "en:lesson-03:session-30:intro2:r3",
-              "text": "That is scarf, please."
+              "text": "A windows are important."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Нужный шарф висит у дальней стены. Попросите именно его.",
-          "uk": "Потрібний шарф висить біля дальньої стіни. Попросіть саме його."
+          "ru": "Вы обсуждаете свет в помещениях вообще. Скажите «Окна важны», не указывая на конкретные окна.",
+          "uk": "Ви обговорюєте світло в приміщеннях загалом. Скажіть «Вікна важливі», не вказуючи на конкретні вікна."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Без `a` между указателем и вещью",
-        "uk": "Без `a` між вказівним словом і річчю"
+        "ru": "Не всё пропало",
+        "uk": "Не все зникло"
       },
       "bodyByLocale": {
-        "ru": "`glove` — «перчатка». Она лежит рядом на ближней полке, поэтому попросите её так: `This glove, please.` — «Эту перчатку, пожалуйста».\n\nЗдесь между `this` и `glove` не нужны `is` и `a`: фраза не называет вещь, а сразу выбирает её.",
-        "uk": "`glove` — «рукавичка». Вона лежить поруч на ближній полиці, тому попросіть її так: `This glove, please.` — «Цю рукавичку, будь ласка».\n\nТут між `this` і `glove` не потрібні `is` та `a`: фраза не називає річ, а одразу вибирає її."
+        "ru": "`alive` — «живой», `dead` — «мёртвый, погибший». Эти слова можно использовать и о растении. Сухие листья ещё не доказывают, что оно погибло. Анна находит зелёный побег: `It is alive` — «Оно живое». `missing` — «пропавший, отсутствующий», `elsewhere` — «в другом месте». Если чашки не находятся, можно сказать `The cups are missing` — «Чашки пропали». Позже выясняется: `They are elsewhere` — «Они в другом месте».",
+        "uk": "`alive` — «живий», `dead` — «мертвий, загиблий». Ці слова можна використовувати й щодо рослини. Сухе листя ще не доводить, що вона загинула. Анна знаходить зелений пагін: `It is alive` — «Вона жива». `missing` — «зниклий, відсутній», `elsewhere` — «в іншому місці». Якщо чашки не знаходяться, можна сказати `The cups are missing` — «Чашки зникли». Згодом з’ясовується: `They are elsewhere` — «Вони в іншому місці»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-30:intro3:q",
         "promptByLocale": {
-          "ru": "Перчатка лежит рядом. Выберите её короткой вежливой просьбой.",
-          "uk": "Рукавичка лежить поруч. Виберіть її коротким ввічливим проханням."
+          "ru": "Анна нашла живой зелёный побег на растении. Сообщите «Оно живое».",
+          "uk": "Анна знайшла живий зелений пагін на рослині. Повідомте «Вона жива»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-30:intro3:r1",
-              "text": "This glove, please."
+              "text": "It is alive."
             },
             {
               "responseId": "en:lesson-03:session-30:intro3:r2",
-              "text": "This a glove, please."
+              "text": "It is dead."
             },
             {
               "responseId": "en:lesson-03:session-30:intro3:r3",
-              "text": "This is a glove, please."
+              "text": "It is missing."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-30:intro3:r1",
-              "text": "This glove, please."
+              "text": "It is alive."
             },
             {
               "responseId": "en:lesson-03:session-30:intro3:r2",
-              "text": "This a glove, please."
+              "text": "It is dead."
             },
             {
               "responseId": "en:lesson-03:session-30:intro3:r3",
-              "text": "This is a glove, please."
+              "text": "It is missing."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Перчатка лежит рядом. Выберите её короткой вежливой просьбой.",
-          "uk": "Рукавичка лежить поруч. Виберіть її коротким ввічливим проханням."
+          "ru": "Анна нашла живой зелёный побег на растении. Сообщите «Оно живое».",
+          "uk": "Анна знайшла живий зелений пагін на рослині. Повідомте «Вона жива»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9c1c55a8c814fd87be17779a040cf2283afe0026b453b150a44611c56c600e1f"
+  "introFingerprint": "be65bfa96f2f1b439a8ca62390790bb277759af83c0ea12ab89826da9a108017"
 }

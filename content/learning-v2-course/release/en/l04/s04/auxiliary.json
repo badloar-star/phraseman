@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-04:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-04:intro1:r2": {
-          "ru": "Почта одна, поэтому нужна форма `is`, а не `are`.",
-          "uk": "Пошта одна, тому потрібне `is`, а не `are`."
+          "ru": "Отделение одно, хотя в названии два слова: `There is a post office`.",
+          "uk": "Відділення одне, хоча в назві два слова: `There is a post office`."
         },
         "en:lesson-04:session-04:intro1:r3": {
-          "ru": "С одним исчисляемым местом нужен артикль: `a post office`.",
-          "uk": "З одним злічуваним місцем потрібен артикль: `a post office`."
+          "ru": "Перед одним отделением нужно `a`: `a post office`.",
+          "uk": "Перед одним відділенням потрібне `a`: `a post office`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-04:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-04:intro2:r2": {
-          "ru": "`Banks` — это несколько банков, поэтому нужно `There are`.",
-          "uk": "`Banks` — це кілька банків, тому потрібне `There are`."
+          "ru": "`visible` — видно, а отметка закрыта: `hidden`.",
+          "uk": "`visible` — видно, а позначка закрита: `hidden`."
         },
         "en:lesson-04:session-04:intro2:r3": {
-          "ru": "После `There are` здесь нужна форма множественного числа `banks`.",
-          "uk": "Після `There are` тут потрібна форма множини `banks`."
+          "ru": "Одна отметка: `It is hidden`.",
+          "uk": "Одна позначка: `It is hidden`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-04:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-04:intro3:r2": {
-          "ru": "Одна почта требует `There is a post office`.",
-          "uk": "Одна пошта потребує `There is a post office`."
+          "ru": "Это значит «Она скрыта». О понятной схеме — `clear`.",
+          "uk": "Це означає «Вона прихована». Про зрозумілу схему — `clear`."
         },
         "en:lesson-04:session-04:intro3:r3": {
-          "ru": "Здесь одна почта: `a post office`, а не `post offices`.",
-          "uk": "Тут одна пошта: `a post office`, а не `post offices`."
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "52d429518fd9b376bc5b49fddcc4758e15baad6dff0a4bd7cb0253385efcd127"
+  "auxiliaryFingerprint": "b2fd763e4569e2eb310b4f8bbd1bfee4e4d5cf702a0e23cae8f06275d445e4f4"
 }

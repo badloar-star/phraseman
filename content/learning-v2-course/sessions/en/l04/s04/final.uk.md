@@ -1,159 +1,138 @@
-# Англійська · Урок 4 · Заняття 4 — «Пошта на аудіопрогулянці»
+# Англійська · Урок 4 · Заняття 4 — Пошта й зрозуміла карта
 
-**Сцена заняття.** Ви йдете з аудіогідом районом і проходите повз одне поштове відділення. Ви вчитеся за кількістю місць обирати повну фразу з `There is` або `There are`.
-**Як сказати:** обрати `There is` для одного місця і `There are` для кількох.
+**Ситуація.** Ви з другом шукаєте пошту на карті району. Одні позначки добре видно, інші приховані згином паперу. Ви розправляєте карту й уточнюєте, що тут є. Сумка з листами вже готова.
+
+**Що ви опануєте:** повідомити про наявність пошти й розрізнити видиме, приховане та зрозуміле
 **Нові слова:** post office
-**Повертаються:** banks, libraries, gardens, near, behind, house
+
+---
 
 ## Інтро 1
 
-### Одне відділення на маршруті
+### Одне місце — два слова
 
-`post office` — «поштове відділення»: сюди заходять надіслати лист або отримати посилку. На маршруті позначено одне відділення, тому скажіть `There is a post office.` Форма `is` та артикль `a` показують, що місце одне. Для кількох відділень знадобляться `are` і форма `post offices`.
+`post office` — «поштове відділення». Це одна назва з двох слів. `There is a post office` — «Є поштове відділення». Для одного місця потрібні `is` і `a`. Два слова в назві не означають дві черги. `There is a post office here` — «Тут є поштове відділення».
 
-**Ви проходите повз одне поштове відділення. Оберіть точне повідомлення.**
+**Повідомте, що в районі є поштове відділення.**
 
 - ✅ **There is a post office.**
-- ❌ There are a post office. — *Пошта одна, тому потрібне `is`, а не `are`.*
-- ❌ There is post office. — *З одним злічуваним місцем потрібен артикль: `a post office`.*
+- ❌ There are a post office. — *Відділення одне, хоча в назві два слова: `There is a post office`.*
+- ❌ There is post office. — *Перед одним відділенням потрібне `a`: `a post office`.*
+
+---
 
 ## Інтро 2
 
-### Пошта і кілька банків
+### Видно чи приховано
 
-`There are banks near the post office.` — «Біля поштового відділення є банки». Слово `banks` означає кілька банків, тому повідомлення починається з `There are`. Артикль `a` перед `banks` не ставлять. `Near the post office` показує, де розташовані банки, і не змінює їхньої кількості.
+`visible` — «видимий»: позначку на карті добре видно. Про неї: `It is visible` — «Її видно». `hidden` — «прихований»: іншу позначку закрив згин паперу. `It is hidden` — «Вона прихована». Це не оцінка зрозумілості: видима позначка теж може бути незрозумілою. `bag` — «сумка»: `This is a bag` — «Це сумка».
 
-**Біля пошти кілька банків. Оберіть точне повідомлення.**
+**Позначка закрита згином паперу. Скажіть про неї «Вона прихована».**
 
-- ✅ **There are banks near the post office.**
-- ❌ There is banks near the post office. — *`Banks` — це кілька банків, тому потрібне `There are`.*
-- ❌ There are bank near the post office. — *Після `There are` тут потрібна форма множини `banks`.*
+- ✅ **It is hidden.**
+- ❌ It is visible. — *`visible` — видно, а позначка закрита: `hidden`.*
+- ❌ It are hidden. — *Одна позначка: `It is hidden`.*
+
+---
 
 ## Інтро 3
 
-### Пошта за будівлею
+### Тепер зрозуміло
 
-`There is a post office behind the building.` — «Поштове відділення є за будівлею». Пошта все ще одна, тому `is` не змінюється й перед `post office` лишається `a`. `Behind the building` лише додає місце: одне відділення не розмножується від нової адреси. Повна основа фрази лишається `There is a post office`.
+`clear` — «зрозумілий, ясний»: друг пояснив схему маршруту, і тепер ви її розумієте. Про схему: `It is clear` — «Вона зрозуміла». Скорочення `It is` → `It’s`. `stations` — «станції»: `There are stations here` — «Тут є станції». Станцій кілька, тому `are`, без `a`.
 
-**За будівлею позначено одну пошту. Оберіть точне повідомлення.**
+**Після пояснення схема вам зрозуміла. Скажіть «Вона зрозуміла» зі скороченням.**
 
-- ✅ **There is a post office behind the building.**
-- ❌ There are a post office behind the building. — *Одна пошта потребує `There is a post office`.*
-- ❌ There is post offices behind the building. — *Тут одна пошта: `a post office`, а не `post offices`.*
+- ✅ **It's clear.**
+- ❌ It's hidden. — *Це означає «Вона прихована». Про зрозумілу схему — `clear`.*
+- ❌ It are clear. — *З `It` потрібне `is`, скорочено `It’s`.*
 
-## Практика — по одній цілі
+---
 
-**1 · Послухайте й оберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-04:i01; family: listen_choose -->
-Ціль: `post office`
-🔊 *post office*
-Значення варіантів: post office — поштове відділення · postal service — поштова служба · mailbox — поштова скринька
-→ **post office** · postal service · mailbox
-- postal service — *У записі звучить назва місця `post office`, а не служби загалом.*
-- mailbox — *Скринька стоїть надворі, а `post office` — саме відділення, куди заходять.*
+## Практика (17 завдань)
 
-**2 · Промовте нове слово «поштове відділення»**
-<!-- interaction_id: en:lesson-04:session-04:i02; family: scripted_repeat_compare -->
-Ціль: `post office`
-🎙 **post office**
+**1 · Назвіть річ у руках друга: «Це сумка»**
+<!-- interaction_id: en:lesson-04:session-04:i01; family: phrase_builder -->
+Плитки: `bag` `a` `is` `This` `are` → **This is a bag.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a bag.`)*
 
-**3 · Вставте друге слово назви місця**
+**2 · Послухайте й виберіть назву місця**
+<!-- interaction_id: en:lesson-04:session-04:i02; family: listen_choose -->
+🔊 *post office* → **post office** · bank · library
+- bank — *У записі перше слово — `post`, а в цьому варіанті — `bank`.*
+- library — *У записі перше слово — `post`, а в цьому варіанті — `library`.*
+
+**3 · Назвіть поштове відділення англійською**
 <!-- interaction_id: en:lesson-04:session-04:i03; family: context_gap_grammar -->
-post ___ → **office** · offer · often
-- offer — *`Offer` — «пропозиція». Назва місця — `post office`.*
-- often — *`Often` — «часто». У назві пошти потрібне `office`.*
+___ → **post office** · bank · library
+- bank — *`bank` — банк; поштове відділення — `post office`.*
+- library — *`library` — бібліотека; поштове відділення — `post office`.*
 
-**4 · Складіть повідомлення: тут є одна пошта**
-<!-- interaction_id: en:lesson-04:session-04:i04; family: phrase_builder -->
-Ціль: `There is a post office here.`
-Плитки: `There` · `is` · `a` · `post` · `office` · `here` · `are`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-04:i04; family: speed_match -->
+post office — поштове відділення · visible — видимий · hidden — прихований · stations — станції
 
-**5 · Послухайте й оберіть точний зміст повідомлення**
-<!-- interaction_id: en:lesson-04:session-04:i05; family: listen_choose -->
-Ціль: `There are libraries near the post office.`
-🔊 *There are libraries near the post office.*
-Значення варіантів: There are libraries near the post office. — Біля пошти є бібліотеки. · There is a library near the post office. — Біля пошти є бібліотека. · There are libraries behind the post office. — За поштою є бібліотеки. · There are libraries near the bank. — Біля банку є бібліотеки.
-→ **There are libraries near the post office.** · There is a library near the post office. · There are libraries behind the post office. · There are libraries near the bank.
-- There is a library near the post office. — *У записі `libraries`: бібліотек кілька.*
-- There are libraries behind the post office. — *У записі звучить `near`, а не `behind`.*
-- There are libraries near the bank. — *Орієнтир у записі — `the post office`, не банк.*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-04:i05; family: listen_build_dictation -->
+🔊 *There is a post office.* Плитки: `office` `post` `a` `is` `There` `are` → **There is a post office.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a post office.`)*
 
-**6 · Промовте повідомлення про маленьку пошту**
-<!-- interaction_id: en:lesson-04:session-04:i06; family: scripted_repeat_compare -->
-Ціль: `There is a small post office.`
-🎙 **There is a small post office.**
+**6 · Друг вивчає район. Повідомте «Тут є станції»**
+<!-- interaction_id: en:lesson-04:session-04:i06; family: phrase_builder -->
+Плитки: `here` `stations` `are` `There` `is` → **There are stations here.**
+*(плитка `is` зайва: тут потрібно `are` — `There are stations here.`)*
 
-**7 · Вставте форму в повідомлення про тиху пошту за будівлею**
-<!-- interaction_id: en:lesson-04:session-04:i07; family: context_gap_grammar -->
-There ___ a quiet post office behind the building. → **is** · are · am
-- are — *`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину.*
-- am — *`Am` уживають лише з `I`; тут потрібне `is` для одного поштового відділення.*
+**7 · Після розгортання карти позначку добре видно. Скажіть «Її видно» зі скороченням**
+<!-- interaction_id: en:lesson-04:session-04:i07; family: scripted_repeat_compare -->
+🎙 **It's visible.**
 
-**8 · Послухайте й складіть повідомлення про сади**
-<!-- interaction_id: en:lesson-04:session-04:i08; family: listen_build_dictation -->
-Ціль: `There are gardens behind the post office.`
-🔊 *There are gardens behind the post office.*
-Плитки: `There` · `are` · `gardens` · `behind` · `the` · `post` · `office` · `is` · `a`
+**8 · Ви повідомляєте про одне поштове відділення**
+<!-- interaction_id: en:lesson-04:session-04:i08; family: context_gap_grammar -->
+There is ___ post office here. → **a** · an · are
+- an — *Перший звук у `post` приголосний: `a post office`.*
+- are — *`is` уже є; перед одним відділенням потрібне `a`.*
 
-**9 · Промовте повідомлення про тиху пошту біля станції**
-<!-- interaction_id: en:lesson-04:session-04:i09; family: scripted_repeat_compare -->
-Ціль: `There is a quiet post office near the station.`
-🎙 **There is a quiet post office near the station.**
+**9 · Послухайте опис позначки на карті**
+<!-- interaction_id: en:lesson-04:session-04:i09; family: listen_choose -->
+🔊 *It is hidden.* → **It is hidden.** · It is visible. · It is clear.
+- It is visible. — *У записі останнє слово — `hidden`, а в цьому варіанті — `visible`.*
+- It is clear. — *У записі останнє слово — `hidden`, а в цьому варіанті — `clear`.*
 
-**10 · Послухайте й оберіть точний зміст повідомлення**
-<!-- interaction_id: en:lesson-04:session-04:i10; family: listen_choose -->
-Ціль: `There are banks behind the post office.`
-🔊 *There are banks behind the post office.*
-Значення варіантів: There are banks behind the post office. — За поштою є банки. · There are banks near the post office. — Біля пошти є банки. · There is a bank behind the post office. — За поштою є банк. · There are banks behind the library. — За бібліотекою є банки.
-→ **There are banks behind the post office.** · There are banks near the post office. · There is a bank behind the post office. · There are banks behind the library.
-- There are banks near the post office. — *У записі `behind the post office`, а не `near`.*
-- There is a bank behind the post office. — *`Banks` означає кілька банків.*
-- There are banks behind the library. — *Орієнтир у записі — пошта, не бібліотека.*
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-04:i10; family: speed_match -->
+clear — зрозумілий · bag — сумка · stations — станції · visible — видимий
 
-**11 · З'єднайте знайомі слова з їхніми значеннями**
-<!-- interaction_id: en:lesson-04:session-04:i11; family: speed_match -->
-Пари: `banks` — банки · `libraries` — бібліотеки · `gardens` — сади · `behind` — за, позаду
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-04:i11; family: listen_build_dictation -->
+🔊 *This is a post office.* Плитки: `office` `post` `a` `is` `This` `are` → **This is a post office.**
+*(плитка `are` зайва: тут потрібно `is` — `This is a post office.`)*
 
-**12 · Складіть повідомлення про бібліотеки за поштою**
+**12 · Друг пояснив схему, і тепер ви її розумієте. Скажіть про неї «Вона зрозуміла» повною формою**
 <!-- interaction_id: en:lesson-04:session-04:i12; family: phrase_builder -->
-Ціль: `There are libraries behind the post office.`
-Плитки: `There` · `are` · `libraries` · `behind` · `the` · `post` · `office` · `is` · `a`
+Плитки: `clear` `is` `It` `are` → **It is clear.**
+*(плитка `are` зайва: тут потрібно `is` — `It is clear.`)*
 
-**13 · Послухайте й оберіть точний зміст повідомлення**
-<!-- interaction_id: en:lesson-04:session-04:i13; family: listen_choose -->
-Ціль: `There is a small post office near the house.`
-🔊 *There is a small post office near the house.*
-Значення варіантів: There is a small post office near the house. — Біля будинку є невелике поштове відділення. · There are small post offices near the house. — Біля будинку є невеликі поштові відділення. · There is a small post office behind the house. — За будинком є невелике поштове відділення. · There is a small post office near the station. — Біля станції є невелике поштове відділення.
-→ **There is a small post office near the house.** · There are small post offices near the house. · There is a small post office behind the house. · There is a small post office near the station.
-- There are small post offices near the house. — *У записі одне відділення: `There is a post office`.*
-- There is a small post office behind the house. — *У записі `near the house`, а не `behind the house`.*
-- There is a small post office near the station. — *Орієнтир у записі — будинок, не станція.*
+**13 · Іншу позначку досі закриває згин. Скажіть «Вона прихована» зі скороченням**
+<!-- interaction_id: en:lesson-04:session-04:i13; family: scripted_repeat_compare -->
+🎙 **It's hidden.**
 
-**14 · Промовте повідомлення про сади біля пошти**
-<!-- interaction_id: en:lesson-04:session-04:i14; family: scripted_repeat_compare -->
-Ціль: `There are gardens near the post office.`
-🎙 **There are gardens near the post office.**
+**14 · Ви показуєте інший район на карті. Повідомте «Там є станції»**
+<!-- interaction_id: en:lesson-04:session-04:i14; family: context_gap_grammar -->
+There ___ stations there. → **are** · is · am
+- is — *Станцій кілька: `There are stations there`. Останнє `there` — «там».*
+- am — *Для кількох станцій потрібне `There are`.*
 
-**15 · Послухайте й складіть повідомлення про нову пошту**
-<!-- interaction_id: en:lesson-04:session-04:i15; family: listen_build_dictation -->
-Ціль: `There is a new post office behind the house.`
-🔊 *There is a new post office behind the house.*
-Плитки: `There` · `is` · `a` · `new` · `post` · `office` · `behind` · `the` · `house` · `are`
+**15 · Послухайте опис іншої позначки**
+<!-- interaction_id: en:lesson-04:session-04:i15; family: listen_choose -->
+🔊 *It is visible.* → **It is visible.** · It is hidden. · It is clear.
+- It is hidden. — *У записі останнє слово — `visible`, а в цьому варіанті — `hidden`.*
+- It is clear. — *У записі останнє слово — `visible`, а в цьому варіанті — `clear`.*
 
-**16 · Вставте назву місць біля пошти**
-<!-- interaction_id: en:lesson-04:session-04:i16; family: context_gap_grammar -->
-There are new ___ near the post office. → **banks** · bank · a bank · is
-- bank — *Після `There are` потрібна множина: `banks`.*
-- a bank — *`A bank` — один банк; тут банків кілька.*
-- is — *У пропуску потрібна назва місць. Форма `are` уже стоїть.*
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-04:i16; family: speed_match -->
+post office — поштове відділення · hidden — прихований · clear — зрозумілий · bag — сумка
 
-**17 · складіть повідомлення про пошту біля будинку**
-<!-- interaction_id: en:lesson-04:session-04:i17; family: phrase_builder -->
-Ціль: `There is a post office near the house.`
-Плитки: `There` · `is` · `a` · `post` · `office` · `near` · `the` · `house` · `are`
+**17 · Ви приїхали в інше місто й побачили поштове відділення. Друг ще не знає про нього. Повідомте «Тут є поштове відділення»**
+<!-- interaction_id: en:lesson-04:session-04:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **There is a post office here.**
 
-## Для збирача
-
-atomic_practice: practice.atomic.json
-new_words: post office — поштове відділення — Місце, куди заходять надіслати листа або посилку.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=phrase_builder, 5=listen_choose, 6=scripted_repeat_compare, 7=context_gap_grammar, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=listen_choose, 11=speed_match, 12=phrase_builder, 13=listen_choose, 14=scripted_repeat_compare, 15=listen_build_dictation, 16=context_gap_grammar, 17=phrase_builder

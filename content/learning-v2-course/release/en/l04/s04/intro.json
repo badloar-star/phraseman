@@ -1,10 +1,9 @@
 {
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-04",
   "learningOutcomeByLocale": {
-    "ru": "выбрать `There is` для одного места и `There are` для нескольких.",
-    "uk": "обрати `There is` для одного місця і `There are` для кількох."
+    "ru": "сообщить о наличии почты и различить видимое, скрытое и понятное",
+    "uk": "повідомити про наявність пошти й розрізнити видиме, приховане та зрозуміле"
   },
   "pages": [
     {
@@ -12,18 +11,18 @@
       "pageId": "en:lesson-04:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одна почта на маршруте",
-        "uk": "Одне відділення на маршруті"
+        "ru": "Одно место — два слова",
+        "uk": "Одне місце — два слова"
       },
       "bodyByLocale": {
-        "ru": "`post office` — «почтовое отделение»: сюда заходят отправить письмо или получить посылку. На маршруте отмечено одно отделение, поэтому скажите `There is a post office.` Форма `is` и артикль `a` показывают, что место одно. Для нескольких отделений понадобятся `are` и форма `post offices`.",
-        "uk": "`post office` — «поштове відділення»: сюди заходять надіслати лист або отримати посилку. На маршруті позначено одне відділення, тому скажіть `There is a post office.` Форма `is` та артикль `a` показують, що місце одне. Для кількох відділень знадобляться `are` і форма `post offices`."
+        "ru": "`post office` — «почтовое отделение». Это одно название из двух слов. `There is a post office` — «Есть почтовое отделение». Для одного места нужны `is` и `a`. Два слова в названии не означают две очереди. `There is a post office here` — «Здесь есть почтовое отделение».",
+        "uk": "`post office` — «поштове відділення». Це одна назва з двох слів. `There is a post office` — «Є поштове відділення». Для одного місця потрібні `is` і `a`. Два слова в назві не означають дві черги. `There is a post office here` — «Тут є поштове відділення»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-04:intro1:q",
         "promptByLocale": {
-          "ru": "Вы проходите мимо одной почты. Выберите точное сообщение.",
-          "uk": "Ви проходите повз одне поштове відділення. Оберіть точне повідомлення."
+          "ru": "Сообщите, что в районе есть почтовое отделение.",
+          "uk": "Повідомте, що в районі є поштове відділення."
         },
         "choicesByLocale": {
           "ru": [
@@ -56,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы проходите мимо одной почты. Выберите точное сообщение.",
-          "uk": "Ви проходите повз одне поштове відділення. Оберіть точне повідомлення."
+          "ru": "Сообщите, что в районе есть почтовое отделение.",
+          "uk": "Повідомте, що в районі є поштове відділення."
         }
       }
     },
@@ -66,52 +65,52 @@
       "pageId": "en:lesson-04:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Почта и несколько банков",
-        "uk": "Пошта і кілька банків"
+        "ru": "Видно или скрыто",
+        "uk": "Видно чи приховано"
       },
       "bodyByLocale": {
-        "ru": "`There are banks near the post office.` — «Рядом с почтовым отделением есть банки». Слово `banks` означает несколько банков, поэтому сообщение начинается с `There are`. Артикль `a` перед `banks` не ставят. `Near the post office` показывает, где находятся банки, и не меняет их количество.",
-        "uk": "`There are banks near the post office.` — «Біля поштового відділення є банки». Слово `banks` означає кілька банків, тому повідомлення починається з `There are`. Артикль `a` перед `banks` не ставлять. `Near the post office` показує, де розташовані банки, і не змінює їхньої кількості."
+        "ru": "`visible` — «видимый»: отметку на карте хорошо видно. О ней: `It is visible` — «Она видна». `hidden` — «скрытый»: другую отметку закрыла складка бумаги. `It is hidden` — «Она скрыта». Это не оценка понятности: видимая отметка тоже может быть непонятной. `bag` — «сумка»: `This is a bag` — «Это сумка».",
+        "uk": "`visible` — «видимий»: позначку на карті добре видно. Про неї: `It is visible` — «Її видно». `hidden` — «прихований»: іншу позначку закрив згин паперу. `It is hidden` — «Вона прихована». Це не оцінка зрозумілості: видима позначка теж може бути незрозумілою. `bag` — «сумка»: `This is a bag` — «Це сумка»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-04:intro2:q",
         "promptByLocale": {
-          "ru": "Рядом с почтой несколько банков. Выберите точное сообщение.",
-          "uk": "Біля пошти кілька банків. Оберіть точне повідомлення."
+          "ru": "Отметка закрыта складкой бумаги. Скажите о ней «Она скрыта».",
+          "uk": "Позначка закрита згином паперу. Скажіть про неї «Вона прихована»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-04:intro2:r1",
-              "text": "There are banks near the post office."
+              "text": "It is hidden."
             },
             {
               "responseId": "en:lesson-04:session-04:intro2:r2",
-              "text": "There is banks near the post office."
+              "text": "It is visible."
             },
             {
               "responseId": "en:lesson-04:session-04:intro2:r3",
-              "text": "There are bank near the post office."
+              "text": "It are hidden."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-04:intro2:r1",
-              "text": "There are banks near the post office."
+              "text": "It is hidden."
             },
             {
               "responseId": "en:lesson-04:session-04:intro2:r2",
-              "text": "There is banks near the post office."
+              "text": "It is visible."
             },
             {
               "responseId": "en:lesson-04:session-04:intro2:r3",
-              "text": "There are bank near the post office."
+              "text": "It are hidden."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Рядом с почтой несколько банков. Выберите точное сообщение.",
-          "uk": "Біля пошти кілька банків. Оберіть точне повідомлення."
+          "ru": "Отметка закрыта складкой бумаги. Скажите о ней «Она скрыта».",
+          "uk": "Позначка закрита згином паперу. Скажіть про неї «Вона прихована»."
         }
       }
     },
@@ -120,52 +119,52 @@
       "pageId": "en:lesson-04:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Почта за зданием",
-        "uk": "Пошта за будівлею"
+        "ru": "Теперь понятно",
+        "uk": "Тепер зрозуміло"
       },
       "bodyByLocale": {
-        "ru": "`There is a post office behind the building.` — «За зданием есть почтовое отделение». Почта всё ещё одна, поэтому `is` не меняется и перед `post office` остаётся `a`. `Behind the building` только добавляет место: одно отделение не размножается от нового адреса. Полная основа фразы остаётся `There is a post office`.",
-        "uk": "`There is a post office behind the building.` — «Поштове відділення є за будівлею». Пошта все ще одна, тому `is` не змінюється й перед `post office` лишається `a`. `Behind the building` лише додає місце: одне відділення не розмножується від нової адреси. Повна основа фрази лишається `There is a post office`."
+        "ru": "`clear` — «понятный, ясный»: друг объяснил схему маршрута, и теперь вы её понимаете. О схеме: `It is clear` — «Она понятна». Сокращение `It is` → `It’s`. `stations` — «станции»: `There are stations here` — «Здесь есть станции». Станций несколько, поэтому `are`, без `a`.",
+        "uk": "`clear` — «зрозумілий, ясний»: друг пояснив схему маршруту, і тепер ви її розумієте. Про схему: `It is clear` — «Вона зрозуміла». Скорочення `It is` → `It’s`. `stations` — «станції»: `There are stations here` — «Тут є станції». Станцій кілька, тому `are`, без `a`."
       },
       "question": {
         "interactionId": "en:lesson-04:session-04:intro3:q",
         "promptByLocale": {
-          "ru": "За зданием отмечена одна почта. Выберите точное сообщение.",
-          "uk": "За будівлею позначено одну пошту. Оберіть точне повідомлення."
+          "ru": "После объяснения схема вам понятна. Скажите «Она понятна» с сокращением.",
+          "uk": "Після пояснення схема вам зрозуміла. Скажіть «Вона зрозуміла» зі скороченням."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-04:intro3:r1",
-              "text": "There is a post office behind the building."
+              "text": "It's clear."
             },
             {
               "responseId": "en:lesson-04:session-04:intro3:r2",
-              "text": "There are a post office behind the building."
+              "text": "It's hidden."
             },
             {
               "responseId": "en:lesson-04:session-04:intro3:r3",
-              "text": "There is post offices behind the building."
+              "text": "It are clear."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-04:intro3:r1",
-              "text": "There is a post office behind the building."
+              "text": "It's clear."
             },
             {
               "responseId": "en:lesson-04:session-04:intro3:r2",
-              "text": "There are a post office behind the building."
+              "text": "It's hidden."
             },
             {
               "responseId": "en:lesson-04:session-04:intro3:r3",
-              "text": "There is post offices behind the building."
+              "text": "It are clear."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "За зданием отмечена одна почта. Выберите точное сообщение.",
-          "uk": "За будівлею позначено одну пошту. Оберіть точне повідомлення."
+          "ru": "После объяснения схема вам понятна. Скажите «Она понятна» с сокращением.",
+          "uk": "Після пояснення схема вам зрозуміла. Скажіть «Вона зрозуміла» зі скороченням."
         }
       }
     }
@@ -177,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7ea3bc83e36cc5984ac1a758066c86b867f6df0f6958294cc9a2ffdf35af6534"
+  "introFingerprint": "a3546a0cdd05b8572ee0791e6886f75902a978f2f907316ac27bc3486f321790"
 }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-33:intro1:r2": {
+          "ru": "Между `She` и `active` нужно `is`.",
+          "uk": "Між `She` і `active` потрібно `is`."
+        },
+        "en:lesson-02:session-33:intro1:r3": {
+          "ru": "Это отрицает активность. В условии Анна активная.",
+          "uk": "Це заперечує активність. За умовою Анна активна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-33:intro2:r2": {
+          "ru": "Это вопрос об активности, а вы спрашиваете о состоянии сейчас.",
+          "uk": "Це запитання про активність, а ви питаєте про стан зараз."
+        },
+        "en:lesson-02:session-33:intro2:r3": {
+          "ru": "Это сообщение. Для вопроса поставьте `Are` перед `you`.",
+          "uk": "Це повідомлення. Для запитання поставте `Are` перед `you`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-33:intro3:r2": {
+          "ru": "Это «Где он?» Вы пока хотите узнать, кого нет.",
+          "uk": "Це «Де він?» Ви поки хочете дізнатися, кого немає."
+        },
+        "en:lesson-02:session-33:intro3:r3": {
+          "ru": "После `Who` здесь нужно `is`.",
+          "uk": "Після `Who` тут потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "412805b44241f0a1b6de13903ef3bcd98a09194b2481bb4690ccafec2288e742"
+}

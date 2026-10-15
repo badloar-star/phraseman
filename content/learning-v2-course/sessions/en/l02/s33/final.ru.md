@@ -1,204 +1,138 @@
-# Английский · Урок 2 · Занятие 33 — «Who is»
+# Английский · Урок 2 · Занятие 33 — Воскресенье в парке
 
-**Сцена занятия.** Вечеринка у соседей в Дублине. Вы знакомитесь с людьми и хотите понять, кто принимает гостей и к кому можно подойти.
+**Ситуация.** Вы с друзьями встретились в парке. Анна бегает, играет с мячом и предлагает ещё одну прогулку. Олег сегодня не пришёл.
 
-**Как сказать:** `Who is` + человек
-**Новые слова:** host, guest
-**Возвращаются:** guests, name, cheerful, near, corner
+**Что вы освоите:** сказать, что человек активный, и спросить о его состоянии
+**Новые слова:** active
 
 ---
 
 ## Интро 1
 
-### `host` — хозяин вечера
+### Много двигается
 
-`host` — «хозяин вечера», тот, кто принимает гостей. `Who is the host?` — «Кто хозяин?» Хозяина ещё нужно найти, а для `is` место уже известно: сразу после `Who`, перед `the host`. По-русски хватает «Кто хозяин?», но в этом английском вопросе `is` не пропускаем.
+`active` — «активный». Анна любит бегать и постоянно чем-то занимается: `She is active`. Она уже пробежала круг, поиграла с мячом и предлагает ещё пройтись. Вы пока активно ищете скамейку. Здесь `active` описывает человека, который много двигается и действует.
 
-**Вы хотите поблагодарить хозяина за вечер, но не знаете, кто из присутствующих хозяин. Спросите.**
+**Анна много двигается и охотно участвует в играх. Скажите полной фразой, что она активная.**
 
-- ✅ **Who is the host?**
-- ❌ Who the host is? — *В этом самостоятельном вопросе `is` стоит после `Who`, перед `the host`.*
-- ❌ Who the host? — *Пропало `is`. Полный вопрос: `Who is the host?`*
+- ✅ **She is active.**
+- ❌ She active. — *Между `She` и `active` нужно `is`.*
+- ❌ She is not active. — *Это отрицает активность. В условии Анна активная.*
 
 ---
 
 ## Интро 2
 
-### `guest` — гость
+### Всё в порядке?
 
-`guest` — «гость», а `guests` — «гости». Про одного гостя спрашиваем `Who is the guest?` — «Кто гость?» Вопрос начинается с `Who is`: меняем только `the host` на `the guest`. Важно, кого ищем: хозяин принимает людей, а гостя пригласили. Для одного гостя здесь нужно `is`.
+`okay` — «в порядке». Друг остановился после игры: `Are you okay?` — «Ты в порядке?» Если всё хорошо, он может ответить `Yes, I am`. Активность и самочувствие — не одно и то же: этим вопросом вы не спрашиваете, любит ли он бегать.
 
-**Сосед Илья говорит, что среди Алекса, Макса и Олега один — гость, а двое живут здесь. Спросите, кто гость.**
+**Анна остановилась и села на траву. Спросите её, всё ли с ней в порядке.**
 
-- ✅ **Who is the guest?**
-- ❌ Who is the host? — *Так вы спросите про хозяина. Вам нужен гость — `guest`.*
-- ❌ Who are the guest? — *Здесь речь об одном госте: `Who is the guest?`*
+- ✅ **Are you okay?**
+- ❌ Are you active? — *Это вопрос об активности, а вы спрашиваете о состоянии сейчас.*
+- ❌ You are okay. — *Это сообщение. Для вопроса поставьте `Are` перед `you`.*
 
 ---
 
 ## Интро 3
 
-### `Who is he?` — кто он?
+### Кого нет
 
-`Who is he?` — «Кто он?» Так можно спросить о мужчине, которого вы видите, но пока не знаете. В этом отдельном вопросе `is` стоит перед `he` — «он». А `Where is he?` означает «Где он?». Выберите, что хотите выяснить: кто этот человек или где он находится.
+`absent` — «отсутствующий». Олег не пришёл на встречу: `He is absent`. Вы хотите узнать, кого ещё нет: `Who is absent?`. А если хотите выяснить, где Олег, спросите `Where is he?`. Отсутствие не объясняет ни место, ни причину.
 
-**Алекс машет вам через комнату. Спросите соседа Илью: «Кто он?»**
+**Вы видите, что собрались не все, но пока не знаете, кого нет. Спросите, кто отсутствует.**
 
-- ✅ **Who is he?**
-- ❌ Where is he? — *Это «Где он?». Алекса вы видите; узнать хотите, кто он.*
-- ❌ Who he is? — *Для самостоятельного вопроса нужен порядок `Who is he?`: `is` перед `he`.*
+- ✅ **Who is absent?**
+- ❌ Where is he? — *Это «Где он?» Вы пока хотите узнать, кого нет.*
+- ❌ Who absent? — *После `Who` здесь нужно `is`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — host**
-<!-- interaction_id: en:lesson-02:session-33:i01; family: listen_choose -->
-Цель: `host`
+**1 · Анна много двигается и участвует во всех играх. Скажите полной фразой, что она активная**
+<!-- interaction_id: en:lesson-02:session-33:i01; family: phrase_builder -->
+Плитки: `active` `is` `She` `are` → **She is active.**
+*(плитка `are` лишняя: здесь нужно `is` — `She is active.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте фразу об Олеге**
 <!-- interaction_id: en:lesson-02:session-33:i02; family: listen_choose -->
-Цель: `host`
-Варианты: `host` · `coast` · `toast`
-- coast — *`Coast` — «побережье». Послушайте первый звук: в записи `host`.*
-- toast — *`Toast` — «тост». Послушайте первый звук: в записи `host`.*
+🔊 *He is absent.* → **He is absent.** · He is active. · He is okay.
+- He is active. — *В записи последнее слово — `absent`, а в этом варианте — `active`.*
+- He is okay. — *В записи последнее слово — `absent`, а в этом варианте — `okay`.*
 
+**3 · Спросите Анну, всё ли с ней в порядке**
+<!-- interaction_id: en:lesson-02:session-33:i03; family: context_gap_grammar -->
+___ you okay? → **Are** · Am · Is
+- Am — *С `you` нужно `Are`.*
+- Is — *Вопрос — `Are you okay?`.*
 
-**3 · Карточка слова — guest**
-<!-- interaction_id: en:lesson-02:session-33:i03; family: listen_choose -->
-Цель: `guest`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-33:i04; family: speed_match -->
+active — активный · okay — в порядке · absent — отсутствующий · awake — не спит
 
-**4 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-02:session-33:i04; family: listen_choose -->
-Цель: `guest`
-Варианты: `guest` · `best` · `west`
-- best — *`Best` — «лучший». Послушайте первый звук: в записи `guest`.*
-- west — *`West` — «запад». Послушайте первый звук: в записи `guest`.*
+**5 · Послушайте и соберите короткий ответ**
+<!-- interaction_id: en:lesson-02:session-33:i05; family: listen_build_dictation -->
+🔊 *Yes, she is.* Плитки: `is` `she` `Yes,` `No,` → **Yes, she is.**
+*(плитка `No,` лишняя: здесь нужно `Yes,` — `Yes, she is.`)*
 
+**6 · Олег не пришёл. Спросите, где он**
+<!-- interaction_id: en:lesson-02:session-33:i06; family: phrase_builder -->
+Плитки: `he` `is` `Where` `Who` → **Where is he?**
+*(плитка `Who` лишняя: здесь нужно `Where` — `Where is he?`)*
 
-**5 · Соберите фразу — спросите соседа: «Кто хозяин?»**
-<!-- interaction_id: en:lesson-02:session-33:i05; family: phrase_builder -->
-Цель: `Who is the host?`
-
-**6 · Вставьте слово — сосед упомянул одного гостя; спросите, кто этот гость**
-<!-- interaction_id: en:lesson-02:session-33:i06; family: context_gap_grammar -->
-Цель: `Who is the ___ ?`
-Варианты: `guest` · `host` · `name`
-- host — *Это «хозяин». Вопрос нужен про гостя — `guest`.*
-- name — *Это «имя». Здесь вы спрашиваете, кто гость, а не как его зовут.*
-
-
-**7 · Произнесите фразу — вы хотите поблагодарить хозяина, но не знаете, кто он**
+**7 · Вы просто присели отдохнуть, с вами всё хорошо. Коротко скажите, что вы в порядке**
 <!-- interaction_id: en:lesson-02:session-33:i07; family: scripted_repeat_compare -->
-Цель: `Who is the host?`
+🎙 **I'm okay.**
 
-**8 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-02:session-33:i08; family: listen_choose -->
-Цель: `guests`
-Варианты: `guests` · `tests` · `vests`
-- tests — *`Tests` — «тесты». Послушайте первый звук: в записи `guests`.*
-- vests — *`Vests` — «жилеты». Послушайте первый звук: в записи `guests`.*
+**8 · Вы ищете активного участника для команды. Спросите, кто активный**
+<!-- interaction_id: en:lesson-02:session-33:i08; family: context_gap_grammar -->
+Who ___ active? → **is** · am · it
+- am — *Здесь вопрос `Who is active?`.*
+- it — *После `Who` нужно `is`.*
 
+**9 · Послушайте фразу о двух друзьях**
+<!-- interaction_id: en:lesson-02:session-33:i09; family: listen_choose -->
+🔊 *They are okay.* → **They are okay.** · They are active. · They are absent.
+- They are active. — *В записи последнее слово — `okay`, а в этом варианте — `active`.*
+- They are absent. — *В записи последнее слово — `okay`, а в этом варианте — `absent`.*
 
-**9 · Вставьте слово — скажите, что хозяин близко**
-<!-- interaction_id: en:lesson-02:session-33:i09; family: context_gap_grammar -->
-Цель: `The host is ___ .`
-Варианты: `near` · `cheerful` · `name`
-- cheerful — *Это «весёлый». Нужно сообщить о расстоянии — «близко».*
-- name — *Это «имя». Оно не передаёт, где находится хозяин.*
-
-
-**10 · Соедините пары**
+**10 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-33:i10; family: speed_match -->
-Пары: `guests` — гости · `name` — имя · `cheerful` — весёлый · `corner` — угол
-Цель: `guests · name · cheerful · corner`
+absent — отсутствующий · active — активный · awake — не спит · okay — в порядке
 
-**11 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-02:session-33:i11; family: listen_choose -->
-Цель: `name`
-Варианты: `name` · `game` · `fame`
-- game — *`Game` — «игра». Послушайте первый звук: в записи `name`.*
-- fame — *`Fame` — «слава». Послушайте первый звук: в записи `name`.*
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-02:session-33:i11; family: listen_build_dictation -->
+🔊 *They are not active.* Плитки: `active` `not` `are` `They` `is` → **They are not active.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are not active.`)*
 
-
-**12 · Соберите фразу — о хозяине: «Он не весёлый»**
+**12 · Олег пришёл и стоит рядом. На «Is he absent?» ответьте коротким «нет»**
 <!-- interaction_id: en:lesson-02:session-33:i12; family: phrase_builder -->
-Цель: `He is not cheerful.`
+Плитки: `not` `is` `he` `No,` `Yes,` → **No, he is not.**
+*(плитка `Yes,` лишняя: здесь нужно `No,` — `No, he is not.`)*
 
-**13 · Произнесите фразу — сосед упомянул гостя; спросите, где он**
+**13 · Двое друзей любят спорт и много двигаются. Коротко скажите, что они активные**
 <!-- interaction_id: en:lesson-02:session-33:i13; family: scripted_repeat_compare -->
-Цель: `Where is the guest?`
+🎙 **They're active.**
 
-**14 · Вставьте слово — сосед говорит, что гость стоит рядом с углом комнаты**
+**14 · Анна на встрече, просто отошла за мячом. Отрицайте, что она отсутствует**
 <!-- interaction_id: en:lesson-02:session-33:i14; family: context_gap_grammar -->
-Цель: `The guest is near the ___ .`
-Варианты: `corner` · `host` · `guests`
-- host — *Получится «рядом с хозяином». Сосед назвал угол комнаты.*
-- guests — *Получится «рядом с гостями». Вам нужно место — угол, `corner`.*
+She ___ not absent. → **is** · am · are
+- am — *С `She` нужно `is`.*
+- are — *Фраза — `She is not absent`.*
 
+**15 · Послушайте вопрос**
+<!-- interaction_id: en:lesson-02:session-33:i15; family: listen_choose -->
+🔊 *Is she active?* → **Is she active?** · Is she absent? · Is she okay?
+- Is she absent? — *В записи последнее слово — `active`, а в этом варианте — `absent`.*
+- Is she okay? — *В записи последнее слово — `active`, а в этом варианте — `okay`.*
 
-**15 · Послушайте и соберите — сосед подсказывает, где хозяин**
-<!-- interaction_id: en:lesson-02:session-33:i15; family: listen_build_dictation -->
-Цель: `The host is near.`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-33:i16; family: speed_match -->
+okay — в порядке · awake — не спит · active — активный · absent — отсутствующий
 
-**16 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-33:i16; family: scripted_repeat_compare -->
-Цель: `Who is the guest?`
+**17 · Олег остановился после игры. Вы хотите убедиться, что с ним всё хорошо. Спросите его об этом**
+<!-- interaction_id: en:lesson-02:session-33:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Are you okay?**
 
-**17 · Соберите фразу — сосед спрашивает о двух вошедших; скажите: «Они гости»**
-<!-- interaction_id: en:lesson-02:session-33:i17; family: phrase_builder -->
-Цель: `They are guests.`
-
-**18 · Произнесите фразу — Алекс машет вам; узнайте у соседа Ильи, кто он**
-<!-- interaction_id: en:lesson-02:session-33:i18; family: scripted_repeat_compare -->
-Цель: `Who is he?`
-
-## Для сборщика
-
-new_words:
-host — хозяин вечера — Принимает гостей у себя: встречает их, знакомит друг с другом.
-guest — гость — Пришёл к кому-то в гости: поздоровался, познакомился, остался поболтать.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=scripted_repeat_compare, 8=listen_choose, 9=context_gap_grammar, 10=speed_match, 11=listen_choose, 12=phrase_builder, 13=scripted_repeat_compare, 14=context_gap_grammar, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=phrase_builder, 18=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| guests | 8, 10, 14, 17 | 8, 10, 17 |
-| name | 6, 9, 10, 11 | 10, 11 |
-| cheerful | 9, 10, 12 | 10, 12 |
-| near | 9, 14, 15 | 9, 15 |
-| corner | 10, 14 | 10, 14 |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | Who, is, the, host | да — приведён вопрос `Who is the host?` |
-| Интро 2 | Who, is, the, guest | да — приведён вопрос `Who is the guest?` |
-| Интро 3 | Who, is, he | да — приведён вопрос `Who is he?` |
-
-**3. Доска пар — задание 10**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| guests | из урока 1, занятие 36 | повторное узнавание в задании 8 |
-| name | из урока 2, занятие 25 | изучено в предыдущих занятиях |
-| cheerful | из урока 2, занятие 4 | изучено в предыдущих занятиях |
-| corner | из урока 2, занятие 23 | изучено в предыдущих занятиях |
-
-**4. Сборки**
-
-| задание | правильная фраза |
-|---|---|
-| 5 | Who is the host? |
-| 12 | He is not cheerful. |
-| 13 | Where is the guest? |
-| 15 | The host is near. |
-| 17 | They are guests. |
-| 18 | Who is he? |

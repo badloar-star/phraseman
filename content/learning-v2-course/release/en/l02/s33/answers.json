@@ -1,92 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-33:i01",
-    "correctText": "host",
+    "correctText": "She is active.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i02",
-    "correctText": "host",
+    "correctText": "He is absent.",
     "correctResponseId": "en:lesson-02:session-33:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-33:i03",
-    "correctText": "guest",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-33:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-33:i04",
-    "correctText": "guest",
-    "correctResponseId": "en:lesson-02:session-33:i04:r1"
+    "correctText": "en:lesson-02:session-33:i04:p1=active\nen:lesson-02:session-33:i04:p2=okay\nen:lesson-02:session-33:i04:p3=absent\nen:lesson-02:session-33:i04:p4=awake",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i05",
-    "correctText": "Who is the host?",
+    "correctText": "Yes, she is.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i06",
-    "correctText": "guest",
-    "correctResponseId": "en:lesson-02:session-33:i06:r1"
+    "correctText": "Where is he?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i07",
-    "correctText": "Who",
-    "correctResponseId": "en:lesson-02:session-33:i07:r1"
+    "correctText": "I'm okay.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i08",
-    "correctText": "guests",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-33:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-33:i09",
-    "correctText": "near",
+    "correctText": "They are okay.",
     "correctResponseId": "en:lesson-02:session-33:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-33:i10",
-    "correctText": "en:lesson-02:session-33:i10:p1=guests\nen:lesson-02:session-33:i10:p2=name\nen:lesson-02:session-33:i10:p3=cheerful\nen:lesson-02:session-33:i10:p4=corner",
+    "correctText": "en:lesson-02:session-33:i10:p1=absent\nen:lesson-02:session-33:i10:p2=active\nen:lesson-02:session-33:i10:p3=awake\nen:lesson-02:session-33:i10:p4=okay",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i11",
-    "correctText": "name",
-    "correctResponseId": "en:lesson-02:session-33:i11:r1"
+    "correctText": "They are not active.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i12",
-    "correctText": "He is not cheerful.",
+    "correctText": "No, he is not.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i13",
-    "correctText": "Where is the guest?",
+    "correctText": "They're active.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i14",
-    "correctText": "corner",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-33:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-33:i15",
-    "correctText": "The host is near.",
-    "correctResponseId": null
+    "correctText": "Is she active?",
+    "correctResponseId": "en:lesson-02:session-33:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-33:i16",
-    "correctText": "Who is the guest?",
+    "correctText": "en:lesson-02:session-33:i16:p1=okay\nen:lesson-02:session-33:i16:p2=awake\nen:lesson-02:session-33:i16:p3=active\nen:lesson-02:session-33:i16:p4=absent",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i17",
-    "correctText": "They are guests.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-33:i18",
-    "correctText": "Who is he?",
+    "correctText": "Are you okay?",
     "correctResponseId": null
   }
 ]

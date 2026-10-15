@@ -48,7 +48,7 @@ import {
 import { effectiveLessonStarScore } from './lesson_star_score';
 import { perfScreenMount } from './perf-monitor';
 import { GlassAlertDialog } from '../components/v2/GlassAlertDialog';
-import { emitAppEvent, onAppEvent } from './events';
+import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
@@ -313,6 +313,10 @@ export async function prefetchLessonMenuCache(
 // зачем (PM-086, владелец 2026-09-24): ENERGY_COST_MENU_ITEMS удалён — жил
 // только ради гейта показа ценника энергии на пунктах меню, который убрали.
 
+/** Предохранитель цикла lesson1 ↔ lesson_menu: не больше одного bounce на id урока за это окно (🔴 Моменты 15.10). */
+export const LESSON_LOCK_BOUNCE_FUSE_MS = 5000;
+const lessonLockBounceAt = new Map<number, number>();
+
 function LessonMenu() {
   const lh = useLineScale();
   useEffect(() => { perfScreenMount('lesson_menu'); }, []);
@@ -474,7 +478,23 @@ function LessonMenu() {
       prevLessonId: lockInfo?.prevLessonId ?? null,
       requiredScore: lockInfo?.requiredScore ?? null,
     }));
-    safeRouterBack(router, '/(tabs)/lessons');
+    // зачем (🔴 Моменты 15.10: запертый урок 2 по dev-ссылке → [LESSON-LOCK] menu:bounce_back ≥50 раз в минуту, lesson1 ↔ lesson_menu без конца): раньше здесь был «назад по стеку» —
+    // а под меню оказывался тот же lesson1, чей охранник снова делает replace на меню. Теперь запертый урок = ОДИН replace на список с тостом причины; назад по стеку меню не ходит
+    // и lesson1 сам не открывает. Предохранитель: не больше одного bounce на id за 5 с (повтор — только журнал, без навигации).
+    const nowMs = Date.now();
+    const lastBounceAt = lessonLockBounceAt.get(lessonId);
+    if (lastBounceAt !== undefined && nowMs - lastBounceAt < LESSON_LOCK_BOUNCE_FUSE_MS) {
+      console.log('[LESSON-LOCK] menu:bounce_suppressed', JSON.stringify({ lessonId, sinceLastMs: nowMs - lastBounceAt, fuseMs: LESSON_LOCK_BOUNCE_FUSE_MS })); // guard-ok: предохранитель цикла
+      return;
+    }
+    lessonLockBounceAt.set(lessonId, nowMs);
+    emitAppEvent('action_toast', actionToastTri('info', {
+      ru: 'Этот урок ещё закрыт — сначала пройди предыдущий', uk: 'Цей урок ще закритий — спершу пройди попередній', en: 'This lesson is still locked — finish the previous one first',
+      es: 'Esta lección aún está bloqueada: termina primero la anterior', 'pt-BR': 'Esta lição ainda está bloqueada — termine a anterior primeiro', vi: 'Bài này chưa mở — hãy hoàn thành bài trước',
+      id: 'Pelajaran ini masih terkunci — selesaikan yang sebelumnya dulu', tr: 'Bu ders hâlâ kilitli — önce öncekini bitir', pl: 'Ta lekcja jest jeszcze zablokowana — najpierw skończ poprzednią',
+    }));
+    console.log('[LESSON-LOCK] menu:bounce_replace', JSON.stringify({ lessonId, to: '/(tabs)/lessons', canGoBack: router.canGoBack() })); // guard-ok: один replace на список
+    router.replace('/(tabs)/lessons' as never);
   }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, lockInfo, router]);
 
   // Служебный флаг первого завершения: после него основной CTA подписывается как replay.

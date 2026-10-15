@@ -56,6 +56,7 @@ export function openLessonAccessGate(
   router: any,
   lessonId: number,
 ): void {
+  console.log(`[LESSON-LOCK] access_gate → lesson_menu lessonId=${lessonId}`); // guard-ok: звено цепочки lesson1 → lesson_menu (кто и с каким id зовёт переход)
   router.replace({
     pathname: '/lesson_menu',
     params: { id: lessonId },

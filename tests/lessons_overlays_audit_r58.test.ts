@@ -62,3 +62,25 @@ describe('#26 меню урока: поколение проверки дост�
     expect(src).toContain('lock:stale_result_dropped');
   });
 });
+
+describe('🔴 цикл lesson1 ↔ lesson_menu на запертом уроке (Моменты 15.10)', () => {
+  it('запертый урок = один replace на список с тостом; назад по стеку меню не ходит; предохранитель 5 с на id', () => {
+    const src = read('app/lesson_menu.tsx');
+    const effect = src.slice(src.indexOf('const lockedBackDispatchedRef = useRef(false);'), src.indexOf('// Служебный флаг первого завершения'));
+    expect(effect).toContain("router.replace('/(tabs)/lessons' as never);");
+    expect(effect).not.toContain('safeRouterBack(');
+    expect(effect).toContain('[LESSON-LOCK] menu:bounce_suppressed');
+    expect(src).toContain('LESSON_LOCK_BOUNCE_FUSE_MS = 5000');
+  });
+  it('lesson_menu сам не открывает lesson1 вне обработчиков нажатия, закрытых проверкой запуска', () => {
+    const src = read('app/lesson_menu.tsx');
+    const pushes = src.split('\n').filter((line) => line.includes("pathname: '/lesson1'"));
+    expect(pushes.length).toBeGreaterThan(0);
+    const effectBody = src.slice(src.indexOf('const lockedBackDispatchedRef = useRef(false);'), src.indexOf('// Служебный флаг первого завершения'));
+    expect(effectBody).not.toContain('/lesson1');
+    expect(src).toContain('if (lessonLaunchBlocked) return;');
+  });
+  it('звено lesson1 → меню пишет [LESSON-LOCK] access_gate', () => {
+    expect(read('app/lesson_premium_gate.ts')).toContain('[LESSON-LOCK] access_gate → lesson_menu lessonId=');
+  });
+});

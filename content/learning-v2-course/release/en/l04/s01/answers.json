@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-04:session-01:i01",
-    "correctText": "pharmacy",
-    "correctResponseId": "en:lesson-04:session-01:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-01:i02",
-    "correctText": "library",
+    "correctText": "It is comfortable.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-01:i02",
+    "correctText": "pharmacy",
+    "correctResponseId": "en:lesson-04:session-01:i02:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-01:i03",
-    "correctText": "bakery",
+    "correctText": "library",
     "correctResponseId": "en:lesson-04:session-01:i03:r1"
   },
   {
     "interactionId": "en:lesson-04:session-01:i04",
-    "correctText": "pharmacy",
-    "correctResponseId": null
+    "correctText": "bakery",
+    "correctResponseId": "en:lesson-04:session-01:i04:r1"
   },
   {
     "interactionId": "en:lesson-04:session-01:i05",
-    "correctText": "library",
-    "correctResponseId": "en:lesson-04:session-01:i05:r1"
+    "correctText": "en:lesson-04:session-01:i05:p1=pharmacy\nen:lesson-04:session-01:i05:p2=library\nen:lesson-04:session-01:i05:p3=bakery\nen:lesson-04:session-01:i05:p4=hospital",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i06",
-    "correctText": "bakery",
+    "correctText": "pharmacy",
     "correctResponseId": "en:lesson-04:session-01:i06:r1"
   },
   {
     "interactionId": "en:lesson-04:session-01:i07",
-    "correctText": "pharmacy",
-    "correctResponseId": "en:lesson-04:session-01:i07:r1"
+    "correctText": "library",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i08",
-    "correctText": "library",
+    "correctText": "bakery",
     "correctResponseId": "en:lesson-04:session-01:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-01:i09",
-    "correctText": "bakery",
-    "correctResponseId": null
+    "correctText": "There is a pharmacy.",
+    "correctResponseId": "en:lesson-04:session-01:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-01:i10",
-    "correctText": "en:lesson-04:session-01:i10:p1=here\nen:lesson-04:session-01:i10:p2=house\nen:lesson-04:session-01:i10:p3=near\nen:lesson-04:session-01:i10:p4=behind",
+    "correctText": "en:lesson-04:session-01:i10:p1=sure\nen:lesson-04:session-01:i10:p2=interested\nen:lesson-04:session-01:i10:p3=comfortable\nen:lesson-04:session-01:i10:p4=key",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i11",
-    "correctText": "There is a library here.",
+    "correctText": "There is a library.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i12",
-    "correctText": "There is a quiet bakery.",
+    "correctText": "There is a bakery here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i13",
-    "correctText": "pharmacy",
-    "correctResponseId": "en:lesson-04:session-01:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-01:i14",
-    "correctText": "There is a small library.",
+    "correctText": "There is a hospital.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-01:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-01:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-01:i15",
-    "correctText": "pharmacy",
+    "correctText": "There is a bakery.",
     "correctResponseId": "en:lesson-04:session-01:i15:r1"
   },
   {
     "interactionId": "en:lesson-04:session-01:i16",
-    "correctText": "There is a quiet library.",
+    "correctText": "en:lesson-04:session-01:i16:p1=sure\nen:lesson-04:session-01:i16:p2=interested\nen:lesson-04:session-01:i16:p3=hospital\nen:lesson-04:session-01:i16:p4=key",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i17",
-    "correctText": "bakery",
-    "correctResponseId": "en:lesson-04:session-01:i17:r1"
+    "correctText": "There is a pharmacy here.",
+    "correctResponseId": null
   }
 ]

@@ -1,164 +1,140 @@
-# Англійська · Урок 4 · Заняття 1 — «Три потрібні місця біля дому»
+# Англійська · Урок 4 · Заняття 1 — Що є в новому районі
 
-**Сцена заняття.** Ви щойно заселилися. Біля стійки вам дають карту району й позначають три місця, які одразу знадобляться: аптеку, бібліотеку та пекарню. Ви не показуєте, де вони розташовані; ви повідомляєте головне — таке місце є.
-**Як сказати:** повідомити про наявність одного місця: `There is a/an + singular count noun`.
+**Ситуація.** Ви оселилися в новому районі. Друг розповідає, які місця тут є. Ви позначаєте аптеку, бібліотеку й пекарню, а потім перевіряєте, чи є в повідомленні потрібні слова для одного місця та кількох предметів.
+
+**Що ви опануєте:** повідомити про наявність одного місця з There is і кількох предметів з There are
 **Нові слова:** pharmacy, library, bakery
-**Повертаються:** a, is, here, quiet, small
+
+---
 
 ## Інтро 1
 
-### Аптека на карті
+### Є аптека
 
-`pharmacy` — «аптека», на карті району позначено одну аптеку. Англійською, коли треба сказати, що одне місце є, починайте з `There is`. Перед назвою одного місця ставте `a`: `There is a pharmacy.` — «Є аптека». Так ви прямо повідомляєте, що в районі є одна аптека.
+`pharmacy` — «аптека». `There is a pharmacy` — «Є аптека»: повідомляємо, що таке місце є. Початок `There is` тут працює як одне ціле й не означає «там є»: слово «там» окремо не потрібне. Одне місце — `is`, перед назвою — `a`. Згадаймо `comfortable` — «комфортний, зручний»: у кімнаті затишно, `It is comfortable` — «У ній комфортно».
 
-**Біля стійки реєстрації вам показують аптеку. Виберіть точну фразу.**
+**Повідомте, що в районі є аптека.**
 
 - ✅ **There is a pharmacy.**
-- ❌ There a pharmacy. — *У середині зникло `is`: починаємо з `There is` повністю.*
-- ❌ There is pharmacy. — *Перед одним новим місцем потрібне `a`: `a pharmacy`.*
+- ❌ There a pharmacy. — *Потрібен повний початок `There is`.*
+- ❌ There is pharmacy. — *Перед назвою однієї аптеки потрібне `a`.*
 
 ---
 
 ## Інтро 2
 
-### Бібліотека на карті
+### Є бібліотека
 
-`library` — «бібліотека». У районі є одна бібліотека. Формула не змінюється: `There is a library.` Спочатку `There is` — «є», потім `a`, потім назва одного місця. На карті одна бібліотека, тому достатньо однієї короткої фрази: `There is a library.`
+`library` — «бібліотека». `There is a library` — «Є бібліотека». Назва місця змінюється, початок залишається. `sure` — «упевнений»: `I am sure` — «Я впевнений». `interested` — «зацікавлений»: розповідь про район захопила вас, `I am interested` — «Мені цікаво». `hospital` — «лікарня»: `There is a hospital` — «Є лікарня».
 
-**На карті позначено бібліотеку. Виберіть точну фразу.**
+**Повідомте, що в районі є бібліотека.**
 
 - ✅ **There is a library.**
-- ❌ There is an library. — *`Library` починається зі звуку /l/, тому потрібне `a`, а не `an`.*
-- ❌ There a library. — *Посередині зникло `is`: починаємо з `There is` повністю.*
+- ❌ There are a library. — *Одна бібліотека: `There is a library`.*
+- ❌ There is an library. — *Перед `library` потрібне `a`, оскільки перший звук приголосний.*
 
 ---
 
 ## Інтро 3
 
-### Пекарня на карті
+### Пекарня й ключі
 
-`bakery` — «пекарня». Біля нового дому є одна пекарня. Скажіть `There is a bakery.` У цій формулі `a` стоїть перед назвою одного місця; назва змінюється, а початок лишається тим самим. Фраза особливо корисна, коли коробки вже розпаковано, а вечері ще немає.
+`bakery` — «пекарня». `There is a bakery here` — «Тут є пекарня». Пекарня на карті хлібом не пахне, але тепер ви знаєте, куди йти. `key` — «ключ», кілька — `keys`. Для кількох: `There are keys here` — «Тут є ключі». З кількома ключами потрібні `are` і `keys`, без `a`.
 
-**На карті позначено пекарню. Виберіть точну фразу.**
+**Повідомте, що тут є кілька ключів.**
 
-- ✅ **There is a bakery.**
-- ❌ There is bakery a. — *`A` стоїть перед назвою місця: `a bakery`.*
-- ❌ There is an bakery. — *`Bakery` починається зі звуку /b/, тому потрібне `a`, а не `an`.*
+- ✅ **There are keys here.**
+- ❌ There is keys here. — *Ключів кілька: `There are`.*
+- ❌ There are a keys here. — *Перед кількома `keys` артикля `a` не ставимо.*
 
 ---
 
-## Практика — по одній цілі
+## Практика (17 завдань)
 
-**1 · Послухайте й виберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-01:i01; family: listen_choose -->
-Ціль: `pharmacy`
-🔊 *pharmacy*
-Значення варіантів: pharmacy — аптека · factory — фабрика · family — родина
-→ **pharmacy** · factory · family
-- factory — *У `factory` після /f/ чути /æ/, а у `pharmacy` — /ɑː/ у британській або /ɑːr/ в американській вимові.*
-- family — *У `family` після /f/ чути /æ/, а у `pharmacy` — /ɑː/ у британській або /ɑːr/ в американській вимові.*
+**1 · У кімнаті затишно, вам у ній комфортно. Скажіть про цю кімнату «Вона комфортна»**
+<!-- interaction_id: en:lesson-04:session-01:i01; family: phrase_builder -->
+Плитки: `comfortable` `is` `It` `are` → **It is comfortable.**
+*(плитка `are` зайва: тут потрібно `is` — `It is comfortable.`)*
 
-**2 · Промовте слово для бібліотеки**
-<!-- interaction_id: en:lesson-04:session-01:i02; family: scripted_repeat_compare -->
-Ціль: `library`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-01:i02; family: listen_choose -->
+🔊 *pharmacy* → **pharmacy** · hospital · museum
+- hospital — *У записі перше слово — `pharmacy`, а в цьому варіанті — `hospital`.*
+- museum — *У записі перше слово — `pharmacy`, а в цьому варіанті — `museum`.*
+
+**3 · Назвіть бібліотеку одним англійським словом**
+<!-- interaction_id: en:lesson-04:session-01:i03; family: context_gap_grammar -->
+___ → **library** · hospital · museum
+- hospital — *`hospital` — лікарня; бібліотека — `library`.*
+- museum — *`museum` — музей; бібліотека — `library`.*
+
+**4 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-01:i04; family: listen_choose -->
+🔊 *bakery* → **bakery** · hospital · museum
+- hospital — *У записі bakery — пекарня, а hospital — лікарня.*
+- museum — *У записі bakery — пекарня, а museum — музей.*
+
+**5 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-01:i05; family: speed_match -->
+pharmacy — аптека · library — бібліотека · bakery — пекарня · hospital — лікарня
+
+**6 · Назвіть аптеку одним англійським словом**
+<!-- interaction_id: en:lesson-04:session-01:i06; family: context_gap_grammar -->
+___ → **pharmacy** · hospital · museum
+- hospital — *hospital — лікарня; аптека — pharmacy.*
+- museum — *museum — музей; аптека — pharmacy.*
+
+**7 · Назвіть бібліотеку одним словом**
+<!-- interaction_id: en:lesson-04:session-01:i07; family: scripted_repeat_compare -->
 🎙 **library**
 
-**3 · Вставте слово «пекарня»**
-<!-- interaction_id: en:lesson-04:session-01:i03; family: context_gap_grammar -->
-___ → **bakery** · battery · balcony · berry
-- battery — *`Battery` — батарейка. Для пекарні потрібне `bakery`.*
-- balcony — *`Balcony` — балкон. Пекарня — `bakery`.*
-- berry — *`Berry` — ягода. Тут потрібне слово `bakery` — «пекарня».*
+**8 · Назвіть пекарню одним англійським словом**
+<!-- interaction_id: en:lesson-04:session-01:i08; family: context_gap_grammar -->
+___ → **bakery** · library · pharmacy
+- library — *`library` — бібліотека; пекарня — `bakery`.*
+- pharmacy — *`pharmacy` — аптека; пекарня — `bakery`.*
 
-**4 · Промовте слово для аптеки**
-<!-- interaction_id: en:lesson-04:session-01:i04; family: scripted_repeat_compare -->
-Ціль: `pharmacy`
-🎙 **pharmacy**
+**9 · Послухайте повідомлення про місце в районі**
+<!-- interaction_id: en:lesson-04:session-01:i09; family: listen_choose -->
+🔊 *There is a pharmacy.* → **There is a pharmacy.** · There is a library. · There is a bakery.
+- There is a library. — *У записі останнє слово — `pharmacy`, а в цьому варіанті — `library`.*
+- There is a bakery. — *У записі останнє слово — `pharmacy`, а в цьому варіанті — `bakery`.*
 
-**5 · Вставте слово «бібліотека»**
-<!-- interaction_id: en:lesson-04:session-01:i05; family: context_gap_grammar -->
-___ → **library** · librarian · liberty · laboratory
-- librarian — *`Librarian` — бібліотекар. Для бібліотеки потрібне `library`.*
-- liberty — *`Liberty` — свобода. Бібліотека — `library`.*
-- laboratory — *`Laboratory` — лабораторія. Тут потрібне слово `library` — «бібліотека».*
-
-**6 · Послухайте й виберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-01:i06; family: listen_choose -->
-Ціль: `bakery`
-🔊 *bakery*
-Значення варіантів: bakery — пекарня · battery — батарейка · balcony — балкон
-→ **bakery** · battery · balcony
-- battery — *Вибрано «батарейка», але в `battery` після /b/ чути /æ/, а в записі у `bakery` — /eɪ/.*
-- balcony — *Вибрано «балкон», але `balcony` починається з /bæ/, а в записі перший голосний `bakery` — /eɪ/.*
-
-**7 · Вставте слово «аптека»**
-<!-- interaction_id: en:lesson-04:session-01:i07; family: context_gap_grammar -->
-___ → **pharmacy** · factory · family · farmer
-- factory — *`Factory` — фабрика. Для аптеки потрібне `pharmacy`.*
-- family — *`Family` — родина. Аптека — `pharmacy`.*
-- farmer — *`Farmer` — фермер. Тут потрібне слово `pharmacy` — «аптека».*
-
-**8 · Послухайте й виберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-01:i08; family: listen_choose -->
-Ціль: `library`
-🔊 *library*
-Значення варіантів: library — бібліотека · liberty — свобода · laboratory — лабораторія
-→ **library** · liberty · laboratory
-- liberty — *Вибрано «свобода», але `liberty` починається з короткого /ɪ/, а в записі у `library` — /aɪ/.*
-- laboratory — *У `laboratory` після /l/ немає дифтонга /aɪ/, який чути в `library`.*
-
-**9 · Промовте слово для пекарні**
-<!-- interaction_id: en:lesson-04:session-01:i09; family: scripted_repeat_compare -->
-Ціль: `bakery`
-🎙 **bakery**
-
-**10 · З’єднайте слова та значення біля стійки**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-01:i10; family: speed_match -->
-Пари: `here` — тут · `house` — будинок · `near` — поруч · `behind` — за, позаду
+sure — упевнений · interested — зацікавлений · comfortable — комфортний · key — ключ
 
-**11 · Послухайте й складіть повідомлення про бібліотеку**
+**11 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-04:session-01:i11; family: listen_build_dictation -->
-Ціль: `There is a library here.`
-🔊 *There is a library here.*
-Плитки: `There` · `is` · `a` · `library` · `here` · `an`
+🔊 *There is a library.* Плитки: `library` `a` `is` `There` `are` → **There is a library.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a library.`)*
 
-**12 · На записці біля стійки поруч із пекарнею написано «тиха». Складіть повідомлення**
+**12 · Друг не знає району. Повідомте «Тут є пекарня»**
 <!-- interaction_id: en:lesson-04:session-01:i12; family: phrase_builder -->
-Ціль: `There is a quiet bakery.`
-Плитки: `There` · `is` · `a` · `quiet` · `bakery` · `an`
+Плитки: `here` `bakery` `a` `is` `There` `are` → **There is a bakery here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a bakery here.`)*
 
-**13 · Ви шукаєте місце, де купують ліки. Вставте назву місця**
-<!-- interaction_id: en:lesson-04:session-01:i13; family: context_gap_grammar -->
-There is a ___ here. → **pharmacy** · library · bakery
-- library — *`Library` — бібліотека. На цій позначці аптека, тому потрібне `pharmacy`.*
-- bakery — *`Bakery` — пекарня. Тут позначено аптеку: `pharmacy`.*
+**13 · Друг перелічує місця району й пропустив лікарню. Додайте «Є лікарня»**
+<!-- interaction_id: en:lesson-04:session-01:i13; family: scripted_repeat_compare -->
+🎙 **There is a hospital.**
 
-**14 · На записці біля стійки поруч із бібліотекою написано «маленька». Складіть повідомлення**
-<!-- interaction_id: en:lesson-04:session-01:i14; family: phrase_builder -->
-Ціль: `There is a small library.`
-Плитки: `There` · `is` · `a` · `small` · `library` · `an`
+**14 · На стійці лежать кілька ключів. Повідомте, що тут є ключі**
+<!-- interaction_id: en:lesson-04:session-01:i14; family: context_gap_grammar -->
+There ___ keys here. → **are** · is · am
+- is — *Ключів кілька: `There are keys here`.*
+- am — *Для кількох ключів потрібне `There are`.*
 
-**15 · На новій карті тут позначено тихе місце, де купують ліки. Вставте назву місця**
-<!-- interaction_id: en:lesson-04:session-01:i15; family: context_gap_grammar -->
-There is a quiet ___ here. → **pharmacy** · library · bakery
-- library — *`Library` — бібліотека, а ліки купують у `pharmacy`.*
-- bakery — *`Bakery` — пекарня, а ліки купують у `pharmacy`.*
+**15 · Послухайте, яке місце є в районі**
+<!-- interaction_id: en:lesson-04:session-01:i15; family: listen_choose -->
+🔊 *There is a bakery.* → **There is a bakery.** · There is a pharmacy. · There is a library.
+- There is a pharmacy. — *У записі останнє слово — `bakery`, а в цьому варіанті — `pharmacy`.*
+- There is a library. — *У записі останнє слово — `bakery`, а в цьому варіанті — `library`.*
 
-**16 · На новій карті позначено тиху бібліотеку. Складіть повне повідомлення**
-<!-- interaction_id: en:lesson-04:session-01:i16; family: phrase_builder -->
-Ціль: `There is a quiet library.`
-Плитки: `There` · `is` · `a` · `quiet` · `library` · `an`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-01:i16; family: speed_match -->
+sure — упевнений · interested — зацікавлений · hospital — лікарня · key — ключ
 
-**17 · на новій карті позначено маленьку пекарню. Вставте назву місця**
-<!-- interaction_id: en:lesson-04:session-01:i17; family: context_gap_grammar -->
-There is a small ___. → **bakery** · pharmacy · library
-- pharmacy — *`Pharmacy` — аптека, а на карті позначено маленьку `bakery`.*
-- library — *`Library` — бібліотека, а на карті позначено маленьку `bakery`.*
+**17 · Ви приїхали в інший район. Друг не знає, чи є тут аптека, а ви вже побачили її вивіску. Повідомте «Тут є аптека»**
+<!-- interaction_id: en:lesson-04:session-01:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **There is a pharmacy here.**
 
-## Для збирача
-
-atomic_practice: practice.atomic.json
-new_words: pharmacy — аптека — Місце, де купують ліки.
-new_words: library — бібліотека — Місце, де беруть або читають книжки.
-new_words: bakery — пекарня — Місце, де продають хліб і випічку.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=context_gap_grammar, 6=listen_choose, 7=context_gap_grammar, 8=listen_choose, 9=scripted_repeat_compare, 10=speed_match, 11=listen_build_dictation, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=phrase_builder, 17=context_gap_grammar

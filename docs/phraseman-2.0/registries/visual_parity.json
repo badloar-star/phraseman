@@ -44884,7 +44884,7 @@
       "release": "r1",
       "emulator": {
         "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&lessonintro=skip&mode=b&energy=5&moments=v3&next=/lesson1?id=1%26from=lesson_menu",
-        "taps": "3, 5, 10 верных подряд → затем ошибка; видео",
+        "taps": "РУЧНОЙ проход, не роботом: урок 1, ответить верно 3, 5, 10 раз подряд, затем ошибиться; запись видео (screenrecord)",
         "log": "прямой dev-ссылки нет — запрошена у сессии моментов"
       },
       "added_reason": "код d0ce00931 (за moments_v3)",
@@ -45005,12 +45005,12 @@
       "blocked_reason": null,
       "release": "r1",
       "emulator": {
-        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&energy=0&moments=v3&next=/premium_modal?context=no_energy%26source=spire_no_energy",
-        "taps": "кадр шторки; тап «Попробовать Plus» → полный пейвол",
-        "log": ""
+        "link": "phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&plus=off&free=on&energy=0&moments=v3&next=/dev_spire_preview?state=room%26spirePanel=off%26tier=0%26floor=4",
+        "taps": "тап «Поднимайся без ожидания с Plus ›» в доке → шторка (кадр шага 1); тап «Попробовать Plus» → полный пейвол (шаг 2, сверять с all-modals-plus-energy)",
+        "log": "[M22] dock: шторка открыта"
       },
       "added_reason": "координатор 15.10",
-      "note": "второй шаг («Попробовать Plus») = действующий полный пейвол (all-modals-plus-energy.html / paywall_copy) — он и есть эталон; отдельный кадр «шторка → полный пейвол» не нужен"
+      "note": "второй шаг («Попробовать Plus») = действующий полный пейвол (all-modals-plus-energy.html / paywall_copy) — он и есть эталон; отдельный кадр «шторка → полный пейвол» не нужен; код шторки — cc1c96b09 (SpireNoEnergySheet над доком), переводы 30a51142f"
     },
     {
       "id": "voice-limit-001",

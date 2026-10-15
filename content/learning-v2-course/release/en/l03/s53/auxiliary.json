@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-53:intro1:r2": {
+          "ru": "Перед `museum` нужно `a`: `a museum`.",
+          "uk": "Перед `museum` потрібне `a`: `a museum`."
+        },
+        "en:lesson-03:session-53:intro1:r3": {
+          "ru": "Одно место: `This is a museum`.",
+          "uk": "Одне місце: `This is a museum`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-53:intro2:r2": {
+          "ru": "Один музей: `Where is the museum?`.",
+          "uk": "Один музей: `Where is the museum?`."
+        },
+        "en:lesson-03:session-53:intro2:r3": {
+          "ru": "`What` спрашивает, что это. Где находится музей — `Where`.",
+          "uk": "`What` запитує, що це. Де розташований музей — `Where`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-53:intro3:r2": {
+          "ru": "`unfair` — несправедливый. Полная бутылка — `full`.",
+          "uk": "`unfair` — несправедливий. Повна пляшка — `full`."
+        },
+        "en:lesson-03:session-53:intro3:r3": {
+          "ru": "Об одной бутылке: `It is full`.",
+          "uk": "Про одну пляшку: `It is full`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0e9901581125769b83806dde6685fc5acee97c9094472ceb6c022a899f7c4351"
+}

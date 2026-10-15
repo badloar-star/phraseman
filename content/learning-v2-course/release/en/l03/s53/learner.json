@@ -7,187 +7,309 @@
       "interactionId": "en:lesson-03:session-53:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-53:i01:r1",
-          "text": "metal"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы показываете знакомый офис на карте. Скажите «Офис там»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-53:i01:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете знакомый офис на карте. Скажите «Офис там»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-53:i01:audio",
-          "transcript": "metal"
+        "family": "phrase_builder",
+        "targetPhrase": "The office is there.",
+        "localizedMeaning": {
+          "ru": "Вы показываете знакомый офис на карте. Скажите «Офис там»",
+          "uk": "Ви показуєте знайомий офіс на карті. Скажіть «Офіс там»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "The",
+          "office",
+          "is",
+          "there"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-53:i01:r1",
-            "targetText": "metal",
-            "meaningByLocale": null
+            "responseId": "en:lesson-03:session-53:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы показываете знакомый офис на карте. Скажите «Офис там»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The office is there.`",
+              "uk": "тут потрібно `is` — `The office is there.`"
+            }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "metal",
-          "definitionByLocale": {
-            "ru": "«металлический». Так можно описать стулья на стеллаже.",
-            "uk": "«металевий». Так можна описати стільці на стелажі."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-53:i03",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-53:i03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-53:i03:audio",
-          "transcript": "plastic"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "plastic",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-53:i05",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-53:i05:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-53:i05:audio",
-          "transcript": "soft"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "soft",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-53:i02",
-      "ordinal": 7,
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i02:r1",
+          "text": "museum"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i02:r2",
+          "text": "office"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i02:r3",
+          "text": "airport"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-53:i02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-53:i02:audio",
-          "transcript": "metal"
+          "transcript": "museum"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "metal",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-53:i02:r1",
+            "targetText": "museum",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i02:r2",
+            "targetText": "office",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i02:r3",
+            "targetText": "airport",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `museum`, а в этом варианте — `office`.",
+              "uk": "У записі перше слово — `museum`, а в цьому варіанті — `office`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `museum`, а в этом варианте — `airport`.",
+              "uk": "У записі перше слово — `museum`, а в цьому варіанті — `airport`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите музей одним английским словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i03:r1",
+          "text": "museum"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i03:r2",
+          "text": "office"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i03:r3",
+          "text": "cinema"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите музей одним английским словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите музей одним английским словом",
+          "uk": "Назвіть музей одним англійським словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i03:r1",
+            "text": "museum"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i03:r2",
+            "text": "office"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i03:r3",
+            "text": "cinema"
+          }
+        ],
+        "testedDimension": "Назовите музей одним английским словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите музей одним английским словом",
+            "feedbackByLocale": {
+              "ru": "`office` — офис. Музей — `museum`.",
+              "uk": "`office` — офіс. Музей — `museum`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите музей одним английским словом",
+            "feedbackByLocale": {
+              "ru": "`cinema` — кинотеатр. Музей — `museum`.",
+              "uk": "`cinema` — кінотеатр. Музей — `museum`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-53:i04",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-53:i04:r1",
-          "text": "plastic"
-        }
-      ],
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-53:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-53:i04:audio",
-          "transcript": "plastic"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-03:session-53:i04:r1",
-            "targetText": "plastic",
-            "meaningByLocale": null
+            "pairId": "en:lesson-03:session-53:i04:p1",
+            "target": "museum",
+            "meaningByLocale": {
+              "ru": "музей",
+              "uk": "музей"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i04:p2",
+            "target": "full",
+            "meaningByLocale": {
+              "ru": "полный",
+              "uk": "повний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i04:p3",
+            "target": "unfair",
+            "meaningByLocale": {
+              "ru": "несправедливый",
+              "uk": "несправедливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i04:p4",
+            "target": "office",
+            "meaningByLocale": {
+              "ru": "офис",
+              "uk": "офіс"
+            }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "plastic",
-          "definitionByLocale": {
-            "ru": "«пластиковый».",
-            "uk": "«пластиковий»."
+        "leftColumn": [
+          "museum",
+          "full",
+          "unfair",
+          "office"
+        ],
+        "rightColumn": [
+          "музей",
+          "полный",
+          "несправедливый",
+          "офис"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i05:audio",
+          "transcript": "This is a museum."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a museum.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "museum"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a museum.`",
+              "uk": "тут потрібно `is` — `This is a museum.`"
+            }
           }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -196,23 +318,68 @@
       "interactionId": "en:lesson-03:session-53:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы уже выбрали музей. Спросите «Где музей?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы уже выбрали музей. Спросите «Где музей?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the museum?",
+        "localizedMeaning": {
+          "ru": "Вы уже выбрали музей. Спросите «Где музей?»",
+          "uk": "Ви вже вибрали музей. Запитайте «Де музей?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "museum"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы уже выбрали музей. Спросите «Где музей?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Where is the museum?`",
+              "uk": "тут потрібно `is` — `Where is the museum?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Бутылка наполнена водой. Скажите «Она полная» с сокращением",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-53:i06:audio"
+        "en:lesson-03:session-53:i07:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Бутылка наполнена водой. Скажите «Она полная» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-53:i06:audio",
-          "transcript": "soft"
+          "audioTargetId": "en:lesson-03:session-53:i07:audio",
+          "transcript": "It's full."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "soft",
+        "targetPhrase": "It's full.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -227,191 +394,207 @@
     },
     {
       "interactionId": "en:lesson-03:session-53:i08",
-      "ordinal": 10,
+      "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-53:i08:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-53:i08:audio",
-          "transcript": "metal"
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы впервые называете незнакомое место: «Это музей»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i08:r1",
+          "text": "a"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "metal",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-03:session-53:i08:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы впервые называете незнакомое место: «Это музей»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы впервые называете незнакомое место: «Это музей»",
+          "uk": "Ви вперше називаєте незнайоме місце: «Це музей»"
+        },
+        "gappedTargetPhrase": "This is ___ museum.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i08:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i08:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вы впервые называете незнакомое место: «Это музей»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы впервые называете незнакомое место: «Это музей»",
+            "feedbackByLocale": {
+              "ru": "`museum` начинается с согласного звука: `a museum`.",
+              "uk": "`museum` починається з приголосного звука: `a museum`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы впервые называете незнакомое место: «Это музей»",
+            "feedbackByLocale": {
+              "ru": "Здесь называем одно место: `a museum`; `is` уже есть.",
+              "uk": "Тут називаємо одне місце: `a museum`; `is` уже є."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-53:i09",
-      "ordinal": 11,
+      "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте оценку порядка, при котором остальные никогда не выбирают маршрут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i09:r1",
+          "text": "It is unfair."
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i09:r2",
+          "text": "It is fair."
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i09:r3",
+          "text": "It is full."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-53:i09:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте оценку порядка, при котором остальные никогда не выбирают маршрут",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-53:i09:audio",
-          "transcript": "plastic"
+          "transcript": "It is unfair."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "plastic",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-53:i09:r1",
+            "targetText": "It is unfair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i09:r2",
+            "targetText": "It is fair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i09:r3",
+            "targetText": "It is full.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте оценку порядка, при котором остальные никогда не выбирают маршрут",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unfair`, а в этом варианте — `fair`.",
+              "uk": "У записі останнє слово — `unfair`, а в цьому варіанті — `fair`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте оценку порядка, при котором остальные никогда не выбирают маршрут",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unfair`, а в этом варианте — `full`.",
+              "uk": "У записі останнє слово — `unfair`, а в цьому варіанті — `full`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-53:i10",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-53:i10:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-53:i10:audio",
-          "transcript": "soft"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "soft",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-53:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — вспомните вещи в пункте выдачи",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — вспомните вещи в пункте выдачи",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-53:i07:p1",
-            "target": "metal",
+            "pairId": "en:lesson-03:session-53:i10:p1",
+            "target": "museum",
             "meaningByLocale": {
-              "ru": "металлический",
-              "uk": "металевий"
+              "ru": "музей",
+              "uk": "музей"
             }
           },
           {
-            "pairId": "en:lesson-03:session-53:i07:p2",
-            "target": "plastic",
+            "pairId": "en:lesson-03:session-53:i10:p2",
+            "target": "office",
             "meaningByLocale": {
-              "ru": "пластиковый",
-              "uk": "пластиковий"
+              "ru": "офис",
+              "uk": "офіс"
             }
           },
           {
-            "pairId": "en:lesson-03:session-53:i07:p3",
-            "target": "soft",
+            "pairId": "en:lesson-03:session-53:i10:p3",
+            "target": "here",
             "meaningByLocale": {
-              "ru": "мягкий",
-              "uk": "м’який"
+              "ru": "здесь",
+              "uk": "тут"
             }
           },
           {
-            "pairId": "en:lesson-03:session-53:i07:p4",
-            "target": "chairs",
+            "pairId": "en:lesson-03:session-53:i10:p4",
+            "target": "there",
             "meaningByLocale": {
-              "ru": "стулья",
-              "uk": "стільці"
-            }
-          },
-          {
-            "pairId": "en:lesson-03:session-53:i07:p5",
-            "target": "tables",
-            "meaningByLocale": {
-              "ru": "столы",
-              "uk": "столи"
-            }
-          },
-          {
-            "pairId": "en:lesson-03:session-53:i07:p6",
-            "target": "cushions",
-            "meaningByLocale": {
-              "ru": "подушки",
-              "uk": "подушки"
-            }
-          },
-          {
-            "pairId": "en:lesson-03:session-53:i07:p7",
-            "target": "please",
-            "meaningByLocale": {
-              "ru": "пожалуйста",
-              "uk": "будь ласка"
+              "ru": "там",
+              "uk": "там"
             }
           }
         ],
         "leftColumn": [
-          "metal",
-          "plastic",
-          "soft",
-          "chairs",
-          "tables",
-          "cushions",
-          "please"
+          "museum",
+          "office",
+          "here",
+          "there"
         ],
         "rightColumn": [
-          "металлический",
-          "пластиковый",
-          "мягкий",
-          "стулья",
-          "столы",
-          "подушки",
-          "пожалуйста"
+          "музей",
+          "офис",
+          "здесь",
+          "там"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -431,31 +614,47 @@
       "interactionId": "en:lesson-03:session-53:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите просьбу — выбираете металлические стулья рядом",
+      "prompt": "Послушайте и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите просьбу — выбираете металлические стулья рядом",
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "These metal chairs, please.",
-        "localizedMeaning": {
-          "ru": "Соберите просьбу — выбираете металлические стулья рядом",
-          "uk": "Складіть прохання — вибираєте металеві стільці поруч"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i11:audio",
+          "transcript": "The museum is here."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The museum is here.",
         "orderedTokens": [
-          "These",
-          "metal",
-          "chairs,",
-          "please"
+          "The",
+          "museum",
+          "is",
+          "here"
         ],
         "authoredDistractorTokens": [
-          "These",
-          "is"
+          "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The museum is here.`",
+              "uk": "тут потрібно `is` — `The museum is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -463,289 +662,68 @@
       "interactionId": "en:lesson-03:session-53:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте указатель — пластиковые столы стоят на дальнем стеллаже",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-53:i12:r1",
-          "text": "Those"
-        },
-        {
-          "responseId": "en:lesson-03:session-53:i12:r2",
-          "text": "These"
-        },
-        {
-          "responseId": "en:lesson-03:session-53:i12:r3",
-          "text": "That"
-        },
-        {
-          "responseId": "en:lesson-03:session-53:i12:r4",
-          "text": "It"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна работает в офисе, о котором вы уже говорили. Спросите «Где офис?»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте указатель — пластиковые столы стоят на дальнем стеллаже",
+      "accessibilityLabel": "Анна работает в офисе, о котором вы уже говорили. Спросите «Где офис?»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте указатель — пластиковые столы стоят на дальнем стеллаже",
-          "uk": "Вставте вказівне слово — пластикові столи стоять на дальньому стелажі"
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the office?",
+        "localizedMeaning": {
+          "ru": "Анна работает в офисе, о котором вы уже говорили. Спросите «Где офис?»",
+          "uk": "Анна працює в офісі, про який ви вже говорили. Запитайте «Де офіс?»"
         },
-        "gappedTargetPhrase": "___ plastic tables, please.",
-        "gapOptions": [
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "office"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-53:i12:r1",
-            "text": "Those"
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i12:r2",
-            "text": "These"
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i12:r3",
-            "text": "That"
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i12:r4",
-            "text": "It"
+            "responseId": "en:lesson-03:session-53:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна работает в офисе, о котором вы уже говорили. Спросите «Где офис?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Where is the office?`",
+              "uk": "тут потрібно `is` — `Where is the office?`"
+            }
           }
         ],
-        "testedDimension": "Вставьте указатель — пластиковые столы с",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-53:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — пластиковые столы с",
-            "feedbackByLocale": {
-              "ru": "`These` выбирает несколько вещей рядом, а столы стоят дальше.",
-              "uk": "`These` вибирає кілька речей поруч, а столи стоять далі."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — пластиковые столы с",
-            "feedbackByLocale": {
-              "ru": "`That` указывает на один предмет дальше. Здесь несколько столов, поэтому нужно `Those`.",
-              "uk": "`That` указує на один предмет далі. Тут кілька столів, тому потрібно `Those`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i12:r4",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — пластиковые столы с",
-            "feedbackByLocale": {
-              "ru": "`It plastic tables` не образует просьбу. Перед несколькими дальними вещами нужно `Those`.",
-              "uk": "`It plastic tables` не утворює прохання. Перед кількома дальніми речами потрібне `Those`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-53:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите точное значение вопроса",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-53:i13:r1",
-          "text": "Те пластиковые столы здесь?"
-        },
-        {
-          "responseId": "en:lesson-03:session-53:i13:r2",
-          "text": "Эти пластиковые столы здесь?"
-        },
-        {
-          "responseId": "en:lesson-03:session-53:i13:r3",
-          "text": "Те металлические столы здесь?"
-        },
-        {
-          "responseId": "en:lesson-03:session-53:i13:r4",
-          "text": "Те пластиковые столы готовы?"
-        }
-      ],
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Один человек всегда выбирает маршрут и не даёт другим выбирать. Скажите «Это несправедливо» с сокращением",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-53:i13:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите точное значение вопроса",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-53:i13:audio",
-          "transcript": "Are those plastic tables here?"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-53:i13:r1",
-            "targetText": "Те пластиковые столы здесь?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i13:r2",
-            "targetText": "Эти пластиковые столы здесь?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i13:r3",
-            "targetText": "Те металлические столы здесь?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i13:r4",
-            "targetText": "Те пластиковые столы готовы?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-53:i13:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение во",
-            "feedbackByLocale": {
-              "ru": "В записи `those`, а этот вариант передаёт `these`.",
-              "uk": "У записі `those`, а цей варіант передає `these`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i13:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение во",
-            "feedbackByLocale": {
-              "ru": "В записи звучит `plastic`, а не `metal`.",
-              "uk": "У записі чути `plastic`, а не `metal`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i13:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение во",
-            "feedbackByLocale": {
-              "ru": "В записи спрашивают `here`, а не о готовности.",
-              "uk": "У записі питають `here`, а не про готовність."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-53:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте описание — подушки лежат у стойки рядом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-53:i14:r1",
-          "text": "soft"
-        },
-        {
-          "responseId": "en:lesson-03:session-53:i14:r2",
-          "text": "metal"
-        },
-        {
-          "responseId": "en:lesson-03:session-53:i14:r3",
-          "text": "plastic"
-        },
-        {
-          "responseId": "en:lesson-03:session-53:i14:r4",
-          "text": "cushions"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте описание — подушки лежат у стойки рядом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте описание — подушки лежат у стойки рядом",
-          "uk": "Вставте опис — подушки лежать біля стійки поруч"
-        },
-        "gappedTargetPhrase": "These ___ cushions, please.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-53:i14:r1",
-            "text": "soft"
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i14:r2",
-            "text": "metal"
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i14:r3",
-            "text": "plastic"
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i14:r4",
-            "text": "cushions"
-          }
-        ],
-        "testedDimension": "Вставьте описание — подушки лежат у стой",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-53:i14:r2",
-            "correct": false,
-            "testedDimension": "Вставьте описание — подушки лежат у стой",
-            "feedbackByLocale": {
-              "ru": "Металлическими были стулья, а подушки здесь `soft`.",
-              "uk": "Металевими були стільці, а подушки тут `soft`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i14:r3",
-            "correct": false,
-            "testedDimension": "Вставьте описание — подушки лежат у стой",
-            "feedbackByLocale": {
-              "ru": "Пластиковыми были столы, а для подушек нужно `soft`.",
-              "uk": "Пластиковими були столи, а для подушок потрібно `soft`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i14:r4",
-            "correct": false,
-            "testedDimension": "Вставьте описание — подушки лежат у стой",
-            "feedbackByLocale": {
-              "ru": "`Cushions` уже стоит после пропуска; сюда ставят описание `soft`.",
-              "uk": "`Cushions` уже стоїть після пропуску, сюди ставлять опис `soft`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-53:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-53:i15:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Один человек всегда выбирает маршрут и не даёт другим выбирать. Скажите «Это несправедливо» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-53:i15:audio",
-          "transcript": "These soft cushions, please."
+          "audioTargetId": "en:lesson-03:session-53:i13:audio",
+          "transcript": "It's unfair."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "These soft cushions, please.",
+        "targetPhrase": "It's unfair.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -759,91 +737,142 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-53:i16",
-      "ordinal": 19,
+      "interactionId": "en:lesson-03:session-53:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, где находится выбранный музей",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-53:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-53:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, где находится выбранный музей",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, где находится выбранный музей",
+          "uk": "Запитайте, де розташований вибраний музей"
+        },
+        "gappedTargetPhrase": "Where ___ the museum?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Спросите, где находится выбранный музей",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-53:i14:r2",
+            "correct": false,
+            "testedDimension": "Спросите, где находится выбранный музей",
+            "feedbackByLocale": {
+              "ru": "Речь об одном музее: `Where is the museum?`.",
+              "uk": "Ідеться про один музей: `Where is the museum?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i14:r3",
+            "correct": false,
+            "testedDimension": "Спросите, где находится выбранный музей",
+            "feedbackByLocale": {
+              "ru": "С `the museum` нужно `is`.",
+              "uk": "З `the museum` потрібне `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i15",
+      "ordinal": 18,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите точное значение просьбы",
+      "prompt": "Послушайте описание наполненной бутылки",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-53:i16:r1",
-          "text": "Эти мягкие подушки, пожалуйста."
+          "responseId": "en:lesson-03:session-53:i15:r1",
+          "text": "It is full."
         },
         {
-          "responseId": "en:lesson-03:session-53:i16:r2",
-          "text": "Те мягкие подушки, пожалуйста."
+          "responseId": "en:lesson-03:session-53:i15:r2",
+          "text": "It is empty."
         },
         {
-          "responseId": "en:lesson-03:session-53:i16:r3",
-          "text": "Эти пластиковые подушки, пожалуйста."
-        },
-        {
-          "responseId": "en:lesson-03:session-53:i16:r4",
-          "text": "Эти мягкие столы, пожалуйста."
+          "responseId": "en:lesson-03:session-53:i15:r3",
+          "text": "It is unfair."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-53:i16:audio"
+        "en:lesson-03:session-53:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите точное значение просьбы",
+      "accessibilityLabel": "Послушайте описание наполненной бутылки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-53:i16:audio",
-          "transcript": "These soft cushions, please."
+          "audioTargetId": "en:lesson-03:session-53:i15:audio",
+          "transcript": "It is full."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-53:i16:r1",
-            "targetText": "Эти мягкие подушки, пожалуйста.",
+            "responseId": "en:lesson-03:session-53:i15:r1",
+            "targetText": "It is full.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-53:i16:r2",
-            "targetText": "Те мягкие подушки, пожалуйста.",
+            "responseId": "en:lesson-03:session-53:i15:r2",
+            "targetText": "It is empty.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-53:i16:r3",
-            "targetText": "Эти пластиковые подушки, пожалуйста.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i16:r4",
-            "targetText": "Эти мягкие столы, пожалуйста.",
+            "responseId": "en:lesson-03:session-53:i15:r3",
+            "targetText": "It is unfair.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-53:i16:r2",
+            "responseId": "en:lesson-03:session-53:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
+            "testedDimension": "Послушайте описание наполненной бутылки",
             "feedbackByLocale": {
-              "ru": "В записи `These`, а этот вариант передаёт `Those`.",
-              "uk": "У записі `These`, а цей варіант передає `Those`."
+              "ru": "В записи последнее слово — `full`, а в этом варианте — `empty`.",
+              "uk": "У записі останнє слово — `full`, а в цьому варіанті — `empty`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-53:i16:r3",
+            "responseId": "en:lesson-03:session-53:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
+            "testedDimension": "Послушайте описание наполненной бутылки",
             "feedbackByLocale": {
-              "ru": "В записи звучит `soft`, а не `plastic`.",
-              "uk": "У записі чути `soft`, а не `plastic`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-53:i16:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
-            "feedbackByLocale": {
-              "ru": "В записи назвали `cushions`, а не `tables`.",
-              "uk": "У записі назвали `cushions`, а не `tables`."
+              "ru": "В записи последнее слово — `full`, а в этом варианте — `unfair`.",
+              "uk": "У записі останнє слово — `full`, а в цьому варіанті — `unfair`."
             }
           }
         ],
@@ -853,34 +882,116 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-53:i17",
-      "ordinal": 20,
+      "interactionId": "en:lesson-03:session-53:i16",
+      "ordinal": 19,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Финал — сотрудник ждёт, что забрать с дальнего стеллажа",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Финал — сотрудник ждёт, что забрать с дальнего стеллажа",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Those soft cushions, please.",
-        "localizedMeaning": {
-          "ru": "Финал — сотрудник ждёт, что забрать с дальнего стеллажа",
-          "uk": "Фінал — працівник чекає, що забрати з дальнього стелажа"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-53:i16:p1",
+            "target": "museum",
+            "meaningByLocale": {
+              "ru": "музей",
+              "uk": "музей"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i16:p2",
+            "target": "full",
+            "meaningByLocale": {
+              "ru": "полный",
+              "uk": "повний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i16:p3",
+            "target": "unfair",
+            "meaningByLocale": {
+              "ru": "несправедливый",
+              "uk": "несправедливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-53:i16:p4",
+            "target": "office",
+            "meaningByLocale": {
+              "ru": "офис",
+              "uk": "офіс"
+            }
+          }
+        ],
+        "leftColumn": [
+          "museum",
+          "full",
+          "unfair",
+          "office"
+        ],
+        "rightColumn": [
+          "музей",
+          "полный",
+          "несправедливый",
+          "офис"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "orderedTokens": [
-          "Those",
-          "soft",
-          "cushions,",
-          "please"
-        ],
-        "authoredDistractorTokens": [
-          "These",
-          "a"
-        ],
-        "slotFeedback": []
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другом городе вы с другом выбрали музей. Друг ищет его на карте. Вы показываете на нужное место дальше от себя. Скажите «Музей там», имея в виду выбранный музей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "В другом городе вы с другом выбрали музей. Друг ищет его на карте. Вы показываете на нужное место дальше от себя. Скажите «Музей там», имея в виду выбранный музей",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-53:i17:audio",
+          "transcript": "The museum is there."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The museum is there.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
@@ -891,5 +1002,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "514e4d924ef4545abab87d4c58d3d781184631ffe5a5063934cce47a67cd1412"
+  "learnerFingerprint": "53b8174624f40dc9bbd9d76aa4149da5a030b0b9b842344cc2c525a0fe2a27a0"
 }

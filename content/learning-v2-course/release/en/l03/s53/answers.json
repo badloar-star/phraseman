@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-03:session-53:i01",
-    "correctText": "metal",
-    "correctResponseId": "en:lesson-03:session-53:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-53:i03",
-    "correctText": "plastic",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-53:i05",
-    "correctText": "soft",
+    "correctText": "The office is there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i02",
-    "correctText": "metal",
-    "correctResponseId": null
+    "correctText": "museum",
+    "correctResponseId": "en:lesson-03:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-53:i03",
+    "correctText": "museum",
+    "correctResponseId": "en:lesson-03:session-53:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-53:i04",
-    "correctText": "plastic",
-    "correctResponseId": "en:lesson-03:session-53:i04:r1"
+    "correctText": "en:lesson-03:session-53:i04:p1=museum\nen:lesson-03:session-53:i04:p2=full\nen:lesson-03:session-53:i04:p3=unfair\nen:lesson-03:session-53:i04:p4=office",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-53:i05",
+    "correctText": "This is a museum.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i06",
-    "correctText": "soft",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-53:i08",
-    "correctText": "metal",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-53:i09",
-    "correctText": "plastic",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-53:i10",
-    "correctText": "soft",
+    "correctText": "Where is the museum?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i07",
-    "correctText": "en:lesson-03:session-53:i07:p1=metal\nen:lesson-03:session-53:i07:p2=plastic\nen:lesson-03:session-53:i07:p3=soft\nen:lesson-03:session-53:i07:p4=chairs\nen:lesson-03:session-53:i07:p5=tables\nen:lesson-03:session-53:i07:p6=cushions\nen:lesson-03:session-53:i07:p7=please",
+    "correctText": "It's full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-53:i08",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-53:i09",
+    "correctText": "It is unfair.",
+    "correctResponseId": "en:lesson-03:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-53:i10",
+    "correctText": "en:lesson-03:session-53:i10:p1=museum\nen:lesson-03:session-53:i10:p2=office\nen:lesson-03:session-53:i10:p3=here\nen:lesson-03:session-53:i10:p4=there",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i11",
-    "correctText": "These metal chairs, please.",
+    "correctText": "The museum is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i12",
-    "correctText": "Those",
-    "correctResponseId": "en:lesson-03:session-53:i12:r1"
+    "correctText": "Where is the office?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i13",
-    "correctText": "Те пластиковые столы здесь?",
-    "correctResponseId": "en:lesson-03:session-53:i13:r1"
+    "correctText": "It's unfair.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i14",
-    "correctText": "soft",
+    "correctText": "is",
     "correctResponseId": "en:lesson-03:session-53:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-53:i15",
-    "correctText": "These soft cushions, please.",
-    "correctResponseId": null
+    "correctText": "It is full.",
+    "correctResponseId": "en:lesson-03:session-53:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-53:i16",
-    "correctText": "Эти мягкие подушки, пожалуйста.",
-    "correctResponseId": "en:lesson-03:session-53:i16:r1"
+    "correctText": "en:lesson-03:session-53:i16:p1=museum\nen:lesson-03:session-53:i16:p2=full\nen:lesson-03:session-53:i16:p3=unfair\nen:lesson-03:session-53:i16:p4=office",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-53:i17",
-    "correctText": "Those soft cushions, please.",
+    "correctText": "The museum is there.",
     "correctResponseId": null
   }
 ]

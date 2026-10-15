@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-53",
   "learningOutcomeByLocale": {
-    "ru": "несколько предметов: `these/those + adjective + plural noun`, например `These metal chairs, please.`",
-    "uk": "кілька предметів: `these/those + adjective + plural noun`, наприклад `These metal chairs, please.`"
+    "ru": "назвать музей с a и спросить о конкретном музее с the",
+    "uk": "назвати музей з a та запитати про конкретний музей з the"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Металлические стулья рядом",
-        "uk": "Металеві стільці поруч"
+        "ru": "Что это за место",
+        "uk": "Що це за місце"
       },
       "bodyByLocale": {
-        "ru": "`metal` — «металлический». На ближнем стеллаже стоят несколько стульев. Сотрудник ждёт, какую группу вы заберёте. Скажите `These metal chairs, please.`: `These` выбирает несколько вещей рядом, `metal` их описывает, а `chairs` называет все стулья. `A` здесь не нужно.",
-        "uk": "`metal` — «металевий». На ближньому стелажі стоять кілька стільців. Працівник чекає, яку групу ви заберете. Скажіть `These metal chairs, please.`: `These` вибирає кілька речей поруч, `metal` їх описує, а `chairs` називає всі стільці. `A` тут не потрібен."
+        "ru": "`museum` — «музей». `This is a museum` — «Это музей»: называем одно место, перед `museum` ставим `a`. Музей начинается с согласного звука, поэтому здесь не `an`. Коллекция старых кружек на вашем столе ещё не делает офис музеем.",
+        "uk": "`museum` — «музей». `This is a museum` — «Це музей»: називаємо одне місце, перед `museum` ставимо `a`. Музей починається з приголосного звука, тому тут не `an`. Колекція старих горняток на вашому столі ще не робить офіс музеєм."
       },
       "question": {
         "interactionId": "en:lesson-03:session-53:intro1:q",
         "promptByLocale": {
-          "ru": "Металлические стулья стоят на ближнем стеллаже. Выберите их.",
-          "uk": "Металеві стільці стоять на ближньому стелажі. Оберіть їх."
+          "ru": "Вы показываете на незнакомое здание: «Это музей».",
+          "uk": "Ви показуєте на незнайому будівлю: «Це музей»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-53:intro1:r1",
-              "text": "These metal chairs, please."
+              "text": "This is a museum."
             },
             {
               "responseId": "en:lesson-03:session-53:intro1:r2",
-              "text": "Those metal chairs, please."
+              "text": "This is an museum."
             },
             {
               "responseId": "en:lesson-03:session-53:intro1:r3",
-              "text": "These chairs metal, please."
+              "text": "This are a museum."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-53:intro1:r1",
-              "text": "These metal chairs, please."
+              "text": "This is a museum."
             },
             {
               "responseId": "en:lesson-03:session-53:intro1:r2",
-              "text": "Those metal chairs, please."
+              "text": "This is an museum."
             },
             {
               "responseId": "en:lesson-03:session-53:intro1:r3",
-              "text": "These chairs metal, please."
+              "text": "This are a museum."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Металлические стулья стоят на ближнем стеллаже. Выберите их.",
-          "uk": "Металеві стільці стоять на ближньому стелажі. Оберіть їх."
+          "ru": "Вы показываете на незнакомое здание: «Это музей».",
+          "uk": "Ви показуєте на незнайому будівлю: «Це музей»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Пластиковые столы дальше",
-        "uk": "Пластикові столи далі"
+        "ru": "Теперь ищем именно его",
+        "uk": "Тепер шукаємо саме його"
       },
       "bodyByLocale": {
-        "ru": "`plastic` — «пластиковый». Несколько столов стоят на дальнем стеллаже. Чтобы сотрудник принёс именно их, скажите `Those plastic tables, please.` `Those` выбирает несколько предметов дальше от вас. После него сразу идут `plastic` и `tables`, без `a`.",
-        "uk": "`plastic` — «пластиковий». Кілька столів стоять на дальньому стелажі. Щоб працівник приніс саме їх, скажіть `Those plastic tables, please.` `Those` вибирає кілька предметів далі від вас. Після нього одразу йдуть `plastic` і `tables`, без `a`."
+        "ru": "Вы уже выбрали музей. `Where is the museum?` — «Где музей?» С `the` спрашиваем о том самом музее. Ответ на карте: `The museum is here` — «Музей здесь». `office` — «офис»; о знакомом офисе: `The office is there` — «Офис там».",
+        "uk": "Ви вже вибрали музей. `Where is the museum?` — «Де музей?» З `the` запитуємо про той самий музей. Відповідь на карті: `The museum is here` — «Музей тут». `office` — «офіс»; про знайомий офіс: `The office is there` — «Офіс там»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-53:intro2:q",
         "promptByLocale": {
-          "ru": "Пластиковые столы стоят на дальнем стеллаже. Выберите их.",
-          "uk": "Пластикові столи стоять на дальньому стелажі. Оберіть їх."
+          "ru": "Вы уже договорились, в какой музей пойдёте. Спросите, где он.",
+          "uk": "Ви вже домовилися, до якого музею підете. Запитайте, де він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-53:intro2:r1",
-              "text": "Those plastic tables, please."
+              "text": "Where is the museum?"
             },
             {
               "responseId": "en:lesson-03:session-53:intro2:r2",
-              "text": "These plastic tables, please."
+              "text": "Where are the museum?"
             },
             {
               "responseId": "en:lesson-03:session-53:intro2:r3",
-              "text": "Those tables plastic, please."
+              "text": "What is the museum?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-53:intro2:r1",
-              "text": "Those plastic tables, please."
+              "text": "Where is the museum?"
             },
             {
               "responseId": "en:lesson-03:session-53:intro2:r2",
-              "text": "These plastic tables, please."
+              "text": "Where are the museum?"
             },
             {
               "responseId": "en:lesson-03:session-53:intro2:r3",
-              "text": "Those tables plastic, please."
+              "text": "What is the museum?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Пластиковые столы стоят на дальнем стеллаже. Выберите их.",
-          "uk": "Пластикові столи стоять на дальньому стелажі. Оберіть їх."
+          "ru": "Вы уже договорились, в какой музей пойдёте. Спросите, где он.",
+          "uk": "Ви вже домовилися, до якого музею підете. Запитайте, де він."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Мягкие подушки у стойки",
-        "uk": "М’які подушки біля стійки"
+        "ru": "Вода и выбор маршрута",
+        "uk": "Вода й вибір маршруту"
       },
       "bodyByLocale": {
-        "ru": "`soft` — «мягкий». Подушки лежат у стойки рядом с вами. Скажите `These soft cushions, please.` `These` выбирает несколько подушек рядом, а `soft` описывает их. Подушки мягкие, но правило в этой короткой просьбе твёрдое: описание идёт перед `cushions`.",
-        "uk": "`soft` — «м’який». Подушки лежать біля стійки поруч із вами. Скажіть `These soft cushions, please.` `These` вибирає кілька подушок поруч, а `soft` їх описує. Подушки м’які, але правило в цьому короткому проханні тверде: опис іде перед `cushions`."
+        "ru": "`full` — «полный»: бутылка наполнена водой. О ней: `It is full` — «Она полная». `unfair` — «несправедливый»: один человек всегда выбирает маршрут и не даёт остальным выбирать. Об этом порядке: `It is unfair` — «Это несправедливо».",
+        "uk": "`full` — «повний»: пляшка наповнена водою. Про неї: `It is full` — «Вона повна». `unfair` — «несправедливий»: одна людина завжди вибирає маршрут і не дає решті вибирати. Про такий порядок: `It is unfair` — «Це несправедливо»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-53:intro3:q",
         "promptByLocale": {
-          "ru": "Мягкие подушки лежат у стойки рядом с вами. Выберите их.",
-          "uk": "М’які подушки лежать біля стійки поруч із вами. Оберіть їх."
+          "ru": "Бутылка наполнена водой. Скажите о ней «Она полная».",
+          "uk": "Пляшка наповнена водою. Скажіть про неї «Вона повна»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-53:intro3:r1",
-              "text": "These soft cushions, please."
+              "text": "It is full."
             },
             {
               "responseId": "en:lesson-03:session-53:intro3:r2",
-              "text": "Those soft cushions, please."
+              "text": "It is unfair."
             },
             {
               "responseId": "en:lesson-03:session-53:intro3:r3",
-              "text": "These cushions soft, please."
+              "text": "It are full."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-53:intro3:r1",
-              "text": "These soft cushions, please."
+              "text": "It is full."
             },
             {
               "responseId": "en:lesson-03:session-53:intro3:r2",
-              "text": "Those soft cushions, please."
+              "text": "It is unfair."
             },
             {
               "responseId": "en:lesson-03:session-53:intro3:r3",
-              "text": "These cushions soft, please."
+              "text": "It are full."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мягкие подушки лежат у стойки рядом с вами. Выберите их.",
-          "uk": "М’які подушки лежать біля стійки поруч із вами. Оберіть їх."
+          "ru": "Бутылка наполнена водой. Скажите о ней «Она полная».",
+          "uk": "Пляшка наповнена водою. Скажіть про неї «Вона повна»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "72d434b132d4179afc43e21e314c614f78b728d249aed170ee6454748664ea46"
+  "introFingerprint": "42bbbc3303f94f77d2f6e2f1f11737ecd665be9b202af8316d049713591377d6"
 }

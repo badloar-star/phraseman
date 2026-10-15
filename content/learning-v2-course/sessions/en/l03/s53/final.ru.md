@@ -1,157 +1,138 @@
-# Английский · Урок 3 · Занятие 53 — «Пункт выдачи для квартиры»
+# Английский · Урок 3 · Занятие 53 — Музей на карте
 
-**Сцена занятия.** В пункте выдачи вы с сотрудником забираете несколько вещей для квартиры. Металлические стулья стоят на ближнем стеллаже, пластиковые столы — на дальнем, а мягкие подушки лежат у стойки.
-**Как сказать:** несколько предметов: `these/those + adjective + plural noun`, например `These metal chairs, please.`
-**Новые слова:** metal, plastic, soft
-**Возврат:** these, those, please, chairs, tables, cushions, this, that
+**Ситуация.** Вы с Анной выбираете, куда пойти. На карте есть музей и знакомый офис. Перед выходом вы проверяете полную бутылку воды. Анна замечает, что только один человек всё время выбирает маршрут: пора дать слово остальным.
+
+**Что вы освоите:** назвать музей с a и спросить о конкретном музее с the
+**Новые слова:** museum
+
+---
 
 ## Интро 1
 
-### Металлические стулья рядом
+### Что это за место
 
-`metal` — «металлический». На ближнем стеллаже стоят несколько стульев. Сотрудник ждёт, какую группу вы заберёте. Скажите `These metal chairs, please.`: `These` выбирает несколько вещей рядом, `metal` их описывает, а `chairs` называет все стулья. `A` здесь не нужно.
+`museum` — «музей». `This is a museum` — «Это музей»: называем одно место, перед `museum` ставим `a`. Музей начинается с согласного звука, поэтому здесь не `an`. Коллекция старых кружек на вашем столе ещё не делает офис музеем.
 
-**Металлические стулья стоят на ближнем стеллаже. Выберите их.**
+**Вы показываете на незнакомое здание: «Это музей».**
 
-- ✅ **These metal chairs, please.**
-- ❌ Those metal chairs, please. — *`Those` указывает на несколько предметов дальше. Стулья рядом, поэтому нужно `These`.*
-- ❌ These chairs metal, please. — *Сначала ставят описание, потом предмет: `metal chairs`.*
+- ✅ **This is a museum.**
+- ❌ This is an museum. — *Перед `museum` нужно `a`: `a museum`.*
+- ❌ This are a museum. — *Одно место: `This is a museum`.*
 
 ---
 
 ## Интро 2
 
-### Пластиковые столы дальше
+### Теперь ищем именно его
 
-`plastic` — «пластиковый». Несколько столов стоят на дальнем стеллаже. Чтобы сотрудник принёс именно их, скажите `Those plastic tables, please.` `Those` выбирает несколько предметов дальше от вас. После него сразу идут `plastic` и `tables`, без `a`.
+Вы уже выбрали музей. `Where is the museum?` — «Где музей?» С `the` спрашиваем о том самом музее. Ответ на карте: `The museum is here` — «Музей здесь». `office` — «офис»; о знакомом офисе: `The office is there` — «Офис там».
 
-**Пластиковые столы стоят на дальнем стеллаже. Выберите их.**
+**Вы уже договорились, в какой музей пойдёте. Спросите, где он.**
 
-- ✅ **Those plastic tables, please.**
-- ❌ These plastic tables, please. — *`These` выбирает несколько вещей рядом, а столы стоят дальше.*
-- ❌ Those tables plastic, please. — *Описание ставят перед предметом: `plastic tables`.*
+- ✅ **Where is the museum?**
+- ❌ Where are the museum? — *Один музей: `Where is the museum?`.*
+- ❌ What is the museum? — *`What` спрашивает, что это. Где находится музей — `Where`.*
 
 ---
 
 ## Интро 3
 
-### Мягкие подушки у стойки
+### Вода и выбор маршрута
 
-`soft` — «мягкий». Подушки лежат у стойки рядом с вами. Скажите `These soft cushions, please.` `These` выбирает несколько подушек рядом, а `soft` описывает их. Подушки мягкие, но правило в этой короткой просьбе твёрдое: описание идёт перед `cushions`.
+`full` — «полный»: бутылка наполнена водой. О ней: `It is full` — «Она полная». `unfair` — «несправедливый»: один человек всегда выбирает маршрут и не даёт остальным выбирать. Об этом порядке: `It is unfair` — «Это несправедливо».
 
-**Мягкие подушки лежат у стойки рядом с вами. Выберите их.**
+**Бутылка наполнена водой. Скажите о ней «Она полная».**
 
-- ✅ **These soft cushions, please.**
-- ❌ Those soft cushions, please. — *Подушки рядом, поэтому несколько вещей выбираем словом `These`.*
-- ❌ These cushions soft, please. — *Описание ставят перед предметом: `soft cushions`.*
+- ✅ **It is full.**
+- ❌ It is unfair. — *`unfair` — несправедливый. Полная бутылка — `full`.*
+- ❌ It are full. — *Об одной бутылке: `It is full`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-53:i01; family: listen_choose -->
-Цель: `metal`
-Варианты: `metal`
+**1 · Вы показываете знакомый офис на карте. Скажите «Офис там»**
+<!-- interaction_id: en:lesson-03:session-53:i01; family: phrase_builder -->
+Плитки: `there` `is` `office` `The` `are` → **The office is there.**
+*(плитка `are` лишняя: здесь нужно `is` — `The office is there.`)*
 
-**2 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-53:i03; family: scripted_repeat_compare -->
-Цель: `plastic`
+**2 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-53:i02; family: listen_choose -->
+🔊 *museum* → **museum** · office · airport
+- office — *В записи первое слово — `museum`, а в этом варианте — `office`.*
+- airport — *В записи первое слово — `museum`, а в этом варианте — `airport`.*
 
-**3 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-53:i05; family: listen_choose -->
-Цель: `soft`
-Варианты: `soft` · `plastic`
-- plastic — *В записи звучит `soft` — «мягкий», а не `plastic` — «пластиковый».*
+**3 · Назовите музей одним английским словом**
+<!-- interaction_id: en:lesson-03:session-53:i03; family: context_gap_grammar -->
+___ → **museum** · office · cinema
+- office — *`office` — офис. Музей — `museum`.*
+- cinema — *`cinema` — кинотеатр. Музей — `museum`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-53:i04; family: speed_match -->
+museum — музей · full — полный · unfair — несправедливый · office — офис
 
-**4 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-53:i02; family: scripted_repeat_compare -->
-Цель: `metal`
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-53:i05; family: listen_build_dictation -->
+🔊 *This is a museum.* Плитки: `museum` `a` `is` `This` `are` → **This is a museum.**
+*(плитка `are` лишняя: здесь нужно `is` — `This is a museum.`)*
 
-**5 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-03:session-53:i04; family: listen_choose -->
-Цель: `plastic`
-Варианты: `plastic`
+**6 · Вы уже выбрали музей. Спросите «Где музей?»**
+<!-- interaction_id: en:lesson-03:session-53:i06; family: phrase_builder -->
+Плитки: `museum` `the` `is` `Where` `are` → **Where is the museum?**
+*(плитка `are` лишняя: здесь нужно `is` — `Where is the museum?`)*
 
-**6 · Различите слово — soft или sort**
-<!-- interaction_id: en:lesson-03:session-53:i06; family: sound_contrast -->
-Цель: `soft`
-Варианты: `soft` · `sort`
-- sort — *`sort` — «сортировать». В записи звучит `soft` — «мягкий».*
+**7 · Бутылка наполнена водой. Скажите «Она полная» с сокращением**
+<!-- interaction_id: en:lesson-03:session-53:i07; family: scripted_repeat_compare -->
+🎙 **It's full.**
 
+**8 · Вы впервые называете незнакомое место: «Это музей»**
+<!-- interaction_id: en:lesson-03:session-53:i08; family: context_gap_grammar -->
+This is ___ museum. → **a** · an · are
+- an — *`museum` начинается с согласного звука: `a museum`.*
+- are — *Здесь называем одно место: `a museum`; `is` уже есть.*
 
-**7 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-03:session-53:i08; family: speed_match -->
-Пары: `metal` — металлический · `chairs` — стулья · `tables` — столы · `cushions` — подушки
-Цель: `metal · chairs · tables · cushions`
+**9 · Послушайте оценку порядка, при котором остальные никогда не выбирают маршрут**
+<!-- interaction_id: en:lesson-03:session-53:i09; family: listen_choose -->
+🔊 *It is unfair.* → **It is unfair.** · It is fair. · It is full.
+- It is fair. — *В записи последнее слово — `unfair`, а в этом варианте — `fair`.*
+- It is full. — *В записи последнее слово — `unfair`, а в этом варианте — `full`.*
 
-**8 · Различите слово — plastic или elastic**
-<!-- interaction_id: en:lesson-03:session-53:i09; family: sound_contrast -->
-Цель: `plastic`
-Варианты: `plastic` · `elastic`
-- elastic — *Здесь в начале звучит `plastic`, без начального гласного из `elastic`.*
+**10 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-53:i10; family: speed_match -->
+museum — музей · office — офис · here — здесь · there — там
 
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-03:session-53:i11; family: listen_build_dictation -->
+🔊 *The museum is here.* Плитки: `here` `is` `museum` `The` `are` → **The museum is here.**
+*(плитка `are` лишняя: здесь нужно `is` — `The museum is here.`)*
 
-**9 · Произнесите слово**
-<!-- interaction_id: en:lesson-03:session-53:i10; family: scripted_repeat_compare -->
-Цель: `soft`
+**12 · Анна работает в офисе, о котором вы уже говорили. Спросите «Где офис?»**
+<!-- interaction_id: en:lesson-03:session-53:i12; family: phrase_builder -->
+Плитки: `office` `the` `is` `Where` `are` → **Where is the office?**
+*(плитка `are` лишняя: здесь нужно `is` — `Where is the office?`)*
 
-**10 · Соедините пары — вспомните вещи в пункте выдачи**
-<!-- interaction_id: en:lesson-03:session-53:i07; family: speed_match -->
-Пары: `metal` — металлический · `plastic` — пластиковый · `soft` — мягкий · `chairs` — стулья · `tables` — столы · `cushions` — подушки · `please` — пожалуйста
-Цель: `metal · plastic · soft · chairs · tables · cushions · please`
+**13 · Один человек всегда выбирает маршрут и не даёт другим выбирать. Скажите «Это несправедливо» с сокращением**
+<!-- interaction_id: en:lesson-03:session-53:i13; family: scripted_repeat_compare -->
+🎙 **It's unfair.**
 
-**11 · Соберите просьбу — выбираете металлические стулья рядом**
-<!-- interaction_id: en:lesson-03:session-53:i11; family: phrase_builder -->
-Цель: `These metal chairs, please.`
-
-**12 · Вставьте указатель — пластиковые столы стоят на дальнем стеллаже**
-<!-- interaction_id: en:lesson-03:session-53:i12; family: context_gap_grammar -->
-Цель: `___ plastic tables, please.`
-Варианты: `Those` · `These` · `That` · `It`
-- These — *`These` выбирает несколько вещей рядом, а столы стоят дальше.*
-- That — *`That` указывает на один предмет дальше. Здесь несколько столов, поэтому нужно `Those`.*
-- It — *`It plastic tables` не образует просьбу. Перед несколькими дальними вещами нужно `Those`.*
-
-
-**13 · Послушайте и выберите точное значение вопроса**
-<!-- interaction_id: en:lesson-03:session-53:i13; family: listen_choose -->
-Цель: `Are those plastic tables here?`
-Варианты: `Те пластиковые столы здесь?` · `Эти пластиковые столы здесь?` · `Те металлические столы здесь?` · `Те пластиковые столы готовы?`
-- Эти пластиковые столы здесь? — *В записи `those`, а этот вариант передаёт `these`.*
-- Те металлические столы здесь? — *В записи звучит `plastic`, а не `metal`.*
-- Те пластиковые столы готовы? — *В записи спрашивают `here`, а не о готовности.*
-
-
-**14 · Вставьте описание — подушки лежат у стойки рядом**
+**14 · Спросите, где находится выбранный музей**
 <!-- interaction_id: en:lesson-03:session-53:i14; family: context_gap_grammar -->
-Цель: `These ___ cushions, please.`
-Варианты: `soft` · `metal` · `plastic` · `cushions`
-- metal — *Металлическими были стулья, а подушки здесь `soft`.*
-- plastic — *Пластиковыми были столы, а для подушек нужно `soft`.*
-- cushions — *`Cushions` уже стоит после пропуска; сюда ставят описание `soft`.*
+Where ___ the museum? → **is** · are · am
+- are — *Речь об одном музее: `Where is the museum?`.*
+- am — *С `the museum` нужно `is`.*
 
+**15 · Послушайте описание наполненной бутылки**
+<!-- interaction_id: en:lesson-03:session-53:i15; family: listen_choose -->
+🔊 *It is full.* → **It is full.** · It is empty. · It is unfair.
+- It is empty. — *В записи последнее слово — `full`, а в этом варианте — `empty`.*
+- It is unfair. — *В записи последнее слово — `full`, а в этом варианте — `unfair`.*
 
-**15 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-03:session-53:i15; family: listen_build_dictation -->
-Цель: `These soft cushions, please.`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-03:session-53:i16; family: speed_match -->
+museum — музей · full — полный · unfair — несправедливый · office — офис
 
-**16 · Послушайте и выберите точное значение просьбы**
-<!-- interaction_id: en:lesson-03:session-53:i16; family: listen_choose -->
-Цель: `These soft cushions, please.`
-Варианты: `Эти мягкие подушки, пожалуйста.` · `Те мягкие подушки, пожалуйста.` · `Эти пластиковые подушки, пожалуйста.` · `Эти мягкие столы, пожалуйста.`
-- Те мягкие подушки, пожалуйста. — *В записи `These`, а этот вариант передаёт `Those`.*
-- Эти пластиковые подушки, пожалуйста. — *В записи звучит `soft`, а не `plastic`.*
-- Эти мягкие столы, пожалуйста. — *В записи назвали `cushions`, а не `tables`.*
+**17 · В другом городе вы с другом выбрали музей. Друг ищет его на карте. Вы показываете на нужное место дальше от себя. Скажите «Музей там», имея в виду выбранный музей**
+<!-- interaction_id: en:lesson-03:session-53:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The museum is there.**
 
-
-**17 · сотрудник ждёт, что забрать с дальнего стеллажа**
-<!-- interaction_id: en:lesson-03:session-53:i17; family: phrase_builder -->
-Цель: `Those soft cushions, please.`
-
-## Для сборщика
-new_words: metal — металлический — Материал стульев.
-new_words: plastic — пластиковый — Материал столов.
-new_words: soft — мягкий — Свойство подушек.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=sound_contrast, 9=scripted_repeat_compare, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=listen_choose, 14=context_gap_grammar, 15=listen_build_dictation, 16=listen_choose, 17=phrase_builder

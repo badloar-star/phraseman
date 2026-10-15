@@ -1477,10 +1477,9 @@ export default function LessonComplete() {
             <V2DoneScreen
               testID="lesson-complete-done"
               title={triLang(lang, { ru: 'Урок пройден', en: 'Lesson complete', uk: 'Урок пройдено', es: 'Lección completada', 'pt-BR': 'Lição concluída', vi: 'Đã hoàn thành bài học', id: 'Pelajaran selesai', tr: 'Ders tamamlandı', pl: 'Lekcja ukończona' })}
-              subtitle={isComboCompletion ? undefined : [
-                triLang(lang, { ru: `Урок ${lessonId}`, en: `Lesson ${lessonId}`, uk: `Урок ${lessonId}`, es: `Lección ${lessonId}`, 'pt-BR': `Lição ${lessonId}`, vi: `Bài ${lessonId}`, id: `Pelajaran ${lessonId}`, tr: `Ders ${lessonId}`, pl: `Lekcja ${lessonId}` }),
-                lessonNamesForLang(lang)[lessonId - 1],
-              ].filter(Boolean).join(' · ')}
+              // зачем (координатор 15.10, Макеты: в эталоне m10 под «Урок пройден» стоит только тема урока, без «Урок N ·»): номер остаётся лишь запасным вариантом, когда названия урока нет
+              subtitle={isComboCompletion ? undefined : (lessonNamesForLang(lang)[lessonId - 1]
+                || triLang(lang, { ru: `Урок ${lessonId}`, en: `Lesson ${lessonId}`, uk: `Урок ${lessonId}`, es: `Lección ${lessonId}`, 'pt-BR': `Lição ${lessonId}`, vi: `Bài ${lessonId}`, id: `Pelajaran ${lessonId}`, tr: `Ders ${lessonId}`, pl: `Lekcja ${lessonId}` }))}
               stars={isComboCompletion ? null : resultStars}
               noteAction={guestSignInInvite ? {
                 label: triLang(lang, { ru: 'Один клик через Google — и прогресс в безопасности.', en: 'One tap with Google — and your progress is safe.', uk: 'Один тап через Google — і прогрес у безпеці.', es: 'Un toque en Google y tu progreso queda a salvo.', 'pt-BR': 'Um toque no Google e seu progresso fica seguro.', vi: 'Một chạm qua Google — tiến trình của bạn an toàn.', id: 'Sekali ketuk lewat Google — progresmu aman.', tr: 'Google ile tek dokunuş — ilerlemen güvende.', pl: 'Jedno kliknięcie przez Google — postępy są bezpieczne.' }),

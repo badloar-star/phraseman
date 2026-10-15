@@ -2,6 +2,7 @@
 
 Governance-ID: TG-1668EEA983AB
 Governance-ID: TG-D9FCE7CA2F95
+Governance-ID: TG-C36FA1695B33
 
 ## Outcome
 Макеты (c1_reset2, devResult 38:12, «Сумерки» и «Океан»): состав совпадает с m10; три 🟡.

@@ -55,9 +55,10 @@ describe('«Итог урока»: «Повторить ошибки» и под
     expect(host).toContain('if (!navOnce(`lesson_complete:mistakes_hub:${lessonId}`)) return;');
   });
 
-  it('подпись «Урок N · тема» — как в эталоне practice.html#done2 (sub: «Урок 3 · Present Simple»)', () => {
-    const mock = read('docs/design/v2-app/practice.html');
-    expect(mock).toContain("sub: 'Урок 3 · Present Simple'");
-    expect(host).toContain('lessonNamesForLang(lang)[lessonId - 1],\n              ].filter(Boolean).join(\' · \')');
+  it('подпись под «Урок пройден» — только тема урока, как в эталоне m10 (координатор 15.10); «Урок N» лишь запасной вариант без названия', () => {
+    const m10 = read('docs/design/v2-app/engagement-moments-v3-b.html');
+    expect(m10).toContain('<div class="h-lg beat" data-b style="margin-top:14px">Present Simple: Утверждение</div>');
+    expect(host).toContain('subtitle={isComboCompletion ? undefined : (lessonNamesForLang(lang)[lessonId - 1]\n                || triLang(lang,');
+    expect(host).not.toContain(").filter(Boolean).join(' · ')}");
   });
 });

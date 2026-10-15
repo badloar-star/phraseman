@@ -133,6 +133,7 @@ import { isDevLessonIntroSkip } from './dev_cards_state';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { MOTION_DURATION } from '../constants/motion';
 import { fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
+import { recordHomeContinueLegacy } from './home_continue_mark';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
@@ -3867,6 +3868,7 @@ function LessonScreen() {
     lastOpenedSyncedRef.current = true;
     const homeScore = (correctCount / 50 * 5).toFixed(1);
     void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId)).catch(noteSwallowedHandler('lesson1:useEffect.setItem_2'));
+    recordHomeContinueLegacy(studyTarget); // зачем (P23): карточка «Продолжить» сравнивает время старого урока и занятия V2
     patchHomeScreenHydration({
       lastLessonId: lessonId,
       lastLessonProgress: correctCount,

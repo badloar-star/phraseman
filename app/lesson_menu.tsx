@@ -84,6 +84,7 @@ import {
   storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
+import { recordHomeContinueLegacy } from './home_continue_mark';
 import { DebugLogger } from './debug-logger';
 import LessonMenuGateSkeleton from '../components/lessons/LessonMenuGateSkeleton'; // зачем (координатор 13.10): скелет вместо пустого первого кадра, пока идёт fail-closed проверка доступа
 import { navOnce } from './nav_once'; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по «Начать/Продолжить» открывал два урока
@@ -797,6 +798,7 @@ function LessonMenu() {
     if (!lockStateLoaded || isLessonLocked) return;
     const task = InteractionManager.runAfterInteractions(() => {
       void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId));
+      recordHomeContinueLegacy(studyTarget); // зачем (P23): карточка «Продолжить» сравнивает время старого урока и занятия V2
     });
     return () => task.cancel();
   }, [lessonId, studyTarget, lockStateLoaded, isLessonLocked]);

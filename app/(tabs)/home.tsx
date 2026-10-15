@@ -123,6 +123,8 @@ import {
 } from '../streak_week_markers';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
+import { homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, useHomeContinueMarks } from '../home_continue_mark';
+import { HOME_CONTINUE_V2_ENABLED, homeContinueV2Href } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { markHomeFirstPaint } from '../home_paint_marker';
 import { peekStreakDayState, subscribeStreakDayState } from '../streak_day_signal';
@@ -798,6 +800,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             studyTarget: String(studyTarget), source: 'hydration_or_loadData',
         }));
     }, [continueResolved, homeLearnVisible, lastLesson?.id, lastLesson?.progress, studyTarget]);
+    // зачем (Ревизор P23, координатор 15.10): «Продолжить» показывает то, что СВЕЖЕЕ — старый урок или занятие курса V2 (метки в home_continue_mark,
+    // только локально). Раньше карточка знала только старые уроки: у тех, кто занимался V2, её не было или она вела в старый урок.
+    const continueMarks = useHomeContinueMarks(studyTarget);
+    const continueInput = { hasLegacyLesson: lastLesson !== null, legacyAtMs: continueMarks.legacyAtMs, v2: homeLearnVisible && HOME_CONTINUE_V2_ENABLED ? continueMarks.v2 : null };
+    const continueChoice = pickHomeContinue(continueInput);
+    const continueV2 = continueChoice.kind === 'v2' ? continueInput.v2 : null;
+    useEffect(() => {
+        logHomeContinueChoice(continueChoice, continueInput, String(studyTarget));
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал пишется на смену решения или меток, а не на каждый рендер
+    }, [continueChoice.kind, continueChoice.reason, continueMarks.v2?.atMs, continueMarks.v2?.done, continueMarks.legacyAtMs, lastLesson?.id, studyTarget]);
     useEffect(() => {
         continueResolvedRef.current = continueResolved;
         if (continueResolved) return undefined;
@@ -2211,13 +2223,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             : (lessonNamesForStudyTarget(lang, studyTarget)[lastLesson.id - 1] ?? lastLesson.name);
         // зачем (владелец 04.10): «Продолжить обучение» = последний открытый урок, ошибки — только в «Сегодня».
         // D129: без курса для языка плашку урока не рисуем.
-        const priorityCardVisible = lastLesson !== null && homeLearnVisible;
+        const priorityCardVisible = (lastLesson !== null || continueV2 !== null) && homeLearnVisible;
         const continueCardPending = !continueResolved && homeLearnVisible && !priorityCardVisible;
-        const priorityCardTitle = lastLessonName;
+        const priorityCardTitle = continueV2 ? homeContinueV2Title(lang, continueV2.lessonOrdinal, continueV2.sessionOrdinal) : lastLessonName;
         // зачем (ассеты 2.0, 04.10): реестр отдаёт новый предмет, а пока его нет — прежнюю картинку этого места.
         // Владелец 04.10 про today.webp: «ЭТО ДЛЯ ПОСЛЕДНЕГО УРОКА» — блокнот с галочкой, когда последний урок пройден
         // (тот же порог 45 верных, что у счётчика пройденных уроков выше); урок в процессе — блокнот с ручкой (continue).
-        const lastLessonCompleted = (lastLesson?.progress ?? 0) >= 45;
+        const lastLessonCompleted = continueV2 ? continueV2.total > 0 && continueV2.done >= continueV2.total : (lastLesson?.progress ?? 0) >= 45;
         // зачем (координатор 15.10): основа и слой .accent плитки — из ОДНОГО resolveThemedArt (кэш реестра), второго разрешения нет
         const tileArt = (name: Parameters<typeof resolveThemedArt>[0], fallback: number) => { const r = resolveThemedArt(name, homeArtTone); return { art: (r.base ?? fallback) as number, artAccent: r.accent }; };
         const priorityCardArt = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone);
@@ -2463,14 +2475,20 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               <HomeV2ContinueCard
                 pending={!priorityCardVisible && continueCardPending}
                 title={priorityCardTitle}
-                done={Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
-                total={50}
+                done={continueV2 ? Math.max(0, Math.min(continueV2.total, continueV2.done)) : Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
+                total={continueV2 ? Math.max(1, continueV2.total) : 50}
                 art={priorityCardImage}
                 artAccent={priorityCardArt.accent}
                 artWide={!lastLessonCompleted}
-                badge={lastLesson ? triLang(lang, { ru: `Урок ${lastLesson.id}`, uk: `Урок ${lastLesson.id}`, en: `Lesson ${lastLesson.id}`, es: `Lección ${lastLesson.id}`, 'pt-BR': `Lição ${lastLesson.id}`, vi: `Bài ${lastLesson.id}`, id: `Pelajaran ${lastLesson.id}`, tr: `Ders ${lastLesson.id}`, pl: `Lekcja ${lastLesson.id}` }) : undefined}
-                accessibilityLabel={`${s.home.continueBtn}: ${lastLessonName}`}
+                badge={continueV2 ? triLang(lang, { ru: `Урок ${continueV2.lessonOrdinal}`, uk: `Урок ${continueV2.lessonOrdinal}`, en: `Lesson ${continueV2.lessonOrdinal}`, es: `Lección ${continueV2.lessonOrdinal}`, 'pt-BR': `Lição ${continueV2.lessonOrdinal}`, vi: `Bài ${continueV2.lessonOrdinal}`, id: `Pelajaran ${continueV2.lessonOrdinal}`, tr: `Ders ${continueV2.lessonOrdinal}`, pl: `Lekcja ${continueV2.lessonOrdinal}` }) : lastLesson ? triLang(lang, { ru: `Урок ${lastLesson.id}`, uk: `Урок ${lastLesson.id}`, en: `Lesson ${lastLesson.id}`, es: `Lección ${lastLesson.id}`, 'pt-BR': `Lição ${lastLesson.id}`, vi: `Bài ${lastLesson.id}`, id: `Pelajaran ${lastLesson.id}`, tr: `Ders ${lastLesson.id}`, pl: `Lekcja ${lastLesson.id}` }) : undefined}
+                accessibilityLabel={`${s.home.continueBtn}: ${priorityCardTitle}`}
                 onPress={() => {
+                  if (continueV2) {
+                    // зачем (P23): тап ведёт в то же занятие V2 тем же маршрутом, что вкладка «Уроки» (без одноразовой подготовки — экран занятия готовит сам)
+                    console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'v2', sessionId: continueV2.sessionId, done: continueV2.done, total: continueV2.total }));
+                    nav.push(homeContinueV2Href(continueV2.route) as never);
+                    return;
+                  }
                   if (!lastLesson) {
                     console.warn('[HOME-CONTINUE] press:ignored', JSON.stringify({ reason: 'no_last_lesson' })); // guard-ok: ранний выход логирует причину
                     return;

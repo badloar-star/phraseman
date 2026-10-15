@@ -83,7 +83,8 @@ describe('home learning CTA contract', () => {
     expect(source).not.toContain('priorityCardShowsMistakes');
     expect(source).not.toContain('handleHomeLearningPriorityCardLongPress');
     expect(source).not.toContain('homePriorityCardFace');
-    expect(source).toContain('const priorityCardVisible = lastLesson !== null && homeLearnVisible;');
+    // зачем (Ревизор P23, 15.10): «последний урок» = старый урок ИЛИ занятие курса V2 — что свежее (home_continue_mark); ошибки по-прежнему не захватывают карточку
+    expect(source).toContain('const priorityCardVisible = (lastLesson !== null || continueV2 !== null) && homeLearnVisible;');
     expect(source).toContain('[HOME-CONTINUE] card');
     expect(source).not.toContain('<Reanimated.View style={homePriorityCardScaleStyle}>');
     expect(source).not.toContain('testID="home-mistakes-pulse-button"');

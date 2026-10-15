@@ -275,6 +275,7 @@ import { learningV2LessonIsAccessible } from "../learning_v2_access_policy";
 import { isLearningV2SessionReleasedV1, LEARNING_V2_HAS_RELEASED_SESSIONS_V1 } from "../learning_v2_session_availability_v1";
 import { LEARNING_V2_HIDDEN, logLearningV2Hidden } from "../learning_v2_visibility_switch";
 import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
+import { recordHomeContinueV2, refreshHomeContinueV2Progress } from "../home_continue_mark";
 import {
   factoryNativeLearningV2AvailabilityV1,
   factoryNativeLearningV2NewWordCountV1,
@@ -3620,6 +3621,11 @@ export default function LessonsTab({
           )
         );
       });
+      // зачем (P23): вкладка сверила занятия урока — карточка «Продолжить» на Главной показывает свежее «пройдено / выпущено» (метка того же урока)
+      {
+        const released = sessions.filter((session) => studyTarget !== "en" || learningV2FactoryNativeSessionIds.has(learningV2CourseSessionIdV1(lessonOrdinal, session.sessionOrdinal)));
+        refreshHomeContinueV2Progress(studyTarget, lessonOrdinal, released.filter((session) => session.state === "completed").length, released.length);
+      }
       const current = available.find((session) => session.state === "current");
       if (current) {
         // Немой catch запрещён: отказ обязан назвать причину.
@@ -3734,6 +3740,32 @@ export default function LessonsTab({
       learningV2ReduceMotionPreference,
     ],
   );
+  // зачем (Ревизор P23, координатор 15.10): карточка «Продолжить» на Главной знала только старые уроки — запуск занятия V2 пишет
+  // метку «последнее V2» (урок, занятие, пройдено/выпущено в уроке, маршрут без одноразовых sessionRunId/skipIntro, время). Только локально.
+  const rememberHomeContinueV2 = useCallback((selected: Readonly<{ lessonOrdinal: number; sessionOrdinal: number; state: LearningV2AccordionSessionStateV1 }>, sessionId: string) => {
+    {
+      const lessonPrefix = `${learningV2CourseSessionIdV1(selected.lessonOrdinal, 1).split(":session:")[0]}:`;
+      const releasedInLesson = [...learningV2FactoryNativeSessionIds].filter((id) => id.startsWith(lessonPrefix));
+      recordHomeContinueV2(studyTarget, {
+        lessonOrdinal: selected.lessonOrdinal,
+        sessionOrdinal: selected.sessionOrdinal,
+        sessionId,
+        done: learningV2Progress.completedSessionIds.filter((id) => releasedInLesson.includes(id)).length,
+        total: releasedInLesson.length,
+        route: {
+          id: sessionId,
+          runtimeMode: "direct_v1",
+          previewOrigin: "course",
+          lessonOrdinal: String(selected.lessonOrdinal),
+          sessionOrdinal: String(selected.sessionOrdinal),
+          releaseEnvironment: learningV2Catalog?.environment ?? "production",
+          releaseSeasonId: learningV2Catalog?.seasonId ?? "learning-v2",
+          runKind: selected.state === "completed" ? "repeat" : "initial",
+        },
+        atMs: Date.now(),
+      });
+    }
+  }, [learningV2Catalog?.environment, learningV2Catalog?.seasonId, learningV2FactoryNativeSessionIds, learningV2Progress.completedSessionIds, studyTarget]);
   const launchSelectedLearningV2Session = useCallback((skipIntro: boolean) => {
     const selected = selectedLearningV2Session;
     if (!selected || !selectedLearningV2PreparationKey) return;
@@ -3788,6 +3820,7 @@ export default function LessonsTab({
           }
         }
         setSelectedLearningV2Session(null);
+        rememberHomeContinueV2(selected, sessionId); // зачем (P23): метка «последнее V2» для карточки «Продолжить» на Главной
         requestAnimationFrame(() => {
           if (__DEV__) {
             console.log(
@@ -3869,6 +3902,7 @@ export default function LessonsTab({
     lang,
     learningV2Catalog?.environment,
     learningV2Catalog?.seasonId,
+    rememberHomeContinueV2,
     learningV2DevUnlockAllActive,
     learningV2ReduceMotionPreference,
     markLearningV2PreparedLaunchTrace,

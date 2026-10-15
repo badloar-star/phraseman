@@ -60160,6 +60160,309 @@
           "byteSize": 44160
         }
       ]
+    },
+    "l04/s31/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is a car park.",
+          "file": "67e81e4161b6aee3b0a5825bcd214ece53df8fd31c88e06f42949e977142f2f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/67e81e4161b6aee3b0a5825bcd214ece53df8fd31c88e06f42949e977142f2f9.mp3",
+          "contentHash": "05a90429e041aed8f63d27bbd8d03d1e9589a86ffd4223e065e28d7d7e4b7d29",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s31/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The parks are next to the hotel.",
+          "file": "5484e23c535a227bcc41c09eb8966ad646d542d0622ee2b4e54a8abea54bc4b7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5484e23c535a227bcc41c09eb8966ad646d542d0622ee2b4e54a8abea54bc4b7.mp3",
+          "contentHash": "4d03b9d0b2cdf8729c947369141dece9eadac0c89517f1723f5e5d34b7625e3c",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s31/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The cheese is in the bag.",
+          "file": "2a6431bf4adfcdb310659df9db46905ee7553f64efcc3417e82fe8d480ff83d6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2a6431bf4adfcdb310659df9db46905ee7553f64efcc3417e82fe8d480ff83d6.mp3",
+          "contentHash": "4aedb98e135aa9ec85db35f0208f7005543bb6da0d6df112e461922fb9a4c6f3",
+          "byteSize": 52992
+        }
+      ]
+    },
+    "l04/s31/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The cheese is in the bag.",
+          "file": "52e6ac3646acb9098b4da727626e63f0198eb0a45e85eb57aadc11b2134a8ede.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/52e6ac3646acb9098b4da727626e63f0198eb0a45e85eb57aadc11b2134a8ede.mp3",
+          "contentHash": "62ca6b67c4999f2542090d982f339bb2e1202113301d1c721f5e4f8542fcc1f1",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s31/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "car park",
+          "file": "e0510370a891a0f58d8113e4d72fc520307b9154edb052d8bae6865cc1556071.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0510370a891a0f58d8113e4d72fc520307b9154edb052d8bae6865cc1556071.mp3",
+          "contentHash": "0df6cecbd9142ba18391047deddc8d025bda5c10cdc309ec6c767118fcda8997",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l04/s31/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "car park",
+          "file": "9adea1e20f3960075d2fde928a8eca37332b27304597ca3c2676bcf17d5d5a50.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9adea1e20f3960075d2fde928a8eca37332b27304597ca3c2676bcf17d5d5a50.mp3",
+          "contentHash": "eaf423c579453a2522e3104c6cee7a1b96bc03d872c80f0edaa69764aeabe188",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l04/s31/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "car park",
+          "file": "37d1e87f3329b68c9630dfe1fae07d3363e58bf3d1d16f72ed138d6e17c60be0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/37d1e87f3329b68c9630dfe1fae07d3363e58bf3d1d16f72ed138d6e17c60be0.mp3",
+          "contentHash": "0bea77bf63dd904271cdb825f53b65c5c6b550e6e6990915ab368e90aadfb59f",
+          "byteSize": 26880
+        },
+        {
+          "text": "unusual",
+          "file": "e0311169555f9a376507063bde9f9dd2a33da271cabd91999f64002a2ece7db6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0311169555f9a376507063bde9f9dd2a33da271cabd91999f64002a2ece7db6.mp3",
+          "contentHash": "97165088377217026a9a2ee5c2e630bdad9adb158592e0f36899524a41c6ff4f",
+          "byteSize": 41088
+        },
+        {
+          "text": "parks",
+          "file": "932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
+          "contentHash": "e98122a86e00db1c8233ff7fc0a80ab8809683f475bc3eb1499cddcf7c3b4a33",
+          "byteSize": 11520
+        },
+        {
+          "text": "cheese",
+          "file": "b8a9005f09c945a2825b665fb4742418072b3b3db58d7bbdf2d42306f6e25ac1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8a9005f09c945a2825b665fb4742418072b3b3db58d7bbdf2d42306f6e25ac1.mp3",
+          "contentHash": "4a0c4de0a19626abb182b5e3b55021c03d6c566a1967534abc249e123d19b6c1",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s31/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a car park.",
+          "file": "b849cf144f00a0754419c5ec1597e53cfc508b804d7ee14e4f475a639f11965d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b849cf144f00a0754419c5ec1597e53cfc508b804d7ee14e4f475a639f11965d.mp3",
+          "contentHash": "54e1d757bd4f84810d716781b25feee4558e3ad1a9d3c5f8f5414b354f937701",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s31/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The car park is unusual.",
+          "file": "f7a33edee3391246def7326d59c711ef9eba0a5dba30fe90ecead9ad19994f90.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f7a33edee3391246def7326d59c711ef9eba0a5dba30fe90ecead9ad19994f90.mp3",
+          "contentHash": "37cd6ffcaacccf89dac30c5d0c96d7a8afb0f2ecd8a1a24c924e37ad056d6618",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s31/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is some cheese.",
+          "file": "674909b0d19392262d1d089a77f85b9b87920beb90fecae2c19e48f7c038976e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/674909b0d19392262d1d089a77f85b9b87920beb90fecae2c19e48f7c038976e.mp3",
+          "contentHash": "a6a3e96f7e4edc27d38fa0a28e79d6b28e8c308522e5413252247e2c961d9e84",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s31/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The car park is next to the hotel.",
+          "file": "3a72da8229cbfde2f12231ba41c9e084e30524618d953b54811e9d421dba9889.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a72da8229cbfde2f12231ba41c9e084e30524618d953b54811e9d421dba9889.mp3",
+          "contentHash": "d7ee001586d9bb855678822456e22b85b53747a23b7cc3902b6949613e6e773b",
+          "byteSize": 62592
+        }
+      ]
+    },
+    "l04/s31/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The parks are next to the hotel.",
+          "file": "5484e23c535a227bcc41c09eb8966ad646d542d0622ee2b4e54a8abea54bc4b7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5484e23c535a227bcc41c09eb8966ad646d542d0622ee2b4e54a8abea54bc4b7.mp3",
+          "contentHash": "4d03b9d0b2cdf8729c947369141dece9eadac0c89517f1723f5e5d34b7625e3c",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s31/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "car park",
+          "file": "9adea1e20f3960075d2fde928a8eca37332b27304597ca3c2676bcf17d5d5a50.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9adea1e20f3960075d2fde928a8eca37332b27304597ca3c2676bcf17d5d5a50.mp3",
+          "contentHash": "eaf423c579453a2522e3104c6cee7a1b96bc03d872c80f0edaa69764aeabe188",
+          "byteSize": 22656
+        },
+        {
+          "text": "unusual",
+          "file": "dc3328c518f46d9ad601232ed7d6ecf60274df405cf11dddc2a47227bd676109.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc3328c518f46d9ad601232ed7d6ecf60274df405cf11dddc2a47227bd676109.mp3",
+          "contentHash": "c1dbdec749499dd7956143aa44b7fb13e37721713cffcb5d3254c98919f383cc",
+          "byteSize": 19584
+        },
+        {
+          "text": "parks",
+          "file": "c0028b72c04162c7d2de183f133f4da9ee15fba7cde83e52ee41a9712d70a4a8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c0028b72c04162c7d2de183f133f4da9ee15fba7cde83e52ee41a9712d70a4a8.mp3",
+          "contentHash": "e43643915d65da5c11a414b85e995eb6eb326835a19ef402059a1b619e1d59e2",
+          "byteSize": 28416
+        },
+        {
+          "text": "cheese",
+          "file": "8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "contentHash": "a6c0ed3063da04429bb63cf78654d260ff8c123ddd91a72cf4678aa44553a6fd",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s31/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There aren't any cars.",
+          "file": "29621964ff517fc3788eb6a28c6b66c9d7ace8038dc87faeefeb8e1a6983806e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/29621964ff517fc3788eb6a28c6b66c9d7ace8038dc87faeefeb8e1a6983806e.mp3",
+          "contentHash": "e7a8f70f96ce7cd7afd09f82f608cfc5fbdc77df0c0eda97f5e3764e7b574ac6",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l04/s31/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The bag is under the table.",
+          "file": "8f4c6fbab85594cf4655f31014142eeefe4c6b5c03aeb9b89068ab334d869cf9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8f4c6fbab85594cf4655f31014142eeefe4c6b5c03aeb9b89068ab334d869cf9.mp3",
+          "contentHash": "864b0f454e43df8a0badf4390b3cc8cdf4d42f4cfaf3dfc796aa85cae713ba6c",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s31/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The car park is between the parks.",
+          "file": "51dbce2612b9388969038501c00254fbdd369c0f31e8155c86d6df4628e8c1f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/51dbce2612b9388969038501c00254fbdd369c0f31e8155c86d6df4628e8c1f3.mp3",
+          "contentHash": "0c8491f798eff4360c2b01331eed614b0d33fe38b9e590eddc0c3ff1823a291c",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s31/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The cheese is on the table.",
+          "file": "f3ac1f5fc4d9579c078f9d647d68e5bec13a44abc1fd8c6719d82abaf62b2b03.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3ac1f5fc4d9579c078f9d647d68e5bec13a44abc1fd8c6719d82abaf62b2b03.mp3",
+          "contentHash": "0a2ec2a69aabb89052c8368f495fbd47c94174034f2e802a455ab808a90a20f0",
+          "byteSize": 55680
+        }
+      ]
+    },
+    "l04/s31/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That is unusual.",
+          "file": "c812ab751ade57a2e5f2fc176752b49b0344634a8b619bc79b8f2b4a9e0f73c7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c812ab751ade57a2e5f2fc176752b49b0344634a8b619bc79b8f2b4a9e0f73c7.mp3",
+          "contentHash": "febe416ac2749e7af11fa8d202679e5576ec7a23eed09458036929f8688e4e2f",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s31/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "car park",
+          "file": "37d1e87f3329b68c9630dfe1fae07d3363e58bf3d1d16f72ed138d6e17c60be0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/37d1e87f3329b68c9630dfe1fae07d3363e58bf3d1d16f72ed138d6e17c60be0.mp3",
+          "contentHash": "0bea77bf63dd904271cdb825f53b65c5c6b550e6e6990915ab368e90aadfb59f",
+          "byteSize": 26880
+        },
+        {
+          "text": "unusual",
+          "file": "e0311169555f9a376507063bde9f9dd2a33da271cabd91999f64002a2ece7db6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0311169555f9a376507063bde9f9dd2a33da271cabd91999f64002a2ece7db6.mp3",
+          "contentHash": "97165088377217026a9a2ee5c2e630bdad9adb158592e0f36899524a41c6ff4f",
+          "byteSize": 41088
+        },
+        {
+          "text": "parks",
+          "file": "932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
+          "contentHash": "e98122a86e00db1c8233ff7fc0a80ab8809683f475bc3eb1499cddcf7c3b4a33",
+          "byteSize": 11520
+        },
+        {
+          "text": "cheese",
+          "file": "b8a9005f09c945a2825b665fb4742418072b3b3db58d7bbdf2d42306f6e25ac1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8a9005f09c945a2825b665fb4742418072b3b3db58d7bbdf2d42306f6e25ac1.mp3",
+          "contentHash": "4a0c4de0a19626abb182b5e3b55021c03d6c566a1967534abc249e123d19b6c1",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s31/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The car park is next to the hotel.",
+          "file": "73eea68fb5c89a45b07e2a5a8b1c8accaf1775bc155c2c5cf76686b35ebd1b45.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/73eea68fb5c89a45b07e2a5a8b1c8accaf1775bc155c2c5cf76686b35ebd1b45.mp3",
+          "contentHash": "e5fa96a9157e9f1b5f2852c219431698b2aa168529e4e29dc63f1c9a5a287536",
+          "byteSize": 44544
+        }
+      ]
     }
   },
   "settings": {

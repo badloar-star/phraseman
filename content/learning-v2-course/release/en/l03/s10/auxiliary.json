@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-10:intro1:r2": {
+          "ru": "Перед `lock` здесь нужно `a`.",
+          "uk": "Перед `lock` тут потрібно `a`."
+        },
+        "en:lesson-03:session-10:intro1:r3": {
+          "ru": "Перед названием одного такого предмета здесь нужно `a`.",
+          "uk": "Перед назвою одного такого предмета тут потрібно `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-10:intro2:r2": {
+          "ru": "С одним замком здесь нужно `is`.",
+          "uk": "З одним замком тут потрібно `is`."
+        },
+        "en:lesson-03:session-10:intro2:r3": {
+          "ru": "После `The lock` нужно `is`.",
+          "uk": "Після `The lock` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-10:intro3:r2": {
+          "ru": "`What` спрашивает, что это. О месте спрашиваем `Where`.",
+          "uk": "`What` запитує, що це. Про місце запитуємо `Where`."
+        },
+        "en:lesson-03:session-10:intro3:r3": {
+          "ru": "С одним ключом здесь нужно `is`.",
+          "uk": "З одним ключем тут потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4bb01fd849dabf13158c9ed79ab9a32978b10ba3b14970f96bf5613ed6840737"
+}

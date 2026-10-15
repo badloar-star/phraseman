@@ -1,156 +1,138 @@
-# Англійська · Урок 3 · Заняття 10 — «Обираємо техніку»
+# Англійська · Урок 3 · Заняття 10 — Ключ до старого замка
 
-**Сцена заняття.** Ви з другом обираєте побутову техніку для дому. Називаєте прилади продавцеві, уточнюєте, що стоїть на полицях, і виправляєте друга, коли він плутає назви.
+**Ситуація.** Ви з Анною допомагаєте Олегу відчинити майстерню. На столі лежать ключ і яблуко. Олег показує старий замок і пояснює, що без потрібного ключа відчинити його неможливо. Він терпляче допомагає вам розібратися.
 
-**Як сказати:** уживання `a` перед початковим приголосним звуком у назві предмета в знайомих твердженнях, питаннях і запереченнях; повернення `an` перед початковим голосним звуком  
-**Нові слова:** kettle, toaster, vacuum  
-**Повертаються:** oven, armchair
+**Що ви опануєте:** назвати замок і запитати, де розташований знайомий предмет
+**Нові слова:** lock
 
 ---
 
 ## Інтро 1
 
-### Назвати чайник
+### Що це за предмет
 
-`kettle` — «чайник». Українською «Це чайник» — два слова, а повна англійська фраза має чотири. Після `It is` додайте `a`, бо назва починається з приголосного звуку «к», а потім саму назву: `It is a kettle` — «Це чайник».
+`lock` — «замок», який відмикають ключем. `It is a lock` — «Це замок». Перед `lock` тут потрібно `a`: слово починається з приголосного звука. Поруч лежить яблуко: `It is an apple` — «Це яблуко». Перед `apple` використовуємо `an`, бо перший звук голосний.
 
-**Продавець показує чайник, який ви обрали. Назвіть його повною фразою.**
+**Олег показує незнайомий вам предмет. Це замок. Назвіть предмет повною фразою.**
 
-- ✅ **It is a kettle.**
-- ❌ It is an kettle. — *Перший звук у `kettle` — приголосний «к». Перед цією назвою обираємо `a`, а не `an`.*
-- ❌ It is kettle. — *В українській фразі «Це чайник» перед назвою нічого немає. В англійській тут потрібне `a kettle`.*
+- ✅ **It is a lock.**
+- ❌ It is an lock. — *Перед `lock` тут потрібно `a`.*
+- ❌ It is lock. — *Перед назвою одного такого предмета тут потрібно `a`.*
 
 ---
 
 ## Інтро 2
 
-### Назвати тостер
+### Тепер ідеться про цей замок
 
-`toaster` — «тостер». На сусідній полиці стоїть прилад для хліба. Назвіть його повною фразою `It is a toaster` — «Це тостер». Після `It is` поставте `a`: слово `toaster` починається з приголосного звука «т». Тост майже готовий, але артикль пропускати рано.
+`The lock is old` — «Замок старий». Ви з Анною вже дивитеся на той самий замок, тому зрозуміло, про який предмет ідеться. `the` вказує на цей зрозумілий вам обом предмет. Не будь-який старий замок, а той, який показує Олег.
 
-**Друг показує на тостер у глибині полиці. Назвіть прилад повною фразою.**
+**Ви з Анною розглядаєте показаний Олегом замок. Він старий. Повідомте це.**
 
-- ✅ **It is a toaster.**
-- ❌ It is an toaster. — *Перший звук у `toaster` — приголосний «т», тому перед назвою потрібне `a`, а не `an`.*
-- ❌ It is toaster. — *Після `It is` перед одним предметом тут потрібне сполучення `a toaster`.*
+- ✅ **The lock is old.**
+- ❌ The lock are old. — *З одним замком тут потрібно `is`.*
+- ❌ The lock old. — *Після `The lock` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### Назвати пилосос
+### Де потрібний ключ
 
-`vacuum` — «пилосос». На нижній полиці стоїть прилад для прибирання. Назвіть його повною фразою `It is a vacuum` — «Це пилосос». Після `It is` знову потрібне `a`, бо `vacuum` починається з приголосного звука «в». Пил можна прибрати, а `a` із цієї фрази — ні.
+`Where is the key?` — «Де ключ?» Ви шукаєте конкретний ключ, яким Олег збирається відімкнути замок. Він жартома простягає яблуко, але `an apple` годиться для перекусу, а замку потрібен `a key`. Повторимо: `kind` — «добрий», `funny` — «смішний», `impossible` — «неможливий».
 
-**Продавець показує обраний пилосос. Назвіть прилад повною фразою.**
+**Ви з Анною шукаєте потрібний ключ до старого замка. Запитайте, де ключ.**
 
-- ✅ **It is a vacuum.**
-- ❌ It is an vacuum. — *Перший звук у `vacuum` — приголосний «в», тому перед назвою потрібне `a`, а не `an`.*
-- ❌ It is vacuum. — *Після `It is` перед одним предметом тут потрібне сполучення `a vacuum`.*
+- ✅ **Where is the key?**
+- ❌ What is the key? — *`What` запитує, що це. Про місце запитуємо `Where`.*
+- ❌ Where are the key? — *З одним ключем тут потрібно `is`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — kettle**
-<!-- interaction_id: en:lesson-03:session-10:i01; family: listen_choose -->
-Ціль: `kettle`
+**1 · Олег показує незнайомий предмет. Це замок. Назвіть його повною фразою**
+<!-- interaction_id: en:lesson-03:session-10:i01; family: phrase_builder -->
+Плитки: `lock` `a` `is` `It` `an` → **It is a lock.**
+*(плитка `an` зайва: тут потрібно `a` — `It is a lock.`)*
 
-**2 · Послухайте й оберіть — яке слово вимовив продавець**
+**2 · Послухайте опис замка**
 <!-- interaction_id: en:lesson-03:session-10:i02; family: listen_choose -->
-Ціль: `kettle`
-Варіанти: `kettle` · `cattle` · `settle`
-- cattle — *`cattle` — «велика рогата худоба». Обидва слова починаються з «к», але `cattle` звучить як **cat-l**, а `kettle` — як **ket-l**. У записі звучить `kettle`.*
-- settle — *`settle` — «владнати». На початку чути «с», а в `kettle` — «к». Далі слова схожі на слух, тому слухайте початок.*
+🔊 *The lock is old.* → **The lock is old.** · The lock is new. · The lock is open.
+- The lock is new. — *У записі останнє слово — `old`, а в цьому варіанті — `new`.*
+- The lock is open. — *У записі останнє слово — `old`, а в цьому варіанті — `open`.*
 
+**3 · Анна показує яблуко. Доповніть назву предмета**
+<!-- interaction_id: en:lesson-03:session-10:i03; family: context_gap_grammar -->
+It is ___ apple. → **an** · a · are
+- a — *Перед `apple` потрібне `an`: перший звук голосний.*
+- are — *Тут потрібна назва `an apple`, а не ще одна форма дієслова.*
 
-**3 · Картка слова — toaster**
-<!-- interaction_id: en:lesson-03:session-10:i03; family: listen_choose -->
-Ціль: `toaster`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-10:i04; family: speed_match -->
+lock — замок · old — старий · kind — добрий · apple — яблуко
 
-**4 · Послухайте й оберіть — яке слово сказав друг**
-<!-- interaction_id: en:lesson-03:session-10:i04; family: listen_choose -->
-Ціль: `toaster`
-Варіанти: `toaster` · `poster` · `coaster`
-- poster — *`poster` — «плакат». На початку в ньому «п», а в `toaster` — «т». Решта слова звучить подібно.*
-- coaster — *`coaster` — «підставка під склянку». Спершу чути «к», а в записі слово починається з «т»: `toaster`.*
+**5 · Послухайте й складіть запитання**
+<!-- interaction_id: en:lesson-03:session-10:i05; family: listen_build_dictation -->
+🔊 *Where is the key?* Плитки: `key` `the` `is` `Where` `What` → **Where is the key?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where is the key?`)*
 
+**6 · Ви з Анною дивитеся на замок майстерні. Повідомте, що цей замок старий**
+<!-- interaction_id: en:lesson-03:session-10:i06; family: phrase_builder -->
+Плитки: `old` `is` `lock` `The` `are` → **The lock is old.**
+*(плитка `are` зайва: тут потрібно `is` — `The lock is old.`)*
 
-**5 · Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»**
-<!-- interaction_id: en:lesson-03:session-10:i05; family: phrase_builder -->
-Ціль: `It is a kettle.`
-Варіанти: `An`
+**7 · Олег терпляче допомагає вам. Скажіть повною фразою «Він добрий»**
+<!-- interaction_id: en:lesson-03:session-10:i07; family: scripted_repeat_compare -->
+🎙 **He is kind.**
 
-**6 · Картка слова — vacuum**
-<!-- interaction_id: en:lesson-03:session-10:i06; family: listen_choose -->
-Ціль: `vacuum`
-
-**7 · Послухайте й оберіть — яке слово вимовив продавець**
-<!-- interaction_id: en:lesson-03:session-10:i07; family: listen_choose -->
-Ціль: `vacuum`
-Варіанти: `vacuum` · `vacuous` · `volume`
-- vacuous — *`vacuous` — «беззмістовний». Початок схожий, але наприкінці в ньому чути «с», а у `vacuum` — «м». Дослухайте слово до кінця.*
-- volume — *`volume` — «гучність». Усередині чути «л», а у `vacuum` — «к». Спільний початок на «в» ще не дає відповіді.*
-
-
-**8 · Вставте слово — друг показує на духовку в сусідньому ряду; назвіть її повною фразою (`oven` — «духовка»)**
+**8 · Ви вперше називаєте показаний предмет: це замок**
 <!-- interaction_id: en:lesson-03:session-10:i08; family: context_gap_grammar -->
-Ціль: `It is ___ oven.`
-Варіанти: `an` · `a` · `is`
-- a — *У `oven` перший звук голосний, тому перед цією назвою обираємо `an`.*
-- is — *`is` уже стоїть після `It`. Зараз бракує маленького слова перед `oven`: тут це `an`.*
+It is ___ lock. → **a** · an · are
+- an — *`lock` починається з приголосного звука: `a lock`.*
+- are — *Перед назвою предмета потрібне `a`, а не `are`.*
 
+**9 · Послухайте відповідь про те, чи можна відімкнути замок без ключа**
+<!-- interaction_id: en:lesson-03:session-10:i09; family: listen_choose -->
+🔊 *It is impossible.* → **It is impossible.** · It is possible. · It is necessary.
+- It is possible. — *У записі останнє слово — `impossible`, а в цьому варіанті — `possible`.*
+- It is necessary. — *У записі останнє слово — `impossible`, а в цьому варіанті — `necessary`.*
 
-**9 · Промовте фразу — друг показує на пилосос; назвіть його повною фразою**
-<!-- interaction_id: en:lesson-03:session-10:i09; family: scripted_repeat_compare -->
-Ціль: `It is a vacuum.`
-
-**10 · З’єднайте назви з українськими значеннями — товари у відділі техніки**
+**10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-10:i10; family: speed_match -->
-Пари: `kettle` — чайник · `toaster` — тостер · `vacuum` — пилосос · `oven` — духовка
-Ціль: `kettle · toaster · vacuum · oven`
+funny — смішний · impossible — неможливий · lock — замок · apple — яблуко
 
-**11 · Послухайте й складіть — продавець говорить про прилад**
+**11 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-10:i11; family: listen_build_dictation -->
-Ціль: `It is a toaster.`
-Варіанти: `an`
+🔊 *It is an apple.* Плитки: `apple` `an` `is` `It` `a` → **It is an apple.**
+*(плитка `a` зайва: тут потрібно `an` — `It is an apple.`)*
 
-**12 · Вставте слово — біля відділу стоїть крісло для покупців; назвіть його повною фразою (`armchair` — «крісло»)**
-<!-- interaction_id: en:lesson-03:session-10:i12; family: context_gap_grammar -->
-Ціль: `It is ___ armchair.`
-Варіанти: `an` · `a` · `am`
-- a — *Перший звук у `armchair` голосний. Перед цією назвою потрібне `an`, хоча крісло, як і чайник, одне.*
-- am — *`am` не ставимо перед назвою крісла. Після `It is` тут іде `an armchair`.*
+**12 · Олег прибрав старий замок зі столу. Ви обоє знаєте, про який замок ідеться. Запитайте, де замок**
+<!-- interaction_id: en:lesson-03:session-10:i12; family: phrase_builder -->
+Плитки: `lock` `the` `is` `Where` `What` → **Where is the lock?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where is the lock?`)*
 
+**13 · Вас розсмішив жарт Олега з яблуком замість ключа. Скажіть «Це смішно» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-10:i13; family: scripted_repeat_compare -->
+🎙 **It's funny.**
 
-**13 · Складіть питання — друг помітив інший прилад з носиком; уточніть «Це чайник?»**
-<!-- interaction_id: en:lesson-03:session-10:i13; family: phrase_builder -->
-Ціль: `Is it a kettle?`
-Варіанти: `an`
+**14 · Ви продовжуєте говорити про той самий замок майстерні. Доповніть повідомлення про нього**
+<!-- interaction_id: en:lesson-03:session-10:i14; family: context_gap_grammar -->
+___ lock is old. → **The** · An · Are
+- An — *Для зрозумілого вам обом замка тут потрібне `The`; перед `lock` форма `An` також не підходить.*
+- Are — *Це повідомлення про предмет: `The lock is old`.*
 
-**14 · Послухайте й оберіть — що продавець сказав другові**
-<!-- interaction_id: en:lesson-03:session-10:i14; family: listen_choose -->
-Ціль: `It is not a vacuum.`
-Варіанти: `It is not a vacuum.` · `It is a vacuum.` · `It is not a toaster.`
-- It is a vacuum. — *У цьому варіанті після `is` одразу стоїть `a`. У записі між ними чути `not`: продавець заперечує назву.*
-- It is not a toaster. — *Початок збігається, але наприкінці запису звучить `vacuum`, з «в» на початку. У `toaster` першим був би звук «т».*
+**15 · Послухайте опис Олега**
+<!-- interaction_id: en:lesson-03:session-10:i15; family: listen_choose -->
+🔊 *He is kind.* → **He is kind.** · He is tired. · He is angry.
+- He is tired. — *У записі останнє слово — `kind`, а в цьому варіанті — `tired`.*
+- He is angry. — *У записі останнє слово — `kind`, а в цьому варіанті — `angry`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-10:i16; family: speed_match -->
+old — старий · kind — добрий · funny — смішний · impossible — неможливий
 
-**15 · Складіть заперечення — друг прийняв маленьку духовку за тостер; виправте його: «Це не тостер»**
-<!-- interaction_id: en:lesson-03:session-10:i15; family: phrase_builder -->
-Ціль: `It is not a toaster.`
-Варіанти: `an`
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-10:i16; family: scripted_repeat_compare -->
-Ціль: `Is it an armchair?`
-
-**17 · Складіть фразу — продавець дістав пилосос із коробки; друг питає, що це, назвіть предмет повною фразою**
-<!-- interaction_id: en:lesson-03:session-10:i17; family: phrase_builder -->
-Ціль: `It is a vacuum.`
-Варіанти: `an`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=context_gap_grammar, 9=scripted_repeat_compare, 10=speed_match, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=listen_choose, 15=phrase_builder, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Після зустрічі Анна пропонує знову подивитися на старий замок, але його немає на столі. Ви обоє знаєте, який замок потрібен. Запитайте, де замок**
+<!-- interaction_id: en:lesson-03:session-10:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where is the lock?**
 

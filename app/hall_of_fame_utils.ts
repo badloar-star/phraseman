@@ -11,6 +11,7 @@ import { logStreakExtended, logStreakLost } from './firebase';
 import { incrementStreakLostCount } from './paywall_personalization';
 import { foregroundActiveRunEndingAt, previousDateKey, repairDevSeededStreakInStorage } from './streak_safety';
 import { isStreakFreezeActiveToday } from './streak_freeze';
+import { emitPlusFreezeLimitToast, isAutoFreezeUndecided, resolveStreakFreezePending, writeStreakFreezePending } from './streak_freeze_pending';
 import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
 import { markActiveDay } from './friends_together/together_days';
 import { classifyStreakTouch, hydrateStreakDayState, markStreakDayCounted, peekStreakDayState, resolveLegacyRuleDay } from './streak_day_signal';
@@ -275,6 +276,41 @@ export const sweepStreakWithoutCounting = async (reason: string): Promise<number
   }
 };
 
+/**
+ * Закрыть отложенное решение заморозки Plus (streak_freeze_pending.ts). Не бросает: сбой — в журнал, серия как была.
+ * Спасли → тот же звук, отметка недели и тост, что в обычной ветке заморозки; потеря → та же аналитика, что в ветке LOST.
+ */
+async function resolvePendingPlusFreeze(today: string): Promise<void> {
+  try {
+    await resolveStreakFreezePending(today, {
+      tryFreeze: async (day) => (await import('./streak_auto_freeze')).tryAutoPremiumFreeze(day),
+      readStreak: async () => parseInt(await readStoredItem('streak_count') || '0') || 0,
+      writeStreak: (value) => persistLegacyPersonalProgressScalar(AsyncStorage, 'streak_count', value),
+      onSaved: async (pending, streak) => {
+        const freezeRaw = await AsyncStorage.getItem('streak_freeze');
+        await AsyncStorage.setItem('streak_freeze', JSON.stringify({ ...(freezeRaw ? JSON.parse(freezeRaw) : {}), active: false }));
+        import('../modules/audio/sound_director')
+          .then(({ soundDirector }) => { soundDirector.request('pm.streak.saved', { scope: 'streak' }); })
+          .catch((error: unknown) => console.warn('[STREAK-FREEZE] resolve:sound_failed', String(error)));
+        await recordStreakWeekMarker(pending.gapDay, 'freeze').catch(noteSwallowedHandler('hall_of_fame_utils:pending_marker'));
+        emitAppEvent('action_toast', {
+          type: 'reward',
+          messageRu: `Заморозка спасла цепочку ${streak} дн. 🧊`,
+          messageUk: `Заморозка врятувала ланцюжок ${streak} дн. 🧊`,
+          messageEs: `La congelación salvó tu racha de ${streak} días 🧊`,
+        });
+      },
+      onLost: async (pending, reason) => {
+        logStreakLost(pending.keptStreak);
+        incrementStreakLostCount();
+        if (reason === 'month_limit') emitPlusFreezeLimitToast();
+      },
+    });
+  } catch (error) {
+    console.warn('[STREAK-FREEZE] resolve:failed', error instanceof Error ? error.message : String(error));
+  }
+}
+
 // ── Обновить цепочку дней подряд при активности ───────────────────────────
 // Вызывать при ЛЮБОМ начислении опыта
 export const updateStreakOnActivity = async (
@@ -297,6 +333,8 @@ export const updateStreakOnActivity = async (
     // last_active_date, записанный ДО этого апдейта, ещё может быть в старой схеме.
     const today = getLocalDayKey();
     const lastActiveKey = 'last_active_date';
+    // зачем (координатор 15.10, 🔴): заморозка Plus, отложенная из-за неизвестного статуса Plus, решается ДО чтения серии ниже.
+    await resolvePendingPlusFreeze(today);
     const lastActive = await readStoredItem(lastActiveKey);
 
     let streak = parseInt(await readStoredItem('streak_count') || '0');
@@ -344,10 +382,13 @@ export const updateStreakOnActivity = async (
       // Q94 (D107): у Plus заморозка применяется сама, без кнопки, в пределах месячного лимита.
       const canFreeze = journalRunToYesterday < 1 && lastActive !== null && missedExactlyOneDay;
       const manualFreeze = isStreakFreezeActiveToday(freeze, today);
-      const autoFreeze = canFreeze && !manualFreeze
-        ? (await (await import('./streak_auto_freeze')).tryAutoPremiumFreeze(today)).applied
-        : false;
-      if (canFreeze) console.log(`[STREAK] update:freeze_check manual=${manualFreeze} auto=${autoFreeze}`);
+      const autoResult = canFreeze && !manualFreeze
+        ? await (await import('./streak_auto_freeze')).tryAutoPremiumFreeze(today)
+        : null;
+      const autoFreeze = autoResult?.applied === true;
+      // зачем (координатор 15.10, 🔴): статус Plus неизвестен (долгая проверка, аккаунт не поднят, сбой записи) — НЕ сбрасываем.
+      const autoUndecided = isAutoFreezeUndecided(autoResult);
+      if (canFreeze) console.log(`[STREAK-FREEZE] update:freeze_check manual=${manualFreeze} auto=${autoResult ? (autoResult.applied ? 'applied' : autoResult.reason) : 'not_tried'} lastActive=${String(lastActive)} streak=${streak}`);
       if (canFreeze && lastActive && (manualFreeze || autoFreeze)) {
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ ...freeze, active: false }));
         import('../modules/audio/sound_director')
@@ -362,6 +403,11 @@ export const updateStreakOnActivity = async (
           messageUk: `Заморозка врятувала ланцюжок ${streak} дн. 🧊`,
           messageEs: `La congelación salvó tu racha de ${streak} días 🧊`,
         });
+      }
+      // 1б. Статус Plus неизвестен — серия цела, решение отложено до известного статуса (streak_freeze_pending.ts)
+      else if (canFreeze && lastActive && autoUndecided && autoResult && !autoResult.applied) {
+        console.warn(`[STREAK-FREEZE] update:branch=pending reason=${autoResult.reason} keep=${streak}`);
+        await writeStreakFreezePending({ gapDay: addDaysToDateKey(lastActive, 1), keptStreak: streak, createdDay: today, reason: autoResult.reason });
       }
       // 2. Первый вход в приложение
       else if (lastActive === null) {
@@ -389,6 +435,8 @@ export const updateStreakOnActivity = async (
         } else {
           console.log('[STREAK-DAY] update:lost_already_reported_by_sweep');
         }
+        // зачем (координатор 15.10): Plus есть, а заморозки месяца кончились — человек должен понять, почему серия сгорела.
+        if (autoResult && !autoResult.applied && autoResult.reason === 'month_limit') emitPlusFreezeLimitToast();
         streak = 1;
       }
     }

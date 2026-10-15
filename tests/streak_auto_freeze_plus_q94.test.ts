@@ -69,6 +69,16 @@ describe('автозаморозка серии Plus (Q94)', () => {
     jest.useRealTimers();
   });
 
+  it('аккаунт ещё не поднят — статус Plus неизвестен (premium_unknown), проверку Plus не зовём', async () => {
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const { deps, commits } = makeDeps({ premium: false });
+    const isPremium = jest.fn(deps.isPremium);
+    await expect(tryAutoPremiumFreeze('2026-10-01', { ...deps, isPremium, accountNotReady: () => 'account_phase_transitioning' }))
+      .resolves.toEqual({ applied: false, reason: 'premium_unknown' });
+    expect(isPremium).not.toHaveBeenCalled();
+    expect(commits).toEqual([]);
+  });
+
   it('сбой записи — не применено, причина в логе', async () => {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
     const { deps } = makeDeps({ premium: true, commitFails: true });
@@ -78,7 +88,9 @@ describe('автозаморозка серии Plus (Q94)', () => {
   it('проводка: автозаморозка только при пропуске ровно одного дня и мёртвом «вчера» в журнале', () => {
     const hall = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app/hall_of_fame_utils.ts'), 'utf8'));
     expect(hall).toMatch(/const canFreeze = journalRunToYesterday < 1 && lastActive !== null && missedExactlyOneDay;/);
-    expect(hall).toMatch(/canFreeze && !manualFreeze\s*\n\s*\? \(await \(await import\('\.\/streak_auto_freeze'\)\)\.tryAutoPremiumFreeze\(today\)\)\.applied/);
+    expect(hall).toMatch(/canFreeze && !manualFreeze\s*\n\s*\? await \(await import\('\.\/streak_auto_freeze'\)\)\.tryAutoPremiumFreeze\(today\)/);
+    // зачем (координатор 15.10, 🔴): неизвестный статус Plus — не сброс, а отложенное решение (tests/streak_freeze_pending.test.ts).
+    expect(hall).toContain('const autoUndecided = isAutoFreezeUndecided(autoResult);');
     expect(hall).toMatch(/soundDirector\.request\('pm\.streak\.saved'/);
   });
 });

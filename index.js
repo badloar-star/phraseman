@@ -1,5 +1,7 @@
 // Самая первая строка JS: время входа для [COLD-START] (цена импортов корня видна только от этой точки).
 import './app/cold_start_entry_mark';
+// зачем (координатор 15.10): [COLD-START] interactive — когда Главная после холодного старта стала отзывчивой (только dev).
+import './app/cold_start_interactive';
 // Release: тишина предупреждений RN Firebase о namespaced API (Q53: 241 шт. в окне старта).
 // Первым — флаг читается в момент вызова, раньше любых обращений к Firebase.
 import './app/rnfb_release_quiet';

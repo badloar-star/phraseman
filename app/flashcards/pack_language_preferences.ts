@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { registerHubCacheProbe } from '../hub_lifecycle_probe';
 import { peekGlobalStudyTargetSafe, setSectionLanguageOverride, subscribeSectionLanguageReset } from '../section_language';
 import {
@@ -15,8 +16,23 @@ let rememberedLanguage: StudyPackLanguage | null = null;
 subscribeSectionLanguageReset((section) => {
   if (section !== 'cards' || rememberedLanguage === null) return;
   rememberedLanguage = null;
-  const globalDefault = defaultPackLanguageForStudyTarget(peekGlobalStudyTargetSafe());
+  const rawGlobal = peekGlobalStudyTargetSafe();
+  const globalDefault = defaultPackLanguageForStudyTarget(rawGlobal);
   for (const listener of listeners) listener(globalDefault);
+  if (rawGlobal === null) {
+    // зачем (Ревизор 2d06352db 🟡): снимок языка из Настроек пуст — выше подставился 'en' молча. Пишем причину и уточняем язык из хранилища (асинхронно), если он другой.
+    console.log(`[SECTION-LANG] ${JSON.stringify({ section: 'cards', event: 'reset', reason: 'snapshot_null', to: globalDefault })}`); // guard-ok: пустой снимок
+    void (async () => {
+      try {
+        const stored = await AsyncStorage.getItem('study_target_v1');
+        const refined = defaultPackLanguageForStudyTarget(stored);
+        console.log(`[SECTION-LANG] ${JSON.stringify({ section: 'cards', event: 'reset', reason: 'snapshot_null_storage', stored, to: refined })}`); // guard-ok: язык из хранилища
+        if (refined !== globalDefault && rememberedLanguage === null) for (const listener of listeners) listener(refined);
+      } catch (error: unknown) {
+        console.warn(`[SECTION-LANG] snapshot_null storage read FAILED reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя
+      }
+    })();
+  }
 });
 export function peekStoredPackLanguage(): StudyPackLanguage | null { return rememberedLanguage; }
 export function subscribePackLanguage(listener: (language: StudyPackLanguage) => void): () => void {

@@ -9,7 +9,7 @@
  * плеер, полоса прогресса, название, фразы по таймкодам, внизу закреплена «Добавить набор себе · N карточек».
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -31,6 +31,7 @@ import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
 import { useOwnedPack } from './community_packs/useOwnedPack';
 import { PanelDock } from '../components/mistakes-panel/PanelKit';
 import { setPendingTrainIntent } from './flashcards/train_intent';
+import { trainNavMark, trainNavTraceStart } from './train_nav_trace';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from './video_phrase_set_packs';
 import { loadVideoMarketPacks, peekVideoMarketPacks } from './community_packs/communityFirestore';
 import { normalizePackLanguage } from './flashcards/pack_languages';
@@ -175,10 +176,16 @@ export default function LingmanVideoWatchScreen() {
     console.log(`[VIDEO-PACK-TRAIN] tap videoId=${videoId} packId=${pack?.id ?? 'none'} cards=${pack?.cardCount ?? 0} owned=${String(packOwned)}`); // guard-ok: цепочка ролик → набор → Тренировать
     // зачем (🔴 Ц1, 15.10): документа набора ролика может не быть — страница набора пустая. «Тренировать» ведёт в окно режимов хаба на колоду этого набора
     // (карточки — из документа или из фраз ролика); намерение идёт через train_intent, потому что navigate в открытый хаб теряет параметры.
+    trainNavTraceStart('video_watch_train_tap');
     const deckId = `pack:video_${videoId}`;
     setPendingTrainIntent({ deckId, count: pack?.cardCount ?? 0 });
     router.navigate({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0) } } as never);
+    trainNavMark('router.navigate called');
   }, [pack?.cardCount, router, videoId]);
+
+  // зачем ([NAV-PAINT-TRACE], 15.10): когда экран ролика теряет фокус и когда размонтируется — отдельные отметки цепочки «Тренировать → первый кадр хаба»
+  useFocusEffect(useCallback(() => () => trainNavMark('video screen blur'), []));
+  useEffect(() => () => trainNavMark('video screen unmount'), []);
 
   return (
     <ScreenGradient artBackdrop="home">

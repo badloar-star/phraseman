@@ -1,5 +1,6 @@
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { consumePendingTrainIntent } from './train_intent';
+import { trainNavMark } from '../train_nav_trace';
 import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -45,7 +46,7 @@ import { FC_DEFAULT_SESSION_SIZE, setLastPreset } from './mode_prefs';
 import { fcTrainOptionPresetMode } from './tabbar_state';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
 import { getTranscription } from '../transcription';
-import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions } from './deck_options';
+import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions, peekFcDeckOptionsLocal } from './deck_options';
 import { loadSelectedSavedContour, peekFirstSavedCardAnyLanguage, peekSelectedSavedContour, peekSelectedSavedContourDiagnostics } from './saved_language_contour';
 import { logMemoryOnce } from '../mem_probe';
 import { isDevCardsHeld } from '../dev_cards_state';
@@ -260,6 +261,10 @@ export default function FlashcardsHubScreen() {
    * после холодного старта данные обязаны подняться заново.
    */
   const hubWarmRef = useRef<{ key: string; atMs: number }>({ key: '', atMs: 0 });
+  // зачем ([NAV-PAINT-TRACE], 15.10): первый render и mount хаба в цепочке «Тренировать → первый кадр»
+  const traceFirstRenderRef = useRef(false);
+  if (!traceFirstRenderRef.current) { traceFirstRenderRef.current = true; trainNavMark('hub first render'); }
+  useEffect(() => { trainNavMark('hub mount'); }, []);
   const [modeSheetVisible, setModeSheetVisible] = useState(false);
   const modeSheetVisibleRef = useRef(false);
   modeSheetVisibleRef.current = modeSheetVisible;
@@ -440,7 +445,8 @@ export default function FlashcardsHubScreen() {
        * Результат сразу уходит в память и на диск; экран выбора наборов берёт
        * его первым кадром.
        */
-      void loadFcDeckOptions('trainer', lang, studyTarget).catch((error: unknown) => {
+      trainNavMark(`deck warmup start (snapshot in memory: ${String(peekFcDeckOptionsLocal('trainer', lang, studyTarget) !== null)})`);
+      void loadFcDeckOptions('trainer', lang, studyTarget).then(() => trainNavMark('deck warmup end')).catch((error: unknown) => {
         console.warn('[FC-DECKS] hub:warm FAILED —', error instanceof Error ? error.message : String(error)); // guard-ok: лог отказа в catch, не на кадр
       });
       primeFlashcardsCollectionCache(studyTarget);
@@ -704,6 +710,7 @@ export default function FlashcardsHubScreen() {
     console.log(`[TRAIN-INTENT] hub:schedule source=${source} deckPending=${String(pendingDeckRef.current?.deckId ?? 'none')}`); // guard-ok: постановка открытия
     const handle = InteractionManager.runAfterInteractions(() => {
       if (cancelled) { console.log(`[TRAIN-INTENT] hub: отменено до открытия (экран ушёл) source=${source}`); return; } // guard-ok: ранний выход
+      trainNavMark('runAfterInteractions fired');
       console.log(`[TRAIN-INTENT] hub:open source=${source} afterMs=${Date.now() - t0} locked=${String(trainGateRef.current.trainingLocked)} entryReady=${String(trainGateRef.current.trainingEntryReady)}`); // guard-ok: ветвление
       onTrainIntentRef.current();
       setTimeout(() => {
@@ -824,7 +831,7 @@ export default function FlashcardsHubScreen() {
   const handleHubTrain = useCallback(() => { pendingDeckRef.current = null; onTrainPressRef.current(); }, []);
 
   return (
-    <View style={[styles.screen, { backgroundColor: g.bg }]}>
+    <View style={[styles.screen, { backgroundColor: g.bg }]} onLayout={() => trainNavMark('hub onLayout')}>
       {/* зачем: фон хаба как в макете — пятна цвета темы (один статичный слой), а не плоская заливка */}
       <V2Backdrop />
       <FeatureIntroEntry id="cards_hub_first_visit" enabled={accessResolved && !modeSheetVisible && openingPackId === null} />

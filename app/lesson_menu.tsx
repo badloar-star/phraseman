@@ -415,13 +415,16 @@ function LessonMenu() {
   // Состояние блокировки урока
   const [isLessonLocked, setIsLessonLocked] = useState(true);
   const [lockStateLoaded, setLockStateLoaded] = useState(false);
+  // зачем (R58 #26): тихая перепроверка доступа на возврате фокуса — экран не мигает скелетом, но запуск закрыт, пока проверка не закончилась
+  const [lockRevalidating, setLockRevalidating] = useState(false);
+  const lockConfirmedKeyRef = useRef<string | null>(null);
   // зачем (координатор 13.10): сколько мс длится проверка доступа, пока на экране скелет, и чем она кончилась. Только журнал: решения гейта это не касается.
   const lockCheckStartedAtRef = useRef(Date.now());
   const [lockReason, setLockReason] = useState<'premium' | 'level' | 'progress'>('progress');
   const [lockInfo, setLockInfo] = useState<Awaited<ReturnType<typeof getLessonLockInfo>> | null>(null);
   // showLockModal удалён вместе со своим модалом: при закрытом уроке этот экран
   // больше не рисуется, показывать поверх него было нечего.
-  const lessonLaunchBlocked = !lockStateLoaded || isLessonLocked;
+  const lessonLaunchBlocked = !lockStateLoaded || isLessonLocked || lockRevalidating;
   // Гард: премиум-пейвол открываем один раз, чтобы не зациклить редирект.
   const premiumPaywallDispatchedRef = useRef(false);
 
@@ -560,13 +563,23 @@ function LessonMenu() {
 
   const loadLockState = useCallback(() => {
     // Проверить, заблокирован ли урок (с учётом тестерской функции "Без ограничений")
-    setLockStateLoaded(false);
     lockCheckStartedAtRef.current = Date.now();
-    // Ревалидация тоже fail-closed: прежний успешный результат не даёт короткого
-    // окна запуска, пока новый lessonId/аккаунт ещё не проверен.
-    setIsLessonLocked(true);
-    setLockReason('progress');
-    setLockInfo(null);
+    // зачем (аудит R58 #26, координатор 15.10): на каждом возврате фокуса меню сбрасывалось в скелет и теряло прокрутку. Для УЖЕ подтверждённого в этом заходе урока
+    // экран остаётся как был, проверка идёт фоном, а запуск урока заблокирован (lockRevalidating) до её конца — fail-closed для действий сохраняется.
+    // Новый урок/аккаунт (ключ другой) — прежний путь: скелет и закрытое состояние до подтверждения.
+    const lockKey = `${lessonId}|${String(studyTarget)}`;
+    const silent = lockConfirmedKeyRef.current === lockKey;
+    console.log(`[LESSON-MENU] lock:check ${JSON.stringify({ lessonId, studyTarget, silent })}`); // guard-ok: тихая ли перепроверка
+    if (silent) {
+      setLockRevalidating(true);
+    } else {
+      setLockStateLoaded(false);
+      // Ревалидация тоже fail-closed: прежний успешный результат не даёт короткого
+      // окна запуска, пока новый lessonId/аккаунт ещё не проверен.
+      setIsLessonLocked(true);
+      setLockReason('progress');
+      setLockInfo(null);
+    }
     // Тихая ревалидация: lockInfo — плоский объект, getLessonLockInfo() всегда
     // возвращает новую ссылку. Сравниваем перед setState, чтобы не дёргать
     // зависимые эффекты (lessonPrepHint) на каждый фокус, если ничего не изменилось.
@@ -661,6 +674,8 @@ function LessonMenu() {
           'warning',
         );
       } finally {
+        lockConfirmedKeyRef.current = lockKey;
+        setLockRevalidating(false);
         setLockStateLoaded(true);
       }
     })();

@@ -7,7 +7,7 @@ const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'l
 describe('lesson menu access check is fail-closed', () => {
   it('starts locked and treats the pending access check as launch-blocking', () => {
     expect(source).toContain('const [isLessonLocked, setIsLessonLocked] = useState(true);');
-    expect(source).toContain('const lessonLaunchBlocked = !lockStateLoaded || isLessonLocked;');
+    expect(source).toContain('const lessonLaunchBlocked = !lockStateLoaded || isLessonLocked || lockRevalidating;');
 
     const primaryItem = source.slice(
       source.indexOf("testID: 'lesson-menu-primary'"),

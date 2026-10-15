@@ -35,3 +35,12 @@ describe('аудит R58 🟡', () => {
     expect(read('app/lesson_irregular_verbs.tsx')).toContain('[IRREGULAR-VERBS] progress write FAILED');
   });
 });
+
+describe('#26 меню урока: тихая перепроверка доступа', () => {
+  it('на возврате фокуса уже подтверждённый урок не сбрасывается в скелет; запуск закрыт, пока идёт проверка', () => {
+    const src = read('app/lesson_menu.tsx');
+    expect(src).toContain('const silent = lockConfirmedKeyRef.current === lockKey;');
+    expect(src).toContain('const lessonLaunchBlocked = !lockStateLoaded || isLessonLocked || lockRevalidating;');
+    expect(src).toContain('lockConfirmedKeyRef.current = lockKey;');
+  });
+});

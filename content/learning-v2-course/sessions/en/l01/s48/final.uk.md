@@ -1,232 +1,138 @@
-# Англійська · Урок 1 · Заняття 48 — «Вечір у двох словах»
+# Англійська · Урок 1 · Заняття 48 — Майстерня друзів
 
-**Ситуація.** У п'ятницю ввечері Міра й Олег збираються біля виходу з пабу. Олег питає вас, як минув вечір і хто вже пішов.
+**Ситуація.** Ви з друзями готуєте невелику виставку своїх робіт. Треба розповісти про людей, вибрати корисні речі й помітити небезпечне місце.
 
-**Сьогодні.** Повторите скорочення `I'm` / `you're` / `he's` / `it's` / `we're` / `they're` та заперечення `isn't` / `aren't`.
+**Що ви опануєте:** вибрати точну оцінку людини, предмета або дії словами шостого розділу
 **Нові слова:** —
-**Повертаються:** tired, happy, loud, gone, great, home
 
 ---
 
 ## Інтро 1
 
-### `I'm` — це `I am`, тільки швидше
+### Яка саме людина
 
-`tired` — «втомлений». Повністю фраза звучить `I am tired`, але в розмові її майже ніхто так не розтягує: кажуть `I'm tired`.
+Згадайте чотири різні оцінки: `honest` — чесний, `polite` — ввічливий, `patient` — терплячий, `curious` — допитливий. Людина може поєднувати ці якості, але у відповіді вибирайте ту, про яку вас запитують.
 
-Значок `'` стоїть там, де випала літера `a` з `am`. Він не читається і сам собою нічого не означає — просто позначає місце пропажі.
+**Подруга спокійно чекає, поки ви закінчите роботу, і не квапить вас. Назвіть саме її терплячість.**
 
-Рука сама тягнеться викинути `am` зовсім: `I tired`. Тоді скорочувати нічого — і фрази немає.
-
-**Друг біля бару допиває і питає, як ви після тижня. Скажіть, що втомилися.**
-
-- ✅ **I'm tired.**
-- ❌ I tired. — *`am` зникло цілком, а з ним і фраза. Або `I am tired`, або `I'm tired`.*
-- ❌ Im tired. — *Значок загубився. Без нього це не скорочення, а незрозуміле слово.*
+- ✅ **She is patient.**
+- ❌ She is curious. — *Це про допитливість. Тут потрібно назвати терплячість: `patient`.*
+- ❌ She are patient. — *Після `She` потрібно `is`.*
 
 ---
 
 ## Інтро 2
 
-### `he's`, `she's`, `it's` — та сама рисочка
+### Корисне чи марне
 
-`gone` — «пішов». Про друга, який уже поїхав додому, скажуть `he's gone`, про подругу — `she's gone`.
+`useful` — корисний, `useless` — марний. Оцінюйте річ для конкретного завдання. Карта вашого міста допомагає знайти виставку; карта іншого міста для цього пошуку марна. Зате з нею можна дуже впевнено заблукати.
 
-Усередині `he's` заховано `is`. Літера `i` випала, на її місці значок, лишається `s`. Так само працюють `she's` та `it's`.
+**Карта показує потрібну вулицю й допомагає знайти виставку. Назвіть її корисною.**
 
-Значок тут обов'язковий: `he's` — це два слова, стиснуті в одне, а `hes` не означає нічого.
-
-**Друг обводить очима стіл: одного стільця бракує. Скажіть про того, хто сидів поруч: «він пішов».**
-
-- ✅ **He's gone.**
-- ❌ He gone. — *Зникло `is`. Воно заховане в `he's` — без нього зв'язку між «він» і «пішов» немає.*
-- ❌ He's go. — *`go` — «іти», а треба «пішов»: `gone`.*
+- ✅ **It is useful.**
+- ❌ It is useless. — *Ця карта допомагає: `useful`.*
+- ❌ They are useful. — *Тут одна карта: `It is`.*
 
 ---
 
 ## Інтро 3
 
-### `isn't` та `aren't` — коли все не так
+### Коротко й точно
 
-`loud` — «гучний». Якщо в пабі несподівано тихо, про місце кажуть `it isn't loud`.
+`dangerous` — небезпечний. `It is dangerous` можна скоротити до `It's dangerous`. Зміст не змінюється. Для кількох небезпечних речей: `They are dangerous`, коротко `They're dangerous`.
 
-`isn't` — це `is` і `not`, стиснуті разом: значок стоїть там, де зникла `o`. Про кількох беруть не `is`, а `are` — і стискають її ж: `aren't`.
+**Одна пошкоджена драбина може обвалитися. Коротко попередьте про її небезпеку.**
 
-Стискати двічі не можна: або `it's not loud`, або `it isn't loud`. Обидва правильні, але стискають щось одне. Форми `it'sn't` не буває.
-
-**Друг кличе пересісти в дальню залу — там тихіше. Скажіть про цю компанію за сусіднім столом, що вони й так не гучні.**
-
-- ✅ **They aren't loud.**
-- ❌ They isn't loud. — *`isn't` — про одного. Про кількох — `aren't`.*
-- ❌ They're aren't loud. — *Два скорочення відразу: `are` вже заховане в `they're`. Щось одне.*
+- ✅ **It's dangerous.**
+- ❌ They're dangerous. — *Йдеться про одну драбину: `It's`.*
+- ❌ It's useless. — *Це про марність. Зараз треба попередити про небезпеку: `dangerous`.*
 
 ---
 
-## Практика (16 завдань, підтримка спадає)
+## Практика (17 завдань)
 
-**1 · Послухайте і виберіть — `tired`**
-<!-- interaction_id: en:lesson-01:session-48:i01; family: listen_choose -->
-🔊 *tired* → **tired** · tide · tried
-- tide — *`tide` — це приплив у морі. Нам потрібно про людину, яка втомилася.*
-- tried — *Ті самі літери, інший порядок: `tried` — «спробував». Нам потрібно «втомлений».*
+**1 · Друг визнав, що випадково зіпсував вашу роботу. Назвіть його чесним**
+<!-- interaction_id: en:lesson-01:session-48:i01; family: phrase_builder -->
+Плитки: `honest` `is` `He` `are` → **He is honest.**
+*(плитка `are` зайва: тут потрібно `is` — `He is honest.`)*
 
-**2 · Вставте слово — ви втомилися після тижня**
-<!-- interaction_id: en:lesson-01:session-48:i02; family: context_gap_grammar -->
-`I'm ___ .` → **tired** · are · home
-- are — *Після `I'm` не можна поставити `are`: форма `am` уже є в `I'm`.*
-- home — *«Удома» — а ви ще в пабі.*
+**2 · Послухайте оцінку подруги й виберіть почуте**
+<!-- interaction_id: en:lesson-01:session-48:i02; family: listen_choose -->
+🔊 *She is polite.* → **She is polite.** · She is patient. · She is curious.
+- She is patient. — *У записі останнє слово — `polite`, а в цьому варіанті — `patient`.*
+- She is curious. — *У записі останнє слово — `polite`, а в цьому варіанті — `curious`.*
 
-**3 · Послухайте і виберіть — `gone`**
-<!-- interaction_id: en:lesson-01:session-48:i03; family: listen_choose -->
-🔊 *gone* → **gone** · go · gun
-- go — *`go` — «іти», `gone` — «пішов». Треба друге.*
-- gun — *«Рушниця». У пабі таке краще не казати.*
+**3 · Ви з другом спокійно чекаєте, поки висохне фарба. Скажіть про терплячість вас обох**
+<!-- interaction_id: en:lesson-01:session-48:i03; family: context_gap_grammar -->
+We ___ patient. → **are** · am · is
+- am — *Після `We` потрібно `are`.*
+- is — *Про нас — `We are`.*
 
-**4 · Складіть фразу — «вона пішла»**
-<!-- interaction_id: en:lesson-01:session-48:i04; family: phrase_builder -->
-Плитки: `gone` `She's` `is` `home` → **She's gone.**
-*(плитка `is` зайва: `is` зайве: воно вже заховане в `She's gone`.)*
-*(плитка `home` зайва: `home` зайве: треба сказати, що вона пішла — `She's gone`.)*
+**4 · З’єднайте якості людей зі значеннями**
+<!-- interaction_id: en:lesson-01:session-48:i04; family: speed_match -->
+honest — чесний · polite — ввічливий · patient — терплячий · curious — допитливий
 
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-01:session-48:i05; family: listen_build_dictation -->
+🔊 *I'm curious.* Плитки: `curious` `I'm` `He's` → **I'm curious.**
+*(плитка `He's` зайва: тут потрібно `I'm` — `I'm curious.`)*
 
-**5 · Виберіть форму після `He` — про друга, якого немає за столом**
-<!-- interaction_id: en:lesson-01:session-48:i05; family: context_gap_grammar -->
-`He ___ gone.` → **is** · am · are
-- am — *`am` живе поруч із `I`. Про «він» — `is`.*
-- are — *`are` — про «ви», «ми», «вони». Про одного — `is`.*
+**6 · Два підписи допомагають відвідувачам зрозуміти картини. Назвіть підписи корисними**
+<!-- interaction_id: en:lesson-01:session-48:i06; family: phrase_builder -->
+Плитки: `useful` `are` `They` `is` → **They are useful.**
+*(плитка `is` зайва: тут потрібно `are` — `They are useful.`)*
 
-**6 · Розрізніть звуки — яке з двох про «гучний»?**
-<!-- interaction_id: en:lesson-01:session-48:i06; family: sound_contrast -->
-🔊 Два слова поспіль.
-*loud · load* → **loud**
-- load — *У `loud` чути «ау», як в «ау, хто тут». У `load` — «оу».*
+**7 · Невідповідний кабель зовсім не допомагає під’єднати лампу. Коротко оцініть його як марний для цього завдання**
+<!-- interaction_id: en:lesson-01:session-48:i07; family: scripted_repeat_compare -->
+🎙 **It's useless.**
 
-**7 · Вставте слово — у пабі тихо, хоч і п'ятниця**
-<!-- interaction_id: en:lesson-01:session-48:i07; family: context_gap_grammar -->
-`It isn't ___ .` → **loud** · gone · great
-- gone — *«Пішов» — про людину, а не про шум у залі.*
-- great — *«Чудово» — цього б ви й не заперечували.*
+**8 · Пошкоджена драбина може обвалитися. Назвіть саме небезпеку**
+<!-- interaction_id: en:lesson-01:session-48:i08; family: context_gap_grammar -->
+It is ___ . → **dangerous** · useful · useless
+- useful — *Треба попередити про небезпеку: `dangerous`.*
+- useless — *Це про марність. У завданні потрібна небезпека: `dangerous`.*
 
-**8 · Складіть фразу — у пабі п’ятниця, а за сусіднім столом тихо**
-<!-- interaction_id: en:lesson-01:session-48:i08; family: phrase_builder -->
-Плитки: `loud` `They` `aren't` `They're` → **They aren't loud.**
-*(плитка `They're` зайва: `They're` не підходить: потрібна заперечна форма `They aren't loud`.)*
+**9 · Послухайте фразу про друга**
+<!-- interaction_id: en:lesson-01:session-48:i09; family: listen_choose -->
+🔊 *He is honest.* → **He is honest.** · He is polite. · He is patient.
+- He is polite. — *У записі останнє слово — `honest`, а в цьому варіанті — `polite`.*
+- He is patient. — *У записі останнє слово — `honest`, а в цьому варіанті — `patient`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-01:session-48:i10; family: speed_match -->
+useful — корисний · useless — марний · dangerous — небезпечний · curious — допитливий
 
-**9 · Послухайте і складіть — «я втомився»**
-<!-- interaction_id: en:lesson-01:session-48:i09; family: listen_build_dictation -->
-🔊 *I'm tired.* Плитки: `tired` `I'm` `I` `happy` → **I'm tired.**
-*(плитка `I` зайва: `I` зайве: воно вже заховане в `I'm tired`.)*
-*(плитка `happy` зайва: `happy` зайве: в аудіо `I'm tired`.)*
+**11 · Послухайте й складіть фразу про відвідувачів**
+<!-- interaction_id: en:lesson-01:session-48:i11; family: listen_build_dictation -->
+🔊 *They're polite.* Плитки: `polite` `They're` `We're` → **They're polite.**
+*(плитка `We're` зайва: тут потрібно `They're` — `They're polite.`)*
 
+**12 · Вам хочеться дізнатися, як друг зробив свою роботу. Скажіть про свою допитливість**
+<!-- interaction_id: en:lesson-01:session-48:i12; family: phrase_builder -->
+Плитки: `curious` `am` `I` `is` → **I am curious.**
+*(плитка `is` зайва: тут потрібно `am` — `I am curious.`)*
 
-**10 · Вставте слово — друг питає, як вам вечір**
-<!-- interaction_id: en:lesson-01:session-48:i10; family: context_gap_grammar -->
-`It's ___ .` → **great** · loud · gone
-- loud — *«Гучний» — це про звук, а не про те, чи сподобалося.*
-- gone — *«Пішов» — про людину, яка поїхала.*
+**13 · Друг спокійно чекає, поки ви закінчите. Зверніться до нього: «Ти терплячий»**
+<!-- interaction_id: en:lesson-01:session-48:i13; family: scripted_repeat_compare -->
+🎙 **You are patient.**
 
-**11 · З'єднайте пари**
-<!-- interaction_id: en:lesson-01:session-48:i11; family: speed_match -->
-tired — втомлений · gone — пішов · loud — гучний · great — чудово
-
-**12 · Вставте слово — друг питає, куди ви тепер**
-<!-- interaction_id: en:lesson-01:session-48:i12; family: context_gap_grammar -->
-`I'm going ___ .` → **home** · great · loud
-- great — *«Чудово» — це не місце, куди йдуть.*
-- loud — *«Гучний» — теж не місце.*
-
-**13 · Складіть фразу — друг питає, куди ви тепер; додому ви ще не повернулися**
-<!-- interaction_id: en:lesson-01:session-48:i13; family: phrase_builder -->
-Плитки: `home` `We` `aren't` `isn't` → **We aren't home.**
-*(плитка `isn't` зайва: `isn't` не підходить до `We`: потрібно `We aren't home`.)*
-
-
-**14 · Вставте слово — друг цілий вечір сміявся**
+**14 · Два засохлі маркери зовсім не пишуть. Скажіть, що для підписів вони марні**
 <!-- interaction_id: en:lesson-01:session-48:i14; family: context_gap_grammar -->
-`He's ___ .` → **happy** · gone · home
-- gone — *Він нікуди не пішов, він поруч і сміється.*
-- home — *«Удома» — а він у пабі.*
+They ___ useless. → **are** · am · is
+- am — *Після `They` потрібно `are`.*
+- is — *Про два маркери — `They are`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-48:i15:s01; family: scripted_repeat_compare -->
-Після робочого тижня ви хочете піти раніше. Скажіть чому.
+**15 · Послухайте й виберіть коротку оцінку**
+<!-- interaction_id: en:lesson-01:session-48:i15; family: listen_choose -->
+🔊 *It's useful.* → **It's useful.** · It's useless. · It's dangerous.
+- It's useless. — *У записі останнє слово — `useful`, а в цьому варіанті — `useless`.*
+- It's dangerous. — *У записі останнє слово — `useful`, а в цьому варіанті — `dangerous`.*
 
-🎙 **I'm tired.**
+**16 · З’єднайте скорочення з повними початками**
+<!-- interaction_id: en:lesson-01:session-48:i16; family: speed_match -->
+I'm — I am · You're — You are · We're — We are · They're — They are
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-48:i15:s02; family: scripted_repeat_compare -->
-Міра дивиться на годинник: до закриття ще далеко. Скажіть про це.
-
-🎙 **It isn't late.**
-
-**17 · Складіть фразу — ви пояснюєте, чому хочете піти раніше**
-<!-- interaction_id: en:lesson-01:session-48:i16:s01; family: phrase_builder -->
-Плитки: `I'm` `tired` `are` → **I'm tired.**
-*(плитка `are` зайва: `are` зайве: воно вже заховане в `I'm tired`.)*
-
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-48:i16:s02; family: scripted_repeat_compare -->
-Міра дивиться на порожній стілець Олега: він уже пішов. Скажіть про це.
-
-🎙 **He's gone.**
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-48:i16:s03; family: scripted_repeat_compare -->
-У пабі вимкнули музику, і тепер не гучно. Скажіть про це.
-
-🎙 **It isn't loud.**
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-01:session-48:i16:s04; family: scripted_repeat_compare -->
-Олег питає, чи сподобався вам вечір. Відповідайте.
-
-🎙 **It's great.**
-
----
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=sound_contrast, 7=context_gap_grammar, 8=phrase_builder, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| tired | інтро 1, 1, 2, 9, 11, 15, 16 | 1, 2, 9, 11 |
-| happy | 2 (пастка), 9 (пастка), 14 | 14 |
-| loud | інтро 3, 6, 7, 8, 10 (пастка), 11, 12 (пастка), 16 | 6, 7, 8, 11 |
-| gone | інтро 2, 3, 4, 5, 7 (пастка), 10 (пастка), 11, 14 (пастка), 16 | 3, 4, 11 |
-| great | 7 (пастка), 10, 11, 12 (пастка), 16 | 10, 11 |
-| home | 2 (пастка), 12, 13, 14 (пастка) | 12, 13 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | `I'm tired` | так — `tired` перекладено в першому рядку, `I'm` розібрано цілком |
-| Інтро 2 | `He's gone` | так — `gone` перекладено в першому рядку, `he's` розібрано |
-| Інтро 3 | `They aren't loud` | так — `loud` перекладено в першому рядку, `aren't` названо і пояснено |
-
-**3. Дошка пар (завдання 11)**
-
-| слово | відпрацювання ДО дошки |
-|---|---|
-| tired | завдання 1, 2, 9 |
-| gone | завдання 3, 4, 5 |
-| loud | завдання 6, 7, 8 |
-| great | завдання 10 |
-
-**4. Граматика в межах**
-
-Усі цільові фрази стоять на `am` / `is` / `are` та їхніх скороченнях. Минулого часу (`was`, `wasn't`) у сесії більше немає.
-
----
+**17 · Після виставки сестра сама зізналася, що загубила чужий пензель. Оцініть саме її чесність**
+<!-- interaction_id: en:lesson-01:session-48:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **She is honest.**
 

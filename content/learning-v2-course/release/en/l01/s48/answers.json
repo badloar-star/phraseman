@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-48:i01",
-    "correctText": "tired",
-    "correctResponseId": "en:lesson-01:session-48:i01:r1"
+    "correctText": "He is honest.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i02",
-    "correctText": "tired",
+    "correctText": "She is polite.",
     "correctResponseId": "en:lesson-01:session-48:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-48:i03",
-    "correctText": "gone",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-48:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-48:i04",
-    "correctText": "She's gone.",
+    "correctText": "en:lesson-01:session-48:i04:p1=honest\nen:lesson-01:session-48:i04:p2=polite\nen:lesson-01:session-48:i04:p3=patient\nen:lesson-01:session-48:i04:p4=curious",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i05",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-48:i05:r1"
+    "correctText": "I'm curious.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i06",
-    "correctText": "loud",
-    "correctResponseId": "en:lesson-01:session-48:i06:r1"
+    "correctText": "They are useful.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i07",
-    "correctText": "loud",
-    "correctResponseId": "en:lesson-01:session-48:i07:r1"
+    "correctText": "It's useless.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i08",
-    "correctText": "They aren't loud.",
-    "correctResponseId": null
+    "correctText": "dangerous",
+    "correctResponseId": "en:lesson-01:session-48:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-48:i09",
-    "correctText": "I'm tired.",
-    "correctResponseId": null
+    "correctText": "He is honest.",
+    "correctResponseId": "en:lesson-01:session-48:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-48:i10",
-    "correctText": "great",
-    "correctResponseId": "en:lesson-01:session-48:i10:r1"
+    "correctText": "en:lesson-01:session-48:i10:p1=useful\nen:lesson-01:session-48:i10:p2=useless\nen:lesson-01:session-48:i10:p3=dangerous\nen:lesson-01:session-48:i10:p4=curious",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i11",
-    "correctText": "en:lesson-01:session-48:i11:p1=tired\nen:lesson-01:session-48:i11:p2=gone\nen:lesson-01:session-48:i11:p3=loud\nen:lesson-01:session-48:i11:p4=great",
+    "correctText": "They're polite.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i12",
-    "correctText": "home",
-    "correctResponseId": "en:lesson-01:session-48:i12:r1"
+    "correctText": "I am curious.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i13",
-    "correctText": "We aren't home.",
+    "correctText": "You are patient.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-48:i14",
-    "correctText": "happy",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-48:i14:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-48:i15:s01",
-    "correctText": "I'm tired.",
+    "interactionId": "en:lesson-01:session-48:i15",
+    "correctText": "It's useful.",
+    "correctResponseId": "en:lesson-01:session-48:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i16",
+    "correctText": "en:lesson-01:session-48:i16:p1=I'm\nen:lesson-01:session-48:i16:p2=You're\nen:lesson-01:session-48:i16:p3=We're\nen:lesson-01:session-48:i16:p4=They're",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-48:i15:s02",
-    "correctText": "It isn't late.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-48:i16:s01",
-    "correctText": "I'm tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-48:i16:s02",
-    "correctText": "He's gone.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-48:i16:s03",
-    "correctText": "It isn't loud.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-48:i16:s04",
-    "correctText": "It's great.",
+    "interactionId": "en:lesson-01:session-48:i17",
+    "correctText": "She is honest.",
     "correctResponseId": null
   }
 ]

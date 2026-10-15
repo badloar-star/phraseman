@@ -85,6 +85,17 @@ describe('guest clean classifier', () => {
     expect(classifyGuestCleanKey('v2:required-session-local-commit:v2:v2:progress:v1:abc:m1', '{"done":true}')).toBe('progress');
   });
 
+  // зачем: формы из прогона Сверки r15_1015 (полный онбординг гостя с выбором аватара, язык fr).
+  it('reads full-onboarding traces (migration marker, sync snapshot, avatar selection) as not progress', () => {
+    expect(classifyGuestCleanKey('lesson_progress_v2::fr::legacy_free_lesson_migration_v1', 'migrated')).toBe('service');
+    expect(classifyGuestCleanKey('cloud_last_sync_snapshot_v1', JSON.stringify({ user_avatar: '1', user_avatar_frame: 'plain', streak_count: '1' }))).toBe('service');
+    expect(classifyGuestCleanKey('customization_selection_head_v1:stable-A:1', JSON.stringify({ revision: 1 }))).toBe('default');
+    expect(classifyGuestCleanKey('customization_selection_operation_v1:stable-A:1:op', JSON.stringify({ selection: { avatarValue: '3', frameId: 'plain' } }))).toBe('default');
+    // Владение покупками и очередь выбора — прогресс.
+    expect(classifyGuestCleanKey('custom_avatar_owned_v1', JSON.stringify(['a7']))).toBe('progress');
+    expect(classifyGuestCleanKey('customization_selection_outbox_v1:stable-A:1', JSON.stringify([{ op: 1 }]))).toBe('progress');
+  });
+
   it('treats every unknown key and broken value as progress', () => {
     expect(classifyGuestCleanKey('lesson_progress_v2::fr::lesson_1', '{"done":true}')).toBe('progress');
     expect(classifyGuestCleanKey('client_shard_phone_state_outbox_v1:abc', '[{"e":1}]')).toBe('progress');

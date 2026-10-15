@@ -34,6 +34,9 @@ const SERVICE_KEYS: ReadonlySet<string> = new Set([
   'stable_auth_link_cache_v1',
   'cloud_migration_v1',
   'legacy_free_lesson_migration_v1',
+  // зачем (прогон Сверки r15_1015): снимок последнего синка — копия уже отправленных значений (аватар, рамка, серия);
+  // настоящий прогресс проверяется по своим ключам, сам снимок ничего не несёт.
+  'cloud_last_sync_snapshot_v1',
   'friends_push_v1',
 ]);
 
@@ -151,6 +154,11 @@ export function classifyGuestCleanKey(key: string, raw: string | null): GuestCle
   if (SERVICE_KEYS.has(key)) return 'service';
   // Лимит бесплатных уроков по языку: lesson_progress_v2::<язык>::legacy_free_lesson_cap_v1 = 3 у свежей установки.
   if (key.startsWith('lesson_progress_v2::') && key.endsWith('::legacy_free_lesson_cap_v1')) return value === '3' ? 'default' : 'progress';
+  // Маркер миграции бесплатных уроков по языку — тот же служебный след, что legacy_free_lesson_migration_v1 без префикса.
+  if (key.startsWith('lesson_progress_v2::') && key.endsWith('::legacy_free_lesson_migration_v1')) return 'service';
+  // Журнал ВЫБОРА аватара/рамки (голова и операция): по слову координатора выбор гостя — не прогресс. Владение покупками —
+  // отдельные ключи (custom_avatar_owned_v1, avatar_aura_owned_v1 …) и очередь/карантин выбора — остаются прогрессом.
+  if (key.startsWith('customization_selection_head_v1:') || key.startsWith('customization_selection_operation_v1:')) return 'default';
   if (key === 'active_days_v1') return isSingleActiveDay(value) ? 'default' : 'progress';
   if (key === 'achievement_foundation_progress_v2') return isEmptyFoundationProgress(value) ? 'default' : 'progress';
   // зачем (прогон Сверки guest_clean_relapse_1516, 15:38): у свежего гостя эти четыре ключа — пустые заготовки, а не прогресс.

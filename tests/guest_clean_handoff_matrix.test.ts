@@ -32,6 +32,11 @@ const FRESH_GUEST: Rows = {
   stable_auth_link_cache_v1: JSON.stringify({ linked: false }),
   cloud_migration_v1: '1',
   friends_push_v1: 'true',
+  // зачем: следы полного онбординга с выбором аватара (прогон Сверки r15_1015).
+  'lesson_progress_v2::fr::legacy_free_lesson_migration_v1': 'migrated',
+  cloud_last_sync_snapshot_v1: JSON.stringify({ user_avatar: '1', user_avatar_frame: 'plain', user_avatar_aura: '', streak_count: '1' }),
+  'customization_selection_head_v1:stable-A:1': JSON.stringify({ schemaVersion: 'x', ownerStableId: 'stable-A', lineage: 1, operationId: 'op-1', revision: 1, auditFloorRevision: 0 }),
+  'customization_selection_operation_v1:stable-A:1:op-1': JSON.stringify({ operationId: 'op-1', revision: 1, source: 'onbrd', selection: { avatarValue: '3', frameId: 'plain', storedAuraSelection: null, level: 1 } }),
   // зачем: четыре пустые заготовки из прогона Сверки guest_clean_relapse_1516 (свежий гость после онбординга).
   achievements_v1: JSON.stringify(Array.from({ length: 32 }, (_, i) => ({ id: `a${i}`, unlockedAt: null, notified: false, shardClaimed: true }))),
   'client_shard_phone_state_outbox_v1:stable-A:1': JSON.stringify({ schemaVersion: 'x', ownerStableId: 'stable-A', lineage: 1, operationIds: [], acknowledgedOperationIds: [] }),
@@ -96,6 +101,11 @@ describe('guest clean handoff matrix', () => {
   });
 
   // Ключ из настоящего префикса аккаунта (операция монет), которого классификатор не знает, — прогресс.
+  it('guest who owns a bought avatar is not clean', async () => {
+    const rows = { ...FRESH_GUEST, custom_avatar_owned_v1: JSON.stringify(['a7']) };
+    await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf(rows))).resolves.toBe(false);
+  });
+
   it('guest with any unknown account key is not clean', async () => {
     const rows = { ...FRESH_GUEST, 'client_shard_operation_v1:stable-A:op-1': JSON.stringify({ kind: 'earn', amount: 10 }) };
     await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf(rows))).resolves.toBe(false);

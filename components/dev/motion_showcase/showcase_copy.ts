@@ -28,6 +28,7 @@ const RU = {
   runes_check_speaking: 'Голосовая отработка — начисление рун',
   runes_check_recall: 'Вспоминание фраз — начисление рун',
   runes_check_swipe: 'Тренировка карточек — начисление рун',
+  runes_check_preposition_drill: 'Тренажёр предлогов — начисление рун',
 
   // ── alerts_forms ──
   alerts_forms_section_title: 'Алерты и формы',

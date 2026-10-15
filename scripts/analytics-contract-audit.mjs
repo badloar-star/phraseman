@@ -205,6 +205,7 @@ function buildReport() {
     summary: {
       declared: declared.size,
       called: canonicalCalled.size,
+      retired: retired.size,
       literalCallSites: literalCalled.length,
       warehoused: warehoused.length,
       measured: validMeasuredEvents.size,

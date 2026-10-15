@@ -106,6 +106,13 @@ export async function getExpoPushTokenIfPermitted(): Promise<string | null> {
  */
 export async function registerPushTokenForServerPush(lang: string): Promise<boolean> {
   try {
+    // зачем (координатор 15.10, ревью Авторизации (Б)): токен прошлого аккаунта не снят с сервера — гасим его ДО записи токена
+    // за нового владельца, иначе тот же токен оказался бы в двух документах и пуши A шли бы человеку B.
+    const rotation = await retryPendingPushTokenRotation('register');
+    if (rotation === 'still_pending') {
+      console.warn('[ACC-SWITCH-WIPE] push_register skipped reason=previous_token_rotation_pending');
+      return false;
+    }
     const db = getFirestore();
     if (!db) return false;
 
@@ -267,13 +274,25 @@ async function writeServerPushPrefsNow(prefs: ServerPushPrefs): Promise<void> {
  * Удалить токен из облака (например, при выходе/смене аккаунта или отключении
  * уведомлений) — чтобы сервер перестал слать пуши на чужой/недействительный токен.
  */
-export async function clearPushTokenForServerPush(): Promise<void> {
+export type PushTokenClearResult = 'cleared' | 'not_applicable' | 'not_cleared';
+
+export async function clearPushTokenForServerPush(): Promise<PushTokenClearResult> {
+  const startedAt = Date.now();
   try {
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+      console.log(`[PUSH-TOKEN-CLEAR] skip reason=${IS_EXPO_GO ? 'expo_go' : 'cloud_sync_disabled'}`);
+      return 'not_applicable';
+    }
     const stableId = await ensureAnonUser();
-    if (!stableId) return;
+    if (!stableId) {
+      console.warn('[PUSH-TOKEN-CLEAR] skip reason=no_stable_id — токен в документе аккаунта остался');
+      return 'not_cleared';
+    }
     const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('push_token_registration:promise_3', false));
-    if (!linkOk) return;
+    if (!linkOk) {
+      console.warn(`[PUSH-TOKEN-CLEAR] skip reason=auth_link_not_ready ms=${Date.now() - startedAt} — токен в документе аккаунта остался`);
+      return 'not_cleared';
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const firestoreModule = require('@react-native-firebase/firestore');
@@ -295,10 +314,99 @@ export async function clearPushTokenForServerPush(): Promise<void> {
       );
     }
     await AsyncStorage.removeItem(PUSH_TOKEN_LOCAL_KEY);
+    console.log(`[PUSH-TOKEN-CLEAR] cleared ms=${Date.now() - startedAt}`);
+    return 'cleared';
   } catch (error) {
-    // Тот же ожидаемый шум — глушим только permission-denied.
-    if (isFirestorePermissionDenied(error)) return;
-    DebugLogger.error('push_token_registration.ts:clearPushTokenForServerPush', error, 'warning');
+    // Тот же ожидаемый шум — глушим только permission-denied (но причину пишем: токен в документе остался).
+    const message = error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120);
+    console.warn(`[PUSH-TOKEN-CLEAR] failed ms=${Date.now() - startedAt} permission_denied=${isFirestorePermissionDenied(error) ? 'yes' : 'no'} message=${message}`);
+    if (!isFirestorePermissionDenied(error)) {
+      DebugLogger.error('push_token_registration.ts:clearPushTokenForServerPush', error, 'warning');
+    }
+    return 'not_cleared';
+  }
+}
+
+/**
+ * Метка «погасить токен устройства»: снять токен прошлого аккаунта с сервера не вышло (офлайн, потолок выхода, отказ).
+ * зачем (координатор 15.10, ревью Авторизации (Б)): после выхода стереть поле в документе A клиент уже не может (правила
+ * пускают только владельца A), поэтому гасим сам токен устройства — в документе A он становится недействительным.
+ * Метка устройства, без id владельца; переживает стирание (её нет в списках аккаунта).
+ */
+const PUSH_ROTATE_PENDING_KEY = 'push_token_rotate_pending_v1';
+const PUSH_ROTATE_MAX_ATTEMPTS = 3;
+const PUSH_ROTATE_TIMEOUT_MS = 6_000;
+
+type PushRotatePending = { at: number; reason: string; attempts: number };
+
+export async function markPushTokenRotationPending(reason: string): Promise<void> {
+  try {
+    const value: PushRotatePending = { at: Date.now(), reason: reason.slice(0, 60), attempts: 0 };
+    await AsyncStorage.setItem(PUSH_ROTATE_PENDING_KEY, JSON.stringify(value));
+    console.warn(`[ACC-SWITCH-WIPE] push_cleanup_retry marked reason=${value.reason}`);
+  } catch (error) {
+    console.warn(`[ACC-SWITCH-WIPE] push_cleanup_retry mark_failed reason=${reason} message=${error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120)}`);
+  }
+}
+
+function parsePushRotatePending(raw: string | null): PushRotatePending | null {
+  if (raw === null) return null;
+  try {
+    const parsed = JSON.parse(raw) as Partial<PushRotatePending>;
+    return {
+      at: Number(parsed.at) || 0,
+      reason: typeof parsed.reason === 'string' ? parsed.reason : 'unknown',
+      attempts: Number.isSafeInteger(parsed.attempts) ? Number(parsed.attempts) : 0,
+    };
+  } catch (error) {
+    console.warn(`[ACC-SWITCH-WIPE] push_cleanup_retry marker_unparsable message=${error instanceof Error ? error.message.slice(0, 80) : 'unknown'}`);
+    return { at: 0, reason: 'unparsable', attempts: 0 };
+  }
+}
+
+/**
+ * Погасить токен устройства по метке. 'none' — метки нет; 'rotated' — погашен; 'still_pending' — не вышло, попытки остались
+ * (регистрация токена за нового владельца ждёт); 'gave_up' — после 3 неудач метка снята, чтобы новый владелец не остался без пушей.
+ */
+export async function retryPendingPushTokenRotation(source: string): Promise<'none' | 'rotated' | 'still_pending' | 'gave_up'> {
+  const startedAt = Date.now();
+  let pending: PushRotatePending | null = null;
+  try {
+    pending = parsePushRotatePending(await AsyncStorage.getItem(PUSH_ROTATE_PENDING_KEY));
+  } catch (error) {
+    console.warn(`[ACC-SWITCH-WIPE] push_cleanup_retry read_failed source=${source} message=${error instanceof Error ? error.message.slice(0, 80) : 'unknown'}`);
+    return 'none';
+  }
+  if (!pending) return 'none';
+  if (IS_EXPO_GO) {
+    await AsyncStorage.removeItem(PUSH_ROTATE_PENDING_KEY).catch(noteSwallowedAs('push_token_registration:rotate_expo_go', undefined));
+    console.log(`[ACC-SWITCH-WIPE] push_cleanup_retry result=skipped reason=expo_go source=${source}`);
+    return 'none';
+  }
+  const attempt = pending.attempts + 1;
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  try {
+    const { unregisterForNotificationsAsync } = await import('expo-notifications');
+    await Promise.race([
+      unregisterForNotificationsAsync(),
+      new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('rotate_timeout')), PUSH_ROTATE_TIMEOUT_MS); }),
+    ]);
+    await AsyncStorage.multiRemove([PUSH_ROTATE_PENDING_KEY, PUSH_TOKEN_LOCAL_KEY]);
+    console.log(`[ACC-SWITCH-WIPE] push_cleanup_retry result=rotated source=${source} attempt=${attempt} markedReason=${pending.reason} ageMs=${pending.at ? Date.now() - pending.at : -1} ms=${Date.now() - startedAt}`);
+    return 'rotated';
+  } catch (error) {
+    const message = error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120);
+    if (attempt >= PUSH_ROTATE_MAX_ATTEMPTS) {
+      await AsyncStorage.removeItem(PUSH_ROTATE_PENDING_KEY).catch(noteSwallowedAs('push_token_registration:rotate_give_up', undefined));
+      console.warn(`[ACC-SWITCH-WIPE] push_cleanup_retry result=gave_up source=${source} attempt=${attempt} message=${message}`);
+      return 'gave_up';
+    }
+    await AsyncStorage.setItem(PUSH_ROTATE_PENDING_KEY, JSON.stringify({ ...pending, attempts: attempt }))
+      .catch(noteSwallowedAs('push_token_registration:rotate_attempt_write', undefined));
+    console.warn(`[ACC-SWITCH-WIPE] push_cleanup_retry result=failed source=${source} attempt=${attempt} message=${message} ms=${Date.now() - startedAt}`);
+    return 'still_pending';
+  } finally {
+    if (timer) clearTimeout(timer);
   }
 }
 

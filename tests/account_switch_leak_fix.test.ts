@@ -30,6 +30,22 @@ describe('onAccountOwnerChanged — сброс кэша в памяти толь
     expect(reset).toHaveBeenCalledTimes(2);
   });
 
+  it('окно A → нет → B: сброс и на выходе, и на приходе B; A → нет → A — один сброс', () => {
+    beginAccountGeneration(null);
+    const reset = jest.fn();
+    onAccountOwnerChanged('window_cache', reset);
+    beginAccountGeneration('owner-A');
+    expect(reset).toHaveBeenCalledTimes(0);
+    beginAccountGeneration(null);
+    expect(reset).toHaveBeenCalledTimes(1);
+    beginAccountGeneration('owner-B');
+    expect(reset).toHaveBeenCalledTimes(2);
+    beginAccountGeneration(null);
+    expect(reset).toHaveBeenCalledTimes(3);
+    beginAccountGeneration('owner-B');
+    expect(reset).toHaveBeenCalledTimes(3);
+  });
+
   it('сбой сброса не ломает смену аккаунта (пишет причину)', () => {
     beginAccountGeneration('owner-A');
     onAccountOwnerChanged('broken_cache', () => { throw new Error('boom'); });

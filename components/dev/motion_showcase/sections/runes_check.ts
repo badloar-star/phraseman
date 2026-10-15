@@ -29,5 +29,6 @@ export const SECTION: ShowcaseSection = {
     { id: 'runes-check-speaking', title: cs('runes_check_speaking'), kind: 'route', route: '/flashcards_speaking_session', devRunesSeed: true, detail: cs('runes_check_detail') },
     { id: 'runes-check-recall', title: cs('runes_check_recall'), kind: 'route', route: '/flashcards_recall_session', devRunesSeed: true, detail: cs('runes_check_detail') },
     { id: 'runes-check-swipe', title: cs('runes_check_swipe'), kind: 'route', route: '/flashcards_swipe', devRunesSeed: true, detail: cs('runes_check_detail') },
+    { id: 'runes-check-preposition-drill', title: cs('runes_check_preposition_drill'), kind: 'route', route: '/preposition_drill', devRunesSeed: true, detail: cs('runes_check_detail') },
   ],
 };

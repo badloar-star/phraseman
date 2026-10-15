@@ -11,7 +11,8 @@ describe('analytics contract audit', () => {
     const report = JSON.parse(stdout);
 
     expect(report.errors).toEqual([]);
-    expect(report.summary.called).toBe(report.summary.declared);
+    // зачем (Ядро 15.10, D187): retired — событие удалённой фичи, хранится ради истории склада; вызова у него нет и быть не может
+    expect(report.summary.called + report.summary.retired).toBe(report.summary.declared);
     // зачем (координатор 00:02, 11.10): события с warehouse "telemetry_only" (Learning V2 до его включения) на склад
     // не идут — склад и метрики считаются без них. Вернуть V2 на склад: warehouse "product" + SQL + метрика.
     const governance = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'app/product_analytics_governance.json'), 'utf8')) as {

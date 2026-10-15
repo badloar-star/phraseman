@@ -173,6 +173,12 @@ import {
   forgetAllAnonMergeNonces,
 } from '../modules/account-authority-v2/account_authority_anon_merge_nonce';
 import {
+  consumeStampPrefetch,
+  settleStampPrefetch,
+  startStampPrefetch,
+  type StampPrefetch,
+} from './auth_stamp_prefetch';
+import {
   accountAuthorityErrorCode,
   accountAuthorityErrorKind,
   accountAuthorityProviderErrorCode,
@@ -242,22 +248,41 @@ async function syncRevenueCatAfterAuthLink(isCurrent: () => boolean = () => true
  */
 const STAMP_FETCH_TIMEOUT_MS = 20_000;
 
-async function stampAnonOwnershipBeforeSignIn(localStableId: string): Promise<void> {
-  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO || !localStableId) return;
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { getApp } = require('@react-native-firebase/app');
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
-    const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'authStampAnonOwnership');
+/** Сам вызов метки (без приёма nonce): общий для последовательного stamp и предвыборки [LOGIN-STAMP]. Может отклониться. */
+async function requestAnonOwnershipStamp(localStableId: string): Promise<unknown> {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getApp } = require('@react-native-firebase/app');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'authStampAnonOwnership');
     // зачем (AA S2b, пункт 9, контракт M-1): просим одноразовый nonce метки. Он
     // живёт только в памяти процесса (модуль nonce) и уходит в ensureLink/merge
     // для этого же stableId. Старый сервер nonce не даёт — работаем без него.
     // зачем (координатор 14.10, прогон №5): под флагом auth_callables_fetch_v1 (выкл) — мимо однопоточной очереди RNFirebase;
     // нативный путь — только если запрос гарантированно не ушёл (метку нельзя ставить дважды вслепую).
-    const payload = { stableId: localStableId, nonceRequested: true };
-    const { invokeAuthCallable } = await import('./auth_callable_fetch');
-    const response = await invokeAuthCallable('authStampAnonOwnership', payload, () => fn(payload), { timeoutMs: STAMP_FETCH_TIMEOUT_MS });
+  const payload = { stableId: localStableId, nonceRequested: true };
+  const { invokeAuthCallable } = await import('./auth_callable_fetch');
+  return invokeAuthCallable('authStampAnonOwnership', payload, () => fn(payload), { timeoutMs: STAMP_FETCH_TIMEOUT_MS });
+}
+
+async function stampAnonOwnershipBeforeSignIn(
+  localStableId: string,
+  prefetch: StampPrefetch | null = null,
+  anonAuthUid = '',
+): Promise<void> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO || !localStableId) return;
+  // зачем (координатор 15.10, [LOGIN-STAMP]): метка запрошена ещё на тапе, пока человек выбирал аккаунт; принимаем её
+  // только здесь и только при совпадении попытки, stableId, анонимного uid и возраста — иначе метка заново, как раньше.
+  if (prefetch) {
+    const { outcome, hit } = await consumeStampPrefetch(prefetch, { stableId: localStableId, authUid: anonAuthUid });
+    if (hit) {
+      acceptAnonMergeStampResponse(localStableId, hit.response, hit.receivedAtMs);
+      return;
+    }
+    console.log(`[LOGIN-STAMP] sequential reason=${outcome}`);
+  }
+  try {
+    const response = await requestAnonOwnershipStamp(localStableId);
     acceptAnonMergeStampResponse(localStableId, response);
   } catch (e) {
     // Лог без текста ошибки и без stableId: только вид и код (S1-логгер).
@@ -2536,9 +2561,15 @@ async function runSignInWithProvider(
   resumeCredential: NativeAuthCredential | null = null,
 ): Promise<SignInResult> {
   const handoffLeaseScope: ProviderHandoffLeaseScope = { lease: null, release: null };
+  let settledResult: SignInResult['result'] | null = null;
   try {
-    return await runSignInWithProviderWhileOwningHandoffLease(provider, options, handoffLeaseScope, resumeCredential);
+    const result = await runSignInWithProviderWhileOwningHandoffLease(provider, options, handoffLeaseScope, resumeCredential);
+    settledResult = result.result;
+    return result;
   } finally {
+    // зачем (координатор 15.10, [LOGIN-STAMP]): поздний ответ предвыборки после конца входа никуда не кладётся, а итог
+    // outcome=used|wasted_no_conflict|wasted_cancel|… считает долю впустую потраченных вызовов (>80% — запуск только при конфликте).
+    settleStampPrefetch(settledResult);
     // зачем (AA S2b, пункт 9): nonce M-1 нужен только внутри одного входа —
     // успех (merge/relink), отказ или отмена одинаково его стирают.
     forgetAllAnonMergeNonces('sign_in_settled');
@@ -2663,6 +2694,20 @@ async function runSignInWithProviderWhileOwningHandoffLease(
   const anonPreparation = deferIdentityPreparation
     ? Promise.resolve(null)
     : ensureAnonUser();
+  // зачем (координатор 15.10, замер №7: метка 1,96 с последовательно ПОСЛЕ окна выбора): запрос метки уходит сейчас, пока открыт
+  // выбор аккаунта. Без pending-delete (там метки нет) и без продолжения после «Сменить аккаунт» (окна нет — прятать нечего).
+  const stampPrefetch: StampPrefetch | null = !deferIdentityPreparation && !resumeCredential && CLOUD_SYNC_ENABLED && !IS_EXPO_GO
+    ? startStampPrefetch({
+        resolveIdentity: async () => {
+          await anonPreparation;
+          const user = auth.currentUser;
+          if (!user?.isAnonymous || !user.uid) return null;
+          return { stableId: await getStableId(), authUid: String(user.uid) };
+        },
+        request: requestAnonOwnershipStamp,
+      })
+    : null;
+  if (!stampPrefetch) console.log(`[LOGIN-STAMP] prefetch_off defer=${deferIdentityPreparation} resume=${Boolean(resumeCredential)}`);
 
   // 1. Native / OAuth sign-in
   let cred: NativeAuthCredential | { cancelled: true };
@@ -2861,7 +2906,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           );
           console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:handoff_credential_ready', ms: Date.now() - handoffStepStartedAtMs }));
           const stampStartedAtMs = Date.now();
-          await stampAnonOwnershipBeforeSignIn(preProviderStableId);
+          await stampAnonOwnershipBeforeSignIn(preProviderStableId, stampPrefetch, sourceAuthUid);
           console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:stamp_anon_ownership', ms: Date.now() - stampStartedAtMs }));
           const signInStartedAtMs = Date.now();
           userCredential = await auth.signInWithCredential(credential);
@@ -5186,12 +5231,22 @@ async function clearAccountPushBeforeSwitchSignOut(): Promise<void> {
   const result = await Promise.race([
     Promise.all([
       step('notifications', async () => { const { cancelAllNotifications } = await import('./notifications'); await cancelAllNotifications(); }),
-      step('push_token', async () => { const { clearPushTokenForServerPush } = await import('./push_token_registration'); await clearPushTokenForServerPush(); }),
+      step('push_token', async () => {
+        const { clearPushTokenForServerPush } = await import('./push_token_registration');
+        const cleared = await clearPushTokenForServerPush();
+        if (cleared === 'not_cleared') throw new Error('push_token_not_cleared');
+      }),
     ]),
     capped,
   ]);
   if (timer) clearTimeout(timer);
   console.log(`[ACC-SWITCH-WIPE] push_cleanup result=${result.join(',')} ms=${Date.now() - startedAtMs}`); // guard-ok: одна строка на выход
+  // зачем (координатор 15.10, ревью Авторизации (Б)): офлайн / отказ / потолок — токен A остался в документе A, и после выхода
+  // клиент его оттуда уже не сотрёт. Метка гасит сам токен устройства при первой сети, до регистрации токена за следующего.
+  if (!result.includes('push_token:ok')) {
+    const { markPushTokenRotationPending } = await import('./push_token_registration');
+    await markPushTokenRotationPending(result.includes('timeout') ? 'switch_cap_timeout' : 'switch_clear_failed');
+  }
 }
 
 async function performCurrentProviderSignOut(): Promise<void> {

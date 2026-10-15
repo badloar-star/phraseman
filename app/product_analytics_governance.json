@@ -542,36 +542,42 @@
     },
     {
       "name": "paywall_exit_offer_shown",
+      "retired": "D187 14.10: оффер на выходе из пейвола удалён (df0c03d50) — событие только для истории в хранилище, новых вызовов нет",
       "entity": "impression",
       "warehouse": "product",
       "fieldSet": "paywall"
     },
     {
       "name": "paywall_exit_offer_accepted",
+      "retired": "D187 14.10: оффер на выходе из пейвола удалён (df0c03d50) — событие только для истории в хранилище, новых вызовов нет",
       "entity": "impression",
       "warehouse": "product",
       "fieldSet": "paywall"
     },
     {
       "name": "paywall_exit_offer_declined",
+      "retired": "D187 14.10: оффер на выходе из пейвола удалён (df0c03d50) — событие только для истории в хранилище, новых вызовов нет",
       "entity": "impression",
       "warehouse": "product",
       "fieldSet": "paywall"
     },
     {
       "name": "exit_trial_offer_shown",
+      "retired": "D187 14.10: оффер на выходе из пейвола удалён (df0c03d50) — событие только для истории в хранилище, новых вызовов нет",
       "entity": "impression",
       "warehouse": "product",
       "fieldSet": "paywall"
     },
     {
       "name": "exit_trial_offer_accepted",
+      "retired": "D187 14.10: оффер на выходе из пейвола удалён (df0c03d50) — событие только для истории в хранилище, новых вызовов нет",
       "entity": "impression",
       "warehouse": "product",
       "fieldSet": "paywall"
     },
     {
       "name": "exit_trial_offer_declined",
+      "retired": "D187 14.10: оффер на выходе из пейвола удалён (df0c03d50) — событие только для истории в хранилище, новых вызовов нет",
       "entity": "impression",
       "warehouse": "product",
       "fieldSet": "paywall"

@@ -6240,7 +6240,12 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
       }
       other.push(redactStorageKey(key));
     }
-    console.log(`[ACC-SWITCH-WIPE] survivors=${JSON.stringify({ before: wipeKeysBefore, knownLeak, otherCount: other.length, other: other.slice(0, 150), ownerScoped })}`); // guard-ok: одна строка на стирание, только имена
+    // зачем (координатор 15.10, разбор №7): 358 из 440 «других» — страницы аварийной копии с одинаковым видом после маскировки;
+    // группа «вид ключа → сколько» показывает настоящих выживших, а не 150 копий одной строки. Тот же список, без нового прохода.
+    const otherShapes: Record<string, number> = {};
+    for (const shape of other) otherShapes[shape] = (otherShapes[shape] ?? 0) + 1;
+    const otherTop = Object.entries(otherShapes).sort((a, b) => b[1] - a[1]).slice(0, 80);
+    console.log(`[ACC-SWITCH-WIPE] survivors=${JSON.stringify({ before: wipeKeysBefore, knownLeak, otherCount: other.length, otherShapeCount: Object.keys(otherShapes).length, other: Object.fromEntries(otherTop), ownerScoped })}`); // guard-ok: одна строка на стирание, только имена
     if (knownLeak.length > 0) {
       identityTrace('[ACC-SWITCH-WIPE]', 'survivors_known_leak', { count: knownLeak.length, keys: knownLeak.slice(0, 5).join(',') }, { persist: true });
     }

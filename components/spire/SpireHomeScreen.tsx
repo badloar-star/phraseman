@@ -56,6 +56,7 @@ const SpireMomentsLayer = lazy(() => import('./moments/SpireMomentsLayer'));
 import SpireHomeSkeleton from './SpireHomeSkeleton';
 import { useSpireTowerBudget } from './use_spire_tower_budget';
 import { useSpireTowerTouchLock } from './use_spire_tower_touch_lock';
+import { SPIRE_THIN_HEADER_STYLES as thin } from './spire_thin_header';
 import SpireStepScreen from './SpireStepScreen';
 import SpireTour from './SpireTour';
 import SpireTower from './SpireTower';
@@ -275,7 +276,7 @@ export default function SpireHomeScreen() {
   return (
     <View style={s.root} testID="spire-home">
       <ScrollView
-        contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }]}
+        contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }, budget.headerThin ? thin.content : null]}
         showsVerticalScrollIndicator={false}
         decelerationRate="fast"
         scrollEnabled={!towerTouch.locked}
@@ -284,10 +285,10 @@ export default function SpireHomeScreen() {
         onLayout={(e) => logSpireLayout('scroll', { viewportH: roundLayout(e.nativeEvent.layout.height), bottomPad: roundLayout(bottomPad), paddingBottom: roundLayout(bottomPad + tailPad) })}
         onContentSizeChange={(_w, ch) => logSpireLayout('scroll.content', { contentH: roundLayout(ch) })}
       >
-        <View style={s.head}>
+        <View style={[s.head, budget.headerThin ? thin.head : null]}>
           <View style={s.headText}>
             <View style={s.titleRow}>
-              <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{spireText(lang, 'title')}</Text>
+              <Text accessibilityRole="header" style={[s.title, budget.headerThin ? thin.title : null, { color: p.text }]}>{spireText(lang, 'title')}</Text>
               {/* зачем (D77, владелец 30.09): пулы es/de/fr без проверки носителем — первые 2–4 недели
                   с пометкой «бета» рядом с языком. Снять: убрать язык из SPIRE_BETA_LANGS. */}
               {spireLang && SPIRE_BETA_LANGS.includes(spireLang) ? (

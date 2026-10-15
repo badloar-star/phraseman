@@ -33,7 +33,7 @@ describe('Пик: док и последняя карточка всегда в�
     expect(home).toContain('const tailNeeded = dockH > 0 ? Math.ceil(dockBottom + dockH + DOCK_GAP - bottomPad) : 0;');
     expect(home).toContain('const tailPad = Math.max(scrollTailPad, tailNeeded);');
     expect(home).toContain('style={[s.dock, { bottom: dockBottom }]}');
-    expect(home).toContain('contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }]}');
+    expect(home).toContain('contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }');
     expect(read('hooks/use-tab-content-bottom-pad.ts')).toContain('export const CONTENT_BREATHING_GAP = 16;');
   });
 

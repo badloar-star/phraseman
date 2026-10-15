@@ -5,9 +5,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { PODIUM_SIZES } from '../components/spire/spire_podium_sizes';
 import {
-  SPIRE_COMPACT_FLOOR_INFO_ENABLED, SPIRE_FLOOR_INFO_COMPACT_H, SPIRE_FLOOR_INFO_FULL_H, SPIRE_LEVEL_CARD_BELOW, SPIRE_LEVEL_HYSTERESIS, SPIRE_LEVEL_PODIUM_BELOW,
-  SPIRE_LEVEL_SCROLL_BELOW, SPIRE_PODIUM_COMPACT_SAVE, SPIRE_WINDOW_MAX, SPIRE_WINDOW_MIN, SPIRE_WINDOW_MIN_FIT,
-  spireCardCompact, spireLayoutLevel, spirePodiumCompact, spireScrollMode, spireTowerRawFit, spireTowerWindowHeight, type SpireLayoutLevel,
+  SPIRE_COMPACT_FLOOR_INFO_ENABLED, SPIRE_FLOOR_INFO_COMPACT_H, SPIRE_FLOOR_INFO_FULL_H, SPIRE_HEADER_THIN_SAVE, SPIRE_LEVEL_FIT_BELOW, SPIRE_LEVEL_HYSTERESIS,
+  SPIRE_PODIUM_COMPACT_SAVE, SPIRE_THIN_HEADER_ENABLED, SPIRE_WINDOW_MAX, SPIRE_WINDOW_MIN, SPIRE_WINDOW_MIN_FIT,
+  spireAboveTowerSaved, spireCardCompact, spireHeaderThin, spireLayoutLevel, spireLevelLimits, spirePodiumCompact, spireScrollMode, spireSteps, spireTowerRawFit, spireTowerWindowHeight, type SpireLayoutLevel,
 } from '../components/spire/spire_tower_window';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
@@ -45,8 +45,8 @@ describe('высота окна башни до дока', () => {
     expect(home).toContain('compact={budget.cardCompact}');
     expect(home).toContain('compact={budget.podiumCompact}');
     const hook = read('components/spire/use_spire_tower_budget.ts');
-    expect(hook).toContain('spireTowerWindowHeight(tower.y, dockTop, gap + infoH, spireScrollMode(level))');
-    expect(hook).toContain('spireLayoutLevel(rawFit, levelRef.current)');
+    expect(hook).toContain('spireTowerWindowHeight(tower.y, dockTop, gap + infoH, spireScrollMode(level, steps))');
+    expect(hook).toContain('spireLayoutLevel(rawFit, levelRef.current, steps)');
     expect(hook).toContain('[SPIRE-BUDGET]');
     const tower = read('components/spire/SpireTower.tsx');
     expect(tower).toContain('windowHeight?: number;');
@@ -67,9 +67,8 @@ describe('ступени ужатия верха экрана Пика', () => {
     expect(SPIRE_COMPACT_FLOOR_INFO_ENABLED).toBe(true);
     expect(SPIRE_PODIUM_COMPACT_SAVE).toBe(40);
     expect(SPIRE_FLOOR_INFO_FULL_H - SPIRE_FLOOR_INFO_COMPACT_H).toBe(32);
-    expect(SPIRE_LEVEL_PODIUM_BELOW).toBe(180);
-    expect(SPIRE_LEVEL_CARD_BELOW).toBe(140); // окно после компактного подиума < 180
-    expect(SPIRE_LEVEL_SCROLL_BELOW).toBe(48); // 120 − 40 − 32: даже все ужатия не дают окну 120
+    expect(SPIRE_LEVEL_FIT_BELOW).toBe(180);
+    expect(spireLevelLimits(['podium', 'card'])).toEqual([180, 140, 48]); // подиум <180; строка этажа <140 (окно после подиума < 180); прокрутка <48 (120 − 40 − 32: все ужатия не дают окну 120)
     expect(SPIRE_LEVEL_HYSTERESIS).toBe(16);
   });
 
@@ -148,6 +147,75 @@ describe('ступени ужатия верха экрана Пика', () => {
       const windowH = spireTowerWindowHeight(top, dockTop, 16 + infoH, false);
       expect([fullTop, level, windowH >= SPIRE_WINDOW_MIN_FIT]).toEqual([fullTop, level, true]);
       expect([fullTop, level, top + windowH + infoH <= dockTop - 16]).toEqual([fullTop, level, true]);
+    }
+  });
+});
+
+// зачем (координатор 15.10): «тонкая шапка» — первая ступень, ПОДГОТОВЛЕНА и ВЫКЛЮЧЕНА (решает координатор по кадрам); с выключенным флагом поведение прежнее
+describe('ступень «тонкая шапка» — подготовлена, выключена', () => {
+  const WITH_HEADER = ['header', 'podium', 'card'] as const;
+
+  it('флаг выключен: по умолчанию ступени — подиум и строка этажа; шапка никогда не тонкая', () => {
+    expect(SPIRE_THIN_HEADER_ENABLED).toBe(false);
+    expect(spireSteps()).toEqual(['podium', 'card']);
+    expect(spireSteps()).toBe(spireSteps()); // стабильная ссылка — зависимость колбэков хука
+    for (const rawFit of [-100, 0, 50, 100, 150, 179, 300]) expect(spireHeaderThin(spireLayoutLevel(rawFit))).toBe(false);
+  });
+
+  it('шапка −22 dp: заголовок 34/40 → 24/30 (−10) и отступы 6 → 0 (−6 и −6)', () => {
+    expect(SPIRE_HEADER_THIN_SAVE).toBe(22);
+    expect((40 - 30) + 6 + 6).toBe(SPIRE_HEADER_THIN_SAVE);
+    const style = read('components/spire/spire_thin_header.ts');
+    expect(style).toContain('content: { paddingTop: 0 },');
+    expect(style).toContain('head: { marginTop: 0 },');
+    expect(style).toContain('fontSize: V2_TYPE.title.fontSize, lineHeight: V2_TYPE.title.lineHeight');
+    const v2 = read('constants/v2Style.ts');
+    expect(v2).toContain('largeTitle: { fontSize: 34, lineHeight: 40,');
+    expect(v2).toContain('title: { fontSize: 24, lineHeight: 30,');
+    const home = read('components/spire/SpireHomeScreen.tsx');
+    expect(home).toContain('budget.headerThin ? thin.content : null');
+    expect(home).toContain('budget.headerThin ? thin.head : null');
+    expect(home).toContain('budget.headerThin ? thin.title : null');
+  });
+
+  it('границы с включённой шапкой: 180 / 158 / 118 / 26 (шапка → подиум → строка этажа → прокрутка)', () => {
+    expect(spireLevelLimits(WITH_HEADER)).toEqual([180, 158, 118, 26]);
+  });
+
+  it('первая ступень — шапка: rawFit 158…179 → только тонкая шапка; ниже — добавляются подиум и строка; < 26 — прокрутка', () => {
+    const at = (rawFit: number) => { const l = spireLayoutLevel(rawFit, 0, WITH_HEADER); return [spireHeaderThin(l, WITH_HEADER), spirePodiumCompact(l, WITH_HEADER), spireCardCompact(l, WITH_HEADER), spireScrollMode(l, WITH_HEADER)]; };
+    expect(at(200)).toEqual([false, false, false, false]);
+    expect(at(170)).toEqual([true, false, false, false]);
+    expect(at(140)).toEqual([true, true, false, false]);
+    expect(at(100)).toEqual([true, true, true, false]);
+    expect(at(25)).toEqual([false, false, false, true]);
+  });
+
+  it('верх окна приводится к полной раскладке: шапка и подиум выше башни прибавляются, строка этажа — нет', () => {
+    expect(spireAboveTowerSaved(1, WITH_HEADER)).toBe(SPIRE_HEADER_THIN_SAVE);
+    expect(spireAboveTowerSaved(2, WITH_HEADER)).toBe(SPIRE_HEADER_THIN_SAVE + SPIRE_PODIUM_COMPACT_SAVE);
+    expect(spireAboveTowerSaved(3, WITH_HEADER)).toBe(SPIRE_HEADER_THIN_SAVE + SPIRE_PODIUM_COMPACT_SAVE); // строка этажа под башней
+    expect(spireAboveTowerSaved(4, WITH_HEADER)).toBe(0); // режим прокрутки — всё полное
+    expect(spireAboveTowerSaved(1)).toBe(SPIRE_PODIUM_COMPACT_SAVE); // по умолчанию: уровень 1 = подиум
+    expect(spireAboveTowerSaved(3)).toBe(0);
+  });
+
+  it('с включённой шапкой нет качания и каждая ступень вмещает всё выше дока с зазором 16 и окном ≥ 120 (кроме режима прокрутки)', () => {
+    const dockTop = 754;
+    for (let fullTop = 300; fullTop <= 700; fullTop += 1) {
+      const rawFit = spireTowerRawFit(fullTop, dockTop, 16);
+      let level = spireLayoutLevel(rawFit, 0, WITH_HEADER);
+      // замкнутая модель: решение от rawFit, верх приводится к полному — результат тот же и со всех стартов
+      for (const start of [0, 1, 2, 3, 4]) {
+        const next = spireLayoutLevel(rawFit, start, WITH_HEADER);
+        expect([fullTop, start, Math.abs(next - level) <= 1]).toEqual([fullTop, start, true]); // отличие только гистерезисом на самой границе
+      }
+      level = spireLayoutLevel(rawFit, level, WITH_HEADER);
+      if (spireScrollMode(level, WITH_HEADER)) continue;
+      const top = fullTop - spireAboveTowerSaved(level, WITH_HEADER);
+      const infoH = spireCardCompact(level, WITH_HEADER) ? SPIRE_FLOOR_INFO_COMPACT_H : SPIRE_FLOOR_INFO_FULL_H;
+      const windowH = spireTowerWindowHeight(top, dockTop, 16 + infoH, false);
+      expect([fullTop, level, windowH >= SPIRE_WINDOW_MIN_FIT, top + windowH + infoH <= dockTop - 16]).toEqual([fullTop, level, true, true]);
     }
   });
 });

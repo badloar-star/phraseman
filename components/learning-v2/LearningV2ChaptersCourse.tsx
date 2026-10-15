@@ -186,9 +186,14 @@ export default function LearningV2ChaptersCourse(props: Props) {
   // зачем (координатор 15.10, Сверка Б11: карты V2 на экране нет): смонтирована ли карта и что в ней — уроков видно,
   // строк собрано, занятий в выбранном уроке. Ноль здесь = карта есть, но пустая; нет строки mount = карта не рисовалась.
   // зачем (R08, Сверка: React нарисовал карту, а на экране список A1): onLayout приходит от НАТИВНОГО слоя — его нет = вид не смонтирован нативно
+  // зачем (R08 🔴, 15.10): бесконечное гало текущего узла (повтор анимации на UI-потоке) стартовало в одном коммите с монтированием всей карты —
+  // на новой архитектуре непрерывные коммиты Reanimated мешали выводу карты на экран, и интерфейс замирал до следующего касания.
+  // До первой нативной раскладки карты узлы стоят в «без бесконечного движения» (гало статично), после неё пульс включается как раньше.
+  const [nativeReady, setNativeReady] = useState(false);
   const logChaptersLayout = useCallback((e: { nativeEvent: { layout: { x: number; y: number; width: number; height: number } } }) => {
     const { x, y, width, height } = e.nativeEvent.layout;
     console.log("[V2-MAP] chapters:layout", JSON.stringify({ x, y, width, height, allLessonsOpen }));
+    setNativeReady(true);
   }, [allLessonsOpen]);
   useEffect(() => {
     console.log("[V2-MAP] chapters:mount", JSON.stringify({ scopeKey: props.scopeKey, atMs: Date.now() }));
@@ -294,7 +299,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
                   haloColor={row.state === "current" && available ? g.text : undefined}
                   accessible={available}
                   active={props.active}
-                  reduceMotion={props.reducedMotion}
+                  reduceMotion={props.reducedMotion || !nativeReady}
                   accessibilityLabel={`${row.sessionOrdinal}`}
                   onPress={hasMaterial ? () => onSessionPress(row.lessonOrdinal, row.sessionOrdinal, row.state) : undefined}
                   disabled={!hasMaterial}

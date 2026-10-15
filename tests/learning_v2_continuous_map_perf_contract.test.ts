@@ -72,7 +72,8 @@ describe("Learning V2 continuous map performance contract", () => {
       join(__dirname, "..", "app", "(tabs)", "lessons.tsx"),
       "utf8",
     );
-    expect(lessons).toContain('useHideTabBar(page === "v2")');
+    // R08 (15.10, предохранитель): прячет только пока «Обучение» владеет экраном — иначе запоздавшее скрытие доезжало до Главной
+    expect(lessons).toContain('useHideTabBar(page === "v2" && lessonsTabVisible)');
     const ctx = readFileSync(
       join(__dirname, "..", "components", "TabBarVisibilityContext.tsx"),
       "utf8",

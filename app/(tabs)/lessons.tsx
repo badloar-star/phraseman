@@ -4440,7 +4440,17 @@ export default function LessonsTab({
       (globalThis as { __v2OpenT0?: number }).__v2OpenT0 = Date.now();
       console.log("[V2-OPEN] tap", JSON.stringify({ from: "openNewLessons", instanceId: instanceIdRef.current, runtimeOwnerId, visible: lessonsTabVisible }));
     }
-    setPage("v2");
+    // зачем (R08 🔴, диагноз Advisor 15.10): setPage прямо в onPress удалял нажатую кнопку вместе со всем каталогом во время её нативной
+    // анимации отпускания — React коммитил карту, а натив не получал кадр до СЛЕДУЮЩЕГО касания (карты не было, таббар не прятался,
+    // chapters:layout приходил только после тапа по другой вкладке). Смена страницы — на следующем кадре, когда отпускание завершено.
+    const tapAt = Date.now();
+    requestAnimationFrame(() => {
+      console.log("[V2-OPEN] setPage:raf", JSON.stringify({ instanceId: instanceIdRef.current, sinceTapMs: Date.now() - tapAt })); // guard-ok: одна строка на вход
+      setPage("v2");
+      // зонды R08: идут ли кадры после коммита (setTimeout 0 / rAF) — если карта снова не появится, видно, где встал вывод на экран
+      setTimeout(() => console.log("[V2-MAP] after-commit:timeout0", JSON.stringify({ sinceTapMs: Date.now() - tapAt })), 0); // guard-ok: зонд R08
+      requestAnimationFrame(() => console.log("[V2-MAP] after-commit:raf", JSON.stringify({ sinceTapMs: Date.now() - tapAt }))); // guard-ok: зонд R08
+    });
   }, [setPage, runtimeOwnerId, lessonsTabVisible]);
   // зачем (владелец 2026-09-17): вход в «комбинированный урок» — несколько тем
   // вперемешку. Гейт Plus/Pro стоит ЗДЕСЬ, до перехода: выбор тем — платная
@@ -5422,7 +5432,8 @@ export default function LessonsTab({
                     }
                     userPickedTabRef.current = true;
                     rememberLessonsPage("v2");
-                    setPage("v2");
+                    // R08: та же причина, что у «Новых уроков» — страница меняется на следующем кадре, после отпускания нажатой вкладки
+                    requestAnimationFrame(() => setPage("v2"));
                   }
                 }}
               />

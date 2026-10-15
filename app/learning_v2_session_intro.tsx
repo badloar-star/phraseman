@@ -536,10 +536,16 @@ export default function LearningV2SessionIntro({
           </PressableHybrid>
 
           <View style={sx.stageMeta}>
-            <Text style={[sx.stageLabel, { color: lv2Alpha(g.text, 0.86) }]}>
+            {/* зачем (Сверка df455f92d, кадр 12; координатор 15.10): подпись этапа переносилась по буквам («СМЫС»/«Л») — рядом с «1 / 3» и тремя плашками (сердца, энергия, монеты) ей не хватало ширины. Теперь метка в одну строку и не сжимается (ширина по содержимому), «N / 3» — отдельной строкой под ней; сжатие шрифта запрещено, поэтому место берётся высотой, а не шириной. */}
+            <Text
+              numberOfLines={1}
+              ellipsizeMode="clip"
+              style={[sx.stageLabel, { color: lv2Alpha(g.text, 0.86) }]}
+            >
               {stageLabel}
             </Text>
             <Text
+              numberOfLines={1}
               accessibilityLabel={copy.progress(safeIndex + 1, screens.length)}
               style={[sx.pageCounter, { color: g.secondary }]}
             >
@@ -801,18 +807,18 @@ const styles = StyleSheet.create({
   stageMeta: {
     flex: 1,
     minWidth: 0,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "center",
   },
   stageLabel: {
-    flexShrink: 1,
-    fontSize: 13,
-    lineHeight: 18,
+    flexShrink: 0,
+    fontSize: 12,
+    lineHeight: 16,
     fontWeight: "700",
-    letterSpacing: 1.6,
+    letterSpacing: 1.2,
   },
-  pageCounter: { fontSize: 13, lineHeight: 18, fontWeight: "700", fontVariant: ["tabular-nums"] },
+  pageCounter: { flexShrink: 0, fontSize: 13, lineHeight: 18, fontWeight: "700", fontVariant: ["tabular-nums"] },
   headerAccessory: { flexShrink: 0 },
   progressRow: {
     height: 4,

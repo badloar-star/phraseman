@@ -26,7 +26,9 @@ const MICRO_MARKER = /d145-micro:\s*\S/;
 const MICRO_FILES = new Set(['app/streak_stats.tsx', 'app/ai_dialog_session.tsx',
   'app/flashcards/VideoPackRow.tsx', 'components/youtube/YoutubePlaylistGridCard.tsx', 'components/youtube/YoutubeVideoCard.tsx', 'components/youtube/YoutubeVideoGridCard.tsx',
   // зачем (координатор 13.10, макет п.82, dialogs-028): значок «PLUS» на углу кнопки микрофона — бейдж на углу кнопки (§129), 10 px как в образце; помечена одна строка `d145-micro:`.
-  'components/dialogs/DialogueV2SessionScreen.tsx']);
+  'components/dialogs/DialogueV2SessionScreen.tsx',
+  // зачем (координатор 15.10): цифра-бейдж ленты рубежей серии в круге 26 pt по одобренному владельцем эталону v3 (14.10) — 13 sp не помещает 365/1000; тот же класс, что бейджи §129.
+  'components/streak/moments/StreakMilestoneRibbon.tsx']);
 function lineAt(src, index) {
   const start = src.lastIndexOf('\n', index) + 1;
   const end = src.indexOf('\n', index);

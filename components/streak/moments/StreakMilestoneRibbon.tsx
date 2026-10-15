@@ -76,7 +76,8 @@ const s = StyleSheet.create({
   track: { position: 'absolute', left: 0, right: 0, top: 24, height: 6, borderRadius: 3 },
   fill: { position: 'absolute', left: 0, top: 0, bottom: 0, borderRadius: 3 },
   mark: { position: 'absolute', top: 14, width: 26, height: 26, marginLeft: -13, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  markText: { fontSize: 11, fontWeight: '800' },
+  // зачем: цифра-бейдж в круге 26 pt по эталону v3 (владелец 14.10); 13 sp не помещает 365/1000
+  markText: { fontSize: 11, fontWeight: '800' }, // d145-micro: цифра-бейдж в круге 26 pt по эталону v3 (владелец 14.10)
 });
 
 export default memo(StreakMilestoneRibbon);

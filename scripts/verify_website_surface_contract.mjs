@@ -25,18 +25,32 @@ const isCompositeRelease = fs.existsSync(experimentPath);
 const legacyCss = readRequired(path.join(root, 'assets', 'phraseman.css'), 'desktop_legacy_styles_missing');
 
 if (home.includes('data-approved-studio="20260908"')) {
-  requireAll(home, ['class="cinema-hero', 'class="container hero-statement', 'voice-master.webp', 'voice-mobile.webp', '/assets/approved/voice.css', 'id="main-nav"', 'data-lang-btn="en"', 'id="theme-toggle"', '/assets/stats.js'], 'approved_studio_surface_missing');
+  // зачем (15.10, дизайн PhraseMan 2.0 bc525a28a по «да» владельца): главная 2.0 сохранила каркас одобренной студии, но картинку голоса
+  // (voice-master/mobile.webp) и approved/voice.css заменили /assets/v2/{base,home}.css + theme.js. Без этой ветки «npm run
+  // hosting:knowly-www» отказывал бы в выкладке живого сайта. Остальные проверки (приложение, подарок, тест, оплата) — общие.
+  const isV2Home = home.includes('/assets/v2/base.css');
+  const studioNeedles = ['class="cinema-hero', 'class="container hero-statement', 'id="main-nav"', 'data-lang-btn="en"', 'id="theme-toggle"', '/assets/stats.js'];
+  requireAll(
+    home,
+    isV2Home
+      ? [...studioNeedles, '/assets/v2/base.css', '/assets/v2/home.css', '/assets/v2/theme.js']
+      : [...studioNeedles, 'voice-master.webp', 'voice-mobile.webp', '/assets/approved/voice.css'],
+    isV2Home ? 'v2_home_surface_missing' : 'approved_studio_surface_missing',
+  );
   if (home.includes('/assets/voice-design.css') || home.includes('class="hero wrap"')) throw new Error('legacy_layout_bridge_must_not_return');
   const app = readRequired(path.join(root,'app/index.html'),'app_page_missing');
-  requireAll(app, ['app-intro-scene', 'app-overview', 'app-device-screen', 'app-screen-owner-20260908.png'], 'approved_app_scene_missing');
+  // 2.0: телефон со снимком экрана на /app/ убран по одобренному макету (без «студии»); сцена и обзор остаются
+  requireAll(app, isV2Home ? ['app-intro-scene', 'app-overview'] : ['app-intro-scene', 'app-overview', 'app-device-screen', 'app-screen-owner-20260908.png'], 'approved_app_scene_missing');
   const gift = readRequired(path.join(root,'gift/index.html'),'gift_missing');
   requireAll(gift,['id="giftForm"','id="giftTo"','id="giftFrom"','id="buyerEmail"','id="cardBtn"','id="paypal-buttons"','id="giftCertificate"','gift-certificate-yearly.webp'], 'original_gift_behavior_missing');
   const test = readRequired(path.join(root,'english-level-test/index.html'),'level_test_missing');
   requireAll(test,['data-production-test','assessment-root','id="app"','defer src="./engine.js','defer src="./app.js','./certificate.js'], 'real_test_controller_missing');
   const runtime=readRequired(path.join(root,'assets/approved/production.js'),'production_adapter_missing');
   requireAll(runtime,['data.priceCents','KnowlyCookieSettings','consentCheckbox','assessment-consent'],'production_behavior_missing');
-  const css=readRequired(path.join(root,'assets/approved/voice.css'),'approved_design_missing');
-  requireAll(css,['The background dissolves','overflow:visible','linear-gradient(180deg,transparent,#f8f0e7)'],'scene_transition_missing');
+  if (!isV2Home) {
+    const css=readRequired(path.join(root,'assets/approved/voice.css'),'approved_design_missing');
+    requireAll(css,['The background dissolves','overflow:visible','linear-gradient(180deg,transparent,#f8f0e7)'],'scene_transition_missing');
+  }
   const worldCss = readRequired(path.join(root, 'assets/approved/world.css'), 'approved_world_styles_missing');
   requireAll(worldCss, [
     'body.edition .support-card>a:not(.button){color:#26354c',
@@ -163,11 +177,26 @@ if (home.includes('data-approved-studio="20260908"')) {
 
 const retiredPlanFiles = [
   path.join(root, 'start', 'index.html'),
-  path.join(root, 'assets', 'start.js'),
 ];
 for (const retiredPlanFile of retiredPlanFiles) {
   if (fs.existsSync(retiredPlanFile)) {
     throw new Error(`retired_plan_builder_source_present:${retiredPlanFile}`);
+  }
+}
+// зачем (15.10): assets/start.js вернули по слову владельца как движок ОПЛАТЫ (/premium/ — data-quiz-mode="paywall", /gift/).
+// Конструктор плана (квиз /start/ + сбор e-mail) остаётся выведенным: файл допустим, только если в нём нет шага сбора адреса,
+// а каждая страница, что его грузит, явно в режиме оплаты/подарка (без режима start.js запускает квиз).
+const paywallEngine = path.join(root, 'assets', 'start.js');
+if (fs.existsSync(paywallEngine)) {
+  const engine = fs.readFileSync(paywallEngine, 'utf8');
+  if (engine.includes('leadEndpoint') || engine.includes('qlead-email')) {
+    throw new Error('retired_plan_builder_lead_capture_present:assets/start.js');
+  }
+  const htmlPages = fs.readdirSync(root, { recursive: true }).filter((entry) => /\.html$/u.test(entry));
+  for (const page of htmlPages) {
+    const html = fs.readFileSync(path.join(root, page), 'utf8');
+    if (!/src="\/assets\/start\.js/u.test(html)) continue;
+    if (!/data-quiz-mode="(?:paywall|gift)"/u.test(html)) throw new Error(`plan_builder_quiz_mode_reachable:${page}`);
   }
 }
 

@@ -21,6 +21,8 @@ describe('website desktop hero rays edge contract', () => {
   it('the homepage uses the shared approved stylesheet', () => {
     const html = read('knowly-www/index.html');
 
-    expect(html).toContain('<link rel="stylesheet" href="/assets/approved/site.css">');
+    // зачем (15.10): общее оформление сайта теперь 2.0 — /assets/v2/base.css (с версией для сброса кэша), прежний файл не подключается
+    expect(html).toMatch(/<link rel="stylesheet" href="\/assets\/v2\/base\.css(?:\?v=[0-9a-z]+)?">/);
+    expect(html).not.toContain('/assets/approved/site.css');
   });
 });

@@ -117,7 +117,6 @@
     },
     { id: 'build', type: 'build' },
     { id: 'result', type: 'result' },
-    { id: 'email', type: 'email' },
     { id: 'paywall', type: 'paywall' },
   ];
 
@@ -328,75 +327,9 @@
     try { return localStorage.getItem(LEAD_EMAIL_KEY) || ''; } catch (_) { return ''; }
   }
 
-  function rememberLeadEmail(email) {
-    try { localStorage.setItem(LEAD_EMAIL_KEY, email); } catch (_) { /* noop */ }
-  }
-
-  /* Огонь-и-забыли: письмо с планом шлёт сервер, страницу не блокируем. */
-  function submitLead(email) {
-    try {
-      var endpoint = cfg().leadEndpoint;
-      if (!endpoint) return;
-      fetch(endpoint, {
-        method: 'POST',
-        body: JSON.stringify({
-          email: email,
-          answers: state.answers,
-          utm: readUtm(),
-          page: location.pathname,
-          marketingConsent: false,
-        }),
-        keepalive: true,
-      }).catch(function () {});
-    } catch (_) { /* noop */ }
-  }
-
-  function renderEmail() {
-    var emailInput = h('input', {
-      id: 'qlead-email', type: 'email', autocomplete: 'email', placeholder: 'you@example.com',
-    });
-    if (savedLeadEmail()) emailInput.value = savedLeadEmail();
-    var errBox = h('div', { class: 'qerr', role: 'alert' });
-
-    function goNext() { go(state.step + 1); }
-
-    function submit() {
-      var email = String(emailInput.value || '').trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-        errBox.textContent = localized('Похоже, в email опечатка — проверь адрес.');
-        errBox.classList.add('show');
-        emailInput.focus();
-        return;
-      }
-      rememberLeadEmail(email);
-      submitLead(email);
-      track('lead_submit');
-      fbq('track', 'Lead');
-      goNext();
-    }
-
-    emailInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(); });
-
-    return h('div', { class: 'qscreen' }, [
-      h('p', { class: 'kicker' }, ['Почти готово']),
-      h('h1', {}, ['Куда прислать твой ', h('span', { class: 'gold-accent' }, ['план?'])]),
-      h('p', { class: 'sub' }, ['Пришлём план письмом — чтобы не потерялся. А на следующем экране покажем, как открыть его целиком.']),
-      h('div', { class: 'qpay-fields qlead-fields' }, [
-        h('div', { class: 'field' }, [
-          h('label', { for: 'qlead-email' }, ['Твой email']),
-          emailInput,
-        ]),
-      ]),
-      h('p', { class: 'qsecure' }, ['На этот адрес придёт только твой персональный план.']),
-      errBox,
-      h('button', { class: 'btn-gold', type: 'button', onclick: submit }, ['Прислать план и продолжить →']),
-      h('button', {
-        class: 'qskip-link', type: 'button',
-        onclick: function () { track('lead_skip'); goNext(); },
-      }, ['Продолжить без письма →']),
-      backButton(),
-    ]);
-  }
+  /* зачем (координатор 15.10, разбор красных): шаг «email для плана» квиза (отправка адреса на сервер) удалён ещё в
+     1d70c8fc5 (release 1.6.21) и вернулся вместе с восстановленным пейволом. /start/ ведёт на /download/ — шаг был недостижим,
+     но код сбора адреса уезжал на сайт. Убран; пейвол только подставляет адрес, который человек сам вводил раньше (localStorage). */
 
   /* ───────── пейвол ───────── */
 
@@ -843,7 +776,6 @@
           : step.type === 'proof' ? renderProof()
             : step.type === 'build' ? renderBuild()
               : step.type === 'result' ? renderResult()
-                : step.type === 'email' ? renderEmail()
                   : renderPaywall();
     root.appendChild(screen);
   }

@@ -142,7 +142,8 @@ describe('English level test full UI audit contract', () => {
   test('keeps an accessible no-JavaScript fallback in the approved Russian shell', () => {
     expect(indexSource).toContain('<html lang="ru">');
     expect(indexSource).toContain('<noscript>');
-    expect(indexSource).toContain('Для прохождения теста включите JavaScript.');
+    // зачем (15.10, сайт на «ты» — 36c191b8a): та же подсказка без JavaScript, на «ты»
+    expect(indexSource).toContain('Для прохождения теста включи JavaScript.');
     expect(indexSource).not.toContain('<meta name="description" content="Бесплатная');
   });
   test('offers the in-test error report form in Russian and English', () => {
@@ -154,7 +155,8 @@ describe('English level test full UI audit contract', () => {
       expect(i18n.t(locale, 'report.submit')).not.toBe('report.submit');
       expect(i18n.t(locale, 'report.successTitle')).not.toBe('report.successTitle');
     }
-    expect(i18n.t('ru', 'report.trigger')).toBe('Заметили ошибку?');
+    // зачем (15.10): сайт на «ты», без рода («Нашёл» — только мужской)
+    expect(i18n.t('ru', 'report.trigger')).toBe('Нашлась ошибка?');
     expect(i18n.t('en', 'report.trigger')).toBe('Noticed an error?');
   });
 

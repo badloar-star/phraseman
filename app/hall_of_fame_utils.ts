@@ -303,7 +303,13 @@ async function resolvePendingPlusFreeze(today: string): Promise<void> {
           type: 'reward',
           messageRu: `Заморозка спасла цепочку ${streak} дн. 🧊`,
           messageUk: `Заморозка врятувала ланцюжок ${streak} дн. 🧊`,
-          messageEs: `La congelación salvó tu racha de ${streak} días 🧊`,
+          messageEn: `A streak freeze saved your ${streak}-day streak 🧊`,
+          messageEs: `Un protector de racha salvó tu racha de ${streak} ${streak === 1 ? 'día' : 'días'} 🧊`,
+          messagePtBr: `A proteção salvou sua sequência de ${streak} ${streak === 1 ? 'dia' : 'dias'} 🧊`,
+          messageVi: `Đóng băng chuỗi đã cứu chuỗi ${streak} ngày của bạn 🧊`,
+          messageId: `Rentetan ${streak} hari selamat berkat pembeku 🧊`,
+          messageTr: `Seri dondurma ${streak} günlük serini kurtardı 🧊`,
+          messagePl: `Zamrożenie uratowało twoją serię: ${streak} ${streak === 1 ? 'dzień' : 'dni'} 🧊`,
         });
       },
       onLost: async (pending, reason) => {
@@ -407,7 +413,13 @@ export const updateStreakOnActivity = async (
           type: 'reward',
           messageRu: `Заморозка спасла цепочку ${streak} дн. 🧊`,
           messageUk: `Заморозка врятувала ланцюжок ${streak} дн. 🧊`,
-          messageEs: `La congelación salvó tu racha de ${streak} días 🧊`,
+          messageEn: `A streak freeze saved your ${streak}-day streak 🧊`,
+          messageEs: `Un protector de racha salvó tu racha de ${streak} ${streak === 1 ? 'día' : 'días'} 🧊`,
+          messagePtBr: `A proteção salvou sua sequência de ${streak} ${streak === 1 ? 'dia' : 'dias'} 🧊`,
+          messageVi: `Đóng băng chuỗi đã cứu chuỗi ${streak} ngày của bạn 🧊`,
+          messageId: `Rentetan ${streak} hari selamat berkat pembeku 🧊`,
+          messageTr: `Seri dondurma ${streak} günlük serini kurtardı 🧊`,
+          messagePl: `Zamrożenie uratowało twoją serię: ${streak} ${streak === 1 ? 'dzień' : 'dni'} 🧊`,
         });
       }
       // 1б. Статус Plus неизвестен — серия цела, решение отложено до известного статуса (streak_freeze_pending.ts)

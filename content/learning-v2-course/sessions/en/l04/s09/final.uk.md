@@ -1,121 +1,134 @@
-# Англійська · Урок 4 · Заняття 9 — «Біля інформаційної стійки»
+# Англійська · Урок 4 · Заняття 9 — Чи є тут стоматолог?
 
-**Сцена заняття.** У вас болить зуб. Ви біля інформаційної стійки й хочете швидко дізнатися, чи є тут стоматолог.
-**Як сказати:** запитати про одне місце або одного фахівця: `Is there a/an + singular noun?`
+**Ситуація.** Ви в новому районі й запитуєте в довідковій службі, чи є тут стоматолог. Заодно уточнюєте, чи є аптека, бібліотека та пекарня. На плані будівлі перевіряєте, чи передбачені двері в потрібному місці.
+
+**Що ви опануєте:** запитати про наявність однієї людини або місця з Is there та кількох місць з Are there
 **Нові слова:** dentist
-**Повертаються:** pharmacy, library, bakery, post office, supermarket, playground, building, shop, neighbourhood
+
+---
 
 ## Інтро 1
 
-### Стоматолог
+### Стоматолог — людина
 
-`dentist` — «стоматолог», лікар, який лікує зуби. Біля інформаційної стійки ви шукаєте саме цього фахівця через зубний біль. Слово `dentist` називає лікаря, а `clinic` — місце. Перед назвою одного фахівця в запитанні буде `a dentist`.
+`dentist` — «стоматолог», лікар, який лікує зуби. `clinic` називає місце, а `dentist` — людину. `There is a dentist` — «Є стоматолог». Для запитання міняємо початок: `Is there a dentist?` — «Чи є стоматолог?» Починаємо з `Is there`, потім `a dentist`.
 
-**Вам потрібен лікар для зубів. Оберіть слово.**
+**Запитайте, чи є стоматолог.**
 
-- ✅ **dentist**
-- ❌ clinic — *`Clinic` — клініка. Тут потрібен лікар для зубів: `dentist`.*
-- ❌ pharmacy — *`Pharmacy` — аптека. Тут потрібен стоматолог: `dentist`.*
+- ✅ **Is there a dentist?**
+- ❌ There is a dentist. — *Це повідомлення. Для запитання починаємо з `Is there`.*
+- ❌ Is there dentist? — *Перед одним фахівцем потрібне `a`: `a dentist`.*
+
+---
 
 ## Інтро 2
 
-### Чи є стоматолог?
+### Запитуємо про місця
 
-`Is there a dentist?` — «Є стоматолог?». Це запитання про одного потрібного фахівця. В англійській `is` ставлять перед `there`, а потім додають `a dentist`: артикль `a` показує, що йдеться про одного стоматолога. Це краще запитати до того, як хворий зуб почне відповідати за вас.
+`pharmacy` — «аптека», `library` — «бібліотека», `bakery` — «пекарня». `Is there a pharmacy here?` — «Тут є аптека?» Одне місце — `Is there a`. Для кількох бібліотек: `Are there libraries here?` — «Тут є бібліотеки?» З кількома — `Are there`, без `a`. Запитання не створює нової аптеки, але допомагає її знайти.
 
-**Запитайте, чи є тут стоматолог. Оберіть питання.**
+**Запитайте, чи є тут кілька бібліотек.**
 
-- ✅ **Is there a dentist?**
-- ❌ There is a dentist? — *У питанні `is` стоїть перед `there`: `Is there a dentist?`.*
-- ❌ Is there dentist? — *Перед одним стоматологом потрібен `a`: `a dentist`.*
+- ✅ **Are there libraries here?**
+- ❌ Is there libraries here? — *Бібліотек кілька: `Are there libraries here?`.*
+- ❌ Are there a libraries here? — *Перед кількома `libraries` не ставимо `a`.*
+
+---
 
 ## Інтро 3
 
-### Чи є стоматолог у будівлі?
+### Чи можливо влаштувати зустріч
 
-`Is there a dentist in the building?` — «У будівлі є стоматолог?». Порядок запитання: спочатку `Is there`, потім `a dentist`, далі місце `in the building`. Артикль `a` показує одного фахівця. Твердження починалося б із `There is`, а запитання починається з `Is there`.
+`possible` — «можливий»: друг пропонує зустрітися завтра, і ви знаєте, що це можливо. `It is possible` — «Це можливо». `door` — «двері»: ви дивитеся план будівлі й запитуєте про двері в позначеній точці: `Is there a door here?` — «Тут є двері?» Порядок запитання той самий, що для місця чи людини.
 
-**Запитайте, чи є в будівлі стоматолог. Оберіть запитання.**
+**Ви знаєте, що зустрітися завтра можливо. Скажіть «Це можливо».**
 
-- ✅ **Is there a dentist in the building?**
-- ❌ There is a dentist in the building? — *Це порядок слів повідомлення. Запитання починається з `Is there`.*
-- ❌ Is there dentist in the building? — *Перед одним стоматологом потрібен артикль: `a dentist`.*
+- ✅ **It is possible.**
+- ❌ It is necessary. — *`necessary` — необхідно; тут говоримо про можливість: `possible`.*
+- ❌ It are possible. — *З `It` потрібне `is`.*
 
-## Практика — по одній цілі
+---
 
-**1 · Послухайте й оберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-09:i01; family: listen_choose -->
-Ціль: `dentist`
-🔊 *dentist*
-Значення варіантів: dentist — стоматолог · tennis — теніс · tender — ніжний
-→ **dentist** · tennis · tender
-- tennis — *У `tennis` на початку чути /t/, а в записі — /d/.*
-- tender — *У `tender` на початку чути /t/, а в записі — /d/.*
+## Практика (17 завдань)
 
-**2 · Промовте нове слово**
-<!-- interaction_id: en:lesson-04:session-09:i02; family: scripted_repeat_compare -->
-Ціль: `dentist`
-🎙 **dentist**
+**1 · Повідомте другові «Є бібліотека»**
+<!-- interaction_id: en:lesson-04:session-09:i01; family: phrase_builder -->
+Плитки: `library` `a` `is` `There` `are` → **There is a library.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a library.`)*
 
-**3 · Оберіть слово для лікаря, який лікує зуби**
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-09:i02; family: listen_choose -->
+🔊 *dentist* → **dentist** · clinic · pharmacy
+- clinic — *У записі перше слово — `dentist`, а в цьому варіанті — `clinic`.*
+- pharmacy — *У записі перше слово — `dentist`, а в цьому варіанті — `pharmacy`.*
+
+**3 · Назвіть стоматолога одним англійським словом**
 <!-- interaction_id: en:lesson-04:session-09:i03; family: context_gap_grammar -->
 ___ → **dentist** · clinic · pharmacy
+- clinic — *`clinic` — клініка; стоматолог — `dentist`.*
+- pharmacy — *`pharmacy` — аптека; стоматолог — `dentist`.*
 
-- clinic — *`Clinic` — клініка, а лікар для зубів — `dentist`.*
-- pharmacy — *`Pharmacy` — аптека, а лікар для зубів — `dentist`.*
-**4 · Послухайте одне питання й оберіть його зміст**
-<!-- interaction_id: en:lesson-04:session-09:i04; family: listen_choose -->
-Ціль: `Is there a library in the building?`
-🔊 *Is there a library in the building?*
-Значення варіантів: Is there a library in the building? — У будівлі є бібліотека? · Is there a supermarket? — Тут є супермаркет? · There is a library in the building. — У будівлі є бібліотека.
-→ **Is there a library in the building?** · Is there a supermarket? · There is a library in the building.
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-09:i04; family: speed_match -->
+dentist — стоматолог · possible — можливий · door — двері · pharmacy — аптека
 
-- Is there a supermarket? — *У записі питають про бібліотеку в будівлі, не про супермаркет.*
-- There is a library in the building. — *У записі питання: `Is there ...?`, а не повідомлення.*
-**5 · Складіть питання про стоматолога біля бібліотеки**
-<!-- interaction_id: en:lesson-04:session-09:i05; family: phrase_builder -->
-Ціль: `Is there a dentist near the library?`
-Плитки: `Is` · `there` · `a` · `dentist` · `near` · `the` · `library` · `There`
+**5 · Послухайте й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-09:i05; family: listen_build_dictation -->
+🔊 *Is there a dentist?* Плитки: `dentist` `a` `there` `Is` → **Is there a dentist?**
 
-**6 · Вставте один фрагмент про пекарню в районі**
-<!-- interaction_id: en:lesson-04:session-09:i06; family: context_gap_grammar -->
-Is there ___? → **a bakery in the neighbourhood** · a clinic in the neighbourhood · a post office in the neighbourhood
-- a clinic in the neighbourhood — *`Clinic` — клініка. Тут потрібна пекарня: `a bakery in the neighbourhood`.*
-- a post office in the neighbourhood — *`Post office` — пошта. Тут потрібна пекарня: `a bakery in the neighbourhood`.*
+**6 · Ви в довідковій службі. Запитайте «Тут є аптека?»**
+<!-- interaction_id: en:lesson-04:session-09:i06; family: phrase_builder -->
+Плитки: `here` `pharmacy` `a` `there` `Is` → **Is there a pharmacy here?**
 
-**7 · Послухайте та складіть запитання про стоматолога в цій будівлі**
-<!-- interaction_id: en:lesson-04:session-09:i07; family: listen_build_dictation -->
-Ціль: `Is there a dentist in this building?`
-🔊 *Is there a dentist in this building?*
-Плитки: `Is` · `there` · `a` · `dentist` · `in` · `this` · `building` · `There`
+**7 · Ви знаєте, що зустріч можна влаштувати завтра. Скажіть «Це можливо» зі скороченням**
+<!-- interaction_id: en:lesson-04:session-09:i07; family: scripted_repeat_compare -->
+🎙 **It's possible.**
 
-**8 · Складіть одне питання про майданчик**
-<!-- interaction_id: en:lesson-04:session-09:i08; family: phrase_builder -->
-Ціль: `Is there a playground?`
-Плитки: `Is` · `there` · `a` · `playground` · `There`
+**8 · Запитайте, чи є тут стоматолог**
+<!-- interaction_id: en:lesson-04:session-09:i08; family: context_gap_grammar -->
+___ there a dentist here? → **Is** · Are · Am
+- Are — *Один фахівець: `Is there a dentist here?`.*
+- Am — *Запитання про одного фахівця починається з `Is there`.*
 
-**9 · Швидко з’єднайте назви з українськими значеннями**
-<!-- interaction_id: en:lesson-04:session-09:i09; family: speed_match -->
-Пари: `shop` — магазин · `post office` — пошта · `supermarket` — супермаркет · `playground` — майданчик
+**9 · Послухайте запитання про місце в районі**
+<!-- interaction_id: en:lesson-04:session-09:i09; family: listen_choose -->
+🔊 *Is there a bakery?* → **Is there a bakery?** · Is there a pharmacy? · Is there a library?
+- Is there a pharmacy? — *У записі останнє слово — `bakery`, а в цьому варіанті — `pharmacy`.*
+- Is there a library? — *У записі останнє слово — `bakery`, а в цьому варіанті — `library`.*
 
-**10 · Складіть запитання про стоматолога в районі**
-<!-- interaction_id: en:lesson-04:session-09:i10; family: phrase_builder -->
-Ціль: `Is there a dentist in the neighbourhood?`
-Плитки: `Is` · `there` · `a` · `dentist` · `in` · `the` · `neighbourhood` · `There`
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-09:i10; family: speed_match -->
+possible — можливий · library — бібліотека · bakery — пекарня · door — двері
 
-**11 · Послухайте та складіть питання**
+**11 · Послухайте й складіть запитання**
 <!-- interaction_id: en:lesson-04:session-09:i11; family: listen_build_dictation -->
-Ціль: `Is there a shop in the neighbourhood?`
-🔊 *Is there a shop in the neighbourhood?*
-Плитки: `Is` · `there` · `a` · `shop` · `in` · `the` · `neighbourhood` · `There`
+🔊 *Are there libraries here?* Плитки: `here` `libraries` `there` `Are` → **Are there libraries here?**
 
-**12 · самі запитайте працівника інформаційної стійки про стоматолога поруч з аптекою**
+**12 · Ви показуєте точку на плані будівлі. Запитайте «Тут є двері?»**
 <!-- interaction_id: en:lesson-04:session-09:i12; family: phrase_builder -->
-Ціль: `Is there a dentist near the pharmacy?`
-Плитки: `Is` · `there` · `a` · `dentist` · `near` · `the` · `pharmacy` · `There`
+Плитки: `here` `door` `a` `there` `Is` → **Is there a door here?**
 
-## Для збирача
+**13 · Ви в іншому районі й хочете знайти пекарню. Запитайте «Тут є пекарня?»**
+<!-- interaction_id: en:lesson-04:session-09:i13; family: scripted_repeat_compare -->
+🎙 **Is there a bakery here?**
 
-atomic_practice: practice.atomic.json
-new_words: dentist — стоматолог — Лікар, який лікує зуби.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=phrase_builder, 9=speed_match, 10=phrase_builder, 11=listen_build_dictation, 12=phrase_builder
+**14 · Друг показує інший район на карті. Запитайте «Там є бібліотеки?»**
+<!-- interaction_id: en:lesson-04:session-09:i14; family: context_gap_grammar -->
+___ there libraries there? → **Are** · Is · Am
+- Is — *Бібліотек кілька: `Are there libraries there?`. Останнє `there` — «там».*
+- Am — *Для кількох бібліотек починаємо з `Are there`.*
+
+**15 · Послухайте відповідь про можливість зустрічі**
+<!-- interaction_id: en:lesson-04:session-09:i15; family: listen_choose -->
+🔊 *It is possible.* → **It is possible.** · It is necessary. · It is clear.
+- It is necessary. — *У записі останнє слово — `possible`, а в цьому варіанті — `necessary`.*
+- It is clear. — *У записі останнє слово — `possible`, а в цьому варіанті — `clear`.*
+
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-09:i16; family: speed_match -->
+dentist — стоматолог · pharmacy — аптека · library — бібліотека · bakery — пекарня
+
+**17 · У подорожі ви зайшли до незнайомої клініки. Ви не знаєте, чи працює тут стоматолог. Запитайте «Тут є стоматолог?»**
+<!-- interaction_id: en:lesson-04:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is there a dentist here?**
+

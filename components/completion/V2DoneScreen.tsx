@@ -157,6 +157,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
   const Chain = props.chain ? (require('./V2DoneChain') as typeof import('./V2DoneChain')) : null;
   const beat = (i: number, node: ReactNode): ReactNode => (Chain ? <Chain.ChainBeat index={i}>{node}</Chain.ChainBeat> : node);
   const FOOT = 7;
+  const DOCK_BEAT = 1;
 
   if (Chain && props.chain) {
     return (
@@ -324,7 +325,8 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
   }
 
   function dock(children: ReactNode) {
-    if (Chain) return <Chain.ChainBeat index={FOOT} style={[s.dock, { paddingBottom: Math.max(24, insets.bottom + 16), backgroundColor: g.bg }]}>{children}</Chain.ChainBeat>;
+    // зачем (Ревизор 15.10): кнопки не ждут конца цепочки (было 4,6 с) — всплывают вторым ударом, на 0,92 с, и сразу принимают тап
+    if (Chain) return <Chain.ChainBeat index={DOCK_BEAT} style={[s.dock, { paddingBottom: Math.max(24, insets.bottom + 16), backgroundColor: g.bg }]}>{children}</Chain.ChainBeat>;
     return <View style={[s.dock, { paddingBottom: Math.max(24, insets.bottom + 16), backgroundColor: g.bg }]}>{children}</View>;
   }
 }

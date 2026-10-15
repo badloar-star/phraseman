@@ -23,8 +23,10 @@ jest.mock('react-native-reanimated', () => {
   const View = (props: Record<string, unknown>) => R.createElement('View', props, props.children);
   return {
     __esModule: true,
-    default: { View },
+    default: { View, createAnimatedComponent: () => View },
     Easing: { bezier: () => () => 0 },
+    useAnimatedProps: (fn: () => unknown) => fn(),
+    withDelay: (_d: number, v: unknown) => v,
     useAnimatedStyle: (fn: () => unknown) => fn(),
     useSharedValue: (v: number) => ({ value: v }),
     useReducedMotion: () => true,
@@ -38,7 +40,14 @@ jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: { acc
 const mockRing = jest.fn();
 jest.mock('../components/feedback/ComboRing', () => ({ __esModule: true, default: (props: Record<string, unknown>) => { mockRing(props); return null; } }));
 
+jest.mock('react-native-svg', () => ({ __esModule: true, default: 'Svg', Defs: 'Defs', Path: 'Path', RadialGradient: 'RadialGradient', Rect: 'Rect', Stop: 'Stop' }));
+jest.mock('../components/moments/MomentCoin', () => ({ __esModule: true, default: (props: Record<string, unknown>) => jest.requireActual('react').createElement('MomentCoin', props) }));
+jest.mock('../hooks/use_my_coin_rank', () => ({ useMyCoinRank: () => 5 }));
+jest.mock('../components/streak/moments/use_streak_colors', () => ({ useStreakColors: () => ({ second: '#88f' }) }));
+jest.mock('../modules/sound_v2/sound_v2_flag', () => ({ isSoundV2Enabled: () => false }));
+
 import ComboHeatSlot from '../components/feedback/ComboHeatSlot';
+import ComboMomentLayer from '../components/feedback/ComboMomentLayer';
 import { deriveComboBeat } from '../components/feedback/combo_moment_gate';
 import { COMBO_MOMENT_LANGS, COMBO_MOMENT_STRING_KEYS, comboMomentText } from '../components/feedback/combo_moment_strings';
 
@@ -84,6 +93,41 @@ describe('m08 · кольцо в шапке', () => {
     await r.rerender(<ComboHeatSlot comboCount={0} lang="ru" />);
     expect(screen.getByText('серия сброшена')).toBeTruthy();
     await act(async () => { jest.advanceTimersByTime(1700); });
+    expect(screen.queryByTestId('lesson1-combo-heat')).toBeNull();
+  });
+});
+
+describe('m08 · быстрые ответы подряд не оставляют залипших окон (Ревизор 15.10)', () => {
+  beforeEach(() => jest.useFakeTimers());
+  afterEach(() => jest.useRealTimers());
+
+  it('монета: 4 → 5 (выглядывает) → 6 сразу же — через 1,8 с монеты нет', async () => {
+    const r = await render(<ComboMomentLayer comboCount={4} />);
+    await r.rerender(<ComboMomentLayer comboCount={5} />);
+    expect(screen.getByTestId('lesson1-combo-coin')).toBeTruthy();
+    await r.rerender(<ComboMomentLayer comboCount={6} />);
+    await r.rerender(<ComboMomentLayer comboCount={7} />);
+    await act(async () => { jest.advanceTimersByTime(1900); });
+    expect(screen.queryByTestId('lesson1-combo-coin')).toBeNull();
+  });
+
+  it('монета: обрыв 6 → 0 и сразу верный 0 → 1 — монета уходит по таймеру', async () => {
+    const r = await render(<ComboMomentLayer comboCount={6} />);
+    await r.rerender(<ComboMomentLayer comboCount={0} />);
+    expect(screen.getByTestId('lesson1-combo-coin')).toBeTruthy();
+    await r.rerender(<ComboMomentLayer comboCount={1} />);
+    await act(async () => { jest.advanceTimersByTime(1900); });
+    expect(screen.queryByTestId('lesson1-combo-coin')).toBeNull();
+  });
+
+  it('«серия сброшена»: обрыв и сразу два верных — надпись уходит через 1,6 с', async () => {
+    const r = await render(<ComboHeatSlot comboCount={6} lang="ru" />);
+    await r.rerender(<ComboHeatSlot comboCount={0} lang="ru" />);
+    expect(screen.getByText('серия сброшена')).toBeTruthy();
+    await r.rerender(<ComboHeatSlot comboCount={1} lang="ru" />);
+    await r.rerender(<ComboHeatSlot comboCount={2} lang="ru" />);
+    await act(async () => { jest.advanceTimersByTime(1700); });
+    expect(screen.queryByText('серия сброшена')).toBeNull();
     expect(screen.queryByTestId('lesson1-combo-heat')).toBeNull();
   });
 });

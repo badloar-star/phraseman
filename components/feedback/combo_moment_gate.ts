@@ -8,6 +8,8 @@
 import { COMBO_LIGHTNING_AT, COMBO_SPARK_AT, COMBO_STORM_AT } from '../../app/feedback/combo_engine';
 
 export const COMBO_MOMENT_LOG = '[MOMENT-m08]';
+/** Трассировка показа/скрытия/отмены таймеров «Молнии» (Ревизор 15.10, баг залипания) — постоянный журнал ранних выходов и таймеров. */
+export const COMBO_TRACE = '[COMBO-MOMENT]';
 
 export type ComboBeat = 'spark' | 'lightning' | 'storm' | 'break';
 

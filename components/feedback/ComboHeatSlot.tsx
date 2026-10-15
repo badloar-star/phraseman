@@ -15,7 +15,7 @@ import { comboLevelFor } from '../../app/feedback/combo_engine';
 import { hapticHeavyImpact, hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { useTheme } from '../ThemeContext';
 import ComboRing from './ComboRing';
-import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, deriveComboBeat, type ComboBeat } from './combo_moment_gate';
+import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, deriveComboBeat, type ComboBeat } from './combo_moment_gate';
 import { comboMomentText } from './combo_moment_strings';
 
 const EASE_POP = Easing.bezier(0.3, 1.6, 0.5, 1);
@@ -35,12 +35,30 @@ function ComboHeatSlot({ comboCount, lang, size = 34 }: ComboHeatSlotProps) {
   const [tipKey, setTipKey] = useState(0);
   const tip = useSharedValue(comboCount >= 3 ? 1 : 0);
   const shake = useSharedValue(0);
+  // зачем (Ревизор 15.10, баг «серия сброшена» залипает): таймер снятия надписи живёт в ref, а не в cleanup эффекта — иначе следующий
+  // быстрый ответ (0 → 1) отменял таймер и выходил рано, надпись оставалась в шапке. Сбрасывает его только новый удар или размонтирование.
+  const brokenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (brokenTimerRef.current === null) return;
+    clearTimeout(brokenTimerRef.current);
+    brokenTimerRef.current = null;
+    console.log(`${COMBO_TRACE} кольцо: таймер «серия сброшена» отменён — урок закрыт (размонтирование)`); // guard-ok: журнал отмены таймера
+  }, []);
+  const clearBrokenTimer = (why: ComboBeat) => {
+    if (brokenTimerRef.current === null) return;
+    clearTimeout(brokenTimerRef.current);
+    brokenTimerRef.current = null;
+    console.log(`${COMBO_TRACE} кольцо: таймер «серия сброшена» отменён — ${why === 'break' ? 'повторный обрыв' : `новая серия, удар «${why}»`}`); // guard-ok: журнал отмены таймера
+  };
 
   useEffect(() => {
     const prev = prevRef.current;
     prevRef.current = comboCount;
     const beat = deriveComboBeat(prev, comboCount);
-    if (!beat) return undefined;
+    if (!beat) {
+      if (prev !== comboCount) console.log(`${COMBO_TRACE} кольцо: ${prev} → ${comboCount} без удара — «серия сброшена» ${brokenTimerRef.current ? 'дожидается своего таймера' : 'не показана'}`); // guard-ok: ранний выход логируется
+      return;
+    }
     console.log(`${COMBO_MOMENT_LOG} серия ${prev} → ${comboCount}: удар «${beat}» reducedMotion=${String(reduced)}`); // guard-ok: журнал удара
     haptic(beat);
     setTipKey((k) => k + 1);
@@ -49,10 +67,19 @@ function ComboHeatSlot({ comboCount, lang, size = 34 }: ComboHeatSlotProps) {
       const q = T.shake / 5;
       shake.value = withSequence(withTiming(-5, { duration: q }), withTiming(5, { duration: q }), withTiming(-3, { duration: q }), withTiming(3, { duration: q }), withTiming(0, { duration: q }));
     }
-    if (beat !== 'break') { setBroken(null); return undefined; }
+    if (beat !== 'break') {
+      clearBrokenTimer(beat);
+      setBroken(null);
+      return;
+    }
+    clearBrokenTimer(beat);
     setBroken(prev);
-    const id = setTimeout(() => setBroken(null), T.brokenHold);
-    return () => clearTimeout(id);
+    console.log(`${COMBO_TRACE} кольцо: показ «серия сброшена» (была ${prev}) на ${T.brokenHold} мс`); // guard-ok: журнал показа
+    brokenTimerRef.current = setTimeout(() => {
+      brokenTimerRef.current = null;
+      setBroken(null);
+      console.log(`${COMBO_TRACE} кольцо: «серия сброшена» снята по таймеру`); // guard-ok: журнал скрытия
+    }, T.brokenHold);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: удар решается только сменой серии
   }, [comboCount]);
 

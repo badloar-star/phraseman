@@ -389,10 +389,8 @@ export default function DialogueV2CompletionRoute() {
       {children}
     </DlgChain.DialogueChainScope>
   ) : children);
-  // зачем (эталон m18 `.foot`): кнопки всплывают последними; без цепочки — прежний подвал
-  const footer = (children: React.ReactNode) => (DlgChain
-    ? <DlgChain.DialogueChainBeat offset={DlgChain.DIALOGUE_CHAIN_OFFSETS.rest(goalsTotal)} style={styles.footer}>{children}</DlgChain.DialogueChainBeat>
-    : <View style={styles.footer}>{children}</View>);
+  // зачем (Ревизор 15.10): кнопки итога не ждут цепочку m18 (было 3+ с после ответа сети) — подвал на месте и принимает тап сразу, как без цепочки
+  const footer = (children: React.ReactNode) => <View style={styles.footer}>{children}</View>;
 
   return (
     <View style={[styles.fill, { backgroundColor: glass.bg }]} testID="dialogue-v2-completion-screen">

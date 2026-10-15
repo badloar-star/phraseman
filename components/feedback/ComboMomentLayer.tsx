@@ -14,7 +14,7 @@ import Svg, { Defs, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import MomentCoin, { type MomentCoinEmote, type MomentCoinMood } from '../moments/MomentCoin';
 import { useStreakColors } from '../streak/moments/use_streak_colors';
-import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, deriveComboBeat, type ComboBeat } from './combo_moment_gate';
+import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, deriveComboBeat, type ComboBeat } from './combo_moment_gate';
 
 const AnimatedPath = Reanimated.createAnimatedComponent(Path);
 // эталон `zap`: путь в кадре 390 × 844, растягивается на экран
@@ -56,6 +56,15 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
   const colors = useStreakColors();
   const prevRef = useRef(comboCount);
   const [coin, setCoin] = useState<CoinState | null>(null);
+  // зачем (Ревизор 15.10, баг «монета залипает»): таймер скрытия живёт в ref, а не в cleanup эффекта — иначе следующий ответ без удара
+  // (5 → 6) отменял таймер и выходил рано, монета оставалась на уроке навсегда. Сбрасывает таймер только новый удар или размонтирование.
+  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (hideTimerRef.current === null) return;
+    clearTimeout(hideTimerRef.current);
+    hideTimerRef.current = null;
+    console.log(`${COMBO_TRACE} слой: таймер скрытия монеты отменён — урок закрыт (размонтирование)`); // guard-ok: журнал отмены таймера
+  }, []);
   const zap = useSharedValue(ZAP_LEN);
   const zapOpacity = useSharedValue(0);
   const flash = useSharedValue(0);
@@ -65,7 +74,10 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
     const prev = prevRef.current;
     prevRef.current = comboCount;
     const beat = deriveComboBeat(prev, comboCount);
-    if (!beat || beat === 'spark') return undefined;
+    if (!beat || beat === 'spark') {
+      if (prev !== comboCount) console.log(`${COMBO_TRACE} слой: ${prev} → ${comboCount} без удара (${beat ?? 'нет порога'}) — монета ${hideTimerRef.current ? 'дожидается своего таймера' : 'не показана'}`); // guard-ok: ранний выход логируется
+      return;
+    }
     console.log(`${COMBO_MOMENT_LOG} слой: удар «${beat}» (${prev} → ${comboCount}), монета=${COIN_FOR[beat].mood} ранг=${String(coinRank)}`); // guard-ok: журнал удара
     setCoin((c) => ({ ...COIN_FOR[beat], key: (c?.key ?? 0) + 1 }));
     if (beat === 'break') playBreakSound();
@@ -78,8 +90,15 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
     if (!reduced && beat === 'break') {
       cold.value = withSequence(withTiming(1, { duration: 0 }), withDelay(T.coldHold, withTiming(0, { duration: T.coldFade })));
     }
-    const id = setTimeout(() => setCoin(null), T.coinStay);
-    return () => clearTimeout(id);
+    if (hideTimerRef.current !== null) {
+      clearTimeout(hideTimerRef.current);
+      console.log(`${COMBO_TRACE} слой: прежний таймер скрытия отменён — новый удар «${beat}» перезапускает показ`); // guard-ok: журнал отмены таймера
+    }
+    hideTimerRef.current = setTimeout(() => {
+      hideTimerRef.current = null;
+      setCoin(null);
+      console.log(`${COMBO_TRACE} слой: монета скрыта по таймеру ${T.coinStay} мс (удар «${beat}»)`); // guard-ok: журнал скрытия
+    }, T.coinStay);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: удар решается только сменой серии
   }, [comboCount]);
 

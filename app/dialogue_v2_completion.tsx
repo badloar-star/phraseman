@@ -98,6 +98,8 @@ function completionLabels(lang: Lang) {
     noTurns: triLang(lang, { ru: 'Разговор не начался', uk: 'Розмова не почалася', en: "The conversation didn't start", es: 'La conversación no empezó', 'pt-BR': 'A conversa não começou', vi: 'Cuộc trò chuyện chưa bắt đầu', id: 'Percakapan belum dimulai', tr: 'Konuşma başlamadı', pl: 'Rozmowa się nie zaczęła', fr: "La conversation n'a pas commencé", de: 'Das Gespräch hat nicht begonnen' }),
     retryFailed: triLang(lang, { ru: 'Не получилось, попробуй ещё раз', uk: 'Не вийшло, спробуй ще раз', en: "That didn't work, try again", es: 'No ha funcionado, inténtalo de nuevo', 'pt-BR': 'Não deu certo, tente de novo', vi: 'Chưa được, hãy thử lại', id: 'Belum berhasil, coba lagi', tr: 'Olmadı, tekrar dene', pl: 'Nie udało się, spróbuj ponownie', fr: "Ça n'a pas marché, réessaie", de: 'Hat nicht geklappt, versuch es noch einmal' }),
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów', fr: 'Réessayer', de: 'Erneut versuchen' }),
+    // тексты — как у «К диалогам» праздничного экрана (components/DialogVictoryCelebrationHybrid.tsx), fr/de — по образцу соседних строк
+    toDialogs: triLang(lang, { ru: 'К диалогам', uk: 'До діалогів', en: 'To dialogues', es: 'A los diálogos', 'pt-BR': 'Aos diálogos', vi: 'Về hội thoại', id: 'Ke dialog', tr: 'Diyaloglara', pl: 'Do dialogów', fr: 'Aux dialogues', de: 'Zu den Dialogen' }),
     done: triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe', fr: 'Terminé', de: 'Fertig' }),
     // зачем (решение владельца 13.10, dialogs.html D2: под «Готово» «Добить: Ещё учу (N)» при ошибках; в карточке «Ошибки» — «Повторить ошибки»): N — ошибки диалога, записанные в «Мои ошибки»
     finishMistakes: (n: number) => triLang(lang, {
@@ -128,6 +130,8 @@ export default function DialogueV2CompletionRoute() {
   const glass = useDialogueGlass();
   const labels = useMemo(() => completionLabels(lang), [lang]);
   const [state, setState] = useState<State>({ kind: 'loading' });
+  // зачем (координатор 15.10): без сессии/сцены в маршруте итог не посчитать никогда — «Повторить» там бесполезен, ведём в список диалогов
+  const [invalidRoute, setInvalidRoute] = useState(false);
   const [feedbackAllowed, setFeedbackAllowed] = useState(false);
   const momentsV3 = useMomentsV3Enabled();
   const milestoneHoldRaw = useStreakMilestoneHold();
@@ -187,6 +191,7 @@ export default function DialogueV2CompletionRoute() {
     if (!selection) {
       console.warn('[DIALOGUE-V2] completion:run → invalid route data', { hasSession: !!sessionId, scenarioId, studyTarget });
       console.warn(`[DIALOG-SUMMARY] → unavailable reason=invalid_route_data session=${sessionId ? 'yes' : 'no'} scenario=${scenarioId ? 'yes' : 'no'} target=${String(studyTarget)}`);
+      setInvalidRoute(true);
       setState({ kind: 'unavailable' });
       return;
     }
@@ -519,7 +524,10 @@ export default function DialogueV2CompletionRoute() {
           {state.kind === 'unavailable' || (retrying && state.kind === 'loading') ? (
             <View style={[dialogueGlassCardStyle(glass, 16), styles.stateCard]}>
               <Text maxFontSizeMultiplier={1.3} style={[styles.stateText, { color: glass.secondary }]}>{knownZeroTurns ? labels.noTurns : retryFailed ? labels.retryFailed : labels.unavailable}</Text>
-              {knownZeroTurns ? (
+              {invalidRoute ? (
+                // нет данных разговора в маршруте (битая ссылка) — повтор не поможет: одна кнопка в список диалогов
+                <DialogueGlassCta glass={glass} size="small" icon="chatbubbles-outline" label={labels.toDialogs} onPress={() => { console.log('[DIALOG-SUMMARY] invalid_route_data → to_list'); /* guard-ok: одна строка на тап */ void hapticTap(); close(); }} testID="dialogue-v2-completion-to-list" />
+              ) : knownZeroTurns ? (
                 // ноль реплик: «Повторить» итог бессмысленно — сразу «Ещё раз» (брифинг этого же разговора)
                 <DialogueGlassCta glass={glass} size="small" icon="refresh" label={labels.again} onPress={() => { console.log('[DIALOG-RETRY] zero_turns → restart dialogue', JSON.stringify({ scenarioId })); again(); }} testID="dialogue-v2-completion-restart" />
               ) : (

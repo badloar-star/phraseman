@@ -23,6 +23,19 @@ describe('dialogue result: «Повторить» and «Ещё раз» always a
     expect(retry).toContain('void hapticTap();');
   });
 
+  it('no dialogue data in the route: one «To dialogues» button instead of a useless «Retry»', () => {
+    expect(src).toMatch(/setInvalidRoute\(true\);\s*setState\(\{ kind: 'unavailable' \}\);/);
+    const card = src.slice(src.indexOf('{invalidRoute ? ('), src.indexOf(') : knownZeroTurns ? ('));
+    expect(card).toContain('label={labels.toDialogs}');
+    expect(card).toContain("[DIALOG-SUMMARY] invalid_route_data → to_list");
+    expect(card).toContain('close();');
+    expect(card).not.toContain('retryCompletion');
+    const line = src.slice(src.indexOf('toDialogs: triLang(lang, {'), src.indexOf('}),', src.indexOf('toDialogs: triLang(lang, {')));
+    for (const key of [' ru: ', ' uk: ', ' en: ', ' es: ', " 'pt-BR': ", ' vi: ', ' id: ', ' tr: ', ' pl: ']) {
+      expect(line).toContain(key);
+    }
+  });
+
   it('«Ещё раз»: no silent return — no scene goes back to the list, double tap is locked, the route is logged', () => {
     const again = src.slice(src.indexOf('const again = () => {'), src.indexOf("router.replace({ pathname: '/dialogue_v2_briefing'"));
     expect(again).toContain('[DIALOG-REPEAT] again tap');

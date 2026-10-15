@@ -1,183 +1,138 @@
-# Англійська · Урок 2 · Заняття 2 — «Are you comfortable?»
+# Англійська · Урок 2 · Заняття 2 — Перед невеликим виступом
 
-**Сцена заняття.** Суботній ранок у хостелі. Сусід Том смажить тости, а сусідка Міра сидить за спільним столом із чаєм. Ви знайомитеся з ними й по черзі питаєте, як вони почуваються.
+**Ситуація.** Ви з друзями готуєте короткий виступ. Обговорюєте впевненість у собі, напруження й враження від репетиції.
 
-**Як сказати:** `Are you` + слово про людину
-**Нові слова:** comfortable, upset
-**Повертаються:** cold, ok
+**Що ви опануєте:** описати стан людини з not, використовуючи повні форми й знайомі скорочення
+**Нові слова:** confident, relaxed, satisfied
 
 ---
 
 ## Інтро 1
 
-### Are you — «ти …?»
+### Упевненість у собі
 
-`cold` — «змерз», `ok` — «нормально». Щоб запитати про це людину, попереду ставлять два слова: `Are you cold?`, `Are you ok?`
+`confident` — «впевнений у собі», «впевнений в успіху». Перед виступом `I am not confident` — «Я не впевнений у собі». Знайоме `I am` можна скоротити: `I'm not confident`. `not` залишається окремим словом. Текст ви знаєте; коліна, здається, репетицію пропустили.
 
-Українською питання роблять голосом: «змерз?». Англійською попереду стає `are you` — цей початок годиться для будь-якого слова про людину: холодно, нормально, втомився.
+**Перед виходом ви сумніваєтеся у своїх силах. Коротко скажіть, що не впевнені в собі.**
 
-**Сусід по кухні сидить у куртці й тримає горнятко двома руками. Запитайте.**
-
-- ✅ **Are you cold?**
-- ❌ You cold? — *Так кидають на бігу, але це обрубок. Повне питання починається з `are`.*
-- ❌ Are cold you? — *`you` відірване від `are`. Ці двоє йдуть парою: спершу `are you`, і лише потім саме слово.*
+- ✅ **I'm not confident.**
+- ❌ I'm confident. — *Без `not` виходить упевненість. Тут потрібно `I'm not confident`.*
+- ❌ I not confident. — *Потрібна зв’язка: `I am not` або `I'm not`.*
 
 ---
 
 ## Інтро 2
 
-### comfortable — «зручно»
+### Без напруження
 
-`comfortable` — «зручно, комфортно». Про стілець, про ліжко, про місце в автобусі. Не про настрій, а про те, як тілу.
+`relaxed` — «розслаблений», «спокійний», коли немає напруження. `She is relaxed` — «Вона розслаблена». Якщо сестра напружена: `She is not relaxed`. Можна скоротити початок: `She's not relaxed`. Упевненість і розслабленість не одне й те саме: можна вірити в себе й усе одно хвилюватися.
 
-Слово довге, але в питанні поводиться як коротке: `Are you comfortable?` Питають у гостях, у машині, у літаку — скрізь, де людина сидить і може сидіти незручно.
+**Сестра напружена перед виходом. Скажіть, що вона не розслаблена.**
 
-**Гість сів на хиткий стілець біля вікна і совається. Запитайте, чи зручно йому.**
-
-- ✅ **Are you comfortable?**
-- ❌ Are comfortable? — *Зникло «ти». Без `you` незрозуміло, про кого мова.*
-- ❌ You are comfortable? — *Це вже твердження: «тобі зручно». Для питання `are` виходить наперед.*
+- ✅ **She is not relaxed.**
+- ❌ She is relaxed. — *Це без напруження. Тут потрібне заперечення: `is not relaxed`.*
+- ❌ She not relaxed. — *`is` зберігається: `She is not relaxed`.*
 
 ---
 
 ## Інтро 3
 
-### upset — «засмучений»
+### Задоволений результатом
 
-`upset` — «засмучений». Не «злий»: людині зробили прикро, і вона притихла.
+`satisfied` — «задоволений результатом». Якщо репетиція пройшла не так, як ви хотіли: `We are not satisfied` — «Ми незадоволені». Коротко: `We're not satisfied`. Це оцінка результату; вона не обов’язково означає сум.
 
-Слово годиться і про дрібницю, і про серйозне: `Are you upset?` питають і через скасовану поїздку, і через холодний тост. Питання звучить співчутливо: людина помітила, що вам недобре, і вирішила запитати.
+**Вас із другом не влаштовує результат репетиції. Коротко скажіть, що ви незадоволені.**
 
-**Сусід прочитав повідомлення в телефоні й мовчки відклав тост. Запитайте.**
-
-- ✅ **Are you upset?**
-- ❌ Is you upset? — *Про співрозмовника зв'язка `are`, не `is`.*
-- ❌ You upset? — *Слова правильні, але питання не зібране: попереду потрібен `are`.*
+- ✅ **We're not satisfied.**
+- ❌ We're satisfied. — *Без `not` це задоволення результатом. Тут потрібно `We're not satisfied`.*
+- ❌ We're not sad. — *Це «Нам не сумно». Зараз оцінюємо результат: `satisfied`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — comfortable**
-<!-- interaction_id: en:lesson-02:session-02:i01; family: listen_choose -->
-Ціль: `comfortable`
+**1 · Перед виступом ви сумніваєтеся у своїх силах. Скажіть, що не впевнені в собі**
+<!-- interaction_id: en:lesson-02:session-02:i01; family: phrase_builder -->
+Плитки: `confident` `not` `am` `I` `is` → **I am not confident.**
+*(плитка `is` зайва: тут потрібно `am` — `I am not confident.`)*
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте фразу про сестру**
 <!-- interaction_id: en:lesson-02:session-02:i02; family: listen_choose -->
-Ціль: `comfortable`
-Варіанти: `comfortable` · `comfort` · `company`
-- comfort — *`comfort` — саме по собі слово, «затишок». У `comfortable` після нього є хвіст.*
-- company — *Це «компанія». Початок схожий, далі все інше.*
+🔊 *She is not relaxed.* → **She is not relaxed.** · She is not confident. · She is not satisfied.
+- She is not confident. — *У записі останнє слово — `relaxed`, а в цьому варіанті — `confident`.*
+- She is not satisfied. — *У записі останнє слово — `relaxed`, а в цьому варіанті — `satisfied`.*
 
+**3 · Вас обох не влаштовує репетиція. Доповніть фразу**
+<!-- interaction_id: en:lesson-02:session-02:i03; family: context_gap_grammar -->
+We ___ not satisfied. → **are** · am · is
+- am — *Після `We` потрібно `are`.*
+- is — *Про нас — `We are not`.*
 
-**3 · Картка слова — upset**
-<!-- interaction_id: en:lesson-02:session-02:i03; family: listen_choose -->
-Ціль: `upset`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-02:i04; family: speed_match -->
+confident — впевнений у собі · relaxed — розслаблений · satisfied — задоволений результатом · sure — впевнений
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-02:i04; family: listen_choose -->
-Ціль: `upset`
-Варіанти: `upset` · `up` · `set`
-- up — *Тільки перша половина слова.*
-- set — *Тільки друга половина, початок загубився.*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-02:i05; family: listen_build_dictation -->
+🔊 *I'm not confident.* Плитки: `confident` `not` `I'm` `He's` → **I'm not confident.**
+*(плитка `He's` зайва: тут потрібно `I'm` — `I'm not confident.`)*
 
+**6 · Сестра напружена перед виходом. Скажіть, що вона не розслаблена**
+<!-- interaction_id: en:lesson-02:session-02:i06; family: phrase_builder -->
+Плитки: `relaxed` `not` `is` `She` `are` → **She is not relaxed.**
+*(плитка `are` зайва: тут потрібно `is` — `She is not relaxed.`)*
 
-**5 · Складіть фразу — запитайте гостя про стілець**
-<!-- interaction_id: en:lesson-02:session-02:i05; family: phrase_builder -->
-Ціль: `Are you comfortable?`
+**7 · Коротко скажіть, що ви з другом незадоволені результатом репетиції**
+<!-- interaction_id: en:lesson-02:session-02:i07; family: scripted_repeat_compare -->
+🎙 **We're not satisfied.**
 
-**6 · Вставте слово — сусід у куртці гріє руки об горнятко**
-<!-- interaction_id: en:lesson-02:session-02:i06; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `cold` · `comfortable` · `upset`
-- comfortable — *«Зручно?» — але людина мерзне, а не влаштовується на стільці.*
-- upset — *«Засмучений?» — куртка й гаряче горнятко кажуть про холод, а не про настрій.*
+**8 · Ви сумніваєтеся, о котрій виходити на сцену. Доповніть «Я не впевнений»**
+<!-- interaction_id: en:lesson-02:session-02:i08; family: context_gap_grammar -->
+I ___ not sure. → **am** · is · are
+- is — *Про себе — `I am not`.*
+- are — *Після `I` потрібно `am`.*
 
+**9 · Послухайте фразу про друга**
+<!-- interaction_id: en:lesson-02:session-02:i09; family: listen_choose -->
+🔊 *He is not interested.* → **He is not interested.** · He is not comfortable. · He is not tired.
+- He is not comfortable. — *У записі останнє слово — `interested`, а в цьому варіанті — `comfortable`.*
+- He is not tired. — *У записі останнє слово — `interested`, а в цьому варіанті — `tired`.*
 
-**7 · Складіть запитання — сусід прочитав повідомлення і хоче зрозуміти, що з вами**
-<!-- interaction_id: en:lesson-02:session-02:i07; family: phrase_builder -->
-Ціль: `Are you upset?`
-Плитки: `Are` · `you` · `upset` · `is`
-*Плитка `is` зайва: у запитанні до `you` потрібна форма `are`: `Are you upset?`*
+**10 · З’єднайте знайомі слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-02:i10; family: speed_match -->
+interested — зацікавлений · comfortable — почувається зручно · tired — втомлений · expensive — дорогий за ціною
 
-**8 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-02:i08; family: speed_match -->
-Пари: `comfortable` — зручно · `upset` — засмучений · `cold` — змерз · `ok` — нормально
-Ціль: `comfortable · upset · cold · ok`
+**11 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-02:i11; family: listen_build_dictation -->
+🔊 *She's not relaxed.* Плитки: `relaxed` `not` `She's` `They're` → **She's not relaxed.**
+*(плитка `They're` зайва: тут потрібно `She's` — `She's not relaxed.`)*
 
-**9 · Послухайте і складіть — «тобі зручно?»**
-<!-- interaction_id: en:lesson-02:session-02:i09; family: listen_build_dictation -->
-Ціль: `Are you comfortable?`
-🔊 *Are you comfortable?* Плитки: `Are` `you` `comfortable` `upset` → **Are you comfortable?**
-*Плитка `upset` зайва: `upset` — «засмучений», а тут питають, чи вам зручно: `Are you comfortable?`*
-
-**10 · Вставте слово — сусід прочитав повідомлення і замовк**
-<!-- interaction_id: en:lesson-02:session-02:i10; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `upset` · `cold` · `comfortable`
-- cold — *«Змерз?» — на кухні тепло, річ у повідомленні.*
-- comfortable — *«Зручно?» — про стілець тут ніхто не думає.*
-
-
-**11 · Розрізніть звуки — яке з двох про «засмучений»?**
-<!-- interaction_id: en:lesson-02:session-02:i11; family: sound_contrast -->
-Варіанти: `upset` · `up`
-- up — *`up` — «вгору», і на цьому слово закінчується. У `upset` далі є друга половина.*
-
-
-**12 · Складіть фразу — ви хочете дізнатися, чи все в людини нормально**
+**12 · Анні й Олегові незручно сидіти на вузькій лаві. Скажіть, що їм незручно**
 <!-- interaction_id: en:lesson-02:session-02:i12; family: phrase_builder -->
-Ціль: `Are you ok?`
+Плитки: `comfortable` `not` `are` `They` `is` → **They are not comfortable.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not comfortable.`)*
 
-**13 · Вставте слово — гість совається на хиткому стільці**
-<!-- interaction_id: en:lesson-02:session-02:i13; family: context_gap_grammar -->
-Ціль: `Are you ___ ?`
-Варіанти: `comfortable` · `ok` · `cold`
-- ok — *«Нормально?» — надто загально, а ви питаєте саме про стілець.*
-- cold — *«Змерз?» — він не мерзне, йому незручно сидіти.*
+**13 · Результат вас не влаштовує, але суму ви не відчуваєте. Коротко скажіть: «Мені не сумно»**
+<!-- interaction_id: en:lesson-02:session-02:i13; family: scripted_repeat_compare -->
+🎙 **I'm not sad.**
 
+**14 · Друг сумнівається у своїх силах перед сценою. Доповніть фразу**
+<!-- interaction_id: en:lesson-02:session-02:i14; family: context_gap_grammar -->
+He ___ not confident. → **is** · am · are
+- am — *Після `He` потрібно `is`.*
+- are — *Про друга — `He is not`.*
 
-**14 · Складіть запитання — гість сидить в одній сорочці біля відчиненого вікна; запитайте, чи йому не холодно**
-<!-- interaction_id: en:lesson-02:session-02:i14; family: phrase_builder -->
-Ціль: `Are you cold?`
-Плитки: `Are` `you` `cold` `is` → **Are you cold?**
-*Плитка `is` зайва: у запитанні до `you` потрібна форма `are`: `Are you cold?`*
+**15 · Послухайте й виберіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-02:i15; family: listen_choose -->
+🔊 *We're not satisfied.* → **We're not satisfied.** · We're not relaxed. · We're not confident.
+- We're not relaxed. — *У записі останнє слово — `satisfied`, а в цьому варіанті — `relaxed`.*
+- We're not confident. — *У записі останнє слово — `satisfied`, а в цьому варіанті — `confident`.*
 
-**15 · Послухайте і складіть — «ти засмучений?»**
-<!-- interaction_id: en:lesson-02:session-02:i15; family: listen_build_dictation -->
-Ціль: `Are you upset?`
-🔊 *Are you upset?* Плитки: `Are` `you` `upset` `cold` → **Are you upset?**
-*Плитка `cold` зайва: `cold` — «холодно», а тут питають про настрій: `Are you upset?`*
+**16 · З’єднайте стани зі значеннями**
+<!-- interaction_id: en:lesson-02:session-02:i16; family: speed_match -->
+confident — впевнений у своїх силах · relaxed — без напруження · satisfied — задоволений результатом · sad — сумний
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-02:i16:s01; family: scripted_repeat_compare -->
-Ціль: `Are you cold?`
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-02:i16:s02; family: scripted_repeat_compare -->
-Ціль: `Are you ok?`
-
-**18 · Послухайте і складіть — «вам холодно?»**
-<!-- interaction_id: en:lesson-02:session-02:i17:s01; family: listen_build_dictation -->
-Ціль: `Are you cold?`
-🔊 *Are you cold?* Плитки: `Are` `you` `cold` `is` → **Are you cold?**
-*Плитка `is` зайва: у запитанні до `you` потрібна форма `are`: `Are you cold?`*
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-02:i17:s02; family: scripted_repeat_compare -->
-Ціль: `Are you comfortable?`
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-02:i17:s03; family: scripted_repeat_compare -->
-Ціль: `Are you upset?`
-
-**21 · Послухайте і складіть — «з вами все гаразд?»**
-<!-- interaction_id: en:lesson-02:session-02:i17:s04; family: listen_build_dictation -->
-Ціль: `Are you ok?`
-🔊 *Are you ok?* Плитки: `Are` `you` `ok` `is` → **Are you ok?**
-*Плитка `is` зайва: у запитанні до `you` потрібна форма `are`: `Are you ok?`*
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=phrase_builder, 8=speed_match, 9=listen_build_dictation, 10=context_gap_grammar, 11=sound_contrast, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=listen_build_dictation
+**17 · Удома ви дивитеся на свій готовий виріб: результат вас не влаштовує. Скажіть, що ви незадоволені результатом**
+<!-- interaction_id: en:lesson-02:session-02:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **I am not satisfied.**
 

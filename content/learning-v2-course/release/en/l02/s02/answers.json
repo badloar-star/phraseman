@@ -1,107 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-02:i01",
-    "correctText": "comfortable",
+    "correctText": "I am not confident.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-02:i02",
-    "correctText": "comfortable",
+    "correctText": "She is not relaxed.",
     "correctResponseId": "en:lesson-02:session-02:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-02:i03",
-    "correctText": "upset",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-02:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-02:i04",
-    "correctText": "upset",
-    "correctResponseId": "en:lesson-02:session-02:i04:r1"
+    "correctText": "en:lesson-02:session-02:i04:p1=confident\nen:lesson-02:session-02:i04:p2=relaxed\nen:lesson-02:session-02:i04:p3=satisfied\nen:lesson-02:session-02:i04:p4=sure",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-02:i05",
-    "correctText": "Are you comfortable?",
+    "correctText": "I'm not confident.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-02:i06",
-    "correctText": "cold",
-    "correctResponseId": "en:lesson-02:session-02:i06:r1"
+    "correctText": "She is not relaxed.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-02:i07",
-    "correctText": "Are",
-    "correctResponseId": "en:lesson-02:session-02:i07:r1"
+    "correctText": "We're not satisfied.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-02:i08",
-    "correctText": "en:lesson-02:session-02:i08:p1=comfortable\nen:lesson-02:session-02:i08:p2=upset\nen:lesson-02:session-02:i08:p3=cold\nen:lesson-02:session-02:i08:p4=ok",
-    "correctResponseId": null
+    "correctText": "am",
+    "correctResponseId": "en:lesson-02:session-02:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-02:i09",
-    "correctText": "Are you comfortable?",
-    "correctResponseId": null
+    "correctText": "He is not interested.",
+    "correctResponseId": "en:lesson-02:session-02:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-02:i10",
-    "correctText": "upset",
-    "correctResponseId": "en:lesson-02:session-02:i10:r1"
+    "correctText": "en:lesson-02:session-02:i10:p1=interested\nen:lesson-02:session-02:i10:p2=comfortable\nen:lesson-02:session-02:i10:p3=tired\nen:lesson-02:session-02:i10:p4=expensive",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-02:i11",
-    "correctText": "upset",
-    "correctResponseId": "en:lesson-02:session-02:i11:r1"
+    "correctText": "She's not relaxed.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-02:i12",
-    "correctText": "Are you ok?",
+    "correctText": "They are not comfortable.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-02:i13",
-    "correctText": "comfortable",
-    "correctResponseId": "en:lesson-02:session-02:i13:r1"
+    "correctText": "I'm not sad.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-02:i14",
-    "correctText": "Are you cold?",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-02:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-02:i15",
-    "correctText": "Are you upset?",
+    "correctText": "We're not satisfied.",
+    "correctResponseId": "en:lesson-02:session-02:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i16",
+    "correctText": "en:lesson-02:session-02:i16:p1=confident\nen:lesson-02:session-02:i16:p2=relaxed\nen:lesson-02:session-02:i16:p3=satisfied\nen:lesson-02:session-02:i16:p4=sad",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-02:i16:s01",
-    "correctText": "Are you cold?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-02:i16:s02",
-    "correctText": "Are you ok?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-02:i17:s01",
-    "correctText": "Are you cold?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-02:i17:s02",
-    "correctText": "Are you comfortable?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-02:i17:s03",
-    "correctText": "Are you upset?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-02:i17:s04",
-    "correctText": "Are you ok?",
+    "interactionId": "en:lesson-02:session-02:i17",
+    "correctText": "I am not satisfied.",
     "correctResponseId": null
   }
 ]

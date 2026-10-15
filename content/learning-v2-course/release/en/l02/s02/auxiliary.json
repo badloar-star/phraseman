@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-02:intro1:r2": {
-          "ru": "Так бросают на бегу, но это обрубок. Полный вопрос начинается с `are`.",
-          "uk": "Так кидають на бігу, але це обрубок. Повне питання починається з `are`."
+          "ru": "Без `not` получается уверенность. Здесь нужно `I'm not confident`.",
+          "uk": "Без `not` виходить упевненість. Тут потрібно `I'm not confident`."
         },
         "en:lesson-02:session-02:intro1:r3": {
-          "ru": "`you` оторвано от `are`. Эти двое идут парой: сначала `are you`, и только потом само слово.",
-          "uk": "`you` відірване від `are`. Ці двоє йдуть парою: спершу `are you`, і лише потім саме слово."
+          "ru": "Нужна связка: `I am not` или `I'm not`.",
+          "uk": "Потрібна зв’язка: `I am not` або `I'm not`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-02:intro2:r2": {
-          "ru": "Пропало «ты». Без `you` непонятно, о ком речь.",
-          "uk": "Зникло «ти». Без `you` незрозуміло, про кого мова."
+          "ru": "Это без напряжения. Здесь нужно отрицание: `is not relaxed`.",
+          "uk": "Це без напруження. Тут потрібне заперечення: `is not relaxed`."
         },
         "en:lesson-02:session-02:intro2:r3": {
-          "ru": "Это уже утверждение: «тебе удобно». Для вопроса `are` выходит вперёд.",
-          "uk": "Це вже твердження: «тобі зручно». Для питання `are` виходить наперед."
+          "ru": "`is` сохраняется: `She is not relaxed`.",
+          "uk": "`is` зберігається: `She is not relaxed`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-02:intro3:r2": {
-          "ru": "Про собеседника связка `are`, не `is`.",
-          "uk": "Про співрозмовника зв'язка `are`, не `is`."
+          "ru": "Без `not` это довольство результатом. Здесь нужно `We're not satisfied`.",
+          "uk": "Без `not` це задоволення результатом. Тут потрібно `We're not satisfied`."
         },
         "en:lesson-02:session-02:intro3:r3": {
-          "ru": "Слова верные, но вопрос не собран: впереди нужен `are`.",
-          "uk": "Слова правильні, але питання не зібране: попереду потрібен `are`."
+          "ru": "Это «Нам не грустно». Сейчас оцениваем результат: `satisfied`.",
+          "uk": "Це «Нам не сумно». Зараз оцінюємо результат: `satisfied`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "3856e3681bc532eae663364fc84ee1ac2dd4690da524b55d247e32ff7ae4b223"
+  "auxiliaryFingerprint": "9541547298cc9ce9a8c2295cb9a6c4b5a5cac99cb3f50c90922693d313913f6c"
 }

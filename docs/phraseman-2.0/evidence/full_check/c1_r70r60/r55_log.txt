@@ -1,0 +1,7 @@
+10-15 19:52:15.097 I/ReactNativeJS(26781): '[FRIEND-SEARCH] tap', '{"queryLength":6,"ready":true,"isSearching":false,"isCode":true,"keyboardVisible":true}'
+10-15 19:52:15.297 I/ReactNativeJS(26781): '[FRIEND-SEARCH] lookupByCode:start', { len: 6 }
+10-15 19:52:15.728 I/ReactNativeJS(26781): '[FRIEND-ADD-SHEET]', 'keyboard hide', '{"viewportHeight":914.2857142857143}'
+10-15 19:52:15.729 I/ReactNativeJS(26781): '[FRIEND-SEARCH] lookupByCode:index_read_done', { exists: false, ms: 433 }
+10-15 19:52:15.930 W/ReactNativeJS(26781): '[FRIEND-SEARCH] lookupByCode:legacy_read_failed', { code: 'firestore/permission-denied',
+10-15 19:52:16.131 I/ReactNativeJS(26781): '[FRIEND-SEARCH] lookupByCode:referral_read_done', { exists: false, ms: 834 }
+10-15 19:52:16.131 I/ReactNativeJS(26781): '[FRIEND-SEARCH] lookupByCode:miss all_sources_exhausted', { ms: 835 }

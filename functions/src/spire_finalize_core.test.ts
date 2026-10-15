@@ -6,6 +6,7 @@ import {
   computeSpireRoomResults,
   spireLiveStandings,
   SPIRE_FINAL_MAX_TIER,
+  spireLadderMemberKey,
 } from './spire_finalize_core';
 
 const WEEK_START = Date.UTC(2026, 8, 21); // понедельник 2026-09-21
@@ -132,7 +133,11 @@ describe('spire finalize: лестница итога недели (D191)', () =
     expect(JSON.stringify(low.ladder)).not.toMatch(/"uid"|u\d+"/);
     const top = out.results.u0;
     expect(top.ladder[0]).toMatchObject({ place: 1, isMe: true, name: 'Игрок 0' });
-    for (const row of top.ladder) expect(Object.keys(row).sort()).toEqual(['coinRank', 'coins', 'isMe', 'name', 'place']);
+    for (const row of top.ladder) expect(Object.keys(row).sort()).toEqual(['coinRank', 'coins', 'isMe', 'memberKey', 'name', 'place']);
+    // зачем (координатор 15.10, политика §5): ключ участника — 16 hex, свой у каждого, без uid; удаление аккаунта находит по нему строки.
+    for (const row of top.ladder) expect(row.memberKey).toMatch(/^[0-9a-f]{16}$/);
+    expect(new Set(top.ladder.map((r) => r.memberKey)).size).toBe(top.ladder.length);
+    expect(top.ladder[0].memberKey).toBe(spireLadderMemberKey('2026-W39_en_t5_d0_1_room', 'u0'));
     // пустой ранг монеты — базовая монета (null), а не «ранг 0»
     const noRank = runCoins({ a: { ...member(5), name: 'А', coinRank: null }, b: member(3) }, { a: 10, b: 5 });
     expect(noRank.results.a.ladder.find((r) => r.isMe)?.coinRank).toBeNull();

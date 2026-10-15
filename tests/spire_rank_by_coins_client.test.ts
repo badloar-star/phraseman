@@ -125,4 +125,17 @@ describe('D162 клиент: итог недели', () => {
     expect(old).not.toHaveProperty('ladder');
     expect(old).not.toHaveProperty('promotionLineCoins');
   });
+
+  // координатор 15.10 (политика §5): строка удалённого аккаунта — нейтральное имя, базовая монета; место и монеты остаются.
+  it('строка удалённого аккаунта (removed) → «Phraseman» без ранга; ключ участника клиенту не нужен', () => {
+    const ladder = [
+      { place: 1, name: '', coinRank: null, coins: 900, isMe: false, memberKey: 'a1b2c3d4e5f60718', removed: true },
+      { place: 2, name: 'Я', coinRank: 4, coins: 800, isMe: true, memberKey: '0f1e2d3c4b5a6978' },
+    ];
+    const view = spireDecodeWeekResult({ ...base, rankBy: 'coins', weekCoins: 800, ladder }, '2026-W43', 'en');
+    expect(view?.ladder).toEqual([
+      { place: 1, name: 'Phraseman', coinRank: null, coins: 900, isMe: false, removed: true },
+      { place: 2, name: 'Я', coinRank: 4, coins: 800, isMe: true },
+    ]);
+  });
 });

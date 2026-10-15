@@ -42,6 +42,7 @@ import {
 import { createFirestoreAccountsV2DeletionDeps } from './accounts_v2_deletion/pipeline_firestore';
 import { purgeAccountAuthorityForLegacyIdentities } from './account_authority/account_authority_purge';
 import { swallowed } from './swallowed_error';
+import { spireLadderMemberKey } from './spire_finalize_core';
 
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
@@ -1472,6 +1473,79 @@ export async function anonymizeExplainReportReporters(
   console.log('[ACCOUNT-DELETE] explain_reports anonymized', JSON.stringify({ docsUpdated: stats.docsUpdated }));
 }
 
+/** Комнат Пика у одного человека — по одной на неделю и язык; 520 ≈ 10 лет еженедельной игры. Больше — лог, не молчание. */
+const LADDER_SCRUB_GROUPS_LIMIT = 520;
+/** Соседей в комнате ≤ 30 (живые + резерв); итоги читаются одним getAll на комнату. */
+const LADDER_SCRUB_NEIGHBORS_LIMIT = 60;
+/** Подколлекция итогов недели (spire_finalize_cron.SPIRE_WEEK_RESULTS_SUBCOLLECTION; модуль крона сюда не тянем). */
+const SPIRE_WEEK_RESULTS = 'spire_week_results';
+
+/**
+ * D191 + политика §5 (координатор 15.10): лестница комнаты в итоге недели каждого соседа хранит ник и ранг монеты удалённого.
+ * По комнатам, где человек был (тот же запрос members.<uid>, что снимает членство — поэтому этап идёт РАНЬШЕ снятия),
+ * в итогах соседей его строку (по ключу spireLadderMemberKey — без uid) обезличиваем: имя пустое, ранга нет, removed: true.
+ * Место и монеты остаются — лестница соседа не разваливается. Чужие строки не трогаем; уже обезличенные не пишем повторно.
+ * Чтения: 1 запрос комнат + 1 getAll(≤ 60) на комнату; записи — только изменённые итоги, батчами. Журнал [D189-LADDER-SCRUB].
+ */
+export async function scrubSpireLadderFromNeighbors(
+  db: admin.firestore.Firestore,
+  stableUid: string,
+  stats: DeleteStats,
+): Promise<void> {
+  const memberPath = new admin.firestore.FieldPath('members', stableUid);
+  stats.queriesRun += 1;
+  const groups = await db.collection('spire_groups').where(memberPath, '!=', null).limit(LADDER_SCRUB_GROUPS_LIMIT).get();
+  if (groups.size >= LADDER_SCRUB_GROUPS_LIMIT) {
+    console.warn('[D189-LADDER-SCRUB] groups_limit_hit', JSON.stringify({ limit: LADDER_SCRUB_GROUPS_LIMIT }));
+  }
+  let resultsRead = 0;
+  let resultsWritten = 0;
+  let rowsScrubbed = 0;
+  let groupsSkipped = 0;
+  let batch = db.batch();
+  let pending = 0;
+  for (const group of groups.docs) {
+    const g = group.data() ?? {};
+    const weekId = typeof g.weekId === 'string' ? g.weekId : '';
+    const lang = typeof g.lang === 'string' ? g.lang : '';
+    if (!weekId || !lang) {
+      groupsSkipped += 1;
+      console.warn('[D189-LADDER-SCRUB] group_skip', JSON.stringify({ groupId: group.id, reason: !weekId ? 'no_week' : 'no_lang' }));
+      continue;
+    }
+    const members = g.members && typeof g.members === 'object' ? g.members as Record<string, unknown> : {};
+    const neighbors = Object.keys(members).filter((uid) => uid !== stableUid).slice(0, LADDER_SCRUB_NEIGHBORS_LIMIT);
+    if (neighbors.length === 0) continue;
+    const key = spireLadderMemberKey(group.id, stableUid);
+    // guard-ok: точечные документы по id соседей одной комнаты, не листинг коллекции.
+    const refs = neighbors.map((uid) => db.collection('users').doc(uid).collection(SPIRE_WEEK_RESULTS).doc(`${weekId}_${lang}`));
+    const snaps = await db.getAll(...refs, { fieldMask: ['ladder'] });
+    resultsRead += snaps.length;
+    for (const snap of snaps) {
+      if (!snap.exists) continue; // неделя ещё не подведена или сосед удалён — нечего чистить
+      const ladder = snap.get('ladder');
+      if (!Array.isArray(ladder)) continue;
+      let changed = 0;
+      const next = ladder.map((row: unknown) => {
+        if (!row || typeof row !== 'object') return row;
+        const r = row as Record<string, unknown>;
+        if (r.memberKey !== key || r.removed === true) return row;
+        changed += 1;
+        return { ...r, name: '', coinRank: null, removed: true };
+      });
+      if (changed === 0) continue;
+      batch.update(snap.ref, { ladder: next });
+      rowsScrubbed += changed;
+      resultsWritten += 1;
+      stats.docsUpdated += 1;
+      pending += 1;
+      if (pending >= 400) { await batch.commit(); batch = db.batch(); pending = 0; }
+    }
+  }
+  if (pending > 0) await batch.commit();
+  console.log('[D189-LADDER-SCRUB] done', JSON.stringify({ groups: groups.size, groupsSkipped, resultsRead, resultsWritten, rowsScrubbed }));
+}
+
 /** PM-252 п.1 (04.10): участник недельной группы Шпиля хранится как members.<uid> с отображаемым именем. */
 export async function removeFromSpireGroups(
   db: admin.firestore.Firestore,
@@ -1907,6 +1981,10 @@ export async function executeAccountDeletion(
     // зачем (PM-252 п.1, 04.10): персональные следы, переживавшие удаление (ревью сервера).
     await runDeleteStage(ctx, stats, 'explain_reports_reporters', async () => {
       for (const identity of identities) await anonymizeExplainReportReporters(db, identity, stats);
+    });
+    // зачем (координатор 15.10, политика §5): обезличить лестницу у соседей ДО снятия членства — иначе комнат не найти.
+    await runDeleteStage(ctx, stats, 'spire_ladder_scrub', async () => {
+      for (const identity of identities) await scrubSpireLadderFromNeighbors(db, identity, stats);
     });
     await runDeleteStage(ctx, stats, 'spire_groups_members', async () => {
       for (const identity of identities) await removeFromSpireGroups(db, identity, stats);

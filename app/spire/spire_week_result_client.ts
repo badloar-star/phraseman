@@ -69,7 +69,10 @@ function decodeWallet(d: Record<string, unknown>): SpireWeekWalletView | undefin
   return { stars, earnedTotal, seq, paidCoins: Number.isSafeInteger(paidCoins) && paidCoins > 0 ? paidCoins : 0 };
 }
 
-export type SpireWeekLadderRowView = Readonly<{ place: number; name: string; coinRank: number | null; coins: number; isMe: boolean }>;
+export type SpireWeekLadderRowView = Readonly<{ place: number; name: string; coinRank: number | null; coins: number; isMe: boolean; removed?: true }>;
+
+/** Подпись строки удалённого аккаунта — то же нейтральное имя без языка, что у заглушек друзей (friends.tsx). */
+export const SPIRE_LADDER_REMOVED_NAME = 'Phraseman';
 
 /** D191: строки лестницы из документа крона; битые строки пропускаем, пустой список = поля нет. */
 function decodeLadder(raw: unknown): readonly SpireWeekLadderRowView[] | undefined {
@@ -80,12 +83,16 @@ function decodeLadder(raw: unknown): readonly SpireWeekLadderRowView[] | undefin
     const r = item as Record<string, unknown>;
     // зачем: Number(null) = 0 — пустой ранг (базовая монета) стал бы «ранг 0»; берём только настоящее целое 0…19.
     const rank = typeof r.coinRank === 'number' ? r.coinRank : NaN;
+    // зачем (координатор 15.10, политика §5): участник удалил аккаунт — сервер стёр имя и ранг ([D189-LADDER-SCRUB]); показываем
+    // нейтральное имя и базовую монету, место и монеты остаются. Строка «я» удалённой не бывает (свой итог удаляется целиком).
+    const removed = r.removed === true && r.isMe !== true;
     rows.push({
       place: Math.max(1, n(r.place)),
-      name: typeof r.name === 'string' ? r.name.slice(0, 48) : '',
-      coinRank: Number.isInteger(rank) && rank >= 0 && rank <= 19 ? rank : null,
+      name: removed ? SPIRE_LADDER_REMOVED_NAME : typeof r.name === 'string' ? r.name.slice(0, 48) : '',
+      coinRank: !removed && Number.isInteger(rank) && rank >= 0 && rank <= 19 ? rank : null,
       coins: Math.max(0, n(r.coins)),
       isMe: r.isMe === true,
+      ...(removed ? { removed: true as const } : {}),
     });
   }
   return rows.length > 0 ? rows : undefined;

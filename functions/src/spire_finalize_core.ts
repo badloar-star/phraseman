@@ -31,6 +31,7 @@
 // повышения, поэтому лидер Алмаза не понижается.
 // ═══════════════════════════════════════════════════════════════════════════
 
+import { createHash } from 'crypto';
 import type { SpireCoinsConfig, SpireRankBy } from './spire_config_contract';
 import { spireCoinsZoneK, spireCoinsZonesFor } from '../../shared/spire_coins_zones';
 import { spireBotWeekCoins } from './spire_config_contract';
@@ -68,7 +69,21 @@ export type SpireWeekLadderRow = Readonly<{
   coinRank: number | null;
   coins: number;
   isMe: boolean;
+  /** Ключ участника для обезличивания при удалении аккаунта (spireLadderMemberKey) — не uid, в каждой комнате свой. */
+  memberKey: string;
+  /** Участник удалил аккаунт: имя и ранг стёрты (account_delete, [D189-LADDER-SCRUB]); место и монеты сохранены. */
+  removed?: true;
 }>;
+
+/**
+ * Ключ строки лестницы: первые 16 hex sha256(«groupId:uid»).
+ * зачем (координатор 15.10, сверка политики §5): ник удалённого аккаунта не должен жить в итогах соседей. Удаление аккаунта
+ * знает комнату и stableUid → пересчитывает ключ и находит именно его строки. Соль комнатой — сосед видит непрозрачную строку,
+ * разную в разных комнатах: человека нельзя связать между неделями, uid в документ соседа не попадает.
+ */
+export function spireLadderMemberKey(groupId: string, uid: string): string {
+  return createHash('sha256').update(`${groupId}:${uid}`).digest('hex').slice(0, 16);
+}
 
 /** D191: сколько строк лестницы пишем (в образце m01 — первые 6, «Ты» среди них). */
 export const SPIRE_WEEK_LADDER_ROWS = 6;
@@ -292,7 +307,7 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
   const ladderFor = (me: SpireStanding): SpireWeekLadderRow[] => {
     const top = roomSorted.slice(0, SPIRE_WEEK_LADDER_ROWS);
     const rows = top.some((s) => s.uid === me.uid) ? top : [...roomSorted.slice(0, SPIRE_WEEK_LADDER_ROWS - 1), me];
-    return rows.map((s) => ({ place: roomPlace(s), name: s.name ?? '', coinRank: s.coinRank ?? null, coins: s.weekCoins ?? 0, isMe: s.uid === me.uid }));
+    return rows.map((s) => ({ place: roomPlace(s), name: s.name ?? '', coinRank: s.coinRank ?? null, coins: s.weekCoins ?? 0, isMe: s.uid === me.uid, memberKey: spireLadderMemberKey(input.groupId, s.uid) }));
   };
 
   const results: Record<string, SpireMemberWeekResult> = {};

@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-02:intro1:r2": {
-          "ru": "Один сад: `There is a garden there`.",
-          "uk": "Один сад: `There is a garden there`."
+          "ru": "Один сад: `There is a garden here`.",
+          "uk": "Один сад: `There is a garden here`."
         },
         "en:lesson-04:session-02:intro1:r3": {
           "ru": "Перед одним садом нужно `a`: `a garden`.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "a0c5554d2be0238725e8990f8261a1f8f253b5aa5fc94096f5473e615d7a289a"
+  "auxiliaryFingerprint": "0991dc2359b610bd8287758980829609a8221dda36119ee0fbe04c219e9b2ef5"
 }

@@ -16,7 +16,7 @@
 **Сообщите, что здесь есть сад.**
 
 - ✅ **There is a garden here.**
-- ❌ There are a garden here. — *Один сад: `There is a garden there`.*
+- ❌ There are a garden here. — *Один сад: `There is a garden here`.*
 - ❌ There is garden here. — *Перед одним садом нужно `a`: `a garden`.*
 
 ---

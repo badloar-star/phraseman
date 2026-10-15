@@ -13,6 +13,7 @@ import { useRouter } from 'expo-router';
 import { hapticTap } from './use-haptics';
 import { markNextNavigationAsReplace } from '../app/navigation_back';
 import { getDevDialogCompletion } from '../app/dev_dialog_state';
+import { useMistakePracticeStartGate } from './useMistakePracticeStartGate';
 import {
   captureDialogueV2Mistakes,
   type DialogueCorrectionRow,
@@ -24,6 +25,9 @@ export type DialogueV2MistakeCapture = Readonly<{
   status: 'waiting' | 'ready' | 'empty' | 'skipped';
   /** «Добить»: отработка ошибок этого диалога. Без id — ничего не делает (и пишет почему). */
   openPractice: () => void;
+  /** Гейт «Добить» не пустил из-за энергии на платную сессию: экран показывает NoEnergyModal, попытка дня цела. */
+  noEnergy: boolean;
+  dismissNoEnergy: () => void;
 }>;
 
 export function useDialogueV2MistakeCapture(input: Readonly<{
@@ -35,6 +39,8 @@ export function useDialogueV2MistakeCapture(input: Readonly<{
 }>): DialogueV2MistakeCapture {
   const { sessionId, studyTarget, rows, ready } = input;
   const router = useRouter();
+  // зачем (Ревизор 2.76, координатор 15.10): «Добить» после диалога шёл в тренировку мимо дневной квоты — теперь общий гейт «Ошибок»
+  const gate = useMistakePracticeStartGate('dialogue_v2_finish_mistakes');
   const [state, setState] = useState<{ mistakeIds: readonly string[]; status: DialogueV2MistakeCapture['status'] }>({
     mistakeIds: [],
     status: 'waiting',
@@ -96,12 +102,17 @@ export function useDialogueV2MistakeCapture(input: Readonly<{
       console.warn(`[DIALOG-MISTAKES] open skip reason=no_ids status=${state.status}`); // guard-ok: ранний выход
       return;
     }
-    openingRef.current = true;
     void hapticTap();
-    console.log(`[DIALOG-MISTAKES] open ids=${mistakeIds.length} → /mistake_practice_session`);
+    if (!gate.tryStartSession(mistakeIds.length)) {
+      console.log(`[DIALOG-MISTAKES] open skip reason=gate (пейвол или «Нужна энергия») ids=${mistakeIds.length}`); // guard-ok: ранний выход
+      return;
+    }
+    openingRef.current = true;
+    const receipt = gate.takeQuotaReceiptParam();
+    console.log(`[DIALOG-MISTAKES] open ids=${mistakeIds.length} receipt=${receipt.quotaReceipt ?? 'none'} → /mistake_practice_session`);
     markNextNavigationAsReplace();
-    router.replace({ pathname: '/mistake_practice_session', params: { mistakeIds: mistakeIds.join(','), length: 'all' } } as never);
-  }, [mistakeIds, router, state.status]);
+    router.replace({ pathname: '/mistake_practice_session', params: { mistakeIds: mistakeIds.join(','), length: 'all', ...receipt } } as never);
+  }, [gate, mistakeIds, router, state.status]);
 
-  return { mistakeIds, status: state.status, openPractice };
+  return { mistakeIds, status: state.status, openPractice, noEnergy: gate.noEnergy, dismissNoEnergy: gate.dismissNoEnergy };
 }

@@ -23,7 +23,8 @@ describe('итог урока: паритет с learn.html E1–E4', () => {
 
   it('id записанной ошибки собирается в уроке, «Добить» и «Повторить ошибки» запускают их повтор', () => {
     expect(lesson).toContain("if (captured.kind === 'captured') collectLessonRunMistakeId(lessonId, captured.mistakeId);");
-    expect(complete).toContain("params: { mistakeIds: ids.join(','), length: 'all' }");
+    // Ревизор 2.76: «Добить» несёт чек дневной квоты из гейта (tests/mistake_practice_entry_quota_gate_guard)
+    expect(complete).toContain("params: { mistakeIds: ids.join(','), length: 'all', ...receipt }");
     expect(complete).toContain('onRepeatErrors={runMistakeIds.length > 0 ? finishMistakes : ('); // R69/Макеты: при ошибках без id — хаб «Мои ошибки» (openMistakesHub)
     expect(complete).toContain('runMistakeIds.length > 0 ? finishMistakes : handleRepeatLesson');
     expect(complete).toContain('Добить: Ещё учу (${n})');

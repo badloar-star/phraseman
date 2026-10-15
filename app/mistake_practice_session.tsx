@@ -95,6 +95,8 @@ import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
+import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
@@ -453,6 +455,8 @@ function MistakePracticeSessionScreen() {
   // чек СВОЕГО входа (из маршрута): тренировка А, оставшаяся под новой Б, вернёт именно свою попытку (Ревизор 15.10)
   // Ревизор 15.10 (2.63): чек «занимается» при монтировании — второй экран с тем же receiptId (по ссылке) им не владеет.
   const quotaReceiptRef = useRef<string | null>(null);
+  // зачем (Ревизор 2.76, координатор 15.10): «Ещё N» на финале — новая тренировка; раньше шла мимо дневной квоты, теперь через общий гейт
+  const moreGate = useMistakePracticeStartGate('mistake_finale_more');
   const quotaOwnerRef = useRef(`mps:${Date.now().toString(36)}:${Math.random().toString(36).slice(2, 8)}`);
   const routeQuotaReceipt = typeof params.quotaReceipt === 'string' && params.quotaReceipt ? params.quotaReceipt : null;
   useEffect(() => {
@@ -1403,6 +1407,11 @@ function MistakePracticeSessionScreen() {
   const startMissedAgain = () => {
     if (missedIds.length < 1) return;
     hapticTap();
+    if (!moreGate.tryStartSession(missedIds.length)) {
+      console.log('[MISTAKES-GATE] finale_more:blocked', JSON.stringify({ missed: missedIds.length })); // guard-ok: ранний выход — пейвол или «Нужна энергия»
+      return;
+    }
+    const receipt = moreGate.takeQuotaReceiptParam();
     trackMistakePracticeEvent('mistake_practice_setup_started', {
       study_target: studyTarget,
       entry_source: 'mistake_finale_more',
@@ -1412,7 +1421,7 @@ function MistakePracticeSessionScreen() {
       costs_energy: mistakePracticeSessionCostsEnergy(missedIds.length),
     });
     markNextNavigationAsReplace();
-    router.replace({ pathname: '/mistake_practice_session', params: { mistakeIds: missedIds.join(','), length: 'all' } } as never);
+    router.replace({ pathname: '/mistake_practice_session', params: { mistakeIds: missedIds.join(','), length: 'all', ...receipt } } as never);
   };
 
   if (complete) {
@@ -1433,6 +1442,7 @@ function MistakePracticeSessionScreen() {
             <StreakMilestoneHost lang={lang} />
           </Suspense>
         ) : null}
+        <NoEnergyModal variant="learn" visible={moreGate.noEnergy} activity="mistake_practice" onBeforeOpenPremium={moreGate.dismissNoEnergy} onClose={moreGate.dismissNoEnergy} />
       </MistakePracticeScreenFrame>
     );
   }

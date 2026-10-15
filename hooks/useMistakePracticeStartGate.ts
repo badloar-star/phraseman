@@ -70,7 +70,14 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
     console.log('[MISTAKES-GATE] tap', JSON.stringify({
       surface: source, status: quota.status, used: quota.used, limit: quota.limit, bypass: quota.bypass, sessionCount: sessionCount ?? null,
     }));
+    // зачем (координатор 15.10, Ревизор 2.76): одна строка решения на каждый тап — откуда вход, Plus ли, что с квотой и чем кончилось
+    const decide = (decision: 'paywall' | 'no_energy' | 'start_unlimited' | 'start_stale_account' | 'start_double_tap' | 'start_with_receipt') => {
+      console.log('[MISTAKES-GATE] decision', JSON.stringify({
+        source, premium: quota.limit === null, quota: { status: quota.status, used: quota.used, limit: quota.limit }, sessionCount: sessionCount ?? null, decision,
+      }));
+    };
     if (quota.status === 'exhausted') {
+      decide('paywall');
       openPaywall();
       return false;
     }
@@ -80,12 +87,14 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
     const paid = sessionCount !== undefined && mistakePracticeSessionCostsEnergy(sessionCount);
     if (paid && predictStartRefusal('mistake_practice') === 'insufficient') {
       console.log('[MISTAKES-GATE] no_energy → шторка, попытка дня не тронута', JSON.stringify({ surface: source, sessionCount })); // guard-ok: ранний выход
+      decide('no_energy');
       setNoEnergy(true);
       return false;
     }
-    if (quota.limit === null) return true; // Plus / «Фри» — чек не нужен.
-    if (quota.status === 'stale_account') return true; // смена аккаунта: не блокируем, чек не пишем.
-    if (inFlightRef.current) return true; // двойной тап: одна сессия, один чек.
+    if (quota.limit === null) { decide('start_unlimited'); return true; } // Plus / «Фри» — чек не нужен.
+    if (quota.status === 'stale_account') { decide('start_stale_account'); return true; } // смена аккаунта: не блокируем, чек не пишем.
+    if (inFlightRef.current) { decide('start_double_tap'); return true; } // двойной тап: одна сессия, один чек.
+    decide('start_with_receipt');
     inFlightRef.current = true;
     const receiptId = `mistakes:${Crypto.randomUUID()}`;
     const token = captureAccountGeneration();

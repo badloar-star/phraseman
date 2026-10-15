@@ -60,6 +60,11 @@ export const PAYWALL_SOURCE_VALUES = [
   'home_mistake_practice',
   // зачем (2026-09-14): дневной лимит сессий ошибок исчерпан - кнопка «Разобрать» в хабе.
   'mistakes_hub_start',
+  // зачем (Ревизор 2.76, координатор 15.10): «Добить: Ещё учу» на итоге урока и диалога и «Ещё N» на финале тренировки ошибок шли в
+  // сессию мимо дневной квоты — теперь через тот же гейт, у каждой точки свой source для воронки.
+  'lesson_complete_finish',
+  'mistake_finale_more',
+  'dialogue_v2_finish_mistakes',
   'avatar_aura_picker',
   'flashcards_collection',
   'mistake_practice_direct',

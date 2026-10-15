@@ -32,6 +32,7 @@ import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 import { triLang, type Lang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 import { RowDivider } from '../components/v2/RowDivider';
+import NoEnergyModal from '../components/NoEnergyModal';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { glassTone } from '../components/dialogs/glass/glassTone';
 import { isMomentsV3FlagOn, useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
@@ -601,6 +602,8 @@ export default function DialogueV2CompletionRoute() {
           <FirstDialogHost lang={lang} studyTarget={String(studyTarget)} scenarioId={scenarioId} endedBy={endedBy} turns={turns} goalsDone={goalsMet} goalsTotal={goalsTotal} onNext={close} />
         </Suspense>
       ) : null}
+      {/* зачем (координатор 15.10): «Добить» через гейт квоты — при нехватке энергии на платную сессию шторка, попытка дня цела */}
+      <NoEnergyModal variant="learn" visible={dialogMistakes.noEnergy} activity="mistake_practice" onBeforeOpenPremium={dialogMistakes.dismissNoEnergy} onClose={dialogMistakes.dismissNoEnergy} />
     </View>
   );
 }

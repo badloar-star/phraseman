@@ -31,6 +31,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { usePremium } from '../components/PremiumContext';
+import NoEnergyModal from '../components/NoEnergyModal';
+import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
 import { CEFR_FOR_LESSON } from '../constants/theme';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import {
@@ -1353,6 +1355,10 @@ export default function LessonComplete() {
     router.replace({ pathname: '/lessons_list', params: { id: lessonId } });
   }, [router, lessonId]);
 
+  // зачем (Ревизор 2.76, координатор 15.10): «Добить» вёл прямо в тренировку без чека — Free добивал ошибки мимо дневной квоты.
+  // Теперь тот же гейт, что у «Ошибок» с Главной: квота есть — чек занимается (возврат при уходе без старта работает), нет — пейвол.
+  const mistakesGate = useMistakePracticeStartGate('lesson_complete_finish');
+
   // зачем (решение владельца 13.10, макет learn.html E: «Добить: Ещё учу (N)» и «Повторить ошибки»): повтор ошибок ЭТОГО прохода в «Моих ошибках» по id записанных ошибок.
   const finishMistakes = useCallback(() => {
     const ids = peekLessonRunMistakeIds(lessonId);
@@ -1362,10 +1368,15 @@ export default function LessonComplete() {
     }
     if (!navOnce(`lesson_complete:finish_mistakes:${lessonId}`)) return; // зачем (аудит R58 #31, 15.10): «Добить» — повторный тап не открывает практику дважды
     hapticTap();
-    DebugLogger.info('[LESSON-RESULT]', `«Добить» lesson=${lessonId}: ошибок=${ids.length} → /mistake_practice_session`);
+    if (!mistakesGate.tryStartSession(ids.length)) {
+      DebugLogger.info('[LESSON-RESULT]', `«Добить» lesson=${lessonId}: гейт не пустил (пейвол или «Нужна энергия»), ошибок=${ids.length}`);
+      return;
+    }
+    const receipt = mistakesGate.takeQuotaReceiptParam();
+    DebugLogger.info('[LESSON-RESULT]', `«Добить» lesson=${lessonId}: ошибок=${ids.length} чек=${receipt.quotaReceipt ?? 'нет'} → /mistake_practice_session`);
     markNextNavigationAsReplace();
-    router.replace({ pathname: '/mistake_practice_session', params: { mistakeIds: ids.join(','), length: 'all' } } as never);
-  }, [router, lessonId]);
+    router.replace({ pathname: '/mistake_practice_session', params: { mistakeIds: ids.join(','), length: 'all', ...receipt } } as never);
+  }, [router, lessonId, mistakesGate]);
 
   // зачем (Макеты 06b311f0d, 🟡 а): ошибки в блоке итога есть, а id для точечной тренировки нет — кнопка «Повторить ошибки» ведёт в существующий хаб «Мои ошибки», а не исчезает
   const openMistakesHub = useCallback(() => {
@@ -1947,6 +1958,8 @@ export default function LessonComplete() {
           onDismiss={dismissNotif}
         />
       )}
+      {/* зачем (координатор 15.10): гейт «Добить» при нехватке энергии на платную сессию (от 5 ошибок) показывает шторку, попытка дня цела */}
+      <NoEnergyModal variant="learn" visible={mistakesGate.noEnergy} activity="mistake_practice" onBeforeOpenPremium={mistakesGate.dismissNoEnergy} onClose={mistakesGate.dismissNoEnergy} />
     </SafeAreaView>
     </ScreenGradient>
   );

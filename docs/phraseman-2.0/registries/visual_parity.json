@@ -13582,7 +13582,7 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
+      "status": "no_release_surface",
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_release_surface_proof": {
@@ -13594,7 +13594,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "prev_status": "pending",
+      "removed_reason": "Learning V2 в сборке 16.10: выпуск — 14 занятий урока 1 (владелец 15.10 через координатора); итоговый экзамен — занятие 56, за потолком выпуска. Вернуть в pending, когда занятие 56 войдёт в выпуск."
     },
     {
       "id": "learning-v2-028",

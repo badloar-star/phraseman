@@ -3621,6 +3621,14 @@ function LessonScreen() {
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);
+    // зачем (аудит кнопок R58 #27, 15.10): «Дальше» на последнем экране во время паузы перед итогом начинал НОВЫЙ проход (cellIndex по
+    // кругу, статус «играем»), пока переход на итог ещё шёл. Во время завершения «Дальше» = пропустить паузу и открыть итог; если переход
+    // уже идёт — повторный тап ничего не делает (с причиной в журнале).
+    if (isCompletingRef.current) {
+      if (finishPendingCompletionNow('next')) return;
+      console.log('[LESSON-RESULT] next_ignored', JSON.stringify({ lessonId, reason: 'completion_navigation_in_flight' })); // guard-ok: ранний выход называет причину
+      return;
+    }
 
     // [IMMEDIATE ERROR REPLAY] Определяем ДО того как двигать cellIndex
     questionsSinceErrorRef.current += 1;
@@ -3679,7 +3687,7 @@ function LessonScreen() {
       DebugLogger.error('lesson1:npIdx', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress, override: replayCell }, studyTargetRef.current);
-  }, [cellIndex, progress, fadeAnim, LESSON_DATA, persistErrorReplayToStorage, lessonStorageId]);
+  }, [finishPendingCompletionNow, cellIndex, progress, fadeAnim, LESSON_DATA, persistErrorReplayToStorage, lessonStorageId]);
 
   // CHANGE v5: rewritten for contraction branching using phraseWordIdx
   // Energy is only spent on mistakes — no gate here, users can always attempt answers

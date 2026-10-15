@@ -612,7 +612,10 @@ export default function LessonComplete() {
   useEffect(() => {
     if (practiceRunes.hydrating || practiceRunesSettleOnceRef.current) return;
     practiceRunesSettleOnceRef.current = true;
-    void practiceRunes.settle();
+    // зачем (аудит кнопок R58 #33, 15.10): отказ зачёта монет терялся без следа (void без catch); копилка повторит при следующем запуске
+    void practiceRunes.settle().catch((error: unknown) => {
+      console.warn('[LESSON-RESULT] coins_settle_failed', JSON.stringify({ lessonId, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: причина в журнале
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [practiceRunes.hydrating]);
   const c = s.lessonComplete;

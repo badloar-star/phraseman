@@ -207,7 +207,9 @@ export const saveMedalProgress = async (
       newPassCount: passCountIncreased ? newPass : prevPass,
       passCountIncreased,
     };
-  } catch {
+  } catch (error) {
+    // зачем (аудит кнопок R58 #33, 15.10): пустой catch выдавал «успех» молча — экран показывает медаль по счёту, но причина несохранения теперь в журнале
+    console.warn('[MEDAL] saveMedalProgress: прогресс медали не сохранён — показываю по текущему счёту', error instanceof Error ? error.message : String(error));
     const tier = getMedalTier(currentScore);
     return {
       newTier: tier,

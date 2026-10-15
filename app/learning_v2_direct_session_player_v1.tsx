@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { actionToastTri, emitAppEvent } from "./events";
 import { isAttemptsStopEffect, isAttemptsInputBlocked } from "./session_attempts/session_attempts_stop";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Crypto from "expo-crypto";
@@ -2068,6 +2069,8 @@ export default function LearningV2DirectSessionPlayerV1() {
     setFinishing(true);
     setFinaleRewardsSettled(false);
     let earned: 0 | 1 | 2 | 3 = 0;
+    // зачем (аудит кнопок R58 #40, 15.10): исключение ДО подсчёта звёзд давало «0 звёзд» без объяснения — человек думал, что провалил занятие
+    let starsCounted = false;
     try {
       const interactionCompletions = [
         ...material!.introChild.pages.map((page) =>
@@ -2095,6 +2098,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           total: completion.interactionCompletions.length,
         }));
       earned = learningV2SessionStars(starCompletions);
+      starsCounted = true;
       const passedSession = learningV2SessionUnlocksNextV1(earned);
       if (isCheckpoint) {
         // «Что вы теперь умеете»: по типу задания — всё с первой попытки → «Закрепилось»,
@@ -2285,6 +2289,20 @@ export default function LearningV2DirectSessionPlayerV1() {
         error instanceof Error ? error : new Error(String(error)),
         "critical",
       );
+      if (!starsCounted) {
+        console.warn("[V2-FINISH] stars_not_counted", JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: причина в журнале
+        emitAppEvent("action_toast", actionToastTri("error", {
+          ru: "Не получилось подсчитать звёзды. Пройди занятие ещё раз",
+          uk: "Не вдалося порахувати зірки. Пройди заняття ще раз",
+          en: "We couldn't count your stars. Please take the session again",
+          es: "No pudimos contar tus estrellas. Haz la sesión otra vez",
+          "pt-BR": "Não conseguimos contar suas estrelas. Faça a sessão de novo",
+          vi: "Không tính được số sao. Hãy học lại buổi này",
+          id: "Bintang tidak bisa dihitung. Ulangi sesi ini",
+          tr: "Yıldızlar hesaplanamadı. Oturumu tekrar yap",
+          pl: "Nie udało się policzyć gwiazdek. Przejdź zajęcia jeszcze raz",
+        }));
+      }
     } finally {
       // A completed learning interaction never turns into a save-error screen.
       // Local persistence retries and synchronization stay invisible/background.

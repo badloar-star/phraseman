@@ -21,3 +21,11 @@ describe('R58 #10 · «Назад» в паузе завершения урок�
     expect(branch).not.toMatch(/setTimeout\(\(\) => \{\n\s*lessonCompletionFallbackTimerRef\.current = null;\n\s*void runLessonCompletionNavigation\(\);/);
   });
 });
+
+describe('R58 #27 · «Дальше» во время завершения урока', () => {
+  it('не начинает новый проход: пропускает паузу к итогу или игнорирует повтор с причиной', () => {
+    const goNext = src.slice(src.indexOf('const goNext = useCallback(async'), src.indexOf('const goNext = useCallback(async') + 1600);
+    expect(goNext).toContain("if (isCompletingRef.current) {\n      if (finishPendingCompletionNow('next')) return;");
+    expect(goNext).toContain("'[LESSON-RESULT] next_ignored'");
+  });
+});

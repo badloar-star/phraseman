@@ -477,8 +477,11 @@ export const tryUnlockLevelExam = async (
 
     // Разблокируем впервые
     await storageSetString(alreadyKey, '1');
+    console.log('[EXAM-UNLOCK] level', JSON.stringify({ level: foundLevel, studyTarget: String(studyTarget) })); // guard-ok: одна строка на разблокировку
     return foundLevel;
-  } catch {
+  } catch (error) {
+    // зачем (аудит кнопок R58 #34, 15.10): ошибка разблокировки глоталась молча — экзамен «не открывался» без следа
+    console.warn('[EXAM-UNLOCK] level: проверка/запись не удалась', JSON.stringify({ studyTarget: String(studyTarget), reason: error instanceof Error ? error.message : String(error) }));
     return null;
   }
 };
@@ -520,8 +523,10 @@ export const tryUnlockLingmanExam = async (studyTarget?: RuntimeStudyTarget): Pr
     if (!allPassed) return false;
 
     await storageSetString(alreadyKey, '1');
+    console.log('[EXAM-UNLOCK] lingman', JSON.stringify({ studyTarget: String(studyTarget) })); // guard-ok: одна строка на разблокировку
     return true;
-  } catch {
+  } catch (error) {
+    console.warn('[EXAM-UNLOCK] lingman: проверка/запись не удалась', JSON.stringify({ studyTarget: String(studyTarget), reason: error instanceof Error ? error.message : String(error) }));
     return false;
   }
 };

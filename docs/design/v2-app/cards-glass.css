@@ -48,7 +48,7 @@
 .ac-cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border-radius: 26px; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--on); font-size: 17px; font-weight: 700; width: 100%;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 30px -12px color-mix(in srgb, var(--acc) 70%, transparent); position: relative; }
 .ac-cta.sm { height: 42px; border-radius: 21px; width: auto; padding: 0 18px; font-size: 16px; }
-.ac-cta .ar { position: static; } /* зачем (координатор 14.10, «б»): стрелка сразу за текстом, как V2Button */
+.ac-cta .ar { position: absolute; right: 20px; }
 .ov2 { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: color-mix(in srgb, var(--acc) 80%, #fff); }
 .mc { position: relative; border-radius: 18px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 600; letter-spacing: -.2px;
   background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 48%, rgba(10,10,14,.9)), rgba(8,8,12,.86) 58%, color-mix(in srgb, var(--g2) 38%, rgba(8,8,12,.86)));

@@ -1,0 +1,82 @@
+10-15 08:25:03.745 I/SVERKA  (26224): === ABA A1-BEGIN 08:25:43 ===
+10-15 08:25:04.593 W/ReactNativeJS(25900): [JS-STALL] heartbeat +57003ms splash=hidden@+5469ms
+10-15 08:25:07.623 W/ReactNativeJS(25900): [JS-STALL] watchdog stop +60032ms
+10-15 08:25:19.661 I/ReactNativeJS(25900): [WARM-FETCH] fn=authEnsureStableLink outcome=warm_ok code=200 ms=701 source=registration_prompt
+10-15 08:25:26.654 I/ReactNativeJS(25900): [SIGNIN] ui:tap provider=google context=settings
+10-15 08:25:39.658 I/SVERKA  (26466): === ABA A1-PICKED 08:26:19 ===
+10-15 08:25:42.736 I/ReactNativeJS(25900): [WARM-FETCH] fn=authMergeStableAccounts outcome=warm_ok code=200 ms=23760 source=registration_prompt
+10-15 08:25:42.737 I/ReactNativeJS(25900): [WARM-FETCH] fn=authStampAnonOwnership outcome=warm_ok code=200 ms=23762 source=registration_prompt
+10-15 08:25:44.230 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_changed to=none
+10-15 08:25:44.230 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_changed to=none
+10-15 08:25:44.231 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_changed to=none
+10-15 08:25:44.231 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_changed to=none
+10-15 08:25:44.231 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_changed to=none
+10-15 08:25:44.231 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_changed to=none
+10-15 08:25:44.231 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_changed to=none
+10-15 08:25:44.232 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_changed to=none
+10-15 08:25:44.232 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_changed to=none
+10-15 08:25:55.068 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] survivors={"before":577,"knownLeak":[],"otherCount":413,"otherShapeCount":197,"other":{"account_switch_emergency_backup_page_v1:mv8g5vui-yov3fb88upi":9,"account_switch_emergency_backup_page_v1:mv95jc4e-wm14g20bc2:":9,"mistake_practice_restore_mark_v1:<id>:de":8,"mistake_practice_restore_mark_v1:<id>:en":8,"mistake_practice_restore_mark_v1:<id>:es":8,"mistake_practice_restore_mark_v1:<id>:fr":8,"mistake_practice_restore_mark_v1:<id>:it":8,"phone_state_integrity_last_check_v1:<id>:1":8,"today_tasks_v1:<id>":8,"user_referral_code_v2:legacy-checked:<id>":8,"feature_intro_seen_v1::<id>::cards_hub_first_visit":7,"feature_intro_seen_v1::<id>::cards_swipe_help":7,"feature_intro_seen_v1::<id>::daily_phrase_first_visit":7,"feature_intro_seen_v1::<id>::friends_first_visit":7,"feature_intro_seen_v1::<id>::legacy_lessons_first_visit":7,"fea
+10-15 08:25:55.092 I/ReactNativeJS(25900): [ACC-MUT] firestore_cache_clear marked reason=account_wipe
+10-15 08:25:55.319 W/ReactNativeJS(25900): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":158,"collectKeysMs":69,"collectKeysKeys":2231,"noteStashMs":32,"removeKeysMs":615,"removeKeysKeys":2228,"giftReceiptsMs":2,"customizationMs":31,"dialogueMemoryMs":68,"profileCardPublicMs":4,"appMessagesMs":221,"appMessagesKeys":9,"lateLearningV2Ms":50,"lateLearningV2Keys":8,"giftReceipts2Ms":1,"finalScanMs":59,"resetMemoryMs":376,"totalMs":1686,"failure":null,"t":8119702}
+10-15 08:25:55.754 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_arrived_after_other to=other
+10-15 08:25:55.755 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_arrived_after_other to=other
+10-15 08:25:55.755 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_arrived_after_other to=other
+10-15 08:25:55.755 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_arrived_after_other to=other
+10-15 08:25:55.756 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_arrived_after_other to=other
+10-15 08:25:55.757 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_arrived_after_other to=other
+10-15 08:25:55.757 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_arrived_after_other to=other
+10-15 08:25:55.757 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_arrived_after_other to=other
+10-15 08:25:55.760 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_arrived_after_other to=other
+10-15 08:25:56.024 I/ReactNativeJS(25900): [SIGNIN] ui:returned provider=google result=merged_devices in=29355ms
+10-15 08:25:56.601 I/SVERKA  (26529): === ABA A1-SIGNED 08:26:36 ===
+10-15 08:26:02.724 I/ReactNativeJS(25900): [SIGNIN] bg:swap_restore:restoreFromCloud ok 6940ms
+10-15 08:26:04.024 I/ReactNativeJS(25900): [ACC-SWITCH-RESTORE] owner_match=true status=restored restored=[] present=0
+10-15 08:26:04.039 I/ReactNativeJS(25900): [SIGNIN] bg:swap_restore:switchBackup ok 1314ms
+10-15 08:26:04.044 I/ReactNativeJS(25900): [SIGNIN] bg:swap_restore:markOnboarded ok 5ms
+10-15 08:26:04.051 I/ReactNativeJS(25900): [SIGNIN] bg:swap_restore:revenueCat ok 6ms
+10-15 08:26:04.175 I/ReactNativeJS(25900): [ENSURE-LINK] authoritative_memo hit ageMs=3091 generation=5
+10-15 08:26:04.745 I/ReactNativeJS(25900): [SIGNIN] bg:swap_restore done total=8965ms restore=restored
+10-15 08:26:32.847 I/SVERKA  (26627): === ABA A1-SIGNOUT 08:27:12 ===
+10-15 08:26:47.501 I/ReactNativeJS(25900): '[ACC-SWITCH-WIPE] prewarm', '{"source":"account_details","failed":[],"tookMs":319}'
+10-15 08:26:54.050 I/ReactNativeJS(25900): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":true,"allowPendingShardSpendDiscard":false}'
+10-15 08:26:54.096 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":5,"t":8178479}
+10-15 08:26:54.155 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":58,"pendingSpend":0,"t":8178531}
+10-15 08:26:54.191 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":99,"t":8178572}
+10-15 08:26:54.209 I/ReactNativeJS(25900): [ENSURE-LINK] authoritative_memo hit ageMs=53128 generation=5
+10-15 08:26:56.013 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":1919,"synced":true,"t":8180393}
+10-15 08:26:56.015 W/ReactNativeJS(25900): [ACC-SWITCH-WIPE] signout force_sync {"synced":true,"allowWipeWithoutSync":true,"t":8180396}
+10-15 08:26:56.018 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":1926,"t":8180399}
+10-15 08:26:56.021 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage lock_acquired {"sinceStartMs":1930,"t":8180404}
+10-15 08:26:56.025 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage shard_queue_read {"sinceStartMs":1934,"entries":0,"t":8180407}
+10-15 08:26:58.214 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage final_snapshot_done {"sinceStartMs":4119,"t":8182592}
+10-15 08:26:58.258 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage marker_done {"sinceStartMs":4157,"t":8182630}
+10-15 08:26:58.279 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_changed to=none
+10-15 08:26:58.279 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_changed to=none
+10-15 08:26:58.283 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_changed to=none
+10-15 08:26:58.286 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_changed to=none
+10-15 08:26:58.287 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_changed to=none
+10-15 08:26:58.287 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_changed to=none
+10-15 08:26:58.287 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_changed to=none
+10-15 08:26:58.292 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_changed to=none
+10-15 08:26:58.292 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_changed to=none
+10-15 08:26:58.300 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage entitlement_transition_done {"sinceStartMs":4207,"t":8182681}
+10-15 08:26:58.301 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":4210,"t":8182684}
+10-15 08:26:58.976 I/ReactNativeJS(25900): [PUSH-TOKEN-CLEAR] cleared ms=401
+10-15 08:26:59.098 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] push_cleanup result=notifications:ok,push_token:ok ms=555
+10-15 08:27:00.593 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] survivors={"before":548,"knownLeak":[],"otherCount":470,"otherShapeCount":209,"other":{"energy_session_grant_receipt_v1:<id>:energy:ai_dialog:<id>_0":14,"energy_session_operation_v1:<id>:energy:ai_dialog:<id>_0":13,"energy_session_ack_v1:<id>:energy:ai_dialog:<id>_0":11,"account_switch_emergency_backup_page_v1:mv8g5vui-yov3fb88upi":9,"account_switch_emergency_backup_page_v1:mv97u0si-u7q5uepcyyb":9,"mistake_practice_restore_mark_v1:<id>:de":8,"mistake_practice_restore_mark_v1:<id>:en":8,"mistake_practice_restore_mark_v1:<id>:es":8,"mistake_practice_restore_mark_v1:<id>:fr":8,"mistake_practice_restore_mark_v1:<id>:it":8,"phone_state_integrity_last_check_v1:<id>:1":8,"today_tasks_v1:<id>":8,"user_referral_code_v2:legacy-checked:<id>":8,"feature_intro_seen_v1::<id>::cards_hub_first_visit":7,"feature_intro_seen_v1::<id>::cards_swipe
+10-15 08:27:00.613 I/ReactNativeJS(25900): [ACC-MUT] firestore_cache_clear marked reason=account_wipe
+10-15 08:27:00.751 W/ReactNativeJS(25900): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":155,"collectKeysMs":70,"collectKeysKeys":2217,"noteStashMs":148,"removeKeysMs":605,"removeKeysKeys":2214,"giftReceiptsMs":2,"customizationMs":78,"dialogueMemoryMs":25,"profileCardPublicMs":16,"appMessagesMs":83,"appMessagesKeys":4,"lateLearningV2Ms":53,"lateLearningV2Keys":8,"giftReceipts2Ms":5,"finalScanMs":39,"resetMemoryMs":195,"totalMs":1474,"failure":null,"t":8185134}
+10-15 08:27:01.022 W/ReactNativeJS(25900): '[STABLE-ID-CLEAR]', '{"step":"waited","queueMs":1,"drainMs":0,"hadLoad":false}'
+10-15 08:27:01.287 W/ReactNativeJS(25900): '[STABLE-ID-CLEAR]', '{"trace":20,"secureDelete":142,"secureDeleteLegacy":45,"secureVerify":2,"asyncRemove":23,"asyncVerify":27,"staleMarker":1,"emit":1,"secureStore":true,"totalMs":261}'
+10-15 08:27:03.409 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_arrived_after_other to=other
+10-15 08:27:03.409 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_arrived_after_other to=other
+10-15 08:27:03.410 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_arrived_after_other to=other
+10-15 08:27:03.410 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_arrived_after_other to=other
+10-15 08:27:03.410 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_arrived_after_other to=other
+10-15 08:27:03.411 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_arrived_after_other to=other
+10-15 08:27:03.411 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_arrived_after_other to=other
+10-15 08:27:03.418 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_arrived_after_other to=other
+10-15 08:27:03.419 I/ReactNativeJS(25900): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_arrived_after_other to=other
+10-15 08:27:03.440 W/ReactNativeJS(25900): [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":9350,"kind":"resumed","t":8187823}
+10-15 08:27:03.445 I/ReactNativeJS(25900): '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":true,"tookMs":9397}'
+10-15 08:27:03.447 I/ReactNativeJS(25900): '[ACC-MUT] ui:logout_attempt_1', '{"ok":true,"reason":null,"detail":null}'

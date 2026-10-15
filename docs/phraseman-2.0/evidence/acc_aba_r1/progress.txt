@@ -1,0 +1,8 @@
+08:25:24 COLD-DONE
+08:25:43 A1-BEGIN
+pick mrl***@***  com.google.android.gms:id/account_name
+08:26:19 A1-PICKED
+08:26:36 A1-SIGNED
+08:27:12 A1-SIGNOUT
+08:27:47 B-BEGIN
+08:28:18 СТОП на шаге «B»: нет элемента tab-settings

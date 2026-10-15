@@ -1,0 +1,8 @@
+== A1
+[ACC-SWITCH-WIPE] survivors={"before":577,"knownLeak":[]
+[ACC-SWITCH-WIPE] survivors={"before":548,"knownLeak":[]
+[ACC-MUT] firestore_cache_clear marked reason=account_wipe
+[ACC-SWITCH-RESTORE] owner_match=true status=restored restored=[] present=0
+[ACC-SWITCH-WIPE] push_cleanup result=notifications:ok,push_token:ok ms=555
+[ACC-MUT] firestore_cache_clear marked reason=account_wipe
+memory_reset: 36

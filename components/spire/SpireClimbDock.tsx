@@ -7,7 +7,7 @@
 // скачался / ещё не собран — строка причины над кнопкой, без красных ошибок.
 // Двойной тап защищён выше (useSpireGame: один старт за раз) и здесь (busy).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
@@ -21,6 +21,7 @@ import { useSpireShadow } from './useSpireShadow';
 import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
 import { logSpireDock, logSpireLayout, roundLayout } from './spire_layout_log';
+import SpireNoEnergySheet from './moments/SpireNoEnergySheet';
 
 type Props = Readonly<{
   lang: Lang;
@@ -38,7 +39,20 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
   const { energy, bonusEnergy, isUnlimited, energyReady } = useEnergy();
   const noEnergy = !premium && !isUnlimited && energyReady && energy + bonusEnergy < 1;
   const { formattedTime } = useEnergyCountdown({ visible: noEnergy });
+  // зачем (координатор 15.10, m22 по эталону v3): «Поднимайся без ожидания с Plus ›» открывает шторку над доком, а не сразу пейвол.
+  // «Попробовать Plus» в шторке ведёт в прежний пейвол с той же атрибуцией (no_energy / spire_no_energy) — путь покупки не тронут.
+  const [noEnergySheet, setNoEnergySheet] = useState(false);
   const openPlus = useCallback(() => {
+    console.log('[M22] dock: шторка открыта');
+    setNoEnergySheet(true);
+  }, []);
+  const closeSheet = useCallback(() => {
+    console.log('[M22] dock: шторка закрыта (подожду / фон / назад)');
+    setNoEnergySheet(false);
+  }, []);
+  const sheetToPaywall = useCallback(() => {
+    console.log('[M22] dock: шторка → пейвол no_energy');
+    setNoEnergySheet(false);
     router.push({ pathname: '/premium_modal', params: { context: 'no_energy', source: 'spire_no_energy' } } as never);
   }, [router]);
 
@@ -61,6 +75,7 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
           </Text>
           <Ionicons name="chevron-forward" size={16} color={p.textSecondary} />
         </V2Pressable>
+        <SpireNoEnergySheet lang={lang} visible={noEnergySheet} onPlus={sheetToPaywall} onClose={closeSheet} />
       </View>
     );
   }

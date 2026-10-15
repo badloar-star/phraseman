@@ -9,10 +9,20 @@ import { LESSON_3_INTRO_SCREENS } from "../app/lesson_intro_screens_lesson3_v2";
 describe("цвет текста выводится из устаревшей разметки tone", () => {
   const cyrillic = true;
 
-  test("ошибочный пример всегда помечается как неверный", () => {
-    // 613 частей danger во всём контенте, 100% латиница.
-    expect(introPartRole({ text: "I am work here", tone: "danger" }, cyrillic))
-      .toBe("targetWrong");
+  // зачем (разбор красных V2, 15.10; правило моста с 26.08, 50eea79a4): tone «danger» — указание палитры, а не доказательство
+  // ошибки. Зачёркнутая «неверная форма» — ТОЛЬКО по явной разметке semantic="targetWrong"; иначе случайно красное пояснение
+  // на родном языке стало бы зачёркнутым английским.
+  test("danger без явной разметки — обычный текст, не зачёркнутая ошибка", () => {
+    expect(introPartRole({ text: "I am work here", tone: "danger" }, cyrillic)).toBe("plain");
+    expect(introPartRole({ text: "так говорить нельзя", tone: "danger" }, cyrillic)).toBe("plain");
+    expect(introPartRole({ text: "I am work here", tone: "danger" }, false)).toBe("plain");
+  });
+
+  test("ошибочная форма зачёркивается, когда она размечена semantic=targetWrong", () => {
+    expect(introPartRole({ text: "I am work here", semantic: "targetWrong" }, cyrillic)).toBe("targetWrong");
+    // явная разметка главнее тона в обе стороны
+    expect(introPartRole({ text: "I am work here", tone: "accent", semantic: "targetWrong" }, cyrillic)).toBe("targetWrong");
+    expect(introPartRole({ text: "I am work here", tone: "danger", semantic: "targetWrong" }, false)).toBe("targetWrong");
   });
 
   test("английское слово с accent — это изучаемый язык", () => {
@@ -54,7 +64,12 @@ describe("цвет текста выводится из устаревшей р�
 
     // До моста здесь была бы сплошная «plain» — именно это видел владелец.
     expect(roles.filter((role) => role === "target").length).toBeGreaterThan(0);
-    expect(roles.filter((role) => role === "targetWrong").length).toBeGreaterThan(0);
     expect(roles.every((role) => role === "plain")).toBe(false);
+    // зачёркивание в настоящем контенте — ровно столько, сколько кусков явно размечено targetWrong (сейчас в уроке 3 таких нет)
+    const parts = (screen.linesRU ?? []).flatMap((line) => line.parts ?? []);
+    const explicitWrong = parts.filter((part) => part.semantic === "targetWrong").length;
+    expect(roles.filter((role) => role === "targetWrong").length).toBe(explicitWrong);
+    // а красные куски без разметки на экране есть — и они не зачёркнуты
+    expect(parts.some((part) => part.tone === "danger" && part.semantic === undefined)).toBe(true);
   });
 });

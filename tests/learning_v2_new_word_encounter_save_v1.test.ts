@@ -72,8 +72,12 @@ describe("Learning V2 new-word card persistence", () => {
       }),
     ).resolves.toBe("duplicate");
 
-    const firstWrite = jest.mocked(AsyncStorage.setItem).mock.calls[0];
-    const cards = JSON.parse(String(firstWrite?.[1]));
+    // зачем (разбор красных V2, 15.10): до карточек в хранилище пишутся стабильный id и служебные метки — ищем запись
+    // по ключу списка карточек, а не первую по счёту. «duplicate» второй записи списка не делает.
+    const cardWrites = () =>
+      jest.mocked(AsyncStorage.setItem).mock.calls.filter(([key]) => key === "custom_flashcards_v2");
+    expect(cardWrites()).toHaveLength(1);
+    const cards = JSON.parse(String(cardWrites()[0]?.[1]));
     expect(cards).toHaveLength(1);
     expect(cards[0]).toMatchObject({
       en: "ready",
@@ -91,8 +95,7 @@ describe("Learning V2 new-word card persistence", () => {
     await expect(isLearningV2NewWordEncounterSavedV1(encounter)).resolves.toBe(
       false,
     );
-    expect(
-      JSON.parse(String(jest.mocked(AsyncStorage.setItem).mock.calls[1]?.[1])),
-    ).toEqual([]);
+    expect(cardWrites()).toHaveLength(2);
+    expect(JSON.parse(String(cardWrites()[1]?.[1]))).toEqual([]);
   });
 });

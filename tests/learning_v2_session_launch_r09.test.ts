@@ -26,7 +26,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({ __esModule: true
 jest.mock('../app/account_owner_change', () => ({ onAccountOwnerChanged: () => undefined }));
 jest.mock('../app/learning_v2_visibility_switch', () => ({ LEARNING_V2_HIDDEN: false, logLearningV2Hidden: () => undefined }));
 
-import { act, renderHook } from '@testing-library/react-native';
+import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { launchHomeContinueV2, resetHomeContinueV2LaunchForTests, useHomeContinueV2Launching } from '../app/learning_v2_home_continue_route';
 // eslint-disable-next-line import/first
 import * as client from '../app/learning_v2_course_released_session_client_v3';
@@ -67,6 +67,10 @@ describe('R09 · Главная → «Продолжить» V2 → заняти
     expect(hook.result.current).toBe(false);
     let launch!: Promise<void>;
     await act(async () => { launch = launchHomeContinueV2(route, { lang: 'ru', studyTarget: 'en', push: () => undefined }); });
+    expect(hook.result.current).toBe(true);
+    // зачем (R08, 08b9e168e): подготовка сначала отдаёт кадр (setTimeout 0) и грузит клиент через import() — «готовим» обязано
+    // гореть и на этом отрезке, до самого вызова prepare
+    await waitFor(() => expect(mockPrepare).toHaveBeenCalledTimes(1));
     expect(hook.result.current).toBe(true);
     await act(async () => { finishPrepare(); await launch; });
     expect(hook.result.current).toBe(false);

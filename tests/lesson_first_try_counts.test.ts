@@ -24,6 +24,18 @@ describe('итог урока по первым попыткам', () => {
     expect(lessonFirstTryCountsFromProgress(['correct', 'correct', 'correct'], 1)).toEqual({ correct: 2, wrong: 1, finalCorrect: 3 });
   });
 
+  it('повтор пройденного урока без ошибок (все ячейки replay_correct) → 3 / 0 и ИДЕАЛ (Сверка ca8abf1b2, проход 2)', () => {
+    const counts = lessonFirstTryCountsFromProgress(['replay_correct', 'replay_correct', 'replay_correct'], 0);
+    expect(counts).toEqual({ correct: 3, wrong: 0, finalCorrect: 3 });
+    expect(decidePerfectMoment({ momentsV3: true, isCombo: false, counts, coinsHydrating: false }).show).toBe(true);
+  });
+
+  it('повтор с одним исправленным промахом → 2 / 1, без ИДЕАЛ; неисправленный wrong тоже ошибка', () => {
+    expect(lessonFirstTryCountsFromProgress(['replay_correct', 'replay_correct', 'replay_correct'], 1)).toEqual({ correct: 2, wrong: 1, finalCorrect: 3 });
+    expect(lessonFirstTryCountsFromProgress(['replay_correct', 'wrong', 'correct'], 1)).toEqual({ correct: 2, wrong: 1, finalCorrect: 2 });
+    expect(lessonFirstTryCountsFromProgress(['replay_correct', 'wrong', 'correct'], 2)).toEqual({ correct: 1, wrong: 2, finalCorrect: 2 });
+  });
+
   it('итог из маршрута (прогресса нет): верно 3 из 3 + 1 промах в списке → 2 / 1', () => {
     expect(lessonFirstTryCountsFromTotals(3, 3, 1)).toEqual({ correct: 2, wrong: 1, finalCorrect: 3 });
     expect(lessonFirstTryCountsFromTotals(3, 3, 0)).toEqual({ correct: 3, wrong: 0, finalCorrect: 3 });

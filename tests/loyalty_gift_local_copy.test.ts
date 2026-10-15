@@ -25,7 +25,13 @@ jest.mock('../app/events', () => ({
 jest.mock('react-native-purchases', () => ({ __esModule: true, default: { getCustomerInfo, getAppUserID } }));
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false }));
 const restoreFromCloud = jest.fn(async () => false);
-jest.mock('../app/cloud_sync', () => ({ restoreFromCloud: () => restoreFromCloud() }));
+// зачем (R61 15.10): с FS-READS (12ac0abeb) проверка премиума сначала спрашивает, идёт ли загрузочное восстановление и было ли
+// недавнее, — без этих функций заглушка роняла облачное обновление в catch, и тест «поздно подтверждённый подарок» краснел.
+jest.mock('../app/cloud_sync', () => ({
+  restoreFromCloud: () => restoreFromCloud(),
+  peekCloudRestoreInFlight: () => null,
+  lastCloudRestoreCompletedAt: () => 0,
+}));
 jest.mock('../app/gift_access_cloud', () => ({ readGiftAccessFromCloud }));
 jest.mock('../app/revenuecat_projection_sync', () => ({ syncRevenueCatProjectionForAccount: jest.fn(async () => true) }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn(async () => canonicalUid) }));

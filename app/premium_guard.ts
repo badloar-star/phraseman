@@ -752,7 +752,14 @@ async function getVerifiedPremiumAccessStatusTraced(
 
   if (options?.allowCloudRefresh === false) {
     const giftNow = await giftCopyStillActive();
-    return accountGenerationIsCurrent(generation) ? finish(giftNow) : false;
+    if (!accountGenerationIsCurrent(generation)) return false;
+    if (giftNow) return finish(true);
+    // зачем (R61, координатор/Ревизор 15.10, 🔴 деньги): «нет», посчитанное БЕЗ облака, — не окончательный ответ. В общем кэше
+    // на 5 мин оно отравляло полные проверки: Plus только в облаке (промокод, VIP, перенос) при пустой локальной копии →
+    // PremiumContext видел Free, лимиты и пейвол. Кэшируем только «да»; лишней сети нет — копия подарка читается из
+    // AsyncStorage, облачное чтение подарка держит свой кэш 30 мин, RevenueCat — свой.
+    if (isDevRuntime) console.log('[PREMIUM-GUARD] fast_no_cloud: «нет» без облака не кэшируем — полная проверка сходит в облако');
+    return false;
   }
   const cloudRefreshed = await refreshPremiumAccessFromCloudIfNeeded(generation);
   mark(`cloud_refresh:${String(cloudRefreshed)}`);

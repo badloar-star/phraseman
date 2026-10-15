@@ -89,14 +89,11 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[язык] кадр на uk — переснять на ru",
-        "на uk «Правда / неправда» переносится на 2 строки — проверить на ru"
-      ],
-      "status": "pending",
+      "diffs": [],
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": "owner-2026-10-11: владелец велел переводить сверенное в match; дубль строки cards-section-032 (тот же экран, склейка по тому же кадру)",
-      "reviewed_at": "2026-10-13T12:13:29.109Z",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 32) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "prev_mockup": {
@@ -105,26 +102,26 @@
         "label": "Режим тренировки",
         "mapping": "manual_rebind"
       },
-      "prev_status": "match",
+      "prev_status": "pending",
       "release": "r1",
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-002.png",
-      "evidence_at": "2026-10-13T10:43:27.679Z",
-      "evidence_sha256": "b444c7ff641a69d294cfcb80e4c5497082a9194d912403fa886deea78bc5c231",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "14975d90263a7aed78769409c8dc9323970303d3103a40429b097fef86454f05",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&next=/flashcards",
         "bucket": "d_mockup_stale",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
+        "final_bucket": "match",
+        "final_who": "—",
         "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12",
+        "final_note": "Шторка «Режим тренировки» по центру: Блиц, Устно, Правда / ложь, Напиши — совпадает; фон — пустой хаб «Начни с готового».",
+        "final_at": "2026-10-15",
         "reshoot_theme": "переснять: тема — отличие в цвете/тоне: образец нарисован в своей теме, робот снимал «Графит» на нуле; ссылка dev_state?theme=<id>&level=<0..1>[&appearance=light] (таблица тем — Темы, DEV_SWITCHES_R1_CORE.md)",
         "restitch_note": "образец cards-v2 №27: фон шторки режимов — хаб А без начатой тренировки (стопка «Layover», «Тренироваться · осталось 30 из 30», плитки Сохранённые/Мои наборы/Из видео/Сообщество, пилюля 30/30) вместо «Продолжить · Путешествия 12 из 40». Нужна пересклейка"
       },
-      "sverka_verdict": "Состав и раскладка совпадают с образцом cards-v2 №27: шторка «Режим тренировки», 4 плитки 2×2 с иконками и подписями. Кадр снят на украинском интерфейсе, образец на русском — тексты не сверяются.",
-      "shot_at": "2026-10-13T10:50:34.861Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:48:16.161Z): Шторка «Режим тренировки» по центру: Блиц, Устно, Правда / ложь, Напиши — совпадает; фон — пустой хаб «Начни с готового».",
+      "shot_at": "2026-10-15T07:48:16.161Z",
+      "shot_at_source": "shoot_log"
     },
     {
       "id": "cards-003",
@@ -949,34 +946,33 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-020.png",
-      "evidence_at": "2026-10-12T05:12:22.906Z",
-      "evidence_sha256": "b5d491b1581e2cd6273617486962fb6c6f19a672bd444a703bb18ddb2ad5ceb5",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "0c9ed8f83828edf5dd8ff586b96e0c2c356407501a26136f8e1156b7505d5289",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[код приведён к образцу 13.10, 7c6cfacaf] «Пожаловаться на набор» — нижняя шторка с радио, 5 причин («Неправильный перевод», «Другое»), поле комментария и ✕ (ReportPackModal); кадр 12.10 старше — переснять на ru со страницы набора"
-      ],
-      "status": "pending",
+      "diffs": [],
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T16:44:50.857Z",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "d_mockup_stale",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
+        "final_bucket": "match",
+        "final_who": "—",
         "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12",
+        "final_note": "Шторка «Пожаловаться на набор»: шесть причин, поле, «Отмена» / «Отправить жалобу» совпадают; на кадре причина не выбрана, фон — каталог. «Оскорбления / ненависть» — правильный русский, в эталоне опечатка «Образа».",
+        "final_at": "2026-10-15",
         "reshoot_theme": "переснять: тема — отличие в цвете/тоне: образец нарисован в своей теме, робот снимал «Графит» на нуле; ссылка dev_state?theme=<id>&level=<0..1>[&appearance=light] (таблица тем — Темы, DEV_SWITCHES_R1_CORE.md)"
       },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:12, cards-states №15 «Жалоба на набор»): окно «Пожаловаться на набор» (название набора «Family») с четырьмя причинами, «Отмена» и «Отправить жалобу» — состав совпал с образцом по смыслу.",
-      "shot_at": "2026-10-12T05:10:14.095Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:46:18.434Z): Шторка «Пожаловаться на набор»: шесть причин, поле, «Отмена» / «Отправить жалобу» совпадают; на кадре причина не выбрана, фон — каталог. «Оскорбления / ненависть» — правильный русский, в эталоне опечатка «Образа».",
+      "shot_at": "2026-10-15T08:46:18.434Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-021",
@@ -2338,28 +2334,31 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-051.png",
-      "evidence_at": "2026-10-13T10:22:36.509Z",
-      "evidence_sha256": "3909bd785fb231157167a6d44c9b86151d4525542198d624b11fd72ac4c6c2b6",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "70096698955ce8ebb547191ea3dc6e731d33981625bbde1235686229dfd7819d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[разбор 13.10, корзина б] образец cards-states №45: стрелка отправки ↑ как в коде; переснять на ru"
-      ],
-      "status": "pending",
+      "diffs": [],
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
-        "macets_triage_b_2026_10_13": "образец cards-states №45: стрелка отправки ↑ как в коде"
+        "macets_triage_b_2026_10_13": "образец cards-states №45: стрелка отправки ↑ как в коде",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Пустой «Отклик»: значок, «Пока тихо», текст, поле «Написать автору…» и кнопка отправки совпадают.",
+        "final_at": "2026-10-15"
       },
-      "sverka_verdict": "Шторка «Отклик» пустая совпадает по составу: заголовок, иконка, «Пока тихо», текст, поле ввода.",
-      "shot_at": "2026-10-13T10:25:44.671Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:52:39.978Z): Пустой «Отклик»: значок, «Пока тихо», текст, поле «Написать автору…» и кнопка отправки совпадают.",
+      "shot_at": "2026-10-15T07:52:39.978Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-052",
@@ -2503,28 +2502,31 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-055.png",
-      "evidence_at": "2026-10-13T10:26:23.992Z",
-      "evidence_sha256": "572f2dd860b2dd10a7fd729d58ba0ebfc95d3c554be2516be84cc771cde99c88",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "7413e23e60a17a1c1d2d1b68fddf05dfcd87edb2d6872cb48f06d973531216be",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец приведён к коду] «Пожаловаться» — нижняя шторка действий (cards-states №49); переснять на ru"
-      ],
-      "status": "pending",
+      "diffs": [],
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T13:05:18.839Z",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
-        "macets_triage_b_2026_10_13": "образец к коду 13.10 (c771e7feb)"
+        "macets_triage_b_2026_10_13": "образец к коду 13.10 (c771e7feb)",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Шторка «Отклик» с «Пожаловаться» внизу совпадает по составу; в приложении три отзыва вместо одного (данные).",
+        "final_at": "2026-10-15"
       },
-      "sverka_verdict": "Действие «Пожаловаться» есть, но в другой форме.",
-      "shot_at": "2026-10-13T10:42:59.580Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:53:21.247Z): Шторка «Отклик» с «Пожаловаться» внизу совпадает по составу; в приложении три отзыва вместо одного (данные).",
+      "shot_at": "2026-10-15T07:53:21.247Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-056",
@@ -16823,27 +16825,30 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/community-021.png",
-      "evidence_at": "2026-10-13T09:30:22.486Z",
-      "evidence_sha256": "fd68f1d87551288d388c8fde18e521342e60a89a67784c8905c6b1b560cce816",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "8010359645dad372828972dd979458788615bb18fee97fc1fe72a301208654f7",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[разбор 13.10, корзина б] образец community №11: «Повторить» широкой кнопкой как в коде; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре",
         "restitch_note": "Решение координатора 13.10: значок офлайн-состояний в образцах — «облако с чертой» (cloud-offline-outline), как в приложении, вместо wifiOff (kit.js, dialogs.html, dialogs-gaps-states.html, learn.html); образец обновлён — нужна пересъёмка/пересклейка.",
-        "macets_triage_b_2026_10_13": "образец community №11: «Повторить» широкой кнопкой как в коде"
+        "macets_triage_b_2026_10_13": "образец community №11: «Повторить» широкой кнопкой как в коде",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "«Связь пропала» совпадает: сегменты, значок, заголовок, текст, «Повторить».",
+        "final_at": "2026-10-15"
       },
-      "sverka_verdict": "«Связь пропала» совпадает: значок, заголовок, текст.",
-      "shot_at": "2026-10-13T09:50:37.690Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T09:21:49.094Z): «Связь пропала» совпадает: сегменты, значок, заголовок, текст, «Повторить».",
+      "shot_at": "2026-10-15T09:21:49.094Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "community-022",
@@ -16863,26 +16868,29 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/community-022.png",
-      "evidence_at": "2026-10-13T07:18:42.630Z",
-      "evidence_sha256": "133fe72e70827ca567503fd9e8c61ad5199240437e932145022f8b13bfd91a06",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "74bcbef0d686a6016bcd19e6b12273e1d5056027b60946fc25e093d12db027ee",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[разбор 13.10, корзина б] образец community №13: «Друг зовёт тебя» как в коде; монета — ранг по данным; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
-        "macets_triage_b_2026_10_13": "образец community №13: «Друг зовёт тебя» как в коде; монета — ранг по данным"
+        "macets_triage_b_2026_10_13": "образец community №13: «Друг зовёт тебя» как в коде; монета — ранг по данным",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Окно приглашения совпадает: монета, заголовок, подпись, «Начать занятие», «Не сейчас». Заголовок «Пять минут на практику?» вместо «на английский?» — нейтрально к 5 языкам обучения (FriendStudyInviteModal), эталон устарел; фон — вкладка «Друзья».",
+        "final_at": "2026-10-15"
       },
-      "shot_at": "2026-10-13T07:19:30.207Z",
-      "shot_at_source": "bare_run_dir",
-      "sverka_verdict": "Окно «Пять минут на английский?» совпадает: монета, заголовок, «Начать занятие», «Не сейчас» (кадр на ru)."
+      "shot_at": "2026-10-15T09:22:17.788Z",
+      "shot_at_source": "shoot_log",
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T09:22:17.788Z): Окно приглашения совпадает: монета, заголовок, подпись, «Начать занятие», «Не сейчас». Заголовок «Пять минут на практику?» вместо «на английский?» — нейтрально к 5 языкам обучения (FriendStudyInviteModal), эталон устарел; фон — вкладка «Друзья».",
+      "prev_status": "pending"
     },
     {
       "id": "community-023",
@@ -32906,17 +32914,15 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-053.png",
-      "evidence_at": "2026-10-13T09:47:12.941Z",
-      "evidence_sha256": "5f0addfc3b455279a734b4049d0ed5c978f642942bfc86c1b12febff4c09f3b9",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "af01a683437ea5f1faec690a987735671074809a0946e481d34910891d9beb6e",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[разбор 13.10, корзина б] не дефект: монета ранга — данные игрока; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -32934,11 +32940,16 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре",
-        "macets_triage_b_2026_10_13": "не дефект: монета ранга — данные игрока"
+        "macets_triage_b_2026_10_13": "не дефект: монета ранга — данные игрока",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Итог с ошибками совпадает.",
+        "final_at": "2026-10-15"
       },
-      "shot_at": "2026-10-13T09:50:37.690Z",
-      "shot_at_source": "bare_run_dir",
-      "sverka_verdict": "Итог Блица с ошибками совпадает по раскладке: баланс, счёт, 3 плашки, награда, «Ошибки 2», две карточки, две кнопки."
+      "shot_at": "2026-10-15T07:22:52.958Z",
+      "shot_at_source": "shoot_log",
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:22:52.958Z): Итог с ошибками совпадает.",
+      "prev_status": "pending"
     },
     {
       "id": "cards-section-054",
@@ -32959,17 +32970,15 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-054.png",
-      "evidence_at": "2026-10-13T09:47:34.706Z",
-      "evidence_sha256": "f75f6c3d934cf119ff1c4a6905e69d3613448c364961ad7d5f92291b743a6b49",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "b19e638b3b3908cac4a555ebec2cd638d549ed23d3d7dbcda41b6c8086bb652e",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[разбор 13.10, корзина б] не дефект: монета ранга — данные игрока; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "triage": {
         "action": "исправить",
         "to": "Дизайн",
@@ -32977,7 +32986,11 @@
         "note": "склейка свежее правок кода — отличия актуальны",
         "coverage": "ready",
         "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре",
-        "macets_triage_b_2026_10_13": "не дефект: монета ранга — данные игрока"
+        "macets_triage_b_2026_10_13": "не дефект: монета ранга — данные игрока",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Итог Блица с ошибками совпадает: 18 из 20, плашки, +180, «Ошибки 2» с карточками, кнопки.",
+        "final_at": "2026-10-15"
       },
       "precheck": {
         "date": "2026-10-11",
@@ -32994,9 +33007,9 @@
       "prev_status": "pending",
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
-      "shot_at": "2026-10-13T09:50:37.690Z",
-      "shot_at_source": "bare_run_dir",
-      "sverka_verdict": "Итог Блица совпадает по раскладке, на кадре летят монеты награды."
+      "shot_at": "2026-10-15T07:23:09.704Z",
+      "shot_at_source": "shoot_log",
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:23:09.704Z): Итог Блица с ошибками совпадает: 18 из 20, плашки, +180, «Ошибки 2» с карточками, кнопки."
     },
     {
       "id": "cards-section-055",
@@ -33017,17 +33030,15 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-055.png",
-      "evidence_at": "2026-10-13T09:47:55.868Z",
-      "evidence_sha256": "30055790b77ed95e8af44cc8f975022546a4f2bdb5241edb7094a59410c1a676",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "bdf5a29610cb47dcfc5a5f60bea190764f507e95451186af79917ec576f511ad",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[разбор 13.10, корзина б] не дефект: монета ранга — данные игрока; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -33045,11 +33056,16 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре",
-        "macets_triage_b_2026_10_13": "не дефект: монета ранга — данные игрока"
+        "macets_triage_b_2026_10_13": "не дефект: монета ранга — данные игрока",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Итог без ошибок совпадает.",
+        "final_at": "2026-10-15"
       },
-      "shot_at": "2026-10-13T09:50:37.690Z",
-      "shot_at_source": "bare_run_dir",
-      "sverka_verdict": "Итог без ошибок совпадает по раскладке: 20 из 20, «Без единой ошибки», плашки, +200, две кнопки."
+      "shot_at": "2026-10-15T07:23:26.029Z",
+      "shot_at_source": "shoot_log",
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:23:26.029Z): Итог без ошибок совпадает.",
+      "prev_status": "pending"
     },
     {
       "id": "cards-section-056",
@@ -36490,17 +36506,18 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-025.png",
-      "evidence_at": "2026-10-13T10:09:09.780Z",
-      "evidence_sha256": "a86f91f7280cde3d7f6e29575ef12c71fa77a1050d937da5e6f409bd06cfb055",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "5900ed7a3d8b9ffe7c236696ddc076b969e3ec87663a08c9af71afebc6505e48",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[разбор 13.10, корзина б] не дефект: чип языка «EN ⌄» — только при наборах на 2+ языках (flashcards_packs.tsx:427); переснять на ru"
+        "нет пилюли языка в шапке каталога",
+        "два вида каталога"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "status": "diff",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
@@ -36508,15 +36525,16 @@
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&next=/flashcards_packs",
         "bucket": "a2_layout_candidate",
         "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
+        "final_who": "Ядро",
         "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12",
+        "final_note": "Каталог «Сообщество»: в шапке нет пилюли языка «EN» (в эталоне есть; на кадрах 8:48 того же каталога она есть, но там нет чипов A1/A2/B1). Каталог показывается в двух разных видах — проверить, от чего зависит.",
+        "final_at": "2026-10-15",
         "macets_triage_b_2026_10_13": "не дефект: чип языка «EN ⌄» — только при наборах на 2+ языках (flashcards_packs.tsx:427)"
       },
-      "sverka_verdict": "Каталог «Сообщество» совпадает: поиск, чипы, карточки наборов с автором, ♥ и тремя словами.",
-      "shot_at": "2026-10-13T10:10:38.648Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:48:20.191Z): Каталог «Сообщество»: в шапке нет пилюли языка «EN» (в эталоне есть; на кадрах 8:48 того же каталога она есть, но там нет чипов A1/A2/B1). Каталог показывается в двух разных видах — проверить, от чего зависит.",
+      "shot_at": "2026-10-15T08:48:20.191Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-v2-026",
@@ -37192,27 +37210,30 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-041.png",
-      "evidence_at": "2026-10-13T09:50:33.577Z",
-      "evidence_sha256": "a06c16b7bc9fbe349a342d914decfcfd2d4830b13e1d4a0db238e36ceb86fa8b",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "182f4cff2551140819f41b149740aa77d3ad9455345f7cd4acd564fb07bb746b",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[разбор 13.10, корзина б] не дефект: монета ранга — данные игрока; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре",
-        "macets_triage_b_2026_10_13": "не дефект: монета ранга — данные игрока"
+        "macets_triage_b_2026_10_13": "не дефект: монета ранга — данные игрока",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Итог с ошибками совпадает.",
+        "final_at": "2026-10-15"
       },
-      "shot_at": "2026-10-13T09:50:37.690Z",
-      "shot_at_source": "bare_run_dir",
-      "sverka_verdict": "Итог с ошибками совпадает по раскладке с образцом №41."
+      "shot_at": "2026-10-15T07:23:42.259Z",
+      "shot_at_source": "shoot_log",
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:23:42.259Z): Итог с ошибками совпадает.",
+      "prev_status": "pending"
     },
     {
       "id": "cards-v2-042",
@@ -37234,27 +37255,30 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-042.png",
-      "evidence_at": "2026-10-13T09:50:55.564Z",
-      "evidence_sha256": "880d001567cffe3378bef19eec824aa0e4a8e10fd372213b4681ba4167f38542",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "359322ef6d93e37171f593d1e20f123ff0cfa59ec5e3e8ae7aecc2985f668f74",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[разбор 13.10, корзина б] не дефект: монета ранга — данные игрока; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре",
-        "macets_triage_b_2026_10_13": "не дефект: монета ранга — данные игрока"
+        "macets_triage_b_2026_10_13": "не дефект: монета ранга — данные игрока",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Итог Блица без ошибок совпадает: 20 из 20, «Без единой ошибки», три плашки, +200, «Готово» / «Ещё раз».",
+        "final_at": "2026-10-15"
       },
-      "shot_at": "2026-10-13T10:10:38.648Z",
-      "shot_at_source": "bare_run_dir",
-      "sverka_verdict": "Итог без ошибок совпадает по раскладке с образцом №42."
+      "shot_at": "2026-10-15T07:47:47.884Z",
+      "shot_at_source": "shoot_log",
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:47:47.884Z): Итог Блица без ошибок совпадает: 20 из 20, «Без единой ошибки», три плашки, +200, «Готово» / «Ещё раз».",
+      "prev_status": "pending"
     },
     {
       "id": "cards-v2-043",
@@ -40210,32 +40234,31 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-002.png",
-      "evidence_at": "2026-10-12T03:56:03.273Z",
-      "evidence_sha256": "b86aa1c59b5871302a973d5239ff7399c405729e91735a71cfd0fa733ea44118",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "649dd1e203b1bff223325b163108df86a518b0aefd43e0bd1703857ac1dd571b",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец приведён к коду 12–13.10] «←» на круглой подложке, один набор «Сохранённые карточки», заголовок «Тренировка карточек» в одну строку (34); кадры 12.10 старше образца — переснять на ru и сверить вёрстку по новому кадру"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T16:39:39.880Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&train_gate=fail_speaking&overlays=off&next=/flashca",
         "bucket": "d_mockup_stale",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
+        "final_bucket": "match",
+        "final_who": "—",
         "final_group": "",
-        "final_note": "образец устарел/неточный — правит Макеты",
-        "final_at": "2026-10-12",
+        "final_note": "«Тренировка не открылась. Попробуй ещё раз.» и «Попробовать снова» совпадают.",
+        "final_at": "2026-10-15",
         "restitch_note": "образец приведён к приложению (Макеты 13.10): образец cards-gaps-states №2 по кадру: как №1 (блок выше на 20, кнопка 58, стрелка по часовой). Нужна пересклейка"
       },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (повторный кадр 4:55, cards-gaps-states №2 «Устно — «Тренировка не открылась»»; образец нарисован с приложения): состояние теперь верное — панель на месте: плитка со значком «нет облака», «Тренировка не открылась. Попробуй ещё раз.», светлая «Попробовать снова». Прежний кандидат в дефект («у «Устно» нет панели ошибки») снимается: на кадре 4:15 снимок был сделан до сбоя. [образец нарисован с приложения, ждёт подтверждения владельца]",
-      "shot_at": "2026-10-12T03:46:29.858Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:49:18.643Z): «Тренировка не открылась. Попробуй ещё раз.» и «Попробовать снова» совпадают.",
+      "shot_at": "2026-10-15T08:49:18.643Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-gap-003",
@@ -40299,32 +40322,31 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-004.png",
-      "evidence_at": "2026-10-12T03:56:35.287Z",
-      "evidence_sha256": "8260560d2294a44cdb4c05f11214f8db50d14417135d88257d6f9d65059d4fb6",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "13a58733fcfe7193733463e84cbdffb45ccba79f17d666787b2a58d1aa735650",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец приведён к коду 12–13.10] «←» на круглой подложке, один набор «Сохранённые карточки», заголовок «Тренировка карточек» в одну строку (34); кадры 12.10 старше образца — переснять на ru и сверить вёрстку по новому кадру"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T16:39:39.880Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:56, cards-gaps-states №4 «Правда / ложь — быстрый старт: нет карточек»; образец нарисован с приложения): состав и текст совпали — «‹», плитка со стопкой, «Нет карточек для тренировки», «Сохрани карточки или добавь набор, и тренировка запустится отсюда в один тап.», светлая «Обновить» со стрелкой. [образец нарисован с приложения, ждёт подтверждения владельца]",
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:53:29.555Z): «Нет карточек для тренировки» и «Обновить» совпадают.",
       "triage": {
         "bucket": "d_mockup_stale",
         "bucket_reason": "нужное состояние на кадре не воспроизведено",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
+        "final_bucket": "match",
+        "final_who": "—",
         "final_group": "",
-        "final_note": "образец устарел/неточный — правит Макеты",
-        "final_at": "2026-10-12",
+        "final_note": "«Нет карточек для тренировки» и «Обновить» совпадают.",
+        "final_at": "2026-10-15",
         "restitch_note": "образец приведён к приложению (Макеты 13.10): образец cards-gaps-states №4 по кадру: «‹» на круглой подложке, блок выше на 65, кнопка 58, стрелка по часовой. Нужна пересклейка"
       },
-      "shot_at": "2026-10-12T03:46:29.858Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at": "2026-10-15T08:53:29.555Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-gap-005",
@@ -40480,33 +40502,32 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-008.png",
-      "evidence_at": "2026-10-12T02:47:38.773Z",
-      "evidence_sha256": "dd4fe4b0b1d27f5f2e50bc312758c80792b1f66ad05febb86b342ffb515003f5",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "e515911a308889e1e1f2963257bd5357e339938f7439f3fbb6ff890b59a53159",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[данные] Счётчик монет «0» с медной монетой в приложении против «1 240» с серебряной; кнопка и свечение чуть крупнее."
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-12T02:49:24.334Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=notranslation&plus=on&overlays=off&next=/flashcards_recall_sessi",
         "bucket": "c_owner_decides",
-        "final_bucket": "c_owner_decides",
-        "final_who": "владелец",
+        "final_bucket": "match",
+        "final_who": "—",
         "final_group": "",
-        "final_note": "вопрос владельцу (утренний лист)",
-        "final_at": "2026-10-12",
+        "final_note": "«Напиши» без карточек с переводом: шапка, текст, «Выбрать наборы» совпадают.",
+        "final_at": "2026-10-15",
         "macets_note_2026_10_13_icon": "решено 81(16): значок «В набор» / «Мои наборы» — стопка слоёв (OWNER_REQUESTS_LEDGER строка 81 п.16, 12.10 21:2x; позже листа OWNER_MORNING_MOCKUPS_A, где п.6 устарел). Образцы cards-v2.html и cards-gaps-states.html уже со стопкой слоёв (albums); прежние замечания «баночка/стопка» сняты. Код Дизайн не меняет.",
         "restitch_note": "Значок «баночка/стопка» снят как расхождение (решено 81(16)); нужна пересклейка/пересъёмка."
       },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:47, cards-gaps-states №8 «Напиши — нет карточек с переводом»; образец нарисован с приложения): состав и положение совпали — шапка («✕», «Напиши», три сердца, кнопка наборов), полоса прогресса, плитка, «В выбранных наборах нет карточек с переводом.», светлая «Выбрать наборы». [образец нарисован с приложения, ждёт подтверждения владельца]",
-      "shot_at": "2026-10-12T02:05:18.001Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:48:38.431Z): «Напиши» без карточек с переводом: шапка, текст, «Выбрать наборы» совпадают.",
+      "shot_at": "2026-10-15T08:48:38.431Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-gap-009",
@@ -41349,26 +41370,29 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-029.png",
-      "evidence_at": "2026-10-13T10:10:34.030Z",
-      "evidence_sha256": "6e393000d4c1579abe9aacd84975082d2fb62e4d64bbabaa91923e97bce35c6b",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "ed6ff025fb65f8b284f85762113f96914da5225d257037cb95ca15d18147c067",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[разбор 13.10, корзина б] образец cards-gaps №29: значок тоста ошибки контурный как ActionToast; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
-        "macets_triage_b_2026_10_13": "образец cards-gaps №29: значок тоста ошибки контурный как ActionToast"
+        "macets_triage_b_2026_10_13": "образец cards-gaps №29: значок тоста ошибки контурный как ActionToast",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Тост «В наборе должно остаться минимум 10 карточек.» совпадает.",
+        "final_at": "2026-10-15"
       },
-      "sverka_verdict": "Раскладка совпадает: шапка, чипы, «Тренировать» + плюс, ползунок, сетка 2 столбца, тост «минимум 10 карточек». Данные съёмки другие («Мой опубликованный», 10 карточек, «В сообществе»).",
-      "shot_at": "2026-10-13T10:10:38.648Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:42:14.025Z): Тост «В наборе должно остаться минимум 10 карточек.» совпадает.",
+      "shot_at": "2026-10-15T08:42:14.025Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-gap-030",
@@ -41436,26 +41460,29 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-031.png",
-      "evidence_at": "2026-10-13T10:11:16.279Z",
-      "evidence_sha256": "f1ada1389f459e7acc2007595db8f423a2a9b50dded0f95ab007ec90cd4cee32",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "c13255cba5015cc118df88b0582e2d0cb11bb04d7e7c2527765baee1cf7ddbf0",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[разбор 13.10, корзина б] образец cards-gaps №31: значок тоста ошибки контурный как ActionToast; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
-        "macets_triage_b_2026_10_13": "образец cards-gaps №31: значок тоста ошибки контурный как ActionToast"
+        "macets_triage_b_2026_10_13": "образец cards-gaps №31: значок тоста ошибки контурный как ActionToast",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Тост «Нет связи — карточку не удалось удалить.» поверх своего набора совпадает.",
+        "final_at": "2026-10-15"
       },
-      "sverka_verdict": "Раскладка совпадает, текст тоста «Нет связи — карточку не удалось удалить» совпадает по смыслу.",
-      "shot_at": "2026-10-13T10:18:17.111Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:43:04.480Z): Тост «Нет связи — карточку не удалось удалить.» поверх своего набора совпадает.",
+      "shot_at": "2026-10-15T08:43:04.480Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-gap-032",
@@ -41476,27 +41503,30 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-032.png",
-      "evidence_at": "2026-10-13T05:23:07.094Z",
-      "evidence_sha256": "306534421a23144e6b5310990be4dfa2fdee493914ad980d3b48c8adcf3dd92b",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "d062cbdab3700117c632938108fbb536f5d2810ce0a58cf6d4fed0ae34c0e017",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец приведён к коду 13.10] счётчик откликов «💬 3» и значок тоста в кольце дорисованы (образец 13.10 после кадра); переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T14:22:20.345Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
         "macets_note_2026_10_13_b": "образец cards-gaps: счётчик откликов «💬 3» в мете чужого набора добавлен (13.10). Остаётся: значок тоста (залитый «!» против кольца) — общий тост, образец по коду D158 ждёт правки; плотность сетки — масштаб.",
-        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md"
+        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Тост «Сначала добавь набор себе — потом можно поставить лайк.» совпадает.",
+        "final_at": "2026-10-15"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Чужой набор · лайк до добавления: тост «СООБЩЕНИЕ · Сначала добавь набор себе — потом можно поставить лайк.», шапка набора, «Добавить себе +», сердце — состав совпал.",
-      "shot_at": "2026-10-13T05:26:30.147Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:43:38.181Z): Тост «Сначала добавь набор себе — потом можно поставить лайк.» совпадает.",
+      "shot_at": "2026-10-15T08:43:38.181Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-gap-033",
@@ -41517,27 +41547,30 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-033.png",
-      "evidence_at": "2026-10-13T05:23:45.360Z",
-      "evidence_sha256": "b4fc424274855ea7d2fd1e4497ba5297ff3153933b61786b0cd74908cf66b2b1",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "6ee91d48e403c835cb62c0854618ecd2360319532f0b5b9cc0dd9ec9620de2e2",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец приведён к коду 13.10] счётчик «💬 3» и значок тоста в кольце дорисованы; перенос «В моих наборах» на 2 строки — Дизайну (ширины кнопок); переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T14:22:20.345Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
         "macets_note_2026_10_13_b": "образец cards-gaps: «💬 3» добавлен (13.10). Остаётся кандидат Дизайна: «В моих наборах» в две строки в узкой кнопке.",
-        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md"
+        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "Тост «Не удалось поставить лайк. Попробуй ещё раз» поверх чужого набора совпадает.",
+        "final_at": "2026-10-15"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Чужой набор · лайк не прошёл: тост «ЧТО-ТО ПОШЛО НЕ ТАК · Не удалось поставить лайк. Попробуй ещё раз.», «В моих наборах» + «Тренировать» — состав совпал.",
-      "shot_at": "2026-10-13T05:26:30.147Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:44:22.457Z): Тост «Не удалось поставить лайк. Попробуй ещё раз» поверх чужого набора совпадает.",
+      "shot_at": "2026-10-15T08:44:22.457Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "cards-gap-034",
@@ -41651,26 +41684,29 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-036.png",
-      "evidence_at": "2026-10-13T05:24:10.314Z",
-      "evidence_sha256": "87fb6a364e2e7ac32588fda4c7bc7b8e0fc1f8bb58c84a3913b857d93c8ccc33",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "c515fd74acb5037ecef212a35b3ca93ab94ebbf1dd890150cd5582044ea26158",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец приведён к коду 13.10] выбранный голос — значок radio-button-on (кольцо с крупной точкой), как flashcards_voice_picker.tsx:211; порядок голосов — данные; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T14:22:20.345Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
-        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md"
+        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md",
+        "final_bucket": "match",
+        "final_who": "—",
+        "final_note": "«Голос озвучки · EN»: скорость речи, список голосов с «Улучшенный», «Прослушать пример», строка примера совпадают; порядок голосов зависит от телефона.",
+        "final_at": "2026-10-15"
       },
-      "shot_at": "2026-10-13T05:26:30.147Z",
-      "shot_at_source": "bare_run_dir",
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Голос озвучки · выбор: «СКОРОСТЬ РЕЧИ» с тремя плитками (Медленно 0.7x, Норма 0.9x, Быстро 1.0x), «ГОЛОС», «Системный (авто)», Samantha, Daniel, Karen, Moira, «▶ Прослушать пример» и подпись — состав и тексты совпали."
+      "shot_at": "2026-10-15T08:54:38.582Z",
+      "shot_at_source": "shoot_log",
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:54:38.582Z): «Голос озвучки · EN»: скорость речи, список голосов с «Улучшенный», «Прослушать пример», строка примера совпадают; порядок голосов зависит от телефона.",
+      "prev_status": "pending"
     },
     {
       "id": "cards-gap-037",
@@ -42907,32 +42943,33 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-013.png",
-      "evidence_at": "2026-10-12T03:41:33.826Z",
-      "evidence_sha256": "8d4d60fc7fd51c89f816111301e85d294352587000cd54b01c7d3e27007ae90c",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "0ec06103807dbbdc654972b1e5a1bc0f789586704559bde1d786b76f07dab81e",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец верен, проверено 13.10] №13 «мастер выключен»: строки приглушены, «Сохранено» не показано (появляется после изменения) — как в коде; переснять на ru"
+        "строки не приглушены при выключенном мастере"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T16:36:50.551Z",
+      "status": "diff",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "d_mockup_stale",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
+        "final_bucket": "a2_layout_candidate",
+        "final_who": "Дизайн",
         "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12",
+        "final_note": "Мастер уведомлений выключен: в эталоне все строки ниже приглушены и хранят свои значения; в приложении строки яркие, все переключатели выключены — не видно, что они неактивны из-за мастера.",
+        "final_at": "2026-10-15",
         "reshoot_theme": "переснять: тема — отличие в цвете/тоне: образец нарисован в своей теме, робот снимал «Графит» на нуле; ссылка dev_state?theme=<id>&level=<0..1>[&appearance=light] (таблица тем — Темы, DEV_SWITCHES_R1_CORE.md)"
       },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:41, settings-gaps-states №13 «Уведомления — мастер выключен»; образец нарисован с приложения): состав и порядок совпали — «Разрешить уведомления» выключено, разделы «Занятия» и «Итоги» со всеми строками; при выключенном мастере строки приглушены. [образец нарисован с приложения, ждёт подтверждения владельца]",
-      "shot_at": "2026-10-12T03:07:54.839Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:56:04.315Z): Мастер уведомлений выключен: в эталоне все строки ниже приглушены и хранят свои значения; в приложении строки яркие, все переключатели выключены — не видно, что они неактивны из-за мастера.",
+      "shot_at": "2026-10-15T08:56:04.315Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "settings-gap-014",
@@ -42953,34 +42990,33 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-014.png",
-      "evidence_at": "2026-10-12T02:56:18.752Z",
-      "evidence_sha256": "acb12c98777e5c39d547b8419d285975f9f49b6211835f9415a2a9dbc459c2c7",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "e8d07e554106f5d2b219b2916d8aa91cf2b3dede57cb310913c58de07b19b163",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец приведён к коду] умолчания нового пользователя (user_settings_store): «Автопроверка» выключена, скорость 0.9x; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T13:27:52.364Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/settings_edu",
         "bucket": "b_reshoot",
-        "final_bucket": "b_reshoot",
-        "final_who": "Сверка",
+        "final_bucket": "match",
+        "final_who": "—",
         "final_group": "ROBOT18",
-        "final_note": "кадр старше кода (Дизайн 016488a3c, координатор 12.10) — только пересъёмка",
-        "final_at": "2026-10-12",
+        "final_note": "«Настройки обучения», верх: заголовок, подпись, группы «Ответ» и «Звук», переключатели и ползунок скорости совпадают.",
+        "final_at": "2026-10-15",
         "prev_bucket": "a2_layout_candidate",
         "macets_pending_2026_10_13": "переключатели исправлены Г5 (c8816286c), подписи 5–15 % — масштаб; нужна фикстура Автопроверка вкл, 1.0×. Ожидается match после пересъёмки.",
         "macets_mockup_to_code_2026_10_13": "образец settings-gaps №14/15: autoCheck=false, speechRate=0.9 (DEFAULT_SETTINGS)"
       },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:56, settings-gaps-states №14 «Обучение — верх»; образец нарисован с приложения): состав и тексты совпали — «‹», «Настройки обучения», подпись «Проверка ответа, ввод и единая озвучка», раздел «ОТВЕТ» (Автопроверка, Автопереход после ответа, Ввод с клавиатуры, Вибрация при ошибке), раздел «ЗВУК» (Звуковые эффекты, Автопроизношение, Скорость произношения). [образец нарисован с приложения, ждёт подтверждения владельца]",
-      "shot_at": "2026-10-12T02:05:18.001Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:55:19.579Z): «Настройки обучения», верх: заголовок, подпись, группы «Ответ» и «Звук», переключатели и ползунок скорости совпадают.",
+      "shot_at": "2026-10-15T08:55:19.579Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "settings-gap-015",
@@ -43001,34 +43037,33 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-015.png",
-      "evidence_at": "2026-10-12T02:56:48.003Z",
-      "evidence_sha256": "447fb9c2c79fa87acc188c0b2e0f1b49d2f7b43bd72bf6357b45891753e4ce12",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "51d269fb1fdf75ac8bc54c3f15bfb5f80b4ba7b7260d134cac88a949af5d3bb3",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец приведён к коду] умолчания нового пользователя (user_settings_store): «Автопроверка» выключена, скорость 0.9x; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T13:27:52.364Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/settings_edu",
         "bucket": "b_reshoot",
-        "final_bucket": "b_reshoot",
-        "final_who": "Сверка",
+        "final_bucket": "match",
+        "final_who": "—",
         "final_group": "ROBOT18",
-        "final_note": "кадр старше кода (Дизайн 016488a3c, координатор 12.10) — только пересъёмка",
-        "final_at": "2026-10-12",
+        "final_note": "Низ «Настроек обучения» совпадает. «Озвучивать фразу после ответа» вместо «…английскую фразу…» — нейтрально к языкам обучения, эталон устарел.",
+        "final_at": "2026-10-15",
         "prev_bucket": "a2_layout_candidate",
         "macets_pending_2026_10_13": "переключатели исправлены Г5 (c8816286c), «Голос озвучки (EN)» исправлен 4d5947231 + раскладка 07:00; фикстура Автопроверка вкл, 1.0×. Ожидается match после пересъёмки.",
         "macets_mockup_to_code_2026_10_13": "образец settings-gaps №14/15: autoCheck=false, speechRate=0.9 (DEFAULT_SETTINGS)"
       },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:56, settings-gaps-states №15 «Обучение — низ (скорость, голос)»; образец нарисован с приложения): состав и порядок совпали — переключатели раздела «ОТВЕТ», раздел «ЗВУК» (Звуковые эффекты, Автопроизношение, «Скорость произношения» с ползунком), строка «Голос озвучки (EN) · Системный ›». [образец нарисован с приложения, ждёт подтверждения владельца]",
-      "shot_at": "2026-10-12T02:05:18.001Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:55:44.917Z): Низ «Настроек обучения» совпадает. «Озвучивать фразу после ответа» вместо «…английскую фразу…» — нейтрально к языкам обучения, эталон устарел.",
+      "shot_at": "2026-10-15T08:55:44.917Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "settings-gap-016",
@@ -43517,26 +43552,31 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-039.png",
-      "evidence_at": "2026-10-13T05:25:27.747Z",
-      "evidence_sha256": "1d1947db770e6ba52aa6a0296fcc2445100645a066d3beac24c2b6a8a5e8137a",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "7dd47cf0307c22125e81b63dec9d7b6688257d56df7056e061f0ed2f20f83fa6",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец приведён к коду 13.10] фон шторки «В какой набор?» — экран набора, как в коде; снимать на аккаунте без наборов, куда можно добавить; переснять на ru"
+        "неверный текст пустой шторки при только опубликованных наборах"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T14:22:20.345Z",
+      "status": "diff",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
-        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md"
+        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md",
+        "final_bucket": "a2_layout_candidate",
+        "final_who": "Ядро",
+        "final_note": "«В какой набор?», когда есть только свой опубликованный набор: эталон — «Нет наборов, куда можно добавить»; приложение пишет «Своих наборов пока нет», хотя свой набор («Мой опубликованный») на экране — неправда для человека.",
+        "final_at": "2026-10-15"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Шторка «В какой набор?» — нет наборов, куда можно добавить: на кадре шторка со списком четырёх наборов.",
-      "shot_at": "2026-10-13T05:26:30.147Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:44:55.624Z): «В какой набор?», когда есть только свой опубликованный набор: эталон — «Нет наборов, куда можно добавить»; приложение пишет «Своих наборов пока нет», хотя свой набор («Мой опубликованный») на экране — неправда для человека.",
+      "shot_at": "2026-10-15T08:44:55.624Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "settings-gap-027",
@@ -43641,32 +43681,31 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-029.png",
-      "evidence_at": "2026-10-12T03:01:26.027Z",
-      "evidence_sha256": "5710de75cd0bd30a4d5b49e06d3521412c11d53b002f1aa51aff42de0781bc8b",
+      "evidence_at": "2026-10-15T14:47:39.706Z",
+      "evidence_sha256": "84b18584b491fc9b2b3e139c9d842eb334fe2ad6bf2a9566a62aaf79069983d1",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец приведён к коду 13.10] слот — кампания «Новое в Phraseman · Мы добавили Пик и обновили Карточки…» (app_messages DEV_MESSAGE); панель вкладок «дом / книга / плей / люди / шестерёнка» уже в образце; профиль гостя/привязанный — состояние аккаунта; переснять на ru"
-      ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-13T16:36:50.551Z",
+      "diffs": [],
+      "status": "match",
+      "reviewed_by": "Макеты (поручение координатора 15.10): сверка кадра с образцом",
+      "reviewed_at": "2026-10-15T14:47:39.706Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&slot=top&next=/(tabs)/settings",
         "bucket": "d_mockup_stale",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
+        "final_bucket": "match",
+        "final_who": "—",
         "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12",
+        "final_note": "Верхний слот «Новое в Phraseman» под группой «Профиль» совпадает; остальное — демо-данные.",
+        "final_at": "2026-10-15",
         "macets_pending_2026_10_13": "образец: нижние вкладки уже дом/книга/плей/люди/шестерёнка; нужна фикстура slot=top + account=linked (1d2b339ec). Ожидается match после пересъёмки."
       },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:01, settings-gaps-states №29 «Настройки — верхний слот сообщений»; образец нарисован с приложения): слот сообщения над разделом «ОБУЧЕНИЕ» показывается и по составу совпал — карточка с рупором, заголовком и двумя строками текста; остальная раскладка (заголовок с медалью, «Профиль», «ПРОФИЛЬ» с тремя строками, «ОБУЧЕНИЕ») та же. [образец нарисован с приложения, ждёт подтверждения владельца]",
-      "shot_at": "2026-10-12T02:05:18.001Z",
-      "shot_at_source": "bare_run_dir"
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:55:02.435Z): Верхний слот «Новое в Phraseman» под группой «Профиль» совпадает; остальное — демо-данные.",
+      "shot_at": "2026-10-15T08:55:02.435Z",
+      "shot_at_source": "shoot_log",
+      "prev_status": "pending"
     },
     {
       "id": "settings-gap-030",

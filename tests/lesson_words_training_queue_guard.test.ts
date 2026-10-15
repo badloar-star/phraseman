@@ -61,7 +61,7 @@ describe('lesson words training queue guard', () => {
     expect(source).not.toContain('lessonWordsShardsGrantedKey');
     expect(fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_menu.tsx'), 'utf8')).toContain('lessonWordsKey(id, studyTarget)');
     expect(source).toContain('AsyncStorage.getItem(storageKey)');
-    expect(source).toContain('AsyncStorage.setItem(storageKey, JSON.stringify(newCounts))');
+    expect(source).toContain('AsyncStorage.setItem(storageKey, JSON.stringify(toWrite))');
     expect(source).not.toContain("storageKey + '_words'");
     expect(source).not.toContain('`${storageKey}_words_shards_granted`');
   });

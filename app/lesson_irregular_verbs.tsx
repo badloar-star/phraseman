@@ -590,10 +590,21 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
           const newCounts = { ...counts, [verb.base]: newCount };
           setCounts(newCounts);
           onUpdate(verb.base, newCount);
+          // зачем (аудит R58 #29, 15.10): запись шла без catch, а битое сохранённое значение молча ломало чтение; теперь сбой пишет причину, а нечитаемое НЕ затираем «пустым» прогрессом.
           AsyncStorage.getItem(irregularStorageKey).then(raw => {
-            const g: Record<string, number> = raw ? JSON.parse(raw) : {};
+            let g: Record<string, number> = {};
+            if (raw) {
+              try {
+                g = JSON.parse(raw) as Record<string, number>;
+              } catch (error: unknown) {
+                console.warn(`[IRREGULAR-VERBS] stored progress unreadable key=${irregularStorageKey} reason=${error instanceof Error ? error.message : String(error)} — запись пропущена, сохранённое не затираем`); // guard-ok: причина пропуска
+                return;
+              }
+            }
             g[verb.base] = newCount;
-            AsyncStorage.setItem(irregularStorageKey, JSON.stringify(g));
+            return AsyncStorage.setItem(irregularStorageKey, JSON.stringify(g));
+          }).catch((error: unknown) => {
+            console.warn(`[IRREGULAR-VERBS] progress write FAILED key=${irregularStorageKey} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя записи
           });
           setLearnedCnt(c => c + 1);
           const nq = [...queue];

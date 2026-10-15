@@ -34,6 +34,9 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { PracticeBackButton } from '../components/practice/PracticeChrome';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import { safeRouterBack } from './navigation_back';
+import { navOnce } from './nav_once';
+import { openPremiumPaywall } from './paywall_navigation';
+import { usePremium } from '../components/PremiumContext';
 import { lessonsGlassAlpha } from '../components/lessons/LessonsListGlassKit';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useLineScale } from '../hooks/useLineScale';
@@ -48,6 +51,7 @@ export default function CombinedLessonPickScreen() {
   const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const router = useRouter();
+  const { hasPremiumAccess: isPremium } = usePremium();
   const names = useMemo(() => lessonNamesForLang(lang), [lang]);
 
   // зачем: порядок выбора сохраняем — он же будет порядком чипов, и человек
@@ -80,12 +84,19 @@ export default function CombinedLessonPickScreen() {
       return;
     }
     hapticTap();
+    // зачем (аудит R58 #24, 15.10): выбор тем — платная механика; на экран можно попасть по прямой ссылке мимо входа в «Обучении», поэтому Plus проверяем и на старте.
+    if (!isPremium) {
+      console.log('[COMBO-PICK] start:denied', JSON.stringify({ isPremium, topics: picked })); // guard-ok: отказ называет причину
+      openPremiumPaywall(router, { context: 'combined_lesson' });
+      return;
+    }
+    if (!navOnce('combined_pick:start')) return; // зачем (аудит R58 #24): двойной тап — один комбинированный урок
     if (__DEV__) console.log('[COMBO-PICK] start:ok', JSON.stringify({ topics: picked }));
     router.push({
       pathname: '/lesson1',
       params: { combo: picked.join(','), from: 'combined_lesson' },
     });
-  }, [enough, picked, router]);
+  }, [enough, isPremium, picked, router]);
 
   // зачем (владелец 2026-09-17): на кнопке ПРОСТО «Начать» — без числа и без
   // слова «вопросов». Слово было моей отсебятиной из макета: в уроках это не

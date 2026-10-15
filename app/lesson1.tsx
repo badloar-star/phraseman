@@ -2709,9 +2709,15 @@ function LessonScreen() {
 
   const handleIntroDone = useCallback(async () => {
     if (replayIntro) consumedReplayIntroTokenRef.current = replayIntroToken || 'manual';
-    await AsyncStorage.setItem(lessonIntroShownKey(lessonId, studyTargetRef.current), 'true').catch(noteSwallowedHandler('lesson1:useCallback.setItem_2'));
-    syncLessonIntroShownFlagNow();
+    // зачем (аудит R58 #28, 15.10, Optimistic UI): «Старт» вступления раньше ждал запись отметки — пауза на тапе. Экран урока открываем СРАЗУ,
+    // отметку пишем и выгружаем фоном (выгрузка строго после записи — она читает хранилище).
     setShowIntroScreens(false);
+    const introShownKey = lessonIntroShownKey(lessonId, studyTargetRef.current);
+    void AsyncStorage.setItem(introShownKey, 'true')
+      .catch((error: unknown) => {
+        console.warn(`[LESSON-INTRO] отметка вступления не записана lessonId=${lessonId} key=${introShownKey} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя записи
+      })
+      .then(() => { syncLessonIntroShownFlagNow(); });
   }, [lessonId, replayIntro, replayIntroToken]);
 
   const resetNoEnergyModal = useCallback(() => {

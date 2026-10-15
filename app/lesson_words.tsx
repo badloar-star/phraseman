@@ -86,6 +86,9 @@ import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — 
 const lessonWordsProgressCache = new Map<string, Record<string, number>>();
 
 
+/** Ключи прогресса слов, чьё чтение при входе упало: запись по ним сначала подмешивает сохранённое (R58 #29). */
+const progressReadFailedKeys = new Set<string>();
+
 function parseLessonWordCounts(raw: string | null, lessonId: number): Record<string, number> {
   if (!raw) return {};
   try {
@@ -3051,7 +3054,22 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
 
         // Сохраняем полный объект counts напрямую — без read-modify-write (нет race condition)
         lessonWordsProgressCache.set(storageKey, newCounts);
-        void AsyncStorage.setItem(storageKey, JSON.stringify(newCounts));
+        // зачем (аудит R58 #29, 15.10): запись без catch терялась молча; если чтение при входе упало — перед записью подмешиваем сохранённое (максимум по слову), чтобы не затереть прогресс.
+        void (async () => {
+          try {
+            let toWrite = newCounts;
+            if (progressReadFailedKeys.has(storageKey)) {
+              const stored = parseLessonWordCounts(await AsyncStorage.getItem(storageKey), lessonId);
+              toWrite = { ...stored };
+              for (const [word, value] of Object.entries(newCounts)) toWrite[word] = Math.max(Number(toWrite[word] ?? 0), Number(value ?? 0));
+              progressReadFailedKeys.delete(storageKey);
+              console.log(`[LESSON-WORDS] write after failed read: merged stored=${Object.keys(stored).length} new=${Object.keys(newCounts).length} key=${storageKey}`); // guard-ok: слияние после сбоя чтения
+            }
+            await AsyncStorage.setItem(storageKey, JSON.stringify(toWrite));
+          } catch (error: unknown) {
+            console.warn(`[LESSON-WORDS] progress write FAILED key=${storageKey} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя записи
+          }
+        })();
 
         // Удаляем текущую карточку из очереди
         newQueue.splice(liveIndex, 1);
@@ -3692,9 +3710,11 @@ function LessonWords() {
         }
         setLearnedCounts(counts);
       })
-      .catch(() => {
+      .catch((error: unknown) => {
         if (!cancelled) {
-          lessonWordsProgressCache.set(storageKey, {});
+          // зачем (аудит R58 #29, 15.10): сбой чтения НЕ кладём в общий кэш как «ничего не выучено» — иначе следующая запись затёрла бы сохранённый прогресс.
+          progressReadFailedKeys.add(storageKey);
+          console.warn(`[LESSON-WORDS] progress read FAILED key=${storageKey} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя чтения
           setLearnedCounts({});
         }
       })

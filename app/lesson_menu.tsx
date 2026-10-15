@@ -850,6 +850,7 @@ function LessonMenu() {
       setSoonOpen('frenchLesson');
       return;
     }
+    if (!navOnce(`lesson_menu:replay:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап «Показать вступление» — один урок
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage_3'));
     router.push({
       pathname: '/lesson1',
@@ -1012,6 +1013,7 @@ function LessonMenu() {
           return;
         }
         if (LESSONS_WITH_WORDS.has(lessonId)) {
+          if (!navOnce(`lesson_menu:words:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — один экран слов
           router.push({ pathname: '/lesson_words', params: { id: lessonId, tab: 'train' } });
         } else {
           setSoonOpen('vocab');
@@ -1089,6 +1091,7 @@ function LessonMenu() {
           return;
         }
         if (LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) {
+          if (!navOnce(`lesson_menu:irregular:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — один экран глаголов
           router.push({ pathname: '/lesson_irregular_verbs', params: { id: lessonId } });
         } else {
           setSoonOpen('verbs');
@@ -1155,6 +1158,7 @@ function LessonMenu() {
             });
             return;
           }
+          if (!navOnce(`lesson_menu:prepositions:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — один тренажёр предлогов
           router.push({ pathname: '/preposition_drill', params: { id: lessonId } });
         } else {
           setSoonOpen('prepositions');
@@ -1212,6 +1216,7 @@ function LessonMenu() {
         // зачем (координатор 12.10): маршрут теории по языку интерфейса — pt-BR/vi/id/tr/pl в lesson_help (их язык), en скрыт до решения владельца.
         const entry = theoryEntryFor(lang, isInteractiveTheoryLesson(lessonId), 'lesson_menu');
         if (entry === 'hidden') return;
+        if (!navOnce(`lesson_menu:theory:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — одна теория
         router.push({ pathname: entry === 'hint' ? '/hint' : '/lesson_help', params: { id: lessonId } });
       },
       unavailable: frenchTheorySourceGated,
@@ -1312,7 +1317,7 @@ function LessonMenu() {
               icon="settings-outline"
               testID="lesson-menu-settings"
               accessibilityLabel={triLang(lang, { ru: 'Настройки обучения', uk: 'Параметри навчання', en: 'Learning settings', es: 'Ajustes de aprendizaje', 'pt-BR': 'Configurações de estudo', vi: 'Cài đặt học', id: 'Pengaturan belajar', tr: 'Öğrenme ayarları', pl: 'Ustawienia nauki' })}
-              onPress={() => { hapticTap(); router.push('/settings_edu'); }}
+              onPress={() => { hapticTap(); if (!navOnce('lesson_menu:settings_edu')) return; router.push('/settings_edu'); }}
             />
             </View>
           )}

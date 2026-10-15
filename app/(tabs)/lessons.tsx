@@ -1002,6 +1002,8 @@ const LessonCard = React.memo(function LessonCard({
               unlocked: isUnlocked, cap: legacyFreeLessonCap ?? null, levelLockedByExam: Boolean(levelLockedByExam && prevLessonLevel),
             });
             if (access === "available") {
+              // зачем (аудит R58 #17, 15.10): двойной тап открывал меню урока дважды (два экрана в стеке) — тот же замок, что и в списке.
+              if (!navOnce(`lessons:menu:${num}`)) return;
               void prefetchLessonMenuCache(num, studyTarget);
               router.push({ pathname: "/lesson_menu", params: { id: num } });
             } else if (access === "premium_required") {
@@ -4452,6 +4454,7 @@ export default function LessonsTab({
       return;
     }
     if (__DEV__) console.log('[COMBO-ENTRY] press:ok → /combined_lesson_pick');
+    if (!navOnce('lessons:combined_pick')) return; // зачем (аудит R58 #17, 15.10): двойной тап — один экран выбора
     router.push('/combined_lesson_pick');
   }, [isPremium, router]);
   // зачем: затухание справа у ряда кнопок нужно, только если ряд реально листается
@@ -4563,6 +4566,7 @@ export default function LessonsTab({
   // зачем (R1 L1, координатор 12.10): нажатие аттестации — стабильная ссылка, иначе memo-плашка перерисовывалась на каждом коммите корня.
   const openDiagnosticTest = useCallback(() => {
     hapticTap();
+    if (!navOnce('lessons:diagnostic')) return; // зачем (аудит R58 #17, 15.10): двойной тап — один диагностический тест
     router.push("/diagnostic_test");
   }, [router]);
   // зачем (R1 L1): у экзаменов нажатие замыкает ~10 значений экрана. Стабильная обёртка на уровень зовёт ПОСЛЕДНЮЮ версию обработчика из ref
@@ -4733,6 +4737,7 @@ export default function LessonsTab({
       } else if (!examSourceAvailable) {
         setGateModal({ kind: "frenchExam", level: lvl });
       } else if (allDone) {
+        if (!navOnce(`lessons:level_exam:${lvl}`)) return; // зачем (аудит R58 #17, 15.10): двойной тап — один экзамен уровня
         router.push({ pathname: "/level_exam", params: { level: lvl } });
       } else if (isPremium && prevExamLevel) {
         setGateModal({
@@ -5093,6 +5098,7 @@ export default function LessonsTab({
         })}
         onPress={() => {
           hapticTap();
+          if (!navOnce('lessons:coin_rank')) return; // зачем (аудит R58 #17, 15.10): двойной тап — один экран ранга
           router.push("/coin_rank");
         }}
         variant="icon"
@@ -6086,7 +6092,8 @@ export default function LessonsTab({
                   left: 24,
                   right: 24,
                   // зачем (Ревизор 15.10, R03): было жёсткое 130 — подсказка наезжала на капсулу таб-бара; теперь от общего источника «верх капсулы + дыхание»
-                  bottom: tabContentBottomPad,
+                  // зачем (аудит R58 #20, 15.10): в push-режиме (без таб-бара) отступ таб-бара поднимал подсказку на пустом месте — берём тот же отступ, что у списка (таб-бар или нижняя безопасная зона).
+                  bottom: listBottomPad,
                   alignItems: "center",
                 },
                 learningV2DenialHintStyle,

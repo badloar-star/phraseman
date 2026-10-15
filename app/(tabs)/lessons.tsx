@@ -5234,7 +5234,8 @@ export default function LessonsTab({
   perfR1BodyMark('lessons', 'before_return', perfBodyStart);
   return (
     <>
-      <ScreenGradient forceFullBleed>
+      {/* зачем (R69, Сверка 15.10: остаточный шов на y=132 в «Авроре»): внутри вкладки фон наследуется от оболочки — она рисует его от самого верха экрана; свой forceFullBleed начинал вторую копию градиента ниже inset и расходился с первой. Отдельным маршрутом — полный фон, как раньше. */}
+      <ScreenGradient>
         {page === "lessons" ? (
           <LinearGradient
             pointerEvents="none"

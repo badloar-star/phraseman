@@ -5,6 +5,7 @@ Governance-ID: TG-4A10338962ED
 Governance-ID: TG-FAFF0BD05FEC
 Governance-ID: TG-A8C28C0E728C
 Governance-ID: TG-0E70A1D66C6A
+Governance-ID: TG-F0315AFA6DCC
 Status: In progress
 Owner: сессия «4 · ТЕМЫ 2.0»
 Related epic/enabler: приоритет координатора 15.10 к сборке 16.10; макет «Онбординг в темах» (12 шагов каталога `app/onboarding_flow.ts`)

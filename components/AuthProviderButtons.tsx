@@ -31,6 +31,8 @@ const SHEET_RADIUS = 24;
 interface ProviderButtonProps {
   onPress: () => void;
   loading?: boolean;
+  /** Подпись для экранного диктора, пока идёт вход (на экране текста нет - только индикатор на кнопке). */
+  busyLabel?: string;
   disabled?: boolean;
   /** Текст кнопки. Локализуется на стороне вызывающего. */
   label: string;
@@ -44,7 +46,7 @@ interface GoogleButtonProps extends ProviderButtonProps {
 }
 
 
-export function GoogleSignInButton({ onPress, loading, disabled, label, variant = 'light', shape = 'default' }: GoogleButtonProps) {
+export function GoogleSignInButton({ onPress, loading, disabled, label, busyLabel, variant = 'light', shape = 'default' }: GoogleButtonProps) {
   const isDark = variant === 'dark';
   const bg = isDark ? '#1F1F1F' : '#FFFFFF'; // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
   const fg = isDark ? '#FFFFFF' : '#1F1F1F'; // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
@@ -67,7 +69,8 @@ export function GoogleSignInButton({ onPress, loading, disabled, label, variant 
       ]}
       testID="auth-google-button"
       accessibilityRole="button"
-      accessibilityLabel={label}
+      accessibilityLabel={loading && busyLabel ? busyLabel : label}
+      accessibilityState={{ busy: !!loading, disabled: !!(loading || disabled) }}
     >
       <View style={styles.iconWrap}>
         {loading ? (
@@ -87,7 +90,7 @@ export function GoogleSignInButton({ onPress, loading, disabled, label, variant 
   );
 }
 
-export function AppleSignInButton({ onPress, loading, disabled, label, shape = 'default', variant = 'light' }: ProviderButtonProps & { variant?: AppleButtonVariant }) {
+export function AppleSignInButton({ onPress, loading, disabled, label, busyLabel, shape = 'default', variant = 'light' }: ProviderButtonProps & { variant?: AppleButtonVariant }) {
   const colors = appleButtonColors(variant);
   useEffect(() => {
     if (__DEV__) console.log(`[AUTH-APPLE-BTN] variant=${variant} background=${colors.background} shape=${shape}`); // guard-ok: одна строка на монтирование
@@ -106,7 +109,8 @@ export function AppleSignInButton({ onPress, loading, disabled, label, shape = '
       ]}
       testID="auth-apple-button"
       accessibilityRole="button"
-      accessibilityLabel={label}
+      accessibilityLabel={loading && busyLabel ? busyLabel : label}
+      accessibilityState={{ busy: !!loading, disabled: !!(loading || disabled) }}
     >
       <View style={styles.iconWrap}>
         {loading ? <ActivityIndicator size="small" color={colors.ink} /> : <AppleIcon size={22} color={colors.ink} />}

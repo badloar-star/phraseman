@@ -54,6 +54,13 @@ describe('онбординг — исходник', () => {
     expect(src).toContain('m.recordOnboardingLevelAnswer({ level: level ?? null, target: studyTarget })');
     expect(src).toContain("writeToFirestore: action === 'onboarding_source_select',");
   });
+  it('вход: на экране текста про долгий вход нет, диктору - «Входим…» и состояние busy на всех четырёх кнопках входа', () => {
+    expect(src).not.toContain('{oc.signInBusy}');
+    expect((src.match(/busyLabel=\{oc\.signInBusyShort\}/g) ?? []).length).toBe(4);
+    const btn = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'components/AuthProviderButtons.tsx'), 'utf8'));
+    expect((btn.match(/accessibilityLabel=\{loading && busyLabel \? busyLabel : label\}/g) ?? []).length).toBe(2);
+    expect((btn.match(/accessibilityState=\{\{ busy: !!loading, disabled: !!\(loading \|\| disabled\) \}\}/g) ?? []).length).toBe(2);
+  });
   it('вне иллюстрации телефона и таблицы стилей фиксированных светлых цветов «Bevel» нет', () => {
     const bevel = ['#F5F6FA', '#0C111B', '#5B6270', '#596170', '#17191F', '#E6E8EE', '#EDEFF4', '#C9CDD7'];
     const withoutShadow = src.split("softShadow({ color: '#0C111B'").join('softShadow({');

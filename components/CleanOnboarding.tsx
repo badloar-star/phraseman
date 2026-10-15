@@ -3734,6 +3734,7 @@ function CleanOnboarding({
               {googleAvailable ? (
                 <GoogleSignInButton
                   label={oc.signInGoogle}
+                  busyLabel={oc.signInBusyShort}
                   variant={P.isLight ? 'light' : 'dark'}
                   loading={authLoading === 'google' && !awaitingSwitchDecision}
                   disabled={!!authLoading}
@@ -3743,6 +3744,7 @@ function CleanOnboarding({
               {appleAvailable === true ? (
                 <AppleSignInButton
                   label={oc.signInApple}
+                  busyLabel={oc.signInBusyShort}
                   variant={P.isLight ? 'light' : 'dark'}
                   loading={authLoading === 'apple'}
                   disabled={!!authLoading}
@@ -3817,6 +3819,7 @@ function CleanOnboarding({
           {appleAvailable === true ? (
             <AppleSignInButton
               label={oc.continueWithApple}
+              busyLabel={oc.signInBusyShort}
               variant={P.isLight ? 'light' : 'dark'}
               shape="pill"
               loading={authLoading === 'apple'}
@@ -3830,6 +3833,7 @@ function CleanOnboarding({
           {googleAvailable ? (
             <GoogleSignInButton
               label={oc.continueWithGoogle}
+              busyLabel={oc.signInBusyShort}
               variant={P.isLight ? 'light' : 'dark'}
               shape="pill"
               loading={authLoading === 'google' && !awaitingSwitchDecision}

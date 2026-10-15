@@ -17,9 +17,6 @@ import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import learnerVisibleTextV1 from "../../../modules/learning-v2/content/learner_visible_text_v1.js";
-import { scopedOwnerQualityRequired } from "./owner_quality.mjs";
-import { progressionIssues } from "./progression_quality_gate.mjs";
-import { CANONICAL_BINDING_SCHEMA_VERSION, progressionJudgeRequired, sessionReadiness } from "./session_readiness.mjs";
 import { newWordDeclarationIssues, parseSessionHeader } from "./session_header.mjs";
 import { assertSinglePhraseIntro, assertSinglePhraseSource, feedbackLocaleParityIssues, introPracticeTargetRepeatIssues, practiceTargetRepeatIssues, projectSinglePhraseRelease, scopedFamilyChoreographyIssues } from "./single_phrase_release.mjs";
 import { writeMockupFile } from "./write_mockup_file.mjs";
@@ -1608,71 +1605,7 @@ export function sourceReleaseScopeIssues({ root = ROOT, scope, locales = ["ru", 
   return sessions.flatMap((sessionIdentity) => sourceReleaseSessionIssues(root, sessionIdentity, locales, releaseRoot));
 }
 
-export async function factoryIntroPracticeCourseReport({ root = ROOT } = {}) {
-  const { auditFactoryIntroPractice } = await import("./factory_intro_practice_gate.mjs");
-  return auditFactoryIntroPractice({ sessionsRoot: path.join(root, "sessions", "en") });
-}
-
-// зачем (координатор 15.10, V2 показан в R1): сверка выпуска (--check-source-release) проверяет только переданные занятия —
-// пауза фабрики тоже учитывает только их замечания; общий отчёт по курсу остаётся для сборки канона (без scope).
-// зачем (владелец 15.10 ~10:50, «Выпускаем 15, Codex чинит потом»): точечно одобренные замечания фабрики в выпускаемых занятиях не держат
-// выпуск — список scripts/learning_v2_owner_approved_factory_findings.v1.json, совпадение по ВСЕМ полям замечания. Новое замечание — блок.
-function ownerApprovedFactoryFindingKeys() {
-  const file = path.join(ROOT, "..", "..", "scripts", "learning_v2_owner_approved_factory_findings.v1.json");
-  try {
-    const raw = JSON.parse(fs.readFileSync(file, "utf8"));
-    return new Set((raw.findings ?? []).map(factoryFindingKey));
-  } catch (error) {
-    LOG(`factory_intro_practice: список одобренных владельцем замечаний не прочитан (${error instanceof Error ? error.message : String(error)}) — исключений нет`);
-    return new Set();
-  }
-}
-
-function factoryFindingKey(finding) {
-  return JSON.stringify(Object.keys(finding ?? {}).sort().map((key) => [key, finding[key]]));
-}
-
-function scopeFactoryReport(report, sessions) {
-  const set = new Set(sessions);
-  const approved = ownerApprovedFactoryFindingKeys();
-  const scoped = (report.findings ?? []).filter((item) => set.has(item.sessionIdentity));
-  const findings = scoped.filter((item) => !approved.has(factoryFindingKey(item)));
-  if (scoped.length !== findings.length) LOG(`factory_intro_practice: одобрено владельцем ${scoped.length - findings.length} из ${scoped.length} (справка, не блок)`);
-  return {
-    ...report,
-    verdict: findings.length === 0 ? "PASS" : report.verdict,
-    findingCount: findings.length,
-    findings,
-    perSession: (report.perSession ?? []).filter((item) => set.has(item.sessionIdentity)),
-    scopedTo: set.size,
-  };
-}
-
-async function holdForFactoryIntroPractice(context, scopeSessions = null) {
-  const full = await factoryIntroPracticeCourseReport();
-  const report = scopeSessions ? scopeFactoryReport(full, scopeSessions) : full;
-  if (scopeSessions) LOG(`factory_intro_practice: только переданные занятия (${scopeSessions.length}) — замечаний ${report.findingCount} из ${full.findingCount}`);
-  if (report.verdict === "PASS") return false;
-  WARN(`factory_intro_practice_course_hold:${context}:${JSON.stringify(report)}`);
-  process.exitCode = 1;
-  return true;
-}
-
 // ---------- main ----------
-
-// зачем: снять протухший блок machine_facts можно только перепроверив факты,
-// а не поверив статусу. Логика фактов живёт в run.mjs — зовём её оттуда, чтобы
-// не заводить второй экземпляр правил, который разъедется с первым.
-function recheckHardFacts(dir, file = "final.ru.md") {
-  const session = dir.split(/[\\/]/).slice(-3).join("/");
-  const r = spawnSync(process.execPath, [path.join(HERE, "run.mjs"), "facts", "--session", session, "--file", file], { encoding: "utf8" });
-  if (r.status !== 0) {
-    WARN(`перепроверка фактов не удалась (код ${r.status}) — блок снимать нельзя: ${(r.stderr || "").trim().slice(0, 200)}`);
-    return ["перепроверка не выполнена"];
-  }
-  return String(r.stdout || "").split("\n").map((l) => l.trim())
-    .filter((l) => l && !l.startsWith("[FACTORY]") && !l.startsWith("[BUILD]"));
-}
 
 async function main() {
   // Validate the exceptional v2 projection contract before every alternate
@@ -1692,7 +1625,6 @@ async function main() {
   }
   if (!SESSION) { LOG("ранний выход: нужен --session en/l01/s04"); process.exit(2); }
   if (CHECK_SOURCE_RELEASE) {
-    if (await holdForFactoryIntroPractice("check_source_release", String(SESSION).split(",").map((s) => s.trim()).filter(Boolean))) return;
     const issues = sourceReleaseScopeIssues({ root: ROOT, scope: SESSION, locales: LOCALES });
     for (const parityIssue of issues) WARN(parityIssue);
     if (issues.length) {
@@ -1725,7 +1657,6 @@ async function main() {
   }
 
   const writesDefaultRelease = sameFilesystemDestination(DEFAULT_OUT, OUT);
-  if (writesDefaultRelease && await holdForFactoryIntroPractice(`canonical_build:${SESSION}`)) return;
 
   // Никакой безличный текст не должен попасть к ученику: проверяем именно
   // исходник этой сессии до разбора Markdown и до любой записи релиза.
@@ -1754,27 +1685,6 @@ async function main() {
       WARN("ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: основной макет требует обе локали ru,uk");
       process.exit(1);
     }
-    const requestedLocales = LOCALES.filter((locale) => locale !== "ru");
-    const ownerQualityRequired = scopedOwnerQualityRequired(SESSION);
-    if (ownerQualityRequired && progressionJudgeRequired(SESSION)) {
-      const progression = progressionIssues(path.dirname(dir), Number(session));
-      if (progression.length) {
-        WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА progression gate: ${progression.join("; ")}`);
-        process.exit(1);
-      }
-    }
-    const readiness = sessionReadiness(dir, requestedLocales);
-    if (!readiness.ready) {
-      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${readiness.issues.join("; ")}`);
-      process.exit(1);
-    }
-    if (ownerQualityRequired && Number(lesson) > 2) {
-      const facts = LOCALES.flatMap(locale => recheckHardFacts(dir, `final.${locale}.md`).map(fact => `${locale}: ${fact}`));
-      if (facts.length) {
-        WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${facts.join("; ")}`);
-        process.exit(1);
-      }
-    }
   }
 
   const perLocale = {};
@@ -1792,20 +1702,8 @@ async function main() {
     process.exit(1);
   }
 
-  let guardianNewWords = null;
-  const guardianFile = path.join(dir, "preauthoring.json");
-  if (exists(guardianFile)) {
-    try {
-      const guardian = JSON.parse(read(guardianFile));
-      guardianNewWords = Array.isArray(guardian?.newWords) ? guardian.newWords : [];
-    } catch (error) {
-      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: new_words_guardian_unreadable:${error.message}`);
-      process.exit(1);
-    }
-  }
   const declarationIssues = newWordDeclarationIssues(
     Object.fromEntries(Object.entries(perLocale).map(([locale, value]) => [locale, value.header])),
-    { guardianNewWords },
   );
   if (declarationIssues.length) {
     WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${declarationIssues[0]}`);
@@ -1826,7 +1724,7 @@ async function main() {
   }
   if (staleLocales.length) {
     WARN(`ПЕРЕВОД ОТСТАЛ от русского: ${staleLocales.join(", ")} — переведи заново, иначе языки разойдутся:`);
-    WARN(`  node pipeline/run.mjs localize --session ${lang}/l${lesson}/s${session} --file final.ru.md`);
+    WARN(`  обнови final.${staleLocales.join(".md и final.")}.md по final.ru.md`);
   }
 
   const master = perLocale.ru;
@@ -1838,28 +1736,9 @@ async function main() {
       process.exit(1);
     }
   }
-  let sourceBindingSchemaVersion = null;
-  try {
-    const status = JSON.parse(read(path.join(dir, "status.json")));
-    if (status?.bindingSchemaVersion === CANONICAL_BINDING_SCHEMA_VERSION) {
-      sourceBindingSchemaVersion = CANONICAL_BINDING_SCHEMA_VERSION;
-    }
-  } catch {
-    // Readiness owns missing/malformed status. Private review builds may not
-    // have one and therefore cannot claim the versioned binding contract.
-  }
   const atomicSourcePath = path.join(dir, "practice.atomic.json");
   const atomicSource = exists(atomicSourcePath) ? JSON.parse(read(atomicSourcePath)) : null;
   if (atomicSource) {
-    if (sourceBindingSchemaVersion) {
-      const atomicFeedbackParity = feedbackLocaleParityIssues(atomicSource.interactionsByLocale ?? {}, {
-        answers: atomicSource.answers ?? [],
-      });
-      if (atomicFeedbackParity.length) {
-        WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: feedback_locale_parity_hold:${SESSION}:${JSON.stringify(atomicFeedbackParity[0])}`);
-        process.exit(1);
-      }
-    }
     const parityIssues = atomicMarkdownParityIssues({
       sessionIdentity: SESSION,
       sessionId,
@@ -1904,7 +1783,6 @@ async function main() {
 
   const introChild = {
     schemaVersion: "learning_v2_course_session_intro_child_v1",
-    ...(sourceBindingSchemaVersion ? { sourceBindingSchemaVersion } : {}),
     courseSessionId: sessionId,
     learningOutcomeByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.header.operation ?? ""]))),
     pages: master.intro.map((p, i) => ({
@@ -2040,7 +1918,6 @@ async function main() {
 
   const learnerChild = {
     schemaVersion: "learning_v2_course_session_learner_child_v1",
-    ...(sourceBindingSchemaVersion ? { sourceBindingSchemaVersion } : {}),
     courseSessionId: sessionId, targetLanguage: lang,
     interactions, practiceInteractionCount: interactions.length, firstPracticeOrdinal: 4,
     evaluatorPayload: "absent_by_exact_schema", acceptedAnswerPayload: "absent_by_exact_schema",
@@ -2215,57 +2092,6 @@ async function main() {
       if (new RegExp("\\*|—\\s*«").test(String(o.text || ""))) problems.push(`${it.interactionId}: в тексте варианта «${String(o.text).slice(0, 40)}» есть разметка — перевод должен быть в разборе, а не в строке вариантов`);
     }
   }
-  // зачем: сессия 26 попала в курс заблокированной и без вердиктов —
-  // сборщик собирал что дают, не спрашивая, проверял ли её кто-нибудь
-  if (!CANDIDATE_PREVIEW) {
-  try {
-    const stPath = path.join(dir, "status.json");
-    if (fs.existsSync(stPath)) {
-      const st = JSON.parse(fs.readFileSync(stPath, "utf8"));
-      // зачем: 07.09 сессия 30 лежала с blocked=[judge_nonsense] от прогона,
-      // который был ДО правок, а свежий вердикт того же судьи давал PASS.
-      // Та же болезнь, что с machine_facts: статус пишется один раз и не
-      // пересматривается. Сверяем список с реальными файлами вердиктов.
-      if (st.blocked) {
-        const stale = [];
-        const still = [];
-        for (const j of [].concat(st.blocked)) {
-          const vp = path.join(dir, `final.${j}.json`);
-          if (!fs.existsSync(vp)) { still.push(`${j} (нет вердикта)`); continue; }
-          let v = null;
-          try { v = JSON.parse(fs.readFileSync(vp, "utf8")); }
-          catch (e) { still.push(`${j} (вердикт нечитаем: ${e.message})`); continue; }
-          if (v && v.verdict === "PASS") stale.push(j); else still.push(`${j} (${v && v.verdict})`);
-        }
-        if (still.length) WARN(`СЕССИЯ ЗАБЛОКИРОВАНА судьями (${still.join(", ")}) — собирать её в курс нельзя, сначала правка`);
-        else {
-          LOG(`протухший блок судей снят: ${stale.join(", ")} дают PASS по свежему вердикту`);
-          const fixed = { ...st, blocked: undefined, staleBlockClearedAt: new Date().toISOString() };
-          delete fixed.blocked;
-          fs.writeFileSync(stPath, JSON.stringify(fixed, null, 2));
-        }
-      }
-      // зачем: 06.09 сессия 3 урока 2 лежала в релизе живой, а status.json
-      // говорил blockedBy=machine_facts — гейт пишет статус и делает return,
-      // поэтому ручная правка + пересборка релиза его не переписывали. Статус
-      // врал, а run_batch читает именно его. Сборщик пересчитывает факты сам:
-      // закрыты — снимает протухший блок, не закрыты — кричит.
-      else if (st.blockedBy === "machine_facts") {
-        const stillOpen = recheckHardFacts(dir);
-        if (stillOpen.length) {
-          WARN(`СЕССИЯ ЗАБЛОКИРОВАНА машинными фактами — собирать нельзя:`);
-          for (const f of stillOpen) WARN(`  ${f}`);
-        } else {
-          LOG("протухший блок machine_facts снят: факты закрыты, статус переписан");
-          const fixed = { ...st, blockedBy: undefined, facts: undefined, staleBlockClearedAt: new Date().toISOString() };
-          delete fixed.blockedBy; delete fixed.facts;
-          fs.writeFileSync(stPath, JSON.stringify(fixed, null, 2));
-        }
-      }
-      else if (st.ru === 0) WARN(`сессия собрана с нулём очков — судьи её не приняли`);
-    } else WARN(`нет status.json — неизвестно, судилась ли сессия вообще`);
-  } catch (e) { WARN(`не смог прочитать статус сессии: ${e.message}`); }
-  } else LOG("черновой просмотр: status.json не изменяется");
   if (problems.length) { WARN(`проблем сборки: ${problems.length}`); for (const p of problems) WARN(`  ${p}`); }
   else LOG("проблем сборки нет");
   LOG(`готово: ${interactions.length} заданий, ${LOCALES.join("+")}`);

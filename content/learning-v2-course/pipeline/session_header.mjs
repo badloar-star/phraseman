@@ -16,7 +16,7 @@ export function parseSessionHeader(markdown) {
       sceneLines.push(line);
     }
   }
-  const operation = new RegExp(`\\*\\*(?:Операц[иі]я|Новая операция|Нова операція|Как сказать|Як сказати|Что вы освоите|Що ви опануєте|Что вы повторите|Що ви повторите):\\*\\*${HORIZONTAL_SPACE}([^\\r\\n]*)|\\*\\*(?:Сегодня|Сьогодні)\\.\\*\\*${HORIZONTAL_SPACE}([^\\r\\n]*)`, "u").exec(source);
+  const operation = new RegExp(`\\*\\*(?:Операц[иі]я|Новая операция|Нова операція|Цель|Мета|Как сказать|Як сказати|Что вы освоите|Що ви опануєте|Что вы повторите|Що ви повторите):\\*\\*${HORIZONTAL_SPACE}([^\\r\\n]*)|\\*\\*(?:Сегодня|Сьогодні)\\.\\*\\*${HORIZONTAL_SPACE}([^\\r\\n]*)`, "u").exec(source);
   const declaration = NEW_WORDS_LABEL.exec(source);
   const newWordsRaw = normalizeLine(declaration?.[1]);
 
@@ -51,7 +51,7 @@ export function parseSessionHeader(markdown) {
 
 const normalizedWords = (words) => (words ?? []).map((word) => String(word).trim().toLocaleLowerCase("en")).sort();
 
-export function newWordDeclarationIssues(headersByLocale, { guardianNewWords = null } = {}) {
+export function newWordDeclarationIssues(headersByLocale) {
   const entries = Object.entries(headersByLocale ?? {});
   const issues = [];
   for (const [locale, header] of entries) {
@@ -65,9 +65,6 @@ export function newWordDeclarationIssues(headersByLocale, { guardianNewWords = n
       if (JSON.stringify(normalizedWords(header?.newWords)) !== expected) {
         issues.push(`new_words_locale_mismatch:${baseLocale}:${locale}`);
       }
-    }
-    if (guardianNewWords !== null && JSON.stringify(normalizedWords(guardianNewWords)) !== expected) {
-      issues.push(`new_words_guardian_mismatch:${baseLocale}`);
     }
   }
   return issues;

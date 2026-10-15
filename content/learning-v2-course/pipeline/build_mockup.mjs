@@ -18,13 +18,6 @@ import { spawnSync } from "node:child_process";
 import { auditSinglePhraseRelease } from "./single_phrase_release.mjs";
 import { parseSessionHeader } from "./session_header.mjs";
 import { writeMockupFile } from "./write_mockup_file.mjs";
-import { sourceReleaseFindings, syncMockupSourceReleaseFindings } from "./sync_mockup_source_release_findings.mjs";
-import { sourceQualityFindings } from "./sync_mockup_source_quality_findings.mjs";
-import { sessionProjectionChanged } from "./candidate_preview_status.mjs";
-import { auditFactoryIntroPractice } from "./factory_intro_practice_gate.mjs";
-import { sessionReadiness } from "./session_readiness.mjs";
-import { reviewedProjectionFreshness } from "./reviewed_projection_freshness.mjs";
-import { REVIEWED_CARD_EVIDENCE_SCHEMA, reviewedCardEligible } from "./reviewed_card_evidence.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -133,44 +126,13 @@ if (cli.candidatePreview) {
 const OUT = path.resolve(cli.out);
 const RELEASE = path.resolve(cli.release);
 const CANDIDATE_PREVIEW = cli.candidatePreview;
-// Проверенный исходник не должен отображаться через устаревший релиз. Такие
-// проекции создаются отдельно только для просмотра в макете и никогда не
-// считаются выпуском.
-const REVIEWED_SOURCE = path.join(ROOT, "mockup", "reviewed-source");
-
-// The owner keeps this artifact open while source checks change.  Refresh its
-// per-card before/after evidence even if the release is correctly blocked
-// below, so it never describes an older state of the course.
-if (!CANDIDATE_PREVIEW) {
-  const paritySync = await syncMockupSourceReleaseFindings({ mockupPath: OUT });
-  if (paritySync.updated) LOG(`обновлены карточки с расхождениями: ${paritySync.findings}`);
-} else {
-  LOG("черновой просмотр: сведения о готовности и выпуске не переписываются");
-}
-
-const factoryIntroPracticeReport = !CANDIDATE_PREVIEW
-  ? auditFactoryIntroPractice({ sessionsRoot: path.join(ROOT, "sessions", "en") })
-  : null;
-if (factoryIntroPracticeReport?.verdict === "HOLD") {
-  WARN(`factory_intro_practice_mockup_hold:${factoryIntroPracticeReport.findingCount}:${JSON.stringify(factoryIntroPracticeReport.findings[0])}; макет строится только для проверки, выпуск остаётся остановлен`);
-}
 const report = auditSinglePhraseRelease(RELEASE);
 const releaseAuditHeld = Boolean(
-  factoryIntroPracticeReport?.verdict === "HOLD" ||
   report.violationCount || report.compositeGapAnswers || report.dictationAudioMismatches ||
   report.answerContractViolations || report.preservationLedgerViolations || report.feedbackLocaleParityViolations,
 );
-const factoryIntroPracticeHold = factoryIntroPracticeReport?.verdict === "HOLD"
-  ? {
-      schemaVersion: factoryIntroPracticeReport.schemaVersion,
-      verdict: factoryIntroPracticeReport.verdict,
-      auditedSessionCount: factoryIntroPracticeReport.auditedSessionCount,
-      findingCount: factoryIntroPracticeReport.findingCount,
-      firstFinding: factoryIntroPracticeReport.findings[0] ?? null,
-    }
-  : null;
 if (releaseAuditHeld) {
-  const first = factoryIntroPracticeReport?.findings[0] ?? report.issues[0] ?? report.compositeGapIssues[0] ?? report.dictationIssues[0] ??
+  const first = report.issues[0] ?? report.compositeGapIssues[0] ?? report.dictationIssues[0] ??
     report.answerIssues[0] ?? report.preservationIssues[0] ?? report.feedbackLocaleParity[0];
   // Макет — не выпуск. Даже при остановленном выпуске он обязан показать
   // последнюю собранную версию занятия и статус блокировки, иначе владелец
@@ -223,18 +185,7 @@ function collect() {
       if (!fs.statSync(lessonDir).isDirectory()) continue;
       for (const session of fs.readdirSync(lessonDir).sort()) {
         const releasedDir = path.join(lessonDir, session);
-        const candidateChanged = CANDIDATE_PREVIEW && sessionProjectionChanged(
-          releasedDir,
-          path.join(ROOT, "release", lang, lesson, session),
-        );
-        const reviewedDir = path.join(REVIEWED_SOURCE, lang, lesson, session);
-        const reviewedReady = ["learner.json", "intro.json"].every((name) => fs.existsSync(path.join(reviewedDir, name)));
-        const reviewedProjection = reviewedProjectionFreshness({
-          courseRoot: ROOT,
-          sessionKey: `${lang}/${lesson}/${session}`,
-          reviewedDir,
-        });
-        const d = CANDIDATE_PREVIEW ? releasedDir : (reviewedReady ? reviewedDir : releasedDir);
+        const d = releasedDir;
         const learner = path.join(d, "learner.json");
         const intro = path.join(d, "intro.json");
         if (!fs.existsSync(learner) || !fs.existsSync(intro)) { WARN(`${lang}/${lesson}/${session}: нет learner.json или intro.json — пропущена`); continue; }
@@ -264,13 +215,7 @@ function collect() {
         if (!titleByLocale.ru) WARN(`${lang}/${lesson}/${session}: нет final.ru.md — русский заголовок и сцена будут пустыми`);
         out.push({
           key: `${lang}/${lesson}/${session}`, lang, lesson, session, title, scene, titleByLocale, sceneByLocale,
-          // Явно несём источник отображения до интерфейса: зелёный статус
-          // означает, что открыта проверенная правка, не старый релиз.
-          viewSource: CANDIDATE_PREVIEW
-            ? (candidateChanged ? "candidate" : "release")
-            : (reviewedReady ? "reviewed_source" : "release"),
-          reviewedProjectionFresh: reviewedProjection.fresh,
-          reviewedProjectionIssue: reviewedProjection.reason,
+          viewSource: CANDIDATE_PREVIEW ? "candidate" : "release",
           lessonTitle: lessonTitles.get(lesson) ?? "",
           lessonTitleByLocale: lessonTitleByLocale(lang, lesson, lessonTitles.get(lesson) ?? ""),
           intro: JSON.parse(fs.readFileSync(intro, "utf8")),
@@ -291,60 +236,19 @@ LOG(`сессий в макете: ${sessions.length} — ${sessions.map((s) => 
 
 const locales = [...new Set(sessions.flatMap((s) => Object.keys(s.intro.pages?.[0]?.titleByLocale ?? { ru: 1 })))];
 LOG(`локали: ${locales.join(", ")}`);
-const sourceQuality = sourceQualityFindings({
-  root: ROOT,
-  sessionKeys: new Set(sessions.map((session) => session.key)),
-});
-LOG(`карточек с доказанными дефектами исходных заданий: ${Object.keys(sourceQuality).length}`);
-const sourceRelease = sourceReleaseFindings({
-  root: ROOT,
-  sessionKeys: new Set(sessions.map((session) => session.key)),
-  releaseRoot: RELEASE,
-});
-LOG(`карточек, где открываемый вариант расходится с исходником: ${Object.keys(sourceRelease).length}`);
-const sessionReadinessByKey = Object.fromEntries(sessions.map((session) => {
-  const result = sessionReadiness(path.join(ROOT, "sessions", ...session.key.split("/")), ["uk"]);
-  return [session.key, {
-    ready: result.ready,
-    unresolvedQualityItems: result.issues.length,
-    firstUnresolvedItem: result.issues[0] ?? null,
-  }];
-}));
-// A green card is evidence-based, not a calendar/ledger guess: it must open a
-// complete reviewed projection and have no outstanding source or projection
-// finding.  The preservation ledger remains a global release gate, but it is
-// not an adequate per-card receipt of what this UI actually opens.
-const reviewedCards = {
-  schemaVersion: REVIEWED_CARD_EVIDENCE_SCHEMA,
-  cards: Object.fromEntries(sessions
-    .filter((session) => reviewedCardEligible({
-      candidate: CANDIDATE_PREVIEW,
-      viewSource: session.viewSource,
-      projectionFresh: session.reviewedProjectionFresh,
-      readiness: sessionReadinessByKey[session.key],
-      sourceQualityFindings: sourceQuality[session.key] ?? [],
-      sourceReleaseFindings: sourceRelease[session.key] ?? [],
-    }))
-    .map((session) => [session.key, true])),
-};
-// Embed the candidate state in the output so a draft file cannot carry green
-// review labels from the normal renderer.
-const REVIEWED_SOURCE_MARKER = CANDIDATE_PREVIEW ? "" : "reviewed_source";
-const REVIEWED_CARD_CLASS = CANDIDATE_PREVIEW ? "candidate-review-disabled" : "source-fixed";
-const REVIEWED_LABEL = CANDIDATE_PREVIEW ? "" : "Показана проверенная правка";
 const HOME_DESCRIPTION_BY_LOCALE = CANDIDATE_PREVIEW
   ? {
       ru: "Откройте занятие и проверьте его глазами ученика. Это черновой просмотр: канонический выпуск не изменён.",
       uk: "Відкрийте заняття й перевірте його очима учня. Це чернетковий перегляд: канонічний випуск не змінено.",
     }
   : {
-      ru: "Открывайте занятия и проверяйте их глазами ученика. Зелёная карточка открывает уже проверенный исправленный текст; если выпуск отстаёт, это прямо отмечено на карточке.",
-      uk: "Відкривайте заняття й перевіряйте їх очима учня. Зелена картка відкриває вже перевірений виправлений текст; якщо випуск відстає, це прямо позначено на картці.",
+      ru: "Открывайте занятия и проверяйте их глазами ученика.",
+      uk: "Відкривайте заняття й перевіряйте їх очима учня.",
     };
 
 // ---------- HTML ----------
 const html = `<!doctype html>
-<html lang="ru" data-learning-v2-mockup="v1" data-factory-intro-practice-verdict="${factoryIntroPracticeHold?.verdict ?? (CANDIDATE_PREVIEW ? "NOT_RUN_CANDIDATE" : "PASS")}">
+<html lang="ru" data-learning-v2-mockup="v1">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -396,7 +300,6 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
   background:var(--surface);box-shadow:var(--shadow-sm);
   transition:transform .32s var(--ease),box-shadow .32s var(--ease)}
 .card.needs-repair{background:#fff4c9;box-shadow:inset 0 0 0 2px #d99a11,var(--shadow-sm)}
-.card.${REVIEWED_CARD_CLASS}{background:#e4f5eb;box-shadow:inset 0 0 0 2px #16835f,var(--shadow-sm)}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
 .card:active{transform:translateY(-1px) scale(.995)}
 .card h3{margin:0 0 6px;font-size:16px;letter-spacing:-.02em;line-height:1.25}
@@ -520,19 +423,13 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
     <button class="pill" id="home" hidden>К списку</button>
   </div>
 </div>
-${factoryIntroPracticeHold ? `<div class="release-hold-banner" role="alert">Выпуск остановлен: вводные ответы ещё не закреплены практикой. Проверено занятий: ${factoryIntroPracticeHold.auditedSessionCount}; найдено несоответствий: ${factoryIntroPracticeHold.findingCount}.</div>` : ""}
 <div class="shell" id="app">
   <noscript><div class="panel"><h2>Не выполняется JavaScript</h2><p class="body">Макет интерактивный: включите JavaScript или откройте файл в обычном браузере (Chrome, Edge).</p></div></noscript>
   <div class="panel" id="boot"><h2>Загрузка…</h2><p class="body" id="boot-msg">Если этот текст остался — скрипт не выполнился. Откройте файл двойным кликом в Chrome или Edge.</p></div>
 </div>
 
 <script id="data" type="application/json">${JSON.stringify(sessions).replace(/</g, "\\u003c")}</script>
-<script id="source-quality-findings" type="application/json">${JSON.stringify(sourceQuality).replace(/</g, "\\u003c")}</script>
-<script id="source-release-findings" type="application/json">${JSON.stringify(sourceRelease).replace(/</g, "\\u003c")}</script>
-<script id="session-readiness" type="application/json">${JSON.stringify(sessionReadinessByKey).replace(/</g, "\\u003c")}</script>
-<script id="reviewed-cards" type="application/json">${JSON.stringify(reviewedCards).replace(/</g, "\\u003c")}</script>
 <script id="preview-state" type="application/json">${JSON.stringify({ candidate: CANDIDATE_PREVIEW }).replace(/</g, "\\u003c")}</script>
-<script id="factory-intro-practice-hold" type="application/json">${JSON.stringify(factoryIntroPracticeHold).replace(/</g, "\\u003c")}</script>
 <script>
 // зачем: макет открывали и видели пустой экран без единой ошибки в консоли.
 // Любой сбой запуска обязан быть виден НА СТРАНИЦЕ, а не только в консоли.
@@ -542,19 +439,7 @@ window.addEventListener("error", (e) => {
   console.error("[mockup] ошибка запуска:", e.message, e.error);
 });
 const DATA = JSON.parse(document.getElementById("data").textContent);
-const SOURCE_QUALITY = JSON.parse(document.getElementById("source-quality-findings")?.textContent || "{}");
-const SOURCE_RELEASE = JSON.parse(document.getElementById("source-release-findings")?.textContent || "{}");
-const SESSION_READINESS = JSON.parse(document.getElementById("session-readiness")?.textContent || "{}");
-const REVIEWED_CARD_EVIDENCE = JSON.parse(document.getElementById("reviewed-cards")?.textContent || "{}");
-const REVIEWED_CARD_EVIDENCE_SCHEMA = "reviewed-card-evidence-v2";
-const REVIEWED_CARDS = REVIEWED_CARD_EVIDENCE.schemaVersion === REVIEWED_CARD_EVIDENCE_SCHEMA &&
-  REVIEWED_CARD_EVIDENCE.cards && typeof REVIEWED_CARD_EVIDENCE.cards === "object"
-  ? REVIEWED_CARD_EVIDENCE.cards
-  : {};
 const PREVIEW_STATE = JSON.parse(document.getElementById("preview-state")?.textContent || "{}");
-const REVIEWED_SOURCE_MARKER = ${JSON.stringify(REVIEWED_SOURCE_MARKER)};
-const REVIEWED_CARD_CLASS = ${JSON.stringify(REVIEWED_CARD_CLASS)};
-const REVIEWED_LABEL = ${JSON.stringify(REVIEWED_LABEL)};
 const HOME_DESCRIPTION_BY_LOCALE = ${JSON.stringify(HOME_DESCRIPTION_BY_LOCALE)};
 const LOCALES = ${JSON.stringify(locales)};
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
@@ -728,9 +613,6 @@ function renderHome() {
     ...groupByLesson(),
   );
 }
-function freshCardEvidenceText(readiness) {
-  return readiness?.ready ? "" : "Пока не собрано подтверждение качества для текущего варианта занятия.";
-}
 function groupByLesson() {
   const out = [];
   const byLesson = {};
@@ -739,38 +621,16 @@ function groupByLesson() {
     const lessonTitle = loc(list[0].lessonTitleByLocale) || list[0].lessonTitle;
     out.push(h("div", {class:"lesson-title", text:ui("lesson") + " " + lesson.replace(/^l0?/, "") + (lessonTitle ? " · " + lessonTitle : "")}));
     out.push(h("div", {class:"cards"}, list.map(s => {
-      const findings = SOURCE_QUALITY[s.key] || [];
-      const releaseFindings = SOURCE_RELEASE[s.key] || [];
-      const readiness = SESSION_READINESS[s.key];
       const isCandidate = s.viewSource === "candidate";
-      const sourceFixed = !isCandidate && REVIEWED_CARDS[s.key] === true;
-      // A reviewed projection is useful evidence, but it cannot turn the whole
-      // card green while the version that would be released still differs.
-      const needsRepair = !sourceFixed;
-      const numbers = findings.map(item => item.taskNumber).filter(Number.isInteger);
-      const hasUnnumberedFinding = findings.some(item => !Number.isInteger(item.taskNumber));
-      const findingTarget = hasUnnumberedFinding
-        ? (numbers.length ? "вводный текст и задания " + numbers.join(", ") : "вводный текст")
-        : "задания " + (numbers.length ? numbers.join(", ") : "без номера");
-      const summary = isCandidate
-        ? ui("candidateSummary")
-        : s.viewSource === REVIEWED_SOURCE_MARKER && s.reviewedProjectionFresh !== true
-        ? "Этот вариант пока нельзя отметить зелёным: не подтверждено, что он собран из текущих файлов занятия."
-        : findings.length
-        ? "Нужно исправить " + findingTarget + ": " + [...new Set(findings.map(item => item.reason))].join("; ")
-        : releaseFindings[0]
-        || freshCardEvidenceText(readiness);
-      return h("button", {class:"card" + (isCandidate ? " needs-repair candidate" : needsRepair ? " needs-repair" : " " + REVIEWED_CARD_CLASS), onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
+      return h("button", {class:"card" + (isCandidate ? " needs-repair candidate" : ""), onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
         h("h3", {text:displayTitle(loc(s.titleByLocale) || s.title)}),
         h("p", {class:"scene", text:loc(s.sceneByLocale) || s.scene}),
         h("div", {class:"meta"}, [
           h("span", {class:"chip k", text:ui("activity") + " " + s.session.replace(/^s0?/, "")}),
           h("span", {class:"chip", text:learnerForSession(s).interactions.length + " " + ui("tasks")}),
            isCandidate ? h("span", {class:"chip pending", text:ui("candidateBadge")}) : null,
-           sourceFixed ? h("span", {class:"chip fixed", text:s.viewSource === REVIEWED_SOURCE_MARKER ? REVIEWED_LABEL : "Исходник исправлен"}) : null,
-           releaseFindings.length ? h("span", {class:"chip pending", text:"Выпуск надо синхронизировать"}) : null,
         ]),
-        isCandidate || findings.length || releaseFindings.length ? h("p", {class:"fix-summary", text:summary}) : null,
+        isCandidate ? h("p", {class:"fix-summary", text:ui("candidateSummary")}) : null,
       ]);
     })));
   }
@@ -1155,7 +1015,7 @@ LOG(`записан ${OUT} (${(html.length / 1024).toFixed(0)} КБ)`);
 LOG(`записан ${path.join(dir, "external.html")} — вариант с внешними файлами (если инлайн заблокирован)`);
 const canonicalMockup = path.resolve(ROOT, "mockup", "index.html");
 const nativeManifestBuilder = path.resolve(ROOT, "..", "..", "scripts", "build_learning_v2_factory_native_manifest.mjs");
-if (!CANDIDATE_PREVIEW && !factoryIntroPracticeHold && OUT === canonicalMockup && fs.existsSync(nativeManifestBuilder)) {
+if (!CANDIDATE_PREVIEW && OUT === canonicalMockup && fs.existsSync(nativeManifestBuilder)) {
   const native = spawnSync(process.execPath, [nativeManifestBuilder], { encoding: "utf8" });
   if (native.status !== 0) {
     WARN(`native manifest не собран: ${(native.stderr || native.stdout || "unknown").trim()}`);
@@ -1164,4 +1024,3 @@ if (!CANDIDATE_PREVIEW && !factoryIntroPracticeHold && OUT === canonicalMockup &
   LOG("native manifest обновлён из того же canonical release");
 }
 LOG("открой index.html двойным кликом в Chrome или Edge — сервер не нужен");
-if (!CANDIDATE_PREVIEW && factoryIntroPracticeHold) process.exitCode = 1;

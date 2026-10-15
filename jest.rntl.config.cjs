@@ -46,6 +46,8 @@ module.exports = {
     '<rootDir>/tests/spire_tower_skins_nodes.test.tsx',
     // зачем (координатор 14.10): общий персонаж-монета моментов v3 — все настроения рисуются, reduceMotion = статичная монета
     '<rootDir>/tests/moment_coin_contract.test.tsx',
+    // зачем (координатор 15.10): замер каскада перерисовок вкладок — настоящая разметка, патчи TABS_RENDER в памяти
+    '<rootDir>/tests/tabs_render_cascade_measure.test.tsx',
   ],
   // Официальная настройка gesture-handler для jest (без неё — «RNGestureHandlerModule could not be found»).
   setupFiles: ['react-native-gesture-handler/jestSetup'],

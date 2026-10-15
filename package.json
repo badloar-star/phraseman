@@ -443,6 +443,7 @@
       "<rootDir>/tests/use_session_attempts.test.tsx",
       "<rootDir>/tests/moment_coin_contract.test.tsx",
       "<rootDir>/tests/spire_tower_skins_nodes.test.tsx",
+      "<rootDir>/tests/tabs_render_cascade_measure.test.tsx",
       "<rootDir>/tests/registration_prompt_modal_lifecycle.test.ts"
     ],
     "watchPathIgnorePatterns": [

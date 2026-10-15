@@ -1,209 +1,138 @@
-# Англійська · Урок 2 · Заняття 29 — «What чи which»
+# Англійська · Урок 2 · Заняття 29 — Господар поїхав
 
-**Сцена заняття.** Вихідний у Дубліні. Ви стоїте біля вітрини з двома однаковими на вигляд сумками, і треба якось пояснити продавцеві, про яку з них ідеться.
+**Ситуація.** Ви з Анною прийшли до невеликої майстерні по відремонтовану лампу. Господар поїхав, але відповідає в інтернеті. Його помічник показує вам місцеві й іноземні вироби.
 
-**Як сказати:** `what` ↔ `which` — коли варіантів скільки завгодно, а коли їх два-три і вони відомі
-**Нові слова:** one
-**Повертаються:** price, name, cheap, elegant, street
+**Що ви опануєте:** повідомити, що людини немає на місці, й уточнити, де вона
+**Нові слова:** away
 
 ---
 
 ## Інтро 1
 
-### `what` — коли чекаєш, що назвуть
+### Зараз його тут немає
 
-`what` — «що». Його беруть, коли у відповідь чекають слово або цифру: `What is the price?` — «скільки це коштує?» Вам назвуть число.
+`away` — «не тут, у від’їзді». Господар майстерні поїхав на кілька днів: `He is away`. Це не обов’язково означає, що він далеко: він може бути в сусідньому місті. Відстані до людини цим словом не виміряти.
 
-Так само про назву: `What is the name?` В обох питаннях початок `What is the` однаковий — змінюється тільки останнє слово.
+**Господар поїхав і сьогодні в майстерні не з’явиться. Повідомте повною фразою, що він у від’їзді.**
 
-**На бирці цифри немає. Спитайте продавця, скільки це коштує.**
-
-- ✅ **What is the price?**
-- ❌ What the price is? — *`is` поїхало в кінець, а початок `What is the` розбивати не можна.*
-- ❌ Price what is? — *Питання починають із `What is the`, а не з речі.*
+- ✅ **He is away.**
+- ❌ He away. — *Між `He` і `away` потрібно `is`.*
+- ❌ He is not away. — *Це заперечує відсутність. За умовою господар поїхав.*
 
 ---
 
 ## Інтро 2
 
-### `which` — коли треба вказати на одну
+### У від’їзді, але на зв’язку
 
-`which` — «котра з цих». Його беруть, коли обирають із кількох уже названих або видимих речей: `Which bag?` — «котра сумка?» (`bag` — «сумка».)
+`online` — «у мережі». Людина може бути `away` і водночас `online`: її немає в майстерні, зате вона відповідає в інтернеті. `Is he online?` — «Він у мережі?» Сайт не посадить його назад за робочий стіл, але поставити запитання допоможе.
 
-`What bag?` — «Що за сумка?» або «Про яку сумку йдеться?» Коли обидві перед вами й треба вибрати одну, природніше `Which bag?`.
+**Господар поїхав. Ви хочете написати йому зараз. Запитайте, чи він у мережі.**
 
-**Продавець виклав дві сумки. Спитайте, котра з них.**
-
-- ✅ **Which bag?**
-- ❌ What bag? — *Так уточнюють, про яку сумку йдеться. Тут треба обрати одну з двох видимих сумок: `Which bag?`.*
-- ❌ Which the bag? — *Зайве `the`. Питання з двох слів: `Which bag?`*
+- ✅ **Is he online?**
+- ❌ Is he away? — *Це запитання, чи він у від’їзді. Про це ви вже знаєте.*
+- ❌ He is online. — *Це повідомлення. Для запитання поставте `Is` перед `he`.*
 
 ---
 
 ## Інтро 3
 
-### `Which one?` — вчіть цілком
+### Дізнатися місце
 
-`one` — заміняє річ, яку вже назвали. Замість `Which bag?` («котра сумка?») — `Which one?`
+`Where is he?` — «Де він?» Після `Where` стоїть `is`, потім `he`. Якщо поїхали господар і його дружина, запитання буде `Where are they?`. А `Are they away?` лише уточнює, чи вони у від’їзді; конкретного місця воно не запитує.
 
-Так питають, коли сумки вже на прилавку і називати їх удруге ні до чого. Продавець і сам зрозуміє, про що мова: речі ж перед ним. Вчіть цю пару цілком.
+**Помічник повідомив, що господар із дружиною поїхали. Запитайте, де вони.**
 
-**Продавець тримає дві сумки і чекає. Спитайте, котра з них.**
-
-- ✅ **Which one?**
-- ❌ Which bag one? — *Або `Which bag?`, або `Which one?` Разом вони не йдуть: `one` цю сумку й заміняє.*
-- ❌ What one? — *Коли обирають одну з уже названих речей, кажуть `Which one?`.*
+- ✅ **Where are they?**
+- ❌ Where they are? — *У цьому запитанні `are` ставимо перед `they`.*
+- ❌ Are they away? — *Це запитання, чи вони у від’їзді. Вам потрібно дізнатися місце.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-29:i01; family: listen_choose -->
-Ціль: `which`
-Варіанти: `which` · `cheap` · `price`
-- cheap — *Це «дешево». Слово інше: `which` про вибір, `cheap` про ціну.*
-- price — *«Ціна». Прозвучало `which` — це про вибір, а не про гроші.*
+**1 · Господар поїхав на кілька днів. Повідомте про це повною фразою**
+<!-- interaction_id: en:lesson-02:session-29:i01; family: phrase_builder -->
+Плитки: `away` `is` `He` `are` → **He is away.**
+*(плитка `are` зайва: тут потрібно `is` — `He is away.`)*
 
+**2 · Послухайте фразу про виріб**
+<!-- interaction_id: en:lesson-02:session-29:i02; family: listen_choose -->
+🔊 *It is local.* → **It is local.** · It is foreign. · It is broken.
+- It is foreign. — *У записі останнє слово — `local`, а в цьому варіанті — `foreign`.*
+- It is broken. — *У записі останнє слово — `local`, а в цьому варіанті — `broken`.*
 
-**2 · Вставте слово — на бирці немає цифри, питаєте про вартість**
-<!-- interaction_id: en:lesson-02:session-29:i02; family: context_gap_grammar -->
-Ціль: `___ is the price?`
-Варіанти: `what` · `which` · `one`
-- which — *`which` просить показати одну річ із кількох. А ви чекаєте у відповідь цифру.*
-- one — *`one` стає замість речі, а тут річ названо прямо — `price`. Початок питання інший.*
+**3 · Запитайте, чи господар у мережі**
+<!-- interaction_id: en:lesson-02:session-29:i03; family: context_gap_grammar -->
+___ he online? → **Is** · Am · Are
+- Am — *З `he` потрібно `Is`.*
+- Are — *Запитання — `Is he online?`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-29:i04; family: speed_match -->
+away — не тут, у від’їзді · local — місцевий · foreign — іноземний · online — у мережі
 
-**3 · Картка слова — one**
-<!-- interaction_id: en:lesson-02:session-29:i03; family: listen_choose -->
-Ціль: `one`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-29:i05; family: listen_build_dictation -->
+🔊 *They are not online.* Плитки: `online` `not` `are` `They` `is` → **They are not online.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not online.`)*
 
-**4 · Вставте слово — перед вами дві сумки, і називати їх удруге ні до чого**
-<!-- interaction_id: en:lesson-02:session-29:i04; family: context_gap_grammar -->
-Ціль: `Which ___ ?`
-Варіанти: `one` · `what` · `price`
-- what — *`what` уже не потрібне: питання почато з `Which`. Після нього йде те, що обирають.*
-- price — *«Ціна» — це річ. А тут ви про сумку, яку вже назвали.*
+**6 · Ви знаєте господаря, але не знаєте, куди він поїхав. Запитайте, де він**
+<!-- interaction_id: en:lesson-02:session-29:i06; family: phrase_builder -->
+Плитки: `he` `is` `Where` `Who` → **Where is he?**
+*(плитка `Who` зайва: тут потрібно `Where` — `Where is he?`)*
 
+**7 · Господар із дружиною поїхали на кілька днів. Коротко повідомте про це**
+<!-- interaction_id: en:lesson-02:session-29:i07; family: scripted_repeat_compare -->
+🎙 **They're away.**
 
-**5 · Складіть фразу — продавець назвав дві вулиці, де є його крамниці**
-<!-- interaction_id: en:lesson-02:session-29:i05; family: phrase_builder -->
-Ціль: `Which street?`
+**8 · Лампу полагодили. На «Is it broken?» доповніть коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-29:i08; family: context_gap_grammar -->
+No, it ___ not. → **is** · am · are
+- am — *З `it` потрібно `is`.*
+- are — *Відповідь — `No, it is not`.*
 
-**6 · Послухайте і виберіть — що прозвучало**
-<!-- interaction_id: en:lesson-02:session-29:i06; family: listen_choose -->
-Ціль: `cheap`
-Варіанти: `cheap` · `street` · `name`
-- street — *«Вулиця». Прозвучало `cheap` — це про ціну, а не про місце.*
-- name — *«Назва». Прозвучало `cheap` — це оцінка ціни, а не те, як річ звуть.*
+**9 · Послухайте фразу про виріб**
+<!-- interaction_id: en:lesson-02:session-29:i09; family: listen_choose -->
+🔊 *It is foreign.* → **It is foreign.** · It is local. · It is broken.
+- It is local. — *У записі останнє слово — `foreign`, а в цьому варіанті — `local`.*
+- It is broken. — *У записі останнє слово — `foreign`, а в цьому варіанті — `broken`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-29:i10; family: speed_match -->
+broken — зламаний · no — ні · away — не тут, у від’їзді · online — у мережі
 
-**7 · Вставте слово — на прилавку дві сумки, ви питаєте про гарну**
-<!-- interaction_id: en:lesson-02:session-29:i07; family: context_gap_grammar -->
-Ціль: `___ one is elegant?`
-Варіанти: `which` · `what` · `name`
-- what — *Сумки лежать перед вами, вибір із двох. Отже `which`.*
-- name — *`name` — «назва». Питання не з нього починають.*
+**11 · Послухайте й складіть запитання**
+<!-- interaction_id: en:lesson-02:session-29:i11; family: listen_build_dictation -->
+🔊 *Is she away?* Плитки: `away` `she` `Is` `Who` → **Is she away?**
+*(плитка `Who` зайва: тут потрібно `Is` — `Is she away?`)*
 
+**12 · Дві вази виготовлені у вашому місті. Скажіть повною фразою, що вони місцеві**
+<!-- interaction_id: en:lesson-02:session-29:i12; family: phrase_builder -->
+Плитки: `local` `are` `They` `is` → **They are local.**
+*(плитка `is` зайва: тут потрібно `are` — `They are local.`)*
 
-**8 · Складіть фразу — «скільки це коштує?»**
-<!-- interaction_id: en:lesson-02:session-29:i08; family: phrase_builder -->
-Ціль: `What is the price?`
+**13 · Помічник увімкнув відремонтовану лампу, вона працює. Коротко скажіть, що вона не зламана**
+<!-- interaction_id: en:lesson-02:session-29:i13; family: scripted_repeat_compare -->
+🎙 **It's not broken.**
 
-**9 · Послухайте і складіть — «котра з них?»**
-<!-- interaction_id: en:lesson-02:session-29:i09; family: listen_build_dictation -->
-Ціль: `Which one?`
-🔊 *Which one?* Плитки: `Which` `one` `is`
-*Плитка `is` зайва: це коротке запитання вибору; після `Which one?` більше нічого не потрібно.*
+**14 · Запитайте, де зараз господар і його дружина**
+<!-- interaction_id: en:lesson-02:session-29:i14; family: context_gap_grammar -->
+Where ___ they? → **are** · am · is
+- am — *З `they` потрібно `are`.*
+- is — *Запитання про двох — `Where are they?`.*
 
-**10 · Картка слова — elegant**
-<!-- interaction_id: en:lesson-02:session-29:i10; family: listen_choose -->
-Ціль: `elegant`
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-29:i15; family: listen_choose -->
+🔊 *Who is online?* → **Who is online?** · Who is away? · Who is local?
+- Who is away? — *У записі останнє слово — `online`, а в цьому варіанті — `away`.*
+- Who is local? — *У записі останнє слово — `online`, а в цьому варіанті — `local`.*
 
-**11 · Вставте слово — продавець назвав річ незнайомим словом, ви чекаєте, що він його повторить**
-<!-- interaction_id: en:lesson-02:session-29:i11; family: context_gap_grammar -->
-Ціль: `___ is the name?`
-Варіанти: `What` · `Which` · `One`
-- Which — *`which` просить обрати з кількох. А ви чекаєте, що вам назвуть слово.*
-- One — *`one` заміняє річ, а питання з нього не починають.*
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-29:i16; family: speed_match -->
+local — місцевий · foreign — іноземний · broken — зламаний · no — ні
 
+**17 · За тиждень ви знову прийшли до майстерні й не бачите господаря. Запитайте помічника, чи він у від’їзді**
+<!-- interaction_id: en:lesson-02:session-29:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is he away?**
 
-**12 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-29:i12; family: speed_match -->
-Пари: `what` — що · `which` — котра з · `elegant` — вишуканий · `price` — ціна
-Ціль: `what · which · elegant · price`
-
-**13 · Вставте слово — сумка коштує три євро, і це дешево**
-<!-- interaction_id: en:lesson-02:session-29:i13; family: context_gap_grammar -->
-Ціль: `It is ___ .`
-Варіанти: `cheap` · `elegant` · `street`
-- elegant — *«Вишуканий» — про вигляд речі, а не про ціну. Три євро — це `cheap`.*
-- street — *«Вулиця». Про вартість так не скажеш.*
-
-
-**14 · Складіть повідомлення — продавець показує просту, але вишукану сумку**
-<!-- interaction_id: en:lesson-02:session-29:i14; family: phrase_builder -->
-Ціль: `It is elegant.`
-Плитки: `It` `is` `elegant` `cheap`
-*Плитка `cheap` зайва: сумка може бути недорогою, але в цьому повідомленні ви описуєте її як вишукану — `elegant`.*
-
-**15 · Промовте фразу — «котра з них дешева?»**
-<!-- interaction_id: en:lesson-02:session-29:i15; family: scripted_repeat_compare -->
-Ціль: `Which one is cheap?`
-
-**16 · Вставте слово — перед вами дві сумки; запитайте, котра з них вишукана**
-<!-- interaction_id: en:lesson-02:session-29:i16; family: context_gap_grammar -->
-Ціль: `Which one is ___ ?`
-Варіанти: `elegant` · `cheap` · `price`
-- cheap — *`cheap` — «дешева». У питанні треба назвати вишукану сумку.*
-- price — *`price` — «ціна». Тут описують вигляд сумки, а не її вартість.*
-
-
-**17 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-29:i17:s01; family: scripted_repeat_compare -->
-Ціль: `Which one?`
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-29:i17:s02; family: scripted_repeat_compare -->
-Ціль: `What is the price?`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-29:i17:s03; family: scripted_repeat_compare -->
-Ціль: `What is the name?`
-
-## Для сборщика
-
-new_words: one
-
-modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=context_gap_grammar, 5=phrase_builder, 6=listen_choose, 7=context_gap_grammar, 8=phrase_builder, 9=listen_build_dictation, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=context_gap_grammar, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| price | 1, 2, 4, 8, 12, 17 | 8 (складання), 12 (дошка пар) |
-| name | 6, 7, 11, 14, 17 | 17 (фінал) |
-| cheap | 13, 14, 15 | 13 (вставка), 15 (складання) |
-| elegant | 7, 10, 13, 14, 16 | 14 (вставка), 16 (складання) |
-| street | 5, 6, 13 | 5 (складання) |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | What is the price? | так — `What is the price?` розібрано в тексті |
-| Інтро 2 | Which bag? | так — `Which bag?` розібрано, `bag` перекладено |
-| Інтро 3 | Which one? | так — `Which one?` розібрано, `one` перекладено |
-
-**3. Дошка пар (завдання 12)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| what | з інтро 1 | завдання 2, 8 |
-| which | з інтро 2 і 3 | завдання 1, 5, 6, 7, 9 |
-| elegant | картка 10 | завдання 13 (пастка), 14 |
-| price | з минулих занять | завдання 1, 2, 4, 8 |

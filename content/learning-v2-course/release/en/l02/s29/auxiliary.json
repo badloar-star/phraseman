@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-29:intro1:r2": {
+          "ru": "Между `He` и `away` нужно `is`.",
+          "uk": "Між `He` і `away` потрібно `is`."
+        },
+        "en:lesson-02:session-29:intro1:r3": {
+          "ru": "Это отрицает отсутствие. По условию хозяин уехал.",
+          "uk": "Це заперечує відсутність. За умовою господар поїхав."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-29:intro2:r2": {
+          "ru": "Это вопрос, в отъезде ли он. Об этом вы уже знаете.",
+          "uk": "Це запитання, чи він у від’їзді. Про це ви вже знаєте."
+        },
+        "en:lesson-02:session-29:intro2:r3": {
+          "ru": "Это сообщение. Для вопроса поставьте `Is` перед `he`.",
+          "uk": "Це повідомлення. Для запитання поставте `Is` перед `he`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-29:intro3:r2": {
+          "ru": "В этом вопросе `are` ставим перед `they`.",
+          "uk": "У цьому запитанні `are` ставимо перед `they`."
+        },
+        "en:lesson-02:session-29:intro3:r3": {
+          "ru": "Это вопрос, в отъезде ли они. Вам нужно узнать место.",
+          "uk": "Це запитання, чи вони у від’їзді. Вам потрібно дізнатися місце."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2df93b67e8c1ea51fadfe713a6188e2d3d9c30663e40210fbbd4ade77d15b429"
+}

@@ -7,89 +7,43 @@
       "interactionId": "en:lesson-03:session-55:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-55:i01:r1",
-          "text": "shape"
-        },
-        {
-          "responseId": "en:lesson-03:session-55:i01:r2",
-          "text": "ship"
-        },
-        {
-          "responseId": "en:lesson-03:session-55:i01:r3",
-          "text": "shade"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите рестораны, которые вы уже обсудили: «Рестораны там»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-55:i01:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите рестораны, которые вы уже обсудили: «Рестораны там»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-55:i01:audio",
-          "transcript": "shape"
+        "family": "phrase_builder",
+        "targetPhrase": "The restaurants are there.",
+        "localizedMeaning": {
+          "ru": "Покажите рестораны, которые вы уже обсудили: «Рестораны там»",
+          "uk": "Покажіть ресторани, які ви вже обговорили: «Ресторани там»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "The",
+          "restaurants",
+          "are",
+          "there"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-55:i01:r1",
-            "targetText": "shape",
-            "meaningByLocale": {
-              "ru": "форма",
-              "uk": "форма"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-55:i01:r2",
-            "targetText": "ship",
-            "meaningByLocale": {
-              "ru": "корабль",
-              "uk": "корабель"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-55:i01:r3",
-            "targetText": "shade",
-            "meaningByLocale": {
-              "ru": "тень",
-              "uk": "тінь"
+            "responseId": "en:lesson-03:session-55:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Покажите рестораны, которые вы уже обсудили: «Рестораны там»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The restaurants are there.`",
+              "uk": "тут потрібно `are` — `The restaurants are there.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-55:i01:r2",
-            "correct": false,
-            "testedDimension": "звук",
-            "feedbackByLocale": {
-              "ru": "Вы выбрали `ship`: оно созвучно, но в записи слышно `shape` — «форма».",
-              "uk": "Ви обрали `ship`: воно співзвучне, але в записі чути `shape` — «форма»."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-55:i01:r3",
-            "correct": false,
-            "testedDimension": "звук",
-            "feedbackByLocale": {
-              "ru": "Вы выбрали `shade`: начало похоже, но в записи слышно `shape` — «форма».",
-              "uk": "Ви обрали `shade`: початок схожий, але в записі чути `shape` — «форма»."
-            }
-          }
-        ],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "shape",
-          "definitionByLocale": {
-            "ru": "«форма». Контур или вид предмета.",
-            "uk": "«форма». Контур або вид предмета."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -98,39 +52,75 @@
       "interactionId": "en:lesson-03:session-55:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-55:i02:r1",
+          "text": "cafes"
+        },
+        {
+          "responseId": "en:lesson-03:session-55:i02:r2",
+          "text": "restaurants"
+        },
+        {
+          "responseId": "en:lesson-03:session-55:i02:r3",
+          "text": "hotels"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-55:i02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-55:i02:audio",
-          "transcript": "material"
+          "transcript": "cafes"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "material",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ],
-        "wordCard": {
-          "word": "material",
-          "definitionByLocale": {
-            "ru": "«материал». То, из чего сделан предмет.",
-            "uk": "«матеріал». Те, з чого зроблено предмет."
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-55:i02:r1",
+            "targetText": "cafes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i02:r2",
+            "targetText": "restaurants",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i02:r3",
+            "targetText": "hotels",
+            "meaningByLocale": null
           }
-        }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `cafes`, а в этом варианте — `restaurants`.",
+              "uk": "У записі перше слово — `cafes`, а в цьому варіанті — `restaurants`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `cafes`, а в этом варианте — `hotels`.",
+              "uk": "У записі перше слово — `cafes`, а в цьому варіанті — `hotels`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -138,31 +128,67 @@
       "interactionId": "en:lesson-03:session-55:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-55:i03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-55:i03:audio",
-          "transcript": "pattern"
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите несколько кафе одним английским словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-55:i03:r1",
+          "text": "cafes"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "pattern",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-03:session-55:i03:r2",
+          "text": "cafe"
+        },
+        {
+          "responseId": "en:lesson-03:session-55:i03:r3",
+          "text": "restaurants"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите несколько кафе одним английским словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите несколько кафе одним английским словом",
+          "uk": "Назвіть кілька кафе одним англійським словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i03:r1",
+            "text": "cafes"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i03:r2",
+            "text": "cafe"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i03:r3",
+            "text": "restaurants"
+          }
+        ],
+        "testedDimension": "Назовите несколько кафе одним английским словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите несколько кафе одним английским словом",
+            "feedbackByLocale": {
+              "ru": "Это одно кафе. Несколько — `cafes`.",
+              "uk": "Це одне кафе. Кілька — `cafes`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите несколько кафе одним английским словом",
+            "feedbackByLocale": {
+              "ru": "Это рестораны. Кафе — `cafes`.",
+              "uk": "Це ресторани. Кафе — `cafes`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -171,31 +197,71 @@
       "interactionId": "en:lesson-03:session-55:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-55:i04:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-55:i04:audio",
-          "transcript": "shape"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-55:i04:p1",
+            "target": "cafes",
+            "meaningByLocale": {
+              "ru": "кафе",
+              "uk": "кафе"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-55:i04:p2",
+            "target": "responsible",
+            "meaningByLocale": {
+              "ru": "ответственный",
+              "uk": "відповідальний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-55:i04:p3",
+            "target": "independent",
+            "meaningByLocale": {
+              "ru": "самостоятельный",
+              "uk": "самостійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-55:i04:p4",
+            "target": "restaurants",
+            "meaningByLocale": {
+              "ru": "рестораны",
+              "uk": "ресторани"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cafes",
+          "responsible",
+          "independent",
+          "restaurants"
+        ],
+        "rightColumn": [
+          "кафе",
+          "ответственный",
+          "самостоятельный",
+          "рестораны"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "shape",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -204,32 +270,46 @@
       "interactionId": "en:lesson-03:session-55:i05",
       "ordinal": 8,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-55:i05:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-55:i05:audio",
-          "transcript": "material"
+          "transcript": "These are cafes."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "material",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "hiddenTargetPhrase": "These are cafes.",
+        "orderedTokens": [
+          "These",
+          "are",
+          "cafes"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-55:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `These are cafes.`",
+              "uk": "тут потрібно `are` — `These are cafes.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -237,83 +317,44 @@
       "interactionId": "en:lesson-03:session-55:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-55:i06:r1",
-          "text": "pattern"
-        },
-        {
-          "responseId": "en:lesson-03:session-55:i06:r2",
-          "text": "patent"
-        },
-        {
-          "responseId": "en:lesson-03:session-55:i06:r3",
-          "text": "patter"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы уже обсудили несколько кафе. Спросите «Где кафе?»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-55:i06:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы уже обсудили несколько кафе. Спросите «Где кафе?»",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-55:i06:audio",
-          "transcript": "pattern"
+        "family": "phrase_builder",
+        "targetPhrase": "Where are the cafes?",
+        "localizedMeaning": {
+          "ru": "Вы уже обсудили несколько кафе. Спросите «Где кафе?»",
+          "uk": "Ви вже обговорили кілька кафе. Запитайте «Де кафе?»"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "cafes"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-55:i06:r1",
-            "targetText": "pattern",
-            "meaningByLocale": {
-              "ru": "узор",
-              "uk": "візерунок"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-55:i06:r2",
-            "targetText": "patent",
-            "meaningByLocale": {
-              "ru": "патент",
-              "uk": "патент"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-55:i06:r3",
-            "targetText": "patter",
-            "meaningByLocale": {
-              "ru": "стук капель",
-              "uk": "стукіт крапель"
+            "responseId": "en:lesson-03:session-55:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы уже обсудили несколько кафе. Спросите «Где кафе?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `Where are the cafes?`",
+              "uk": "тут потрібно `are` — `Where are the cafes?`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-55:i06:r2",
-            "correct": false,
-            "testedDimension": "звук",
-            "feedbackByLocale": {
-              "ru": "`Patent` похоже по началу, но в записи `pattern` — «узор».",
-              "uk": "`Patent` схоже на початку, але в записі `pattern` — «візерунок»."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-55:i06:r3",
-            "correct": false,
-            "testedDimension": "звук",
-            "feedbackByLocale": {
-              "ru": "`Patter` звучит похоже, но в записи `pattern` — «узор».",
-              "uk": "`Patter` звучить схоже, але в записі `pattern` — «візерунок»."
-            }
-          }
-        ],
-        "isWordCard": false
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -323,21 +364,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Анна выполняет обещанное. Скажите «Она ответственная» с сокращением",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-55:i07:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Анна выполняет обещанное. Скажите «Она ответственная» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-55:i07:audio",
-          "transcript": "shape"
+          "transcript": "She's responsible."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "shape",
+        "targetPhrase": "She's responsible.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -354,83 +395,68 @@
       "interactionId": "en:lesson-03:session-55:i08",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Вы показываете несколько кафе дальше на карте",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-55:i08:r1",
-          "text": "material"
+          "text": "Those"
         },
         {
           "responseId": "en:lesson-03:session-55:i08:r2",
-          "text": "matter"
+          "text": "That"
         },
         {
           "responseId": "en:lesson-03:session-55:i08:r3",
-          "text": "mature"
+          "text": "This"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-55:i08:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете несколько кафе дальше на карте",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-55:i08:audio",
-          "transcript": "material"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете несколько кафе дальше на карте",
+          "uk": "Ви показуєте кілька кафе далі на карті"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "gappedTargetPhrase": "___ are cafes.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-03:session-55:i08:r1",
-            "targetText": "material",
-            "meaningByLocale": {
-              "ru": "материал",
-              "uk": "матеріал"
-            }
+            "text": "Those"
           },
           {
             "responseId": "en:lesson-03:session-55:i08:r2",
-            "targetText": "matter",
-            "meaningByLocale": {
-              "ru": "вопрос",
-              "uk": "питання"
-            }
+            "text": "That"
           },
           {
             "responseId": "en:lesson-03:session-55:i08:r3",
-            "targetText": "mature",
-            "meaningByLocale": {
-              "ru": "зрелый",
-              "uk": "зрілий"
-            }
+            "text": "This"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
+        "testedDimension": "Вы показываете несколько кафе дальше на карте",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-55:i08:r2",
             "correct": false,
-            "testedDimension": "звук",
+            "testedDimension": "Вы показываете несколько кафе дальше на карте",
             "feedbackByLocale": {
-              "ru": "`Matter` короче; в записи звучит `material` — «материал».",
-              "uk": "`Matter` коротше; у записі звучить `material` — «матеріал»."
+              "ru": "Несколько дальше — `Those`, а `That` для одного.",
+              "uk": "Кілька далі — `Those`, а `That` для одного."
             }
           },
           {
             "responseId": "en:lesson-03:session-55:i08:r3",
             "correct": false,
-            "testedDimension": "звук",
+            "testedDimension": "Вы показываете несколько кафе дальше на карте",
             "feedbackByLocale": {
-              "ru": "`Mature` похоже началом, но в записи `material` — «материал».",
-              "uk": "`Mature` схоже початком, але у записі `material` — «матеріал»."
+              "ru": "`This` для одного рядом. Здесь несколько дальше: `Those`.",
+              "uk": "`This` для одного поруч. Тут кілька далі: `Those`."
             }
           }
-        ],
-        "isWordCard": false
+        ]
       },
       "scriptedAlternate": null
     },
@@ -438,32 +464,75 @@
       "interactionId": "en:lesson-03:session-55:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте описание участника, который зависит от чужой помощи",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-55:i09:r1",
+          "text": "He is dependent."
+        },
+        {
+          "responseId": "en:lesson-03:session-55:i09:r2",
+          "text": "He is independent."
+        },
+        {
+          "responseId": "en:lesson-03:session-55:i09:r3",
+          "text": "He is responsible."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-55:i09:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте описание участника, который зависит от чужой помощи",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-55:i09:audio",
-          "transcript": "pattern"
+          "transcript": "He is dependent."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "pattern",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-55:i09:r1",
+            "targetText": "He is dependent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i09:r2",
+            "targetText": "He is independent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i09:r3",
+            "targetText": "He is responsible.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте описание участника, который зависит от чужой помощи",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `dependent`, а в этом варианте — `independent`.",
+              "uk": "У записі останнє слово — `dependent`, а в цьому варіанті — `independent`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте описание участника, который зависит от чужой помощи",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `dependent`, а в этом варианте — `responsible`.",
+              "uk": "У записі останнє слово — `dependent`, а в цьому варіанті — `responsible`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -473,58 +542,58 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — отметьте свойства в листе осмотра",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — отметьте свойства в листе осмотра",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-55:i10:p1",
-            "target": "shape",
+            "target": "dependent",
             "meaningByLocale": {
-              "ru": "форма",
-              "uk": "форма"
+              "ru": "зависимый",
+              "uk": "залежний"
             }
           },
           {
             "pairId": "en:lesson-03:session-55:i10:p2",
-            "target": "material",
+            "target": "unreliable",
             "meaningByLocale": {
-              "ru": "материал",
-              "uk": "матеріал"
+              "ru": "ненадёжный",
+              "uk": "ненадійний"
             }
           },
           {
             "pairId": "en:lesson-03:session-55:i10:p3",
-            "target": "pattern",
+            "target": "restaurants",
             "meaningByLocale": {
-              "ru": "узор",
-              "uk": "візерунок"
+              "ru": "рестораны",
+              "uk": "ресторани"
             }
           },
           {
             "pairId": "en:lesson-03:session-55:i10:p4",
-            "target": "round",
+            "target": "responsible",
             "meaningByLocale": {
-              "ru": "круглый",
-              "uk": "круглий"
+              "ru": "ответственный",
+              "uk": "відповідальний"
             }
           }
         ],
         "leftColumn": [
-          "shape",
-          "material",
-          "pattern",
-          "round"
+          "dependent",
+          "unreliable",
+          "restaurants",
+          "responsible"
         ],
         "rightColumn": [
-          "форма",
-          "материал",
-          "узор",
-          "круглый"
+          "зависимый",
+          "ненадёжный",
+          "рестораны",
+          "ответственный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -546,30 +615,45 @@
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу о форме зеркала",
+      "prompt": "Послушайте и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-55:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу о форме зеркала",
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-55:i11:audio",
-          "transcript": "The shape is round."
+          "transcript": "The cafes are here."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The shape is round.",
+        "hiddenTargetPhrase": "The cafes are here.",
         "orderedTokens": [
           "The",
-          "shape",
-          "is",
-          "round"
+          "cafes",
+          "are",
+          "here"
         ],
-        "distractorTokens": [
-          "These"
-        ]
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-55:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The cafes are here.`",
+              "uk": "тут потрібно `are` — `The cafes are here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -577,100 +661,76 @@
       "interactionId": "en:lesson-03:session-55:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте свойство образца рядом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-55:i12:r1",
-          "text": "soft"
-        },
-        {
-          "responseId": "en:lesson-03:session-55:i12:r2",
-          "text": "striped"
-        },
-        {
-          "responseId": "en:lesson-03:session-55:i12:r3",
-          "text": "round"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна сама решает, где и когда проводить встречи. Скажите «Она независима»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте свойство образца рядом",
+      "accessibilityLabel": "Анна сама решает, где и когда проводить встречи. Скажите «Она независима»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте свойство образца рядом",
-          "uk": "Вставте властивість зразка поруч"
+        "family": "phrase_builder",
+        "targetPhrase": "She is independent.",
+        "localizedMeaning": {
+          "ru": "Анна сама решает, где и когда проводить встречи. Скажите «Она независима»",
+          "uk": "Анна сама вирішує, де й коли проводити зустрічі. Скажіть «Вона незалежна»"
         },
-        "gappedTargetPhrase": "This material is ___.",
-        "gapOptions": [
+        "orderedTokens": [
+          "She",
+          "is",
+          "independent"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-55:i12:r1",
-            "text": "soft"
-          },
-          {
-            "responseId": "en:lesson-03:session-55:i12:r2",
-            "text": "striped"
-          },
-          {
-            "responseId": "en:lesson-03:session-55:i12:r3",
-            "text": "round"
+            "responseId": "en:lesson-03:session-55:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна сама решает, где и когда проводить встречи. Скажите «Она независима»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is independent.`",
+              "uk": "тут потрібно `is` — `She is independent.`"
+            }
           }
         ],
-        "testedDimension": "свойство материала",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-55:i12:r2",
-            "correct": false,
-            "testedDimension": "свойство материала",
-            "feedbackByLocale": {
-              "ru": "`Striped` описывает узор, а в руках у вас мягкий материал: `soft`.",
-              "uk": "`Striped` описує візерунок, а в руках у вас м’який матеріал: `soft`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-55:i12:r3",
-            "correct": false,
-            "testedDimension": "свойство материала",
-            "feedbackByLocale": {
-              "ru": "`Round` описывает форму, а здесь нужна мягкость материала: `soft`.",
-              "uk": "`Round` описує форму, а тут потрібна м’якість матеріалу: `soft`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-55:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите подпись у дальней стены",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сервис часто нарушает обещания. Скажите «Он ненадёжный» с сокращением",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите подпись у дальней стены",
+      "audioTargetIds": [
+        "en:lesson-03:session-55:i13:audio"
+      ],
+      "accessibilityLabel": "Сервис часто нарушает обещания. Скажите «Он ненадёжный» с сокращением",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "That pattern is striped.",
-        "localizedMeaning": {
-          "ru": "Соберите подпись у дальней стены",
-          "uk": "Складіть підпис біля дальньої стіни"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-55:i13:audio",
+          "transcript": "It's unreliable."
         },
-        "orderedTokens": [
-          "That",
-          "pattern",
-          "is",
-          "striped"
-        ],
-        "authoredDistractorTokens": [
-          "the",
-          "Those"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's unreliable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -678,83 +738,68 @@
       "interactionId": "en:lesson-03:session-55:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите смысл подписи в листе",
+      "prompt": "Вы нашли на карте несколько уже выбранных кафе",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-55:i14:r1",
-          "text": "The shape is square."
+          "text": "are"
         },
         {
           "responseId": "en:lesson-03:session-55:i14:r2",
-          "text": "The shape is round."
+          "text": "is"
         },
         {
           "responseId": "en:lesson-03:session-55:i14:r3",
-          "text": "These shapes are square."
+          "text": "am"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-55:i14:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите смысл подписи в листе",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы нашли на карте несколько уже выбранных кафе",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-55:i14:audio",
-          "transcript": "The shape is square."
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы нашли на карте несколько уже выбранных кафе",
+          "uk": "Ви знайшли на карті кілька вже вибраних кафе"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "gappedTargetPhrase": "The cafes ___ here.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-03:session-55:i14:r1",
-            "targetText": "The shape is square.",
-            "meaningByLocale": {
-              "ru": "Форма квадратная.",
-              "uk": "Форма квадратна."
-            }
+            "text": "are"
           },
           {
             "responseId": "en:lesson-03:session-55:i14:r2",
-            "targetText": "The shape is round.",
-            "meaningByLocale": {
-              "ru": "Форма круглая.",
-              "uk": "Форма кругла."
-            }
+            "text": "is"
           },
           {
             "responseId": "en:lesson-03:session-55:i14:r3",
-            "targetText": "These shapes are square.",
-            "meaningByLocale": {
-              "ru": "Эти формы квадратные.",
-              "uk": "Ці форми квадратні."
-            }
+            "text": "am"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
+        "testedDimension": "Вы нашли на карте несколько уже выбранных кафе",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-55:i14:r2",
             "correct": false,
-            "testedDimension": "значение",
+            "testedDimension": "Вы нашли на карте несколько уже выбранных кафе",
             "feedbackByLocale": {
-              "ru": "В записи `square` — «квадратная», а не `round` — «круглая».",
-              "uk": "У записі `square` — «квадратна», а не `round` — «кругла»."
+              "ru": "Кафе несколько: `The cafes are here`.",
+              "uk": "Кафе кілька: `The cafes are here`."
             }
           },
           {
             "responseId": "en:lesson-03:session-55:i14:r3",
             "correct": false,
-            "testedDimension": "число",
+            "testedDimension": "Вы нашли на карте несколько уже выбранных кафе",
             "feedbackByLocale": {
-              "ru": "В записи одна форма: `The shape is`, а не несколько форм.",
-              "uk": "У записі одна форма: `The shape is`, а не кілька форм."
+              "ru": "С `The cafes` нужно `are`.",
+              "uk": "З `The cafes` потрібне `are`."
             }
           }
-        ],
-        "isWordCard": false
+        ]
       },
       "scriptedAlternate": null
     },
@@ -762,33 +807,75 @@
       "interactionId": "en:lesson-03:session-55:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите подпись о нескольких узорах рядом",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте описание Анны, которая сама организует встречи",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-55:i15:r1",
+          "text": "She is independent."
+        },
+        {
+          "responseId": "en:lesson-03:session-55:i15:r2",
+          "text": "She is dependent."
+        },
+        {
+          "responseId": "en:lesson-03:session-55:i15:r3",
+          "text": "She is unreliable."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-55:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите подпись о нескольких узорах рядом",
+      "accessibilityLabel": "Послушайте описание Анны, которая сама организует встречи",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-55:i15:audio",
-          "transcript": "These patterns are pale."
+          "transcript": "She is independent."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These patterns are pale.",
-        "orderedTokens": [
-          "These",
-          "patterns",
-          "are",
-          "pale"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-55:i15:r1",
+            "targetText": "She is independent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i15:r2",
+            "targetText": "She is dependent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i15:r3",
+            "targetText": "She is unreliable.",
+            "meaningByLocale": null
+          }
         ],
-        "distractorTokens": [
-          "Those",
-          "the"
-        ]
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-55:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте описание Анны, которая сама организует встречи",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `independent`, а в этом варианте — `dependent`.",
+              "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `dependent`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте описание Анны, которая сама организует встречи",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `independent`, а в этом варианте — `unreliable`.",
+              "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `unreliable`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -796,67 +883,71 @@
       "interactionId": "en:lesson-03:session-55:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте начало для нескольких дальних образцов",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-55:i16:r1",
-          "text": "Those"
-        },
-        {
-          "responseId": "en:lesson-03:session-55:i16:r2",
-          "text": "That"
-        },
-        {
-          "responseId": "en:lesson-03:session-55:i16:r3",
-          "text": "The"
-        }
-      ],
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте начало для нескольких дальних образцов",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте начало для нескольких дальних образцов",
-          "uk": "Вставте початок для кількох дальніх зразків"
-        },
-        "gappedTargetPhrase": "___ materials are soft.",
-        "gapOptions": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-03:session-55:i16:r1",
-            "text": "Those"
+            "pairId": "en:lesson-03:session-55:i16:p1",
+            "target": "cafes",
+            "meaningByLocale": {
+              "ru": "кафе",
+              "uk": "кафе"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-55:i16:r2",
-            "text": "That"
+            "pairId": "en:lesson-03:session-55:i16:p2",
+            "target": "independent",
+            "meaningByLocale": {
+              "ru": "самостоятельный",
+              "uk": "самостійний"
+            }
           },
           {
-            "responseId": "en:lesson-03:session-55:i16:r3",
-            "text": "The"
+            "pairId": "en:lesson-03:session-55:i16:p3",
+            "target": "dependent",
+            "meaningByLocale": {
+              "ru": "зависимый",
+              "uk": "залежний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-55:i16:p4",
+            "target": "unreliable",
+            "meaningByLocale": {
+              "ru": "ненадёжный",
+              "uk": "ненадійний"
+            }
           }
         ],
-        "testedDimension": "число и расстояние",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-55:i16:r2",
-            "correct": false,
-            "testedDimension": "число и расстояние",
-            "feedbackByLocale": {
-              "ru": "`That` — для одного дальнего предмета; образцов несколько, поэтому `Those`.",
-              "uk": "`That` — для одного далекого предмета; зразків кілька, тому `Those`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-55:i16:r3",
-            "correct": false,
-            "testedDimension": "число и расстояние",
-            "feedbackByLocale": {
-              "ru": "`The` не показывает дальние образцы; здесь нужны `Those` для нескольких предметов далеко.",
-              "uk": "`The` не вказує на далекі зразки; тут потрібне `Those` для кількох предметів далеко."
-            }
-          }
+        "leftColumn": [
+          "cafes",
+          "independent",
+          "dependent",
+          "unreliable"
+        ],
+        "rightColumn": [
+          "кафе",
+          "самостоятельный",
+          "зависимый",
+          "ненадёжный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -865,31 +956,40 @@
       "interactionId": "en:lesson-03:session-55:i17",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Финал — соберите независимую подпись у дальней стены",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другом городе вы с другом уже выбрали несколько кафе. Друг ищет их на карте. Вы показываете на них дальше от себя. Скажите «Кафе там», говоря о выбранных местах",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Финал — соберите независимую подпись у дальней стены",
+      "audioTargetIds": [
+        "en:lesson-03:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "В другом городе вы с другом уже выбрали несколько кафе. Друг ищет их на карте. Вы показываете на них дальше от себя. Скажите «Кафе там», говоря о выбранных местах",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Those patterns are striped.",
-        "localizedMeaning": {
-          "ru": "Финал — соберите независимую подпись у дальней стены",
-          "uk": "Фінал — складіть незалежний підпис біля дальньої стіни"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-55:i17:audio",
+          "transcript": "The cafes are there."
         },
-        "orderedTokens": [
-          "Those",
-          "patterns",
-          "are",
-          "striped"
-        ],
-        "authoredDistractorTokens": [
-          "That",
-          "the"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cafes are there.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
@@ -900,5 +1000,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "08bcf938de9ad2e25be710f65e37d0659c87a8416dd7be1adff2bf0f419911b6"
+  "learnerFingerprint": "6677dd0a2de29170d7e0a40a31f2d1ecc4af6ca3732fa07c04c6a2e3ceb57d5f"
 }

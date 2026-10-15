@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-55:intro1:r2": {
+          "ru": "`cafe` — одно кафе. Несколько — `cafes`.",
+          "uk": "`cafe` — одне кафе. Кілька — `cafes`."
+        },
+        "en:lesson-03:session-55:intro1:r3": {
+          "ru": "`restaurants` — рестораны. Кафе — `cafes`.",
+          "uk": "`restaurants` — ресторани. Кафе — `cafes`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-55:intro2:r2": {
+          "ru": "Кафе несколько: `Where are the cafes?`.",
+          "uk": "Кафе кілька: `Where are the cafes?`."
+        },
+        "en:lesson-03:session-55:intro2:r3": {
+          "ru": "Место спрашиваем с `Where`, а не `What`.",
+          "uk": "Про місце запитуємо з `Where`, а не `What`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-55:intro3:r2": {
+          "ru": "Здесь Анна выполняет обещанное: `responsible`.",
+          "uk": "Тут Анна виконує обіцяне: `responsible`."
+        },
+        "en:lesson-03:session-55:intro3:r3": {
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібне `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f0b2d3afa414fa6f89c2dae81bcdcec9a9911b633a3bf5cf92df3b4c99659525"
+}

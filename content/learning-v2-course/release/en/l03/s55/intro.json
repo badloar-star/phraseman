@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-55",
   "learningOutcomeByLocale": {
-    "ru": "переносим выбор `a/the/this/that/these/those` по числу, расстоянию и известности.",
-    "uk": "обираємо `a/the/this/that/these/those` залежно від кількості, відстані й того, чи предмет уже відомий."
+    "ru": "назвать несколько кафе и спросить, где находятся уже выбранные места",
+    "uk": "назвати кілька кафе та запитати, де розташовані вже вибрані місця"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Форма уже в листе",
-        "uk": "Форма вже в листі"
+        "ru": "Несколько кафе",
+        "uk": "Кілька кафе"
       },
       "bodyByLocale": {
-        "ru": "`shape` — «форма»: контур или вид предмета. В фразе `The shape is round.` слово `the` показывает, что форма уже известна, `shape` называет её, а `round` описывает. Получается «Форма круглая». `The` здесь как отметка в листе: речь именно об этой форме, а не о любой.",
-        "uk": "`shape` — «форма»: контур або вигляд предмета. У фразі `The shape is round.` слово `the` показує, що форма вже відома, `shape` називає її, а `round` описує. Разом це означає «Форма кругла». `The` тут як позначка в акті: йдеться саме про цю форму, а не про будь-яку."
+        "ru": "`cafes` — «кафе», когда их несколько. Одно — `cafe`, несколько — `cafes`: в английском добавляется `s`, хотя русское слово не меняется. `These are cafes` — «Это кафе», показываем несколько рядом на карте. Три столика в одном кафе ещё не превращают его в три кафе.",
+        "uk": "`cafes` — «кафе», коли їх кілька. Одне — `cafe`, кілька — `cafes`: в англійській додається `s`, хоча українське слово не змінюється. `These are cafes` — «Це кафе», показуємо кілька поруч на карті. Три столики в одному кафе ще не перетворюють його на три кафе."
       },
       "question": {
         "interactionId": "en:lesson-03:session-55:intro1:q",
         "promptByLocale": {
-          "ru": "В листе уже есть форма этого зеркала. Выберите точную подпись.",
-          "uk": "У листі вже є форма цього дзеркала. Оберіть точний підпис."
+          "ru": "Назовите несколько кафе одним английским словом.",
+          "uk": "Назвіть кілька кафе одним англійським словом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-55:intro1:r1",
-              "text": "The shape is round."
+              "text": "cafes"
             },
             {
               "responseId": "en:lesson-03:session-55:intro1:r2",
-              "text": "A shape is round."
+              "text": "cafe"
             },
             {
               "responseId": "en:lesson-03:session-55:intro1:r3",
-              "text": "The shapes are round."
+              "text": "restaurants"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-55:intro1:r1",
-              "text": "The shape is round."
+              "text": "cafes"
             },
             {
               "responseId": "en:lesson-03:session-55:intro1:r2",
-              "text": "A shape is round."
+              "text": "cafe"
             },
             {
               "responseId": "en:lesson-03:session-55:intro1:r3",
-              "text": "The shapes are round."
+              "text": "restaurants"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В листе уже есть форма этого зеркала. Выберите точную подпись.",
-          "uk": "У листі вже є форма цього дзеркала. Оберіть точний підпис."
+          "ru": "Назовите несколько кафе одним английским словом.",
+          "uk": "Назвіть кілька кафе одним англійським словом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Образец рядом",
-        "uk": "Зразок поруч"
+        "ru": "Ищем выбранные места",
+        "uk": "Шукаємо вибрані місця"
       },
       "bodyByLocale": {
-        "ru": "`material` — «материал»: то, из чего сделан предмет. Фраза `This material is soft.` означает «Этот материал мягкий». `This` показывает на один образец рядом и уже занимает место перед `material`. Если добавить туда ещё и `a`, у существительного окажется два начальника.",
-        "uk": "`material` — «матеріал»: те, з чого зроблено предмет. Фраза `This material is soft.` означає «Цей матеріал м’який». `This` указує на один зразок поруч і вже займає місце перед `material`. Якщо додати ще й `a`, в іменника буде одразу два начальники."
+        "ru": "`Where are the cafes?` — «Где кафе?» Здесь речь о нескольких кафе, которые вы уже обсудили: нужны `are` и `the`. `The cafes are here` — «Кафе здесь». `restaurants` — «рестораны»: `The restaurants are there` — «Рестораны там».",
+        "uk": "`Where are the cafes?` — «Де кафе?» Тут ідеться про кілька кафе, які ви вже обговорили: потрібні `are` і `the`. `The cafes are here` — «Кафе тут». `restaurants` — «ресторани»: `The restaurants are there` — «Ресторани там»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-55:intro2:q",
         "promptByLocale": {
-          "ru": "Образец у вас в руке. Выберите точную подпись.",
-          "uk": "Зразок у вас у руці. Оберіть точний підпис."
+          "ru": "Вы уже обсудили несколько кафе. Спросите, где они.",
+          "uk": "Ви вже обговорили кілька кафе. Запитайте, де вони."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-55:intro2:r1",
-              "text": "This material is soft."
+              "text": "Where are the cafes?"
             },
             {
               "responseId": "en:lesson-03:session-55:intro2:r2",
-              "text": "This a material is soft."
+              "text": "Where is the cafes?"
             },
             {
               "responseId": "en:lesson-03:session-55:intro2:r3",
-              "text": "These material are soft."
+              "text": "What are the cafes?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-55:intro2:r1",
-              "text": "This material is soft."
+              "text": "Where are the cafes?"
             },
             {
               "responseId": "en:lesson-03:session-55:intro2:r2",
-              "text": "This a material is soft."
+              "text": "Where is the cafes?"
             },
             {
               "responseId": "en:lesson-03:session-55:intro2:r3",
-              "text": "These material are soft."
+              "text": "What are the cafes?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Образец у вас в руке. Выберите точную подпись.",
-          "uk": "Зразок у вас у руці. Оберіть точний підпис."
+          "ru": "Вы уже обсудили несколько кафе. Спросите, где они.",
+          "uk": "Ви вже обговорили кілька кафе. Запитайте, де вони."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Узор у дальней стены",
-        "uk": "Візерунок біля дальньої стіни"
+        "ru": "На кого можно положиться",
+        "uk": "На кого можна покластися"
       },
       "bodyByLocale": {
-        "ru": "`pattern` — «узор»: повторяющийся рисунок на поверхности. Фраза `That pattern is striped.` означает «Тот узор полосатый». `That` указывает на один далёкий предмет, а `striped` сообщает, что узор состоит из полос. После `That` слово `the` не нужно: одного указателя вполне достаточно.",
-        "uk": "`pattern` — «візерунок»: повторюваний рисунок на поверхні. Фраза `That pattern is striped.` означає «Той візерунок смугастий». `That` указує на один далекий предмет, а `striped` повідомляє, що візерунок складається зі смуг. Після `That` слово `the` не потрібне: одного вказівника цілком достатньо."
+        "ru": "`responsible` — «ответственный»: Анна выполняет обещанное. `She is responsible` — «Она ответственная». `independent` — «самостоятельный, независимый»: Анна сама организует встречи. `She is independent` — «Она самостоятельная». `dependent` — «зависимый»: другой участник пока нуждается в чужой помощи. О нём: `He is dependent` — «Он зависим». `unreliable` — «ненадёжный»: сервис часто нарушает обещания. `It is unreliable` — «Он ненадёжный».",
+        "uk": "`responsible` — «відповідальний»: Анна виконує обіцяне. `She is responsible` — «Вона відповідальна». `independent` — «самостійний, незалежний»: Анна сама організовує зустрічі. `She is independent` — «Вона самостійна». `dependent` — «залежний»: інший учасник поки потребує чужої допомоги. Про нього: `He is dependent` — «Він залежний». `unreliable` — «ненадійний»: сервіс часто порушує обіцянки. `It is unreliable` — «Він ненадійний»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-55:intro3:q",
         "promptByLocale": {
-          "ru": "Один узор виден у дальней стены. Выберите точную подпись.",
-          "uk": "Один візерунок видно біля дальньої стіни. Оберіть точний підпис."
+          "ru": "Анна выполняет обещанное. Скажите «Она ответственная».",
+          "uk": "Анна виконує обіцяне. Скажіть «Вона відповідальна»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-55:intro3:r1",
-              "text": "That pattern is striped."
+              "text": "She is responsible."
             },
             {
               "responseId": "en:lesson-03:session-55:intro3:r2",
-              "text": "That the pattern is striped."
+              "text": "She is unreliable."
             },
             {
               "responseId": "en:lesson-03:session-55:intro3:r3",
-              "text": "Those pattern are striped."
+              "text": "She are responsible."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-55:intro3:r1",
-              "text": "That pattern is striped."
+              "text": "She is responsible."
             },
             {
               "responseId": "en:lesson-03:session-55:intro3:r2",
-              "text": "That the pattern is striped."
+              "text": "She is unreliable."
             },
             {
               "responseId": "en:lesson-03:session-55:intro3:r3",
-              "text": "Those pattern are striped."
+              "text": "She are responsible."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Один узор виден у дальней стены. Выберите точную подпись.",
-          "uk": "Один візерунок видно біля дальньої стіни. Оберіть точний підпис."
+          "ru": "Анна выполняет обещанное. Скажите «Она ответственная».",
+          "uk": "Анна виконує обіцяне. Скажіть «Вона відповідальна»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "00d9330abdd2196d2d5239a48c916c36d1814d62ba2b6452b4ac656a5d73fd05"
+  "introFingerprint": "b4ec5ca6a72dc22661da688b6db8a9ebe6cca014fa9d9b5d8bc612f9cd825164"
 }

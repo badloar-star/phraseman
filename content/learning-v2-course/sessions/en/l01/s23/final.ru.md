@@ -1,227 +1,138 @@
-# Английский · Урок 1 · Занятие 23 — «Какой он человек»
+# Английский · Урок 1 · Занятие 23 — Гости на семейном празднике
 
-**Ситуация.** Вечером у офиса Лина ждёт с вами такси и рассказывает о коллегах: Денис терпеливый, Олег ворчит, а Анна мягко общается с детьми.
+**Ситуация.** Вы помогаете сестре подготовить семейный праздник. Сверяете сведения, которые гости сами указали в анкетах, и рассказываете ей о приглашённых.
 
-**Как сказать:** `he is`, `she is` и `he is not`, когда описываете характер другого человека.
-**Новые слова:** patient, proud, grumpy, gentle
-**Возвращаются:** kind, quiet, angry, calm
+**Что вы освоите:** произнести короткую фразу о себе или других с известными am, is, are
+**Новые слова:** married, single, different
 
 ---
 
 ## Интро 1
 
-### `patient` — терпеливый
+### Женат или замужем
 
-`patient` — «терпеливый». Тот, кто объясняет третий раз и не начинает вздыхать.
+`married` — «женат» или «замужем». `He is married` — «Он женат», `She is married` — «Она замужем». Английское слово одно: отдельное окончание для жениха и невесты не требуется. `They are married` — «Они женаты»; само по себе это не уточняет, друг на друге ли.
 
-О другом человеке говорят с `is`: `He is patient`. В английской фразе `is` нельзя пропускать.
+**В анкете Анны отмечено, что она состоит в браке. Скажите о ней.**
 
-**Из дверей выходит парень, который сегодня полдня объяснял вам почту. Скажите про него.**
-
-- ✅ **He is patient.**
-- ❌ He patient. — *В английской фразе нужна форма `is`: `He is patient`.*
-- ❌ He are patient. — *`are` — не для одного человека. Про него — только `is`.*
+- ✅ **She is married.**
+- ❌ She married. — *Для этого значения между `She` и `married` нужно `is`.*
+- ❌ He is married. — *`He` — «он». О Анне нужно `She`.*
 
 ---
 
 ## Интро 2
 
-### `grumpy` — ворчливый
+### Семейное положение
 
-`grumpy` — «ворчливый». Всё ему не так: кофе слабый, лифт медленный, и он обязательно об этом скажет.
+В анкете `single` — «не состоит в браке»: `I am single` — «Я не женат» или «Я не замужем». В обычном разговоре это слово может также означать, что у человека нет партнёра. Это не то же самое, что `alone`: на празднике можно быть без пары и при этом в компании двадцати родственников.
 
-Рядом стоит знакомое `angry` — «злой». `angry` — это злость, человек сердится на что-то конкретное. `grumpy` — просто бурчание, тише и мельче.
+**В анкете гостя указано: в браке не состоит. Скажите про него, используя слово из анкеты.**
 
-**Мимо проходит мужчина, который всю дорогу до выхода бурчал про лифт. Скажите про него.**
-
-- ✅ **He is grumpy.**
-- ❌ He is angry. — *«Он злой» — это сильнее. А он всего лишь бурчит про лифт: `grumpy`.*
-- ❌ He grumpy. — *Без `is` фраза не стоит. Про него — всегда `he is`.*
+- ✅ **He is single.**
+- ❌ He is alone. — *`alone` — «один, без других людей». В анкете речь о семейном положении: `single`.*
+- ❌ He are single. — *После `He` нужна форма `is`.*
 
 ---
 
 ## Интро 3
 
-### `proud` — и хорошее, и не очень
+### Разные
 
-`proud` — «горд». Гордится своей работой — хорошо. Держит нос выше остальных — уже не очень. Одно слово на оба случая, разбирайтесь по человеку.
+`different` — «разный, другой». О двух братьях с разными характерами: `They are different` — «Они разные». Если сравниваете себя с сестрой, можно сказать `We are different` — «Мы разные». В этих фразах к `different` не добавляют `-s`.
 
-Чтобы сказать «не такая», ставим `not` сразу за `is`: `She is not proud`. Сначала `is`, потом `not`. Наоборот — `She not is` — англичанин просто затормозит.
+**Вы любите тихие вечера, а сестра — шумные праздники. Скажите за вас обоих: «Мы разные».**
 
-**Коллега кивает на девушку у машины: «Задаётся, говорят». Вы знаете, что это не так.**
-
-- ✅ **She is not proud.**
-- ❌ She not is proud. — *Слова поменялись местами. Сначала `is`, потом `not`.*
-- ❌ She no proud. — *`no` тут не работает. Отрицание в такой фразе — `not`, и только после `is`.*
+- ✅ **We are different.**
+- ❌ We is different. — *После `We` нужно `are`.*
+- ❌ We are differents. — *Слово-описание здесь не получает `-s`: `different`.*
 
 ---
 
-## Практика (20 заданий, поддержка убывает)
+## Практика (17 заданий)
 
-**1 · Карточка слова — patient**
-<!-- interaction_id: en:lesson-01:session-23:i01; family: listen_choose -->
-> **patient** — «терпеливый». Ждёт, объясняет ещё раз и не закатывает глаза.
+**1 · В анкете Анны отмечен брак. Соберите: «Она замужем»**
+<!-- interaction_id: en:lesson-01:session-23:i01; family: phrase_builder -->
+Плитки: `married` `is` `She` `are` → **She is married.**
+*(плитка `are` лишняя: здесь нужно `is` — `She is married.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-01:session-23:i02; family: listen_choose -->
-🔊 *patient* → **patient** · patent · payment
-- patient — *В записи `patient` три части `pa-tient`; в середине слышно шипящее `sh`, не чистое `t` и не `payment`.*
-- patent — *В середине `patient` шипящий, как в «шов». В `patent` там чистое «т».*
-- payment — *А тут в середине «м». Про человека — слово с шипящим.*
+🔊 *He is single.* → **He is single.** · She is single. · He is married.
+- She is single. — *В записи первое слово — `He`, а в этом варианте — `She`.*
+- He is married. — *В записи последнее слово — `single`, а в этом варианте — `married`.*
 
-**3 · Карточка слова — grumpy**
-<!-- interaction_id: en:lesson-01:session-23:i03; family: listen_choose -->
-> **grumpy** — «ворчливый». Всё ему не так, и он обязательно об этом скажет.
+**3 · Вставьте слово — вы с сестрой разные**
+<!-- interaction_id: en:lesson-01:session-23:i03; family: context_gap_grammar -->
+We ___ different. → **are** · is · am
+- is — *После `We` нужна форма `are`.*
+- am — *`am` нужно после `I`. Здесь `We are`.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-23:i04; family: listen_choose -->
-🔊 *grumpy* → **grumpy** · grimy · gripy
-- grumpy — *В записи `grumpy` после `gr` слышно короткое «а», а не «ай» в `grimy` и не другой конец `gripy`.*
-- grimy — *Слушайте гласную сразу после «гр»: в `grimy` там «ай», в `grumpy` — «а».*
-- gripy — *После `gr` здесь слышится «ай», а в `grumpy` — другой гласный звук.*
+**4 · Соедините слова со значениями в этой ситуации**
+<!-- interaction_id: en:lesson-01:session-23:i04; family: speed_match -->
+married — состоит в браке · single — не состоит в браке (в анкете) · different — разный · famous — знаменитый
 
-**5 · Соберите фразу — Лина прямо говорит, что Денис терпеливый**
-<!-- interaction_id: en:lesson-01:session-23:i05; family: phrase_builder -->
-Плитки: `patient` `is` `He` `am` → **He is patient.**
-*`am` лишнее: с `He` ставят `is` — `He is patient.`*
-*(плитка `am` лишняя: `am` лишнее: с `He` ставят `is` — `He is patient.`)*
+**5 · Послушайте ответ гостя и соберите услышанное**
+<!-- interaction_id: en:lesson-01:session-23:i05; family: listen_build_dictation -->
+🔊 *I am married.* Плитки: `married` `am` `I` `are` → **I am married.**
+*(плитка `are` лишняя: здесь нужно `am` — `I am married.`)*
 
+**6 · У двух братьев разные характеры. Соберите фразу о них: «Они разные»**
+<!-- interaction_id: en:lesson-01:session-23:i06; family: phrase_builder -->
+Плитки: `different` `are` `They` `is` → **They are different.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are different.`)*
 
-**6 · Вставьте слово — Лина прямо говорит: «Олег ворчливый»**
-<!-- interaction_id: en:lesson-01:session-23:i06; family: context_gap_grammar -->
-He is ___ . → **grumpy** · quiet · kind
-- grumpy — *Лина прямо называет Олега ворчливым: это `grumpy`, не `quiet` и не `kind`.*
-- quiet — *«Тихий» — а он как раз громко всем недоволен.*
-- kind — *«Добрый» — не про того, кто бурчит с утра до вечера.*
+**7 · Представьте, что заполняете анкету о себе и не состоите в браке. Произнесите свой ответ со словом single**
+<!-- interaction_id: en:lesson-01:session-23:i07; family: scripted_repeat_compare -->
+🎙 **I am single.**
 
-**7 · Карточка слова — proud**
-<!-- interaction_id: en:lesson-01:session-23:i07; family: listen_choose -->
-> **proud** — «горд». И хорошее: гордится своей работой. И не очень: держит нос выше остальных.
+**8 · Вставьте слово — гость указал в анкете, что женат**
+<!-- interaction_id: en:lesson-01:session-23:i08; family: context_gap_grammar -->
+He ___ married. → **is** · am · are
+- am — *С `He` нужно `is`; `am` ставим с `I`.*
+- are — *Здесь начало `He`, поэтому `is`.*
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-23:i08; family: listen_choose -->
-🔊 *proud* → **proud** · pride · prod
-- proud — *В записи `proud` слышно «ау»: это не `pride` с «ай» и не короткое `prod`.*
-- pride — *В `pride` слышно «ай», в `proud` — «ау».*
-- prod — *В `prod` один короткий звук «о». В `proud` звук едет от «а» к «у».*
-
-**9 · Карточка слова — gentle**
+**9 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-23:i09; family: listen_choose -->
-> **gentle** — «мягкий». Говорит тихо, не давит, не спорит через слово. Про женщину — `She is gentle`, про мужчину — `He is gentle`.
+🔊 *We are married.* → **We are married.** · They are married. · We are different.
+- They are married. — *В записи первое слово — `We`, а в этом варианте — `They`.*
+- We are different. — *В записи последнее слово — `married`, а в этом варианте — `different`.*
 
-**10 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-23:i10; family: listen_choose -->
-🔊 *gentle* → **gentle** · general · gentleman
-- gentle — *В записи два слога `gen-tle`: после «джен» слышно `t`, не продолжение `general` или `gentleman`.*
-- general — *После «джен» в `gentle` идёт «т». В `general` там гласная: дже-не-рал.*
-- gentleman — *У `gentleman` есть третий слог, «мен» на конце. `gentle` кончается на «тл».*
+**10 · Соедините знакомые слова и значения**
+<!-- interaction_id: en:lesson-01:session-23:i10; family: speed_match -->
+rich — богатый · poor — бедный · easy — лёгкий · difficult — трудный
 
-**11 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-23:i11; family: speed_match -->
-patient — терпеливый · grumpy — ворчливый · proud — горд · gentle — мягкий
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-01:session-23:i11; family: listen_build_dictation -->
+🔊 *She is single.* Плитки: `single` `is` `She` `He` → **She is single.**
+*(плитка `He` лишняя: здесь нужно `She` — `She is single.`)*
 
-**12 · Вставьте слово — Лина прямо говорит: «Анна мягкая с детьми»**
-<!-- interaction_id: en:lesson-01:session-23:i12; family: context_gap_grammar -->
-She is ___ . → **gentle** · proud · grumpy
-- gentle — *Анна мягко ведёт себя с детьми, поэтому `gentle`; это не гордость и не ворчание.*
-- proud — *«Горда» — это про другое, а речь о том, как она себя ведёт с детьми.*
-- grumpy — *«Ворчливая» — прямо наоборот тому, что вам сказали.*
+**12 · Вы сравнили характер брата со своим. Скажите брату: «Ты другой», собрав фразу**
+<!-- interaction_id: en:lesson-01:session-23:i12; family: phrase_builder -->
+Плитки: `different` `are` `You` `am` → **You are different.**
+*(плитка `am` лишняя: здесь нужно `are` — `You are different.`)*
 
-**13 · Послушайте и соберите — «она не гордая»**
-<!-- interaction_id: en:lesson-01:session-23:i13; family: listen_build_dictation -->
-🔊 *She is not proud.* Плитки: `not` `She` `proud` `is` `are` → **She is not proud.**
-*`are` лишнее: с `She` ставят `is` — `She is not proud.`*
-*(плитка `are` лишняя: `are` лишнее: с `She` ставят `is` — `She is not proud.`)*
+**13 · Приглашённую певицу знают по всей стране. Скажите о ней вслух: «Она знаменитая»**
+<!-- interaction_id: en:lesson-01:session-23:i13; family: scripted_repeat_compare -->
+🎙 **She is famous.**
 
+**14 · В анкете гостьи указано, что она не состоит в браке. Дополните фразу словом из анкеты**
+<!-- interaction_id: en:lesson-01:session-23:i14; family: context_gap_grammar -->
+She is ___ . → **single** · alone · married
+- alone — *`alone` — «одна, без других людей». Семейное положение в анкете — `single`.*
+- married — *`married` означает, что она состоит в браке. В анкете обратное: `single`.*
 
-**14 · Соберите фразу — все вокруг кричат, а Денис у двери стоит спокойно**
-<!-- interaction_id: en:lesson-01:session-23:i14; family: phrase_builder -->
-Лина спрашивает, почему Денис не кричит вместе со всеми. Вы отвечаете: он спокойный.
-Плитки: `He` `calm` `is` `not` → **He is calm.**
-*`not` лишнее: Денис спокойный, поэтому `He is calm.`, без отрицания.*
-*(плитка `not` лишняя: `not` лишнее: Денис спокойный, поэтому `He is calm.`, без отрицания.)*
+**15 · Послушайте фразу сестры о подготовке праздника**
+<!-- interaction_id: en:lesson-01:session-23:i15; family: listen_choose -->
+🔊 *It is important.* → **It is important.** · It is easy. · It is difficult.
+- It is easy. — *В записи последнее слово — `important`, а в этом варианте — `easy`.*
+- It is difficult. — *В записи последнее слово — `important`, а в этом варианте — `difficult`.*
 
+**16 · Соедините слова и значения**
+<!-- interaction_id: en:lesson-01:session-23:i16; family: speed_match -->
+important — важный · different — разный · married — состоит в браке · single — не состоит в браке (в анкете)
 
-**15 · Вставьте слово — Лина прямо говорит: «Анна добрая, Анна всем помогает»**
-<!-- interaction_id: en:lesson-01:session-23:i15; family: context_gap_grammar -->
-She is ___ . → **kind** · angry · proud
-- kind — *Анна всем помогает — это `kind`; `angry` и `proud` не называют такую помощь.*
-- angry — *«Злая» — прямо противоположное тому, что вы про неё знаете.*
-- proud — *«Горда» — здесь речь о том, что она добра к людям.*
+**17 · В магазине вы сравниваете два рюкзака: один большой, другой маленький. Скажите продавцу о них: «Они разные»**
+<!-- interaction_id: en:lesson-01:session-23:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **They are different.**
 
-**16 · Соберите фразу — Лина видит, как Олег хлопает дверью: он злится**
-<!-- interaction_id: en:lesson-01:session-23:i16; family: phrase_builder -->
-Плитки: `angry` `He` `is` `are` → **He is angry.**
-*`are` лишнее: с `He` ставят `is` — `He is angry.`*
-*(плитка `are` лишняя: `are` лишнее: с `He` ставят `is` — `He is angry.`)*
-
-
-**17 · Вставьте слово — Лина прямо говорит: «Анна тихая»**
-<!-- interaction_id: en:lesson-01:session-23:i17; family: context_gap_grammar -->
-She is ___ . → **quiet** · angry · grumpy
-- quiet — *Лина прямо говорит, что Анна тихая: это `quiet`, а не злость и не ворчание.*
-- angry — *«Злая» — молчание ещё не злость. Про молчаливую — `quiet`.*
-- grumpy — *«Ворчливая» — та как раз говорит, и много. А эта молчит.*
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-23:i18:s01; family: scripted_repeat_compare -->
-🎙 **He is patient.**
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-23:i18:s02; family: scripted_repeat_compare -->
-🎙 **She is gentle.**
-
-**20 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-23:i18:s03; family: scripted_repeat_compare -->
-🎙 **He is not grumpy.**
-
----
-
-## Для сборщика
-
-new_words:
-patient — терпеливый — «терпеливый». Ждёт, объясняет ещё раз и не закатывает глаза.
-proud — горд — «горд». И хорошее: гордится своей работой. И не очень: держит нос выше остальных.
-grumpy — ворчливый — «ворчливый». Всё ему не так, и он обязательно об этом скажет.
-gentle — мягкий — «мягкий». Говорит тихо, не давит, не спорит через слово. Про женщину — She is gentle, про мужчину — He is gentle.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=phrase_builder, 17=context_gap_grammar, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| kind | 6 (ловушка), 15 | 15 — вставь слово |
-| quiet | 6 (ловушка), 16 (ловушка), 17 | 17 — вставь слово |
-| angry | интро 2 (ловушка), 15 (ловушка), 16, 17 (ловушка) | 16 — вставь слово |
-| calm | 14 | 14 — сборка фразы |
-
-Все четыре возвращаемых слова теперь хотя бы раз стоят правильным ответом. Задание 16
-переделано под `angry` (человек хлопнул дверью), молчаливый ушёл в новое задание 17 —
-и там же `grumpy` ещё раз отделяется от молчания.
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | patient | да — «`patient` — терпеливый», `He is patient` |
-| Интро 2 | grumpy | да — «`grumpy` — ворчливый» |
-| Интро 3 | not proud | да — `proud` разобрано, `She is not proud` в тексте |
-
-**3. Доска пар**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| patient | 1 | 2 (слух), 5 (сборка) |
-| grumpy | 3 | 4 (слух), 6 (вставка) |
-| proud | 7 | 8 (слух) |
-| gentle | 9 | 10 (слух) |
-
-Вторая доска пар не нужна: `kind`, `quiet`, `angry`, `calm` работают в живых заданиях
-(14, 15, 16, 17), а не в узнавании переводов.
-
----

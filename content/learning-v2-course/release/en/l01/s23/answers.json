@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-23:i01",
-    "correctText": "patient",
+    "correctText": "She is married.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i02",
-    "correctText": "patient",
+    "correctText": "He is single.",
     "correctResponseId": "en:lesson-01:session-23:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-23:i03",
-    "correctText": "grumpy",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-23:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-23:i04",
-    "correctText": "grumpy",
-    "correctResponseId": "en:lesson-01:session-23:i04:r1"
+    "correctText": "en:lesson-01:session-23:i04:p1=married\nen:lesson-01:session-23:i04:p2=single\nen:lesson-01:session-23:i04:p3=different\nen:lesson-01:session-23:i04:p4=famous",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i05",
-    "correctText": "He is patient.",
+    "correctText": "I am married.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i06",
-    "correctText": "grumpy",
-    "correctResponseId": "en:lesson-01:session-23:i06:r1"
+    "correctText": "They are different.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i07",
-    "correctText": "proud",
+    "correctText": "I am single.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i08",
-    "correctText": "proud",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-23:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-23:i09",
-    "correctText": "gentle",
-    "correctResponseId": null
+    "correctText": "We are married.",
+    "correctResponseId": "en:lesson-01:session-23:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-23:i10",
-    "correctText": "gentle",
-    "correctResponseId": "en:lesson-01:session-23:i10:r1"
+    "correctText": "en:lesson-01:session-23:i10:p1=rich\nen:lesson-01:session-23:i10:p2=poor\nen:lesson-01:session-23:i10:p3=easy\nen:lesson-01:session-23:i10:p4=difficult",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i11",
-    "correctText": "en:lesson-01:session-23:i11:p1=patient\nen:lesson-01:session-23:i11:p2=grumpy\nen:lesson-01:session-23:i11:p3=proud\nen:lesson-01:session-23:i11:p4=gentle",
+    "correctText": "She is single.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i12",
-    "correctText": "gentle",
-    "correctResponseId": "en:lesson-01:session-23:i12:r1"
+    "correctText": "You are different.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i13",
-    "correctText": "She is not proud.",
+    "correctText": "She is famous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i14",
-    "correctText": "He is calm.",
-    "correctResponseId": null
+    "correctText": "single",
+    "correctResponseId": "en:lesson-01:session-23:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-23:i15",
-    "correctText": "kind",
+    "correctText": "It is important.",
     "correctResponseId": "en:lesson-01:session-23:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-23:i16",
-    "correctText": "He is angry.",
+    "correctText": "en:lesson-01:session-23:i16:p1=important\nen:lesson-01:session-23:i16:p2=different\nen:lesson-01:session-23:i16:p3=married\nen:lesson-01:session-23:i16:p4=single",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i17",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-23:i17:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-23:i18:s01",
-    "correctText": "He is patient.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-23:i18:s02",
-    "correctText": "She is gentle.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-23:i18:s03",
-    "correctText": "He is not grumpy.",
+    "correctText": "They are different.",
     "correctResponseId": null
   }
 ]

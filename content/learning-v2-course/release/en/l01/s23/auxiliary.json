@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-23:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-23:intro1:r2": {
-          "ru": "В английской фразе нужна форма `is`: `He is patient`.",
-          "uk": "В англійській фразі потрібна форма `is`: `He is patient`."
+          "ru": "Для этого значения между `She` и `married` нужно `is`.",
+          "uk": "Для цього значення між `She` і `married` потрібно `is`."
         },
         "en:lesson-01:session-23:intro1:r3": {
-          "ru": "`are` — не для одного человека. Про него — только `is`.",
-          "uk": "`are` — не для однієї людини. Про нього — тільки `is`."
+          "ru": "`He` — «он». О Анне нужно `She`.",
+          "uk": "`He` — «він». Про Анну потрібно `She`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-23:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-23:intro2:r2": {
-          "ru": "«Он злой» — это сильнее. А он всего лишь бурчит про лифт: `grumpy`.",
-          "uk": "«Він злий» — це сильніше. А він усього лише бурчить про ліфт: `grumpy`."
+          "ru": "`alone` — «один, без других людей». В анкете речь о семейном положении: `single`.",
+          "uk": "`alone` — «сам, без інших людей». В анкеті йдеться про сімейний стан: `single`."
         },
         "en:lesson-01:session-23:intro2:r3": {
-          "ru": "Без `is` фраза не стоит. Про него — всегда `he is`.",
-          "uk": "Без `is` фраза не стоїть. Про нього — завжди `he is`."
+          "ru": "После `He` нужна форма `is`.",
+          "uk": "Після `He` потрібна форма `is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-23:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-23:intro3:r2": {
-          "ru": "Слова поменялись местами. Сначала `is`, потом `not`.",
-          "uk": "Слова помінялися місцями. Спершу `is`, потім `not`."
+          "ru": "После `We` нужно `are`.",
+          "uk": "Після `We` потрібно `are`."
         },
         "en:lesson-01:session-23:intro3:r3": {
-          "ru": "`no` тут не работает. Отрицание в такой фразе — `not`, и только после `is`.",
-          "uk": "`no` тут не працює. Заперечення в такій фразі — `not`, і тільки після `is`."
+          "ru": "Слово-описание здесь не получает `-s`: `different`.",
+          "uk": "Слово-опис тут не отримує `-s`: `different`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0cc4fa090ba21143dc62b2488af4c723f3dc5c07f01bc2451b67108a3371fd1e"
+  "auxiliaryFingerprint": "029a71902eeb060d0c920e3351c4b7bb94f37d9bc4636dc9700363d0618230df"
 }

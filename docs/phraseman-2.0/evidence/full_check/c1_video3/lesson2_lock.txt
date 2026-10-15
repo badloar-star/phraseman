@@ -1,0 +1,16 @@
+10-15 21:41:37.476 19199 19256 W ReactNativeJS: '[DEV-STATE] route: старт', '{"request":{"onboarding":"done","intros":"seen","next":"/lesson_menu?id=2"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-15 21:41:37.903 19199 19256 W ReactNativeJS: '[DEV-STATE] route: фикстуры применены', '428мс', '{"applied":{"onboarding":"done","intros":"seen"},"skipped":{},"next":"/lesson_menu?id=2"}'
+10-15 21:41:38.032 19199 19256 W ReactNativeJS: '[DEV-STATE] route: перечитывание энергии →', 'ok', '558мс'
+10-15 21:41:38.032 19199 19256 W ReactNativeJS: '[DEV-STATE] route: replace через 300 мс →', '/lesson_menu?id=2', '558мс'
+10-15 21:41:38.345 19199 19256 W ReactNativeJS: '[DEV-STATE] route: replace вызван →', '/lesson_menu?id=2', 'canDismiss=true (возможна вторая копия вкладок — артефакт dev)'
+10-15 21:41:40.292 19199 19256 I ReactNativeJS: [LESSON-GATE-FIRSTFRAME] menu lesson=2 target=en: проверка доступа идёт — рисуем скелет меню
+10-15 21:41:40.857 19199 19256 I ReactNativeJS: '[LESSON-LOCK] menu:bounce_back', '{"lessonId":2,"lockReason":"progress","prevLessonId":1,"requiredScore":3}'
+10-15 21:41:40.858 19199 19256 I ReactNativeJS: '[LESSON-LOCK] access_gate', '{"lessonId":2,"menuLock":{"locked":true,"reason":"progress","requiredScore":3},"gateLock":null,"disagree":false}'
+10-15 21:41:40.860 19199 19256 I ReactNativeJS: [DEV-STATE] toast: хост получил type=info текст="Чтобы открыть урок, улучши результат в предыдущем" busy=false очередь=0
+10-15 21:41:40.861 19199 19256 I ReactNativeJS: [DEV-STATE] toast: принят к показу, запрошен слот окон
+10-15 21:41:40.863 19199 19256 I ReactNativeJS: '[LESSON-LOCK] menu:bounce_replace', '{"lessonId":2,"toastKind":"threshold","to":"/(tabs)/lessons","canGoBack":true}'
+10-15 21:41:40.888 19199 19256 I ReactNativeJS: [LESSON-GATE-FIRSTFRAME] menu lesson=2 target=en: проверка заняла 445 мс → закрыто (progress)
+10-15 21:41:40.907 19199 19256 I ReactNativeJS: [DEV-STATE] toast: слот хоста wanted=true visible=false слотДержит=никто
+10-15 21:41:41.538 19199 19256 I ReactNativeJS: [DEV-STATE] toast: слот хоста wanted=true visible=true слотДержит=actionToast
+10-15 21:41:45.313 19199 19256 I ReactNativeJS: [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=actionToast
+10-15 21:41:45.384 19199 19256 I ReactNativeJS: [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=никто

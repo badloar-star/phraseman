@@ -1,0 +1,18 @@
+=== rGP open a
+10-15 21:38:40.475 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +0ms start source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:40.493 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +18ms router.push called source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:40.609 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +134ms watch first render (catalog snapshot: hit, video in snapshot: yes) source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:40.666 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +191ms player mount source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:40.671 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +196ms watch mount source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:40.678 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +203ms pack search done found=video:rGPfdiI3S1k source=phrase_set source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:40.761 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +286ms watch onLayout source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:41.421 19199 19256 W ReactNativeJS: [VIDEO-OPEN-TRACE] +947ms phrases resolved from=net count=100 source=home_grid_tap
+=== rGP open b
+10-15 21:38:57.208 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +0ms start source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:57.216 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +7ms router.push called source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:57.332 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +123ms watch first render (catalog snapshot: hit, video in snapshot: yes) source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:57.891 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +682ms player mount source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:58.019 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +810ms watch mount source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:58.035 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +826ms pack search done found=video:rGPfdiI3S1k source=phrase_set source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:38:58.243 19199 19256 W ReactNativeJS: [VIDEO-OPEN-TRACE] +1035ms phrases resolved from=memory count=100 source=home_grid_tap
+10-15 21:38:58.255 19199 19256 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +1046ms watch onLayout source=home_grid_tap', { [Stack] name: 'Stack' }

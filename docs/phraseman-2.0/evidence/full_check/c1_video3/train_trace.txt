@@ -1,0 +1,22 @@
+10-15 21:40:41.241 19199 19256 W ReactNativeJS: '[NAV-PAINT-TRACE] +0ms start source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:40:41.242 19199 19256 I ReactNativeJS: [TRAIN-INTENT] set deck=pack:video_cnrVN_uz7Sg count=500
+10-15 21:40:41.243 19199 19256 I ReactNativeJS: [VIDEO-PACK-TRAIN] player paused videoId=cnrVN_uz7Sg resumeSec=52 pauseSent=true
+10-15 21:40:41.243 19199 19256 W ReactNativeJS: '[NAV-PAINT-TRACE] +3ms player paused (not unmounted) before navigate source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:40:41.266 19199 19256 W ReactNativeJS: '[NAV-PAINT-TRACE] +22ms router.push called source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:40:44.128 19199 19256 W ReactNativeJS: '[NAV-PAINT-TRACE] +2887ms hub first render source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:40:44.560 19199 19256 I ReactNativeJS: [VIDEO-SEEK] cnrVN_uz7Sg обработчик снят
+10-15 21:40:44.568 19199 19256 I ReactNativeJS: [VIDEO-SEEK] cnrVN_uz7Sg сброс: ждём готовности плеера заново
+10-15 21:40:45.020 19199 19256 W ReactNativeJS: '[NAV-PAINT-TRACE] +3756ms hub mount source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:40:45.028 19199 19256 I ReactNativeJS: [TRAIN-INTENT] consume ageMs=3786 deck=pack:video_cnrVN_uz7Sg count=500
+10-15 21:40:45.074 19199 19256 I ReactNativeJS: [TRAIN-INTENT] hub:schedule source=params deck=pack:video_cnrVN_uz7Sg deckPending=pack:video_cnrVN_uz7Sg
+10-15 21:40:45.076 19199 19256 W ReactNativeJS: '[NAV-PAINT-TRACE] +3835ms video screen blur source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:40:45.356 19199 19256 W ReactNativeJS: '[NAV-PAINT-TRACE] +4112ms deck warmup start (snapshot in memory: false) source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:40:45.737 19199 19256 W ReactNativeJS: [NAV-PAINT-TRACE] +4497ms runAfterInteractions fired source=video_watch_train_tap
+10-15 21:40:45.754 19199 19256 I ReactNativeJS: [TRAIN-INTENT] hub:open source=params deck=pack:video_cnrVN_uz7Sg afterMs=707 locked=false entryReady=false
+10-15 21:40:45.760 19199 19256 W ReactNativeJS: [NAV-PAINT-TRACE] +4519ms player released after transition source=video_watch_train_tap
+10-15 21:40:47.169 19199 19256 W ReactNativeJS: '[NAV-PAINT-TRACE] +5926ms player WebView unmount source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:40:47.304 19199 19256 W ReactNativeJS: '[NAV-PAINT-TRACE] +6053ms hub onLayout source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:40:47.321 19199 19256 I ReactNativeJS: [TRAIN-INTENT] hub:sheet-state через 900мс visible=true deck=pack:video_cnrVN_uz7Sg
+10-15 21:40:47.321 19199 19256 I ReactNativeJS: [TRAIN-INTENT] hub:fallback не нужен visible=true sheetOpenedDuringAttempt=true deck=pack:video_cnrVN_uz7Sg
+10-15 21:40:47.508 19199 19256 W ReactNativeJS: [NAV-PAINT] group=tab route=/flashcards ms=2318
+10-15 21:40:48.977 19199 19256 W ReactNativeJS: [NAV-PAINT-TRACE] +7737ms deck warmup end source=video_watch_train_tap

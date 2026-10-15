@@ -1,7 +1,7 @@
 /**
- * cards-2.0 (E13): выбранный голос TTS EN — fc_voice_prefs_v1
- * (app/flashcards/voice_prefs.ts) + шаг «сохранённый» в цепочке фолбэков
- * pickVoiceForLang (app/flashcards/tts_voices.ts, §3.8).
+ * cards-2.0 (E13): выбранный голос TTS — fc_voice_prefs_v1 {voiceIdEn} и fc_voice_prefs_by_lang_v1 (es/fr/de/it)
+ * (app/flashcards/voice_prefs.ts). Озвучка читает выбор синхронно через peekVoiceIdForLocale (use-audio).
+ * зачем (Ревизор 15.10, пачка 2.65): мёртвая цепочка pickVoiceForLang удалена — сторож стоит на том, что читает озвучка.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -10,9 +10,10 @@ import {
   getVoicePrefs,
   parseVoicePrefs,
   peekEnVoiceId,
+  peekVoiceIdForLocale,
   setEnVoiceId,
+  setVoiceIdForLang,
 } from '../app/flashcards/voice_prefs';
-import { pickVoiceForLang, type FcVoiceLike } from '../app/flashcards/tts_voices';
 
 const storageMock = AsyncStorage as unknown as {
   __reset: () => void;
@@ -82,31 +83,27 @@ describe('set/get + синхронный кэш peekEnVoiceId', () => {
   });
 });
 
-describe('pickVoiceForLang с сохранённым голосом (§3.8 «сохранённый → Enhanced → …»)', () => {
-  const voices: FcVoiceLike[] = [
-    { identifier: 'compact.en-US.Samantha', language: 'en-US', name: 'Samantha' },
-    { identifier: 'enhanced.en-US.Ava', language: 'en-US', name: 'Ava', quality: 'Enhanced' },
-    { identifier: 'uk-UA-voice', language: 'uk-UA', name: 'Lesya' },
-  ];
-
-  it('сохранённый голос существует в списке → берём его (важнее Enhanced)', () => {
-    const r = pickVoiceForLang(voices, 'en', 'compact.en-US.Samantha');
-    expect(r).toEqual({ available: true, language: 'en-US', voiceId: 'compact.en-US.Samantha' });
+describe('выбранный голос по языку — то, что читает озвучка (peekVoiceIdForLocale)', () => {
+  it('каждый язык обучения хранит свой голос; локаль любого региона находит выбор своего языка', async () => {
+    await setVoiceIdForLang('en', 'en-voice');
+    await setVoiceIdForLang('fr', 'fr-voice');
+    await setVoiceIdForLang('de', 'de-voice');
+    expect(peekVoiceIdForLocale('en-US')).toBe('en-voice');
+    expect(peekVoiceIdForLocale('fr-CA')).toBe('fr-voice');
+    expect(peekVoiceIdForLocale('de-DE')).toBe('de-voice');
+    expect(peekVoiceIdForLocale('it-IT')).toBeNull(); // не выбран — системный
+    expect(peekVoiceIdForLocale('ru-RU')).toBeNull(); // не язык обучения
   });
 
-  it('сохранённый голос удалён с устройства → обычная цепочка (Enhanced приоритет)', () => {
-    const r = pickVoiceForLang(voices, 'en', 'deleted-voice-id');
-    expect(r.voiceId).toBe('enhanced.en-US.Ava');
-    expect(r.available).toBe(true);
+  it('английский — в прежнем ключе (старые установки не теряют выбор)', async () => {
+    await setVoiceIdForLang('en', 'legacy-en');
+    expect(peekEnVoiceId()).toBe('legacy-en');
+    expect(parseVoicePrefs(await storageMock.getItem(FC_VOICE_PREFS_KEY))).toEqual({ voiceIdEn: 'legacy-en' });
   });
 
-  it('пустой список голосов + сохранённый → доверяем выбору юзера', () => {
-    const r = pickVoiceForLang([], 'en', 'my-voice');
-    expect(r).toEqual({ available: true, language: 'en-US', voiceId: 'my-voice' });
-  });
-
-  it('без сохранённого — поведение E10 не меняется (Enhanced первым)', () => {
-    const r = pickVoiceForLang(voices, 'en');
-    expect(r.voiceId).toBe('enhanced.en-US.Ava');
+  it('null возвращает системный голос языка', async () => {
+    await setVoiceIdForLang('it', 'it-voice');
+    await setVoiceIdForLang('it', null);
+    expect(peekVoiceIdForLocale('it-IT')).toBeNull();
   });
 });

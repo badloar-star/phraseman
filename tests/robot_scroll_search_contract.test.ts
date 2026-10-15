@@ -42,7 +42,9 @@ describe('робот съёмки: поиск прокруткой и стаби
     const outcome = runScript('tap');
     expect(outcome.ok).toBe(true);
     expect(outcome.swipes).toBeGreaterThanOrEqual(2);
-    expect(outcome.taps).toHaveLength(1);
+    // зачем (координатор 15.10: «робот ходит как человек»): c69063689 — перед шагом робот тапает (540,160), сбрасывая фокус
+    // клавиатуры; нажатие на сам найденный элемент по-прежнему ровно одно
+    expect(outcome.taps.filter((t) => t !== '540,160')).toEqual(['500,1050']);
   }, 30_000);
 
   it('шаг await не листает экран (тосты у нижней кромки)', () => {
@@ -52,17 +54,20 @@ describe('робот съёмки: поиск прокруткой и стаби
     expect(outcome.swipes).toBe(0);
   }, 30_000);
 
-  it('ссылки хаба Карточек открывают окно режимов и настройку без тапа по анимированному хабу', () => {
+  // зачем (координатор 15.10, решение): робот ходит как человек — окно режимов открывает видимым тапом «Тренироваться» на хабе
+  // (767b8c07f; хаб уже без анимаций — HUB_FREE с animations=off). Скрытое авто-открытие ?train=1 для этих кадров не возвращаем.
+  it('ссылки хаба Карточек открывают окно режимов видимым тапом «Тренироваться», как человек', () => {
     const steps = read('scripts/dev_links_r1_steps.py');
-    expect(steps).toContain("HUB_TRAIN = '/flashcards?train=1'");
-    expect(steps).not.toContain("TRAIN = 'tap:#fc-cards-hub-train'");
-    expect(steps).not.toMatch(/\[TRAIN[,\]]/);
-    expect(steps).toContain("add(['cards-002', 'cards-section-032', 'cards-v2-027'], [], HUB_FREE, HUB_TRAIN,");
+    expect(steps).toContain("add(['cards-002', 'cards-section-032', 'cards-v2-027'], ['wait:2500', 'tap:#fc-cards-hub-train', 'wait:800'], HUB_FREE + '&quota=reset', '/flashcards',");
+    expect(steps).not.toMatch(/add\(\['cards-002', 'cards-section-032', 'cards-v2-027'\], \[\], HUB_FREE, HUB_TRAIN,/);
     expect(steps).toContain("SETUP + 'truefalse'");
     const cards2 = read('scripts/dev_links_r1_steps_cards2.py');
-    expect(cards2).toContain("'tap:#fc-speak-mic', 'wait:900', 'tap:#fc-speak-mic'");
+    // Сверка 12.10: у круглого микрофона с вечной анимацией кольца uiautomator не отдаёт id — робот жмёт по центру кнопки, всё так же
+    // видимым нажатием «начать → стоп», а не скрытым путём
+    expect(cards2).toContain("add('cards-section-046', ['wait:3000', 'xy:540,1324', 'wait:900', 'xy:540,1324',");
     expect(cards2).not.toContain('long:Зажми и говори');
     expect(cards2).toContain("'cards-gap-024', [MENU, 'tap:Фразы'");
-    expect(cards2).toContain("'cards-064', ['tap:#fc-editor-en', 'type:Test', 'back',");
+    // 1181c0ed7: 'back' → 'hidekb' (убрать клавиатуру, только если показана — 'back' мог увести с экрана); ввод и сохранение — те же
+    expect(cards2).toContain("'cards-064', ['tap:#fc-editor-en', 'type:Test', 'hidekb',");
   });
 });

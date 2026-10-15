@@ -8,7 +8,7 @@ const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'learning-v2', 'se
 describe('старый экран занятия: микрофон на общем лимите голоса', () => {
   it('проверка в кадре нажатия и списание при подтверждённом старте записи', () => {
     expect(src).toContain('useVoiceAttemptGate({ surface: "course_v2", source: "learning_v2_course_voice" })');
-    expect(src).toMatch(/if \(command === "start" && !legacyVoiceGate\.canStartAttempt\(\)\) \{[\s\S]{0,300}return;/);
+    expect(src).toMatch(/if \(command === "start" && !legacyVoiceGate\.canStartAttempt\([\s\S]{0,160}?\)\) \{[\s\S]{0,300}return;/);
     expect(src).toMatch(/outcome\.outcome === "started"\) \{\s*legacyVoiceGate\.commitStartedAttempt\(\);/);
     expect(src).not.toContain('ungated_legacy_mic');
   });

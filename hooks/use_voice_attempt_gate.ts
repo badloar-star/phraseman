@@ -11,6 +11,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'expo-router';
 
 import { trackEvent } from '../app/analytics';
+import { actionToastTri, emitAppEvent } from '../app/events';
 import type { PaywallSource } from '../app/paywall_entry_contract';
 import {
   VOICE_LIMIT_PAYWALL_CONTEXT,
@@ -28,12 +29,15 @@ export type VoiceAttemptGate = Readonly<{
   allowance: VoiceDailyAllowance;
   /** true — лимит на сегодня исчерпан: тап уведёт на пейвол. */
   locked: boolean;
-  /** Вызвать в кадре тапа: true — можно начинать запись, false — уже открыт пейвол. Ничего не списывает. */
-  canStartAttempt: () => boolean;
+  /**
+   * Вызвать в кадре тапа: true — можно начинать запись, false — уже открыт пейвол (или ждём доступ). Ничего не списывает.
+   * onProceed (R43, 15.10): если тап пришёлся на ожидание доступа (≤ 10 с) и доступ подтвердился как Plus — хук сам вызовет onProceed (старт записи), повторный тап не нужен.
+   */
+  canStartAttempt: (onProceed?: () => void) => boolean;
   /** Вызвать, когда запись реально началась (подтверждённый старт): списывает одну попытку. */
   commitStartedAttempt: () => void;
   /** canStartAttempt + commitStartedAttempt в одном шаге — для кнопок, где «тап» = «старт» (удержание, запись по касанию). */
-  tryStartAttempt: () => boolean;
+  tryStartAttempt: (onProceed?: () => void) => boolean;
   /** R13: лимит на нуле в запасном режиме (доступ ещё неизвестен) — пейвол не показан, ждём ответа ≤ 10 с (индикатор на кнопке). */
   awaitingAccess: boolean;
 }>;
@@ -56,6 +60,9 @@ export function useVoiceAttemptGate(input: Readonly<{ surface: VoiceAllowanceSur
   // аккаунта нет) это может быть Plus, чья подписка ещё резолвится. Пейвол не показываем — ждём настоящего ответа ≤ 10 с:
   // Plus → можно говорить (следующий тап пишет), Free или таймаут → обычный пейвол.
   const [awaitingAccess, setAwaitingAccess] = useState(false);
+  // зачем (R43): старт записи, отложенный до ответа о подписке — выполняется один раз, только если пришёл Plus
+  const pendingProceedRef = useRef<(() => void) | null>(null);
+  const awaitToastAtRef = useRef(Number.NEGATIVE_INFINITY); // зачем: частые тапы во время ожидания не множат подсказку — не чаще раза в 3 с
 
   const openVoicePaywall = useCallback((reason: string): void => {
     lastPaywallAtRef.current = Date.now();
@@ -69,8 +76,11 @@ export function useVoiceAttemptGate(input: Readonly<{ surface: VoiceAllowanceSur
     if (!awaitingAccess) return undefined;
     if (accessResolved || hasPremiumAccess) {
       setAwaitingAccess(false);
+      const proceed = pendingProceedRef.current;
+      pendingProceedRef.current = null;
       if (hasPremiumAccess) {
-        console.log(`[ACCESS-RESOLVE] voice_await_done ${JSON.stringify({ surface, result: 'plus', action: 'record_allowed' })}`); // guard-ok: итог ожидания
+        console.log(`[ACCESS-RESOLVE] voice_await_done ${JSON.stringify({ surface, result: 'plus', action: proceed ? 'record_started_automatically' : 'record_allowed' })}`); // guard-ok: итог ожидания
+        if (proceed) setTimeout(proceed, 0); // зачем (R43): запись стартует сама — повторный тап не нужен
         return undefined;
       }
       console.log(`[ACCESS-RESOLVE] voice_await_done ${JSON.stringify({ surface, result: 'free', action: 'paywall' })}`); // guard-ok: итог ожидания
@@ -79,16 +89,24 @@ export function useVoiceAttemptGate(input: Readonly<{ surface: VoiceAllowanceSur
     }
     const timer = setTimeout(() => {
       setAwaitingAccess(false);
+      pendingProceedRef.current = null;
       console.warn(`[ACCESS-RESOLVE] voice_await_done ${JSON.stringify({ surface, result: 'timeout', ceilingMs: VOICE_ACCESS_AWAIT_CEILING_MS, action: 'paywall' })}`); // guard-ok: итог ожидания
       openVoicePaywall('await_timeout');
     }, VOICE_ACCESS_AWAIT_CEILING_MS);
     return () => clearTimeout(timer);
   }, [accessResolved, awaitingAccess, hasPremiumAccess, openVoicePaywall, surface]);
 
-  const canStartAttempt = useCallback((): boolean => {
+  const canStartAttempt = useCallback((onProceed?: () => void): boolean => {
     const allowed = voiceDailyAllowanceGate(surface, { accessResolved, hasPremiumAccess });
     if (!allowed && voiceAccessSource({ accessResolved, hasPremiumAccess }) === 'fallback') {
-      console.log(`[VOICE-GATE] ${surface}: лимит в запасном режиме — пейвол не показываем, ждём ответа о подписке ≤ ${VOICE_ACCESS_AWAIT_CEILING_MS} мс`); // guard-ok: ветка решения
+      console.log(`[VOICE-GATE] ${surface}: лимит в запасном режиме — пейвол не показываем, ждём ответа о подписке ≤ ${VOICE_ACCESS_AWAIT_CEILING_MS} мс (автостарт: ${onProceed ? 'да' : 'нет'})`); // guard-ok: ветка решения
+      pendingProceedRef.current = onProceed ?? null;
+      // зачем (R43, Ревизор 15.10): индикатор ожидания у всех 8 микрофонов — один раз на уровне общего gate: короткая подсказка вместо «тап ничего не делает» (у SpeakMicButton дополнительно крутится индикатор на кнопке)
+      if (Date.now() - awaitToastAtRef.current > 3000) emitAppEvent('action_toast', actionToastTri('info', {
+        ru: 'Проверяем подписку…', uk: 'Перевіряємо підписку…', en: 'Checking your subscription…', es: 'Comprobando la suscripción…', 'pt-BR': 'Verificando a assinatura…',
+        vi: 'Đang kiểm tra gói đăng ký…', id: 'Memeriksa langganan…', tr: 'Abonelik kontrol ediliyor…', pl: 'Sprawdzamy subskrypcję…',
+      }));
+      awaitToastAtRef.current = Date.now();
       setAwaitingAccess(true);
       return false;
     }
@@ -109,8 +127,8 @@ export function useVoiceAttemptGate(input: Readonly<{ surface: VoiceAllowanceSur
     recordVoiceDailyAttempt(surface, `${surface}:${Date.now()}:${seqRef.current}`, { accessResolved, hasPremiumAccess });
   }, [accessResolved, hasPremiumAccess, surface]);
 
-  const tryStartAttempt = useCallback((): boolean => {
-    if (!canStartAttempt()) return false;
+  const tryStartAttempt = useCallback((onProceed?: () => void): boolean => {
+    if (!canStartAttempt(onProceed)) return false;
     commitStartedAttempt();
     return true;
   }, [canStartAttempt, commitStartedAttempt]);

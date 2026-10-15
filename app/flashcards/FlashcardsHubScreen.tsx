@@ -537,7 +537,8 @@ export default function FlashcardsHubScreen() {
     || quotaPreview.status === 'stale_account');
   const trainingRemaining = Math.max(0, quotaPreview.limit - quotaPreview.used);
   // зачем (аудит #16, 15.10): у Plus лимита тренировок нет — «N/30», «осталось N из 30» ему не показываем (тренировки считаются, но не ограничивают)
-  const trainingLimitShown = !hasPremiumAccess;
+  // (Ревизор 9fa4a4835, 15.10: пока доступ не выяснен, платящий не должен видеть лимит ни на кадр — только accessResolved && !hasPremiumAccess)
+  const trainingLimitShown = accessResolved && !hasPremiumAccess;
   const trainAccessibilityLabel = trainingLocked
     ? `${copy.train}. ${copy.trainA11yExhausted}`
     : quotaPreview.status === 'allowed' && trainingLimitShown

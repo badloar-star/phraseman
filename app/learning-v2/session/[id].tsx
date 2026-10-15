@@ -454,11 +454,12 @@ function LearningV2LegacySessionScreen() {
   // зачем (координатор 15.10, «3/день без исключений»): старый экран открывается внешней ссылкой без runtimeMode=direct_v1
   // у не-английского языка — его микрофон шёл мимо общего дневного счётчика. Теперь тот же гейт, что у плеера курса.
   const legacyVoiceGate = useVoiceAttemptGate({ surface: "course_v2", source: "learning_v2_course_voice" });
+  const controlReleasedVoiceRef = useRef<((command: "start" | "stop", interaction: "tap" | "hold") => Promise<void>) | null>(null);
   const controlReleasedVoice = useCallback(
     async (command: "start" | "stop", interaction: "tap" | "hold") => {
       const actionSession = auxiliaryActions.actionSession;
       if (!actionSession?.voiceAvailable) return;
-      if (command === "start" && !legacyVoiceGate.canStartAttempt()) {
+      if (command === "start" && !legacyVoiceGate.canStartAttempt(() => { void controlReleasedVoiceRef.current?.("start", interaction); })) { // R43: ожидание доступа → после подтверждения Plus запись стартует сама
         console.warn("[VOICE-LIMIT] legacy_mic blocked", JSON.stringify({ screen: "learning-v2/session", interaction })); // guard-ok: ранний выход — лимит, пейвол открыт хуком
         return;
       }
@@ -484,6 +485,7 @@ function LearningV2LegacySessionScreen() {
     },
     [auxiliaryActions.actionSession, copy, legacyVoiceGate],
   );
+  controlReleasedVoiceRef.current = controlReleasedVoice;
 
   const invalidateAudioAttempt = useCallback(() => {
     audioRequestEpochRef.current += 1;

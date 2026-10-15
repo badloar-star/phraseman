@@ -749,7 +749,7 @@ function SessionContent() {
   const startVoice = () => {
     const count = peekDialogVoiceAttempts();
     // зачем (Ревизор R1-a/R1-c): та же проверка, что у всех микрофонов (с запасным режимом при неизвестном доступе)
-    const allowed = voiceGate.canStartAttempt();
+    const allowed = voiceGate.canStartAttempt(() => { void voice.start(); }); // R43: ожидание доступа → после подтверждения Plus запись стартует сама
     const decision = allowed ? 'allowed' : 'limit_reached';
     console.log('[DIALOG-VOICE] start:tap', JSON.stringify({ count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, decision, voiceStatus: voice.status }));
     if (decision === 'limit_reached') {

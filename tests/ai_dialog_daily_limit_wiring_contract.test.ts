@@ -78,7 +78,7 @@ describe('ИИ-диалог — месячный лимит обычного а�
     expect(session).toContain("useVoiceAttemptGate({ surface: 'ai_dialog', source: 'ai_dialog_voice_input' })");
     expect(session).not.toContain('useSpeakingAttemptGate');
     expect(session).not.toContain('SpeakingQuotaDots');
-    expect(session).toContain('if (!voiceInputGate.canStartAttempt()) {');
+    expect(session).toMatch(/if \(!voiceInputGate\.canStartAttempt\([^\n]*\)\) \{/); // R43: аргумент — автостарт после подтверждения Plus
     expect(session).toContain('voiceInputGate.commitStartedAttempt();');
     expect(session).toContain('{!speechNa ? <MicAllowanceBadge size="sm"'); // устройство без распознавателя (§SPEECH-NA) — цифры нет
   });

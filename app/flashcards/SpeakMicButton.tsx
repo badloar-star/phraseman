@@ -105,7 +105,7 @@ function SpeakMicButtonBase({
       console.warn('[SPEECH-AVAIL] SpeakMicButton: press ignored — speech unavailable on device', JSON.stringify({ testID })); // guard-ok: ранний выход пишет причину, лог на жест, не на кадр
       return;
     }
-    if (!voiceGate.canStartAttempt()) { // зачем (координатор 15.10, правило владельца D194 «попытка = НАЧАТАЯ запись»): тап только проверяет лимит (при нуле — пейвол), а попытка списывается, когда запись реально пошла (статус «listening»): отказ микрофона и отмена до старта не списывают; списание — на экране «Устно» по статусу listening
+    if (!voiceGate.canStartAttempt(onStart)) { // R43: тап на ожидании доступа — после подтверждения Plus запись стартует сама // зачем (координатор 15.10, правило владельца D194 «попытка = НАЧАТАЯ запись»): тап только проверяет лимит (при нуле — пейвол), а попытка списывается, когда запись реально пошла (статус «listening»): отказ микрофона и отмена до старта не списывают; списание — на экране «Устно» по статусу listening
       console.warn('[SPEECH-GATE] SpeakMicButton: attempt gate refused', JSON.stringify({ testID, locked: voiceGate.locked })); // guard-ok: ранний выход пишет причину, лог на жест, не на кадр
       return;
     }

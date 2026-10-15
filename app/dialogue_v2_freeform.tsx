@@ -141,7 +141,7 @@ export default function DialogueV2FreeformRoute() {
     commitVoiceAttempt();
   }, [commitVoiceAttempt, voice.status]);
   const startVoice = useCallback(() => {
-    if (!voiceGate.canStartAttempt()) return;
+    if (!voiceGate.canStartAttempt(() => { void voice.start(); })) return; // R43: ожидание доступа → после подтверждения Plus запись стартует сама
     void voice.start();
   }, [voice, voiceGate]);
 

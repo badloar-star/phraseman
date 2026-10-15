@@ -115,7 +115,7 @@ describe('дневной лимит голоса в Диалогах', () => {
     // R1-a (Ревизор 15.10): решение и пейвол ai_voice_input (с защитой от двойного тапа и paywall_shown) — у общего хука;
     // на лимите запись не стартует. Контекст пейвола про голос, а не про месячные ответы (dialog_limit) — внутри хука.
     expect(src).toContain("useVoiceAttemptGate({ surface: 'dialogs', source: 'dialogue_v2_session' })");
-    expect(src).toMatch(/const allowed = voiceGate\.canStartAttempt\(\);[\s\S]{0,500}if \(decision === 'limit_reached'\) \{[\s\S]{0,300}return;\s*\}\s*void voice\.start\(\);/);
+    expect(src).toMatch(/const allowed = voiceGate\.canStartAttempt\([\s\S]{0,80}?\);[\s\S]{0,500}if \(decision === 'limit_reached'\) \{[\s\S]{0,300}return;\s*\}\s*void voice\.start\(\);/);
     expect(fs.readFileSync(path.join(__dirname, '..', 'hooks', 'use_voice_attempt_gate.ts'), 'utf8')).toContain("context: 'ai_voice_input'");
     expect(src).toContain("if (voice.status !== 'recording' || previous === 'recording') return;");
     // R1-a (Ревизор 15.10): Plus не списывает и доступ «не выяснен» ждёт — это решает общий recordVoiceDailyAttempt

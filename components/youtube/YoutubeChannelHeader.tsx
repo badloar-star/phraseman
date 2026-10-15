@@ -29,7 +29,7 @@ const STUDY_FLAG: Record<StudyTarget, number> = {
  * YouTube. Она рабочая: канал задаётся языком обучения, поэтому пилюля ведёт на экран выбора языка.
  * Без onOpenLanguage (экраны с «Назад») остаётся кнопка YouTube.
  */
-export default function YoutubeChannelHeader({ channel, title, onBack, onOpenChannels, onOpenYoutube, studyTarget, onOpenLanguage }: {
+export default function YoutubeChannelHeader({ channel, title, onBack, onOpenChannels, onOpenYoutube, studyTarget, onOpenLanguage, hideChannel = false }: {
   channel: YoutubeChannelSnapshot;
   /** Крупный заголовок; по умолчанию — название канала. */
   title?: string;
@@ -41,6 +41,8 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
   studyTarget?: StudyTarget;
   /** Открыть выбор языка обучения; есть — вместо кнопки YouTube рисуется пилюля языка. */
   onOpenLanguage?: () => void;
+  /** зачем (Ревизор/Макеты 15.10, #26/R59): канала этого языка нет или он ещё не известен — пилюлю канала не рисуем, чтобы не мелькал канал по умолчанию («Английский») над «нет роликов». */
+  hideChannel?: boolean;
 }) {
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
@@ -79,7 +81,7 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
           </TapScale>
         )}
       </View>
-      {(() => {
+      {hideChannel ? null : (() => {
       const pillBody = (
         <View style={styles.channelPillContent}>
           {channel.avatarUrl

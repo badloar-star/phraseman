@@ -990,6 +990,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
   }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, restoreLoudPlaybackMode]);
 
+  const startVoiceInputRef = useRef<(() => Promise<void>) | null>(null);
   const startVoiceInput = useCallback(async () => {
     if (speechNa) {
       DebugLogger.warn('[DIALOG-VOICE]', 'start: early return — speech unavailable on device ([SPEECH-AVAIL])');
@@ -1028,7 +1029,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       hasSpeechModule: !!speechModule,
       accessResolved,
     })}`);
-    if (!voiceInputGate.canStartAttempt()) {
+    if (!voiceInputGate.canStartAttempt(() => { void startVoiceInputRef.current?.(); })) { // R43: ожидание доступа → после подтверждения Plus запись стартует сама
       DebugLogger.warn('[DIALOG-VOICE]', 'start: early return — gate.canStartAttempt()=false (дневная квота/замок)');
       return;
     }
@@ -1334,6 +1335,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     stopSpeaking,
     voiceInputStatus,
   ]);
+  startVoiceInputRef.current = startVoiceInput;
 
   useEffect(() => {
     voiceInputMountedRef.current = true;

@@ -32,10 +32,10 @@ describe('аудит кнопок: Карточки', () => {
 
   it('#16/#17: у Plus нет «N/30» ни на хабе, ни в настройке тренировки', () => {
     const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
-    expect(hub).toContain('const trainingLimitShown = !hasPremiumAccess;');
+    expect(hub).toContain('const trainingLimitShown = accessResolved && !hasPremiumAccess;');
     expect(hub).toContain("quotaPreview.status === 'waiting' || !trainingLimitShown ? null");
     expect(hub).toContain("quotaPreview.status === 'allowed' && trainingLimitShown");
-    expect(read('app/flashcards_training_setup.tsx')).toContain("quotaPreview.status === 'waiting' || hasPremiumAccess ? null");
+    expect(read('app/flashcards_training_setup.tsx')).toContain("quotaPreview.status === 'waiting' || !accessResolved || hasPremiumAccess ? null");
   });
 
   it('#20: итог «Верно/неверно» монтирует окно «нет энергии» — «Следующий раунд» при нуле открывает его', () => {
@@ -70,7 +70,7 @@ describe('аудит кнопок: Видео', () => {
     const src = read('app/lingman_videos.tsx');
     expect(src).toContain("ru: 'На этом языке пока нет роликов'");
     expect(src).toContain('testID="youtube-no-videos-retry"');
-    expect(src).toContain('catalog && !refreshing && allVideos.length === 0 && allChannel.playlists.length === 0');
+    expect(src).toContain("catalog && !refreshing && (allChannel.status === 'ready' || allChannel.status === 'unavailable') && allVideos.length === 0 && allChannel.playlists.length === 0");
   });
 
   it('#26: канал строго по тегу языка (как на Главной), английским не подменяем', () => {
@@ -103,5 +103,27 @@ describe('аудит кнопок: Видео, добавки Макетов R57
     expect(videos).toContain('const hasSavedRow = !savedOnly && savedVideos.length > 0;');
     expect(videos).toContain('scrollToOffset({ offset: scrollYRef.current + h + SAVED_ROW_MARGIN, animated: false })');
     expect(videos).toContain('onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; }}');
+  });
+});
+
+describe('аудит кнопок: добавки Ревизора по 9fa4a4835 (15.10)', () => {
+  it('R43: индикатор ожидания доступа — на уровне общего gate (подсказка для всех микрофонов), запись стартует сама после Plus', () => {
+    const gate = read('hooks/use_voice_attempt_gate.ts');
+    expect(gate).toContain('canStartAttempt: (onProceed?: () => void) => boolean;');
+    expect(gate).toContain("emitAppEvent('action_toast', actionToastTri('info', {");
+    expect(gate).toContain('if (proceed) setTimeout(proceed, 0);');
+    expect(gate).toContain('pendingProceedRef.current = onProceed ?? null;');
+    // хосты передают старт записи
+    expect(read('app/flashcards/SpeakMicButton.tsx')).toContain('voiceGate.canStartAttempt(onStart)');
+    expect(read('app/dialogue_v2_freeform.tsx')).toContain('voiceGate.canStartAttempt(() => { void voice.start(); })');
+    expect(read('app/dialogue_v2_session.tsx')).toContain('voiceGate.canStartAttempt(() => { void voice.start(); })');
+    expect(read('app/ai_dialog_session.tsx')).toContain('voiceInputGate.canStartAttempt(() => { void startVoiceInputRef.current?.(); })');
+    expect(read('app/lesson1.tsx')).toContain('speakingGate.canStartAttempt(() => startSpeakingHoldRef.current?.())');
+    expect(read('app/learning-v2/session/[id].tsx')).toContain('legacyVoiceGate.canStartAttempt(() => { void controlReleasedVoiceRef.current?.("start", interaction); })');
+  });
+
+  it('#26/R59: пилюля канала скрыта, пока канал языка неизвестен или его нет', () => {
+    expect(read('components/youtube/YoutubeChannelHeader.tsx')).toContain('{hideChannel ? null : (() => {');
+    expect(read('app/lingman_videos.tsx')).toContain("hideChannel={(noChannel && !catalog) || (!catalog && !pendingChannel && String(studyTarget) !== 'en')}");
   });
 });

@@ -778,6 +778,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           onBack={inTab ? undefined : () => safeRouterBack(router, '/(tabs)/home' as any)}
           onOpenYoutube={() => openExternalUrl(activeChannel.url)}
           studyTarget={studyTarget}
+          // зачем (Ревизор 15.10, #26/R59): нет канала языка или канал ещё не известен — канал по умолчанию («Английский») не показываем
+          hideChannel={(noChannel && !catalog) || (!catalog && !pendingChannel && String(studyTarget) !== 'en')}
           // зачем (решение 5, video.html; баг владельца 11.10): пилюля языка открывает шторку «Язык изучения» (PRF-23) —
           // раньше вела на /settings_language, то есть на язык ИНТЕРФЕЙСА, а канал задаётся языком обучения.
           onOpenLanguage={inTab ? () => {
@@ -819,7 +821,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           <View testID="youtube-catalog-loading" style={styles.gridSkeleton}>
             {renderGridSkeleton(gridSkeletonHeight)}
           </View>
-        ) : catalog && !refreshing && allVideos.length === 0 && allChannel.playlists.length === 0 ? (
+        ) : catalog && !refreshing && (allChannel.status === 'ready' || allChannel.status === 'unavailable') && allVideos.length === 0 && allChannel.playlists.length === 0 ? (
           noVideosPanel
         ) : allVideos.length === 0 && (catalog?.playlists.length ?? 0) === 0 ? (
           <ScrollView decelerationRate="fast" testID="youtube-catalog-empty" refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}>

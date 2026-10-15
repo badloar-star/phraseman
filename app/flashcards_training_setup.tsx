@@ -749,7 +749,8 @@ export default function FlashcardsTrainingSetupScreen() {
   const limitReached = quotaPreview.status === 'exhausted';
   // зачем (D174, cards-section-056): пилюля = «использовано/лимит» (30/30), как D166 «4/3» у энергии, а не «осталось/лимит» (0/30)
   // зачем (аудит #17, 15.10): у Plus лимита тренировок нет — пилюля «n/30» только у Free
-  const limitLabel = quotaPreview.status === 'waiting' || hasPremiumAccess ? null : `${Math.min(quotaPreview.limit, Math.max(0, quotaPreview.used))}/${quotaPreview.limit}`;
+  // (Ревизор 9fa4a4835, 15.10: пока доступ не выяснен — пилюли нет, платящий не видит лимит ни на кадр)
+  const limitLabel = quotaPreview.status === 'waiting' || !accessResolved || hasPremiumAccess ? null : `${Math.min(quotaPreview.limit, Math.max(0, quotaPreview.used))}/${quotaPreview.limit}`;
   const openUpgrade = useCallback(() => {
     console.log('[FC-TRAIN-ENTRY] setup:upgrade-tap', JSON.stringify({ mode: mode ?? null, quotaStatus: quotaPreview.status, used: quotaPreview.used, limit: quotaPreview.limit }));
     router.push({ pathname: '/premium_modal', params: { context: 'flashcard_training', source: 'flashcards_training_setup' } } as never);

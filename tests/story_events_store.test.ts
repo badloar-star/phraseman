@@ -44,12 +44,20 @@ describe('story_events_store', () => {
     beginAccountGeneration('stable-a');
   });
 
-  it('writes nothing while the stories_v1 flag is off', async () => {
+  // координатор 15.10 (R21): к запуску 17.10 у людей уже должны быть истории — пишем и при выключенном флаге,
+  // но только локально и без показа; кольцо появляется, когда флаг включат.
+  it('records locally while the stories_v1 flag is off, shows nothing, and the ring lights once the flag is on', async () => {
     mockFlagOn = false;
-    await expect(recordStoryEvent('coin_rank_up', { toRank: 2 })).resolves.toEqual({ recorded: false, reason: 'flag_off' });
-    expect(mockStore).toEqual({});
+    await expect(recordStoryEvent('coin_rank_up', { toRank: 2 })).resolves.toMatchObject({ recorded: true });
+    expect(Object.keys(mockStore)).toEqual(['story_events_v1:stable-a']);
     await primeStoryEvents('test');
     expect(peekStoryEventsSnapshot()).toMatchObject({ enabled: false, unseenCount: 0 });
+
+    // следующий запуск: флаг уже включён — запись из «выключенного» времени видна и горит
+    __resetStoryEventsForTests();
+    mockFlagOn = true;
+    await primeStoryEvents('test');
+    expect(peekStoryEventsSnapshot()).toMatchObject({ enabled: true, unseenCount: 1 });
   });
 
   it('records a fact once, persists it locally and shows it as unseen', async () => {

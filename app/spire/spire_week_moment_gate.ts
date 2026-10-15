@@ -16,7 +16,7 @@ import { isMomentsV3Enabled } from '../../components/spire/moments/moments_flag'
 import { asSpireLang } from '../../components/spire/spire_home_week';
 import type { SpireLang } from '../../modules/spire/report_queue';
 import { spireWeekStartMs } from '../../modules/spire/residents';
-import { markSpireWeekStoryShown } from '../../modules/story_events/story_event_sources';
+import { recordSpireWeekStory } from '../../modules/story_events/story_event_sources';
 import { DebugLogger } from '../debug-logger';
 import { readRemoteConfigCacheRaw } from '../remote_config_client';
 import { spireOpenLiveGate } from './spire_live_gate';
@@ -150,7 +150,7 @@ export async function resolveSpireWeekMoment(input: SpireWeekMomentInput): Promi
   }
 }
 
-/** Окно реально получило слот: больше на этой неделе не показываем, история в сторис — сразу просмотрена (D192). */
+/** Окно реально получило слот: больше на этой неделе не показываем; история итога недели ложится в сторис непросмотренной. */
 export async function markSpireWeekMomentShown(decision: SpireWeekMomentShow): Promise<void> {
   try {
     await AsyncStorage.setItem(shownKeyOf(decision.uid, decision.lang), decision.weekId);
@@ -158,7 +158,10 @@ export async function markSpireWeekMomentShown(decision: SpireWeekMomentShow): P
   } catch (error) {
     log(`показано, но отметка не записалась (${String(error).slice(0, 120)}) — при следующем открытии окно может повториться`);
   }
-  void markSpireWeekStoryShown(decision.result);
+  // зачем (координатор 15.10, R21): раньше окно D191 помечало историю просмотренной — итог недели (понедельник 19.10) не зажигал
+  // кольцо. Теперь окно и кольцо независимы: пишем историю как обычный факт (повтор уже записанного — тихий дубль).
+  log(`показано: история итога недели ${decision.weekId} → сторис непросмотренной`);
+  void recordSpireWeekStory(decision.result);
 }
 
 export function __resetSpireWeekMomentGateForTests(): void {

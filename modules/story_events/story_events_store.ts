@@ -6,7 +6,7 @@
 //
 // Firebase-экономия: ни одного чтения/записи Firestore — только AsyncStorage `story_events_v1:<stableId>`.
 // Флаг stories_v1 (remote_config_cache_v1.bools, по умолчанию выкл) читается из уже загруженного кэша конфига.
-// Выключен → запись не делается вовсе (исходные места работают ровно как раньше).
+// Выключен → факты всё равно пишутся локально (координатор 15.10, R21: к включению 17.10 истории уже есть), но не показываются.
 // Лог: [STORY-EVENTS] — запись, отказ (повтор/срок/флаг/нет аккаунта), просмотр, загрузка, сбой хранилища.
 // ═══════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -244,7 +244,9 @@ export async function recordStoryEvent(
 ): Promise<StoryRecordResult> {
   try {
     await primeStoriesFlag();
-    if (!isStoriesEnabled()) return { recorded: false, reason: 'flag_off' };
+    // зачем (координатор 15.10, R21): при выключенном флаге раньше не писали ничего — 17.10 кольцо почти никто бы не увидел.
+    // Теперь пишем всегда (только AsyncStorage, без Firestore); показ по-прежнему за флагом — снимок остаётся пустым.
+    if (!isStoriesEnabled()) info(`record: type=${type} flag=off → пишем локально без показа`);
     const { owner, token } = currentOwner();
     if (!owner) {
       info(`record: skip type=${type} reason=no_owner phase=${token.phase}`);

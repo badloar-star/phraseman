@@ -32,7 +32,11 @@ jest.mock('../app/spire_config_client', () => ({ warmSpireConfigFromDisk: async 
 jest.mock('../app/spire/spire_live_gate', () => ({ spireOpenLiveGate: () => ({ open: true }) }));
 jest.mock('../app/spire/spire_ui_lang_gate', () => ({ spireUiLangDecision: (l: string) => ({ allowed: l === 'ru' || l === 'uk', reason: 'test' }) }));
 jest.mock('../components/spire/spire_home_week', () => ({ asSpireLang: (v: unknown) => (v === 'en' || v === 'es' ? v : null) }));
-jest.mock('../modules/story_events/story_event_sources', () => ({ markSpireWeekStoryShown: (...args: unknown[]) => mockStoryShown(...args) }));
+const mockStoryRecorded = jest.fn();
+jest.mock('../modules/story_events/story_event_sources', () => ({
+  markSpireWeekStoryShown: (...args: unknown[]) => mockStoryShown(...args),
+  recordSpireWeekStory: (...args: unknown[]) => mockStoryRecorded(...args),
+}));
 jest.mock('../app/spire/spire_week_result_client', () => {
   const { spireWeekStartMs } = jest.requireActual('../modules/spire/residents');
   const { spireCurrentWeekKey } = jest.requireActual('../components/spire/spire_tower_model');
@@ -56,6 +60,7 @@ describe('D191 week moment gate', () => {
     mockFlagOn = true;
     mockLoad.mockClear();
     mockStoryShown.mockClear();
+    mockStoryRecorded.mockClear();
     __resetSpireWeekMomentGateForTests();
   });
 
@@ -82,7 +87,9 @@ describe('D191 week moment gate', () => {
     const first = await resolveSpireWeekMoment({ ...INPUT, nowMs });
     expect(first).toMatchObject({ show: true, outcome: 'promoted', weekId, isRepeatPromotion: true }); // prevTier 2 → повторное
     await markSpireWeekMomentShown(first as SpireWeekMomentShow);
-    expect(mockStoryShown).toHaveBeenCalledWith(mockResult);
+    // координатор 15.10 (R21): окно D191 НЕ гасит историю итога недели — кольцо у аватарки тоже загорается
+    expect(mockStoryRecorded).toHaveBeenCalledWith(mockResult);
+    expect(mockStoryShown).not.toHaveBeenCalled();
     const second = await resolveSpireWeekMoment({ ...INPUT, nowMs: nowMs + 60_000 });
     expect(second).toEqual({ show: false, reason: 'already_shown' });
     expect(mockLoad).toHaveBeenCalledTimes(1);

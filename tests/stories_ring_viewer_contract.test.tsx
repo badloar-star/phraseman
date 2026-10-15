@@ -122,15 +122,15 @@ describe('аватар в шапке Главной (D192)', () => {
     expect(props.onOpenProfile).toHaveBeenCalledTimes(1);
   });
 
-  it('всё просмотрено, но за 7 дней события есть → кольца нет, тап открывает просмотр недавних от старого к новому', async () => {
+  // координатор 15.10 (R21): после просмотра аватар снова кнопка профиля — «недавние» не перехватывают тап 7 дней
+  it('всё просмотрено, но за 7 дней события есть → кольца нет, тап ведёт в профиль', async () => {
     mockStories = { enabled: true, unseenCount: 0, playback: [], stories: [STREAK, WEEK] }; // новые первыми, как отдаёт Ядро
     const props = slotProps();
     await render(<StoryAvatarSlot {...props} />);
     expect(screen.queryByTestId('story-ring')).toBeNull();
     await fireEvent.press(screen.getByTestId('home-hero-avatar-button'));
-    expect(props.onOpenProfile).not.toHaveBeenCalled();
-    expect(screen.getByTestId('story-viewer')).toBeTruthy();
-    expect(mockMarkSeen).toHaveBeenCalledWith(WEEK.id); // WEEK старше STREAK → идёт первым
+    expect(props.onOpenProfile).toHaveBeenCalledTimes(1);
+    expect(screen.queryByTestId('story-viewer')).toBeNull();
   });
 
   it('есть непросмотренные → кольцо у аватара; тап открывает просмотр, профиль не открывается', async () => {

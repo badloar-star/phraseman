@@ -62,13 +62,14 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   const buttonRef = useRef<React.ElementRef<typeof TouchableOpacity> | null>(null);
   const [viewer, setViewer] = useState<ViewerState | null>(null);
   const ring = enabled && unseenCount > 0;
-  // зачем (координатор 14.10): кольца нет (всё просмотрено), но за 7 дней события есть → тап открывает просмотр недавних, от старого к новому; событий нет → профиль как раньше
-  const queue = useMemo<StoryEventList>(() => (ring ? playback : enabled ? [...stories].reverse() : []), [enabled, playback, ring, stories]);
+  // зачем (координатор 15.10, R21; было 14.10 — «недавние» 7 дней): после просмотра аватар снова ведёт в профиль — иначе кнопка
+  // неделю меняет смысл. Просмотр открывается только пока есть непросмотренное (кольцо горит).
+  const queue = useMemo<StoryEventList>(() => (ring ? playback : []), [playback, ring]);
   const opensStories = queue.length > 0;
 
   const open = useCallback(() => {
     if (viewer) { DebugLogger.info(LOG, 'тап: просмотр уже открыт'); return; }
-    if (!opensStories) { DebugLogger.info(LOG, `тап → профиль (событий нет) enabled=${String(enabled)} непросмотрено=${unseenCount} живых=${stories.length}`); onOpenProfile(); return; }
+    if (!opensStories) { DebugLogger.info(LOG, `тап → профиль (непросмотренных нет) enabled=${String(enabled)} непросмотрено=${unseenCount} живых=${stories.length}`); onOpenProfile(); return; }
     const events = queue;
     const handle = buttonRef.current;
     if (!handle || typeof handle.measureInWindow !== 'function') {

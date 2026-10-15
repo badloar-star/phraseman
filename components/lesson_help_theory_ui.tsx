@@ -184,8 +184,11 @@ export function Table({ rows, t, f }: { rows: string[][]; t: Theme; f?: any }) {
   const header = rows[0];
   const body = rows.slice(1);
   const numCols = header.length;
-  const contentW = numCols * TABLE_COL_MIN_W;
-  const canScroll = containerW > 0 && contentW > containerW;
+  // зачем (координатор 15.10, «Теория»: таблицы занимали ≈ 2/3 ширины карточки): колонка — не уже минимальной, но делит ВСЮ ширину контейнера поровну; узкие колонки не помещаются — прокрутка, как раньше.
+  // Длинные ячейки переносятся (ширина колонки фиксирована), шрифт не ужимается.
+  const colW = containerW > 0 ? Math.max(TABLE_COL_MIN_W, containerW / numCols) : TABLE_COL_MIN_W;
+  const contentW = numCols * colW;
+  const canScroll = containerW > 0 && contentW > containerW + 0.5;
 
   // thumb width proportional, min 32px
   const thumbW = canScroll ? Math.max(32, (containerW / contentW) * containerW) : 0;
@@ -211,7 +214,7 @@ export function Table({ rows, t, f }: { rows: string[][]; t: Theme; f?: any }) {
             {/* Заголовок */}
             <View style={{ flexDirection: 'row', backgroundColor: c.surfaceBg }}>
               {header.map((cell, i) => (
-                <View key={i} style={{ width: TABLE_COL_MIN_W, paddingHorizontal: 10, paddingVertical: 11, borderRightWidth: i < numCols - 1 ? 0.5 : 0, borderRightColor: c.border }}>
+                <View key={i} style={{ width: colW, paddingHorizontal: 10, paddingVertical: 11, borderRightWidth: i < numCols - 1 ? 0.5 : 0, borderRightColor: c.border }}>
                   <Text style={{ color: c.primary, fontSize: 13, fontWeight: '700' }} maxFontSizeMultiplier={1}>{cell}</Text>
                 </View>
               ))}
@@ -220,7 +223,7 @@ export function Table({ rows, t, f }: { rows: string[][]; t: Theme; f?: any }) {
             {body.map((row, ri) => (
               <View key={ri} style={{ flexDirection: 'row', backgroundColor: ri % 2 === 0 ? c.cardBg : c.rowAltBg, borderTopWidth: 0.5, borderTopColor: c.border }}>
                 {row.map((cell, ci) => (
-                  <View key={ci} style={{ width: TABLE_COL_MIN_W, paddingHorizontal: 10, paddingVertical: 11, borderRightWidth: ci < row.length - 1 ? 0.5 : 0, borderRightColor: c.border }}>
+                  <View key={ci} style={{ width: colW, paddingHorizontal: 10, paddingVertical: 11, borderRightWidth: ci < row.length - 1 ? 0.5 : 0, borderRightColor: c.border }}>
                     <TheoryInlineText text={cell} t={t} f={f ?? { body: 11 }} size={11} lineHeight={17} baseColor={ci === 0 ? c.primary : c.body} weight={ci === 0 ? '600' : '400'} />
                   </View>
                 ))}

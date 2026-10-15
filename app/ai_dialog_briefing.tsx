@@ -1,16 +1,14 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import AiDialogBriefingScreen from '../components/AiDialogBriefingScreen';
 import DialogueTargetBoundary from '../components/dialogs/DialogueTargetBoundary';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import V2DeadEnd from '../components/v2/V2DeadEnd';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { useTheme } from '../components/ThemeContext';
-import PressableScale from '../components/feedback/PressableScale';
 import { triLang } from '../constants/i18n';
 import { markAiDialogIntroSeen } from './ai_dialog_intro_seen';
 import { warmPremiumDialog } from './ai_dialog_client';
@@ -37,42 +35,11 @@ type RecoveryScreenProps = {
 };
 
 function RecoveryScreen({ icon, title, body, action, onBack }: RecoveryScreenProps) {
-  const { theme: t, f, ds } = useTheme();
-
+  // зачем (координатор 15.10: «Диалог не найден» — «Назад» не на всю ширину): общий вид тупиковых экранов, основная кнопка на всю ширину
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: ds.spacing.xl }}>
-        <View style={{ alignItems: 'center', maxWidth: 520 }}>
-          <Ionicons name={icon} size={40} color={t.textMuted} />
-          <Text
-            accessibilityRole="header"
-            style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginTop: ds.spacing.md }}
-          >
-            {title}
-          </Text>
-          <Text
-            style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: f.body + 8, marginTop: ds.spacing.sm }}
-          >
-            {body}
-          </Text>
-          <PressableScale
-            onPress={onBack}
-            accessibilityRole="button"
-            accessibilityLabel={action}
-            style={{
-              minHeight: ds.buttonHeight,
-              minWidth: 180,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: t.accent,
-              borderRadius: ds.radius.lg,
-              paddingHorizontal: ds.spacing.xl,
-              marginTop: ds.spacing.xl,
-            }}
-          >
-            <Text style={{ color: t.textOnGold, fontSize: f.bodyLg, fontWeight: '700' }}>{action}</Text>
-          </PressableScale>
-        </View>
+      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <V2DeadEnd testID="ai-dialog-recovery" icon={icon} title={title} body={body} actionLabel={action} onAction={onBack} />
       </SafeAreaView>
     </ScreenGradient>
   );

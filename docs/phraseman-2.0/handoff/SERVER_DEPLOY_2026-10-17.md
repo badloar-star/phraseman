@@ -212,6 +212,21 @@ firebase deploy --only "functions:default:usersWriteRouter" --project phraseman-
   уже полученные награды не трогаются: окна только показывают, начисления в них нет.
 - Сторис `stories_v1` — отдельный флаг, в этот пункт НЕ входит.
 
+Пункт 7 — старые бонусы → монеты (D195, курсы «Средне» утверждены владельцем 15.10 08:4x).
+
+```bash
+firebase deploy --only "functions:default:legacyBonusConvertMine" --project phraseman-ea0b3
+```
+
+- Выкладка функции ничего не начисляет сама: пока в `remote_config/app.bools` нет `legacy_bonus_enabled = true`,
+  ответ `status=disabled`, записей нет. Включение — тем же способом, что пункт 6 (поле boolean `true`), когда клиент 16.10 в сторе.
+- Новая причина журнала монет `legacy_bonus` (grant) — в `stars_ledger.ts`. Она общая для всех функций кошелька,
+  поэтому этот пункт выкладывать вместе с основным набором `functions:default` (общие модули — сразу у всех функций).
+- Ожидаемый выпуск по проду 15.10: жемчуг ~470,7 тыс. монет (1 132 чел.), опыт ~466,9 тыс. (239 чел.), итого ≈ 937 тыс.
+- Проверка: `functions/src/legacy_bonus_convert.test.ts`; журнал функций `[LEGACY-BONUS] plan/converted/replay/closed`.
+- Откат: `legacy_bonus_enabled` → `false` останавливает новые начисления. Уже начисленные монеты не отзываются
+  (расписки `star_operations/legacy_bonus:v1.*` и метка `users/{id}.legacyBonusConvertedV1` остаются).
+
 ### Порядок и зависимости
 
 - Пункт 3 выкладывать **вместе** с лестницей и снимком кошелька (они в тех же `spireFinalizeCron` / `spire_finalize_core`).

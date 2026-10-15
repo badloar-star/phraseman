@@ -1091,6 +1091,8 @@ export { levelSpinStarGrant } from "./level_spin_star_grant";
 // серверным фактам до 2.0 (results спинов без расписки), только вверх, с потолком.
 // Деплой — вместе с levelSpinStarGrant в день релиза (DEPLOY_NOW.md).
 export { coinReconcileV1 } from "./coin_reconcile_v1";
+// D195 (владелец 15.10): старые бонусы → монеты один раз на человека; выкладка 17.10 пунктом SERVER_DEPLOY, выключатель legacy_bonus_enabled
+export { legacyBonusConvertMine } from "./legacy_bonus_convert";
 // зачем (D51/D53, Q12 2026-10-01): строка-итог миграции «Подарки → монеты»
 // для контроля в админке. Деплой — прицельно и только после релиза 2.0 (D91).
 export { giftsToCoinsMigrationReport } from "./gifts_to_coins_report";

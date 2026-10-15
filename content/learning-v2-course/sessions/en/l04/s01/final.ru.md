@@ -51,7 +51,7 @@
 
 ## Практика (17 заданий)
 
-**1 · В комнате уютно, вам в ней комфортно. Скажите об этой комнате «Она комфортная»**
+**1 · В комнате уютно. Скажите о ней «Она комфортная»**
 <!-- interaction_id: en:lesson-04:session-01:i01; family: phrase_builder -->
 Плитки: `comfortable` `is` `It` `are` → **It is comfortable.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is comfortable.`)*
@@ -65,76 +65,74 @@
 **3 · Назовите библиотеку одним английским словом**
 <!-- interaction_id: en:lesson-04:session-01:i03; family: context_gap_grammar -->
 ___ → **library** · hospital · museum
-- hospital — *`hospital` — больница; библиотека — `library`.*
-- museum — *`museum` — музей; библиотека — `library`.*
+- hospital — *Библиотека — `library`, а `hospital` — больница.*
+- museum — *Библиотека — `library`, а `museum` — музей.*
 
-**4 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-01:i04; family: listen_choose -->
-🔊 *bakery* → **bakery** · hospital · museum
-- hospital — *В записи bakery — пекарня, а hospital — больница.*
-- museum — *В записи bakery — пекарня, а museum — музей.*
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-01:i04; family: speed_match -->
+bakery — пекарня · hospital — больница · sure — уверенный · interested — заинтересованный
 
-**5 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-01:i05; family: speed_match -->
-pharmacy — аптека · library — библиотека · bakery — пекарня · hospital — больница
+**5 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-01:i05; family: listen_build_dictation -->
+🔊 *There is a hospital.* Плитки: `hospital` `a` `is` `There` `are` → **There is a hospital.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a hospital.`)*
 
-**6 · Назовите аптеку одним английским словом**
-<!-- interaction_id: en:lesson-04:session-01:i06; family: context_gap_grammar -->
-___ → **pharmacy** · hospital · museum
-- hospital — *hospital — больница; аптека — pharmacy.*
-- museum — *museum — музей; аптека — pharmacy.*
+**6 · На стойке лежат несколько ключей. Сообщите «Здесь есть ключи»**
+<!-- interaction_id: en:lesson-04:session-01:i06; family: phrase_builder -->
+Плитки: `here` `keys` `are` `There` `is` → **There are keys here.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are keys here.`)*
 
-**7 · Назовите библиотеку одним словом**
+**7 · Назовите аптеку одним английским словом**
 <!-- interaction_id: en:lesson-04:session-01:i07; family: scripted_repeat_compare -->
-🎙 **library**
+🎙 **pharmacy**
 
 **8 · Назовите пекарню одним английским словом**
 <!-- interaction_id: en:lesson-04:session-01:i08; family: context_gap_grammar -->
-___ → **bakery** · library · pharmacy
-- library — *`library` — библиотека; пекарня — `bakery`.*
-- pharmacy — *`pharmacy` — аптека; пекарня — `bakery`.*
+___ → **bakery** · hospital · cinema
+- hospital — *Пекарня — `bakery`, а `hospital` — больница.*
+- cinema — *Пекарня — `bakery`, а `cinema` — кинотеатр.*
 
-**9 · Послушайте сообщение о месте в районе**
+**9 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-04:session-01:i09; family: listen_choose -->
-🔊 *There is a pharmacy.* → **There is a pharmacy.** · There is a library. · There is a bakery.
-- There is a library. — *В записи последнее слово — `pharmacy`, а в этом варианте — `library`.*
-- There is a bakery. — *В записи последнее слово — `pharmacy`, а в этом варианте — `bakery`.*
+🔊 *library* → **library** · hospital · cinema
+- hospital — *В записи первое слово — `library`, а в этом варианте — `hospital`.*
+- cinema — *В записи первое слово — `library`, а в этом варианте — `cinema`.*
 
 **10 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-01:i10; family: speed_match -->
-sure — уверенный · interested — заинтересованный · comfortable — комфортный · key — ключ
+pharmacy — аптека · library — библиотека · comfortable — комфортный · key — ключ
 
 **11 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-04:session-01:i11; family: listen_build_dictation -->
-🔊 *There is a library.* Плитки: `library` `a` `is` `There` `are` → **There is a library.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a library.`)*
+🔊 *There is a key here.* Плитки: `here` `key` `a` `is` `There` `are` → **There is a key here.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a key here.`)*
 
-**12 · Друг не знает район. Сообщите «Здесь есть пекарня»**
+**12 · Друг спрашивает, какие места есть в районе. Сообщите «Есть аптека»**
 <!-- interaction_id: en:lesson-04:session-01:i12; family: phrase_builder -->
-Плитки: `here` `bakery` `a` `is` `There` `are` → **There is a bakery here.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a bakery here.`)*
+Плитки: `pharmacy` `a` `is` `There` `are` → **There is a pharmacy.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a pharmacy.`)*
 
-**13 · Друг перечисляет места района и пропустил больницу. Добавьте «Есть больница»**
+**13 · Друг не знает район. Сообщите «Здесь есть библиотека»**
 <!-- interaction_id: en:lesson-04:session-01:i13; family: scripted_repeat_compare -->
-🎙 **There is a hospital.**
+🎙 **There is a library here.**
 
-**14 · На стойке лежат несколько ключей. Сообщите, что здесь есть ключи**
+**14 · Вы увидели несколько ключей на дальней стойке. Сообщите «Там есть ключи»**
 <!-- interaction_id: en:lesson-04:session-01:i14; family: context_gap_grammar -->
-There ___ keys here. → **are** · is · am
-- is — *Ключей несколько: `There are keys here`.*
+There ___ keys there. → **are** · is · am
+- is — *Ключей несколько: `There are keys there`. Последнее `there` значит «там».*
 - am — *Для нескольких ключей нужно `There are`.*
 
-**15 · Послушайте, какое место есть в районе**
+**15 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-04:session-01:i15; family: listen_choose -->
-🔊 *There is a bakery.* → **There is a bakery.** · There is a pharmacy. · There is a library.
-- There is a pharmacy. — *В записи последнее слово — `bakery`, а в этом варианте — `pharmacy`.*
-- There is a library. — *В записи последнее слово — `bakery`, а в этом варианте — `library`.*
+🔊 *bakery* → **bakery** · hospital · cinema
+- hospital — *В записи первое слово — `bakery`, а в этом варианте — `hospital`.*
+- cinema — *В записи первое слово — `bakery`, а в этом варианте — `cinema`.*
 
 **16 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-01:i16; family: speed_match -->
 sure — уверенный · interested — заинтересованный · hospital — больница · key — ключ
 
-**17 · Вы приехали в другой район. Друг не знает, есть ли здесь аптека, а вы уже увидели её вывеску. Сообщите «Здесь есть аптека»**
+**17 · Вы приехали в другой район. Друг не знает, есть ли здесь пекарня, а вы уже увидели её вывеску. Сообщите «Здесь есть пекарня»**
 <!-- interaction_id: en:lesson-04:session-01:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There is a pharmacy here.**
+🎙 **There is a bakery here.**
 

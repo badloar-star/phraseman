@@ -9,17 +9,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "В комнате уютно, вам в ней комфортно. Скажите об этой комнате «Она комфортная»",
+      "prompt": "В комнате уютно. Скажите о ней «Она комфортная»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В комнате уютно, вам в ней комфортно. Скажите об этой комнате «Она комфортная»",
+      "accessibilityLabel": "В комнате уютно. Скажите о ней «Она комфортная»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is comfortable.",
         "localizedMeaning": {
-          "ru": "В комнате уютно, вам в ней комфортно. Скажите об этой комнате «Она комфортная»",
-          "uk": "У кімнаті затишно, вам у ній комфортно. Скажіть про цю кімнату «Вона комфортна»"
+          "ru": "В комнате уютно. Скажите о ней «Она комфортная»",
+          "uk": "У кімнаті затишно. Скажіть про неї «Вона комфортна»"
         },
         "orderedTokens": [
           "It",
@@ -33,7 +33,7 @@
           {
             "responseId": "en:lesson-04:session-01:i01:tile:d1",
             "correct": false,
-            "testedDimension": "В комнате уютно, вам в ней комфортно. Скажите об этой комнате «Она комфортная»",
+            "testedDimension": "В комнате уютно. Скажите о ней «Она комфортная»",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is comfortable.`",
               "uk": "тут потрібно `is` — `It is comfortable.`"
@@ -175,8 +175,8 @@
             "correct": false,
             "testedDimension": "Назовите библиотеку одним английским словом",
             "feedbackByLocale": {
-              "ru": "`hospital` — больница; библиотека — `library`.",
-              "uk": "`hospital` — лікарня; бібліотека — `library`."
+              "ru": "Библиотека — `library`, а `hospital` — больница.",
+              "uk": "Бібліотека — `library`, а `hospital` — лікарня."
             }
           },
           {
@@ -184,8 +184,8 @@
             "correct": false,
             "testedDimension": "Назовите библиотеку одним английским словом",
             "feedbackByLocale": {
-              "ru": "`museum` — музей; библиотека — `library`.",
-              "uk": "`museum` — музей; бібліотека — `library`."
+              "ru": "Библиотека — `library`, а `museum` — музей.",
+              "uk": "Бібліотека — `library`, а `museum` — музей."
             }
           }
         ]
@@ -195,82 +195,6 @@
     {
       "interactionId": "en:lesson-04:session-01:i04",
       "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-01:i04:r1",
-          "text": "bakery"
-        },
-        {
-          "responseId": "en:lesson-04:session-01:i04:r2",
-          "text": "hospital"
-        },
-        {
-          "responseId": "en:lesson-04:session-01:i04:r3",
-          "text": "museum"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-01:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-01:i04:audio",
-          "transcript": "bakery"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-01:i04:r1",
-            "targetText": "bakery",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-01:i04:r2",
-            "targetText": "hospital",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-01:i04:r3",
-            "targetText": "museum",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-01:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи bakery — пекарня, а hospital — больница.",
-              "uk": "У записі bakery — пекарня, а hospital — лікарня."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-01:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи bakery — пекарня, а museum — музей.",
-              "uk": "У записі bakery — пекарня, а museum — музей."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-01:i05",
-      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -283,23 +207,7 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-01:i05:p1",
-            "target": "pharmacy",
-            "meaningByLocale": {
-              "ru": "аптека",
-              "uk": "аптека"
-            }
-          },
-          {
-            "pairId": "en:lesson-04:session-01:i05:p2",
-            "target": "library",
-            "meaningByLocale": {
-              "ru": "библиотека",
-              "uk": "бібліотека"
-            }
-          },
-          {
-            "pairId": "en:lesson-04:session-01:i05:p3",
+            "pairId": "en:lesson-04:session-01:i04:p1",
             "target": "bakery",
             "meaningByLocale": {
               "ru": "пекарня",
@@ -307,25 +215,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-01:i05:p4",
+            "pairId": "en:lesson-04:session-01:i04:p2",
             "target": "hospital",
             "meaningByLocale": {
               "ru": "больница",
               "uk": "лікарня"
             }
+          },
+          {
+            "pairId": "en:lesson-04:session-01:i04:p3",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверенный",
+              "uk": "упевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-01:i04:p4",
+            "target": "interested",
+            "meaningByLocale": {
+              "ru": "заинтересованный",
+              "uk": "зацікавлений"
+            }
           }
         ],
         "leftColumn": [
-          "pharmacy",
-          "library",
           "bakery",
-          "hospital"
+          "hospital",
+          "sure",
+          "interested"
         ],
         "rightColumn": [
-          "аптека",
-          "библиотека",
           "пекарня",
-          "больница"
+          "больница",
+          "уверенный",
+          "заинтересованный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -342,71 +266,95 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-04:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-01:i05:audio",
+          "transcript": "There is a hospital."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a hospital.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "hospital"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-01:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a hospital.`",
+              "uk": "тут потрібно `is` — `There is a hospital.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-04:session-01:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите аптеку одним английским словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-01:i06:r1",
-          "text": "pharmacy"
-        },
-        {
-          "responseId": "en:lesson-04:session-01:i06:r2",
-          "text": "hospital"
-        },
-        {
-          "responseId": "en:lesson-04:session-01:i06:r3",
-          "text": "museum"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На стойке лежат несколько ключей. Сообщите «Здесь есть ключи»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите аптеку одним английским словом",
+      "accessibilityLabel": "На стойке лежат несколько ключей. Сообщите «Здесь есть ключи»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите аптеку одним английским словом",
-          "uk": "Назвіть аптеку одним англійським словом"
+        "family": "phrase_builder",
+        "targetPhrase": "There are keys here.",
+        "localizedMeaning": {
+          "ru": "На стойке лежат несколько ключей. Сообщите «Здесь есть ключи»",
+          "uk": "На стійці лежать кілька ключів. Повідомте «Тут є ключі»"
         },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
+        "orderedTokens": [
+          "There",
+          "are",
+          "keys",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-01:i06:r1",
-            "text": "pharmacy"
-          },
-          {
-            "responseId": "en:lesson-04:session-01:i06:r2",
-            "text": "hospital"
-          },
-          {
-            "responseId": "en:lesson-04:session-01:i06:r3",
-            "text": "museum"
+            "responseId": "en:lesson-04:session-01:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "На стойке лежат несколько ключей. Сообщите «Здесь есть ключи»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `There are keys here.`",
+              "uk": "тут потрібно `are` — `There are keys here.`"
+            }
           }
         ],
-        "testedDimension": "Назовите аптеку одним английским словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-01:i06:r2",
-            "correct": false,
-            "testedDimension": "Назовите аптеку одним английским словом",
-            "feedbackByLocale": {
-              "ru": "hospital — больница; аптека — pharmacy.",
-              "uk": "hospital — лікарня; аптека — pharmacy."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-01:i06:r3",
-            "correct": false,
-            "testedDimension": "Назовите аптеку одним английским словом",
-            "feedbackByLocale": {
-              "ru": "museum — музей; аптека — pharmacy.",
-              "uk": "museum — музей; аптека — pharmacy."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -416,21 +364,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Назовите библиотеку одним словом",
+      "prompt": "Назовите аптеку одним английским словом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-01:i07:audio"
       ],
-      "accessibilityLabel": "Назовите библиотеку одним словом",
+      "accessibilityLabel": "Назовите аптеку одним английским словом",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-01:i07:audio",
-          "transcript": "library"
+          "transcript": "pharmacy"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "library",
+        "targetPhrase": "pharmacy",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -457,11 +405,11 @@
         },
         {
           "responseId": "en:lesson-04:session-01:i08:r2",
-          "text": "library"
+          "text": "hospital"
         },
         {
           "responseId": "en:lesson-04:session-01:i08:r3",
-          "text": "pharmacy"
+          "text": "cinema"
         }
       ],
       "mediaIds": [],
@@ -481,11 +429,11 @@
           },
           {
             "responseId": "en:lesson-04:session-01:i08:r2",
-            "text": "library"
+            "text": "hospital"
           },
           {
             "responseId": "en:lesson-04:session-01:i08:r3",
-            "text": "pharmacy"
+            "text": "cinema"
           }
         ],
         "testedDimension": "Назовите пекарню одним английским словом",
@@ -495,8 +443,8 @@
             "correct": false,
             "testedDimension": "Назовите пекарню одним английским словом",
             "feedbackByLocale": {
-              "ru": "`library` — библиотека; пекарня — `bakery`.",
-              "uk": "`library` — бібліотека; пекарня — `bakery`."
+              "ru": "Пекарня — `bakery`, а `hospital` — больница.",
+              "uk": "Пекарня — `bakery`, а `hospital` — лікарня."
             }
           },
           {
@@ -504,8 +452,8 @@
             "correct": false,
             "testedDimension": "Назовите пекарню одним английским словом",
             "feedbackByLocale": {
-              "ru": "`pharmacy` — аптека; пекарня — `bakery`.",
-              "uk": "`pharmacy` — аптека; пекарня — `bakery`."
+              "ru": "Пекарня — `bakery`, а `cinema` — кинотеатр.",
+              "uk": "Пекарня — `bakery`, а `cinema` — кінотеатр."
             }
           }
         ]
@@ -518,47 +466,47 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте сообщение о месте в районе",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-04:session-01:i09:r1",
-          "text": "There is a pharmacy."
+          "text": "library"
         },
         {
           "responseId": "en:lesson-04:session-01:i09:r2",
-          "text": "There is a library."
+          "text": "hospital"
         },
         {
           "responseId": "en:lesson-04:session-01:i09:r3",
-          "text": "There is a bakery."
+          "text": "cinema"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-01:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте сообщение о месте в районе",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-01:i09:audio",
-          "transcript": "There is a pharmacy."
+          "transcript": "library"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-04:session-01:i09:r1",
-            "targetText": "There is a pharmacy.",
+            "targetText": "library",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-04:session-01:i09:r2",
-            "targetText": "There is a library.",
+            "targetText": "hospital",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-04:session-01:i09:r3",
-            "targetText": "There is a bakery.",
+            "targetText": "cinema",
             "meaningByLocale": null
           }
         ],
@@ -567,19 +515,19 @@
           {
             "responseId": "en:lesson-04:session-01:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте сообщение о месте в районе",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `pharmacy`, а в этом варианте — `library`.",
-              "uk": "У записі останнє слово — `pharmacy`, а в цьому варіанті — `library`."
+              "ru": "В записи первое слово — `library`, а в этом варианте — `hospital`.",
+              "uk": "У записі перше слово — `library`, а в цьому варіанті — `hospital`."
             }
           },
           {
             "responseId": "en:lesson-04:session-01:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте сообщение о месте в районе",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `pharmacy`, а в этом варианте — `bakery`.",
-              "uk": "У записі останнє слово — `pharmacy`, а в цьому варіанті — `bakery`."
+              "ru": "В записи первое слово — `library`, а в этом варианте — `cinema`.",
+              "uk": "У записі перше слово — `library`, а в цьому варіанті — `cinema`."
             }
           }
         ],
@@ -604,18 +552,18 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-01:i10:p1",
-            "target": "sure",
+            "target": "pharmacy",
             "meaningByLocale": {
-              "ru": "уверенный",
-              "uk": "упевнений"
+              "ru": "аптека",
+              "uk": "аптека"
             }
           },
           {
             "pairId": "en:lesson-04:session-01:i10:p2",
-            "target": "interested",
+            "target": "library",
             "meaningByLocale": {
-              "ru": "заинтересованный",
-              "uk": "зацікавлений"
+              "ru": "библиотека",
+              "uk": "бібліотека"
             }
           },
           {
@@ -636,14 +584,14 @@
           }
         ],
         "leftColumn": [
-          "sure",
-          "interested",
+          "pharmacy",
+          "library",
           "comfortable",
           "key"
         ],
         "rightColumn": [
-          "уверенный",
-          "заинтересованный",
+          "аптека",
+          "библиотека",
           "комфортный",
           "ключ"
         ],
@@ -678,15 +626,16 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-01:i11:audio",
-          "transcript": "There is a library."
+          "transcript": "There is a key here."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There is a library.",
+        "hiddenTargetPhrase": "There is a key here.",
         "orderedTokens": [
           "There",
           "is",
           "a",
-          "library"
+          "key",
+          "here"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -697,8 +646,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a library.`",
-              "uk": "тут потрібно `is` — `There is a library.`"
+              "ru": "здесь нужно `is` — `There is a key here.`",
+              "uk": "тут потрібно `is` — `There is a key here.`"
             }
           }
         ],
@@ -715,24 +664,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг не знает район. Сообщите «Здесь есть пекарня»",
+      "prompt": "Друг спрашивает, какие места есть в районе. Сообщите «Есть аптека»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг не знает район. Сообщите «Здесь есть пекарня»",
+      "accessibilityLabel": "Друг спрашивает, какие места есть в районе. Сообщите «Есть аптека»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "There is a bakery here.",
+        "targetPhrase": "There is a pharmacy.",
         "localizedMeaning": {
-          "ru": "Друг не знает район. Сообщите «Здесь есть пекарня»",
-          "uk": "Друг не знає району. Повідомте «Тут є пекарня»"
+          "ru": "Друг спрашивает, какие места есть в районе. Сообщите «Есть аптека»",
+          "uk": "Друг запитує, які місця є в районі. Повідомте «Є аптека»"
         },
         "orderedTokens": [
           "There",
           "is",
           "a",
-          "bakery",
-          "here"
+          "pharmacy"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -741,10 +689,10 @@
           {
             "responseId": "en:lesson-04:session-01:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Друг не знает район. Сообщите «Здесь есть пекарня»",
+            "testedDimension": "Друг спрашивает, какие места есть в районе. Сообщите «Есть аптека»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a bakery here.`",
-              "uk": "тут потрібно `is` — `There is a bakery here.`"
+              "ru": "здесь нужно `is` — `There is a pharmacy.`",
+              "uk": "тут потрібно `is` — `There is a pharmacy.`"
             }
           }
         ],
@@ -761,21 +709,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг перечисляет места района и пропустил больницу. Добавьте «Есть больница»",
+      "prompt": "Друг не знает район. Сообщите «Здесь есть библиотека»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-01:i13:audio"
       ],
-      "accessibilityLabel": "Друг перечисляет места района и пропустил больницу. Добавьте «Есть больница»",
+      "accessibilityLabel": "Друг не знает район. Сообщите «Здесь есть библиотека»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-01:i13:audio",
-          "transcript": "There is a hospital."
+          "transcript": "There is a library here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There is a hospital.",
+        "targetPhrase": "There is a library here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -794,7 +742,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "На стойке лежат несколько ключей. Сообщите, что здесь есть ключи",
+      "prompt": "Вы увидели несколько ключей на дальней стойке. Сообщите «Там есть ключи»",
       "responseOptions": [
         {
           "responseId": "en:lesson-04:session-01:i14:r1",
@@ -811,14 +759,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На стойке лежат несколько ключей. Сообщите, что здесь есть ключи",
+      "accessibilityLabel": "Вы увидели несколько ключей на дальней стойке. Сообщите «Там есть ключи»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "На стойке лежат несколько ключей. Сообщите, что здесь есть ключи",
-          "uk": "На стійці лежать кілька ключів. Повідомте, що тут є ключі"
+          "ru": "Вы увидели несколько ключей на дальней стойке. Сообщите «Там есть ключи»",
+          "uk": "Ви побачили кілька ключів на дальній стійці. Повідомте «Там є ключі»"
         },
-        "gappedTargetPhrase": "There ___ keys here.",
+        "gappedTargetPhrase": "There ___ keys there.",
         "gapOptions": [
           {
             "responseId": "en:lesson-04:session-01:i14:r1",
@@ -833,21 +781,21 @@
             "text": "am"
           }
         ],
-        "testedDimension": "На стойке лежат несколько ключей. Сообщите, что здесь есть ключи",
+        "testedDimension": "Вы увидели несколько ключей на дальней стойке. Сообщите «Там есть ключи»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-04:session-01:i14:r2",
             "correct": false,
-            "testedDimension": "На стойке лежат несколько ключей. Сообщите, что здесь есть ключи",
+            "testedDimension": "Вы увидели несколько ключей на дальней стойке. Сообщите «Там есть ключи»",
             "feedbackByLocale": {
-              "ru": "Ключей несколько: `There are keys here`.",
-              "uk": "Ключів кілька: `There are keys here`."
+              "ru": "Ключей несколько: `There are keys there`. Последнее `there` значит «там».",
+              "uk": "Ключів кілька: `There are keys there`. Останнє `there` означає «там»."
             }
           },
           {
             "responseId": "en:lesson-04:session-01:i14:r3",
             "correct": false,
-            "testedDimension": "На стойке лежат несколько ключей. Сообщите, что здесь есть ключи",
+            "testedDimension": "Вы увидели несколько ключей на дальней стойке. Сообщите «Там есть ключи»",
             "feedbackByLocale": {
               "ru": "Для нескольких ключей нужно `There are`.",
               "uk": "Для кількох ключів потрібне `There are`."
@@ -863,47 +811,47 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, какое место есть в районе",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-04:session-01:i15:r1",
-          "text": "There is a bakery."
+          "text": "bakery"
         },
         {
           "responseId": "en:lesson-04:session-01:i15:r2",
-          "text": "There is a pharmacy."
+          "text": "hospital"
         },
         {
           "responseId": "en:lesson-04:session-01:i15:r3",
-          "text": "There is a library."
+          "text": "cinema"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-01:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, какое место есть в районе",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-01:i15:audio",
-          "transcript": "There is a bakery."
+          "transcript": "bakery"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-04:session-01:i15:r1",
-            "targetText": "There is a bakery.",
+            "targetText": "bakery",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-04:session-01:i15:r2",
-            "targetText": "There is a pharmacy.",
+            "targetText": "hospital",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-04:session-01:i15:r3",
-            "targetText": "There is a library.",
+            "targetText": "cinema",
             "meaningByLocale": null
           }
         ],
@@ -912,19 +860,19 @@
           {
             "responseId": "en:lesson-04:session-01:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, какое место есть в районе",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bakery`, а в этом варианте — `pharmacy`.",
-              "uk": "У записі останнє слово — `bakery`, а в цьому варіанті — `pharmacy`."
+              "ru": "В записи первое слово — `bakery`, а в этом варианте — `hospital`.",
+              "uk": "У записі перше слово — `bakery`, а в цьому варіанті — `hospital`."
             }
           },
           {
             "responseId": "en:lesson-04:session-01:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, какое место есть в районе",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bakery`, а в этом варианте — `library`.",
-              "uk": "У записі останнє слово — `bakery`, а в цьому варіанті — `library`."
+              "ru": "В записи первое слово — `bakery`, а в этом варианте — `cinema`.",
+              "uk": "У записі перше слово — `bakery`, а в цьому варіанті — `cinema`."
             }
           }
         ],
@@ -1012,21 +960,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы приехали в другой район. Друг не знает, есть ли здесь аптека, а вы уже увидели её вывеску. Сообщите «Здесь есть аптека»",
+      "prompt": "Вы приехали в другой район. Друг не знает, есть ли здесь пекарня, а вы уже увидели её вывеску. Сообщите «Здесь есть пекарня»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-01:i17:audio"
       ],
-      "accessibilityLabel": "Вы приехали в другой район. Друг не знает, есть ли здесь аптека, а вы уже увидели её вывеску. Сообщите «Здесь есть аптека»",
+      "accessibilityLabel": "Вы приехали в другой район. Друг не знает, есть ли здесь пекарня, а вы уже увидели её вывеску. Сообщите «Здесь есть пекарня»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-01:i17:audio",
-          "transcript": "There is a pharmacy here."
+          "transcript": "There is a bakery here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There is a pharmacy here.",
+        "targetPhrase": "There is a bakery here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1054,5 +1002,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9bcde62c212e08cbdc83401b8e18969e67bf12f82f704c776812c935cf192d3e"
+  "learnerFingerprint": "575b04375469f5abf4a1d7d77bc606631fc18c4bab1178315da89b95e64e2038"
 }

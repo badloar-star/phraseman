@@ -16,22 +16,22 @@
   },
   {
     "interactionId": "en:lesson-04:session-01:i04",
-    "correctText": "bakery",
-    "correctResponseId": "en:lesson-04:session-01:i04:r1"
+    "correctText": "en:lesson-04:session-01:i04:p1=bakery\nen:lesson-04:session-01:i04:p2=hospital\nen:lesson-04:session-01:i04:p3=sure\nen:lesson-04:session-01:i04:p4=interested",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i05",
-    "correctText": "en:lesson-04:session-01:i05:p1=pharmacy\nen:lesson-04:session-01:i05:p2=library\nen:lesson-04:session-01:i05:p3=bakery\nen:lesson-04:session-01:i05:p4=hospital",
+    "correctText": "There is a hospital.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i06",
-    "correctText": "pharmacy",
-    "correctResponseId": "en:lesson-04:session-01:i06:r1"
+    "correctText": "There are keys here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i07",
-    "correctText": "library",
+    "correctText": "pharmacy",
     "correctResponseId": null
   },
   {
@@ -41,27 +41,27 @@
   },
   {
     "interactionId": "en:lesson-04:session-01:i09",
-    "correctText": "There is a pharmacy.",
+    "correctText": "library",
     "correctResponseId": "en:lesson-04:session-01:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-01:i10",
-    "correctText": "en:lesson-04:session-01:i10:p1=sure\nen:lesson-04:session-01:i10:p2=interested\nen:lesson-04:session-01:i10:p3=comfortable\nen:lesson-04:session-01:i10:p4=key",
+    "correctText": "en:lesson-04:session-01:i10:p1=pharmacy\nen:lesson-04:session-01:i10:p2=library\nen:lesson-04:session-01:i10:p3=comfortable\nen:lesson-04:session-01:i10:p4=key",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i11",
-    "correctText": "There is a library.",
+    "correctText": "There is a key here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i12",
-    "correctText": "There is a bakery here.",
+    "correctText": "There is a pharmacy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-01:i13",
-    "correctText": "There is a hospital.",
+    "correctText": "There is a library here.",
     "correctResponseId": null
   },
   {
@@ -71,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-04:session-01:i15",
-    "correctText": "There is a bakery.",
+    "correctText": "bakery",
     "correctResponseId": "en:lesson-04:session-01:i15:r1"
   },
   {
@@ -81,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-04:session-01:i17",
-    "correctText": "There is a pharmacy here.",
+    "correctText": "There is a bakery here.",
     "correctResponseId": null
   }
 ]

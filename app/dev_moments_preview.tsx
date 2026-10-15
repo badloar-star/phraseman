@@ -11,6 +11,7 @@
 //   state=down&awake=1 — «Новая неделя» после тапа (финальный кадр эталона m03)
 //   state=steppass | stepfail | floor | summit — m06 «Ступень пройдена / не пройдена» и m07 «Этаж пройден / Вершина» на моках образца (&tier=N лига для башни, &rank=N ранг монеты)
 //   state=rise | overtake | lastchance — m05 «Позиция выросла / обогнали / последний шанс» на моках образца (lastchance: &gap=N не хватает до топ-5, по умолчанию 60)
+//   state=perfect — m09 «Идеальный урок» (&n=N заданий, 20; &coins=N монет за урок, 150); state=firstdialog — m17 «Первый разговор» (&study=en|es|fr|de, en; &n=N реплик, 6; &goals=N целей, 5)
 //   state=fonts — полоса весов Inter 400–900 для решения владельца по шрифту 800 (Темы; на Android 246 мест рисуются как 700)
 //   &selector=1 — снизу полоса переключения состояний и «Повторить» (по умолчанию скрыта, чтобы не попадать в кадр); &replay=N — перезапуск показа
 // Экраны — ТЕ ЖЕ компоненты, что будут в бою; данные — моки без сети, ничего не пишется и не начисляется. Тема и язык — текущие настройки приложения (dev_state?theme=…).
@@ -33,6 +34,8 @@ import SpireLastChanceSheet from '../components/spire/moments/SpireLastChanceShe
 import SpireOvertakeToast from '../components/spire/moments/SpireOvertakeToast';
 import SpirePositionRiseMoment from '../components/spire/moments/SpirePositionRiseMoment';
 import FontWeightStrip from '../components/dev/FontWeightStrip';
+import FirstDialogMoment from '../components/dialog_moments/FirstDialogMoment';
+import LessonPerfectMoment from '../components/lesson_moments/LessonPerfectMoment';
 import MomentDown from '../components/spire/moments/MomentDown';
 import MomentPromotion, { type MomentRoomRow } from '../components/spire/moments/MomentPromotion';
 import MomentStay from '../components/spire/moments/MomentStay';
@@ -41,7 +44,7 @@ import TodayRings from '../components/streak/moments/TodayRings';
 import { STREAK_MILESTONES, isStreakMilestone, type StreakMilestone } from '../components/streak/moments/streak_milestones';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 
-const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit', 'rise', 'overtake', 'lastchance', 'fonts'] as const;
+const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit', 'rise', 'overtake', 'lastchance', 'perfect', 'firstdialog', 'fonts'] as const;
 type PreviewState = (typeof STATES)[number];
 const isState = (v: unknown): v is PreviewState => typeof v === 'string' && (STATES as readonly string[]).includes(v);
 const noop = (): void => undefined;
@@ -79,7 +82,7 @@ const int = (raw: string | undefined, fallback: number, min: number, max: number
 };
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string }>();
+  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string; n?: string; goals?: string; study?: string }>();
   const { lang } = useLang();
   const fromParam: PreviewState = isState(params.state) ? params.state : 'promo';
   const [state, setState] = useState<PreviewState>(fromParam);
@@ -135,6 +138,12 @@ function Inner() {
         ) : null}
         {state === 'lastchance' ? (
           <SpireLastChanceSheet key={key} lang={lang} visible weekEndsAtMs={Date.now() + (3 * 3600 + 12 * 60 + 40) * 1000} energyReadyAtMs={Date.now() + (9 * 60 + 40) * 1000} gapCoins={int(params.gap, 60, 0, 99999)} onPlus={noop} onClose={noop} />
+        ) : null}
+        {state === 'perfect' ? (
+          <LessonPerfectMoment key={key} lang={lang} coinRank={rank} total={int(params.n, 20, 1, 99)} coinsEarned={int(params.coins, 150, 0, 99999)} onNext={noop} />
+        ) : null}
+        {state === 'firstdialog' ? (
+          <FirstDialogMoment key={key} lang={lang} studyTarget={params.study === 'es' || params.study === 'fr' || params.study === 'de' ? params.study : 'en'} coinRank={rank} turns={int(params.n, 6, 1, 99)} goalsDone={int(params.goals, 5, 0, 20)} goalsTotal={int(params.goals, 5, 1, 20)} onNext={noop} />
         ) : null}
         {state === 'fonts' ? <FontWeightStrip /> : null}
         {params.selector === '1' ? (

@@ -4,10 +4,14 @@ import TapScale from '../components/TapScale';
 import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useReducedMotion } from 'react-native-reanimated';
 import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, Text, View } from 'react-native';
 import KitTouchable from '../components/KitTouchable';
+import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
+import { decidePerfectMoment, perfectMomentKey } from '../components/lesson_moments/perfect_moment_gate';
+// зачем (координатор 15.10, m09 за флагом moments_v3): окно «Идеальный урок» грузится лениво и только когда решение сказало «показать»
+const LessonPerfectHost = lazy(() => import('../components/lesson_moments/LessonPerfectHost'));
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SoftContextualUpsellCard from '../components/SoftContextualUpsellCard';
@@ -748,6 +752,11 @@ export default function LessonComplete() {
   const [seqDone, setSeqDone] = useState(false);
   const resultsSequenceVisible = useOverlayVisible('lessonResultsSequence', !seqDone);
   const sequenceShowing = resultsSequenceVisible && resultsReady && completionAccessReady && completionXpReady;
+  // зачем (координатор 15.10, m09): штамп «ИДЕАЛ» — на итоге обычного урока без единой ошибки, когда монеты урока уже посчитаны; решение и причина — perfect_moment_gate
+  const momentsV3 = useMomentsV3Enabled();
+  const [perfectMomentOpen, setPerfectMomentOpen] = useState(false);
+  const perfectDecision = decidePerfectMoment({ momentsV3, isCombo: isComboCompletion, counts: lessonCounts, coinsHydrating: practiceRunes.hydrating });
+  const perfectMomentOn = sequenceShowing && perfectDecision.show;
   // зачем (координатор 13.10, paywalls-009/010, макет embedded-plus-states.html экраны 2–3 — приказ владельца 11.10): карточка
   // «Первый урок — готово» / «Три урока — отличный старт» жила только в старом варианте итога (legacyCompletionSurfacesEnabled=false),
   // а seqDone ставит лишь старая секвенция — на экране 2.0 предложение Plus не показывалось НИКОГДА. Экран итога 2.0 сам и есть
@@ -1454,8 +1463,13 @@ export default function LessonComplete() {
               onSecondary={isComboCompletion ? undefined : (completionRequiresPremium || resultStars === 1) ? goBackFromComplete : runMistakeIds.length > 0 ? finishMistakes : handleRepeatLesson}
               onClose={goBackFromComplete}
             />
+            {perfectMomentOn && lessonCounts ? (
+              <Suspense fallback={null}>
+                <LessonPerfectHost lang={lang} onceKey={perfectMomentKey(lessonId, studyTarget, completionAttemptId)} total={lessonCounts.correct + lessonCounts.wrong} coinsEarned={practiceRunes.runes} onOpenChange={setPerfectMomentOpen} />
+              </Suspense>
+            ) : null}
             <ReviewPromptModal
-              visible={showReview}
+              visible={showReview && !perfectMomentOpen}
               context={reviewContext}
               lang={lang}
               onClose={goNext}

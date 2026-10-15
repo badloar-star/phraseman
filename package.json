@@ -376,7 +376,10 @@
       "<rootDir>/tests/spire_week_moment_host_contract.test.tsx",
       "<rootDir>/tests/stories_ring_viewer_contract.test.tsx",
       "<rootDir>/tests/streak_moments_v3_contract.test.tsx",
-      "<rootDir>/tests/streak_today_rings_slot.test.tsx"
+      "<rootDir>/tests/streak_today_rings_slot.test.tsx",
+      "<rootDir>/tests/lesson_perfect_wiring_contract.test.tsx",
+      "<rootDir>/tests/first_dialog_wiring_contract.test.tsx",
+      "<rootDir>/tests/spire_position_moments_host_contract.test.tsx"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setup_jest_write_guard.js"

@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -34,6 +34,9 @@ import { safeRouterBack } from './navigation_back';
 import { RowDivider } from '../components/v2/RowDivider';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { glassTone } from '../components/dialogs/glass/glassTone';
+import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
+// зачем (координатор 15.10, m17 за флагом moments_v3): окно «Первый разговор — есть!» грузится лениво и только когда итог готов
+const FirstDialogHost = lazy(() => import('../components/dialog_moments/FirstDialogHost'));
 
 // зачем (владелец 2026-09-30, макет dialogs.html D1–D5 = practice.html «Завершение»): итог
 // диалога — тот же экран, что во всех режимах: «✕», заголовок «Диалог пройден» / «Разговор
@@ -111,6 +114,7 @@ export default function DialogueV2CompletionRoute() {
   const labels = useMemo(() => completionLabels(lang), [lang]);
   const [state, setState] = useState<State>({ kind: 'loading' });
   const [feedbackAllowed, setFeedbackAllowed] = useState(false);
+  const momentsV3 = useMomentsV3Enabled();
   const sessionId = SESSION_RE.test(single(params.sessionId) ?? '') ? single(params.sessionId) : null;
   const scenarioId = SCENARIO_RE.test(single(params.scenarioId) ?? '') ? single(params.scenarioId) : null;
   const endedByParam = single(params.endedBy);
@@ -451,6 +455,11 @@ export default function DialogueV2CompletionRoute() {
           ) : null}
         </View>
       </SafeAreaView>
+      {momentsV3 && state.kind === 'ready' && goalsTotal > 0 ? (
+        <Suspense fallback={null}>
+          <FirstDialogHost lang={lang} studyTarget={String(studyTarget)} scenarioId={scenarioId} endedBy={endedBy} turns={turns} goalsDone={goalsMet} goalsTotal={goalsTotal} onNext={close} />
+        </Suspense>
+      ) : null}
     </View>
   );
 }

@@ -50,7 +50,7 @@ import SpireLockedState from './SpireLockedState';
 import SpirePodium from './SpirePodium';
 import SpireResultPanel from './SpireResultPanel';
 import { useMomentsV3Enabled } from '../streak/moments/use_moments_v3_flag';
-const SpireOutcomeMomentHost = lazy(() => import('./moments/SpireOutcomeMomentHost'));
+const SpireMomentsLayer = lazy(() => import('./moments/SpireMomentsLayer'));
 import SpireHomeSkeleton from './SpireHomeSkeleton';
 import { spireTowerWindowHeight } from './spire_tower_window';
 import SpireStepScreen from './SpireStepScreen';
@@ -241,8 +241,9 @@ export default function SpireHomeScreen() {
     if (!preview) void spireMarkTourSeen();
   }, [preview]);
   const climb = useCallback(() => { void game.startStep(); }, [game]);
-  // зачем (m06/m07): при включённом moments_v3 итог рисует окно-момент (SpireOutcomeMomentHost); save_failed и выключенный флаг — прежняя плашка SpireResultPanel
-  const momentOutcome = useMomentsV3Enabled() && game.outcome !== null && game.outcome.kind !== 'save_failed';
+  // зачем (m05–m07): при включённом moments_v3 один ленивый слой рисует итог ступени и позиционные окна; save_failed и выключенный флаг — прежняя плашка SpireResultPanel
+  const momentsV3 = useMomentsV3Enabled();
+  const momentOutcome = momentsV3 && game.outcome !== null && game.outcome.kind !== 'save_failed';
 
   const subtitle = useMemo(() => {
     const tier = devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null; // зачем (координатор 13.10): в кадре spireWeek= шапка говорит о новой лиге, как карточка
@@ -359,7 +360,7 @@ export default function SpireHomeScreen() {
           <SpireClimbDock lang={lang} ready={climbReady} busy={game.starting} premium={hasPremiumAccess} block={game.startBlock} onClimb={climb} />
         )}
       </View>
-      {momentOutcome && game.outcome ? <Suspense fallback={null}><SpireOutcomeMomentHost lang={lang} outcome={game.outcome} coins={config.coins} coinRank={myCoinRank} busy={game.starting} onClimb={climb} onLater={game.dismissOutcome} /></Suspense> : null}
+      {momentsV3 ? <Suspense fallback={null}><SpireMomentsLayer lang={lang} outcome={momentOutcome ? game.outcome : null} coins={config.coins} coinRank={myCoinRank} busy={game.starting} onClimb={climb} onLater={game.dismissOutcome} /></Suspense> : null}
       {game.uid && game.stableId ? (
         <SpireStepScreen
           lang={lang}

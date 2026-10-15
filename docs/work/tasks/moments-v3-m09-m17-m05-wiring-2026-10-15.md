@@ -24,3 +24,5 @@
 
 ## Rollback
 Флаг `moments_v3` выключен — поведение экранов прежнее; откат — revert коммита.
+
+Governance-ID: TG-B921B6BE556C

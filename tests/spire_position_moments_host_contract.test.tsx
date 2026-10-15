@@ -2,6 +2,8 @@
 // «Играть» СНАЧАЛА закрывает окно, потом зовёт onClimb, «Plus» ведёт только в общий пейвол (premium_modal), двойной тап не срабатывает дважды.
 (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = false;
 
+import fs from 'node:fs';
+import path from 'node:path';
 import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react-native';
 
@@ -40,6 +42,7 @@ jest.mock('../components/spire/moments/SpireLastChanceSheet', () => ({
 import SpirePositionMomentsHost from '../components/spire/moments/SpirePositionMomentsHost';
 import { NO_POSITION_MOMENTS, type SpirePositionMoments } from '../components/spire/moments/position_moments_contract';
 
+const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const ROWS = [{ uid: 'me', name: 'Ты', coinRank: 5, coins: 440, isMe: true }];
 const RISE = { key: 'w1:rise:1', rows: ROWS, fromIndex: 5, toIndex: 4, coinsGained: 10 };
 const OVER = { key: 'w1:over:1', rivalName: 'Ира', rivalCoinRank: 7, gapCoins: 30 };
@@ -117,5 +120,17 @@ describe('m05 · хост позиционных окон', () => {
     expect(r.queryByTestId('last-plus')).toBeNull();
     expect(mockPush).toHaveBeenCalledTimes(1);
     expect(mockPush.mock.calls[0]?.[0]).toMatchObject({ pathname: '/premium_modal', params: { context: 'no_energy', source: 'spire_last_chance' } });
+  });
+});
+
+describe('m05 · подключение', () => {
+  it('экран Пика монтирует один ленивый слой только при флаге; слой берёт решения из хука Ядра; сеть и хранилище не трогаются', () => {
+    const screen = read('components/spire/SpireHomeScreen.tsx');
+    expect(screen).toMatch(/const SpireMomentsLayer = lazy\(\(\) => import\('\.\/moments\/SpireMomentsLayer'\)\);/);
+    expect(screen).toContain('{momentsV3 ? <Suspense fallback={null}><SpireMomentsLayer');
+    const layer = read('components/spire/moments/SpireMomentsLayer.tsx');
+    expect(layer).toContain("from '../../../app/spire/use_spire_position_moments'");
+    const code = [read('components/spire/moments/SpirePositionMomentsHost.tsx'), layer].join(String.fromCharCode(10)).split(String.fromCharCode(10)).filter((l) => !l.trim().startsWith('//')).join(String.fromCharCode(10));
+    expect(/firestore|httpsCallable|fetch\(|AsyncStorage/i.test(code)).toBe(false);
   });
 });

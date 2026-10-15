@@ -136,6 +136,20 @@ describe('mistake practice start gate: energy before the daily attempt', () => {
     await act(async () => { opened = result.current.tryStartSession(6); });
     expect(opened).toBe(false);
     expect(mockPush).toHaveBeenCalledTimes(1);
+    // деньги (сторож learning_v2_mistake_loop): именно пейвол Plus с контекстом «Ошибок» и источником этой кнопки, попытка не тратится
+    expect(mockPush).toHaveBeenCalledWith({ pathname: '/premium_modal', params: { context: 'mistake_practice', source: 'mistakes_hub_start' } });
+    expect(mockConsume).not.toHaveBeenCalled();
     expect(result.current.noEnergy).toBe(false);
+  });
+
+  it('Plus (no daily limit) opens the session without writing a receipt and without a paywall', async () => {
+    mockQuota = { status: 'allowed', used: 0, limit: null, bypass: 'plus' };
+    const { result } = await renderHook(() => useMistakePracticeStartGate('mistakes_hub_start'));
+    let opened = false;
+    await act(async () => { opened = result.current.tryStartSession(3); });
+    expect(opened).toBe(true);
+    expect(mockConsume).not.toHaveBeenCalled();
+    expect(mockPush).not.toHaveBeenCalled();
+    expect(result.current.takeQuotaReceiptParam()).toEqual({});
   });
 });

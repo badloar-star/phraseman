@@ -41,9 +41,11 @@ describe('Learning V2 optional mistake loop', () => {
     const { REVENUE_DAILY_LIMITS } = require('../app/revenue_daily_limits') as typeof import('../app/revenue_daily_limits');
     expect(REVENUE_DAILY_LIMITS.mistake_practice_starts).toBe(1);
     const gate = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'useMistakePracticeStartGate.ts'), 'utf8');
-    expect(gate).toMatch(/if \(quota\.status === 'exhausted'\) \{\s*openPaywall\(\);\s*return false;/);
+    // 66ee71ea7 (Ревизор 2.76): в ветки добавлена строка решения [MISTAKES-GATE] decision — сторож держит ту же цепочку
+    // «исчерпано → пейвол → false» и «Plus → пускаем без чека»; поведение — в tests/mistake_practice_gate_energy_precheck.test.ts
+    expect(gate).toMatch(/if \(quota\.status === 'exhausted'\) \{\s*decide\('paywall'\);\s*openPaywall\(\);\s*return false;/);
     expect(gate).toContain("params: { context: 'mistake_practice', source }");
-    expect(gate).toMatch(/if \(quota\.limit === null\) return true; \/\/ Plus/);
+    expect(gate).toMatch(/if \(quota\.limit === null\) \{ decide\('start_unlimited'\); return true; \} \/\/ Plus/);
     expect(node).toMatch(/plus: ', нужен Plus'/);
     expect(node).toContain('locked: boolean;');
   });

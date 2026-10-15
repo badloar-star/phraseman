@@ -69,6 +69,22 @@ export type RevenueDailyQuotaReceipt = Readonly<{
 }>;
 
 /**
+ * Отметка «попытка возвращена» (координатор 15.10, хвост R48): старт так и не состоялся — чек не удаляем (журнал фактов
+ * только дописывается), а кладём рядом отметку с тем же receiptId. Подсчёт окна такие чеки не считает; повторный возврат —
+ * та же отметка (дубликат), то есть ровно один раз.
+ */
+export type RevenueDailyQuotaRefund = Readonly<{
+  schemaVersion: 'revenue-quota-refund.v1';
+  quota: RevenueDailyQuotaKind;
+  lineage: number;
+  receiptId: string;
+  reason: string;
+  refundedAtMs: number;
+}>;
+
+export type RevenueDailyQuotaRefundStatus = 'refunded' | 'already_refunded' | 'not_found' | 'stale_account' | 'unavailable';
+
+/**
  * passKind необязателен: дневной пропуск за жемчужины есть не у каждой квоты.
  * Нет пропуска — `extra` всегда 0, лимит равен базовому (см. project ниже).
  */
@@ -206,11 +222,34 @@ function windowState(deps: Dependencies, receipts: readonly RevenueDailyQuotaRec
   });
 }
 
+function refundEntityId(kind: RevenueDailyQuotaKind, lineage: number, receiptId: string): string {
+  return `${REVENUE_DAILY_QUOTA_PREFIX}${kind}:${lineage}:refund:${receiptId}`;
+}
+
+function isRefund(value: unknown, kind: RevenueDailyQuotaKind, lineage: number): value is RevenueDailyQuotaRefund {
+  if (!value || typeof value !== 'object') return false;
+  const item = value as Partial<RevenueDailyQuotaRefund>;
+  return item.schemaVersion === 'revenue-quota-refund.v1' && item.quota === kind && item.lineage === lineage
+    && typeof item.receiptId === 'string' && item.receiptId.trim().length > 0;
+}
+
+/** Возвращённые receiptId окна (старт не состоялся). */
+function refundedFromFacts(facts: Readonly<Record<string, unknown>>, kind: RevenueDailyQuotaKind, lineage: number): ReadonlySet<string> {
+  const prefix = `${REVENUE_DAILY_QUOTA_PREFIX}${kind}:${lineage}:refund:`;
+  const out = new Set<string>();
+  for (const [entityId, value] of Object.entries(facts)) {
+    if (entityId.startsWith(prefix) && isRefund(value, kind, lineage)) out.add(value.receiptId);
+  }
+  return out;
+}
+
 function receiptsFromFacts(facts: Readonly<Record<string, unknown>>, kind: RevenueDailyQuotaKind, lineage: number): RevenueDailyQuotaReceipt[] {
   const prefix = `${REVENUE_DAILY_QUOTA_PREFIX}${kind}:${lineage}:`;
+  const refunded = refundedFromFacts(facts, kind, lineage);
   return Object.entries(facts)
     .filter(([entityId, value]) => entityId.startsWith(prefix) && isReceipt(value, kind, lineage))
-    .map(([, value]) => value as RevenueDailyQuotaReceipt);
+    .map(([, value]) => value as RevenueDailyQuotaReceipt)
+    .filter((receipt) => !refunded.has(receipt.receiptId));
 }
 
 export function createRevenueDailyQuotaAccess(deps: Dependencies) {
@@ -218,7 +257,10 @@ export function createRevenueDailyQuotaAccess(deps: Dependencies) {
     const read = await deps.readFacts(stableUid);
     if (read.status !== 'available') return { status: read.status } as const;
     const receipts = receiptsFromFacts(read.facts, kind, read.lineage);
-    const state = windowState(deps, receipts, receiptId);
+    const refunded = refundedFromFacts(read.facts, kind, read.lineage);
+    const counted = windowState(deps, receipts, receiptId);
+    // возвращённый чек с тем же receiptId — повтор (идемпотентно), а не новая попытка
+    const state = receiptId !== null && refunded.has(receiptId) && !counted.replay ? Object.freeze({ ...counted, replay: true }) : counted;
     // Квота без дневного пропуска (Арена) в хранилище не ходит вовсе — лишнее
     // чтение на входе в матч ничего бы не дало, кроме задержки первого кадра.
     const passKind = QUOTA_POLICY[kind].passKind;
@@ -241,6 +283,37 @@ export function createRevenueDailyQuotaAccess(deps: Dependencies) {
   }
 
   return Object.freeze({
+    /**
+     * Вернуть попытку, за которую старт так и не состоялся. Идемпотентно по receiptId: второй вызов — already_refunded,
+     * ничего не пишет. Под тем же замком аккаунта, что и списание.
+     */
+    async refund(input: Readonly<{ kind: RevenueDailyQuotaKind; token: AccountGenerationToken; receiptId: string; reason: string }>): Promise<Readonly<{ status: RevenueDailyQuotaRefundStatus }>> {
+      const done = (status: RevenueDailyQuotaRefundStatus, extra: Record<string, unknown> = {}) => {
+        console.log('[DAILY-QUOTA] refund:out', JSON.stringify({ kind: input.kind, receiptId: input.receiptId, reason: input.reason, status, ...extra })); // guard-ok: каждый выход возврата
+        return Object.freeze({ status });
+      };
+      if (!input.receiptId.trim() || !validToken(deps, input.token)) return done('stale_account');
+      return deps.withAccountLock(async () => {
+        if (!validToken(deps, input.token)) return done('stale_account');
+        const read = await deps.readFacts(input.token.stableId);
+        if (!deps.isCurrentAccount(input.token)) return done('stale_account');
+        if (read.status !== 'available') return done('unavailable', { read: read.status });
+        const entityId = refundEntityId(input.kind, read.lineage, input.receiptId);
+        if (refundedFromFacts(read.facts, input.kind, read.lineage).has(input.receiptId)) return done('already_refunded');
+        const spent = Object.entries(read.facts).some(([id, value]) =>
+          id === `${REVENUE_DAILY_QUOTA_PREFIX}${input.kind}:${read.lineage}:${input.receiptId}` && isReceipt(value, input.kind, read.lineage));
+        if (!spent) return done('not_found');
+        const refund: RevenueDailyQuotaRefund = Object.freeze({
+          schemaVersion: 'revenue-quota-refund.v1', quota: input.kind, lineage: read.lineage,
+          receiptId: input.receiptId, reason: input.reason.slice(0, 64), refundedAtMs: deps.now(),
+        });
+        const committed = await deps.commitReceipt('attempt', entityId, refund, entityId, input.token.stableId, read.lineage);
+        if (!deps.isCurrentAccount(input.token) || committed.status === 'stale_account') return done('stale_account');
+        if (committed.status !== 'committed') return done('unavailable', { commit: committed.status });
+        return done(committed.duplicate ? 'already_refunded' : 'refunded');
+      });
+    },
+
     async preview(input: PreviewInput): Promise<RevenueDailyQuotaResult> {
       const policy = QUOTA_POLICY[input.kind];
       console.log('[DAILY-QUOTA] preview:in', JSON.stringify({
@@ -335,6 +408,7 @@ const defaultAccess = createRevenueDailyQuotaAccess({
 
 export const previewRevenueDailyQuota = defaultAccess.preview;
 export const consumeRevenueDailyQuota = defaultAccess.consume;
+export const refundRevenueDailyQuota = defaultAccess.refund;
 export { captureAccountGeneration };
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

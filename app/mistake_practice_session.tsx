@@ -28,6 +28,7 @@ import { useLang } from '../components/LangContext';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 import { useStreakMilestoneHold } from './streak_milestone_pending';
 import { studySpeechLocale } from './study_speech_locale';
+import { settleMistakeQuotaStart } from './mistake_practice_quota_receipt';
 // зачем (координатор 15.10): рубеж серии на итоге «Моих ошибок» — тот же ленивый хост
 const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost'));
 import { usePremium } from '../components/PremiumContext';
@@ -442,6 +443,15 @@ function MistakePracticeSessionScreen() {
   // зачем (D158): потолок 12 с покрывает только подготовку. Окно подтверждения энергии — выбор человека,
   // его не обрываем; а подготовку, брошенную по потолку, поздний ответ уже не оживляет (энергия не списана).
   const prepareStageRef = useRef<'preparing' | 'abandoned' | 'confirming'>('preparing');
+  // зачем (хвост R48, координатор 15.10): попытка дня списана в кадре тапа. Если тренировка так и не стартовала — вернуть её,
+  // но только при УХОДЕ с экрана: на ошибке подготовки есть «Попробовать снова», и возврат сразу дал бы бесплатный повтор.
+  const quotaSettledRef = useRef(false);
+  const notStartedReasonRef = useRef('left_before_start');
+  useEffect(() => () => {
+    if (quotaSettledRef.current) return;
+    quotaSettledRef.current = true;
+    void settleMistakeQuotaStart('not_started', notStartedReasonRef.current);
+  }, []);
   useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
   const [accountScope, setAccountScope] = useState<string | null>(null);
   const [session, setSession] = useState<MistakePracticeSession | null>(null);
@@ -641,6 +651,7 @@ function MistakePracticeSessionScreen() {
           if (cancelled) return;
           if (energyResult === 'cancelled' || energyResult === 'insufficient') {
             console.log('[MISTAKES-GATE] session:not_paid → not saved', JSON.stringify({ energyResult })); // guard-ok
+            notStartedReasonRef.current = `energy_${energyResult}`;
             // зачем (аудит R48): раньше экран закрывался молча. Вход проверяет энергию заранее; сюда попадаем только при гонке
             // (энергия ушла между тапом и стартом) — человеку называем причину.
             if (energyResult === 'insufficient') {
@@ -680,6 +691,7 @@ function MistakePracticeSessionScreen() {
         });
         setAccountScope(scope);
         setSession(prepared.session);
+        if (!quotaSettledRef.current) { quotaSettledRef.current = true; void settleMistakeQuotaStart('started', 'session_started'); }
         setLoading(false);
       }
     })().catch((error: unknown) => {
@@ -690,6 +702,7 @@ function MistakePracticeSessionScreen() {
       }
       const code = error instanceof Error ? error.message : '';
       console.warn('[MISTAKES-GATE] session:prepare:catch', JSON.stringify({ code, entrySource, requestedLength })); // guard-ok: лог в catch обязателен
+      notStartedReasonRef.current = `prepare_failed:${code || 'unknown'}`.slice(0, 64);
       if (code === 'stale_account_generation') {
         // зачем (PM-214): раньше немой return оставлял спиннер навсегда. Аккаунт сменился — спокойно
         // «Сейчас недоступно» с «Попробовать снова» (повтор возьмёт новый аккаунт).
@@ -723,6 +736,7 @@ function MistakePracticeSessionScreen() {
         return;
       }
       prepareStageRef.current = 'abandoned';
+      notStartedReasonRef.current = 'prepare_timeout';
       console.warn('[MISTAKES-GATE] session:prepare:ceiling → unavailable', JSON.stringify({ ceilingMs: LOAD_GATE_TOTAL_MS, loadRevision })); // guard-ok
       setLoadRetriable(true);
       setLoadError(copy.unavailable);

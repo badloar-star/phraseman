@@ -9,6 +9,7 @@ import { trackEvent } from '../app/analytics';
 import { captureAccountGeneration } from '../app/account_generation';
 import type { PaywallSource } from '../app/paywall_entry_contract';
 import { consumeRevenueDailyQuota, type RevenueDailyQuotaResult } from '../app/revenue_daily_quota';
+import { rememberMistakeQuotaReceipt } from '../app/mistake_practice_quota_receipt';
 import { useRevenueDailyQuotaPreview } from './useRevenueDailyQuotaPreview';
 
 export type MistakePracticeStartGate = Readonly<{
@@ -74,13 +75,17 @@ export function useMistakePracticeStartGate(source: PaywallSource): MistakePract
     if (inFlightRef.current) return true; // двойной тап: одна сессия, один чек.
     inFlightRef.current = true;
     const receiptId = `mistakes:${Crypto.randomUUID()}`;
-    void consumeRevenueDailyQuota({
+    const token = captureAccountGeneration();
+    const consume = consumeRevenueDailyQuota({
       kind: 'mistake_practice_starts',
-      token: captureAccountGeneration(),
+      token,
       accessResolved,
       receiptId,
       surface: source,
-    })
+    });
+    // зачем (хвост R48): тренировка вернёт попытку, если её старт так и не состоится (settleMistakeQuotaStart)
+    rememberMistakeQuotaReceipt({ receiptId, token, consume, atMs: Date.now(), surface: source });
+    void consume
       .then((result) => {
         console.log('[MISTAKES-GATE] consume:out', JSON.stringify({ receiptId, status: result.status, used: result.used, limit: result.limit, bypass: result.bypass }));
       })

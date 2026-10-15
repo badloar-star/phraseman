@@ -39,6 +39,11 @@ export type SpirePackKey = Readonly<{ lang: string; tier: number; weekId: string
 
 const memory = new Map<string, SpireWeekPack>();
 const inFlight = new Map<string, Promise<SpirePackLoad>>();
+// зачем (🔴 владелец 15.10, «Задания этой недели ещё готовятся»; координатор): пакета нет (404) — повторный запрос по тому же ключу не
+// раньше чем через 2 мин (прогрев при входе + каждый тап «Подняться» иначе били в Storage подряд). Короткий срок — свежезалитый пакет
+// подхватится быстро. Только в памяти процесса.
+const MISSING_RECHECK_MS = 2 * 60 * 1000;
+const missingAt = new Map<string, number>();
 
 const keyOf = (k: SpirePackKey) => `${k.lang}:${k.tier}:${k.weekId}`;
 const fileName = (k: SpirePackKey) => `${k.lang}_t${k.tier}_${k.weekId}.json`.replace(/[^A-Za-z0-9._-]/gu, '_');
@@ -135,6 +140,13 @@ export function spireEnsureWeekPack(gate: SpireLiveGate, k: SpirePackKey): Promi
   if (hit) return Promise.resolve({ status: 'ok', pack: hit, source: 'memory', reason: 'memory' });
   const running = inFlight.get(key);
   if (running) return running;
+  const missedAt = missingAt.get(key);
+  if (missedAt !== undefined && Date.now() - missedAt < MISSING_RECHECK_MS) {
+    DebugLogger.info(LOG, `pack: ${key} недавно не найден (${Math.round((Date.now() - missedAt) / 1000)} с назад) — повтор позже, сеть не трогаем`);
+    return Promise.resolve({ status: 'missing', pack: null, source: 'none', reason: 'recent_404' });
+  }
+  // язык пакета — язык ОБУЧЕНИЯ (asSpireLang(studyTarget) в SpireHomeScreen), не язык интерфейса; ключ в журнале для проверки
+  DebugLogger.info(LOG, `pack: нужен lang=${k.lang} tier=${k.tier} week=${k.weekId}`);
   const task = (async (): Promise<SpirePackLoad> => {
     const disk = await readDisk(k);
     if (disk) {
@@ -147,7 +159,8 @@ export function spireEnsureWeekPack(gate: SpireLiveGate, k: SpirePackKey): Promi
       return { status: 'unavailable', pack: null, source: 'none', reason: 'cloud_off' };
     }
     const net = await download(gate, k);
-    if (net.pack) memory.set(key, net.pack);
+    if (net.pack) { memory.set(key, net.pack); missingAt.delete(key); }
+    else if (net.status === 'missing') missingAt.set(key, Date.now());
     return net;
   })().finally(() => { inFlight.delete(key); });
   inFlight.set(key, task);

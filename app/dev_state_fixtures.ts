@@ -290,7 +290,7 @@ export type DevStateRequest = Readonly<{
   todaytask?: 'spire' | 'off';
   lv2progress?: number | 'off';
   lv2save?: 'fail' | 'off';
-  legacybonus?: 'demo' | 'off';
+  legacybonus?: 'demo' | 'pearls' | 'nothing' | 'off';
   /** [WINBACK-FREEZE]: гейт winback считает, что человек не заходил N дней (3 / 8 / 30) или снять. Только память. */
   winbackaway?: '3' | '8' | '30' | 'off';
   /** settings-gap-034: показ «Обучения» с «Автопроверка вкл, 1,0x» как в образце. Только память. */
@@ -424,7 +424,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.lv2progress = intOrWord('lv2progress', ['off'] as const, 56);
   request.lv2save = pick('lv2save', ['fail', 'off'] as const);
   // зачем (D195, Дизайн 15.10): окно «Встречайте PhraseMan 2.0» с примерными цифрами — только память
-  request.legacybonus = pick('legacybonus', ['demo', 'off'] as const);
+  request.legacybonus = pick('legacybonus', ['demo', 'pearls', 'nothing', 'off'] as const);
   request.winbackaway = pick('winbackaway', ['3', '8', '30', 'off'] as const);
   request.edu = pick('edu', ['parity', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
@@ -930,7 +930,7 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.legacybonus !== undefined) {
     await step('legacybonus', request.legacybonus, async () => {
       const { setDevLegacyBonusDemo } = await import('./legacy_bonus_client');
-      return setDevLegacyBonusDemo(request.legacybonus === 'demo');
+      return setDevLegacyBonusDemo(request.legacybonus!);
     });
   }
   if (request.lv2save !== undefined) {

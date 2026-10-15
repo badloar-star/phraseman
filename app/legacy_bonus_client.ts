@@ -23,6 +23,8 @@ const RETRY_AFTER_MS = 12 * 60 * 60_000;
 export type LegacyBonusStatus = 'converted' | 'replayed' | 'nothing' | 'merged_orphan' | 'disabled';
 export type LegacyBonusResult = Readonly<{
   status: LegacyBonusStatus;
+  /** Обновился с 1.x (документ создан до 2.0) — окно и при нуле; свежая установка — без окна. */
+  upgraded: boolean;
   from: Readonly<{ xp: number; pearls: number; spins: number }>;
   coins: Readonly<{ xp: number; pearls: number; spins: number; total: number }>;
   cappedBy: 'none' | 'currency' | 'person';
@@ -50,6 +52,7 @@ function parseResponse(raw: unknown): (LegacyBonusResult & { starsSeq: number })
   const coins = (r.coins ?? {}) as Record<string, unknown>;
   return {
     status,
+    upgraded: r.upgraded === true,
     from: { xp: int(from.xp), pearls: int(from.pearls), spins: int(from.spins) },
     coins: { xp: int(coins.xp), pearls: int(coins.pearls), spins: int(coins.spins), total: int(coins.total) },
     cappedBy: r.cappedBy === 'currency' || r.cappedBy === 'person' ? r.cappedBy : 'none',
@@ -104,7 +107,19 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
     await AsyncStorage.setItem(doneKey, JSON.stringify(
       result.status === 'disabled' ? { status: 'disabled', retryAfterMs: Date.now() + RETRY_AFTER_MS } : { status: result.status, total: result.coins.total },
     ));
-    if (result.status !== 'converted' || result.coins.total <= 0) return;
+    // зачем (владелец 15.10): окно «Встречайте PhraseMan 2.0» — при начислении ИЛИ при нуле у обновившихся с 1.x (без пересчёта, только
+    // заголовок); свежая установка — без окна. Один раз: окно рождается только из этого ответа, а метка выше больше не пустит к серверу.
+    const showZeroWelcome = result.status === 'nothing' && result.upgraded;
+    if (result.status !== 'converted' && !showZeroWelcome) {
+      console.log(`${LOG} welcome skip status=${result.status} upgraded=${result.upgraded}`);
+      return;
+    }
+    if (showZeroWelcome || result.coins.total <= 0) {
+      welcome = { status: result.status, upgraded: result.upgraded, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance };
+      console.log(`${LOG} welcome show=zero upgraded=${result.upgraded}`);
+      emit();
+      return;
+    }
     // монеты уже на сервере — доливаем снимок кошелька телефону (только более новый seq, повтор не удваивает)
     try {
       const { mergeLevelSpinServerStars } = await import('./level_spin_star_grants');
@@ -117,7 +132,7 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
     } catch (error: unknown) {
       console.warn(`${LOG} wallet_merge_failed reason=${error instanceof Error ? error.message : String(error)} — баланс догонит следующий снимок`);
     }
-    welcome = { status: result.status, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance };
+    welcome = { status: result.status, upgraded: result.upgraded, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance };
     emit();
   } catch (error: unknown) {
     console.warn(`${LOG} failed source=${source} reason=${error instanceof Error ? error.message : String(error)} ms=${Date.now() - startedAt}`);
@@ -143,13 +158,21 @@ export function dismissLegacyBonusWelcome(): void {
   emit();
 }
 
-/** DEV (съёмка окна): dev_state?legacybonus=demo — показать окно с примерными цифрами; только память, в стор-сборке выключено. */
-export function setDevLegacyBonusDemo(on: boolean): boolean {
+export type DevLegacyBonusDemo = 'demo' | 'pearls' | 'nothing' | 'off';
+
+/** DEV (съёмка окна, Сверка): legacybonus=demo (опыт+жемчуг+вращения) | pearls (только жемчуг) | nothing (обновился, начислять нечего) | off. */
+export function setDevLegacyBonusDemo(mode: DevLegacyBonusDemo | boolean): boolean {
   if (typeof __DEV__ === 'undefined' || !__DEV__) return false;
-  welcome = on
-    ? { status: 'converted', from: { xp: 8362, pearls: 120, spins: 1 }, coins: { xp: 836, pearls: 1200, spins: 130, total: 2166 }, cappedBy: 'none', starsBalance: 4166 }
-    : null;
-  console.log(`[DEV-STATE] legacybonus=${on ? 'demo' : 'off'}`); // guard-ok: dev-ветка
+  const m: DevLegacyBonusDemo = mode === true ? 'demo' : mode === false ? 'off' : mode;
+  const zero = { xp: 0, pearls: 0, spins: 0 };
+  welcome = m === 'demo'
+    ? { status: 'converted', upgraded: true, from: { xp: 8362, pearls: 120, spins: 1 }, coins: { xp: 836, pearls: 1200, spins: 130, total: 2166 }, cappedBy: 'none', starsBalance: 4166 }
+    : m === 'pearls'
+      ? { status: 'converted', upgraded: true, from: { ...zero, pearls: 81 }, coins: { ...zero, pearls: 810, total: 810 }, cappedBy: 'none', starsBalance: 2810 }
+      : m === 'nothing'
+        ? { status: 'nothing', upgraded: true, from: zero, coins: { ...zero, total: 0 }, cappedBy: 'none', starsBalance: 2000 }
+        : null;
+  console.log(`[DEV-STATE] legacybonus=${m}`); // guard-ok: dev-ветка
   emit();
   return true;
 }

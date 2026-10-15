@@ -35,6 +35,12 @@ const LOG = '[LEGACY-BONUS]';
 
 export const LEGACY_BONUS_V1_FIELD = 'legacyBonusConvertedV1' as const;
 export const LEGACY_BONUS_FLAG_KEY = 'legacy_bonus_enabled' as const;
+/**
+ * Документ человека создан ДО выхода 2.0 (сборка 16.10) — значит, человек обновился с 1.x.
+ * зачем (владелец 15.10 через координатора): окно «Встречайте PhraseMan 2.0» показываем и при нулевом начислении, но только
+ * обновившимся; на свежей установке окна нет. Время создания — служебное поле Firestore (createTime), клиент его не задаёт.
+ */
+export const LEGACY_BONUS_UPGRADE_CUTOFF_MS = Date.UTC(2026, 9, 16, 0, 0, 0);
 
 export const LEGACY_BONUS_RATES_V1 = Object.freeze({
   xpToCoins: 0.1,
@@ -58,6 +64,8 @@ export type LegacyBonusStatus = 'converted' | 'replayed' | 'nothing' | 'merged_o
 
 export type LegacyBonusResponse = Readonly<{
   status: LegacyBonusStatus;
+  /** Человек обновился с 1.x (документ создан до выхода 2.0). */
+  upgraded: boolean;
   from: LegacyBonusSource;
   coins: LegacyBonusPlan['coins'];
   cappedBy: LegacyBonusPlan['cappedBy'];
@@ -131,7 +139,7 @@ function ledgerOps(plan: LegacyBonusPlan, nowMs: number): StarOpRequest[] {
   }));
 }
 
-type PriorRecord = Readonly<{ status: LegacyBonusStatus; from: LegacyBonusSource; coins: LegacyBonusPlan['coins']; cappedBy: LegacyBonusPlan['cappedBy'] }>;
+type PriorRecord = Readonly<{ status: LegacyBonusStatus; upgraded: boolean; from: LegacyBonusSource; coins: LegacyBonusPlan['coins']; cappedBy: LegacyBonusPlan['cappedBy'] }>;
 
 function parsePrior(value: unknown): PriorRecord | null {
   if (!value || typeof value !== 'object') return null;
@@ -141,6 +149,7 @@ function parsePrior(value: unknown): PriorRecord | null {
   const coins = (raw.coins ?? {}) as Record<string, unknown>;
   return Object.freeze({
     status: (raw.status as LegacyBonusStatus) ?? 'converted',
+    upgraded: raw.upgraded === true,
     from: Object.freeze({ xp: nonNegativeInt(from.xp), pearls: nonNegativeInt(from.pearls), spins: nonNegativeInt(from.spins) }),
     coins: Object.freeze({ xp: nonNegativeInt(coins.xp), pearls: nonNegativeInt(coins.pearls), spins: nonNegativeInt(coins.spins), total: nonNegativeInt(coins.total) }),
     cappedBy: raw.cappedBy === 'currency' || raw.cappedBy === 'person' ? raw.cappedBy : 'none',
@@ -163,25 +172,27 @@ export async function runLegacyBonusConvertV1(
     }
     const data = userSnap.data() ?? {};
     const starsNow = normalizeStars(data.stars);
+    const createdMs = userSnap.createTime ? userSnap.createTime.toMillis() : Number.POSITIVE_INFINITY;
+    const upgraded = createdMs < LEGACY_BONUS_UPGRADE_CUTOFF_MS;
     const prior = parsePrior(data[LEGACY_BONUS_V1_FIELD]);
     if (prior) {
       console.log(`${LOG} replay uid=${uid8} status=${prior.status} total=${prior.coins.total} balance=${starsNow.balance}`);
-      return Object.freeze({ status: 'replayed' as const, from: prior.from, coins: prior.coins, cappedBy: prior.cappedBy, starsBalance: starsNow.balance, starsSeq: starsNow.seq });
+      return Object.freeze({ status: 'replayed' as const, upgraded: prior.upgraded, from: prior.from, coins: prior.coins, cappedBy: prior.cappedBy, starsBalance: starsNow.balance, starsSeq: starsNow.seq });
     }
     const canonical = typeof data.canonicalStableId === 'string' ? data.canonicalStableId : '';
     if (data.identityHidden === true || (canonical && canonical !== stableUid)) {
       // скрытый слиянием документ: его бонусы — забота победителя слияния; закрываем без начисления
-      tx.set(userRef, { [LEGACY_BONUS_V1_FIELD]: { schemaVersion: 1, status: 'merged_orphan', from: ZERO_SOURCE, coins: ZERO_COINS, cappedBy: 'none', atMs: nowMs } }, { merge: true }); // guard-ok: запись внутри транзакции, её фиксирует runTransaction
+      tx.set(userRef, { [LEGACY_BONUS_V1_FIELD]: { schemaVersion: 1, status: 'merged_orphan', upgraded, from: ZERO_SOURCE, coins: ZERO_COINS, cappedBy: 'none', atMs: nowMs } }, { merge: true }); // guard-ok: запись внутри транзакции, её фиксирует runTransaction
       console.warn(`${LOG} closed uid=${uid8} status=merged_orphan canonical=${canonical.slice(0, 8)}`);
-      return Object.freeze({ status: 'merged_orphan' as const, from: ZERO_SOURCE, coins: ZERO_COINS, cappedBy: 'none' as const, starsBalance: starsNow.balance, starsSeq: starsNow.seq });
+      return Object.freeze({ status: 'merged_orphan' as const, upgraded, from: ZERO_SOURCE, coins: ZERO_COINS, cappedBy: 'none' as const, starsBalance: starsNow.balance, starsSeq: starsNow.seq });
     }
     const source = legacyBonusSourceFromUserDoc(data);
     const plan = planLegacyBonus(source);
-    console.log(`${LOG} plan uid=${uid8} from=${JSON.stringify(plan.from)} coins=${JSON.stringify(plan.coins)} cappedBy=${plan.cappedBy}`);
+    console.log(`${LOG} plan uid=${uid8} upgraded=${upgraded} from=${JSON.stringify(plan.from)} coins=${JSON.stringify(plan.coins)} cappedBy=${plan.cappedBy}`);
     if (plan.coins.total === 0) {
-      tx.set(userRef, { [LEGACY_BONUS_V1_FIELD]: { schemaVersion: 1, status: 'nothing', from: plan.from, coins: plan.coins, cappedBy: plan.cappedBy, atMs: nowMs } }, { merge: true }); // guard-ok: запись внутри транзакции, её фиксирует runTransaction
-      console.log(`${LOG} closed uid=${uid8} status=nothing`);
-      return Object.freeze({ status: 'nothing' as const, from: plan.from, coins: plan.coins, cappedBy: plan.cappedBy, starsBalance: starsNow.balance, starsSeq: starsNow.seq });
+      tx.set(userRef, { [LEGACY_BONUS_V1_FIELD]: { schemaVersion: 1, status: 'nothing', upgraded, from: plan.from, coins: plan.coins, cappedBy: plan.cappedBy, atMs: nowMs } }, { merge: true }); // guard-ok: запись внутри транзакции, её фиксирует runTransaction
+      console.log(`${LOG} closed uid=${uid8} status=nothing upgraded=${upgraded}`);
+      return Object.freeze({ status: 'nothing' as const, upgraded, from: plan.from, coins: plan.coins, cappedBy: plan.cappedBy, starsBalance: starsNow.balance, starsSeq: starsNow.seq });
     }
     const prepared = await prepareStarOperations(tx, db, stableUid, userSnap, ledgerOps(plan, nowMs), {
       nowMs,
@@ -196,10 +207,10 @@ export async function runLegacyBonusConvertV1(
       console.warn(`${LOG} reject reason=ledger_outcome uid=${uid8} first=${rejected[0]?.opId} status=${rejected[0]?.status} code=${String(rejected[0]?.errorCode ?? null)}`);
       throw new HttpsError('failed-precondition', 'legacy_bonus_ledger_rejected');
     }
-    const record = { schemaVersion: 1, status: 'converted', from: plan.from, coins: plan.coins, cappedBy: plan.cappedBy, atMs: nowMs };
+    const record = { schemaVersion: 1, status: 'converted', upgraded, from: plan.from, coins: plan.coins, cappedBy: plan.cappedBy, atMs: nowMs };
     const result = commitStarOperations(tx, prepared, { [LEGACY_BONUS_V1_FIELD]: record });
     console.log(`${LOG} converted uid=${uid8} total=${plan.coins.total} balanceBefore=${starsNow.balance} balanceAfter=${result.balance} seq=${result.seq}`);
-    return Object.freeze({ status: 'converted' as const, from: plan.from, coins: plan.coins, cappedBy: plan.cappedBy, starsBalance: result.balance, starsSeq: result.seq });
+    return Object.freeze({ status: 'converted' as const, upgraded, from: plan.from, coins: plan.coins, cappedBy: plan.cappedBy, starsBalance: result.balance, starsSeq: result.seq });
   });
 }
 
@@ -220,7 +231,7 @@ export const legacyBonusConvertMine = onCall(HOT_CALLABLE_OPTIONS, async (reques
   const db = admin.firestore();
   if (!(await legacyBonusEnabled(db))) {
     console.log(`${LOG} skip reason=flag_off auth=${authUid.slice(0, 8)}`);
-    return Object.freeze({ status: 'disabled' as const, from: ZERO_SOURCE, coins: ZERO_COINS, cappedBy: 'none' as const, starsBalance: 0, starsSeq: 0 });
+    return Object.freeze({ status: 'disabled' as const, upgraded: false, from: ZERO_SOURCE, coins: ZERO_COINS, cappedBy: 'none' as const, starsBalance: 0, starsSeq: 0 });
   }
   const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.ownerStableId, { requireKnownIdentity: true, repairLinks: false });
   try {

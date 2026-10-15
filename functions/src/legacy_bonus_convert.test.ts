@@ -61,5 +61,8 @@ describe('журнал монет и проводка', () => {
     expect(src).toContain('commitStarOperations(tx, prepared, { [LEGACY_BONUS_V1_FIELD]: record })');
     expect(src).toContain("data.identityHidden === true || (canonical && canonical !== stableUid)");
     expect(src).not.toMatch(/request\.data\?\.(xp|pearls|shards|spins|amount)/);
+    // окно при нуле — только обновившимся с 1.x: время создания документа (служебное), не клиентское поле
+    expect(src).toContain('const upgraded = createdMs < LEGACY_BONUS_UPGRADE_CUTOFF_MS;');
+    expect(src).toContain('userSnap.createTime ? userSnap.createTime.toMillis()');
   });
 });

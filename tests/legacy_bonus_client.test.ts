@@ -59,6 +59,21 @@ describe('legacy_bonus_client', () => {
     expect(mockCall).toHaveBeenCalledTimes(2);
   });
 
+  it('ноль: окно только у обновившихся с 1.x, свежая установка — без окна', async () => {
+    const zero = { ...converted, status: 'nothing', coins: { xp: 0, pearls: 0, spins: 0, total: 0 } };
+    const hook = await renderHook(() => useLegacyBonusWelcome());
+    mockCall.mockResolvedValueOnce({ data: { ...zero, upgraded: false } });
+    await act(async () => { await runLegacyBonusConvertOnce('test'); });
+    expect(hook.result.current.kind).toBe('none');
+    await AsyncStorage.clear();
+    resetLegacyBonusClientForTests();
+    const hook2 = await renderHook(() => useLegacyBonusWelcome());
+    mockCall.mockResolvedValueOnce({ data: { ...zero, upgraded: true } });
+    await act(async () => { await runLegacyBonusConvertOnce('test'); });
+    expect(hook2.result.current).toMatchObject({ kind: 'show', result: { status: 'nothing', coins: { total: 0 } } });
+    expect(mockMerge).not.toHaveBeenCalled();
+  });
+
   it('окно: show только после начисления, закрытие убирает', async () => {
     const hook = await renderHook(() => useLegacyBonusWelcome());
     expect(hook.result.current.kind).toBe('none');

@@ -30,7 +30,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import CommunityPackPreview from './flashcards/CommunityPackPreview';
-import { emitPackNotDownloadedToast } from './community_packs/stage_with_retry';
+import PackOpenFailedView from './flashcards/PackOpenFailedView';
 import { useTheme } from '../components/ThemeContext';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -634,7 +634,7 @@ export default function FlashcardsScreen() {
     savedCards, customCards, marketCards, marketPackCatalog,
     ownedPackIdList, communityOwnedIdList, accessStableId,
     collectionDataReady, loading, loadError, loadAll,
-    updateSavedCards, updateCustomCards, deeplinkCardsState,
+    updateSavedCards, updateCustomCards, deeplinkCardsState, retryDeeplinkCards,
   } = useCollectionData({
     isDevMarketEnabled,
     onLoaded,
@@ -644,14 +644,14 @@ export default function FlashcardsScreen() {
 
   // зачем (packs-simple-004, мгновенное открытие): тап открыл экран до загрузки карточек; если все тихие повторы
   // вернули пусто — прежняя мягкая подсказка и назад (раньше её показывала плитка, не уходя со списка).
-  const packOpenFailHandledRef = useRef(false);
+  // зачем (🟡 Макеты, 15.10): молчаливое закрытие и выброс в каталог заменены честным экраном «Не удалось загрузить» с «Повторить» и «Назад».
+  const packOpenFailLoggedRef = useRef(false);
   useEffect(() => {
-    if (deeplinkCardsState !== 'failed' || packOpenFailHandledRef.current) return;
-    packOpenFailHandledRef.current = true;
-    console.warn('[FC-PACK-OPEN] collection:failed → назад', JSON.stringify({ pack: packDeeplink })); // guard-ok: ветка логируется
-    emitPackNotDownloadedToast();
-    leaveCollection();
-  }, [deeplinkCardsState, leaveCollection, packDeeplink]);
+    if (deeplinkCardsState !== 'failed') { packOpenFailLoggedRef.current = false; return; }
+    if (packOpenFailLoggedRef.current) return;
+    packOpenFailLoggedRef.current = true;
+    console.warn('[PACK-OPEN] collection:failed → экран «Не удалось загрузить»', JSON.stringify({ pack: packDeeplink, from: String(params.from ?? '') })); // guard-ok: причина показа
+  }, [deeplinkCardsState, packDeeplink, params.from]);
 
   useFocusEffect(
     useCallback(() => {
@@ -1478,6 +1478,9 @@ export default function FlashcardsScreen() {
         по всем четырём краям. Журнал положения панели — [CARDS-SET-HEADER] (PackHeaderV2). */}
     <View style={[st.safe, { backgroundColor: 'transparent', paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }]}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
+        {deeplinkCardsState === 'failed' ? (
+          <PackOpenFailedView lang={lang} onRetry={retryDeeplinkCards} onBack={leaveCollection} />
+        ) : null}
 
         {/* зачем (packs-simple.html кадр 4, указание координатора 04.10): набор ДО добавления рисует отдельный
             CommunityPackPreview; свой набор (эталон «Карточек», CARDS_LOCKED) идёт прежней веткой без изменений. */}

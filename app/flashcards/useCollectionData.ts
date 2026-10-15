@@ -727,6 +727,12 @@ export function useCollectionData(opts: {
   // зачем (packs-simple-004, мгновенное открытие): экран открыт по тапу ДО загрузки карточек — состояние для скелета
   // в просмотре и для выхода с тостом, если все тихие повторы вернули пусто.
   const [deeplinkCardsState, setDeeplinkCardsState] = useState<'idle' | 'pending' | 'ready' | 'failed'>('idle');
+  // зачем (🟡 Макеты, 15.10): «Повторить» на экране «Не удалось загрузить» — новый заход загрузки карточек набора (без молчаливого закрытия экрана).
+  const [deeplinkRetryTick, setDeeplinkRetryTick] = useState(0);
+  const retryDeeplinkCards = useCallback(() => {
+    console.log(`[PACK-OPEN] retry tap pack=${String(deeplinkPackId)}`); // guard-ok: тап «Повторить»
+    setDeeplinkRetryTick((tick) => tick + 1);
+  }, [deeplinkPackId]);
   useEffect(() => {
     if (!deeplinkPackId || !communityPacksEnabled) return;
     const sourceId = `DEV:${deeplinkPackId}`;
@@ -744,7 +750,11 @@ export function useCollectionData(opts: {
     // Раньше они грузились только внутри loadAll, ПОСЛЕ шести загрузчиков и сборки каталога (~1,7 с). id известен из ссылки — стартуем сразу. Один запрос на набор:
     // startCommunityPackOpen держит идущую загрузку по ключу (второй вызов получает тот же промис), loadAll берёт её же (fetchPreviewPackCardsOnce).
     const parallelStartedAt = Date.now();
-    const opening = peekCommunityPackOpen(deeplinkPackId, studyTarget)
+    const opening = (deeplinkRetryTick > 0
+      ? (console.log('[PACK-OPEN] cards_fetch', JSON.stringify({ stage: 'start', source: 'retry', packId: deeplinkPackId })), // guard-ok: повтор по тапу
+        startCommunityPackOpen(deeplinkPackId, studyTarget, undefined, 'deeplink'))
+      : null)
+      ?? peekCommunityPackOpen(deeplinkPackId, studyTarget)
       ?? (previewPackIdRef.current === deeplinkPackId
         ? (console.log('[PACK-OPEN] cards_fetch', JSON.stringify({ stage: 'start', source: 'deeplink_parallel', packId: deeplinkPackId })), // guard-ok: журнал загрузки карточек просмотра
           startCommunityPackOpen(deeplinkPackId, studyTarget, undefined, 'deeplink'))
@@ -771,10 +781,11 @@ export function useCollectionData(opts: {
     return () => {
       cancelled = true;
     };
-  }, [communityPacksEnabled, deeplinkPackId, studyTarget]);
+  }, [communityPacksEnabled, deeplinkPackId, studyTarget, deeplinkRetryTick]);
 
   return {
     deeplinkCardsState,
+    retryDeeplinkCards,
     savedCards,
     customCards,
     marketCards,

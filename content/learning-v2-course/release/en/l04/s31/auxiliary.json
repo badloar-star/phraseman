@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-31:intro1:r2": {
+          "ru": "`park` — парк; парковка — `car park`.",
+          "uk": "`park` — парк; парковка — `car park`."
+        },
+        "en:lesson-04:session-31:intro1:r3": {
+          "ru": "Одна парковка: `This is`.",
+          "uk": "Одна парковка: `This is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-31:intro2:r2": {
+          "ru": "Несколько парков: `The parks are`.",
+          "uk": "Кілька парків: `The parks are`."
+        },
+        "en:lesson-04:session-31:intro2:r3": {
+          "ru": "`in` — внутри; здесь парки рядом с отелем: `next to`.",
+          "uk": "`in` — усередині; тут парки поруч із готелем: `next to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-31:intro3:r2": {
+          "ru": "`on` — на поверхности; внутри сумки — `in the bag`.",
+          "uk": "`on` — на поверхні; усередині сумки — `in the bag`."
+        },
+        "en:lesson-04:session-31:intro3:r3": {
+          "ru": "Сыр как продукт: `The cheese is`.",
+          "uk": "Сир як продукт: `The cheese is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "98ea802f0a04763d97bbd5e52e1feebae854c69935b826016a8216d79ad53484"
+}

@@ -813,6 +813,33 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [continueResolved]);
     const lastLessonShownRef = useRef(lastLesson !== null);
     useEffect(() => { lastLessonShownRef.current = lastLesson !== null; }, [lastLesson]);
+    // зачем (бета-тест Б1, 15.10, 🔴 «прыжок Главной у нового гостя»): заготовка «Продолжить» держалась, пока не доработает ТЯЖЁЛАЯ loadData (на холодном старте — секунды), и у человека без последнего урока
+    // исчезала рывком, сдвигая весь контент вверх на ~235 px (тап по «Уроки» попал в видео). Здесь — узкое раннее чтение ОДНОГО ключа «последний открытый урок» (то же значение, что берёт loadData):
+    // нет записи → урока нет, заготовка снимается сразу (плавно); есть запись — оставляем loadData (ему нужен прогресс для карточки). Лог [HOME-CONTINUE] называет значение ключа и решение.
+    useEffect(() => {
+        if (continueResolvedRef.current) return undefined;
+        let cancelled = false;
+        const token = captureAccountGeneration();
+        const startedAt = Date.now();
+        void AsyncStorage.getItem(lastOpenedLessonKey(studyTarget))
+            .then((raw) => {
+                if (cancelled || continueResolvedRef.current || !isCurrentAccountGeneration(token)) {
+                    console.log(`[HOME-CONTINUE] early: пропуск cancelled=${cancelled} resolved=${continueResolvedRef.current} accountCurrent=${isCurrentAccountGeneration(token)} raw=${String(raw)}`); // guard-ok: ранний выход называет причину
+                    return;
+                }
+                const id = raw ? parseInt(raw, 10) : NaN;
+                const hasLesson = Number.isFinite(id) && id >= 1 && id <= 32;
+                console.log(`[HOME-CONTINUE] early: ключ «последний урок» raw=${String(raw)} → ${hasLesson ? 'есть, ждём loadData (нужен прогресс)' : 'урока нет — заготовка снимается сразу'} за ${Date.now() - startedAt} мс studyTarget=${String(studyTarget)}`); // guard-ok: ветка решения называет значения
+                if (hasLesson) return;
+                animateNextLayoutTransition();
+                setLastLesson(null);
+                setContinueResolved(true);
+            })
+            .catch((error: unknown) => {
+                console.warn(`[HOME-CONTINUE] early: чтение ключа не удалось — ${error instanceof Error ? error.message : String(error)} (заготовку решит loadData)`); // guard-ok: причина отказа в catch
+            });
+        return () => { cancelled = true; };
+    }, [studyTarget]);
     // зачем (22.09): null означал «раздела ошибок нет» — на Главной у
     // испанского и немецкого карточка «Мои ошибки» не показывалась вовсе.
     const mistakeStudyTarget = isMistakeStudyTargetValue(studyTarget) ? studyTarget : null;

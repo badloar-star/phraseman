@@ -22,6 +22,7 @@ import { playUnlessRecentlyPlayed } from '../../../modules/sound_v2/legacy_bridg
 import MomentCoin from '../../moments/MomentCoin';
 import { V2Button } from '../../v2/V2Kit';
 import { spireClock, spireGameText } from '../spire_game_strings';
+import CountText from './CountText';
 import { SPIRE_FLOOR_COUNT, spireStepsIn } from '../spire_tower_model';
 import { useSpirePalette } from '../useSpirePalette';
 import { MomentFullScreen } from './moments_layout';
@@ -59,7 +60,6 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, busy, testID }: Spi
   const reduceMotion = useReducedMotion();
   const ratio = outcome.budgetMs > 0 ? Math.max(0, Math.min(1, outcome.usedMs / outcome.budgetMs)) : 0;
   const fill = useSharedValue(reduceMotion ? ratio : 0);
-  const [shownMs, setShownMs] = useState(reduceMotion ? outcome.usedMs : 0);
   const [cheer, setCheer] = useState(reduceMotion);
   const floorNow = Math.min(outcome.local.floor, SPIRE_FLOOR_COUNT);
   const stairsN = spireStepsIn(floorNow);
@@ -72,20 +72,14 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, busy, testID }: Spi
     if (reduceMotion) return undefined;
     const T = STEP_MOMENT_TIMELINE;
     const timers: ReturnType<typeof setTimeout>[] = [];
-    let interval: ReturnType<typeof setInterval> | null = null;
+    // зачем (координатор 15.10, аудит скорости окон моментов): кольцо — на UI-треде, а время мм:сс досчитывает CountText (свой интервал, перерисовывается только число)
     timers.push(setTimeout(() => {
       playEvent('tap');
       fill.value = withTiming(ratio, { duration: T.ringMs, easing: Easing.bezier(0.23, 1, 0.32, 1) });
-      const started = Date.now();
-      interval = setInterval(() => {
-        const k = Math.min(1, (Date.now() - started) / T.ringMs);
-        setShownMs(Math.round(outcome.usedMs * (1 - Math.pow(1 - k, 3))));
-        if (k >= 1 && interval) { clearInterval(interval); interval = null; }
-      }, 40);
     }, T.ring));
     timers.push(setTimeout(() => { setCheer(true); void hapticSuccess(); }, T.cheer));
     timers.push(setTimeout(() => { playEvent('correct'); void hapticTap(); }, T.stairs));
-    return () => { timers.forEach(clearTimeout); if (interval) clearInterval(interval); cancelAnimation(fill); };
+    return () => { timers.forEach(clearTimeout); cancelAnimation(fill); };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: сценарий играет один раз на показ
   }, []);
 
@@ -103,7 +97,7 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, busy, testID }: Spi
               <AnimatedCircle cx={RING / 2} cy={RING / 2} r={RING_R} fill="none" stroke={p.cta} strokeWidth={9} strokeLinecap="round" strokeDasharray={RING_LEN} animatedProps={ringProps} rotation={-90} origin={`${RING / 2}, ${RING / 2}`} />
             </Svg>
             <View style={s.timerText} pointerEvents="none">
-              <Text style={[s.timerValue, { color: p.text }]} testID={`${testID}-time`}>{spireClock(shownMs)}</Text>
+              <CountText to={outcome.usedMs} delayMs={STEP_MOMENT_TIMELINE.ring} durationMs={STEP_MOMENT_TIMELINE.ringMs} reduceMotion={reduceMotion} format={spireClock} style={[s.timerValue, { color: p.text }]} testID={`${testID}-time`} />
               <Text style={[s.timerSmall, { color: p.textSecondary }]}>{stepMomentText(lang, 'ofBudget', { t: spireClock(outcome.budgetMs) })}</Text>
             </View>
           </View>

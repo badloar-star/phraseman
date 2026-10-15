@@ -19,6 +19,7 @@ import { playEvent } from '../../../modules/sound_v2/sound_bank';
 import { playUnlessRecentlyPlayed } from '../../../modules/sound_v2/legacy_bridge';
 import MomentCoin from '../../moments/MomentCoin';
 import StreakConfetti from '../../streak/moments/StreakConfetti';
+import CountText from './CountText';
 import { V2_TYPE } from '../../../constants/v2Style';
 import { V2Button } from '../../v2/V2Kit';
 import SpireRankCoin from '../SpireRankCoin';
@@ -38,6 +39,7 @@ const TOWER_W = 280;
 const TOWER_H = 240;
 /** Тайминги образца, мс: башня перерисовывается 600, счётчик 1100 (900 мс), монета выглядывает 1300 / вершина: радость 500, залпы 900, 1300, 1700. */
 export const FLOOR_MOMENT_TIMELINE = { relight: 600, count: 1100, countMs: 900, peek: 1300, cheer: 500, volley1: 900, volley2: 1300, volley3: 1700 } as const;
+const plusFormat = (value: number): string => `+${value}`;
 
 export type SpireFloorMomentProps = Readonly<{
   lang: Lang;
@@ -63,7 +65,6 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
   const reward = spireFloorCoinsOf(outcome.floorBefore, coins);
   const skin = useMemo(() => spireSkinForTier(outcome.local.tier), [outcome.local.tier]);
   const [litFloor, setLitFloor] = useState(reduceMotion ? next : outcome.floorBefore);
-  const [counted, setCounted] = useState(reduceMotion ? reward : 0);
   const [peek, setPeek] = useState(reduceMotion);
   const k = TOWER_W / SPIRE_TW;
   // окно башни: центр на следующем этаже (образец `focus: 5`)
@@ -77,19 +78,11 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
     if (reduceMotion) return undefined;
     const T = FLOOR_MOMENT_TIMELINE;
     const timers: ReturnType<typeof setTimeout>[] = [];
-    let interval: ReturnType<typeof setInterval> | null = null;
     timers.push(setTimeout(() => { setLitFloor(next); playEvent('tap'); void hapticTap(); }, T.relight));
-    timers.push(setTimeout(() => {
-      playEvent('coin');
-      const started = Date.now();
-      interval = setInterval(() => {
-        const t = Math.min(1, (Date.now() - started) / T.countMs);
-        setCounted(Math.round(reward * (1 - Math.pow(1 - t, 3))));
-        if (t >= 1 && interval) { clearInterval(interval); interval = null; }
-      }, 40);
-    }, T.count));
+    // зачем (координатор 15.10, аудит скорости окон моментов): сам счёт «+N» крутит CountText (там интервал), здесь — только звук монеты в ту же метку
+    timers.push(setTimeout(() => { playEvent('coin'); }, T.count));
     timers.push(setTimeout(() => { setPeek(true); void hapticSuccess(); }, T.peek));
-    return () => { timers.forEach(clearTimeout); if (interval) clearInterval(interval); };
+    return () => { timers.forEach(clearTimeout); };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: сценарий играет один раз на показ
   }, []);
 
@@ -109,7 +102,7 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
         <View style={s.rewardRow}>
           <View style={[s.pill, { backgroundColor: p.control }]}>
             <SpireRankCoin rank={coinRank} size={24} />
-            <Text style={[s.pillText, { color: p.text }]} testID={`${testID}-count`}>{`+${counted}`}</Text>
+            <CountText to={reward} delayMs={FLOOR_MOMENT_TIMELINE.count} durationMs={FLOOR_MOMENT_TIMELINE.countMs} reduceMotion={reduceMotion} format={plusFormat} style={[s.pillText, { color: p.text }]} testID={`${testID}-count`} />
           </View>
           <MomentCoin rank={coinRank} size={56} mood={peek ? 'peek' : 'idle'} shadow={false} testID={`${testID}-coin`} />
         </View>

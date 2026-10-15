@@ -1,0 +1,20 @@
+10-15 20:26:36.150  5359  5414 W ReactNativeJS: '[NAV-PAINT-TRACE] +0ms start source=my_packs_play_tap', { [Stack] name: 'Stack' }
+10-15 20:26:36.151  5359  5414 I ReactNativeJS: [TRAIN-INTENT] set deck=pack:video_cnrVN_uz7Sg count=500
+10-15 20:26:36.153  5359  5414 W ReactNativeJS: '[NAV-PAINT-TRACE] +5ms router.navigate about to be called source=my_packs_play_tap', { [Stack] name: 'Stack' }
+10-15 20:26:36.195  5359  5414 W ReactNativeJS: '[NAV-PAINT-TRACE] +48ms hub first render source=my_packs_play_tap', { [Stack] name: 'Stack' }
+10-15 20:26:36.392  5359  5414 W ReactNativeJS: '[NAV-PAINT-TRACE] +239ms hub mount source=my_packs_play_tap', { [Stack] name: 'Stack' }
+10-15 20:26:36.392  5359  5414 I ReactNativeJS: '[BLITZ-AUTOOPEN] hub:autotrain-effect', '{"train":"1","deck":"pack:video_cnrVN_uz7Sg","handled":false}'
+10-15 20:26:36.396  5359  5414 I ReactNativeJS: [TRAIN-INTENT] consume ageMs=243 deck=pack:video_cnrVN_uz7Sg count=500
+10-15 20:26:36.408  5359  5414 I ReactNativeJS: [TRAIN-INTENT] hub:schedule source=params deck=pack:video_cnrVN_uz7Sg deckPending=pack:video_cnrVN_uz7Sg
+10-15 20:26:36.476  5359  5414 W ReactNativeJS: '[NAV-PAINT-TRACE] +327ms deck warmup start (snapshot in memory: true) source=my_packs_play_tap', { [Stack] name: 'Stack' }
+10-15 20:26:36.485  5359  5414 I ReactNativeJS: '[BLITZ-AUTOOPEN] hub:autotrain-effect', '{"train":null,"deck":null,"handled":true}'
+10-15 20:26:36.487  5359  5414 I ReactNativeJS: [BLITZ-AUTOOPEN] hub:focus — сброс флага автозапуска
+10-15 20:26:36.591  5359  5414 W ReactNativeJS: [NAV-PAINT-TRACE] +445ms runAfterInteractions fired source=my_packs_play_tap
+10-15 20:26:36.593  5359  5414 I ReactNativeJS: [TRAIN-INTENT] hub:open source=params deck=pack:video_cnrVN_uz7Sg afterMs=183 locked=false entryReady=false
+10-15 20:26:36.595  5359  5414 I ReactNativeJS: '[FC-TRAIN-ENTRY] tap:train', '{"quotaStatus":"waiting","used":0,"limit":30,"bypass":null,"trainingLocked":false,"trainingEntryReady":false,"accessResolved":true}'
+10-15 20:26:36.597  5359  5414 I ReactNativeJS: [FC-TRAIN-ENTRY] early_tap:waiting статус квоты="waiting"
+10-15 20:26:36.606  5359  5414 W ReactNativeJS: '[NAV-PAINT-TRACE] +459ms hub onLayout source=my_packs_play_tap', { [Stack] name: 'Stack' }
+10-15 20:26:36.682  5359  5414 W ReactNativeJS: [NAV-PAINT] group=tab route=/flashcards ms=248
+10-15 20:26:36.717  5359  5414 W ReactNativeJS: [NAV-PAINT-TRACE] +568ms deck warmup end source=my_packs_play_tap
+10-15 20:26:36.741  5359  5414 I ReactNativeJS: [FC-TRAIN-ENTRY] early_tap:resolved status="allowed" waitedMs=142
+10-15 20:26:37.555  5359  5414 I ReactNativeJS: [TRAIN-INTENT] hub:sheet-state через 900мс visible=true deck=pack:video_cnrVN_uz7Sg

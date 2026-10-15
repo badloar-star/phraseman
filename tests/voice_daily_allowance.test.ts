@@ -11,6 +11,7 @@ import {
   resetDialogVoiceAttemptsForTests,
 } from '../app/dialogue_v2_voice_daily_limit';
 import {
+  VOICE_ALLOWANCE_SURFACES,
   VOICE_LIMIT_PAYWALL_CONTEXT,
   setDevVoiceRemaining,
   recordVoiceDailyAttempt,
@@ -82,6 +83,16 @@ describe('голос на сегодня (D165 + D194)', () => {
     } finally {
       delete g.__DEV__;
     }
+  });
+
+  it('D196: один счётчик на все микрофоны — Уроки + Ошибки + ИИ-диалог = лимит, дальше закрыто везде, исключений нет', async () => {
+    await hydrateDialogVoiceAttempts();
+    expect(VOICE_ALLOWANCE_SURFACES).toEqual(['course_v2', 'dialogs', 'dialog_call', 'ai_dialog', 'lessons', 'mistakes', 'cards', 'cards_speaking']);
+    expect(recordVoiceDailyAttempt('lessons', 'lesson1:p4:1', FREE)).toBe(1);
+    expect(recordVoiceDailyAttempt('mistakes', 'mistakes:q2:1', FREE)).toBe(2);
+    expect(recordVoiceDailyAttempt('ai_dialog', 'ai:t3:1', FREE)).toBe(3);
+    for (const surface of VOICE_ALLOWANCE_SURFACES) expect([surface, voiceDailyAllowanceGate(surface, FREE)]).toEqual([surface, false]);
+    for (const surface of VOICE_ALLOWANCE_SURFACES) expect([surface, voiceDailyAllowanceGate(surface, PLUS)]).toEqual([surface, true]);
   });
 
   it('вчерашние попытки не считаются (местные сутки), до чтения диска — «не знаем»', async () => {

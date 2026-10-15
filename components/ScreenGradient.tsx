@@ -724,7 +724,9 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
     );
   }
 
-  const staticY = staticParallaxY;
+  // зачем (R69 «шов под статус-баром», Сверка 15.10: Главная — зона #eaebfe (y0–23) → #f3f4fd, граница y=24): оболочка вкладок сдвигала слой фона вниз на HOME_ENTRANCE.bgDriftPx (9 dp = 24 px на Pixel 8)
+  // ради «дрейфа» Главной, а полотно 2.0 (V2Backdrop) статично и под ним лежит bgPrimary — верхние 9 dp открывали другой тон, девять уровней шва. Полотно 2.0 не двигается: сдвиг игнорируется.
+  const staticY = V2_BACKDROP_ENABLED ? undefined : staticParallaxY;
   const animatedY =
     SCREEN_GRADIENT_MOTION_ENABLED && staticParallaxY === undefined ? (entranceOffsetY ?? defaultEntranceY) : undefined;
 

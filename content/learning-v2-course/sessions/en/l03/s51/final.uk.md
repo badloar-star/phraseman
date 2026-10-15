@@ -1,152 +1,138 @@
-# Англійська · Урок 3 · Заняття 51 — «Цінники біля крісел»
+# Англійська · Урок 3 · Заняття 51 — Бібліотеки після переїзду
 
-**Сцена заняття.** У меблевому салоні ви перевіряєте кольорові цінники на кріслах. Продавець просить назвати крісло за кольором, і ви чуєте, чому перед одним кольором стоїть `an`, а перед іншим — `a`.
-**Як сказати:** `an` ставлять перед словом, яке починається з голосного звуку: `an orange chair`. Перед приголосним звуком лишається `a`: `a yellow chair`.
-**Нові слова:** violet, navy, pink
-**Повернення:** yellow, purple, orange — тут orange явно розкривається як колір до оцінювання.
+**Ситуація.** Після переїзду ви з Анною розбираєте книжки й шукаєте бібліотеки району на карті. Коробка з книжками важка. Старий спосіб підписувати коробки не допомагає зрозуміти, де що лежить; ви помічаєте це, коли шукаєте речі для спалень.
+
+**Що ви опануєте:** назвати кілька бібліотек та узгодити libraries з are
+**Нові слова:** libraries
+
+---
 
 ## Інтро 1
-### Помаранчевий — це колір
 
-`orange` буває фруктом, а на ціннику — «помаранчевий». Апельсин у пакет не потрібен: крісло все одно не поміститься. `violet` — «фіолетовий». Orange починається зі звуку /ɒ/, тому: `An orange chair is here.` Violet починається з /v/: `A violet chair is here.`
+### Не просто додати s
 
-**Поруч із помаранчевим стоїть фіолетове крісло. Виберіть фразу про фіолетове.**
+`libraries` — «бібліотеки», одна — `library`. У цьому слові під час переходу до кількох змінюємо кінцеве `y` на `ies`: `library` → `libraries`. `These are libraries` — «Це бібліотеки»: показуємо на кілька поруч на карті. Тисяча книжок в одній бібліотеці не робить її тисячею бібліотек.
 
-- ✅ **A violet chair is here.**
-- ❌ An violet chair is here. — *Violet починається зі звуку /v/, тому потрібен `a`.*
-- ❌ A chair violet is here. — *Колір стоїть перед chair: `violet chair`.*
+**Назвіть кілька бібліотек одним англійським словом.**
+
+- ✅ **libraries**
+- ❌ library — *`library` — одна бібліотека. Кілька — `libraries`.*
+- ❌ librarys — *У цьому слові потрібно замінити `y` на `ies`: `libraries`.*
 
 ---
 
 ## Інтро 2
-### Темно-синє крісло
 
-`navy` — «темно-синій». На наступному ціннику одне темно-синє крісло: `A navy chair is here.` Navy починається зі звуку /n/. Це приголосний звук, тому перед navy стоїть звичайне `a`; після n не треба шукати голосну букву.
+### Потрібні бібліотеки
 
-**Ви знайшли темно-синє крісло. Виберіть фразу.**
+`The libraries are here` — «Бібліотеки тут»: ви говорите про конкретні бібліотеки, які вже вибрали на карті. `The` підходить і для кількох. Після `libraries` потрібне `are`. Для групи далі: `Those libraries are there` — «Ті бібліотеки там».
 
-- ✅ **A navy chair is here.**
-- ❌ An navy chair is here. — *Navy починається зі звуку /n/, тому потрібен `a`.*
-- ❌ A chair navy is here. — *Колір стоїть перед chair: `navy chair`.*
+**Ви з Анною вже вибрали бібліотеки для відвідування. Покажіть їх на карті: «Бібліотеки тут».**
+
+- ✅ **The libraries are here.**
+- ❌ The libraries is here. — *Бібліотек кілька: потрібне `are`.*
+- ❌ The library is here. — *Так говорять про одну бібліотеку. Тут кілька: `libraries are`.*
 
 ---
 
 ## Інтро 3
-### Рожеве крісло
 
-`pink` — «рожевий». На наступному ціннику одне рожеве крісло: `A pink chair is here.` Pink починається зі звуку /p/, тому перед ним стоїть `a`. Дивіться не на довжину слова й не на букву артикля, а на перший звук кольору.
+### Важка коробка й невдалий спосіб
 
-**Продавець показує рожеве крісло. Виберіть фразу.**
+`heavy` — «важкий»: коробку з книжками важко підняти. Про неї: `It is heavy` — «Вона важка». `ineffective` — «неефективний, недієвий»: старий спосіб підписувати коробки не дає потрібного результату, речі однаково важко знайти. Про спосіб: `It is ineffective` — «Він неефективний». `bedrooms` — спальні; про знайомі кімнати: `The bedrooms are there` — «Спальні там».
 
-- ✅ **A pink chair is here.**
-- ❌ An pink chair is here. — *Pink починається зі звуку /p/, тому потрібен `a`.*
-- ❌ A chair pink is here. — *Pink ставлять перед chair.*
+**Коробку з книжками важко підняти через вагу. Скажіть «Вона важка».**
+
+- ✅ **It is heavy.**
+- ❌ It is cheap. — *`cheap` — недорога. Тут описуємо вагу: `heavy`.*
+- ❌ It are heavy. — *Ідеться про одну коробку: `It is heavy`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-51:i03; family: listen_choose -->
-Ціль: `violet`
-Варіанти: `violet`
+**1 · Ви вже показали Анні спальні. Тепер укажіть, де вони: «Спальні там»**
+<!-- interaction_id: en:lesson-03:session-51:i01; family: phrase_builder -->
+Плитки: `there` `are` `bedrooms` `The` `is` → **The bedrooms are there.**
+*(плитка `is` зайва: тут потрібно `are` — `The bedrooms are there.`)*
 
-**2 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-51:i05; family: scripted_repeat_compare -->
-Ціль: `navy`
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-03:session-51:i02; family: listen_choose -->
+🔊 *libraries* → **libraries** · bedrooms · restaurants
+- bedrooms — *У записі перше слово — `libraries`, а в цьому варіанті — `bedrooms`.*
+- restaurants — *У записі перше слово — `libraries`, а в цьому варіанті — `restaurants`.*
 
-**3 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-51:i07; family: listen_choose -->
-Ціль: `pink`
-Варіанти: `pink` · `navy` · `violet`
-- navy — *У записі звучить `pink`, не `navy`.*
-- violet — *У записі звучить `pink`, не `violet`.*
+**3 · Назвіть кілька бібліотек одним англійським словом**
+<!-- interaction_id: en:lesson-03:session-51:i03; family: context_gap_grammar -->
+___ → **libraries** · library · librarys
+- library — *`library` — одна бібліотека. Кілька — `libraries`.*
+- librarys — *Замінюємо кінцеве `y` на `ies`: `libraries`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-51:i04; family: speed_match -->
+libraries — бібліотеки · heavy — важкий · ineffective — неефективний · bedrooms — спальні
 
-**4 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-51:i04; family: scripted_repeat_compare -->
-Ціль: `violet`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-51:i05; family: listen_build_dictation -->
+🔊 *These are libraries.* Плитки: `libraries` `are` `These` `is` → **These are libraries.**
+*(плитка `is` зайва: тут потрібно `are` — `These are libraries.`)*
 
-**5 · Послухайте та виберіть слово**
-<!-- interaction_id: en:lesson-03:session-51:i06; family: listen_choose -->
-Ціль: `navy`
-Варіанти: `navy`
+**6 · Ви показуєте на карті бібліотеки, які вже вибрали. Скажіть «Бібліотеки тут»**
+<!-- interaction_id: en:lesson-03:session-51:i06; family: phrase_builder -->
+Плитки: `here` `are` `libraries` `The` `is` → **The libraries are here.**
+*(плитка `is` зайва: тут потрібно `are` — `The libraries are here.`)*
 
-**6 · З’єднайте кольори зі значеннями**
-<!-- interaction_id: en:lesson-03:session-51:i08; family: speed_match -->
-Пари: `pink` — рожевий · `box` — коробка · `chair` — крісло · `table` — стіл
-Ціль: `pink · box · chair · table`
+**7 · Коробку з книжками важко підняти. Скажіть «Вона важка» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-51:i07; family: scripted_repeat_compare -->
+🎙 **It's heavy.**
 
-**7 · Розрізніть слово — violet або violent**
-<!-- interaction_id: en:lesson-03:session-51:i01; family: sound_contrast -->
-Ціль: `violet`
-Варіанти: `violet` · `violent`
-- violent — *`violent` — інше слово. У записі звучить колір `violet`.*
+**8 · Ви показуєте на кілька бібліотек у дальній частині карти**
+<!-- interaction_id: en:lesson-03:session-51:i08; family: context_gap_grammar -->
+___ are libraries. → **Those** · That · This
+- That — *`That` — один об’єкт. Тут кілька далі: `Those`.*
+- This — *`This` — один поруч. Тут кілька далі: `Those`.*
 
-
-**8 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-03:session-51:i02; family: speed_match -->
-Пари: `navy` — темно-синій · `box` — коробка · `chair` — крісло · `table` — стіл
-Ціль: `navy · box · chair · table`
-
-**9 · Промовте слово**
-<!-- interaction_id: en:lesson-03:session-51:i09; family: scripted_repeat_compare -->
-Ціль: `pink`
+**9 · Послухайте оцінку старого способу підписувати коробки**
+<!-- interaction_id: en:lesson-03:session-51:i09; family: listen_choose -->
+🔊 *It is ineffective.* → **It is ineffective.** · It is effective. · It is expensive.
+- It is effective. — *У записі останнє слово — `ineffective`, а в цьому варіанті — `effective`.*
+- It is expensive. — *У записі останнє слово — `ineffective`, а в цьому варіанті — `expensive`.*
 
 **10 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-03:session-51:i11; family: speed_match -->
-Пари: `violet` — фіолетовий · `navy` — темно-синій · `pink` — рожевий · `box` — коробка
-Ціль: `violet · navy · pink · box`
+<!-- interaction_id: en:lesson-03:session-51:i10; family: speed_match -->
+libraries — бібліотеки · bedrooms — спальні · here — тут · there — там
 
-**11 · Вставте артикль — на ціннику пурпуровий колір**
-<!-- interaction_id: en:lesson-03:session-51:i10; family: context_gap_grammar -->
-Ціль: `___ purple chair is here.`
-Варіанти: `A` · `An` · `The` · `Purple`
-- An — *Purple починається зі звуку /p/, тому потрібен `A`.*
-- The — *Крісло називають уперше, а тут перевіряється `A` перед /p/.*
-- Purple — *Purple уже стоїть після пропуску; сюди ставлять артикль.*
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-51:i11; family: listen_build_dictation -->
+🔊 *These bedrooms are here.* Плитки: `here` `are` `bedrooms` `These` `is` → **These bedrooms are here.**
+*(плитка `is` зайва: тут потрібно `are` — `These bedrooms are here.`)*
 
+**12 · Ви показуєте на бібліотеки далі на карті. Скажіть «Ті бібліотеки там»**
+<!-- interaction_id: en:lesson-03:session-51:i12; family: phrase_builder -->
+Плитки: `there` `are` `libraries` `Those` `is` → **Those libraries are there.**
+*(плитка `is` зайва: тут потрібно `are` — `Those libraries are there.`)*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-03:session-51:i12; family: listen_choose -->
-Ціль: `A navy chair is here.`
-Варіанти: `Тут є темно-синє крісло.` · `Тут є фіолетове крісло.` · `Тут є темно-сині крісла.` · `Де темно-синє крісло?`
-- Тут є фіолетове крісло. — *У записі звучить `navy`, а не `violet`.*
-- Тут є темно-сині крісла. — *У записі одне крісло: `a chair`, а не кілька крісел.*
-- Де темно-синє крісло? — *У записі твердження, а не запитання.*
+**13 · Старий спосіб підписувати коробки не допомагає знайти речі. Скажіть про спосіб «Він неефективний» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-51:i13; family: scripted_repeat_compare -->
+🎙 **It's ineffective.**
 
-
-**13 · Складіть фразу — ви відповідаєте про темно-синє крісло**
-<!-- interaction_id: en:lesson-03:session-51:i13; family: phrase_builder -->
-Ціль: `It is a navy chair.`
-
-**14 · Вставте артикль — на ціннику рожевий колір**
+**14 · Ви говорите про кілька вибраних бібліотек**
 <!-- interaction_id: en:lesson-03:session-51:i14; family: context_gap_grammar -->
-Ціль: `___ pink chair is here.`
-Варіанти: `A` · `An` · `The` · `Pink`
-- An — *Pink починається зі звуку /p/, тому потрібен `A`.*
-- The — *Крісло називають уперше, а тут перевіряється `A` перед /p/.*
-- Pink — *Pink уже стоїть після пропуску; сюди ставлять артикль.*
+The libraries ___ here. → **are** · is · am
+- is — *Бібліотек кілька: `The libraries are here`.*
+- am — *З `The libraries` потрібне `are`.*
 
+**15 · Послухайте опис коробки з книжками**
+<!-- interaction_id: en:lesson-03:session-51:i15; family: listen_choose -->
+🔊 *It is heavy.* → **It is heavy.** · It is cheap. · It is useful.
+- It is cheap. — *У записі останнє слово — `heavy`, а в цьому варіанті — `cheap`.*
+- It is useful. — *У записі останнє слово — `heavy`, а в цьому варіанті — `useful`.*
 
-**15 · Послухайте та складіть фразу**
-<!-- interaction_id: en:lesson-03:session-51:i15; family: listen_build_dictation -->
-Ціль: `This is a pink chair.`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-51:i16; family: speed_match -->
+libraries — бібліотеки · heavy — важкий · ineffective — неефективний · bedrooms — спальні
 
-**16 · Промовте фразу — показуєте фіолетовий стілець уперше**
-<!-- interaction_id: en:lesson-03:session-51:i16; family: scripted_repeat_compare -->
-Ціль: `A violet chair is here.`
-
-**17 · нове крісло в залі**
-<!-- interaction_id: en:lesson-03:session-51:i17; family: context_gap_grammar -->
-Ціль: `___ violet chair is here.`
-Варіанти: `A` · `An` · `The` · `Violet`
-- An — *Violet починається зі звуку /v/, тому потрібен `A`.*
-- The — *Це перша згадка про одне крісло, тому тут не `The`.*
-- Violet — *Violet уже стоїть після пропуску; сюди потрібен артикль.*
-
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=speed_match, 7=sound_contrast, 8=speed_match, 9=scripted_repeat_compare, 10=speed_match, 11=context_gap_grammar, 12=listen_choose, 13=phrase_builder, 14=context_gap_grammar, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=context_gap_grammar
+**17 · В іншому районі ви з другом уже вибрали бібліотеки. Друг шукає їх на карті, а ви знайшли їх у дальній частині. Скажіть «Бібліотеки там», говорячи про вибрану групу**
+<!-- interaction_id: en:lesson-03:session-51:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **The libraries are there.**
 

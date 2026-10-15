@@ -4,112 +4,191 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-03:session-51:i03",
+      "interactionId": "en:lesson-03:session-51:i01",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы уже показали Анне спальни. Теперь укажите, где они: «Спальни там»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы уже показали Анне спальни. Теперь укажите, где они: «Спальни там»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bedrooms are there.",
+        "localizedMeaning": {
+          "ru": "Вы уже показали Анне спальни. Теперь укажите, где они: «Спальни там»",
+          "uk": "Ви вже показали Анні спальні. Тепер укажіть, де вони: «Спальні там»"
+        },
+        "orderedTokens": [
+          "The",
+          "bedrooms",
+          "are",
+          "there"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы уже показали Анне спальни. Теперь укажите, где они: «Спальни там»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The bedrooms are there.`",
+              "uk": "тут потрібно `are` — `The bedrooms are there.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i02",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-51:i03:r1",
-          "text": "violet"
+          "responseId": "en:lesson-03:session-51:i02:r1",
+          "text": "libraries"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i02:r2",
+          "text": "bedrooms"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i02:r3",
+          "text": "restaurants"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-51:i03:audio"
+        "en:lesson-03:session-51:i02:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i03:audio",
-          "transcript": "violet"
+          "audioTargetId": "en:lesson-03:session-51:i02:audio",
+          "transcript": "libraries"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-51:i03:r1",
-            "targetText": "violet",
+            "responseId": "en:lesson-03:session-51:i02:r1",
+            "targetText": "libraries",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i02:r2",
+            "targetText": "bedrooms",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i02:r3",
+            "targetText": "restaurants",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "violet",
-          "definitionByLocale": {
-            "ru": "«фиолетовый». Цвет кресла с ценником на /v/.",
-            "uk": "«фіолетовий». Колір крісла з цінником на /v/."
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `libraries`, а в этом варианте — `bedrooms`.",
+              "uk": "У записі перше слово — `libraries`, а в цьому варіанті — `bedrooms`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `libraries`, а в этом варианте — `restaurants`.",
+              "uk": "У записі перше слово — `libraries`, а в цьому варіанті — `restaurants`."
+            }
           }
-        }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i05",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-51:i05:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i05:audio",
-          "transcript": "navy"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "navy",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i07",
+      "interactionId": "en:lesson-03:session-51:i03",
       "ordinal": 6,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-51:i07:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i07:audio",
-          "transcript": "pink"
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите несколько библиотек одним английским словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i03:r1",
+          "text": "libraries"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "pink",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-03:session-51:i03:r2",
+          "text": "library"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i03:r3",
+          "text": "librarys"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите несколько библиотек одним английским словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите несколько библиотек одним английским словом",
+          "uk": "Назвіть кілька бібліотек одним англійським словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i03:r1",
+            "text": "libraries"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i03:r2",
+            "text": "library"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i03:r3",
+            "text": "librarys"
+          }
+        ],
+        "testedDimension": "Назовите несколько библиотек одним английским словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите несколько библиотек одним английским словом",
+            "feedbackByLocale": {
+              "ru": "`library` — одна библиотека. Несколько — `libraries`.",
+              "uk": "`library` — одна бібліотека. Кілька — `libraries`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите несколько библиотек одним английским словом",
+            "feedbackByLocale": {
+              "ru": "Заменяем конечное `y` на `ies`: `libraries`.",
+              "uk": "Замінюємо кінцеве `y` на `ies`: `libraries`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -118,216 +197,6 @@
       "interactionId": "en:lesson-03:session-51:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-51:i04:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i04:audio",
-          "transcript": "violet"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "violet",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i06",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-51:i06:r1",
-          "text": "navy"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-51:i06:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i06:audio",
-          "transcript": "navy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-51:i06:r1",
-            "targetText": "navy",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "navy",
-          "definitionByLocale": {
-            "ru": "«тёмно-синий».",
-            "uk": "«темно-синій»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i08",
-      "ordinal": 9,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-51:i08:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i08:audio",
-          "transcript": "pink"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "pink",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i01",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-51:i01:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i01:audio",
-          "transcript": "violet"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "violet",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i02",
-      "ordinal": 11,
-      "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-51:i02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i02:audio",
-          "transcript": "navy"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "navy",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-51:i09:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i09:audio",
-          "transcript": "pink"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "pink",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i11",
-      "ordinal": 13,
-      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -339,49 +208,49 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-51:i11:p1",
-            "target": "violet",
+            "pairId": "en:lesson-03:session-51:i04:p1",
+            "target": "libraries",
             "meaningByLocale": {
-              "ru": "фиолетовый",
-              "uk": "фіолетовий"
+              "ru": "библиотеки",
+              "uk": "бібліотеки"
             }
           },
           {
-            "pairId": "en:lesson-03:session-51:i11:p2",
-            "target": "navy",
+            "pairId": "en:lesson-03:session-51:i04:p2",
+            "target": "heavy",
             "meaningByLocale": {
-              "ru": "тёмно-синий",
-              "uk": "темно-синій"
+              "ru": "тяжёлый",
+              "uk": "важкий"
             }
           },
           {
-            "pairId": "en:lesson-03:session-51:i11:p3",
-            "target": "pink",
+            "pairId": "en:lesson-03:session-51:i04:p3",
+            "target": "ineffective",
             "meaningByLocale": {
-              "ru": "розовый",
-              "uk": "рожевий"
+              "ru": "неэффективный",
+              "uk": "неефективний"
             }
           },
           {
-            "pairId": "en:lesson-03:session-51:i11:p4",
-            "target": "box",
+            "pairId": "en:lesson-03:session-51:i04:p4",
+            "target": "bedrooms",
             "meaningByLocale": {
-              "ru": "коробка",
-              "uk": "коробка"
+              "ru": "спальни",
+              "uk": "спальні"
             }
           }
         ],
         "leftColumn": [
-          "violet",
-          "navy",
-          "pink",
-          "box"
+          "libraries",
+          "heavy",
+          "ineffective",
+          "bedrooms"
         ],
         "rightColumn": [
-          "фиолетовый",
-          "тёмно-синий",
-          "розовый",
-          "коробка"
+          "библиотеки",
+          "тяжёлый",
+          "неэффективный",
+          "спальни"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -398,356 +267,118 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i10",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте артикль — на ценнике пурпурный цвет",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-51:i10:r1",
-          "text": "A"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i10:r2",
-          "text": "An"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i10:r3",
-          "text": "The"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i10:r4",
-          "text": "Purple"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте артикль — на ценнике пурпурный цвет",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте артикль — на ценнике пурпурный цвет",
-          "uk": "Вставте артикль — на ціннику пурпуровий колір"
-        },
-        "gappedTargetPhrase": "___ purple chair is here.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-51:i10:r1",
-            "text": "A"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i10:r2",
-            "text": "An"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i10:r3",
-            "text": "The"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i10:r4",
-            "text": "Purple"
-          }
-        ],
-        "testedDimension": "Вставьте артикль — на ценнике пурпурный ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-51:i10:r2",
-            "correct": false,
-            "testedDimension": "Вставьте артикль — на ценнике пурпурный ",
-            "feedbackByLocale": {
-              "ru": "Purple начинается со звука /p/, поэтому нужен `A`.",
-              "uk": "Purple починається зі звуку /p/, тому потрібен `A`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i10:r3",
-            "correct": false,
-            "testedDimension": "Вставьте артикль — на ценнике пурпурный ",
-            "feedbackByLocale": {
-              "ru": "Кресло называют впервые, а здесь проверяется `A` перед /p/.",
-              "uk": "Крісло називають уперше, а тут перевіряється `A` перед /p/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i10:r4",
-            "correct": false,
-            "testedDimension": "Вставьте артикль — на ценнике пурпурный ",
-            "feedbackByLocale": {
-              "ru": "Purple уже стоит после пропуска; сюда ставят артикль.",
-              "uk": "Purple уже стоїть після пропуску; сюди ставлять артикль."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-51:i12:r1",
-          "text": "Здесь есть тёмно-синее кресло."
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i12:r2",
-          "text": "Здесь есть фиолетовое кресло."
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i12:r3",
-          "text": "Здесь есть тёмно-синие кресла."
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i12:r4",
-          "text": "Где тёмно-синее кресло?"
-        }
-      ],
+      "interactionId": "en:lesson-03:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-51:i12:audio"
+        "en:lesson-03:session-51:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и соберите фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i12:audio",
-          "transcript": "A navy chair is here."
+          "audioTargetId": "en:lesson-03:session-51:i05:audio",
+          "transcript": "These are libraries."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-51:i12:r1",
-            "targetText": "Здесь есть тёмно-синее кресло.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i12:r2",
-            "targetText": "Здесь есть фиолетовое кресло.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i12:r3",
-            "targetText": "Здесь есть тёмно-синие кресла.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i12:r4",
-            "targetText": "Где тёмно-синее кресло?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-51:i12:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит `navy`, а не `violet`.",
-              "uk": "У записі звучить `navy`, а не `violet`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i12:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи одно кресло: `a chair`, а не несколько кресел.",
-              "uk": "У записі одне крісло: `a chair`, а не кілька крісел."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i12:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи утверждение, а не вопрос.",
-              "uk": "У записі твердження, а не запитання."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы отвечаете о тёмно-синем кресле",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы отвечаете о тёмно-синем кресле",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is a navy chair.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вы отвечаете о тёмно-синем кресле",
-          "uk": "Складіть фразу — ви відповідаєте про темно-синє крісло"
-        },
+        "hiddenTargetPhrase": "These are libraries.",
         "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "navy",
-          "chair"
+          "These",
+          "are",
+          "libraries"
         ],
         "authoredDistractorTokens": [
-          "An"
+          "is"
         ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте артикль — на ценнике розовый цвет",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-51:i14:r1",
-          "text": "A"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i14:r2",
-          "text": "An"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i14:r3",
-          "text": "The"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i14:r4",
-          "text": "Pink"
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `These are libraries.`",
+              "uk": "тут потрібно `are` — `These are libraries.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте артикль — на ценнике розовый цвет",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте артикль — на ценнике розовый цвет",
-          "uk": "Вставте артикль — на ціннику рожевий колір"
-        },
-        "gappedTargetPhrase": "___ pink chair is here.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-51:i14:r1",
-            "text": "A"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i14:r2",
-            "text": "An"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i14:r3",
-            "text": "The"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i14:r4",
-            "text": "Pink"
-          }
-        ],
-        "testedDimension": "Вставьте артикль — на ценнике розовый цв",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-51:i14:r2",
-            "correct": false,
-            "testedDimension": "Вставьте артикль — на ценнике розовый цв",
-            "feedbackByLocale": {
-              "ru": "Pink начинается со звука /p/, поэтому нужен `A`.",
-              "uk": "Pink починається зі звуку /p/, тому потрібен `A`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i14:r3",
-            "correct": false,
-            "testedDimension": "Вставьте артикль — на ценнике розовый цв",
-            "feedbackByLocale": {
-              "ru": "Кресло называют впервые, а здесь проверяется `A` перед /p/.",
-              "uk": "Крісло називають уперше, а тут перевіряється `A` перед /p/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i14:r4",
-            "correct": false,
-            "testedDimension": "Вставьте артикль — на ценнике розовый цв",
-            "feedbackByLocale": {
-              "ru": "Pink уже стоит после пропуска; сюда ставят артикль.",
-              "uk": "Pink уже стоїть після пропуску; сюди ставлять артикль."
-            }
-          }
-        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-51:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы показываете розовое кресло",
+      "prompt": "Вы показываете на карте библиотеки, которые уже выбрали. Скажите «Библиотеки здесь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы показываете розовое кресло",
+      "accessibilityLabel": "Вы показываете на карте библиотеки, которые уже выбрали. Скажите «Библиотеки здесь»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This is a pink chair.",
+        "targetPhrase": "The libraries are here.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вы показываете розовое кресло",
-          "uk": "Складіть фразу — ви показуєте рожеве крісло"
+          "ru": "Вы показываете на карте библиотеки, которые уже выбрали. Скажите «Библиотеки здесь»",
+          "uk": "Ви показуєте на карті бібліотеки, які вже вибрали. Скажіть «Бібліотеки тут»"
         },
         "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "pink",
-          "chair"
+          "The",
+          "libraries",
+          "are",
+          "here"
         ],
         "authoredDistractorTokens": [
-          "An"
+          "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы показываете на карте библиотеки, которые уже выбрали. Скажите «Библиотеки здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The libraries are here.`",
+              "uk": "тут потрібно `are` — `The libraries are here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Коробку с книгами трудно поднять. Скажите «Она тяжёлая» с сокращением",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-51:i16:audio"
+        "en:lesson-03:session-51:i07:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Коробку с книгами трудно поднять. Скажите «Она тяжёлая» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i16:audio",
-          "transcript": "A violet chair is here."
+          "audioTargetId": "en:lesson-03:session-51:i07:audio",
+          "transcript": "It's heavy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "A violet chair is here.",
+        "targetPhrase": "It's heavy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -761,87 +392,604 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i17",
-      "ordinal": 20,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Финал — новое кресло в зале",
+      "prompt": "Вы показываете на несколько библиотек в дальней части карты",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-51:i17:r1",
-          "text": "A"
+          "responseId": "en:lesson-03:session-51:i08:r1",
+          "text": "Those"
         },
         {
-          "responseId": "en:lesson-03:session-51:i17:r2",
-          "text": "An"
+          "responseId": "en:lesson-03:session-51:i08:r2",
+          "text": "That"
         },
         {
-          "responseId": "en:lesson-03:session-51:i17:r3",
-          "text": "The"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i17:r4",
-          "text": "Violet"
+          "responseId": "en:lesson-03:session-51:i08:r3",
+          "text": "This"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Финал — новое кресло в зале",
+      "accessibilityLabel": "Вы показываете на несколько библиотек в дальней части карты",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Финал — новое кресло в зале",
-          "uk": "Фінал — нове крісло в залі"
+          "ru": "Вы показываете на несколько библиотек в дальней части карты",
+          "uk": "Ви показуєте на кілька бібліотек у дальній частині карти"
         },
-        "gappedTargetPhrase": "___ violet chair is here.",
+        "gappedTargetPhrase": "___ are libraries.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-51:i17:r1",
-            "text": "A"
+            "responseId": "en:lesson-03:session-51:i08:r1",
+            "text": "Those"
           },
           {
-            "responseId": "en:lesson-03:session-51:i17:r2",
-            "text": "An"
+            "responseId": "en:lesson-03:session-51:i08:r2",
+            "text": "That"
           },
           {
-            "responseId": "en:lesson-03:session-51:i17:r3",
-            "text": "The"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i17:r4",
-            "text": "Violet"
+            "responseId": "en:lesson-03:session-51:i08:r3",
+            "text": "This"
           }
         ],
-        "testedDimension": "Финал — новое кресло в зале",
+        "testedDimension": "Вы показываете на несколько библиотек в дальней части карты",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-51:i17:r2",
+            "responseId": "en:lesson-03:session-51:i08:r2",
             "correct": false,
-            "testedDimension": "Финал — новое кресло в зале",
+            "testedDimension": "Вы показываете на несколько библиотек в дальней части карты",
             "feedbackByLocale": {
-              "ru": "Violet начинается со звука /v/, поэтому нужен `A`.",
-              "uk": "Violet починається зі звуку /v/, тому потрібен `A`."
+              "ru": "`That` — один объект. Здесь несколько дальше: `Those`.",
+              "uk": "`That` — один об’єкт. Тут кілька далі: `Those`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-51:i17:r3",
+            "responseId": "en:lesson-03:session-51:i08:r3",
             "correct": false,
-            "testedDimension": "Финал — новое кресло в зале",
+            "testedDimension": "Вы показываете на несколько библиотек в дальней части карты",
             "feedbackByLocale": {
-              "ru": "Это первое упоминание об одном кресле, поэтому здесь не `The`.",
-              "uk": "Це перша згадка про одне крісло, тому тут не `The`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i17:r4",
-            "correct": false,
-            "testedDimension": "Финал — новое кресло в зале",
-            "feedbackByLocale": {
-              "ru": "Violet уже стоит после пропуска; сюда нужен артикль.",
-              "uk": "Violet уже стоїть після пропуску; сюди потрібен артикль."
+              "ru": "`This` — один рядом. Здесь несколько дальше: `Those`.",
+              "uk": "`This` — один поруч. Тут кілька далі: `Those`."
             }
           }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте оценку старого способа подписывать коробки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i09:r1",
+          "text": "It is ineffective."
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i09:r2",
+          "text": "It is effective."
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i09:r3",
+          "text": "It is expensive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте оценку старого способа подписывать коробки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i09:audio",
+          "transcript": "It is ineffective."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-51:i09:r1",
+            "targetText": "It is ineffective.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i09:r2",
+            "targetText": "It is effective.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i09:r3",
+            "targetText": "It is expensive.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте оценку старого способа подписывать коробки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ineffective`, а в этом варианте — `effective`.",
+              "uk": "У записі останнє слово — `ineffective`, а в цьому варіанті — `effective`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте оценку старого способа подписывать коробки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ineffective`, а в этом варианте — `expensive`.",
+              "uk": "У записі останнє слово — `ineffective`, а в цьому варіанті — `expensive`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-51:i10:p1",
+            "target": "libraries",
+            "meaningByLocale": {
+              "ru": "библиотеки",
+              "uk": "бібліотеки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-51:i10:p2",
+            "target": "bedrooms",
+            "meaningByLocale": {
+              "ru": "спальни",
+              "uk": "спальні"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-51:i10:p3",
+            "target": "here",
+            "meaningByLocale": {
+              "ru": "здесь",
+              "uk": "тут"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-51:i10:p4",
+            "target": "there",
+            "meaningByLocale": {
+              "ru": "там",
+              "uk": "там"
+            }
+          }
+        ],
+        "leftColumn": [
+          "libraries",
+          "bedrooms",
+          "here",
+          "there"
+        ],
+        "rightColumn": [
+          "библиотеки",
+          "спальни",
+          "здесь",
+          "там"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i11:audio",
+          "transcript": "These bedrooms are here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These bedrooms are here.",
+        "orderedTokens": [
+          "These",
+          "bedrooms",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `These bedrooms are here.`",
+              "uk": "тут потрібно `are` — `These bedrooms are here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы показываете на библиотеки дальше на карте. Скажите «Те библиотеки там»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете на библиотеки дальше на карте. Скажите «Те библиотеки там»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those libraries are there.",
+        "localizedMeaning": {
+          "ru": "Вы показываете на библиотеки дальше на карте. Скажите «Те библиотеки там»",
+          "uk": "Ви показуєте на бібліотеки далі на карті. Скажіть «Ті бібліотеки там»"
+        },
+        "orderedTokens": [
+          "Those",
+          "libraries",
+          "are",
+          "there"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы показываете на библиотеки дальше на карте. Скажите «Те библиотеки там»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `Those libraries are there.`",
+              "uk": "тут потрібно `are` — `Those libraries are there.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Старый способ подписывать коробки не помогает найти вещи. Скажите о способе «Он неэффективный» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Старый способ подписывать коробки не помогает найти вещи. Скажите о способе «Он неэффективный» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i13:audio",
+          "transcript": "It's ineffective."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's ineffective.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы говорите о нескольких выбранных библиотеках",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы говорите о нескольких выбранных библиотеках",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите о нескольких выбранных библиотеках",
+          "uk": "Ви говорите про кілька вибраних бібліотек"
+        },
+        "gappedTargetPhrase": "The libraries ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вы говорите о нескольких выбранных библиотеках",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы говорите о нескольких выбранных библиотеках",
+            "feedbackByLocale": {
+              "ru": "Библиотек несколько: `The libraries are here`.",
+              "uk": "Бібліотек кілька: `The libraries are here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы говорите о нескольких выбранных библиотеках",
+            "feedbackByLocale": {
+              "ru": "С `The libraries` нужно `are`.",
+              "uk": "З `The libraries` потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте описание коробки с книгами",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i15:r1",
+          "text": "It is heavy."
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i15:r2",
+          "text": "It is cheap."
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i15:r3",
+          "text": "It is useful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте описание коробки с книгами",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i15:audio",
+          "transcript": "It is heavy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-51:i15:r1",
+            "targetText": "It is heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i15:r2",
+            "targetText": "It is cheap.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i15:r3",
+            "targetText": "It is useful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте описание коробки с книгами",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `heavy`, а в этом варианте — `cheap`.",
+              "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `cheap`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте описание коробки с книгами",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `heavy`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `useful`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-51:i16:p1",
+            "target": "libraries",
+            "meaningByLocale": {
+              "ru": "библиотеки",
+              "uk": "бібліотеки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-51:i16:p2",
+            "target": "heavy",
+            "meaningByLocale": {
+              "ru": "тяжёлый",
+              "uk": "важкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-51:i16:p3",
+            "target": "ineffective",
+            "meaningByLocale": {
+              "ru": "неэффективный",
+              "uk": "неефективний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-51:i16:p4",
+            "target": "bedrooms",
+            "meaningByLocale": {
+              "ru": "спальни",
+              "uk": "спальні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "libraries",
+          "heavy",
+          "ineffective",
+          "bedrooms"
+        ],
+        "rightColumn": [
+          "библиотеки",
+          "тяжёлый",
+          "неэффективный",
+          "спальни"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другом районе вы с другом уже выбрали библиотеки. Друг ищет их на карте, а вы нашли их в дальней части. Скажите «Библиотеки там», говоря о выбранной группе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "В другом районе вы с другом уже выбрали библиотеки. Друг ищет их на карте, а вы нашли их в дальней части. Скажите «Библиотеки там», говоря о выбранной группе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i17:audio",
+          "transcript": "The libraries are there."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The libraries are there.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -853,5 +1001,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "98f1ac17b55163e0234f37ba60164aee842776528fe296982017476479153436"
+  "learnerFingerprint": "7c5429658ddc9375373addaf5dce80ee415dec495ece82d08ab8047e010dacf2"
 }

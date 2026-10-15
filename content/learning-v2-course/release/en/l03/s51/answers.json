@@ -1,87 +1,87 @@
 [
   {
-    "interactionId": "en:lesson-03:session-51:i03",
-    "correctText": "violet",
-    "correctResponseId": "en:lesson-03:session-51:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-51:i05",
-    "correctText": "navy",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-51:i07",
-    "correctText": "pink",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-51:i04",
-    "correctText": "violet",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-51:i06",
-    "correctText": "navy",
-    "correctResponseId": "en:lesson-03:session-51:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-51:i08",
-    "correctText": "pink",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-03:session-51:i01",
-    "correctText": "violet",
+    "correctText": "The bedrooms are there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i02",
-    "correctText": "navy",
+    "correctText": "libraries",
+    "correctResponseId": "en:lesson-03:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i03",
+    "correctText": "libraries",
+    "correctResponseId": "en:lesson-03:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i04",
+    "correctText": "en:lesson-03:session-51:i04:p1=libraries\nen:lesson-03:session-51:i04:p2=heavy\nen:lesson-03:session-51:i04:p3=ineffective\nen:lesson-03:session-51:i04:p4=bedrooms",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-51:i05",
+    "correctText": "These are libraries.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i06",
+    "correctText": "The libraries are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i07",
+    "correctText": "It's heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i08",
+    "correctText": "Those",
+    "correctResponseId": "en:lesson-03:session-51:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-51:i09",
-    "correctText": "pink",
+    "correctText": "It is ineffective.",
+    "correctResponseId": "en:lesson-03:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i10",
+    "correctText": "en:lesson-03:session-51:i10:p1=libraries\nen:lesson-03:session-51:i10:p2=bedrooms\nen:lesson-03:session-51:i10:p3=here\nen:lesson-03:session-51:i10:p4=there",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i11",
-    "correctText": "en:lesson-03:session-51:i11:p1=violet\nen:lesson-03:session-51:i11:p2=navy\nen:lesson-03:session-51:i11:p3=pink\nen:lesson-03:session-51:i11:p4=box",
+    "correctText": "These bedrooms are here.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-51:i10",
-    "correctText": "A",
-    "correctResponseId": "en:lesson-03:session-51:i10:r1"
-  },
-  {
     "interactionId": "en:lesson-03:session-51:i12",
-    "correctText": "Здесь есть тёмно-синее кресло.",
-    "correctResponseId": "en:lesson-03:session-51:i12:r1"
+    "correctText": "Those libraries are there.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i13",
-    "correctText": "It is a navy chair.",
+    "correctText": "It's ineffective.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i14",
-    "correctText": "A",
+    "correctText": "are",
     "correctResponseId": "en:lesson-03:session-51:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-51:i15",
-    "correctText": "This is a pink chair.",
-    "correctResponseId": null
+    "correctText": "It is heavy.",
+    "correctResponseId": "en:lesson-03:session-51:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-51:i16",
-    "correctText": "A violet chair is here.",
+    "correctText": "en:lesson-03:session-51:i16:p1=libraries\nen:lesson-03:session-51:i16:p2=heavy\nen:lesson-03:session-51:i16:p3=ineffective\nen:lesson-03:session-51:i16:p4=bedrooms",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-51:i17",
-    "correctText": "A",
-    "correctResponseId": "en:lesson-03:session-51:i17:r1"
+    "correctText": "The libraries are there.",
+    "correctResponseId": null
   }
 ]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-51:intro1:r2": {
+          "ru": "`library` — одна библиотека. Несколько — `libraries`.",
+          "uk": "`library` — одна бібліотека. Кілька — `libraries`."
+        },
+        "en:lesson-03:session-51:intro1:r3": {
+          "ru": "В этом слове нужно заменить `y` на `ies`: `libraries`.",
+          "uk": "У цьому слові потрібно замінити `y` на `ies`: `libraries`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-51:intro2:r2": {
+          "ru": "Библиотек несколько: нужно `are`.",
+          "uk": "Бібліотек кілька: потрібне `are`."
+        },
+        "en:lesson-03:session-51:intro2:r3": {
+          "ru": "Так говорят об одной библиотеке. Здесь несколько: `libraries are`.",
+          "uk": "Так говорять про одну бібліотеку. Тут кілька: `libraries are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-51:intro3:r2": {
+          "ru": "`cheap` — недорогая. Здесь описываем вес: `heavy`.",
+          "uk": "`cheap` — недорога. Тут описуємо вагу: `heavy`."
+        },
+        "en:lesson-03:session-51:intro3:r3": {
+          "ru": "Речь об одной коробке: `It is heavy`.",
+          "uk": "Ідеться про одну коробку: `It is heavy`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a73d792ec27aa1c8baa8a0b7d2b42c76b48648f9c5ac7138c9299843bbc6e48b"
+}

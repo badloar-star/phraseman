@@ -1,151 +1,138 @@
-# Англійська · Урок 3 · Заняття 5 — «Що потрапило в кадр?»
+# Англійська · Урок 3 · Заняття 5 — Розгорнути карту
 
-**Сцена заняття.** Ви з подругою розглядаєте фотографії квартири й намагаєтеся зрозуміти, які поверхні потрапили в кадр. На великих планах важко впізнати зняте, тому ви називаєте поверхні й уточнюєте деталі.
+**Ситуація.** Ви з Анною плануєте прогулянку біля стійки туристичної інформації. Анна розгортає карту. На ній позначено острів, який справді існує. У приміщенні тепло, напій Олега гарячий, ваша вода холодна. Ви обговорюєте, чи справедливо одній людині нести всі речі.
 
-**Як сказати:** контраст під час називання одного предмета: `It is a + noun`; відрізняємо назву від повідомлення про стан  
-**Нові слова:** wall, floor, ceiling  
-**Повертаються:** door, clean
+**Що ви опануєте:** назвати карту й відрізнити назву предмета від його опису
+**Нові слова:** map
 
 ---
 
 ## Інтро 1
 
-### Перед назвою потрібне a
+### Папір розгортається
 
-`wall` — «стіна». Коли називаєте її фразою «Це стіна», англійською потрібно `It is a wall`. Тут `a wall` — назва одного предмета. На стіні може нічого не висіти, але місце перед `wall` порожнім не лишаємо: у цій фразі маленьке `a` входить до назви.
+`map` — «карта»: вона показує, де розташовані місця. `It is a map` — «Це карта». У `map` перший звук приголосний, тому `a map`. Анна розгорнула карту на весь стіл. Скласти її назад виявилося складніше, ніж знайти парк. Але ні розмір, ні згини не змінюють назви: `a map`.
 
-**Подруга дивиться на великий план штукатурки. Поясніть повною фразою, що знято: «Це стіна».**
+**Анна розгорнула карту міста. Назвіть її повною фразою.**
 
-- ✅ **It is a wall.**
-- ❌ It is wall. — *Перед `wall` у цій назві одного предмета потрібне `a`: `It is a wall`.*
-- ❌ It a wall. — *Назва `a wall` на місці, але після `It` бракує `is`: `It is a wall`.*
+- ✅ **It is a map.**
+- ❌ It is map. — *Перед `map` у цій фразі потрібно `a`.*
+- ❌ It is an map. — *Перед приголосним звуком у `map` потрібно `a`, не `an`.*
 
 ---
 
 ## Інтро 2
 
-### Назвати чи описати
+### Що це й де це
 
-`floor` — «підлога». З одного цього слова не дізнатися, чи вже час брати швабру: воно називає предмет, а не оцінює чистоту. Назвати підлогу — `It is a floor`: «Це підлога». Сказати про чистоту — `It is clean`: «Вона чиста». Перед назвою `floor` тут потрібне `a`, а перед словом про стан `clean` — ні.
+`What is it?` — «Що це?» Так можна дізнатися, що за складений аркуш вам дали. `Where is it?` — «Де це?» — запитання про місце. А `Is it a map?` уточнює ваш здогад: «Це карта?» Запитання змінює порядок `It is` на `Is it`, але назва `a map` залишається разом.
 
-**На фотографії видно плитку, але незрозуміло, де вона. Назвіть поверхню повною фразою: «Це підлога».**
+**Олег тримає складений аркуш, малюнка не видно. Уточніть, чи це карта.**
 
-- ✅ **It is a floor.**
-- ❌ It is floor. — *Тут ви називаєте предмет, тому перед `floor` потрібне `a`.*
-- ❌ It are a floor. — *Початок цієї фрази — `It is`. `are` з `It` не підходить.*
+- ✅ **Is it a map?**
+- ❌ Is it map? — *У назві `a map` зникло `a`.*
+- ❌ It is a map. — *Це повідомлення. Для запитання почніть з `Is it`.*
 
 ---
 
 ## Інтро 3
 
-### Коротка назва й повна фраза
+### Назва не замінює оцінки
 
-`ceiling` — «стеля». `A ceiling` — коротка назва, а `It is a ceiling` — повна фраза «Це стеля». Обидва варіанти підходять, коли треба назвати предмет. Якщо відповідаєте повною фразою, додайте `It is` перед усією назвою `a ceiling`: при цьому `a` нікуди не зникає.
+`cold` — «холодний», `hot` — «гарячий», `warm` — «теплий». `It is warm` описує температуру, а `It is a map` називає предмет. Повторимо `real` — «справжній, той, що реально існує» та `unfair` — «несправедливий». Перед окремим словом-описом у таких фразах `a` не ставимо.
 
-**Подруга повертає фотографію, намагаючись зрозуміти, де верх. Скажіть повною фразою: «Це стеля».**
+**У приміщенні тепло. Повідомте це повною фразою.**
 
-- ✅ **It is a ceiling.**
-- ❌ It is ceiling. — *Коли додаємо `It is`, маленьке `a` лишається в назві: `It is a ceiling`.*
-- ❌ It a ceiling. — *Щоб утворити повну фразу, перед `a ceiling` потрібні обидва слова `It is`.*
+- ✅ **It is warm.**
+- ❌ It is a warm. — *Перед окремим `warm` тут не потрібно `a`: ви описуєте температуру.*
+- ❌ It are warm. — *З `It` потрібно `is`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — wall**
-<!-- interaction_id: en:lesson-03:session-05:i01; family: listen_choose -->
-Ціль: `wall`
+**1 · На стійці лежить карта міста. Назвіть її повною фразою**
+<!-- interaction_id: en:lesson-03:session-05:i01; family: phrase_builder -->
+Плитки: `map` `a` `is` `It` `are` → **It is a map.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a map.`)*
 
-**2 · Послухайте й виберіть — яке слово вимовила подруга**
+**2 · Послухайте фразу про напій**
 <!-- interaction_id: en:lesson-03:session-05:i02; family: listen_choose -->
-Ціль: `wall`
-Варіанти: `wall` · `tall` · `ball`
-- tall — *На початку `tall` чути «т». На початку `wall` губи округлюються для англійського звука `w`. У записі — `wall`.*
-- ball — *Для першого «б» у `ball` губи змикаються. На початку `wall` вони округлені, але не змикаються. Тут звучить `wall`.*
+🔊 *It is hot.* → **It is hot.** · It is cold. · It is warm.
+- It is cold. — *У записі останнє слово — `hot`, а в цьому варіанті — `cold`.*
+- It is warm. — *У записі останнє слово — `hot`, а в цьому варіанті — `warm`.*
 
+**3 · Доповніть назву карти**
+<!-- interaction_id: en:lesson-03:session-05:i03; family: context_gap_grammar -->
+It is ___ map. → **a** · an · is
+- an — *Перед приголосним звуком у `map` потрібно `a`.*
+- is — *`is` уже є. Перед `map` потрібно `a`.*
 
-**3 · Картка слова — floor**
-<!-- interaction_id: en:lesson-03:session-05:i03; family: listen_choose -->
-Ціль: `floor`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-05:i04; family: speed_match -->
+map — карта · cold — холодний · hot — гарячий · warm — теплий
 
-**4 · Послухайте й виберіть — яке слово прозвучало під час перегляду знімків**
-<!-- interaction_id: en:lesson-03:session-05:i04; family: listen_choose -->
-Ціль: `floor`
-Варіанти: `floor` · `claw` · `slaw`
-- claw — *На початку `claw` чути сполучення «к» і «л», а у `floor` — «ф» і «л». У записі — `floor`.*
-- slaw — *На початку `slaw` чути «с» і «л», а у `floor` — «ф» і «л». Тут звучить `floor`.*
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-05:i05; family: listen_build_dictation -->
+🔊 *It is a map.* Плитки: `map` `a` `is` `It` `are` → **It is a map.**
+*(плитка `are` зайва: тут потрібно `is` — `It is a map.`)*
 
+**6 · Анна дістала предмет із сумки, але вам його не видно. Запитайте, що це**
+<!-- interaction_id: en:lesson-03:session-05:i06; family: phrase_builder -->
+Плитки: `it` `is` `What` `Where` → **What is it?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is it?`)*
 
-**5 · Складіть фразу — подруга запитує, що знято великим планом; скажіть «Це стіна»**
-<!-- interaction_id: en:lesson-03:session-05:i05; family: phrase_builder -->
-Ціль: `It is a wall.`
+**7 · Вода у вас холодна. Скажіть «Вона холодна» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-05:i07; family: scripted_repeat_compare -->
+🎙 **It's cold.**
 
-**6 · Картка слова — ceiling**
-<!-- interaction_id: en:lesson-03:session-05:i06; family: listen_choose -->
-Ціль: `ceiling`
+**8 · Олег думає, що острів на карті вигаданий, але він існує. Повідомте, що він справжній**
+<!-- interaction_id: en:lesson-03:session-05:i08; family: context_gap_grammar -->
+It ___ real. → **is** · is a · are
+- is a — *Перед окремим `real` не потрібно `a`.*
+- are — *З `It` потрібно `is`.*
 
-**7 · Послухайте й виберіть — яке слово вимовила подруга**
-<!-- interaction_id: en:lesson-03:session-05:i07; family: listen_choose -->
-Ціль: `ceiling`
-Варіанти: `ceiling` · `feeling` · `kneeling`
-- feeling — *Перший звук у `feeling` — «ф», а в `ceiling` — «с». У записі — `ceiling`.*
-- kneeling — *На початку `kneeling` чути «н», а в `ceiling` — «с». Тут звучить `ceiling`.*
+**9 · Послухайте запитання про розподіл речей**
+<!-- interaction_id: en:lesson-03:session-05:i09; family: listen_choose -->
+🔊 *Is it unfair?* → **Is it unfair?** · Is it real? · Is it warm?
+- Is it real? — *У записі останнє слово — `unfair`, а в цьому варіанті — `real`.*
+- Is it warm? — *У записі останнє слово — `unfair`, а в цьому варіанті — `warm`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-05:i10; family: speed_match -->
+real — той, що реально існує · unfair — несправедливий · map — карта · book — книжка
 
-**8 · Складіть фразу — подруга показує знімок стелі; скажіть повною фразою «Це стеля»**
-<!-- interaction_id: en:lesson-03:session-05:i08; family: phrase_builder -->
-Ціль: `It is a ceiling.`
-Варіанти: `is`
+**11 · Послухайте й складіть фразу про температуру в приміщенні**
+<!-- interaction_id: en:lesson-03:session-05:i11; family: listen_build_dictation -->
+🔊 *It is warm.* Плитки: `warm` `is` `It` `are` → **It is warm.**
+*(плитка `are` зайва: тут потрібно `is` — `It is warm.`)*
 
-**9 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-05:i09; family: scripted_repeat_compare -->
-Ціль: `It is a door.`
+**12 · Працівник дав вам інший складений аркуш. Запитайте, чи це карта**
+<!-- interaction_id: en:lesson-03:session-05:i12; family: phrase_builder -->
+Плитки: `map` `a` `it` `Is` `Are` → **Is it a map?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it a map?`)*
 
-**10 · Послухайте й складіть — подруга звертається до вас, розглядаючи фотографію**
-<!-- interaction_id: en:lesson-03:session-05:i10; family: listen_build_dictation -->
-Ціль: `Is it a floor?`
-Варіанти: `wall`
+**13 · Олег пропонує одній людині нести всі речі, ви вважаєте це несправедливим. Повідомте свою оцінку зі скороченням**
+<!-- interaction_id: en:lesson-03:session-05:i13; family: scripted_repeat_compare -->
+🎙 **It's unfair.**
 
-**11 · З’єднайте пари — що видно на фотографіях**
-<!-- interaction_id: en:lesson-03:session-05:i11; family: speed_match -->
-Пари: `wall` — стіна · `floor` — підлога · `ceiling` — стеля · `door` — двері
-Ціль: `wall · floor · ceiling · door`
-
-**12 · Вставте частину фрази — на знімку вимитої підлоги немає бруду; скажіть «Вона чиста» (`clean` — «чиста»)**
-<!-- interaction_id: en:lesson-03:session-05:i12; family: context_gap_grammar -->
-Ціль: `It ___ clean.`
-Варіанти: `is` · `is a` · `a`
-- is a — *Ви описуєте стан словом `clean`. Перед ним у цій фразі `a` не потрібне: `It is clean`.*
-- a — *У `It a clean` зникло `is` і з’явилося зайве `a`. Потрібна фраза — `It is clean`.*
-
-
-**13 · Складіть фразу — подруга прийняла фотографію підлоги за стіну; заперечте: «Це не стіна»**
-<!-- interaction_id: en:lesson-03:session-05:i13; family: phrase_builder -->
-Ціль: `It is not a wall.`
-Варіанти: `are`
-
-**14 · Вставте частину фрази — на фотографії видно поверхню над люстрою; назвіть стелю повною фразою**
+**14 · Анна прийняла аркуш із малюнком за карту. Доповніть «Це не карта»**
 <!-- interaction_id: en:lesson-03:session-05:i14; family: context_gap_grammar -->
-Ціль: `It ___ ceiling.`
-Варіанти: `is a` · `is` · `a`
-- is — *Початок вийде правильним, але перед `ceiling` бракуватиме `a`: `It is a ceiling`.*
-- a — *Назва `a ceiling` вийде, але для повної фрази після `It` потрібне `is`.*
+It is not ___ map. → **a** · an · is
+- an — *Після `not` зберігаємо `a map`.*
+- is — *Перед `map` потрібно `a`; `is` уже є.*
 
+**15 · Послухайте запитання про острів**
+<!-- interaction_id: en:lesson-03:session-05:i15; family: listen_choose -->
+🔊 *Is it real?* → **Is it real?** · Is it hot? · Is it cold?
+- Is it hot? — *У записі останнє слово — `real`, а в цьому варіанті — `hot`.*
+- Is it cold? — *У записі останнє слово — `real`, а в цьому варіанті — `cold`.*
 
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-05:i15; family: scripted_repeat_compare -->
-Ціль: `Is it clean?`
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-03:session-05:i16; family: speed_match -->
+map — карта · bag — сумка · hot — гарячий · cold — холодний
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-05:i16; family: scripted_repeat_compare -->
-Ціль: `It is a floor.`
-
-**17 · Складіть запитання — на останній фотографії біла поверхня й край світильника; уточніть у подруги, чи це стеля**
-<!-- interaction_id: en:lesson-03:session-05:i17; family: phrase_builder -->
-Ціль: `Is it a ceiling?`
-Варіанти: `Are`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Увечері ви показуєте другові карту, яку принесли додому. Назвіть її: «Це карта», зі скороченням**
+<!-- interaction_id: en:lesson-03:session-05:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It's a map.**
 

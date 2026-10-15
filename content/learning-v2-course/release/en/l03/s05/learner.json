@@ -7,41 +7,43 @@
       "interactionId": "en:lesson-03:session-05:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — wall",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На стойке лежит карта города. Назовите её полной фразой",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-05:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — wall",
+      "audioTargetIds": [],
+      "accessibilityLabel": "На стойке лежит карта города. Назовите её полной фразой",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-05:i01:audio",
-          "transcript": "wall"
+        "family": "phrase_builder",
+        "targetPhrase": "It is a map.",
+        "localizedMeaning": {
+          "ru": "На стойке лежит карта города. Назовите её полной фразой",
+          "uk": "На стійці лежить карта міста. Назвіть її повною фразою"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "map"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-05:i01:r1",
-            "targetText": "wall",
-            "meaningByLocale": {
-              "ru": "«стена». Она отделяет одну комнату от другой или комнату от улицы.",
-              "uk": "«стіна». Вона відділяє одну кімнату від іншої або кімнату від вулиці."
+            "responseId": "en:lesson-03:session-05:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "На стойке лежит карта города. Назовите её полной фразой",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is a map.`",
+              "uk": "тут потрібно `is` — `It is a map.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "wall",
-          "definitionByLocale": {
-            "ru": "«стена». Она отделяет одну комнату от другой или комнату от улицы.",
-            "uk": "«стіна». Вона відділяє одну кімнату від іншої або кімнату від вулиці."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово произнесла подруга",
+      "prompt": "Послушайте фразу о напитке",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-05:i02:r1",
-          "text": "wall"
+          "text": "It is hot."
         },
         {
           "responseId": "en:lesson-03:session-05:i02:r2",
-          "text": "tall"
+          "text": "It is cold."
         },
         {
           "responseId": "en:lesson-03:session-05:i02:r3",
-          "text": "ball"
+          "text": "It is warm."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-05:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово произнесла подруга",
+      "accessibilityLabel": "Послушайте фразу о напитке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-05:i02:audio",
-          "transcript": "wall"
+          "transcript": "It is hot."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-05:i02:r1",
-            "targetText": "wall",
+            "targetText": "It is hot.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-05:i02:r2",
-            "targetText": "tall",
+            "targetText": "It is cold.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-05:i02:r3",
-            "targetText": "ball",
+            "targetText": "It is warm.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-05:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послушайте фразу о напитке",
             "feedbackByLocale": {
-              "ru": "В `tall` первым слышно «т». В начале `wall` губы округляются для английского звука `w`. В записи `wall`.",
-              "uk": "На початку `tall` чути «т». На початку `wall` губи округлюються для англійського звука `w`. У записі — `wall`."
+              "ru": "В записи последнее слово — `hot`, а в этом варианте — `cold`.",
+              "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `cold`."
             }
           },
           {
             "responseId": "en:lesson-03:session-05:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послушайте фразу о напитке",
             "feedbackByLocale": {
-              "ru": "Для первого «б» в `ball` губы смыкаются. В начале `wall` они округлены, но не смыкаются. Здесь звучит `wall`.",
-              "uk": "Для першого «б» у `ball` губи змикаються. На початку `wall` вони округлені, але не змикаються. Тут звучить `wall`."
+              "ru": "В записи последнее слово — `hot`, а в этом варианте — `warm`.",
+              "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `warm`."
             }
           }
         ],
@@ -126,42 +128,68 @@
       "interactionId": "en:lesson-03:session-05:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — floor",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-05:i03:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — floor",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-05:i03:audio",
-          "transcript": "floor"
+      "prompt": "Дополните название карты",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-05:i03:r1",
+          "text": "a"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-03:session-05:i03:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-05:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните название карты",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните название карты",
+          "uk": "Доповніть назву карти"
+        },
+        "gappedTargetPhrase": "It is ___ map.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-03:session-05:i03:r1",
-            "targetText": "floor",
-            "meaningByLocale": {
-              "ru": "«пол». Нижняя поверхность комнаты, по которой ходят.",
-              "uk": "«підлога». Нижня поверхня кімнати, по якій ходять."
-            }
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-05:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-05:i03:r3",
+            "text": "is"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "floor",
-          "definitionByLocale": {
-            "ru": "«пол». Нижняя поверхность комнаты, по которой ходят.",
-            "uk": "«підлога». Нижня поверхня кімнати, по якій ходять."
+        "testedDimension": "Дополните название карты",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните название карты",
+            "feedbackByLocale": {
+              "ru": "Перед согласным звуком в `map` нужно `a`.",
+              "uk": "Перед приголосним звуком у `map` потрібно `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните название карты",
+            "feedbackByLocale": {
+              "ru": "`is` уже есть. Перед `map` нужно `a`.",
+              "uk": "`is` уже є. Перед `map` потрібно `a`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,412 +197,60 @@
       "interactionId": "en:lesson-03:session-05:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово прозвучало при просмотре снимков",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-05:i04:r1",
-          "text": "floor"
-        },
-        {
-          "responseId": "en:lesson-03:session-05:i04:r2",
-          "text": "claw"
-        },
-        {
-          "responseId": "en:lesson-03:session-05:i04:r3",
-          "text": "slaw"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-05:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало при просмотре снимков",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-05:i04:audio",
-          "transcript": "floor"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-05:i04:r1",
-            "targetText": "floor",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-05:i04:r2",
-            "targetText": "claw",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-05:i04:r3",
-            "targetText": "slaw",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-05:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
-            "feedbackByLocale": {
-              "ru": "В начале `claw` слышно сочетание «к» и «л», а в `floor` — «ф» и «л». В записи `floor`.",
-              "uk": "На початку `claw` чути сполучення «к» і «л», а у `floor` — «ф» і «л». У записі — `floor`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-05:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
-            "feedbackByLocale": {
-              "ru": "В начале `slaw` слышно «с» и «л», а в `floor` — «ф» и «л». Здесь звучит `floor`.",
-              "uk": "На початку `slaw` чути «с» і «л», а у `floor` — «ф» і «л». Тут звучить `floor`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-05:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — подруга спрашивает, что снято крупным планом; скажите «Это стена»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — подруга спрашивает, что снято крупным планом; скажите «Это стена»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is a wall.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — подруга спрашивает, что снято крупным планом; скажите «Это стена»",
-          "uk": "Складіть фразу — подруга запитує, що знято великим планом; скажіть «Це стіна»"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "wall"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-05:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — ceiling",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-05:i06:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — ceiling",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-05:i06:audio",
-          "transcript": "ceiling"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-05:i06:r1",
-            "targetText": "ceiling",
-            "meaningByLocale": {
-              "ru": "«потолок». Верхняя поверхность комнаты над головой.",
-              "uk": "«стеля». Верхня поверхня кімнати над головою."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "ceiling",
-          "definitionByLocale": {
-            "ru": "«потолок». Верхняя поверхность комнаты над головой.",
-            "uk": "«стеля». Верхня поверхня кімнати над головою."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-05:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово произнесла подруга",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-05:i07:r1",
-          "text": "ceiling"
-        },
-        {
-          "responseId": "en:lesson-03:session-05:i07:r2",
-          "text": "feeling"
-        },
-        {
-          "responseId": "en:lesson-03:session-05:i07:r3",
-          "text": "kneeling"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-05:i07:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово произнесла подруга",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-05:i07:audio",
-          "transcript": "ceiling"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-05:i07:r1",
-            "targetText": "ceiling",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-05:i07:r2",
-            "targetText": "feeling",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-05:i07:r3",
-            "targetText": "kneeling",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-05:i07:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
-            "feedbackByLocale": {
-              "ru": "Первый звук в `feeling` — «ф», а в `ceiling` — «с». В записи `ceiling`.",
-              "uk": "Перший звук у `feeling` — «ф», а в `ceiling` — «с». У записі — `ceiling`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-05:i07:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
-            "feedbackByLocale": {
-              "ru": "В начале `kneeling` слышно «н», а в `ceiling` — «с». Здесь звучит `ceiling`.",
-              "uk": "На початку `kneeling` чути «н», а в `ceiling` — «с». Тут звучить `ceiling`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-05:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — подруга показывает снимок потолка; скажите полной фразой «Это потолок»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-05:i08:r1",
-          "text": "is"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — подруга показывает снимок потолка; скажите полной фразой «Это потолок»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is a ceiling.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — подруга показывает снимок потолка; скажите полной фразой «Это потолок»",
-          "uk": "Складіть фразу — подруга показує знімок стелі; скажіть повною фразою «Це стеля»"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "ceiling"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-05:i08:r1",
-            "correct": false,
-            "testedDimension": "Соберите короткое название — подруга пок",
-            "feedbackByLocale": {
-              "ru": "Полная фраза начинается с `It is`: получится `It is a ceiling`. Одного `is` вместо всей фразы недостаточно.",
-              "uk": "Повна фраза починається з `It is`: вийде `It is a ceiling`. Одного `is` замість усієї фрази недостатньо."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-05:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-05:i09:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-05:i09:audio",
-          "transcript": "It is a door."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "It is a door.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-05:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — подруга обращается к вам, рассматривая фотографию",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-05:i10:r1",
-          "text": "wall"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-05:i10:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — подруга обращается к вам, рассматривая фотографию",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-05:i10:audio",
-          "transcript": "Is it a floor?"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is it a floor?",
-        "orderedTokens": [
-          "Is",
-          "it",
-          "a",
-          "floor"
-        ],
-        "authoredDistractorTokens": [
-          "wall"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-05:i10:r1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите — подруга обращает",
-            "feedbackByLocale": {
-              "ru": "В записи прозвучало `floor`, а не `wall`: `Is it a floor?`.",
-              "uk": "У записі прозвучало `floor`, а не `wall`: `Is it a floor?`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-05:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — что видно на фотографиях",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — что видно на фотографиях",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-05:i11:p1",
-            "target": "wall",
+            "pairId": "en:lesson-03:session-05:i04:p1",
+            "target": "map",
             "meaningByLocale": {
-              "ru": "стена",
-              "uk": "стіна"
+              "ru": "карта",
+              "uk": "карта"
             }
           },
           {
-            "pairId": "en:lesson-03:session-05:i11:p2",
-            "target": "floor",
+            "pairId": "en:lesson-03:session-05:i04:p2",
+            "target": "cold",
             "meaningByLocale": {
-              "ru": "пол",
-              "uk": "підлога"
+              "ru": "холодный",
+              "uk": "холодний"
             }
           },
           {
-            "pairId": "en:lesson-03:session-05:i11:p3",
-            "target": "ceiling",
+            "pairId": "en:lesson-03:session-05:i04:p3",
+            "target": "hot",
             "meaningByLocale": {
-              "ru": "потолок",
-              "uk": "стеля"
+              "ru": "горячий",
+              "uk": "гарячий"
             }
           },
           {
-            "pairId": "en:lesson-03:session-05:i11:p4",
-            "target": "door",
+            "pairId": "en:lesson-03:session-05:i04:p4",
+            "target": "warm",
             "meaningByLocale": {
-              "ru": "дверь",
-              "uk": "двері"
+              "ru": "тёплый",
+              "uk": "теплий"
             }
           }
         ],
         "leftColumn": [
-          "wall",
-          "floor",
-          "ceiling",
-          "door"
+          "map",
+          "cold",
+          "hot",
+          "warm"
         ],
         "rightColumn": [
-          "стена",
-          "пол",
-          "потолок",
-          "дверь"
+          "карта",
+          "холодный",
+          "горячий",
+          "тёплый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -591,68 +267,193 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-05:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-03:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-05:i05:audio",
+          "transcript": "It is a map."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is a map.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "map"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-05:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is a map.`",
+              "uk": "тут потрібно `is` — `It is a map.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-05:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна достала предмет из сумки, но вам его не видно. Спросите, что это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна достала предмет из сумки, но вам его не видно. Спросите, что это",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What is it?",
+        "localizedMeaning": {
+          "ru": "Анна достала предмет из сумки, но вам его не видно. Спросите, что это",
+          "uk": "Анна дістала предмет із сумки, але вам його не видно. Запитайте, що це"
+        },
+        "orderedTokens": [
+          "What",
+          "is",
+          "it"
+        ],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-05:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна достала предмет из сумки, но вам его не видно. Спросите, что это",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `What` — `What is it?`",
+              "uk": "тут потрібно `What` — `What is it?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вода у вас холодная. Скажите «Она холодная» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Вода у вас холодная. Скажите «Она холодная» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-05:i07:audio",
+          "transcript": "It's cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте часть фразы — на снимке вымытого пола нет грязи; скажите «Он чистый» (`clean` — «чистый»)",
+      "prompt": "Олег думает, что остров на карте выдуман, но он существует. Сообщите, что он настоящий",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-05:i12:r1",
+          "responseId": "en:lesson-03:session-05:i08:r1",
           "text": "is"
         },
         {
-          "responseId": "en:lesson-03:session-05:i12:r2",
+          "responseId": "en:lesson-03:session-05:i08:r2",
           "text": "is a"
         },
         {
-          "responseId": "en:lesson-03:session-05:i12:r3",
-          "text": "a"
+          "responseId": "en:lesson-03:session-05:i08:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте часть фразы — на снимке вымытого пола нет грязи; скажите «Он чистый» (`clean` — «чистый»)",
+      "accessibilityLabel": "Олег думает, что остров на карте выдуман, но он существует. Сообщите, что он настоящий",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте часть фразы — на снимке вымытого пола нет грязи; скажите «Он чистый» (`clean` — «чистый»)",
-          "uk": "Вставте частину фрази — на знімку вимитої підлоги немає бруду; скажіть «Вона чиста» (`clean` — «чиста»)"
+          "ru": "Олег думает, что остров на карте выдуман, но он существует. Сообщите, что он настоящий",
+          "uk": "Олег думає, що острів на карті вигаданий, але він існує. Повідомте, що він справжній"
         },
-        "gappedTargetPhrase": "It ___ clean.",
+        "gappedTargetPhrase": "It ___ real.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-05:i12:r1",
+            "responseId": "en:lesson-03:session-05:i08:r1",
             "text": "is"
           },
           {
-            "responseId": "en:lesson-03:session-05:i12:r2",
+            "responseId": "en:lesson-03:session-05:i08:r2",
             "text": "is a"
           },
           {
-            "responseId": "en:lesson-03:session-05:i12:r3",
-            "text": "a"
+            "responseId": "en:lesson-03:session-05:i08:r3",
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте часть фразы — на снимке вымытог",
+        "testedDimension": "Олег думает, что остров на карте выдуман, но он существует. Сообщите, что он настоящий",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-05:i12:r2",
+            "responseId": "en:lesson-03:session-05:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — на снимке вымытог",
+            "testedDimension": "Олег думает, что остров на карте выдуман, но он существует. Сообщите, что он настоящий",
             "feedbackByLocale": {
-              "ru": "Вы описываете состояние словом `clean`. Перед ним в этой фразе `a` не нужно: `It is clean`.",
-              "uk": "Ви описуєте стан словом `clean`. Перед ним у цій фразі `a` не потрібне: `It is clean`."
+              "ru": "Перед отдельным `real` не нужно `a`.",
+              "uk": "Перед окремим `real` не потрібно `a`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-05:i12:r3",
+            "responseId": "en:lesson-03:session-05:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — на снимке вымытог",
+            "testedDimension": "Олег думает, что остров на карте выдуман, но он существует. Сообщите, что он настоящий",
             "feedbackByLocale": {
-              "ru": "В `It a clean` пропало `is` и появилось лишнее `a`. Нужная фраза — `It is clean`.",
-              "uk": "У `It a clean` зникло `is` і з’явилося зайве `a`. Потрібна фраза — `It is clean`."
+              "ru": "С `It` нужно `is`.",
+              "uk": "З `It` потрібно `is`."
             }
           }
         ]
@@ -660,48 +461,275 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-05:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — подруга приняла фотографию пола за стену; возразите: «Это не стена»",
+      "interactionId": "en:lesson-03:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос о распределении вещей",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-05:i13:r1",
-          "text": "are"
+          "responseId": "en:lesson-03:session-05:i09:r1",
+          "text": "Is it unfair?"
+        },
+        {
+          "responseId": "en:lesson-03:session-05:i09:r2",
+          "text": "Is it real?"
+        },
+        {
+          "responseId": "en:lesson-03:session-05:i09:r3",
+          "text": "Is it warm?"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — подруга приняла фотографию пола за стену; возразите: «Это не стена»",
+      "audioTargetIds": [
+        "en:lesson-03:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о распределении вещей",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is not a wall.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — подруга приняла фотографию пола за стену; возразите: «Это не стена»",
-          "uk": "Складіть фразу — подруга прийняла фотографію підлоги за стіну; заперечте: «Це не стіна»"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-05:i09:audio",
+          "transcript": "Is it unfair?"
         },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-05:i09:r1",
+            "targetText": "Is it unfair?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-05:i09:r2",
+            "targetText": "Is it real?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-05:i09:r3",
+            "targetText": "Is it warm?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос о распределении вещей",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unfair`, а в этом варианте — `real`.",
+              "uk": "У записі останнє слово — `unfair`, а в цьому варіанті — `real`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос о распределении вещей",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unfair`, а в этом варианте — `warm`.",
+              "uk": "У записі останнє слово — `unfair`, а в цьому варіанті — `warm`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-05:i10:p1",
+            "target": "real",
+            "meaningByLocale": {
+              "ru": "реально существующий",
+              "uk": "той, що реально існує"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-05:i10:p2",
+            "target": "unfair",
+            "meaningByLocale": {
+              "ru": "несправедливый",
+              "uk": "несправедливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-05:i10:p3",
+            "target": "map",
+            "meaningByLocale": {
+              "ru": "карта",
+              "uk": "карта"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-05:i10:p4",
+            "target": "book",
+            "meaningByLocale": {
+              "ru": "книга",
+              "uk": "книжка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "real",
+          "unfair",
+          "map",
+          "book"
+        ],
+        "rightColumn": [
+          "реально существующий",
+          "несправедливый",
+          "карта",
+          "книга"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу о температуре в помещении",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу о температуре в помещении",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-05:i11:audio",
+          "transcript": "It is warm."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is warm.",
         "orderedTokens": [
           "It",
           "is",
-          "not",
-          "a",
-          "wall"
+          "warm"
         ],
         "authoredDistractorTokens": [
           "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-05:i13:r1",
+            "responseId": "en:lesson-03:session-05:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — подруга приняла фотогра",
+            "testedDimension": "Послушайте и соберите фразу о температуре в помещении",
             "feedbackByLocale": {
-              "ru": "После `It` здесь нужна форма `is`. Получится `It is not a wall`.",
-              "uk": "Після `It` тут потрібне `is`. Вийде `It is not a wall`."
+              "ru": "здесь нужно `is` — `It is warm.`",
+              "uk": "тут потрібно `is` — `It is warm.`"
             }
           }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-05:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сотрудник дал вам другой сложенный лист. Спросите, карта ли это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудник дал вам другой сложенный лист. Спросите, карта ли это",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a map?",
+        "localizedMeaning": {
+          "ru": "Сотрудник дал вам другой сложенный лист. Спросите, карта ли это",
+          "uk": "Працівник дав вам інший складений аркуш. Запитайте, чи це карта"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "map"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-05:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Сотрудник дал вам другой сложенный лист. Спросите, карта ли это",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is it a map?`",
+              "uk": "тут потрібно `Is` — `Is it a map?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-05:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Олег предлагает одному человеку нести все вещи, вы считаете это несправедливым. Сообщите свою оценку с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Олег предлагает одному человеку нести все вещи, вы считаете это несправедливым. Сообщите свою оценку с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-05:i13:audio",
+          "transcript": "It's unfair."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's unfair.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -712,63 +740,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте часть фразы — на фотографии видна поверхность над люстрой; назовите потолок полной фразой",
+      "prompt": "Анна приняла лист с рисунком за карту. Дополните «Это не карта»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-05:i14:r1",
-          "text": "is a"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-03:session-05:i14:r2",
-          "text": "is"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-03:session-05:i14:r3",
-          "text": "a"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте часть фразы — на фотографии видна поверхность над люстрой; назовите потолок полной фразой",
+      "accessibilityLabel": "Анна приняла лист с рисунком за карту. Дополните «Это не карта»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте часть фразы — на фотографии видна поверхность над люстрой; назовите потолок полной фразой",
-          "uk": "Вставте частину фрази — на фотографії видно поверхню над люстрою; назвіть стелю повною фразою"
+          "ru": "Анна приняла лист с рисунком за карту. Дополните «Это не карта»",
+          "uk": "Анна прийняла аркуш із малюнком за карту. Доповніть «Це не карта»"
         },
-        "gappedTargetPhrase": "It ___ ceiling.",
+        "gappedTargetPhrase": "It is not ___ map.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-05:i14:r1",
-            "text": "is a"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-03:session-05:i14:r2",
-            "text": "is"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-03:session-05:i14:r3",
-            "text": "a"
+            "text": "is"
           }
         ],
-        "testedDimension": "Вставьте часть фразы — на фотографии вид",
+        "testedDimension": "Анна приняла лист с рисунком за карту. Дополните «Это не карта»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-05:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — на фотографии вид",
+            "testedDimension": "Анна приняла лист с рисунком за карту. Дополните «Это не карта»",
             "feedbackByLocale": {
-              "ru": "Начало получится правильным, но перед `ceiling` не хватит `a`: `It is a ceiling`.",
-              "uk": "Початок вийде правильним, але перед `ceiling` бракуватиме `a`: `It is a ceiling`."
+              "ru": "После `not` сохраняем `a map`.",
+              "uk": "Після `not` зберігаємо `a map`."
             }
           },
           {
             "responseId": "en:lesson-03:session-05:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — на фотографии вид",
+            "testedDimension": "Анна приняла лист с рисунком за карту. Дополните «Это не карта»",
             "feedbackByLocale": {
-              "ru": "Название `a ceiling` получится, но для полной фразы после `It` нужно `is`.",
-              "uk": "Назва `a ceiling` вийде, але для повної фрази після `It` потрібне `is`."
+              "ru": "Перед `map` нужно `a`; `is` уже есть.",
+              "uk": "Перед `map` потрібно `a`; `is` уже є."
             }
           }
         ]
@@ -779,32 +807,75 @@
       "interactionId": "en:lesson-03:session-05:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос об острове",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-05:i15:r1",
+          "text": "Is it real?"
+        },
+        {
+          "responseId": "en:lesson-03:session-05:i15:r2",
+          "text": "Is it hot?"
+        },
+        {
+          "responseId": "en:lesson-03:session-05:i15:r3",
+          "text": "Is it cold?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-05:i15:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте вопрос об острове",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-05:i15:audio",
-          "transcript": "Is it clean?"
+          "transcript": "Is it real?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it clean?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-05:i15:r1",
+            "targetText": "Is it real?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-05:i15:r2",
+            "targetText": "Is it hot?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-05:i15:r3",
+            "targetText": "Is it cold?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-05:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос об острове",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `real`, а в этом варианте — `hot`.",
+              "uk": "У записі останнє слово — `real`, а в цьому варіанті — `hot`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-05:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос об острове",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `real`, а в этом варианте — `cold`.",
+              "uk": "У записі останнє слово — `real`, а в цьому варіанті — `cold`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -812,31 +883,71 @@
       "interactionId": "en:lesson-03:session-05:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-05:i16:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-05:i16:audio",
-          "transcript": "It is a floor."
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-05:i16:p1",
+            "target": "map",
+            "meaningByLocale": {
+              "ru": "карта",
+              "uk": "карта"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-05:i16:p2",
+            "target": "bag",
+            "meaningByLocale": {
+              "ru": "сумка",
+              "uk": "сумка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-05:i16:p3",
+            "target": "hot",
+            "meaningByLocale": {
+              "ru": "горячий",
+              "uk": "гарячий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-05:i16:p4",
+            "target": "cold",
+            "meaningByLocale": {
+              "ru": "холодный",
+              "uk": "холодний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "map",
+          "bag",
+          "hot",
+          "cold"
+        ],
+        "rightColumn": [
+          "карта",
+          "сумка",
+          "горячий",
+          "холодный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "It is a floor.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -845,44 +956,39 @@
       "interactionId": "en:lesson-03:session-05:i17",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос — на последней фотографии белая поверхность и край светильника; уточните у подруги, потолок ли это",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-05:i17:r1",
-          "text": "Are"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вечером вы показываете другу карту, которую принесли домой. Назовите её: «Это карта», с сокращением",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите вопрос — на последней фотографии белая поверхность и край светильника; уточните у подруги, потолок ли это",
+      "audioTargetIds": [
+        "en:lesson-03:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Вечером вы показываете другу карту, которую принесли домой. Назовите её: «Это карта», с сокращением",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is it a ceiling?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос — на последней фотографии белая поверхность и край светильника; уточните у подруги, потолок ли это",
-          "uk": "Складіть запитання — на останній фотографії біла поверхня й край світильника; уточніть у подруги, чи це стеля"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-05:i17:audio",
+          "transcript": "It's a map."
         },
-        "orderedTokens": [
-          "Is",
-          "it",
-          "a",
-          "ceiling"
-        ],
-        "authoredDistractorTokens": [
-          "Are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-05:i17:r1",
-            "correct": false,
-            "testedDimension": "Соберите вопрос — на последней фотографи",
-            "feedbackByLocale": {
-              "ru": "Вопрос об этой поверхности здесь начинается с `Is it`: `Is it a ceiling?`.",
-              "uk": "Запитання про цю поверхню тут починається з `Is it`: `Is it a ceiling?`."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's a map.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -894,5 +1000,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1d1f8605c74c2a4ac146c41978b82045b9a4c8a4e60d720f2bdff7d52331b1a1"
+  "learnerFingerprint": "f4c5ff0966752fee5e639f5bacd75d3ab212c8b9b6bb87ae12ea69fa2864d125"
 }

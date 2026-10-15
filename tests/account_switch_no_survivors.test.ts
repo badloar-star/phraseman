@@ -9,15 +9,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * аварийную копию account_switch_emergency_backup_* (риск принят осознанно, вопрос владельцу) и study_target_v1
  * (возможно, так задумано — вопрос владельцу). Они в списке DEVICE_OR_OPEN_QUESTION, а не в проверке.
  *
- * СЕЙЧАС КРАСНЫЙ → it.skip («ждёт патча Ядра ACC-SWITCH»). Включить вживую: ACC_SWITCH_NO_SURVIVORS=1.
- * ВЫЖИВШИЕ НА ТЕКУЩЕМ КОДЕ (живой прогон 15.10 ~06:54, HEAD до патча Ядра), 22 ключа:
+ * ВКЛЮЧЁН: патч Ядра ACC-SWITCH в HEAD (414bb1713), тест зелёный; skip и переменная ACC_SWITCH_NO_SURVIVORS убраны.
+ * ИСТОРИЯ — выжившие до патча (живой прогон 15.10 ~06:54), 22 ключа:
  *   ban_status_cached_at_v1, ban_status_cached_v1, community_pack_liked_ids_v1, dialogs_completed_ids_v1,
  *   dialogs_free_lifetime_count_v3, dialogue_v2_voice_attempts_v1, dialogue_v2_why_allowance:v1, energy_zero_count_v1,
  *   lessons_pearl_unlocked_v1, lessons_pearl_unlocked_v1_fr, lifetime_profile_stats_snapshot_v1,
  *   premium_celebration_pending_marker_v1, premium_celebration_pending_v1, premium_celebration_pending_variant_v1,
  *   premium_free_freeze_month_v1, stats_preload_cache_v5, streak_lost_count_v1, streak_plus_freeze_pending_v1,
  *   streak_server_sync_day_v1, streak_week_day_markers_v1, vip_celebration_pending_marker_v1, vip_celebration_pending_v1.
- * Ядро (15.10): ключи добавляются в экспорт ACCOUNT_SWITCH_LEAK_KEYS в cloud_sync.ts; после патча убрать skip и переменную.
+ * Ядро (15.10): ключи стирает экспорт ACCOUNT_SWITCH_LEAK_KEYS (app/account_switch_leak_keys.ts, реэкспорт из cloud_sync.ts).
  */
 
 jest.mock('../app/user_id_policy', () => ({
@@ -108,10 +108,6 @@ afterEach(() => {
   warnSpy.mockRestore();
 });
 
-// зачем: до патча Ядра ACC-SWITCH тест красный (аудит 15.10 — ключи вне списков стирания). Пока патча нет, он it.skip, а не удалён:
-// включается ACC_SWITCH_NO_SURVIVORS=1 и показывает ЖИВОЙ список выживших. После патча — убрать skip и переменную.
-const guard = process.env.ACC_SWITCH_NO_SURVIVORS === '1' ? it : it.skip;
-
 describe('ACC-SWITCH: после выхода ничего от аккаунта A не выживает', () => {
   it('таблица аудита не пустая и без дублей (сторож сам не сломан)', () => {
     expect(ACCOUNT_A_KEYS_FROM_AUDIT.length).toBeGreaterThan(20);
@@ -119,7 +115,7 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
     for (const key of ACCOUNT_A_KEYS_FROM_AUDIT) expect(isAllowedSurvivor(key)).toBe(false);
   });
 
-  guard('ждёт патча Ядра ACC-SWITCH: ни один ключ A не выжил после wipeLocalAccountData()', async () => {
+  it('ни один ключ аккаунта A не выжил после wipeLocalAccountData()', async () => {
     for (const key of ACCOUNT_A_KEYS_FROM_AUDIT) await AsyncStorage.setItem(key, JSON.stringify({ owner: 'stable-a', marker: key }));
     for (const key of DEVICE_OR_OPEN_QUESTION) await AsyncStorage.setItem(key, 'device');
     await AsyncStorage.setItem('account_switch_emergency_backup_stable-a', 'backup');

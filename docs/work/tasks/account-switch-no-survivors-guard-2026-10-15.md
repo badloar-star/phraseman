@@ -1,6 +1,6 @@
 # Сторож «после выхода ничего от аккаунта A не выживает» (ACC-SWITCH, 15.10)
 
-Governance-ID: TG-823F36650FD8
+Governance-ID: TG-BC77E93F2787
 
 ## Outcome
 Новый тест `tests/account_switch_no_survivors.test.ts` кладёт в хранилище все ключи из таблицы `docs/phraseman-2.0/handoff/LOGOUT_WIPE_AUDIT_2026-10-15.md` как данные аккаунта A, зовёт настоящее стирание `wipeLocalAccountData()` из `app/cloud_sync.ts` и требует пустой список выживших (кроме KEEP устройства и намеренно сохраняемого). На текущем коде тест красный — до патча Ядра ACC-SWITCH он помечен `it.skip` с причиной и списком выживших; включается переменной `ACC_SWITCH_NO_SURVIVORS=1`.

@@ -1020,6 +1020,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [rootNavigationReady, setRootNavigationReady] = useState(false);
   const [isBanned, setIsBanned]     = useState(false);
   const [showOnboarding, setShow]   = useState(false);
+  // зачем (Сверка 15.10, coldstart_1315_r2): у вошедшего №2 онбординг включился поверх Главной на +37 с, причины в журнале нет.
+  // Сперва логи: каждый setShow пишет сюда свою причину, эффект ниже печатает её при смене флага.
+  const onboardingShowReasonRef = useRef('initial_state');
   const [onboardingComponent, setOnboardingComponent] = useState<React.ComponentType<OnboardingProps> | null>(null);
   // зачем (владелец, 2026-09-14): ветка онбординга была ЕДИНСТВЕННОЙ в гейте
   // сплеша без потолка времени — у firstContentReady fallback есть (900 мс), у
@@ -1246,6 +1249,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   );
   const currentDevUtilityRoute = isDevUtilityRoutePath(pathname);
   const effectiveShowOnboarding = showOnboarding && !currentDevUtilityRoute;
+  useEffect(() => {
+    console.log(`[ONB-SHOW] effective=${effectiveShowOnboarding} show=${showOnboarding} devRoute=${currentDevUtilityRoute} path=${pathname || '/'} reason=${onboardingShowReasonRef.current}`); // guard-ok: одна строка на смену флага
+  }, [effectiveShowOnboarding, showOnboarding, currentDevUtilityRoute]);
   const isRootIndexRoute = !pathname || pathname === '/';
   // зачем (R1, двойной монтаж Главной): стоим ли мы уже внутри группы (tabs) — от этого зависит, можно ли уйти с `/` на Главную без пересоздания каркаса (см. эффект root_replace ниже).
   // useSegments типизирован union'ом всех маршрутов (TS2590 в массивах зависимостей) — сужаем до readonly string[] и держим в ref.
@@ -2998,6 +3004,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             shouldPrimeLessonsAfterReveal = true;
 	        }
 
+        onboardingShowReasonRef.current = `boot onboarding_done=${val === null ? 'null' : val} qa=${forceOnboardingForQA ? 'on' : 'off'}`;
         setShow(willShowOnboarding);
       } catch (e) {
         if (__DEV__) console.warn('[_layout]', e);
@@ -3162,6 +3169,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       } catch {
         traceAccountDeleteUi('home_replace_failed');
       }
+      onboardingShowReasonRef.current = 'account_deleted';
       setShow(true);
       traceAccountDeleteUi('onboarding_show_requested');
     });
@@ -3304,6 +3312,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // Снимаем оверлей ПОСЛЕ commit навигации. finally гарантирует выход даже
       // при синхронной ошибке подготовки Home.
       setTimeout(() => {
+        onboardingShowReasonRef.current = 'onboarding_done';
         setShow(false);
         emitAppEvent('onboarding_completed');
       }, 60);
@@ -3360,6 +3369,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       onboardingDoneHandledRef.current = false;
       setOnboardingPaywallActive(false);
       setOnboardingStartAtName(false);
+      onboardingShowReasonRef.current = 'dev_onboarding_restart';
       setShow(true);
     });
     return () => sub.remove();
@@ -3369,6 +3379,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // (onbstep → dev_onboarding_restart). Без этого «Your data stays yours» оставался поверх next= до холодного старта. Только dev_state.
   useEffect(() => {
     const sub = onAppEvent('dev_onboarding_done', () => {
+      onboardingShowReasonRef.current = 'dev_onboarding_done';
       setShow((prev) => {
         console.log(`[DEV-STATE] onboarding overlay closed by onboarding=done wasVisible=${prev ? 'yes' : 'no'}`); // guard-ok: dev-ветка, одно событие на ссылку
         return false;
@@ -3396,6 +3407,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // startAtName=true → онбординг монтируется прямо на 'name' без async-гейта
       // (без пустого «resolving»-экрана и без ожидания Keychain в getStableId).
       setOnboardingStartAtName(true);
+      onboardingShowReasonRef.current = 'onboarding_paywall_completed';
       setShow(true);
       void (async () => {
         try {

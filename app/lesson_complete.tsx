@@ -32,6 +32,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { usePremium } from '../components/PremiumContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import PlusBadge from '../components/PlusBadge';
 import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
 import { CEFR_FOR_LESSON } from '../constants/theme';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
@@ -1460,6 +1461,10 @@ export default function LessonComplete() {
   const legacyCompletionSurfacesEnabled = false;
   // зачем (решение владельца 13.10): id ошибок этого прохода из «Моих ошибок» — основа кнопки «Добить: Ещё учу (N)» и «Повторить ошибки» в карточке; у комбо ошибок темы нет.
   const runMistakeIds = isComboCompletion ? EMPTY_MISTAKE_IDS : peekLessonRunMistakeIds(lessonId);
+  // зачем (координатор 15.10): попытка дня у Free кончилась — тап «Добить» ведёт в пейвол, поэтому на кнопке заранее метка Plus
+  const finishMistakesPlusMark = mistakesGate.locked && runMistakeIds.length > 0
+    ? <PlusBadge themeMode={themeMode} size="xs" testID="lesson-complete-finish-plus" />
+    : null;
   if (!legacyCompletionSurfacesEnabled) {
     if (sequenceShowing) {
       return (
@@ -1497,6 +1502,7 @@ export default function LessonComplete() {
               errors={isComboCompletion ? undefined : peekLessonRunErrors(lessonId)}
               // зачем (Макеты 06b311f0d, 🟡 а; эталон practice#done2: «Повторить ошибки» стоит в блоке всегда): id ошибок есть — тренировка именно этих ошибок, ошибки есть, а id нет — хаб «Мои ошибки»
               onRepeatErrors={runMistakeIds.length > 0 ? finishMistakes : (!isComboCompletion && peekLessonRunErrors(lessonId).length > 0 ? openMistakesHub : undefined)}
+              repeatErrorsTrailing={finishMistakesPlusMark}
               coinsGained={practiceRunes.runes}
               plusNote={completionRequiresPremium ? {
                 title: triLang(lang, { ru: 'Следующий урок входит в Plus', en: 'The next lesson is part of Plus', uk: 'Наступний урок входить у Plus', es: 'La siguiente lección es de Plus', 'pt-BR': 'A próxima lição faz parte do Plus', vi: 'Bài tiếp theo thuộc gói Plus', id: 'Pelajaran berikutnya termasuk Plus', tr: 'Sonraki ders Plus kapsamında', pl: 'Następna lekcja jest w Plus' }),
@@ -1599,6 +1605,7 @@ export default function LessonComplete() {
                     ? triLang(lang, finishMistakesLabels(runMistakeIds.length))
                     : triLang(lang, { ru: 'Пройти ещё раз', en: 'Try again', uk: 'Пройти ще раз', es: 'Repetir', 'pt-BR': 'Fazer de novo', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrar yap', pl: 'Jeszcze raz' })}
               onSecondary={isComboCompletion ? undefined : (completionRequiresPremium || resultStars === 1) ? goBackFromComplete : runMistakeIds.length > 0 ? finishMistakes : handleRepeatLesson}
+              secondaryTrailing={isComboCompletion || completionRequiresPremium || resultStars === 1 ? null : finishMistakesPlusMark}
               onClose={goBackFromComplete}
               chain={doneChainOn && doneChainBeforeRef.current ? { before: doneChainBeforeRef.current, onFinished: onDoneChainFinished } : undefined}
             />

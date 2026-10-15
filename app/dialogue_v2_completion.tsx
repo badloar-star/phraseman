@@ -13,6 +13,8 @@ import { getDevDialogCompletion } from './dev_dialog_state';
 import { readDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { useLang } from '../components/LangContext';
+import { useTheme } from '../components/ThemeContext';
+import PlusBadge from '../components/PlusBadge';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useDialogueV2CoinReward } from '../hooks/useDialogueV2CoinReward';
 import { useDialogueV2MistakeCapture } from '../hooks/useDialogueV2MistakeCapture';
@@ -311,6 +313,7 @@ export default function DialogueV2CompletionRoute() {
   });
   // зачем (владелец 13.10 «Да, пусть попадают в Мои ошибки»): поправки «было → стало» уходят в журнал ошибок (вид 'dialogue');
   // dialogMistakes.mistakeIds — N для «Добить: Ещё учу (N)», dialogMistakes.openPractice — её нажатие. Кнопку рисует Дизайн.
+  const { themeMode } = useTheme();
   const dialogMistakes = useDialogueV2MistakeCapture({
     sessionId: sessionId ?? null,
     studyTarget,
@@ -585,7 +588,11 @@ export default function DialogueV2CompletionRoute() {
               // зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались»; Макеты 854d5866c): «Ещё раз» — вторичная кнопка-пилюля со своей поверхностью buttonFill, а не голый текст на фоне
               style={({ pressed }) => [styles.again, { backgroundColor: glass.buttonFill }, pressed && { opacity: 0.6 }]}
             >
-              <Text style={[styles.againText, { color: glass.text }]}>{finishableMistakes ? labels.finishMistakes(dialogMistakes.mistakeIds.length) : labels.again}</Text>
+              <View style={styles.againRow}>
+                <Text style={[styles.againText, { color: glass.text }]}>{finishableMistakes ? labels.finishMistakes(dialogMistakes.mistakeIds.length) : labels.again}</Text>
+                {/* зачем (координатор 15.10): попытка дня у Free кончилась — «Добить» ведёт в пейвол, метка Plus заранее, без подписи */}
+                {finishableMistakes && dialogMistakes.locked ? <PlusBadge themeMode={themeMode} size="xs" testID="dialogue-v2-completion-finish-plus" /> : null}
+              </View>
             </Pressable>
           ) : null}
         </>)}
@@ -694,7 +701,8 @@ const styles = StyleSheet.create({
   ok: { fontSize: 16, fontWeight: '700' },
   footer: { paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 },
   again: { marginTop: 14, minHeight: 48, borderRadius: 24, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' }, // зазор до главной 14 >= 12
-  againText: { fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center' },
+  againText: { fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center', flexShrink: 1 },
+  againRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   // кнопка «Повторить ошибки» в карточке «Ошибки» (dialogs.html .errc .cta.gh: высота 44, значок + подпись 16/600)
   repeatMistakes: { minHeight: 44, borderRadius: 22, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   repeatMistakesText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },

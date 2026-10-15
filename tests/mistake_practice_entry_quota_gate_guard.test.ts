@@ -85,6 +85,19 @@ describe('every entry into mistake practice goes through the daily-quota gate', 
     expect(gate).toContain("if (inFlightRef.current) { decide('blocked_double_tap'); return false; }");
   });
 
+  // зачем (координатор 15.10): пейвол за «Добить» / «Ещё N» не сюрприз — при исчерпанной попытке дня у кнопки метка Plus
+  // (общий PlusBadge), а при доступной попытке кнопка обычная; без подписей мелким текстом под кнопкой
+  it('locked finish buttons carry the shared Plus mark, only while the daily attempt is used up', () => {
+    const src = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
+    const lesson = src('app/lesson_complete.tsx');
+    expect(lesson).toContain('const finishMistakesPlusMark = mistakesGate.locked && runMistakeIds.length > 0');
+    expect(lesson).toContain('repeatErrorsTrailing={finishMistakesPlusMark}');
+    expect(lesson).toMatch(/secondaryTrailing=\{[^}]*finishMistakesPlusMark\}/);
+    expect(src('app/mistake_practice_session.tsx')).toContain('moreTrailing={moreGate.locked ? <PlusBadge');
+    expect(src('app/dialogue_v2_completion.tsx')).toContain('{finishableMistakes && dialogMistakes.locked ? <PlusBadge');
+    expect(src('hooks/useDialogueV2MistakeCapture.ts')).toContain('locked: gate.locked');
+  });
+
   it('lesson finish and dialogue finish keep the lesson/dialogue mistake ids (finish exactly these mistakes)', () => {
     const lesson = sites.find((site) => site.file.endsWith('lesson_complete.tsx'));
     const dialogue = sites.find((site) => site.file.endsWith('useDialogueV2MistakeCapture.ts'));

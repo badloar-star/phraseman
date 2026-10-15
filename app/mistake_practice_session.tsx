@@ -98,6 +98,7 @@ import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
 import NoEnergyModal from '../components/NoEnergyModal';
+import PlusBadge from '../components/PlusBadge';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
@@ -432,7 +433,7 @@ function MistakePracticeSessionScreen() {
     [params.devRunesSeed],
   );
   const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const g = useLv2Glass();
   const { lang } = useLang();
   const copy = useMemo(() => sessionCopy(lang), [lang]);
@@ -1439,6 +1440,8 @@ function MistakePracticeSessionScreen() {
           total={session?.initialCount ?? 0}
           wrong={missedIds.length}
           onMore={missedIds.length > 0 ? startMissedAgain : undefined}
+          // зачем (координатор 15.10): попытка дня у Free кончилась — «Ещё N» ведёт в пейвол, метка Plus заранее, без подписи
+          moreTrailing={moreGate.locked ? <PlusBadge themeMode={themeMode} size="xs" testID="mistake-finale-more-plus" /> : null}
           runes={practiceRunes.runes}
           fixed={fixedNow}
           onDone={leavePractice}

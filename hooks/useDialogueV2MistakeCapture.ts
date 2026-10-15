@@ -28,6 +28,8 @@ export type DialogueV2MistakeCapture = Readonly<{
   /** Гейт «Добить» не пустил из-за энергии на платную сессию: экран показывает NoEnergyModal, попытка дня цела. */
   noEnergy: boolean;
   dismissNoEnergy: () => void;
+  /** Попытка дня «Ошибок» у Free кончилась: тап «Добить» уведёт в пейвол — экран заранее ставит метку Plus. */
+  locked: boolean;
 }>;
 
 export function useDialogueV2MistakeCapture(input: Readonly<{
@@ -114,5 +116,5 @@ export function useDialogueV2MistakeCapture(input: Readonly<{
     router.replace({ pathname: '/mistake_practice_session', params: { mistakeIds: mistakeIds.join(','), length: 'all', ...receipt } } as never);
   }, [gate, mistakeIds, router, state.status]);
 
-  return { mistakeIds, status: state.status, openPractice, noEnergy: gate.noEnergy, dismissNoEnergy: gate.dismissNoEnergy };
+  return { mistakeIds, status: state.status, openPractice, noEnergy: gate.noEnergy, dismissNoEnergy: gate.dismissNoEnergy, locked: gate.locked };
 }

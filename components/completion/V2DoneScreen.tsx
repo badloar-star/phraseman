@@ -55,6 +55,8 @@ export type V2DoneScreenProps = Readonly<{
   plusNote?: Readonly<{ title: string; body: string }>;
   errors?: readonly V2DoneError[];
   onRepeatErrors?: () => void;
+  /** Метка справа от «Повторить ошибки» (напр. Plus-бейдж, когда дневная попытка «Ошибок» у Free кончилась и тап ведёт в пейвол). */
+  repeatErrorsTrailing?: ReactNode;
   /** Форма «Всё было понятно?» и прочие вставки режима. */
   feedbackSlot?: ReactNode;
   primaryLabel: string;
@@ -63,6 +65,8 @@ export type V2DoneScreenProps = Readonly<{
   onPrimary: () => void;
   secondaryLabel?: string;
   onSecondary?: () => void;
+  /** Метка справа от второй кнопки (Plus-бейдж у «Добить», когда тап ведёт в пейвол). */
+  secondaryTrailing?: ReactNode;
   onClose: () => void;
   testID?: string;
   /**
@@ -312,6 +316,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
               >
                 <Ionicons name="refresh" size={18} color={g.text} />
                 <Text style={[s.ghostText, { color: g.text }]}>{c.repeatErrors}</Text>
+                {props.repeatErrorsTrailing}
               </Pressable>
             ) : null}
           </View>
@@ -360,7 +365,15 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
             hitSlop={8}
             onPress={() => { hapticTap(); props.onSecondary?.(); }}
           >
-            <Text style={[s.quiet, { color: g.secondary }]}>{props.secondaryLabel}</Text>
+            {props.secondaryTrailing ? (
+              // зачем (координатор 15.10): пейвол за «Добить» не сюрприз — метка Plus в одной строке с текстом, без подписи под кнопкой
+              <View style={s.quietRow}>
+                <Text style={[s.quiet, s.quietInRow, { color: g.secondary }]}>{props.secondaryLabel}</Text>
+                {props.secondaryTrailing}
+              </View>
+            ) : (
+              <Text style={[s.quiet, { color: g.secondary }]}>{props.secondaryLabel}</Text>
+            )}
           </Pressable>
         ) : null}
         </>,
@@ -442,4 +455,6 @@ const s = StyleSheet.create({
   chainOv: { ...V2_TYPE.overline, textTransform: 'uppercase', textAlign: 'center', marginTop: 24 },
   chainName: { ...V2_TYPE.title, textAlign: 'center', marginTop: 14 },
   quiet: { textAlign: 'center', fontSize: 16, fontWeight: '600', marginTop: 14, minHeight: 22 },
+  quietRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 14, minHeight: 22 },
+  quietInRow: { marginTop: 0, flexShrink: 1 },
 });

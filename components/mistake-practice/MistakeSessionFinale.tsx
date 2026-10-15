@@ -31,6 +31,8 @@ type Props = {
   onDone: () => void;
   /** Повторить то, что не вышло: пока в продукте нет такой сессии — кнопка рисуется, только если экран передал действие. */
   onMore?: () => void;
+  /** Метка справа от «Ещё N» (Plus-бейдж, когда попытка дня у Free кончилась и тап ведёт в пейвол). */
+  moreTrailing?: React.ReactNode;
 };
 
 const copyFor = (lang: Lang) => triLang(lang, {
@@ -46,7 +48,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 function MistakeSessionFinale({
-  lang, answered, total, wrong, fixed, onDone, onMore,
+  lang, answered, total, wrong, fixed, onDone, onMore, moreTrailing,
 }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
@@ -91,7 +93,7 @@ function MistakeSessionFinale({
       </ScrollView>
       <PanelDock>
         <View style={styles.actions}>
-          {onMore ? <PanelCta g={g} ghost flex testID="mistake-finale-more" label={`${copy.more} ${missed}`} onPress={onMore} /> : null}
+          {onMore ? <PanelCta g={g} ghost flex testID="mistake-finale-more" label={`${copy.more} ${missed}`} onPress={onMore} trailing={moreTrailing} /> : null}
           <PanelCta g={g} flex={!!onMore} testID="mistake-finale-done" label={copy.finish} onPress={onDone} />
         </View>
       </PanelDock>

@@ -7,75 +7,43 @@
       "interactionId": "en:lesson-02:session-40:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке запитання друг поставив біля входу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-40:i01:r1",
-          "text": "Who is he?"
-        },
-        {
-          "responseId": "en:lesson-02:session-40:i01:r2",
-          "text": "Where is he?"
-        },
-        {
-          "responseId": "en:lesson-02:session-40:i01:r3",
-          "text": "Who is she?"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваш клуб регулярно проводить зустрічі. Скажіть повною фразою, що він діє",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-40:i01:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть — яке запитання друг поставив біля входу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваш клуб регулярно проводить зустрічі. Скажіть повною фразою, що він діє",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-40:i01:audio",
-          "transcript": "Who is he?"
+        "family": "phrase_builder",
+        "targetPhrase": "It is active.",
+        "localizedMeaning": {
+          "ru": "Ваш клуб регулярно проводит встречи. Скажите полной фразой, что он действует",
+          "uk": "Ваш клуб регулярно проводить зустрічі. Скажіть повною фразою, що він діє"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-40:i01:r1",
-            "targetText": "Who is he?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i01:r2",
-            "targetText": "Where is he?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i01:r3",
-            "targetText": "Who is she?",
-            "meaningByLocale": null
-          }
+        "orderedTokens": [
+          "It",
+          "is",
+          "active"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-40:i01:r2",
+            "responseId": "en:lesson-02:session-40:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке запитання др",
+            "testedDimension": "Ваш клуб регулярно проводить зустрічі. Скажіть повною фразою, що він діє",
             "feedbackByLocale": {
-              "ru": "Это «Где он?». В записи первое слово `Who` — друг спрашивает, кто этот человек.",
-              "uk": "Це «Де він?». У записі перше слово `Who` — друг запитує, хто цей чоловік."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i01:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке запитання др",
-            "feedbackByLocale": {
-              "ru": "Это вопрос о женщине. В записи последнее слово `he` — «он».",
-              "uk": "Це запитання про жінку. Останнє слово в записі — `he`, «він»."
+              "ru": "здесь нужно `is` — `It is active.`",
+              "uk": "тут потрібно `is` — `It is active.`"
             }
           }
         ],
-        "isWordCard": false,
-        "wordCard": null
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -83,68 +51,75 @@
       "interactionId": "en:lesson-02:session-40:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — чоловік біля входу приймає всіх у себе вдома; скажіть, що він господар вечірки",
+      "prompt": "Послухайте фразу про оголошення",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-40:i02:r1",
-          "text": "host"
+          "text": "It is unofficial."
         },
         {
           "responseId": "en:lesson-02:session-40:i02:r2",
-          "text": "guest"
+          "text": "It is official."
         },
         {
           "responseId": "en:lesson-02:session-40:i02:r3",
-          "text": "intern"
+          "text": "It is informal."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — чоловік біля входу приймає всіх у себе вдома; скажіть, що він господар вечірки",
+      "audioTargetIds": [
+        "en:lesson-02:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про оголошення",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — мужчина у входа принимает всех у себя дома; скажите, что он хозяин вечера",
-          "uk": "Вставте слово — чоловік біля входу приймає всіх у себе вдома; скажіть, що він господар вечірки"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-40:i02:audio",
+          "transcript": "It is unofficial."
         },
-        "gappedTargetPhrase": "He is the ___ .",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-40:i02:r1",
-            "text": "host"
+            "targetText": "It is unofficial.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-40:i02:r2",
-            "text": "guest"
+            "targetText": "It is official.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-40:i02:r3",
-            "text": "intern"
+            "targetText": "It is informal.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставте слово — чоловік біля входу прийм",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-40:i02:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — чоловік біля входу прийм",
+            "testedDimension": "Послухайте фразу про оголошення",
             "feedbackByLocale": {
-              "ru": "Это «гость». Мужчина сам принимает гостей у себя, поэтому здесь нужен `host`.",
-              "uk": "Це «гість». Чоловік сам приймає гостей у себе, тому тут потрібне `host`."
+              "ru": "В записи последнее слово — `unofficial`, а в этом варианте — `official`.",
+              "uk": "У записі останнє слово — `unofficial`, а в цьому варіанті — `official`."
             }
           },
           {
             "responseId": "en:lesson-02:session-40:i02:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — чоловік біля входу прийм",
+            "testedDimension": "Послухайте фразу про оголошення",
             "feedbackByLocale": {
-              "ru": "Это «стажёр». Вы называете его роль на вечеринке, а не на работе.",
-              "uk": "Це «стажер». Ви називаєте його роль на вечірці, а не на роботі."
+              "ru": "В записи последнее слово — `unofficial`, а в этом варианте — `informal`.",
+              "uk": "У записі останнє слово — `unofficial`, а в цьому варіанті — `informal`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -152,28 +127,68 @@
       "interactionId": "en:lesson-02:session-40:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — друг не зрозумів, хто всіх запросив; покажіть на чоловіка біля входу й скажіть, що він господар",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, чи передбачає зустріч строгий, офіційний формат",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-40:i03:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-02:session-40:i03:r2",
+          "text": "Am"
+        },
+        {
+          "responseId": "en:lesson-02:session-40:i03:r3",
+          "text": "Are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — друг не зрозумів, хто всіх запросив; покажіть на чоловіка біля входу й скажіть, що він господар",
+      "accessibilityLabel": "Уточніть, чи передбачає зустріч строгий, офіційний формат",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is the host.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — друг не понял, кто пригласил всех; укажите на мужчину у входа и скажите, что он хозяин",
-          "uk": "Складіть фразу — друг не зрозумів, хто всіх запросив; покажіть на чоловіка біля входу й скажіть, що він господар"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, предполагает ли встреча строгий, официальный формат",
+          "uk": "Уточніть, чи передбачає зустріч строгий, офіційний формат"
         },
-        "orderedTokens": [
-          "He",
-          "is",
-          "the",
-          "host"
+        "gappedTargetPhrase": "___ it formal?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i03:r3",
+            "text": "Are"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "testedDimension": "Уточніть, чи передбачає зустріч строгий, офіційний формат",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, чи передбачає зустріч строгий, офіційний формат",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, чи передбачає зустріч строгий, офіційний формат",
+            "feedbackByLocale": {
+              "ru": "Вопрос — `Is it formal?`.",
+              "uk": "Запитання — `Is it formal?`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -181,75 +196,72 @@
       "interactionId": "en:lesson-02:session-40:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — що господар сказав про жінку поруч із собою",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-40:i04:r1",
-          "text": "She is the manager."
-        },
-        {
-          "responseId": "en:lesson-02:session-40:i04:r2",
-          "text": "She is the intern."
-        },
-        {
-          "responseId": "en:lesson-02:session-40:i04:r3",
-          "text": "Is she the manager?"
-        }
-      ],
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-40:i04:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть — що господар сказав про жінку поруч із собою",
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-40:i04:audio",
-          "transcript": "She is the manager."
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-40:i04:p1",
+            "target": "active",
+            "meaningByLocale": {
+              "ru": "действующий",
+              "uk": "діючий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-40:i04:p2",
+            "target": "inactive",
+            "meaningByLocale": {
+              "ru": "не действующий",
+              "uk": "такий, що не діє"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-40:i04:p3",
+            "target": "formal",
+            "meaningByLocale": {
+              "ru": "строгий, официальный по стилю",
+              "uk": "строгий, офіційний за стилем"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-40:i04:p4",
+            "target": "informal",
+            "meaningByLocale": {
+              "ru": "неформальный",
+              "uk": "неформальний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "active",
+          "inactive",
+          "formal",
+          "informal"
+        ],
+        "rightColumn": [
+          "діючий",
+          "такий, що не діє",
+          "строгий, офіційний за стилем",
+          "неформальний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-40:i04:r1",
-            "targetText": "She is the manager.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i04:r2",
-            "targetText": "She is the intern.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i04:r3",
-            "targetText": "Is she the manager?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-40:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — що господар сказ",
-            "feedbackByLocale": {
-              "ru": "Это «Она стажёр». На записи последнее слово `manager`: она руководитель.",
-              "uk": "Це «Вона стажерка». Останнє слово в записі — `manager`: вона керівниця."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — що господар сказ",
-            "feedbackByLocale": {
-              "ru": "Это вопрос. На записи сначала `She is`: хозяин сообщает, кто она.",
-              "uk": "Це запитання. У записі спочатку звучить `She is`: господар повідомляє, хто вона."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -257,27 +269,47 @@
       "interactionId": "en:lesson-02:session-40:i05",
       "ordinal": 8,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — жінка підійшла привітатися з вашим другом; він тихо просить вас запитати в господаря, хто вона",
+      "prompt": "Послухайте й складіть коротку відповідь",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — жінка підійшла привітатися з вашим другом; він тихо просить вас запитати в господаря, хто вона",
+      "audioTargetIds": [
+        "en:lesson-02:session-40:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Who is she?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — женщина подошла поздороваться с вашим другом; он тихо просит вас спросить у хозяина, кто она",
-          "uk": "Складіть фразу — жінка підійшла привітатися з вашим другом; він тихо просить вас запитати в господаря, хто вона"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-40:i05:audio",
+          "transcript": "No, it is not."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No, it is not.",
         "orderedTokens": [
-          "Who",
+          "No,",
+          "it",
           "is",
-          "she"
+          "not"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "Yes,"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-40:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `No,` — `No, it is not.`",
+              "uk": "тут потрібно `No,` — `No, it is not.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -285,68 +317,43 @@
       "interactionId": "en:lesson-02:session-40:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — ви пояснюєте другові, що жінка керує командою господаря",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-40:i06:r1",
-          "text": "manager"
-        },
-        {
-          "responseId": "en:lesson-02:session-40:i06:r2",
-          "text": "host"
-        },
-        {
-          "responseId": "en:lesson-02:session-40:i06:r3",
-          "text": "guest"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вибираєте матеріали для зустрічі про подорожі. Запитайте Анну, що стосується теми",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — ви пояснюєте другові, що жінка керує командою господаря",
+      "accessibilityLabel": "Вибираєте матеріали для зустрічі про подорожі. Запитайте Анну, що стосується теми",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы объясняете другу, что женщина руководит командой хозяина",
-          "uk": "Вставте слово — ви пояснюєте другові, що жінка керує командою господаря"
+        "family": "phrase_builder",
+        "targetPhrase": "What is relevant?",
+        "localizedMeaning": {
+          "ru": "Выбираете материалы для встречи о путешествиях. Спросите Анну, что относится к теме",
+          "uk": "Вибираєте матеріали для зустрічі про подорожі. Запитайте Анну, що стосується теми"
         },
-        "gappedTargetPhrase": "She is the ___ .",
-        "gapOptions": [
+        "orderedTokens": [
+          "What",
+          "is",
+          "relevant"
+        ],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-40:i06:r1",
-            "text": "manager"
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i06:r2",
-            "text": "host"
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i06:r3",
-            "text": "guest"
+            "responseId": "en:lesson-02:session-40:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вибираєте матеріали для зустрічі про подорожі. Запитайте Анну, що стосується теми",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `What` — `What is relevant?`",
+              "uk": "тут потрібно `What` — `What is relevant?`"
+            }
           }
         ],
-        "testedDimension": "Вставте слово — ви пояснюєте другові, що",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-40:i06:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — ви пояснюєте другові, що",
-            "feedbackByLocale": {
-              "ru": "Это «хозяйка вечера». Вы объясняете, кем женщина работает: `manager`.",
-              "uk": "Це «господиня вечірки». Ви пояснюєте, ким жінка працює: `manager`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i06:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — ви пояснюєте другові, що",
-            "feedbackByLocale": {
-              "ru": "Это «гостья». Она пришла в гости, но сейчас вы называете её должность — `manager`.",
-              "uk": "Це «гостя». Вона прийшла в гості, але зараз ви називаєте її посаду — `manager`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -354,75 +361,32 @@
       "interactionId": "en:lesson-02:session-40:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке запитання господар поставив другові",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-40:i07:r1",
-          "text": "Where is the intern?"
-        },
-        {
-          "responseId": "en:lesson-02:session-40:i07:r2",
-          "text": "Who is the intern?"
-        },
-        {
-          "responseId": "en:lesson-02:session-40:i07:r3",
-          "text": "Where is the manager?"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Старий клуб Олега припинив роботу. Коротко повідомте, що він не діє",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-40:i07:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке запитання господар поставив другові",
+      "accessibilityLabel": "Старий клуб Олега припинив роботу. Коротко повідомте, що він не діє",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-40:i07:audio",
-          "transcript": "Where is the intern?"
+          "transcript": "It's inactive."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-40:i07:r1",
-            "targetText": "Where is the intern?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i07:r2",
-            "targetText": "Who is the intern?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i07:r3",
-            "targetText": "Where is the manager?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-40:i07:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке запитання го",
-            "feedbackByLocale": {
-              "ru": "Это «Кто стажёр?». В записи вопрос начинается с `Where`: хозяин спрашивает, где он.",
-              "uk": "Це «Хто стажер?». У записі запитання починається з `Where`: господар запитує, де він."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i07:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке запитання го",
-            "feedbackByLocale": {
-              "ru": "Это вопрос о руководителе. В записи последнее слово `intern` — «стажёр».",
-              "uk": "Це запитання про керівницю. Останнє слово в записі — `intern`, «стажер»."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "It's inactive.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -430,28 +394,68 @@
       "interactionId": "en:lesson-02:session-40:i08",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — стажер підійшов до вас; повідомте господареві, що стажер тут",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Клуб офіційно опублікував оголошення. На «Is it official?» доповніть коротку відповідь «так»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-40:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-40:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-40:i08:r3",
+          "text": "are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — стажер підійшов до вас; повідомте господареві, що стажер тут",
+      "accessibilityLabel": "Клуб офіційно опублікував оголошення. На «Is it official?» доповніть коротку відповідь «так»",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The intern is here.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — стажёр подошёл к вам; сообщите хозяину, что стажёр здесь",
-          "uk": "Складіть фразу — стажер підійшов до вас; повідомте господареві, що стажер тут"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Клуб официально опубликовал объявление. На «Is it official?» дополните короткое «да»",
+          "uk": "Клуб офіційно опублікував оголошення. На «Is it official?» доповніть коротку відповідь «так»"
         },
-        "orderedTokens": [
-          "The",
-          "intern",
-          "is",
-          "here"
+        "gappedTargetPhrase": "Yes, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i08:r3",
+            "text": "are"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "testedDimension": "Клуб офіційно опублікував оголошення. На «Is it official?» доповніть коротку відповідь «так»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Клуб офіційно опублікував оголошення. На «Is it official?» доповніть коротку відповідь «так»",
+            "feedbackByLocale": {
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Клуб офіційно опублікував оголошення. На «Is it official?» доповніть коротку відповідь «так»",
+            "feedbackByLocale": {
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -459,68 +463,75 @@
       "interactionId": "en:lesson-02:session-40:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — поруч зупинилися ще двоє гостей; запитайте друга: «Хто ці люди?»",
+      "prompt": "Послухайте запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-40:i09:r1",
-          "text": "are"
+          "text": "Is it informal?"
         },
         {
           "responseId": "en:lesson-02:session-40:i09:r2",
-          "text": "is"
+          "text": "Is it formal?"
         },
         {
           "responseId": "en:lesson-02:session-40:i09:r3",
-          "text": "am"
+          "text": "Is it unofficial?"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — поруч зупинилися ще двоє гостей; запитайте друга: «Хто ці люди?»",
+      "audioTargetIds": [
+        "en:lesson-02:session-40:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — рядом остановились ещё двое гостей; спросите друга: «Кто эти люди?»",
-          "uk": "Вставте слово — поруч зупинилися ще двоє гостей; запитайте друга: «Хто ці люди?»"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-40:i09:audio",
+          "transcript": "Is it informal?"
         },
-        "gappedTargetPhrase": "Who ___ these people?",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-40:i09:r1",
-            "text": "are"
+            "targetText": "Is it informal?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-40:i09:r2",
-            "text": "is"
+            "targetText": "Is it formal?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-40:i09:r3",
-            "text": "am"
+            "targetText": "Is it unofficial?",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставте слово — поруч зупинилися ще двоє",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-40:i09:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — поруч зупинилися ще двоє",
+            "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "Вы спрашиваете о нескольких людях: `Who are these people?` Здесь нужно `are`.",
-              "uk": "Ви запитуєте про кількох людей: `Who are these people?` Тут потрібне `are`."
+              "ru": "В записи последнее слово — `informal`, а в этом варианте — `formal`.",
+              "uk": "У записі останнє слово — `informal`, а в цьому варіанті — `formal`."
             }
           },
           {
             "responseId": "en:lesson-02:session-40:i09:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — поруч зупинилися ще двоє",
+            "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В этом вопросе речь о нескольких людях — `these people`. Нужное начало — `Who are`.",
-              "uk": "У цьому запитанні йдеться про кількох людей — `these people`. Потрібний початок — `Who are`."
+              "ru": "В записи последнее слово — `informal`, а в этом варианте — `unofficial`.",
+              "uk": "У записі останнє слово — `informal`, а в цьому варіанті — `unofficial`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -530,58 +541,58 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте пари — слова для знайомства з цією компанією",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте пари — слова для знайомства з цією компанією",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-40:i10:p1",
-            "target": "host",
+            "target": "official",
             "meaningByLocale": {
-              "ru": "хозяин вечера",
-              "uk": "господар вечірки"
+              "ru": "официальный по статусу",
+              "uk": "офіційний за статусом"
             }
           },
           {
             "pairId": "en:lesson-02:session-40:i10:p2",
-            "target": "manager",
+            "target": "unofficial",
             "meaningByLocale": {
-              "ru": "руководитель",
-              "uk": "керівниця"
+              "ru": "неофициальный",
+              "uk": "неофіційний"
             }
           },
           {
             "pairId": "en:lesson-02:session-40:i10:p3",
-            "target": "intern",
+            "target": "relevant",
             "meaningByLocale": {
-              "ru": "стажёр",
-              "uk": "стажер"
+              "ru": "относящийся к теме",
+              "uk": "такий, що стосується теми"
             }
           },
           {
             "pairId": "en:lesson-02:session-40:i10:p4",
-            "target": "twins",
+            "target": "inactive",
             "meaningByLocale": {
-              "ru": "близнецы",
-              "uk": "близнюки"
+              "ru": "не действующий",
+              "uk": "такий, що не діє"
             }
           }
         ],
         "leftColumn": [
-          "host",
-          "manager",
-          "intern",
-          "twins"
+          "official",
+          "unofficial",
+          "relevant",
+          "inactive"
         ],
         "rightColumn": [
-          "хозяин вечера",
-          "руководитель",
-          "стажёр",
-          "близнецы"
+          "офіційний за статусом",
+          "неофіційний",
+          "такий, що стосується теми",
+          "такий, що не діє"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -601,27 +612,46 @@
       "interactionId": "en:lesson-02:session-40:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — господар пояснив, що двоє схожих гостей — близнюки; перекажіть це другові",
+      "prompt": "Послухайте й складіть фразу про матеріали",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — господар пояснив, що двоє схожих гостей — близнюки; перекажіть це другові",
+      "audioTargetIds": [
+        "en:lesson-02:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу про матеріали",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "They are twins.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — хозяин объяснил, что двое похожих гостей — близнецы; передайте это другу",
-          "uk": "Складіть фразу — господар пояснив, що двоє схожих гостей — близнюки; перекажіть це другові"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-40:i11:audio",
+          "transcript": "They are relevant."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are relevant.",
         "orderedTokens": [
           "They",
           "are",
-          "twins"
+          "relevant"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-02:session-40:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу про матеріали",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are relevant.`",
+              "uk": "тут потрібно `are` — `They are relevant.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -629,99 +659,77 @@
       "interactionId": "en:lesson-02:session-40:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — керівниця відійшла, а ви хочете з нею поговорити; запитайте, де вона",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-02:session-40:i12:r1",
-          "text": "Where"
-        },
-        {
-          "responseId": "en:lesson-02:session-40:i12:r2",
-          "text": "Who"
-        },
-        {
-          "responseId": "en:lesson-02:session-40:i12:r3",
-          "text": "Whose"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Олег написав власне оголошення від себе, без схвалення клубу. Запереченням скажіть, що воно неофіційне",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — керівниця відійшла, а ви хочете з нею поговорити; запитайте, де вона",
+      "accessibilityLabel": "Олег написав власне оголошення від себе, без схвалення клубу. Запереченням скажіть, що воно неофіційне",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — руководительница отошла, а вы хотите с ней поговорить; спросите, где она",
-          "uk": "Вставте слово — керівниця відійшла, а ви хочете з нею поговорити; запитайте, де вона"
+        "family": "phrase_builder",
+        "targetPhrase": "It is not official.",
+        "localizedMeaning": {
+          "ru": "Олег написал собственное объявление от себя, без одобрения клуба. Отрицанием скажите, что оно неофициальное",
+          "uk": "Олег написав власне оголошення від себе, без схвалення клубу. Запереченням скажіть, що воно неофіційне"
         },
-        "gappedTargetPhrase": "___ is the manager?",
-        "gapOptions": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "official"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-02:session-40:i12:r1",
-            "text": "Where"
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i12:r2",
-            "text": "Who"
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i12:r3",
-            "text": "Whose"
+            "responseId": "en:lesson-02:session-40:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Олег написав власне оголошення від себе, без схвалення клубу. Запереченням скажіть, що воно неофіційне",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is not official.`",
+              "uk": "тут потрібно `is` — `It is not official.`"
+            }
           }
         ],
-        "testedDimension": "Вставте слово — керівниця відійшла, а ви",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-02:session-40:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — керівниця відійшла, а ви",
-            "feedbackByLocale": {
-              "ru": "Получится «Кто руководитель?». Вы знаете, кто она, и теперь ищете её: `Where`.",
-              "uk": "Вийде «Хто керівниця?». Ви знаєте, хто вона, а тепер шукаєте її: `Where`."
-            }
-          },
-          {
-            "responseId": "en:lesson-02:session-40:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — керівниця відійшла, а ви",
-            "feedbackByLocale": {
-              "ru": "Это слово для вопроса «чей?». Сейчас нужно узнать место, поэтому начните с `Where`.",
-              "uk": "Це слово для запитання «чий?». Зараз треба дізнатися, де вона, тому почніть із `Where`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-02:session-40:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть — друг запитує про близнюків",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зустріч буде вільною бесідою за чаєм, без строгого формату. Коротко скажіть, що вона неформальна",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-40:i13:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть — друг запитує про близнюків",
+      "accessibilityLabel": "Зустріч буде вільною бесідою за чаєм, без строгого формату. Коротко скажіть, що вона неформальна",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-40:i13:audio",
-          "transcript": "Are they here?"
+          "transcript": "It's informal."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Are they here?",
-        "orderedTokens": [
-          "Are",
-          "they",
-          "here"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "targetPhrase": "It's informal.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -729,27 +737,68 @@
       "interactionId": "en:lesson-02:session-40:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — на стільці залишився шарф; покажіть його господареві й дізнайтеся, кому він належить",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ці матеріали не пов’язані з подорожами. Скажіть, що вони не стосуються теми",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-40:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-40:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-02:session-40:i14:r3",
+          "text": "is"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — на стільці залишився шарф; покажіть його господареві й дізнайтеся, кому він належить",
+      "accessibilityLabel": "Ці матеріали не пов’язані з подорожами. Скажіть, що вони не стосуються теми",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Whose is it?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — на стуле остался шарф; покажите его хозяину и узнайте, кому он принадлежит",
-          "uk": "Складіть фразу — на стільці залишився шарф; покажіть його господареві й дізнайтеся, кому він належить"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эти материалы не связаны с путешествиями. Скажите, что они не относятся к теме",
+          "uk": "Ці матеріали не пов’язані з подорожами. Скажіть, що вони не стосуються теми"
         },
-        "orderedTokens": [
-          "Whose",
-          "is",
-          "it"
+        "gappedTargetPhrase": "They ___ not relevant.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i14:r3",
+            "text": "is"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "testedDimension": "Ці матеріали не пов’язані з подорожами. Скажіть, що вони не стосуються теми",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-40:i14:r2",
+            "correct": false,
+            "testedDimension": "Ці матеріали не пов’язані з подорожами. Скажіть, що вони не стосуються теми",
+            "feedbackByLocale": {
+              "ru": "С `They` нужно `are`.",
+              "uk": "З `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i14:r3",
+            "correct": false,
+            "testedDimension": "Ці матеріали не пов’язані з подорожами. Скажіть, що вони не стосуються теми",
+            "feedbackByLocale": {
+              "ru": "Фраза — `They are not relevant`.",
+              "uk": "Фраза — `They are not relevant`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -757,32 +806,75 @@
       "interactionId": "en:lesson-02:session-40:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про формат іншої зустрічі",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-40:i15:r1",
+          "text": "It is formal."
+        },
+        {
+          "responseId": "en:lesson-02:session-40:i15:r2",
+          "text": "It is informal."
+        },
+        {
+          "responseId": "en:lesson-02:session-40:i15:r3",
+          "text": "It is official."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-40:i15:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "accessibilityLabel": "Послухайте фразу про формат іншої зустрічі",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-40:i15:audio",
-          "transcript": "Who is the intern?"
+          "transcript": "It is formal."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Who is the intern?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-40:i15:r1",
+            "targetText": "It is formal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i15:r2",
+            "targetText": "It is informal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i15:r3",
+            "targetText": "It is official.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-40:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про формат іншої зустрічі",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `formal`, а в этом варианте — `informal`.",
+              "uk": "У записі останнє слово — `formal`, а в цьому варіанті — `informal`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про формат іншої зустрічі",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `formal`, а в этом варианте — `official`.",
+              "uk": "У записі останнє слово — `formal`, а в цьому варіанті — `official`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -790,31 +882,71 @@
       "interactionId": "en:lesson-02:session-40:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-40:i16:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-40:i16:audio",
-          "transcript": "She is not here."
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-40:i16:p1",
+            "target": "unofficial",
+            "meaningByLocale": {
+              "ru": "неофициальный",
+              "uk": "неофіційний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-40:i16:p2",
+            "target": "relevant",
+            "meaningByLocale": {
+              "ru": "относящийся к теме",
+              "uk": "такий, що стосується теми"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-40:i16:p3",
+            "target": "active",
+            "meaningByLocale": {
+              "ru": "действующий",
+              "uk": "діючий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-40:i16:p4",
+            "target": "formal",
+            "meaningByLocale": {
+              "ru": "строгий, официальный по стилю",
+              "uk": "строгий, офіційний за стилем"
+            }
+          }
+        ],
+        "leftColumn": [
+          "unofficial",
+          "relevant",
+          "active",
+          "formal"
+        ],
+        "rightColumn": [
+          "неофіційний",
+          "такий, що стосується теми",
+          "діючий",
+          "строгий, офіційний за стилем"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "She is not here.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -823,30 +955,40 @@
       "interactionId": "en:lesson-02:session-40:i17",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — перед виходом ви хочете попрощатися з близнюками, але не бачите їх; дізнайтеся в господаря, де вони",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна надіслала нове оголошення. Запитайте, чи воно офіційне",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — перед виходом ви хочете попрощатися з близнюками, але не бачите їх; дізнайтеся в господаря, де вони",
+      "audioTargetIds": [
+        "en:lesson-02:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Анна надіслала нове оголошення. Запитайте, чи воно офіційне",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where are the twins?",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — перед уходом вы хотите попрощаться с близнецами, но не видите их; узнайте у хозяина, где они",
-          "uk": "Складіть фразу — перед виходом ви хочете попрощатися з близнюками, але не бачите їх; дізнайтеся в господаря, де вони"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-40:i17:audio",
+          "transcript": "Is it official?"
         },
-        "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "twins"
-        ],
-        "authoredDistractorTokens": [
-          "Who"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it official?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
@@ -857,5 +999,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c59cf0c258a2884e6a5089de9d7d2876a71581dd35a3ec47c5087ba70cb10aaa"
+  "learnerFingerprint": "725d518231d374ca07bcf9a264ae40ae3705d549797734699725e1b90979adb4"
 }

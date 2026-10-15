@@ -44,3 +44,29 @@ Owner: Codex (файл), Ядро (ханк)
 Решение по 36 — за владельцем: «выпускаем» (точечный список, как для звуков) или вы чините.
 
 На сервере EAS гейт паритета пропускается, поэтому сборку 16.10 это не держит.
+
+## Дополнение 15.10 ~11:00 — решение владельца по 36 замечаниям: «Выпускаем 15, Codex чинит потом»
+
+- Все 36 записаны точечно в `scripts/learning_v2_owner_approved_factory_findings.v1.json` (в git), совпадение по всем полям замечания.
+- Фильтр — в том же нашем ханке `scopeFactoryReport` рабочей копии `build_release.mjs` (`ownerApprovedFactoryFindingKeys`), в git не положен.
+- **Первым смотреть:** `locale_interaction_shape_mismatch` в `en/l01/s09`, index 14, `en:lesson-01:session-09:i15`. Форма задания у ru и uk различается.
+- Остальные замечания по коду:
+  - `practice_after_independent_boundary` — 20;
+  - `intro_target_not_practiced` — 10;
+  - `invalid_independent_boundary` — 3;
+  - `independent_boundary_missing` — 2.
+
+### Что открылось после снятия паузы
+
+Пауза фабрики раньше обрывала `--check-source-release` до самой смысловой сверки. Теперь сверка выполняется и находит 135 расхождений между ИСХОДНИКАМИ (ваш незакоммиченный WIP) и выпуском.
+
+По занятиям: s02 1, s05 23, s08 23, s09 87, s10 1.
+
+По видам:
+- `source_answer_missing` — 45;
+- `source_raw_feedback_locale_parity` — 20 (s09);
+- `answers.correctResponseId` source↔release — 8 (s09);
+- `pair_grid_column_mismatch` — 6 (s05 i11);
+- intro uk page 3 в s09: в исходнике «Не пропускайте `is`», в выпуске «Реакция на шутку».
+
+Похоже, исходники уже ушли вперёд относительно выпущенной версии. Выпуск (то, что уезжает в приложение) согласован: файлы канон ↔ копия PASS, озвучка PASS. Нужен ваш ответ: исходники — это новая версия, которую надо заново выпустить, или откат?

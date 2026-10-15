@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "learning_v2_owner_approved_factory_findings_v1",
+  "decision": "одобрено владельцем 15.10 (~10:50, через координатора): «Выпускаем 15, Codex чинит потом» — замечания методики фабрики в выпускаемых s06–s15 не держат выпуск; правка Codex в следующем обновлении",
+  "approvedAt": "2026-10-15",
+  "approvedBy": "owner",
+  "removeWhen": "Codex исправит занятия; первым смотреть locale_interaction_shape_mismatch в en/l01/s09",
+  "match": "точное совпадение всех полей замечания",
+  "findings": [
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-06:i13",
+      "locale": "ru",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s06"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-06:i14",
+      "locale": "ru",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s06"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-06:i15",
+      "locale": "ru",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s06"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-06:i16",
+      "locale": "ru",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s06"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-06:i13",
+      "locale": "uk",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s06"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-06:i14",
+      "locale": "uk",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s06"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-06:i15",
+      "locale": "uk",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s06"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-06:i16",
+      "locale": "uk",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s06"
+    },
+    {
+      "code": "intro_target_not_practiced",
+      "page": 2,
+      "sessionIdentity": "en/l01/s06",
+      "target": "I am back."
+    },
+    {
+      "code": "intro_target_not_practiced",
+      "page": 3,
+      "sessionIdentity": "en/l01/s06",
+      "target": "I am done."
+    },
+    {
+      "code": "intro_target_not_practiced",
+      "page": 1,
+      "sessionIdentity": "en/l01/s07",
+      "target": "I am glad."
+    },
+    {
+      "code": "locale_interaction_shape_mismatch",
+      "index": 14,
+      "ruInteractionId": "en:lesson-01:session-09:i15",
+      "sessionIdentity": "en/l01/s09",
+      "ukInteractionId": "en:lesson-01:session-09:i15"
+    },
+    {
+      "code": "invalid_independent_boundary",
+      "interactionId": "en:lesson-01:session-09:i15",
+      "locale": "ru",
+      "purpose": "independent_check",
+      "reason": "locale_alignment",
+      "sessionIdentity": "en/l01/s09"
+    },
+    {
+      "code": "invalid_independent_boundary",
+      "interactionId": "en:lesson-01:session-09:i16",
+      "locale": "ru",
+      "purpose": "independent_check",
+      "reason": "missing_correct_text",
+      "sessionIdentity": "en/l01/s09"
+    },
+    {
+      "code": "independent_boundary_missing",
+      "locale": "ru",
+      "sessionIdentity": "en/l01/s09"
+    },
+    {
+      "code": "invalid_independent_boundary",
+      "interactionId": "en:lesson-01:session-09:i16",
+      "locale": "uk",
+      "purpose": "independent_check",
+      "reason": "missing_correct_text",
+      "sessionIdentity": "en/l01/s09"
+    },
+    {
+      "code": "independent_boundary_missing",
+      "locale": "uk",
+      "sessionIdentity": "en/l01/s09"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-10:i13",
+      "locale": "ru",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s10"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-10:i14",
+      "locale": "ru",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s10"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-10:i15",
+      "locale": "ru",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s10"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-10:i13",
+      "locale": "uk",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s10"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-10:i14",
+      "locale": "uk",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s10"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-10:i15",
+      "locale": "uk",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s10"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-11:i17",
+      "locale": "ru",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s11"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-11:i17",
+      "locale": "uk",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s11"
+    },
+    {
+      "code": "intro_target_not_practiced",
+      "page": 3,
+      "sessionIdentity": "en/l01/s11",
+      "target": "You are not wrong."
+    },
+    {
+      "code": "intro_target_not_practiced",
+      "page": 1,
+      "sessionIdentity": "en/l01/s12",
+      "target": "You are calm."
+    },
+    {
+      "code": "intro_target_not_practiced",
+      "page": 2,
+      "sessionIdentity": "en/l01/s12",
+      "target": "You are brave."
+    },
+    {
+      "code": "intro_target_not_practiced",
+      "page": 1,
+      "sessionIdentity": "en/l01/s13",
+      "target": "I am ready."
+    },
+    {
+      "code": "intro_target_not_practiced",
+      "page": 3,
+      "sessionIdentity": "en/l01/s13",
+      "target": "I am tall."
+    },
+    {
+      "code": "intro_target_not_practiced",
+      "page": 2,
+      "sessionIdentity": "en/l01/s14",
+      "target": "You are dry."
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-15:i17:s02",
+      "locale": "ru",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s15"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-15:i19:s02",
+      "locale": "ru",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s15"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-15:i17:s02",
+      "locale": "uk",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s15"
+    },
+    {
+      "code": "practice_after_independent_boundary",
+      "interactionId": "en:lesson-01:session-15:i19:s02",
+      "locale": "uk",
+      "purpose": "retrieval_practice",
+      "sessionIdentity": "en/l01/s15"
+    },
+    {
+      "code": "intro_target_not_practiced",
+      "page": 1,
+      "sessionIdentity": "en/l01/s15",
+      "target": "You are polite."
+    }
+  ]
+}

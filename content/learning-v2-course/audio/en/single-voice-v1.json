@@ -49252,6 +49252,309 @@
           "byteSize": 29184
         }
       ]
+    },
+    "l03/s51/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "libraries",
+          "file": "8e234035f43c1f1eccf828da85a6d996b904b0991b96003817cef6ee8e39ed66.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e234035f43c1f1eccf828da85a6d996b904b0991b96003817cef6ee8e39ed66.mp3",
+          "contentHash": "c970c9dabc7bb294fea74019d565d21da59ae65bb87bfa3f2fc3826ffb52101b",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l03/s51/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The libraries are here.",
+          "file": "28db46a018dc56e48e54a7729ebc5610f2efeb98c7e99d2ac26834c31825eb96.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28db46a018dc56e48e54a7729ebc5610f2efeb98c7e99d2ac26834c31825eb96.mp3",
+          "contentHash": "8d693a980dffb973b3b45808b51a5eb1dbd7f70ac386628df4cf11d28d46f52d",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l03/s51/intro/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is heavy.",
+          "file": "50c55cf2ce94d6670c99775b384e9b950c608ab6d3da887717cb82140689e37d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50c55cf2ce94d6670c99775b384e9b950c608ab6d3da887717cb82140689e37d.mp3",
+          "contentHash": "dd7badce0050c40800f37e849a5e9cc6a6e6daef64b373851828be7a8fe713a8",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l03/s51/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bedrooms are there.",
+          "file": "d53e56cdfccea97cea9c4b5f4c822ceefd4d1b9775daec8239cc52ef098a5586.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d53e56cdfccea97cea9c4b5f4c822ceefd4d1b9775daec8239cc52ef098a5586.mp3",
+          "contentHash": "37786252330b7a2f2ddd4aac293a6ad725e6db140172d59ab81896b08c5f1130",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l03/s51/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "libraries",
+          "file": "7641bb15c2de2171f65d619457978d17dc4507e6719f3ba959fd11411a135364.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7641bb15c2de2171f65d619457978d17dc4507e6719f3ba959fd11411a135364.mp3",
+          "contentHash": "3ddba3a205324bc7513af0fc787f9eff9b4825a78a0d5329194c64c4d034048b",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l03/s51/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "libraries",
+          "file": "01407d9e48e8846d1a8006ab4e9b51b2b5c35a311fc469121e8c4a81c5dcb18a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/01407d9e48e8846d1a8006ab4e9b51b2b5c35a311fc469121e8c4a81c5dcb18a.mp3",
+          "contentHash": "6f71c5bc3ec8f45cab48f2e3da2079a7464f4cbd64836deff368ea94eefef327",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l03/s51/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "libraries",
+          "file": "ff078b75e2a7038d93789ddf1e07fad54808b7a9890bf9c72abf0df1bb501e46.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ff078b75e2a7038d93789ddf1e07fad54808b7a9890bf9c72abf0df1bb501e46.mp3",
+          "contentHash": "ae8f411ac8a84c3d6180d2084af3194284d113a0cc7ddfe9d1e07489ca1d29a1",
+          "byteSize": 19584
+        },
+        {
+          "text": "heavy",
+          "file": "626bf910407ec848b363ba803c46db5bac80b4b5ab6a07027c83da0463f6340e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/22d5925ed64680ab5f3f6de7-ash.mp3",
+          "contentHash": "0b1d497f55173f25f1cc573c622ffaf3475fc17cfddc01cd0fbc886685c10ead",
+          "byteSize": 24192
+        },
+        {
+          "text": "ineffective",
+          "file": "ebec0033daf289b0f02bd39a26f2a5ab67b7a0bc37032dda8acc99fb8c09c2eb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebec0033daf289b0f02bd39a26f2a5ab67b7a0bc37032dda8acc99fb8c09c2eb.mp3",
+          "contentHash": "69d351b592c95eb64b90b08ddfaf451f37c333e5740f5303d6dcefc0d644e777",
+          "byteSize": 24192
+        },
+        {
+          "text": "bedrooms",
+          "file": "04f9685bde940c87a0a65d3d4c2e3b51b5e2e59226e583ac2a958103540885c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/04f9685bde940c87a0a65d3d4c2e3b51b5e2e59226e583ac2a958103540885c6.mp3",
+          "contentHash": "63953a259e3f19d9bf8fab125c747af8f6c388de64588013e266988b6c4e928e",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l03/s51/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "These are libraries.",
+          "file": "f8e7a382620145002e08ec9ba8aa4e31be2134055bd98f467b8c83b261960f2d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f8e7a382620145002e08ec9ba8aa4e31be2134055bd98f467b8c83b261960f2d.mp3",
+          "contentHash": "24a86e4461c8788e228a18dfc06b7b6d18af7402ca156ba4f9765dd061e5e27f",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l03/s51/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The libraries are here.",
+          "file": "3dec0559d46900b9cd1be209bd3218f29c7685eafc7085e5546332ae2d0646f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3dec0559d46900b9cd1be209bd3218f29c7685eafc7085e5546332ae2d0646f3.mp3",
+          "contentHash": "76515b5a8ef6232b796917fca88ae03cdc183067e45c5e46aabef346033be26a",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l03/s51/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's heavy.",
+          "file": "713816fbcd4b83d363dc04195ac658f6d798cf1cc6e44e921af3790faa9afe31.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/713816fbcd4b83d363dc04195ac658f6d798cf1cc6e44e921af3790faa9afe31.mp3",
+          "contentHash": "9eb495b95ef55f9b8e56971efb12f4f4a25f876c85451d526441d4b5eda22a35",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l03/s51/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Those are libraries.",
+          "file": "1beb91eb4fd2689272ba585f285b7a180b412e8dc3a45aba8f302f8582e0d7c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1beb91eb4fd2689272ba585f285b7a180b412e8dc3a45aba8f302f8582e0d7c6.mp3",
+          "contentHash": "66a156ccd3badd72cce7f677d68f2dc661866edc2cee6e7093eac414c1959fcf",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l03/s51/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It is ineffective.",
+          "file": "de34b073e0d515d3c3b653ab548bd531a7d74f585d83205e41fa106d1a6dcf66.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de34b073e0d515d3c3b653ab548bd531a7d74f585d83205e41fa106d1a6dcf66.mp3",
+          "contentHash": "c3b53b42a54eb8e05d8677187c45e02be78dab929f89e6f9047d4f6da6322473",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l03/s51/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "libraries",
+          "file": "01407d9e48e8846d1a8006ab4e9b51b2b5c35a311fc469121e8c4a81c5dcb18a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/01407d9e48e8846d1a8006ab4e9b51b2b5c35a311fc469121e8c4a81c5dcb18a.mp3",
+          "contentHash": "6f71c5bc3ec8f45cab48f2e3da2079a7464f4cbd64836deff368ea94eefef327",
+          "byteSize": 20352
+        },
+        {
+          "text": "bedrooms",
+          "file": "1bd4eaf3eef3312144eb0f7d50608a4757fff708d378145f8c7fc4730864a52d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1bd4eaf3eef3312144eb0f7d50608a4757fff708d378145f8c7fc4730864a52d.mp3",
+          "contentHash": "f1384bad32007fb48c0b7ad9defd897906ded78990a019a6d5dadcb4e6c07f11",
+          "byteSize": 30720
+        },
+        {
+          "text": "here",
+          "file": "de3734eb9148ae497907a90c2446fa2f79cc974cc87c2dee5e10950d4c11ce5b.mp3",
+          "assetPath": "assets/audio/learning-v2/session1-production-v1/here-onyx.mp3",
+          "contentHash": "466763eb8efaae21630ce58e33301e771417bd0ac7ff21702afc6321efa8942f",
+          "byteSize": 21888
+        },
+        {
+          "text": "there",
+          "file": "b58c3078acecc660e1cac0b0e3e2c7eb5d500fd6c4d5c65cc20f3061e0c70a76.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e244f187f696561d5fd7e00f-onyx.mp3",
+          "contentHash": "423cf31ed87aa7fa64ad507ce6b916b752688225cd64696463af1a4ec85a566d",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l03/s51/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "These bedrooms are here.",
+          "file": "f24be5712a32f7dde3cd64ccbc26f4a628cb3b19b8a9156b70e04f1d1c08bdf5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f24be5712a32f7dde3cd64ccbc26f4a628cb3b19b8a9156b70e04f1d1c08bdf5.mp3",
+          "contentHash": "1d31e61ae7d089e31bea6e09cf5df964706d6640d6418791963bc856b8220434",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l03/s51/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Those libraries are there.",
+          "file": "32c402d134be120263ea73e0e1eac2e0f4f7182632c6e121df0d122f11e7b453.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/32c402d134be120263ea73e0e1eac2e0f4f7182632c6e121df0d122f11e7b453.mp3",
+          "contentHash": "48ecfd0ec6e16808f08fe80ff8a25c1acc51bd8d018967b46abb6b1ba41535a4",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l03/s51/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's ineffective.",
+          "file": "ab88c9005dcaa35bff04b0187d2e5cc7c0bbf12f73458ed781817c1e9224d13b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab88c9005dcaa35bff04b0187d2e5cc7c0bbf12f73458ed781817c1e9224d13b.mp3",
+          "contentHash": "6f8f76159b7daf50862fa11f5de25e3b6a86849476a1affbb6434a4da7c8ad34",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l03/s51/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The libraries are here.",
+          "file": "fdd3e68495236fddf9dd55a242ba46ce78a25285f470fca5619ec65aca1fb60f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fdd3e68495236fddf9dd55a242ba46ce78a25285f470fca5619ec65aca1fb60f.mp3",
+          "contentHash": "a6acd9be0f200fc42179865abc2545ee92002412abb22040971072b5eabe2703",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l03/s51/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It is heavy.",
+          "file": "1f720ae17250147cd96d4bde262667a90a882ff97b683a43792f5a9cb9c2ec7b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f720ae17250147cd96d4bde262667a90a882ff97b683a43792f5a9cb9c2ec7b.mp3",
+          "contentHash": "29d5bd3cf7479e94b5252684c90cbaeda99c6e7b5f7f73f51ce48f535476fee4",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l03/s51/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "libraries",
+          "file": "8e234035f43c1f1eccf828da85a6d996b904b0991b96003817cef6ee8e39ed66.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e234035f43c1f1eccf828da85a6d996b904b0991b96003817cef6ee8e39ed66.mp3",
+          "contentHash": "c970c9dabc7bb294fea74019d565d21da59ae65bb87bfa3f2fc3826ffb52101b",
+          "byteSize": 41088
+        },
+        {
+          "text": "heavy",
+          "file": "f8fcb481bde0c4f05ad4370abd71a78b994069b6aee4e279722c40bf49193b91.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/22d5925ed64680ab5f3f6de7-nova.mp3",
+          "contentHash": "a63d03b8d3e0149a7f06e6fc06e94a6c1d466ad3f53c2b58084ebf1c2ccde5f5",
+          "byteSize": 15744
+        },
+        {
+          "text": "ineffective",
+          "file": "8ce564193e3c4707b3cbaf428ab39babc8e9dfc3e986db67b10dc33f1087f7cb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ce564193e3c4707b3cbaf428ab39babc8e9dfc3e986db67b10dc33f1087f7cb.mp3",
+          "contentHash": "5a4291d32ea7d6f00f945c2216c18700b2df0e9965d33da00fc828dc28728f1c",
+          "byteSize": 32640
+        },
+        {
+          "text": "bedrooms",
+          "file": "b9d69bfb1908459876fcf3ba28c1e1b709f1f18ce0aa0c9f13305da8473d534c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b9d69bfb1908459876fcf3ba28c1e1b709f1f18ce0aa0c9f13305da8473d534c.mp3",
+          "contentHash": "21b70cacea2bdcb32f5669a0d9be3025a3d5f3262d4cc4e99afab9303be8c73e",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l03/s51/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The libraries are there.",
+          "file": "6607331e4fc3d420c7ef9f69fe41e918843dbfdff271e75853b1afb4236144ba.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6607331e4fc3d420c7ef9f69fe41e918843dbfdff271e75853b1afb4236144ba.mp3",
+          "contentHash": "71841acf019c3d7cc19ac2471562f0d01d4ef8a5c6e77509a0aeb26f03869685",
+          "byteSize": 26880
+        }
+      ]
     }
   },
   "settings": {

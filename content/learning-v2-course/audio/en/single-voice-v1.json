@@ -52888,6 +52888,309 @@
           "byteSize": 24576
         }
       ]
+    },
+    "l04/s07/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a playground here.",
+          "file": "701963f088a2cbf95a0b98fa64da4a9368478581cdf3b66fe0b403105db09e1e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/701963f088a2cbf95a0b98fa64da4a9368478581cdf3b66fe0b403105db09e1e.mp3",
+          "contentHash": "db9ebb20bcfbf6ad20d64062e64f2e6359c9acdc6bc1231f9bce9f00cb02c66b",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s07/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There are cafes here.",
+          "file": "d13788c5bb42002c1bdd549e109da465de9a57df0aae2d432b30aafa38e94d72.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d13788c5bb42002c1bdd549e109da465de9a57df0aae2d432b30aafa38e94d72.mp3",
+          "contentHash": "3e21345912ae806491a1de22e0d9682c3f884a5b55310f9fcfaf2ccb8778fc94",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s07/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's necessary.",
+          "file": "4977377845b4174160d1a8878eac338e1719bf8c63183a4ffafabf1d68076e5c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4977377845b4174160d1a8878eac338e1719bf8c63183a4ffafabf1d68076e5c.mp3",
+          "contentHash": "70a5517f93ee0781424faa6995c38536f2fce860fdd817f9152d297c28f8c3ae",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s07/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a cup.",
+          "file": "3d9f801d6e58a804a1d906f48f695fd4957b73a452661b7a03bc27d29a34e411.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5c1ee511feaa041f9455d27a-ash.mp3",
+          "contentHash": "fe19baaee4d6e53569e4fa5a6e99c57836cbd74848669dc94787d931fcf49b41",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s07/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "playground",
+          "file": "7d32ec68421b410914d333990bac59c30b13d0ac7498e505d54a90a12fc003a9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d32ec68421b410914d333990bac59c30b13d0ac7498e505d54a90a12fc003a9.mp3",
+          "contentHash": "de3898bdfdefa706e503ff047ab0225e83c31931e532c56b2ab24b42300e8f9d",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s07/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "playground",
+          "file": "876def5b2d34b4444f9ce368ecfd165cda408cf825148c1c78db087c9789078c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/876def5b2d34b4444f9ce368ecfd165cda408cf825148c1c78db087c9789078c.mp3",
+          "contentHash": "803d573fcf35c23a9baae2a189469ac5a225e6a74403b5a282d82c89d78a2857",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s07/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "playground",
+          "file": "876def5b2d34b4444f9ce368ecfd165cda408cf825148c1c78db087c9789078c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/876def5b2d34b4444f9ce368ecfd165cda408cf825148c1c78db087c9789078c.mp3",
+          "contentHash": "803d573fcf35c23a9baae2a189469ac5a225e6a74403b5a282d82c89d78a2857",
+          "byteSize": 28416
+        },
+        {
+          "text": "necessary",
+          "file": "f4e54edacda46ecfb0571f0e23577d8230a51379a189166ae2ae316f17b253e0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f4e54edacda46ecfb0571f0e23577d8230a51379a189166ae2ae316f17b253e0.mp3",
+          "contentHash": "06385d3a4f2a15c9fa8068bc386ef01bc12bb50ad7058e0160b8c2b4b4358e85",
+          "byteSize": 18816
+        },
+        {
+          "text": "cup",
+          "file": "9ab4a63b8bbdc5934eea27570b98305d3510240d17c58381b8e5b0d2d1b4e141.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c6171781d65f3ccce1135e3c-coral.mp3",
+          "contentHash": "f1babfe346de9e2caa271f115d8d1314053bb31937cf9ae8612170dc9157ee1d",
+          "byteSize": 37248
+        },
+        {
+          "text": "cafes",
+          "file": "86f90599a8627e823e54a4c3c3252a752264846344be7ea8099065ac0120e475.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/86f90599a8627e823e54a4c3c3252a752264846344be7ea8099065ac0120e475.mp3",
+          "contentHash": "7e46d644556b23d7bf37133b03e361d360a74453f2bd4d33ffa9e432469c1ae0",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l04/s07/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a playground.",
+          "file": "d880170e16410fee94fc5ebf3a4b21f719f71cf9a877ea3610bcf5cbb0406141.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d880170e16410fee94fc5ebf3a4b21f719f71cf9a877ea3610bcf5cbb0406141.mp3",
+          "contentHash": "ae0d74db035df1ff0ddb397824e4b75e87bca835b4ca8acde3a9d41ae847d06e",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s07/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There are cafes here.",
+          "file": "d13788c5bb42002c1bdd549e109da465de9a57df0aae2d432b30aafa38e94d72.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d13788c5bb42002c1bdd549e109da465de9a57df0aae2d432b30aafa38e94d72.mp3",
+          "contentHash": "3e21345912ae806491a1de22e0d9682c3f884a5b55310f9fcfaf2ccb8778fc94",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s07/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It's necessary.",
+          "file": "905ce1121f78dc7b38cd07ddfd97883590fea2eb11b5a1f2e1e8cb6e38aca071.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/905ce1121f78dc7b38cd07ddfd97883590fea2eb11b5a1f2e1e8cb6e38aca071.mp3",
+          "contentHash": "f3129bd7e6d7827863171075d0cd62a80cea2094f168fa11d01869fcde0a7842",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s07/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a playground here.",
+          "file": "701963f088a2cbf95a0b98fa64da4a9368478581cdf3b66fe0b403105db09e1e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/701963f088a2cbf95a0b98fa64da4a9368478581cdf3b66fe0b403105db09e1e.mp3",
+          "contentHash": "db9ebb20bcfbf6ad20d64062e64f2e6359c9acdc6bc1231f9bce9f00cb02c66b",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s07/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It is necessary.",
+          "file": "16022b292fbcad4346049cdba2b9b0be79b8d911d0dfb5277d40977b1c676e90.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/16022b292fbcad4346049cdba2b9b0be79b8d911d0dfb5277d40977b1c676e90.mp3",
+          "contentHash": "dc289992b66ee3f42af30c546c75afa7ed04b9d5771ae6c9d42ed6bb6199b83f",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s07/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "playground",
+          "file": "9981a1f331814934fcb15b3279799eb1204f6ee562e8524e5bffa7e40cc35fd1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9981a1f331814934fcb15b3279799eb1204f6ee562e8524e5bffa7e40cc35fd1.mp3",
+          "contentHash": "62b9f2fff5cd62323bf50e5cde71d30820f843e96ac64b4cd0735d00015dc069",
+          "byteSize": 6912
+        },
+        {
+          "text": "cafes",
+          "file": "eeedabc494d25ad1da98b48aca7359e0881eb3e948fd67e8335f9638a22e63fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eeedabc494d25ad1da98b48aca7359e0881eb3e948fd67e8335f9638a22e63fc.mp3",
+          "contentHash": "83239ea1fd67f48167ac52415bace9c76dbe79f81dc6a2a66bcd796bf20b46c1",
+          "byteSize": 27648
+        },
+        {
+          "text": "here",
+          "file": "c085a062a5e60c0367830011bfd636d3a4d6ec7896f47a8bad0c59f984917fd4.mp3",
+          "assetPath": "assets/audio/learning-v2/session1-production-v1/here-nova.mp3",
+          "contentHash": "b14fc6fc4012cc40fe11944f0d5bb0dd0523d45f02a8ceed6b0a8c3f11c0c7c7",
+          "byteSize": 22656
+        },
+        {
+          "text": "there",
+          "file": "cbeace6992782d5bce3eed2b9c32dc6e7e38aefeb5ceca0b94e52ffa80926fc0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e244f187f696561d5fd7e00f-nova.mp3",
+          "contentHash": "ab6003d569a4b745a57ab0266af5dc85789297e0153aca206b7599166f491d80",
+          "byteSize": 14208
+        }
+      ]
+    },
+    "l04/s07/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a cup here.",
+          "file": "c554e8b35ddc825797770a12e9178cd9ca41530f172980fc474f3d30a79519d3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c554e8b35ddc825797770a12e9178cd9ca41530f172980fc474f3d30a79519d3.mp3",
+          "contentHash": "38e458c9ab1851bd5d5fd2025068271376cb6a7c4bb96fe5c08896154c8964e6",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l04/s07/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a playground.",
+          "file": "e9a9c2a0edd88ce8ce3cb4600a43b4a43feb12092dad62b85818df7c7d2b7e06.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e9a9c2a0edd88ce8ce3cb4600a43b4a43feb12092dad62b85818df7c7d2b7e06.mp3",
+          "contentHash": "60f70640f1b4246bf7d85f8983dd6641519c9c47e96fd6615a8197589a7c08b7",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s07/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That is a cup.",
+          "file": "cda599f0a7305b0f90558fe12ffd953bf9f12b079fde060079a0582999fc19ed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cda599f0a7305b0f90558fe12ffd953bf9f12b079fde060079a0582999fc19ed.mp3",
+          "contentHash": "28af965db91a695d8c5583097e13df1daaa5601ae23e8e7f77b83b6a7b8d4a34",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l04/s07/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There are cafes there.",
+          "file": "14a331ea90cb1a60708902ac8b7e7663a49ab73ed9b417d6aafc8b016896925b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/14a331ea90cb1a60708902ac8b7e7663a49ab73ed9b417d6aafc8b016896925b.mp3",
+          "contentHash": "c1b500aa14638f43e86e5c1346438880a4c6962a285259a28a4e5f49ba739d0c",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s07/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "That is a playground.",
+          "file": "e623965fb432397c019f26cb4bf3f259c39553de86ca18dabcd8e375154b7fc4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e623965fb432397c019f26cb4bf3f259c39553de86ca18dabcd8e375154b7fc4.mp3",
+          "contentHash": "c5f9fef6e76104e7afc1c181fb25d23daf15294424ea920f8f1982c5893cfc4a",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s07/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "playground",
+          "file": "7d32ec68421b410914d333990bac59c30b13d0ac7498e505d54a90a12fc003a9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d32ec68421b410914d333990bac59c30b13d0ac7498e505d54a90a12fc003a9.mp3",
+          "contentHash": "de3898bdfdefa706e503ff047ab0225e83c31931e532c56b2ab24b42300e8f9d",
+          "byteSize": 27648
+        },
+        {
+          "text": "necessary",
+          "file": "5f28d142b5c0f3a02ff6f32e65aa5af6c56acf16d74405bd56a5398f99f1468c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5f28d142b5c0f3a02ff6f32e65aa5af6c56acf16d74405bd56a5398f99f1468c.mp3",
+          "contentHash": "3255295a17d1253906ec988e605462d7c5fc778f81a48fbcf1d3e5a1d9877639",
+          "byteSize": 18816
+        },
+        {
+          "text": "cup",
+          "file": "615cbefc025ae1d1581d41da139e030ceee5d6e96f0aa0936d689136a3eb95bb.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c6171781d65f3ccce1135e3c-onyx.mp3",
+          "contentHash": "6432bd975c2431510552729f9a2bc5b6293ea26bab0911158fc2a623c2156b58",
+          "byteSize": 28416
+        },
+        {
+          "text": "cafes",
+          "file": "7875748d2b5e9191f0d0406f14db09e37cd968461fe8122c7938338441d50f8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7875748d2b5e9191f0d0406f14db09e37cd968461fe8122c7938338441d50f8c.mp3",
+          "contentHash": "4af84bf4c0fdf640e985468b81fb8a821b1a24e614594cba03dfc87722679f5b",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l04/s07/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a playground here.",
+          "file": "21e85ab42222676071a11bfbb97941095f48105776aa19f558ce30d88125e0d7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/21e85ab42222676071a11bfbb97941095f48105776aa19f558ce30d88125e0d7.mp3",
+          "contentHash": "5fbffe1e73f0cd9546052b4542df9d317396444b98ab2e9af03928f2d94b838f",
+          "byteSize": 34944
+        }
+      ]
     }
   },
   "settings": {

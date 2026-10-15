@@ -337,6 +337,7 @@ import {
 } from './app_messages';
 import { getDevAppMessage, subscribeDevAppMessage } from './dev_social_state';
 import { readFreshInstallVerdict, skipAnnouncementsForFreshInstall } from './fresh_install_gate';
+import { readOrInitAnnouncementFloor, skipAnnouncementsBeforeFloor } from './announcement_version_floor';
 import {
   getIntroFullAccessState,
   startIntroFullAccessAfterOnboarding,
@@ -1503,7 +1504,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         setPersonalAdminMessage(pickNextLoginPersonalMessage(snapshot));
         // зачем (координатор 12.10): новичку — после онбординга < суток — объявления «что нового» не показываем (app/fresh_install_gate.ts).
-        const queue = listPendingAppMessageModals(snapshot, hasPremiumAccess);
+        // зачем (координатор 15.10): граница ставится при первом обращении 2.0 даже с пустой очередью — анонсы «всем»,
+        // созданные раньше неё (1.6.x), окном не всплывают (app/announcement_version_floor.ts).
+        const floorMs = await readOrInitAnnouncementFloor();
+        const queue = skipAnnouncementsBeforeFloor(listPendingAppMessageModals(snapshot, hasPremiumAccess), floorMs);
         const verdict = queue.length > 0 ? await readFreshInstallVerdict() : null;
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         // зачем (Авторизация 12.10, system-012): пока стоит dev `appmessage`, сетевое обновление не затирает демо-сообщение в окне (в сторе геттер = null)

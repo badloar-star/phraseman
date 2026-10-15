@@ -23,6 +23,7 @@ import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contrac
 import { MISTAKE_PRACTICE_MAX_SESSION, mistakePracticeSessionCostsEnergy } from '../modules/mistake-practice/session';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeHubSnapshot } from './mistake_practice_insights';
+import { isDevMistakesDemoOn } from './dev_mistakes_demo';
 import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
 import { rememberMistakeDetailDraft } from './mistake_detail_draft';
 import { safeRouterBack } from './navigation_back';
@@ -190,7 +191,11 @@ export default function MistakesHubScreen() {
       costs_energy: costsEnergy,
     });
     setSheetOpen(false);
-    router.push({ pathname: '/mistake_practice_session', params: sheetGroup === 'all' ? { length: 'all' } : { length: 'all', facetGroup: sheetGroup } } as never);
+    // зачем (бета-тест Б8, координатор 15.10; сперва логи): шторка обещает N ошибок — тренировка сверит это с тем, что получила
+    // (expect), а крестик вернёт в хаб, а не на «Карточки» (from=hub). Источник числа: демо-снимок dev или настоящий журнал.
+    console.log(`[MISTAKES-FLOW] хаб → тренировка: шторка=${sheetReady} готово=${readyCount} группа=${sheetGroup} источник=${isDevMistakesDemoOn() ? 'демо-снимок dev (mistakes=demo)' : 'журнал ошибок'}`); // guard-ok: журнал входа
+    const flowParams = { length: 'all', from: 'hub', expect: String(sheetReady) };
+    router.push({ pathname: '/mistake_practice_session', params: sheetGroup === 'all' ? flowParams : { ...flowParams, facetGroup: sheetGroup } } as never);
   }, [gate, readyCount, router, sheetGroup, sheetReady, target]);
 
   const openList = useCallback((filter: 'ready' | 'all' | 'corrected') => {

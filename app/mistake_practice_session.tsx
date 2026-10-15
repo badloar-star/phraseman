@@ -75,6 +75,7 @@ import { prewarmMistakeSessionExplanations } from './mistake_explain_prewarm';
 import { commitPreparedMistakePracticeSession, prepareMistakePracticeSession } from './mistake_practice_session_runtime';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { isDevMistakesDemoOn } from './dev_mistakes_demo';
 import {
   flushPendingMistakeCorrectionRewards,
   settleMistakePracticeAnswerRewards,
@@ -407,6 +408,10 @@ function MistakePracticeSessionScreen() {
     /** «Ещё N» (координатор 04.10): id ошибок через запятую — только неверные из прошлой сессии. */
     mistakeIds?: string | string[];
     returnTo?: string;
+    /** 'hub' — вход из хаба «Мои ошибки»: крестик без истории возвращает в хаб, а не на «Карточки» (бета Б8). */
+    from?: string;
+    /** Сколько ошибок обещала шторка хаба — сверка с собранной сессией в журнале [MISTAKES-FLOW]. */
+    expect?: string;
     maxReviewSessionId?: string;
     devRunesSeed?: string | string[];
     devJumpToFinale?: string | string[];
@@ -547,8 +552,12 @@ function MistakePracticeSessionScreen() {
         ? 'correction'
         : 'cards';
   const persistSession = entrySource === 'cards';
+  // зачем (бета-тест Б8, координатор 15.10): при входе из хаба «Мои ошибки» запасной путь назад — хаб, а не «Карточки»
+  // (если истории нет, например вход по dev-ссылке). Решение «назад» дополнительно пишет [NAV-BACK].
+  const backFallback = params.from === 'hub' ? '/mistakes_hub' : '/flashcards';
   const leavePractice = () => {
-    safeRouterBack(router, '/flashcards' as never);
+    console.log(`[MISTAKES-FLOW] крестик: вход=${params.from ?? 'не указан'} источник=${entrySource} запасной путь=${backFallback}`); // guard-ok: журнал выхода
+    safeRouterBack(router, backFallback as never);
   };
 
   useEffect(() => {
@@ -609,6 +618,14 @@ function MistakePracticeSessionScreen() {
         // зачем (владелец 2026-09-14): короткие наборы (1-4 ошибки) без энергии,
         // от 5 — 1 ⚡ один раз при старте (ENERGY_SESSION_COST, app/energy_contract.ts); повтор исправленных стоит столько же.
         const costsEnergy = mistakePracticeSessionCostsEnergy(prepared.session.initialCount);
+        // зачем (бета-тест Б8: шторка «2 ошибки», в тренировке «0 / 6»; сперва логи): сверка обещанного хабом с собранной сессией —
+        // продолжена ли старая сессия (resumed), сколько в очереди, и не демо-снимок ли был в хабе (dev mistakes=demo подменяет только хаб).
+        {
+          const expected = Number.parseInt(String(params.expect ?? ''), 10);
+          const progress = mistakePracticeAnsweredProgress(prepared.session);
+          const verdict = !Number.isFinite(expected) ? 'no_sheet' : expected === progress.total ? 'match' : prepared.resumed ? 'resumed' : isDevMistakesDemoOn() ? 'demo' : 'unknown';
+          console.log(`[MISTAKES-FLOW] тренировка: вход=${params.from ?? 'не указан'} шторка=${Number.isFinite(expected) ? expected : '—'} собрано=${prepared.session.initialCount} очередь=${prepared.session.queue.length} счётчик=${progress.answered}/${progress.total} старая сессия=${String(prepared.resumed)} демо хаба=${String(isDevMistakesDemoOn())} → ${verdict === 'no_sheet' ? 'шторки не было' : verdict === 'match' ? 'совпало' : verdict === 'resumed' ? 'РАСХОЖДЕНИЕ: продолжена старая сессия' : verdict === 'demo' ? 'РАСХОЖДЕНИЕ: хаб показывал демо-снимок dev' : 'РАСХОЖДЕНИЕ: причина не ясна'}`); // guard-ok: журнал входа
+        }
         console.log('[MISTAKES-GATE] session:energy', JSON.stringify({ // guard-ok: ветвление энергии (правило «сперва логи»)
           resumed: prepared.resumed, initialCount: prepared.session.initialCount, costsEnergy,
         }));
@@ -623,7 +640,7 @@ function MistakePracticeSessionScreen() {
           if (cancelled) return;
           if (energyResult === 'cancelled' || energyResult === 'insufficient') {
             console.log('[MISTAKES-GATE] session:not_paid → not saved', JSON.stringify({ energyResult })); // guard-ok
-            safeRouterBack(router, '/flashcards' as never);
+            safeRouterBack(router, backFallback as never);
             return;
           }
           if (energyResult === 'spent') void acknowledgeSessionStart(mistakeEnergyIntent.operationId);

@@ -10,7 +10,7 @@ const { chromium } = require('playwright');
 const fs = require('fs'); const path = require('path');
 const DIR = path.join(__dirname, '..', '..', 'docs', 'design', 'v2-app') + path.sep;
 const BASE = (process.env.MOCKUP_URL || 'http://127.0.0.1:8765/').replace(/\/?$/, '/');
-const PAGES = process.argv.slice(2).length ? process.argv.slice(2) : ['engagement-moments-v3-all.html', 'engagement-moments-v3-a.html', 'engagement-moments-v3-b.html', 'engagement-moments-v3-c.html', 'stories-avatar.html', 'streak-milestones.html', 'rings-flame-lab.html'];
+const PAGES = process.argv.slice(2).length ? process.argv.slice(2) : ['engagement-moments-v3-all.html', 'engagement-moments-v3-a.html', 'engagement-moments-v3-b.html', 'engagement-moments-v3-c.html', 'stories-avatar.html', 'streak-milestones.html', 'rings-flame-lab.html', 'account-progress-proposal.html'];
 const TAGS = ['div', 'span', 'section', 'button', 'b', 'p', 'a', 'ol', 'ul', 'li', 'svg', 'g'];
 const balance = (s) => { const out = {}; for (const t of TAGS) { const d = (s.match(new RegExp(`<${t}[\\s>]`, 'g')) || []).length - (s.match(new RegExp(`</${t}>`, 'g')) || []).length; if (d) out[t] = d; } return out; };
 (async () => { const br = await chromium.launch(); let bad = 0;
@@ -19,7 +19,11 @@ const balance = (s) => { const out = {}; for (const t of TAGS) { const d = (s.ma
     const src = fs.readFileSync(DIR + f, 'utf8').replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '').replace(/<!--[\s\S]*?-->/g, '');
     const stat = balance(src);
     const pg = await br.newPage({ viewport: { width: 1400, height: 1100 } }); const errs = []; pg.on('pageerror', (e) => errs.push(e.message.slice(0, 120)));
-    await pg.goto(BASE + f + '?v=' + Date.now(), { waitUntil: 'load' }); await pg.waitForTimeout(1200);
+    // зачем (14.10): «load» ждёт все звуки/картинки и на занятом сервере образцов падал по таймауту 30 с — проверка вылетала, а коммит проходил.
+    // Ждём DOM и готовый EM, две попытки; не загрузилась — это ОШИБКА проверки (не молчаливый пропуск).
+    let loaded = false; for (let k = 0; k < 2 && !loaded; k++) { try { await pg.goto(BASE + f + '?v=' + Date.now(), { waitUntil: 'domcontentloaded', timeout: 60000 }); await pg.waitForFunction(() => document.readyState !== 'loading' && (window.EM || !document.querySelector('script[src*="engagement-moments"]')), null, { timeout: 30000 }); loaded = true; } catch (e) { console.log(`[MARKUP-CHECK] ${f}: попытка ${k + 1} не загрузилась — ${e.message.split(String.fromCharCode(10))[0]}`); } }
+    if (!loaded) { bad++; console.log(`[MARKUP-CHECK] ${f}: страница не загрузилась → ОШИБКА`); await pg.close(); continue; }
+    await pg.waitForTimeout(1200);
     const r = await pg.evaluate((TAGS) => {
       const balance = (s) => { const out = {}; for (const t of TAGS) { const d = (s.match(new RegExp(`<${t}[\\s>]`, 'g')) || []).length - (s.match(new RegExp(`</${t}>`, 'g')) || []).length; if (d) out[t] = d; } return out; };
       const under = {}; if (window.EMA) for (const k of Object.keys(EMA).filter((k) => /Under$|^plusSheet$/.test(k))) { try { const b = balance(EMA[k]({})); if (Object.keys(b).length) under[k] = b; } catch (e) { under[k] = 'ERR ' + e.message.slice(0, 60); } }

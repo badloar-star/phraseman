@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вход и прогресс — предложение</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="engagement-moments.css">
+<link rel="stylesheet" href="engagement-moments-v2.css">
+<link rel="stylesheet" href="engagement-moments-v3.css">
+<link rel="stylesheet" href="engagement-moments-app.css">
+<style>
+/* зачем (координатор 14.10, аудит Авторизации): человек ждёт входа ~15 с и смены аккаунта ~35 с, глядя на одну неподвижную фразу.
+   ПРЕДЛОЖЕНИЕ, нужно решение владельца; в код — после R1. Каждое предложение — рядом с тем, что в коде сейчас, на настоящих экранах 2.0
+   в текущей теме (Аврора): шторка входа = RegistrationPromptModal, карточка смены = settings.tsx (stage 'wiping'), Главная = homeUnder,
+   Настройки = SettingsGlassGroup «ПРОФИЛЬ». Тексты этапов — предложение, переводы после решения. */
+.em-page .proposal { display: inline-block; margin-top: 10px; padding: 6px 12px; border-radius: 999px; background: #3A2E12; color: #F0C551; font-size: 13px; font-weight: 700; letter-spacing: .3px; }
+.em-ph .ap-dim { position: absolute; inset: 0; background: var(--dim); z-index: 40; }
+/* шторка входа — RegistrationPromptModal: радиус 24, ручка 36×5, заливка opaqueSheet, заголовок 25/31 */
+.em-ph .ap-sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 20px 34px; border-radius: 24px 24px 0 0; background: linear-gradient(180deg, var(--sheetplate1), var(--sheetplate2)); box-shadow: var(--sho); }
+.em-ph .ap-grab { width: 36px; height: 5px; border-radius: 3px; margin: 0 auto 14px; background: var(--mu); opacity: .5; }
+.em-ph .ap-x { position: absolute; right: 14px; top: 14px; width: 36px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--control) 70%, transparent); color: var(--sc); }
+.em-ph .ap-title { font-size: 25px; line-height: 31px; font-weight: 760; text-align: center; margin-top: 8px; }
+.em-ph .ap-sub { font-size: 16px; line-height: 22px; color: var(--sc); text-align: center; margin-top: 8px; }
+.em-ph .ap-prov { height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; margin-top: 10px; }
+.em-ph .ap-prov.g { background: #F2F1F6; color: #0B0C0E; } .em-ph .ap-prov.a { background: #0B0C0E; color: #fff; }
+.em-ph.lite .ap-prov.a { background: #000; }
+.em-ph .ap-prov.dis { opacity: .45; }
+.em-ph .ap-trust { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 14px; color: var(--mu); font-size: 13px; }
+/* плашка ожидания — busyPanel: opaqueControl, радиус 12, мин. 42, спиннер + подпись caption 700 secondary */
+.em-ph .ap-busy { margin-top: 16px; padding: 10px 12px; border-radius: 12px; background: var(--control); display: flex; align-items: center; gap: 10px; font-size: 13px; line-height: 18px; font-weight: 700; color: var(--sc); min-height: 42px; }
+.em-ph .ap-spin { width: 18px; height: 18px; flex: none; border-radius: 50%; border: 2.5px solid color-mix(in srgb, var(--sc) 30%, transparent); border-top-color: var(--sc); animation: apSpin 800ms linear infinite; }
+@keyframes apSpin { to { transform: rotate(360deg); } }
+/* этапы (предложение): ✓ пройден · спиннер идёт · точка ждёт; текущий — цвет текста, остальные — secondary */
+.em-ph .ap-steps { display: flex; flex-direction: column; gap: 10px; padding: 12px 14px; }
+.em-ph .ap-step { display: flex; align-items: center; gap: 10px; font-size: 15px; line-height: 20px; font-weight: 600; color: var(--sc); transition: color 240ms; }
+.em-ph .ap-step .mk { width: 20px; height: 20px; flex: none; display: flex; align-items: center; justify-content: center; }
+.em-ph .ap-step .dot { width: 7px; height: 7px; border-radius: 50%; background: color-mix(in srgb, var(--sc) 45%, transparent); }
+.em-ph .ap-step .ok { width: 20px; height: 20px; border-radius: 10px; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; font-size: 13px; animation: emPop 300ms var(--em-ease-pop) both; }
+.em-ph .ap-step.cur { color: var(--tx); }
+.em-ph .ap-step.cur .ap-spin { width: 16px; height: 16px; border-color: color-mix(in srgb, var(--tx) 25%, transparent); border-top-color: var(--tx); }
+/* карточка смены аккаунта — settings.tsx stage 'wiping': тёмный экран, карточка ≤280, радиус 16, поля 28 */
+.em-ph .ap-wipe { position: absolute; inset: 0; z-index: 50; background: rgba(0,0,0,.86); display: flex; align-items: center; justify-content: center; padding: 0 32px; }
+.em-ph .ap-wcard { width: 100%; max-width: 280px; border-radius: 16px; padding: 28px; background: var(--card); display: flex; flex-direction: column; align-items: center; text-align: center; }
+.em-ph .ap-wcard .t { font-size: 16px; line-height: 22px; font-weight: 700; margin-top: 16px; }
+.em-ph .ap-wcard .s { font-size: 14px; line-height: 19px; color: var(--mu); margin-top: 6px; }
+.em-ph .ap-wcard .ap-steps { padding: 0; margin-top: 18px; align-self: stretch; }
+/* Главная — тихий признак под шапкой */
+.em-ph .ap-quiet { display: inline-flex; align-items: center; gap: 8px; margin: 10px 4px 0; padding: 6px 12px 6px 10px; border-radius: 999px; background: color-mix(in srgb, var(--control) 60%, transparent); font-size: 13px; line-height: 18px; font-weight: 600; color: var(--sc); transition: opacity 300ms; }
+.em-ph .ap-quiet .ap-spin { width: 14px; height: 14px; border-width: 2px; }
+.em-ph .ap-quiet .okc { color: var(--acc-text); font-size: 15px; }
+/* Настройки — группа «ПРОФИЛЬ» (SettingsGlassGroup/Row) */
+.em-ph .ap-set { padding: 8px 16px 0; }
+.em-ph .ap-set .h { font-size: 34px; line-height: 41px; font-weight: 800; letter-spacing: -.6px; margin: 6px 4px 18px; }
+.em-ph .ap-eyebrow { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 1.4px; color: var(--sc); margin: 0 4px 8px; text-transform: uppercase; }
+.em-ph .ap-group { border-radius: 18px; overflow: hidden; background: linear-gradient(180deg, var(--plate1), var(--plate2)); box-shadow: var(--sh); }
+.em-ph .ap-row { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 14px; }
+.em-ph .ap-row + .ap-row { box-shadow: inset 0 1px 0 var(--line); }
+.em-ph .ap-row .tile { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--control) 46%, transparent); color: var(--icon-tint); }
+.em-ph .ap-row .ttl { flex: 1; font-size: 16px; line-height: 20px; font-weight: 600; }
+.em-ph .ap-row .val { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; line-height: 20px; color: var(--sc); }
+.em-ph .ap-row .val .ap-spin { width: 14px; height: 14px; border-width: 2px; }
+.em-ph .ap-ghost { height: 120px; border-radius: 18px; margin-top: 16px; background: linear-gradient(180deg, var(--plate1), var(--plate2)); opacity: .55; }
+@media (prefers-reduced-motion: reduce) { .em-ph .ap-spin { animation-duration: 2.4s; } }
+</style>
+</head>
+<body>
+<div class="em-page">
+  <div class="em-top"><div><span class="em-stage">Аудит Авторизации · 14.10</span><h1 class="page-h1" style="margin-top:10px">Вход и прогресс — что человек видит, пока ждёт</h1>
+  <p class="page-lead">Вход длится до ~15 с, смена аккаунта — до ~35 с, а на экране всё это время одна неподвижная фраза. Ниже четыре места: слева — как в коде сейчас, справа — предложение. Этапы показывают, что работа идёт и сколько осталось; если шаг затянулся, текст не меняется на тревожный — просто идёт следующий этап.</p>
+  <span class="proposal">ПРЕДЛОЖЕНИЕ — нужно решение владельца · в код после R1</span>
+  <div class="em-tools" style="margin-top:12px"><span class="em-btn pri" id="em-theme">Тема: Аврора тёмная</span></div></div>
+  </div>
+  <nav class="em-toc" id="toc"></nav>
+  <div id="root"></div>
+</div>
+<script src="spire-tower-render.js"></script>
+<script src="engagement-moments.js"></script>
+<script src="engagement-moments-v2.js"></script>
+<script src="engagement-moments-v3.js"></script>
+<script src="engagement-moments-app.js"></script>
+<script>
+(() => {
+const { moment, render } = EM;
+const { seq } = EM3;
+const { io, coin, homeUnder, tabbar } = EMA;
+const G = (hex, s = 18, extra = '') => `<span class="io" style="font-size:${s}px;${extra}">&#x${hex};</span>`;
+const GLY = { person: 'f4ac', flag: 'f311', globe: 'f350', shield: 'f578', check: 'f21d', google: 'f3f5', apple: 'f3d8', lock: 'f3c7', close: 'f24a' };
+const spin = '<span class="ap-spin"></span>';
+
+// ---------- 1. шторка входа (RegistrationPromptModal) поверх Главной ----------
+const signSheet = (busy) => `<div class="ap-dim"></div><section class="ap-sheet"><div class="ap-grab"></div><span class="ap-x">${G(GLY.close, 18)}</span>
+  <div style="display:flex;justify-content:center;margin-top:6px">${coin(5, 64)}</div>
+  <div class="ap-title">Всё в безопасности</div><div class="ap-sub">Быстрый вход. Прогресс синхронизируется между устройствами.</div>
+  <div style="margin-top:14px"><div class="ap-prov g dis">${G(GLY.google, 18)}Войти через Google</div><div class="ap-prov a dis">${G(GLY.apple, 19)}Войти через Apple</div></div>
+  ${busy}
+  <div class="ap-trust">${G(GLY.lock, 14)}Данные на устройстве сохранятся</div></section>`;
+const busyNow = `<div class="ap-busy" data-busy>${spin}<span>Входим... подожди пару секунд</span></div>`;
+const steps = (list) => `<div class="ap-steps">${list.map((t, i) => `<div class="ap-step" data-st="${i}"><span class="mk"><span class="dot"></span></span><span>${t}</span></div>`).join('')}</div>`;
+const busyNew = `<div class="ap-busy" style="padding:0;display:block" data-busy>${steps(['Проверяем аккаунт', 'Переносим прогресс', 'Почти готово'])}</div>`;
+// этапы: текущий — спиннер, пройденный — ✓ (заливка accent, как отметка задания)
+const stepTo = (ph, k) => ph.querySelectorAll('.ap-step').forEach((s, i) => { s.classList.toggle('cur', i === k); s.querySelector('.mk').innerHTML = i < k ? `<span class="ok">${G(GLY.check, 13)}</span>` : i === k ? spin : '<span class="dot"></span>'; });
+
+moment({ id: 'p1', num: '1', short: 'Вход: этапы', title: 'Вход — этапы вместо одной фразы на ~15 с', tag: 'old',
+  lead: 'RegistrationPromptModal после тапа «Войти через Google»: кнопки гаснут, ниже плашка ожидания (busyPanel: opaqueControl, радиус 12, спиннер + подпись). Сейчас — одна фраза до 15 с (через 8 с — «Вход занимает больше времени…»). Предложение — три этапа по фактическим шагам входа: проверка аккаунта у Google/Apple → перенос прогресса в облако → завершение.',
+  variants: [
+    { k: 'A', label: 'Сейчас (код)', time: 'до ~15 с', phone: { under: homeUnder({}), over: signSheet(busyNow) }, init: () => null,
+      beats: [{ t: 0, w: 'тап «Войти через Google»: кнопки гаснут, «Входим... подожди пару секунд»' }, { t: 8, w: 'через 8 с — «Вход занимает больше времени. Можно безопасно закрыть это окно…»' }], total: 3 },
+    { k: 'B', label: 'Предложение — 3 этапа', time: '~5 с в примере', phone: { under: homeUnder({}), over: signSheet(busyNew) },
+      init: (ph) => seq(ph, [[0, () => stepTo(ph, 0)], [1600, () => stepTo(ph, 1)], [3600, () => stepTo(ph, 2)], [5000, () => stepTo(ph, 3)]]),
+      beats: [{ t: 0, w: '«Проверяем аккаунт» — спиннер' }, { t: 1.6, w: '✓ «Проверяем аккаунт», идёт «Переносим прогресс»' }, { t: 3.6, w: '✓, идёт «Почти готово»', big: true }, { t: 5, w: 'все ✓ — шторка закрывается (как сейчас)' }], total: 5.6 },
+  ] });
+
+// ---------- 2. смена аккаунта (settings.tsx, stage 'wiping') ----------
+const settingsUnder = (val) => `<div class="ap-set"><div class="h">Настройки</div><div class="ap-eyebrow">Профиль</div><div class="ap-group">
+  <div class="ap-row"><span class="tile">${G(GLY.person, 19)}</span><span class="ttl">Аккаунт</span><span class="val" data-acc>${val}</span>${io('chevron', 16, 'color:var(--sc)')}</div>
+  <div class="ap-row"><span class="tile">${G(GLY.flag, 19)}</span><span class="ttl">Язык интерфейса</span><span class="val">Русский</span>${io('chevron', 16, 'color:var(--sc)')}</div>
+  <div class="ap-row"><span class="tile">${G(GLY.globe, 19)}</span><span class="ttl">Язык изучения</span><span class="val">English</span>${io('chevron', 16, 'color:var(--sc)')}</div></div>
+  <div class="ap-ghost"></div><div class="ap-ghost" style="height:180px"></div></div>${tabbar(4)}`;
+const wipeNow = `<div class="ap-wipe"><div class="ap-wcard">${G(GLY.shield, 28, 'color:var(--acc-text)')}<div class="t">Аккаунт</div><div class="s">Не закрывай приложение</div></div></div>`;
+const wipeNew = `<div class="ap-wipe"><div class="ap-wcard">${G(GLY.shield, 28, 'color:var(--acc-text)')}<div class="t">Меняем аккаунт</div>${steps(['Сохраняем прогресс', 'Выходим', 'Готово'])}<div class="s" style="margin-top:16px">Не закрывай приложение</div></div></div>`;
+moment({ id: 'p2', num: '2', short: 'Смена аккаунта', title: 'Смена аккаунта — этапы вместо статичной карточки на ~35 с', tag: 'old',
+  lead: 'Настройки → «Выйти и войти под другим аккаунтом» → подтверждение. Сейчас до ~35 с неподвижная карточка «Аккаунт / Не закрывай приложение» (щит accentText, карточка bgCard ≤280, радиус 16). Предложение — заголовок «Меняем аккаунт», этапы по шагам смены (сохранение в облако → выход → готово), просьба не закрывать остаётся внизу.',
+  variants: [
+    { k: 'A', label: 'Сейчас (код)', time: 'до ~35 с', phone: { under: settingsUnder('Google'), over: wipeNow }, init: () => null, beats: [{ t: 0, w: 'карточка «Аккаунт / Не закрывай приложение» до конца смены' }], total: 3 },
+    { k: 'B', label: 'Предложение — 3 этапа', time: '~6 с в примере', phone: { under: settingsUnder('Google'), over: wipeNew },
+      init: (ph) => seq(ph, [[0, () => stepTo(ph, 0)], [2200, () => stepTo(ph, 1)], [4200, () => stepTo(ph, 2)], [5200, () => stepTo(ph, 3)]]),
+      beats: [{ t: 0, w: '«Сохраняем прогресс» — спиннер' }, { t: 2.2, w: '✓, идёт «Выходим»' }, { t: 4.2, w: '✓, идёт «Готово»', big: true }, { t: 5.2, w: 'все ✓ — экран входа (как сейчас)' }], total: 6 },
+  ] });
+
+// ---------- 3. Главная: тихий признак докачки прогресса ----------
+const homeQuiet = (o, pill) => { const h = homeUnder(o); const i = h.indexOf('${o.top'); return pill ? h.replace('<div class="sf on" data-home-lesson', `<div data-quiet>${pill}</div><div class="sf on" data-home-lesson`) : h; };
+const quietPill = `<span class="ap-quiet" data-q>${spin}<span>Обновляем прогресс</span></span>`;
+moment({ id: 'p3', num: '3', short: 'Главная: обновляем', title: 'Главная — тихий признак, пока прогресс докачивается из облака', tag: 'new',
+  lead: 'Сразу после входа Главная открывается на локальных данных, а прогресс из облака приходит фоном — цифры серии и монет «прыгают» без объяснения. Предложение — маленькая пилюля под шапкой «Обновляем прогресс», без блокировки экрана; по приходе данных — «✓ Прогресс обновлён» на 1 с и пилюля тает. Если облако не ответило — пилюля просто исчезает (без ошибки: локальные данные целы, синхронизация повторится).',
+  variants: [
+    { k: 'A', label: 'Сейчас (код)', time: '', phone: { under: homeUnder({ streak: 0, coins: 0 }) },
+      init: (ph) => seq(ph, [[2400, () => { const b = ph.querySelectorAll('[data-home-scroll] .pill b'); if (b[0]) b[0].textContent = '5 дней'; if (b[1]) b[1].textContent = '6 854'; }]]),
+      beats: [{ t: 0, w: 'Главная на локальных данных: «0 дней», «0» монет' }, { t: 2.4, w: 'данные пришли — цифры молча сменились', big: true }], total: 3.2 },
+    { k: 'B', label: 'Предложение — пилюля под шапкой', time: '', phone: { under: homeQuiet({ streak: 0, coins: 0 }, quietPill) },
+      init: (ph) => seq(ph, [[2400, () => { const b = ph.querySelectorAll('[data-home-scroll] .pill b'); if (b[0]) b[0].textContent = '5 дней'; if (b[1]) b[1].textContent = '6 854'; const q = ph.querySelector('[data-q]'); if (q) q.innerHTML = `<span class="okc">${G(GLY.check, 15)}</span><span>Прогресс обновлён</span>`; }],
+        [3500, () => { const q = ph.querySelector('[data-q]'); if (q) q.style.opacity = '0'; }]]),
+      beats: [{ t: 0, w: '«Обновляем прогресс» — спиннер, экран доступен' }, { t: 2.4, w: 'цифры обновились, «✓ Прогресс обновлён»', big: true }, { t: 3.5, w: 'пилюля тает' }], total: 4.2 },
+  ] });
+
+// ---------- 4. Настройки: карточка аккаунта в первую секунду ----------
+moment({ id: 'p4', num: '4', short: 'Настройки: «Входим…»', title: 'Настройки — «Входим…» вместо «Не привязан» сразу после входа', tag: 'old',
+  lead: 'Строка «Аккаунт» в группе «ПРОФИЛЬ» сразу после входа на долю секунды показывает «Не привязан» (ответ о привязке ещё не пришёл) — человек пугается, что вход не удался. Предложение — пока ответа нет, справа «Входим…» со спиннером; пришёл — «Google» / «Apple».',
+  variants: [
+    { k: 'A', label: 'Сейчас (код)', time: '', phone: { under: settingsUnder('Не привязан') },
+      init: (ph) => seq(ph, [[1200, () => { const v = ph.querySelector('[data-acc]'); if (v) v.textContent = 'Google'; }]]),
+      beats: [{ t: 0, w: '«Не привязан» — хотя вход только что прошёл' }, { t: 1.2, w: 'ответ пришёл — «Google»', big: true }], total: 2 },
+    { k: 'B', label: 'Предложение — «Входим…»', time: '', phone: { under: settingsUnder(`${spin}<span>Входим…</span>`) },
+      init: (ph) => seq(ph, [[1200, () => { const v = ph.querySelector('[data-acc]'); if (v) v.textContent = 'Google'; }]]),
+      beats: [{ t: 0, w: '«Входим…» со спиннером' }, { t: 1.2, w: '«Google»', big: true }], total: 2 },
+  ] });
+
+render(document.getElementById('root'), document.getElementById('toc'));
+EM3.attachBeats(document.getElementById('root'));
+// одна тема на всю страницу: Аврора тёмная → Аврора светлая → Ирис светлая (как v3-all)
+const NAMES = ['Тема: Аврора тёмная', 'Тема: Аврора светлая', 'Тема: Ирис светлая']; let theme = 0;
+const applyTheme = (ph) => { ph.classList.toggle('lite', theme > 0); ph.classList.toggle('iris', theme === 2); const lite = theme > 0; ph.querySelectorAll('img.al').forEach((i) => { i.style.display = lite ? '' : 'none'; }); ph.querySelectorAll('img.ad').forEach((i) => { i.style.display = lite ? 'none' : ''; }); };
+const btn = document.getElementById('em-theme');
+btn.addEventListener('click', () => { theme = (theme + 1) % 3; btn.textContent = NAMES[theme]; document.querySelectorAll('.em-ph').forEach(applyTheme); });
+document.body.addEventListener('click', (e) => { const rp = e.target.closest('[data-replay]'); if (!rp) return; const vr = rp.closest('[data-vid]'); setTimeout(() => { const ph = vr.querySelector('.em-ph'); if (ph) applyTheme(ph); }, 5); });
+})();
+</script>
+</body>
+</html>

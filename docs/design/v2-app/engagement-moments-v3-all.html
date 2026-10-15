@@ -888,13 +888,18 @@ moment({ id: 'm20', num: '20', short: 'Серия под угрозой', title:
     why: 'Конкретика снимает сопротивление: «одна ступень — 2 минуты».', ref: 'Duolingo streak saver.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 21. Возвращение ---------- */
-const back3 = () => `<div class="full"><div class="body"><div data-cc>${coinChar(5, 110, { mood: 'sleep', zz: true })}</div><div class="h-xl beat" data-b style="margin-top:22px">С возвращением</div><div class="p beat" data-b style="margin-top:8px">9 дней — ничего не сгорело: 412 фраз, ранг 5, энергия полная.</div></div><div class="foot beat" data-b>${prim('5 карточек — 1 минута')}${sec('На Главную')}</div></div>`;
+// зачем (координатор 15.10, самопроверка Авторизации, D193): кнопка «N карточек — 1 минута» только при реальных карточках на повтор;
+// без них — одна «На Главную», как в коде (WelcomeBackMoment.tsx: cardsCount > 0 ? V2Button cards : null; «На Главную» — secondary).
+const back3 = (cards = 5) => `<div class="full"><div class="body"><div data-cc>${coinChar(5, 110, { mood: 'sleep', zz: true })}</div><div class="h-xl beat" data-b style="margin-top:22px">С возвращением</div><div class="p beat" data-b style="margin-top:8px">9 дней — ничего не сгорело: 412 фраз, ранг 5, энергия полная.</div></div><div class="foot beat" data-b>${cards > 0 ? prim(`${cards} карточек — 1 минута`) : ''}${sec('На Главную')}</div></div>`;
 moment({ id: 'm21', num: '21', short: 'Возвращение · ОДОБРЕН', title: 'Возвращение после перерыва — ОДОБРЕН владельцем 14.10, заменяет winback-пейвол (D193)', tag: 'new',
   lead: 'Монета спит → просыпается «!» → cheer «С возвращением» (нейтрально по роду). Цифры — пример. Ничего не сгорело, один лёгкий шаг. Без ленты друзей (серверный запрос) и без бонусов (D09).',
   variants: [{ k: 'A', label: 'Спит → «!» → cheer', time: '~3 с', phone: { under: homeUnder({ streak: 0, streakPending: true }), over: back3() }, total: 3.5,
     init: (ph) => seq(ph, [[1000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('sleep'); cc.querySelector('.zz')?.remove(); cc.classList.add('peek'); emo(cc, 'bang', 1); }], [1800, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('peek'); cc.classList.add('cheer'); emo(cc, 'heart', 5); ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 300)); }]]),
     beats: [{ t: 0.0, w: 'монета спит', snd: 'learn', gain: .5 }, { t: 1.0, w: 'просыпается + «!»', h: 'medium', snd: 'know' }, { t: 1.8, w: '<b>cheer + сердца</b>, «С возвращением»', h: 'success', snd: 'ob', big: true }],
-    why: 'Персонаж скучал — снимает вину лучше текста.', ref: 'Tamagotchi, Duolingo welcome back.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+    why: 'Персонаж скучал — снимает вину лучше текста.', ref: 'Tamagotchi, Duolingo welcome back.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }, { k: 'B', label: 'Карточек на повтор нет — одна кнопка «На Главную»', time: '~3 с', phone: { under: homeUnder({ streak: 0, streakPending: true }), over: back3(0) }, total: 3.5,
+    init: (ph) => seq(ph, [[1000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('sleep'); cc.querySelector('.zz')?.remove(); cc.classList.add('peek'); emo(cc, 'bang', 1); }], [1800, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('peek'); cc.classList.add('cheer'); emo(cc, 'heart', 5); ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 300)); }]]),
+    beats: [{ t: 0.0, w: 'монета спит', snd: 'learn', gain: .5 }, { t: 1.0, w: 'просыпается + «!»', h: 'medium', snd: 'know' }, { t: 1.8, w: '<b>cheer + сердца</b>, «С возвращением»', h: 'success', snd: 'ob', big: true }],
+    why: 'D193: лёгкий шаг предлагаем только когда он есть; без карточек — сразу на Главную.', ref: 'WelcomeBackMoment.tsx — cardsCount > 0.', fx: 'как A.', snd: 'как A.' }] });
 
 /* ---------- 22. Энергия закончилась → Plus (D115) ---------- */
 moment({ id: 'm22', num: '22', short: 'Энергия → Plus', title: 'Энергия закончилась → Plus', tag: 'old',

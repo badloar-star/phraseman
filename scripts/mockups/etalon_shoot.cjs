@@ -16,7 +16,12 @@ const THEME_NAME = ['aurora-dark', 'aurora-light', 'iris-light'];
   for (const th of THEMES) for (const w of WIDTHS) {
     const [W, H] = SIZES[w]; const pg = await br.newPage({ viewport: { width: 1400, height: 1100 }, deviceScaleFactor: 1 });
     const errs = []; pg.on('pageerror', (e) => errs.push(e.message.slice(0, 100)));
-    await pg.goto((process.env.MOCKUP_URL || 'http://127.0.0.1:8765/').replace(/\/?$/, '/') + page + '?v=' + Date.now(), { waitUntil: 'load' }); await pg.waitForTimeout(1200);
+    // зачем (15.10): «load» ждёт все звуки и на занятом сервере образцов падал по таймауту 30 с — съёмка темы обрывалась.
+    // Ждём DOM и готовый EM, две попытки; не загрузилась — громко пропускаем тему (перезапуск продолжит с места).
+    const URL0 = (process.env.MOCKUP_URL || 'http://127.0.0.1:8765/').replace(/\/?$/, '/') + page;
+    let loaded = false; for (let k = 0; k < 2 && !loaded; k++) { try { await pg.goto(URL0 + '?v=' + Date.now(), { waitUntil: 'domcontentloaded', timeout: 60000 }); await pg.waitForFunction(() => window.EM && window.EM.MOMENTS && document.querySelector('[data-vid]'), null, { timeout: 30000 }); loaded = true; } catch (e) { log.push(`[ETALON-SHOOT] ${page} попытка ${k + 1}: ${e.message.split(String.fromCharCode(10))[0]}`); } }
+    if (!loaded) { log.push(`[ETALON-SHOOT] ${page} ${THEME_NAME[th]} ${w}: страница не загрузилась — тема пропущена`); await pg.close(); continue; }
+    await pg.waitForTimeout(1200);
     for (let k = 0; k < th; k++) { const b = await pg.$('#em-theme'); if (b) { await b.click(); await pg.waitForTimeout(200); } }
     // размер телефона (как устройство dp) и прятанье липких панелей страницы
     await pg.addStyleTag({ content: `.em-ph { width: ${W}px !important; height: ${H}px !important; } .em-toc, .em-top { position: static !important; }` });

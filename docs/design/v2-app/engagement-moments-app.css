@@ -258,3 +258,5 @@ body[data-lang="es"] .em-ph [data-home-video] [data-thumb="2"] { background: #00
 .em-ph .cc .emo { font-size: 20px; line-height: 25px; } .em-ph .cc .emo.bang { font-size: 26px; line-height: 28px; }
 /* зачем (лист приёмки 14.10): --acc образцов = accentGraphic кода (графика: кольца, полосы, точки — в светлой Авроре #48816E совпадало);
    у светлого Ириса было #323B6B (это accentText), в коде accentGraphic #757695 */
+/* зачем (координатор 15.10): появление полноэкранного момента — как в коде MomentFullScreen: Easing.out(cubic) 420 мс */
+.em-ph .full { animation-timing-function: cubic-bezier(.33, 1, .68, 1); }

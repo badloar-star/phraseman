@@ -1,226 +1,138 @@
-# Английский · Урок 1 · Занятие 53 — «Как сказать “не”»
+# Английский · Урок 1 · Занятие 53 — Ещё один бутерброд
 
-**Ситуация.** В воскресенье вы звоните маме. Она спрашивает о вас, брате и сестре, а вы отвечаете полными английскими фразами.
-**Что вы освоите:** Собирать простые фразы с `am`, `is`, `are` и `not`, когда говорите о себе, одном человеке или нескольких людях.
-**Новые слова:** —
-**Возвращаются:** tired, busy, home, sick, together
+**Ситуация.** Вы с другом собираете корзину для пикника. Проверяете бутылки и коробки, пытаетесь найти место для последнего бутерброда.
+
+**Что вы освоите:** сказать, что ёмкость заполнена, и отличить заполненность от веса и пользы
+**Новые слова:** full
 
 ---
 
 ## Интро 1
 
-### `am` — только про себя
+### Места больше нет
 
-`am` ставят после `I`, когда говорят о себе: `I am tired` — «я устал».
+`full` — «полный», «заполненный». `It is full` — «Она полная», если говорим о корзине. Внутри уже нет места для других вещей. Последний бутерброд смотрит на вас: кажется, ему придётся ехать отдельно.
 
-По-русски «я устал» обходится без «есть», и рука тянется написать так же: `I tired`. Без `am` фразы не выходит.
+**Корзина заполнена, места для бутерброда больше нет. Скажите, что она полная.**
 
-Не ставьте после `I` форму `is`: она нужна для `he`, `she` или `it`.
-
-**Мама спрашивает, как вы после недели. Вы устали — скажите про себя.**
-
-- ✅ **I am tired.**
-- ❌ I tired. — *После `I` перед `tired` нужно `am`.*
-- ❌ I is tired. — *`is` — не для `I`. Про себя — `am`.*
+- ✅ **It is full.**
+- ❌ It is heavy. — *Это о весе. Здесь нужно сказать о заполненности: `full`.*
+- ❌ It are full. — *После `It` нужно `is`.*
 
 ---
 
 ## Интро 2
 
-### `are` — когда вас несколько
+### Полный — не обязательно тяжёлый
 
-`we` — это «мы». После `we` ставят `are`: `We are busy` — «мы заняты».
+Коробка может быть полной салфеток и при этом мало весить. `full` говорит о заполненности, `heavy` — о весе. Про две заполненные коробки — `They are full`, коротко `They're full`.
 
-Рука тянется поставить `is`, потому что `is` знакомее и короче. Но `is` — про одного человека: `he is busy`. Как только людей стало двое, работает `are`.
+**Обе коробки заполнены до верха. Назовите их полными.**
 
-То же самое с `they` — «они»: `they are busy`.
-
-**Мама спрашивает, чем вы там с братом заняты. Ответьте за двоих.**
-
-- ✅ **We are busy.**
-- ❌ We is busy. — *`is` — про одного. «Мы» — это уже двое, нужно `are`.*
-- ❌ We busy. — *После `we` перед `busy` нужно `are`.*
+- ✅ **They are full.**
+- ❌ They is full. — *После `They` нужно `are`.*
+- ❌ They are heavy. — *Из заполненности нельзя узнать вес. Здесь нужно `full`.*
 
 ---
 
 ## Интро 3
 
-### `not` стоит сразу после `am`, `is` или `are`
+### Что помогает
 
-`sick` — «болеет». Чтобы сказать «не болеет», нужно `not`: `she is not sick`.
+Вспомните `useful` — «полезный». Список помогает ничего не забыть: `It is useful`. Это оценка пользы. `It is full` говорит о заполненности — эти слова отвечают на разные вопросы.
 
-`not` ставят сразу после `am`, `is` или `are`: сначала `is`, потом `not`.
+**Список помогает собрать всё нужное для пикника. Назовите его полезным.**
 
-Русское «не» стоит перед словом, поэтому рука тянет написать `she not is sick`. Тут спотыкаются все, честное слово.
-
-**Мама волнуется, не заболела ли сестра. Она здорова — успокойте маму.**
-
-- ✅ **She is not sick.**
-- ❌ She not is sick. — *Сначала ставят `is`, затем `not`.*
-- ❌ She is sick not. — *`not` убежал в конец. Его место сразу после `is`.*
+- ✅ **It is useful.**
+- ❌ It is full. — *Здесь нужно сказать о пользе списка: `useful`.*
+- ❌ They are useful. — *Речь об одном списке: `It is`.*
 
 ---
 
-## Практика (16 заданий, поддержка убывает)
+## Практика (17 заданий)
 
-**1 · Соберите фразу — мама спрашивает, устали ли вы после недели**
+**1 · В корзине больше нет места. Соберите фразу о её заполненности**
 <!-- interaction_id: en:lesson-01:session-53:i01; family: phrase_builder -->
-Плитки: `I` `am` `tired.` → **I am tired.**
-*Верно: после `I` ставят `am`, поэтому получается `I am tired.` — «я устал».*
+Плитки: `full` `is` `It` `are` → **It is full.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is full.`)*
 
-**2 · Вставьте слово — речь про брата, он занят**
-<!-- interaction_id: en:lesson-01:session-53:i02; family: context_gap_grammar -->
-He ___ busy. → **is** · am · are
-- ✅ is — *Верно: с `He` ставят `is`: `He is busy.`*
-- am — *`am` бывает только рядом с `I`. Про другого человека — `is`.*
-- are — *`are` — когда людей несколько. Брат один.*
+**2 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-53:i02; family: listen_choose -->
+🔊 *It is full.* → **It is full.** · It is heavy. · It is useful.
+- It is heavy. — *В записи последнее слово — `full`, а в этом варианте — `heavy`.*
+- It is useful. — *В записи последнее слово — `full`, а в этом варианте — `useful`.*
 
-**3 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-53:i03; family: listen_choose -->
-🔊 *busy* → **busy** · easy · body
-- ✅ busy — *Верно: в аудио звучит `busy` — «занят».*
-- easy — *Это «легко». Здесь нужно слово «занят»: `busy`.*
-- body — *Это «тело». Про человека занятого говорят `busy`.*
+**3 · Две коробки заполнены доверху. Дополните фразу**
+<!-- interaction_id: en:lesson-01:session-53:i03; family: context_gap_grammar -->
+They ___ full. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Про две коробки — `They are`.*
 
-**4 · Соберите фразу — «мы дома»**
-<!-- interaction_id: en:lesson-01:session-53:i04; family: phrase_builder -->
-Плитки: `home` `we` `are` → **We are home.**
-*Верно: `we` — «мы», поэтому `We are home.`*
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-53:i04; family: speed_match -->
+full — заполненный · useful — полезный · heavy — тяжёлый по весу · light — лёгкий по весу
 
-**5 · Вставьте слово — про вас и брата вместе**
-<!-- interaction_id: en:lesson-01:session-53:i05; family: context_gap_grammar -->
-We ___ home. → **are** · is · am
-- ✅ are — *Верно: `we` — это «мы», поэтому `We are home.`*
-- is — *`we` — это «мы», уже не один человек. Нужно `are`.*
-- am — *`am` идёт только с `I`. Про «мы» — `are`.*
+**5 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-53:i05; family: listen_build_dictation -->
+🔊 *It's full.* Плитки: `full` `It's` `He's` → **It's full.**
+*(плитка `He's` лишняя: здесь нужно `It's` — `It's full.`)*
 
-**6 · Соберите фразу — «она не болеет»**
+**6 · Обе бутылки наполнены водой доверху. Назовите их полными**
 <!-- interaction_id: en:lesson-01:session-53:i06; family: phrase_builder -->
-Плитки: `not` `she` `sick` `is` → **She is not sick.**
-*Верно: после `She` ставят `is`, а `not` идёт сразу после него: `She is not sick.`*
+Плитки: `full` `are` `They` `is` → **They are full.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are full.`)*
 
-**7 · Вставьте слово — сестра здорова**
-<!-- interaction_id: en:lesson-01:session-53:i07; family: context_gap_grammar -->
-She is ___ sick. → **not** · no · am
-- ✅ not — *Верно: `not` делает `She is not sick.` — «она не болеет».*
-- no — *`no` — это ответ «нет» на вопрос. Внутри фразы «не» — `not`.*
-- am — *`is` уже стоит. Чтобы сказать «не болеет», нужно `not`.*
+**7 · Коротко скажите, что коробка заполнена и места больше нет**
+<!-- interaction_id: en:lesson-01:session-53:i07; family: scripted_repeat_compare -->
+🎙 **It's full.**
 
-**8 · Послушайте и соберите — «я не занят»**
-<!-- interaction_id: en:lesson-01:session-53:i08; family: listen_build_dictation -->
-🔊 *I am not busy.* Плитки: `busy` `not` `I` `am` `is` → **I am not busy.**
-*Верно: после `I` ставят `am`, затем `not`: `I am not busy.`*
-*Плитка `is` лишняя: `is` не подходит к `I`; нужна `am` — `I am not busy.`*
+**8 · Список помогает ничего не забыть. Назовите именно его пользу**
+<!-- interaction_id: en:lesson-01:session-53:i08; family: context_gap_grammar -->
+It is ___ . → **useful** · full · heavy
+- full — *Это о заполненности. Здесь нужна польза: `useful`.*
+- heavy — *Это о весе. Здесь нужно `useful`.*
 
-**9 · Послушайте и выберите слово о самочувствии**
+**9 · Послушайте фразу о списке**
 <!-- interaction_id: en:lesson-01:session-53:i09; family: listen_choose -->
-🔊 Два слова подряд.
-*sick · six* → **sick**
-- ✅ sick — *Верно: в записи было `sick` — «болен».*
-- six — *`Six` — «шесть». В записи было `sick` — «болен».*
+🔊 *It is useful.* → **It is useful.** · It is full. · It is useless.
+- It is full. — *В записи последнее слово — `useful`, а в этом варианте — `full`.*
+- It is useless. — *В записи последнее слово — `useful`, а в этом варианте — `useless`.*
 
-**10 · Вставьте слово — соседи не вместе, каждый у себя**
-<!-- interaction_id: en:lesson-01:session-53:i10; family: context_gap_grammar -->
-They are not ___ . → **together** · home · tired
-- ✅ together — *Верно: `together` значит «вместе»: `They are not together.`*
-- home — *Это значит «они не дома». Здесь сказано, что они не вместе.*
-- tired — *«Они не устали» — это про силы, а не про компанию.*
+**10 · Соедините короткие начала с полными**
+<!-- interaction_id: en:lesson-01:session-53:i10; family: speed_match -->
+It's — It is · They're — They are · He's — He is · She's — She is
 
-**11 · Соберите фразу — «он не дома»**
-<!-- interaction_id: en:lesson-01:session-53:i11; family: phrase_builder -->
-Плитки: `home` `he` `not` `is` → **He is not home.**
-*Верно: после `He` ставят `is`, а `not` идёт сразу после него: `He is not home.`*
+**11 · Послушайте и соберите фразу о коробках**
+<!-- interaction_id: en:lesson-01:session-53:i11; family: listen_build_dictation -->
+🔊 *They're full.* Плитки: `full` `They're` `We're` → **They're full.**
+*(плитка `We're` лишняя: здесь нужно `They're` — `They're full.`)*
 
-**12 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-53:i12; family: speed_match -->
-tired — устал · busy — занят · sick — болеет · home — дома
+**12 · Коробка полна салфеток, но мало весит. Скажите именно о её небольшом весе**
+<!-- interaction_id: en:lesson-01:session-53:i12; family: phrase_builder -->
+Плитки: `light` `is` `It` `are` → **It is light.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is light.`)*
 
-**13 · Правда или отрицание? Брат правда занят — скажите как есть**
-<!-- interaction_id: en:lesson-01:session-53:i13; family: phrase_builder -->
-Соберите: `busy` `is` `not` `he` → **He is busy.**
-*Верно: с `He` ставят `is`: `He is busy.`*
-*Плитка `not` лишняя: `not` меняет смысл на отрицание, а брат занят: `He is busy.`*
+**13 · Две небольшие коробки помогают разложить еду отдельно. Скажите об их пользе**
+<!-- interaction_id: en:lesson-01:session-53:i13; family: scripted_repeat_compare -->
+🎙 **They are useful.**
 
-**14 · Вставьте слово — вы с другом полны сил**
+**14 · Один термос наполнен до верха. Дополните фразу**
 <!-- interaction_id: en:lesson-01:session-53:i14; family: context_gap_grammar -->
-We are not ___ . → **tired** · busy · home
-- ✅ tired — *Верно: `tired` — «уставшие», поэтому `We are not tired.`*
-- busy — *`busy` — «заняты». Здесь вы говорите, что не устали.*
-- home — *`home` — «дома». Здесь нужно слово о самочувствии.*
+It ___ full. → **is** · am · are
+- am — *После `It` нужно `is`.*
+- are — *Про один термос — `It is`.*
 
-**15 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-53:i15:s01; family: scripted_repeat_compare -->
-Мама спрашивает, вы ли сейчас вместе с другом. Скажите, что вы вместе.
+**15 · Послушайте короткую оценку и выберите её**
+<!-- interaction_id: en:lesson-01:session-53:i15; family: listen_choose -->
+🔊 *It's full.* → **It's full.** · It's light. · It's heavy.
+- It's light. — *В записи последнее слово — `full`, а в этом варианте — `light`.*
+- It's heavy. — *В записи последнее слово — `full`, а в этом варианте — `heavy`.*
 
-🎙 **We are together.**
+**16 · Соедините слова с их значениями здесь**
+<!-- interaction_id: en:lesson-01:session-53:i16; family: speed_match -->
+full — места больше нет · useful — приносит пользу · heavy — много весит · light — мало весит
 
-**16 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-53:i15:s02; family: scripted_repeat_compare -->
-Мама спрашивает, устали ли вы с другом. Скажите, что вы не устали.
+**17 · После прогулки вы кладёте вещи в ящик, но он уже заполнен доверху. Скажите другу, что ящик полный**
+<!-- interaction_id: en:lesson-01:session-53:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is full.**
 
-🎙 **We are not tired.**
-
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-53:i16:s01; family: scripted_repeat_compare -->
-Мама спрашивает, устали ли вы. Скажите, что устали.
-
-🎙 **I am tired.**
-
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-53:i16:s02; family: scripted_repeat_compare -->
-Мама спрашивает, занят ли брат. Скажите, что он занят.
-
-🎙 **He is busy.**
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-01:session-53:i16:s03; family: scripted_repeat_compare -->
-Мама спрашивает, заболела ли сестра. Скажите, что она не болеет.
-
-🎙 **She is not sick.**
-
-**20 · Соберите фразу — мама спрашивает, вместе ли вы с другом**
-<!-- interaction_id: en:lesson-01:session-53:i16:s04; family: phrase_builder -->
-Плитки: `We` `are` `together.` `is` → **We are together.**
-*Верно: с `We` нужна форма `are`: `We are together.`*
-*Плитка `is` лишняя: `is` не подходит к `We`; нужна форма `are` — `We are together.`*
-
----
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=phrase_builder, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_build_dictation, 9=listen_choose, 10=context_gap_grammar, 11=phrase_builder, 12=speed_match, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=phrase_builder
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| tired | 1, 10 (ловушка), 12, 14, 16 | 1 (`I am tired`), 14, 16 |
-| busy | 2, 3, 8, 12, 13, 16 | 2 (`is`), 3 (слух), 8, 13, 16 |
-| home | 4, 5, 10 (ловушка), 11, 12 | 4, 5, 11 |
-| sick | 6, 7, 9, 12, 16 | 6, 7, 9 (слух), 16 |
-| together | 10, 15, 16 | 10, 15, 16 |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | `I am tired` | да — `I am tired` разобрано в первом абзаце |
-| Интро 2 | `We are busy` | да — `We are busy` стоит в первом абзаце |
-| Интро 3 | `She is not sick` | да — `she is not sick` стоит в первом абзаце |
-
-**3. Доска пар (задание 12)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| tired | из прошлых сессий | задания 1, 10 |
-| busy | из прошлых сессий | задания 2, 3, 8 |
-| sick | из прошлых сессий | задания 6, 7, 9 |
-| home | из прошлых сессий | задания 4, 5, 11 |
-
----

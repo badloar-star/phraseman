@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-53:intro1:r2": {
+          "ru": "Это о весе. Здесь нужно сказать о заполненности: `full`.",
+          "uk": "Це про вагу. Тут треба сказати про заповненість: `full`."
+        },
+        "en:lesson-01:session-53:intro1:r3": {
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-53:intro2:r2": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        },
+        "en:lesson-01:session-53:intro2:r3": {
+          "ru": "Из заполненности нельзя узнать вес. Здесь нужно `full`.",
+          "uk": "Із заповненості не можна дізнатися вагу. Тут потрібно `full`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-53:intro3:r2": {
+          "ru": "Здесь нужно сказать о пользе списка: `useful`.",
+          "uk": "Тут треба сказати про користь списку: `useful`."
+        },
+        "en:lesson-01:session-53:intro3:r3": {
+          "ru": "Речь об одном списке: `It is`.",
+          "uk": "Йдеться про один список: `It is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e094d685d3105d761647609210d8801e1c5e31bc2acb94ac987c6a7838dea24b"
+}

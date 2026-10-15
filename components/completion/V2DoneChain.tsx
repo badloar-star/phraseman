@@ -34,6 +34,7 @@ import {
   deriveStreakRow,
   deriveTodayRow,
   doneChainBeatAt,
+  type DoneChainAfter,
   type DoneChainBefore,
   type DoneChainStreakRow,
   type DoneChainTodayRow,
@@ -73,18 +74,23 @@ export type DoneChainProviderProps = Readonly<{
   lang: Lang;
   /** Цепочка доиграла (или досмотрена тапом) — экран может открывать следующие окна (m09, рубеж серии). */
   onFinished?: () => void;
+  /** Только dev-превью (dev_moments_preview?state=donechain): готовое «после» вместо живых сторов серии и задач дня. */
+  previewAfter?: DoneChainAfter;
   children: (skip: () => void) => ReactNode;
 }>;
 
 /** Ведёт «семь ударов»: таймеры, звук, хаптик, досмотр тапом. Дети получают skip — повесить на корень экрана. */
-export const DoneChainProvider = memo(function DoneChainProvider({ before, lang, onFinished, children }: DoneChainProviderProps) {
+export const DoneChainProvider = memo(function DoneChainProvider({ before, lang, onFinished, previewAfter, children }: DoneChainProviderProps) {
   const reduced = useReducedMotion();
   const [revealed, setRevealed] = useState<number>(reduced ? T.beats : 0);
   const [skipped, setSkipped] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const finishedRef = useRef(false);
-  const liveStreak = useLiveStreak();
-  const liveToday = useLiveToday();
+  const streakFromStore = useLiveStreak();
+  const todayFromStore = useLiveToday();
+  // зачем (кадры Сверки/Макетов 15.10): превью подставляет готовые данные, в бою — живые локальные сторы
+  const liveStreak = previewAfter ? previewAfter.streak : streakFromStore;
+  const liveToday = previewAfter ? previewAfter.today : todayFromStore;
   const streak = useMemo(() => deriveStreakRow(before.streak, liveStreak), [before.streak, liveStreak]);
   const todayBase = useMemo(() => deriveTodayRow(before, liveToday), [before, liveToday]);
   const todayTitle = useMemo(() => (liveToday ? todayTasksToView(liveToday, lang).find((t) => t.kind === 'lesson')?.title ?? null : null), [lang, liveToday]);

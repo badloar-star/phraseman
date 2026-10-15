@@ -123,7 +123,9 @@ describe('m18 · подключение к итогу диалога', () => {
     expect(src).toContain('const [dialogueChainOn] = useState(() => isMomentsV3FlagOn());');
     expect(src).toContain("const DlgChain = dialogueChainOn ? (require('../components/completion/DialogueDoneChain')");
     expect(src).not.toMatch(/^import .*DialogueDoneChain/m);
-    expect(src).toContain("momentsV3 && state.kind === 'ready' && goalsTotal > 0 && (!DlgChain || dialogueChainFinished)");
+    // зачем: другие условия очереди (рубеж серии Тем) могут стоять рядом — проверяем только, что m17 ждёт конца цепочки m18
+    const firstDialogLine = src.split('\n').find((l) => l.includes("momentsV3 && state.kind === 'ready' && goalsTotal > 0")) ?? '';
+    expect(firstDialogLine).toContain('(!DlgChain || dialogueChainFinished)');
   });
   it('без флага прежняя раскладка: заголовок, «Загрузка…», цифры → монеты → цели → ошибки/отзыв', () => {
     expect(src).toContain('{DlgChain ? null : <View style={styles.titleBlock}>');

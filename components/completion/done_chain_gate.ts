@@ -86,6 +86,9 @@ export function captureDoneChainBefore(): DoneChainBefore {
   return Object.freeze({ streak: peekStreakDayState(), lessonProgress: lessonProgressOf(tasks), dayKey: tasks?.dayKey ?? null });
 }
 
+/** «После» — состояние сторов серии и задач дня; в бою живое, в dev-превью — готовое. */
+export type DoneChainAfter = Readonly<{ streak: StreakDayState | null; today: TodayTasksDayState | null }>;
+
 export type DoneChainStreakRow = Readonly<{
   /** Что показать при появлении строки (дни и засчитан ли сегодня). */
   from: Readonly<{ days: number; counted: boolean }>;

@@ -236,6 +236,8 @@ describe('рубежи серии — флаг, подключение, исхо
     'components/spire/SpireWeekResultCard.tsx',
     // зачем (владелец 15.10, m08 «Молния» за moments_v3): слой поверх урока берёт второй цвет темы для холодной виньетки (use_streak_colors); грузится require'ом при флаге
     'components/feedback/ComboMomentLayer.tsx',
+    // зачем (координатор 15.10, кадры Сверки): dev_state `moments=v3|off|inherit` — dev-переключатель флага (только __DEV__), импорт ленивый
+    'app/dev_state_fixtures.ts',
   ];
   it('components/streak/moments импортируют только перечисленные места; новый импортёр — осознанное решение Ядра', () => {
     const offenders: string[] = [];

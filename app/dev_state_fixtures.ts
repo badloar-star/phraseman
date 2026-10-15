@@ -93,6 +93,8 @@ export type DevStateRequest = Readonly<{
   spire?: 'open' | 'closed';
   /** Звуки V2 (modules/sound_v2): on — включить на устройстве (dev-переключатель вместо удалённого флага sound_v2), off — выключить. */
   soundv2?: 'on' | 'off';
+  /** Моменты вовлечения v3: v3 — включить на устройстве (вместо удалённого флага moments_v3), off — выключить, inherit — как в удалённом конфиге. */
+  moments?: 'v3' | 'off' | 'inherit';
   /** Оформление light/dark ТОЛЬКО в памяти (хранилище не тронуто); clear — снять оверрайд. Для съёмки светлых образцов ссылкой. */
   appearance?: 'light' | 'dark' | 'clear';
   /** Тема Liquid Glass ТОЛЬКО в памяти (id из LIQUID_GLASS_THEME_IDS); clear — снять. Образец макетов — grad_aurora (Сверка chain7, 12.10). */
@@ -347,6 +349,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogsDone = intOrWord('dialogsDone', ['reset'] as const, 76);
   request.spire = pick('spire', ['open', 'closed'] as const);
   request.soundv2 = pick('soundv2', ['on', 'off'] as const);
+  request.moments = pick('moments', ['v3', 'off', 'inherit'] as const);
   request.appearance = pick('appearance', ['light', 'dark', 'clear'] as const);
   // зачем (Сверка chain7 12.10): тема и оттенок образца (Аврора, полная насыщенность) выставляются ссылкой, а не руками в настройках
   const themeRaw = one(params.theme);
@@ -704,6 +707,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       const intensity = request.level === undefined ? before?.intensity ?? null : request.level === 'clear' ? null : request.level;
       setDevThemeChoice({ themeId, intensity });
       return true;
+    });
+  }
+  if (request.moments) {
+    // зачем (координатор 15.10, кадры Сверки m04/m08/m10/m18): включить моменты v3 одной ссылкой, без удалённого конфига
+    await step('moments', request.moments, async () => {
+      const { setMomentsV3DevOverride } = await import('../components/streak/moments/use_moments_v3_flag');
+      await setMomentsV3DevOverride(request.moments === 'inherit' ? null : request.moments === 'v3');
     });
   }
   if (request.soundv2) {

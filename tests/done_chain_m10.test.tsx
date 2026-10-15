@@ -165,6 +165,8 @@ describe('m10 · подключение к итогу урока', () => {
   it('chain передаётся только по защёлкнутому решению, снимок «до» — с первого кадра; m09 ждёт конца цепочки', () => {
     expect(src).toContain('chain={doneChainOn && doneChainBeforeRef.current ?');
     expect(src).toContain('if (doneChainBeforeRef.current === null) doneChainBeforeRef.current = captureDoneChainBefore();');
-    expect(src).toMatch(/perfectMomentOn = sequenceShowing && perfectDecision\.show && \(!doneChainOn \|\| doneChainFinished\)/);
+    // зачем: другие условия очереди (рубеж серии Тем) могут стоять рядом — проверяем только, что m09 ждёт конца цепочки
+    const perfectLine = src.split('\n').find((l) => l.includes('const perfectMomentOn = sequenceShowing && perfectDecision.show')) ?? '';
+    expect(perfectLine).toContain('(!doneChainOn || doneChainFinished)');
   });
 });

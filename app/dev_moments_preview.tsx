@@ -13,6 +13,8 @@
 //   state=rise | overtake | lastchance — m05 «Позиция выросла / обогнали / последний шанс» на моках образца (lastchance: &gap=N не хватает до топ-5, по умолчанию 60)
 //   state=perfect — m09 «Идеальный урок» (&n=N заданий, 20; &coins=N монет за урок, 150); state=firstdialog — m17 «Первый разговор» (&study=en|es|fr|de, en; &n=N реплик, 6; &goals=N целей, 5)
 //   state=promoshort — m01 вариант B «Короткая» (повторное повышение): &tier=N лига (1…11), &place=N (5), &coins=N монеты недели (470), +100 за повышение
+//   state=combo — m08 «Молния» (серия 3 → 5 → 10 → ошибка по тайм-листу); state=donechain — m10 «Семь ударов» (17/3, 3★, +150, серия 5 → 6, «Пройти урок» 0/1 → 1/1);
+//   state=dlgchain — m18 «Эмма думает…» → «отлично!» → 5 целей каскадом → +30 (&wait=мс — задержка «ответа сети», 600). Для m08/m10/m18 включи флаг: dev_state?moments=v3
 //   state=fonts — полоса весов Inter 400–900 для решения владельца по шрифту 800 (Темы; на Android 246 мест рисуются как 700)
 //   &selector=1 — снизу полоса переключения состояний и «Повторить» (по умолчанию скрыта, чтобы не попадать в кадр); &replay=N — перезапуск показа
 // Экраны — ТЕ ЖЕ компоненты, что будут в бою; данные — моки без сети, ничего не пишется и не начисляется. Тема и язык — текущие настройки приложения (dev_state?theme=…).
@@ -45,8 +47,9 @@ import StreakMilestoneMoment from '../components/streak/moments/StreakMilestoneM
 import TodayRings from '../components/streak/moments/TodayRings';
 import { STREAK_MILESTONES, isStreakMilestone, type StreakMilestone } from '../components/streak/moments/streak_milestones';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
+import { ComboPreview, DialogueChainPreview, DoneChainPreview } from '../components/dev/MomentsChainPreview';
 
-const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit', 'rise', 'overtake', 'lastchance', 'perfect', 'firstdialog', 'promoshort', 'fonts'] as const;
+const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit', 'rise', 'overtake', 'lastchance', 'perfect', 'firstdialog', 'promoshort', 'fonts', 'combo', 'donechain', 'dlgchain'] as const;
 type PreviewState = (typeof STATES)[number];
 const isState = (v: unknown): v is PreviewState => typeof v === 'string' && (STATES as readonly string[]).includes(v);
 const noop = (): void => undefined;
@@ -84,7 +87,7 @@ const int = (raw: string | undefined, fallback: number, min: number, max: number
 };
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string; n?: string; goals?: string; study?: string }>();
+  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string; n?: string; goals?: string; study?: string; wait?: string }>();
   const { lang } = useLang();
   const fromParam: PreviewState = isState(params.state) ? params.state : 'promo';
   const [state, setState] = useState<PreviewState>(fromParam);
@@ -151,6 +154,10 @@ function Inner() {
           <MomentPromotionShort key={key} lang={lang} toTier={Math.max(1, tier)} myPlace={place} myCoinRank={rank} weekCoins={int(params.coins, 470, 0, 999999)} bonusCoins={100} onPlay={noop} onShare={noop} />
         ) : null}
         {state === 'fonts' ? <FontWeightStrip /> : null}
+        {/* зачем (Макеты/Сверка 15.10): m08 «Молния», m10 «Семь ударов», m18 «думает… → каскад» на моках образца — прямые ссылки вместо ручного урока/диалога */}
+        {state === 'combo' ? <ComboPreview key={key} lang={lang} replayKey={key} /> : null}
+        {state === 'donechain' ? <DoneChainPreview key={key} lang={lang} /> : null}
+        {state === 'dlgchain' ? <DialogueChainPreview key={key} lang={lang} waitMs={int(params.wait, 600, 0, 10000)} /> : null}
         {params.selector === '1' ? (
           <View style={s.bar} pointerEvents="box-none">
             {STATES.map((st) => (

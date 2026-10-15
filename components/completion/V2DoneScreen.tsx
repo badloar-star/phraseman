@@ -22,7 +22,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { runeWord } from '../../constants/runes';
 import { hapticTap } from '../../hooks/use-haptics';
 import { V2_TYPE } from '../../constants/v2Style';
-import type { DoneChainBefore } from './done_chain_gate';
+import type { DoneChainAfter, DoneChainBefore } from './done_chain_gate';
 
 /**
  * Общий экран завершения 2.0 — макет docs/design/v2-app/learn.html раздел E
@@ -66,7 +66,7 @@ export type V2DoneScreenProps = Readonly<{
    * m10 «семь ударов» (moments_v3): блоки всплывают по очереди, монеты летят в баланс, серия и «Сегодня · Пройти урок» закрываются.
    * Нет — экран ровно прежний. before — снимок серии и задачи дня с первого кадра итога (captureDoneChainBefore).
    */
-  chain?: Readonly<{ before: DoneChainBefore; onFinished?: () => void }>;
+  chain?: Readonly<{ before: DoneChainBefore; onFinished?: () => void; previewAfter?: DoneChainAfter }>;
 }>;
 
 const copy = (lang: Lang) => ({
@@ -160,7 +160,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
 
   if (Chain && props.chain) {
     return (
-      <Chain.DoneChainProvider before={props.chain.before} lang={lang} onFinished={props.chain.onFinished}>
+      <Chain.DoneChainProvider before={props.chain.before} lang={lang} onFinished={props.chain.onFinished} previewAfter={props.chain.previewAfter}>
         {(skip) => renderBody(skip)}
       </Chain.DoneChainProvider>
     );

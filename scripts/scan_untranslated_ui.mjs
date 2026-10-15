@@ -82,6 +82,8 @@ const CONTENT_FILES = [
   /app\/dev_cards_result_preview\.tsx$/,
   /app\/dev_spire_preview\.tsx$/,
   /app\/dev_moments_preview\.tsx$/,
+  // зачем (Макеты/Сверка 15.10): моки m08/m10/m18 для dev_moments_preview (state=combo|donechain|dlgchain) — тексты образца, импортирует только dev-экран
+  /components\/dev\/MomentsChainPreview\.tsx$/,
   /app\/_learning_v2_authoring_preview\.tsx$/,
   /components\/friends_together\/DevBotsSheet\.tsx$/,
   // зачем (13.10): не подключены ни к одному экрану (grep по app/ и components/ — только сам файл): лаборатория режимов V2 и админ-превью

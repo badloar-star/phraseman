@@ -10,8 +10,26 @@ let hydrated = false;
 let promise: Promise<void> | null = null;
 let subscribed = false;
 const listeners = new Set<() => void>();
+// зачем (координатор 15.10, кадры Сверки моментов v3): dev-переключатель вместо удалённого флага — phraseman://dev_state?moments=v3|off|inherit.
+// Только dev-сборка (__DEV__): в стор-сборке не читается и не пишется; хранится в локальном ключе устройства, в синхронизацию не входит.
+const DEV_KEY = 'dev_moments_v3_override';
+let devOverride: boolean | null = null;
+
+async function readDevOverride(): Promise<void> {
+  if (typeof __DEV__ === 'undefined' || !__DEV__) return;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const AsyncStorage = (require('@react-native-async-storage/async-storage') as typeof import('@react-native-async-storage/async-storage')).default;
+    const raw = await AsyncStorage.getItem(DEV_KEY);
+    devOverride = raw === '1' ? true : raw === '0' ? false : null;
+    if (devOverride !== null) console.log(`${LOG} dev-переключатель активен: moments_v3=${String(devOverride)} (${DEV_KEY})`); // guard-ok: dev-ветка
+  } catch (error) {
+    console.warn(`${LOG} dev-переключатель не прочитался — берём удалённый флаг (${error instanceof Error ? error.message : String(error)})`);
+  }
+}
 
 async function readOnce(): Promise<void> {
+  await readDevOverride();
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { readRemoteConfigCacheRaw } = require('../../../app/remote_config_client') as typeof import('../../../app/remote_config_client');
@@ -43,7 +61,27 @@ function subscribeOnce(): void {
 
 /** Синхронное чтение: до прогрева кэша false. */
 export function isMomentsV3FlagOn(): boolean {
+  if (devOverride !== null) return devOverride;
   return hydrated && value;
+}
+
+/** dev_state `moments=v3|off|inherit`: true/false — подменить удалённый флаг на устройстве, null — снять подмену. В стор-сборке ничего не делает. */
+export async function setMomentsV3DevOverride(next: boolean | null): Promise<void> {
+  if (typeof __DEV__ === 'undefined' || !__DEV__) {
+    console.log(`${LOG} dev-переключатель игнорирован: это не dev-сборка`);
+    return;
+  }
+  devOverride = next;
+  listeners.forEach((l) => l());
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const AsyncStorage = (require('@react-native-async-storage/async-storage') as typeof import('@react-native-async-storage/async-storage')).default;
+    if (next === null) await AsyncStorage.removeItem(DEV_KEY);
+    else await AsyncStorage.setItem(DEV_KEY, next ? '1' : '0');
+    console.log(`${LOG} dev-переключатель: moments_v3=${next === null ? 'как в удалённом конфиге' : String(next)} (${DEV_KEY})`);
+  } catch (error) {
+    console.warn(`${LOG} dev-переключатель не сохранился, до перезапуска работает (${error instanceof Error ? error.message : String(error)})`);
+  }
 }
 
 export function useMomentsV3Enabled(): boolean {

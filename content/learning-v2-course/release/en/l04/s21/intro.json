@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о соке с any, сообщить о нём с some и объяснить отказ",
+    "uk": "запитати про сік з any, повідомити про нього із some та пояснити відмову"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сок",
+        "uk": "Сік"
+      },
+      "bodyByLocale": {
+        "ru": "`juice` — «сок». О напитке вообще: `There is some juice` — «Есть немного сока». Перед `juice` здесь не нужно `a`, а начало — `There is`. Два стакана не превращают сам сок в `juices`: сейчас мы говорим о напитке, а не считаем порции. Стаканы можно пересчитать, сок лучше не разливать ради счёта.",
+        "uk": "`juice` — «сік». Про напій загалом: `There is some juice` — «Є трохи соку». Перед `juice` тут не потрібне `a`, а початок — `There is`. Дві склянки не перетворюють сам сік на `juices`: зараз ми говоримо про напій, а не рахуємо порції. Склянки можна порахувати, сік краще не розливати заради лічби."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть немного сока».",
+          "uk": "Повідомте «Тут є трохи соку»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-21:intro1:r1",
+              "text": "There is some juice here."
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro1:r2",
+              "text": "There are some juice here."
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro1:r3",
+              "text": "There is a juice here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-21:intro1:r1",
+              "text": "There is some juice here."
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro1:r2",
+              "text": "There are some juice here."
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro1:r3",
+              "text": "There is a juice here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть немного сока».",
+          "uk": "Повідомте «Тут є трохи соку»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сок и ручки",
+        "uk": "Сік і ручки"
+      },
+      "bodyByLocale": {
+        "ru": "`Is there any juice?` — «Есть ли сок?» Так спрашиваем, когда ещё не знаем ответа. `pens` — «ручки». Их несколько: `Are there any pens?` — «Есть ли ручки?» Сообщение: `There are some pens` — «Есть несколько ручек». Напиток — `is`, несколько ручек — `are`.",
+        "uk": "`Is there any juice?` — «Чи є сік?» Так запитуємо, коли ще не знаємо відповіді. `pens` — «ручки». Їх кілька: `Are there any pens?` — «Чи є ручки?» Повідомлення: `There are some pens` — «Є кілька ручок». Напій — `is`, кілька ручок — `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь есть сок?» с `any`.",
+          "uk": "Запитайте «Тут є сік?» з `any`."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-21:intro2:r1",
+              "text": "Is there any juice here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro2:r2",
+              "text": "Are there any juice here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro2:r3",
+              "text": "There is any juice here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-21:intro2:r1",
+              "text": "Is there any juice here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro2:r2",
+              "text": "Are there any juice here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro2:r3",
+              "text": "There is any juice here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь есть сок?» с `any`.",
+          "uk": "Запитайте «Тут є сік?» з `any`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нет, сломана",
+        "uk": "Ні, зламана"
+      },
+      "bodyByLocale": {
+        "ru": "`no` — «нет», `broken` — «сломанный». Друг спрашивает, работает ли ручка. Она сломана: `No, it is broken` — «Нет, она сломана». Сокращённо: `No, it’s broken`. Слово `broken` указывает на поломку; ручка с закончившимися чернилами не обязательно сломана. `taxi` — «такси»: `That is a taxi` — «То — такси».",
+        "uk": "`no` — «ні», `broken` — «зламаний». Друг запитує, чи працює ручка. Вона зламана: `No, it is broken` — «Ні, вона зламана». Скорочено: `No, it’s broken`. Слово `broken` указує на поломку; ручка, у якій закінчилося чорнило, не обов’язково зламана. `taxi` — «таксі»: `That is a taxi` — «То — таксі»."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Ручка сломана. На вопрос, работает ли она, ответьте «Нет, она сломана» с сокращением.",
+          "uk": "Ручка зламана. На запитання, чи працює вона, дайте відповідь «Ні, вона зламана» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-21:intro3:r1",
+              "text": "No, it's broken."
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro3:r2",
+              "text": "Yes, it's broken."
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro3:r3",
+              "text": "No, it are broken."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-21:intro3:r1",
+              "text": "No, it's broken."
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro3:r2",
+              "text": "Yes, it's broken."
+            },
+            {
+              "responseId": "en:lesson-04:session-21:intro3:r3",
+              "text": "No, it are broken."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ручка сломана. На вопрос, работает ли она, ответьте «Нет, она сломана» с сокращением.",
+          "uk": "Ручка зламана. На запитання, чи працює вона, дайте відповідь «Ні, вона зламана» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f736e979d55d3178a2437e3c813006b2486b34fd871e733c1f4d8c0a94a3dcf4"
+}

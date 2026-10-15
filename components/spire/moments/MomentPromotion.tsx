@@ -242,7 +242,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
         {phase.act === 2 ? (
           <Animated.View key="act2" entering={reduceMotion ? undefined : FadeIn.duration(420)} exiting={reduceMotion ? undefined : FadeOut.duration(300)} style={[s.act, s.center]}>
             <MomentCoin rank={myCoinRank} size={120} mood={phase.cheer ? 'cheer' : 'idle'} glints emote={phase.cheer ? 'star' : null} testID={`${testID}-coin`} />
-            <Text style={[s.ov, { color: p.accentText, marginTop: 22 }]}>{momentText(lang, 'promoRoomOverline')}</Text>
+            <Text style={[s.ov, { color: p.accentTextSafe, marginTop: 22 }]}>{momentText(lang, 'promoRoomOverline')}</Text>
             <Text style={[s.hXl, { color: p.text, marginTop: 6 }]}>{momentText(lang, 'promoPlace', { n: myPlace })}</Text>
           </Animated.View>
         ) : null}

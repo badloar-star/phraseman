@@ -72,7 +72,7 @@ function WeekSlide({ event, lang, coinRank }: StorySlideProps) {
           <View style={s.markerInner}><SpireRankCoin rank={coinRank} size={26} /></View>
         </View>
       </View>
-      <Text style={[s.overline, { color: p.accentText, marginTop: 14 }]}>{`${storyText(lang, 'weekResult')} · ${momentText(lang, 'floorTag', { n: 1 })}`}</Text>
+      <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 14 }]}>{`${storyText(lang, 'weekResult')} · ${momentText(lang, 'floorTag', { n: 1 })}`}</Text>
       <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{title}</Text>
       {subParts.length > 0 ? <Text style={[s.sub, { color: p.textSecondary }]}>{subParts.join(' \u00B7 ')}</Text> : null}
     </>
@@ -88,7 +88,7 @@ function StreakSlide({ event, lang }: StorySlideProps) {
   return (
     <>
       <StreakMomentFlame days={days} label={days} size={150} testID="story-streak-flame" />
-      <Text style={[s.overline, { color: p.accentText, marginTop: 14 }]}>{streakMomentText(lang, 'overline', { n: days })}</Text>
+      <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 14 }]}>{streakMomentText(lang, 'overline', { n: days })}</Text>
       {isStreakMilestone(days) ? <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{streakMilestoneTitle(lang, days)}</Text> : null}
       {sub ? <Text style={[s.sub, { color: p.textSecondary }]}>{sub}</Text> : null}
     </>
@@ -108,7 +108,7 @@ function CoinRankSlide({ event, lang }: StorySlideProps) {
         <Ionicons name="arrow-forward" size={22} color={p.textSecondary} />
         <SpireRankCoin rank={toRank} size={110} />
       </View>
-      <Text style={[s.overline, { color: p.accentText, marginTop: 18 }]}>{storyText(lang, 'rankOverline')}</Text>
+      <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 18 }]}>{storyText(lang, 'rankOverline')}</Text>
       <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{storyText(lang, 'rankTitle', { n: toRank })}</Text>
       <Text style={[s.sub, { color: p.textSecondary }]}>{storyText(lang, 'rankPaid', { price: storyThousands(price) })}</Text>
     </>
@@ -124,7 +124,7 @@ function AchievementSlide({ event, lang }: StorySlideProps) {
   return (
     <>
       <View style={s.achArt}><AchievementArt achievementId={id} size={120} borderRadius={28} accessibilityLabel={name || undefined} /></View>
-      <Text style={[s.overline, { color: p.accentText, marginTop: 18 }]}>{storyText(lang, 'achOverline')}</Text>
+      <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 18 }]}>{storyText(lang, 'achOverline')}</Text>
       {name ? <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{name}</Text> : null}
     </>
   );

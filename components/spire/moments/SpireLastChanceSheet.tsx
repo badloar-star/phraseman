@@ -75,7 +75,7 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
       testID={testID}
       header={(
         <View style={s.head}>
-          <Text style={[s.ov, { color: p.accentText }]}>{positionMomentText(lang, 'lastOver').toUpperCase()}</Text>
+          <Text style={[s.ov, { color: p.accentTextSafe }]}>{positionMomentText(lang, 'lastOver').toUpperCase()}</Text>
           <Text style={[s.clock, { color: p.text }]} accessibilityLabel={positionClockHms(weekEndsAtMs - now)} testID={`${testID}-clock`}>{positionClockHms(weekEndsAtMs - now)}</Text>
         </View>
       )}

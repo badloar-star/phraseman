@@ -65,7 +65,7 @@ function FirstDialogMoment({ lang, studyTarget, coinRank, turns, goalsDone, goal
       <View style={s.full}>
         <View style={s.body}>
           <MomentCoin rank={coinRank} size={110} mood={cheer ? 'cheer' : 'idle'} say={cheer ? firstDialogText(lang, 'say') : undefined} emote={cheer ? 'heart' : null} emoteCount={4} glints testID={`${testID}-coin`} />
-          <Animated.Text entering={beat(0)} style={[s.ov, { color: p.accentText }]}>{firstDialogText(lang, 'overline').toUpperCase()}</Animated.Text>
+          <Animated.Text entering={beat(0)} style={[s.ov, { color: p.accentTextSafe }]}>{firstDialogText(lang, 'overline').toUpperCase()}</Animated.Text>
           <Animated.Text entering={beat(1)} accessibilityRole="header" style={[s.hXl, { color: p.text }]} testID={`${testID}-title`}>{firstDialogText(lang, 'title', { adv })}</Animated.Text>
           <Animated.Text entering={beat(2)} style={[s.p, { color: p.textSecondary }]} testID={`${testID}-stats`}>{firstDialogText(lang, 'stats', { turns, done: goalsDone, all: goalsTotal })}</Animated.Text>
         </View>

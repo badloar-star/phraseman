@@ -16,7 +16,10 @@ export function useSpireBgBottom(): string {
   return useMemo(() => liquidGlassTokens(liquidGlassThemeId).bgBottom, [liquidGlassThemeId]);
 }
 
-export function useSpirePalette(): V2Palette {
+/** Палитра Пика + безопасный акцентный текст: в тёмном ровно accent темы, в светлом — углублённый; в «Спокойно» — цвет текста. */
+export type SpirePalette = V2Palette & Readonly<{ accentTextSafe: string }>;
+
+export function useSpirePalette(): SpirePalette {
   const { theme, themeMode, liquidGlassThemeId } = useTheme();
   return useMemo(() => {
     const base = getV2Palette(theme, themeMode);
@@ -38,6 +41,8 @@ export function useSpirePalette(): V2Palette {
       cta: g.accent,
       ctaText: g.accentInk,
       accentText: g.level === 'calm' ? g.text : g.accentText,
+      // зачем (координатор 15.10, храповик light_accent_graphics_ratchet): подписи-акценты окон моментов берут accentTextSafe — в тёмном ровно accent, в светлом углублённый, без сырого accentText
+      accentTextSafe: g.level === 'calm' ? g.text : g.accentTextSafe,
     };
   }, [theme, themeMode, liquidGlassThemeId]);
 }

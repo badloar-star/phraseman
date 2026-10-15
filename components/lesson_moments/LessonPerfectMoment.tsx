@@ -83,7 +83,7 @@ function LessonPerfectMoment({ lang, coinRank, total, coinsEarned, onNext, testI
             <MomentCoin rank={coinRank} size={128} mood="wow" glints testID={`${testID}-coin`} />
             <View style={s.stampWrap} pointerEvents="none">
               <Animated.View style={[s.stamp, { backgroundColor: p.control }, sh.plate, stampStyle]} testID={`${lessonPerfectTestId(testID)}`}>
-                <Text style={[s.stampText, { color: p.accentText }]}>{perfectMomentText(lang, 'stamp')}</Text>
+                <Text style={[s.stampText, { color: p.accentTextSafe }]}>{perfectMomentText(lang, 'stamp')}</Text>
               </Animated.View>
             </View>
           </View>

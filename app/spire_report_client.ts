@@ -89,8 +89,15 @@ async function markSpireStreakDay(report: SpireStepReport): Promise<void> {
   const today = getLocalDayKey();
   if (spireStreakDayMarked === today) return;
   try {
-    const { updateStreakOnActivity } = await import('./hall_of_fame_utils');
-    const streak = await updateStreakOnActivity();
+    // зачем (R35): общий путь «день засчитан» (сигнал дня, тост, рубеж, история, синк), как у урока; null — день уже засчитан
+    const { touchStreakForToday } = await import('./hall_of_fame_utils');
+    const touched = touchStreakForToday('activity:spire_steps');
+    if (touched === null) {
+      spireStreakDayMarked = today;
+      DebugLogger.info(LOG, `streak: день ${today} уже засчитан другим занятием — ступень ${report.reportId} не трогает серию`);
+      return;
+    }
+    const streak = await touched;
     if (streak < 0) {
       // зачем (аудит Optimistic UI 13.10): -1 = серия не сохранена — день не помечаем, следующая ступень попробует снова.
       DebugLogger.warn(LOG, `streak: день ${today} не сохранён (серия=${streak}) — повтор на следующей ступени`);

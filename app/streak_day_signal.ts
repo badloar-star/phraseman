@@ -20,7 +20,9 @@ export const STREAK_DAY_SPIRE_KIND = 'spire_steps';
  * Действия, которые засчитывают день серии (§137): урок, тренировка карточек, «Мои ошибки» и
  * завершённый разговор (диалог — настоящая речевая практика, координатор 04.10). Видео — нет (пассивно).
  */
-export const STREAK_DAY_ACTIVITY_KINDS: ReadonlySet<string> = new Set(['lesson', 'cards', 'mistakes', 'dialog']);
+// зачем (R35, Ревизор 15.10): ступень Пика засчитывала день «в обход» (updateStreakOnActivity напрямую) — огонь контурный,
+// нет «День засчитан», рубежа, истории и синка серии. Теперь Пик идёт общим путём touchStreakForToday('activity:spire_steps').
+export const STREAK_DAY_ACTIVITY_KINDS: ReadonlySet<string> = new Set(['lesson', 'cards', 'mistakes', 'dialog', STREAK_DAY_SPIRE_KIND]);
 
 /** День первого запуска с правилом §137: в этот день открытие ещё засчитывается по старому правилу. */
 export const STREAK_RULE_V137_SINCE_KEY = 'streak_rule_v137_since';

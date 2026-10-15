@@ -43,9 +43,10 @@ beforeEach(async () => {
 });
 afterEach(() => jest.restoreAllMocks());
 
-test('only lesson / cards / mistakes / finished dialog count the day; opening and other actions are passive', () => {
-  for (const kind of ['lesson', 'cards', 'mistakes', 'dialog']) expect(classifyStreakTouch(`activity:${kind}`).mode).toBe('count');
-  for (const reason of ['activity:video', 'activity:spire_steps', 'cold_start', 'foreground']) {
+// R35 (Ревизор/координатор 15.10): ступень Пика засчитывает день тем же путём, что урок (раньше — «в обход» серии).
+test('lesson / cards / mistakes / finished dialog / Spire step count the day; opening and other actions are passive', () => {
+  for (const kind of ['lesson', 'cards', 'mistakes', 'dialog', 'spire_steps']) expect(classifyStreakTouch(`activity:${kind}`).mode).toBe('count');
+  for (const reason of ['activity:video', 'cold_start', 'foreground']) {
     expect(classifyStreakTouch(reason).mode).toBe('passive');
   }
 });

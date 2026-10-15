@@ -1,6 +1,7 @@
 # Task packet: готовность выкладки 17.10 (команды и откат) + статический разбор выхода из аккаунта и очистки
 
 Governance-ID: TG-7925A155F069
+Governance-ID: TG-354B1B96FE7B
 Status: In progress
 Owner: Ядро (сессия 1)
 Related epic/enabler: SERVER_DEPLOY_2026-10-17.md, одобрение владельца 15.10 ~01:40, прогон №7 (отложен владельцем), координатор 06:07

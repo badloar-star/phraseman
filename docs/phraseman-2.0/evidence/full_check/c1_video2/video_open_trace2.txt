@@ -1,0 +1,24 @@
+=== open 1
+10-15 21:20:41.389 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +0ms start source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:20:41.397 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +8ms router.push called source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:20:41.545 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +156ms watch first render (catalog snapshot: hit, video in snapshot: yes) source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:20:45.885 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +4491ms player mount source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:20:46.908 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +5516ms watch mount source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:20:48.299 15993 16051 W ReactNativeJS: [VIDEO-OPEN-TRACE] +6911ms phrases resolved from=memory count=500 source=home_grid_tap
+10-15 21:20:48.365 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +6976ms watch onLayout source=home_grid_tap', { [Stack] name: 'Stack' }
+=== open 2
+10-15 21:20:58.914 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +0ms start source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:20:58.936 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +23ms router.push called source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:20:59.062 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +149ms watch first render (catalog snapshot: hit, video in snapshot: yes) source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:21:02.537 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +3624ms player mount source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:21:04.192 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +5279ms watch mount source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:21:05.338 15993 16051 W ReactNativeJS: [VIDEO-OPEN-TRACE] +6427ms phrases resolved from=memory count=500 source=home_grid_tap
+10-15 21:21:05.383 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +6459ms watch onLayout source=home_grid_tap', { [Stack] name: 'Stack' }
+=== open 3
+10-15 21:21:16.205 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +0ms start source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:21:16.214 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +11ms router.push called source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:21:16.368 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +166ms watch first render (catalog snapshot: hit, video in snapshot: yes) source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:21:20.329 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +4126ms player mount source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:21:21.238 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +5033ms watch mount source=home_grid_tap', { [Stack] name: 'Stack' }
+10-15 21:21:22.284 15993 16051 W ReactNativeJS: [VIDEO-OPEN-TRACE] +6081ms phrases resolved from=memory count=500 source=home_grid_tap
+10-15 21:21:22.335 15993 16051 W ReactNativeJS: '[VIDEO-OPEN-TRACE] +6132ms watch onLayout source=home_grid_tap', { [Stack] name: 'Stack' }

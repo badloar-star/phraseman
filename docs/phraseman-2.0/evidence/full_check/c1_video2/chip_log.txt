@@ -1,0 +1,3 @@
+10-15 21:18:13.194 15993 16051 I ReactNativeJS: [VIDEO-LANG-PILL] channel_resolved seq=1 studyTarget=en resolution={"channelId":"channel-3","preference":{"mode":"auto"}} requested=- deepLink=- manifestFrom=network refresh=false
+10-15 21:18:13.195 15993 16051 I ReactNativeJS: [VIDEO-LANG-PILL] channel_load seq=1 channelId=channel-3 source=resolution view=pending previousVersion=-
+10-15 21:18:15.117 15993 16051 I ReactNativeJS: [VIDEO-LANG-PILL] channel_shown seq=1 channelId=channel-3 version=yt_20261015145401230_cron-1792076041230 videos=13

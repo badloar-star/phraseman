@@ -1,0 +1,12 @@
+10-15 21:25:35.841 15993 16051 W ReactNativeJS: '[NAV-PAINT-TRACE] +0ms start source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:25:35.894 15993 16051 W ReactNativeJS: '[NAV-PAINT-TRACE] +2ms player closed before navigate source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:25:38.371 15993 16051 W ReactNativeJS: '[NAV-PAINT-TRACE] +2525ms player WebView unmount source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:25:38.494 15993 16051 W ReactNativeJS: [NAV-PAINT-TRACE] +2652ms router.navigate called source=video_watch_train_tap
+10-15 21:25:39.853 15993 16051 W ReactNativeJS: '[NAV-PAINT-TRACE] +4010ms hub first render source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:25:40.391 15993 16051 W ReactNativeJS: '[NAV-PAINT-TRACE] +4548ms hub mount source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:25:40.398 15993 16051 W ReactNativeJS: '[NAV-PAINT-TRACE] +4556ms video screen blur source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:25:40.546 15993 16051 W ReactNativeJS: '[NAV-PAINT-TRACE] +4703ms deck warmup start (snapshot in memory: true) source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:25:40.797 15993 16051 W ReactNativeJS: [NAV-PAINT-TRACE] +4944ms runAfterInteractions fired source=video_watch_train_tap
+10-15 21:25:40.816 15993 16051 W ReactNativeJS: '[NAV-PAINT-TRACE] +4974ms hub onLayout source=video_watch_train_tap', { [Stack] name: 'Stack' }
+10-15 21:25:41.138 15993 16051 W ReactNativeJS: [NAV-PAINT] group=tab route=/flashcards ms=706
+10-15 21:25:41.740 15993 16051 W ReactNativeJS: [NAV-PAINT-TRACE] +5899ms deck warmup end source=video_watch_train_tap

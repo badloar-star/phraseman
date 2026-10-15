@@ -7,7 +7,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Modal } from 'react-native';
-import { peekDialogueV2DoneIds } from '../../app/dialogue_v2_done_store';
+import { hydrateDialogueV2DoneIds, peekDialogueV2DoneIds } from '../../app/dialogue_v2_done_store';
 import type { Lang } from '../../constants/i18n';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useFireOnce } from '../moments/use_fire_once';
@@ -42,9 +42,12 @@ function FirstDialogHost({ lang, studyTarget, scenarioId, endedBy, turns, goalsD
       console.log(`[FIRST-DIALOG] нет показа: ${pre.reason} target=${studyTarget} scenario=${String(scenarioId)}`); // guard-ok: решение называет причину
       return () => { alive = false; };
     }
-    void readFirstDialogShown(studyTarget).then((alreadyShown) => {
+    // зачем (Ревизор P18, 15.10): в памяти лежат только диалоги, пройденные за этот запуск, — диск подтягивает хаб. Диалог, открытый не из хаба
+    // (пуш, Главная, ссылка), давал ложный «первый разговор». Если момент возможен, дочитываем пройденные с диска и решаем по полному списку.
+    void Promise.all([hydrateDialogueV2DoneIds(studyTarget), readFirstDialogShown(studyTarget)]).then(([diskDoneIds, alreadyShown]) => {
       if (!alive) return;
-      const final = decideFirstDialogMoment({ momentsV3: true, endedBy, learnerTurns: turns, scenarioId, doneIds, goalsTotal, alreadyShown });
+      console.log(`[FIRST-DIALOG] пройденные: в памяти=${doneIds.size} после диска=${diskDoneIds.size} target=${studyTarget}`); // guard-ok: источник данных решения
+      const final = decideFirstDialogMoment({ momentsV3: true, endedBy, learnerTurns: turns, scenarioId, doneIds: diskDoneIds, goalsTotal, alreadyShown });
       console.log(`[FIRST-DIALOG] ${final.show ? 'показ' : 'нет показа'}: ${final.reason} target=${studyTarget} scenario=${String(scenarioId)} цели=${goalsDone}/${goalsTotal}`); // guard-ok: итог решения
       if (!final.show) return;
       markFirstDialogShown(studyTarget);

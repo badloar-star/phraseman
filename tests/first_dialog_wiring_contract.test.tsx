@@ -28,7 +28,9 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 let mockToken: { phase: string; stableId: string | null; generation: number } = { phase: 'active', stableId: 'uid-1', generation: 1 };
 jest.mock('../app/account_generation', () => ({ captureAccountGeneration: () => mockToken }));
 let mockDone: ReadonlySet<string> = new Set<string>(['coffee']);
-jest.mock('../app/dialogue_v2_done_store', () => ({ peekDialogueV2DoneIds: () => mockDone }));
+// зачем (Ревизор P18): хост дочитывает пройденные диалоги с диска перед показом — заглушка отдаёт тот же список (mockDiskDone переопределяет)
+let mockDiskDone: ReadonlySet<string> | null = null;
+jest.mock('../app/dialogue_v2_done_store', () => ({ peekDialogueV2DoneIds: () => mockDone, hydrateDialogueV2DoneIds: () => Promise.resolve(mockDiskDone ?? mockDone) }));
 jest.mock('../hooks/use_my_coin_rank', () => ({ useMyCoinRank: () => 5 }));
 jest.mock('../components/dialog_moments/FirstDialogMoment', () => ({
   __esModule: true,
@@ -78,7 +80,7 @@ describe('m17 · отметка показа (память + диск)', () => {
 });
 
 describe('m17 · окно FirstDialogHost', () => {
-  beforeEach(() => { mockStore.clear(); resetFirstDialogShownForTests(); mockToken = { phase: 'active', stableId: 'uid-1', generation: 1 }; mockDone = new Set(['coffee']); });
+  beforeEach(() => { mockStore.clear(); resetFirstDialogShownForTests(); mockToken = { phase: 'active', stableId: 'uid-1', generation: 1 }; mockDone = new Set(['coffee']); mockDiskDone = null; });
   const props = { lang: 'ru', studyTarget: 'en', scenarioId: 'coffee', endedBy: 'bot', turns: 6, goalsDone: 5, goalsTotal: 5 } as const;
 
   it('первый диалог: окно появляется с цифрами итога; «Следующий сценарий» закрывает окно и зовёт переход ровно один раз', async () => {
@@ -101,6 +103,14 @@ describe('m17 · окно FirstDialogHost', () => {
 
   it('не первый диалог (пройдено два сценария) — окна нет', async () => {
     mockDone = new Set(['coffee', 'taxi']);
+    await render(<FirstDialogHost {...props} onNext={jest.fn()} />);
+    await new Promise((r) => setTimeout(r, 20));
+    expect(screen.queryByTestId('first-next')).toBeNull();
+  });
+
+  it('P18: в памяти один сценарий (вход не из хаба), а на диске пройдено больше — окна нет', async () => {
+    mockDone = new Set(['coffee']);
+    mockDiskDone = new Set(['coffee', 'taxi', 'hotel']);
     await render(<FirstDialogHost {...props} onNext={jest.fn()} />);
     await new Promise((r) => setTimeout(r, 20));
     expect(screen.queryByTestId('first-next')).toBeNull();

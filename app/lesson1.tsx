@@ -63,6 +63,7 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
 import ComboRing from '../components/feedback/ComboRing';
+import { getDevShortLessonCells } from './dev_short_lesson';
 import { captureObjectiveAttempt } from './mistake_practice_capture';
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { getStableId } from './stable_id';
@@ -298,7 +299,12 @@ const safeGetDistracts = (phrase: any, wordIndex: number, studyTarget: StudyTarg
 let tapHintShownThisSession = false;
 
 
-const TOTAL = 50;
+const FULL_LESSON_TOTAL = 50;
+// зачем (координатор 15.10): dev_state?shortLesson=N — урок из N заданий, чтобы Сверка честно дошла до итога (серия, монеты, звёзды —
+// боевой код). Подменяется только число позиций; в стор-сборке dev_short_lesson — заглушка (null), урок всегда 50.
+function lessonTotal(): number {
+  return getDevShortLessonCells() ?? FULL_LESSON_TOTAL;
+}
 const SETTINGS_KEY = 'user_settings';
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const LESSON_ENTER_MS = MOTION_DURATION.normal;
@@ -319,7 +325,7 @@ const WORD_DISPATCH_LOCK_MS = 90;
 const LESSON_COMPLETION_SPEECH_FALLBACK_MS = phraseAudioClipStartTimeoutMs(Platform.OS) + 6_000;
 
 function isValidLessonPhraseOrder(order: unknown, phraseCount: number): order is number[] {
-  const count = Math.min(phraseCount, TOTAL);
+  const count = Math.min(phraseCount, lessonTotal());
   if (!Array.isArray(order) || order.length !== count) return false;
   if (new Set(order).size !== order.length) return false;
   return order.every((idx) => Number.isInteger(idx) && idx >= 0 && idx < phraseCount);
@@ -331,7 +337,7 @@ function hasUsableLessonPhraseOrder(order: unknown, phraseCount: number): order 
 }
 
 function shuffleLessonPhraseOrder(phraseCount: number): number[] {
-  const count = Math.min(phraseCount, TOTAL);
+  const count = Math.min(phraseCount, lessonTotal());
   const order = Array.from({ length: phraseCount }, (_, i) => i);
   for (let i = order.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -2071,7 +2077,7 @@ function LessonScreen() {
     [comboPlan, remoteFrenchLessonRows, lessonId, studyTarget],
   );
   // Если в уроке меньше 50 фраз — не повторяем. effectiveTotal = реальное кол-во фраз.
-  const effectiveTotal = Math.min(LESSON_DATA.length, TOTAL);
+  const effectiveTotal = Math.min(LESSON_DATA.length, lessonTotal());
   const hasPlayableLessonRows = effectiveTotal > 0;
   const lessonTheorySupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
   const lessonHintSupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
@@ -3025,7 +3031,7 @@ function LessonScreen() {
       // иначе уже отвеченные фразы могут снова попасть в оставшуюся часть нового shuffle.
       if (phraseOrderRef.current.length === 0 && LESSON_DATA.length > 0) {
         const n = LESSON_DATA.length;
-        const count = Math.min(n, TOTAL);
+        const count = Math.min(n, lessonTotal());
         let restoredOrder: number[] | null = null;
         if (savedOrder) {
           try {

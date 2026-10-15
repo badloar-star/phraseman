@@ -245,6 +245,8 @@ export type DevStateRequest = Readonly<{
   coinRank?: number | 'off';
   /** Лига башни Шпиля для ПОКАЗА (0..11, Гранит…Алмаз): подмена выбора наряда башни в памяти процесса — неделя, комната и облако не меняются (dev_spire_tier.ts). off — снять. */
   spireTier?: number | 'off';
+  /** Короткий урок 1.0 для честной проверки итога: N заданий (1..10) вместо 50, начисление — боевой код (dev_short_lesson). */
+  shortLesson?: number | 'off';
   /** Исход карточки «Итог недели» Шпиля для ПОКАЗА (макет «Итог недели»): up — повышение в Базальт, stay — остаёшься в Граните, down — понижение, top — высшая лига Алмаз, marble — Мрамор, obsidian — остаёшься в Обсидиане; off — снять (dev_spire_tier.ts). */
   spireWeek?: 'up' | 'stay' | 'down' | 'top' | 'marble' | 'obsidian' | 'off';
   /** Прокрутка окна башни Пика для ПОКАЗА: top — к началу сцены (конус и навершие в кадре), off — снять (координатор 13.10, №25б). */
@@ -460,6 +462,14 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.cardsLangs = pick('cardslangs', ['on', 'off'] as const);
   request.videoPacks = pick('videopacks', ['empty', 'demo', 'catalog', 'catalog_upcoming'] as const);
   // зачем (координатор 13.10, наряды башен лиг): у гостя лиги нет — Сверке нужны кадры всех 12 лиг; подмена ТОЛЬКО выбора наряда башни
+  // зачем (координатор 15.10): Сверка проходит урок до итога за N заданий — «серия / сегодня засчитан», монеты и звёзды тем же кодом, что в бою
+  const shortLessonRaw = one(params.shortLesson);
+  if (shortLessonRaw !== undefined) {
+    const shortN = Number(shortLessonRaw);
+    if (shortLessonRaw === 'off') request.shortLesson = 'off';
+    else if (Number.isInteger(shortN) && shortN >= 1 && shortN <= 10) request.shortLesson = shortN;
+    else rejected.shortLesson = `ожидалось 1..10 или off, пришло ${shortLessonRaw}`;
+  }
   const spireTierRaw = one(params.spireTier);
   if (spireTierRaw !== undefined) {
     const tierN = Number(spireTierRaw);
@@ -1081,6 +1091,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('spireTier', String(request.spireTier), async () => {
       const { setDevSpireTierOverride } = await import('./dev_spire_tier');
       return setDevSpireTierOverride(request.spireTier === 'off' ? null : (request.spireTier as number));
+    });
+  }
+  if (request.shortLesson !== undefined) {
+    await step('shortLesson', String(request.shortLesson), async () => {
+      const { setDevShortLessonCells } = await import('./dev_short_lesson');
+      return setDevShortLessonCells(request.shortLesson === 'off' ? null : (request.shortLesson as number));
     });
   }
   if (request.spireWeek !== undefined) {

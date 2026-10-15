@@ -1,0 +1,16 @@
+10-15 16:59:40.230 I/ReactNativeJS( 3251): '[V2-MAP] tabbar', '{"hidden":false,"atMs":1792079980229}'
+10-15 16:59:41.946 W/ReactNativeJS( 3251): [COLD-START] home_paint.module_eval {"modules":1350,"selfSumMs":941,"self":"53ms app/_layout.tsx | 21ms modules/learning-v2/progress/owner_repository_root_v3.ts | 17ms modules/sound_v2/catalog.ts | 14ms app/hint.tsx | 13ms app/diagnostic_test.tsx | 13ms app
+10-15 16:59:41.951 W/ReactNativeJS( 3251): [COLD-START] home_paint.module_eval:chains app/_layout.tsx || app/learning-v2/session/[id].tsx || app/learning_v2_completion_background_scheduler.ts ← app/learning-v2/session/[id].tsx || app/learning_v2_required_session_completion_sync.ts ← app/learning
+10-15 16:59:46.031 I/ReactNativeJS( 3251): '[V2-PAGE] LessonsTab:mount', '{"instanceId":"pzoxqx","presentation":"tab","initialPage":"lessons"}'
+10-15 16:59:46.045 I/ReactNativeJS( 3251): '[V2-MAP] page:commit', '{"instanceId":"pzoxqx","page":"lessons","branch":"legacy_list","presentation":"tab","runtimeOwnerId":"home","visible":false,"navFocused":true,"atMs":1792079986043}'
+10-15 16:59:46.049 I/ReactNativeJS( 3251): '[V2-MAP] lessons-pane', '{"freezeWanted":false,"coverLessons":false,"shouldLoad":true,"epoch":0,"phase":"active","atMs":1792079986048}'
+10-15 16:59:48.585 I/ReactNativeJS( 3251): '[V2-MAP] page:commit', '{"instanceId":"pzoxqx","page":"lessons","branch":"legacy_list","presentation":"tab","runtimeOwnerId":"home","visible":false,"navFocused":false,"atMs":1792079988582}'
+10-15 16:59:48.617 I/ReactNativeJS( 3251): '[V2-PAGE] LessonsTab:mount', '{"instanceId":"hmrhvs","presentation":"push","initialPage":"lessons"}'
+10-15 16:59:48.630 I/ReactNativeJS( 3251): '[V2-MAP] page:commit', '{"instanceId":"hmrhvs","page":"lessons","branch":"legacy_list","presentation":"push","runtimeOwnerId":"home","visible":false,"navFocused":true,"atMs":1792079988628}'
+10-15 16:59:53.331 I/ReactNativeJS( 3251): '[V2-OPEN] progress:disk', '{"diskMs":6,"completed":0,"current":"lesson-01:session:01"}'
+10-15 16:59:53.344 I/ReactNativeJS( 3251): '[V2-OPEN] progress:applied', '{"sinceTap":null,"warmupMs":2361,"completed":0,"current":"lesson-01:session:01"}'
+10-15 16:59:57.284 I/ReactNativeJS( 3251): '[V2-OPEN] tap', '{"from":"openNewLessons","instanceId":"hmrhvs","runtimeOwnerId":"home","visible":false}'
+10-15 16:59:57.287 I/ReactNativeJS( 3251): '[V2-PAGE] setPage', '{"from":"lessons","to":"v2","presentation":"push","initialPage":"lessons","instanceId":"hmrhvs","runtimeOwnerId":"home","visible":false}', '    at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&min
+10-15 16:59:57.613 I/ReactNativeJS( 3251): '[V2-MAP] chapters:mount', '{"scopeKey":"1:en:0","atMs":1792079997612}'
+10-15 16:59:57.616 I/ReactNativeJS( 3251): '[V2-MAP] chapters:rows', '{"titles":32,"visibleLessons":1,"selectedLessonOrdinal":1,"rows":2048,"lessonRows":64,"chapters":7,"sessions":15,"allLessonsOpen":false,"active":true}'
+10-15 16:59:57.618 I/ReactNativeJS( 3251): '[V2-MAP] page:commit', '{"instanceId":"hmrhvs","page":"v2","branch":"v2_map","presentation":"push","runtimeOwnerId":"home","visible":false,"navFocused":true,"atMs":1792079997617}'

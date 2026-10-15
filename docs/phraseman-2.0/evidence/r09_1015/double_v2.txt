@@ -1,0 +1,15 @@
+10-15 17:00:18.429 I/ReactNativeJS( 3561): [COLD-START] layout.module_eval:self_top proc=10919566ms src=_layout {"modules":3014,"selfSumMs":2655,"top":"114ms node_modules/@revenuecat/purchases-js-hybrid-mappings/dist/index.umd.js | 102ms app/lesson_words.tsx | 64ms node_modules/expo-image/src/ExpoIm
+10-15 17:00:20.573 I/ReactNativeJS( 3561): '[V2-MAP] tabbar', '{"hidden":false,"atMs":1792080020572}'
+10-15 17:00:23.060 W/ReactNativeJS( 3561): [COLD-START] home_paint.module_eval {"modules":1352,"selfSumMs":1072,"self":"60ms app/_layout.tsx | 22ms app/diagnostic_test.tsx | 16ms node_modules/expo/src/winter/fetch/FetchErrors.ts | 13ms app/flashcards/saved_language_contour.ts | 12ms app/hint.tsx | 1
+10-15 17:00:23.067 W/ReactNativeJS( 3561): [COLD-START] home_paint.module_eval:chains app/_layout.tsx || app/learning-v2/session/[id].tsx || app/learning_v2_completion_background_scheduler.ts ← app/learning-v2/session/[id].tsx || app/learning_v2_required_session_completion_sync.ts ← app/learning
+10-15 17:00:27.768 I/ReactNativeJS( 3561): '[V2-PAGE] LessonsTab:mount', '{"instanceId":"ksv5gm","presentation":"push","initialPage":"lessons"}'
+10-15 17:00:27.779 I/ReactNativeJS( 3561): '[V2-MAP] page:commit', '{"instanceId":"ksv5gm","page":"lessons","branch":"legacy_list","presentation":"push","runtimeOwnerId":"home","visible":false,"navFocused":true,"atMs":1792080027778}'
+10-15 17:00:34.491 I/ReactNativeJS( 3561): '[V2-MAP] page:commit', '{"instanceId":"ksv5gm","page":"lessons","branch":"legacy_list","presentation":"push","runtimeOwnerId":"home","visible":false,"navFocused":false,"atMs":1792080034489}'
+10-15 17:00:34.811 I/ReactNativeJS( 3561): '[V2-OPEN] progress:disk', '{"diskMs":956,"completed":0,"current":"lesson-01:session:01"}'
+10-15 17:00:37.444 W/ReactNativeJS( 3561): '[NAV-BACK] decision', '{"leaving":"/level_exam","leavingSection":"lessons","candidate":"/lessons_list","chosen":"/lessons_list","fallback":"/lessons_list","method":"dismiss_to"}', { [Stack] name: 'Stack' }
+10-15 17:00:38.156 I/ReactNativeJS( 3561): '[V2-PAGE] LessonsTab:mount', '{"instanceId":"jwrgxk","presentation":"tab","initialPage":"lessons"}'
+10-15 17:00:38.176 I/ReactNativeJS( 3561): '[V2-MAP] page:commit', '{"instanceId":"jwrgxk","page":"lessons","branch":"legacy_list","presentation":"tab","runtimeOwnerId":"home","visible":false,"navFocused":false,"atMs":1792080038172}'
+10-15 17:00:38.188 I/ReactNativeJS( 3561): '[V2-MAP] lessons-pane', '{"freezeWanted":false,"coverLessons":false,"shouldLoad":true,"epoch":0,"phase":"active","atMs":1792080038185}'
+10-15 17:00:38.219 I/ReactNativeJS( 3561): '[V2-MAP] page:commit', '{"instanceId":"ksv5gm","page":"lessons","branch":"legacy_list","presentation":"push","runtimeOwnerId":"home","visible":false,"navFocused":true,"atMs":1792080038217}'
+10-15 17:00:40.290 I/ReactNativeJS( 3561): '[V2-OPEN] progress:disk', '{"diskMs":421,"completed":0,"current":"lesson-01:session:01"}'
+10-15 17:00:40.302 I/ReactNativeJS( 3561): '[V2-OPEN] progress:applied', '{"sinceTap":null,"warmupMs":2075,"completed":0,"current":"lesson-01:session:01"}'

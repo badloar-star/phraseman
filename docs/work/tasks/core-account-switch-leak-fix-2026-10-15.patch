@@ -1,0 +1,660 @@
+--- a/app/cloud_sync.ts
++++ b/app/cloud_sync.ts
+@@ -852,7 +852,30 @@
+ const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [
+   ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX, PROFILE_CARD_PUBLIC_CACHE_PREFIX,
+ ];
+-const WIPE_ONLY_ACCOUNT_EXACT_KEYS: ReadonlySet<string> = new Set(APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS);
++/**
++ * Ключи без владельца в имени, которые переживали выход и смену аккаунта и доставались следующему человеку.
++ * зачем (координатор 15.10, docs/phraseman-2.0/handoff/LOGOUT_WIPE_AUDIT_2026-10-15.md, 🔴 №1 к сборке 16.10): серия (отложенная
++ * заморозка Plus, маркеры недели, отметка отправки на сервер), уроки за жемчуг (материализуются заново из журнала покупок при входе),
++ * история и лимиты Диалогов, кэш статистики с именем и серией, кэш бана, заморозки Plus месяца, ОЖИДАЮЩИЕ поздравления (флаги
++ * «уже показано» намеренно не трогаем — иначе A при повторном входе увидит поздравление снова), лайки наборов, счётчики пейвола.
++ * Стираются шагом «только стирание» (как сообщения аккаунта): остаток проверяется сразу, поздняя запись живого писателя убирается
++ * тихо — новых причин отказа выхода нет. Устройство (study_target_v1, onboarding_*, app_lang) — решение владельца, здесь нет.
++ */
++export const ACCOUNT_SWITCH_LEAK_KEYS: readonly string[] = [
++  'streak_plus_freeze_pending_v1',
++  'lessons_pearl_unlocked_v1', 'lessons_pearl_unlocked_v1_fr',
++  'dialogs_completed_ids_v1', 'dialogs_free_lifetime_used_v2', 'dialogs_free_lifetime_count_v3',
++  'dialogue_v2_voice_attempts_v1', 'dialogue_v2_why_allowance:v1',
++  'stats_preload_cache_v5', 'lifetime_profile_stats_snapshot_v1',
++  'streak_server_sync_day_v1', 'streak_week_day_markers_v1',
++  'ban_status_cached_v1', 'ban_status_cached_at_v1',
++  'premium_free_freeze_used', 'premium_free_freeze_month_v1',
++  'premium_celebration_pending_v1', 'premium_celebration_pending_marker_v1', 'premium_celebration_pending_variant_v1',
++  'vip_celebration_pending_v1', 'vip_celebration_pending_marker_v1',
++  'community_pack_liked_ids_v1', 'community_pack_added_registered_ids_v1',
++  'energy_zero_count_v1', 'streak_lost_count_v1',
++];
++const WIPE_ONLY_ACCOUNT_EXACT_KEYS: ReadonlySet<string> = new Set([...APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS, ...ACCOUNT_SWITCH_LEAK_KEYS]);
+ 
+ /** Префикс стирания для ключа или null (ключ — `prefix` или `prefix:<владелец>`). Экспорт — для сторожа. */
+ export function wipeOnlyAccountKeyPrefix(key: string): string | null {
+@@ -6081,6 +6104,8 @@
+   cancelPendingGeneratedNicknameRetry();
+   const accountKeys = await collectAccountLocalDataKeys();
+   markWipeStage('collectKeys', accountKeys.length);
++  // зачем (координатор 15.10): сколько ключей было ДО стирания — для лога survivors в конце.
++  const wipeKeysBefore = await listAllAccountLocalStorageKeys().then((keys) => keys.length, () => -1);
+   // зачем (AA 2.0, S1e-2 п.2): непустой ключ S1e, не попавший в копию, стирается — делаем это видимым.
+   await noteFutureKeptStashBeforeWipe(receiptOwnerStableId);
+   markWipeStage('noteStash');
+@@ -6211,6 +6236,39 @@
+   if (receiptOwnerStableId) {
+     await assertNoOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
+   }
++  // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT): что пережило стирание — по факту, а не по списку. knownLeak обязан быть пуст;
++  // other — живой список ключей без владельца в имени (решать: устройство или утечка); ownerScoped — привязанные к владельцу.
++  // Только имена (id владельца → <owner>), без значений. Лог не меняет исход стирания.
++  try {
++    const left = (await listAllAccountLocalStorageKeys()).filter((key) => !KEEP.has(key));
++    const leakSet = new Set(ACCOUNT_SWITCH_LEAK_KEYS);
++    const knownLeak = left.filter((key) => leakSet.has(key));
++    const ownerScoped: Record<string, number> = {};
++    const other: string[] = [];
++    for (const key of left) {
++      if (leakSet.has(key)) continue;
++      if (receiptOwnerStableId && key.includes(receiptOwnerStableId)) {
++        const shape = key.split(receiptOwnerStableId).join('<owner>');
++        ownerScoped[shape] = (ownerScoped[shape] ?? 0) + 1;
++        continue;
++      }
++      other.push(redactStorageKey(key));
++    }
++    console.log(`[ACC-SWITCH-WIPE] survivors=${JSON.stringify({ before: wipeKeysBefore, knownLeak, otherCount: other.length, other: other.slice(0, 150), ownerScoped })}`); // guard-ok: одна строка на стирание, только имена
++    if (knownLeak.length > 0) {
++      identityTrace('[ACC-SWITCH-WIPE]', 'survivors_known_leak', { count: knownLeak.length, keys: knownLeak.slice(0, 5).join(',') }, { persist: true });
++    }
++  } catch (error: unknown) {
++    console.warn(`[ACC-SWITCH-WIPE] survivors scan_failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
++  }
++  // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴 приватность): кэш документов Firestore SDK прошлого аккаунта — очистка на следующем
++  // холодном старте, как при удалении (clearPersistence возможна только до первого обращения к Firestore). Метка переживает стирание.
++  try {
++    const { markFirestoreCacheClearPending } = await import('./firestore_cache_clear');
++    await markFirestoreCacheClearPending('account_wipe');
++  } catch (error: unknown) {
++    console.warn(`[ACC-SWITCH-WIPE] firestore_cache_mark_failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
++  }
+   // Сбрасываем in-memory bookkeeping синка
+   lastSuccessfulSyncAt = 0;
+   lastActivityStampAt = 0;
+--- a/app/auth_provider.ts
++++ b/app/auth_provider.ts
+@@ -3877,7 +3877,13 @@
+       return premiumIdle && restoreIdle && cloudIdle;
+     },
+     // зачем (шаг 3): выход внутри смены сохраняет пропуск, выбранный перед сменой.
+-    signOut: async (): Promise<void> => { await signOutCurrentProviderKeepingSwitchResume(); },
++    // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴 приватность): push-токен и запланированные уведомления A снимались только при
++    // УДАЛЕНИИ — телефон после выхода/смены получал пуши A. Снимаем ДО signOut (запись токена требует живой авторизации).
++    // Только здесь: общий выход провайдера зовёт и ветка восстановления, где аккаунт сохраняется.
++    signOut: async (): Promise<void> => {
++      await clearAccountPushBeforeSwitchSignOut();
++      await signOutCurrentProviderKeepingSwitchResume();
++    },
+     wipeLocalData: async (): Promise<void> => { await wipeLocalAccountData(); },
+     clearStableId: async (): Promise<void> => {
+       await clearStableId();
+@@ -5162,6 +5168,32 @@
+   return runAccountAuthorityProviderSignOutTransition(performCurrentProviderSignOut);
+ }
+ 
++/** Потолок ожидания снятия push при выходе: выход не должен стоять на медленной сети (токен снимет и сервер по удалённой связке). */
++const SWITCH_PUSH_CLEANUP_CAP_MS = 4_000;
++
++/** Снять локальные уведомления и push-токен уходящего аккаунта. Никогда не бросает; итог — [ACC-SWITCH-WIPE] push_cleanup. */
++async function clearAccountPushBeforeSwitchSignOut(): Promise<void> {
++  const startedAtMs = Date.now();
++  const step = (name: string, run: () => Promise<void>): Promise<string> => run().then(
++    () => `${name}:ok`,
++    (error: unknown) => {
++      console.warn(`[ACC-SWITCH-WIPE] push_cleanup step=${name} failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
++      return `${name}:failed`;
++    },
++  );
++  let timer: ReturnType<typeof setTimeout> | null = null;
++  const capped = new Promise<string[]>((resolve) => { timer = setTimeout(() => resolve(['timeout']), SWITCH_PUSH_CLEANUP_CAP_MS); });
++  const result = await Promise.race([
++    Promise.all([
++      step('notifications', async () => { const { cancelAllNotifications } = await import('./notifications'); await cancelAllNotifications(); }),
++      step('push_token', async () => { const { clearPushTokenForServerPush } = await import('./push_token_registration'); await clearPushTokenForServerPush(); }),
++    ]),
++    capped,
++  ]);
++  if (timer) clearTimeout(timer);
++  console.log(`[ACC-SWITCH-WIPE] push_cleanup result=${result.join(',')} ms=${Date.now() - startedAtMs}`); // guard-ok: одна строка на выход
++}
++
+ async function performCurrentProviderSignOut(): Promise<void> {
+   if (__DEV__) console.log('[auth_provider] signOutCurrentProvider: start');
+   // Сбрасываем PostHog-идентичность, чтобы события следующего юзера не приписались прошлому
+--- a/app/statsCache.ts
++++ b/app/statsCache.ts
+@@ -13,6 +13,7 @@
+ import { isStreakFreezeActiveToday, streakFreezeDateKey } from './streak_freeze';
+ import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+ import { buildStatsActivityRows, type StatsActivityDay, type StatsActivityTimeDay } from '../modules/stats_activity_rows';
++import { onAccountOwnerChanged } from './account_owner_change';
+ 
+ type StatsCacheStudyTarget = ReturnType<typeof storageStudyTarget>;
+ 
+@@ -242,6 +243,12 @@
+ // зачем (аудит Optimistic UI, 04.10): общий промис не различал studyTarget — вызов для цели B получал результат, собранный для цели A.
+ // Дедупликация теперь по цели; одновременные вызовы ОДНОЙ цели по-прежнему делят один рефреш.
+ const _refreshPromises = new Map<string, Promise<StatsPreloadData | null>>();
++// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
++onAccountOwnerChanged('stats_preload', () => {
++  _cache = { ...DEFAULT_CACHE };
++  _hydratePromise = null;
++  _refreshPromises.clear();
++});
+ 
+ export async function refreshStatsCache(studyTarget?: RuntimeStudyTarget): Promise<StatsPreloadData | null> {
+   await hydrateStatsCacheFromStorage();
+--- a/app/medal_utils.ts
++++ b/app/medal_utils.ts
+@@ -11,6 +11,7 @@
+   storageStudyTarget,
+   type RuntimeStudyTarget,
+ } from './target_storage_keys';
++import { onAccountOwnerChanged } from './account_owner_change';
+ 
+ // ─── Типы ────────────────────────────────────────────────────────────────────
+ 
+@@ -224,6 +225,8 @@
+ 
+ /** Invalidate medal cache (call after saveMedalProgress / saveExamProgress) */
+ export const invalidateMedalsCache = () => { _medalsCacheByTarget = {}; };
++// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
++onAccountOwnerChanged('medals', invalidateMedalsCache);
+ 
+ // Загружает медали для всех 32 уроков разом (cached in memory)
+ export const loadAllMedals = async (studyTarget?: RuntimeStudyTarget): Promise<MedalTier[]> => {
+--- a/app/activity_365_analytics.ts
++++ b/app/activity_365_analytics.ts
+@@ -1,6 +1,7 @@
+ import AsyncStorage from '@react-native-async-storage/async-storage';
+ import { getForegroundDailyMsMap } from './foreground_usage_ms';
+ import { statsDailyBreakdownKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
++import { onAccountOwnerChanged } from './account_owner_change';
+ 
+ export const ACTIVITY_365_GOAL_KEY = 'activity_365_goal_v1';
+ export const STATS_DAILY_BREAKDOWN_KEY = 'stats_daily_breakdown_v1';
+@@ -12,10 +13,10 @@
+ export type Activity365Filter = 'all' | 'lessons' | 'review';
+ export type Activity365Level = 0 | 1 | 2 | 3 | 4;
+ 
+-export type Activity365Day = {
+-  date: string;
+-  level: Activity365Level;
+-  minutes: number;
++export type Activity365Day = {
++  date: string;
++  level: Activity365Level;
++  minutes: number;
+   active: boolean;
+   future: boolean;
+   metrics: {
+@@ -30,9 +31,9 @@
+ export type Activity365MonthSummary = {
+   key: string;
+   year: number;
+-  month: number;
+-  activeDays: number;
+-  totalMinutes: number;
++  month: number;
++  activeDays: number;
++  totalMinutes: number;
+ };
+ 
+ export type Activity365Insight = {
+@@ -135,8 +136,8 @@
+   return value >= t4 ? 4 : 3;
+ }
+ 
+-function findFirstActivityKey(
+-  fgDaily: Record<string, number>,
++function findFirstActivityKey(
++  fgDaily: Record<string, number>,
+   breakdown: DailyBreakdownStore,
+   endStr: string,
+ ): string | null {
+@@ -146,7 +147,7 @@
+     if (!active || !/^\d{4}-\d{2}-\d{2}$/.test(k) || k < limitStart || k > endStr) return;
+     if (!best || k < best) best = k;
+   };
+-  for (const [k, ms] of Object.entries(fgDaily)) consider(k, ms >= MIN_ACTIVE_MS);
++  for (const [k, ms] of Object.entries(fgDaily)) consider(k, ms >= MIN_ACTIVE_MS);
+   for (const [k, row] of Object.entries(breakdown)) {
+     const metrics = metricsForRow(row);
+     const sum = Object.values(metrics).reduce((acc, val) => acc + val, 0);
+@@ -182,21 +183,21 @@
+     const prev = map.get(key) ?? {
+       key,
+       year: Number(yearRaw),
+-      month: Number(monthRaw),
+-      activeDays: 0,
+-      totalMinutes: 0,
+-    };
+-    prev.activeDays += day.active ? 1 : 0;
+-    prev.totalMinutes += day.minutes;
++      month: Number(monthRaw),
++      activeDays: 0,
++      totalMinutes: 0,
++    };
++    prev.activeDays += day.active ? 1 : 0;
++    prev.totalMinutes += day.minutes;
+     map.set(key, prev);
+   }
+   const months = [...map.values()];
+-  const nonEmpty = months.filter(m => m.activeDays > 0 || m.totalMinutes > 0);
+-  const bestMonth = nonEmpty.length
+-    ? [...nonEmpty].sort((a, b) => (b.activeDays - a.activeDays) || (b.totalMinutes - a.totalMinutes))[0] ?? null
+-    : null;
+-  const weakestMonth = nonEmpty.length >= 2
+-    ? [...nonEmpty].sort((a, b) => (a.activeDays - b.activeDays) || (a.totalMinutes - b.totalMinutes))[0] ?? null
++  const nonEmpty = months.filter(m => m.activeDays > 0 || m.totalMinutes > 0);
++  const bestMonth = nonEmpty.length
++    ? [...nonEmpty].sort((a, b) => (b.activeDays - a.activeDays) || (b.totalMinutes - a.totalMinutes))[0] ?? null
++    : null;
++  const weakestMonth = nonEmpty.length >= 2
++    ? [...nonEmpty].sort((a, b) => (a.activeDays - b.activeDays) || (a.totalMinutes - b.totalMinutes))[0] ?? null
+     : null;
+   const currentMonth = map.get(todayKey.slice(0, 7)) ?? null;
+   return { bestMonth, weakestMonth, currentMonth };
+@@ -369,8 +370,8 @@
+   };
+ }
+ 
+-export function valueForFilter(day: Activity365Day, filter: Activity365Filter): number {
+-  if (filter === 'all') return day.minutes;
++export function valueForFilter(day: Activity365Day, filter: Activity365Filter): number {
++  if (filter === 'all') return day.minutes;
+   return day.metrics[filter];
+ }
+ 
+@@ -398,9 +399,9 @@
+   flashcardsSaved: 0,
+ };
+ 
+-export interface ActivityWindowSummary {
+-  activeDays: number;
+-  minutes: number;
++export interface ActivityWindowSummary {
++  activeDays: number;
++  minutes: number;
+   lessons: number;
+   reviews: number;
+ }
+@@ -413,20 +414,20 @@
+   const todayKey = new Date(nowMs).toISOString().slice(0, 10);
+   const startKey = new Date(nowMs - (windowDays - 1) * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+   return days.reduce<ActivityWindowSummary>((summary, day) => {
+-    if (day.future || day.date < startKey || day.date > todayKey) return summary;
+-    summary.activeDays += day.active ? 1 : 0;
+-    summary.minutes += Math.max(0, Math.floor(day.minutes));
++    if (day.future || day.date < startKey || day.date > todayKey) return summary;
++    summary.activeDays += day.active ? 1 : 0;
++    summary.minutes += Math.max(0, Math.floor(day.minutes));
+     summary.lessons += Math.max(0, Math.floor(day.metrics.lessons));
+     summary.reviews += Math.max(0, Math.floor(day.metrics.review));
+     return summary;
+-  }, { activeDays: 0, minutes: 0, lessons: 0, reviews: 0 });
++  }, { activeDays: 0, minutes: 0, lessons: 0, reviews: 0 });
+ }
+ 
+ export function emptyActivity365Day(date: string, future = false): Activity365Day {
+   return {
+-    date,
+-    level: 0,
+-    minutes: 0,
++    date,
++    level: 0,
++    minutes: 0,
+     active: false,
+     future,
+     metrics: { ...EMPTY_ACTIVITY_365_METRICS },
+@@ -473,8 +474,8 @@
+   return { year: yy, month: mm, cells };
+ }
+ 
+-export function computeActivity365Analytics(params: {
+-  fgDaily: Record<string, number>;
++export function computeActivity365Analytics(params: {
++  fgDaily: Record<string, number>;
+   breakdown: DailyBreakdownStore;
+   goal: number;
+   /** Юзер выбрал цель явно? Если не передан — считаем дефолтом (не выбрана). */
+@@ -483,34 +484,34 @@
+ }): Activity365Analytics {
+   const now = params.now ?? new Date();
+   const todayKey = toDateKey(now);
+-  const firstAct = findFirstActivityKey(params.fgDaily, params.breakdown, todayKey);
++  const firstAct = findFirstActivityKey(params.fgDaily, params.breakdown, todayKey);
+   let timelineStart = addDaysUtcKey(todayKey, -(WINDOW_DAYS - 1));
+   if (firstAct != null && inclusiveDaySpan(firstAct, todayKey) <= WINDOW_DAYS) {
+     timelineStart = firstAct;
+   }
+ 
+-  const minutesInWindow: number[] = [];
+-  for (let i = 0; i < WINDOW_DAYS; i++) {
+-    const ds = addDaysUtcKey(timelineStart, i);
+-    if (ds > todayKey) break;
+-    const minutes = Math.max(0, Math.floor(Number(params.fgDaily[ds] ?? 0) / 60_000));
+-    if (minutes > 0) minutesInWindow.push(minutes);
+-  }
+-  minutesInWindow.sort((a, b) => a - b);
+-  const thr = percentileThresholds(minutesInWindow);
++  const minutesInWindow: number[] = [];
++  for (let i = 0; i < WINDOW_DAYS; i++) {
++    const ds = addDaysUtcKey(timelineStart, i);
++    if (ds > todayKey) break;
++    const minutes = Math.max(0, Math.floor(Number(params.fgDaily[ds] ?? 0) / 60_000));
++    if (minutes > 0) minutesInWindow.push(minutes);
++  }
++  minutesInWindow.sort((a, b) => a - b);
++  const thr = percentileThresholds(minutesInWindow);
+ 
+   const days: Activity365Day[] = [];
+   for (let i = 0; i < WINDOW_DAYS; i++) {
+-    const ds = addDaysUtcKey(timelineStart, i);
+-    const ms = ds <= todayKey ? Math.max(0, Math.floor(Number(params.fgDaily[ds] ?? 0))) : 0;
++    const ds = addDaysUtcKey(timelineStart, i);
++    const ms = ds <= todayKey ? Math.max(0, Math.floor(Number(params.fgDaily[ds] ?? 0))) : 0;
+     const metrics = metricsForRow(params.breakdown[ds]);
+     const metricSum = Object.values(metrics).reduce((acc, val) => acc + val, 0);
+-    const active = ds <= todayKey && (ms >= MIN_ACTIVE_MS || metricSum > 0);
+-    const minutes = Math.round(ms / 60_000);
+-    days.push({
+-      date: ds,
+-      level: levelForValue(minutes, thr, active),
+-      minutes,
++    const active = ds <= todayKey && (ms >= MIN_ACTIVE_MS || metricSum > 0);
++    const minutes = Math.round(ms / 60_000);
++    days.push({
++      date: ds,
++      level: levelForValue(minutes, thr, active),
++      minutes,
+       active,
+       future: ds > todayKey,
+       metrics,
+@@ -537,6 +538,8 @@
+ const ANALYTICS_CACHE_TTL_MS = 60_000; // 1 min — avoids recompute on every tab focus
+ const ANALYTICS_CACHE_MAX_TARGETS = 4;
+ const _analyticsCache = new Map<string, { result: Activity365Analytics; expiresAt: number }>();
++// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
++onAccountOwnerChanged('activity_365', () => { _analyticsCache.clear(); });
+ const _analyticsInFlight = new Map<string, Promise<Activity365Analytics>>();
+ 
+ export type Activity365AnalyticsSnapshot = {
+@@ -577,15 +580,15 @@
+ 
+   const request = (async () => {
+     try {
+-      const [fgDaily, breakdownRaw, goalRaw] = await Promise.all([
+-        getForegroundDailyMsMap(),
++      const [fgDaily, breakdownRaw, goalRaw] = await Promise.all([
++        getForegroundDailyMsMap(),
+         AsyncStorage.getItem(statsDailyBreakdownKey(target)),
+         AsyncStorage.getItem(ACTIVITY_365_GOAL_KEY),
+       ]);
+       const goalChosen = [100, 180, 365].includes(Number(goalRaw));
+-      const goal = goalChosen ? Number(goalRaw) : 180;
+-      const result = computeActivity365Analytics({
+-        fgDaily,
++      const goal = goalChosen ? Number(goalRaw) : 180;
++      const result = computeActivity365Analytics({
++        fgDaily,
+         breakdown: parseObject<DailyBreakdownStore>(breakdownRaw),
+         goal,
+         goalChosen,
+--- a/modules/today-tasks/today_tasks_store.ts
++++ b/modules/today-tasks/today_tasks_store.ts
+@@ -34,6 +34,7 @@
+   type TodayTaskKindCore,
+   type TodayTasksDayState,
+ } from './today_tasks_core';
++import { onAccountOwnerChanged } from '../../app/account_owner_change';
+ 
+ const LOG = '[TODAY-TASKS]';
+ const STATE_KEY_PREFIX = 'today_tasks_v1:';
+@@ -84,6 +85,11 @@
+ let availableKinds: readonly TodayTaskKindCore[] | null = null;
+ let queue: Promise<unknown> = Promise.resolve();
+ const listeners = new Set<(state: TodayTasksDayState | null) => void>();
++// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
++onAccountOwnerChanged('today_tasks', () => {
++  current = null;
++  listeners.forEach((listener) => listener(null));
++});
+ /**
+  * зачем (аудит Optimistic UI «Главная и Уроки», 99ba26b1e; координатор 12.10): раньше при сбое записи на диск событие
+  * отбрасывалось (`event:dropped`) — прогресс дня тихо терялся. Теперь состояние показывается сразу, держится в памяти
+--- a/app/hall_of_fame_utils.ts
++++ b/app/hall_of_fame_utils.ts
+@@ -27,6 +27,7 @@
+ import { resolveNotificationLang } from './notification_lang';
+ import type { AccountGenerationToken } from './account_generation';
+ import { DebugLogger } from './debug-logger';
++import { onAccountOwnerChanged } from './account_owner_change';
+ import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+ 
+ // зачем (§AUTH-0110): прежде `uk ? uk : es ? es : ru` — пуш «серия потеряна» по-русски для 6 языков интерфейса.
+@@ -167,6 +168,11 @@
+ let streakSweptDayKey: string | null = null;
+ let streakCountInFlight: Promise<number> | null = null;
+ let streakPassiveInFlight: Promise<number> | null = null;
++// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): «день уже отмечен» — память ВЛАДЕЛЬЦА; без сброса B после смены не засчитывал день до завтра.
++onAccountOwnerChanged('streak_day_marks', () => {
++  streakTouchedDayKey = null;
++  streakSweptDayKey = null;
++});
+ export function touchStreakForToday(reason: string): Promise<number> | null {
+   const day = getLocalDayKey();
+   if (streakTouchedDayKey === day) return null;
+--- a/app/dialogue_v2_voice_daily_limit.ts
++++ b/app/dialogue_v2_voice_daily_limit.ts
+@@ -10,6 +10,7 @@
+ 
+ import { isDevDialogVoiceSpent } from './dev_dialog_state';
+ import { getLocalDayKey } from './local_date';
++import { onAccountOwnerChanged } from './account_owner_change';
+ 
+ export const FREE_DIALOG_VOICE_DAILY_LIMIT = 3;
+ export const DIALOG_VOICE_ATTEMPTS_KEY = 'dialogue_v2_voice_attempts_v1';
+@@ -26,6 +27,12 @@
+ let memory: DialogVoiceAttempts | null = null;
+ let hydrated = false;
+ const listeners = new Set<() => void>();
++// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
++onAccountOwnerChanged('dialog_voice_attempts', () => {
++  memory = null;
++  hydrated = false;
++  emit();
++});
+ 
+ function emit(): void {
+   for (const listener of listeners) listener();
+--- a/app/streak_day_signal.ts
++++ b/app/streak_day_signal.ts
+@@ -6,6 +6,7 @@
+ import { emitAppEvent } from './events';
+ import { getLocalDayKey } from './local_date';
+ import { recordStreakMilestoneStory } from '../modules/story_events/story_event_sources';
++import { onAccountOwnerChanged } from './account_owner_change';
+ 
+ /**
+  * Вид задания «Сегодня» для ступеней Шпиля. Шпиль по смыслу тоже засчитывает день, но это зона Codex:
+@@ -61,6 +62,8 @@
+ 
+ let state: StreakDayState | null = null;
+ const listeners = new Set<(next: StreakDayState) => void>();
++// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
++onAccountOwnerChanged('streak_day_signal', () => { state = null; });
+ 
+ /**
+  * Синхронно: засчитан ли сегодняшний день. null — ещё неизвестно (до первой сверки на старте):
+--- a/app/diagnostic_test_state.ts
++++ b/app/diagnostic_test_state.ts
+@@ -10,6 +10,7 @@
+  * вместо ложного нуля.
+  */
+ import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
++import { onAccountOwnerChanged } from './account_owner_change';
+ 
+ export type DiagnosticReadinessPeek = {
+   examLessonsDone: number;
+@@ -17,6 +18,8 @@
+ };
+ 
+ let peekByTarget: Partial<Record<string, DiagnosticReadinessPeek>> = {};
++// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
++onAccountOwnerChanged('diagnostic_peek', () => { peekByTarget = {}; });
+ 
+ export function peekDiagnosticReadiness(studyTarget?: RuntimeStudyTarget): DiagnosticReadinessPeek | null {
+   return peekByTarget[storageStudyTarget(studyTarget)] ?? null;
+--- a/app/streak_stats.tsx
++++ b/app/streak_stats.tsx
+@@ -76,6 +76,7 @@
+ const EXEMPT_COLOR_3 = 'rgba(255,255,255,0.08)'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
+ import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+ import { accentGraphicOf } from '../constants/themeAccentRoles';
++import { onAccountOwnerChanged } from './account_owner_change';
+ const CHART_H = 110;
+ const DAYS_SHOW = 14;
+ // зачем (results.html «Серия и статистика»): акцент карточек — тон стекла активной темы (t.accent = токен cta),
+@@ -1088,6 +1089,11 @@
+  * приложения, так что повторные визиты сразу показывают верное число. */
+ let achievementCountPeek: number | null = null;
+ let recentAchievementIdsPeek: string[] | null = null;
++// зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): кэш в памяти принадлежит владельцу — при смене аккаунта без перезапуска JS B видел данные A.
++onAccountOwnerChanged('streak_stats_peeks', () => {
++  achievementCountPeek = null;
++  recentAchievementIdsPeek = null;
++});
+ 
+ /* зачем (PM-191): «Прочность памяти»/CEFR-строка (MemoryGauge, CefrLine) и её
+  * JournalMemorySnapshot peek удалены целиком — «Закреплено фраз» была непонятной
+--- /dev/null
++++ b/app/account_owner_change.ts
+@@ -0,0 +1,42 @@
++/**
++ * Сброс модульных кэшей в памяти при смене ВЛАДЕЛЬЦА аккаунта (выход A → вход B, смена аккаунта) без перезапуска JS.
++ *
++ * зачем (координатор 15.10, разбор docs/phraseman-2.0/handoff/LOGOUT_WIPE_AUDIT_2026-10-15.md, 🔴 №1 к сборке 16.10): стирание
++ * хранилища не трогает память модулей — медали, аналитика 365 дней, «Сегодня», серия дня, голосовой лимит, кэш статистики
++ * прошлого аккаунта оставались на экранах следующего. Подписка на поколение аккаунта срабатывает на КАЖДОЙ смене фазы, поэтому
++ * сбрасываем только когда stableId сменился с непустого на другой: холодный старт и фазы одного владельца кэш не трогают
++ * (иначе мигал бы первый кадр — правило «каждый раздел открывается мгновенно»). Журнал: [ACC-SWITCH-WIPE] memory_reset.
++ */
++import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
++
++export function onAccountOwnerChanged(name: string, reset: () => void): void {
++  let owner: string | null = null;
++  try {
++    owner = captureAccountGeneration()?.stableId?.trim() || null;
++  } catch (error: unknown) {
++    // зачем: модуль зовут при загрузке десятка модулей — сбой (частичный мок в тесте, ранний старт) не должен ронять импорт.
++    console.warn(`[ACC-SWITCH-WIPE] memory_reset owner_read_failed cache=${name} reason=${error instanceof Error ? error.message : String(error)}`);
++  }
++  if (typeof subscribeAccountGeneration !== 'function') {
++    console.warn(`[ACC-SWITCH-WIPE] memory_reset subscribe_unavailable cache=${name} — сброс при смене владельца не подключён`);
++    return;
++  }
++  subscribeAccountGeneration((token) => {
++    const next = token?.stableId?.trim() || null;
++    if (next === owner) return;
++    const previous = owner;
++    owner = next;
++    if (previous === null) return; // первый владелец после старта — кэш и так его
++    try {
++      reset();
++      console.log(`[ACC-SWITCH-WIPE] memory_reset cache=${name} reason=owner_changed to=${next ? 'other' : 'none'}`); // guard-ok: одна строка на смену владельца
++    } catch (error: unknown) {
++      console.warn(`[ACC-SWITCH-WIPE] memory_reset_failed cache=${name} reason=${error instanceof Error ? error.message : String(error)}`);
++    }
++  });
++}
++
++/* expo-router: keep this utility from being treated as a screen */
++export default function __AccountOwnerChangeRouteShim() {
++  return null;
++}
+--- /dev/null
++++ b/tests/account_switch_leak_fix.test.ts
+@@ -0,0 +1,72 @@
++// Утечка между аккаунтами (координатор 15.10, docs/phraseman-2.0/handoff/LOGOUT_WIPE_AUDIT_2026-10-15.md, 🔴 №1 к 16.10).
++// Сторож ключей хранилища — tests/account_switch_no_survivors.test.ts (Дизайн). Здесь: сброс памяти при смене владельца,
++// снятие push при выходе/смене и лог survivors. Сработал — чини логику, а не сторожа.
++import fs from 'node:fs';
++import path from 'node:path';
++
++import { beginAccountGeneration } from '../app/account_generation';
++import { onAccountOwnerChanged } from '../app/account_owner_change';
++
++const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
++
++describe('onAccountOwnerChanged — сброс кэша в памяти только при смене владельца', () => {
++  beforeEach(() => {
++    jest.spyOn(console, 'log').mockImplementation(() => {});
++    jest.spyOn(console, 'warn').mockImplementation(() => {});
++  });
++  afterEach(() => jest.restoreAllMocks());
++
++  it('холодный старт (нет владельца → A) — без сброса; A → B — сброс один раз; B → B — без сброса; B → нет — сброс', () => {
++    beginAccountGeneration(null);
++    const reset = jest.fn();
++    onAccountOwnerChanged('test_cache', reset);
++    beginAccountGeneration('owner-A');
++    expect(reset).not.toHaveBeenCalled();
++    beginAccountGeneration('owner-B');
++    expect(reset).toHaveBeenCalledTimes(1);
++    beginAccountGeneration('owner-B');
++    expect(reset).toHaveBeenCalledTimes(1);
++    beginAccountGeneration(null);
++    expect(reset).toHaveBeenCalledTimes(2);
++  });
++
++  it('сбой сброса не ломает смену аккаунта (пишет причину)', () => {
++    beginAccountGeneration('owner-A');
++    onAccountOwnerChanged('broken_cache', () => { throw new Error('boom'); });
++    expect(() => beginAccountGeneration('owner-B')).not.toThrow();
++  });
++});
++
++describe('проводка заплатки', () => {
++  it('выход/смена: push-токен и уведомления снимаются ДО signOut и только в пути смены, не в общем выходе провайдера', () => {
++    const src = read('app/auth_provider.ts');
++    const at = src.indexOf('signOut: async (): Promise<void> => {\n      await clearAccountPushBeforeSwitchSignOut();\n      await signOutCurrentProviderKeepingSwitchResume();');
++    expect(at).toBeGreaterThan(-1);
++    const perform = src.slice(src.indexOf('async function performCurrentProviderSignOut(): Promise<void> {'), src.indexOf("logAuthEvent('auth_signout');"));
++    expect(perform).not.toContain('clearAccountPushBeforeSwitchSignOut');
++    expect(src).toContain('[ACC-SWITCH-WIPE] push_cleanup result=');
++  });
++
++  it('стирание: ключи-утечки в шаге «только стирание», лог survivors и метка очистки кэша Firestore', () => {
++    const src = read('app/cloud_sync.ts');
++    expect(src).toContain('export const ACCOUNT_SWITCH_LEAK_KEYS');
++    expect(src).toContain("'streak_plus_freeze_pending_v1'");
++    expect(src).toContain('new Set([...APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS, ...ACCOUNT_SWITCH_LEAK_KEYS])');
++    expect(src).toContain('[ACC-SWITCH-WIPE] survivors=');
++    expect(src).toContain("markFirestoreCacheClearPending('account_wipe')");
++  });
++
++  it.each([
++    ['app/statsCache.ts', 'stats_preload'],
++    ['app/medal_utils.ts', 'medals'],
++    ['app/activity_365_analytics.ts', 'activity_365'],
++    ['modules/today-tasks/today_tasks_store.ts', 'today_tasks'],
++    ['app/hall_of_fame_utils.ts', 'streak_day_marks'],
++    ['app/dialogue_v2_voice_daily_limit.ts', 'dialog_voice_attempts'],
++    ['app/streak_day_signal.ts', 'streak_day_signal'],
++    ['app/diagnostic_test_state.ts', 'diagnostic_peek'],
++    ['app/streak_stats.tsx', 'streak_stats_peeks'],
++  ])('%s сбрасывает кэш при смене владельца (%s)', (file, name) => {
++    expect(read(file)).toContain(`onAccountOwnerChanged('${name}'`);
++  });
++});

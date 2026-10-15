@@ -1,13 +1,13 @@
 [
   {
     "interactionId": "en:lesson-04:session-12:i01",
-    "correctText": "platform",
-    "correctResponseId": "en:lesson-04:session-12:i01:r1"
+    "correctText": "There is a table.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-12:i02",
     "correctText": "platform",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-04:session-12:i02:r1"
   },
   {
     "interactionId": "en:lesson-04:session-12:i03",
@@ -16,47 +16,72 @@
   },
   {
     "interactionId": "en:lesson-04:session-12:i04",
-    "correctText": "Yes, there is.",
-    "correctResponseId": "en:lesson-04:session-12:i04:r1"
+    "correctText": "en:lesson-04:session-12:i04:p1=platform\nen:lesson-04:session-12:i04:p2=private\nen:lesson-04:session-12:i04:p3=table\nen:lesson-04:session-12:i04:p4=post office",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-12:i05",
-    "correctText": "Are there platforms?",
+    "correctText": "Is there a platform?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-12:i06",
-    "correctText": "Yes, there are.",
-    "correctResponseId": "en:lesson-04:session-12:i06:r1"
+    "correctText": "There is a post office here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-12:i07",
-    "correctText": "Are there two platforms?",
+    "correctText": "It's private.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-12:i08",
-    "correctText": "There are platforms.",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-04:session-12:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-12:i09",
-    "correctText": "p1=platform\np2=platforms\np3=there are\np4=tram",
-    "correctResponseId": null
+    "correctText": "Is there a table?",
+    "correctResponseId": "en:lesson-04:session-12:i09:r1"
   },
   {
     "interactionId": "en:lesson-04:session-12:i10",
-    "correctText": "Are there three platforms?",
-    "correctResponseId": "en:lesson-04:session-12:i10:r1"
+    "correctText": "en:lesson-04:session-12:i10:p1=platform\nen:lesson-04:session-12:i10:p2=platforms\nen:lesson-04:session-12:i10:p3=table\nen:lesson-04:session-12:i10:p4=private",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-12:i11",
-    "correctText": "No, there are not.",
+    "correctText": "Is there a post office?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-12:i12",
-    "correctText": "Yes, there are.",
-    "correctResponseId": "en:lesson-04:session-12:i12:r1"
+    "correctText": "That is a platform.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i13",
+    "correctText": "Is there a table here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-12:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i15",
+    "correctText": "It is private.",
+    "correctResponseId": "en:lesson-04:session-12:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i16",
+    "correctText": "en:lesson-04:session-12:i16:p1=platform\nen:lesson-04:session-12:i16:p2=private\nen:lesson-04:session-12:i16:p3=table\nen:lesson-04:session-12:i16:p4=post office",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-12:i17",
+    "correctText": "Is there a platform here?",
+    "correctResponseId": null
   }
 ]

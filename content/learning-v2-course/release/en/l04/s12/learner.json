@@ -1,6 +1,5 @@
 {
   "schemaVersion": "learning_v2_course_session_learner_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-12",
   "targetLanguage": "en",
   "interactions": [
@@ -8,95 +7,122 @@
       "interactionId": "en:lesson-04:session-12:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите, что прозвучало",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-12:i01:r1",
-          "text": "platform"
-        },
-        {
-          "responseId": "en:lesson-04:session-12:i01:r2",
-          "text": "playground"
-        },
-        {
-          "responseId": "en:lesson-04:session-12:i01:r3",
-          "text": "platter"
-        }
-      ],
-      "audioTargetIds": [
-        "en:lesson-04:session-12:i01:audio"
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите «Есть стол»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите «Есть стол»",
       "modePayload": {
-        "referenceAudio": {
-          "transcript": "platform"
+        "family": "phrase_builder",
+        "targetPhrase": "There is a table.",
+        "localizedMeaning": {
+          "ru": "Сообщите «Есть стол»",
+          "uk": "Повідомте «Є стіл»"
         },
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-12:i01:r1",
-            "targetText": "platform",
-            "meaningByLocale": {
-              "ru": "платформа",
-              "uk": "платформа"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i01:r2",
-            "targetText": "playground",
-            "meaningByLocale": {
-              "ru": "площадка",
-              "uk": "майданчик"
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i01:r3",
-            "targetText": "platter",
-            "meaningByLocale": {
-              "ru": "блюдо",
-              "uk": "таця"
+            "responseId": "en:lesson-04:session-12:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сообщите «Есть стол»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a table.`",
+              "uk": "тут потрібно `is` — `There is a table.`"
             }
           }
         ],
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-12:i01:r2",
-            "feedbackByLocale": {
-              "ru": "Оба слова начинаются с /pl/, но в `playground` после него слышно /eɪ/, а в `platform` — /æ/.",
-              "uk": "Обидва слова починаються з /pl/, але в `playground` після нього чути /eɪ/, а в `platform` — /æ/."
-            },
-            "correct": false,
-            "testedDimension": "auditory_phonetic_contrast"
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i01:r3",
-            "feedbackByLocale": {
-              "ru": "`Platter` и `platform` начинаются одинаково: /plæt/. Но в конце `platter` нет звуков /f/ и /m/, а в `platform` оба слышны.",
-              "uk": "`Platter` і `platform` починаються однаково: /plæt/. Але наприкінці `platter` немає звуків /f/ і /m/, а в `platform` обидва чути."
-            },
-            "correct": false,
-            "testedDimension": "auditory_phonetic_contrast"
-          }
-        ]
-      }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-12:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите слово на табло",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i02:r1",
+          "text": "platform"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i02:r2",
+          "text": "tram"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i02:r3",
+          "text": "bank"
+        }
+      ],
+      "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-12:i02:audio"
       ],
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
-        "targetPhrase": "platform",
+        "family": "listen_choose",
         "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-12:i02:audio",
           "transcript": "platform"
-        }
-      }
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-12:i02:r1",
+            "targetText": "platform",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i02:r2",
+            "targetText": "tram",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i02:r3",
+            "targetText": "bank",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `platform`, а в этом варианте — `tram`.",
+              "uk": "У записі перше слово — `platform`, а в цьому варіанті — `tram`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `platform`, а в этом варианте — `bank`.",
+              "uk": "У записі перше слово — `platform`, а в цьому варіанті — `bank`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-12:i03",
@@ -104,7 +130,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "На табло указано место, где пассажиры ждут поезд. Выберите слово",
+      "prompt": "Назовите платформу на вокзале одним словом",
       "responseOptions": [
         {
           "responseId": "en:lesson-04:session-12:i03:r1",
@@ -112,15 +138,22 @@
         },
         {
           "responseId": "en:lesson-04:session-12:i03:r2",
-          "text": "train"
+          "text": "tram"
         },
         {
           "responseId": "en:lesson-04:session-12:i03:r3",
-          "text": "tram"
+          "text": "hotel"
         }
       ],
+      "mediaIds": [],
       "audioTargetIds": [],
+      "accessibilityLabel": "Назовите платформу на вокзале одним словом",
       "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите платформу на вокзале одним словом",
+          "uk": "Назвіть платформу на вокзалі одним словом"
+        },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
@@ -129,260 +162,53 @@
           },
           {
             "responseId": "en:lesson-04:session-12:i03:r2",
-            "text": "train"
+            "text": "tram"
           },
           {
             "responseId": "en:lesson-04:session-12:i03:r3",
-            "text": "tram"
+            "text": "hotel"
           }
         ],
+        "testedDimension": "Назовите платформу на вокзале одним словом",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-04:session-12:i03:r2",
-            "feedbackByLocale": {
-              "ru": "`Train` — поезд, а пассажиры ждут поезд у `platform`.",
-              "uk": "`Train` — поїзд, а пасажири чекають на поїзд біля `platform`."
-            },
             "correct": false,
-            "testedDimension": "lexical_meaning"
+            "testedDimension": "Назовите платформу на вокзале одним словом",
+            "feedbackByLocale": {
+              "ru": "`tram` — трамвай; платформа — `platform`.",
+              "uk": "`tram` — трамвай; платформа — `platform`."
+            }
           },
           {
             "responseId": "en:lesson-04:session-12:i03:r3",
-            "feedbackByLocale": {
-              "ru": "`Tram` — трамвай; на табло обозначено место у железнодорожных путей.",
-              "uk": "`Tram` — трамвай; на табло позначено місце біля залізничних колій."
-            },
             "correct": false,
-            "testedDimension": "lexical_meaning"
+            "testedDimension": "Назовите платформу на вокзале одним словом",
+            "feedbackByLocale": {
+              "ru": "`hotel` — отель; платформа — `platform`.",
+              "uk": "`hotel` — готель; платформа — `platform`."
+            }
           }
         ]
-      }
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-12:i04",
       "ordinal": 7,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте короткий ответ об одной платформе и выберите его смысл",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-12:i04:r1",
-          "text": "Yes, there is."
-        },
-        {
-          "responseId": "en:lesson-04:session-12:i04:r2",
-          "text": "Yes, there are."
-        },
-        {
-          "responseId": "en:lesson-04:session-12:i04:r3",
-          "text": "No, there isn't."
-        }
-      ],
-      "audioTargetIds": [
-        "en:lesson-04:session-12:i04:audio"
-      ],
-      "modePayload": {
-        "referenceAudio": {
-          "transcript": "Yes, there is."
-        },
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-12:i04:r1",
-            "targetText": "Yes, there is.",
-            "meaningByLocale": {
-              "ru": "Да, есть одна.",
-              "uk": "Так, є одна."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i04:r2",
-            "targetText": "Yes, there are.",
-            "meaningByLocale": {
-              "ru": "Да, есть несколько.",
-              "uk": "Так, є кілька."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i04:r3",
-            "targetText": "No, there isn't.",
-            "meaningByLocale": {
-              "ru": "Нет, одной нет.",
-              "uk": "Ні, однієї немає."
-            }
-          }
-        ],
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-12:i04:r2",
-            "feedbackByLocale": {
-              "ru": "Эта форма относится к нескольким местам; в записи — форма для одного места.",
-              "uk": "Ця форма стосується кількох місць; у записі — форма для одного місця."
-            },
-            "correct": false,
-            "testedDimension": "auditory_proposition"
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i04:r3",
-            "feedbackByLocale": {
-              "ru": "Послушайте ещё раз: в записи `Yes`, а не `No`.",
-              "uk": "Послухайте ще раз: у записі `Yes`, а не `No`."
-            },
-            "correct": false,
-            "testedDimension": "sentence_type"
-          }
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-12:i05",
-      "ordinal": 8,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос пассажира о платформах",
-      "responseOptions": [],
-      "audioTargetIds": [],
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Are there platforms?",
-        "localizedMeaning": {
-          "ru": "Соберите вопрос пассажира о платформах",
-          "uk": "Складіть питання пасажира про платформи"
-        },
-        "orderedTokens": [
-          "Are",
-          "there",
-          "platforms"
-        ],
-        "authoredDistractorTokens": [
-          "Is"
-        ],
-        "slotFeedback": []
-      },
-      "accessibilityLabel": "Соберите вопрос пассажира о платформах"
-    },
-    {
-      "interactionId": "en:lesson-04:session-12:i06",
-      "ordinal": 9,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "После объявления выберите короткий ответ на вопрос `Are there platforms near the building?`",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-12:i06:r1",
-          "text": "Yes, there are."
-        },
-        {
-          "responseId": "en:lesson-04:session-12:i06:r2",
-          "text": "Yes, are there."
-        },
-        {
-          "responseId": "en:lesson-04:session-12:i06:r3",
-          "text": "Yes, there are there."
-        }
-      ],
-      "audioTargetIds": [],
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "На схеме вокзала платформы отмечены рядом со зданием.",
-          "uk": "На схемі вокзалу платформи позначено біля будівлі."
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-12:i06:r1",
-            "text": "Yes, there are."
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i06:r2",
-            "text": "Yes, are there."
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i06:r3",
-            "text": "Yes, there are there."
-          }
-        ],
-        "testedDimension": "affirmative_plural_short_reply",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-12:i06:r2",
-            "feedbackByLocale": {
-              "ru": "Это порядок слов вопроса. В коротком ответе после `Yes` сначала говорят `there`: `Yes, there are.`.",
-              "uk": "Це порядок слів у питанні. У короткій відповіді після `Yes` спочатку кажуть `there`: `Yes, there are.`."
-            },
-            "correct": false,
-            "testedDimension": "short_reply_repetition"
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i06:r3",
-            "feedbackByLocale": {
-              "ru": "В коротком ответе достаточно одного `there`: `Yes, there are.`.",
-              "uk": "У короткій відповіді достатньо одного `there`: `Yes, there are.`."
-            },
-            "correct": false,
-            "testedDimension": "short_reply_word_order"
-          }
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-12:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
-      "responseOptions": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-12:i07:audio"
-      ],
-      "modePayload": {
-        "hiddenTargetPhrase": "Are there two platforms?",
-        "referenceAudio": {
-          "transcript": "Are there two platforms?"
-        },
-        "orderedTokens": [
-          "Are",
-          "there",
-          "two",
-          "platforms"
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-12:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите сообщение на табло о платформах",
-      "responseOptions": [],
-      "audioTargetIds": [],
-      "modePayload": {
-        "targetPhrase": "There are platforms.",
-        "orderedTokens": [
-          "There",
-          "are",
-          "platforms"
-        ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-12:i09",
-      "ordinal": 12,
-      "purpose": "retrieval_practice",
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Быстро соедините названия на схеме у вокзала с русскими значениями",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
+      "mediaIds": [],
       "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
+        "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "p1",
+            "pairId": "en:lesson-04:session-12:i04:p1",
             "target": "platform",
             "meaningByLocale": {
               "ru": "платформа",
@@ -390,7 +216,341 @@
             }
           },
           {
-            "pairId": "p2",
+            "pairId": "en:lesson-04:session-12:i04:p2",
+            "target": "private",
+            "meaningByLocale": {
+              "ru": "не для общего доступа",
+              "uk": "не для загального доступу"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-12:i04:p3",
+            "target": "table",
+            "meaningByLocale": {
+              "ru": "стол",
+              "uk": "стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-12:i04:p4",
+            "target": "post office",
+            "meaningByLocale": {
+              "ru": "почта",
+              "uk": "пошта"
+            }
+          }
+        ],
+        "leftColumn": [
+          "platform",
+          "private",
+          "table",
+          "post office"
+        ],
+        "rightColumn": [
+          "платформа",
+          "не для общего доступа",
+          "стол",
+          "почта"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-12:i05:audio",
+          "transcript": "Is there a platform?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a platform?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "platform"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "По схеме сообщите «Здесь есть почта»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "По схеме сообщите «Здесь есть почта»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a post office here.",
+        "localizedMeaning": {
+          "ru": "По схеме сообщите «Здесь есть почта»",
+          "uk": "За схемою повідомте «Тут є пошта»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "post",
+          "office",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "По схеме сообщите «Здесь есть почта»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a post office here.`",
+              "uk": "тут потрібно `is` — `There is a post office here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Комната только для сотрудников. Скажите с сокращением «Она не для общего доступа»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Комната только для сотрудников. Скажите с сокращением «Она не для общего доступа»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-12:i07:audio",
+          "transcript": "It's private."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's private.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите «Здесь есть платформы?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i08:r1",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i08:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i08:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Здесь есть платформы?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Здесь есть платформы?»",
+          "uk": "Запитайте «Тут є платформи?»"
+        },
+        "gappedTargetPhrase": "___ there platforms here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i08:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i08:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i08:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Спросите «Здесь есть платформы?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите «Здесь есть платформы?»",
+            "feedbackByLocale": {
+              "ru": "Платформ несколько: `Are there platforms here?`.",
+              "uk": "Платформ кілька: `Are there platforms here?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите «Здесь есть платформы?»",
+            "feedbackByLocale": {
+              "ru": "Вопрос о нескольких платформах начинается с `Are there`.",
+              "uk": "Запитання про кілька платформ починається з `Are there`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i09:r1",
+          "text": "Is there a table?"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i09:r2",
+          "text": "Is there a platform?"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i09:r3",
+          "text": "Is there a room?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-12:i09:audio",
+          "transcript": "Is there a table?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-12:i09:r1",
+            "targetText": "Is there a table?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i09:r2",
+            "targetText": "Is there a platform?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i09:r3",
+            "targetText": "Is there a room?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `table`, а в этом варианте — `platform`.",
+              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `platform`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `table`, а в этом варианте — `room`.",
+              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `room`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-12:i10:p1",
+            "target": "platform",
+            "meaningByLocale": {
+              "ru": "платформа",
+              "uk": "платформа"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-12:i10:p2",
             "target": "platforms",
             "meaningByLocale": {
               "ru": "платформы",
@@ -398,184 +558,428 @@
             }
           },
           {
-            "pairId": "p3",
-            "target": "there are",
+            "pairId": "en:lesson-04:session-12:i10:p3",
+            "target": "table",
             "meaningByLocale": {
-              "ru": "есть (несколько)",
-              "uk": "є (кілька)"
+              "ru": "стол",
+              "uk": "стіл"
             }
           },
           {
-            "pairId": "p4",
-            "target": "tram",
+            "pairId": "en:lesson-04:session-12:i10:p4",
+            "target": "private",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "не для общего доступа",
+              "uk": "не для загального доступу"
             }
           }
+        ],
+        "leftColumn": [
+          "platform",
+          "platforms",
+          "table",
+          "private"
+        ],
+        "rightColumn": [
+          "платформа",
+          "платформы",
+          "стол",
+          "не для общего доступа"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
-      }
-    },
-    {
-      "interactionId": "en:lesson-04:session-12:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "После объявления выберите вопрос о третьей платформе",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-12:i10:r1",
-          "text": "Are there three platforms?"
-        },
-        {
-          "responseId": "en:lesson-04:session-12:i10:r2",
-          "text": "Is there three platforms?"
-        },
-        {
-          "responseId": "en:lesson-04:session-12:i10:r3",
-          "text": "There are three platforms."
-        }
-      ],
-      "audioTargetIds": [],
-      "modePayload": {
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-12:i10:r1",
-            "text": "Are there three platforms?"
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i10:r2",
-            "text": "Is there three platforms?"
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i10:r3",
-            "text": "There are three platforms."
-          }
-        ],
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-12:i10:r2",
-            "feedbackByLocale": {
-              "ru": "С `three platforms` вопрос начинается с `Are there`: `Are there three platforms?`.",
-              "uk": "З `three platforms` питання починається з `Are there`: `Are there three platforms?`."
-            },
-            "correct": false,
-            "testedDimension": "plural_question_agreement"
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i10:r3",
-            "feedbackByLocale": {
-              "ru": "Это сообщение. Вопрос начинается с `Are there`: `Are there three platforms?`.",
-              "uk": "Це повідомлення. Питання починається з `Are there`: `Are there three platforms?`."
-            },
-            "correct": false,
-            "testedDimension": "question_statement"
-          }
-        ],
-        "localizedScene": {
-          "ru": "В объявлении назвали платформы 1 и 2. Пассажир уточняет, есть ли третья.",
-          "uk": "В оголошенні назвали платформи 1 і 2. Пасажир уточнює, чи є третя."
-        }
       },
-      "mediaIds": [],
-      "accessibilityLabel": "После объявления выберите вопрос о третьей платформе"
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-12:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите полный отрицательный ответ: на табло нет двух платформ",
+      "prompt": "Послушайте и соберите вопрос",
       "responseOptions": [],
-      "audioTargetIds": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "No, there are not.",
-        "localizedMeaning": {
-          "ru": "Соберите полный отрицательный ответ: на табло нет двух платформ",
-          "uk": "Складіть повну заперечну відповідь: на табло немає двох платформ"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-12:i11:audio",
+          "transcript": "Is there a post office?"
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a post office?",
         "orderedTokens": [
-          "No,",
+          "Is",
           "there",
-          "are",
-          "not"
+          "a",
+          "post",
+          "office"
         ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
-      }
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-12:i12",
       "ordinal": 15,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Финал — после объявления на вокзале на схеме отмечены две платформы. На вопрос `Are there two platforms?` выберите короткий ответ.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-12:i12:r1",
-          "text": "Yes, there are."
-        },
-        {
-          "responseId": "en:lesson-04:session-12:i12:r2",
-          "text": "No, there aren't."
-        },
-        {
-          "responseId": "en:lesson-04:session-12:i12:r3",
-          "text": "Yes, there is."
-        }
-      ],
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Укажите на место у путей вдалеке: «То — платформа»",
+      "responseOptions": [],
+      "mediaIds": [],
       "audioTargetIds": [],
+      "accessibilityLabel": "Укажите на место у путей вдалеке: «То — платформа»",
       "modePayload": {
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
+        "family": "phrase_builder",
+        "targetPhrase": "That is a platform.",
+        "localizedMeaning": {
+          "ru": "Укажите на место у путей вдалеке: «То — платформа»",
+          "uk": "Укажіть на місце біля колій удалині: «То — платформа»"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "platform"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-12:i12:r1",
-            "text": "Yes, there are."
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i12:r2",
-            "text": "No, there aren't."
-          },
-          {
-            "responseId": "en:lesson-04:session-12:i12:r3",
-            "text": "Yes, there is."
+            "responseId": "en:lesson-04:session-12:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Укажите на место у путей вдалеке: «То — платформа»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `That is a platform.`",
+              "uk": "тут потрібно `is` — `That is a platform.`"
+            }
           }
         ],
-        "choiceFeedback": [
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам нужно положить сумку. Спросите «Здесь есть стол?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i13:audio"
+      ],
+      "accessibilityLabel": "Вам нужно положить сумку. Спросите «Здесь есть стол?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-12:i13:audio",
+          "transcript": "Is there a table here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a table here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы нашли платформу. Сообщите «Здесь есть платформа»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы нашли платформу. Сообщите «Здесь есть платформа»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы нашли платформу. Сообщите «Здесь есть платформа»",
+          "uk": "Ви знайшли платформу. Повідомте «Тут є платформа»"
+        },
+        "gappedTargetPhrase": "There ___ a platform here.",
+        "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-12:i12:r2",
-            "feedbackByLocale": {
-              "ru": "`No, there aren't.` — короткое отрицание, поэтому оно может показаться подходящим к вопросу. Но после объявления на схеме отмечены две платформы, а `No` говорит, что платформ нет. Когда есть несколько мест, отвечайте `Yes, there are.`.",
-              "uk": "`No, there aren't.` — коротка заперечна відповідь, тому вона може здатися доречною до питання. Але після оголошення на схемі позначено дві платформи, а `No` говорить, що платформ немає. Коли місць кілька, відповідайте `Yes, there are.`."
-            },
-            "correct": false,
-            "testedDimension": "polarity"
+            "responseId": "en:lesson-04:session-12:i14:r1",
+            "text": "is"
           },
           {
-            "responseId": "en:lesson-04:session-12:i12:r3",
-            "feedbackByLocale": {
-              "ru": "`Yes, there is.` тоже начинается с утвердительного `Yes`, но `is` отвечает об одном месте. После объявления на схеме две платформы, поэтому для нескольких нужно `are`: `Yes, there are.`. Видите `two` или название во множественном числе — выбирайте `are`.",
-              "uk": "`Yes, there is.` теж починається зі ствердного `Yes`, але `is` відповідає про одне місце. Після оголошення на схемі дві платформи, тому для кількох потрібне `are`: `Yes, there are.`. Бачите `two` або назву в множині — обирайте `are`."
-            },
+            "responseId": "en:lesson-04:session-12:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вы нашли платформу. Сообщите «Здесь есть платформа»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i14:r2",
             "correct": false,
-            "testedDimension": "singular_plural_agreement"
+            "testedDimension": "Вы нашли платформу. Сообщите «Здесь есть платформа»",
+            "feedbackByLocale": {
+              "ru": "Одна платформа: `There is a platform here`.",
+              "uk": "Одна платформа: `There is a platform here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы нашли платформу. Сообщите «Здесь есть платформа»",
+            "feedbackByLocale": {
+              "ru": "О наличии одной платформы говорим `There is`.",
+              "uk": "Про наявність однієї платформи кажемо `There is`."
+            }
           }
         ]
-      }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте объяснение о комнате",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i15:r1",
+          "text": "It is private."
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i15:r2",
+          "text": "It is urgent."
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i15:r3",
+          "text": "It is comfortable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте объяснение о комнате",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-12:i15:audio",
+          "transcript": "It is private."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-12:i15:r1",
+            "targetText": "It is private.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i15:r2",
+            "targetText": "It is urgent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i15:r3",
+            "targetText": "It is comfortable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте объяснение о комнате",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `private`, а в этом варианте — `urgent`.",
+              "uk": "У записі останнє слово — `private`, а в цьому варіанті — `urgent`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте объяснение о комнате",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `private`, а в этом варианте — `comfortable`.",
+              "uk": "У записі останнє слово — `private`, а в цьому варіанті — `comfortable`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-12:i16:p1",
+            "target": "platform",
+            "meaningByLocale": {
+              "ru": "платформа",
+              "uk": "платформа"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-12:i16:p2",
+            "target": "private",
+            "meaningByLocale": {
+              "ru": "не для общего доступа",
+              "uk": "не для загального доступу"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-12:i16:p3",
+            "target": "table",
+            "meaningByLocale": {
+              "ru": "стол",
+              "uk": "стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-12:i16:p4",
+            "target": "post office",
+            "meaningByLocale": {
+              "ru": "почта",
+              "uk": "пошта"
+            }
+          }
+        ],
+        "leftColumn": [
+          "platform",
+          "private",
+          "table",
+          "post office"
+        ],
+        "rightColumn": [
+          "платформа",
+          "не для общего доступа",
+          "стол",
+          "почта"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На другом маленьком вокзале вы не видите места посадки. Спросите «Здесь есть платформа?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "На другом маленьком вокзале вы не видите места посадки. Спросите «Здесь есть платформа?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-12:i17:audio",
+          "transcript": "Is there a platform here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a platform here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 12,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0ca815f963eccc2e5c13dcb019bb731697b837bc6abf7f92a6695765b1ce9072"
+  "learnerFingerprint": "590ab713ad13d2a7540b4bdb33c412ec1a6795e7eccd98b87c9a4a4b0a912cd4"
 }

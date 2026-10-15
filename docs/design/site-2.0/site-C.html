@@ -344,7 +344,8 @@ footer { padding-block: 64px 48px; border-top: 1px solid var(--track); margin-to
 .hero-c h1 .l2 { color: var(--sec); }
 .hero-c .lead { margin: 24px auto 0; font-size: var(--t-l); color: var(--sec); max-width: 34ch; }
 .hero-c .cta-row { justify-content: center; }
-.studio { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); align-items: center; margin-top: clamp(40px, 6vw, 72px); text-align: left; }
+/* зачем: колонка auto сжимала телефон до ~136px (width в % от auto-колонки) — даём ей явную ширину */
+.studio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 360px) minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); align-items: center; margin-top: clamp(40px, 6vw, 72px); text-align: left; }
 .studio .side { display: grid; gap: 14px; }
 .panel { padding: 20px; border-radius: 24px; display: grid; gap: 14px; }
 .panel .lbl { font-size: 13px; font-weight: 700; color: var(--sec); }
@@ -373,7 +374,7 @@ footer { padding-block: 64px 48px; border-top: 1px solid var(--track); margin-to
 @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.18); } 100% { transform: scale(1); } }
 @media (max-width: 980px) {
   .studio { grid-template-columns: minmax(0, 1fr); }
-  .studio .phone { order: -1; }
+  .studio .phone { order: -1; width: min(100%, 360px); }
   .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -536,18 +537,6 @@ footer { padding-block: 64px 48px; border-top: 1px solid var(--track); margin-to
   <div class="home-ind" aria-hidden="true"></div>
 </div></div></div>
 </div></section>
-
-<section class="block"><div class="wrap"><div class="glass test-card">
-  <div>
-    <h2 class="h2" data-en-html="Everyone has&lt;span class=&quot;l2&quot;&gt;a starting point.&lt;/span&gt;">У каждого —<span class="l2">своя точка старта.</span></h2>
-    <div class="cefr" data-cefr aria-label="Шкала уровней CEFR"><span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span><span>C2</span></div>
-    <p class="note">12–20 адаптивных вопросов · уровень по шкале CEFR</p>
-  </div>
-  <div class="side">
-    <p>Уже учил язык? Узнай свой ориентировочный уровень и выбери, с чего продолжить.</p>
-    <a class="btn btn-primary" href="https://knowlyapps.com/english-level-test/"><span data-en="Check your level">Определить уровень</span> <svg class="i s18 arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-  </div>
-</div></div></section>
 
 <section class="block" id="reviews"><div class="wrap">
   <h2 class="h2" data-en-html="When phrases&lt;span class=&quot;l2&quot;&gt;become your own.&lt;/span&gt;">Когда фразы<span class="l2">становятся твоими.</span></h2>

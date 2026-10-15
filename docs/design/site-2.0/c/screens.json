@@ -1,0 +1,433 @@
+[
+ {
+  "file": "index.html",
+  "title": "Главная",
+  "group": "Главная",
+  "path": "/",
+  "states": []
+ },
+ {
+  "file": "screens.html",
+  "title": "Все экраны",
+  "group": "Главная",
+  "path": "витрина макета",
+  "states": []
+ },
+ {
+  "file": "app.html",
+  "title": "Не просто знать. Уметь сказать.",
+  "group": "Основные",
+  "path": "/app/",
+  "states": []
+ },
+ {
+  "file": "download.html",
+  "title": "Твой голос. Теперь с тобой.",
+  "group": "Основные",
+  "path": "/download/",
+  "states": []
+ },
+ {
+  "file": "faq.html",
+  "title": "Ответы на вопросы",
+  "group": "Основные",
+  "path": "/faq/",
+  "states": []
+ },
+ {
+  "file": "contact.html",
+  "title": "Давай поговорим",
+  "group": "Основные",
+  "path": "/contact/",
+  "states": [
+   [
+    "closed",
+    "Страница"
+   ],
+   [
+    "form",
+    "Форма открыта"
+   ],
+   [
+    "sending",
+    "Отправка…"
+   ],
+   [
+    "ok",
+    "Успех"
+   ],
+   [
+    "err",
+    "Ошибка"
+   ],
+   [
+    "nocfg",
+    "Нет адреса отправки"
+   ]
+  ]
+ },
+ {
+  "file": "links.html",
+  "title": "Phraseman и Профессор Лингман — все ссылки",
+  "group": "Основные",
+  "path": "/links/",
+  "states": [
+   [
+    "page",
+    "Страница"
+   ],
+   [
+    "copied",
+    "Ссылка скопирована"
+   ],
+   [
+    "url",
+    "Буфер недоступен"
+   ]
+  ]
+ },
+ {
+  "file": "legal-privacy.html",
+  "title": "Конфиденциальность",
+  "group": "Документы",
+  "path": "/legal/privacy/",
+  "states": []
+ },
+ {
+  "file": "legal-privacy-ios.html",
+  "title": "Privacy Policy (iOS)",
+  "group": "Документы",
+  "path": "/legal/privacy-ios/",
+  "states": []
+ },
+ {
+  "file": "legal-terms.html",
+  "title": "Условия использования",
+  "group": "Документы",
+  "path": "/legal/terms/",
+  "states": []
+ },
+ {
+  "file": "legal-data-deletion.html",
+  "title": "Удаление данных",
+  "group": "Документы",
+  "path": "/legal/data-deletion/",
+  "states": []
+ },
+ {
+  "file": "english-level-test.html",
+  "title": "Тест уровня",
+  "group": "Тест уровня",
+  "path": "/english-level-test/",
+  "states": [
+   [
+    "start",
+    "Старт"
+   ],
+   [
+    "stats-off",
+    "Статистика недоступна"
+   ],
+   [
+    "start-err",
+    "Тест не готов"
+   ],
+   [
+    "noscript",
+    "Без JavaScript"
+   ],
+   [
+    "landing",
+    "Лендинг теста"
+   ],
+   [
+    "loading",
+    "Загрузка"
+   ],
+   [
+    "load-err",
+    "Ошибка загрузки"
+   ],
+   [
+    "question",
+    "Вопрос"
+   ],
+   [
+    "q-low",
+    "Мало времени"
+   ],
+   [
+    "exit",
+    "Выйти?"
+   ],
+   [
+    "report",
+    "Сообщить об ошибке"
+   ],
+   [
+    "report-ok",
+    "Сообщение принято"
+   ],
+   [
+    "report-fail",
+    "Не отправлено"
+   ],
+   [
+    "result",
+    "Результат"
+   ],
+   [
+    "name-err",
+    "Без имени"
+   ],
+   [
+    "share",
+    "Ссылка скопирована"
+   ],
+   [
+    "share-err",
+    "Ссылка не скопирована"
+   ],
+   [
+    "cert",
+    "Сертификат"
+   ],
+   [
+    "cert-ios",
+    "Сертификат · iPhone"
+   ],
+   [
+    "png-err",
+    "Ошибка PNG"
+   ],
+   [
+    "cta",
+    "Следующий шаг"
+   ]
+  ]
+ },
+ {
+  "file": "gift.html",
+  "title": "Подари новый мир",
+  "group": "Покупка",
+  "path": "/gift/",
+  "states": [
+   [
+    "loading",
+    "Загрузка цен"
+   ],
+   [
+    "form",
+    "Цены загружены"
+   ],
+   [
+    "filled",
+    "Имена введены"
+   ],
+   [
+    "email-err",
+    "Нет email"
+   ],
+   [
+    "busy",
+    "Открываем оплату"
+   ],
+   [
+    "pay-err",
+    "Ошибка карты"
+   ],
+   [
+    "paypal-err",
+    "Ошибка PayPal"
+   ]
+  ]
+ },
+ {
+  "file": "premium.html",
+  "title": "Plus и Pro",
+  "group": "Покупка",
+  "path": "/premium/",
+  "states": [
+   [
+    "plans",
+    "Цены"
+   ],
+   [
+    "flow",
+    "Выбран тариф"
+   ]
+  ]
+ },
+ {
+  "file": "start-thanks.html",
+  "title": "Твой следующий шаг",
+  "group": "Покупка",
+  "path": "/start/thanks/",
+  "states": [
+   [
+    "waiting",
+    "Ждём оплату"
+   ],
+   [
+    "code",
+    "Код"
+   ],
+   [
+    "code-phone",
+    "Код · телефон"
+   ],
+   [
+    "code-gift",
+    "Код · подарок"
+   ],
+   [
+    "copied",
+    "Скопировано"
+   ],
+   [
+    "manual",
+    "Вручную"
+   ]
+  ]
+ },
+ {
+  "file": "russia.html",
+  "title": "Если магазин недоступен",
+  "group": "Покупка",
+  "path": "/russia/",
+  "states": [
+   [
+    "closed",
+    "До инструкции"
+   ],
+   [
+    "open",
+    "Инструкция открыта"
+   ]
+  ]
+ },
+ {
+  "file": "guides.html",
+  "title": "Журнал",
+  "group": "Журнал",
+  "path": "/guides/",
+  "states": [
+   [
+    "all",
+    "Все материалы"
+   ],
+   [
+    "method",
+    "Как учиться"
+   ],
+   [
+    "talk",
+    "Как говорить"
+   ],
+   [
+    "travel",
+    "В поездке"
+   ],
+   [
+    "empty",
+    "Пусто"
+   ]
+  ]
+ },
+ {
+  "file": "guide-how-to-learn-english.html",
+  "title": "Как выучить новый язык самостоятельно: план, который не бросишь через неделю",
+  "group": "Журнал",
+  "path": "/guides/how-to-learn-english/",
+  "states": []
+ },
+ {
+  "file": "guide-english-by-phrases.html",
+  "title": "Слова знакомые. А фраза не складывается?",
+  "group": "Журнал",
+  "path": "/guides/english-by-phrases/",
+  "states": []
+ },
+ {
+  "file": "guide-english-15-minutes-a-day.html",
+  "title": "Что успеть за 15 минут в день — и хватит ли этого",
+  "group": "Журнал",
+  "path": "/guides/english-15-minutes-a-day/",
+  "states": []
+ },
+ {
+  "file": "guide-speaking-barrier.html",
+  "title": "Понимаю, но не могу ответить",
+  "group": "Журнал",
+  "path": "/guides/speaking-barrier/",
+  "states": []
+ },
+ {
+  "file": "guide-pronunciation.html",
+  "title": "Чтобы тебя понимали с первого раза",
+  "group": "Журнал",
+  "path": "/guides/how-to-improve-english-pronunciation/",
+  "states": []
+ },
+ {
+  "file": "guide-travel.html",
+  "title": "Весь мир начинается с «извините»",
+  "group": "Журнал",
+  "path": "/guides/english-phrases-for-travel/",
+  "states": []
+ },
+ {
+  "file": "invite.html",
+  "title": "Приглашение в Phraseman",
+  "group": "Служебные",
+  "path": "/phraseman/invite/",
+  "states": [
+   [
+    "redirect",
+    "Без кода · переход в стор"
+   ],
+   [
+    "code",
+    "Код · iOS"
+   ],
+   [
+    "android",
+    "Код · Android"
+   ],
+   [
+    "open",
+    "Открыть в Phraseman"
+   ]
+  ]
+ },
+ {
+  "file": "duel.html",
+  "title": "Дуэль (старая ссылка)",
+  "group": "Служебные",
+  "path": "/phraseman/duel/",
+  "states": []
+ },
+ {
+  "file": "apple-auth.html",
+  "title": "Вход через Apple",
+  "group": "Служебные",
+  "path": "/phraseman/apple-auth/",
+  "states": [
+   [
+    "opening",
+    "Открываем"
+   ],
+   [
+    "fallback",
+    "Ссылка, если не открылось"
+   ]
+  ]
+ },
+ {
+  "file": "404.html",
+  "title": "Страница не найдена",
+  "group": "Служебные",
+  "path": "/404/",
+  "states": []
+ }
+]

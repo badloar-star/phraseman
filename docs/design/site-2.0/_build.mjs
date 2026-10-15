@@ -5,7 +5,7 @@
 // Запуск: node docs/design/site-2.0/_build.mjs  → site-A.html, site-B.html, site-C.html рядом.
 import { writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const OUT = dirname(fileURLToPath(import.meta.url));
 const SITE = '../../../knowly-www/assets';
@@ -13,7 +13,7 @@ const APP = '../../../assets';
 const URL = 'https://knowlyapps.com';
 
 // Темы 2.0: [имя, glowA, glowB, accent, onAccent]
-const THEMES = [
+export const THEMES = [
   ['Графит', null, null, '#F2F1F6', '#0B0C0E'],
   ['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'],
   ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'],
@@ -34,7 +34,7 @@ const VARIANTS = {
 };
 
 // ---------- значки (линейные, 1.8, как kit.css) ----------
-const SPRITE = `<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+export const SPRITE = `<svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
 <symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></symbol>
@@ -61,10 +61,10 @@ const SPRITE = `<svg width="0" height="0" style="position:absolute" aria-hidden=
 <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></symbol>
 <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></symbol>
 </svg>`;
-const ic = (id, cls = '') => `<svg class="i ${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
+export const ic = (id, cls = '') => `<svg class="i ${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
 
 // ---------- общий CSS ----------
-const CSS = `
+export const CSS = `
 :root {
   /* раскладка: левый край — крупная типографика Inter, правый — экраны приложения 2.0; ровная колонка 1160px */
   --font: 'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -397,13 +397,14 @@ footer { padding-block: 64px 48px; border-top: 1px solid var(--track); margin-to
 `;
 
 // ---------- C: дополнительные стили (переключатель тем, витрина телефона) ----------
-const CSS_C = `
+export const CSS_C = `
 .hero-c { padding-block: clamp(36px, 6vw, 80px) clamp(40px, 6vw, 80px); text-align: center; }
 .hero-c h1 { font-size: var(--t-h1); line-height: .98; letter-spacing: -.04em; margin-top: 20px; }
 .hero-c h1 .l2 { color: var(--sec); }
 .hero-c .lead { margin: 24px auto 0; font-size: var(--t-l); color: var(--sec); max-width: 34ch; }
 .hero-c .cta-row { justify-content: center; }
-.studio { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); align-items: center; margin-top: clamp(40px, 6vw, 72px); text-align: left; }
+/* зачем: колонка auto сжимала телефон до ~136px (width в % от auto-колонки) — даём ей явную ширину */
+.studio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 360px) minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); align-items: center; margin-top: clamp(40px, 6vw, 72px); text-align: left; }
 .studio .side { display: grid; gap: 14px; }
 .panel { padding: 20px; border-radius: 24px; display: grid; gap: 14px; }
 .panel .lbl { font-size: 13px; font-weight: 700; color: var(--sec); }
@@ -432,13 +433,13 @@ const CSS_C = `
 @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.18); } 100% { transform: scale(1); } }
 @media (max-width: 980px) {
   .studio { grid-template-columns: minmax(0, 1fr); }
-  .studio .phone { order: -1; }
+  .studio .phone { order: -1; width: min(100%, 360px); }
   .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 `;
 
 // ---------- контент (тексты сайта, обращение на «ты» по указанию координатора) ----------
-const header = (v) => `
+export const header = (v) => `
 <header class="top"><div class="wrap"><div class="bar">
   <a class="brand" href="${URL}/" aria-label="Phraseman — главная">phrase<span class="tail">man</span></a>
   <nav class="nav" aria-label="Главная навигация">
@@ -448,7 +449,7 @@ const header = (v) => `
   <a class="btn btn-primary btn-sm" href="${URL}/download/" data-en="Start for free">Начать бесплатно</a>
 </div></div></header>`;
 
-const phraseSheet = (under = true) => `
+export const phraseSheet = (under = true) => `
 ${under ? `<div class="under" aria-hidden="true"><div class="r"><span class="t">Сегодня</span><span class="chips"><span>Видео</span><span>Ошибки</span></span></div><div class="blk"></div></div>` : ''}
 <div class="sheet" data-sheet>
   <div class="grab"></div>
@@ -467,7 +468,7 @@ ${under ? `<div class="under" aria-hidden="true"><div class="r"><span class="t">
   </div>
 </div>`;
 
-const dialogsHub = (coin = false) => `
+export const dialogsHub = (coin = false) => `
 <div class="hub">
   <div class="hrow1"><div><div class="ti">Диалоги</div><div class="su">Практикуй язык в жизненных ситуациях</div></div>
     <div class="pills">${coin ? `<span class="pill" data-coinpill><img src="${APP}/images/coins/coin_rank_05.webp" alt="" width="18" height="18"><span data-coins>240</span></span>` : ''}<span class="pill">${ic('chat', 's16')}10/10</span></div></div>
@@ -479,7 +480,7 @@ const dialogsHub = (coin = false) => `
   </div>
 </div>`;
 
-const todayList = `
+export const todayList = `
 <div class="hub">
   <div class="hrow1"><div><div class="ti">Сегодня</div></div></div>
   <div class="cats">
@@ -491,7 +492,7 @@ const todayList = `
   <span class="btn btn-primary" style="margin-top:18px;width:100%;min-height:50px;font-size:15px" aria-hidden="true">Продолжить ${ic('arrow', 's18')}</span>
 </div>`;
 
-const phone = (inner, label, sb = '12:53') => `
+export const phone = (inner, label, sb = '12:53') => `
 <div class="phone" aria-label="${label}"><div class="screen"><div class="sglow" aria-hidden="true"></div>
   <div class="sb" aria-hidden="true"><span>${sb}</span><span class="bat"></span></div>
   ${inner}
@@ -509,7 +510,7 @@ const heroAB = `
   ${phone(phraseSheet(), 'Экран приложения: фраза дня Pitch in')}
 </div></section>`;
 
-const heroC = `
+export const heroC = `
 <section class="hero-c"><div class="wrap">
   <span class="ov rise" data-en="Phraseman · language for life">Phraseman · язык для жизни</span>
   <h1 class="rise d1" data-en-html="Your voice.&lt;br&gt;&lt;span class=&quot;l2&quot;&gt;In another language.&lt;/span&gt;">Твой голос.<br><span class="l2">На другом языке.</span></h1>
@@ -546,7 +547,7 @@ const heroC = `
   </div>
 </div></section>`;
 
-const method = `
+export const method = `
 <section class="block" id="method"><div class="wrap">
   <div class="head">
     <span class="ov" data-en="The Phraseman method">Метод Phraseman</span>
@@ -560,7 +561,7 @@ const method = `
   </div>
 </div></section>`;
 
-const product = (screen) => `
+export const product = (screen) => `
 <section class="block"><div class="wrap split">
   <div class="copy">
     <h2 class="h2" data-en-html="A bigger journey.&lt;span class=&quot;l2&quot;&gt;At your own pace.&lt;/span&gt;">Большой путь.<span class="l2">Твоим шагом.</span></h2>
@@ -584,7 +585,7 @@ const test = `
   </div>
 </div></div></section>`;
 
-const reviews = `
+export const reviews = `
 <section class="block" id="reviews"><div class="wrap">
   <h2 class="h2" data-en-html="When phrases&lt;span class=&quot;l2&quot;&gt;become your own.&lt;/span&gt;">Когда фразы<span class="l2">становятся твоими.</span></h2>
   <div class="quotes">
@@ -594,7 +595,7 @@ const reviews = `
   <a class="more" href="https://play.google.com/store/apps/details?id=app.phraseman"><span data-en="Read reviews">Читать отзывы</span> ${ic('out', 's18')}</a>
 </div></section>`;
 
-const gift = `
+export const gift = `
 <section class="block"><div class="wrap split">
   <div class="copy">
     <h2 class="h2" data-en-html="A gift that&lt;span class=&quot;l2&quot;&gt;helps them speak.&lt;/span&gt;">Подарок, который<span class="l2">помогает заговорить.</span></h2>
@@ -608,7 +609,7 @@ const gift = `
   </div>
 </div></section>`;
 
-const journal = `
+export const journal = `
 <section class="block"><div class="wrap split" style="align-items:start">
   <div class="head">
     <h2 class="h2">Понятно о языке.<span class="l2">Без лишней теории.</span></h2>
@@ -621,20 +622,20 @@ const journal = `
   </div>
 </div></section>`;
 
-const FAQ = [
+export const FAQ = [
   ['Можно начать с нуля?', 'Да. Начинай с базовых фраз и двигайся в своём темпе. Если уже учил язык, тест поможет сориентироваться, с чего продолжить.'],
   ['Сколько времени нужно на занятие?', 'Можно выделить 15 минут на короткую практику. Это удобный ритм, а не обещание определённого результата: он зависит от твоего уровня, регулярности и практики за пределами приложения.'],
   ['Что можно попробовать бесплатно?', 'Начни со знакомства с приложением и доступных бесплатных заданий. Состав Plus и Pro и актуальные условия смотри в приложении перед оформлением.'],
   ['Как заниматься, если стесняюсь говорить?', 'Начни с прослушивания и повторения знакомых фраз в комфортной обстановке. Затем пробуй вспомнить фразу самостоятельно и использовать её в настоящем разговоре.'],
   ['Где посмотреть условия и способы оплаты?', 'На странице Plus и Pro собраны переходы к действующим предложениям. Для пользователей из России есть отдельная инструкция.'],
 ];
-const faq = `
+export const faq = `
 <section class="block" id="faq"><div class="wrap">
   <h2 class="h2" data-en-html="The essentials,&lt;span class=&quot;l2&quot;&gt;clearly explained.&lt;/span&gt;">О главном —<span class="l2">открыто.</span></h2>
   <div class="glass faq">${FAQ.map(([q, a]) => `<details><summary>${q}<span class="pm">${ic('plus', 's18')}</span></summary><p>${a}</p></details>`).join('')}</div>
 </div></section>`;
 
-const close = `
+export const close = `
 <section class="block close"><div class="wrap"><div class="glass">
   <h2 class="h2">Говори увереннее.<span class="l2">В знакомых ситуациях.</span></h2>
   <a class="btn btn-primary" href="${URL}/download/"><span data-en="Start for free">Начать бесплатно</span> ${ic('arrow', 's18 arr')}</a>
@@ -685,7 +686,7 @@ const pages = `
   </div>
 </div></section>`;
 
-const footer = `
+export const footer = `
 <footer><div class="wrap">
   <div class="foot-top">
     <div><a class="brand" href="${URL}/">phrase<span class="tail">man</span></a><p>Чуть больше языка.<br>Чуть больше свободы.</p></div>
@@ -697,7 +698,7 @@ const footer = `
 </div></footer>`;
 
 // ---------- общий скрипт ----------
-const JS = (v) => `
+export const JS = (v) => `
 (function () {
   var THEMES = ${JSON.stringify(THEMES)};
   var root = document.documentElement;
@@ -770,7 +771,7 @@ const JS = (v) => `
   ${v.studio ? STUDIO_JS : ''}
 })();`;
 
-const STUDIO_JS = `
+export const STUDIO_JS = `
   // C: студия тем — выбор темы, светлая/тёмная, насыщенность, экран в телефоне, монеты
   var sw = document.getElementById('swatches');
   THEMES.forEach(function (t, i) {
@@ -814,7 +815,7 @@ const STUDIO_JS = `
     document.querySelectorAll('[data-coin],[data-coinpill]').forEach(function (el) { el.classList.remove('coin-pop'); void el.offsetWidth; el.classList.add('coin-pop'); });
   });`;
 
-function page(key) {
+export function page(key) {
   const v = { ...VARIANTS[key], studio: key === 'C' };
   const hero = key === 'C' ? heroC : heroAB;
   const productScreen = key === 'C' ? todayList : (key === 'A' ? dialogsHub(false) : todayList);
@@ -841,7 +842,6 @@ ${header(v)}
 ${hero}
 ${method}
 ${product(productScreen)}
-${test}
 ${reviews}
 ${gift}
 ${journal}
@@ -857,7 +857,8 @@ ${footer}
 `;
 }
 
-for (const key of Object.keys(VARIANTS)) {
+// зачем: файл служит и библиотекой для _pages.mjs — пишем варианты главной только при прямом запуске
+if (import.meta.url === pathToFileURL(process.argv[1]).href) for (const key of Object.keys(VARIANTS)) {
   const file = join(OUT, `site-${key}.html`);
   writeFileSync(file, page(key), 'utf8');
   console.log('[SITE-2.0] записан', file);

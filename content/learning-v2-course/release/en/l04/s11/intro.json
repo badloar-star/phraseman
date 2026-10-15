@@ -1,10 +1,9 @@
 {
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
-  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
   "courseSessionId": "en:lesson-04:session-11",
   "learningOutcomeByLocale": {
-    "ru": "спросить о нескольких предметах или местах: `Are there + plural noun?`",
-    "uk": "запитати про кілька предметів або місць: `Are there + plural noun?`"
+    "ru": "спросить о трамваях и комнате, назвать банк и сообщить о срочности",
+    "uk": "запитати про трамваї та кімнату, назвати банк і повідомити про терміновість"
   },
   "pages": [
     {
@@ -12,52 +11,52 @@
       "pageId": "en:lesson-04:session-11:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Трамвай",
-        "uk": "Трамвай"
+        "ru": "Трамвай и трамваи",
+        "uk": "Трамвай і трамваї"
       },
       "bodyByLocale": {
-        "ru": "`tram` — «трамвай». Один трамвай называется `a tram`, а несколько — `trams`. Это городской рельсовый транспорт, который идёт по рельсам и делает частые остановки на улицах. На схеме трамвай отмечает маршрут внутри города.",
-        "uk": "`tram` — «трамвай». Один трамвай називається `a tram`, а кілька — `trams`. Це міський рейковий транспорт, який їде рейками й часто зупиняється на вулицях. На схемі слово `tram` допомагає впізнати саме міський маршрут."
+        "ru": "`tram` — «трамвай», `trams` — «трамваи». `There is a tram` — «Есть трамвай». `Are there trams here?` — «Здесь есть трамваи?» Про один спрашиваем `Is there`, про несколько — `Are there`. Хоть трамвай и длинный, один трамвай всё равно требует `Is`, а не `Are`.",
+        "uk": "`tram` — «трамвай», `trams` — «трамваї». `There is a tram` — «Є трамвай». `Are there trams here?` — «Тут є трамваї?» Про один запитуємо `Is there`, про кілька — `Are there`. Хоч трамвай і довгий, один трамвай усе одно потребує `Is`, а не `Are`."
       },
       "question": {
         "interactionId": "en:lesson-04:session-11:intro1:q",
         "promptByLocale": {
-          "ru": "На схеме показан городской маршрут с частыми остановками на улицах. Выберите группу слов.",
-          "uk": "На схемі показано міський маршрут із частими зупинками на вулицях. Оберіть групу слів."
+          "ru": "Спросите «Здесь есть трамваи?»",
+          "uk": "Запитайте «Тут є трамваї?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-11:intro1:r1",
-              "text": "a tram"
+              "text": "Are there trams here?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro1:r2",
-              "text": "a train"
+              "text": "Is there trams here?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro1:r3",
-              "text": "a bus"
+              "text": "There are trams here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-11:intro1:r1",
-              "text": "a tram"
+              "text": "Are there trams here?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro1:r2",
-              "text": "a train"
+              "text": "Is there trams here?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro1:r3",
-              "text": "a bus"
+              "text": "There are trams here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На схеме показан городской маршрут с частыми остановками на улицах. Выберите группу слов.",
-          "uk": "На схемі показано міський маршрут із частими зупинками на вулицях. Оберіть групу слів."
+          "ru": "Спросите «Здесь есть трамваи?»",
+          "uk": "Запитайте «Тут є трамваї?»"
         }
       }
     },
@@ -66,52 +65,52 @@
       "pageId": "en:lesson-04:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вопрос о нескольких трамваях",
-        "uk": "Питання про кілька трамваїв"
+        "ru": "Комната и банк",
+        "uk": "Кімната й банк"
       },
       "bodyByLocale": {
-        "ru": "`Are there trams?` — «Есть трамваи?». Если предметов несколько, вопрос начинается с `Are there`, а дальше идёт существительное во множественном числе — `trams`. На транспортной карте лучше спросить сразу: карта молчит уверенно, а идти пешком придётся вам.",
-        "uk": "`Are there trams?` — «Є трамваї?». Якщо предметів кілька, запитання починається з `Are there`, а далі йде іменник у множині — `trams`. На транспортній карті краще запитати одразу: карта мовчить упевнено, а йти пішки доведеться вам."
+        "ru": "`room` — «комната», `bank` — «банк». `Is there a room?` — «Есть ли комната?» `That is a bank` — «То здание — банк». `that` помогает указать на здание вдалеке. Не путайте сообщение о здании с вопросом, есть ли оно вообще.",
+        "uk": "`room` — «кімната», `bank` — «банк». `Is there a room?` — «Чи є кімната?» `That is a bank` — «Та будівля — банк». `that` допомагає вказати на будівлю вдалині. Не плутайте повідомлення про будівлю із запитанням, чи є вона взагалі."
       },
       "question": {
         "interactionId": "en:lesson-04:session-11:intro2:q",
         "promptByLocale": {
-          "ru": "На карте нужно спросить о нескольких трамваях. Выберите вопрос.",
-          "uk": "На карті треба запитати про кілька трамваїв. Оберіть питання."
+          "ru": "Друг показывает на дальнее здание. Скажите «То здание — банк».",
+          "uk": "Друг показує на далеку будівлю. Скажіть «Та будівля — банк»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-11:intro2:r1",
-              "text": "Are there trams?"
+              "text": "That is a bank."
             },
             {
               "responseId": "en:lesson-04:session-11:intro2:r2",
-              "text": "Is there a tram?"
+              "text": "Those are banks."
             },
             {
               "responseId": "en:lesson-04:session-11:intro2:r3",
-              "text": "There are trams."
+              "text": "That are a bank."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-11:intro2:r1",
-              "text": "Are there trams?"
+              "text": "That is a bank."
             },
             {
               "responseId": "en:lesson-04:session-11:intro2:r2",
-              "text": "Is there a tram?"
+              "text": "Those are banks."
             },
             {
               "responseId": "en:lesson-04:session-11:intro2:r3",
-              "text": "There are trams."
+              "text": "That are a bank."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На карте нужно спросить о нескольких трамваях. Выберите вопрос.",
-          "uk": "На карті треба запитати про кілька трамваїв. Оберіть питання."
+          "ru": "Друг показывает на дальнее здание. Скажите «То здание — банк».",
+          "uk": "Друг показує на далеку будівлю. Скажіть «Та будівля — банк»."
         }
       }
     },
@@ -120,52 +119,52 @@
       "pageId": "en:lesson-04:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Трамваи рядом с отелем",
-        "uk": "Трамваї біля готелю"
+        "ru": "Срочно или подождёт?",
+        "uk": "Терміново чи зачекає?"
       },
       "bodyByLocale": {
-        "ru": "`Are there trams near the hotel?` — «Есть трамваи рядом с отелем?». Порядок не меняется: сначала `Are there`, затем `trams`, потом место. `Near the hotel` уточняет точку поиска; оно не меняет множественное число и не превращает вопрос в сообщение.",
-        "uk": "`Are there trams near the hotel?` — «Є трамваї біля готелю?». Порядок не змінюється: спочатку `Are there`, потім `trams`, далі місце. `Near the hotel` уточнює точку пошуку; воно не змінює множину й не перетворює питання на повідомлення."
+        "ru": "`urgent` — «срочный». Друг получил сообщение, на которое нужно ответить прямо сейчас. О таком деле: `It is urgent` — «Это срочно». Сокращённо: `It’s urgent`. Здесь речь о времени: откладывать нельзя.",
+        "uk": "`urgent` — «терміновий». Друг отримав повідомлення, на яке потрібно відповісти просто зараз. Про таку справу: `It is urgent` — «Це терміново». Скорочено: `It’s urgent`. Тут ідеться про час: відкладати не можна."
       },
       "question": {
         "interactionId": "en:lesson-04:session-11:intro3:q",
         "promptByLocale": {
-          "ru": "Гость у стойки смотрит на отель на карте. Выберите вопрос о трамваях рядом с ним.",
-          "uk": "Гість біля стійки дивиться на готель на карті. Оберіть питання про трамваї поруч."
+          "ru": "На сообщение нужно ответить немедленно. Скажите «Это срочно» с сокращением.",
+          "uk": "На повідомлення потрібно відповісти негайно. Скажіть «Це терміново» зі скороченням."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-11:intro3:r1",
-              "text": "Are there trams near the hotel?"
+              "text": "It's urgent."
             },
             {
               "responseId": "en:lesson-04:session-11:intro3:r2",
-              "text": "Are there a tram near the hotel?"
+              "text": "It's comfortable."
             },
             {
               "responseId": "en:lesson-04:session-11:intro3:r3",
-              "text": "There are trams near the hotel?"
+              "text": "It are urgent."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-11:intro3:r1",
-              "text": "Are there trams near the hotel?"
+              "text": "It's urgent."
             },
             {
               "responseId": "en:lesson-04:session-11:intro3:r2",
-              "text": "Are there a tram near the hotel?"
+              "text": "It's comfortable."
             },
             {
               "responseId": "en:lesson-04:session-11:intro3:r3",
-              "text": "There are trams near the hotel?"
+              "text": "It are urgent."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Гость у стойки смотрит на отель на карте. Выберите вопрос о трамваях рядом с ним.",
-          "uk": "Гість біля стійки дивиться на готель на карті. Оберіть питання про трамваї поруч."
+          "ru": "На сообщение нужно ответить немедленно. Скажите «Это срочно» с сокращением.",
+          "uk": "На повідомлення потрібно відповісти негайно. Скажіть «Це терміново» зі скороченням."
         }
       }
     }
@@ -177,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b05453d8620586fb2e837774072615d4829e3331525582f3955a42821baa3829"
+  "introFingerprint": "50ffdcd2eaab7509e57d1cabeb8dd253db51cffbe757cdbf7cac03df41a5d2a3"
 }

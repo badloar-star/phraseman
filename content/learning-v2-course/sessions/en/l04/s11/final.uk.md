@@ -1,119 +1,137 @@
-# Англійська · Урок 4 · Заняття 11 — «На транспортній карті»
+# Англійська · Урок 4 · Заняття 11 — Містом на трамваї
 
-**Сцена заняття.** Ви біля транспортної карти поруч зі стійкою для відвідувачів. Потрібно дізнатися, чи ходять трамваї біля знайомих місць.
-**Як сказати:** запитати про кілька предметів або місць: `Are there + plural noun?`
-**Нове слово:** tram
-**Повертаються:** pharmacy, library, bakery, garden, bank, post office, clinic, dentist
+**Ситуація.** Ви з другом вивчаєте транспорт нового міста. Вам потрібно знайти банк, уточнити наявність кімнати й зрозуміти, чи термінове повідомлення отримав друг.
+
+**Що ви опануєте:** запитати про трамваї та кімнату, назвати банк і повідомити про терміновість
+**Нові слова:** tram
+
+---
 
 ## Інтро 1
 
-### Трамвай
+### Трамвай і трамваї
 
-`tram` — «трамвай». Один трамвай називається `a tram`, а кілька — `trams`. Це міський рейковий транспорт, який їде рейками й часто зупиняється на вулицях. На схемі слово `tram` допомагає впізнати саме міський маршрут.
+`tram` — «трамвай», `trams` — «трамваї». `There is a tram` — «Є трамвай». `Are there trams here?` — «Тут є трамваї?» Про один запитуємо `Is there`, про кілька — `Are there`. Хоч трамвай і довгий, один трамвай усе одно потребує `Is`, а не `Are`.
 
-**На схемі показано міський маршрут із частими зупинками на вулицях. Оберіть групу слів.**
+**Запитайте «Тут є трамваї?»**
 
-- ✅ **a tram**
-- ❌ a train — *`A train` — поїзд. Тут описано міський маршрут із зупинками: `a tram`.*
-- ❌ a bus — *`A bus` — автобус. На карті позначено `a tram`.*
+- ✅ **Are there trams here?**
+- ❌ Is there trams here? — *Трамваїв кілька: `Are there trams here?`.*
+- ❌ There are trams here. — *Це повідомлення. У запитанні спочатку `Are there`.*
+
+---
 
 ## Інтро 2
 
-### Питання про кілька трамваїв
+### Кімната й банк
 
-`Are there trams?` — «Є трамваї?». Якщо предметів кілька, запитання починається з `Are there`, а далі йде іменник у множині — `trams`. На транспортній карті краще запитати одразу: карта мовчить упевнено, а йти пішки доведеться вам.
+`room` — «кімната», `bank` — «банк». `Is there a room?` — «Чи є кімната?» `That is a bank` — «Та будівля — банк». `that` допомагає вказати на будівлю вдалині. Не плутайте повідомлення про будівлю із запитанням, чи є вона взагалі.
 
-**На карті треба запитати про кілька трамваїв. Оберіть питання.**
+**Друг показує на далеку будівлю. Скажіть «Та будівля — банк».**
 
-- ✅ **Are there trams?**
-- ❌ Is there a tram? — *Тут один трамвай. Про кілька кажемо `Are there trams?`.*
-- ❌ There are trams. — *Це повідомлення, а потрібне питання: `Are there trams?`.*
+- ✅ **That is a bank.**
+- ❌ Those are banks. — *Тут одна будівля: `That is a bank`.*
+- ❌ That are a bank. — *З `That` потрібне `is`.*
+
+---
 
 ## Інтро 3
 
-### Трамваї біля готелю
+### Терміново чи зачекає?
 
-`Are there trams near the hotel?` — «Є трамваї біля готелю?». Порядок не змінюється: спочатку `Are there`, потім `trams`, далі місце. `Near the hotel` уточнює точку пошуку; воно не змінює множину й не перетворює питання на повідомлення.
+`urgent` — «терміновий». Друг отримав повідомлення, на яке потрібно відповісти просто зараз. Про таку справу: `It is urgent` — «Це терміново». Скорочено: `It’s urgent`. Тут ідеться про час: відкладати не можна.
 
-**Гість біля стійки дивиться на готель на карті. Оберіть питання про трамваї поруч.**
+**На повідомлення потрібно відповісти негайно. Скажіть «Це терміново» зі скороченням.**
 
-- ✅ **Are there trams near the hotel?**
-- ❌ Are there a tram near the hotel? — *Після `Are there` потрібна множина: `trams`.*
-- ❌ There are trams near the hotel? — *Питання починається з `Are there`: `Are there trams near the hotel?`.*
+- ✅ **It's urgent.**
+- ❌ It's comfortable. — *`comfortable` — зручний; терміновий — `urgent`.*
+- ❌ It are urgent. — *З `It` потрібне `is`: `It’s urgent`.*
 
-## Практика — по одній цілі
+---
 
-**1 · Послухайте та оберіть, що прозвучало**
-<!-- interaction_id: en:lesson-04:session-11:i01; family: listen_choose -->
-Ціль: `tram`
-🔊 *tram*
-Значення варіантів: tram — трамвай · train — поїзд · tramp — волоцюга
-→ **tram** · train · tramp
-- train — *У `tram` чути короткий /æ/ і фінальний /m/; у `train` — /eɪ/ і /n/.*
-- tramp — *У `tramp` після /m/ чути /p/; у записі `tram` закінчується на /m/.*
+## Практика (17 завдань)
 
-**2 · Промовте нове слово**
-<!-- interaction_id: en:lesson-04:session-11:i02; family: scripted_repeat_compare -->
-Ціль: `tram`
-🎙 **tram**
+**1 · Повідомте другові «Є банк»**
+<!-- interaction_id: en:lesson-04:session-11:i01; family: phrase_builder -->
+Плитки: `bank` `a` `is` `There` `are` → **There is a bank.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a bank.`)*
 
-**3 · Швидко з’єднайте назви з українськими значеннями**
-<!-- interaction_id: en:lesson-04:session-11:i03; family: speed_match -->
-Пари: `library` — бібліотека · `bank` — банк · `garden` — сад · `clinic` — клініка · `tram` — трамвай
+**2 · Послухайте й виберіть слово**
+<!-- interaction_id: en:lesson-04:session-11:i02; family: listen_choose -->
+🔊 *tram* → **tram** · bank · room
+- bank — *У записі перше слово — `tram`, а в цьому варіанті — `bank`.*
+- room — *У записі перше слово — `tram`, а в цьому варіанті — `room`.*
 
-**4 · Послухайте питання й оберіть його зміст**
-<!-- interaction_id: en:lesson-04:session-11:i04; family: listen_choose -->
-Ціль: `Are there trams near the garden?`
-🔊 *Are there trams near the garden?*
-Значення варіантів: Are there trams near the garden? — Біля саду є трамваї? · Is there a tram near the garden? — Біля саду є один трамвай? · There are trams near the garden. — Біля саду є трамваї.
-→ **Are there trams near the garden?** · Is there a tram near the garden? · There are trams near the garden.
+**3 · Назвіть трамвай одним англійським словом**
+<!-- interaction_id: en:lesson-04:session-11:i03; family: context_gap_grammar -->
+___ → **tram** · bank · room
+- bank — *`bank` — банк; трамвай — `tram`.*
+- room — *`room` — кімната; трамвай — `tram`.*
 
-- Is there a tram near the garden? — *У записі кілька трамваїв, тому `Are there trams`, а не один `tram`.*
-- There are trams near the garden. — *У записі питання `Are there ...?`, а не повідомлення.*
-**5 · Складіть питання про трамваї біля бібліотеки**
-<!-- interaction_id: en:lesson-04:session-11:i05; family: phrase_builder -->
-Ціль: `Are there trams near the library?`
-Плитки: `Are` · `there` · `trams` · `near` · `the` · `library` · `There`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-11:i04; family: speed_match -->
+tram — трамвай · urgent — терміновий · room — кімната · bank — банк
 
-**6 · Оберіть питання про трамваї біля аптеки**
-<!-- interaction_id: en:lesson-04:session-11:i06; family: context_gap_grammar -->
-___ → **Are there trams near the pharmacy?** · Is there trams near the pharmacy? · There are trams near the pharmacy.
-- Is there trams near the pharmacy? — *Трамваїв кілька: `Are there trams ...?`.*
-- There are trams near the pharmacy. — *Це повідомлення. Питання: `Are there trams near the pharmacy?`.*
+**5 · Послухайте й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-11:i05; family: listen_build_dictation -->
+🔊 *Is there a tram?* Плитки: `tram` `a` `there` `Is` → **Is there a tram?**
 
-**7 · Послухайте та складіть питання**
-<!-- interaction_id: en:lesson-04:session-11:i07; family: listen_build_dictation -->
-Ціль: `Are there trams near the bank?`
-🔊 *Are there trams near the bank?*
-Плитки: `Are` · `there` · `trams` · `near` · `the` · `bank` · `There`
+**6 · Укажіть на далеку будівлю: «Та будівля — банк»**
+<!-- interaction_id: en:lesson-04:session-11:i06; family: phrase_builder -->
+Плитки: `bank` `a` `is` `That` `are` → **That is a bank.**
+*(плитка `are` зайва: тут потрібно `is` — `That is a bank.`)*
 
-**8 · Складіть питання про трамваї біля пошти**
-<!-- interaction_id: en:lesson-04:session-11:i08; family: phrase_builder -->
-Ціль: `Are there trams near the post office?`
-Плитки: `Are` · `there` · `trams` · `near` · `the` · `post` · `office` · `There`
+**7 · Друг має відповісти на повідомлення негайно. Скажіть «Це терміново» зі скороченням**
+<!-- interaction_id: en:lesson-04:session-11:i07; family: scripted_repeat_compare -->
+🎙 **It's urgent.**
 
-**9 · Швидко з’єднайте назви з українськими значеннями**
-<!-- interaction_id: en:lesson-04:session-11:i09; family: speed_match -->
-Пари: `dentist` — стоматолог · `bakery` — пекарня · `post office` — пошта · `pharmacy` — аптека
+**8 · Запитайте «Тут є трамваї?»**
+<!-- interaction_id: en:lesson-04:session-11:i08; family: context_gap_grammar -->
+___ there trams here? → **Are** · Is · Am
+- Is — *Трамваїв кілька: `Are there trams here?`.*
+- Am — *Запитання про кілька трамваїв починається з `Are there`.*
 
-**10 · Послухайте та складіть питання**
-<!-- interaction_id: en:lesson-04:session-11:i10; family: listen_build_dictation -->
-Ціль: `Are there trams near the dentist?`
-🔊 *Are there trams near the dentist?*
-Плитки: `Are` · `there` · `trams` · `near` · `the` · `dentist` · `There`
+**9 · Послухайте запитання**
+<!-- interaction_id: en:lesson-04:session-11:i09; family: listen_choose -->
+🔊 *Is there a room?* → **Is there a room?** · Is there a bank? · Is there a tram?
+- Is there a bank? — *У записі останнє слово — `room`, а в цьому варіанті — `bank`.*
+- Is there a tram? — *У записі останнє слово — `room`, а в цьому варіанті — `tram`.*
 
-**11 · Промовте питання про трамваї біля пекарні**
-<!-- interaction_id: en:lesson-04:session-11:i11; family: scripted_repeat_compare -->
-Ціль: `Are there trams near the bakery?`
-🎙 **Are there trams near the bakery?**
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-11:i10; family: speed_match -->
+tram — трамвай · trams — трамваї · room — кімната · urgent — терміновий
 
-**12 · складіть питання про трамваї біля клініки**
+**11 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-04:session-11:i11; family: listen_build_dictation -->
+🔊 *There is a room here.* Плитки: `here` `room` `a` `is` `There` `are` → **There is a room here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a room here.`)*
+
+**12 · Ви вже дізналися про транспорт. Повідомте «Тут є трамваї»**
 <!-- interaction_id: en:lesson-04:session-11:i12; family: phrase_builder -->
-Ціль: `Are there trams near the clinic?`
-Плитки: `Are` · `there` · `trams` · `near` · `the` · `clinic` · `There`
+Плитки: `here` `trams` `are` `There` `is` → **There are trams here.**
+*(плитка `is` зайва: тут потрібно `are` — `There are trams here.`)*
 
-## Для збирача
+**13 · Ви шукаєте банк. Запитайте «Тут є банк?»**
+<!-- interaction_id: en:lesson-04:session-11:i13; family: scripted_repeat_compare -->
+🎙 **Is there a bank here?**
 
-atomic_practice: practice.atomic.json
-new_words: tram — трамвай — Міський рейковий транспорт.
-modes: 1=listen_choose, 2=scripted_repeat_compare, 3=speed_match, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=phrase_builder, 9=speed_match, 10=listen_build_dictation, 11=scripted_repeat_compare, 12=phrase_builder
+**14 · Уточніть, чи є тут кімната**
+<!-- interaction_id: en:lesson-04:session-11:i14; family: context_gap_grammar -->
+Is there ___ room here? → **a** · an · are
+- an — *У `room` перший звук приголосний: `a room`.*
+- are — *Перед однією кімнатою потрібне `a`: `a room`.*
+
+**15 · Послухайте відповідь про повідомлення**
+<!-- interaction_id: en:lesson-04:session-11:i15; family: listen_choose -->
+🔊 *It is urgent.* → **It is urgent.** · It is comfortable. · It is impossible.
+- It is comfortable. — *У записі останнє слово — `urgent`, а в цьому варіанті — `comfortable`.*
+- It is impossible. — *У записі останнє слово — `urgent`, а в цьому варіанті — `impossible`.*
+
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-11:i16; family: speed_match -->
+tram — трамвай · urgent — терміновий · room — кімната · bank — банк
+
+**17 · У наступній подорожі ви хочете дізнатися, чи ходять у місті трамваї. Запитайте «Тут є трамваї?»**
+<!-- interaction_id: en:lesson-04:session-11:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Are there trams here?**
+

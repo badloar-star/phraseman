@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-05:i01",
-    "correctText": "Are you ready?",
+    "correctText": "It is not real.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i02",
-    "correctText": "You are lost.",
-    "correctResponseId": null
+    "correctText": "It is not real.",
+    "correctResponseId": "en:lesson-02:session-05:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-05:i03",
-    "correctText": "Are",
+    "correctText": "are",
     "correctResponseId": "en:lesson-02:session-05:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-05:i04",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-02:session-05:i04:r1"
+    "correctText": "en:lesson-02:session-05:i04:p1=real\nen:lesson-02:session-05:i04:p2=cold\nen:lesson-02:session-05:i04:p3=hot\nen:lesson-02:session-05:i04:p4=warm",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i05",
-    "correctText": "Are you awake?",
-    "correctResponseId": "en:lesson-02:session-05:i05:r1"
+    "correctText": "It's not real.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i06",
-    "correctText": "You are cold.",
-    "correctResponseId": "en:lesson-02:session-05:i06:r1"
+    "correctText": "They are not real.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i07",
-    "correctText": "en:lesson-02:session-05:i07:p1=ready\nen:lesson-02:session-05:i07:p2=lost\nen:lesson-02:session-05:i07:p3=thirsty\nen:lesson-02:session-05:i07:p4=hungry",
+    "correctText": "It's not real.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i08",
-    "correctText": "awake",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-05:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-05:i09",
-    "correctText": "Are you hungry?",
-    "correctResponseId": null
+    "correctText": "It is not hot.",
+    "correctResponseId": "en:lesson-02:session-05:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-05:i10",
-    "correctText": "You are lost.",
+    "correctText": "en:lesson-02:session-05:i10:p1=It's\nen:lesson-02:session-05:i10:p2=They're\nen:lesson-02:session-05:i10:p3=I'm\nen:lesson-02:session-05:i10:p4=We're",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i11",
-    "correctText": "cold",
-    "correctResponseId": "en:lesson-02:session-05:i11:r1"
+    "correctText": "They're not real.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i12",
-    "correctText": "You are thirsty.",
+    "correctText": "It is not full.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i13",
-    "correctText": "ready",
-    "correctResponseId": "en:lesson-02:session-05:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-05:i14",
-    "correctText": "Are you awake?",
+    "correctText": "It is not warm.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-05:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-05:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-05:i15",
-    "correctText": "Are",
+    "correctText": "It's not real.",
     "correctResponseId": "en:lesson-02:session-05:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-05:i16",
-    "correctText": "en:lesson-02:session-05:i16:p1=awake\nen:lesson-02:session-05:i16:p2=cold\nen:lesson-02:session-05:i16:p3=are\nen:lesson-02:session-05:i16:p4=am",
+    "correctText": "en:lesson-02:session-05:i16:p1=real\nen:lesson-02:session-05:i16:p2=full\nen:lesson-02:session-05:i16:p3=hot\nen:lesson-02:session-05:i16:p4=cold",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-05:i17:s01",
-    "correctText": "Are you ready?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-05:i17:s02",
-    "correctText": "Are you thirsty?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-05:i17:s03",
-    "correctText": "You are lost.",
+    "interactionId": "en:lesson-02:session-05:i17",
+    "correctText": "It is not real.",
     "correctResponseId": null
   }
 ]

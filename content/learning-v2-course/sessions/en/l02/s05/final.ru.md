@@ -1,205 +1,138 @@
-# Английский · Урок 2 · Занятие 5 — «Are you ready? — а не наоборот»
+# Английский · Урок 2 · Занятие 5 — Обед для камеры
 
-**Сцена занятия.** Утро субботы, хостел. Все собираются в город, у двери толкотня, и одни и те же слова приходится то говорить, то спрашивать.
-**Как сказать:** контраст `You are + слово` ↔ `Are you + слово?`
-**Новые слова:** —
-**Возвращаются:** ready, lost, thirsty, hungry, awake, cold
+**Ситуация.** На экскурсии по съёмочной площадке вы рассматриваете стол с бутафорской едой. Потом заходите в обычное кафе рядом.
+
+**Что вы освоите:** сказать, что изображённая или бутафорская вещь не настоящая
+**Новые слова:** real
 
 ---
 
 ## Интро 1
 
-### Два слова, два порядка
+### Настоящее или только выглядит так
 
-`You are ready` — «ты готов»: это сообщение. Поменяйте два первых слова местами — выйдет вопрос: `Are you ready?` Само слово не меняется.
+`real` — «настоящий». `It is not real` — «Это не настоящее». На столе лежит пластиковое яблоко: предмет существует, но настоящим яблоком он не является. Для камеры обед готов. Для вас — пока только картинка.
 
-Рука будет тянуться спросить `You are ready?` — по-русски хватило бы голоса. По-английски так тоже можно, но звучит как удивление: «ты что, готов?!»
+**Яблоко сделано из пластика для съёмок. Скажите, что оно не настоящее.**
 
-**Сосед стоит у двери с рюкзаком. Вы хотите узнать, готов ли он идти.**
-
-- ✅ **Are you ready?**
-- ❌ You are ready? — *Это не вопрос, а удивление вслух. Обычный вопрос начинается с `are`.*
-- ❌ Are ready you? — *`you` оторвали от `are`. Эти двое идут парой: сначала `are you`, потом само слово.*
+- ✅ **It is not real.**
+- ❌ It is real. — *Это «Оно настоящее». Здесь нужно `not` после `is`.*
+- ❌ It not real. — *Нужно сохранить `is`: `It is not real`.*
 
 ---
 
 ## Интро 2
 
-### Когда вы говорите, а не спрашиваете
+### Не один предмет
 
-`lost` — «заблудился». Человек вертит карту так и сяк — тут всё ясно. Порядок обычный: `You are lost`, `are` вторым, и звучит как факт.
+Про два бутафорских пирожных — `They are not real`. Коротко: `They're not real`. `real` не меняется, а форму связки выбираем по `It` или `They`.
 
-Здесь порядок меняется: рука уже привыкла выносить `are` вперёд и норовит делать так везде. Но `Are you lost?` — это вопрос, а вы хотели человеку сказать, а не спросить его.
+**Оба пирожных сделаны из пластика. Скажите, что они не настоящие.**
 
-**Парень у входа третий раз перевернул карту и ушёл не туда, куда собирался. Скажите ему, что он заблудился.**
-
-- ✅ **You are lost.**
-- ❌ Are you lost? — *Так спрашивают. А вы уже видите, что человек заблудился, — значит `you` идёт первым.*
-- ❌ You lost. — *`are` пропало. Без него это не фраза: между `you` и словом нужно `are`.*
+- ✅ **They are not real.**
+- ❌ They is not real. — *После `They` нужно `are`.*
+- ❌ They are real. — *Без `not` получается, что пирожные настоящие.*
 
 ---
 
 ## Интро 3
 
-### Одно и то же слово, разный порядок
+### Температура — другой вопрос
 
-`thirsty` — «хочется пить». Слово одно, а сказать с ним можно две разные вещи.
+Настоящая еда может быть холодной, горячей или тёплой. `It is not hot` — «Это не горячее», а `It is not real` — «Это не настоящее». Выбирайте оценку по тому, что хотите сообщить.
 
-`You are thirsty` — «тебе хочется пить»: вы утверждаете. `Are you thirsty?` — «пить хочешь?»: спрашиваете. Разница — какое слово первое.
+**В обычном кафе суп тёплый, но не горячий. Скажите именно, что он не горячий.**
 
-Переставили два слова — и вместо вопроса сообщили: у него сухо в горле.
-
-**Вы наливаете себе воду и хотите предложить соседу. Спросите, хочет ли он пить.**
-
-- ✅ **Are you thirsty?**
-- ❌ You are thirsty. — *Вы не спросили, а сообщили ему это. Для вопроса `are` выходит вперёд.*
-- ❌ Are thirsty you? — *`you` уехал в конец. Он держится за `are`: `are you`, а потом слово.*
+- ✅ **It is not hot.**
+- ❌ It is not real. — *Это отрицание подлинности, а здесь речь о температуре: `hot`.*
+- ❌ It is hot. — *Суп не горячий. Нужно `not` после `is`.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Соберите фразу — спросите соседа, готов ли он**
+**1 · Яблоко сделано из пластика. Скажите, что оно не настоящее**
 <!-- interaction_id: en:lesson-02:session-05:i01; family: phrase_builder -->
-Цель: `Are you ready?`
+Плитки: `real` `not` `is` `It` `are` → **It is not real.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not real.`)*
 
-**2 · Послушайте и соберите — «ты заблудился»**
-<!-- interaction_id: en:lesson-02:session-05:i02; family: listen_build_dictation -->
-Цель: `You are lost.`
+**2 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-02:session-05:i02; family: listen_choose -->
+🔊 *It is not real.* → **It is not real.** · It is not hot. · It is not full.
+- It is not hot. — *В записи последнее слово — `real`, а в этом варианте — `hot`.*
+- It is not full. — *В записи последнее слово — `real`, а в этом варианте — `full`.*
 
-**3 · Вставьте слово — вопрос про воду**
+**3 · Два пирожных — пластиковая бутафория. Дополните фразу**
 <!-- interaction_id: en:lesson-02:session-05:i03; family: context_gap_grammar -->
-Цель: `___ you thirsty?`
-Варианты: `Are` · `You` · `Is`
-- You — *Тогда получится сообщение, а не вопрос. В вопросе первым стоит `are`.*
-- Is — *Чужая пара. С `you` идёт `are`, и в вопросе оно выходит вперёд.*
+They ___ not real. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Про два пирожных — `They are not`.*
 
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-05:i04; family: speed_match -->
+real — настоящий · cold — холодный · hot — горячий · warm — тёплый
 
-**4 · Соберите фразу — сообщите соседу: «тебе голодно»**
-<!-- interaction_id: en:lesson-02:session-05:i04; family: phrase_builder -->
-Цель: `You are hungry.`
+**5 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-05:i05; family: listen_build_dictation -->
+🔊 *It's not real.* Плитки: `real` `not` `It's` `He's` → **It's not real.**
+*(плитка `He's` лишняя: здесь нужно `It's` — `It's not real.`)*
 
-**5 · Послушайте и выберите — что вы услышали?**
-<!-- interaction_id: en:lesson-02:session-05:i05; family: listen_choose -->
-Цель: `Are you awake?`
-Варианты: `Are you awake?` · `You are awake.` · `Are awake you?`
-- You are awake. — *Слова те же, но первым прозвучало `are` — значит это вопрос.*
-- Are awake you? — *`you` шло сразу за `are`, а не в конце.*
-
-
-**6 · Соберите фразу — сообщите соседу: «тебе холодно»**
+**6 · На столе два нарисованных на картоне бутерброда. Скажите, что они не настоящие**
 <!-- interaction_id: en:lesson-02:session-05:i06; family: phrase_builder -->
-Цель: `You are cold.`
+Плитки: `real` `not` `are` `They` `is` → **They are not real.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are not real.`)*
 
-**7 · Соедините пары**
-<!-- interaction_id: en:lesson-02:session-05:i07; family: speed_match -->
-Пары: `ready` — готов · `lost` — заблудился · `thirsty` — хочется пить · `hungry` — голодный
-Цель: `ready · lost · thirsty · hungry`
+**7 · Коротко скажите о пластиковом торте в кадре: «Он не настоящий»**
+<!-- interaction_id: en:lesson-02:session-05:i07; family: scripted_repeat_compare -->
+🎙 **It's not real.**
 
-**8 · Вставьте слово — сосед лежит с закрытыми глазами, но что-то бормочет. Вы проверяете, проснулся ли он**
+**8 · В кафе чай тёплый. Дополните фразу «Он не холодный»**
 <!-- interaction_id: en:lesson-02:session-05:i08; family: context_gap_grammar -->
-Цель: `Are you ___ ?`
-Варианты: `awake` · `lost` · `thirsty`
-- lost — *«Заблудился» — про дорогу. Человек в кровати никуда не шёл.*
-- thirsty — *Это про воду. А вы выясняете, спит он или нет.*
+It ___ not cold. → **is** · am · are
+- am — *После `It` нужно `is`.*
+- are — *Про чай — `It is not`.*
 
+**9 · Послушайте фразу**
+<!-- interaction_id: en:lesson-02:session-05:i09; family: listen_choose -->
+🔊 *It is not hot.* → **It is not hot.** · It is not cold. · It is not real.
+- It is not cold. — *В записи последнее слово — `hot`, а в этом варианте — `cold`.*
+- It is not real. — *В записи последнее слово — `hot`, а в этом варианте — `real`.*
 
-**9 · Соберите фразу — Том тянется к бутерброду Миры. Спросите Тома, голоден ли он**
-<!-- interaction_id: en:lesson-02:session-05:i09; family: phrase_builder -->
-Цель: `Are you hungry?`
+**10 · Соедините короткие начала с полными**
+<!-- interaction_id: en:lesson-02:session-05:i10; family: speed_match -->
+It's — It is · They're — They are · I'm — I am · We're — We are
 
-**10 · Послушайте и выберите — друг посмотрел на карту и говорит, что вы заблудились**
-<!-- interaction_id: en:lesson-02:session-05:i10; family: listen_choose -->
-Цель: `You are lost.`
-Варианты: `You are lost.` · `Are you lost?` · `You lost.`
-- Are you lost? — *В вопросе `are` стояло бы первым: `Are you lost?`. В записи сначала звучит `You`.*
-- You lost. — *В записи есть `are`: `You are lost.` Без него фраза неполная.*
+**11 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-02:session-05:i11; family: listen_build_dictation -->
+🔊 *They're not real.* Плитки: `real` `not` `They're` `He's` → **They're not real.**
+*(плитка `He's` лишняя: здесь нужно `They're` — `They're not real.`)*
 
-
-**11 · Вставьте слово — сосед сидит в куртке и держит кружку двумя руками. Спросите про холод**
-<!-- interaction_id: en:lesson-02:session-05:i11; family: context_gap_grammar -->
-Цель: `Are you ___ ?`
-Варианты: `cold` · `ready` · `hungry`
-- ready — *«Готов» — про сборы. А куртка в помещении и кружка в двух руках — про другое.*
-- hungry — *Кружку греют не от голода.*
-
-
-**12 · Соберите фразу — человек залпом выпил стакан и смотрит на графин. Скажите ему, что он хочет пить**
+**12 · В чашку налили совсем немного чая. Скажите, что она не полная**
 <!-- interaction_id: en:lesson-02:session-05:i12; family: phrase_builder -->
-Цель: `You are thirsty.`
+Плитки: `full` `not` `is` `It` `are` → **It is not full.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not full.`)*
 
-**13 · Различите звуки — какое из двух про «готов»?**
-<!-- interaction_id: en:lesson-02:session-05:i13; family: sound_contrast -->
-Варианты: `ready` · `already`
-- already — *Это «уже», и в нём на слог больше: спереди добавляется «ол».*
+**13 · Чай полностью остыл и стал холодным. Скажите, что он не тёплый**
+<!-- interaction_id: en:lesson-02:session-05:i13; family: scripted_repeat_compare -->
+🎙 **It is not warm.**
 
+**14 · Клубника на витрине вылеплена из пластика. Дополните фразу о том, что она не настоящая**
+<!-- interaction_id: en:lesson-02:session-05:i14; family: context_gap_grammar -->
+It ___ not real. → **is** · am · are
+- am — *После `It` нужно `is`.*
+- are — *Про эту вещь — `It is not`.*
 
-**14 · Соберите фразу — все уже во дворе, а вы у двери. Спросите, проснулся ли последний**
-<!-- interaction_id: en:lesson-02:session-05:i14; family: phrase_builder -->
-Цель: `Are you awake?`
+**15 · Послушайте короткую фразу и выберите её**
+<!-- interaction_id: en:lesson-02:session-05:i15; family: listen_choose -->
+🔊 *It's not real.* → **It's not real.** · It's not full. · It's not cold.
+- It's not full. — *В записи последнее слово — `real`, а в этом варианте — `full`.*
+- It's not cold. — *В записи последнее слово — `real`, а в этом варианте — `cold`.*
 
-**15 · Вставьте слово — вы стоите с ключами и ждёте**
-<!-- interaction_id: en:lesson-02:session-05:i15; family: context_gap_grammar -->
-Цель: `___ you ready?`
-Варианты: `Are` · `You` · `Am`
-- You — *Так выйдет сообщение «ты готов». А вы ждёте ответа.*
-- Am — *`am` — про себя. Спрашиваете вы про собеседника: `Are you`.*
-
-
-**16 · Соедините пары**
+**16 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-05:i16; family: speed_match -->
-Пары: `awake` — проснулся · `cold` — замёрз · `are` — для «ты» · `am` — для «я»
-Цель: `awake · cold · are · am`
+real — настоящий · full — полный · hot — горячий · cold — холодный
 
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-05:i17:s01; family: scripted_repeat_compare -->
-Цель: `Are you ready?`
+**17 · В витрине магазина лежит пластиковая пицца для показа. Друг принял её за настоящую. Скажите, что она не настоящая**
+<!-- interaction_id: en:lesson-02:session-05:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **It is not real.**
 
-**18 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-05:i17:s02; family: scripted_repeat_compare -->
-Цель: `Are you thirsty?`
-
-**19 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-05:i17:s03; family: scripted_repeat_compare -->
-Цель: `You are lost.`
-
-## Для сборщика
-
-new_words: —
-modes: 1=phrase_builder, 2=listen_build_dictation, 3=context_gap_grammar, 4=phrase_builder, 5=listen_choose, 6=phrase_builder, 7=speed_match, 8=context_gap_grammar, 9=phrase_builder, 10=listen_choose, 11=context_gap_grammar, 12=phrase_builder, 13=sound_contrast, 14=phrase_builder, 15=context_gap_grammar, 16=speed_match, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| ready | 1, 7, 11 (ловушка), 13, 15, 17 | 1 (сборка), 13 (звуки), 17 (вслух) |
-| lost | 2, 7, 8 (ловушка), 10, 17 | 2 (сборка), 10 (диктант), 17 (вслух) |
-| thirsty | 3, 7, 8 (ловушка), 12, 17 | 3 (пропуск), 12 (сборка), 17 (вслух) |
-| hungry | 4, 7, 9, 11 (ловушка) | 4 (пропуск), 9 (сборка) |
-| awake | 5, 8, 14, 16 | 5 (слух), 8 (пропуск), 14 (сборка) |
-| cold | 6, 11, 16 | 6 (слух), 11 (пропуск) |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | Are you ready? | да — `You are ready`, `Are you ready?` разобраны в тексте |
-| Интро 2 | You are lost. | да — `lost` переведён и `You are lost` стоит в тексте |
-| Интро 3 | Are you thirsty? | да — `thirsty` переведён, обе формы стоят в тексте |
-
-**3. Доска пар**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| ready | из прошлых занятий | задания 1, 3 (в паре с вопросом) |
-| lost | из прошлых занятий | задание 2 |
-| thirsty | из прошлых занятий | задание 3 |
-| hungry | из прошлых занятий | задание 4 |
-| awake (доска 16) | из прошлых занятий | задания 5, 8, 14 |
-| cold (доска 16) | из прошлых занятий | задания 6, 11 |
-| are (доска 16) | вводится в интро 1–3 | задания 1–6, 9, 10, 12, 14, 15 |
-| am (доска 16) | из прошлых занятий | задания 4, 15 (как ловушка с разбором) |
-
-Доски не пересекаются словами: 7 — `ready/lost/thirsty/hungry`, 16 — `awake/cold/are/am`.

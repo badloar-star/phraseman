@@ -1,157 +1,138 @@
-# Англійська · Урок 3 · Заняття 14 — «Що на тарілці»
+# Англійська · Урок 3 · Заняття 14 — Зображення для виставки
 
-**Сцена заняття.** Після покупок ви з другом заходите до кафе. Ви називаєте їжу, уточнюєте, що принесли, і дивитеся, скільки часу лишилося до наступної зустрічі.
+**Ситуація.** Ви з Анною готуєте невелику виставку. Олег приніс роздруковане зображення, але на папері залишилася брудна пляма. Ви шукаєте ручку для підпису й уточнюєте, чи відчинені двері до зали.
 
-**Як сказати:** перенесення `a/an` на назви їжі: один сендвіч, одна порція салату, одне яйце; вибір за першим звуком наступної назви  
-**Нові слова:** sandwich, salad, egg  
-**Повертаються:** clock, hour
+**Що ви опануєте:** назвати зображення й запитати про місце знайомого предмета
+**Нові слова:** picture
 
 ---
 
 ## Інтро 1
 
-### Знайоме слово, повна фраза
+### Не лише слова
 
-`sandwich` — «сендвіч», хліб із начинкою. Перед назвою одного сендвіча ставимо `a`: перший звук приголосний. Слово схоже на українське, але перекласти всю фразу слово за словом було б надто зручно. Повна фраза тут: `It is a sandwich` — «Це сендвіч».
+`picture` — «картинка, зображення». Тут це роздруковане зображення для виставки. `It is a picture` — «Це зображення». Перед `picture` потрібно `a`, бо перший звук приголосний. Це слово може означати різні зображення, а не лише картину, написану фарбами.
 
-**Друг показує на хліб із начинкою у вас на тарілці. Скажіть: «Це сендвіч».**
+**Анна показує на роздруковане зображення й запитує, що це. Назвіть його: «Це зображення».**
 
-- ✅ **It is a sandwich.**
-- ❌ It is an sandwich. — *У `sandwich` першим чути приголосний «с». Перед цією назвою потрібне `a`.*
-- ❌ It sandwich. — *Вийшов переклад слово за словом. Для повної англійської фрази після `It` потрібні `is` і маленьке `a` перед назвою.*
+- ✅ **It is a picture.**
+- ❌ It is an picture. — *Перед `picture` потрібно `a`: перший звук приголосний.*
+- ❌ It is picture. — *У цій фразі перед назвою одного зображення потрібно `a`.*
 
 ---
 
 ## Інтро 2
 
-### Одна порція
+### Пляма на папері
 
-`salad` — «салат». Тут називаємо одну порцію страви, тому беремо `a salad`: на початку слова чути приголосний «с». Щоб уточнити назву, почніть з `Is it`, а потім додайте назву з `a`: `Is it a salad?` — «Це салат?»
+`The picture is dirty` — «Зображення брудне». Тут `dirty` описує бруд на папері. Ви обоє дивитеся на те саме зображення, тому говорите `the picture`. Олег спочатку вирішив, що пляму намалював художник, доки не помітив такий самий слід на своєму пальці. Тепер причина очевидна: `It is obvious` — «Це очевидно».
 
-**Офіціант приніс вам порцію незнайомої страви. Уточніть: «Це салат?»**
+**Ви з Анною розглядаєте роздруківку з брудною плямою. Повідомте «Зображення брудне».**
 
-- ✅ **Is it a salad?**
-- ❌ Is it an salad? — *На початку `salad` чути приголосний «с». Для однієї порції тут обираємо `a`.*
-- ❌ Is a salad? — *Після `Is` потрібне `it`. Питання про порцію починається з `Is it`, а далі іде `a salad`.*
+- ✅ **The picture is dirty.**
+- ❌ The picture are dirty. — *З одним зображенням тут потрібно `is`.*
+- ❌ The picture dirty. — *Після `The picture` потрібно `is`.*
 
 ---
 
 ## Інтро 3
 
-### Спершу чути голосний
+### Знайти потрібну ручку
 
-`egg` — «яйце». Ідеться про одне ціле яйце. Слово починається відразу з голосного звуку, тому перед ним обираємо `an`. Коротка назва — `an egg`. Для повної фрази додайте `It is`: `It is an egg` — «Це яйце». У `sandwich` і `salad` початок інший — приголосний.
+`Where is the pen?` — «Де ручка?» Ви обоє знаєте, яка ручка потрібна для підпису. Запитання про місце починається з `Where is`, потім іде `the pen`. Так само запитайте про зображення: `Where is the picture?` — «Де зображення?» Для дверей повторимо `open` — «відчинений» і `closed` — «зачинений».
 
-**Друг показує на яйце у вас на тарілці й питає, що це. Назвіть його повною фразою.**
+**Ви з Анною шукаєте ручку, яку підготували для підписів. Запитайте, де ручка.**
 
-- ✅ **It is an egg.**
-- ❌ It is a egg. — *У `egg` першим чути голосний. Перед назвою одного яйця потрібне `an`.*
-- ❌ It is egg. — *Тут ідеться про одне ціле яйце. Перед його назвою у цій фразі зберігаємо `an`.*
+- ✅ **Where is the pen?**
+- ❌ What is the pen? — *Про місце запитуємо `Where`, а не `What`.*
+- ❌ Where are the pen? — *З однією ручкою тут потрібно `is`.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — sandwich**
-<!-- interaction_id: en:lesson-03:session-14:i01; family: listen_choose -->
-Ціль: `sandwich`
+**1 · Анна показує на роздруківку. Назвіть її: «Це зображення»**
+<!-- interaction_id: en:lesson-03:session-14:i01; family: phrase_builder -->
+Плитки: `picture` `a` `is` `It` `an` → **It is a picture.**
+*(плитка `an` зайва: тут потрібно `a` — `It is a picture.`)*
 
-**2 · Послухайте й оберіть — яке слово сказав друг**
+**2 · Послухайте опис зображення**
 <!-- interaction_id: en:lesson-03:session-14:i02; family: listen_choose -->
-Ціль: `sandwich`
-Варіанти: `sandwich` · `bandage` · `language`
-- bandage — *`bandage` — «пов’язка». Спочатку чути «б». У `sandwich` першим звучить «с»; ритм слів подібний.*
-- language — *`language` — «мова». Слово починається з «л», а `sandwich` — з «с». Слухайте початок, а не лише подібну другу частину.*
+🔊 *The picture is dirty.* → **The picture is dirty.** · The picture is clean. · The picture is big.
+- The picture is clean. — *У записі останнє слово — `dirty`, а в цьому варіанті — `clean`.*
+- The picture is big. — *У записі останнє слово — `dirty`, а в цьому варіанті — `big`.*
 
+**3 · Доповніть назву роздрукованого зображення**
+<!-- interaction_id: en:lesson-03:session-14:i03; family: context_gap_grammar -->
+It is ___ picture. → **a** · an · are
+- an — *Перед `picture` потрібно `a`: перший звук приголосний.*
+- are — *Тут потрібна назва `a picture`.*
 
-**3 · Картка слова — salad**
-<!-- interaction_id: en:lesson-03:session-14:i03; family: listen_choose -->
-Ціль: `salad`
+**4 · З’єднайте слова зі значеннями; open тут описує двері**
+<!-- interaction_id: en:lesson-03:session-14:i04; family: speed_match -->
+picture — зображення · pen — ручка · dirty — брудний · open — відчинений
 
-**4 · Послухайте й оберіть — яке слово вимовив офіціант**
-<!-- interaction_id: en:lesson-03:session-14:i04; family: listen_choose -->
-Ціль: `salad`
-Варіанти: `salad` · `valid` · `sallow`
-- valid — *`valid` — «чинний». Починається з «в», а `salad` — з «с». Подібний ритм не робить слова однаковими.*
-- sallow — *`sallow` — «хворобливо-блідий». Початок схожий, але наприкінці голосний ковзає від одного звучання до іншого. У `salad` слово закінчується приголосним «д».*
+**5 · Послухайте й складіть повідомлення**
+<!-- interaction_id: en:lesson-03:session-14:i05; family: listen_build_dictation -->
+🔊 *The pen is here.* Плитки: `here` `is` `pen` `The` `are` → **The pen is here.**
+*(плитка `are` зайва: тут потрібно `is` — `The pen is here.`)*
 
+**6 · На знайомій вам обом роздруківці брудна пляма. Повідомте «Зображення брудне»**
+<!-- interaction_id: en:lesson-03:session-14:i06; family: phrase_builder -->
+Плитки: `dirty` `is` `picture` `The` `are` → **The picture is dirty.**
+*(плитка `are` зайва: тут потрібно `is` — `The picture is dirty.`)*
 
-**5 · Складіть коротку назву — офіціант уточнює, що ви обрали; дайте відповідь двома англійськими словами, що означають «сендвіч»**
-<!-- interaction_id: en:lesson-03:session-14:i05; family: phrase_builder -->
-Ціль: `A sandwich.`
-Варіанти: `An`
+**7 · Ви говорите про двері до виставкової зали. Повідомте «Двері відчинені»**
+<!-- interaction_id: en:lesson-03:session-14:i07; family: scripted_repeat_compare -->
+🎙 **The door is open.**
 
-**6 · Картка слова — egg**
-<!-- interaction_id: en:lesson-03:session-14:i06; family: listen_choose -->
-Ціль: `egg`
-
-**7 · Послухайте й оберіть — яке слово вимовив друг**
-<!-- interaction_id: en:lesson-03:session-14:i07; family: listen_choose -->
-Ціль: `egg`
-Варіанти: `egg` · `edge` · `leg`
-- edge — *`edge` — «край». Наприкінці чути поєднання «дж», а в `egg` — проривний звук, близький до українського «ґ». Початок схожий, тому дослухайте слово.*
-- leg — *`leg` — «нога». Спершу чути «л», а потім голосний. У `egg` початок одразу голосний, а кінцівка в обох словах подібна.*
-
-
-**8 · Вставте слово — друг показує на годинник на стіні й питає, що це; назвіть предмет (`clock` — «годинник», настінний або настільний)**
+**8 · Олег помітив бруд на своєму пальці: джерело плями тепер очевидне. Доповніть «Це очевидно»**
 <!-- interaction_id: en:lesson-03:session-14:i08; family: context_gap_grammar -->
-Ціль: `It is ___ clock.`
-Варіанти: `a` · `an` · `is`
-- an — *На початку `clock` чути приголосний «к». Перед цією назвою обираємо `a`.*
-- is — *Після `It` уже стоїть `is`. Перед назвою годинника тут потрібне `a`, а не друге `is`.*
+It ___ obvious. → **is** · am · are
+- am — *З `It` потрібно `is`.*
+- are — *З `It` потрібно `is`.*
 
+**9 · Послухайте повідомлення про двері**
+<!-- interaction_id: en:lesson-03:session-14:i09; family: listen_choose -->
+🔊 *The door is closed.* → **The door is closed.** · The door is open. · The door is old.
+- The door is open. — *У записі останнє слово — `closed`, а в цьому варіанті — `open`.*
+- The door is old. — *У записі останнє слово — `closed`, а в цьому варіанті — `old`.*
 
-**9 · Послухайте й складіть — офіціант говорить про їжу**
-<!-- interaction_id: en:lesson-03:session-14:i09; family: listen_build_dictation -->
-Ціль: `It is an egg.`
-Варіанти: `a`
+**10 · З’єднайте слова зі значеннями; closed тут описує двері**
+<!-- interaction_id: en:lesson-03:session-14:i10; family: speed_match -->
+closed — зачинений · obvious — очевидний · picture — зображення · pen — ручка
 
-**10 · Вставте слово — до зустрічі рівно шістдесят хвилин; назвіть цей проміжок двома словами (`hour` — «година»)**
-<!-- interaction_id: en:lesson-03:session-14:i10; family: context_gap_grammar -->
-Ціль: `___ hour.`
-Варіанти: `An` · `A` · `Is`
-- A — *Перша літера `h` у `hour` не звучить: слово починається з голосного. Перед ним потрібне `An`.*
-- Is — *Потрібна коротка назва проміжку часу: `An hour`. Одне `Is` перед `hour` такої назви не утворює.*
+**11 · Послухайте й складіть запитання**
+<!-- interaction_id: en:lesson-03:session-14:i11; family: listen_build_dictation -->
+🔊 *Where is the pen?* Плитки: `pen` `the` `is` `Where` `What` → **Where is the pen?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where is the pen?`)*
 
-
-**11 · З’єднайте назви з українськими значеннями — що ви побачили в кафе**
-<!-- interaction_id: en:lesson-03:session-14:i11; family: speed_match -->
-Пари: `sandwich` — сендвіч · `salad` — салат · `egg` — яйце · `clock` — годинник
-Ціль: `sandwich · salad · egg · clock`
-
-**12 · Складіть питання — друг приніс порцію страви; уточніть «Це салат?»**
+**12 · Ви шукаєте роздруковане зображення, яке приніс Олег. Він знає, про яке зображення йдеться. Запитайте, де воно, використавши слово «зображення»**
 <!-- interaction_id: en:lesson-03:session-14:i12; family: phrase_builder -->
-Ціль: `Is it a salad?`
-Варіанти: `an`
+Плитки: `picture` `the` `is` `Where` `What` → **Where is the picture?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where is the picture?`)*
 
-**13 · Послухайте й оберіть — що друг сказав про їжу**
-<!-- interaction_id: en:lesson-03:session-14:i13; family: listen_choose -->
-Ціль: `It is not a sandwich.`
-Варіанти: `It is not a sandwich.` · `It is a sandwich.` · `It is not an egg.`
-- It is a sandwich. — *У цьому варіанті назву підтверджують. У записі після `is` чути `not` — назву заперечують.*
-- It is not an egg. — *Тут названо яйце: `an egg`. У записі після заперечення звучить `a sandwich`.*
+**13 · Ви вже обговорюєте причину плями. Скажіть «Це очевидно» зі скороченням**
+<!-- interaction_id: en:lesson-03:session-14:i13; family: scripted_repeat_compare -->
+🎙 **It's obvious.**
 
+**14 · Ви показуєте Олегу ручку, яку ви обоє щойно шукали. Доповніть повідомлення**
+<!-- interaction_id: en:lesson-03:session-14:i14; family: context_gap_grammar -->
+___ pen is here. → **The** · An · Are
+- An — *Для відомої вам обом ручки тут `The pen`; перед `pen` форма `An` також не підходить.*
+- Are — *Це повідомлення `The pen is here`.*
 
-**14 · Послухайте й складіть — друг говорить про час до зустрічі**
-<!-- interaction_id: en:lesson-03:session-14:i14; family: listen_build_dictation -->
-Ціль: `An hour.`
-Варіанти: `A`
+**15 · Послухайте ще одне повідомлення про двері**
+<!-- interaction_id: en:lesson-03:session-14:i15; family: listen_choose -->
+🔊 *The door is open.* → **The door is open.** · The door is closed. · The door is dirty.
+- The door is closed. — *У записі останнє слово — `open`, а в цьому варіанті — `closed`.*
+- The door is dirty. — *У записі останнє слово — `open`, а в цьому варіанті — `dirty`.*
 
-**15 · Складіть заперечення — друг прийняв булочку за сендвіч; виправте його: «Це не сендвіч»**
-<!-- interaction_id: en:lesson-03:session-14:i15; family: phrase_builder -->
-Ціль: `It is not a sandwich.`
-Варіанти: `an`
+**16 · З’єднайте слова зі значеннями; open і closed тут описують двері**
+<!-- interaction_id: en:lesson-03:session-14:i16; family: speed_match -->
+dirty — брудний · open — відчинений · closed — зачинений · obvious — очевидний
 
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-03:session-14:i16; family: scripted_repeat_compare -->
-Ціль: `It is a clock.`
-
-**17 · Складіть фразу — друг дивиться на вашу порцію салату й питає, що це; назвіть страву повною фразою**
-<!-- interaction_id: en:lesson-03:session-14:i17; family: phrase_builder -->
-Ціль: `It is a salad.`
-Варіанти: `an`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=phrase_builder, 13=listen_choose, 14=listen_build_dictation, 15=phrase_builder, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Після виставки ви збираєте роботи. Потрібного зображення немає на столі. Олег знає, яке ви шукаєте. Запитайте, де зображення**
+<!-- interaction_id: en:lesson-03:session-14:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where is the picture?**
 

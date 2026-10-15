@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-14:intro1:r2": {
+          "ru": "Перед `picture` нужно `a`: первый звук согласный.",
+          "uk": "Перед `picture` потрібно `a`: перший звук приголосний."
+        },
+        "en:lesson-03:session-14:intro1:r3": {
+          "ru": "В этой фразе перед названием одной картинки нужно `a`.",
+          "uk": "У цій фразі перед назвою одного зображення потрібно `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-14:intro2:r2": {
+          "ru": "С одной картинкой здесь нужно `is`.",
+          "uk": "З одним зображенням тут потрібно `is`."
+        },
+        "en:lesson-03:session-14:intro2:r3": {
+          "ru": "После `The picture` нужно `is`.",
+          "uk": "Після `The picture` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-14:intro3:r2": {
+          "ru": "О месте спрашиваем `Where`, а не `What`.",
+          "uk": "Про місце запитуємо `Where`, а не `What`."
+        },
+        "en:lesson-03:session-14:intro3:r3": {
+          "ru": "С одной ручкой здесь нужно `is`.",
+          "uk": "З однією ручкою тут потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f9e9103b045e7083c5b908e03cc61d2b6760551ab09d083c141edcde6c731981"
+}

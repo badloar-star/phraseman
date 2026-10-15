@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-41:intro1:r2": {
+          "ru": "Между `It` и `accurate` нужно `is`.",
+          "uk": "Між `It` і `accurate` потрібно `is`."
+        },
+        "en:lesson-02:session-41:intro1:r3": {
+          "ru": "Это отрицает точность. По условию карту проверили, данные верны.",
+          "uk": "Це заперечує точність. За умовою карту перевірили, дані правильні."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-41:intro2:r2": {
+          "ru": "Вы говорите об Олеге: `He's`.",
+          "uk": "Ви говорите про Олега: `He's`."
+        },
+        "en:lesson-02:session-41:intro2:r3": {
+          "ru": "Это «Он активный». Здесь вы отмечаете честность.",
+          "uk": "Це «Він активний». Тут ви відзначаєте чесність."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-41:intro3:r2": {
+          "ru": "Это вопрос о точности. Вы спрашиваете, действует ли клуб.",
+          "uk": "Це запитання про точність. Ви запитуєте, чи діє клуб."
+        },
+        "en:lesson-02:session-41:intro3:r3": {
+          "ru": "Это утверждение. Вы пока не знаете и хотите спросить.",
+          "uk": "Це твердження. Ви поки не знаєте й хочете запитати."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f55f256725357154a9f0182699f23ddeabc08972665325b5272ad50f3724428e"
+}

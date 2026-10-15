@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-41:i01",
-    "correctText": "punctual",
+    "correctText": "It is accurate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i02",
-    "correctText": "punctual",
+    "correctText": "He is honest.",
     "correctResponseId": "en:lesson-02:session-41:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-41:i03",
-    "correctText": "punctual",
+    "correctText": "Are",
     "correctResponseId": "en:lesson-02:session-41:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-41:i04",
-    "correctText": "Am I early?",
-    "correctResponseId": "en:lesson-02:session-41:i04:r1"
+    "correctText": "en:lesson-02:session-41:i04:p1=accurate\nen:lesson-02:session-41:i04:p2=honest\nen:lesson-02:session-41:i04:p3=active\nen:lesson-02:session-41:i04:p4=relevant",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i05",
-    "correctText": "wrong",
-    "correctResponseId": "en:lesson-02:session-41:i05:r1"
+    "correctText": "Yes, they are.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i06",
-    "correctText": "I am here.",
+    "correctText": "What is accurate?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i07",
-    "correctText": "Am",
-    "correctResponseId": "en:lesson-02:session-41:i07:r1"
+    "correctText": "It's accurate.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i08",
-    "correctText": "Am I early?",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-41:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-41:i09",
-    "correctText": "en:lesson-02:session-41:i09:p1=punctual\nen:lesson-02:session-41:i09:p2=wrong\nen:lesson-02:session-41:i09:p3=early\nen:lesson-02:session-41:i09:p4=late",
-    "correctResponseId": null
+    "correctText": "It is active.",
+    "correctResponseId": "en:lesson-02:session-41:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-41:i10",
-    "correctText": "here",
-    "correctResponseId": "en:lesson-02:session-41:i10:r1"
+    "correctText": "en:lesson-02:session-41:i10:p1=honest\nen:lesson-02:session-41:i10:p2=relevant\nen:lesson-02:session-41:i10:p3=accurate\nen:lesson-02:session-41:i10:p4=active",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i11",
-    "correctText": "You are welcome here.",
-    "correctResponseId": "en:lesson-02:session-41:i11:r1"
+    "correctText": "They are not accurate.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i12",
-    "correctText": "You are not late.",
+    "correctText": "Is he honest?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i13",
-    "correctText": "I am not wrong.",
+    "correctText": "It's active.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i14",
-    "correctText": "punctual",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-41:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-41:i15",
-    "correctText": "Am I wrong?",
-    "correctResponseId": null
+    "correctText": "Are they accurate?",
+    "correctResponseId": "en:lesson-02:session-41:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-41:i16",
-    "correctText": "I am early.",
+    "correctText": "en:lesson-02:session-41:i16:p1=active\nen:lesson-02:session-41:i16:p2=accurate\nen:lesson-02:session-41:i16:p3=relevant\nen:lesson-02:session-41:i16:p4=honest",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-41:i17",
-    "correctText": "Am I welcome here?",
+    "correctText": "Is it accurate?",
     "correctResponseId": null
   }
 ]

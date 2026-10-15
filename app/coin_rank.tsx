@@ -90,19 +90,25 @@ function useCoinBalance(): CoinBalanceProjection {
     const owner = activeOwner(token);
     if (!owner || ownerRef.current !== owner || generationRef.current !== token.generation) return 'unavailable';
     forcedBlockRef.current = true;
-    setBalance(null);
+    // зачем (координатор 15.10, аудит Optimistic UI п.5): раньше баланс обнулялся ДО ответа — число мигало «—» на время сверки.
+    // Держим прежнее значение до ответа (кнопку покупки на это время держит занятость операции); ответ «не подтверждено» →
+    // «—», как раньше (покупка выключена, тост объясняет); подтверждено → новое число.
+    const sameOwner = (): boolean => ownerRef.current === owner && generationRef.current === token.generation && isCurrentAccountGeneration(token, owner);
     try {
       const read = await getRunesBalanceRead();
-      if (ownerRef.current !== owner
-        || generationRef.current !== token.generation
-        || !isCurrentAccountGeneration(token, owner)
-        || read.quality !== 'durable') {
+      if (!sameOwner()) return 'unavailable';
+      if (read.quality !== 'durable') {
+        DebugLogger.warn('[COIN-RANK-UPGRADE]', `баланс: сверка не подтверждена (quality=${read.quality}) — показываем «—»`);
+        setBalance(null);
         return 'unavailable';
       }
       forcedBlockRef.current = false;
       setBalance(read.wallet.balance);
       return 'durable';
-    } catch {
+    } catch (error) {
+      // зачем: немой catch запрещён — причина отказа сверки в журнал.
+      DebugLogger.warn('[COIN-RANK-UPGRADE]', `баланс: принудительная сверка упала ${String(error)} — показываем «—»`);
+      if (sameOwner()) setBalance(null);
       return 'unavailable';
     }
   }, []);

@@ -109,7 +109,7 @@ export async function isLocalAnonymousIdentityProvenCleanForCredentialHandoff(
       identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof dirty', { count: dirtyKeys.length });
       // зачем (координатор 15.10, «переустановил → окно смены аккаунта»): пачки по 8 обрезались журналом на ~100 знаках,
       // полного списка «прогресса» свежего гостя не видели. Сперва логи: каждый ключ своей строкой с разметкой
-      // default|service|progress, длиной и формой (типы, поля, длины массивов); значения НЕ печатаются. Решение входа пока прежнее (шаг 2 — по фактам).
+      // default|service|progress, длиной и формой (типы, поля, длины массивов); значения НЕ печатаются.
       const valueByKey = new Map(rows);
       const kindCounts: Record<GuestCleanKind, number> = { default: 0, service: 0, progress: 0 };
       dirtyKeys.forEach((key, index) => {
@@ -118,8 +118,17 @@ export async function isLocalAnonymousIdentityProvenCleanForCredentialHandoff(
         kindCounts[kind] += 1;
         console.log(`[GUEST-CLEAN] ${index + 1}/${dirtyKeys.length} key=${redactStorageKey(key)} kind=${kind} len=${String(raw).length} shape=${describeGuestValueShape(raw)}`); // guard-ok: одна строка на ключ, только при входе
       });
-      console.log(`[GUEST-CLEAN] summary dirty=${dirtyKeys.length} default=${kindCounts.default} service=${kindCounts.service} progress=${kindCounts.progress} wouldBeClean=${kindCounts.progress === 0} decision=not_clean`); // guard-ok: итог разметки
-      return false;
+      // зачем (координатор 15.10, слово дано): свежий гость после переустановки (онбординг, ноль уроков) видел окно смены
+      // аккаунта из-за значений по умолчанию. Прогресс — только то, что жалко потерять (уроки, заработанные монеты, покупки,
+      // свои наборы, друзья, серия ≥ 2, реальные достижения); значения по умолчанию, служебные следы и ответы онбординга — нет.
+      // При сомнении классификатор отвечает progress. Влияет ТОЛЬКО на ветку входа в существующий аккаунт: там локальные данные
+      // гостя стираются под замком и восстанавливается облако аккаунта (auth_provider, swap: wipeLocalAccountData).
+      const cleanByDefaults = kindCounts.progress === 0;
+      console.log(`[GUEST-CLEAN] summary dirty=${dirtyKeys.length} default=${kindCounts.default} service=${kindCounts.service} progress=${kindCounts.progress} decision=${cleanByDefaults ? 'clean_by_defaults' : 'not_clean'}`); // guard-ok: итог разметки и решение
+      identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof decision', {
+        decision: cleanByDefaults ? 'clean_by_defaults' : 'not_clean', dirty: dirtyKeys.length, progress: kindCounts.progress,
+      }, { persist: true });
+      return cleanByDefaults;
     }
     identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof clean', { checked: rows.length });
     return true;

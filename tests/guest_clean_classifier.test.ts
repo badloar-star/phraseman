@@ -11,11 +11,18 @@ describe('guest clean classifier', () => {
     expect(classifyGuestCleanKey('legacy_free_lesson_cap_v1', '3')).toBe('default');
   });
 
-  it('treats a changed default as progress', () => {
-    expect(classifyGuestCleanKey('user_avatar', '7')).toBe('progress');
+  it('treats a changed default as progress (streak from 2 days, more lessons)', () => {
+    expect(classifyGuestCleanKey('streak_count', '2')).toBe('progress');
     expect(classifyGuestCleanKey('streak_count', '5')).toBe('progress');
     expect(classifyGuestCleanKey('unlocked_lessons', '[1,2]')).toBe('progress');
-    expect(classifyGuestCleanKey('user_frame', null)).toBe('progress');
+  });
+
+  // зачем (координатор 15.10): ник, аватар, рамка и ответы онбординга, выбранные гостем, — не прогресс.
+  it('treats guest choices (profile, avatar, frame) as default', () => {
+    expect(classifyGuestCleanKey('user_avatar', '7')).toBe('default');
+    expect(classifyGuestCleanKey('user_frame', 'gold')).toBe('default');
+    expect(classifyGuestCleanKey('user_frame', null)).toBe('default');
+    expect(classifyGuestCleanKey('user_profile', JSON.stringify({ name: 'Мария', learningGoal: 'work', currentLevel: 'a2' }))).toBe('default');
   });
 
   it('marks install traces as service', () => {
@@ -46,6 +53,36 @@ describe('guest clean classifier', () => {
     expect(classifyGuestCleanKey('lesson_progress_v2::fr::legacy_free_lesson_cap_v1', '5')).toBe('progress');
     expect(classifyGuestCleanKey('legacy_free_lesson_migration_v1', '1')).toBe('service');
     expect(classifyGuestCleanKey('friends_push_v1', 'true')).toBe('service');
+  });
+
+  // зачем: формы взяты из прогона Сверки guest_clean_relapse_1516 (свежий гость после онбординга, 13 ключей).
+  it('reads empty scaffolds of a fresh guest as default/service', () => {
+    const achievements = JSON.stringify(Array.from({ length: 32 }, (_, i) => ({ id: `a${i}`, unlockedAt: null, notified: false, shardClaimed: true })));
+    expect(classifyGuestCleanKey('achievements_v1', achievements)).toBe('default');
+    const earned = JSON.stringify([{ id: 'a1', unlockedAt: 1792068000000, notified: true, shardClaimed: true }]);
+    expect(classifyGuestCleanKey('achievements_v1', earned)).toBe('progress');
+    const emptyOutbox = JSON.stringify({ schemaVersion: 'x', ownerStableId: 's', lineage: 1, operationIds: [], acknowledgedOperationIds: [] });
+    expect(classifyGuestCleanKey('client_shard_phone_state_outbox_v1:s:1', emptyOutbox)).toBe('default');
+    const busyOutbox = JSON.stringify({ schemaVersion: 'x', ownerStableId: 's', lineage: 1, operationIds: ['op1'], acknowledgedOperationIds: [] });
+    expect(classifyGuestCleanKey('client_shard_phone_state_outbox_v1:s:1', busyOutbox)).toBe('progress');
+    const emptySpin = JSON.stringify({ schemaVersion: 'x', ownerStableId: 's', operations: [], acknowledged: {}, serverBalance: 0, serverEarnedTotal: 0, serverSeq: 0 });
+    expect(classifyGuestCleanKey('level_spin_star_projection_v1:s', emptySpin)).toBe('default');
+    const earnedSpin = JSON.stringify({ schemaVersion: 'x', ownerStableId: 's', operations: [], acknowledged: {}, serverBalance: 2, serverEarnedTotal: 2, serverSeq: 1 });
+    expect(classifyGuestCleanKey('level_spin_star_projection_v1:s', earnedSpin)).toBe('progress');
+    const phoneOnlyCoins = JSON.stringify({ schemaVersion: 'x', ownerStableId: 's', operations: [], acknowledged: {}, serverBalance: 0, serverEarnedTotal: 0, serverSeq: 3, unconfirmedLocalLift: 300 });
+    expect(classifyGuestCleanKey('level_spin_star_projection_v1:s', phoneOnlyCoins)).toBe('progress');
+    // зачем (ревью Opus): изолированно — номер сервера 0, решают только монеты «только на телефоне».
+    const phoneOnlySeq0 = JSON.stringify({ schemaVersion: 'x', ownerStableId: 's', operations: [], acknowledged: {}, serverBalance: 0, serverEarnedTotal: 0, serverSeq: 0, unconfirmedLocalLift: 300 });
+    expect(classifyGuestCleanKey('level_spin_star_projection_v1:s', phoneOnlySeq0)).toBe('progress');
+    const acked = JSON.stringify({ schemaVersion: 'x', ownerStableId: 's', operations: [], acknowledged: { op1: true }, serverBalance: 0, serverEarnedTotal: 0, serverSeq: 0 });
+    expect(classifyGuestCleanKey('level_spin_star_projection_v1:s', acked)).toBe('progress');
+    const compacted = JSON.stringify({ schemaVersion: 'x', ownerStableId: 's', operations: [], acknowledged: {}, serverBalance: 0, serverEarnedTotal: 0, serverSeq: 0, compactedSpendTotal: 5 });
+    expect(classifyGuestCleanKey('level_spin_star_projection_v1:s', compacted)).toBe('progress');
+    expect(classifyGuestCleanKey('achievements_v1', JSON.stringify([{ id: 'a1', notified: false }]))).toBe('progress');
+    expect(classifyGuestCleanKey('v2:required-session-local-commit-index:v1:v2:progress:v1:abc:legacy-scan-complete',
+      'learning-v2-required-session-spool-index-legacy-scan-complete.v1:v2:progress:v1:abc')).toBe('service');
+    expect(classifyGuestCleanKey('v2:required-session-local-commit-index:v1:v2:progress:v1:abc:legacy-scan-complete', 'other')).toBe('progress');
+    expect(classifyGuestCleanKey('v2:required-session-local-commit:v2:v2:progress:v1:abc:m1', '{"done":true}')).toBe('progress');
   });
 
   it('treats every unknown key and broken value as progress', () => {

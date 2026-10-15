@@ -637,7 +637,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // (холодный старт accountDeleteEnqueue ≈9 с), связанные — прежним; та же постановка, другой потолок ожидания.
         // 20318946f (15.10): +1 — peekStableId владельца в снятии push при смене аккаунта.
         // +1 (Ядро 15.10): stableId для предвыборки метки до окна выбора Google; позднее чтение — сверка.
-        occurrences: 122,
+        // +1 (R15, ревью Opus 15.10): перепроверка чистоты гостя под замком перехода, если первая сказала «чист» (гонка записей).
+        occurrences: 123,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -656,7 +657,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:getStableId': 12,
           'call:invalidateAccountGeneration': 5,
           'call:isCurrentAccountGeneration': 7,
-          'call:isLocalAnonymousIdentityProvenCleanForCredentialHandoff': 1,
+          'call:isLocalAnonymousIdentityProvenCleanForCredentialHandoff': 2,
           'call:mergeStableAccountsViaServer': 2,
           'call:onAuthStateChanged': 2,
           'call:peekStableId': 9,

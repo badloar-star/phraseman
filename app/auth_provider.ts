@@ -2840,7 +2840,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           expectedConflict: EXPECTED_LINK_CONFLICT.has(linkCode),
         });
         if (EXPECTED_LINK_CONFLICT.has(linkCode)) {
-          const localClean = await isLocalAnonymousIdentityProvenCleanForCredentialHandoff();
+          let localClean = await isLocalAnonymousIdentityProvenCleanForCredentialHandoff();
           postCompletionHandoff = await hasAccountSwitchPostCompletionHandoff({
             freshAuthUid: String(anonUser?.uid ?? '').trim(),
             freshStableId: preProviderStableId,
@@ -2871,6 +2871,13 @@ async function runSignInWithProviderWhileOwningHandoffLease(
             quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
           ]);
           if (!restoreIdle || !cloudIdle) throw new Error('provider_handoff_quiesce_failed');
+          // зачем (ревью Opus 15.10, R15): первая проверка чистоты шла ДО замка и тишины синхронизации — запись в этом окне
+          // (начисление, урок) стёрлась бы без копии. Раньше ответ почти всегда был «не чист»; теперь свежий гость «чист»,
+          // поэтому при «чист» перепроверяем уже под замком перехода. Стало «не чист» — обычное окно смены аккаунта ниже.
+          if (localClean && !postCompletionHandoff) {
+            localClean = await isLocalAnonymousIdentityProvenCleanForCredentialHandoff();
+            identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof recheck', { provider, localClean }, { persist: true });
+          }
           identityTrace('[AUTH-LINK-GOOGLE]', 'handoff proof', { provider, localClean, postCompletionHandoff });
           if (!localClean && !postCompletionHandoff) {
             identityTrace('[AUTH-LINK-GOOGLE]', 'branch account_switch_required', {

@@ -3,9 +3,8 @@
  *
  * зачем (координатор 15.10, «переустановил → окно смены аккаунта»): свежий гость после онбординга
  * считался «с прогрессом» из-за значений по умолчанию (аватар 1, рамка plain, серия 1, дата
- * установки…), и каждый переустановивший видел лишнее окно смены аккаунта. Шаг 1 — только журнал:
- * каждый «грязный» ключ размечается default | service | progress, вход по-прежнему решает старое
- * правило. Шаг 2 (по фактам журнала, после ревью) — решение по этой разметке.
+ * установки…), и каждый переустановивший видел лишнее окно смены аккаунта. Каждый «грязный» ключ размечается
+ * default | service | progress; гость «чист», если нет ни одного progress (решение в local_account_data.ts).
  *
  * Правило безопасности: при СОМНЕНИИ — progress. Лишнее окно лучше молча потерянного прогресса.
  */
@@ -14,12 +13,17 @@ export type GuestCleanKind = 'default' | 'service' | 'progress';
 
 /** Значения, которые свежая установка пишет сама, без действий человека. */
 const DEFAULT_VALUES: ReadonlyMap<string, ReadonlySet<string>> = new Map([
-  ['user_avatar', new Set(['1'])],
-  ['user_frame', new Set(['plain'])],
   ['streak_count', new Set(['1'])],
   ['unlocked_lessons', new Set(['[1]'])],
   ['legacy_free_lesson_cap_v1', new Set(['3'])],
 ]);
+
+/**
+ * Ответы онбординга и внешний вид, выбранные гостем (ник, аватар, рамка, уровень, цель, язык): не прогресс.
+ * зачем (координатор 15.10): человек входит в СВОЙ существующий аккаунт — профиль аккаунта главнее, гостевой ник не жалко.
+ * Вход в НОВЫЙ аккаунт этой проверкой не решается — там данные гостя переезжают как раньше.
+ */
+const GUEST_CHOICE_KEYS: ReadonlySet<string> = new Set(['user_profile', 'user_avatar', 'user_frame']);
 
 /** Служебные следы установки: не прогресс человека, при входе их не жалко. */
 const SERVICE_KEYS: ReadonlySet<string> = new Set([
@@ -100,14 +104,65 @@ function shapeOf(node: unknown, depth: number): string {
   return `str${String(node).length}`;
 }
 
+function parseJson(value: string): unknown {
+  try {
+    return JSON.parse(value);
+  } catch {
+    // Не JSON — форма не доказывает «по умолчанию»: вызывающий ответит progress.
+    return undefined;
+  }
+}
+
+/** Список достижений после базовой инициализации: ни одно не получено (unlockedAt пуст у всех). */
+function isUnearnedAchievementList(value: string): boolean {
+  const parsed = parseJson(value);
+  return Array.isArray(parsed) && parsed.every((item) => item !== null && typeof item === 'object'
+    && (item as { unlockedAt?: unknown }).unlockedAt === null);
+}
+
+/** Очередь операций монет телефона без единой операции. */
+function isEmptyShardOutbox(value: string): boolean {
+  const parsed = parseJson(value) as { operationIds?: unknown; acknowledgedOperationIds?: unknown } | undefined;
+  return Array.isArray(parsed?.operationIds) && parsed.operationIds.length === 0
+    && Array.isArray(parsed?.acknowledgedOperationIds) && parsed.acknowledgedOperationIds.length === 0;
+}
+
+/**
+ * Проекция звёзд спина — ТОЧНАЯ пустая заготовка: без операций, квитанций и сжатых трат, нулевой баланс на сервере,
+ * нулевой номер и никаких монет «только на телефоне».
+ * зачем (ревью Opus 15.10, BLOCK): видимый баланс = serverBalance + unconfirmedLocalLift + overlay; запись с
+ * unconfirmedLocalLift > 0 при нулевом сервере — монеты, которых нет в облаке; при входе они стёрлись бы без копии.
+ */
+function isEmptySpinProjection(value: string): boolean {
+  const parsed = parseJson(value) as {
+    operations?: unknown; acknowledged?: unknown; serverBalance?: unknown; serverEarnedTotal?: unknown;
+    serverSeq?: unknown; unconfirmedLocalLift?: unknown; compactedSpendTotal?: unknown;
+  } | undefined;
+  const acknowledged = parsed?.acknowledged;
+  return Array.isArray(parsed?.operations) && parsed.operations.length === 0
+    && acknowledged !== null && typeof acknowledged === 'object' && !Array.isArray(acknowledged) && Object.keys(acknowledged).length === 0
+    && parsed?.serverBalance === 0 && parsed?.serverEarnedTotal === 0 && parsed?.serverSeq === 0
+    && (parsed?.unconfirmedLocalLift === undefined || parsed?.unconfirmedLocalLift === 0)
+    && parsed?.compactedSpendTotal === undefined;
+}
+
+const LEARNING_V2_INDEX_MARKER_KEY_PREFIX = 'v2:required-session-local-commit-index:v1:';
+const LEARNING_V2_INDEX_MARKER_VALUE_PREFIX = 'learning-v2-required-session-spool-index-legacy-scan-complete.v1:';
+
 export function classifyGuestCleanKey(key: string, raw: string | null): GuestCleanKind {
   const value = (raw ?? '').trim();
   const defaults = DEFAULT_VALUES.get(key);
   if (defaults) return defaults.has(value) ? 'default' : 'progress';
+  if (GUEST_CHOICE_KEYS.has(key)) return 'default';
   if (SERVICE_KEYS.has(key)) return 'service';
   // Лимит бесплатных уроков по языку: lesson_progress_v2::<язык>::legacy_free_lesson_cap_v1 = 3 у свежей установки.
   if (key.startsWith('lesson_progress_v2::') && key.endsWith('::legacy_free_lesson_cap_v1')) return value === '3' ? 'default' : 'progress';
   if (key === 'active_days_v1') return isSingleActiveDay(value) ? 'default' : 'progress';
   if (key === 'achievement_foundation_progress_v2') return isEmptyFoundationProgress(value) ? 'default' : 'progress';
+  // зачем (прогон Сверки guest_clean_relapse_1516, 15:38): у свежего гостя эти четыре ключа — пустые заготовки, а не прогресс.
+  if (key === 'achievements_v1') return isUnearnedAchievementList(value) ? 'default' : 'progress';
+  if (key.startsWith('client_shard_phone_state_outbox_v1:')) return isEmptyShardOutbox(value) ? 'default' : 'progress';
+  if (key.startsWith('level_spin_star_projection_v1:')) return isEmptySpinProjection(value) ? 'default' : 'progress';
+  if (key.startsWith(LEARNING_V2_INDEX_MARKER_KEY_PREFIX) && value.startsWith(LEARNING_V2_INDEX_MARKER_VALUE_PREFIX)) return 'service';
   return 'progress';
 }

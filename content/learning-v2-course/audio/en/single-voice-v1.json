@@ -45616,6 +45616,309 @@
           "byteSize": 26880
         }
       ]
+    },
+    "l03/s39/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bottles",
+          "file": "ce80f7940d6b5a49c45cd7dbef5e2a344b74acaac73c4dc3332f9389890fb3f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce80f7940d6b5a49c45cd7dbef5e2a344b74acaac73c4dc3332f9389890fb3f0.mp3",
+          "contentHash": "5ee0888554b28b0347ce741d8784b73d78e3c83f3499adc26894109c68bb687b",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l03/s39/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Those bottles are there.",
+          "file": "a2294496c5f16b522496452983c36daf7dff70469e2c613058a5c032a4e9f611.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a2294496c5f16b522496452983c36daf7dff70469e2c613058a5c032a4e9f611.mp3",
+          "contentHash": "272d189fe401cc2011d187888aa45577aa84a4e0b61afaaa5156bde0d3ec9f2c",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l03/s39/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She is brave.",
+          "file": "c04f6de741162001ad2310f59f2eb53c41d4d5bb0e3f868262b24d05a4a0faab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c04f6de741162001ad2310f59f2eb53c41d4d5bb0e3f868262b24d05a4a0faab.mp3",
+          "contentHash": "a743924a1f9700a99a8cd92a04127ef3a427de256ac7ec41321194a017d41173",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l03/s39/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Those are parks.",
+          "file": "c5f2f3332b9631beaa183f61aa32939c2a1d2129cd1d6bf776d67cca9775c5b1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c5f2f3332b9631beaa183f61aa32939c2a1d2129cd1d6bf776d67cca9775c5b1.mp3",
+          "contentHash": "89a977eeb3785b33f38971a7c16d209ef2560153c9a6a8fe1a7b2a0433a61480",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l03/s39/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "bottles",
+          "file": "905fe267b177f8869c88b1ab5c2591bcc2269cb3e7dfcc09d7f271b4ef46266f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/905fe267b177f8869c88b1ab5c2591bcc2269cb3e7dfcc09d7f271b4ef46266f.mp3",
+          "contentHash": "30fc91be515fb15a868bf338f150de0acfbbf153472d1c2df7b5ee09535f56c4",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l03/s39/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bottles",
+          "file": "89f87b64a8b362e7e53d4afcc545b8df9d69f1a4907eb0e4b18bfcc6760dc227.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/89f87b64a8b362e7e53d4afcc545b8df9d69f1a4907eb0e4b18bfcc6760dc227.mp3",
+          "contentHash": "875188130bdf49832cb78ba8c3ed3b7b32aee52cc490ef3d3567023c42b66857",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l03/s39/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bottles",
+          "file": "ce80f7940d6b5a49c45cd7dbef5e2a344b74acaac73c4dc3332f9389890fb3f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce80f7940d6b5a49c45cd7dbef5e2a344b74acaac73c4dc3332f9389890fb3f0.mp3",
+          "contentHash": "5ee0888554b28b0347ce741d8784b73d78e3c83f3499adc26894109c68bb687b",
+          "byteSize": 18816
+        },
+        {
+          "text": "brave",
+          "file": "62b7acbc605492b2eac777342296573c2892dfdd57b1693bb2fc488b1b7e5753.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a1bb216b2bbb7eb30b25960e-ash.mp3",
+          "contentHash": "1b27850c783f8c8dd51b1371d3fa6a705f5961e0179f645c0d766e67c70012b2",
+          "byteSize": 22656
+        },
+        {
+          "text": "relevant",
+          "file": "ca3ebecfb076767a9ecfbce60fddb37b722da3bb1f28172ee64eb8652c0e5af8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca3ebecfb076767a9ecfbce60fddb37b722da3bb1f28172ee64eb8652c0e5af8.mp3",
+          "contentHash": "3f858cc3805ab64721240d8c65bd993b4f3149ae78173969b97365403c8349f4",
+          "byteSize": 15744
+        },
+        {
+          "text": "parks",
+          "file": "932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
+          "contentHash": "e98122a86e00db1c8233ff7fc0a80ab8809683f475bc3eb1499cddcf7c3b4a33",
+          "byteSize": 11520
+        }
+      ]
+    },
+    "l03/s39/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "These are bottles.",
+          "file": "c637a28567b1e612e2900987967b575d665d4146b996bb885a28a185d1d5acd0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c637a28567b1e612e2900987967b575d665d4146b996bb885a28a185d1d5acd0.mp3",
+          "contentHash": "7c0cf76e62793691e8f088f5ec96498c3874c65ecf2ed45f4a701761290289a8",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l03/s39/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Those bottles are there.",
+          "file": "b6ffb5ec85fbe51f9b95880f91cdc60a3d72bb73b5528fe432739789e3aff31e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b6ffb5ec85fbe51f9b95880f91cdc60a3d72bb73b5528fe432739789e3aff31e.mp3",
+          "contentHash": "382f6a003336cf110bc0ec805f7b42044038f5faa95d39e223a275569671244d",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l03/s39/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She's brave.",
+          "file": "1dbc882ffb9299c75996d2d823eb3d65852af735a58104b82df82ab826742e8d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1dbc882ffb9299c75996d2d823eb3d65852af735a58104b82df82ab826742e8d.mp3",
+          "contentHash": "e03a6485fa6fb49af9e2b106bbad8a7ba342f91ed9d76370b28ba2d1f5537ab5",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l03/s39/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "These are bottles.",
+          "file": "c637a28567b1e612e2900987967b575d665d4146b996bb885a28a185d1d5acd0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c637a28567b1e612e2900987967b575d665d4146b996bb885a28a185d1d5acd0.mp3",
+          "contentHash": "7c0cf76e62793691e8f088f5ec96498c3874c65ecf2ed45f4a701761290289a8",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l03/s39/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It is relevant.",
+          "file": "5c7bbf60beb465e49b4612aefbb7805e81ae10798e1b456a44a1471662ad3b86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c7bbf60beb465e49b4612aefbb7805e81ae10798e1b456a44a1471662ad3b86.mp3",
+          "contentHash": "0c1d55acb37fc7a02a3e2046dfdf66a9ada70b7ccc6fdc1fe9624f1908d03ac1",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l03/s39/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "bottles",
+          "file": "905fe267b177f8869c88b1ab5c2591bcc2269cb3e7dfcc09d7f271b4ef46266f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/905fe267b177f8869c88b1ab5c2591bcc2269cb3e7dfcc09d7f271b4ef46266f.mp3",
+          "contentHash": "30fc91be515fb15a868bf338f150de0acfbbf153472d1c2df7b5ee09535f56c4",
+          "byteSize": 18816
+        },
+        {
+          "text": "parks",
+          "file": "c0028b72c04162c7d2de183f133f4da9ee15fba7cde83e52ee41a9712d70a4a8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c0028b72c04162c7d2de183f133f4da9ee15fba7cde83e52ee41a9712d70a4a8.mp3",
+          "contentHash": "e43643915d65da5c11a414b85e995eb6eb326835a19ef402059a1b619e1d59e2",
+          "byteSize": 28416
+        },
+        {
+          "text": "these",
+          "file": "be4331d56f845d1ed4f825945c299629989579e87eca6d2615eb7df2e62c9802.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/be4331d56f845d1ed4f825945c299629989579e87eca6d2615eb7df2e62c9802.mp3",
+          "contentHash": "f5e9bcd4cbe2742093c44c4adaa895dc85edad41eaf207bb252b2077dfb01d03",
+          "byteSize": 15744
+        },
+        {
+          "text": "those",
+          "file": "5a9df14f5d5c3103af3e3b1311ae0fbef02d65df953d15ba640688c1956e9ca7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5a9df14f5d5c3103af3e3b1311ae0fbef02d65df953d15ba640688c1956e9ca7.mp3",
+          "contentHash": "29f538a2624026c939efdcde2aa248f228c5b1cd17d22ee5a85230085e89d812",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l03/s39/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "These parks are here.",
+          "file": "406f9c34a798f4d65144226f5b3be7fdb14aa3362beff39650fc79e82c7ccebb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/406f9c34a798f4d65144226f5b3be7fdb14aa3362beff39650fc79e82c7ccebb.mp3",
+          "contentHash": "61172c32f61f170a7af9ac67dc1e96c40fff45281c07c4f6e63f917069a075d2",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l03/s39/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "These bottles are here.",
+          "file": "c5b3e0cb2b96c992610b8d087cbed11d44aade6fcad0febdf1210b913313ff47.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c5b3e0cb2b96c992610b8d087cbed11d44aade6fcad0febdf1210b913313ff47.mp3",
+          "contentHash": "8e4d909b726adb09dac7da1c0ec64af3881fbb7644ff5e84e9953979484f6be9",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l03/s39/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's relevant.",
+          "file": "d2a3cff8db34d638abf641dec7e0f1c9feb4f18fcdd84f52b2a257cfe529efd3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2a3cff8db34d638abf641dec7e0f1c9feb4f18fcdd84f52b2a257cfe529efd3.mp3",
+          "contentHash": "340ec7559e71ec27ee779ef32dfce97e35a5e7819c5f7c33237d29de9536b2b0",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l03/s39/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Those bottles are there.",
+          "file": "65bf927e81348120d5d2526a9bf628a468c73e277e0b10e20d9f5fabc6e15b2f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/65bf927e81348120d5d2526a9bf628a468c73e277e0b10e20d9f5fabc6e15b2f.mp3",
+          "contentHash": "186af5f6aa273dc4d9e13c13923f652e8ead1211cb237d27d508c32feec8a2af",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l03/s39/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She is brave.",
+          "file": "87d92eb95f73ea4e2cc98671ec4f1134e299c4ed48f2d33321d2cb4f616eaaf2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/87d92eb95f73ea4e2cc98671ec4f1134e299c4ed48f2d33321d2cb4f616eaaf2.mp3",
+          "contentHash": "71c1a6bc89ceb9a4cfc1b261714c3375bd288b3573b844925994cb9036e6a07d",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l03/s39/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "bottles",
+          "file": "905fe267b177f8869c88b1ab5c2591bcc2269cb3e7dfcc09d7f271b4ef46266f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/905fe267b177f8869c88b1ab5c2591bcc2269cb3e7dfcc09d7f271b4ef46266f.mp3",
+          "contentHash": "30fc91be515fb15a868bf338f150de0acfbbf153472d1c2df7b5ee09535f56c4",
+          "byteSize": 18816
+        },
+        {
+          "text": "brave",
+          "file": "1a359d698ae49a860467dcd8e83eb0b54f1ce6dcf52f5c4554ae20afb739333e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a1bb216b2bbb7eb30b25960e-onyx.mp3",
+          "contentHash": "6b688800cf2537c04222783dee5525832bb024b9ab107bdc655b76f50366acc2",
+          "byteSize": 15744
+        },
+        {
+          "text": "relevant",
+          "file": "bee2383d106ce8e9f11c491d80ec26cf328b17c35ae35da7de204ccb56638292.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bee2383d106ce8e9f11c491d80ec26cf328b17c35ae35da7de204ccb56638292.mp3",
+          "contentHash": "2cb36cd5bfc0a3cc8cb9d88d56bb4898e0983cd9978ac370974dced0a8106502",
+          "byteSize": 15744
+        },
+        {
+          "text": "parks",
+          "file": "c0028b72c04162c7d2de183f133f4da9ee15fba7cde83e52ee41a9712d70a4a8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c0028b72c04162c7d2de183f133f4da9ee15fba7cde83e52ee41a9712d70a4a8.mp3",
+          "contentHash": "e43643915d65da5c11a414b85e995eb6eb326835a19ef402059a1b619e1d59e2",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l03/s39/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Those are bottles.",
+          "file": "20a3470552dfa58d380526f3896db238c638ceebd1966ba1579f491ec3219698.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/20a3470552dfa58d380526f3896db238c638ceebd1966ba1579f491ec3219698.mp3",
+          "contentHash": "fdff3f6d3381837031240b9314282aec8803e880742b94d941c85afda74b8b1b",
+          "byteSize": 25344
+        }
+      ]
     }
   },
   "settings": {

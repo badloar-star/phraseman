@@ -1,204 +1,138 @@
-# Английский · Урок 2 · Занятие 54 — «Квартира: хозяин, плата, правила»
+# Английский · Урок 2 · Занятие 54 — Кому доверить ключи
 
-**Сцена занятия.** В воскресенье вечером вы с другом пришли смотреть квартиру в Дублине. Вас встречает женщина, которая проводит просмотр; рядом находится ещё один мужчина. Вы выясняете, кто сдаёт квартиру, сколько стоит аренда и какие здесь правила.
+**Ситуация.** Вы с Анной готовите открытие фотоклуба. Олег всегда выполняет обещания и приходит вовремя; вы можете на него положиться. Нужно доверить ему ключи. Вы также выбираете музыку: одна мелодия вам знакома, другую вы слышите впервые, имя её автора неизвестно. Спокойная музыка уместна для встречи.
 
-**Как сказать:** знакомые вопросы с `be` при обсуждении аренды
-**Новые слова:** landlord, rent
-**Возвращаются:** flat, price, rules
+**Что вы освоите:** описать надёжного человека и отличить надёжность от знакомства
+**Новые слова:** reliable
 
 ---
 
 ## Интро 1
 
-### Кто сдаёт квартиру
+### Обещал — сделал
 
-`landlord` — «арендодатель»: владелец, который сдаёт жильё. `Who is the landlord?` — «Кто арендодатель?» Так вы узнаёте, кто именно сдаёт квартиру. Начните с `Who is`, затем добавьте `the landlord`. Если человек уже известен и нужно его найти, пригодится вопрос с `Where`.
+`reliable` — «надёжный»: на человека можно положиться. Олег выполняет обещания и не забывает о договорённостях: `He is reliable`. Ключи он принесёт к открытию, а не вместе с извинениями к закрытию. Так можно описать и вещь, которая стабильно работает как нужно.
 
-**Женщина проводит просмотр, а мужчина отвечает на вопросы о квартире. Узнайте у друга, кто арендодатель.**
+**Олег выполняет договорённости, вы можете на него положиться. Скажите полной фразой, что он надёжный.**
 
-- ✅ **Who is the landlord?**
-- ❌ Who the landlord? — *В полном вопросе пропало `is`. Начните с `Who is`.*
-- ❌ Where is the landlord? — *Это вопрос о местоположении. Сейчас вы хотите узнать, кто именно сдаёт квартиру.*
+- ✅ **He is reliable.**
+- ❌ He reliable. — *Между `He` и `reliable` нужно `is`.*
+- ❌ He are reliable. — *С `He` нужно `is`, не `are`.*
 
 ---
 
 ## Интро 2
 
-### Плата за аренду
+### Знакомый не значит надёжный
 
-`rent` — «арендная плата»: деньги, которые регулярно платят за съём жилья. `What is the rent?` — «Какая арендная плата?» Слово `price` значит «цена» и подходит для разных покупок и услуг. А с `rent` вы сразу уточняете, что спрашиваете именно о плате за аренду.
+`familiar` — «знакомый»: вы уже видели или слышали это. Мелодия вам знакома: `It is familiar`. `unfamiliar` — «незнакомый»: эту мелодию вы слышите впервые. Но знакомый человек не обязательно надёжен. `Is he reliable?` спрашивает, можно ли на него положиться.
 
-**Вы рассматриваете квартиру для аренды. Узнайте у хозяина размер арендной платы.**
+**Анна предлагает доверить ключи другому мужчине. Спросите, надёжный ли он.**
 
-- ✅ **What is the rent?**
-- ❌ What are the rent? — *В этом вопросе об арендной плате нужна форма `is`: `What is the rent?`.*
-- ❌ Where is the rent? — *С `Where` получится вопрос «где?». Чтобы узнать размер платы, начните с `What is`.*
+- ✅ **Is he reliable?**
+- ❌ He is reliable. — *Это сообщение, а вы пока спрашиваете.*
+- ❌ Is it familiar? — *Это вопрос о том, знакомо ли что-то. Вы спрашиваете о надёжности мужчины.*
 
 ---
 
 ## Интро 3
 
-### Узнать правила
+### Чего мы не знаем
 
-`rules` — «правила». `What are the rules?` — «Какие правила?» Желание услышать поменьше правил не повод менять `are` на `is`: здесь вы спрашиваете о них вместе. Начните с `What are`, затем добавьте `the rules`. Так вы узнаете сами правила, а не то, где лежит список.
+`unknown` — «неизвестный». Имя автора не удалось установить: `It is unknown`. А `appropriate` — «уместный»: спокойная музыка подходит для вашей встречи. Неизвестное имя не мешает оценить музыку. Для `Is it appropriate?` важно, подходит ли она здесь, а не известен ли автор.
 
-**Перед решением об аренде спросите хозяина, какие правила действуют в квартире.**
+**Имя автора не удалось установить. Коротко сообщите, что оно неизвестно.**
 
-- ✅ **What are the rules?**
-- ❌ What is the rules? — *В этом вопросе с `the rules` нужно `are`: `What are the rules?`.*
-- ❌ Where are the rules? — *Так можно узнать, где находится список правил. Сейчас вы хотите узнать, какие они.*
+- ✅ **It's unknown.**
+- ❌ It's familiar. — *Это «знакомо», а имя автора не установлено.*
+- ❌ It's appropriate. — *Это «уместно», а вы говорите, что имя неизвестно.*
 
 ---
 
-## Практика — по одной целевой фразе
+## Практика (17 заданий)
 
-**1 · Карточка слова — landlord**
-<!-- interaction_id: en:lesson-02:session-54:i01; family: listen_choose -->
-Цель: `landlord`
+**1 · На Олега можно положиться: он выполняет обещания. Сообщите полной фразой, что он надёжный**
+<!-- interaction_id: en:lesson-02:session-54:i01; family: phrase_builder -->
+Плитки: `reliable` `is` `He` `are` → **He is reliable.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is reliable.`)*
 
-**2 · Послушайте и выберите — какое слово прозвучало**
+**2 · Послушайте фразу о мелодии**
 <!-- interaction_id: en:lesson-02:session-54:i02; family: listen_choose -->
-Цель: `landlord`
-Варианты: `landlord` · `landmark` · `landslide`
-- landmark — *Это «ориентир». Второй слог начинается с «м» при сомкнутых губах. В `landlord` он начинается с «л».*
-- landslide — *Это «оползень». Второй слог начинается с «с», затем слышен «л». В записи второй слог начинается сразу с «л»: `landlord`.*
+🔊 *It is familiar.* → **It is familiar.** · It is unfamiliar. · It is unknown.
+- It is unfamiliar. — *В записи последнее слово — `familiar`, а в этом варианте — `unfamiliar`.*
+- It is unknown. — *В записи последнее слово — `familiar`, а в этом варианте — `unknown`.*
 
+**3 · Спросите Анну, надёжный ли новый помощник**
+<!-- interaction_id: en:lesson-02:session-54:i03; family: context_gap_grammar -->
+___ he reliable? → **Is** · Am · Are
+- Am — *С `he` нужно `Is`.*
+- Are — *Вопрос — `Is he reliable?`.*
 
-**3 · Соберите фразу — друг указывает на мужчину, который отвечает на вопросы; уточните, арендодатель ли он**
-<!-- interaction_id: en:lesson-02:session-54:i03; family: phrase_builder -->
-Цель: `Is he the landlord?`
+**4 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-54:i04; family: speed_match -->
+reliable — надёжный · familiar — знакомый · unfamiliar — незнакомый · unknown — неизвестный
 
-**4 · Карточка слова — rent**
-<!-- interaction_id: en:lesson-02:session-54:i04; family: listen_choose -->
-Цель: `rent`
+**5 · Послушайте и соберите короткий ответ**
+<!-- interaction_id: en:lesson-02:session-54:i05; family: listen_build_dictation -->
+🔊 *Yes, he is.* Плитки: `is` `he` `Yes,` `No,` → **Yes, he is.**
+*(плитка `No,` лишняя: здесь нужно `Yes,` — `Yes, he is.`)*
 
-**5 · Послушайте и выберите — какое слово прозвучало**
-<!-- interaction_id: en:lesson-02:session-54:i05; family: listen_choose -->
-Цель: `rent`
-Варианты: `rent` · `lent` · `sent`
-- lent — *Это «одолжил». Первый звук такой же, как в `landlord`. В записи начало как в `ready`: `rent`.*
-- sent — *Это «отправил», с «с» в начале. В записи первый звук такой же, как в `ready`: `rent`.*
-
-
-**6 · Соберите фразу — хозяин показывает сумму в объявлении; уточните, это ли арендная плата**
+**6 · Вы выбираете помощника из нескольких людей. Спросите Анну, кто надёжный**
 <!-- interaction_id: en:lesson-02:session-54:i06; family: phrase_builder -->
-Цель: `Is it the rent?`
+Плитки: `reliable` `is` `Who` `Where` → **Who is reliable?**
+*(плитка `Where` лишняя: здесь нужно `Who` — `Who is reliable?`)*
 
-**7 · Вставьте слово — вы осмотрели небольшую квартиру; скажите другу «Квартира маленькая»**
-<!-- interaction_id: en:lesson-02:session-54:i07; family: context_gap_grammar -->
-Цель: `The ___ is small.`
-Варианты: `flat` · `landlord` · `rules`
-- landlord — *Это «арендодатель». Вы описываете размер квартиры, поэтому нужно `flat`.*
-- rules — *Это «правила». Чтобы сказать о квартире, выберите `flat`: `The flat is small`.*
+**7 · Вы уверены, что на Олега можно положиться. Скажите «Он надёжный» с сокращением**
+<!-- interaction_id: en:lesson-02:session-54:i07; family: scripted_repeat_compare -->
+🎙 **He's reliable.**
 
+**8 · Эту мелодию вы слышите впервые. Сообщите, что она незнакома**
+<!-- interaction_id: en:lesson-02:session-54:i08; family: context_gap_grammar -->
+It ___ unfamiliar. → **is** · am · are
+- am — *С `It` нужно `is`.*
+- are — *Фраза — `It is unfamiliar`.*
 
-**8 · Послушайте и выберите — какая реплика друга прозвучала после осмотра**
-<!-- interaction_id: en:lesson-02:session-54:i08; family: listen_choose -->
-Цель: `The flat is quiet.`
-Варианты: `The flat is quiet.` · `Is the flat quiet?` · `The flat is quite small.`
-- Is the flat quiet? — *Это вопрос. В записи друг сообщает: сначала `The flat is`.*
-- The flat is quite small. — *Это «Квартира довольно маленькая». В записи после `is` звучит `quiet` — «тихая».*
+**9 · Послушайте вопрос о музыке для встречи**
+<!-- interaction_id: en:lesson-02:session-54:i09; family: listen_choose -->
+🔊 *Is it appropriate?* → **Is it appropriate?** · Is it unfamiliar? · Is it reliable?
+- Is it unfamiliar? — *В записи последнее слово — `appropriate`, а в этом варианте — `unfamiliar`.*
+- Is it reliable? — *В записи последнее слово — `appropriate`, а в этом варианте — `reliable`.*
 
-
-**9 · Соберите фразу — хозяин объяснил правила; уточните у друга, понятны ли они ему**
-<!-- interaction_id: en:lesson-02:session-54:i09; family: phrase_builder -->
-Цель: `Are the rules clear?`
-
-**10 · Соедините пары — слова для разговора об аренде**
+**10 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-54:i10; family: speed_match -->
-Пары: `flat` — квартира · `price` — цена · `rules` — правила · `rent` — арендная плата
-Цель: `flat · price · rules · rent`
+appropriate — уместный · unknown — неизвестный · reliable — надёжный · familiar — знакомый
 
-**11 · Вставьте слово — Лена спросила, сдаёт ли Михаил эту квартиру; Михаил подтвердил, ответьте коротко «Да»**
-<!-- interaction_id: en:lesson-02:session-54:i11; family: context_gap_grammar -->
-Цель: `Yes, he ___ .`
-Варианты: `is` · `are` · `am`
-- are — *После `he` в этом коротком ответе нужно `is`: `Yes, he is`.*
-- am — *Форма `am` сочетается с `I`. Здесь вы отвечаете о мужчине: `he is`.*
+**11 · Послушайте и соберите фразу о другом помощнике**
+<!-- interaction_id: en:lesson-02:session-54:i11; family: listen_build_dictation -->
+🔊 *He is not reliable.* Плитки: `reliable` `not` `is` `He` `are` → **He is not reliable.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is not reliable.`)*
 
-
-**12 · Соберите фразу — Лена сверяет объявление с листом Михаила: суммы разные; спросите, верно ли указана цена**
+**12 · Анна слушает новую для вас мелодию. Спросите, незнакома ли она и ей**
 <!-- interaction_id: en:lesson-02:session-54:i12; family: phrase_builder -->
-Цель: `Is the price right?`
-Ряд: `Is` · `the` · `price` · `right`
+Плитки: `unfamiliar` `it` `Is` `Are` → **Is it unfamiliar?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it unfamiliar?`)*
 
-**13 · Послушайте и соберите — хозяин отошёл, а вы задержались у входа; друг сообщает, где он**
-<!-- interaction_id: en:lesson-02:session-54:i13; family: listen_build_dictation -->
-Цель: `The landlord is inside.`
+**13 · Спокойная музыка подходит для встречи. Скажите «Это уместно» с сокращением**
+<!-- interaction_id: en:lesson-02:session-54:i13; family: scripted_repeat_compare -->
+🎙 **It's appropriate.**
 
-**14 · Вставьте слово — вы обсудили правила с другом и оба их поняли; сообщите, что правила понятны**
+**14 · Имя автора мелодии не удалось установить. Сообщите, что оно неизвестно**
 <!-- interaction_id: en:lesson-02:session-54:i14; family: context_gap_grammar -->
-Цель: `The rules ___ clear.`
-Варианты: `are` · `is` · `am`
-- is — *В этом сообщении с `the rules` нужна форма `are`: `The rules are clear`.*
-- am — *Форма `am` сочетается с `I`. Здесь вы говорите о правилах, поэтому нужно `are`.*
+It ___ unknown. → **is** · am · are
+- am — *С `It` нужно `is`.*
+- are — *Фраза — `It is unknown`.*
 
+**15 · Послушайте вопрос о помощнике**
+<!-- interaction_id: en:lesson-02:session-54:i15; family: listen_choose -->
+🔊 *Is he reliable?* → **Is he reliable?** · Is he familiar? · Is he unknown?
+- Is he familiar? — *В записи последнее слово — `reliable`, а в этом варианте — `familiar`.*
+- Is he unknown? — *В записи последнее слово — `reliable`, а в этом варианте — `unknown`.*
 
-**15 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-54:i15; family: scripted_repeat_compare -->
-Цель: `I am not sure.`
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-02:session-54:i16; family: speed_match -->
+unfamiliar — незнакомый · appropriate — уместный · familiar — знакомый · reliable — надёжный
 
-**16 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-54:i16; family: scripted_repeat_compare -->
-Цель: `Is the flat warm?`
+**17 · Анна предлагает ещё одного мужчину в помощники. Спросите, надёжный ли он**
+<!-- interaction_id: en:lesson-02:session-54:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is he reliable?**
 
-**17 · Произнесите одну фразу**
-<!-- interaction_id: en:lesson-02:session-54:i17:s01; family: scripted_repeat_compare -->
-Цель: `Excuse me.`
-
-**18 · Соберите одну фразу**
-<!-- interaction_id: en:lesson-02:session-54:i17:s02; family: phrase_builder -->
-Цель: `Is the landlord busy?`
-
-## Для сборщика
-
-new_words:
-landlord — арендодатель, владелец, сдающий жильё
-rent — арендная плата; в этой занятия существительное
-
-modes: 1=listen_choose, 2=listen_choose, 3=phrase_builder, 4=listen_choose, 5=listen_choose, 6=phrase_builder, 7=context_gap_grammar, 8=listen_choose, 9=phrase_builder, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=phrase_builder
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| flat | 7, 8, 10, 16 | 7, 8, 10, 16 |
-| price | 10, 12 | 10, 12 |
-| rules | 7, 9, 10, 12, 14 | 9, 10, 14 |
-
-Все заявленные возвраты переведены, имеют минимум два касания и правильное употребление. Новые слова проходят последовательности **landlord: 1 → 2 → 3**, **rent: 4 → 5 → 6**.
-
-**2. Страницы интро**
-
-| страница | правильный ответ | есть в объяснении |
-|---|---|---|
-| Интро 1 | Who is the landlord? | да |
-| Интро 2 | What is the rent? | да |
-| Интро 3 | What are the rules? | да |
-
-Полные правильные ответы интро не повторяются в практике. Юмор третьего интро связан с выбором `are` в вопросе о правилах.
-
-**3. Доска пар**
-
-| слово | введение | отработка до задания 10 |
-|---|---|---|
-| flat | урок 1, занятие 50 | 7, 8 |
-| price | урок 2, занятие 25 | перевод в интро 2; слово введено ранее |
-| rules | урок 2, занятие 28 | 9 |
-| rent | карточка 4 | 5, 6 |
-
-**4. Сборки и финал**
-
-Пять сборок: **3, 6, 9, 13, 17**. Среди них вопросы о человеке, сумме и понятности правил, сообщение на слух и вопрос с обращением и лишней плиткой. Повторяющихся скелетов нет.
-
-В задании 11 сохраняются `Yes, he`, а варианты проверяют форму `is / are / am`. Голосовые задания содержат по одной реплике. Финал выясняет занятость арендодателя; сведения о том, что он внутри, этого не раскрывают. Предыдущее голосовое задание не содержит финального ответа.
-
-**5. Словарная проверка слуховых вариантов**
-
-Для задания 2 сверены начало второго слога и значения: [landlord](https://dictionary.cambridge.org/us/pronunciation/english/landlord), [landmark](https://dictionary.cambridge.org/dictionary/english/landmark), [landslide](https://dictionary.cambridge.org/dictionary/english/landslide). Для задания 5 сверены разные начальные звуки: [rent](https://dictionary.cambridge.org/pronunciation/english/rent), [lent](https://dictionary.cambridge.org/us/dictionary/english/lent), [sent](https://dictionary.cambridge.org/dictionary/english/sent). Различение не опирается на конечный согласный или произношение послегласного `r`.
-
-Значение `rent` ограничено платой за аренду; значение `landlord` — владельцем, сдающим жильё. Они сверены по [статье rent](https://dictionary.cambridge.org/dictionary/english/rent) и [статье landlord](https://dictionary.cambridge.org/dictionary/english/landlord). Фактическое аудио по тексту не проверялось.

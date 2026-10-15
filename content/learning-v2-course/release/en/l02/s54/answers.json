@@ -1,92 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-54:i01",
-    "correctText": "landlord",
+    "correctText": "He is reliable.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i02",
-    "correctText": "landlord",
+    "correctText": "It is familiar.",
     "correctResponseId": "en:lesson-02:session-54:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-54:i03",
-    "correctText": "Is he the landlord?",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-54:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-54:i04",
-    "correctText": "rent",
+    "correctText": "en:lesson-02:session-54:i04:p1=reliable\nen:lesson-02:session-54:i04:p2=familiar\nen:lesson-02:session-54:i04:p3=unfamiliar\nen:lesson-02:session-54:i04:p4=unknown",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i05",
-    "correctText": "rent",
-    "correctResponseId": "en:lesson-02:session-54:i05:r1"
+    "correctText": "Yes, he is.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i06",
-    "correctText": "Is it the rent?",
+    "correctText": "Who is reliable?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i07",
-    "correctText": "flat",
-    "correctResponseId": "en:lesson-02:session-54:i07:r1"
+    "correctText": "He's reliable.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i08",
-    "correctText": "The flat is quiet.",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-54:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-54:i09",
-    "correctText": "Are the rules clear?",
-    "correctResponseId": null
+    "correctText": "Is it appropriate?",
+    "correctResponseId": "en:lesson-02:session-54:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-54:i10",
-    "correctText": "en:lesson-02:session-54:i10:p1=flat\nen:lesson-02:session-54:i10:p2=price\nen:lesson-02:session-54:i10:p3=rules\nen:lesson-02:session-54:i10:p4=rent",
+    "correctText": "en:lesson-02:session-54:i10:p1=appropriate\nen:lesson-02:session-54:i10:p2=unknown\nen:lesson-02:session-54:i10:p3=reliable\nen:lesson-02:session-54:i10:p4=familiar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i11",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-02:session-54:i11:r1"
+    "correctText": "He is not reliable.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i12",
-    "correctText": "price",
-    "correctResponseId": "en:lesson-02:session-54:i12:r1"
+    "correctText": "Is it unfamiliar?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i13",
-    "correctText": "The landlord is inside.",
+    "correctText": "It's appropriate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i14",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-54:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-54:i15",
-    "correctText": "I am not sure.",
-    "correctResponseId": null
+    "correctText": "Is he reliable?",
+    "correctResponseId": "en:lesson-02:session-54:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-54:i16",
-    "correctText": "Is the flat warm?",
+    "correctText": "en:lesson-02:session-54:i16:p1=unfamiliar\nen:lesson-02:session-54:i16:p2=appropriate\nen:lesson-02:session-54:i16:p3=familiar\nen:lesson-02:session-54:i16:p4=reliable",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-54:i17:s01",
-    "correctText": "Excuse me.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-54:i17:s02",
-    "correctText": "Is the landlord busy?",
+    "interactionId": "en:lesson-02:session-54:i17",
+    "correctText": "Is he reliable?",
     "correctResponseId": null
   }
 ]

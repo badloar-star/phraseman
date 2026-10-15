@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-44:intro1:r2": {
+          "ru": "Между `It` и `legal` нужно `is`.",
+          "uk": "Між `It` і `legal` потрібно `is`."
+        },
+        "en:lesson-02:session-44:intro1:r3": {
+          "ru": "Это отрицает законность. В условии её подтвердили.",
+          "uk": "Це заперечує законність. За умовою її підтвердили."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-44:intro2:r2": {
+          "ru": "Это вопрос об официальном статусе. Сейчас вы уточняете законность.",
+          "uk": "Це запитання про офіційний статус. Зараз ви уточнюєте законність."
+        },
+        "en:lesson-02:session-44:intro2:r3": {
+          "ru": "Это утверждение. Ответ вы ещё не получили.",
+          "uk": "Це твердження. Відповіді ви ще не отримали."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-44:intro3:r2": {
+          "ru": "Вы говорите об Олеге: `He's`.",
+          "uk": "Ви говорите про Олега: `He's`."
+        },
+        "en:lesson-02:session-44:intro3:r3": {
+          "ru": "Это «Он терпеливый». Здесь вы отмечаете интерес.",
+          "uk": "Це «Він терплячий». Тут ви відзначаєте зацікавленість."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5354a1fde1f58c1a3ad4183a4ad187ff765770636cf0dde79bd5bbcfbe04abe1"
+}

@@ -21,6 +21,8 @@ import type { PaywallPlan } from '../../app/paywall_purchase';
 import type { StorePromoPricing } from '../../app/premium_store_promo_display';
 import { canPromiseTrialReminder, trialReminderDayNumber } from '../../app/trial_end_reminder_schedule';
 import { DebugLogger } from '../../app/debug-logger';
+import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../../app/config';
+import { actionToastTri, emitAppEvent } from '../../app/events';
 import SkeletonBlock from '../SkeletonShimmer';
 import { LinearGradient } from '../SafeLinearGradient';
 import { paywallPlateBg, paywallSheetBg } from './paywall_surfaces';
@@ -50,8 +52,10 @@ const PLAN_CARD_HEIGHT = 160;
 /** Приглушение недоступной управляющей кнопки (закрыть / восстановить на время оплаты). */
 const PAYWALL_DISABLED_OPACITY = 0.4;
 
-const TERMS_URL = 'https://phraseman.app/terms';
-const PRIVACY_URL = 'https://phraseman.app/privacy';
+// зачем (аудит R58 #1, координатор 15.10): ссылки вели на phraseman.app — такого домена нет (NXDOMAIN), а пейвол без
+// рабочих «Условий» и «Конфиденциальности» — прямой повод отказа стора (Apple 3.1.2). Один источник с остальным приложением.
+const TERMS_URL = KNOWLY_LEGAL_TERMS_URL;
+const PRIVACY_URL = KNOWLY_LEGAL_PRIVACY_URL;
 
 // зачем (темы 2.0, проверка в эмуляторе 30.09): выбор тарифа, плашка «Выгоднее всего» и значок
 // пробного периода красятся в цвет темы в «Акценте/Максимуме» — иначе в светлом режиме они
@@ -60,8 +64,15 @@ function markFill(g: GlassTokens): string { return g.level === 'accent' || g.lev
 function markInk(g: GlassTokens): string { return g.level === 'accent' || g.level === 'max' ? g.accentInk : g.bg; }
 
 function openLegal(url: string): void {
+  DebugLogger.info('[PAYWALL-PLUS]', `openLegal: ${url}`);
   Linking.openURL(url).catch((e: unknown) => {
     DebugLogger.error('[PAYWALL-PLUS] openLegal', e instanceof Error ? e : new Error(String(e)), 'warning');
+    // ссылка не открылась (нет браузера / сбой системы) — человеку сказать, а не молчать
+    emitAppEvent('action_toast', actionToastTri('error', {
+      ru: 'Не удалось открыть страницу. Попробуй ещё раз.', uk: 'Не вдалося відкрити сторінку. Спробуй ще раз.', en: "Couldn't open the page. Try again.",
+      es: 'No se pudo abrir la página. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível abrir a página. Tente de novo.', vi: 'Không mở được trang. Hãy thử lại.',
+      id: 'Halaman tidak dapat dibuka. Coba lagi.', tr: 'Sayfa açılamadı. Tekrar dene.', pl: 'Nie udało się otworzyć strony. Spróbuj ponownie.',
+    }));
   });
 }
 

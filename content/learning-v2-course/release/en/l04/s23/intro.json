@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о сыре с any, сообщить о нём с some и подтвердить действительность билета",
+    "uk": "запитати про сир з any, повідомити про нього із some та підтвердити дійсність квитка"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сыр",
+        "uk": "Сир"
+      },
+      "bodyByLocale": {
+        "ru": "`cheese` — «сыр». О продукте вообще: `There is some cheese` — «Есть немного сыра». Здесь не считаем отдельные куски или сорта: перед `cheese` не нужно `a`, начало — `There is`. Даже если отрезать десять кусочков, сам сыр не потребует `are`. Кусочков больше, сыра столько же.",
+        "uk": "`cheese` — «сир». Про продукт загалом: `There is some cheese` — «Є трохи сиру». Тут не рахуємо окремі шматки чи сорти: перед `cheese` не потрібне `a`, початок — `There is`. Навіть якщо відрізати десять шматочків, сам сир не потребуватиме `are`. Шматочків більше, сиру стільки ж."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть немного сыра».",
+          "uk": "Повідомте «Тут є трохи сиру»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-23:intro1:r1",
+              "text": "There is some cheese here."
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro1:r2",
+              "text": "There are some cheese here."
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro1:r3",
+              "text": "There is a cheese here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-23:intro1:r1",
+              "text": "There is some cheese here."
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro1:r2",
+              "text": "There are some cheese here."
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro1:r3",
+              "text": "There is a cheese here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть немного сыра».",
+          "uk": "Повідомте «Тут є трохи сиру»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сыр и билеты",
+        "uk": "Сир і квитки"
+      },
+      "bodyByLocale": {
+        "ru": "`Is there any cheese?` — «Есть ли сыр?» Вы ещё не знаете ответа. `tickets` — «билеты»: `Are there any tickets?` — «Есть ли билеты?» Билетов несколько, поэтому `Are there`. В сообщении: `There are some tickets` — «Есть несколько билетов».",
+        "uk": "`Is there any cheese?` — «Чи є сир?» Ви ще не знаєте відповіді. `tickets` — «квитки»: `Are there any tickets?` — «Чи є квитки?» Квитків кілька, тому `Are there`. У повідомленні: `There are some tickets` — «Є кілька квитків»."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь есть сыр?» с `any`.",
+          "uk": "Запитайте «Тут є сир?» з `any`."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-23:intro2:r1",
+              "text": "Is there any cheese here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro2:r2",
+              "text": "Are there any cheese here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro2:r3",
+              "text": "There is any cheese here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-23:intro2:r1",
+              "text": "Is there any cheese here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro2:r2",
+              "text": "Are there any cheese here?"
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro2:r3",
+              "text": "There is any cheese here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь есть сыр?» с `any`.",
+          "uk": "Запитайте «Тут є сир?» з `any`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Билет подходит",
+        "uk": "Квиток підходить"
+      },
+      "bodyByLocale": {
+        "ru": "`valid` — «действительный». Вы проверили дату и условия билета: по нему можно пройти на выставку сегодня. `It is valid` — «Он действителен». Сокращённо: `It’s valid`. Это не значит, что билет действует всегда и везде: важны его условия. `gym` — «тренажёрный зал»: `Is there a gym here?` — «Здесь есть тренажёрный зал?»",
+        "uk": "`valid` — «дійсний». Ви перевірили дату й умови квитка: за ним можна пройти на виставку сьогодні. `It is valid` — «Він дійсний». Скорочено: `It’s valid`. Це не означає, що квиток діє завжди й усюди: важливі його умови. `gym` — «тренажерна зала»: `Is there a gym here?` — «Тут є тренажерна зала?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Условия билета подходят для сегодняшнего посещения. Скажите «Он действителен» с сокращением.",
+          "uk": "Умови квитка підходять для сьогоднішнього відвідування. Скажіть «Він дійсний» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-23:intro3:r1",
+              "text": "It's valid."
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro3:r2",
+              "text": "It's broken."
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro3:r3",
+              "text": "It are valid."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-23:intro3:r1",
+              "text": "It's valid."
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro3:r2",
+              "text": "It's broken."
+            },
+            {
+              "responseId": "en:lesson-04:session-23:intro3:r3",
+              "text": "It are valid."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Условия билета подходят для сегодняшнего посещения. Скажите «Он действителен» с сокращением.",
+          "uk": "Умови квитка підходять для сьогоднішнього відвідування. Скажіть «Він дійсний» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f99cd46a226b8e49958ca5e432c15e0c3dc9232e29c2e52b4556c3710e6f052e"
+}

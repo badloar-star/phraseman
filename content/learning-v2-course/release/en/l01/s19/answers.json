@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-19:i01",
-    "correctText": "angry",
+    "correctText": "We are together.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i02",
-    "correctText": "angry",
+    "correctText": "I am alone.",
     "correctResponseId": "en:lesson-01:session-19:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-19:i03",
-    "correctText": "rude",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-19:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-19:i04",
-    "correctText": "rude",
-    "correctResponseId": "en:lesson-01:session-19:i04:r1"
+    "correctText": "en:lesson-01:session-19:i04:p1=together\nen:lesson-01:session-19:i04:p2=alone\nen:lesson-01:session-19:i04:p3=nearby\nen:lesson-01:session-19:i04:p4=early",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i05",
-    "correctText": "He is not angry.",
+    "correctText": "They are together.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i06",
-    "correctText": "mean",
+    "correctText": "He is alone.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i07",
-    "correctText": "slow",
-    "correctResponseId": "en:lesson-01:session-19:i07:r1"
+    "correctText": "I am nearby.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i08",
-    "correctText": "slow",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-19:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-19:i09",
-    "correctText": "quiet",
-    "correctResponseId": null
+    "correctText": "You are alone.",
+    "correctResponseId": "en:lesson-01:session-19:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-19:i10",
-    "correctText": "mean",
-    "correctResponseId": "en:lesson-01:session-19:i10:r1"
+    "correctText": "en:lesson-01:session-19:i10:p1=wrong\nen:lesson-01:session-19:i10:p2=lucky\nen:lesson-01:session-19:i10:p3=smart\nen:lesson-01:session-19:i10:p4=strong",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i11",
-    "correctText": "en:lesson-01:session-19:i11:p1=angry\nen:lesson-01:session-19:i11:p2=rude\nen:lesson-01:session-19:i11:p3=mean\nen:lesson-01:session-19:i11:p4=slow",
+    "correctText": "We are nearby.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i12",
-    "correctText": "serious",
+    "correctText": "They are together.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i13",
-    "correctText": "serious",
-    "correctResponseId": "en:lesson-01:session-19:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-19:i14",
-    "correctText": "kind",
+    "correctText": "She is quiet.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-19:i14",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-19:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-19:i15",
-    "correctText": "is",
+    "correctText": "They are lucky.",
     "correctResponseId": "en:lesson-01:session-19:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-19:i16",
-    "correctText": "He is serious.",
+    "correctText": "en:lesson-01:session-19:i16:p1=quiet\nen:lesson-01:session-19:i16:p2=alone\nen:lesson-01:session-19:i16:p3=together\nen:lesson-01:session-19:i16:p4=nearby",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i17",
-    "correctText": "She is not rude.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-19:i18",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-19:i18:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-19:i19",
-    "correctText": "He is busy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-19:i20",
-    "correctText": "He is not angry.",
+    "correctText": "We are nearby.",
     "correctResponseId": null
   }
 ]

@@ -1,211 +1,138 @@
-# Английский · Урок 1 · Занятие 19 — «Поправляем неверные впечатления»
+# Английский · Урок 1 · Занятие 19 — Кто уже в кафе
 
-**Ситуация.** После работы Лина неверно судит об Олеге и Анне. Вы спокойно уточняете, какие они на самом деле.
-**Что вы освоите:** как сказать о мужчине и женщине `He is not` / `She is not`
-**Новые слова:** angry, mean, slow, rude
-**Возвращаются:** quiet, busy, kind, serious
+**Ситуация.** Вы договорились встретиться с друзьями в кафе. Одни уже за столом, другие ещё идут. По телефону объясняете, кто с кем и кто поблизости.
+
+**Что вы освоите:** различать I am, He/She is и You/We/They are, когда говорите, кто один, кто вместе и кто рядом
+**Новые слова:** together, alone, nearby
 
 ---
 
 ## Интро 1
 
-### `angry` — «злой»
+### Мы вместе
 
-`angry` — «злой, сердитый». Человек хмурится, отвечает коротко и явно не рад.
+`together` — «вместе». Вы с другом пришли одной компанией: `We are together` — «Мы вместе». Про двух друзей за соседним столом скажите `They are together` — «Они вместе». Официанту этого достаточно: историю вашей дружбы к заказу прикладывать не нужно.
 
-Чтобы сказать обратное, нужен `not`, и место у него одно: сразу после `is`. Получается `He is not angry`.
+**Вы с другом ждёте общий стол. Скажите официанту за вас обоих: «Мы вместе».**
 
-Выкинуть `is` тянет всех — по-русски его нет. Но `He not angry` короче не станет, только неправильнее.
-
-**Коллега решила, что начальник на неё сердится. Возразите: «он не злой».**
-
-- ✅ **He is not angry.**
-- ❌ He not angry. — *`is` выпало. `not` его не заменяет — он приходит после него.*
-- ❌ He is angry not. — *`not` убежал в конец. Его место сразу за `is`, перед словом.*
+- ✅ **We are together.**
+- ❌ We is together. — *После `We` нужно `are`.*
+- ❌ They are together. — *Это «Они вместе». Вы говорите за себя и друга: `We are`.*
 
 ---
 
 ## Интро 2
 
-### `mean` и `rude` — злой по-разному
+### Один — без компании
 
-`mean` — «недобрый»: обижает нарочно. `rude` — «грубый»: перебивает и не здоровается.
+`alone` — «один, без других людей». `I am alone` — «Я один». Это не обязательно грустно: можно спокойно пить кофе и никому не отдавать последний кусок пирога. Про подругу без компании скажем `She is alone`.
 
-Разница в намерении. Грубый может просто не уметь вести себя, а недобрый обижает нарочно.
+**Подруга сидит за столом без других людей. Скажите о ней: «Она одна».**
 
-Про женщину всё так же, только `he` меняется на `she`: `She is not rude`.
-
-**Коллега уверена, что женщина у окна ей нахамила. На самом деле та просто устала. Скажите: «она не грубая».**
-
-- ✅ **She is not rude.**
-- ❌ She not rude. — *Без `is` фраза рассыпается. Сначала `she is`, потом `not`.*
-- ❌ She is not mean. — *`mean` — «недобрая», про намерение обидеть. Речь была про манеры, а это `rude`.*
+- ✅ **She is alone.**
+- ❌ She are alone. — *С `She` нужна форма `is`, даже если за соседним столом много людей.*
+- ❌ I am alone. — *Это «Я один». Сейчас речь о подруге: `She is`.*
 
 ---
 
 ## Интро 3
 
-### `slow` — одно слово на все случаи
+### Недалеко отсюда
 
-`slow` — «медленный». И про походку, и про речь, и про то, как человек вникает в новое дело. Второго слова учить не придётся.
+`nearby` — «поблизости». Друзья ещё идут, но уже недалеко от кафе: `They are nearby` — «Они поблизости». Если вы сами за углом, скажите `I am nearby` — «Я поблизости». В этой короткой фразе после `nearby` ничего добавлять не нужно.
 
-Выбор `he` или `she` зависит от человека, а не от слова после него. Само `is not slow` не меняется никогда.
+**Двое друзей уже на соседней улице. Скажите официанту про них: «Они поблизости».**
 
-**Коллега думает, что новенький парень туго соображает. Заступитесь: «он не медленный».**
-
-- ✅ **He is not slow.**
-- ❌ He not is slow. — *`not` встал перед `is`, а должен после: сначала `he is`, потом `not`.*
-- ❌ She is not slow. — *`she` — про женщину. Речь о парне, значит `he`.*
+- ✅ **They are nearby.**
+- ❌ They is nearby. — *После `They` нужно `are`.*
+- ❌ They are alone. — *`alone` значит «одни, без других». О близком расстоянии говорит `nearby`.*
 
 ---
 
-## Практика (20 заданий)
+## Практика (17 заданий)
 
-**1 · Карточка слова — angry**
-<!-- interaction_id: en:lesson-01:session-19:i01; family: listen_choose -->
-> **angry** — «злой, сердитый». Брови сдвинуты, отвечает через слово.
+**1 · Соберите фразу — вы с другом заказываете общий стол: «Мы вместе»**
+<!-- interaction_id: en:lesson-01:session-19:i01; family: phrase_builder -->
+Плитки: `together` `are` `We` `is` → **We are together.**
+*(плитка `is` лишняя: здесь нужно `are` — `We are together.`)*
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите фразу человека за столом**
 <!-- interaction_id: en:lesson-01:session-19:i02; family: listen_choose -->
-🔊 *angry* → **angry** · hungry · early
-- hungry — *«Голодный». Начинается с придыхания «х», и гласная другая — ближе к «а»: «ханг-ри» против «энг-ри».*
-- early — *«Рано». В `angry` после первого гласного слышится «нг», а в `early` этого нет.*
+🔊 *I am alone.* → **I am alone.** · I am early. · I am lucky.
+- I am early. — *В записи последнее слово — `alone`, а в этом варианте — `early`.*
+- I am lucky. — *В записи последнее слово — `alone`, а в этом варианте — `lucky`.*
 
-**3 · Карточка слова — rude**
-<!-- interaction_id: en:lesson-01:session-19:i03; family: listen_choose -->
-> **rude** — «грубый». Перебивает, не здоровается, дверь перед вами не придержит.
+**3 · Вставьте слово — подруга уже поблизости**
+<!-- interaction_id: en:lesson-01:session-19:i03; family: context_gap_grammar -->
+She ___ nearby. → **is** · are · am
+- are — *Подруга — `She`, поэтому нужно `is`.*
+- am — *`am` ставим с `I`. О подруге — `She is`.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-19:i04; family: listen_choose -->
-🔊 *rude* → **rude** · ready · red
-- ready — *«Готов». Два слога вместо одного: «ре-ди».*
-- red — *«Красный», звучит через «э». В `rude` совсем другая гласная — «у»: «руд».*
+**4 · Соедините слова и значения**
+<!-- interaction_id: en:lesson-01:session-19:i04; family: speed_match -->
+together — вместе · alone — без компании · nearby — поблизости · early — рано
 
-**5 · Соберите фразу — Лина думает, что Олег сердится; Олег не злой**
-<!-- interaction_id: en:lesson-01:session-19:i05; family: phrase_builder -->
-Плитки: `angry` `is` `He` `not` → **He is not angry.**
+**5 · Послушайте и соберите услышанное**
+<!-- interaction_id: en:lesson-01:session-19:i05; family: listen_build_dictation -->
+🔊 *They are together.* Плитки: `together` `are` `They` `We` → **They are together.**
+*(плитка `We` лишняя: здесь нужно `They` — `They are together.`)*
 
-**6 · Карточка слова — mean**
-<!-- interaction_id: en:lesson-01:session-19:i06; family: listen_choose -->
-> **mean** — «недобрый». Говорит гадость, чтобы обидеть.
+**6 · Друг пока один за столом. Соберите фразу о нём: «Он один»**
+<!-- interaction_id: en:lesson-01:session-19:i06; family: phrase_builder -->
+Плитки: `alone` `is` `He` `are` → **He is alone.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is alone.`)*
 
-**7 · Прослушайте образцы A и B. Какое слово звучит в образце A?**
-<!-- interaction_id: en:lesson-01:session-19:i07; family: sound_contrast -->
-🔊 Образец A: *slow*. Образец B: *low*.
-*slow · low* → **slow**
-- low — *В образце A звучит `slow`: перед `low` есть звук `s`; образец B — `low`.*
+**7 · Скажите подруге по телефону, что вы уже недалеко от кафе: «Я поблизости»**
+<!-- interaction_id: en:lesson-01:session-19:i07; family: scripted_repeat_compare -->
+🎙 **I am nearby.**
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-19:i08; family: listen_choose -->
-🔊 *slow* → **slow** · low · sorry
-- low — *«Низкий», отдельное слово. От `slow` отличается только звуком `s` в начале — слушайте первый звук.*
-- sorry — *«Извините». Два слога и «р» в середине.*
+**8 · Вставьте слово — два друга ещё идут, но уже поблизости**
+<!-- interaction_id: en:lesson-01:session-19:i08; family: context_gap_grammar -->
+They ___ nearby. → **are** · is · am
+- is — *О двух друзьях: `They are`. С `They` форма `is` не подходит.*
+- am — *`am` нужно после `I`. Здесь начало `They`, поэтому `are`.*
 
-**9 · Карточка слова — quiet**
+**9 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-19:i09; family: listen_choose -->
-> **quiet** — «тихий». Молчит весь день, но не потому что обиделся — просто такой человек.
+🔊 *You are alone.* → **You are alone.** · We are alone. · You are wrong.
+- We are alone. — *В записи первое слово — `You`, а в этом варианте — `We`.*
+- You are wrong. — *В записи последнее слово — `alone`, а в этом варианте — `wrong`.*
 
-**10 · Вставьте слово — Лина говорит: «Анна никого не обижает; она просто тихая». Скажите, что Анна не злая**
-<!-- interaction_id: en:lesson-01:session-19:i10; family: context_gap_grammar -->
-She is not ___ . → **mean** · quiet · slow
-- mean — *Анна никого не обижает, поэтому она не `mean` — не злая и не недобрая.*
-- quiet — *`quiet` — «тихая», и она правда тихая. Спор был не об этом, а о том, обидели ли коллегу нарочно.*
-- slow — *«Медленная» — про скорость, а не про то, обидели её нарочно или нет.*
+**10 · Соедините знакомые слова со значениями**
+<!-- interaction_id: en:lesson-01:session-19:i10; family: speed_match -->
+wrong — неправ · lucky — везучий · smart — умный · strong — сильный
 
-**11 · Соедините пары**
-<!-- interaction_id: en:lesson-01:session-19:i11; family: speed_match -->
-angry — злой · rude — грубый · mean — недобрый · slow — медленный
+**11 · Послушайте и соберите фразу**
+<!-- interaction_id: en:lesson-01:session-19:i11; family: listen_build_dictation -->
+🔊 *We are nearby.* Плитки: `nearby` `are` `We` `They` → **We are nearby.**
+*(плитка `They` лишняя: здесь нужно `We` — `We are nearby.`)*
 
-**12 · Карточка слова — serious**
-<!-- interaction_id: en:lesson-01:session-19:i12; family: listen_choose -->
-> **serious** — «серьёзный». Не шутит, не улыбается за компанию — но это не значит, что он злится.
+**12 · Официант спрашивает о двух ваших друзьях. Они пришли одной компанией. Соберите: «Они вместе»**
+<!-- interaction_id: en:lesson-01:session-19:i12; family: phrase_builder -->
+Плитки: `together` `are` `They` `is` → **They are together.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are together.`)*
 
-**13 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-01:session-19:i13; family: listen_choose -->
-🔊 *serious* → **serious** · sorry · sure
-- sorry — *«Извините». Два слога, и в конце «и»: «со-ри».*
-- sure — *«Уверен». Один слог, а `serious` тянется на три: «си-риэс».*
+**13 · Подруга говорит очень тихо. Скажите вслух о ней: «Она тихая»**
+<!-- interaction_id: en:lesson-01:session-19:i13; family: scripted_repeat_compare -->
+🎙 **She is quiet.**
 
-**14 · Карточка слова — kind**
-<!-- interaction_id: en:lesson-01:session-19:i14; family: listen_choose -->
-> **kind** — «добрый». Помогает, когда его не просят, и не ждёт спасибо.
+**14 · Вставьте слово — друзья ушли, вы остались в кафе одни. Скажите о себе**
+<!-- interaction_id: en:lesson-01:session-19:i14; family: context_gap_grammar -->
+I ___ alone. → **am** · is · are
+- is — *О себе говорим `I am`.*
+- are — *С `I` нужна форма `am`, а не `are`.*
 
-**15 · Вставьте слово — Макс всем помогает**
-<!-- interaction_id: en:lesson-01:session-19:i15; family: context_gap_grammar -->
-He ___ kind. → **is** · am · are
-- am — *`am` живёт только рядом с `I`. Про него — `is`.*
-- are — *С `he` ставят `is`, не `are`: `He is kind.`*
+**15 · Послушайте, что подруга говорит о друзьях**
+<!-- interaction_id: en:lesson-01:session-19:i15; family: listen_choose -->
+🔊 *They are lucky.* → **They are lucky.** · We are lucky. · They are early.
+- We are lucky. — *В записи первое слово — `They`, а в этом варианте — `We`.*
+- They are early. — *В записи последнее слово — `lucky`, а в этом варианте — `early`.*
 
-**16 · Соберите фразу — Лина говорит: «Начальник серьёзный, но не злой». Передайте её характеристику по-английски**
-<!-- interaction_id: en:lesson-01:session-19:i16; family: phrase_builder -->
-Плитки: `He` `is` `serious` → **He is serious.**
+**16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-19:i16; family: speed_match -->
+quiet — тихий · alone — без других людей · together — вместе · nearby — поблизости
 
-**17 · Послушайте и соберите — Лина говорит: «Анна не грубая»**
-<!-- interaction_id: en:lesson-01:session-19:i17; family: listen_build_dictation -->
-🔊 *She is not rude.* Плитки: `rude` `She` `not` `is` `are` → **She is not rude.**
-*(плитка `are` лишняя: `are` лишнее: с `She` ставят `is`: `She is not rude.`)*
+**17 · Вы с братом идёте к музею. До входа осталось совсем немного. Скажите маме по телефону за вас обоих: «Мы поблизости»**
+<!-- interaction_id: en:lesson-01:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **We are nearby.**
 
-
-**18 · Вставьте слово — Анна у кофемашины молчит весь день, но Анна не сердится**
-<!-- interaction_id: en:lesson-01:session-19:i18; family: context_gap_grammar -->
-She is ___ . → **quiet** · angry · rude
-- angry — *Как раз наоборот: она не злится, она просто молчит.*
-- rude — *В подсказке сказано, что Анна молчит и не сердится. Это прямо описывает `quiet`; грубого поступка здесь не названо.*
-
-**19 · Соберите фразу — Лина решила, что Олег злится. На самом деле Олег просто занят**
-<!-- interaction_id: en:lesson-01:session-19:i19; family: phrase_builder -->
-Плитки: `busy` `He` `is` `not` → **He is busy.**
-*(плитка `not` лишняя: он и правда занят)*
-
-**20 · Скажите вслух — Лина волнуется, что Олег сердится; скажите, что Олег не злой**
-<!-- interaction_id: en:lesson-01:session-19:i20; family: scripted_repeat_compare -->
-🎙 **He is not angry.**
-
----
-
-## Для сборщика
-
-new_words:
-angry — злой, сердитый — Брови сдвинуты, отвечает через слово.
-rude — грубый — Перебивает, не здоровается, дверь перед вами не придержит.
-mean — недобрый — Говорит гадость, чтобы обидеть.
-slow — медленный — Идёт не спеша, думает не спеша, и торопить его бесполезно.
-
-repeat_words:
-quiet — тихий — Молчит весь день, но не потому что обиделся — просто такой человек.
-serious — серьёзный — Не шутит, не улыбается за компанию — но это не значит, что он злится.
-kind — добрый — Помогает, когда его не просят, и не ждёт спасибо.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=sound_contrast, 8=listen_choose, 9=word_card, 10=context_gap_grammar, 11=speed_match, 12=word_card, 13=listen_choose, 14=word_card, 15=context_gap_grammar, 16=phrase_builder, 17=listen_build_dictation, 18=context_gap_grammar, 19=phrase_builder, 20=scripted_repeat_compare
-
----
-
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| quiet | 9 (карточка), 10 (разбор), 18 (✅ ответ) | 18 |
-| serious | 12 (карточка), 13 (слух ✅), 16 (✅ ответ) | 13, 16 |
-| kind | 14 (карточка), 15 (✅ фраза `He is kind`) | 15 |
-| busy | 19 (✅ ответ) | 19 |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | angry | да — первая строка и пример `He is not angry` |
-| Интро 2 | rude | да — определение `rude` и пример `She is not rude` |
-| Интро 3 | slow | да — определение и `He is not slow` |
-
-**3. Доска пар (задание 11)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| angry | 1 | 2 (слух), 5 (сборка) |
-| rude | 3 | 4 (слух) |
-| mean | 6 | 10 (пропуск) |
-| slow | 7 | 8 (слух) |
-
----

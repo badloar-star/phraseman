@@ -100,7 +100,7 @@ export function buildOnboardingPalette(g: GlassTokens, key: string): OnboardingP
     muted: hex6(g.mutedText),
     line: hex6(g.line),
     ctaFill: hex6(g.ctaFill),
-    ctaInk: hex6(g.ctaInk),
+    ctaInk: hex6(g.ctaFillInk),
     ctaFillDisabled: hex6(g.buttonFillDisabled),
     ctaInkDisabled: hex6(g.buttonInkDisabled),
     good: hex6(g.good),

@@ -1,25 +1,4 @@
 {
  "note": "Красное аудита «кнопки не сливаются» по двум уровням (основные ≥ 3:1, тоновые плашки ≥ 1,5:1, подпись ≥ 4,5:1), обновлено 15.10 (отключённые теперь тоже ≥ 1,5:1). Список может только уменьшаться.",
- "red": [
-  "grad_aurora|light|V2 основная/акцентная|страница|fill",
-  "grad_aurora|light|окна моментов: основная (ctaFill)|страница|fill",
-  "grad_iris|light|V2 основная/акцентная|страница|fill",
-  "grad_iris|light|окна моментов: основная (ctaFill)|страница|fill",
-  "grad_magma|light|V2 основная/акцентная|страница|fill",
-  "grad_magma|light|окна моментов: основная (ctaFill)|страница|fill",
-  "grad_midnight|light|V2 основная/акцентная|страница|fill",
-  "grad_midnight|light|окна моментов: основная (ctaFill)|страница|fill",
-  "grad_champagne|light|V2 основная/акцентная|страница|fill",
-  "grad_champagne|light|окна моментов: основная (ctaFill)|страница|fill",
-  "grad_jade|light|V2 основная/акцентная|страница|fill",
-  "grad_jade|light|окна моментов: основная (ctaFill)|страница|fill",
-  "grad_orchid|light|V2 основная/акцентная|страница|fill",
-  "grad_orchid|light|окна моментов: основная (ctaFill)|страница|fill",
-  "grad_ice|light|V2 основная/акцентная|страница|fill",
-  "grad_ice|light|окна моментов: основная (ctaFill)|страница|fill",
-  "grad_coral|light|V2 основная/акцентная|страница|fill",
-  "grad_coral|light|окна моментов: основная (ctaFill)|страница|fill",
-  "grad_lilac|light|V2 основная/акцентная|страница|fill",
-  "grad_lilac|light|окна моментов: основная (ctaFill)|страница|fill"
- ]
+ "red": []
 }

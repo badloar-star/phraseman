@@ -69,8 +69,8 @@ function PaywallTrialReminderPrompt({ lang, g, topInset, bottomInset, onAllow, o
         {/* зачем (Дизайн 12.10): см. PaywallPlus — заливка под accentInk через accentFillGradient */}
         <LinearGradient pointerEvents="none" colors={[...ctaFillGradient(g)]} style={StyleSheet.absoluteFill} />
         {asking
-          ? <ActivityIndicator color={g.accentInk} /> /* зачем (R1_PAYWALL_UX): цвет по подписи кнопки и её заливке accentFillGradient; ctaInk — другой токен и мог не читаться на этой заливке */
-          : <Text style={[S.ctaText, { color: g.accentInk }]}>{pick(lang, COPY.afterAllow)}</Text>}
+          ? <ActivityIndicator color={g.ctaFillInk} /> /* зачем (R1_PAYWALL_UX): цвет по подписи кнопки и её заливке accentFillGradient; ctaInk — другой токен и мог не читаться на этой заливке */
+          : <Text style={[S.ctaText, { color: g.ctaFillInk }]}>{pick(lang, COPY.afterAllow)}</Text>}
       </V2Pressable>
       <V2Pressable
         testID="paywall-trial-reminder-skip"

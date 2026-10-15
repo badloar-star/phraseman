@@ -31,6 +31,8 @@ export type LiquidGlassButtonRoles = Readonly<{
   dangerInk: string;
   /** Заливка главной кнопки: cta, при слиянии с фоном — глубже, подпись ctaInk ≥ 4,5 : 1. */
   ctaFill: string;
+  /** Подпись на ЗАЛИВКЕ главной кнопки (ctaFill): исходная ctaInk, а там где ≥ 3 : 1 к поверхностям с ней недостижимо (светлые градиентные темы) — белая на углублённой заливке того же оттенка. ctaInk остаётся подписью на «сыром» cta. */
+  ctaFillInk: string;
 }>;
 
 const SURFACE_MIN = 1.7;
@@ -121,25 +123,45 @@ function secondaryFill(t: Surfaces): string {
   return best;
 }
 
-/** Главная заливка: cta, а при слиянии с фоном — глубже в сторону текста темы (подпись ctaInk должна остаться читаемой). */
-function primaryFill(t: Surfaces, secondary: string): string {
+type PrimaryTry = Readonly<{ fill: string; ok: boolean; surface: number }>;
+
+/** Подбор заливки главной кнопки под заданную подпись `ink`: от cta к `toward`, пока подпись ≥ 4,5 : 1, заливка ≥ 3 : 1 к поверхностям и отличима от вторичной. */
+function primaryFor(t: Surfaces, secondary: string, ink: string, toward: string): PrimaryTry {
   const under = underSurfaces(t);
   const cta = hex6(t.cta);
-  // зачем (закон владельца 13.10: вторичная и основная не сливаются): основная должна и отличаться от поверхностей, и быть отличимой от вторичной.
-  const ok = (c: string): boolean => minOver(c, under) >= CTA_SURFACE_MIN && ratio(c, secondary) >= CTA_VS_SECONDARY_MIN;
-  if (ok(cta)) return cta;
-  // зачем (аудит 15.10): если порог недостижим при читаемой подписи (окно «фон ≥ 3 : 1» и «подпись ≥ 4,5 : 1» у светлых градиентных тем почти закрыто) —
-  // берём ЛУЧШИЙ по отличию от поверхностей вариант с читаемой подписью, а не исходный пастельный cta, который сливался с фоном до 1,00 : 1.
+  const inkIsLight = lum(ink) > 0.5;
+  // зачем (закон владельца 13.10: вторичная и основная не сливаются): основная должна и отличаться от поверхностей, и быть заметно ярче/темнее вторичной
+  const ok = (c: string): boolean => minOver(c, under) >= CTA_SURFACE_MIN && ratio(c, secondary) >= CTA_VS_SECONDARY_MIN && ratio(ink, c) >= CTA_INK_MIN;
   let best = cta;
-  let bestSurface = minOver(cta, under);
-  for (let k = 0.04; k <= 0.9001; k += 0.004) {
-    const c = mix(cta, t.text, k);
-    if (ratio(t.ctaInk, c) < CTA_INK_MIN) break; // дальше подпись не читается
-    if (ok(c)) return c;
+  let bestSurface = -1;
+  for (let k = 0; k <= 0.9001; k += 0.004) {
+    const c = k === 0 ? cta : mix(cta, toward, k);
+    const inkOk = ratio(ink, c) >= CTA_INK_MIN;
+    // дальше по этой линии подпись только хуже (тёмная на тёмнеющей / светлая на светлеющей) — стоп; светлая на темнеющей — пока не читается, идём глубже
+    if (!inkOk && k > 0 && !inkIsLight) break;
+    if (!inkOk) continue;
+    if (ok(c)) return { fill: c, ok: true, surface: minOver(c, under) };
     const surface = minOver(c, under);
     if (ratio(c, secondary) >= CTA_VS_SECONDARY_MIN && surface > bestSurface) { bestSurface = surface; best = c; }
   }
-  return best;
+  return { fill: best, ok: false, surface: bestSurface < 0 ? minOver(cta, under) : bestSurface };
+}
+
+/**
+ * Главная кнопка: заливка и подпись вместе. Сначала исходная подпись ctaInk (заливка идёт к тексту темы); если ≥ 3 : 1 к поверхностям с ней недостижимо
+ * (аудит 15.10: светлые градиентные темы — пастельный cta и тёмная подпись), берём ту подпись — белую на углублённой заливке того же оттенка, — что даёт
+ * большую отличимость от поверхностей. Решение координатора 15.10: заливку углубляем в оттенке темы, подпись выбираем по большему контрасту; фон экрана не трогаем.
+ */
+function primaryRoles(t: Surfaces, secondary: string): Readonly<{ fill: string; ink: string }> {
+  const ink = hex6(t.ctaInk);
+  const first = primaryFor(t, secondary, ink, t.text);
+  if (first.ok) return { fill: first.fill, ink };
+  const white = '#FFFFFF';
+  if (ink !== white) {
+    const alt = primaryFor(t, secondary, white, '#000000');
+    if (alt.ok || alt.surface > first.surface) return { fill: alt.fill, ink: white };
+  }
+  return { fill: first.fill, ink };
 }
 
 /** Опасная кнопка: заливка — bad, растворённый в шторке (от слабого к сильному), подпись — bad, сдвинутый к тексту темы, пока не станет читаемой. */
@@ -168,5 +190,6 @@ export function deriveLiquidGlassButtonRoles(t: Surfaces): LiquidGlassButtonRole
     if (ratio(candidate, buttonFillDisabled) < DISABLED_INK_TARGET) break;
     buttonInkDisabled = candidate;
   }
-  return { buttonFill, buttonFillDisabled, buttonInkDisabled, ctaFill: primaryFill(t, buttonFill), ...dangerRoles(t) };
+  const primary = primaryRoles(t, buttonFill);
+  return { buttonFill, buttonFillDisabled, buttonInkDisabled, ctaFill: primary.fill, ctaFillInk: primary.ink, ...dangerRoles(t) };
 }

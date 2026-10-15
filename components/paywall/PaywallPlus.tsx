@@ -367,8 +367,8 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
         {/* зачем (Дизайн 12.10): заливка под accentInk — только с гарантией контраста ≥ 4,5 (accentFillGradient), accentBright в светлых градиентных темах слишком тёмный */}
         <LinearGradient pointerEvents="none" colors={[...ctaFillGradient(g)]} style={StyleSheet.absoluteFill} />
         {purchasing
-          ? <ActivityIndicator color={g.accentInk} />
-          : <Text style={[S.ctaText, { color: g.accentInk }]}>{label}</Text>}
+          ? <ActivityIndicator color={g.ctaFillInk} />
+          : <Text style={[S.ctaText, { color: g.ctaFillInk }]}>{label}</Text>}
       </V2Pressable>
       <Text testID="paywall-fine" style={[S.fine, { color: g.mutedText }]}>{fineText}</Text>
       <View style={S.links}>

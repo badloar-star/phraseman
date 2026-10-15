@@ -19,7 +19,7 @@ describe('Plus paywall footer locale contract', () => {
   it('keeps purchase and restore pending states visible and mutually blocked', () => {
     expect(plus).toContain('accessibilityState={{ disabled: ctaDisabled, busy: purchasing }}');
     // зачем (кнопка покупки на фоне g.accent, 11.10): кружок того же цвета, что надпись на кнопке, — g.accentInk (прежний ctaInk был под другую заливку)
-    expect(plus).toContain('<ActivityIndicator color={g.accentInk} />');
+    expect(plus).toContain('<ActivityIndicator color={g.ctaFillInk} />');
     expect(plus).toContain('accessibilityState={{ busy: restoring }}');
   });
 

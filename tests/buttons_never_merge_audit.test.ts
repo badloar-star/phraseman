@@ -30,12 +30,12 @@ type ButtonDef = Readonly<{ name: string; fill: string | null; ink: string; min:
 const MAIN_MIN = 3;
 const TONAL_MIN = 1.5;
 const BUTTONS: readonly ButtonDef[] = [
-  { name: 'V2 основная/акцентная', fill: 'ctaFill', ink: 'ctaInk', min: MAIN_MIN },
+  { name: 'V2 основная/акцентная', fill: 'ctaFill', ink: 'ctaFillInk', min: MAIN_MIN },
   { name: 'V2 вторичная', fill: 'buttonFill', ink: 'text', min: TONAL_MIN },
   { name: 'V2 прозрачная (ghost)', fill: null, ink: 'text', min: TONAL_MIN },
   { name: 'V2 отключённая', fill: 'buttonFillDisabled', ink: 'buttonInkDisabled', min: TONAL_MIN },
   { name: 'опасная', fill: 'dangerFill', ink: 'dangerInk', min: TONAL_MIN },
-  { name: 'окна моментов: основная (ctaFill)', fill: 'ctaFill', ink: 'accentInk', min: MAIN_MIN },
+  { name: 'окна моментов: основная (ctaFill)', fill: 'ctaFill', ink: 'ctaFillInk', min: MAIN_MIN }, // зачем (15.10): подпись на ctaFill — ctaFillInk (в светлых градиентных темах белая на углублённой заливке)
   // зачем: плашки окон (в т.ч. «Пропустить») берут buttonFill, а не control/opaqueControl (на нём было 1,00 к шторке)
   { name: 'окна моментов: плашка (buttonFill)', fill: 'buttonFill', ink: 'text', min: TONAL_MIN },
 ];

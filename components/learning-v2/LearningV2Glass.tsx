@@ -244,7 +244,7 @@ export const Lv2Cta = memo(function Lv2Cta({
   // зачем (владелец 12.10, «Тень»): контурная кнопка `.cta.gh` стала плашкой с малой тенью; кнопка действия — цветная тень темы
   // зачем (владелец 13.10, №35): токены кнопок темы — отключённая buttonFillDisabled/buttonInkDisabled (>= 4,5), вторичная buttonFill (>= 1,6 к поверхностям), главная ctaFill
   const bg = disabled ? g.buttonFillDisabled : ghost ? g.buttonFill : g.ctaFill;
-  const ink = disabled ? g.buttonInkDisabled : ghost ? g.text : g.accentInk;
+  const ink = disabled ? g.buttonInkDisabled : ghost ? g.text : g.ctaFillInk;
   return (
     <Pressable
       testID={testID}

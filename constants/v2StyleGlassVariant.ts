@@ -43,7 +43,7 @@ export function adaptV2PaletteToGlass(p: V2Palette, g: GlassTokens): V2Palette {
     sheet: g.opaqueSheet,
   };
   if (g.level === 'calm' && !g.isLight) {
-    return Object.freeze({ ...p, ...darkSurfaces, cta: g.ctaFill, ctaText: g.ctaInk });
+    return Object.freeze({ ...p, ...darkSurfaces, cta: g.ctaFill, ctaText: g.ctaFillInk });
   }
   const accentRoles = {
     accent: g.accent,
@@ -52,7 +52,7 @@ export function adaptV2PaletteToGlass(p: V2Palette, g: GlassTokens): V2Palette {
     progressFill: g.accentGraphic,
     // зачем (владелец 13.10, №35): заливка главной кнопки — ctaFill (= accent, а где пастель слилась бы с фоном — глубже, ≥ 1,8 : 1)
     cta: g.ctaFill,
-    ctaText: g.accentInk,
+    ctaText: g.ctaFillInk,
     accentFill: g.ctaFill,
     accentText: g.accentText,
     link: g.accentText,

@@ -258,7 +258,7 @@ export default function FeedbackRatingCard({
                   style={[
                     styles.liquidSendLabel,
                     {
-                      color: sendDisabled ? glass.mutedText : glass.ctaInk,
+                      color: sendDisabled ? glass.mutedText : glass.ctaFillInk,
                       fontSize: 16 * textScale,
                       lineHeight: 22 * textScale,
                     },
@@ -270,7 +270,7 @@ export default function FeedbackRatingCard({
                 <Ionicons
                   name="send"
                   size={16}
-                  color={sendDisabled ? glass.mutedText : glass.ctaInk}
+                  color={sendDisabled ? glass.mutedText : glass.ctaFillInk}
                 />
               </View>
             </TouchableOpacity>

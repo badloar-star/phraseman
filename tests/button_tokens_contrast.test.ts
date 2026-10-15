@@ -31,8 +31,8 @@ describe('токены кнопок × все темы', () => {
         }
         // (2) подпись и значок ≥ 4,5 к своей поверхности
         if (ratio(t.text!, t.buttonFill!) < 4.5) bad.push(`${at} подпись вторичной ${ratio(t.text!, t.buttonFill!).toFixed(2)} < 4.5`);
-        if (ratio(t.ctaInk!, t.ctaFill!) < 4.5) bad.push(`${at} подпись главной (ctaInk) ${ratio(t.ctaInk!, t.ctaFill!).toFixed(2)} < 4.5`);
-        if (ratio(t.accentInk!, t.ctaFill!) < 4.5) bad.push(`${at} подпись главной (accentInk) ${ratio(t.accentInk!, t.ctaFill!).toFixed(2)} < 4.5`);
+        if (ratio(t.ctaFillInk!, t.ctaFill!) < 4.5) bad.push(`${at} подпись главной (ctaFillInk) ${ratio(t.ctaFillInk!, t.ctaFill!).toFixed(2)} < 4.5`);
+        if (ratio(t.ctaFillInk!, t.ctaFill!) < 4.5) bad.push(`${at} подпись главной (ctaFillInk) ${ratio(t.ctaFillInk!, t.ctaFill!).toFixed(2)} < 4.5`);
         // (4) отключённая: подпись читается (≥ 4,5, находка Макетов 13.10), и она отличима от вторичной
         if (ratio(t.buttonInkDisabled!, t.buttonFillDisabled!) < 4.5) bad.push(`${at} подпись отключённой ${ratio(t.buttonInkDisabled!, t.buttonFillDisabled!).toFixed(2)} < 4.5`);
         // вторичная и основная различимы между собой (закон владельца 13.10: «вторичная/основная» не сливаются)
@@ -45,7 +45,7 @@ describe('токены кнопок × все темы', () => {
         // главная кнопка пейвола (градиент ctaFillGradient): подпись >= 4,5 и не сливается с поверхностями и вторичной
         const [gTop, gBottom] = ctaFillGradient(t as never);
         for (const c of [gTop, gBottom]) {
-          if (ratio(t.accentInk!, c) < 4.5) bad.push(`${at} пейвол: подпись ${ratio(t.accentInk!, c).toFixed(2)} < 4.5 на ${c}`);
+          if (ratio(t.ctaFillInk!, c) < 4.5) bad.push(`${at} пейвол: подпись ${ratio(t.ctaFillInk!, c).toFixed(2)} < 4.5 на ${c}`);
           for (const s of SURFACES) if (ratio(c, t[s]!) < 1.5) bad.push(`${at} пейвол: ${c} → ${s} ${ratio(c, t[s]!).toFixed(2)} < 1.5`);
         }
         if (ratio(gBottom, t.buttonFill!) < 1.3) bad.push(`${at} пейвол: основная ≈ вторичная ${ratio(gBottom, t.buttonFill!).toFixed(2)} < 1.3`);

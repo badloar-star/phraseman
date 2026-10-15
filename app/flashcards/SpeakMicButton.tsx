@@ -152,7 +152,7 @@ function SpeakMicButtonBase({
             btnStyle,
           ]}
         >
-          <Ionicons name={speechNa ? 'mic-off-outline' : 'mic'} size={28} color={disabled ? g.secondary : g.ctaInk} />
+          <Ionicons name={speechNa ? 'mic-off-outline' : 'mic'} size={28} color={disabled ? g.secondary : g.ctaFillInk} />
         </Reanimated.View>
       </Pressable>
       {!speechNa ? <MicAllowanceBadge testID={`${testID}-allowance`} /> : null}

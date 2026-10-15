@@ -162,7 +162,7 @@ describe('окно «Встречайте PhraseMan 2.0» · форма по р�
     expect(sheet.indexOf('legacyBonusConvertTitle(lang)')).toBeGreaterThan(sheet.indexOf('{hasContent ? ('));
     expect(sheet).not.toMatch(/convertSub|legacyBonusConvertSub/);
     expect(sheet).toContain('backgroundColor: glass.ctaFill');
-    expect(sheet).toContain('color: glass.ctaInk');
+    expect(sheet).toContain('color: glass.ctaFillInk');
   });
 
   it('ничего не начислено — плашка пересчёта скрыта, остаются заголовок и «Понятно»', () => {

@@ -170,7 +170,7 @@ export default function LingmanVideoWatchScreen() {
             onPress={toggleSave}
             style={[styles.topButton, { backgroundColor: savedVideo ? g.ctaFill : g.buttonFill }]}
           >
-            <Ionicons name={savedVideo ? 'bookmark' : 'bookmark-outline'} size={20} color={savedVideo ? g.ctaInk : g.text} /* зачем (Ревизор 15.10, «кнопки не сливаются»): значок на заливке ctaFill — ctaInk, не accentInk (пара ctaFill/ctaInk держит контраст во всех темах) */ />
+            <Ionicons name={savedVideo ? 'bookmark' : 'bookmark-outline'} size={20} color={savedVideo ? g.ctaFillInk : g.text} /* зачем (Ревизор 15.10, «кнопки не сливаются»): значок на заливке ctaFill — ctaInk, не accentInk (пара ctaFill/ctaInk держит контраст во всех темах) */ />
           </Pressable>
         </View>
         <View style={styles.player}>

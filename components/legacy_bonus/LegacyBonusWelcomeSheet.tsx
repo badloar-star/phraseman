@@ -98,7 +98,7 @@ function Content({ lang, coinRank, result, requestDismiss }: Readonly<{ lang: La
         // зачем (координатор 15.10, правило владельца 13.10 «кнопки не сливаются»): заливка главной кнопки — ctaFill темы (accent/cta на светлых градиентных темах сливались со шторкой)
         style={[s.cta, { backgroundColor: glass.ctaFill }]}
       >
-        <Text style={[s.ctaText, { color: glass.ctaInk }]}>{legacyBonusCta(lang)}</Text>
+        <Text style={[s.ctaText, { color: glass.ctaFillInk }]}>{legacyBonusCta(lang)}</Text>
       </DuoPressable>
     </>
   );

@@ -63,8 +63,8 @@ export const VisibilitySegment = memo(function VisibilitySegment({ g, label, val
       onPress={() => onChange(next)}
       // зачем (Макеты cards-066, №35): выбранный сегмент «Только я / Для всех» — заливка главной кнопки темы (ctaFill/ctaInk, в «Спокойно» светлая как в образце), а не приглушённый accent
       style={[styles.seg, on && { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) }, disabled && styles.segDisabled]}>
-      <Ionicons name={icon} size={16} color={on ? g.ctaInk : g.secondary} />
-      <Text style={[styles.segText, { color: on ? g.ctaInk : g.secondary }]}>{text}</Text>
+      <Ionicons name={icon} size={16} color={on ? g.ctaFillInk : g.secondary} />
+      <Text style={[styles.segText, { color: on ? g.ctaFillInk : g.secondary }]}>{text}</Text>
     </Pressable>
   );
   return (

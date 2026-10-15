@@ -860,7 +860,7 @@ export default function DialogVerdictScreen({
                   backgroundColor: glass.ctaFill,
                 }}
               >
-                <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.bodyLg }}>
+                <Text style={{ color: glass.ctaFillInk, fontWeight: '700', fontSize: f.bodyLg }}>
                   {triLang(lang, {
                     ru: 'Открыть Plus',
                     uk: 'Відкрити Plus',
@@ -887,7 +887,7 @@ export default function DialogVerdictScreen({
                   backgroundColor: glass.ctaFill,
                 }}
               >
-                <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.bodyLg }}>
+                <Text style={{ color: glass.ctaFillInk, fontWeight: '700', fontSize: f.bodyLg }}>
                   {triLang(lang, {
                     ru: 'Ещё раз',
                     uk: 'Ще раз',

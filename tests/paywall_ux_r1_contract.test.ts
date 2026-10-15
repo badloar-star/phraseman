@@ -23,9 +23,9 @@ describe('R1_PAYWALL_UX: окно Plus', () => {
 });
 
 describe('R1_PAYWALL_UX: экран напоминания о конце пробного', () => {
-  it('крутилка на кнопке — того же цвета, что подпись и заливка (accentInk), а не ctaInk', () => {
+  it('крутилка на кнопке — того же цвета, что подпись на заливке ctaFill (ctaFillInk), а не ctaInk сырого cta', () => {
     const prompt = read('components/paywall/PaywallTrialReminderPrompt.tsx');
-    expect(prompt).toContain('<ActivityIndicator color={g.accentInk} />');
+    expect(prompt).toContain('<ActivityIndicator color={g.ctaFillInk} />');
     expect(prompt).not.toContain('<ActivityIndicator color={g.ctaInk} />');
   });
 });

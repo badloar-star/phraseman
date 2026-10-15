@@ -108,7 +108,7 @@ export const GlassAlertCard = memo(function GlassAlertCard({ title, message, ico
               ]}
             >
               {a.ghost || a.destructive ? null : <ThemeAccentFill glass={glass} radius={22} />}
-              <Text numberOfLines={2} style={[styles.ctaText, { color: a.destructive && !a.ghost ? glass.dangerInk : a.ghost ? glass.text : glass.accentInk }]}>{a.label}</Text>
+              <Text numberOfLines={2} style={[styles.ctaText, { color: a.destructive && !a.ghost ? glass.dangerInk : a.ghost ? glass.text : glass.ctaFillInk }]}>{a.label}</Text>
             </Pressable>
           ))}
         </View>

@@ -29,6 +29,9 @@ jest.mock('../app/config', () => ({ IS_EXPO_GO: false }));
 
 jest.mock('../app/cloud_sync', () => ({
   restoreFromCloud,
+  // FS-READS 15.10: проверка премиума сперва смотрит идущее/недавнее восстановление — в этих тестах их нет
+  peekCloudRestoreInFlight: () => null,
+  lastCloudRestoreCompletedAt: () => 0,
 }));
 
 jest.mock('../app/gift_access_cloud', () => ({

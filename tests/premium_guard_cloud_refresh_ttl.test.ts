@@ -17,7 +17,9 @@ jest.mock('react-native-purchases', () => ({
   default: { getCustomerInfo, getAppUserID: jest.fn(async () => 'premium-ttl-test') },
 }));
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false }));
-jest.mock('../app/cloud_sync', () => ({ restoreFromCloud }));
+const peekCloudRestoreInFlight = jest.fn<Promise<unknown> | null, []>(() => null);
+const lastCloudRestoreCompletedAt = jest.fn<number, []>(() => 0);
+jest.mock('../app/cloud_sync', () => ({ restoreFromCloud, peekCloudRestoreInFlight, lastCloudRestoreCompletedAt }));
 jest.mock('../app/gift_access_cloud', () => ({ readGiftAccessFromCloud: jest.fn(async () => null) }));
 jest.mock('../app/revenuecat_projection_sync', () => ({ syncRevenueCatProjectionForAccount: jest.fn(async () => true) }));
 jest.mock('../app/debug-logger', () => ({
@@ -32,6 +34,8 @@ beforeEach(() => {
   jest.clearAllMocks();
   jest.useRealTimers();
   restoreFromCloud.mockImplementation(async () => false);
+  peekCloudRestoreInFlight.mockImplementation(() => null);
+  lastCloudRestoreCompletedAt.mockImplementation(() => 0);
   Object.keys(asyncStore).forEach((k) => delete asyncStore[k]);
   require('../app/account_generation').beginAccountGeneration('premium-ttl-test');
   (globalThis as any).__DEV__ = false;
@@ -80,6 +84,25 @@ test('неудачный restore повторяется через 2 минут�
   guard.invalidatePremiumCache();
   await guard.getVerifiedPremiumStatus();
   expect(restoreFromCloud).toHaveBeenCalledTimes(2);
+});
+
+// FS-READS 15.10 (журналы Сверки B11v2b/B16r3): на старте шли два полных восстановления — загрузочное и охранное премиума.
+test('идёт загрузочное восстановление — премиум ждёт его, второе не запускает', async () => {
+  const bootRestore = Promise.resolve();
+  peekCloudRestoreInFlight.mockImplementation(() => bootRestore);
+  const guard = require('../app/premium_guard');
+  await expect(guard.getVerifiedPremiumStatus()).resolves.toBe(false);
+  expect(peekCloudRestoreInFlight).toHaveBeenCalled();
+  expect(restoreFromCloud).not.toHaveBeenCalled();
+});
+
+test('удачное восстановление было недавно — премиум облако не перечитывает', async () => {
+  const now = 1_800_000_000_000;
+  jest.spyOn(Date, 'now').mockImplementation(() => now);
+  lastCloudRestoreCompletedAt.mockImplementation(() => now - 2 * MIN);
+  const guard = require('../app/premium_guard');
+  await expect(guard.getVerifiedPremiumStatus()).resolves.toBe(false);
+  expect(restoreFromCloud).not.toHaveBeenCalled();
 });
 
 test('зависший restore не держит проверку дольше потолка 5 с — решение по локальным данным', async () => {

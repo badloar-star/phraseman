@@ -122,3 +122,15 @@ Governance-ID: TG-771014A4ECD6
 - R1-c-2 (Ревизор): окно 8 с отсчитывается от начала текущего ожидания (сброс при смене владельца и при переходе
   «доступ известен → снова неизвестен»); в запасном режиме попытки в памяти, входят в лимит, на диск — только по настоящему
   ответу (Plus — отброс). Тесты голоса 30/30, смежные 37/37, типы 0.
+
+### п.2 RESTORE поздний + п.3 FS-READS дубль восстановления (15.10, 15:23)
+- auth_provider: позднее restoreFromCloud (после потолка 20 с) → restored+текущий → `[SIGNIN] restore_late_applied` +
+  cloud_profile_hydrated; иначе `restore_late_skipped`. Плавных счётчиков на Главной нет вовсе → Дизайну (анимация по kit 650 мс).
+- FS-READS по журналам Сверки (B11v2b, B16r3, первые 30 с): users/{id} ×3 и flashcard_pages ×4 (en,fr,en,fr).
+  Причина — два полных восстановления: загрузочное (_layout, syncMissingDocument=false, ~20 с) и охранное премиума
+  (premium_guard → restoreFromCloud, syncMissingDocument=true) поверх него. [BOOT-RESTORE-STEP] ×2 в 47.037/47.042.
+- Починка: cloud_sync держит идущее восстановление и время последнего удачного; premium_guard присоединяется к идущему
+  (`[PREMIUM-CLOUD] restore joined_in_flight_boot_restore`) или пропускает при удачном < 30 мин (`skipped reason=recent_restore`).
+  Ожидание: −1 users/{id} и −2 flashcard_pages (+ mistake_* и прочие чтения второго прохода) на каждом старте.
+- config ×2 в этих журналах не воспроизвёлся (нет строк config) — держу под наблюдением.
+- Тесты: premium_guard + ttl (+2 новых) 33/33, cloud_restore_* + boot_restore_defer зелёные; late-restore 133/133.

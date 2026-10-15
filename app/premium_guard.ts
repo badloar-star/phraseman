@@ -916,7 +916,18 @@ async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerati
     try {
       const cloudSync = await import('./cloud_sync');
       if (!accountGenerationIsCurrent(generation)) return false;
-      await cloudSync.restoreFromCloud();
+      // зачем (FS-READS 15.10, журналы Сверки): проверка премиума запускала ВТОРОЕ полное восстановление поверх загрузочного —
+      // users/{id} и страницы карточек читались дважды. Идёт восстановление — ждём его; было удачное недавно — не повторяем.
+      const inFlight = cloudSync.peekCloudRestoreInFlight();
+      const sinceRestoreMs = Date.now() - cloudSync.lastCloudRestoreCompletedAt();
+      if (inFlight) {
+        console.log('[PREMIUM-CLOUD] restore joined_in_flight_boot_restore — второе восстановление не запускаем'); // guard-ok: ветка решения
+        await inFlight;
+      } else if (cloudSync.lastCloudRestoreCompletedAt() > 0 && sinceRestoreMs < CLOUD_ACCESS_REFRESH_TTL_MS) {
+        console.log(`[PREMIUM-CLOUD] restore skipped reason=recent_restore ageMs=${sinceRestoreMs}`); // guard-ok: ветка решения
+      } else {
+        await cloudSync.restoreFromCloud();
+      }
       console.log(`[PREMIUM-CLOUD] restore done ms=${Date.now() - startedAt}`); // guard-ok: итог сети
       return accountGenerationIsCurrent(generation);
     } catch (error) {

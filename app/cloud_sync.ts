@@ -4898,7 +4898,38 @@ async function restoreAndMigrateFromCloudResultTraced(
 // зачем (координатор 11.10, «сперва логи»): [BOOT-RESTORE] показал restoreMs=71551 у ПУСТОГО гостя, а шагов внутри не
 // было видно. Одна строка на вызов: время каждой стадии, последняя пройденная стадия (по ней виден ранний выход),
 // status и failureReason. Логика восстановления не меняется — только замер.
+// зачем (координатор 15.10, FS-READS, журналы Сверки B11v2b/B16r3): на старте шли ДВА полных восстановления подряд —
+// отложенное загрузочное (_layout, ~20 с) и проверка премиума (premium_guard) поверх него: users/{id} и страницы карточек
+// читались дважды. Держим «идущее восстановление» и время последнего удачного, чтобы премиум присоединялся, а не дублировал.
+let cloudRestoreInFlight: Promise<CloudRestoreAttempt> | null = null;
+let lastCloudRestoreCompletedAtMs = 0;
+
+/** Идущее сейчас восстановление (любой вход) или null. */
+export function peekCloudRestoreInFlight(): Promise<unknown> | null {
+  return cloudRestoreInFlight;
+}
+
+/** Когда последнее восстановление закончилось с прочитанным облаком (restored/not_found); 0 — не было. */
+export function lastCloudRestoreCompletedAt(): number {
+  return lastCloudRestoreCompletedAtMs;
+}
+
 async function restoreAndMigrateFromCloudResult(
+  syncMissingDocument: boolean,
+  options: CloudRestoreOptions = {},
+): Promise<CloudRestoreAttempt> {
+  const run = restoreAndMigrateFromCloudResultMeasured(syncMissingDocument, options);
+  cloudRestoreInFlight = run;
+  try {
+    const attempt = await run;
+    if (attempt.status !== 'failed') lastCloudRestoreCompletedAtMs = Date.now();
+    return attempt;
+  } finally {
+    if (cloudRestoreInFlight === run) cloudRestoreInFlight = null;
+  }
+}
+
+async function restoreAndMigrateFromCloudResultMeasured(
   syncMissingDocument: boolean,
   options: CloudRestoreOptions = {},
 ): Promise<CloudRestoreAttempt> {

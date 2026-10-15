@@ -112,6 +112,19 @@ describe('guest clean classifier', () => {
     expect(classifyGuestCleanKey('premium_expiry', '1792068000000')).toBe('progress');
   });
 
+  // зачем (R15d): прогон Сверки ff21fefa4 (cloud_created_at_synced_v1), точные ключи журнала выбора, флаги миграции, сторис.
+  it('R15d: cloud sync marks, exact selection journal, flag-only migration markers, story events', () => {
+    expect(classifyGuestCleanKey('cloud_created_at_synced_v1', '1')).toBe('service');
+    expect(classifyGuestCleanKey('cloud_profile_synced_v2', '1')).toBe('service');
+    expect(classifyGuestCleanKey('cloud_profile_synced_v2', JSON.stringify({ coins: 5 }))).toBe('progress');
+    expect(classifyGuestCleanKey('customization_selection_head_v1:stable-A:1', '{}')).toBe('default');
+    expect(classifyGuestCleanKey('customization_selection_purchase_v1:stable-A:1', JSON.stringify(['op-1']))).toBe('progress');
+    expect(classifyGuestCleanKey('xp_migration_v2', '1500')).toBe('progress');
+    expect(classifyGuestCleanKey('xp_migration_v2', 'migrated')).toBe('service');
+    expect(classifyGuestCleanKey('feature_migration_v1', '1792068000000')).toBe('service');
+    expect(classifyGuestCleanKey('story_events_v1:stable-A', JSON.stringify({ seen: ['s1'] }))).toBe('service');
+  });
+
   it('treats every unknown key and broken value as progress', () => {
     expect(classifyGuestCleanKey('lesson_progress_v2::fr::lesson_1', '{"done":true}')).toBe('progress');
     expect(classifyGuestCleanKey('client_shard_phone_state_outbox_v1:abc', '[{"e":1}]')).toBe('progress');

@@ -9,6 +9,13 @@
  * Правило безопасности: при СОМНЕНИИ — progress. Лишнее окно лучше молча потерянного прогресса.
  */
 
+import {
+  CUSTOMIZATION_SELECTION_HEAD_PREFIX,
+  CUSTOMIZATION_SELECTION_OPERATION_PREFIX,
+  CUSTOMIZATION_SELECTION_OUTBOX_PREFIX,
+  CUSTOMIZATION_SELECTION_QUARANTINE_PREFIX,
+} from '../constants/customization_storage_keys';
+
 export type GuestCleanKind = 'default' | 'service' | 'progress';
 
 /** Значения, которые свежая установка пишет сама, без действий человека. */
@@ -38,6 +45,9 @@ const SERVICE_KEYS: ReadonlySet<string> = new Set([
   // зачем (прогон Сверки r15_1015): снимок последнего синка — копия уже отправленных значений (аватар, рамка, серия);
   // настоящий прогресс проверяется по своим ключам, сам снимок ничего не несёт.
   'cloud_last_sync_snapshot_v1',
+  // зачем (R15d, прогон Сверки ff21fefa4): метка «createdAt уже записан в облако» ('1') — служебная. Инвентаризация 15.10:
+  // ключей хранилища с префиксом cloud_ ровно три — cloud_migration_v1, cloud_last_sync_snapshot_v1 и этот.
+  'cloud_created_at_synced_v1',
   'friends_push_v1',
 ]);
 
@@ -152,8 +162,20 @@ const LEARNING_V2_INDEX_MARKER_VALUE_PREFIX = 'learning-v2-required-session-spoo
  * зачем (координатор 15.10, R15c): белый список по ФОРМЕ ключа — маркеры миграции появляются по языкам и версиям, точными
  * именами их не догнать. Объект/массив или длинное значение — уже не флаг: прогресс.
  */
+const MIGRATION_FLAG_VALUE = /^(1|true|done|migrated|v\d+|\d{10,13})$/i;
+
+/** Журнал ВЫБОРА оформления — ровно 4 семейства (constants/customization_storage_keys.ts), без широкого префикса. */
+const CUSTOMIZATION_SELECTION_JOURNAL_PREFIXES: readonly string[] = [
+  CUSTOMIZATION_SELECTION_HEAD_PREFIX,
+  CUSTOMIZATION_SELECTION_OPERATION_PREFIX,
+  CUSTOMIZATION_SELECTION_OUTBOX_PREFIX,
+  CUSTOMIZATION_SELECTION_QUARANTINE_PREFIX,
+];
+
 function isMigrationMarker(key: string, value: string): boolean {
-  return /_migration(_v\d+)?$/.test(key) && value.length <= 40 && !/^[[{]/.test(value);
+  // зачем (R15d, ревью Opus/Ревизор): значение — только флаг или версия (наблюдаемые: '1', 'migrated'); число вроде '1500'
+  // под имя маркера больше не пройдёт как служебное.
+  return /_migration(_v\d+)?$/.test(key) && MIGRATION_FLAG_VALUE.test(value);
 }
 
 export function classifyGuestCleanKey(key: string, raw: string | null): GuestCleanKind {
@@ -169,10 +191,15 @@ export function classifyGuestCleanKey(key: string, raw: string | null): GuestCle
   if (isMigrationMarker(key, value)) return 'service';
   // Снимки последнего синка (любой версии) — копия уже отправленных значений, прогресс проверяется по своим ключам.
   if (key.startsWith('cloud_last_sync_')) return 'service';
-  // Журнал ВЫБОРА оформления целиком (голова, операции, очередь отправки, карантин) — только выбор аватара/рамки/ауры:
+  // Отметка «X уже синхронизирован с облаком» (форма cloud_<что>_synced_vN) — служебная, только со значением-флагом '1'.
+  if (/^cloud_[a-z_]+_synced_v\d+$/.test(key) && value === '1') return 'service';
+  // зачем (R15d, Ревизор 15.10, R21 9a2f3e03f): журнал показанных сторис (story_events_v1:<stableId>) — служебный след показа.
+  if (key.startsWith('story_events_v1:')) return 'service';
+  // Журнал ВЫБОРА оформления (голова, операции, очередь отправки, карантин) — только выбор аватара/рамки/ауры:
   // по слову координатора выбор гостя — не прогресс (проверка Сверки r15b_1015: очередь отправки с одной операцией выбора).
   // Владение покупками — отдельные ключи (custom_avatar_owned_v1, avatar_aura_owned_v1 …) — остаётся прогрессом.
-  if (key.startsWith('customization_selection_')) return 'default';
+  // зачем (R15d, Ревизор): точные 4 семейства, а не префикс — будущий ключ с тем же началом (покупка) не станет «выбором».
+  if (CUSTOMIZATION_SELECTION_JOURNAL_PREFIXES.some((prefix) => key.startsWith(prefix))) return 'default';
   if (key === 'active_days_v1') return isSingleActiveDay(value) ? 'default' : 'progress';
   if (key === 'achievement_foundation_progress_v2') return isEmptyFoundationProgress(value) ? 'default' : 'progress';
   // зачем (прогон Сверки guest_clean_relapse_1516, 15:38): у свежего гостя эти четыре ключа — пустые заготовки, а не прогресс.

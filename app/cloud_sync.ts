@@ -854,8 +854,11 @@ const ECONOMY_DAILY_STATS_TAIL_PREFIX = 'economy_daily_stats_tail_v1';
 // зачем (координатор 13.10, 1804b52ab): дисковая копия визиток друзей (profile_card_public.ts, до 64 записей) принадлежит аккаунту — после смены аккаунта визитки друзей прошлого не должны остаться.
 // Ключ без stableId (одна копия на устройство), поэтому он совпадает с префиксом целиком; память модуля сбрасывается отдельным шагом ниже (clearPublicProfileCardCache).
 const PROFILE_CARD_PUBLIC_CACHE_PREFIX = 'profile_card_public_v1';
+// зачем (R15d, Ревизор 15.10, R21 9a2f3e03f): журнал показанных сторис `story_events_v1:<stableId>` пишется у всех и не стирался
+// ни при выходе, ни при удалении — политика (§3, §20) обещает стереть локальные данные. Ключ = modules/story_events KEY_PREFIX.
+const STORY_EVENTS_PREFIX = 'story_events_v1';
 const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [
-  ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX, PROFILE_CARD_PUBLIC_CACHE_PREFIX,
+  ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, STORY_EVENTS_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX, PROFILE_CARD_PUBLIC_CACHE_PREFIX,
 ];
 // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): ключи-утечки (список и смысл — app/account_switch_leak_keys.ts) стираются шагом
 // «только стирание»; реэкспорт — для сторожей и журнала.

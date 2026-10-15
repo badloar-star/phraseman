@@ -42,6 +42,16 @@ const OWNER_KEY_DECISIONS: Record<string, { decision: 'wiped' | 'kept'; how: str
 };
 
 describe('account wipe covers every owner-keyed local key', () => {
+  // зачем (R15d, Ревизор 15.10): ключ сторис живёт в modules/, сторож ниже смотрит только app/** — проверяем явно.
+  it('wipes story events (story_events_v1:<stableId>) on sign-out, switch and delete', () => {
+    const sync = read('app/cloud_sync.ts');
+    const store = read('modules/story_events/story_events_store.ts');
+    expect(store).toContain("const KEY_PREFIX = 'story_events_v1';");
+    expect(sync).toContain("const STORY_EVENTS_PREFIX = 'story_events_v1';");
+    const wipeList = sync.slice(sync.indexOf('const WIPE_ONLY_ACCOUNT_KEY_PREFIXES'), sync.indexOf('const WIPE_ONLY_ACCOUNT_EXACT_KEYS'));
+    expect(wipeList).toContain('STORY_EVENTS_PREFIX');
+  });
+
   it('wipes the app message keys and the mistake-restore marker, keeps the report-reward claim queue', async () => {
     jest.resetModules();
     jest.doMock('@react-native-async-storage/async-storage', () => ({ __esModule: true, default: {} }));

@@ -35,6 +35,9 @@ const FRESH_GUEST: Rows = {
   // зачем (R15c, проверка Сверки r15b_1015): очередь отправки выбора аватара с одной операцией и выбор ауры — выбор гостя.
   'customization_selection_outbox_v1:stable-A:1': JSON.stringify(['op-12345678901234567890']),
   user_avatar_aura: 'aura_sun',
+  // зачем (R15d, прогон Сверки ff21fefa4): метка «createdAt в облаке» после фоновой синхронизации и журнал сторис.
+  cloud_created_at_synced_v1: '1',
+  'story_events_v1:stable-A': JSON.stringify({ seen: ['s1'] }),
   // зачем: следы полного онбординга с выбором аватара (прогон Сверки r15_1015).
   'lesson_progress_v2::fr::legacy_free_lesson_migration_v1': 'migrated',
   cloud_last_sync_snapshot_v1: JSON.stringify({ user_avatar: '1', user_avatar_frame: 'plain', user_avatar_aura: '', streak_count: '1' }),

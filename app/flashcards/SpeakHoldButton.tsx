@@ -24,6 +24,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Reanimated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { useSpeakingAttemptGate } from '../../hooks/useSpeakingAttemptGate';
 import PlusBadge from '../../components/PlusBadge';
+import VoiceAllowanceBadge, { type VoiceAllowanceColors } from '../../components/VoiceAllowanceBadge';
 import SpeakingQuotaDots from '../../components/SpeakingQuotaDots';
 import type { RevenueDailyQuotaResult } from '../revenue_daily_quota';
 import { useTheme } from '../../components/ThemeContext';
@@ -56,6 +57,14 @@ const HALO_SIZE = SPEAK_HOLD_BUTTON_SIZE + 22;
  *  постоянна и ряд не разъезжается ни в одном состоянии. */
 export const SPEAK_HOLD_LABEL_HEIGHT = 31;
 
+/** зачем (решение владельца D194, 15.10, макет learning-v2-voice-limit.html): остаток дневных голосовых попыток на кнопке (курс V2). Не передан — кнопка ведёт себя как раньше (Карточки). */
+export type SpeakHoldAllowance = Readonly<{
+  /** Сколько попыток осталось; 0 — бейдж PLUS, микрофон приглушён, тап зовёт onSpentPress вместо записи. */
+  remaining: number;
+  colors: VoiceAllowanceColors;
+  onSpentPress: () => void;
+}>;
+
 export type SpeakHoldButtonProps = {
   accent: string;
   /** Идёт запись — кнопка «горит» ярче и растёт ореол. */
@@ -71,6 +80,7 @@ export type SpeakHoldButtonProps = {
   onAccessibilityActivate?: () => void;
   /** Подпись под кнопкой (фиксированной высоты — без прыжков вёрстки). */
   label: string;
+  allowance?: SpeakHoldAllowance;
   testID?: string;
 };
 
@@ -84,6 +94,7 @@ export default function SpeakHoldButton({
   onHoldEnd,
   onAccessibilityActivate,
   label,
+  allowance,
   testID = 'fc-speak-hold',
 }: SpeakHoldButtonProps) {
   const { theme: t, themeMode } = useTheme();
@@ -98,6 +109,7 @@ export default function SpeakHoldButton({
   // точек остатка — попытку здесь потратить нельзя, значит и показывать нечего.
   const speechNa = useSpeechUnavailableOnDevice();
   const disabled = disabledProp || speechNa;
+  const spent = !!allowance && allowance.remaining <= 0 && !speechNa;
   const speakingAllowed = sessionAuthorized || !speakingGate.locked;
   const microphoneLabel = triLang(lang, {
     ru: 'Микрофон. Ответить устно', uk: 'Мікрофон. Відповісти вголос', en: 'Microphone. Answer aloud',
@@ -146,13 +158,19 @@ export default function SpeakHoldButton({
       holdStartedRef.current = false;
       return;
     }
+    if (allowance && allowance.remaining <= 0) {
+      console.log('[VOICE-LIMIT] SpeakHoldButton: press while spent -> paywall', JSON.stringify({ testID })); // guard-ok: ранний выход пишет причину
+      holdStartedRef.current = false;
+      allowance.onSpentPress();
+      return;
+    }
     if (!sessionAuthorized && !speakingGate.tryStartAttempt()) {
       holdStartedRef.current = false;
       return;
     }
     holdStartedRef.current = true;
     onHoldStart();
-  }, [sessionAuthorized, speakingGate, press, reduceMotion, onHoldStart, speechNa, testID]);
+  }, [allowance, sessionAuthorized, speakingGate, press, reduceMotion, onHoldStart, speechNa, testID]);
 
   const onPressOut = useCallback(() => {
     press.value = reduceMotion ? withTiming(0, { duration: 80 }) : withSpring(0, PRESS_SPRING);
@@ -174,6 +192,7 @@ export default function SpeakHoldButton({
           accessibilityLabel={speechNa ? speechUnavailableOnDeviceText(lang) : microphoneLabel}
           accessibilityHint={onAccessibilityActivate ? microphoneAssistiveHint : microphoneHint}
           accessibilityState={{ disabled, selected: listening }}
+          accessibilityValue={allowance && !speechNa ? { text: String(Math.max(0, allowance.remaining)) } : undefined}
           accessibilityActions={onAccessibilityActivate ? [{ name: 'activate' }] : undefined}
           onAccessibilityAction={(event) => {
             if (!disabled && event.nativeEvent.actionName === 'activate') {
@@ -191,17 +210,22 @@ export default function SpeakHoldButton({
             style={[
               styles.btn,
               {
-                backgroundColor: disabled ? t.bgSurface : accent,
+                backgroundColor: disabled ? t.bgSurface : spent && allowance ? allowance.colors.spentFill : accent,
                 opacity: disabled ? 0.55 : 1,
                 shadowColor: accent,
               },
               btnStyle,
             ]}
           >
-            <Ionicons name={speechNa ? 'mic-off-outline' : listening ? 'mic' : 'mic-outline'} size={34} color={disabled ? t.textMuted : '#07110A'} />{/* theme-exempt: тёмный значок на кнопке цвета-акцента — цвет акцента задаёт вызывающий код */}
+            <Ionicons name={speechNa ? 'mic-off-outline' : listening ? 'mic' : 'mic-outline'} size={34} color={disabled ? t.textMuted : spent && allowance ? allowance.colors.spentInk : '#07110A'} />{/* theme-exempt: тёмный значок на кнопке цвета-акцента — цвет акцента задаёт вызывающий код */}
           </Reanimated.View>
         </Pressable>
-        {!speakingAllowed && !speechNa ? (
+        {allowance && !speechNa ? (
+          <View pointerEvents="none" style={styles.allowanceAnchor}>
+            <VoiceAllowanceBadge remaining={allowance.remaining} colors={allowance.colors} reduceMotion={reduceMotion} testID={`${testID}-allowance`} />
+          </View>
+        ) : null}
+        {!allowance && !speakingAllowed && !speechNa ? (
           <View pointerEvents="none" style={styles.badge}>
             <PlusBadge themeMode={themeMode} size="xs" />
           </View>
@@ -256,6 +280,8 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   badge: { position: 'absolute', top: 2, right: -6 },
+  // якорь бейджа остатка: ровно поверх круга 76 внутри ореола — бейдж позиционируется от угла круга (top -6, right -10), как в макете
+  allowanceAnchor: { position: 'absolute', top: (HALO_SIZE - SPEAK_HOLD_BUTTON_SIZE) / 2, left: (HALO_SIZE - SPEAK_HOLD_BUTTON_SIZE) / 2, width: SPEAK_HOLD_BUTTON_SIZE, height: SPEAK_HOLD_BUTTON_SIZE },
   dots: { marginTop: 4 },
   label: {
     marginTop: 4,

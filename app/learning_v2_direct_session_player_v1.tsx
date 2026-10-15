@@ -5,6 +5,13 @@ import * as Crypto from "expo-crypto";
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import { Image } from "expo-image";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { usePremium } from "../components/PremiumContext";
+import {
+  VOICE_LIMIT_PAYWALL_CONTEXT,
+  recordVoiceDailyAttempt,
+  useVoiceDailyAllowance,
+  voiceDailyAllowanceGate,
+} from "./voice_daily_allowance";
 import React, {
   useCallback,
   useEffect,
@@ -1946,6 +1953,15 @@ export default function LearningV2DirectSessionPlayerV1() {
     useState<LearningV2VoiceUiStatus>("idle");
   const [voiceHoldActive, setVoiceHoldActive] = useState(false);
   const [voicePanelEpoch, setVoicePanelEpoch] = useState(0);
+  // зачем (решение владельца D194, 15.10, макет learning-v2-voice-limit.html): остаток дневных голосовых попыток (общий счётчик с голосом Диалогов, D165) на микрофоне всех голосовых заданий курса; гейт — до записи, списание — в момент старта записи
+  const { accessResolved, hasPremiumAccess } = usePremium();
+  const voiceAllowance = useVoiceDailyAllowance();
+  const voiceLastStatusRef = useRef<LearningV2VoiceUiStatus>("idle");
+  const voiceAttemptSeqRef = useRef(0);
+  const openVoicePlus = useCallback(() => {
+    console.log("[VOICE-LIMIT] course_v2: лимит исчерпан -> пейвол", VOICE_LIMIT_PAYWALL_CONTEXT); // guard-ok: ветка решения
+    router.push({ pathname: "/premium_modal", params: { context: VOICE_LIMIT_PAYWALL_CONTEXT, source: "learning_v2_course_voice" } } as never);
+  }, [router]);
   const voiceTargetText = practice
     ? material?.factoryPracticeSemantics?.[practice.interactionId]
         ?.canonicalTarget ?? auxiliary?.save.targetText ?? ""
@@ -1998,6 +2014,11 @@ export default function LearningV2DirectSessionPlayerV1() {
       !showVoiceFooter ||
       voiceControlDisabled
     ) return;
+    // гейт после проверок доступности кнопки: в выключенном состоянии тап не должен открывать пейвол
+    if (!voiceDailyAllowanceGate("course_v2", { accessResolved, hasPremiumAccess })) {
+      openVoicePlus();
+      return;
+    }
     stopPreviewAudio();
     managedAudio.stop();
     setAudioRequest(null);
@@ -2006,7 +2027,10 @@ export default function LearningV2DirectSessionPlayerV1() {
     void hapticTap();
     setVoiceHoldActive(true);
   }, [
+    accessResolved,
+    hasPremiumAccess,
     managedAudio,
+    openVoicePlus,
     sessionAttempts.state.phase,
     showVoiceFooter,
     stopPreviewAudio,
@@ -3347,6 +3371,12 @@ export default function LearningV2DirectSessionPlayerV1() {
                 holdActive={voiceHoldActive}
                 onStatusChange={(status) => {
                   const nextStatus = learningV2VoiceUiStatusFromSpeakingPanel(status);
+                  // зачем (решение владельца D194, 15.10, макет learning-v2-voice-limit.html): попытка списывается в момент НАЧАЛА записи (первый 'listening'), не на тап: отказ микрофона и отмена до старта не списывают
+                  if (nextStatus === "listening" && voiceLastStatusRef.current !== "listening") {
+                    voiceAttemptSeqRef.current += 1;
+                    recordVoiceDailyAttempt("course_v2", `${practice.interactionId}:${voicePanelEpoch}:${voiceAttemptSeqRef.current}`, { accessResolved, hasPremiumAccess });
+                  }
+                  voiceLastStatusRef.current = nextStatus;
                   setModeVoiceStatus(nextStatus);
                   if (nextStatus !== "requesting" && nextStatus !== "listening") {
                     // The panel can end a controlled hold without a physical
@@ -3412,7 +3442,25 @@ export default function LearningV2DirectSessionPlayerV1() {
                 onHoldStart={startVoiceHold}
                 onHoldEnd={stopVoiceCapture}
                 onAccessibilityActivate={toggleVoiceFromAccessibility}
-                label={footerVoiceLabel}
+                label={voiceAllowance.kind === "limited" && voiceAllowance.exhausted
+                  ? triLang(lang, {
+                      ru: "Голос на сегодня закончился", uk: "Голос на сьогодні закінчився", en: "No voice attempts left today", es: "Hoy no quedan intentos de voz",
+                      "pt-BR": "As tentativas de voz de hoje acabaram", vi: "Hôm nay đã hết lượt nói", id: "Percobaan suara hari ini habis", tr: "Bugünkü ses hakkın bitti", pl: "Na dziś koniec prób głosowych",
+                    })
+                  : footerVoiceLabel}
+                allowance={
+                  voiceAllowance.kind === "limited" && voiceAllowance.remaining !== null
+                    ? {
+                        remaining: voiceAllowance.remaining,
+                        onSpentPress: openVoicePlus,
+                        colors: {
+                          fill: g.ctaInk, ink: g.cta, ring: g.bg,
+                          plusFill: g.cta, plusInk: g.ctaInk,
+                          spentFill: g.opaqueControl, spentInk: g.secondary,
+                        },
+                      }
+                    : undefined
+                }
                 testID="learning-v2-inline-hold-to-talk"
               />
             </View>

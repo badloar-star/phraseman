@@ -656,9 +656,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       ? { ...catalog.channel, displayName: LINGMAN_CHANNEL_DISPLAY_NAME }
       : catalog.channel
     // зачем (ревью R2): канал нового языка грузится — шапка уже его (по манифесту), лента в это время скелетон.
-    // зачем (Макеты c1_video2, 15.10: чип «Английский» ~2 с на входе): шапка ожидаемого канала показывала сырое имя из манифеста, а каталог потом подменял его на «Professor Lingman» — то же имя сразу
+    // зачем (Макеты c1_video2/c1_video3, 15.10: чип «Английский» ~2,5 с на входе): шапка ожидаемого канала — заглушка по манифесту (youtubeChannelId пуст), её имя — языковая метка «Английский»,
+    // а настоящее имя («Professor Lingman») приходит с каталогом. Пока ждём каталог, имя НЕ показываем (аватар остаётся): одна смена «пусто → настоящее имя», без промежуточного чужого текста.
     : pendingChannel
-      ? (pendingChannel.youtubeChannelId === LINGMAN_CHANNEL_ID ? { ...pendingChannel, displayName: LINGMAN_CHANNEL_DISPLAY_NAME } : pendingChannel)
+      ? { ...pendingChannel, displayName: '' }
       : legacyChannelSnapshot();
   const hero = catalog?.activeEvent && (catalog.activeEvent.state === 'upcoming' || catalog.activeEvent.state === 'live') ? catalog.activeEvent : null;
   // зачем (chain21 Сверки, video-004: `#youtube-premiere-live` не найден; правило «сперва логи»): «герой» премьеры решается значением каталога — журнал при смене значений, чтобы видеть, дошёл ли каталог и в каком состоянии событие.

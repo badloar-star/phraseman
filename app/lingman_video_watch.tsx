@@ -207,7 +207,7 @@ export default function LingmanVideoWatchScreen() {
     trainNavMark('player paused (not unmounted) before navigate');
     // push, а не navigate: navigate к уже существующему хабу ниже в стеке ВЫБРАСЫВАЛ экран ролика («Назад» вело в список «Видео»); push оставляет ролик в стеке
     setTimeout(() => {
-      router.push({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0) } } as never);
+      router.push({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0), returnTo: 'video_watch' } } as never);
       trainNavMark('router.push called');
     }, TRAIN_PAUSE_HEAD_START_MS);
   }, [pack?.cardCount, router, videoId]);

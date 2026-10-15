@@ -107,8 +107,8 @@ describe('плеер ролика: пауза мгновенно, переход
     expect(read('components/youtube/YoutubeInlinePlayer.tsx')).toContain('registerYoutubePauseHandler(videoId');
     expect(read('app/youtube_player_seek_bus.ts')).toContain('export function requestYoutubePause');
   });
-  it('чип канала: ожидаемый канал Lingman сразу под именем «Professor Lingman»', () => {
-    expect(read('app/lingman_videos.tsx')).toContain('pendingChannel.youtubeChannelId === LINGMAN_CHANNEL_ID ? { ...pendingChannel, displayName: LINGMAN_CHANNEL_DISPLAY_NAME }');
+  it('чип канала: пока ждём каталог, имя ожидаемого канала не показывается (без промежуточного «Английский»)', () => {
+    expect(read('app/lingman_videos.tsx')).toContain("? { ...pendingChannel, displayName: '' }");
   });
 });
 
@@ -130,6 +130,15 @@ describe('R59 «Видео» (координатор 15.10)', () => {
     const watch = read('app/lingman_video_watch.tsx');
     for (const mark of ['watch first render', 'watch mount', 'phrases resolved', 'pack search done', 'watch onLayout']) expect(watch).toContain(mark);
     expect(read('components/youtube/YoutubeInlinePlayer.tsx')).toContain("videoOpenMark('player mount')");
+  });
+});
+
+describe('Макеты c1_video3: «Назад» с хаба возвращает на ролик', () => {
+  it('push несёт returnTo, хаб при нём делает штатный шаг назад по стеку', () => {
+    expect(read('app/lingman_video_watch.tsx')).toContain("returnTo: 'video_watch'");
+    const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
+    expect(hub).toContain("hubParams.returnTo === 'video_watch' && router.canGoBack()");
+    expect(hub).toContain('router.back();');
   });
 });
 

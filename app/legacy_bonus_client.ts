@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 
 const LOG = '[LEGACY-BONUS]';
+const WHATSNEW_LOG = '[WHATSNEW-GATE]';
 const DONE_PREFIX = 'legacy_bonus_done_v1:';
 const RETRY_AFTER_MS = 12 * 60 * 60_000;
 /** Потолок ожидания ответа для окна «Встречайте 2.0» (координатор 15.10): позже — окно не показываем. */
@@ -82,7 +83,25 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
   try {
     const stored = await AsyncStorage.getItem(doneKey);
     if (stored) {
-      const parsed = JSON.parse(stored) as { status?: string; retryAfterMs?: number };
+      const parsed = JSON.parse(stored) as { status?: string; total?: number; retryAfterMs?: number; welcomePending?: boolean; pending?: unknown };
+      // зачем (Ревизор P2/P11, решение координатора 15.10): прошлый запуск получил ответ позже потолка — монеты начислены, а окно «Встречайте 2.0» не показали (не всплывать посреди урока). Метка несёт
+      // результат для окна: показываем его СЕЙЧАС, один раз (флаг снимаем до показа). Сервер повторно не зовём — начисление уже сделано.
+      if (parsed.welcomePending === true) {
+        const pending = parseResponse(parsed.pending);
+        await AsyncStorage.setItem(doneKey, JSON.stringify({ status: parsed.status, total: parsed.total ?? pending?.coins.total ?? 0 })); // снимаем флаг ДО показа: окно не durable, один раз
+        if (!pending) {
+          console.warn(`${WHATSNEW_LOG} отложенное окно: в метке нет результата (parse=null) — окна не будет source=${source}`);
+          return;
+        }
+        if (!isCurrentAccountGeneration(token)) {
+          console.log(`${WHATSNEW_LOG} отложенное окно: аккаунт сменился — не показываем source=${source}`);
+          return;
+        }
+        console.log(`${WHATSNEW_LOG} отложенное окно из прошлого запуска: показываем один раз status=${pending.status} total=${pending.coins.total} source=${source}`);
+        welcome = { status: pending.status, upgraded: pending.upgraded, from: pending.from, coins: pending.coins, cappedBy: pending.cappedBy, starsBalance: pending.starsBalance };
+        emit();
+        return;
+      }
       if (parsed.status !== 'disabled') {
         console.log(`${LOG} skip reason=done status=${parsed.status} source=${source}`);
         return;
@@ -113,8 +132,14 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
       console.log(`${LOG} drop reason=account_changed status=${result.status}`);
       return;
     }
+    // зачем (Ревизор P2/P11, 15.10): ответ позже потолка и окно положено (начислено или ноль у обновившегося) — результат остаётся в метке, окно покажем при следующем запуске/входе на Главную (один раз)
+    const windowOwed = timedOut && (result.status === 'converted' || (result.status === 'nothing' && result.upgraded));
+    const pendingWindow = windowOwed
+      ? { welcomePending: true, pending: { status: result.status, upgraded: result.upgraded, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance, starsSeq: result.starsSeq } }
+      : {};
+    if (windowOwed) console.log(`${WHATSNEW_LOG} ответ позже потолка (${Date.now() - startedAt} мс, потолок ${WELCOME_MAX_WAIT_MS}) — окно отложено на следующий запуск status=${result.status} total=${result.coins.total}`);
     await AsyncStorage.setItem(doneKey, JSON.stringify(
-      result.status === 'disabled' ? { status: 'disabled', retryAfterMs: Date.now() + RETRY_AFTER_MS } : { status: result.status, total: result.coins.total },
+      result.status === 'disabled' ? { status: 'disabled', retryAfterMs: Date.now() + RETRY_AFTER_MS } : { status: result.status, total: result.coins.total, ...pendingWindow },
     ));
     // зачем (владелец 15.10): окно «Встречайте PhraseMan 2.0» — при начислении ИЛИ при нуле у обновившихся с 1.x (без пересчёта, только
     // заголовок); свежая установка — без окна. Один раз: окно рождается только из этого ответа, а метка выше больше не пустит к серверу.

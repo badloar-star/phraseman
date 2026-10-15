@@ -83,4 +83,46 @@ describe('legacy_bonus_client', () => {
     await act(async () => { dismissLegacyBonusWelcome(); });
     expect(hook.result.current.kind).toBe('none');
   });
+
+  // зачем (Ревизор P2/P11, решение координатора 15.10): ответ позже потолка 8 с не должен терять окно навсегда — метка несёт результат, окно показывается при следующем запуске ровно один раз
+  it('ответ позже потолка → в этом запуске окна нет, метка с welcomePending; следующий запуск показывает окно один раз без нового вызова сервера', async () => {
+    jest.useFakeTimers();
+    try {
+      let reply: (value: unknown) => void = () => undefined;
+      mockCall.mockReturnValueOnce(new Promise((resolve) => { reply = resolve; }));
+      const hook = await renderHook(() => useLegacyBonusWelcome());
+      const run = runLegacyBonusConvertOnce('slow');
+      await jest.advanceTimersByTimeAsync(8_500);
+      reply({ data: converted });
+      await act(async () => { await run; });
+      expect(hook.result.current.kind).toBe('none');
+      const stored = JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')));
+      expect(stored).toMatchObject({ status: 'converted', total: 2036, welcomePending: true, pending: { coins: { total: 2036 } } });
+
+      resetLegacyBonusClientForTests();
+      const hook2 = await renderHook(() => useLegacyBonusWelcome());
+      await act(async () => { await runLegacyBonusConvertOnce('next_launch'); });
+      expect(hook2.result.current).toMatchObject({ kind: 'show', result: { coins: { total: 2036 } } });
+      expect(mockCall).toHaveBeenCalledTimes(1);
+      expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toEqual({ status: 'converted', total: 2036 });
+
+      await act(async () => { dismissLegacyBonusWelcome(); });
+      resetLegacyBonusClientForTests();
+      const hook3 = await renderHook(() => useLegacyBonusWelcome());
+      await act(async () => { await runLegacyBonusConvertOnce('third_launch'); });
+      expect(hook3.result.current.kind).toBe('none');
+      expect(mockCall).toHaveBeenCalledTimes(1);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('метка с welcomePending без результата или чужой аккаунт → окна нет, флаг снят', async () => {
+    await AsyncStorage.setItem('legacy_bonus_done_v1:owner-legacy', JSON.stringify({ status: 'converted', total: 10, welcomePending: true, pending: { broken: true } }));
+    const hook = await renderHook(() => useLegacyBonusWelcome());
+    await act(async () => { await runLegacyBonusConvertOnce('broken_pending'); });
+    expect(hook.result.current.kind).toBe('none');
+    expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toEqual({ status: 'converted', total: 10 });
+    expect(mockCall).not.toHaveBeenCalled();
+  });
 });

@@ -987,12 +987,12 @@ export default function SettingsMain() {
   };
   const fontSizeLabel = L('Размер шрифта', 'Розмір шрифту', 'Font size', 'Tamaño de letra', 'Tamanho da fonte', 'Cỡ chữ', 'Ukuran font', 'Yazı boyutu', 'Rozmiar czcionki');
   // зачем (Сверка 10:45: после крестика Настройки рисуются 7 раз за ~1 с, JS занят ~650 мс; «сперва логи»): что именно изменилось перед каждой перерисовкой (фокус-тик, владелец вкладки, премиум, снимок профиля, уведомления, вход, реферальный слот…)
-  paywallCloseRenderCause('SettingsMain', {
+  paywallCloseRenderCause('SettingsMain', () => ({
     focusTick, runtimeOwnerId, settingsRuntimeActive, notifEnabled, notifHour, lang, liquidGlassThemeId, fontSize, isPremium, isVip, hasPremiumAccess, isIntroFullAccess,
     myCoinRank, linkedAuth, authReady, userName, premiumPlan, vipPlan, vipUntilMs, settingsReferralStateKey, settingsReferralDrain, codeEntryMode,
     uiSounds: soundSettings.uiSounds, voiceOut: soundSettings.voiceOut, snapshotProfile: appSnapshot.profile, snapshotSettings: appSnapshot.settings,
     tabContentBottomPad, insetTop: insets.top, insetBottom: insets.bottom,
-  });
+  }));
   const tapHapticsLabel = L('Тактильный отклик', 'Тактильний відгук', 'Haptic feedback', 'Respuesta háptica', 'Resposta tátil', 'Phản hồi rung', 'Umpan balik haptik', 'Dokunsal geri bildirim', 'Reakcja haptyczna');
 
   return (

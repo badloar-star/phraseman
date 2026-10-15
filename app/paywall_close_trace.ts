@@ -1,6 +1,8 @@
 // paywall_close_trace.ts — таймлайн закрытия пейвола: от handleClose до второго кадра Настроек.
 // зачем (координатор 15.10, Сверка tabs_tap_r7d: крестик пейвола из Настроек 532-668 мс, цель <= 250; сперва логи): по строкам [PAYWALL-CLOSE-TIMING] видно, какой этап съедает время (аналитика/уведомление до dismiss, сам dismiss, размонтирование,
 // перерисовка Настроек), а «пульс» JS-потока показывает, занят ли он тяжёлой работой в момент закрытия. Одна строка на этап; между закрытиями ничего не пишется.
+import { IS_STORE_RELEASE } from './config';
+
 const SAFETY_MS = 3000;
 let t0 = 0;
 let last = 0;
@@ -58,7 +60,11 @@ export function paywallCloseRender(name: string): void {
 
 // зачем (Сверка 10:45: после крестика Настройки рисуются 7 раз за ~1 с, JS занят ~650 мс; «сперва логи»): для каждой перерисовки — какие из наблюдаемых значений изменились с прошлой (значение сравнивается по Object.is). «нет» = рисуют родитель/контекст без изменения этих значений.
 const prevCause: Record<string, Record<string, unknown>> = {};
-export function paywallCloseRenderCause(name: string, values: Readonly<Record<string, unknown>>): void {
+// зачем (Ревизор P9, 15.10): копия ~30 полей на КАЖДЫЙ рендер Настроек делалась и в релизе, хотя журнал там не нужен. Зонд — только dev и не стор-релиз; значения передаются функцией и в релизе не собираются.
+const TRACE_BUILD = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+export function paywallCloseRenderCause(name: string, getValues: Readonly<Record<string, unknown>> | (() => Readonly<Record<string, unknown>>)): void {
+  if (!TRACE_BUILD) return;
+  const values = typeof getValues === 'function' ? getValues() : getValues;
   const prev = prevCause[name];
   prevCause[name] = { ...values }; // база для следующей отрисовки обновляется всегда — первая строка журнала уже сравнивается с реальной предыдущей
   if (!active) return;

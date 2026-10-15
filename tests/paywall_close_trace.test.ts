@@ -74,7 +74,7 @@ describe('точки журнала в путях закрытия', () => {
     expect(settings).toContain("paywallCloseRender('SettingsMain');");
     expect(settings).toContain("paywallCloseMark('settings:focus');");
     expect(settings).toContain("paywallCloseMark('settings:frame1');");
-    expect(settings).toContain("paywallCloseRenderCause('SettingsMain', {");
+    expect(settings).toContain("paywallCloseRenderCause('SettingsMain', () => ({");
     expect(settings).toContain('paywallCloseProfile(id, phase, actualDuration);');
   });
 
@@ -83,6 +83,8 @@ describe('точки журнала в путях закрытия', () => {
     const lines: string[] = [];
     const logSpy = jest.spyOn(console, 'log').mockImplementation((...args: unknown[]) => { lines.push(String(args[0])); });
     jest.resetModules();
+    // зачем (Ревизор P9, 15.10): зонд причин работает только в dev-сборке — в тесте включаем флаг явно
+    (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = true;
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const trace = require('../app/paywall_close_trace') as typeof import('../app/paywall_close_trace');
     return { lines, trace, restore: () => logSpy.mockRestore() };
@@ -113,5 +115,17 @@ describe('точки журнала в путях закрытия', () => {
       trace.paywallCloseProfile('settings_body', 'update', 41.6);
       expect(lines.some((l) => /profile id=settings_body phase=update actualMs=42/.test(l))).toBe(true);
     } finally { restore(); }
+  });
+});
+
+describe('paywallCloseRenderCause: зонд только в dev (Ревизор P9, 15.10)', () => {
+  it('значения передаются функцией; в релизе и стор-сборке ничего не собирается и не копируется', () => {
+    const fs = require('node:fs') as typeof import('node:fs');
+    const path = require('node:path') as typeof import('node:path');
+    const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'paywall_close_trace.ts'), 'utf8').replace(/\r\n/g, '\n');
+    expect(src).toContain("const TRACE_BUILD = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;");
+    expect(src).toMatch(/if \(!TRACE_BUILD\) return;\n\s*const values = typeof getValues === 'function' \? getValues\(\) : getValues;/);
+    const settings = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'settings.tsx'), 'utf8').replace(/\r\n/g, '\n');
+    expect(settings).toContain("paywallCloseRenderCause('SettingsMain', () => ({");
   });
 });

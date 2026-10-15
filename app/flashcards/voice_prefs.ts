@@ -54,6 +54,8 @@ export function peekEnVoiceId(): string | null {
   return cachedVoiceIdEn;
 }
 
+let setVoiceSeq = 0;
+
 /** Актуальные prefs с диска (кэш обновляется попутно). */
 export async function getVoicePrefs(): Promise<FcVoicePrefs> {
   try {
@@ -73,6 +75,9 @@ export async function getVoicePrefs(): Promise<FcVoicePrefs> {
  * Теперь возвращает true, если диск принял запись; false — экран откатывает выбор (`[VOICE-PICK]`).
  */
 export async function setEnVoiceId(voiceId: string | null): Promise<boolean> {
+  // зачем (Ревизор P1, 15.10): при сбое записи кэш (его читает озвучка) тоже возвращается к прежнему — иначе экран показывает старый голос, а речь идёт новым до перезапуска; номер записи защищает более новый выбор
+  const previousCached = cachedVoiceIdEn;
+  const mySeq = ++setVoiceSeq;
   cachedVoiceIdEn = voiceId && voiceId.trim().length > 0 ? voiceId : null;
   hydrated = true;
   try {
@@ -91,7 +96,9 @@ export async function setEnVoiceId(voiceId: string | null): Promise<boolean> {
     );
     return true;
   } catch (e) {
-    console.warn(`[VOICE-PICK] запись выбора голоса на диск не удалась id=${cachedVoiceIdEn ?? 'авто'} — ${e instanceof Error ? e.message : String(e)}`); // guard-ok: причина отказа записи
+    const rolledBack = setVoiceSeq === mySeq;
+    if (rolledBack) cachedVoiceIdEn = previousCached;
+    console.warn(`[VOICE-PICK] запись выбора голоса на диск не удалась id=${voiceId ?? 'авто'} — кэш ${rolledBack ? `возвращён на ${previousCached ?? 'авто'}` : 'не трогаю: уже есть более новый выбор'} — ${e instanceof Error ? e.message : String(e)}`); // guard-ok: причина отказа записи
     DebugLogger.error('voice_prefs:p', e instanceof Error ? e : new Error(String(e)), 'warning');
     return false;
   }

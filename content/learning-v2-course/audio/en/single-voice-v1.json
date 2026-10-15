@@ -45010,6 +45010,309 @@
           "byteSize": 45312
         }
       ]
+    },
+    "l03/s37/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "car",
+          "file": "31fbda4fafc55997b2b8143a67a27f049a6948f7b5fd6660dcdbb6ef3dedd0e7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31fbda4fafc55997b2b8143a67a27f049a6948f7b5fd6660dcdbb6ef3dedd0e7.mp3",
+          "contentHash": "38ba6831041c915ebc02a963f41ba93ab5ca44a435f7004cd82cd9f6b3dd68bc",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l03/s37/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "That car is outside.",
+          "file": "8620f0853cb7edcf7237a14b0f39acb6c1cbdc6f4df4919be31081c9fb46e283.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8620f0853cb7edcf7237a14b0f39acb6c1cbdc6f4df4919be31081c9fb46e283.mp3",
+          "contentHash": "0d8958efc43edb21793c882fffe95c29b55b3a72a144b5f934bfec78b0d59018",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l03/s37/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He is lonely.",
+          "file": "a0dc5f6def79d899bf7ebb783f622bcdf7fb5073df13e5e5181269f86f19bb5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a0dc5f6def79d899bf7ebb783f622bcdf7fb5073df13e5e5181269f86f19bb5d.mp3",
+          "contentHash": "6d899258da669d3ca0903d13e8b49f9f886fc08d45494faa17147c9e970ffd55",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l03/s37/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The tables are here.",
+          "file": "bf5220818758905e0b03452d11d1621f649c1e7f5a2e4ed1e68134e74ac5b1c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf5220818758905e0b03452d11d1621f649c1e7f5a2e4ed1e68134e74ac5b1c5.mp3",
+          "contentHash": "1c4dfa6361b6168a894e9057679ab4c47c1345c66b26aaab573d3f63400aa6f4",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l03/s37/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "car",
+          "file": "31fbda4fafc55997b2b8143a67a27f049a6948f7b5fd6660dcdbb6ef3dedd0e7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31fbda4fafc55997b2b8143a67a27f049a6948f7b5fd6660dcdbb6ef3dedd0e7.mp3",
+          "contentHash": "38ba6831041c915ebc02a963f41ba93ab5ca44a435f7004cd82cd9f6b3dd68bc",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l03/s37/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "car",
+          "file": "363526118fe191b4becf2ce0e0ef915df60c449165d4abae171b441c2a47d00c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/363526118fe191b4becf2ce0e0ef915df60c449165d4abae171b441c2a47d00c.mp3",
+          "contentHash": "76b47dd95c1fee3404528e2ffd02eb583a6b85042a075d5cfdc1182efa0262d1",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l03/s37/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "car",
+          "file": "363526118fe191b4becf2ce0e0ef915df60c449165d4abae171b441c2a47d00c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/363526118fe191b4becf2ce0e0ef915df60c449165d4abae171b441c2a47d00c.mp3",
+          "contentHash": "76b47dd95c1fee3404528e2ffd02eb583a6b85042a075d5cfdc1182efa0262d1",
+          "byteSize": 20352
+        },
+        {
+          "text": "lonely",
+          "file": "462131659a6d7033f43b54358faba0ca549d680b699b30ffcd69cae85a3c9950.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/462131659a6d7033f43b54358faba0ca549d680b699b30ffcd69cae85a3c9950.mp3",
+          "contentHash": "431af56886c55d4aa36f102b6ff170acddc0c90b9a75450cc0533499212b4160",
+          "byteSize": 32256
+        },
+        {
+          "text": "official",
+          "file": "b67ed4b12bffb1747106016ff25e96655d1251e700567d946cd9e7580d53bc33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b67ed4b12bffb1747106016ff25e96655d1251e700567d946cd9e7580d53bc33.mp3",
+          "contentHash": "bde9a5eb1f03fe7094368b9e931a9d6f2d48000681affdfd670d278c232df4db",
+          "byteSize": 19584
+        },
+        {
+          "text": "tables",
+          "file": "10b55156953ddc4c239b00e73794377eba08103c4ed4824f4064ba5618b0aaaf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/10b55156953ddc4c239b00e73794377eba08103c4ed4824f4064ba5618b0aaaf.mp3",
+          "contentHash": "2cb2331836844676545d3e20cb12ed180b973efb67658a7de0171ebba0df5b29",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l03/s37/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is a car.",
+          "file": "5fe35149221f78e8acd79377a41f8e3b6f9964800cc853fda298a2670ba37d85.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fe35149221f78e8acd79377a41f8e3b6f9964800cc853fda298a2670ba37d85.mp3",
+          "contentHash": "30c17c4c25f31f7d728c76e1eed42ba987a6570ec22c696420ea643277a1808c",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l03/s37/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That car is outside.",
+          "file": "d469dcc559a82e3e3cd07c848283d7465a90d86cb6052c47f0e983032c0608d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d469dcc559a82e3e3cd07c848283d7465a90d86cb6052c47f0e983032c0608d0.mp3",
+          "contentHash": "dcf013d4ee1f24cfd598a026d800a75987fe37f85e313ba95dd60a64e630b8ef",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l03/s37/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He's lonely.",
+          "file": "de026bdb95c0eff14b276868c92a59ada7220e0f5f3fc8844e1b475bdcc18296.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de026bdb95c0eff14b276868c92a59ada7220e0f5f3fc8844e1b475bdcc18296.mp3",
+          "contentHash": "f2ed62d8f0ced75ec32bb311c611bfcdd09cd5e80a42c316cfc564f7ddf1eee9",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l03/s37/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a car.",
+          "file": "77d0500b0e14a2185a8fe87d8265e52b6a6799f024c730076dc16d491def9a13.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77d0500b0e14a2185a8fe87d8265e52b6a6799f024c730076dc16d491def9a13.mp3",
+          "contentHash": "a36f86a88436f69eea2baaedfd0d3288355b811bfd11126736da33f983db5311",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l03/s37/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It is official.",
+          "file": "56e16625d73b8cf19f91f4b9124a35a9eb1cf81b05fb8ee0fa9f07e72530641a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56e16625d73b8cf19f91f4b9124a35a9eb1cf81b05fb8ee0fa9f07e72530641a.mp3",
+          "contentHash": "8578a1039fdf9b08a43e8413fc6faddea7af208e6e29ce8a86dbba5f8f87e2cc",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l03/s37/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "car",
+          "file": "166896c1dddf9b1c53d5d6dc56e38d2f3b46669d56e359afe7a3d2598976ae09.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/166896c1dddf9b1c53d5d6dc56e38d2f3b46669d56e359afe7a3d2598976ae09.mp3",
+          "contentHash": "094ea35a13cfa888180601193eb116df261d7dfdc81b8e9b3898c32b4538fbe4",
+          "byteSize": 14976
+        },
+        {
+          "text": "cars",
+          "file": "626007c77f9a552d3c94cb95d286f3d786f2bf8a349c038809f52b1b285090f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/626007c77f9a552d3c94cb95d286f3d786f2bf8a349c038809f52b1b285090f3.mp3",
+          "contentHash": "3bc018dc08b5ddca43596685ce96bf889154035276f10d4c4bf5608bcedbfe93",
+          "byteSize": 17280
+        },
+        {
+          "text": "this",
+          "file": "b70ab20770e1c296560785df8681c0b49618279218ae373bd9fa02ca0d143905.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b70ab20770e1c296560785df8681c0b49618279218ae373bd9fa02ca0d143905.mp3",
+          "contentHash": "8121e944caa07249666232ddade0a5a43c695c034494174946ee696c643cc962",
+          "byteSize": 14976
+        },
+        {
+          "text": "that",
+          "file": "0766b5ab7ec44e8fc8a1d4efb981084c7eb691d9dae0b8de18eabfb294b38807.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0766b5ab7ec44e8fc8a1d4efb981084c7eb691d9dae0b8de18eabfb294b38807.mp3",
+          "contentHash": "86f6a3346a78f3ffb985d8c1a00040ddcd0bab57da3bfdcc216234592dae7aa2",
+          "byteSize": 14208
+        }
+      ]
+    },
+    "l03/s37/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Those tables are outside.",
+          "file": "3cde1a5f185f9713195e3ba1fb61bd2e727b2663baeb7b9a700ee8d620805dbf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3cde1a5f185f9713195e3ba1fb61bd2e727b2663baeb7b9a700ee8d620805dbf.mp3",
+          "contentHash": "6fed45679f894cf6602a718f63a5f558088f1f365b73461975b3d9479cd0e5d7",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l03/s37/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This car is here.",
+          "file": "cc0038fd0b542fc90ee7ecbb3f238d8492a7fad844350b5a3c0bcb807717b347.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc0038fd0b542fc90ee7ecbb3f238d8492a7fad844350b5a3c0bcb807717b347.mp3",
+          "contentHash": "c443807985215fcc27e62c8a932907c7e6ab01e58dd37608545802ee272e5142",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l03/s37/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It's official.",
+          "file": "12b4142eadb877e238b6c26051cd4acde5a49a6cfb73e971101e5b384ee88638.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/12b4142eadb877e238b6c26051cd4acde5a49a6cfb73e971101e5b384ee88638.mp3",
+          "contentHash": "7a3c4f5b3aae6f348dab86c0739caadc9e6509d04ed83823b3175399473bb9cc",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l03/s37/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "That car is outside.",
+          "file": "8620f0853cb7edcf7237a14b0f39acb6c1cbdc6f4df4919be31081c9fb46e283.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8620f0853cb7edcf7237a14b0f39acb6c1cbdc6f4df4919be31081c9fb46e283.mp3",
+          "contentHash": "0d8958efc43edb21793c882fffe95c29b55b3a72a144b5f934bfec78b0d59018",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l03/s37/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He is lonely.",
+          "file": "cfee4f609202296d62ef2dffe4a705b0e97203fb7c94c46d81bb51b806561d1f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cfee4f609202296d62ef2dffe4a705b0e97203fb7c94c46d81bb51b806561d1f.mp3",
+          "contentHash": "0edf69afa1c170bd2917eee2d0b15e707afbefaec459dabdfaf2f018aa6d4dd5",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l03/s37/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "car",
+          "file": "363526118fe191b4becf2ce0e0ef915df60c449165d4abae171b441c2a47d00c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/363526118fe191b4becf2ce0e0ef915df60c449165d4abae171b441c2a47d00c.mp3",
+          "contentHash": "76b47dd95c1fee3404528e2ffd02eb583a6b85042a075d5cfdc1182efa0262d1",
+          "byteSize": 20352
+        },
+        {
+          "text": "lonely",
+          "file": "462131659a6d7033f43b54358faba0ca549d680b699b30ffcd69cae85a3c9950.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/462131659a6d7033f43b54358faba0ca549d680b699b30ffcd69cae85a3c9950.mp3",
+          "contentHash": "431af56886c55d4aa36f102b6ff170acddc0c90b9a75450cc0533499212b4160",
+          "byteSize": 32256
+        },
+        {
+          "text": "official",
+          "file": "b67ed4b12bffb1747106016ff25e96655d1251e700567d946cd9e7580d53bc33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b67ed4b12bffb1747106016ff25e96655d1251e700567d946cd9e7580d53bc33.mp3",
+          "contentHash": "bde9a5eb1f03fe7094368b9e931a9d6f2d48000681affdfd670d278c232df4db",
+          "byteSize": 19584
+        },
+        {
+          "text": "tables",
+          "file": "10b55156953ddc4c239b00e73794377eba08103c4ed4824f4064ba5618b0aaaf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/10b55156953ddc4c239b00e73794377eba08103c4ed4824f4064ba5618b0aaaf.mp3",
+          "contentHash": "2cb2331836844676545d3e20cb12ed180b973efb67658a7de0171ebba0df5b29",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l03/s37/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That is a car.",
+          "file": "071f7fedee030bf90ef0f16f5602f1346bde297419a9d1f5fda769e925b59bd7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/071f7fedee030bf90ef0f16f5602f1346bde297419a9d1f5fda769e925b59bd7.mp3",
+          "contentHash": "355407c9fcbdcb433f32cfe96b7eee5916daa05a9d698e674eedf463f898f0f0",
+          "byteSize": 37248
+        }
+      ]
     }
   },
   "settings": {

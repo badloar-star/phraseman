@@ -132,3 +132,20 @@ describe('R59 «Видео» (координатор 15.10)', () => {
     expect(read('components/youtube/YoutubeInlinePlayer.tsx')).toContain("videoOpenMark('player mount')");
   });
 });
+
+describe('Макеты c1_video3: фразы порциями, пауза успевает дойти до плеера', () => {
+  it('YoutubeVideoPhrases рисует первые строки в первом кадре, остальное порциями после перехода', () => {
+    const src = read('components/youtube/YoutubeVideoPhrases.tsx');
+    expect(src).toContain('PHRASE_ROWS_FIRST_FRAME = 20');
+    expect(src).toContain('phrases.slice(0, renderLimit).map(');
+    expect(src).toContain('InteractionManager.runAfterInteractions(() => {');
+    expect(src).toContain('activeIndex >= renderLimit');
+  });
+  it('push на хаб — после короткой паузы (команда паузы уходит в WebView раньше тяжёлого перехода)', () => {
+    const src = read('app/lingman_video_watch.tsx');
+    expect(src).toContain('TRAIN_PAUSE_HEAD_START_MS = 80');
+    const body = src.slice(src.indexOf('const trainVideo = useCallback'), src.indexOf('useFocusEffect(useCallback(() => {'));
+    expect(body.indexOf('requestYoutubePause(videoId)')).toBeLessThan(body.indexOf('setTimeout(() => {'));
+    expect(body.indexOf('setTimeout(() => {')).toBeLessThan(body.indexOf('router.push('));
+  });
+});

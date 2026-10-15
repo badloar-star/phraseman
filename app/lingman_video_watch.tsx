@@ -201,11 +201,15 @@ export default function LingmanVideoWatchScreen() {
     // зачем (Макеты c1_video2, 15.10): прежний порядок «выгрузить WebView → navigate» держал переход ~2,5 с, и ролик это время играл. Теперь: пауза мгновенно (звук глохнет сразу),
     // позиция запомнена, navigate СРАЗУ; WebView выгружается после перехода (useFocusEffect ниже). «Назад» возвращает ролик на ту же секунду.
     const paused = requestYoutubePause(videoId);
+    // зачем (Макеты c1_video3: ролик играл ещё ~2 с после «paused»): команда паузы уходит в нативный слой, только когда JS-поток отдаёт управление, а push сразу занимал его на секунды —
+    // даём паузе дойти (короткая пауза перед push), потом переход.
     console.log(`[VIDEO-PACK-TRAIN] player paused videoId=${videoId} resumeSec=${savedPosition} pauseSent=${String(paused)}`); // guard-ok: позиция запомнена, пауза отправлена
     trainNavMark('player paused (not unmounted) before navigate');
     // push, а не navigate: navigate к уже существующему хабу ниже в стеке ВЫБРАСЫВАЛ экран ролика («Назад» вело в список «Видео»); push оставляет ролик в стеке
-    router.push({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0) } } as never);
-    trainNavMark('router.push called');
+    setTimeout(() => {
+      router.push({ pathname: '/flashcards', params: { train: '1', deck: deckId, cnt: String(pack?.cardCount ?? 0) } } as never);
+      trainNavMark('router.push called');
+    }, TRAIN_PAUSE_HEAD_START_MS);
   }, [pack?.cardCount, router, videoId]);
 
   // зачем ([NAV-PAINT-TRACE], 15.10): когда экран ролика теряет фокус и когда размонтируется — отдельные отметки цепочки «Тренировать → первый кадр хаба»
@@ -284,6 +288,9 @@ export default function LingmanVideoWatchScreen() {
  * Полоса прогресса под плеером (`.bar` макета: 5, радиус 3). Позиция приходит раз в секунду из канала плеера, пока ролик играет;
  * длительность — из каталога (нет её — полосы нет, ничего не выдумываем).
  */
+/** Время, за которое команда паузы успевает уйти в WebView до тяжёлого перехода на хаб (Макеты c1_video3). */
+const TRAIN_PAUSE_HEAD_START_MS = 80;
+
 function WatchProgress({ videoId, durationSec, trackColor, fillColor }: { videoId: string; durationSec?: number; trackColor: string; fillColor: string }) {
   const [positionSec, setPositionSec] = useState(0);
   useEffect(() => {

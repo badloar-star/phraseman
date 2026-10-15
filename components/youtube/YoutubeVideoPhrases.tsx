@@ -1,6 +1,11 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { InteractionManager, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { videoOpenMark } from '../../app/video_open_trace';
+
+/** Сколько строк фраз рисуется в первом кадре и порциями после него (Макеты c1_video3). */
+export const PHRASE_ROWS_FIRST_FRAME = 20;
+export const PHRASE_ROWS_CHUNK = 40;
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import { useTheme } from '../ThemeContext';
@@ -94,6 +99,10 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   // счётчик — единственный способ перезапустить загрузку, не уходя с экрана.
   const [retryTick, setRetryTick] = useState(0);
   const isExpanded = expanded ?? localExpanded;
+  // зачем (Макеты c1_video3, 15.10: задержка открытия ролика пропорциональна числу фраз из памяти — 500 фраз рисовались в ПЕРВОМ коммите, 3–4,5 с до плеера): первый кадр — первые
+  // PHRASE_ROWS_FIRST_FRAME строк, остальное дорисовывается порциями после перехода (idle), не блокируя плеер и первый кадр.
+  const [renderLimit, setRenderLimit] = useState(PHRASE_ROWS_FIRST_FRAME);
+  useEffect(() => { setRenderLimit(PHRASE_ROWS_FIRST_FRAME); }, [videoId]);
   // зачем (владелец 2026-09-25): подсвечиваем фразу, которая звучит сейчас.
   const [activeIndex, setActiveIndex] = useState(-1);
   const rootTestID = testID ?? 'video-phrases';
@@ -158,6 +167,22 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     if (!starts.some((value) => typeof value === 'number')) return undefined;
     return subscribeYoutubePosition(videoId, (positionSec) => setActiveIndex(activePhraseIndex(starts, positionSec)));
   }, [isExpanded, phrases, videoId]);
+
+  useEffect(() => {
+    if (!isExpanded || phrases.length <= renderLimit) return undefined;
+    const handle = InteractionManager.runAfterInteractions(() => {
+      setRenderLimit((current) => {
+        const next = Math.min(phrases.length, current + PHRASE_ROWS_CHUNK);
+        videoOpenMark(`phrases rendered ${next}/${phrases.length}`);
+        return next;
+      });
+    });
+    return () => handle.cancel();
+  }, [isExpanded, phrases.length, renderLimit]);
+  // подсвеченная строка всегда должна быть среди нарисованных (проигрывание дошло дальше первых строк)
+  useEffect(() => {
+    if (isExpanded && activeIndex >= renderLimit) setRenderLimit(Math.min(phrases.length, activeIndex + PHRASE_ROWS_CHUNK));
+  }, [activeIndex, isExpanded, phrases.length, renderLimit]);
 
   const onPhrasePress = useCallback((phrase: VideoPhrase, index: number) => {
     const start = phrase.startSec;
@@ -263,7 +288,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
       <Text style={[styles.count, { color: glass.mutedText }]}>{phrases.length}</Text>
       <Ionicons name={isExpanded ? 'chevron-up' : 'chevron-down'} size={16} color={glass.secondary} />
     </Pressable>
-    {isExpanded && phrases.map((phrase, index) => <View key={phrase.id} testID={`video-phrase-${phrase.ordinal}`} style={[styles.row, { backgroundColor: index === activeIndex ? `${glass.accent}29` : 'transparent' }]}>
+    {isExpanded && phrases.slice(0, renderLimit).map((phrase, index) => <View key={phrase.id} testID={`video-phrase-${phrase.ordinal}`} style={[styles.row, { backgroundColor: index === activeIndex ? `${glass.accent}29` : 'transparent' }]}>
       <Pressable accessibilityRole="button" accessibilityLabel={`${copy.phrase}: ${phrase.phrase}`} onPress={() => onPhrasePress(phrase, index)} onLongPress={() => setSelected(phrase)} accessibilityState={{ selected: index === activeIndex }} style={({ pressed }) => [styles.rowCopyPressable, { opacity: pressed ? 0.78 : 1 }]}>
         {typeof phrase.startSec === 'number' ? <Text style={[styles.time, { color: index === activeIndex ? glass.accentText : glass.secondary }]}>{formatTimecode(phrase.startSec)}</Text> : null}
         <View style={styles.rowCopy}><Text style={[styles.phrase, { color: index === activeIndex ? glass.accentText : glass.text }]}>{phrase.phrase}</Text><Text style={[styles.translation, { color: glass.secondary }]}>{phrase.translation}</Text></View>

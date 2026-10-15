@@ -1,0 +1,3 @@
+НЕТ settings-plus-row
+НЕТ paywall-close
+НЕТ tab-home

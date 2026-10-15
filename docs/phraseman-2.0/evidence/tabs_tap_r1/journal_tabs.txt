@@ -1,0 +1,16 @@
+10-15 02:06:05.882 I/SVERKA  (22329): === TABS start 02:06:04 ===
+10-15 02:06:06.106 I/SVERKA  (22332): === TABS switch 1 tab-lessons 02:06:07 ===
+10-15 02:06:15.362 I/SVERKA  (22372): === TABS switch 1 tab-settings 02:06:16 ===
+10-15 02:06:23.264 I/SVERKA  (22404): === TABS switch 1 tab-home 02:06:24 ===
+10-15 02:06:31.384 I/SVERKA  (22431): === TABS switch 2 tab-lessons 02:06:32 ===
+10-15 02:06:39.616 I/SVERKA  (22466): === TABS switch 2 tab-settings 02:06:40 ===
+10-15 02:06:47.371 I/SVERKA  (22493): === TABS switch 2 tab-home 02:06:48 ===
+10-15 02:07:06.827 I/SVERKA  (22551): === TABS paywall 1 open-tap 02:07:05 ===
+10-15 02:07:16.708 I/SVERKA  (22580): === TABS paywall 1 close-tap 02:07:17 ===
+10-15 02:07:31.790 I/SVERKA  (22622): === TABS paywall 1 tab-tap 02:07:32 ===
+10-15 02:07:51.508 I/SVERKA  (22688): === TABS paywall 2 open-tap 02:07:50 ===
+10-15 02:08:05.576 I/SVERKA  (22718): === TABS paywall 2 close-tap 02:08:06 ===
+10-15 02:08:21.858 I/SVERKA  (22757): === TABS paywall 2 tab-tap 02:08:22 ===
+10-15 02:08:48.393 I/SVERKA  (22815): === TABS paywall 3 open-tap 02:08:47 ===
+10-15 02:08:58.169 I/SVERKA  (22849): === TABS paywall 3 close-tap 02:08:59 ===
+10-15 02:09:09.242 I/SVERKA  (22888): === TABS paywall 3 tab-tap 02:09:10 ===

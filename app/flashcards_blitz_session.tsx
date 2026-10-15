@@ -1348,7 +1348,14 @@ export default function FlashcardsBlitzSession() {
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             <View style={styles.headerRow}>
-              <PracticeBackButton glass={blitzGlass} color={t.textPrimary} />
+              {/* зачем (бета-тест 15.10, А2): без onPress стрелка была неактивной — из зависшей загрузки на iOS не выйти */}
+              <PracticeBackButton
+                glass={blitzGlass}
+                color={t.textPrimary}
+                onPress={leave}
+                testID="fc-blitz-back"
+                accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+              />
               <PracticeHeaderTitle
                 glass={blitzGlass}
                 title={triLang(lang, {

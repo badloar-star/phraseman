@@ -101,6 +101,9 @@ function PrepositionDrillScreen() {
   const [answeredIds, setAnsweredIds] = useState<string[]>([]);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
   const [reviewMode, setReviewMode] = useState(false);
+  // зачем (аудит R58 #9, координатор 15.10): снимок id для «Повторить ошибки». Раньше список строился из живого wrongIds —
+  // верный ответ убирал вопрос из списка, индекс +1 перепрыгивал следующий, и часть ошибок не показывалась вовсе.
+  const [reviewIds, setReviewIds] = useState<readonly string[]>([]);
   const [progressReadyForKey, setProgressReadyForKey] = useState<string | null>(null);
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const [voiceOut, setVoiceOut] = useState(true);
@@ -119,9 +122,9 @@ function PrepositionDrillScreen() {
   const activeItems = useMemo(() => {
     if (!pack) return [];
     if (!reviewMode) return pack.items;
-    const wrongSet = new Set(wrongIds);
-    return pack.items.filter(x => wrongSet.has(x.id));
-  }, [pack, reviewMode, wrongIds]);
+    const reviewSet = new Set(reviewIds);
+    return pack.items.filter(x => reviewSet.has(x.id));
+  }, [pack, reviewMode, reviewIds]);
   const item = activeItems[itemIdx];
   const total = activeItems.length;
   const done = total > 0 && itemIdx >= total;
@@ -378,6 +381,8 @@ function PrepositionDrillScreen() {
   const restartWrong = () => {
     logRepeatWithoutCoins('wrong');
     stopAudio();
+    console.log('[PREP-DRILL] повтор ошибок: снимок вопросов', JSON.stringify({ lessonId, ids: wrongIds.length })); // guard-ok: одна строка на повтор
+    setReviewIds([...wrongIds]);
     setReviewMode(true);
     setItemIdx(0);
     setSelected(null);

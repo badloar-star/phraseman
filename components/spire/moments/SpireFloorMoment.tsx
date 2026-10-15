@@ -68,9 +68,8 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
   const [litFloor, setLitFloor] = useState(reduceMotion ? next : outcome.floorBefore);
   const [peek, setPeek] = useState(reduceMotion);
   // окно башни: центр на следующем этаже (образец `focus: 5`)
-  // зачем (Ревизор 15.10, R02; закон владельца 14.10 «пик башни не обрезается, свет тоже»): на 13–15 этаже центровка окна 280×240 срезала верх башни (шпиль, ореол) — кадр считает floorMomentFrame:
-  // масштаб вписывает запас над верхним этажом и низ следующего этажа в высоту окна, окно прижимается к верху башни; нижние этажи — центровка, как в образце.
-  const { k, towerW, shift } = useMemo(() => floorMomentFrame(skin, next, TOWER_W, TOWER_H), [skin, next]);
+  // зачем (координатор 15.10, условие 3; закон владельца 14.10 «пик башни не обрезается, свет тоже»): в окне 280×240 вся башня целиком (острие и ореол — основание), вписанная масштабом, без прокрутки и затухания; следующий этаж горит в ней же.
+  const { k, towerW, shift } = useMemo(() => floorMomentFrame(skin, TOWER_W, TOWER_H), [skin]);
 
   useEffect(() => {
     console.log(`[FLOOR-MOMENT] этаж ${outcome.floorBefore} пройден → ${next}, монеты=${reward} страж=${String(guardNext)} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа

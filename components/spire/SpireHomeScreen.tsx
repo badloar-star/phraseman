@@ -69,8 +69,7 @@ import { SPIRE_BETA_LANGS, asSpireLang, peekFirstFrameWeek, readCurrentLocalWeek
 
 const LOG = '[SPIRE]';
 const DASH = '—';
-// зачем (координатор 13.10, [SPIRE-LAYOUT] floor 7): запас под списком 120/150/300 — из макета, но док растёт (подпись причины, панель итога, крупный шрифт), поэтому последнему блоку нужно `dockBottom + dockH + DOCK_GAP - bottomPad`;
-// макетные значения остаются ПОЛОМ. Владелец 15.10 («Играть» под капсулой): док стоит на «верх капсулы + зазор» (`useTabPillTop`), а не на «отступ контента минус число» (отсчёт от старой высоты таб-бара, −14…18 dp).
+// зачем (координатор 13.10/15.10, [SPIRE-LAYOUT]): запас под списком — макетный пол (120/150/300), но док растёт (подпись причины, панель итога, крупный шрифт) → `dockBottom + dockH + DOCK_GAP - bottomPad`; док стоит на «верх капсулы + зазор» (`useTabPillTop`), не на «отступ минус число» (владелец 15.10)
 const DOCK_PILL_GAP = 12;
 const DOCK_GAP = 16;
 export default function SpireHomeScreen() {
@@ -100,7 +99,8 @@ export default function SpireHomeScreen() {
   // зачем (строка 25 R1_BACKLOG): верх окна башни и верх дока — из измерений; окно ровно до дока, чтобы кнопка «Играть» не закрывала нижние этажи
   const [towerTop, setTowerTop] = useState(0);
   const [dockTop, setDockTop] = useState(0);
-  const towerWindowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP);
+  const [infoH, setInfoH] = useState(0); // зачем (координатор 15.10, условие 3): карточка «Этаж N» под окном башни не уходит под док в начальном положении — её высота вычитается из окна
+  const towerWindowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP + infoH);
   useEffect(() => { if (towerTop > 0 && dockTop > 0) console.log('[SPIRE-DOCK-INSET] window', JSON.stringify({ towerTop, dockTop, dockH: roundLayout(dockH), gap: DOCK_GAP, towerWindowH, bottomPad: roundLayout(bottomPad) })); }, [towerTop, dockTop, dockH, towerWindowH, bottomPad]); // guard-ok: журнал высоты окна башни до дока
 
   useEffect(() => {
@@ -325,7 +325,7 @@ export default function SpireHomeScreen() {
         <View style={s.towerWrap} onLayout={(e) => { const y = Math.round(e.nativeEvent.layout.y); setTowerTop((prev) => (prev === y ? prev : y)); }}>
           <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} windowHeight={towerWindowH} />
         </View>
-        <SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} />
+        <View onLayout={(e) => { const h = Math.round(e.nativeEvent.layout.height); setInfoH((prev) => (prev === h ? prev : h)); }}><SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} /></View>
         {/* Нет сети: свой маркер живой, чужие цифры приглушены (макет §11). */}
         <View
           style={offline ? s.dim : null}

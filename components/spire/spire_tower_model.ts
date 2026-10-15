@@ -61,7 +61,8 @@ export const SPIRE_TW = 390;
 export const SPIRE_CX = 195;
 // зачем (закон владельца 14.10, «пик башни не обрезается, свет тоже»): запас над верхним этажом = граница башни (острие, навершие, древко, ореол ×2.6 «вершины недели»)
 // самой большой лиги + поле — 360 (считает spire_tower_bounds.spireMaxTowerHeadroom; сторож tests/spire_tower_no_clip_contract.test.ts). Было 300: ореол выходил выше верха SVG.
-const TOP_PAD = 360;
+// зачем (координатор 15.10, условие 2): поле до края окна 8 → 16 (SPIRE_TOWER_EDGE_MARGIN) — запас сверху 360 → 376, чтобы острие и ореол самой большой лиги с полем ≥ 16 лежали внутри
+const TOP_PAD = 376;
 const BASE_PAD = 96;
 
 export const spireFloorHeight = (f: number): number => (spireIsGuard(f) ? 60 : 46);

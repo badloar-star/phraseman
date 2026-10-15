@@ -17,16 +17,16 @@ describe('высота окна башни до дока', () => {
     expect(spireTowerWindowHeight(442, 734, 16)).toBe(276);
   });
 
-  it('места много — окно по макету 400; мало — не ниже 260', () => {
+  it('места много — окно по макету 400; мало — не ниже 220 (было 260: карточка «Этаж N» вычитается из окна, 15.10)', () => {
     expect(spireTowerWindowHeight(200, 900, 16)).toBe(400);
     expect(spireTowerWindowHeight(600, 734, 16)).toBe(SPIRE_WINDOW_MIN);
-    expect(SPIRE_WINDOW_MIN).toBe(260);
+    expect(SPIRE_WINDOW_MIN).toBe(220);
     expect(SPIRE_WINDOW_MAX).toBe(400);
   });
 
   it('экран передаёт измерения башне, башня берёт высоту из пропа и повторно центрует свой этаж', () => {
     const home = read('components/spire/SpireHomeScreen.tsx');
-    expect(home).toContain('const towerWindowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP);');
+    expect(home).toContain('const towerWindowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP + infoH);');
     expect(home).toContain('windowHeight={towerWindowH}');
     expect(home).toContain('setDockTop((prev) => (prev === dy ? prev : dy));');
     expect(home).toContain('setTowerTop((prev) => (prev === y ? prev : y))');

@@ -8,6 +8,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
+import { LinearGradient } from '../SafeLinearGradient';
+import { colorWithAlpha } from '../v2/plateAlpha';
 import AvatarView from '../AvatarView';
 import type { Lang } from '../../constants/i18n';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -27,6 +29,9 @@ import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY, type Spir
 
 const WINDOW_HEIGHT = SPIRE_WINDOW_MAX;
 const MARKER_SIZE = 40;
+/** Высота мягкого затухания у верхнего края окна, dp, и порог смещения, с которого выше окна есть этажи. */
+const TOP_FADE_H = 36;
+const TOP_FADE_THRESHOLD = 4;
 
 type Props = Readonly<{
   lang: Lang;
@@ -138,6 +143,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   const echoRef = useRef<string | null>(null);
   const lastReqRef = useRef<Readonly<{ y: number; why: string }> | null>(null);
   const offsetRef = useRef(0);
+  // зачем (координатор 15.10, условие 1; правило владельца 14.10): выше видимой области есть этажи — верх окна затухает мягко, плоского среза нет. Состояние меняется один раз на пересечение порога, не на каждый кадр прокрутки.
+  const [fadeTop, setFadeTop] = useState(false);
   const draggedRef = useRef(false);
   // зачем (приоритет владельца 13.10): журнал [SPIRE-RIVALS] — сколько соперников попадает в окно башни при прокрутке (кто выше/ниже виден или нет)
   const rivalsRef = useRef<ReadonlyMap<number, readonly SpireRival[]> | undefined>(rivalsByFloor);
@@ -200,6 +207,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
 
   const onScrollEcho = useCallback((e: { nativeEvent: { contentOffset: { y: number } } }) => {
     offsetRef.current = e.nativeEvent.contentOffset.y;
+    const above = e.nativeEvent.contentOffset.y > TOP_FADE_THRESHOLD;
+    setFadeTop((prev) => (prev === above ? prev : above));
     const why = echoRef.current;
     if (!why) return;
     echoRef.current = null;
@@ -302,6 +311,14 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
           </View>
         ) : null}
       </ScrollView>
+      {fadeTop ? (
+        <LinearGradient
+          pointerEvents="none"
+          testID="spire-tower-top-fade"
+          colors={[g.plateFillFrom, colorWithAlpha(g.plateFillFrom, 0)]}
+          style={s.topFade}
+        />
+      ) : null}
     </View>
     </View>
   );
@@ -311,6 +328,7 @@ const s = StyleSheet.create({
   // Тонкая (1px) полупрозрачная кромка окна, как .tview в макете; толстых рамок нет.
   shadowWrap: { borderRadius: 22 },
   window: { height: WINDOW_HEIGHT, borderRadius: 22, overflow: 'hidden' },
+  topFade: { position: 'absolute', left: 0, right: 0, top: 0, height: TOP_FADE_H },
   rivals: { position: 'absolute', flexDirection: 'row', alignItems: 'center' },
   rivalExtra: { marginLeft: 5, fontSize: 13, fontWeight: '700' },
   marker: { position: 'absolute', left: 0, top: 0, width: MARKER_SIZE, height: MARKER_SIZE, alignItems: 'center', justifyContent: 'center' },

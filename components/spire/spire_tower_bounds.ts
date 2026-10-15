@@ -14,8 +14,8 @@ import { spireFinialTopY } from './SpireTowerFinial';
 /** Высота барабана и конуса кровли над верхним этажом (Crown: yd = top − 34, apex = yd − 168). */
 export const SPIRE_CROWN_DRUM = 34;
 export const SPIRE_CROWN_CONE = 168;
-/** Запас от самой границы до края контейнера, ед. SVG: свет не упирается в край. */
-export const SPIRE_TOWER_EDGE_MARGIN = 8;
+/** Запас от самой границы до края контейнера, ед. SVG: свет не упирается в край. Решение координатора 15.10 (правило владельца 14.10): не меньше 16 до края — острие и ореол не касаются шапки окна. */
+export const SPIRE_TOWER_EDGE_MARGIN = 16;
 /** Во сколько раз ореол «вершины недели» крупнее обычного (Crown: skin.glowR * 2.6). */
 export const SPIRE_SUMMIT_GLOW_SCALE = 2.6;
 /** Ширина флажка вправо от древка (Crown: h18). */

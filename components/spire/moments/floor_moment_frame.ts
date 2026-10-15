@@ -1,34 +1,24 @@
-// floor_moment_frame.ts — кадр башни в окне момента «Этаж пройден» (280 × 240): масштаб, ширина и сдвиг так, чтобы на верхних этажах башня со шпилем и ореолом не резалась.
+// floor_moment_frame.ts — кадр башни в окне момента «Этаж пройден» (280 × 240): масштаб, ширина и сдвиг так, чтобы вся башня — от острия и ореола до основания — была в окне целиком.
 //
-// зачем (Ревизор 15.10, R02; закон владельца 14.10 «пик башни не обрезается, свет тоже»): центровка окна на следующем этаже срезала верх башни на 13–15 этаже. Чистая функция — проверяется
-// числами для всех 12 лиг (tests/spire_floor_moment_frame.test.ts), без React и измерений.
+// зачем (координатор 15.10, условие 3; правило владельца 14.10 «пик башни не обрезается, свет тоже»): статичные показы башни — всегда вся башня, вписанная масштабом, без прокрутки и затухания. Раньше окно
+// центрировалось на следующем этаже и режело верх (шпиль, ореол) на 13–15 этаже, а нижние этажи резались по бокам кадра. Чистая функция — проверяется числами для всех 12 лиг и всех этажей
+// (tests/spire_floor_moment_frame.test.ts), без React и измерений.
 import type { SpireTowerSkin } from '../../../modules/spire/tower_skins';
-import { spireTowerFitScale, spireTowerHeadroom, spireTowerNeedUnits } from '../spire_tower_bounds';
-import { spireCrownTopY, spireWindowScrollY } from '../spire_tower_crown';
-import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW } from '../spire_tower_model';
+import { spireTowerHeadroom } from '../spire_tower_bounds';
+import { SPIRE_TOWER_GEOM, SPIRE_TW } from '../spire_tower_model';
 
 export type FloorMomentFrame = Readonly<{
   /** Масштаб: px на единицу SVG. */
   k: number;
   /** Ширина башни, px. */
   towerW: number;
-  /** translateY содержимого башни в окне, px (≤ 0 на верхних этажах). */
+  /** translateY содержимого башни в окне, px (≤ 0: содержимое выше острия не показываем). */
   shift: number;
-  /** Верхние этажи (13–15): включены вписывание масштабом и прижатие к верху башни. */
-  nearTop: boolean;
 }>;
 
-export function floorMomentFrame(skin: SpireTowerSkin, nextFloor: number, windowW: number, windowH: number): FloorMomentFrame {
-  const floorIdx = Math.max(0, Math.min(SPIRE_FLOOR_COUNT, nextFloor) - 1);
-  const focus = SPIRE_TOWER_GEOM.floors[floorIdx]!;
-  const nearTop = nextFloor >= SPIRE_FLOOR_COUNT - 2;
-  const baseK = windowW / SPIRE_TW;
-  if (!nearTop) {
-    return { k: baseK, towerW: Math.round(SPIRE_TW * baseK), shift: Math.round(windowH / 2 - (focus.y + focus.h / 2) * baseK), nearTop };
-  }
-  const headroom = spireTowerHeadroom(skin, false);
-  const k = spireTowerFitScale(baseK, windowH, spireTowerNeedUnits(headroom, focus.y + focus.h - SPIRE_TOWER_GEOM.top));
-  const cy = (focus.y + focus.h / 2) * k;
-  const scrollY = spireWindowScrollY({ cy, windowH, crownTopY: spireCrownTopY(SPIRE_TOWER_GEOM.top, k, headroom), floorHalf: (focus.h / 2) * k, nearTop: true });
-  return { k, towerW: Math.round(SPIRE_TW * k), shift: -Math.round(scrollY), nearTop };
+export function floorMomentFrame(skin: SpireTowerSkin, windowW: number, windowH: number): FloorMomentFrame {
+  const crownTop = SPIRE_TOWER_GEOM.top - spireTowerHeadroom(skin, false); // верх границы башни (острие, ореол, поле) в единицах SVG
+  const bottom = SPIRE_TOWER_GEOM.height; // низ содержимого: основание и земля
+  const k = Math.min(windowW / SPIRE_TW, windowH / Math.max(1, bottom - Math.max(0, crownTop)));
+  return { k, towerW: Math.round(SPIRE_TW * k), shift: -Math.round(Math.max(0, crownTop) * k) };
 }

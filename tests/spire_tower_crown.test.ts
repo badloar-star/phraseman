@@ -24,8 +24,9 @@ describe('верх башни в окне', () => {
   it('вершина (15), окно 400 (по макету): окно у самого верха — запас «НАД ОБЛАКАМИ», навершие, кровля и свой этаж в кадре', () => {
     const cy = (top.y + top.h / 2) * scale;
     const y = spireWindowScrollY({ cy, windowH: 400, crownTopY, floorHalf: (top.h / 2) * scale, nearTop: true });
-    expect(y).toBe(0);
-    expect(cy + (top.h / 2) * scale).toBeLessThanOrEqual(400);
+    // зачем (15.10, поле 16 → запас сверху 376): окно 400 по макету с 15 этажом у самого нуля больше не помещается — окно у верха башни (острие и ореол с полем), свой этаж при этом в кадре
+    expect(y).toBeLessThanOrEqual(crownTopY + 1e-6);
+    expect(cy + (top.h / 2) * scale).toBeLessThanOrEqual(y + 400);
   });
 
   it('вершина (15), окно 276 (ниже нужного): свой этаж (Страж, 60) виден целиком, над ним показано максимум башни; допуск на срез навершия снят (SLACK = 0)', () => {
@@ -46,7 +47,7 @@ describe('верх башни в окне', () => {
     // зачем (закон владельца 14.10): в узком окне свой 14 этаж остаётся виден, над ним — максимум башни (низ этажа у низа окна); прежняя центровка срезала верх целиком
     expect(spireWindowScrollY({ cy, windowH: 276, crownTopY, floorHalf: half, nearTop: true })).toBeCloseTo(Math.max(0, cy + half - 276), 5);
     const tall = spireWindowScrollY({ cy, windowH: 400, crownTopY, floorHalf: half, nearTop: true });
-    // зачем (закон владельца 14.10): запас сверху вырос (TOP_PAD 360) — в окне 400 верх башни целиком (crownTopY) и 14 этаж помещаются вместе, но уже не от нулевого смещения
+    // зачем (закон владельца 14.10): запас сверху вырос (TOP_PAD 360, с 15.10 — 376, поле 16) — в окне 400 верх башни целиком (crownTopY) и 14 этаж помещаются вместе, но уже не от нулевого смещения
     expect(tall).toBeCloseTo(crownTopY, 5);
     expect(cy + half).toBeLessThanOrEqual(tall + 400);
   });
@@ -61,7 +62,7 @@ describe('верх башни в окне', () => {
     expect(read('components/spire/SpireTowerSvg.tsx')).toMatch(/aboveClouds|НАД ОБЛАКАМИ/i);
     expect(read('components/spire/spire_strings.ts')).toMatch(/aboveClouds/);
     // зачем (закон владельца 14.10): запас над верхним этажом вырос 300 → 360 — ореол «вершины недели» самой большой лиги (r = 135) не должен уходить выше верха SVG; число стережёт tests/spire_tower_no_clip_contract.test.ts
-    expect(read('components/spire/spire_tower_model.ts')).toContain('TOP_PAD = 360'); // запас над верхним этажом вмещает подпись, навершие, кровлю и ореол
+    expect(read('components/spire/spire_tower_model.ts')).toContain('TOP_PAD = 376'); // запас над верхним этажом вмещает подпись, навершие, кровлю и ореол
   });
 
   it('башня прокручивает через spireWindowScrollY и пишет журнал [SPIRE-DOCK-INSET]', () => {

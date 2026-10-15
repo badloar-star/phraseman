@@ -19,32 +19,10 @@ const MAP = [
 const local = (html) => MAP.reduce((s, [from, to]) => s.split(`https://knowlyapps.com${from}`).join(to), html)
   .split('../../../assets/').join('../../../../assets/').split('../../../knowly-www/').join('../../../../knowly-www/');
 
-// В оболочке тема живёт во всплывашке шапки и в студии на главной — обе управляются одним кодом (data-swatches).
-const hero = local(heroC).replace('id="swatches"', 'data-swatches');
+// зачем: студия (темы/телефон/монеты) убрана владельцем 15.10 — тема только во всплывашке шапки
+const hero = local(heroC);
 
-const HOME_JS = `
-(function () {
-  document.querySelectorAll('[data-tab]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      document.querySelectorAll('[data-tab]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-      document.querySelectorAll('[data-view]').forEach(function (v) { if (v.dataset.view === b.dataset.tab) v.removeAttribute('data-off'); else v.setAttribute('data-off', ''); });
-    });
-  });
-  // зачем: монета — валюта; начисление показывается мгновенно и встаёт на итог даже в скрытой вкладке
-  var coins = 240, busy = false, earn = document.querySelector('[data-earn]');
-  if (!earn) { console.warn('[SITE-2.0] нет кнопки начисления монет'); return; }
-  earn.addEventListener('click', function () {
-    if (busy) return; busy = true;
-    var from = coins; coins += 12; var t0 = performance.now();
-    (function tick(now) {
-      var p = Math.min(1, (now - t0) / 600), v = Math.round(from + (coins - from) * (1 - Math.pow(1 - p, 3)));
-      document.querySelectorAll('[data-coins]').forEach(function (el) { el.textContent = v; });
-      if (p < 1) requestAnimationFrame(tick);
-    })(t0);
-    setTimeout(function () { document.querySelectorAll('[data-coins]').forEach(function (el) { el.textContent = coins; }); busy = false; }, 700);
-    document.querySelectorAll('[data-coin],[data-coinpill]').forEach(function (el) { el.classList.remove('coin-pop'); void el.offsetWidth; el.classList.add('coin-pop'); });
-  });
-})();`;
+
 
 // Витрина: опись страниц пишет _pages.mjs в c/screens.json (берём прошлую сборку; при первой — пусто).
 function screensBody() {
@@ -82,7 +60,6 @@ export default [
     group: 'Главная',
     path: '/',
     body: [hero, method, product(todayList), reviews, gift, journal, faq, close].map(local).join('\n'),
-    js: HOME_JS,
   },
   {
     file: 'screens.html',

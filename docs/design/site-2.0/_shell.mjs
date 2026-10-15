@@ -194,6 +194,8 @@ a.lrow:hover .ch { color: var(--text); transform: translateX(2px); }
 @media (min-width: 700px) { .modal-back { place-items: center; } }
 .cookie { position: fixed; left: 16px; right: 16px; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); z-index: 44; max-width: 560px; margin-inline: auto; padding: 18px 20px; border-radius: 24px; display: grid; gap: 14px; }
 .cookie .acts { display: flex; flex-wrap: wrap; gap: 10px; }
+/* зачем: display:grid у .glass перебивал атрибут hidden — полоска cookies висела на каждой странице */
+.cookie[hidden], .modal-back[hidden], .toast[hidden] { display: none !important; }
 
 /* вопрос теста */
 .qcard { padding: clamp(22px, 4vw, 40px); border-radius: 30px; display: grid; gap: 22px; }

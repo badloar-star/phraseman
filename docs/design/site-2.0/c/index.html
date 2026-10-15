@@ -551,6 +551,8 @@ a.lrow:hover .ch { color: var(--text); transform: translateX(2px); }
 @media (min-width: 700px) { .modal-back { place-items: center; } }
 .cookie { position: fixed; left: 16px; right: 16px; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); z-index: 44; max-width: 560px; margin-inline: auto; padding: 18px 20px; border-radius: 24px; display: grid; gap: 14px; }
 .cookie .acts { display: flex; flex-wrap: wrap; gap: 10px; }
+/* зачем: display:grid у .glass перебивал атрибут hidden — полоска cookies висела на каждой странице */
+.cookie[hidden], .modal-back[hidden], .toast[hidden] { display: none !important; }
 
 /* вопрос теста */
 .qcard { padding: clamp(22px, 4vw, 40px); border-radius: 30px; display: grid; gap: 22px; }
@@ -696,77 +698,7 @@ a.lrow:hover .ch { color: var(--text); transform: translateX(2px); }
   <h1 class="rise d1" data-en-html="Your voice.&lt;br&gt;&lt;span class=&quot;l2&quot;&gt;In another language.&lt;/span&gt;">Твой голос.<br><span class="l2">На другом языке.</span></h1>
   <p class="lead rise d2" data-en="Everyday phrases. Pronunciation practice. A language that becomes your own.">Живые фразы. Практика произношения. Язык, который становится твоим.</p>
   <div class="cta-row rise d3"><a class="btn btn-primary" href="download.html"><span data-en="Start for free">Начать бесплатно</span> <svg class="i s18 arr" aria-hidden="true"><use href="#i-arrow"/></svg></a><span class="fine">iPhone и Android</span></div>
-
-  <div class="studio">
-    <div class="side">
-      <div class="glass panel" style="--sx:0%;--sy:0%">
-        <span class="lbl">Тема приложения</span>
-        <div class="swatches" data-swatches role="group" aria-label="Темы"></div>
-        <div class="seg" role="group" aria-label="Оформление">
-          <button type="button" data-mode-btn="dark" aria-pressed="true"><svg class="i s16" aria-hidden="true"><use href="#i-moon"/></svg>Тёмная</button>
-          <button type="button" data-mode-btn="light" aria-pressed="false"><svg class="i s16" aria-hidden="true"><use href="#i-sun"/></svg>Светлая</button>
-        </div>
-        <div class="range"><label for="kSlider" class="lbl">Насыщенность</label><input id="kSlider" type="range" min="0" max="100" step="5" value="60"><b id="kVal">60%</b></div>
-      </div>
-    </div>
-    
-<div class="phone" aria-label="Живой экран приложения"><div class="screen"><div class="sglow" aria-hidden="true"></div>
-  <div class="sb" aria-hidden="true"><span>9:41</span><span class="bat"></span></div>
-  
-      <div class="view" data-view="phrase">
-<div class="under" aria-hidden="true"><div class="r"><span class="t">Сегодня</span><span class="chips"><span>Видео</span><span>Ошибки</span></span></div><div class="blk"></div></div>
-<div class="sheet" data-sheet>
-  <div class="grab"></div>
-  <div class="head">
-    <div><div class="ov">Фраза дня</div><div class="phrase">Pitch in</div></div>
-    <div class="acts">
-      <button class="rb" type="button" data-bm aria-label="Сохранить фразу" aria-pressed="false"><svg class="i s18" aria-hidden="true"><use href="#i-mark"/></svg></button>
-      <button class="rb" type="button" data-say aria-label="Послушать фразу"><svg class="i s18" aria-hidden="true"><use href="#i-sound"/></svg></button>
-    </div>
-  </div>
-  <div class="wave" aria-hidden="true" data-wave></div>
-  <div class="facts">
-    <div class="fact"><div class="ov">Дословно</div><p>Вброситься.</p></div>
-    <div class="fact"><div class="ov">Что значит</div><p>Сброситься деньгами или объединить усилия для общего дела.</p></div>
-    <div class="fact"><div class="ov">Пример</div><p>Собираете на подарок другу или решили вместе убрать парк? Пора pitch in.</p></div>
-  </div>
-</div></div>
-      <div class="view" data-view="dialogs" data-off>
-<div class="hub">
-  <div class="hrow1"><div><div class="ti">Диалоги</div><div class="su">Практикуй язык в жизненных ситуациях</div></div>
-    <div class="pills"><span class="pill" data-coinpill><img src="../../../../../assets/images/coins/coin_rank_05.webp" alt="" width="18" height="18"><span data-coins>240</span></span><span class="pill"><svg class="i s16" aria-hidden="true"><use href="#i-chat"/></svg>10/10</span></div></div>
-  <div class="cats">
-    <div class="cat"><div class="r"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-people"/></svg></span><span class="tx"><span class="tt">Общение</span><br><span class="st">Знакомства и разговоры</span></span><span class="fr"><b>4</b> /13</span></div><div class="trk"><b style="--w:31%"></b></div></div>
-    <div class="cat"><div class="r"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-doc"/></svg></span><span class="tx"><span class="tt">Дела</span><br><span class="st">Работа, учёба и важные дела</span></span><span class="fr"><b>2</b> /19</span></div><div class="trk"><b style="--w:11%"></b></div></div>
-    <div class="cat"><div class="r"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-plane"/></svg></span><span class="tx"><span class="tt">Поездки</span><br><span class="st">В поездках и на отдыхе</span></span><span class="fr"><b>5</b> /8</span></div><div class="trk"><b style="--w:62%"></b></div></div>
-    <div class="cat"><div class="r"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-cup"/></svg></span><span class="tx"><span class="tt">Повседневное</span><br><span class="st">Просьбы, советы и мелочи дня</span></span><span class="fr"><b>0</b> /11</span></div><div class="trk"><b style="--w:0%"></b></div></div>
-  </div>
-</div></div>
-      <div class="view" data-view="today" data-off>
-<div class="hub">
-  <div class="hrow1"><div><div class="ti">Сегодня</div></div></div>
-  <div class="cats">
-    <div class="hrow"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-book"/></svg></span><span class="tt">Уроки</span><svg class="i s18 ch" aria-hidden="true"><use href="#i-chev"/></svg></div>
-    <div class="hrow"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-cards"/></svg></span><span class="tt">Карточки</span><svg class="i s18 ch" aria-hidden="true"><use href="#i-chev"/></svg></div>
-    <div class="hrow"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-check"/></svg></span><span class="tt">Ежедневные задания</span><svg class="i s18 ch" aria-hidden="true"><use href="#i-chev"/></svg></div>
-    <div class="hrow"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-chat"/></svg></span><span class="tt">Диалоги</span><svg class="i s18 ch" aria-hidden="true"><use href="#i-chev"/></svg></div>
-  </div>
-  <span class="btn btn-primary" style="margin-top:18px;width:100%;min-height:50px;font-size:15px" aria-hidden="true">Продолжить <svg class="i s18" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-</div></div>
-  <div class="home-ind" aria-hidden="true"></div>
-</div></div>
-    <div class="side">
-      <div class="tabs" role="group" aria-label="Экран в телефоне">
-        <button type="button" data-tab="phrase" aria-pressed="true"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-sound"/></svg></span>Фраза дня</button>
-        <button type="button" data-tab="dialogs" aria-pressed="false"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-chat"/></svg></span>Диалоги</button>
-        <button type="button" data-tab="today" aria-pressed="false"><span class="tile"><svg class="i s18" aria-hidden="true"><use href="#i-check"/></svg></span>Сегодня</button>
-      </div>
-      <div class="glass panel" style="--sx:100%;--sy:100%">
-        <div class="coin-row"><img src="../../../../../assets/images/coins/coin_rank_05.webp" alt="Монета Phraseman" width="56" height="56" data-coin><div><b><span data-coins>240</span> монет</b><span>Монеты — валюта приложения</span></div></div>
-        <button type="button" class="btn btn-ghost btn-sm" data-earn style="justify-self:start">Пройти урок +12</button>
-      </div>
-    </div>
-  </div>
+  <!-- зачем: владелец 15.10 — блок «студия» (панель тем, живой телефон, вкладки экранов, монеты) не нужен; тема — в шапке -->
 </div></section>
 
 <section class="block" id="method"><div class="wrap">
@@ -1000,28 +932,6 @@ a.lrow:hover .ch { color: var(--text); transform: translateX(2px); }
   document.querySelectorAll('[data-cookie-open]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); if (ck) ck.hidden = false; }); });
   document.querySelectorAll('[data-cookie-close]').forEach(function (b) { b.addEventListener('click', function () { if (ck) ck.hidden = true; }); });
 })();</script>
-<script>
-(function () {
-  document.querySelectorAll('[data-tab]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      document.querySelectorAll('[data-tab]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-      document.querySelectorAll('[data-view]').forEach(function (v) { if (v.dataset.view === b.dataset.tab) v.removeAttribute('data-off'); else v.setAttribute('data-off', ''); });
-    });
-  });
-  // зачем: монета — валюта; начисление показывается мгновенно и встаёт на итог даже в скрытой вкладке
-  var coins = 240, busy = false, earn = document.querySelector('[data-earn]');
-  if (!earn) { console.warn('[SITE-2.0] нет кнопки начисления монет'); return; }
-  earn.addEventListener('click', function () {
-    if (busy) return; busy = true;
-    var from = coins; coins += 12; var t0 = performance.now();
-    (function tick(now) {
-      var p = Math.min(1, (now - t0) / 600), v = Math.round(from + (coins - from) * (1 - Math.pow(1 - p, 3)));
-      document.querySelectorAll('[data-coins]').forEach(function (el) { el.textContent = v; });
-      if (p < 1) requestAnimationFrame(tick);
-    })(t0);
-    setTimeout(function () { document.querySelectorAll('[data-coins]').forEach(function (el) { el.textContent = coins; }); busy = false; }, 700);
-    document.querySelectorAll('[data-coin],[data-coinpill]').forEach(function (el) { el.classList.remove('coin-pop'); void el.offsetWidth; el.classList.add('coin-pop'); });
-  });
-})();</script>
+
 </body>
 </html>

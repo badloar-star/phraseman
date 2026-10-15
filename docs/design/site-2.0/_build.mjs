@@ -516,35 +516,7 @@ export const heroC = `
   <h1 class="rise d1" data-en-html="Your voice.&lt;br&gt;&lt;span class=&quot;l2&quot;&gt;In another language.&lt;/span&gt;">Твой голос.<br><span class="l2">На другом языке.</span></h1>
   <p class="lead rise d2" data-en="Everyday phrases. Pronunciation practice. A language that becomes your own.">Живые фразы. Практика произношения. Язык, который становится твоим.</p>
   <div class="cta-row rise d3"><a class="btn btn-primary" href="${URL}/download/"><span data-en="Start for free">Начать бесплатно</span> ${ic('arrow', 's18 arr')}</a><span class="fine">iPhone и Android</span></div>
-
-  <div class="studio">
-    <div class="side">
-      <div class="glass panel" style="--sx:0%;--sy:0%">
-        <span class="lbl">Тема приложения</span>
-        <div class="swatches" id="swatches" role="group" aria-label="Темы"></div>
-        <div class="seg" role="group" aria-label="Оформление">
-          <button type="button" data-mode-btn="dark" aria-pressed="true">${ic('moon', 's16')}Тёмная</button>
-          <button type="button" data-mode-btn="light" aria-pressed="false">${ic('sun', 's16')}Светлая</button>
-        </div>
-        <div class="range"><label for="kSlider" class="lbl">Насыщенность</label><input id="kSlider" type="range" min="0" max="100" step="5" value="60"><b id="kVal">60%</b></div>
-      </div>
-    </div>
-    ${phone(`
-      <div class="view" data-view="phrase">${phraseSheet()}</div>
-      <div class="view" data-view="dialogs" data-off>${dialogsHub(true)}</div>
-      <div class="view" data-view="today" data-off>${todayList}</div>`, 'Живой экран приложения', '9:41')}
-    <div class="side">
-      <div class="tabs" role="group" aria-label="Экран в телефоне">
-        <button type="button" data-tab="phrase" aria-pressed="true"><span class="tile">${ic('sound', 's18')}</span>Фраза дня</button>
-        <button type="button" data-tab="dialogs" aria-pressed="false"><span class="tile">${ic('chat', 's18')}</span>Диалоги</button>
-        <button type="button" data-tab="today" aria-pressed="false"><span class="tile">${ic('check', 's18')}</span>Сегодня</button>
-      </div>
-      <div class="glass panel" style="--sx:100%;--sy:100%">
-        <div class="coin-row"><img src="${APP}/images/coins/coin_rank_05.webp" alt="Монета Phraseman" width="56" height="56" data-coin><div><b><span data-coins>240</span> монет</b><span>Монеты — валюта приложения</span></div></div>
-        <button type="button" class="btn btn-ghost btn-sm" data-earn style="justify-self:start">Пройти урок +12</button>
-      </div>
-    </div>
-  </div>
+  <!-- зачем: владелец 15.10 — блок «студия» (панель тем, живой телефон, вкладки экранов, монеты) не нужен; тема — в шапке -->
 </div></section>`;
 
 export const method = `
@@ -816,7 +788,7 @@ export const STUDIO_JS = `
   });`;
 
 export function page(key) {
-  const v = { ...VARIANTS[key], studio: key === 'C' };
+  const v = { ...VARIANTS[key], studio: false };
   const hero = key === 'C' ? heroC : heroAB;
   const productScreen = key === 'C' ? todayList : (key === 'A' ? dialogsHub(false) : todayList);
   return `<!doctype html><meta charset="utf-8">

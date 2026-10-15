@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-47:intro1:r2": {
+          "ru": "Между `It` и `acceptable` нужно `is`.",
+          "uk": "Між `It` і `acceptable` потрібно `is`."
+        },
+        "en:lesson-02:session-47:intro1:r3": {
+          "ru": "Это отрицает приемлемость. По условию отпечаток можно принять.",
+          "uk": "Це заперечує прийнятність. За умовою відбиток можна прийняти."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-47:intro2:r2": {
+          "ru": "Это утверждение. Вы ещё ждёте оценки.",
+          "uk": "Це твердження. Ви ще чекаєте на оцінку."
+        },
+        "en:lesson-02:session-47:intro2:r3": {
+          "ru": "Это вопрос о связи с темой, а сейчас вы уточняете приемлемость качества.",
+          "uk": "Це запитання про зв’язок із темою, а зараз ви уточнюєте прийнятність якості."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-47:intro3:r2": {
+          "ru": "Это о связи с темой. Здесь нужно назвать опасность.",
+          "uk": "Це про зв’язок із темою. Тут потрібно назвати небезпеку."
+        },
+        "en:lesson-02:session-47:intro3:r3": {
+          "ru": "Это «приемлемая». В условии подставка опасна.",
+          "uk": "Це «прийнятна». За умовою підставка небезпечна."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "309fde5ea76d293fbaf7f5d60b06f0bf0c7d07453d6ee291a4e86dff2f7165d4"
+}

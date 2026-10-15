@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-47:i01",
-    "correctText": "Am I polite?",
-    "correctResponseId": "en:lesson-02:session-47:i01:r1"
+    "correctText": "It is acceptable.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i02",
-    "correctText": "polite",
+    "correctText": "It is dangerous.",
     "correctResponseId": "en:lesson-02:session-47:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-47:i03",
-    "correctText": "Am I polite?",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-47:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-47:i04",
-    "correctText": "Are we rude?",
-    "correctResponseId": "en:lesson-02:session-47:i04:r1"
+    "correctText": "en:lesson-02:session-47:i04:p1=acceptable\nen:lesson-02:session-47:i04:p2=dangerous\nen:lesson-02:session-47:i04:p3=relevant\nen:lesson-02:session-47:i04:p4=appropriate",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i05",
-    "correctText": "rude",
-    "correctResponseId": "en:lesson-02:session-47:i05:r1"
+    "correctText": "Yes, it is.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i06",
-    "correctText": "I am not sure.",
+    "correctText": "What is acceptable?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i07",
-    "correctText": "ready",
-    "correctResponseId": "en:lesson-02:session-47:i07:r1"
+    "correctText": "It's acceptable.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i08",
-    "correctText": "You are polite.",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-47:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-47:i09",
-    "correctText": "en:lesson-02:session-47:i09:p1=polite\nen:lesson-02:session-47:i09:p2=rude\nen:lesson-02:session-47:i09:p3=sure\nen:lesson-02:session-47:i09:p4=ready",
-    "correctResponseId": null
+    "correctText": "Is it relevant?",
+    "correctResponseId": "en:lesson-02:session-47:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-47:i10",
-    "correctText": "You are not rude.",
+    "correctText": "en:lesson-02:session-47:i10:p1=relevant\nen:lesson-02:session-47:i10:p2=appropriate\nen:lesson-02:session-47:i10:p3=dangerous\nen:lesson-02:session-47:i10:p4=acceptable",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i11",
-    "correctText": "Am",
-    "correctResponseId": "en:lesson-02:session-47:i11:r1"
+    "correctText": "It is not acceptable.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i12",
-    "correctText": "Am I ready?",
-    "correctResponseId": "en:lesson-02:session-47:i12:r1"
+    "correctText": "Is it dangerous?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i13",
-    "correctText": "We are ready.",
+    "correctText": "It's relevant.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i14",
-    "correctText": "Are you sure?",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-47:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-47:i15",
-    "correctText": "Are we rude?",
-    "correctResponseId": null
+    "correctText": "Is it acceptable?",
+    "correctResponseId": "en:lesson-02:session-47:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-47:i16",
-    "correctText": "I am sorry.",
+    "correctText": "en:lesson-02:session-47:i16:p1=dangerous\nen:lesson-02:session-47:i16:p2=acceptable\nen:lesson-02:session-47:i16:p3=appropriate\nen:lesson-02:session-47:i16:p4=relevant",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i17",
-    "correctText": "Am I rude?",
+    "correctText": "Is it acceptable?",
     "correctResponseId": null
   }
 ]

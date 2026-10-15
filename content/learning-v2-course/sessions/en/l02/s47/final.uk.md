@@ -1,159 +1,138 @@
-# Англійська · Урок 2 · Заняття 47 — «Я не грубий?»
+# Англійська · Урок 2 · Заняття 47 — Варіант для виставки
 
-**Сцена заняття.** У неділю близько обіду ви з другом заходите до кафе. Поки вибираєте їжу й спілкуєтеся з офіціантом, ви обговорюєте, яке враження справляєте на людей: чи здаєтеся ввічливими, чи різкими.
+**Ситуація.** Ви з Анною готуєте невелику виставку фотографій. Організатор оцінює якість відбитків. Один варіант не ідеальний, але відповідає вимогам; знімок стосується теми виставки. Пошкоджена підставка небезпечна, її відклали.
 
-**Як сказати:** повторення запитань про себе та свою компанію; оцінка манери спілкування
-**Нові слова:** —
-**Повертаються:** polite, rude, sure, ready
+**Що ви опануєте:** назвати варіант прийнятним та уточнити, чи можна його прийняти
+**Нові слова:** acceptable
 
 ---
 
 ## Інтро 1
 
-### Дізнатися чужу оцінку
+### Достатньо добре
 
-`polite` — «ввічливий»: так описують шанобливу манеру спілкування. `Am I polite?` — «Я ввічливий?» Так ви дізнаєтеся чужу думку. А `I am polite` — «Я ввічливий» — це вже ваша оцінка. Похвалити себе ви ще встигнете; якщо хочете почути співрозмовника, дайте йому відповісти й почніть із `Am I`.
+`acceptable` — «прийнятний»: варіант достатньо добрий, щоб його прийняти за цих умов. Відбиток трохи темніший, ніж хотілося б, але відповідає вимогам виставки: `It is acceptable`. Це не обов’язково захват. Організатор приймає роботу, а не обіцяє поставити їй пам’ятник.
 
-**За столиком у кафе ви запитуєте друга, чи вважає він вас ввічливою людиною.**
+**Відбиток не ідеальний, але відповідає вимогам виставки. Скажіть повною фразою, що він прийнятний.**
 
-- ✅ **Am I polite?**
-- ❌ I am polite. — *Це ваша власна оцінка. Ви хочете дізнатися думку друга, тому поставте запитання: `Am I polite?`*
-- ❌ Are you polite? — *Так ви запитаєте про самого друга. Зараз ви просите оцінити вас: `Am I polite?`*
+- ✅ **It is acceptable.**
+- ❌ It acceptable. — *Між `It` і `acceptable` потрібно `is`.*
+- ❌ It is not acceptable. — *Це заперечує прийнятність. За умовою відбиток можна прийняти.*
 
 ---
 
 ## Інтро 2
 
-### Запитати про різкість
+### Уточнити оцінку
 
-`rude` — «грубий, неввічливий»: так, наприклад, описують різке або нешанобливе звертання. `Am I rude?` — «Я грубий?» Це запитання допомагає дізнатися, як вас сприймають. Самим запитанням ви ще не визнаєте себе грубим: спершу варто з’ясувати, чи збігається чуже враження з вашим.
+`Is it acceptable?` — «Це прийнятно?» Так можна запитати, чи влаштовує варіант того, хто його оцінює. Відповідь `Yes, it is` підтверджує прийнятність. Знайоме `appropriate` — «доречний» — більше підкреслює відповідність ситуації; тут запитуємо, чи можна прийняти результат.
 
-**Ви хвилюєтеся, що іноді говорите надто різко. Запитайте друга, чи вважає він вас грубим.**
+**Ви показуєте організаторові новий відбиток і хочете дізнатися, чи можна його прийняти за якістю. Запитайте, чи він прийнятний.**
 
-- ✅ **Am I rude?**
-- ❌ I am rude. — *Це твердження «Я грубий». Зараз ви не стверджуєте, а запитуєте думку друга.*
-- ❌ Am I ready? — *Це «Я готовий?» Щоб запитати про грубість, потрібне слово `rude`.*
+- ✅ **Is it acceptable?**
+- ❌ It is acceptable. — *Це твердження. Ви ще чекаєте на оцінку.*
+- ❌ Is it relevant? — *Це запитання про зв’язок із темою, а зараз ви уточнюєте прийнятність якості.*
 
 ---
 
 ## Інтро 3
 
-### Про себе чи про всіх
+### Тема й небезпека
 
-`Are we rude?` — «Ми грубі?» Тут `we` охоплює і вас, і вашу компанію. Якщо запитуєте лише про себе, потрібне `Am I rude?` Останнє слово те саме: змінюється лише те, чию манеру спілкування оцінюють. Оберіть початок до того, як поставите запитання: чи йдеться лише про вас, чи про всіх.
+`relevant` — «такий, що стосується теми». Знімок старої площі підходить виставці про історію району: `It is relevant`. `dangerous` — «небезпечний». Пошкоджена підставка може впасти: `It is dangerous`. Якість фотографії не робить підставку безпечнішою: оцінюємо різні речі.
 
-**Ви з другом обговорюєте, як ваша компанія розмовляє з офіціантами. Запитайте: «Ми грубі?»**
+**Пошкоджена підставка може впасти на відвідувача. Коротко скажіть, що вона небезпечна.**
 
-- ✅ **Are we rude?**
-- ❌ Am I rude? — *Це запитання лише про себе. Тут ви запитуєте про всю компанію: `Are we`.*
-- ❌ Are you rude? — *Це запитання до друга про нього самого. Щоб запитати і про себе, і про решту компанії, потрібне `we`.*
+- ✅ **It's dangerous.**
+- ❌ It's relevant. — *Це про зв’язок із темою. Тут потрібно назвати небезпеку.*
+- ❌ It's acceptable. — *Це «прийнятна». За умовою підставка небезпечна.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте й виберіть — яке запитання друг поставив за столиком**
-<!-- interaction_id: en:lesson-02:session-47:i01; family: listen_choose -->
-Ціль: `Am I polite?`
-Варіанти: `Am I polite?` · `Are you polite?` · `Am I rude?`
-- Are you polite? — *Це запитання до співрозмовника. Запис починається з `Am I`: друг запитує про себе.*
-- Am I rude? — *Це запитання про грубість. Останнє слово в записі — `polite`, «ввічливий».*
+**1 · Відбиток відповідає вимогам, хоча не ідеальний. Скажіть повною фразою, що він прийнятний**
+<!-- interaction_id: en:lesson-02:session-47:i01; family: phrase_builder -->
+Плитки: `acceptable` `is` `It` `are` → **It is acceptable.**
+*(плитка `are` зайва: тут потрібно `is` — `It is acceptable.`)*
 
+**2 · Послухайте фразу про підставку**
+<!-- interaction_id: en:lesson-02:session-47:i02; family: listen_choose -->
+🔊 *It is dangerous.* → **It is dangerous.** · It is relevant. · It is acceptable.
+- It is relevant. — *У записі останнє слово — `dangerous`, а в цьому варіанті — `relevant`.*
+- It is acceptable. — *У записі останнє слово — `dangerous`, а в цьому варіанті — `acceptable`.*
 
-**2 · Вставте слово — попросіть друга оцінити вашу ввічливість: «Я ввічливий?»**
-<!-- interaction_id: en:lesson-02:session-47:i02; family: context_gap_grammar -->
-Ціль: `Am I ___ ?`
-Варіанти: `polite` · `rude` · `ready`
-- rude — *Це «грубий». Ви запитуєте саме про ввічливість, тому потрібне `polite`.*
-- ready — *Це «готовий». Тут запитання про вашу манеру спілкування, а не про готовність.*
+**3 · Уточніть, чи прийнятна якість нового відбитка**
+<!-- interaction_id: en:lesson-02:session-47:i03; family: context_gap_grammar -->
+___ it acceptable? → **Is** · Am · Are
+- Am — *З `it` потрібно `Is`.*
+- Are — *Запитання — `Is it acceptable?`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-47:i04; family: speed_match -->
+acceptable — прийнятний · dangerous — небезпечний · relevant — такий, що стосується теми · appropriate — доречний
 
-**3 · Складіть фразу — вам важлива думка друга про те, наскільки ви ввічливі; запитайте його**
-<!-- interaction_id: en:lesson-02:session-47:i03; family: phrase_builder -->
-Ціль: `Am I polite?`
+**5 · Послухайте й складіть коротку відповідь**
+<!-- interaction_id: en:lesson-02:session-47:i05; family: listen_build_dictation -->
+🔊 *Yes, it is.* Плитки: `is` `it` `Yes,` `No,` → **Yes, it is.**
+*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, it is.`)*
 
-**4 · Послухайте й виберіть — яке запитання прозвучало за столом**
-<!-- interaction_id: en:lesson-02:session-47:i04; family: listen_choose -->
-Ціль: `Are we rude?`
-Варіанти: `Are we rude?` · `Am I rude?` · `Are we ready?`
-- Am I rude? — *Це запитання лише про себе. Запис починається з `Are we` — «ми».*
-- Are we ready? — *Це «Ми готові?» Останнє слово в записі — `rude`: запитують про грубість.*
-
-
-**5 · Вставте слово — відвідувач за сусіднім столиком ображає офіціанта; скажіть другові: «Він грубий»**
-<!-- interaction_id: en:lesson-02:session-47:i05; family: context_gap_grammar -->
-Ціль: `He is ___ .`
-Варіанти: `rude` · `polite` · `hungry`
-- polite — *Це «ввічливий». Образливе звертання тут описує слово `rude`.*
-- hungry — *Це «голодний». Ви оцінюєте поводження з офіціантом, а не причину невдоволення.*
-
-
-**6 · Складіть фразу — друг запитує, чи задоволені ви своєю манерою розмовляти; ви сумніваєтеся**
+**6 · Перед організатором кілька варіантів друку. Запитайте, що прийнятно**
 <!-- interaction_id: en:lesson-02:session-47:i06; family: phrase_builder -->
-Ціль: `I am not sure.`
+Плитки: `acceptable` `is` `What` `Where` → **What is acceptable?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is acceptable?`)*
 
-**7 · Вставте слово — ви вибрали страву, й офіціант підійшов прийняти замовлення; скажіть: «Я готовий»**
-<!-- interaction_id: en:lesson-02:session-47:i07; family: context_gap_grammar -->
-Ціль: `I am ___ .`
-Варіанти: `ready` · `sure` · `late`
-- sure — *Це «впевнений». Зараз ви повідомляєте, що готові зробити замовлення: `ready`.*
-- late — *Це «запізнився» або «запізнююся». Ви говорите про готовність, тому потрібне `I am ready`.*
+**7 · Організатор згоден прийняти відбиток за якістю. Коротко скажіть, що він прийнятний**
+<!-- interaction_id: en:lesson-02:session-47:i07; family: scripted_repeat_compare -->
+🎙 **It's acceptable.**
 
+**8 · Знімок показує історію району, якій присвячена виставка. На «Is it relevant?» доповніть коротку відповідь «так»**
+<!-- interaction_id: en:lesson-02:session-47:i08; family: context_gap_grammar -->
+Yes, it ___. → **is** · am · are
+- am — *З `it` потрібно `is`.*
+- are — *Відповідь — `Yes, it is`.*
 
-**8 · Послухайте й виберіть — що офіціант сказав вашому другові**
-<!-- interaction_id: en:lesson-02:session-47:i08; family: listen_choose -->
-Ціль: `You are polite.`
-Варіанти: `You are polite.` · `You are not polite.` · `Are you polite?`
-- You are not polite. — *Слово `not` змінює оцінку на негативну. У записі його немає.*
-- Are you polite? — *Це запитання. Запис починається з `You are`: офіціант дає оцінку.*
+**9 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-47:i09; family: listen_choose -->
+🔊 *Is it relevant?* → **Is it relevant?** · Is it dangerous? · Is it appropriate?
+- Is it dangerous? — *У записі останнє слово — `relevant`, а в цьому варіанті — `dangerous`.*
+- Is it appropriate? — *У записі останнє слово — `relevant`, а в цьому варіанті — `appropriate`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-47:i10; family: speed_match -->
+relevant — такий, що стосується теми · appropriate — доречний · dangerous — небезпечний · acceptable — прийнятний
 
-**9 · З’єднайте пари — слова для розмови за обідом**
-<!-- interaction_id: en:lesson-02:session-47:i09; family: speed_match -->
-Пари: `polite` — ввічливий · `rude` — грубий · `sure` — впевнений · `ready` — готовий
-Ціль: `polite · rude · sure · ready`
+**11 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-47:i11; family: listen_build_dictation -->
+🔊 *It is not acceptable.* Плитки: `acceptable` `not` `is` `It` `are` → **It is not acceptable.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not acceptable.`)*
 
-**10 · Складіть фразу — друг боїться здатися грубим, якщо спокійно нагадає про забуте замовлення; скажіть йому: «Ти не грубий»**
-<!-- interaction_id: en:lesson-02:session-47:i10; family: phrase_builder -->
-Ціль: `You are not rude.`
+**12 · Ви помітили пошкодження іншої підставки. Запитайте Анну, чи вона небезпечна**
+<!-- interaction_id: en:lesson-02:session-47:i12; family: phrase_builder -->
+Плитки: `dangerous` `it` `Is` `Are` → **Is it dangerous?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it dangerous?`)*
 
-**11 · Вставте слово — ви хочете дізнатися думку друга про вашу ввічливість; поставте запитання про себе**
-<!-- interaction_id: en:lesson-02:session-47:i11; family: context_gap_grammar -->
-Ціль: `___ I polite?`
-Варіанти: `Am` · `Is` · `Are`
-- Is — *Запитання про себе тут починається з `Am I`.*
-- Are — *Сполучення `Are I` не підходить для цього запитання. Скажіть `Am I polite?`*
+**13 · Знімок старої площі стосується теми виставки про історію району. Коротко повідомте про цей зв’язок**
+<!-- interaction_id: en:lesson-02:session-47:i13; family: scripted_repeat_compare -->
+🎙 **It's relevant.**
 
+**14 · Інший відбиток дуже розмитий і не відповідає вимогам. Скажіть, що він неприйнятний**
+<!-- interaction_id: en:lesson-02:session-47:i14; family: context_gap_grammar -->
+It ___ not acceptable. → **is** · am · are
+- am — *З `It` потрібно `is`.*
+- are — *Фраза — `It is not acceptable`.*
 
-**12 · Послухайте й виберіть — яка репліка друга прозвучала за столом**
-<!-- interaction_id: en:lesson-02:session-47:i12; family: listen_choose -->
-Ціль: `Am I ready?`
-Варіанти: `Am I ready?` · `I am ready.` · `Are we ready?`
-- I am ready. — *Це повідомлення. Запис починається з `Am I`: друг ставить запитання.*
-- Are we ready? — *Це запитання про вас обох. У записі друг говорить `I` і запитує про себе.*
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-47:i15; family: listen_choose -->
+🔊 *Is it acceptable?* → **Is it acceptable?** · Is it relevant? · Is it dangerous?
+- Is it relevant? — *У записі останнє слово — `acceptable`, а в цьому варіанті — `relevant`.*
+- Is it dangerous? — *У записі останнє слово — `acceptable`, а в цьому варіанті — `dangerous`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-47:i16; family: speed_match -->
+dangerous — небезпечний · acceptable — прийнятний · appropriate — доречний · relevant — такий, що стосується теми
 
-**13 · Послухайте й складіть — друг звертається до офіціанта**
-<!-- interaction_id: en:lesson-02:session-47:i13; family: listen_build_dictation -->
-Ціль: `We are ready.`
-
-**14 · Складіть фразу — друг каже, що залишив телефон у куртці; уточніть, чи він упевнений**
-<!-- interaction_id: en:lesson-02:session-47:i14; family: phrase_builder -->
-Ціль: `Are you sure?`
-
-**15 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-47:i15; family: scripted_repeat_compare -->
-Ціль: `Are we rude?`
-
-**16 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-47:i16; family: scripted_repeat_compare -->
-Ціль: `I am sorry.`
-
-**17 · Складіть фразу — за обідом ви повертаєтеся до питання про свою манеру спілкування; попросіть друга оцінити, чи здаєтеся ви грубою людиною**
-<!-- interaction_id: en:lesson-02:session-47:i17; family: phrase_builder -->
-Ціль: `Am I rude?`
-
-## Для сборщика
-atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_choose, 9=speed_match, 10=phrase_builder, 11=context_gap_grammar, 12=listen_choose, 13=listen_build_dictation, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+**17 · Ви принесли новий відбиток. Запитайте організатора, чи прийнятна його якість**
+<!-- interaction_id: en:lesson-02:session-47:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it acceptable?**
 

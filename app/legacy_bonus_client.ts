@@ -35,6 +35,8 @@ export type LegacyBonusResult = Readonly<{
 }>;
 
 let welcome: LegacyBonusResult | null = null;
+/** Метка, ждущая снятия welcomePending (когда окно показано или нажато «Понятно»). */
+let pendingClear: Readonly<{ key: string; status: string; total: number }> | null = null;
 let ranThisProcess = false;
 const listeners = new Set<() => void>();
 function emit(): void {
@@ -88,16 +90,19 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
       // результат для окна: показываем его СЕЙЧАС, один раз (флаг снимаем до показа). Сервер повторно не зовём — начисление уже сделано.
       if (parsed.welcomePending === true) {
         const pending = parseResponse(parsed.pending);
-        await AsyncStorage.setItem(doneKey, JSON.stringify({ status: parsed.status, total: parsed.total ?? pending?.coins.total ?? 0 })); // снимаем флаг ДО показа: окно не durable, один раз
         if (!pending) {
-          console.warn(`${WHATSNEW_LOG} отложенное окно: в метке нет результата (parse=null) — окна не будет source=${source}`);
+          // битая метка — окна не будет, флаг снимаем сразу (иначе вечный повтор пустоты)
+          await AsyncStorage.setItem(doneKey, JSON.stringify({ status: parsed.status, total: parsed.total ?? 0 }));
+          console.warn(`${WHATSNEW_LOG} cleared reason=broken_pending (в метке нет результата, parse=null) — окна не будет source=${source}`);
           return;
         }
         if (!isCurrentAccountGeneration(token)) {
           console.log(`${WHATSNEW_LOG} отложенное окно: аккаунт сменился — не показываем source=${source}`);
           return;
         }
-        console.log(`${WHATSNEW_LOG} отложенное окно из прошлого запуска: показываем один раз status=${pending.status} total=${pending.coins.total} source=${source}`);
+        // зачем (решение владельца/координатора 15.10): метка снимается только когда окно РЕАЛЬНО показано (слот получен) или нажато «Понятно» — закрыли приложение до показа, окно вернётся при следующем запуске
+        pendingClear = { key: doneKey, status: parsed.status ?? pending.status, total: parsed.total ?? pending.coins.total };
+        console.log(`${WHATSNEW_LOG} pending восстановлено из метки: окно показываем, флаг снимется при показе/«Понятно» status=${pending.status} total=${pending.coins.total} source=${source}`);
         welcome = { status: pending.status, upgraded: pending.upgraded, from: pending.from, coins: pending.coins, cappedBy: pending.cappedBy, starsBalance: pending.starsBalance };
         emit();
         return;
@@ -133,11 +138,14 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
       return;
     }
     // зачем (Ревизор P2/P11, 15.10): ответ позже потолка и окно положено (начислено или ноль у обновившегося) — результат остаётся в метке, окно покажем при следующем запуске/входе на Главную (один раз)
-    const windowOwed = timedOut && (result.status === 'converted' || (result.status === 'nothing' && result.upgraded));
+    const windowOwed = result.status === 'converted' || (result.status === 'nothing' && result.upgraded);
     const pendingWindow = windowOwed
       ? { welcomePending: true, pending: { status: result.status, upgraded: result.upgraded, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance, starsSeq: result.starsSeq } }
       : {};
-    if (windowOwed) console.log(`${WHATSNEW_LOG} ответ позже потолка (${Date.now() - startedAt} мс, потолок ${WELCOME_MAX_WAIT_MS}) — окно отложено на следующий запуск status=${result.status} total=${result.coins.total}`);
+    if (windowOwed) {
+      pendingClear = { key: doneKey, status: result.status, total: result.coins.total };
+      console.log(`${WHATSNEW_LOG} pending записано: окно положено, флаг снимется при показе/«Понятно» status=${result.status} total=${result.coins.total} timedOut=${timedOut} ms=${Date.now() - startedAt}`);
+    }
     await AsyncStorage.setItem(doneKey, JSON.stringify(
       result.status === 'disabled' ? { status: 'disabled', retryAfterMs: Date.now() + RETRY_AFTER_MS } : { status: result.status, total: result.coins.total, ...pendingWindow },
     ));
@@ -194,8 +202,28 @@ export function useLegacyBonusWelcome(): Readonly<{ kind: 'none' | 'show'; resul
   return value ? { kind: 'show', result: value } : { kind: 'none' };
 }
 
+/**
+ * Окно «Встречайте 2.0» реально на экране (слот получен) или нажато «Понятно» — снимаем welcomePending в метке владельца ([WHATSNEW-GATE] shown/cleared).
+ * Идемпотентно; без ожидающей метки (dev-демо, окно без начисления) ничего не делает.
+ */
+export function markLegacyBonusWelcomeShown(reason: 'shown' | 'dismissed'): void {
+  const target = pendingClear;
+  if (!target) {
+    console.log(`${WHATSNEW_LOG} ${reason}: метки нет (повтор или dev-демо) — ничего не снимаем`);
+    return;
+  }
+  pendingClear = null;
+  void AsyncStorage.setItem(target.key, JSON.stringify({ status: target.status, total: target.total }))
+    .then(() => console.log(`${WHATSNEW_LOG} cleared reason=${reason} total=${target.total}`))
+    .catch((error: unknown) => {
+      pendingClear = target;
+      console.warn(`${WHATSNEW_LOG} ${reason}: метку снять не удалось — ${error instanceof Error ? error.message : String(error)} (окно вернётся при следующем запуске)`);
+    });
+}
+
 export function dismissLegacyBonusWelcome(): void {
   console.log(`${LOG} welcome dismissed total=${welcome?.coins.total ?? 0}`);
+  markLegacyBonusWelcomeShown('dismissed');
   welcome = null;
   emit();
 }
@@ -222,6 +250,7 @@ export function setDevLegacyBonusDemo(mode: DevLegacyBonusDemo | boolean): boole
 /** Только для тестов. */
 export function resetLegacyBonusClientForTests(): void {
   welcome = null;
+  pendingClear = null;
   ranThisProcess = false;
   listeners.clear();
 }

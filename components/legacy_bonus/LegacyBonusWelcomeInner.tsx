@@ -5,7 +5,7 @@
 // Закрытие ведём плавно: сначала шторка уезжает (слот держится), и только когда нативное окно ушло — слот освобождается и клиент помечает окно закрытым.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { lazy, memo, Suspense, useCallback, useEffect, useRef, useState } from 'react';
-import { dismissLegacyBonusWelcome, useLegacyBonusWelcome } from '../../app/legacy_bonus_client';
+import { dismissLegacyBonusWelcome, markLegacyBonusWelcomeShown, useLegacyBonusWelcome } from '../../app/legacy_bonus_client';
 import type { Lang } from '../../constants/i18n';
 import type { LegacyBonusViewInput } from '../../modules/legacy_bonus/legacy_bonus_view';
 import { useOverlayVisible } from '../OverlayArbiter';
@@ -31,6 +31,7 @@ function LegacyBonusWelcomeInner({ lang, coinRank }: Readonly<{ lang: Lang; coin
     if (slot && !loggedSlotRef.current) {
       loggedSlotRef.current = true;
       console.log('[LEGACY-BONUS] хост: слот получен — шторка на экране'); // guard-ok: одна строка на показ
+      markLegacyBonusWelcomeShown('shown'); // зачем (владелец 15.10): метка welcomePending снимается только когда окно реально на экране — закрыли приложение раньше, окно вернётся
     }
   }, [slot]);
 

@@ -11,7 +11,7 @@ jest.mock('../app/level_spin_star_grants', () => ({ mergeLevelSpinServerStars: (
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { act, renderHook } from '@testing-library/react-native';
 import { beginAccountGeneration } from '../app/account_generation';
-import { dismissLegacyBonusWelcome, resetLegacyBonusClientForTests, runLegacyBonusConvertOnce, useLegacyBonusWelcome } from '../app/legacy_bonus_client';
+import { dismissLegacyBonusWelcome, markLegacyBonusWelcomeShown, resetLegacyBonusClientForTests, runLegacyBonusConvertOnce, useLegacyBonusWelcome } from '../app/legacy_bonus_client';
 
 const converted = {
   status: 'converted', from: { xp: 8362, pearls: 120, spins: 0 }, coins: { xp: 836, pearls: 1200, spins: 0, total: 2036 },
@@ -35,7 +35,8 @@ describe('legacy_bonus_client', () => {
     await runLegacyBonusConvertOnce('test');
     expect(mockCall).toHaveBeenCalledWith({ ownerStableId: 'owner-legacy' });
     expect(mockMerge).toHaveBeenCalledWith(expect.anything(), { stars: 4036, starsSeq: 17, serverCreditedDelta: 2036 });
-    expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toEqual({ status: 'converted', total: 2036 });
+    // метка несёт welcomePending, пока окно не показано (решение владельца 15.10); сеть повторно не трогаем
+    expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toMatchObject({ status: 'converted', total: 2036, welcomePending: true });
     resetLegacyBonusClientForTests();
     await runLegacyBonusConvertOnce('test');
     expect(mockCall).toHaveBeenCalledTimes(1);
@@ -104,9 +105,11 @@ describe('legacy_bonus_client', () => {
       await act(async () => { await runLegacyBonusConvertOnce('next_launch'); });
       expect(hook2.result.current).toMatchObject({ kind: 'show', result: { coins: { total: 2036 } } });
       expect(mockCall).toHaveBeenCalledTimes(1);
-      expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toEqual({ status: 'converted', total: 2036 });
+      // флаг при чтении НЕ снимается — только когда окно показано/«Понятно»
+      expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toMatchObject({ welcomePending: true });
 
       await act(async () => { dismissLegacyBonusWelcome(); });
+      expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toEqual({ status: 'converted', total: 2036 });
       resetLegacyBonusClientForTests();
       const hook3 = await renderHook(() => useLegacyBonusWelcome());
       await act(async () => { await runLegacyBonusConvertOnce('third_launch'); });
@@ -124,5 +127,42 @@ describe('legacy_bonus_client', () => {
     expect(hook.result.current.kind).toBe('none');
     expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toEqual({ status: 'converted', total: 10 });
     expect(mockCall).not.toHaveBeenCalled();
+  });
+
+  // зачем (решение владельца 15.10): обновившиеся должны увидеть окно обязательно — метка снимается только когда окно показано/«Понятно»
+  it('ответ пришёл вовремя, окно не показано, приложение закрыто → при следующем запуске окно возвращается, после показа — больше нет', async () => {
+    mockCall.mockResolvedValueOnce({ data: converted });
+    await runLegacyBonusConvertOnce('first_launch');
+    expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toMatchObject({ welcomePending: true, pending: { coins: { total: 2036 } } });
+
+    // «закрыли приложение»: память процесса пуста, метка осталась
+    resetLegacyBonusClientForTests();
+    const hook = await renderHook(() => useLegacyBonusWelcome());
+    await act(async () => { await runLegacyBonusConvertOnce('second_launch'); });
+    expect(hook.result.current).toMatchObject({ kind: 'show', result: { coins: { total: 2036 } } });
+    expect(mockCall).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toMatchObject({ welcomePending: true });
+
+    // окно реально на экране → метка снимается; повторный вызов безвреден
+    await act(async () => { markLegacyBonusWelcomeShown('shown'); markLegacyBonusWelcomeShown('shown'); });
+    await act(async () => { await Promise.resolve(); });
+    expect(JSON.parse(String(await AsyncStorage.getItem('legacy_bonus_done_v1:owner-legacy')))).toEqual({ status: 'converted', total: 2036 });
+
+    resetLegacyBonusClientForTests();
+    const hook2 = await renderHook(() => useLegacyBonusWelcome());
+    await act(async () => { await runLegacyBonusConvertOnce('third_launch'); });
+    expect(hook2.result.current.kind).toBe('none');
+    expect(mockCall).toHaveBeenCalledTimes(1);
+  });
+
+  it('ноль у обновившегося: окно тоже возвращается после закрытия до показа', async () => {
+    const zero = { ...converted, status: 'nothing', upgraded: true, coins: { xp: 0, pearls: 0, spins: 0, total: 0 } };
+    mockCall.mockResolvedValueOnce({ data: zero });
+    await runLegacyBonusConvertOnce('first_launch');
+    resetLegacyBonusClientForTests();
+    const hook = await renderHook(() => useLegacyBonusWelcome());
+    await act(async () => { await runLegacyBonusConvertOnce('second_launch'); });
+    expect(hook.result.current).toMatchObject({ kind: 'show', result: { status: 'nothing', upgraded: true } });
+    expect(mockCall).toHaveBeenCalledTimes(1);
   });
 });

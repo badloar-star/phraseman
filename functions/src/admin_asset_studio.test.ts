@@ -168,7 +168,9 @@ describe('image HTTP transport regression', () => {
     const { __assetStudioTestHooks } = await import('./admin_asset_studio');
     const fetchMock = jest.fn().mockResolvedValue({ ok: true, json: async () => ({ data: [{ b64_json: Buffer.from('png-fixture').toString('base64') }] }) });
     global.fetch = fetchMock;
-    const result = await __assetStudioTestHooks.generateImage('test-only-key', normalizeAssetJobInput({ prompt: 'Icon' }), 'gpt-image-2.5-sunburst');
+    // зачем (Ядро 15.10): с слияния 4d4fcc412 сигнатура generateImage(apiKey, job, timeoutMs, model) — таймаут PM-231 + модель
+    // из конфига; тест звал её по-старому тремя аргументами, и имя модели уходило в AbortSignal.timeout (боевой вызов верный).
+    const result = await __assetStudioTestHooks.generateImage('test-only-key', normalizeAssetJobInput({ prompt: 'Icon' }), 5_000, 'gpt-image-2.5-sunburst');
     expect(result.toString()).toBe('png-fixture');
     const [url, options] = fetchMock.mock.calls[0];
     expect(url).toBe('https://api.openai.com/v1/images/generations');
@@ -177,7 +179,7 @@ describe('image HTTP transport regression', () => {
   test('missing image bytes remain an explicit failure', async () => {
     const { __assetStudioTestHooks } = await import('./admin_asset_studio');
     global.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => ({ data: [] }) });
-    await expect(__assetStudioTestHooks.generateImage('test-only-key', normalizeAssetJobInput({ prompt: 'Icon' }), 'gpt-image-2.5-flare'))
+    await expect(__assetStudioTestHooks.generateImage('test-only-key', normalizeAssetJobInput({ prompt: 'Icon' }), 5_000, 'gpt-image-2.5-flare'))
       .rejects.toThrow('image_api_no_b64');
   });
 });

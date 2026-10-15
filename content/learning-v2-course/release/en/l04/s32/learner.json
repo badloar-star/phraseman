@@ -1,0 +1,1015 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-32:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Йогурт на кухонной столешнице. Скажите, где он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йогурт на кухонной столешнице. Скажите, где он",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The yoghurt is on the worktop.",
+        "localizedMeaning": {
+          "ru": "Йогурт на кухонной столешнице. Скажите, где он",
+          "uk": "Йогурт на кухонній стільниці. Скажіть, де він"
+        },
+        "orderedTokens": [
+          "The",
+          "yoghurt",
+          "is",
+          "on",
+          "the",
+          "worktop"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Йогурт на кухонной столешнице. Скажите, где он",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The yoghurt is on the worktop.`",
+              "uk": "тут потрібно `is` — `The yoghurt is on the worktop.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-32:i02:r1",
+          "text": "fountain"
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i02:r2",
+          "text": "fountains"
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i02:r3",
+          "text": "table"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-32:i02:audio",
+          "transcript": "fountain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-32:i02:r1",
+            "targetText": "fountain",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i02:r2",
+            "targetText": "fountains",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i02:r3",
+            "targetText": "table",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `fountain`, а в этом варианте — `fountains`.",
+              "uk": "У записі перше слово — `fountain`, а в цьому варіанті — `fountains`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `fountain`, а в этом варианте — `table`.",
+              "uk": "У записі перше слово — `fountain`, а в цьому варіанті — `table`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите фонтан одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-32:i03:r1",
+          "text": "fountain"
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i03:r2",
+          "text": "sink"
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i03:r3",
+          "text": "awning"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите фонтан одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите фонтан одним словом",
+          "uk": "Назвіть фонтан одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i03:r1",
+            "text": "fountain"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i03:r2",
+            "text": "sink"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i03:r3",
+            "text": "awning"
+          }
+        ],
+        "testedDimension": "Назовите фонтан одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите фонтан одним словом",
+            "feedbackByLocale": {
+              "ru": "`sink` — раковина; фонтан — `fountain`.",
+              "uk": "`sink` — раковина; фонтан — `fountain`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите фонтан одним словом",
+            "feedbackByLocale": {
+              "ru": "`awning` — навес; фонтан — `fountain`.",
+              "uk": "`awning` — навіс; фонтан — `fountain`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-32:i04:p1",
+            "target": "fountain",
+            "meaningByLocale": {
+              "ru": "фонтан",
+              "uk": "фонтан"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-32:i04:p2",
+            "target": "yoghurt",
+            "meaningByLocale": {
+              "ru": "йогурт",
+              "uk": "йогурт"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-32:i04:p3",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-32:i04:p4",
+            "target": "worktop",
+            "meaningByLocale": {
+              "ru": "кухонная столешница",
+              "uk": "кухонна стільниця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fountain",
+          "yoghurt",
+          "sink",
+          "worktop"
+        ],
+        "rightColumn": [
+          "фонтан",
+          "йогурт",
+          "раковина",
+          "кухонная столешница"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-32:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-32:i05:audio",
+          "transcript": "This is a fountain."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a fountain.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "fountain"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a fountain.`",
+              "uk": "тут потрібно `is` — `This is a fountain.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Раковина рядом со столешницей. Скажите, где она",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Раковина рядом со столешницей. Скажите, где она",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sink is next to the worktop.",
+        "localizedMeaning": {
+          "ru": "Раковина рядом со столешницей. Скажите, где она",
+          "uk": "Раковина поруч зі стільницею. Скажіть, де вона"
+        },
+        "orderedTokens": [
+          "The",
+          "sink",
+          "is",
+          "next",
+          "to",
+          "the",
+          "worktop"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Раковина рядом со столешницей. Скажите, где она",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The sink is next to the worktop.`",
+              "uk": "тут потрібно `is` — `The sink is next to the worktop.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Столб с указателями находится в переулке. Скажите, где он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-32:i07:audio"
+      ],
+      "accessibilityLabel": "Столб с указателями находится в переулке. Скажите, где он",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-32:i07:audio",
+          "transcript": "The signpost is in the alley."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The signpost is in the alley.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Навес над сумкой: сумка под ним, не на нём и не внутри. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-32:i08:r1",
+          "text": "under"
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i08:r2",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i08:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Навес над сумкой: сумка под ним, не на нём и не внутри. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Навес над сумкой: сумка под ним, не на нём и не внутри. Выберите слово",
+          "uk": "Навіс над сумкою: сумка під ним, не на ньому й не всередині. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The bag is ___ the awning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i08:r1",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i08:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i08:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Навес над сумкой: сумка под ним, не на нём и не внутри. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Навес над сумкой: сумка под ним, не на нём и не внутри. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`on` — на поверхности; под навесом — `under the awning`.",
+              "uk": "`on` — на поверхні; під навісом — `under the awning`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Навес над сумкой: сумка под ним, не на нём и не внутри. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; здесь под: `under`.",
+              "uk": "`in` — усередині; тут під: `under`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где остановка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-32:i09:r1",
+          "text": "The bus stop is next to the fountain."
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i09:r2",
+          "text": "The bus stop is next to the hotel."
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i09:r3",
+          "text": "The bus stop is next to the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-32:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где остановка",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-32:i09:audio",
+          "transcript": "The bus stop is next to the fountain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-32:i09:r1",
+            "targetText": "The bus stop is next to the fountain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i09:r2",
+            "targetText": "The bus stop is next to the hotel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i09:r3",
+            "targetText": "The bus stop is next to the shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где остановка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `fountain`, а в этом варианте — `hotel`.",
+              "uk": "У записі останнє слово — `fountain`, а в цьому варіанті — `hotel`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где остановка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `fountain`, а в этом варианте — `shop`.",
+              "uk": "У записі останнє слово — `fountain`, а в цьому варіанті — `shop`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините ориентиры со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините ориентиры со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-32:i10:p1",
+            "target": "awning",
+            "meaningByLocale": {
+              "ru": "навес",
+              "uk": "навіс"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-32:i10:p2",
+            "target": "alley",
+            "meaningByLocale": {
+              "ru": "узкий переулок",
+              "uk": "вузький провулок"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-32:i10:p3",
+            "target": "bus stop",
+            "meaningByLocale": {
+              "ru": "автобусная остановка",
+              "uk": "автобусна зупинка"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-32:i10:p4",
+            "target": "signpost",
+            "meaningByLocale": {
+              "ru": "столб с указателями",
+              "uk": "стовп із вказівниками"
+            }
+          }
+        ],
+        "leftColumn": [
+          "awning",
+          "alley",
+          "bus stop",
+          "signpost"
+        ],
+        "rightColumn": [
+          "навес",
+          "узкий переулок",
+          "автобусная остановка",
+          "столб с указателями"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите описание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите описание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-32:i11:audio",
+          "transcript": "The fountain is next to the car park."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The fountain is next to the car park.",
+        "orderedTokens": [
+          "The",
+          "fountain",
+          "is",
+          "next",
+          "to",
+          "the",
+          "car",
+          "park"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите описание",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The fountain is next to the car park.`",
+              "uk": "тут потрібно `is` — `The fountain is next to the car park.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Есть немного йогурта. Сообщите об этом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Есть немного йогурта. Сообщите об этом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is some yoghurt.",
+        "localizedMeaning": {
+          "ru": "Есть немного йогурта. Сообщите об этом",
+          "uk": "Є трохи йогурту. Повідомте про це"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "some",
+          "yoghurt"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Есть немного йогурта. Сообщите об этом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is some yoghurt.`",
+              "uk": "тут потрібно `is` — `There is some yoghurt.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы в незнакомом месте. Спросите, есть ли здесь фонтан",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Вы в незнакомом месте. Спросите, есть ли здесь фонтан",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-32:i13:audio",
+          "transcript": "Is there a fountain?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a fountain?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-32:i14:r1",
+          "text": "between"
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i14:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i14:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
+          "uk": "Фонтан між двома магазинами, не всередині й не під ними. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The fountain is ___ the shops.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i14:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i14:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i14:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i14:r2",
+            "correct": false,
+            "testedDimension": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; между — `between`.",
+              "uk": "`in` — усередині; між — `between`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i14:r3",
+            "correct": false,
+            "testedDimension": "Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; между — `between`.",
+              "uk": "`under` — під; між — `between`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что показывает друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-32:i15:r1",
+          "text": "That is a fountain."
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i15:r2",
+          "text": "This is a fountain."
+        },
+        {
+          "responseId": "en:lesson-04:session-32:i15:r3",
+          "text": "That is a table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что показывает друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-32:i15:audio",
+          "transcript": "That is a fountain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-32:i15:r1",
+            "targetText": "That is a fountain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i15:r2",
+            "targetText": "This is a fountain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i15:r3",
+            "targetText": "That is a table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-32:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `fountain`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `fountain`, а в цьому варіанті — `table`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините названия со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините названия со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-32:i16:p1",
+            "target": "car park",
+            "meaningByLocale": {
+              "ru": "парковка",
+              "uk": "парковка"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-32:i16:p2",
+            "target": "awning",
+            "meaningByLocale": {
+              "ru": "навес",
+              "uk": "навіс"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-32:i16:p3",
+            "target": "alley",
+            "meaningByLocale": {
+              "ru": "узкий переулок",
+              "uk": "вузький провулок"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-32:i16:p4",
+            "target": "fountain",
+            "meaningByLocale": {
+              "ru": "фонтан",
+              "uk": "фонтан"
+            }
+          }
+        ],
+        "leftColumn": [
+          "car park",
+          "awning",
+          "alley",
+          "fountain"
+        ],
+        "rightColumn": [
+          "парковка",
+          "навес",
+          "узкий переулок",
+          "фонтан"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другом городе друг ищет фонтан. Он рядом с отелем. Скажите «Фонтан рядом с отелем»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "В другом городе друг ищет фонтан. Он рядом с отелем. Скажите «Фонтан рядом с отелем»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-32:i17:audio",
+          "transcript": "The fountain is next to the hotel."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The fountain is next to the hotel.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5a16659553ee693b4abae828c47d023229f5ac73fb00354a456d1eae618ed213"
+}

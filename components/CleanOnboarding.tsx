@@ -2649,13 +2649,29 @@ function CleanOnboarding({
   useEffect(() => {
     if (!__DEV__) return undefined;
     let lastTickAt = Date.now();
+    // зачем (координатор 15.10, бета А6: «step=privacy 9,7 / 5,6 с»): это были окна входа Google/Apple — приложение в фоне, Android
+    // приостанавливает JS, сторож считал паузу простоем. Время в фоне копим и вычитаем; простой — только остаток (как 29d73d364).
+    let backgroundSinceAt: number | null = AppState.currentState === 'active' ? null : Date.now();
+    let backgroundMsSinceTick = 0;
+    const appStateSub = AppState.addEventListener('change', (next) => {
+      const at = Date.now();
+      if (next !== 'active') { if (backgroundSinceAt === null) backgroundSinceAt = at; return; }
+      if (backgroundSinceAt !== null) { backgroundMsSinceTick += at - backgroundSinceAt; backgroundSinceAt = null; }
+    });
     const watchdog = setInterval(() => {
       const now = Date.now();
-      const gapMs = now - lastTickAt;
+      const rawGapMs = now - lastTickAt;
       lastTickAt = now;
+      if (backgroundSinceAt !== null) return; // в фоне не меряем
+      let gapMs = rawGapMs;
+      if (backgroundMsSinceTick > 0) {
+        gapMs = Math.max(0, rawGapMs - backgroundMsSinceTick);
+        console.warn(`[JS-STALL] onboarding step=${stallStepRef.current} skipped_background ms=${backgroundMsSinceTick} gap=${rawGapMs}ms counted=${gapMs}ms`); // guard-ok: только dev
+        backgroundMsSinceTick = 0;
+      }
       if (gapMs > 250) console.warn(`[JS-STALL] onboarding step=${stallStepRef.current} поток стоял ${gapMs}ms`); // guard-ok: только dev
     }, 100);
-    return () => clearInterval(watchdog);
+    return () => { clearInterval(watchdog); appStateSub.remove(); };
   }, []);
 
   const back = useCallback(() => {

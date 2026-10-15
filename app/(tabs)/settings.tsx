@@ -630,7 +630,12 @@ export default function SettingsMain() {
       // непустое имя из снапшота синхронизируем всегда, иначе ряд в настройках
       // показывал бы старое имя до перезапуска. Пустое имя из снапшота не
       // затирает локально загруженное (историческая защита гидрации).
-      setUserName(current => appSnapshot.profile!.name || current);
+      const snapshotName = appSnapshot.profile.name;
+      setUserName(current => {
+        // зачем (координатор 15.10, логи до починки): после входа ~20 с виден временный ник — какое решение принял эффект.
+        console.log('[SETTINGS-NAME]', JSON.stringify({ step: 'snapshot', owner: (captureAccountGeneration().stableId ?? '').slice(0, 8) || null, profileSource: appSnapshot.profile?.source ?? null, snapshotPresent: Boolean(snapshotName), currentPresent: Boolean(current), decision: snapshotName ? 'set_snapshot' : current ? 'kept_previous' : 'empty' })); // guard-ok: без имён
+        return snapshotName || current;
+      });
     }
     if (appSnapshot.settings?.tapHaptics != null) {
       setHapticTap(appSnapshot.settings.tapHaptics);
@@ -675,8 +680,12 @@ export default function SettingsMain() {
       readVipSnapshotForGeneration(token),
     ])
       .then(([pairs, vip]) => {
-        if (cancelled || !token.stableId || !isCurrentAccountGeneration(token, token.stableId)) return;
+        if (cancelled || !token.stableId || !isCurrentAccountGeneration(token, token.stableId)) {
+          console.log('[SETTINGS-NAME]', JSON.stringify({ step: 'storage_skip', cancelled, owner: (token.stableId ?? '').slice(0, 8) || null, current: (captureAccountGeneration().stableId ?? '').slice(0, 8) || null }));
+          return;
+        }
         const hydratedName = resolveHydratedProfileName(settingsHydrationStartedAt, pairs[0][1]);
+        console.log('[SETTINGS-NAME]', JSON.stringify({ step: 'storage', owner: token.stableId.slice(0, 8), storedPresent: Boolean(pairs[0][1]?.trim()), hydratedPresent: Boolean(hydratedName), ms: Date.now() - settingsHydrationStartedAt })); // guard-ok: без имён
         if (hydratedName) setUserName(hydratedName);
         patchAppSnapshot((current) => current.profile ? {
           profile: {

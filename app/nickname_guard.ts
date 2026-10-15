@@ -154,6 +154,7 @@ export function resumePendingGeneratedNickname(): Promise<void> {
   pendingNicknameFlight = (async () => {
     const pending = await AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY).catch(noteSwallowedAs('nickname_guard:promise_7', null));
     if (!pending) {
+      console.log('[NICK-GEN]', JSON.stringify({ step: 'skip_no_pending' }));
       cancelPendingGeneratedNicknameRetry();
       return;
     }
@@ -174,6 +175,8 @@ export function resumePendingGeneratedNickname(): Promise<void> {
     const result = await generateAndReserveNickname(baseName);
     const name = result.status === 'ok' ? String(result.name ?? '').trim() : '';
     const resultStableId = String(result.stableId ?? '').trim();
+    // зачем (координатор 15.10, логи до починки): после входа ~20 с в Настройках временный ник — не отсюда ли он.
+    console.log('[NICK-GEN]', JSON.stringify({ step: 'generated', status: result.status, namePresent: Boolean(name), owner: resultStableId.slice(0, 8) || null, tokenOwner: (accountToken.stableId ?? '').slice(0, 8) || null, hasBaseName: Boolean(baseName) }));
     if (!name || !resultStableId) {
       schedulePendingNicknameRetry();
       return;
@@ -181,9 +184,15 @@ export function resumePendingGeneratedNickname(): Promise<void> {
     let applied = false;
     await withAccountTransitionLock(async () => {
       const stillPending = await AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY).catch(noteSwallowedAs('nickname_guard:promise_8', null));
-      if (!stillPending || !isCurrentAccountGeneration(accountToken, resultStableId)) return;
+      if (!stillPending || !isCurrentAccountGeneration(accountToken, resultStableId)) {
+        console.log('[NICK-GEN]', JSON.stringify({ step: 'skip_apply', stillPending: Boolean(stillPending), generationCurrent: isCurrentAccountGeneration(accountToken, resultStableId) }));
+        return;
+      }
       const activeStableId = peekStableId();
-      if (resultStableId !== activeStableId) return;
+      if (resultStableId !== activeStableId) {
+        console.log('[NICK-GEN]', JSON.stringify({ step: 'skip_owner_mismatch', owner: resultStableId.slice(0, 8), active: (activeStableId ?? '').slice(0, 8) || null }));
+        return;
+      }
 
       const rawProfile = await AsyncStorage.getItem('user_profile').catch(noteSwallowedAs('nickname_guard:promise_9', null));
       let profile: Record<string, unknown> = {};
@@ -199,10 +208,12 @@ export function resumePendingGeneratedNickname(): Promise<void> {
       await AsyncStorage.removeItem(GENERATED_NICKNAME_PENDING_KEY);
       applied = true;
     });
+    console.log('[NICK-GEN]', JSON.stringify({ step: applied ? 'applied_user_name' : 'not_applied', owner: resultStableId.slice(0, 8) }));
     if (!applied) return;
     cancelPendingGeneratedNicknameRetry();
     emitAppEvent('cloud_profile_hydrated');
-  })().catch(() => {
+  })().catch((e: unknown) => {
+    console.warn('[NICK-GEN]', JSON.stringify({ step: 'error', message: e instanceof Error ? e.message : String(e) }));
     schedulePendingNicknameRetry();
   }).finally(() => {
     pendingNicknameFlight = null;

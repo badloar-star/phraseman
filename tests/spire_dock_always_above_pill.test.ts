@@ -4,6 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { tabPillTopOffset } from '../components/v2/tab_bar_geometry';
+import { SPIRE_WINDOW_MIN, SPIRE_WINDOW_MIN_TALL, spireTowerWindowHeight } from '../components/spire/spire_tower_window';
 
 const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 
@@ -53,4 +54,45 @@ describe('Пик: док и последняя карточка всегда в�
       }
     }
   }
+});
+
+// Начальное положение (scroll = 0): на обычных телефонах карточка «Этаж N» целиком выше дока, при шрифте 1.0 и 1.3 (решение координатора 15.10; автопрокрутки нет).
+// Модель верха окна башни — по замеру Сверки на Pixel 8 (верх окна 306 dp при шрифте 1.0, верхняя вставка 24): вставка + 66 (вкладки) + 216 (заголовок, «Комната недели», пьедестал); из 216 на системный шрифт
+// масштабируются ≈ 130 (заголовки, подписи, имена), остальное (монеты, плиты пьедестала 88/66/50, кнопка «Все участники») фиксировано. Карточка этажа 110 и док 52 масштабируются целиком (пессимистично).
+function initialPosition(screenH: number, insetTop: number, bottomInset: number, font: number) {
+  const towerTop = insetTop + 66 + 86 + 130 * font;
+  const infoH = 110 * font;
+  const dockH = 52 * font;
+  const pillTop = tabPillTopOffset(bottomInset);
+  const dockTop = screenH - (pillTop + DOCK_PILL_GAP) - dockH;
+  const windowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP + infoH, screenH);
+  return { windowH, cardBottom: towerTop + windowH + infoH, dockTop };
+}
+
+describe('Пик: начальное положение — карточка этажа выше дока на обычных телефонах', () => {
+  const devices: ReadonlyArray<readonly [string, number, number, number]> = [
+    ['Pixel 8 412×915', 915, 24, 24],
+    ['iPhone 390×844', 844, 47, 34],
+    ['iPhone Pro Max 430×932', 932, 59, 34],
+  ];
+  for (const [name, h, insetTop, bottomInset] of devices) {
+    for (const font of [1.0, 1.3]) {
+      it(`${name}, шрифт ${font}: низ карточки «Этаж N» выше верха дока на ≥ ${DOCK_GAP}`, () => {
+        const r = initialPosition(h, insetTop, bottomInset, font);
+        expect([name, font, r.windowH >= SPIRE_WINDOW_MIN_TALL]).toEqual([name, font, true]);
+        expect([name, font, r.cardBottom <= r.dockTop - DOCK_GAP + 0.5]).toEqual([name, font, true]);
+      });
+    }
+  }
+
+  it('малый экран 360×640: минимум окна 220, дальше обычная прокрутка (контент уходит под док с затуханием)', () => {
+    const r = initialPosition(640, 24, 0, 1.0);
+    expect(r.windowH).toBe(SPIRE_WINDOW_MIN);
+  });
+
+  it('затухание над доком: градиент затемнения стоит на 40 dp выше дока (между 24 и 40), не ступенькой', () => {
+    const home = read('components/spire/SpireHomeScreen.tsx');
+    expect(home).toContain('colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]}');
+    expect(home).toMatch(/scrim: \{ position: 'absolute', left: -V2\.screenPad, right: -V2\.screenPad, top: -40, bottom: -40 \}/);
+  });
 });

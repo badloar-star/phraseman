@@ -11,13 +11,20 @@
 export const SPIRE_WINDOW_MAX = 400;
 /** Ниже окно не сжимаем: башня остаётся читаемой, нижние этажи доступны прокруткой внутри окна. */
 export const SPIRE_WINDOW_MIN = 220;
+/**
+ * Обычные телефоны (Pixel 8 412×915, iPhone 390×844 и крупнее, высота окна ≥ 800 dp): окно ужимается до 120, чтобы в начальном положении карточка «Этаж N» и «Играть» целиком стояли над доком
+ * при шрифте 1.0 и 1.3 (решение координатора 15.10: макет не ломаем, автопрокрутки нет). На малых экранах (360×640) минимум 220 и обычная прокрутка — контент уходит под док с мягким затуханием.
+ */
+export const SPIRE_WINDOW_MIN_TALL = 120;
+export const SPIRE_TALL_SCREEN_H = 800;
 
 /**
  * towerTop — верх окна башни в содержимом страницы; dockTop — верх дока в той же системе координат (страница в положении 0); gap — зазор над доком.
  * Не измерено (0) — прежняя высота по макету, чтобы первый кадр не прыгал в сторону уменьшения без данных.
  */
-export function spireTowerWindowHeight(towerTop: number, dockTop: number, gap: number): number {
+export function spireTowerWindowHeight(towerTop: number, dockTop: number, gap: number, screenH: number = 0): number {
   if (!(towerTop > 0) || !(dockTop > 0)) return SPIRE_WINDOW_MAX;
   const fit = Math.floor(dockTop - towerTop - gap);
-  return Math.min(SPIRE_WINDOW_MAX, Math.max(SPIRE_WINDOW_MIN, fit));
+  const min = screenH >= SPIRE_TALL_SCREEN_H ? SPIRE_WINDOW_MIN_TALL : SPIRE_WINDOW_MIN;
+  return Math.min(SPIRE_WINDOW_MAX, Math.max(min, fit));
 }

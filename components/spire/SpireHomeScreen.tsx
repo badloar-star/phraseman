@@ -16,7 +16,7 @@
 // СПЕРВА ЛОГИ: префикс [SPIRE] — вход, откуда данные, причина каждого раннего выхода.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { RefreshControl, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -81,7 +81,7 @@ export default function SpireHomeScreen() {
   const { hasPremiumAccess } = usePremium();
   const realCoinRank = useMyCoinRank();
   const bottomPad = useTabContentBottomPad();
-  const pillTop = useTabPillTop(); const dockBottom = pillTop + DOCK_PILL_GAP;
+  const pillTop = useTabPillTop(); const dockBottom = pillTop + DOCK_PILL_GAP; const screenH = useWindowDimensions().height;
   // зачем (координатор 11.10): DEV-превью на моках (/dev_spire_preview) подаёт сюда готовую модель; в боевом пути preview всегда null,
   // и экран работает как раньше — конфиг, локальная неделя и игра из реальных источников.
   const preview = useSpirePreview();
@@ -100,7 +100,7 @@ export default function SpireHomeScreen() {
   const [towerTop, setTowerTop] = useState(0);
   const [dockTop, setDockTop] = useState(0);
   const [infoH, setInfoH] = useState(0); // зачем (координатор 15.10, условие 3): карточка «Этаж N» под окном башни не уходит под док в начальном положении — её высота вычитается из окна
-  const towerWindowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP + infoH);
+  const towerWindowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP + infoH, screenH);
   useEffect(() => { if (towerTop > 0 && dockTop > 0) console.log('[SPIRE-DOCK-INSET] window', JSON.stringify({ towerTop, dockTop, dockH: roundLayout(dockH), gap: DOCK_GAP, towerWindowH, bottomPad: roundLayout(bottomPad) })); }, [towerTop, dockTop, dockH, towerWindowH, bottomPad]); // guard-ok: журнал высоты окна башни до дока
 
   useEffect(() => {

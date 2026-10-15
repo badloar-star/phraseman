@@ -1428,7 +1428,9 @@ export default function LessonComplete() {
     if (sequenceShowing) {
       return (
         <ScreenGradient>
-          <SafeAreaView style={{ flex: 1 }}>
+          {/* зачем (R69, Сверка 15.10: шов #f3f4fd → #eaebfe на y=132 и заголовок ниже, чем на других экранах): V2DoneScreen сам держит верхний и нижний отступ (insets.top + 8, док по insets.bottom), а SafeAreaView добавлял тот же отступ ВТОРОЙ раз —
+              верхняя зона (inset) оставалась полотном ScreenGradient, ниже начинался плоский фон экрана. Один источник отступа — в самом экране. */}
+          <SafeAreaView edges={[]} style={{ flex: 1 }}>
             {/* зачем (владелец 01.10): «старые экраны все должны быть заменены на макетные» —
                 итог урока = общий экран завершения 2.0 (learn.html E, D36/D64.1, PM-137). */}
             <V2DoneScreen

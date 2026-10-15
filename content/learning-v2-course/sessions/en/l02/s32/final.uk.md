@@ -1,211 +1,138 @@
-# Англійська · Урок 2 · Заняття 32 — «Вечеря самими питаннями»
+# Англійська · Урок 2 · Заняття 32 — Готуємо дворовий ярмарок
 
-**Сцена заняття.** Вечір у дублінському кафе. Ви сіли за столик, англійської майже немає, але вечерю замовити треба — і все робиться питаннями: що це, де те, чи дорого.
+**Ситуація.** Ви із сусідами готуєте невеликий ярмарок у дворі. Анна принесла частування для всіх, Олег поїхав. Шукаєте коробки й вирішуєте, чи можна змінити час початку.
 
-**Як сказати:** повторення — `What is…?`, `Where is…?`, `Is it…?`, `It is + місце`
+**Що ви опануєте:** повторити запитання хто, що й де, короткі відповіді та слова глави
 **Нові слова:** —
-**Повертаються:** menu, bill, price, toilet, corner, cheap, near
 
 ---
 
 ## Інтро 1
 
-### `What is` — коли питаєш про річ
+### Кого немає й де він
 
-`price` — «ціна», та сама цифра праворуч від страви. `What is the price?` — так питають, скільки це коштує.
+`absent` — «відсутній»: людини немає там, де на неї чекали. `away` — «не тут, у від’їзді». Олег поїхав: `He is away`. `Who is absent?` запитує, кого немає. `Where is he?` запитує, де він. На друге запитання самого імені Олега замало.
 
-Українською слова в питанні можна пересунути: «яка ціна» і «ціна яка» — обидва варіанти зрозумілі. Англійською так не вийде: спершу `What`, за ним `is`, потім `the` і саме слово. Один порядок, інших немає.
+**Ви знаєте, що Олег поїхав, але не знаєте куди. Запитайте, де він.**
 
-**У меню рядок без цифри. Спитайте офіціанта, скільки це коштує.**
-
-- ✅ **What is the price?**
-- ❌ The price what is? — *Питання починається з `What`, а не з речі. Річ іде в кінець.*
-- ❌ What the price is? — *`is` поїхало в кінець. Воно стоїть одразу за `What`.*
+- ✅ **Where is he?**
+- ❌ Who is absent? — *Це запитання, кого немає. Ви вже знаєте, що немає Олега.*
+- ❌ Where he is? — *У цьому запитанні `is` ставимо перед `he`.*
 
 ---
 
 ## Інтро 2
 
-### Спитати — переставити два слова
+### Щедрий і уважний — різне
 
-`cheap` — «дешевий». Про їжу в меню, про кімнату, про квиток — усюди, де є ціна.
+`generous` — «щедрий», `careless` — «необережний, недбалий». Анна охоче пригощає всіх: `She is generous`. Але якщо поставити чайник на самий край, це необережно. Щедро напоїти сусідів чаєм — добре. Напоїти заодно їхнє взуття вже не потрібно.
 
-Українською, щоб зробити з розповіді питання, ми додаємо `чи` або просто піднімаємо голос наприкінці — слова лишаються на своїх місцях. Англійською голосу мало, слова треба переставити. `It is cheap` — це розповідь. `Is it cheap?` — питання: `is` вийшло наперед.
+**Анна купила частування для всіх власним коштом. Коротко скажіть, що вона щедра.**
 
-**У меню рядок без цінника. Спитайте офіціанта, чи дешева це страва.**
-
-- ✅ **Is it cheap?**
-- ❌ It is cheap? — *Так ви стверджуєте, а не питаєте. У питанні `is` виходить наперед.*
-- ❌ Is it price? — *`price` — це цифра, а не опис. «Дешеве» — `cheap`.*
+- ✅ **She's generous.**
+- ❌ She's careless. — *Це «Вона необережна». Тут ідеться про щедрість.*
+- ❌ He's generous. — *Йдеться про Анну: `She's`.*
 
 ---
 
 ## Інтро 3
 
-### `Where is` — коли шукаєш місце
+### Можна змінити план
 
-`toilet` — «туалет». Спитати, де він, можна так: `Where is the toilet?`
+`flexible` — «гнучкий»: у розмові про плани — готовий підлаштуватися. На `Are you flexible?` можна відповісти `Yes, I am`, якщо день чи час вам не принципові. `unusual` — «незвичайний», а `elsewhere` — «в іншому місці». Незвичайну вивіску могли віднести в інше місце: це дві різні думки.
 
-Порядок той самий, що й у питанні про ціну: `Where`, `is`, `the` і саме місце. Різниця тільки в першому слові: `What` питає про річ, `Where` — про місце.
+**Сусід запитує: `Are you flexible?` Ви готові змінити час початку. Дайте коротку відповідь «так».**
 
-**Ви встали з-за столу і шукаєте туалет. Спитайте офіціанта.**
-
-- ✅ **Where is the toilet?**
-- ❌ What is the toilet? — *`What` питає про назву, а ви шукаєте місце. Для місця — `Where`.*
-- ❌ Where the toilet is? — *`is` іде одразу за `Where`, а не в кінець.*
+- ✅ **Yes, I am.**
+- ❌ Yes, I are. — *З `I` потрібно `am`.*
+- ❌ No, I am not. — *Це заперечує готовність підлаштуватися. Ви готові змінити час.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-32:i01; family: listen_choose -->
-Ціль: `menu`
-Варіанти: `menu` · `money` · `many`
-- money — *Це «гроші». Меню приносять на початку вечері, гроші віддають у кінці.*
-- many — *Це «багато». Слово-опис, а не річ на столі.*
+**1 · Перед початком роботи ви хочете дізнатися, кого із сусідів немає. Запитайте, хто відсутній**
+<!-- interaction_id: en:lesson-02:session-32:i01; family: phrase_builder -->
+Плитки: `absent` `is` `Who` `What` → **Who is absent?**
+*(плитка `What` зайва: тут потрібно `Who` — `Who is absent?`)*
 
+**2 · Послухайте фразу про Олега**
+<!-- interaction_id: en:lesson-02:session-32:i02; family: listen_choose -->
+🔊 *He is away.* → **He is away.** · He is absent. · He is careless.
+- He is absent. — *У записі останнє слово — `away`, а в цьому варіанті — `absent`.*
+- He is careless. — *У записі останнє слово — `away`, а в цьому варіанті — `careless`.*
 
-**2 · Вставте слово — ви питаєте назву книжечки з їжею**
-<!-- interaction_id: en:lesson-02:session-32:i02; family: context_gap_grammar -->
-Ціль: `What is the ___ ?`
-Варіанти: `menu` · `bill` · `corner`
-- bill — *Це рахунок, папірець у кінці вечері. Їжу за ним не вибирають.*
-- corner — *Це «кут» — про місце, а не про те, що лежить на столі.*
+**3 · Ви шукаєте дві коробки з прикрасами. Запитайте, де вони**
+<!-- interaction_id: en:lesson-02:session-32:i03; family: context_gap_grammar -->
+Where ___ they? → **are** · am · is
+- am — *З `they` потрібно `are`.*
+- is — *Запитання — `Where are they?`.*
 
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-32:i04; family: speed_match -->
+absent — відсутній · away — не тут, у від’їзді · elsewhere — в іншому місці · unusual — незвичайний
 
-**3 · Складіть фразу — спитайте про ціну**
-<!-- interaction_id: en:lesson-02:session-32:i03; family: phrase_builder -->
-Ціль: `What is the price?`
+**5 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-02:session-32:i05; family: listen_build_dictation -->
+🔊 *They are elsewhere.* Плитки: `elsewhere` `are` `They` `is` → **They are elsewhere.**
+*(плитка `is` зайва: тут потрібно `are` — `They are elsewhere.`)*
 
-**4 · Послухайте і виберіть**
-<!-- interaction_id: en:lesson-02:session-32:i04; family: listen_choose -->
-Ціль: `cheap`
-Варіанти: `cheap` · `sheep` · `shop`
-- sheep — *Це «вівця». Перший звук як у слові «шаль», а в `cheap` — як у «чай».*
-- shop — *Це «магазин». Прозвучало `cheap` — це про ціну, а не про місце.*
-
-
-**5 · Вставте слово — страва коштує два євро**
-<!-- interaction_id: en:lesson-02:session-32:i05; family: context_gap_grammar -->
-Ціль: `It is ___ .`
-Варіанти: `cheap` · `near` · `lost`
-- near — *Це «поруч», про відстань. Два євро — це про ціну.*
-- lost — *Це «загубився». До тарілки з їжею не стосується.*
-
-
-**6 · Складіть фразу — спитайте, чи дешеве це**
+**6 · Анна охоче пригостила всіх власним коштом. Скажіть повною фразою, що вона щедра**
 <!-- interaction_id: en:lesson-02:session-32:i06; family: phrase_builder -->
-Ціль: `Is it cheap?`
+Плитки: `generous` `is` `She` `are` → **She is generous.**
+*(плитка `are` зайва: тут потрібно `is` — `She is generous.`)*
 
-**7 · Розрізніть звуки — яке з двох про «дешевий»?**
-<!-- interaction_id: en:lesson-02:session-32:i07; family: sound_contrast -->
-Варіанти: `cheap` · `jeep`
-- jeep — *Це «джип». Перший звук інший: `jeep` починається з `j`, `cheap` — з `ch`.*
+**7 · Вам підходить будь-який із запропонованих часів початку. Коротко скажіть, що ви готові підлаштуватися**
+<!-- interaction_id: en:lesson-02:session-32:i07; family: scripted_repeat_compare -->
+🎙 **I'm flexible.**
 
+**8 · Сусід акуратно прибрав чайник подалі від краю. На «Is he careless?» доповніть коротку відповідь «ні»**
+<!-- interaction_id: en:lesson-02:session-32:i08; family: context_gap_grammar -->
+No, he ___ not. → **is** · am · are
+- am — *З `he` потрібно `is`.*
+- are — *Відповідь — `No, he is not`.*
 
-**8 · Картка слова — corner**
-<!-- interaction_id: en:lesson-02:session-32:i08; family: listen_choose -->
-Ціль: `corner`
-
-**9 · Послухайте і виберіть**
+**9 · Послухайте запитання**
 <!-- interaction_id: en:lesson-02:session-32:i09; family: listen_choose -->
-Ціль: `corner`
-Варіанти: `corner` · `coffee` · `cover`
-- coffee — *Це «кава». Прозвучало `corner` — це про місце, а не про напій.*
-- cover — *Це «обкладинка». Прозвучало `corner` — це про кут зали, а не про річ.*
+🔊 *Is she flexible?* → **Is she flexible?** · Is she generous? · Is she careless?
+- Is she generous? — *У записі останнє слово — `flexible`, а в цьому варіанті — `generous`.*
+- Is she careless? — *У записі останнє слово — `flexible`, а в цьому варіанті — `careless`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-32:i10; family: speed_match -->
+generous — щедрий · careless — необережний, недбалий · flexible — гнучкий · unusual — незвичайний
 
-**10 · Вставте слово — ви хочете дізнатися, скільки це коштує**
-<!-- interaction_id: en:lesson-02:session-32:i10; family: context_gap_grammar -->
-Ціль: `What is the ___ ?`
-Варіанти: `price` · `cheap` · `near`
-- cheap — *Це опис, «дешевий». А цифру на ціннику звуть `price`.*
-- near — *Це «поруч», про місце. До вартості стосунку не має.*
+**11 · Послухайте й складіть запитання**
+<!-- interaction_id: en:lesson-02:session-32:i11; family: listen_build_dictation -->
+🔊 *Is he absent?* Плитки: `absent` `he` `Is` `Who` → **Is he absent?**
+*(плитка `Who` зайва: тут потрібно `Is` — `Is he absent?`)*
 
+**12 · Анна принесла незнайомий предмет для прикрашання двору. Запитайте, що це**
+<!-- interaction_id: en:lesson-02:session-32:i12; family: phrase_builder -->
+Плитки: `it` `is` `What` `Where` → **What is it?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is it?`)*
 
-**11 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-32:i11; family: speed_match -->
-Пари: `menu` — меню · `cheap` — дешевий · `price` — ціна · `corner` — кут
-Ціль: `menu · cheap · price · corner`
+**13 · Над входом висить вивіска у формі величезної чайної чашки. Коротко скажіть, що вона незвичайна**
+<!-- interaction_id: en:lesson-02:session-32:i13; family: scripted_repeat_compare -->
+🎙 **It's unusual.**
 
-**12 · Картка слова — bill**
-<!-- interaction_id: en:lesson-02:session-32:i12; family: listen_choose -->
-Ціль: `bill`
+**14 · Двоє сусідів повернулися з поїздки й допомагають вам. Скажіть, що вони не у від’їзді**
+<!-- interaction_id: en:lesson-02:session-32:i14; family: context_gap_grammar -->
+They ___ not away. → **are** · am · is
+- am — *З `They` потрібно `are`.*
+- is — *Фраза — `They are not away`.*
 
-**13 · Вставте слово — ви поїли і хочете розрахуватися**
-<!-- interaction_id: en:lesson-02:session-32:i13; family: context_gap_grammar -->
-Ціль: `What is the ___ ?`
-Варіанти: `bill` · `menu` · `toilet`
-- menu — *Меню вам уже принесли на початку. Платять за рахунком.*
-- toilet — *Це місце, а не папірець із сумою.*
+**15 · Послухайте запитання**
+<!-- interaction_id: en:lesson-02:session-32:i15; family: listen_choose -->
+🔊 *Who is generous?* → **Who is generous?** · Who is absent? · Who is careless?
+- Who is absent? — *У записі останнє слово — `generous`, а в цьому варіанті — `absent`.*
+- Who is careless? — *У записі останнє слово — `generous`, а в цьому варіанті — `careless`.*
 
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-32:i16; family: speed_match -->
+elsewhere — в іншому місці · flexible — гнучкий · generous — щедрий · careless — необережний, недбалий
 
-**14 · Складіть фразу — спитайте, де туалет**
-<!-- interaction_id: en:lesson-02:session-32:i14; family: phrase_builder -->
-Ціль: `Where is the toilet?`
+**17 · Олег повідомив, що вже повернувся з поїздки, але у дворі його немає. Запитайте Анну, де він**
+<!-- interaction_id: en:lesson-02:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Where is he?**
 
-**15 · Вставте слово — офіціант показує рукою: туалет за два кроки**
-<!-- interaction_id: en:lesson-02:session-32:i15; family: context_gap_grammar -->
-Ціль: `It is ___ .`
-Варіанти: `near` · `cheap` · `bill`
-- cheap — *`cheap` — про ціну. А тут мова про те, чи далеко йти.*
-- bill — *Це рахунок, річ. А тут потрібне слово про відстань.*
-
-
-**16 · Послухайте і складіть — «це поруч»**
-<!-- interaction_id: en:lesson-02:session-32:i16; family: listen_build_dictation -->
-Ціль: `It is near.`
-🔊 *It is near.* Плитки: `It` `is` `near` `Where`
-*Плитка `Where` зайва: `Where` починає запитання про місце, а в записі є відповідь: `It is near.`*
-
-**17 · Складіть запитання — ви поїли і кличете офіціанта; запитайте про рахунок**
-<!-- interaction_id: en:lesson-02:session-32:i17; family: phrase_builder -->
-Ціль: `What is the bill?`
-Плитки: `What` `is` `the` `bill` `Where`
-*Плитка `Where` зайва: `Where` питає про місце, а вам потрібне запитання про рахунок: `What is the bill?`*
-
-**18 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-32:i18:s01; family: scripted_repeat_compare -->
-Ціль: `What is the bill?`
-
-**19 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-32:i18:s02; family: scripted_repeat_compare -->
-Ціль: `Where is the toilet?`
-
-## Для сборщика
-
-new_words: —
-
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=sound_contrast, 8=listen_choose, 9=listen_choose, 10=context_gap_grammar, 11=speed_match, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare, 19=scripted_repeat_compare
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| price | інтро 1, 3, 10, 11 | 3 (складання), 10 (вставка) |
-| menu | 1, 2, 11, 12 | 1, 2 |
-| bill | 12, 13, 15, 17, 18 | 13, 17, 18 |
-| toilet | 12, 13, 14, 18 | 14, 18 |
-| corner | 8, 9, 11 | 9 |
-| cheap | 4, 5, 6, 7, 11, 15 | 4, 5, 6, 7 |
-| near | 5, 10, 15, 16 | 15, 16 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть воно в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | price | так — «`price` — „ціна“» у першому рядку |
-| Інтро 2 | cheap | так — «`cheap` — „дешевий“», `Is it cheap?` |
-| Інтро 3 | toilet | так — «`toilet` — „туалет“», `Where is the toilet?` |
-
-**3. Дошка пар (завдання 11)**
-
-| слово | звідки відоме | відпрацювання ДО дошки |
-|---|---|---|
-| price | інтро 1 | 3 (складання), 10 (вставка) |
-| cheap | інтро 2 | 4, 5, 6, 7 |
-| corner | картка 8 | 9 (слух) |
-| near | розбір у завданні 5 | 10 (пастка) |

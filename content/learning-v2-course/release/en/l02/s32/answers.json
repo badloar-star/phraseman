@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-02:session-32:i01",
-    "correctText": "menu",
-    "correctResponseId": "en:lesson-02:session-32:i01:r1"
+    "correctText": "Who is absent?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i02",
-    "correctText": "menu",
+    "correctText": "He is away.",
     "correctResponseId": "en:lesson-02:session-32:i02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-32:i03",
-    "correctText": "What is the price?",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-32:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-32:i04",
-    "correctText": "cheap",
-    "correctResponseId": "en:lesson-02:session-32:i04:r1"
+    "correctText": "en:lesson-02:session-32:i04:p1=absent\nen:lesson-02:session-32:i04:p2=away\nen:lesson-02:session-32:i04:p3=elsewhere\nen:lesson-02:session-32:i04:p4=unusual",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i05",
-    "correctText": "cheap",
-    "correctResponseId": "en:lesson-02:session-32:i05:r1"
+    "correctText": "They are elsewhere.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i06",
-    "correctText": "Is it cheap?",
+    "correctText": "She is generous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i07",
-    "correctText": "cheap",
-    "correctResponseId": "en:lesson-02:session-32:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-32:i08",
-    "correctText": "corner",
+    "correctText": "I'm flexible.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-32:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-32:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-32:i09",
-    "correctText": "corner",
+    "correctText": "Is she flexible?",
     "correctResponseId": "en:lesson-02:session-32:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-32:i10",
-    "correctText": "price",
-    "correctResponseId": "en:lesson-02:session-32:i10:r1"
+    "correctText": "en:lesson-02:session-32:i10:p1=generous\nen:lesson-02:session-32:i10:p2=careless\nen:lesson-02:session-32:i10:p3=flexible\nen:lesson-02:session-32:i10:p4=unusual",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i11",
-    "correctText": "en:lesson-02:session-32:i11:p1=menu\nen:lesson-02:session-32:i11:p2=cheap\nen:lesson-02:session-32:i11:p3=price\nen:lesson-02:session-32:i11:p4=corner",
+    "correctText": "Is he absent?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i12",
-    "correctText": "bill",
+    "correctText": "What is it?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i13",
-    "correctText": "bill",
-    "correctResponseId": "en:lesson-02:session-32:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-02:session-32:i14",
-    "correctText": "Where is the toilet?",
+    "correctText": "It's unusual.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-32:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-32:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-02:session-32:i15",
-    "correctText": "near",
+    "correctText": "Who is generous?",
     "correctResponseId": "en:lesson-02:session-32:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-32:i16",
-    "correctText": "It is near.",
+    "correctText": "en:lesson-02:session-32:i16:p1=elsewhere\nen:lesson-02:session-32:i16:p2=flexible\nen:lesson-02:session-32:i16:p3=generous\nen:lesson-02:session-32:i16:p4=careless",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i17",
-    "correctText": "What is the bill?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-32:i18:s01",
-    "correctText": "What is the bill?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-32:i18:s02",
-    "correctText": "Where is the toilet?",
+    "correctText": "Where is he?",
     "correctResponseId": null
   }
 ]

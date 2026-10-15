@@ -114,7 +114,9 @@ describe('старт платной активности: без окна под
       const readsBeforeCharge =
         source.includes(`|| ${latch}.current) return`)
         || source.includes(`if (${latch}.current) return`)
-        || new RegExp(`\\|\\| ${latch}\\.current\\) \\{[\\s\\S]{0,300}?return`).test(source);
+        || new RegExp(`\\|\\| ${latch}\\.current\\) \\{[\\s\\S]{0,300}?return`).test(source)
+        // 15.10 (Ревизор, диагностика): одиночное условие с журналом — `if (latch.current) { console.log(…); return; }`
+        || new RegExp(`if \\(${latch}\\.current\\) \\{[\\s\\S]{0,300}?return`).test(source);
       expect(readsBeforeCharge).toBe(true);
       // ...взводится...
       expect(source).toContain(`${latch}.current = true`);

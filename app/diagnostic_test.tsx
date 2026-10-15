@@ -951,24 +951,32 @@ export default function DiagnosticTest() {
     hapticTap();
     clearAutoAdvanceTimer();
     if (frenchDiagnosticBlocked) {
+      console.log('[DIAG-TEST] start: отказ — французская диагностика без источника', JSON.stringify({ studyTarget })); // guard-ok: ранний выход
       void trackFeatureBlocked('diagnostic', 'start', 'french_diagnostic_source_gate', { studyTarget }, 'diagnostic_test');
       return;
     }
     if (questionsLoading || questions.length === 0) {
+      console.log('[DIAG-TEST] start: отказ — вопросы не готовы', JSON.stringify({ questionsLoading, questions: questions.length, studyTarget })); // guard-ok: ранний выход
       void trackFeatureBlocked('diagnostic', 'start', 'diagnostic_questions_unavailable', { studyTarget }, 'diagnostic_test');
       return;
     }
-    void trackFeatureStart('diagnostic', 'start', { total: questions.length }, 'diagnostic_test');
-    if (diagnosticChargeInFlightRef.current) return;
+    // зачем (Ревизор 15.10): событие старта — ПОСЛЕ сторожа двойного тапа, иначе один старт давал два события
+    if (diagnosticChargeInFlightRef.current) {
+      console.log('[DIAG-TEST] start: двойной тап — старт уже идёт'); // guard-ok: ранний выход
+      return;
+    }
     diagnosticChargeInFlightRef.current = true;
+    void trackFeatureStart('diagnostic', 'start', { total: questions.length }, 'diagnostic_test');
     try {
       const energyResult = await confirmSpendOne(diagnosticEnergyIntent);
       if (energyResult === 'cancelled') {
         // зачем (координатор 15.10, п.3): отказ списания — тост «Не получилось начать», если экран ещё открыт.
+        console.log('[DIAG-TEST] start: отказ — списание энергии отменено'); // guard-ok: ранний выход
         notifyActivityStartFailed('diagnostic_start', screenOpenRef);
         return;
       }
       if (energyResult === 'insufficient') {
+        console.log('[DIAG-TEST] start: отказ — не хватает энергии → шторка'); // guard-ok: ранний выход
         void trackFeatureBlocked('diagnostic', 'start', 'no_energy', { total: questions.length }, 'diagnostic_test');
         setNoEnergy(true);
         return;
@@ -993,24 +1001,32 @@ export default function DiagnosticTest() {
     hapticTap();
     clearAutoAdvanceTimer();
     if (frenchDiagnosticBlocked) {
+      console.log('[DIAG-TEST] restart: отказ — французская диагностика без источника', JSON.stringify({ studyTarget })); // guard-ok: ранний выход
       void trackFeatureBlocked('diagnostic', 'restart', 'french_diagnostic_source_gate', { studyTarget }, 'diagnostic_test');
       return;
     }
     if (questionsLoading || questions.length === 0) {
+      console.log('[DIAG-TEST] restart: отказ — вопросы не готовы', JSON.stringify({ questionsLoading, questions: questions.length, studyTarget })); // guard-ok: ранний выход
       void trackFeatureBlocked('diagnostic', 'restart', 'diagnostic_questions_unavailable', { studyTarget }, 'diagnostic_test');
       return;
     }
-    void trackFeatureStart('diagnostic', 'restart', { total: questions.length }, 'diagnostic_test');
-    if (diagnosticChargeInFlightRef.current) return;
+    // зачем (Ревизор 15.10): событие старта — ПОСЛЕ сторожа двойного тапа, иначе один старт давал два события
+    if (diagnosticChargeInFlightRef.current) {
+      console.log('[DIAG-TEST] restart: двойной тап — старт уже идёт'); // guard-ok: ранний выход
+      return;
+    }
     diagnosticChargeInFlightRef.current = true;
+    void trackFeatureStart('diagnostic', 'restart', { total: questions.length }, 'diagnostic_test');
     try {
       const energyResult = await confirmSpendOne(diagnosticEnergyIntent);
       if (energyResult === 'cancelled') {
         // зачем (координатор 15.10, п.3): отказ списания — тост «Не получилось начать», если экран ещё открыт.
+        console.log('[DIAG-TEST] restart: отказ — списание энергии отменено'); // guard-ok: ранний выход
         notifyActivityStartFailed('diagnostic_restart', screenOpenRef);
         return;
       }
       if (energyResult === 'insufficient') {
+        console.log('[DIAG-TEST] restart: отказ — не хватает энергии → шторка'); // guard-ok: ранний выход
         void trackFeatureBlocked('diagnostic', 'restart', 'no_energy', { total: questions.length }, 'diagnostic_test');
         setNoEnergy(true);
         return;

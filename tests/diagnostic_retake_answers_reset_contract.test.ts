@@ -23,6 +23,16 @@ describe('diagnostic: every attempt starts with empty answers', () => {
     expect(quiz).toBeGreaterThan(reset);
   });
 
+  // Ревизор 15.10: одно нажатие — одно событие старта (событие после сторожа двойного тапа)
+  it.each(['tryStartDiagnosticQuiz', 'tryRestartDiagnosticQuiz'])('%s sends the start event only after the double-tap guard', (name) => {
+    const fn = body(name);
+    const guard = fn.indexOf('if (diagnosticChargeInFlightRef.current) {');
+    const event = fn.indexOf('void trackFeatureStart(');
+    expect(guard).toBeGreaterThan(-1);
+    expect(event).toBeGreaterThan(guard);
+    expect(fn).toMatch(/двойной тап — старт уже идёт/);
+  });
+
   it('the reset is logged with the size of the discarded answers', () => {
     expect(src).toMatch(/\[DIAG-TEST\] restart: ответы сброшены/);
   });

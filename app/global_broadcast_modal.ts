@@ -468,6 +468,8 @@ export async function fetchPendingGlobalBroadcastModal(
     const dismissed = await AsyncStorage.getItem(dismissKey(payload.id, accountToken));
     if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_before_claim');
     if (dismissed === '1') return skip(`dismissed id=${payload.id}`);
+    // R58 #5: окно уже закрыто в этом запуске, получение идёт фоном — не всплываем повторно
+    if (closedThisSession.has(`${uid}:${payload.id}`)) return skip(`closed_this_session id=${payload.id}`);
 
     const claimId = `global_broadcast_${payload.id}`;
     const claimSnap = await db.collection('users').doc(uid).collection('reward_claims').doc(claimId).get();
@@ -521,6 +523,48 @@ export async function recordReviewPromoClick(payload: GlobalBroadcastModalPayloa
       // Best-effort analytics; never block the user from opening the store.
       DebugLogger.error('global_broadcast_modal:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
+}
+
+/**
+ * R58 #5 (аудит кнопок 15.10): закрытие окна ждало сеть (claim + начисление) — без сети окно было не закрыть.
+ * Теперь окно закрывается СРАЗУ, а получение идёт фоном с повторами. Пока идёт — окно в этом запуске не всплывает;
+ * если все повторы упали, отметка «закрыто» не ставится и окно вернётся при следующем запуске (награда не теряется).
+ */
+const closedThisSession = new Set<string>();
+const BACKGROUND_CLAIM_DELAYS_MS = [0, 3_000, 15_000, 60_000] as const;
+
+export function closeGlobalBroadcastModalAndClaimInBackground(
+  payload: GlobalBroadcastModalPayload,
+  studyTarget: RuntimeStudyTarget | undefined,
+  onClaimed?: () => void,
+): void {
+  if (!payload?.id) return;
+  void getCanonicalUserId()
+    .then((uid) => { if (uid) closedThisSession.add(`${uid}:${payload.id}`); })
+    .catch(noteSwallowedHandler('global_broadcast_modal:close_session_mark'));
+  let attempt = 0;
+  const run = (): void => {
+    const delay = BACKGROUND_CLAIM_DELAYS_MS[attempt] ?? null;
+    if (delay === null) {
+      console.warn(`[GLOBAL-BROADCAST] claim:gave_up id=${payload.id} attempts=${attempt} — окно вернётся при следующем запуске`); // guard-ok: итог повторов
+      return;
+    }
+    setTimeout(() => {
+      attempt += 1;
+      claimAndDismissGlobalBroadcastModal(payload, studyTarget)
+        .then(() => {
+          console.log(`[GLOBAL-BROADCAST] claim:ok id=${payload.id} attempt=${attempt}`); // guard-ok: итог
+          onClaimed?.();
+        })
+        .catch((error: unknown) => {
+          const reason = error instanceof Error ? error.message : String(error);
+          console.warn(`[GLOBAL-BROADCAST] claim:failed id=${payload.id} attempt=${attempt} reason=${reason}`); // guard-ok: причина в журнал
+          if (reason === 'broadcast_identity_changed' || reason === 'broadcast_claim_unavailable') return;
+          run();
+        });
+    }, delay);
+  };
+  run();
 }
 
 export async function claimAndDismissGlobalBroadcastModal(

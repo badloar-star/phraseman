@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
-import React, { memo, useMemo, useState } from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 import { Linking, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -9,7 +9,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import RuneGlyph from './RuneGlyph';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
-  claimAndDismissGlobalBroadcastModal,
+  closeGlobalBroadcastModalAndClaimInBackground,
   getGlobalBroadcastRewardBadge,
   getReviewPromoUrl,
   GlobalBroadcastModalPayload,
@@ -43,6 +43,8 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const [busy, setBusy] = useState(false);
+  // окно закрывается сразу, без ожидания сети — блокировка от двойного тапа снимается на следующей рассылке
+  useEffect(() => { setBusy(false); }, [payload?.id]);
 
   const title = useMemo(() => {
     if (!payload) return '';
@@ -80,17 +82,14 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
   const isCoinReward = payload?.rewardType === 'coins';
   const dimColor = 'rgba(0,0,0,0.62)';
 
+  // зачем (R58 #5, аудит кнопок 15.10): закрытие ждало сеть — без сети окно было не закрыть. Теперь окно закрывается сразу,
+  // получение награды идёт фоном с повторами (global_broadcast_modal), вибрация успеха — когда начисление подтвердилось.
   const closeOnce = async () => {
     if (!payload || busy) return;
     hapticTap();
     setBusy(true);
-    void (async () => {
-      await claimAndDismissGlobalBroadcastModal(payload, studyTarget);
-      if (reward) hapticSuccess();
-      onClose();
-    })().catch((e) => { console.warn('[GLOBAL-BROADCAST] claim/dismiss failed', e); }).finally(() => {
-      setBusy(false);
-    });
+    closeGlobalBroadcastModalAndClaimInBackground(payload, studyTarget, reward ? hapticSuccess : undefined);
+    onClose();
   };
 
   const openReview = async () => {
@@ -99,13 +98,9 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
     setBusy(true);
     const url = getReviewPromoUrl(payload);
     if (url) void Linking.openURL(url).catch((e) => { console.warn('[GLOBAL-BROADCAST] openURL failed', e); });
-    void (async () => {
-      await recordReviewPromoClick(payload);
-      await claimAndDismissGlobalBroadcastModal(payload, studyTarget);
-      onClose();
-    })().catch((e) => { console.warn('[GLOBAL-BROADCAST] claim/dismiss failed', e); }).finally(() => {
-      setBusy(false);
-    });
+    void recordReviewPromoClick(payload).catch((e) => { console.warn('[GLOBAL-BROADCAST] review click record failed', e); });
+    closeGlobalBroadcastModalAndClaimInBackground(payload, studyTarget);
+    onClose();
   };
 
   return (

@@ -21,6 +21,7 @@ import {
   pruneStoryEvents,
   serializeStoryEvents,
   storyEventKey,
+  type StoryEvent,
   type StoryEventList,
   type StoryEventPayload,
   type StoryEventType,
@@ -58,13 +59,63 @@ let writeChain: Promise<unknown> = Promise.resolve();
 let snapshot: StoryEventsSnapshot = OFF_SNAPSHOT;
 const listeners = new Set<() => void>();
 let generationSubscribed = false;
+// зачем (координатор + Макеты 15.10, съёмка D192 Сверкой): dev_state?stories=on|off и storyseed=all|seen|none — только память;
+// диск (story_events_v1:*) и Firestore не трогаются. Ставятся только при __DEV__ (проверка в момент вызова), в стор-сборке всегда null.
+let devFlag: boolean | null = null;
+let devSeed: StoryEventList | null = null;
+const DEV_SEED_OWNER = 'dev-seed';
 
 const keyOf = (owner: string): string => `${KEY_PREFIX}:${owner}`;
 const info = (message: string): void => DebugLogger.info(LOG, message);
 const warn = (message: string): void => DebugLogger.warn(LOG, message);
 
 export function isStoriesEnabled(): boolean {
+  if (devFlag !== null) return devFlag;
   return flagRemote || (IS_DEV && DEV_ENV_ON);
+}
+
+function isDevBuild(): boolean {
+  return typeof __DEV__ !== 'undefined' && __DEV__ === true;
+}
+
+function devSeedStories(seen: boolean, nowMs: number): StoryEventList {
+  const hour = 60 * 60 * 1000;
+  const make = (type: StoryEventType, payload: StoryEventPayload, agoMs: number): StoryEvent =>
+    Object.freeze({ id: storyEventKey(type, payload), type, payload, atMs: nowMs - agoMs, seen });
+  // Порядок времени = порядок просмотра в образце s2: итог недели → серия → ранг → ачивка.
+  return Object.freeze([
+    make('spire_week', { weekId: 'dev-seed', lang: 'en', outcome: 'up', prevTier: 0, floor: 1, place: 3, total: 30, weekCoins: 470, promotionCoins: 100, rankBy: 'coins' }, 3 * 24 * hour),
+    make('streak_milestone', { days: 30, dayKey: 'dev-seed' }, 2 * 24 * hour),
+    make('coin_rank_up', { toRank: 6 }, 24 * hour),
+    make('achievement', { achievementId: 'streak_7' }, hour),
+  ]);
+}
+
+/** DEV: on/off — флаг stories_v1 в памяти поверх удалённого конфига; inherit — снять. В стор-сборке отклоняется: false. */
+export function setDevStoriesFlag(mode: 'on' | 'off' | 'inherit'): boolean {
+  if (!isDevBuild()) {
+    info(`dev-flag: отклонено mode=${mode} (не dev-сборка)`);
+    return false;
+  }
+  devFlag = mode === 'inherit' ? null : mode === 'on';
+  info(`dev-flag: mode=${mode} enabled=${String(isStoriesEnabled())}`);
+  recompute(`dev_flag_${mode}`);
+  return true;
+}
+
+/**
+ * DEV: all — 4 непросмотренные истории (кольцо, s1-A/s2/s3), seen — те же просмотренные (кольца нет, s1-B), none — пусто (s1-C), off — снять.
+ * Засев подменяет список аккаунта только в памяти. В стор-сборке отклоняется: false.
+ */
+export function setDevStoriesSeed(mode: 'all' | 'seen' | 'none' | 'off'): boolean {
+  if (!isDevBuild()) {
+    info(`dev-seed: отклонено mode=${mode} (не dev-сборка)`);
+    return false;
+  }
+  devSeed = mode === 'off' ? null : mode === 'none' ? EMPTY : devSeedStories(mode === 'seen', Date.now());
+  info(`dev-seed: mode=${mode} stories=${devSeed?.length ?? 'storage'}`);
+  recompute(`dev_seed_${mode}`);
+  return true;
 }
 
 async function readFlag(source: string): Promise<void> {
@@ -99,13 +150,14 @@ function currentOwner(): Readonly<{ owner: string | null; token: ReturnType<type
 }
 
 function recompute(reason: string): void {
-  const { owner } = currentOwner();
+  const real = currentOwner().owner;
+  const owner = devSeed ? (real ?? DEV_SEED_OWNER) : real;
   const enabled = isStoriesEnabled();
   let next: StoryEventsSnapshot;
   if (!enabled || !owner) {
     next = enabled ? Object.freeze({ ...OFF_SNAPSHOT, enabled: true }) : OFF_SNAPSHOT;
   } else {
-    const stories = pruneStoryEvents(lists.get(owner) ?? EMPTY, Date.now());
+    const stories = pruneStoryEvents(devSeed ?? lists.get(owner) ?? EMPTY, Date.now());
     next = Object.freeze({ enabled, owner, stories, unseenCount: stories.filter((event) => !event.seen).length });
   }
   // зачем: тот же набор историй → тот же снимок, без лишних перерисовок Главной.
@@ -242,6 +294,14 @@ export async function getUnseenStories(): Promise<StoryEventList> {
 
 /** Отметить историю просмотренной: кольцо гаснет сразу, диск догоняет. */
 export async function markSeen(id: string): Promise<boolean> {
+  if (devSeed) {
+    const seeded = markStorySeen(devSeed, id);
+    info(`seen: dev-seed id=${id} changed=${String(seeded.changed)} (только память)`);
+    if (!seeded.changed) return false;
+    devSeed = seeded.list;
+    recompute('dev_seed_seen');
+    return true;
+  }
   const { owner, token } = currentOwner();
   if (!owner) {
     info(`seen: skip id=${id} reason=no_owner`);
@@ -290,4 +350,6 @@ export function __resetStoryEventsForTests(): void {
   loads.clear();
   writeChain = Promise.resolve();
   snapshot = OFF_SNAPSHOT;
+  devFlag = null;
+  devSeed = null;
 }

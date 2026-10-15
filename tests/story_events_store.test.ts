@@ -7,7 +7,11 @@ import {
   peekStoryEventsSnapshot,
   primeStoryEvents,
   recordStoryEvent,
+  setDevStoriesFlag,
+  setDevStoriesSeed,
 } from '../modules/story_events/story_events_store';
+import * as fs from 'fs';
+import * as path from 'path';
 import { markSpireWeekStoryShown, recordAchievementStories, recordSpireWeekStory, recordStreakMilestoneStory } from '../modules/story_events/story_event_sources';
 import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 
@@ -104,5 +108,56 @@ describe('story_events_store', () => {
   it('records only real streak milestones', async () => {
     expect(recordStreakMilestoneStory(8, '2026-10-14')).toBeUndefined();
     await expect(recordStreakMilestoneStory(7, '2026-10-14')).resolves.toEqual({ recorded: true, id: 'streak_milestone:7:2026-10-14' });
+  });
+
+  it('старт при stories_v1 вкл: ноль Firestore — только локальное хранилище (D192, координатор 15.10)', async () => {
+    const reads: string[] = [];
+    const AsyncStorage = jest.requireMock('@react-native-async-storage/async-storage').default as { getItem: (k: string) => Promise<string | null> };
+    const original = AsyncStorage.getItem;
+    AsyncStorage.getItem = async (key: string) => { reads.push(key); return original(key); };
+    try {
+      await primeStoryEvents('cold_start');
+    } finally {
+      AsyncStorage.getItem = original;
+    }
+    expect(reads).toEqual(['story_events_v1:stable-a']);
+    expect(mockStore).toEqual({});
+    // Сетевых модулей в цепочке сторис нет вовсе: ни firebase, ни облачной синхронизации, ни вызовов функций.
+    const files = ['modules/story_events/story_events_store.ts', 'modules/story_events/story_events_core.ts', 'modules/story_events/story_event_sources.ts',
+      'modules/story_events/use_story_events.ts', 'components/stories/StoryAvatarSlot.tsx'];
+    for (const file of files) {
+      const imports = fs.readFileSync(path.join(__dirname, '..', file), 'utf8').split('\n').filter((line) => /^import |^\} from |require\(/.test(line.trim()));
+      expect([file, imports.filter((line) => /firebase|firestore|cloud_sync|httpsCallable|callable/i.test(line))]).toEqual([file, []]);
+    }
+  });
+
+  it('dev stories=on|off|inherit и storyseed=all|seen|none|off: только память, вне dev отклоняется', async () => {
+    const g = globalThis as { __DEV__?: boolean };
+    mockFlagOn = false;
+    expect(setDevStoriesFlag('on')).toBe(false);
+    expect(setDevStoriesSeed('all')).toBe(false);
+    g.__DEV__ = true;
+    try {
+      expect(setDevStoriesSeed('all')).toBe(true);
+      expect(peekStoryEventsSnapshot()).toMatchObject({ enabled: false, unseenCount: 0 });
+      expect(setDevStoriesFlag('on')).toBe(true);
+      expect(peekStoryEventsSnapshot()).toMatchObject({ enabled: true, unseenCount: 4 });
+      expect(peekStoryEventsSnapshot().stories.map((s) => s.type)).toEqual(['achievement', 'coin_rank_up', 'streak_milestone', 'spire_week']);
+      await expect(markSeen('coin_rank_up:6')).resolves.toBe(true);
+      expect(peekStoryEventsSnapshot().unseenCount).toBe(3);
+      expect(setDevStoriesSeed('seen')).toBe(true);
+      expect(peekStoryEventsSnapshot()).toMatchObject({ enabled: true, unseenCount: 0 });
+      expect(peekStoryEventsSnapshot().stories).toHaveLength(4);
+      expect(setDevStoriesSeed('none')).toBe(true);
+      expect(peekStoryEventsSnapshot()).toMatchObject({ enabled: true, unseenCount: 0, stories: [] });
+      expect(setDevStoriesFlag('off')).toBe(true);
+      expect(peekStoryEventsSnapshot()).toMatchObject({ enabled: false });
+      expect(setDevStoriesFlag('inherit')).toBe(true);
+      expect(setDevStoriesSeed('off')).toBe(true);
+      expect(peekStoryEventsSnapshot()).toMatchObject({ enabled: false, unseenCount: 0 });
+      expect(mockStore).toEqual({});
+    } finally {
+      delete g.__DEV__;
+    }
   });
 });

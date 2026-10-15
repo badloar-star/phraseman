@@ -2,6 +2,10 @@
 
 Governance-ID: TG-88D9F117497C
 Governance-ID: TG-D829358A8E6D
+Governance-ID: TG-83136200A4C2
+Governance-ID: TG-A43A1659F4B3
+Update 15.10 ~10:50 (Макеты, реестр eabd18ba9; координатор подтвердил «вместо моих demo|seen»): имена параметров —
+`stories=on|off|inherit` (подмена флага в памяти, как `moments=v3`) и `storyseed=all|seen|none|off`. Сокращений demo/seen нет.
 Status: In progress
 Owner: Ядро (сессия 1)
 Related: решение владельца ~11:00 15.10 через координатора: «сторис D192 (флаг stories_v1) включаем 17.10 вместе с moments_v3».

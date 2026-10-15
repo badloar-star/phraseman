@@ -12,6 +12,7 @@ import {
 } from '../app/dialogue_v2_voice_daily_limit';
 import {
   VOICE_LIMIT_PAYWALL_CONTEXT,
+  setDevVoiceRemaining,
   recordVoiceDailyAttempt,
   resetVoiceDailyAllowanceForTests,
   voiceDailyAllowanceFrom,
@@ -64,6 +65,23 @@ describe('голос на сегодня (D165 + D194)', () => {
     expect(recordVoiceDailyAttempt('course_v2', 'k1', FREE)).toBe(1);
     expect(recordVoiceDailyAttempt('course_v2', 'k2', PLUS)).toBe(1);
     expect(logs.some((l) => l.includes('reason":"same_attempt_key'))).toBe(true);
+  });
+
+  it('dev lv2voice: остаток подменяется для гейта (0 — блок, 3 — можно), off — снять', async () => {
+    await hydrateDialogVoiceAttempts();
+    const g = globalThis as { __DEV__?: boolean };
+    expect(setDevVoiceRemaining(0)).toBe(false); // вне dev подмена не включается
+    g.__DEV__ = true;
+    try {
+      expect(setDevVoiceRemaining(0)).toBe(true);
+      expect(voiceDailyAllowanceGate('course_v2', FREE)).toBe(false);
+      setDevVoiceRemaining(3);
+      expect(voiceDailyAllowanceGate('course_v2', FREE)).toBe(true);
+      setDevVoiceRemaining(null);
+      expect(voiceDailyAllowanceGate('course_v2', FREE)).toBe(true);
+    } finally {
+      delete g.__DEV__;
+    }
   });
 
   it('вчерашние попытки не считаются (местные сутки), до чтения диска — «не знаем»', async () => {

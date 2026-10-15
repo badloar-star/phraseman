@@ -292,6 +292,11 @@ export type DevStateRequest = Readonly<{
   lv2progress?: number | 'off';
   lv2save?: 'fail' | 'off';
   legacybonus?: 'demo' | 'pearls' | 'nothing' | 'off';
+  /** D192: флаг stories_v1 в памяти — on/off/inherit (без пересборки с EXPO_PUBLIC_STORIES_DEV). */
+  stories?: 'on' | 'off' | 'inherit';
+  /** D192: засев историй в памяти — all (4 непросмотренные), seen (4 просмотренные), none (пусто), off. */
+  storyseed?: 'all' | 'seen' | 'none' | 'off';
+  lv2voice?: number | 'off';
   /** [WINBACK-FREEZE]: гейт winback считает, что человек не заходил N дней (3 / 8 / 30) или снять. Только память. */
   winbackaway?: '3' | '8' | '30' | 'off';
   /** settings-gap-034: показ «Обучения» с «Автопроверка вкл, 1,0x» как в образце. Только память. */
@@ -428,6 +433,11 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.lv2save = pick('lv2save', ['fail', 'off'] as const);
   // зачем (D195, Дизайн 15.10): окно «Встречайте PhraseMan 2.0» с примерными цифрами — только память
   request.legacybonus = pick('legacybonus', ['demo', 'pearls', 'nothing', 'off'] as const);
+  // зачем (координатор + Макеты 15.10, съёмка D192 stories-s1…s3): кольцо и просмотр сторис без удалённого конфига и настоящих фактов — только память
+  request.stories = pick('stories', ['on', 'off', 'inherit'] as const);
+  request.storyseed = pick('storyseed', ['all', 'seen', 'none', 'off'] as const);
+  // зачем (координатор 15.10, съёмка D194 voice-limit-001…006): остаток голоса на сегодня в курсе — только память
+  request.lv2voice = intOrWord('lv2voice', ['off'] as const, 3);
   request.winbackaway = pick('winbackaway', ['3', '8', '30', 'off'] as const);
   request.edu = pick('edu', ['parity', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
@@ -935,6 +945,22 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('lv2progress', String(request.lv2progress), async () => {
       const { setLearningV2DevProgressOverrideV1 } = await import('../modules/learning-v2/progress/dev_progress_override_v1');
       return setLearningV2DevProgressOverrideV1(request.lv2progress === 'off' ? null : request.lv2progress as number);
+    });
+  }
+  if (request.lv2voice !== undefined) {
+    await step('lv2voice', String(request.lv2voice), async () => {
+      const { setDevVoiceRemaining } = await import('./voice_daily_allowance');
+      return setDevVoiceRemaining(request.lv2voice === 'off' ? null : request.lv2voice as number);
+    });
+  }
+  if (request.stories !== undefined || request.storyseed !== undefined) {
+    const flag = request.stories;
+    const seed = request.storyseed;
+    await step('stories', `flag=${flag ?? '-'} seed=${seed ?? '-'}`, async () => {
+      const store = await import('../modules/story_events/story_events_store');
+      const flagOk = flag === undefined || store.setDevStoriesFlag(flag);
+      const seedOk = seed === undefined || store.setDevStoriesSeed(seed);
+      return flagOk && seedOk;
     });
   }
   if (request.legacybonus !== undefined) {

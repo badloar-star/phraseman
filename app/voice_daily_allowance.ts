@@ -28,6 +28,30 @@ const LOG = '[VOICE-LIMIT]';
 
 export type VoiceAllowanceSurface = 'course_v2' | 'dialogs';
 
+/**
+ * DEV (съёмка D194, Сверка): dev_state?lv2voice=3|1|0 — сколько голосовых попыток «осталось сегодня» на экране; off — снять.
+ * зачем: робот не делает три настоящие записи, чтобы снять «1» и «PLUS». Только __DEV__ и память; диск счётчика не трогается.
+ */
+let devVoiceRemaining: number | null = null;
+const devVoiceListeners = new Set<() => void>();
+
+export function setDevVoiceRemaining(remaining: number | null): boolean {
+  if (typeof __DEV__ === 'undefined' || !__DEV__) return false;
+  devVoiceRemaining = remaining === null ? null : Math.max(0, Math.min(FREE_DIALOG_VOICE_DAILY_LIMIT, Math.floor(remaining)));
+  console.log(`[DEV-STATE] lv2voice=${devVoiceRemaining === null ? 'off' : devVoiceRemaining}`); // guard-ok: dev-ветка
+  for (const listener of devVoiceListeners) listener();
+  return true;
+}
+
+/** Счётчик попыток с учётом dev-подмены (в стор-сборке подмена всегда null). */
+function peekCount(): number {
+  return devVoiceRemaining === null ? peekDialogVoiceAttempts() : FREE_DIALOG_VOICE_DAILY_LIMIT - devVoiceRemaining;
+}
+
+function peekHydrated(): boolean {
+  return devVoiceRemaining !== null || isDialogVoiceAttemptsHydrated();
+}
+
 /** Контекст пейвола на исчерпанном лимите: «Бесплатно — 3 голосом в день. С Plus говори сколько хочешь.» */
 export const VOICE_LIMIT_PAYWALL_CONTEXT = 'ai_voice_input';
 
@@ -62,7 +86,7 @@ export function voiceDailyAllowanceFrom(input: Access & Readonly<{ count: number
  * «Доступ неизвестен» пропускает: блокировать Plus из-за медленной проверки хуже, чем дать одну лишнюю попытку.
  */
 export function voiceDailyAllowanceGate(surface: VoiceAllowanceSurface, access: Access): boolean {
-  const count = peekDialogVoiceAttempts();
+  const count = peekCount();
   const decision = dialogVoiceLimitDecision({ ...access, count });
   const allowed = decision !== 'limit_reached';
   console.log(`${LOG} gate ${JSON.stringify({ surface, decision, count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, hydrated: isDialogVoiceAttemptsHydrated(), allowed })}`);
@@ -105,13 +129,14 @@ function msUntilNextLocalMidnight(nowMs: number): number {
  */
 export function useVoiceDailyAllowance(): VoiceDailyAllowance {
   const { accessResolved, hasPremiumAccess } = usePremium();
-  const [snapshot, setSnapshot] = useState(() => ({ count: peekDialogVoiceAttempts(), hydrated: isDialogVoiceAttemptsHydrated() }));
+  const [snapshot, setSnapshot] = useState(() => ({ count: peekCount(), hydrated: peekHydrated() }));
   useEffect(() => {
     const sync = () => setSnapshot((prev) => {
-      const next = { count: peekDialogVoiceAttempts(), hydrated: isDialogVoiceAttemptsHydrated() };
+      const next = { count: peekCount(), hydrated: peekHydrated() };
       return prev.count === next.count && prev.hydrated === next.hydrated ? prev : next;
     });
     const unsubscribe = subscribeDialogVoiceAttempts(sync);
+    devVoiceListeners.add(sync);
     let midnightTimer: ReturnType<typeof setTimeout> | null = null;
     const armMidnight = () => {
       midnightTimer = setTimeout(() => {
@@ -126,6 +151,7 @@ export function useVoiceDailyAllowance(): VoiceDailyAllowance {
     });
     return () => {
       unsubscribe();
+      devVoiceListeners.delete(sync);
       if (midnightTimer) clearTimeout(midnightTimer);
     };
   }, []);
@@ -141,6 +167,7 @@ export const useLearningV2VoiceAllowance = useVoiceDailyAllowance;
 /** Только для тестов. */
 export function resetVoiceDailyAllowanceForTests(): void {
   countedAttemptKeys.length = 0;
+  devVoiceRemaining = null;
 }
 
 /* expo-router: keep this utility from being treated as a screen */

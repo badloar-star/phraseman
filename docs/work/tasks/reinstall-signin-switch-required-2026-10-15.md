@@ -89,3 +89,14 @@ Out of scope до фактов и ДА: изменение `NON_AUTHORITATIVE_BO
 ## Rollback
 
 Документ; `git revert`.
+
+## R15, проверка Сверки r15_1015 (16:30) — окно всё ещё появляется
+
+Governance-ID: TG-F6F1630F4AD1
+
+Полный онбординг (с выбором аватара, язык fr): dirty=22, progress=4 — все четыре по форме служебные/выбор гостя:
+`lesson_progress_v2::fr::legacy_free_lesson_migration_v1` (маркер миграции по языку, как уже service-ключ без префикса),
+`cloud_last_sync_snapshot_v1` (снимок последнего синка — аватар/рамка/серия; сам прогресс проверяется по своим ключам),
+`customization_selection_head_v1:` и `customization_selection_operation_v1:` (журнал ВЫБОРА аватара/рамки — по слову
+координатора не прогресс; владение покупками — отдельные ключи custom_avatar_owned_v1 / avatar_aura_owned_v1 и т.п., остаются
+progress; outbox/quarantine выбора — тоже progress). Правка классификатора + тесты по этим формам + матрица; Opus-сверка до коммита.

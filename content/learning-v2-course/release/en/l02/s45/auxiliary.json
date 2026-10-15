@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-45:intro1:r2": {
+          "ru": "Это «законно». В условии действие нарушает закон.",
+          "uk": "Це «законно». За умовою дія порушує закон."
+        },
+        "en:lesson-02:session-45:intro1:r3": {
+          "ru": "Между `It` и `illegal` нужно `is`.",
+          "uk": "Між `It` і `illegal` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-45:intro2:r2": {
+          "ru": "Это отрицает незаконность. В условии нарушение есть.",
+          "uk": "Це заперечує незаконність. За умовою порушення є."
+        },
+        "en:lesson-02:session-45:intro2:r3": {
+          "ru": "С `it` нужно `is`.",
+          "uk": "З `it` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-45:intro3:r2": {
+          "ru": "Это «незаконно». Здесь нужно назвать пользу разъяснения.",
+          "uk": "Це «незаконно». Тут потрібно назвати користь роз’яснення."
+        },
+        "en:lesson-02:session-45:intro3:r3": {
+          "ru": "Это об официальном источнике. В вопросе нужно сказать, что разъяснение помогает.",
+          "uk": "Це про офіційне джерело. У запитанні потрібно сказати, що роз’яснення допомагає."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ad146c4fb3e70acb27330e091c8a5b90d68a9341260e1f4c8fa87551cae5a0b9"
+}

@@ -1,14 +1,15 @@
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
 import test from 'node:test';
 
 import { mergeLegalIntoPage } from '../scripts/sync-legal-html.mjs';
+import { readSource } from './helpers/read_source_esm.mjs';
 
 // зачем (координатор 15.10): `npm run legal:sync` переписывал текст юр-страниц сайта без оглавления, якорей id="s…" и обёртки .prose
 // (−~60 строк на страницу). Сторож: sync на текущем HEAD не меняет страницы ни на байт, а правка текста раздела меняет только его текст
 // (и якорь/ссылку оглавления, если поменялся заголовок). Файлы не трогаем — проверяем чистую часть sync.
 
-const read = (p) => fs.readFileSync(p, 'utf8');
+// LF-нормализация (сторож source_guard_eol): на ПК с core.autocrlf рабочая копия бывает в CRLF, sync пишет LF
+const read = (p) => readSource(p);
 const json = (p) => JSON.parse(read(p));
 const dateOf = (sections) => (sections[0]?.body?.split('\n\n')[0] || '').match(/Last updated:\s*([^\n]+)/i)?.[1].trim() ?? '';
 

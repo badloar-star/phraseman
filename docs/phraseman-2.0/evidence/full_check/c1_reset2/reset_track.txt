@@ -1,0 +1,25 @@
+10-15 20:45:16.177  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":null,"lastSection":"video","cardsOverride":null,"videoOverride":"es","where":"pathname=/video tab=/(tabs)/home routeIsTab=true"}
+10-15 20:45:16.178  9915  9984 I ReactNativeJS: [SECTION-LANG] {"section":"video","from":"es","to":"global","global":"en","event":"reset","reason":"left_section_to=none pathname=/video tab=/(tabs)/home routeIsTab=true"}
+10-15 20:45:16.251  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/home tab=/(tabs)/home routeIsTab=true"}
+10-15 20:45:21.937  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"cards","lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/flashcards tab=/(tabs)/home routeIsTab=false"}
+10-15 20:45:21.958  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"cards","lastSection":"cards","cardsOverride":null,"videoOverride":null,"where":"root_pathname=/flashcards"}
+10-15 20:45:27.556  9915  9984 I ReactNativeJS: [MY-PACKS] language_default studyTarget=en -> en
+10-15 20:45:27.559  9915  9984 I ReactNativeJS: [MY-PACKS] language selected=en total=0 shown=0 hidden=0 autoAll=false showAll=false
+10-15 20:45:27.624  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"cards","lastSection":"cards","cardsOverride":null,"videoOverride":null,"where":"pathname=/flashcards_my_packs tab=/(tabs)/home routeIsTab=false"}
+10-15 20:45:27.632  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"cards","lastSection":"cards","cardsOverride":null,"videoOverride":null,"where":"root_pathname=/flashcards_my_packs"}
+10-15 20:45:27.953  9915  9984 I ReactNativeJS: [MY-PACKS] other_languages current=en found=[{"code":"es","count":1}]
+10-15 20:45:28.277  9915  9984 I ReactNativeJS: [MY-PACKS] language selected=en total=1 shown=1 hidden=0 autoAll=false showAll=false
+10-15 20:45:35.418  9915  9984 I ReactNativeJS: [MY-PACKS] switch_section_language to=es (язык раздела, не глобальный)
+10-15 20:45:35.420  9915  9984 I ReactNativeJS: [SECTION-LANG] {"section":"cards","from":"global","to":"es","global":"en","event":"select"}
+10-15 20:45:35.452  9915  9984 I ReactNativeJS: [MY-PACKS] language_default studyTarget=es -> es
+10-15 20:45:35.455  9915  9984 I ReactNativeJS: [MY-PACKS] language selected=es total=1 shown=1 hidden=0 autoAll=true showAll=false
+10-15 20:45:35.550  9915  9984 I ReactNativeJS: [MY-PACKS] other_languages current=es found=[{"code":"en","count":1}]
+10-15 20:45:35.680  9915  9984 I ReactNativeJS: [MY-PACKS] language selected=es total=1 shown=1 hidden=0 autoAll=false showAll=false
+10-15 20:45:40.004  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"cards","lastSection":"cards","cardsOverride":"es","videoOverride":null,"where":"pathname=/flashcards tab=/(tabs)/home routeIsTab=false"}
+10-15 20:45:40.113  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"cards","lastSection":"cards","cardsOverride":"es","videoOverride":null,"where":"root_pathname=/flashcards"}
+10-15 20:45:42.926  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":null,"lastSection":"cards","cardsOverride":"es","videoOverride":null,"where":"pathname=/home tab=/(tabs)/home routeIsTab=true"}
+10-15 20:45:42.927  9915  9984 I ReactNativeJS: [SECTION-LANG] {"section":"cards","from":"es","to":"global","global":"en","event":"reset","reason":"left_section_to=none pathname=/home tab=/(tabs)/home routeIsTab=true"}
+10-15 20:45:47.267  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"video","lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/home tab=/(tabs)/video routeIsTab=true"}
+10-15 20:45:47.411  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"video","lastSection":"video","cardsOverride":null,"videoOverride":null,"where":"pathname=/video tab=/(tabs)/video routeIsTab=true"}
+10-15 20:45:51.394  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":null,"lastSection":"video","cardsOverride":null,"videoOverride":null,"where":"pathname=/video tab=/(tabs)/home routeIsTab=true"}
+10-15 20:45:51.499  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":null,"lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/home tab=/(tabs)/home routeIsTab=true"}

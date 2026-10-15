@@ -1,0 +1,8 @@
+10-15 20:46:34.234  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"cards","lastSection":null,"cardsOverride":null,"videoOverride":null,"where":"pathname=/flashcards tab=/(tabs)/home routeIsTab=false"}
+10-15 20:46:34.248  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"cards","lastSection":"cards","cardsOverride":null,"videoOverride":null,"where":"root_pathname=/flashcards"}
+10-15 20:46:39.831  9915  9984 I ReactNativeJS: [MY-PACKS] language_default studyTarget=en -> en
+10-15 20:46:39.833  9915  9984 I ReactNativeJS: [MY-PACKS] language selected=en total=0 shown=0 hidden=0 autoAll=false showAll=false
+10-15 20:46:39.892  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"cards","lastSection":"cards","cardsOverride":null,"videoOverride":null,"where":"pathname=/flashcards_my_packs tab=/(tabs)/home routeIsTab=false"}
+10-15 20:46:39.895  9915  9984 I ReactNativeJS: [SECTION-LANG] {"event":"track","next":"cards","lastSection":"cards","cardsOverride":null,"videoOverride":null,"where":"root_pathname=/flashcards_my_packs"}
+10-15 20:46:40.063  9915  9984 I ReactNativeJS: [MY-PACKS] other_languages current=en found=[{"code":"es","count":1}]
+10-15 20:46:40.182  9915  9984 I ReactNativeJS: [MY-PACKS] language selected=en total=1 shown=1 hidden=0 autoAll=false showAll=false

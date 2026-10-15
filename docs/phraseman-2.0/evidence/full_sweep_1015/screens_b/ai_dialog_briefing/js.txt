@@ -1,0 +1,71 @@
+--------- beginning of main
+10-15 16:36:18.335 I/ReactNativeJS(28819): '[V1-AUDIO-AHEAD]', '{"event":"cancelled","reason":"app_state:background"}'
+10-15 16:36:18.338 I/ReactNativeJS(28819): [INFO] [V1-AUDIO-AHEAD]: {"event":"cancelled","reason":"app_state:background"}
+10-15 16:36:18.416 I/ReactNativeJS(28819): [AA-S7] bootstrap skip reason=cutover_off v2=off
+10-15 16:36:18.418 I/ReactNativeJS(28819): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-15 16:36:18.426 I/ReactNativeJS(28819): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&next=/ai_dialog_briefing","initial":false,"out":"/dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&next=/ai_dialog_briefing"}'
+10-15 16:36:18.430 I/ReactNativeJS(28819): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&next=/ai_dialog_briefing","initial":false,"out":"/dev_state?uiLang=ru&onboarding=done&intros=seen&overlays=off&next=/ai_dialog_briefing"}'
+10-15 16:36:18.432 I/ReactNativeJS(28819): '[V2-PAGE] deeplink:url_event', '{"url":"phraseman://dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***","target":"/dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***"}'
+10-15 16:36:18.434 I/ReactNativeJS(28819): '[DEEPLINK-SETTINGS]', 'url_event', '{"url":"phraseman://dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***","target":"/dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***","currentPath":"/dialogue_v2_memory"}'
+10-15 16:36:18.476 I/ReactNativeJS(28819): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"__root","noop":false,"atMs":287539,"stack":"anonymous@148226:34 | forEach | anonymous@148226:25 | anonymous@145542:19 | apply | latestCallback@147261:31 | anonymous@153578:29 | anonymous@153596:27 | dispatch@153278:31 | anonymous@145472:61 | anonymous@153114:27 | anonymous@153102:37 | anonymous@145472:27 | apply | latestCallback@147261:31 | listener@217553:34 | ?anon_0_@216390:23 | next"}'
+10-15 16:36:18.487 W/ReactNativeJS(28819): '[BOOT] RootLayout render', { [Stack] name: 'Stack' }
+10-15 16:36:18.705 W/ReactNativeJS(28819): '[DEV-STATE] энергия в контексте =', 5, 'ready=true', { [Stack] name: 'Stack' }
+10-15 16:36:18.709 W/ReactNativeJS(28819): '[DEV-STATE] route: старт', '{"request":{"onboarding":"done","intros":"seen","overlays":"off","uiLang":"ru","next":"/ai_dialog_briefing"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-15 16:36:18.712 I/ReactNativeJS(28819): [DEV-STATE] step onboarding=done: старт
+10-15 16:36:18.718 I/ReactNativeJS(28819): '[DEEPLINK-SETTINGS]', 'open:start', '{"target":"/dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***","currentPath":"/dialogue_v2_memory","devUtility":false,"tabsGroup":false}'
+10-15 16:36:18.721 I/ReactNativeJS(28819): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#lGU_hL*[(tabs)#xgYL2a,ai_dialog_home#-vhIGK,dialogue_v2_briefing#W_bDH0,dialogue_v2_completion#Z4CNJO,dialogue_v2_freeform#srsUxl,dialogue_v2_memory#yD7eNM,dev_state#XilQfp*]","atMs":287797}'
+10-15 16:36:18.830 I/ReactNativeJS(28819): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#lGU_hL*[(tabs)#xgYL2a,ai_dialog_home#-vhIGK,dialogue_v2_briefing#W_bDH0,dialogue_v2_completion#Z4CNJO,dialogue_v2_freeform#srsUxl,dialogue_v2_memory#yD7eNM,dev_state#XilQfp*]","atMs":287906}'
+10-15 16:36:19.002 I/ReactNativeJS(28819): [AA-S7] bootstrap skip reason=cutover_off v2=off
+10-15 16:36:19.004 I/ReactNativeJS(28819): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-15 16:36:19.034 I/ReactNativeJS(28819): '[APP-MESSAGES-REFRESH]', '{"mode":"foreground_interval","markSource":"memory","minIntervalMs":21600000}'
+10-15 16:36:19.040 W/ReactNativeJS(28819): '[LV2-RETRY-CURSOR] slow', '{"op":"load","outcome":"ok","heldMs":616,"stages":{"lock_wait":2,"scope_hash":1,"get_item":615}}'
+10-15 16:36:19.045 I/ReactNativeJS(28819): '[MEM-TICK]', '{"tSec":287,"route":"/dev_state","heapMb":88,"gc":"8gc/125ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":15,"timeoutsByCaller":{"anonymous <- anonymous":6,"anonymous <- react-stack-bottom-frame":3,"scheduleForegroundDrain <- scheduleCoalescedForegroundTask":2,"tick <- apply (native)":1,"anonymous <- tryCallTwo (address at InternalBytecode.js:1:1222)":1},"pendingTimeouts":8,"firestoreReads":{},"firestoreReadsByCaller":{"query|query|apply (native) <- anonymous":{"pending":2},"users|doc|?anon_0_ <- next (native)":{"pending":2}}}'
+10-15 16:36:19.080 I/ReactNativeJS(28819): [SMART-REMINDER] record:skip kind=session reason=dedupe_30min sinceMs=283481
+10-15 16:36:19.086 I/ReactNativeJS(28819): [INFO] [SPIRE-CONFIG]: loadSpireConfig: из кэша (возраст=275502мс)
+10-15 16:36:19.093 W/ReactNativeJS(28819): [NAV-PAINT] group=screen route=/dev_state ms=254
+10-15 16:36:19.098 I/ReactNativeJS(28819): [SUPPORT-DIAG] сброс журнала reason=app_background записано=3 отброшено=0 байт=1663 мс=754
+10-15 16:36:19.153 I/ReactNativeJS(28819): [DEV-STATE] overlays: повторная сверка окон запрошена tick=6 reason=onboarding_done
+10-15 16:36:19.158 I/ReactNativeJS(28819): [DEV-STATE] onboarding overlay closed by onboarding=done wasVisible=no
+10-15 16:36:19.194 I/ReactNativeJS(28819): [DEV-STATE] step onboarding=done: ок за 484 мс
+10-15 16:36:19.196 I/ReactNativeJS(28819): [DEV-STATE] step overlays=off: старт
+10-15 16:36:19.197 I/ReactNativeJS(28819): [DEV-STATE] overlays=off (окна рассылок/объявлений/сообщений гасятся, только память)
+10-15 16:36:19.198 I/ReactNativeJS(28819): [DEV-STATE] step overlays=off: ок за 4 мс
+10-15 16:36:19.199 I/ReactNativeJS(28819): [DEV-STATE] step uiLang=ru: старт
+10-15 16:36:19.200 I/ReactNativeJS(28819): [DEV-STATE] uiLang=ru source=link (подмена ru, подписчиков 1, только память)
+10-15 16:36:19.200 I/ReactNativeJS(28819): [DEV-STATE] uiLang: применяю request=ru previous=ru target=ru stored=null (только память, app_lang не пишется)
+10-15 16:36:19.202 I/ReactNativeJS(28819): [DEV-STATE] step uiLang=ru: ок за 3 мс
+10-15 16:36:19.204 I/ReactNativeJS(28819): [DEV-STATE] step intros=seen: старт
+10-15 16:36:19.207 I/ReactNativeJS(28819): [WINBACK-FREEZE] t=79207 gate no reason=recent awayDays=0
+10-15 16:36:19.208 I/ReactNativeJS(28819): [WINBACK-FREEZE] t=79207 check decision show=false isPremium=false introPending=false path=/dev_state
+10-15 16:36:19.210 I/ReactNativeJS(28819): [TODAY-TASKS] hook:refresh {"reason":"foreground","studyTarget":"en","kinds":["lesson","dialog","cards","video","spire_steps"],"pinned":[],"live":{"spireLive":true,"mistakesReady":0,"mistakesActive":0}}
+10-15 16:36:19.213 I/ReactNativeJS(28819): '[DEEPLINK-SETTINGS]', 'open:self_open_check', '{"targetPath":"/dev_state","currentPath":"/dev_state","willPush":false}'
+10-15 16:36:19.215 I/ReactNativeJS(28819): '[V2-PAGE] deeplink:skip_already_open', '{"target":"/dev_state?uiLang=***&onboarding=***&intros=***&overlays=***&next=***","currentPath":"/dev_state"}'
+10-15 16:36:19.273 I/ReactNativeJS(28819): [DEV-STATE] intros: помечено показанными 12 окон знакомства
+10-15 16:36:19.276 I/ReactNativeJS(28819): [WELCOME-BACK] signal skip reason=recent awayDays=0.0
+10-15 16:36:19.291 I/ReactNativeJS(28819): [DEV-STATE] intros: тур Шпиля помечен показанным
+10-15 16:36:19.292 I/ReactNativeJS(28819): [DEV-STATE] step intros=seen: ок за 88 мс
+10-15 16:36:19.293 I/ReactNativeJS(28819): '[DEV-STATE] applied', '{"applied":{"onboarding":"done","overlays":"off","uiLang":"ru","intros":"seen"},"skipped":{},"next":"/ai_dialog_briefing"}'
+10-15 16:36:19.294 W/ReactNativeJS(28819): '[DEV-STATE] route: фикстуры применены', '589мс', '{"applied":{"onboarding":"done","overlays":"off","uiLang":"ru","intros":"seen"},"skipped":{},"next":"/ai_dialog_briefing"}'
+10-15 16:36:19.312 I/ReactNativeJS(28819): [ENERGY-RESTORE] runLoad: unlimited=false reason=none:limited
+10-15 16:36:19.320 I/ReactNativeJS(28819): [STREAK] snapshot:personal streak=0 prev=0@local
+10-15 16:36:19.354 I/ReactNativeJS(28819): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792078564716 elapsedMs=14602 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=false
+10-15 16:36:19.357 I/ReactNativeJS(28819): [INFO] [STARTUP-READS]: app_messages: cache (ageMs=198994 < minIntervalMs=21600000) -> network skipped
+10-15 16:36:19.360 W/ReactNativeJS(28819): '[ACH-CHECK] done', '{"event":"foreground_usage","unlocked":0,"eligible":0,"totalMs":83,"stages":{"queue_wait":0,"load_states":34,"backfill_marker":3,"reduce_progress":4,"evaluate_snapshot":42}}'
+10-15 16:36:19.383 I/ReactNativeJS(28819): [APP-MESSAGE] fresh_install verdict fresh=true reason=recent ageMs=309 raw=1792078579048
+10-15 16:36:19.384 I/ReactNativeJS(28819): [APP-MESSAGE] skip reason=fresh_install count=1 ids=eXsVSyM2SeaDylSYimFs ageMs=309
+10-15 16:36:19.428 I/ReactNativeJS(28819): '[OVERLAY-QUEUE]', '{"holder":"никто","asking":[],"waiting":[],"wants":{"update":false,"authRecovery":false,"releaseNotes":null,"broadcast":null,"appMessageModal":null,"personalAdminMessage":null,"notifNudge":false},"onboarding":false}'
+10-15 16:36:19.431 I/ReactNativeJS(28819): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792078579318 elapsedMs=109 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=false
+10-15 16:36:19.462 I/ReactNativeJS(28819): [ENERGY-RESTORE] runLoad: unlimited=false reason=none:limited
+10-15 16:36:19.499 I/ReactNativeJS(28819): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792078579427 elapsedMs=71 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=false
+10-15 16:36:19.528 I/ReactNativeJS(28819): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792078579498 elapsedMs=28 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=false
+10-15 16:36:19.572 W/ReactNativeJS(28819): '[DEV-STATE] route: перечитывание энергии →', 'ok', '866мс'
+10-15 16:36:19.572 W/ReactNativeJS(28819): '[DEV-STATE] route: replace через 300 мс →', '/ai_dialog_briefing', '867мс'
+10-15 16:36:19.816 W/ReactNativeJS(28819): '[PREMIUM-RESOLVE] reload:done', '{"epoch":4,"totalMs":7,"steps":{"identity_sync:false":1,"dev_override":2,"verified_local":2,"verified_cloud:false":1,"tester_flags":1,"intro_state":0},"access":false}'
+10-15 16:36:19.905 W/ReactNativeJS(28819): '[DEV-STATE] route: replace вызван →', '/ai_dialog_briefing', 'canDismiss=true (возможна вторая копия вкладок — артефакт dev)'
+10-15 16:36:19.941 I/ReactNativeJS(28819): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"ai_dialog_briefing","noop":false,"atMs":289017,"stack":"anonymous@148226:34 | forEach | anonymous@148226:25 | anonymous@145542:19 | apply | latestCallback@147261:31 | anonymous@153578:29 | dispatch@153278:31 | anonymous@145472:61 | anonymous@153114:27 | anonymous@153102:37 | anonymous@145472:27 | apply | latestCallback@147261:31 | run@213656:31 | anonymous@216225:33 | react-stack-bottom-frame@28676:26 | runWithFiberInDEV@20473:135"}'
+10-15 16:36:20.090 I/ReactNativeJS(28819): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#lGU_hL*[(tabs)#xgYL2a,ai_dialog_home#-vhIGK,dialogue_v2_briefing#W_bDH0,dialogue_v2_completion#Z4CNJO,dialogue_v2_freeform#srsUxl,dialogue_v2_memory#yD7eNM,ai_dialog_briefing#IQOrTR*]","atMs":289166}'
+10-15 16:36:20.171 W/ReactNativeJS(28819): [DIAG] code=swallowed screen=BillingIssueToastHost op=promise_1 build=1.6.24+unknown trace=mv9pbe88-00a ctx={} err=There is no singleton instance. Make sure you configure Purchases before trying to get the default instance. More info here: https://errors.rev.cat/configuring-…
+10-15 16:36:20.229 W/ReactNativeJS(28819): [NAV-PAINT] group=screen route=/ai_dialog_briefing ms=130
+10-15 16:36:20.839 I/ReactNativeJS(28819): [DEV-STATE] after_route: выполняю 0 причина=replaced
+10-15 16:36:24.063 I/ReactNativeJS(28819): '[MEM-TICK]', '{"tSec":292,"route":"/ai_dialog_briefing","heapMb":88,"gc":"5gc/55ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":17,"timeoutsByCaller":{"anonymous <- tryCallTwo (address at InternalBytecode.js:1:1222)":10,"tick <- apply (native)":1,"anonymous <- invoke":1,"setTimeout <- scheduleAt":1,"?anon_0_ <- next (native)":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"query|query|apply (native) <- anonymous":{"pending":2},"users|doc|?anon_0_ <- next (native)":{"pending":2}}}'
+10-15 16:36:29.083 I/ReactNativeJS(28819): '[MEM-TICK]', '{"tSec":297,"route":"/ai_dialog_briefing","heapMb":88,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":0,"firestoreReads":{},"firestoreReadsByCaller":{"query|query|apply (native) <- anonymous":{"pending":2},"users|doc|?anon_0_ <- next (native)":{"pending":2}}}'

@@ -35,7 +35,9 @@ describe('Optimistic UI audit R1 — cheap gaps stay closed', () => {
     for (const tag of ['comment_reaction rollback', 'comment_pin rollback', 'comment_delete rollback', 'comment_hide rollback']) expect(sheet).toContain(`[OPT-UI] ${tag}`);
     expect(sheet).toMatch(/togglePackCommentReaction\(packId, comment\.id, myUserId, reaction, !had\)\.then\(\(ok\) =>/);
     expect(sheet).toMatch(/setPackCommentPinned\(packId, comment\.id, nextPinned\)\.then\(\(ok\) =>/);
-    expect(sheet).toMatch(/if \(!myUserId \|\| sending \|\| sendLockRef\.current\) return;/); // синхронный замок отправки
+    // зачем (аудит Карточек #12, 15.10): без uid отправка больше не молчит — отдельная проверка с тостом; замок отправки прежний, синхронный.
+    expect(sheet).toMatch(/if \(!myUserId\) \{ notifyPackCommentsIdentityPending\('send', packId\); return; \}/);
+    expect(sheet).toMatch(/if \(sending \|\| sendLockRef\.current\) return;/); // синхронный замок отправки
     expect(sheet.match(/sendLockRef\.current = false/g)?.length).toBeGreaterThanOrEqual(2);
   });
 

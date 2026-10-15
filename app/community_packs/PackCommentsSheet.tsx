@@ -162,6 +162,17 @@ function rememberPackCommentsMemory(packId: string, list: PackComment[]): void {
   }
 }
 
+/**
+ * зачем (аудит Карточек #12): действие без идентичности раньше выходило молча. Теперь — причина в журнал и короткий тост.
+ */
+function notifyPackCommentsIdentityPending(action: 'send' | 'retry' | 'reaction', packId: string): void {
+  console.warn(`[PACK-COMMENTS-COMPOSER] ${action}: идентичность ещё не получена — действие не выполнено, тост «секунду» packId=${packId}`); // guard-ok: ранний выход называет причину
+  emitAppEvent('action_toast', actionToastTri('info', {
+    ru: 'Секунду — загружаем комментарии. Попробуй ещё раз.', uk: 'Секунду — завантажуємо коментарі. Спробуй ще раз.', en: 'One moment — loading comments. Try again.', es: 'Un momento: cargando comentarios. Inténtalo de nuevo.',
+    'pt-BR': 'Um momento: carregando comentários. Tente de novo.', vi: 'Chờ chút — đang tải bình luận. Hãy thử lại.', id: 'Sebentar — memuat komentar. Coba lagi.', tr: 'Bir saniye — yorumlar yükleniyor. Tekrar dene.', pl: 'Chwileczkę — ładujemy komentarze. Spróbuj ponownie.',
+  }));
+}
+
 export default function PackCommentsSheet({ visible, packId, packTitle, isPackAuthor, packAuthorStableId, ownedLocally, lang, onClose, highlightCommentId }: Props) {
   const { theme: t, f, liquidGlassThemeId } = useTheme();
   // зачем: Liquid Glass 1 в 1 с макета cards.html #comments — все нейтральные
@@ -294,6 +305,9 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
         return null;
       });
       if (__DEV__) console.log('[PACK-COMMENTS-COMPOSER] uid получен', { packId, uid, hasUid: !!uid });
+      // зачем (аудит Карточек #12, координатор 15.10): uid — локальная идентичность, сеть ему не нужна. Раньше его ставили только
+      // после ленты и права писать (потолок 8 с) — на медленной сети «Отправить», повтор и реакции молча ничего не делали.
+      if (!cancelled && uid) setMyUserId(uid);
       const pending = Promise.all([
         uid ? canWritePackComment(packId, uid) : Promise.resolve(false),
         fetchPackComments(packId, uid),
@@ -397,7 +411,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
 
   const handleSend = useCallback(() => {
     // зачем (координатор 12.10, аудит Optimistic UI R1): замок отправки — ref: состояние `sending` ставится после рендера, второй тап в том же кадре успевал отправить отклик дважды.
-    if (!myUserId || sending || sendLockRef.current) return;
+    if (!myUserId) { notifyPackCommentsIdentityPending('send', packId); return; }
+    if (sending || sendLockRef.current) return;
     const validation = validatePackComment(draft, canWrite);
     if (!validation.ok) {
       if (validation.reason === 'not_added') {
@@ -493,7 +508,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   // появляется после перерисовки); замок по id строки синхронный, как у основной отправки.
   const retryLocksRef = useRef<Set<string>>(new Set());
   const handleRetry = useCallback((comment: PackComment) => {
-    if (!myUserId) return;
+    if (!myUserId) { notifyPackCommentsIdentityPending('retry', packId); return; }
     if (retryLocksRef.current.has(comment.id)) {
       console.warn(`[PACK-COMMENTS-COMPOSER] повтор ${comment.id}: уже в пути — повторный тап пропущен`); // guard-ok: ранний выход называет причину
       return;
@@ -558,7 +573,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   }, []);
 
   const handleReaction = useCallback((comment: PackComment, reaction: 'like' | 'fire') => {
-    if (!myUserId || comment.status !== 'published') return;
+    if (!myUserId) { notifyPackCommentsIdentityPending('reaction', packId); return; }
+    if (comment.status !== 'published') return;
     hapticTap();
     const had = comment.myReactions.includes(reaction);
     setComments((prev) => prev.map((c) => {

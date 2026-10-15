@@ -108,8 +108,14 @@ async function download(gate: SpireLiveGate, k: SpirePackKey): Promise<SpirePack
     DebugLogger.info(LOG, `pack: скачиваем ${path}`);
     const res = await fetch(url, { headers: { Authorization: `Firebase ${token}` }, signal: controller.signal });
     if (res.status === 404) {
-      DebugLogger.warn(LOG, `pack: ${path} ещё не собран (404) за ${Date.now() - startedAt}мс`);
-      return { status: 'missing', pack: null, source: 'none', reason: 'http_404' };
+      DebugLogger.warn(LOG, `pack: ${path} ещё не собран (404 not_found) за ${Date.now() - startedAt}мс`);
+      return { status: 'missing', pack: null, source: 'none', reason: 'not_found' };
+    }
+    if (res.status === 403) {
+      // зачем (R68, координатор 15.10): «Задания этой недели ещё готовятся» на всех языках шло от 403 — файл ЕСТЬ, но
+      // опубликованные правила Storage (25.08) без блока spire_packs. Это не «ещё не собран»: отдельная причина, громко.
+      DebugLogger.warn(LOG, `pack: ${path} — 403 forbidden: правила Storage не пускают (файл есть, проверь storage.rules в проде) за ${Date.now() - startedAt}мс`);
+      return { status: 'unavailable', pack: null, source: 'none', reason: 'forbidden' };
     }
     if (!res.ok) {
       DebugLogger.warn(LOG, `pack: ответ ${res.status} за ${Date.now() - startedAt}мс`);

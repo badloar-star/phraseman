@@ -136,7 +136,9 @@ function prewarmDeferredTabScreen(idx: number): boolean {
     // ни экрана, ни причины. Прогрев остаётся необязательным (вызывающий его код
     // больше не считает неудачу запретом на показ), но сама ошибка обязана быть
     // видна в логах, иначе следующий такой баг снова будут искать вслепую.
-    if (__DEV__) console.warn(`[tabs] prewarm failed for tab ${idx}:`, error);
+    // зачем (R14, координатор 15.10, правило «немых catch»): в релизе причина тоже нужна — пустая вкладка без строки в журнале
+    // и есть тот самый немой баг.
+    console.warn(`[TABS-PREWARM] failed tab=${idx} reason=${error instanceof Error ? `${error.name}: ${error.message}` : String(error)}`); // guard-ok: причина в журнал
     return false;
   }
 }
@@ -204,6 +206,16 @@ function DeferredTabScreen({
 }) {
   const { theme: t } = useTheme();
   const Screen = shouldLoad ? loadScreen() : null;
+  // зачем (R14, Сверка Б16r3: «Сообщество» 12–14 с пустое после тапа по пушу; сперва логи): сколько вкладка держала пустую
+  // заглушку и чем кончилось — отличить «вкладка не смонтирована» от «экран смонтирован, но сам пуст».
+  const placeholderSinceRef = useRef<number | null>(null);
+  if (!Screen && placeholderSinceRef.current === null) {
+    placeholderSinceRef.current = Date.now();
+    console.log(`[TABS-DEFERRED] placeholder start screen=${loadScreen.name || 'anonymous'} shouldLoad=${String(shouldLoad)}`); // guard-ok: трасса пустой вкладки
+  } else if (Screen && placeholderSinceRef.current !== null) {
+    console.log(`[TABS-DEFERRED] placeholder end screen=${loadScreen.name || 'anonymous'} heldMs=${Date.now() - placeholderSinceRef.current}`); // guard-ok: трасса пустой вкладки
+    placeholderSinceRef.current = null;
+  }
   if (!Screen) return <View style={[s.deferredTabPlaceholder, { backgroundColor: t.bgPrimary }]} collapsable={false} />;
   return <Screen {...screenProps} />;
 }

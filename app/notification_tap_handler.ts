@@ -6,6 +6,7 @@ import { recordSmartReminderEvent } from './smart_reminder_store';
 type NotificationRouter = {
   push: (route: any) => void;
   replace?: (route: any) => void;
+  navigate?: (route: any) => void;
 };
 
 export type ServerPushTapRoute = Readonly<{ pathname: string; params: Record<string, string> }>;
@@ -79,6 +80,16 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
       router.push('/(tabs)/home');
     });
   };
+  // зачем (R14, Сверка Б16r3 15.10: «PUSH (tabs)» от тапа → третий экземпляр вкладок, его «Сообщество» 12–14 с пустое):
+  // цель-вкладка открывается через navigate — он переходит в УЖЕ смонтированные вкладки, а не кладёт новые поверх.
+  const navTab = (route: any, reason: string) => {
+    scheduleNav(() => {
+      const via = typeof router.navigate === 'function' ? 'navigate' : 'push';
+      console.log(`[PUSH-TAP] tab_nav ${JSON.stringify({ reason, via, pathname: typeof route === 'string' ? route : route?.pathname })}`); // guard-ok: ветка перехода
+      if (router.navigate) router.navigate(route);
+      else router.push(route);
+    });
+  };
   // зачем (бета-тест 15.10, Б16): разбор тапа — одна функция для настоящего тапа и для dev-имитации (тот же путь).
   const routeTap = (data: any): void => {
     // зачем (умное напоминание): открытие по нашему же напоминанию не считаем привычкой, иначе алгоритм закрепит своё время.
@@ -127,13 +138,13 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
         break;
       case 'activity_like':
       case 'friend_nudge':
-        scheduleNav(() => router.push({
+        navTab({
           pathname: '/(tabs)/friends',
           params: {
             ...(String(data.actorStableUid ?? '').trim() ? { actorStableUid: String(data.actorStableUid).trim() } : {}),
             ...(String(data.eventId ?? '').trim() ? { socialEventId: String(data.eventId).trim() } : {}),
           },
-        }));
+        }, String(data.type));
         break;
       case 'tournament_starting':
         break;
@@ -154,7 +165,7 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
             .then(async ({ primeSpireTabFlag, isSpireTabEnabled }) => {
               await primeSpireTabFlag();
               if (isSpireTabEnabled()) {
-                scheduleNav(() => router.push(route));
+                navTab(route, String(data.type));
                 return;
               }
               console.log('[SPIRE-GATE]', JSON.stringify({ where: 'push_tap', type: String(data.type), action: 'redirect_home' }));

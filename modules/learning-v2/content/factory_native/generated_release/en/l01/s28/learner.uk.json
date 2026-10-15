@@ -1,0 +1,1001 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви звірили час у квитку. Складіть фразу: «Він правильний»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви звірили час у квитку. Складіть фразу: «Він правильний»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is correct.",
+        "localizedMeaning": {
+          "ru": "Вы сверили время в билете. Соберите фразу: «Оно верное»",
+          "uk": "Ви звірили час у квитку. Складіть фразу: «Він правильний»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "correct"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви звірили час у квитку. Складіть фразу: «Він правильний»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is correct.`",
+              "uk": "тут потрібно `is` — `It is correct.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть почуте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-28:i02:r1",
+          "text": "I am certain."
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i02:r2",
+          "text": "I am serious."
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i02:r3",
+          "text": "I am prepared."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i02:audio",
+          "transcript": "I am certain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-28:i02:r1",
+            "targetText": "I am certain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i02:r2",
+            "targetText": "I am serious.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i02:r3",
+            "targetText": "I am prepared.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `certain`, а в этом варианте — `serious`.",
+              "uk": "У записі останнє слово — `certain`, а в цьому варіанті — `serious`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `certain`, а в этом варианте — `prepared`.",
+              "uk": "У записі останнє слово — `certain`, а в цьому варіанті — `prepared`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друзі справді збираються виїхати до світанку й не жартують. Вставте слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-28:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друзі справді збираються виїхати до світанку й не жартують. Вставте слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друзья действительно собираются выехать до рассвета и не шутят. Вставьте слово",
+          "uk": "Друзі справді збираються виїхати до світанку й не жартують. Вставте слово"
+        },
+        "gappedTargetPhrase": "They ___ serious.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-28:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Друзі справді збираються виїхати до світанку й не жартують. Вставте слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Друзі справді збираються виїхати до світанку й не жартують. Вставте слово",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Друзі справді збираються виїхати до світанку й не жартують. Вставте слово",
+            "feedbackByLocale": {
+              "ru": "`am` подходит к `I`, а здесь `They are`.",
+              "uk": "`am` поєднується з `I`, а тут `They are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-28:i04:p1",
+            "target": "correct",
+            "meaningByLocale": {
+              "ru": "верный",
+              "uk": "правильний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-28:i04:p2",
+            "target": "certain",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "упевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-28:i04:p3",
+            "target": "serious",
+            "meaningByLocale": {
+              "ru": "серьёзный",
+              "uk": "серйозний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-28:i04:p4",
+            "target": "prepared",
+            "meaningByLocale": {
+              "ru": "подготовленный",
+              "uk": "підготовлений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "correct",
+          "certain",
+          "serious",
+          "prepared"
+        ],
+        "rightColumn": [
+          "правильний",
+          "упевнений",
+          "серйозний",
+          "підготовлений"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i05:audio",
+          "transcript": "She is certain."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is certain.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "certain"
+        ],
+        "authoredDistractorTokens": [
+          "He"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `She` — `She is certain.`",
+              "uk": "тут потрібно `She` — `She is certain.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви із сестрою кажете другові, що ваш план виїзду — не жарт. Складіть: «Ми серйозно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви із сестрою кажете другові, що ваш план виїзду — не жарт. Складіть: «Ми серйозно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are serious.",
+        "localizedMeaning": {
+          "ru": "Вы с сестрой говорите другу, что ваш план выезда — не шутка. Соберите: «Мы серьёзно»",
+          "uk": "Ви із сестрою кажете другові, що ваш план виїзду — не жарт. Складіть: «Ми серйозно»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "serious"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви із сестрою кажете другові, що ваш план виїзду — не жарт. Складіть: «Ми серйозно»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `We are serious.`",
+              "uk": "тут потрібно `are` — `We are serious.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви точно знаєте, що виїзд завтра. Скажіть про свою впевненість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Ви точно знаєте, що виїзд завтра. Скажіть про свою впевненість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i07:audio",
+          "transcript": "I am certain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am certain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг уже прокинувся й відповідає на повідомлення. Доповніть фразу про нього",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-28:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг уже прокинувся й відповідає на повідомлення. Доповніть фразу про нього",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг уже проснулся и отвечает на сообщения. Дополните фразу о нём",
+          "uk": "Друг уже прокинувся й відповідає на повідомлення. Доповніть фразу про нього"
+        },
+        "gappedTargetPhrase": "He ___ awake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-28:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Друг уже прокинувся й відповідає на повідомлення. Доповніть фразу про нього",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Друг уже прокинувся й відповідає на повідомлення. Доповніть фразу про нього",
+            "feedbackByLocale": {
+              "ru": "После `He` нужна форма `is`.",
+              "uk": "Після `He` потрібна форма `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Друг уже прокинувся й відповідає на повідомлення. Доповніть фразу про нього",
+            "feedbackByLocale": {
+              "ru": "Здесь начало `He`, поэтому `is`.",
+              "uk": "Тут початок `He`, тому `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-28:i09:r1",
+          "text": "You are correct."
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i09:r2",
+          "text": "We are correct."
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i09:r3",
+          "text": "You are serious."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i09:audio",
+          "transcript": "You are correct."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-28:i09:r1",
+            "targetText": "You are correct.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i09:r2",
+            "targetText": "We are correct.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i09:r3",
+            "targetText": "You are serious.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `correct`, а в этом варианте — `serious`.",
+              "uk": "У записі останнє слово — `correct`, а в цьому варіанті — `serious`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте знайомі слова та значення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте знайомі слова та значення",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-28:i10:p1",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "не спит",
+              "uk": "не спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-28:i10:p2",
+            "target": "asleep",
+            "meaningByLocale": {
+              "ru": "спит",
+              "uk": "спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-28:i10:p3",
+            "target": "available",
+            "meaningByLocale": {
+              "ru": "свободен, может уделить время",
+              "uk": "вільний, може приділити час"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-28:i10:p4",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудившийся",
+              "uk": "той, хто заблукав"
+            }
+          }
+        ],
+        "leftColumn": [
+          "awake",
+          "asleep",
+          "available",
+          "lost"
+        ],
+        "rightColumn": [
+          "не спить",
+          "спить",
+          "вільний, може приділити час",
+          "той, хто заблукав"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть почуте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть почуте",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i11:audio",
+          "transcript": "They are certain."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are certain.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "certain"
+        ],
+        "authoredDistractorTokens": [
+          "We"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть почуте",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `They` — `They are certain.`",
+              "uk": "тут потрібно `They` — `They are certain.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг правильно назвав час виїзду. Складіть відповідь йому: «Ти маєш рацію», використовуючи correct",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг правильно назвав час виїзду. Складіть відповідь йому: «Ти маєш рацію», використовуючи correct",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are correct.",
+        "localizedMeaning": {
+          "ru": "Друг верно назвал время выезда. Соберите ответ ему: «Ты прав», используя correct",
+          "uk": "Друг правильно назвав час виїзду. Складіть відповідь йому: «Ти маєш рацію», використовуючи correct"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "correct"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг правильно назвав час виїзду. Складіть відповідь йому: «Ти маєш рацію», використовуючи correct",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `You are correct.`",
+              "uk": "тут потрібно `are` — `You are correct.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра уважно звіряє кожну дату. Скажіть про неї: «Вона уважна»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i13:audio"
+      ],
+      "accessibilityLabel": "Сестра уважно звіряє кожну дату. Скажіть про неї: «Вона уважна»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i13:audio",
+          "transcript": "She is careful."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is careful.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг вирішив, що ви пожартували про ранній виїзд. Доповніть вашу відповідь: «Я серйозно»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-28:i14:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг вирішив, що ви пожартували про ранній виїзд. Доповніть вашу відповідь: «Я серйозно»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг решил, что вы пошутили про ранний выезд. Дополните ваш ответ: «Я серьёзно»",
+          "uk": "Друг вирішив, що ви пожартували про ранній виїзд. Доповніть вашу відповідь: «Я серйозно»"
+        },
+        "gappedTargetPhrase": "I ___ serious.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-28:i14:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Друг вирішив, що ви пожартували про ранній виїзд. Доповніть вашу відповідь: «Я серйозно»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i14:r2",
+            "correct": false,
+            "testedDimension": "Друг вирішив, що ви пожартували про ранній виїзд. Доповніть вашу відповідь: «Я серйозно»",
+            "feedbackByLocale": {
+              "ru": "О себе говорим `I am`.",
+              "uk": "Про себе кажемо `I am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i14:r3",
+            "correct": false,
+            "testedDimension": "Друг вирішив, що ви пожартували про ранній виїзд. Доповніть вашу відповідь: «Я серйозно»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `am`.",
+              "uk": "Після `I` потрібно `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть почуте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-28:i15:r1",
+          "text": "We are prepared."
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i15:r2",
+          "text": "They are prepared."
+        },
+        {
+          "responseId": "en:lesson-01:session-28:i15:r3",
+          "text": "We are serious."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i15:audio",
+          "transcript": "We are prepared."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-28:i15:r1",
+            "targetText": "We are prepared.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i15:r2",
+            "targetText": "They are prepared.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i15:r3",
+            "targetText": "We are serious.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `prepared`, а в этом варианте — `serious`.",
+              "uk": "У записі останнє слово — `prepared`, а в цьому варіанті — `serious`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова та значення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова та значення",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-28:i16:p1",
+            "target": "careful",
+            "meaningByLocale": {
+              "ru": "внимательный",
+              "uk": "уважний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-28:i16:p2",
+            "target": "correct",
+            "meaningByLocale": {
+              "ru": "верный",
+              "uk": "правильний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-28:i16:p3",
+            "target": "certain",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "упевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-28:i16:p4",
+            "target": "serious",
+            "meaningByLocale": {
+              "ru": "серьёзный",
+              "uk": "серйозний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "careful",
+          "correct",
+          "certain",
+          "serious"
+        ],
+        "rightColumn": [
+          "уважний",
+          "правильний",
+          "упевнений",
+          "серйозний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У магазині ви перевірили суму в чеку: усе пораховано правильно. Скажіть касирові про результат розрахунку, використовуючи correct",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "У магазині ви перевірили суму в чеку: усе пораховано правильно. Скажіть касирові про результат розрахунку, використовуючи correct",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i17:audio",
+          "transcript": "It is correct."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is correct.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5406a5d5c9ad4df719e9a570dd2c0e92925b2b9cf94c734302fbba78e5c9e6d7"
+}

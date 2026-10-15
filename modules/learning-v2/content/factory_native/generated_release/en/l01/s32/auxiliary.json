@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-32:intro1:r2": {
+          "ru": "После `I` нужна форма `am`.",
+          "uk": "Після `I` потрібна форма `am`."
+        },
+        "en:lesson-01:session-32:intro1:r3": {
+          "ru": "Это за вас и других людей. Здесь нужно сказать о себе: `I am proud`.",
+          "uk": "Це за вас та інших людей. Тут треба сказати про себе: `I am proud`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-32:intro2:r2": {
+          "ru": "`bored` — «скучает». Здесь речь о непонимании: `confused`.",
+          "uk": "`bored` — «нудьгує». Тут ідеться про нерозуміння: `confused`."
+        },
+        "en:lesson-01:session-32:intro2:r3": {
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-32:intro3:r2": {
+          "ru": "Это «Они отдельные». Здесь нужно назвать сходство: `similar`.",
+          "uk": "Це «Вони окремі». Тут треба назвати схожість: `similar`."
+        },
+        "en:lesson-01:session-32:intro3:r3": {
+          "ru": "После `They` ставим `are`.",
+          "uk": "Після `They` ставимо `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2e6613f3736be3d27e8ea262035ad1e5ec425a25020ac6ee1c4547fe77eb8b5"
+}

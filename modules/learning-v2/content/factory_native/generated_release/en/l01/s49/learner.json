@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-01:session-49:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — everyone",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кружка стоит недорого. Соберите фразу о её цене",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — everyone",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кружка стоит недорого. Соберите фразу о её цене",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i01:audio",
-          "transcript": "everyone"
+        "family": "phrase_builder",
+        "targetPhrase": "It is cheap.",
+        "localizedMeaning": {
+          "ru": "Кружка стоит недорого. Соберите фразу о её цене",
+          "uk": "Горнятко коштує недорого. Складіть фразу про його ціну"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "cheap"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-49:i01:r1",
-            "targetText": "everyone",
-            "meaningByLocale": {
-              "ru": "«все». Не толпа на площади, а все свои: все в комнате, все на работе.",
-              "uk": "«всі». Не натовп на площі, а всі свої: усі в кімнаті, усі на роботі."
+            "responseId": "en:lesson-01:session-49:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Кружка стоит недорого. Соберите фразу о её цене",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is cheap.`",
+              "uk": "тут потрібно `is` — `It is cheap.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "everyone",
-          "definitionByLocale": {
-            "ru": "«все». Не толпа на площади, а все свои: все в комнате, все на работе.",
-            "uk": "«всі». Не натовп на площі, а всі свої: усі в кімнаті, усі на роботі."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-49:i02:r1",
-          "text": "everyone"
+          "text": "It is cheap."
         },
         {
           "responseId": "en:lesson-01:session-49:i02:r2",
-          "text": "every"
+          "text": "It is useful."
         },
         {
           "responseId": "en:lesson-01:session-49:i02:r3",
-          "text": "everything"
+          "text": "It is dangerous."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-49:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите услышанное",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-49:i02:audio",
-          "transcript": "everyone"
+          "transcript": "It is cheap."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-49:i02:r1",
-            "targetText": "everyone",
+            "targetText": "It is cheap.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-49:i02:r2",
-            "targetText": "every",
+            "targetText": "It is useful.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-49:i02:r3",
-            "targetText": "everything",
+            "targetText": "It is dangerous.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-01:session-49:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — everyone",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "«Каждый» — про одного за раз. `everyone` — про всех сразу.",
-              "uk": "«Кожен» — про одного за раз. `everyone` — про всіх одразу."
+              "ru": "В записи последнее слово — `cheap`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `useful`."
             }
           },
           {
             "responseId": "en:lesson-01:session-49:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — everyone",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "Это «всё» про вещи, а не про людей.",
-              "uk": "Це «все» про речі, а не про людей."
+              "ru": "В записи последнее слово — `cheap`, а в этом варианте — `dangerous`.",
+              "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `dangerous`."
             }
           }
         ],
@@ -126,42 +127,68 @@
       "interactionId": "en:lesson-01:session-49:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — nobody",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i03:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — nobody",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i03:audio",
-          "transcript": "nobody"
+      "prompt": "Две открытки стоят недорого. Дополните оценку их цены",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i03:r1",
+          "text": "are"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-01:session-49:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Две открытки стоят недорого. Дополните оценку их цены",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Две открытки стоят недорого. Дополните оценку их цены",
+          "uk": "Дві листівки коштують недорого. Доповніть оцінку їхньої ціни"
+        },
+        "gappedTargetPhrase": "They ___ cheap.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-01:session-49:i03:r1",
-            "targetText": "nobody",
-            "meaningByLocale": {
-              "ru": "«никто». Ни одного человека: комната пустая, звонить некому.",
-              "uk": "«ніхто». Жодної людини: кімната порожня, дзвонити нікому."
-            }
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i03:r3",
+            "text": "is"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "nobody",
-          "definitionByLocale": {
-            "ru": "«никто». Ни одного человека: комната пустая, звонить некому.",
-            "uk": "«ніхто». Жодної людини: кімната порожня, дзвонити нікому."
+        "testedDimension": "Две открытки стоят недорого. Дополните оценку их цены",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Две открытки стоят недорого. Дополните оценку их цены",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Две открытки стоят недорого. Дополните оценку их цены",
+            "feedbackByLocale": {
+              "ru": "Про две открытки — `They are`.",
+              "uk": "Про дві листівки — `They are`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,536 +196,60 @@
       "interactionId": "en:lesson-01:session-49:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-49:i04:r1",
-          "text": "nobody"
-        },
-        {
-          "responseId": "en:lesson-01:session-49:i04:r2",
-          "text": "body"
-        },
-        {
-          "responseId": "en:lesson-01:session-49:i04:r3",
-          "text": "nobly"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i04:audio",
-          "transcript": "nobody"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-49:i04:r1",
-            "targetText": "nobody",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i04:r2",
-            "targetText": "body",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i04:r3",
-            "targetText": "nobly",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-49:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — nobody",
-            "feedbackByLocale": {
-              "ru": "«Тело». Слово про человека, но про одного и живого, а вы говорите, что нет никого.",
-              "uk": "«Тіло». Слово про людину, але про одну й живу, а ви кажете, що немає нікого."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — nobody",
-            "feedbackByLocale": {
-              "ru": "«Благородно» — оценка поступка, а `nobody` — про людей, которых нет.",
-              "uk": "«Шляхетно» — оцінка вчинку, а `nobody` — про людей, яких немає."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — все на работе добрые",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-49:i05:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-01:session-49:i05:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-01:session-49:i05:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — все на работе добрые",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте скрепку — все на работе добрые",
-          "uk": "Вставте скріпку — усі на роботі добрі"
-        },
-        "gappedTargetPhrase": "Everyone ___ kind.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-49:i05:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i05:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i05:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Вставьте скрепку — все на работе добрые",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-49:i05:r2",
-            "correct": false,
-            "testedDimension": "Вставьте скрепку — все на работе добрые",
-            "feedbackByLocale": {
-              "ru": "Тянет слово «все». Но `everyone` идёт с `is`.",
-              "uk": "Тягне слово «всі». Але `everyone` іде з `is`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i05:r3",
-            "correct": false,
-            "testedDimension": "Вставьте скрепку — все на работе добрые",
-            "feedbackByLocale": {
-              "ru": "`am` бывает только про себя.",
-              "uk": "`am` буває тільки про себе."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — people",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i06:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — people",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i06:audio",
-          "transcript": "people"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-49:i06:r1",
-            "targetText": "people",
-            "meaningByLocale": {
-              "ru": "«люди». Просто много человек: в автобусе, в очереди, за стенкой.",
-              "uk": "«люди». Просто багато людей: в автобусі, у черзі, за стіною."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "people",
-          "definitionByLocale": {
-            "ru": "«люди». Просто много человек: в автобусе, в очереди, за стенкой.",
-            "uk": "«люди». Просто багато людей: в автобусі, у черзі, за стіною."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — family",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i07:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — family",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i07:audio",
-          "transcript": "family"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-49:i07:r1",
-            "targetText": "family",
-            "meaningByLocale": {
-              "ru": "«семья». Мама, папа, братья-сёстры — все разом, одним словом.",
-              "uk": "«сім'я». Мама, тато, брати-сестри — усі разом, одним словом."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "family",
-          "definitionByLocale": {
-            "ru": "«семья». Мама, папа, братья-сёстры — все разом, одним словом.",
-            "uk": "«сім'я». Мама, тато, брати-сестри — усі разом, одним словом."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-49:i08:r1",
-          "text": "family"
-        },
-        {
-          "responseId": "en:lesson-01:session-49:i08:r2",
-          "text": "funny"
-        },
-        {
-          "responseId": "en:lesson-01:session-49:i08:r3",
-          "text": "fairly"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i08:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i08:audio",
-          "transcript": "family"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-49:i08:r1",
-            "targetText": "family",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i08:r2",
-            "targetText": "funny",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i08:r3",
-            "targetText": "fairly",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-49:i08:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — family",
-            "feedbackByLocale": {
-              "ru": "«Смешной». Про шутку, а не про родню.",
-              "uk": "«Смішний». Про жарт, а не про рідню."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i08:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — family",
-            "feedbackByLocale": {
-              "ru": "«Довольно» — слово-оценка, не про людей.",
-              "uk": "«Доволі» — слово-оцінка, не про людей."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — люди за стенкой шумят",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-49:i09:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-01:session-49:i09:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-01:session-49:i09:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — люди за стенкой шумят",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте скрепку — люди за стенкой шумят",
-          "uk": "Вставте скріпку — люди за стіною шумлять"
-        },
-        "gappedTargetPhrase": "People ___ loud.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-49:i09:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i09:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i09:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Вставьте скрепку — люди за стенкой шумят",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-49:i09:r2",
-            "correct": false,
-            "testedDimension": "Вставьте скрепку — люди за стенкой шумят",
-            "feedbackByLocale": {
-              "ru": "`people` — это уже много, к ним `are`.",
-              "uk": "`people` — це вже багато, до них `are`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i09:r3",
-            "correct": false,
-            "testedDimension": "Вставьте скрепку — люди за стенкой шумят",
-            "feedbackByLocale": {
-              "ru": "`am` — только про себя, а вы про соседей.",
-              "uk": "`am` — тільки про себе, а ви про сусідів."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «в семье всё хорошо»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «в семье всё хорошо»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "My family is fine.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «в семье всё хорошо»",
-          "uk": "Складіть фразу — «у сім'ї все добре»"
-        },
-        "orderedTokens": [
-          "My",
-          "family",
-          "is",
-          "fine"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — в офисе в шесть вечера пусто",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-49:i11:r1",
-          "text": "Nobody"
-        },
-        {
-          "responseId": "en:lesson-01:session-49:i11:r2",
-          "text": "Everyone"
-        },
-        {
-          "responseId": "en:lesson-01:session-49:i11:r3",
-          "text": "People"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — в офисе в шесть вечера пусто",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — в офисе в шесть вечера пусто",
-          "uk": "Вставте слово — в офісі о шостій вечора порожньо"
-        },
-        "gappedTargetPhrase": "___ is here.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-49:i11:r1",
-            "text": "Nobody"
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i11:r2",
-            "text": "Everyone"
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i11:r3",
-            "text": "People"
-          }
-        ],
-        "testedDimension": "Вставьте слово — в офисе в шесть вечера ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-49:i11:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — в офисе в шесть вечера ",
-            "feedbackByLocale": {
-              "ru": "Это «все», а в офисе не осталось никого.",
-              "uk": "Це «всі», а в офісі не лишилося нікого."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-49:i11:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — в офисе в шесть вечера ",
-            "feedbackByLocale": {
-              "ru": "«Люди» — тоже про тех, кто есть, а вы говорите, что их нет.",
-              "uk": "«Люди» — теж про тих, хто є, а ви кажете, що їх немає."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-49:i12:p1",
-            "target": "everyone",
+            "pairId": "en:lesson-01:session-49:i04:p1",
+            "target": "cheap",
             "meaningByLocale": {
-              "ru": "все",
-              "uk": "всі"
+              "ru": "недорогой",
+              "uk": "недорогий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-49:i12:p2",
-            "target": "nobody",
+            "pairId": "en:lesson-01:session-49:i04:p2",
+            "target": "honest",
             "meaningByLocale": {
-              "ru": "никто",
-              "uk": "ніхто"
+              "ru": "честный",
+              "uk": "чесний"
             }
           },
           {
-            "pairId": "en:lesson-01:session-49:i12:p3",
-            "target": "people",
+            "pairId": "en:lesson-01:session-49:i04:p3",
+            "target": "useful",
             "meaningByLocale": {
-              "ru": "люди",
-              "uk": "люди"
+              "ru": "полезный",
+              "uk": "корисний"
             }
           },
           {
-            "pairId": "en:lesson-01:session-49:i12:p4",
-            "target": "family",
+            "pairId": "en:lesson-01:session-49:i04:p4",
+            "target": "polite",
             "meaningByLocale": {
-              "ru": "семья",
-              "uk": "сім'я"
+              "ru": "вежливый",
+              "uk": "ввічливий"
             }
           }
         ],
         "leftColumn": [
-          "everyone",
-          "nobody",
-          "people",
-          "family"
+          "cheap",
+          "honest",
+          "useful",
+          "polite"
         ],
         "rightColumn": [
-          "все",
-          "никто",
-          "люди",
-          "семья"
+          "недорогой",
+          "честный",
+          "полезный",
+          "вежливый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -715,35 +266,466 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-49:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-01:session-49:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «все заняты»",
+      "prompt": "Послушайте и соберите короткую фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i05:audio",
+          "transcript": "It's cheap."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It's cheap.",
+        "orderedTokens": [
+          "It's",
+          "cheap"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `It's` — `It's cheap.`",
+              "uk": "тут потрібно `It's` — `It's cheap.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Оба блокнота стоят недорого. Скажите об их низкой цене",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Оба блокнота стоят недорого. Скажите об их низкой цене",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are cheap.",
+        "localizedMeaning": {
+          "ru": "Оба блокнота стоят недорого. Скажите об их низкой цене",
+          "uk": "Обидва блокноти коштують недорого. Скажіть про їхню низьку ціну"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "cheap"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Оба блокнота стоят недорого. Скажите об их низкой цене",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are cheap.`",
+              "uk": "тут потрібно `are` — `They are cheap.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коротко скажите, что выбранная открытка стоит недорого",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i07:audio"
+      ],
+      "accessibilityLabel": "Коротко скажите, что выбранная открытка стоит недорого",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i07:audio",
+          "transcript": "It's cheap."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's cheap.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавец сам рассказал о дефекте. Оцените именно его честность",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i08:r1",
+          "text": "honest"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i08:r2",
+          "text": "cheap"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i08:r3",
+          "text": "curious"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавец сам рассказал о дефекте. Оцените именно его честность",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец сам рассказал о дефекте. Оцените именно его честность",
+          "uk": "Продавець сам розповів про дефект. Оцініть саме його чесність"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-49:i08:r1",
+            "text": "honest"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i08:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i08:r3",
+            "text": "curious"
+          }
+        ],
+        "testedDimension": "Продавец сам рассказал о дефекте. Оцените именно его честность",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Продавец сам рассказал о дефекте. Оцените именно его честность",
+            "feedbackByLocale": {
+              "ru": "Это не оценка честности. Здесь нужно `honest`.",
+              "uk": "Це не оцінка чесності. Тут потрібно `honest`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Продавец сам рассказал о дефекте. Оцените именно его честность",
+            "feedbackByLocale": {
+              "ru": "Это о любопытстве, а здесь нужна честность: `honest`.",
+              "uk": "Це про допитливість, а тут потрібна чесність: `honest`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте фразу о продавце",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i09:r1",
+          "text": "He is honest."
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i09:r2",
+          "text": "He is polite."
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i09:r3",
+          "text": "He is patient."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте фразу о продавце",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i09:audio",
+          "transcript": "He is honest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:i09:r1",
+            "targetText": "He is honest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i09:r2",
+            "targetText": "He is polite.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i09:r3",
+            "targetText": "He is patient.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте фразу о продавце",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `honest`, а в этом варианте — `polite`.",
+              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `polite`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте фразу о продавце",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `honest`, а в этом варианте — `patient`.",
+              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `patient`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините короткие начала с полными",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините короткие начала с полными",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-49:i10:p1",
+            "target": "It's",
+            "meaningByLocale": {
+              "ru": "It is",
+              "uk": "It is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-49:i10:p2",
+            "target": "They're",
+            "meaningByLocale": {
+              "ru": "They are",
+              "uk": "They are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-49:i10:p3",
+            "target": "He's",
+            "meaningByLocale": {
+              "ru": "He is",
+              "uk": "He is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-49:i10:p4",
+            "target": "She's",
+            "meaningByLocale": {
+              "ru": "She is",
+              "uk": "She is"
+            }
+          }
+        ],
+        "leftColumn": [
+          "It's",
+          "They're",
+          "He's",
+          "She's"
+        ],
+        "rightColumn": [
+          "It is",
+          "They are",
+          "He is",
+          "She is"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите короткую фразу о покупках",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткую фразу о покупках",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i11:audio",
+          "transcript": "They're cheap."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They're cheap.",
+        "orderedTokens": [
+          "They're",
+          "cheap"
+        ],
+        "authoredDistractorTokens": [
+          "We're"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткую фразу о покупках",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `They're` — `They're cheap.`",
+              "uk": "тут потрібно `They're` — `They're cheap.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Продавщица сама заметила, что взяла лишние деньги, и вернула их. Назовите её честной",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавщица сама заметила, что взяла лишние деньги, и вернула их. Назовите её честной",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is honest.",
+        "localizedMeaning": {
+          "ru": "Продавщица сама заметила, что взяла лишние деньги, и вернула их. Назовите её честной",
+          "uk": "Продавчиня сама помітила, що взяла зайві гроші, й повернула їх. Назвіть її чесною"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "honest"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Продавщица сама заметила, что взяла лишние деньги, и вернула их. Назовите её честной",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is honest.`",
+              "uk": "тут потрібно `is` — `She is honest.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Купленный блокнот помогает записывать важные дела. Оцените его пользу, а не цену",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-49:i13:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «все заняты»",
+      "accessibilityLabel": "Купленный блокнот помогает записывать важные дела. Оцените его пользу, а не цену",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-49:i13:audio",
-          "transcript": "Everyone is busy."
+          "transcript": "It is useful."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Everyone is busy.",
-        "orderedTokens": [
-          "Everyone",
-          "is",
-          "busy"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": []
+        "targetPhrase": "It is useful.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -751,29 +733,68 @@
       "interactionId": "en:lesson-01:session-49:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — рабочий день кончился, и сил не осталось",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Один значок стоит недорого. Дополните фразу о его цене",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i14:r3",
+          "text": "are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — рабочий день кончился, и сил не осталось",
+      "accessibilityLabel": "Один значок стоит недорого. Дополните фразу о его цене",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am tired.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — рабочий день кончился, и сил не осталось",
-          "uk": "Складіть фразу — робочий день скінчився, і сил не лишилося"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Один значок стоит недорого. Дополните фразу о его цене",
+          "uk": "Один значок коштує недорого. Доповніть фразу про його ціну"
         },
-        "orderedTokens": [
-          "I",
-          "am",
-          "tired"
+        "gappedTargetPhrase": "It ___ cheap.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-49:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i14:r3",
+            "text": "are"
+          }
         ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
+        "testedDimension": "Один значок стоит недорого. Дополните фразу о его цене",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i14:r2",
+            "correct": false,
+            "testedDimension": "Один значок стоит недорого. Дополните фразу о его цене",
+            "feedbackByLocale": {
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i14:r3",
+            "correct": false,
+            "testedDimension": "Один значок стоит недорого. Дополните фразу о его цене",
+            "feedbackByLocale": {
+              "ru": "Про один значок — `It is`.",
+              "uk": "Про один значок — `It is`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -781,260 +802,183 @@
       "interactionId": "en:lesson-01:session-49:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — про себя после недели",
+      "prompt": "Послушайте короткую оценку и выберите её",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-49:i15:r1",
-          "text": "am"
+          "text": "It's cheap."
         },
         {
           "responseId": "en:lesson-01:session-49:i15:r2",
-          "text": "is"
+          "text": "It's useful."
         },
         {
           "responseId": "en:lesson-01:session-49:i15:r3",
-          "text": "are"
+          "text": "It's useless."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — про себя после недели",
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте короткую оценку и выберите её",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте скрепку — про себя после недели",
-          "uk": "Вставте скріпку — про себе після тижня"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i15:audio",
+          "transcript": "It's cheap."
         },
-        "gappedTargetPhrase": "I ___ fine.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-49:i15:r1",
-            "text": "am"
+            "targetText": "It's cheap.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-49:i15:r2",
-            "text": "is"
+            "targetText": "It's useful.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-49:i15:r3",
-            "text": "are"
+            "targetText": "It's useless.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставьте скрепку — про себя после недели",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-49:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — про себя после недели",
+            "testedDimension": "Послушайте короткую оценку и выберите её",
             "feedbackByLocale": {
-              "ru": "`is` уходит к кому-то третьему.",
-              "uk": "`is` іде до когось третього."
+              "ru": "В записи последнее слово — `cheap`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `useful`."
             }
           },
           {
             "responseId": "en:lesson-01:session-49:i15:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — про себя после недели",
+            "testedDimension": "Послушайте короткую оценку и выберите её",
             "feedbackByLocale": {
-              "ru": "`are` — про нескольких. Про себя `am`.",
-              "uk": "`are` — про кількох. Про себе `am`."
+              "ru": "В записи последнее слово — `cheap`, а в этом варианте — `useless`.",
+              "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `useless`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-49:i16:s01",
+      "interactionId": "en:lesson-01:session-49:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с их значениями здесь",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i16:s01:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с их значениями здесь",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i16:s01:audio",
-          "transcript": "Everyone is kind."
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-49:i16:p1",
+            "target": "cheap",
+            "meaningByLocale": {
+              "ru": "низкая цена",
+              "uk": "низька ціна"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-49:i16:p2",
+            "target": "honest",
+            "meaningByLocale": {
+              "ru": "честный",
+              "uk": "чесний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-49:i16:p3",
+            "target": "useful",
+            "meaningByLocale": {
+              "ru": "приносит пользу",
+              "uk": "приносить користь"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-49:i16:p4",
+            "target": "useless",
+            "meaningByLocale": {
+              "ru": "не приносит пользы",
+              "uk": "не приносить користі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cheap",
+          "honest",
+          "useful",
+          "useless"
+        ],
+        "rightColumn": [
+          "низкая цена",
+          "честный",
+          "приносит пользу",
+          "не приносит пользы"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Everyone is kind.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-49:i16:s02",
+      "interactionId": "en:lesson-01:session-49:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "В соседнем киоске зонт продаётся по низкой цене. Скажите спутнику именно о невысокой цене зонта",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-49:i16:s02:audio"
+        "en:lesson-01:session-49:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "В соседнем киоске зонт продаётся по низкой цене. Скажите спутнику именно о невысокой цене зонта",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i16:s02:audio",
-          "transcript": "Nobody is loud."
+          "audioTargetId": "en:lesson-01:session-49:i17:audio",
+          "transcript": "It is cheap."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Nobody is loud.",
+        "targetPhrase": "It is cheap.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i17:s01",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i17:s01:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i17:s01:audio",
-          "transcript": "People are loud."
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "People are loud.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i17:s02",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i17:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i17:s02:audio",
-          "transcript": "Everyone is kind."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Everyone is kind.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i17:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i17:s03:audio",
-          "transcript": "My family is fine."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "My family is fine.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-49:i17:s04",
-      "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-49:i17:s04:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-49:i17:s04:audio",
-          "transcript": "I am tired."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am tired.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1045,11 +989,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8ce8c3af5d4bc268911be6896b932aa1f5b7d4cc3a833eb47ad7114c68ce2053"
+  "learnerFingerprint": "bccd85bb51f8130c71196d1bb03a71eb0bfc3aeb5a9b8a82f26aa6c2687ce807"
 }

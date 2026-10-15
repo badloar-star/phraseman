@@ -1,107 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-31:i01",
-    "correctText": "wet",
+    "correctText": "They are equal.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i02",
-    "correctText": "wet",
+    "correctText": "They are similar.",
     "correctResponseId": "en:lesson-01:session-31:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-31:i03",
-    "correctText": "dry",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-31:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-31:i04",
-    "correctText": "dry",
-    "correctResponseId": "en:lesson-01:session-31:i04:r1"
+    "correctText": "en:lesson-01:session-31:i04:p1=equal\nen:lesson-01:session-31:i04:p2=similar\nen:lesson-01:session-31:i04:p3=separate\nen:lesson-01:session-31:i04:p4=different",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i05",
-    "correctText": "cold",
+    "correctText": "They are separate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i06",
-    "correctText": "wet",
-    "correctResponseId": "en:lesson-01:session-31:i06:r1"
+    "correctText": "They are similar.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i07",
-    "correctText": "It is dry.",
+    "correctText": "They are equal.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i08",
-    "correctText": "hot",
-    "correctResponseId": null
+    "correctText": "separate",
+    "correctResponseId": "en:lesson-01:session-31:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-31:i09",
-    "correctText": "warm",
-    "correctResponseId": null
+    "correctText": "It is similar.",
+    "correctResponseId": "en:lesson-01:session-31:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-31:i10",
-    "correctText": "warm",
-    "correctResponseId": "en:lesson-01:session-31:i10:r1"
+    "correctText": "en:lesson-01:session-31:i10:p1=alive\nen:lesson-01:session-31:i10:p2=dead\nen:lesson-01:session-31:i10:p3=missing\nen:lesson-01:session-31:i10:p4=married",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i11",
-    "correctText": "hot",
-    "correctResponseId": "en:lesson-01:session-31:i11:r1"
+    "correctText": "It is separate.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i12",
-    "correctText": "en:lesson-01:session-31:i12:p1=wet\nen:lesson-01:session-31:i12:p2=dry\nen:lesson-01:session-31:i12:p3=hot\nen:lesson-01:session-31:i12:p4=warm",
+    "correctText": "It is missing.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i13",
-    "correctText": "cold",
-    "correctResponseId": "en:lesson-01:session-31:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-31:i14",
-    "correctText": "rainy",
+    "correctText": "They are separate.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-31:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-31:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-31:i15",
-    "correctText": "rainy",
+    "correctText": "She is single.",
     "correctResponseId": "en:lesson-01:session-31:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-31:i16",
-    "correctText": "windy",
+    "correctText": "en:lesson-01:session-31:i16:p1=single\nen:lesson-01:session-31:i16:p2=equal\nen:lesson-01:session-31:i16:p3=similar\nen:lesson-01:session-31:i16:p4=separate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-31:i17",
-    "correctText": "windy",
-    "correctResponseId": "en:lesson-01:session-31:i17:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-31:i18",
-    "correctText": "It is rainy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-31:i19",
-    "correctText": "It is windy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-31:i20:s01",
-    "correctText": "It is dry.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-31:i20:s02",
-    "correctText": "It is warm.",
+    "correctText": "They are similar.",
     "correctResponseId": null
   }
 ]

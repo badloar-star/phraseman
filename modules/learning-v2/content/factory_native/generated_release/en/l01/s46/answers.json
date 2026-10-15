@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-46:i01",
-    "correctText": "fun",
+    "correctText": "It is useless.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i02",
-    "correctText": "fun",
+    "correctText": "It is useless.",
     "correctResponseId": "en:lesson-01:session-46:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-46:i03",
-    "correctText": "boring",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-46:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-46:i04",
-    "correctText": "boring",
-    "correctResponseId": "en:lesson-01:session-46:i04:r1"
+    "correctText": "en:lesson-01:session-46:i04:p1=useless\nen:lesson-01:session-46:i04:p2=useful\nen:lesson-01:session-46:i04:p3=weak\nen:lesson-01:session-46:i04:p4=missing",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i05",
-    "correctText": "It's fun.",
+    "correctText": "It's useless.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i06",
-    "correctText": "boring",
-    "correctResponseId": "en:lesson-01:session-46:i06:r1"
+    "correctText": "They are useless.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i07",
-    "correctText": "cool",
+    "correctText": "It's useless.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i08",
-    "correctText": "weird",
-    "correctResponseId": null
+    "correctText": "weak",
+    "correctResponseId": "en:lesson-01:session-46:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-46:i09",
-    "correctText": "weird",
+    "correctText": "It is weak.",
     "correctResponseId": "en:lesson-01:session-46:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-46:i10",
-    "correctText": "They're weird.",
+    "correctText": "en:lesson-01:session-46:i10:p1=It's\nen:lesson-01:session-46:i10:p2=They're\nen:lesson-01:session-46:i10:p3=He's\nen:lesson-01:session-46:i10:p4=We're",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i11",
-    "correctText": "I'm",
-    "correctResponseId": "en:lesson-01:session-46:i11:r1"
+    "correctText": "They're useless.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i12",
-    "correctText": "He's cool.",
+    "correctText": "It is useful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i13",
-    "correctText": "en:lesson-01:session-46:i13:p1=fun\nen:lesson-01:session-46:i13:p2=boring\nen:lesson-01:session-46:i13:p3=cool\nen:lesson-01:session-46:i13:p4=weird",
+    "correctText": "He is weak.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i14",
-    "correctText": "quiet",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-46:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-46:i15",
-    "correctText": "It isn't boring.",
-    "correctResponseId": null
+    "correctText": "It's useful.",
+    "correctResponseId": "en:lesson-01:session-46:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-46:i16",
-    "correctText": "new",
-    "correctResponseId": "en:lesson-01:session-46:i16:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-46:i17:s01",
-    "correctText": "I'm tired.",
+    "correctText": "en:lesson-01:session-46:i16:p1=useless\nen:lesson-01:session-46:i16:p2=useful\nen:lesson-01:session-46:i16:p3=weak\nen:lesson-01:session-46:i16:p4=correct",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-46:i17:s02",
-    "correctText": "It's cool.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-46:i17:s03",
-    "correctText": "It's fun.",
+    "interactionId": "en:lesson-01:session-46:i17",
+    "correctText": "It is useless.",
     "correctResponseId": null
   }
 ]

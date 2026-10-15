@@ -1,0 +1,999 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Валіза багато важить. Складіть фразу про її вагу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Валіза багато важить. Складіть фразу про її вагу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is heavy.",
+        "localizedMeaning": {
+          "ru": "Чемодан много весит. Соберите фразу о его весе",
+          "uk": "Валіза багато важить. Складіть фразу про її вагу"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Валіза багато важить. Складіть фразу про її вагу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is heavy.`",
+              "uk": "тут потрібно `is` — `It is heavy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть почуте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i02:r1",
+          "text": "It is heavy."
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i02:r2",
+          "text": "It is expensive."
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i02:r3",
+          "text": "It is useful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i02:audio",
+          "transcript": "It is heavy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:i02:r1",
+            "targetText": "It is heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i02:r2",
+            "targetText": "It is expensive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i02:r3",
+            "targetText": "It is useful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `heavy`, а в этом варианте — `expensive`.",
+              "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `expensive`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `heavy`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `useful`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дві сумки багато важать. Доповніть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дві сумки багато важать. Доповніть фразу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Две сумки много весят. Дополните фразу",
+          "uk": "Дві сумки багато важать. Доповніть фразу"
+        },
+        "gappedTargetPhrase": "They ___ heavy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-51:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Дві сумки багато важать. Доповніть фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Дві сумки багато важать. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Дві сумки багато важать. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "Про две сумки — `They are`.",
+              "uk": "Про дві сумки — `They are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-51:i04:p1",
+            "target": "heavy",
+            "meaningByLocale": {
+              "ru": "тяжёлый по весу",
+              "uk": "важкий за вагою"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i04:p2",
+            "target": "patient",
+            "meaningByLocale": {
+              "ru": "терпеливый",
+              "uk": "терплячий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i04:p3",
+            "target": "expensive",
+            "meaningByLocale": {
+              "ru": "дорогой по цене",
+              "uk": "дорогий за ціною"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i04:p4",
+            "target": "cheap",
+            "meaningByLocale": {
+              "ru": "недорогой",
+              "uk": "недорогий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "heavy",
+          "patient",
+          "expensive",
+          "cheap"
+        ],
+        "rightColumn": [
+          "важкий за вагою",
+          "терплячий",
+          "дорогий за ціною",
+          "недорогий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть коротку фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i05:audio",
+          "transcript": "It's heavy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It's heavy.",
+        "orderedTokens": [
+          "It's",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `It's` — `It's heavy.`",
+              "uk": "тут потрібно `It's` — `It's heavy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дві коробки з книжками багато важать. Назвіть їх важкими",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дві коробки з книжками багато важать. Назвіть їх важкими",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are heavy.",
+        "localizedMeaning": {
+          "ru": "Две коробки с книгами много весят. Назовите их тяжёлыми",
+          "uk": "Дві коробки з книжками багато важать. Назвіть їх важкими"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Дві коробки з книжками багато важать. Назвіть їх важкими",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are heavy.`",
+              "uk": "тут потрібно `are` — `They are heavy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коротко скажіть, що наплічник важкий за вагою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Коротко скажіть, що наплічник важкий за вагою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i07:audio",
+          "transcript": "It's heavy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's heavy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спокійно чекає біля дверей і не квапить вас. Назвіть саме його терплячість",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i08:r1",
+          "text": "patient"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i08:r2",
+          "text": "heavy"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i08:r3",
+          "text": "curious"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спокійно чекає біля дверей і не квапить вас. Назвіть саме його терплячість",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спокойно ждёт у двери и не торопит вас. Назовите именно его терпение",
+          "uk": "Друг спокійно чекає біля дверей і не квапить вас. Назвіть саме його терплячість"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-51:i08:r1",
+            "text": "patient"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i08:r2",
+            "text": "heavy"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i08:r3",
+            "text": "curious"
+          }
+        ],
+        "testedDimension": "Друг спокійно чекає біля дверей і не квапить вас. Назвіть саме його терплячість",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Друг спокійно чекає біля дверей і не квапить вас. Назвіть саме його терплячість",
+            "feedbackByLocale": {
+              "ru": "Это о весе. Здесь нужно терпение: `patient`.",
+              "uk": "Це про вагу. Тут потрібна терплячість: `patient`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Друг спокійно чекає біля дверей і не квапить вас. Назвіть саме його терплячість",
+            "feedbackByLocale": {
+              "ru": "Это о любопытстве. Здесь нужно `patient`.",
+              "uk": "Це про допитливість. Тут потрібно `patient`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про друга",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i09:r1",
+          "text": "He is patient."
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i09:r2",
+          "text": "He is polite."
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i09:r3",
+          "text": "He is honest."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про друга",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i09:audio",
+          "transcript": "He is patient."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:i09:r1",
+            "targetText": "He is patient.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i09:r2",
+            "targetText": "He is polite.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i09:r3",
+            "targetText": "He is honest.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про друга",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `patient`, а в этом варианте — `polite`.",
+              "uk": "У записі останнє слово — `patient`, а в цьому варіанті — `polite`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про друга",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `patient`, а в этом варианте — `honest`.",
+              "uk": "У записі останнє слово — `patient`, а в цьому варіанті — `honest`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте короткі початки з повними",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте короткі початки з повними",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-51:i10:p1",
+            "target": "It's",
+            "meaningByLocale": {
+              "ru": "It is",
+              "uk": "It is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i10:p2",
+            "target": "They're",
+            "meaningByLocale": {
+              "ru": "They are",
+              "uk": "They are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i10:p3",
+            "target": "He's",
+            "meaningByLocale": {
+              "ru": "He is",
+              "uk": "He is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i10:p4",
+            "target": "We're",
+            "meaningByLocale": {
+              "ru": "We are",
+              "uk": "We are"
+            }
+          }
+        ],
+        "leftColumn": [
+          "It's",
+          "They're",
+          "He's",
+          "We're"
+        ],
+        "rightColumn": [
+          "It is",
+          "They are",
+          "He is",
+          "We are"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу про сумки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу про сумки",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i11:audio",
+          "transcript": "They're heavy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They're heavy.",
+        "orderedTokens": [
+          "They're",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [
+          "We're"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу про сумки",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `They're` — `They're heavy.`",
+              "uk": "тут потрібно `They're` — `They're heavy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сестра спокійно чекає, поки ви закінчите збиратися, й не квапить. Назвіть її терплячою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра спокійно чекає, поки ви закінчите збиратися, й не квапить. Назвіть її терплячою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is patient.",
+        "localizedMeaning": {
+          "ru": "Сестра спокойно ждёт, пока вы закончите собираться, и не торопит. Назовите её терпеливой",
+          "uk": "Сестра спокійно чекає, поки ви закінчите збиратися, й не квапить. Назвіть її терплячою"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "patient"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Сестра спокійно чекає, поки ви закінчите збиратися, й не квапить. Назвіть її терплячою",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is patient.`",
+              "uk": "тут потрібно `is` — `She is patient.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зверніться до друга, який спокійно на вас чекав: «Ти терплячий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Зверніться до друга, який спокійно на вас чекав: «Ти терплячий»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i13:audio",
+          "transcript": "You are patient."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are patient.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Одна коробка з книжками багато важить. Доповніть оцінку ваги",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одна коробка з книжками багато важить. Доповніть оцінку ваги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Одна коробка с книгами много весит. Дополните оценку веса",
+          "uk": "Одна коробка з книжками багато важить. Доповніть оцінку ваги"
+        },
+        "gappedTargetPhrase": "It ___ heavy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-51:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Одна коробка з книжками багато важить. Доповніть оцінку ваги",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i14:r2",
+            "correct": false,
+            "testedDimension": "Одна коробка з книжками багато важить. Доповніть оцінку ваги",
+            "feedbackByLocale": {
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i14:r3",
+            "correct": false,
+            "testedDimension": "Одна коробка з книжками багато важить. Доповніть оцінку ваги",
+            "feedbackByLocale": {
+              "ru": "Про одну коробку — `It is`.",
+              "uk": "Про одну коробку — `It is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте коротку оцінку й виберіть її",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i15:r1",
+          "text": "It's heavy."
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i15:r2",
+          "text": "It's cheap."
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i15:r3",
+          "text": "It's expensive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте коротку оцінку й виберіть її",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i15:audio",
+          "transcript": "It's heavy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:i15:r1",
+            "targetText": "It's heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i15:r2",
+            "targetText": "It's cheap.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i15:r3",
+            "targetText": "It's expensive.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте коротку оцінку й виберіть її",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `heavy`, а в этом варианте — `cheap`.",
+              "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `cheap`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте коротку оцінку й виберіть її",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `heavy`, а в этом варианте — `expensive`.",
+              "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `expensive`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-51:i16:p1",
+            "target": "heavy",
+            "meaningByLocale": {
+              "ru": "много весит",
+              "uk": "багато важить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i16:p2",
+            "target": "patient",
+            "meaningByLocale": {
+              "ru": "терпеливый",
+              "uk": "терплячий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i16:p3",
+            "target": "useful",
+            "meaningByLocale": {
+              "ru": "полезный",
+              "uk": "корисний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i16:p4",
+            "target": "polite",
+            "meaningByLocale": {
+              "ru": "вежливый",
+              "uk": "ввічливий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "heavy",
+          "patient",
+          "useful",
+          "polite"
+        ],
+        "rightColumn": [
+          "багато важить",
+          "терплячий",
+          "корисний",
+          "ввічливий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У гостях ви пробуєте підняти велику каструлю з водою: вона багато важить. Скажіть господареві саме про її вагу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "У гостях ви пробуєте підняти велику каструлю з водою: вона багато важить. Скажіть господареві саме про її вагу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i17:audio",
+          "transcript": "It is heavy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is heavy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fa3553a8ce291691cf45bb7e67490c61a71cd2845e2ac2e4c33de39740987297"
+}

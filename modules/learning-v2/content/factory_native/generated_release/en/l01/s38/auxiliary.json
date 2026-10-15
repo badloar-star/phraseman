@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-38:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-38:intro1:r2": {
-          "ru": "Это «мы проиграли, мы потеряли». Про своё состояние — `we are lost`.",
-          "uk": "Це «ми програли, ми втратили». Про свій стан — `we are lost`."
+          "ru": "После `I` нужно `am`: `I am weak`.",
+          "uk": "Після `I` потрібно `am`: `I am weak`."
         },
         "en:lesson-01:session-38:intro1:r3": {
-          "ru": "`is` — про одного. Вас несколько, значит `are`.",
-          "uk": "`is` — про одного. Вас кілька, отже `are`."
+          "ru": "`missing` — «пропавший». Вы дома; сейчас речь о слабости: `weak`.",
+          "uk": "`missing` — «зниклий». Ви вдома; зараз ідеться про слабкість: `weak`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-38:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-38:intro2:r2": {
-          "ru": "Скрепка выпала. По-русски её нет, по-английски `are` обязательно.",
-          "uk": "Скріпка випала. Українською її немає, англійською `are` обов'язкове."
+          "ru": "`He` — про него, человека. Здесь про сигнал: `It is weak`.",
+          "uk": "`He` — про нього, людину. Тут про сигнал: `It is weak`."
         },
         "en:lesson-01:session-38:intro2:r3": {
-          "ru": "`save` — «спасать», действие. Нужно `safe`.",
-          "uk": "`save` — «рятувати», дія. Потрібне `safe`."
+          "ru": "После `It` нужна форма `is`.",
+          "uk": "Після `It` потрібна форма `is`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-38:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-38:intro3:r2": {
-          "ru": "Лишнее `in`. С `home` оно не нужно: `They are home`.",
-          "uk": "Зайве `in`. З `home` воно не потрібне: `They are home`."
+          "ru": "`dead` означает, что растение погибло. Здесь оно живое: `alive`.",
+          "uk": "`dead` означає, що рослина загинула. Тут вона жива: `alive`."
         },
         "en:lesson-01:session-38:intro3:r3": {
-          "ru": "`is` — про одного человека. Их двое: `they are`.",
-          "uk": "`is` — про одну людину. Їх двоє: `they are`."
+          "ru": "Растение перед вами. Нужно сообщить, что оно живое: `alive`.",
+          "uk": "Рослина перед вами. Треба повідомити, що вона жива: `alive`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c4b978ac6fb94eefc1e8a2b565ac952384d4c8dde783ddc9b13c95996052461d"
+  "auxiliaryFingerprint": "952acd4eb6b2b268098d17c3d3db4c5f77c8a0ae6cfad739f296a88af221d62b"
 }

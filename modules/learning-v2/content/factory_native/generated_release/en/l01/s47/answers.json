@@ -1,112 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-47:i01",
-    "correctText": "drunk",
+    "correctText": "It is dangerous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i02",
-    "correctText": "drunk",
+    "correctText": "It is dangerous.",
     "correctResponseId": "en:lesson-01:session-47:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-47:i03",
-    "correctText": "sober",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-47:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-47:i04",
-    "correctText": "I'm sober.",
+    "correctText": "en:lesson-01:session-47:i04:p1=dangerous\nen:lesson-01:session-47:i04:p2=brave\nen:lesson-01:session-47:i04:p3=useful\nen:lesson-01:session-47:i04:p4=useless",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i05",
-    "correctText": "sleepy",
+    "correctText": "It's dangerous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i06",
-    "correctText": "sleepy",
-    "correctResponseId": "en:lesson-01:session-47:i06:r1"
+    "correctText": "They are dangerous.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i07",
-    "correctText": "awake",
+    "correctText": "It's dangerous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i08",
-    "correctText": "awake",
+    "correctText": "brave",
     "correctResponseId": "en:lesson-01:session-47:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-47:i09",
-    "correctText": "en:lesson-01:session-47:i09:p1=drunk\nen:lesson-01:session-47:i09:p2=sober\nen:lesson-01:session-47:i09:p3=sleepy\nen:lesson-01:session-47:i09:p4=awake",
-    "correctResponseId": null
+    "correctText": "He is brave.",
+    "correctResponseId": "en:lesson-01:session-47:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-47:i10",
-    "correctText": "sober",
-    "correctResponseId": "en:lesson-01:session-47:i10:r1"
+    "correctText": "en:lesson-01:session-47:i10:p1=It's\nen:lesson-01:session-47:i10:p2=They're\nen:lesson-01:session-47:i10:p3=He's\nen:lesson-01:session-47:i10:p4=She's",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i11",
-    "correctText": "tired",
+    "correctText": "They're dangerous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i12",
-    "correctText": "tired",
-    "correctResponseId": "en:lesson-01:session-47:i12:r1"
+    "correctText": "She is brave.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i13",
-    "correctText": "She isn't sleepy.",
+    "correctText": "I am brave.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i14",
-    "correctText": "They aren't sleepy.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-47:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-47:i15",
-    "correctText": "quiet",
-    "correctResponseId": null
+    "correctText": "It's dangerous.",
+    "correctResponseId": "en:lesson-01:session-47:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-47:i16",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-47:i16:r1"
+    "correctText": "en:lesson-01:session-47:i16:p1=dangerous\nen:lesson-01:session-47:i16:p2=brave\nen:lesson-01:session-47:i16:p3=honest\nen:lesson-01:session-47:i16:p4=polite",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-47:i17",
-    "correctText": "late",
-    "correctResponseId": "en:lesson-01:session-47:i17:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-47:i18",
-    "correctText": "I'm home.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-47:i19:s01",
-    "correctText": "I'm sober.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-47:i19:s02",
-    "correctText": "He's sleepy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-47:i19:s03",
-    "correctText": "They aren't sleepy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-47:i19:s04",
-    "correctText": "I'm tired.",
+    "correctText": "It is dangerous.",
     "correctResponseId": null
   }
 ]

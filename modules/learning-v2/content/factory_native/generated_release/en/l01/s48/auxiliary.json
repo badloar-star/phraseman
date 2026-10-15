@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-48:intro1:r2": {
+          "ru": "Это о любопытстве. Здесь нужно назвать терпение: `patient`.",
+          "uk": "Це про допитливість. Тут потрібно назвати терплячість: `patient`."
+        },
+        "en:lesson-01:session-48:intro1:r3": {
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-48:intro2:r2": {
+          "ru": "Эта карта помогает: `useful`.",
+          "uk": "Ця карта допомагає: `useful`."
+        },
+        "en:lesson-01:session-48:intro2:r3": {
+          "ru": "Здесь одна карта: `It is`.",
+          "uk": "Тут одна карта: `It is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-48:intro3:r2": {
+          "ru": "Речь об одной лестнице: `It's`.",
+          "uk": "Йдеться про одну драбину: `It's`."
+        },
+        "en:lesson-01:session-48:intro3:r3": {
+          "ru": "Это о бесполезности. Сейчас нужно предупредить об опасности: `dangerous`.",
+          "uk": "Це про марність. Зараз треба попередити про небезпеку: `dangerous`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5db60c6b3c258ef660046de2189b115024abef169bd1ffb5d4fa11452f51a697"
+}

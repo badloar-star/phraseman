@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-39",
   "learningOutcomeByLocale": {
-    "ru": "повторение — `we are` / `they are` (+ `not`)",
-    "uk": "повторення — `we are` / `they are` (+ `not`)"
+    "ru": "назвать смелость и повторить различие между равным, похожим и отдельным",
+    "uk": "назвати сміливість і повторити різницю між рівним, схожим та окремим"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`early` — «рано»",
-        "uk": "`early` — «рано»"
+        "ru": "Смелый — не обязательно бесстрашный",
+        "uk": "Сміливий — не обов’язково безстрашний"
       },
       "bodyByLocale": {
-        "ru": "`early` — «рано, раньше времени». Пришли, а в комнате ещё никого.\n\nСлово о вас двоих или о всей команде — значит перед ним `are`: `we are early`. Чтобы сказать «мы рано», между `we` и `early` нужна эта скрепка. По-русски её нет, и рука сама хочет сказать `we early`.\n\nХочет — а вы не давайте.",
-        "uk": "`early` — «рано, раніше, ніж треба». Прийшли, а в кімнаті ще нікого.\n\nСлово про вас двох або про всю команду — отже, перед ним `are`: `we are early`. Щоб сказати «ми рано», між `we` та `early` потрібна ця скріпка. Українською її немає, і язик сам проситься сказати `we early`.\n\nПроситься — а ви не піддавайтеся."
+        "ru": "`brave` — «смелый». `You are brave` — «Ты смелый» или «Вы смелые». Человек может бояться и всё же поступить смело. Подруга вышла к микрофону, хотя у неё дрожат колени. Колени пока не в курсе, что она уже смелая.",
+        "uk": "`brave` — «сміливий». `You are brave` — «Ти сміливий» або «Ви сміливі». Людина може боятися й усе ж учинити сміливо. Подруга вийшла до мікрофона, хоча в неї тремтять коліна. Коліна поки не в курсі, що вона вже смілива."
       },
       "question": {
         "interactionId": "en:lesson-01:session-39:intro1:q",
         "promptByLocale": {
-          "ru": "Пришли к столику, а половина команды ещё в дороге. Скажите за себя и соседа.",
-          "uk": "Прийшли до столика, а половина команди ще в дорозі. Скажіть за себе й сусіда."
+          "ru": "Подруга решилась выступить, хотя ей страшно. Вы обращаетесь к ней и отмечаете её смелость.",
+          "uk": "Подруга наважилася виступити, хоча їй страшно. Ви звертаєтеся до неї та відзначаєте її сміливість."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-39:intro1:r1",
-              "text": "We are early."
+              "text": "You are brave."
             },
             {
               "responseId": "en:lesson-01:session-39:intro1:r2",
-              "text": "We early."
+              "text": "You is brave."
             },
             {
               "responseId": "en:lesson-01:session-39:intro1:r3",
-              "text": "We is early."
+              "text": "You are afraid."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-39:intro1:r1",
-              "text": "We are early."
+              "text": "You are brave."
             },
             {
               "responseId": "en:lesson-01:session-39:intro1:r2",
-              "text": "We early."
+              "text": "You is brave."
             },
             {
               "responseId": "en:lesson-01:session-39:intro1:r3",
-              "text": "We is early."
+              "text": "You are afraid."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Пришли к столику, а половина команды ещё в дороге. Скажите за себя и соседа.",
-          "uk": "Прийшли до столика, а половина команди ще в дорозі. Скажіть за себе й сусіда."
+          "ru": "Подруга решилась выступить, хотя ей страшно. Вы обращаетесь к ней и отмечаете её смелость.",
+          "uk": "Подруга наважилася виступити, хоча їй страшно. Ви звертаєтеся до неї та відзначаєте її сміливість."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`right` и `wrong`",
-        "uk": "`right` і `wrong`"
+        "ru": "Рассказываем о другом",
+        "uk": "Розповідаємо про іншого"
       },
       "bodyByLocale": {
-        "ru": "`right` — «прав, правильно». `wrong` — «не прав».\n\nОдно можно сказать через другое: `they are not right` и `they are wrong`. Первое мягче — оно не обвиняет, а возражает.\n\nА вот `not` посреди фразы — самое лёгкое место, где спотыкаются: он идёт сразу за `are`, а не перед ним.",
-        "uk": "`right` — «правий, правильно». `wrong` — «неправий, помилковий».\n\nОдне можна сказати через інше: `they are not right` і `they are wrong`. Перше м'якше — воно не звинувачує, а заперечує.\n\nА от `not` посеред фрази — найлегше місце, де спотикаються: він іде одразу за `are`, а не перед ним."
+        "ru": "Про подругу: `She is brave`. Про друга: `He is brave`. Коротко: `She's brave` и `He's brave`. Про двоих друзей — `They are brave`. К слову `brave` не добавляется `s`, сколько бы людей вы ни хвалили.",
+        "uk": "Про подругу: `She is brave`. Про друга: `He is brave`. Коротко: `She's brave` і `He's brave`. Про двох друзів — `They are brave`. До слова `brave` не додається `s`, хоч скількох людей ви хвалите."
       },
       "question": {
         "interactionId": "en:lesson-01:session-39:intro2:q",
         "promptByLocale": {
-          "ru": "За столом спорили про адрес. Оказалось, эти двое ошиблись. Скажите про них мягко — через `not`.",
-          "uk": "За столом сперечалися про адресу. Виявилося, ці двоє помилилися. Скажіть про них м'яко — через `not`."
+          "ru": "Олег первым решился выйти на сцену. Расскажите Маше о его смелости.",
+          "uk": "Олег першим наважився вийти на сцену. Розкажіть Маші про його сміливість."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-39:intro2:r1",
-              "text": "They are not right."
+              "text": "He is brave."
             },
             {
               "responseId": "en:lesson-01:session-39:intro2:r2",
-              "text": "They not are right."
+              "text": "She is brave."
             },
             {
               "responseId": "en:lesson-01:session-39:intro2:r3",
-              "text": "They are not wrong."
+              "text": "He are brave."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-39:intro2:r1",
-              "text": "They are not right."
+              "text": "He is brave."
             },
             {
               "responseId": "en:lesson-01:session-39:intro2:r2",
-              "text": "They not are right."
+              "text": "She is brave."
             },
             {
               "responseId": "en:lesson-01:session-39:intro2:r3",
-              "text": "They are not wrong."
+              "text": "He are brave."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "За столом спорили про адрес. Оказалось, эти двое ошиблись. Скажите про них мягко — через `not`.",
-          "uk": "За столом сперечалися про адресу. Виявилося, ці двоє помилилися. Скажіть про них м'яко — через `not`."
+          "ru": "Олег первым решился выйти на сцену. Расскажите Маше о его смелости.",
+          "uk": "Олег першим наважився вийти на сцену. Розкажіть Маші про його сміливість."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`fine` и `sorry` — на всю команду",
-        "uk": "`fine` і `sorry` — на всю команду"
+        "ru": "Равные, похожие, отдельные",
+        "uk": "Рівні, схожі, окремі"
       },
       "bodyByLocale": {
-        "ru": "`fine` — «хорошо, нормально». `sorry` — «извините».\n\nОба слова обычно говорят про себя, но они спокойно работают и на группу: `we are fine`, `we are sorry`. Скрепка та, что для `we` — `are`.\n\nОдно `sorry` в дверях англичане бросают на бегу. Но если извиняется вся команда — целиком: `we are sorry`.",
-        "uk": "`fine` — «добре, нормально». `sorry` — «вибачте».\n\nОбидва слова зазвичай кажуть про себе, але вони спокійно працюють і на групу: `we are fine`, `we are sorry`. Скріпка та сама, що для `we` — `are`.\n\nОдне `sorry` у дверях англійці кидають на бігу. Але якщо вибачається вся команда — цілком: `we are sorry`."
+        "ru": "`equal` — «равные», например промежутки времени. `similar` — «похожие», например рисунки на афишах. `separate` — «отдельные», например два выступления вместо одного общего. Два отдельных выступления могут длиться поровну: слова описывают разные вещи.",
+        "uk": "`equal` — «рівні», наприклад проміжки часу. `similar` — «схожі», наприклад малюнки на афішах. `separate` — «окремі», наприклад два виступи замість одного спільного. Два окремі виступи можуть тривати порівну: слова описують різні речі."
       },
       "question": {
         "interactionId": "en:lesson-01:session-39:intro3:q",
         "promptByLocale": {
-          "ru": "Коллега Мира на выходе спрашивает, как прошло утро у всей команды. Всё нормально. Ответьте за команду.",
-          "uk": "Колега Міра на виході питає, як минув ранок у всієї команди. Усе нормально. Відповідайте за команду."
+          "ru": "Каждому из двух выступающих дали ровно по пять минут. Скажите, что отрезки времени равны.",
+          "uk": "Кожному з двох учасників дали рівно по п’ять хвилин. Скажіть, що відрізки часу рівні."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-39:intro3:r1",
-              "text": "We are fine."
+              "text": "They are equal."
             },
             {
               "responseId": "en:lesson-01:session-39:intro3:r2",
-              "text": "We fine."
+              "text": "They are similar."
             },
             {
               "responseId": "en:lesson-01:session-39:intro3:r3",
-              "text": "We am fine."
+              "text": "They are separate."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-39:intro3:r1",
-              "text": "We are fine."
+              "text": "They are equal."
             },
             {
               "responseId": "en:lesson-01:session-39:intro3:r2",
-              "text": "We fine."
+              "text": "They are similar."
             },
             {
               "responseId": "en:lesson-01:session-39:intro3:r3",
-              "text": "We am fine."
+              "text": "They are separate."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега Мира на выходе спрашивает, как прошло утро у всей команды. Всё нормально. Ответьте за команду.",
-          "uk": "Колега Міра на виході питає, як минув ранок у всієї команди. Усе нормально. Відповідайте за команду."
+          "ru": "Каждому из двух выступающих дали ровно по пять минут. Скажите, что отрезки времени равны.",
+          "uk": "Кожному з двох учасників дали рівно по п’ять хвилин. Скажіть, що відрізки часу рівні."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "51ce12057817950b2d246fb7abd1224edb27a6c7c3714c9f9a9e0a4d79918c50"
+  "introFingerprint": "4d7f0c8e6516f249867cd9e1b44770cb5116dd60fb06e57759f10f027c2c2c65"
 }

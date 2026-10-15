@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-01:session-52:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — week",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Рюкзак мало весит. Соберите фразу о его весе",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-52:i01:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — week",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рюкзак мало весит. Соберите фразу о его весе",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-52:i01:audio",
-          "transcript": "week"
+        "family": "phrase_builder",
+        "targetPhrase": "It is light.",
+        "localizedMeaning": {
+          "ru": "Рюкзак мало весит. Соберите фразу о его весе",
+          "uk": "Наплічник мало важить. Складіть фразу про його вагу"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "light"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i01:r1",
-            "targetText": "week",
-            "meaningByLocale": {
-              "ru": "«неделя». Семь дней разом, от понедельника до воскресенья, когда вы наконец звоните домой.",
-              "uk": "«тиждень». Сім днів разом, від понеділка до неділі, коли ви нарешті телефонуєте додому."
+            "responseId": "en:lesson-01:session-52:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Рюкзак мало весит. Соберите фразу о его весе",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is light.`",
+              "uk": "тут потрібно `is` — `It is light.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "week",
-          "definitionByLocale": {
-            "ru": "«неделя». Семь дней разом, от понедельника до воскресенья, когда вы наконец звоните домой.",
-            "uk": "«тиждень». Сім днів разом, від понеділка до неділі, коли ви нарешті телефонуєте додому."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-52:i02:r1",
-          "text": "week"
+          "text": "It is light."
         },
         {
           "responseId": "en:lesson-01:session-52:i02:r2",
-          "text": "wake"
+          "text": "It is heavy."
         },
         {
           "responseId": "en:lesson-01:session-52:i02:r3",
-          "text": "we"
+          "text": "It is cheap."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-52:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите услышанное",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-52:i02:audio",
-          "transcript": "week"
+          "transcript": "It is light."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-52:i02:r1",
-            "targetText": "week",
+            "targetText": "It is light.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-52:i02:r2",
-            "targetText": "wake",
+            "targetText": "It is heavy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-52:i02:r3",
-            "targetText": "we",
+            "targetText": "It is cheap.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-01:session-52:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — week",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "«Просыпаться». Другое слово, к неделе отношения не имеет.",
-              "uk": "«Прокидатися». Інше слово, до тижня стосунку не має."
+              "ru": "В записи последнее слово — `light`, а в этом варианте — `heavy`.",
+              "uk": "У записі останнє слово — `light`, а в цьому варіанті — `heavy`."
             }
           },
           {
             "responseId": "en:lesson-01:session-52:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — week",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "«Мы». В `week` есть «к» на конце.",
-              "uk": "«Ми». У `week` на кінці є «к»."
+              "ru": "В записи последнее слово — `light`, а в этом варианте — `cheap`.",
+              "uk": "У записі останнє слово — `light`, а в цьому варіанті — `cheap`."
             }
           }
         ],
@@ -126,42 +127,68 @@
       "interactionId": "en:lesson-01:session-52:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — day",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-52:i03:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — day",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-52:i03:audio",
-          "transcript": "day"
+      "prompt": "Обе сумки мало весят. Дополните фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i03:r1",
+          "text": "are"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-01:session-52:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Обе сумки мало весят. Дополните фразу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Обе сумки мало весят. Дополните фразу",
+          "uk": "Обидві сумки мало важать. Доповніть фразу"
+        },
+        "gappedTargetPhrase": "They ___ light.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-01:session-52:i03:r1",
-            "targetText": "day",
-            "meaningByLocale": {
-              "ru": "«день». От «доброе утро» коллегам до «пока» в дверях.",
-              "uk": "«день». Від «доброго ранку» колегам до «бувайте» у дверях."
-            }
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i03:r3",
+            "text": "is"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "day",
-          "definitionByLocale": {
-            "ru": "«день». От «доброе утро» коллегам до «пока» в дверях.",
-            "uk": "«день». Від «доброго ранку» колегам до «бувайте» у дверях."
+        "testedDimension": "Обе сумки мало весят. Дополните фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Обе сумки мало весят. Дополните фразу",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Обе сумки мало весят. Дополните фразу",
+            "feedbackByLocale": {
+              "ru": "Про две сумки — `They are`.",
+              "uk": "Про дві сумки — `They are`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,75 +196,72 @@
       "interactionId": "en:lesson-01:session-52:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-52:i04:r1",
-          "text": "day"
-        },
-        {
-          "responseId": "en:lesson-01:session-52:i04:r2",
-          "text": "they"
-        },
-        {
-          "responseId": "en:lesson-01:session-52:i04:r3",
-          "text": "dear"
-        }
-      ],
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-52:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-52:i04:audio",
-          "transcript": "day"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-52:i04:p1",
+            "target": "light",
+            "meaningByLocale": {
+              "ru": "лёгкий по весу",
+              "uk": "легкий за вагою"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-52:i04:p2",
+            "target": "heavy",
+            "meaningByLocale": {
+              "ru": "тяжёлый по весу",
+              "uk": "важкий за вагою"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-52:i04:p3",
+            "target": "curious",
+            "meaningByLocale": {
+              "ru": "любопытный",
+              "uk": "допитливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-52:i04:p4",
+            "target": "patient",
+            "meaningByLocale": {
+              "ru": "терпеливый",
+              "uk": "терплячий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "light",
+          "heavy",
+          "curious",
+          "patient"
+        ],
+        "rightColumn": [
+          "лёгкий по весу",
+          "тяжёлый по весу",
+          "любопытный",
+          "терпеливый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-52:i04:r1",
-            "targetText": "day",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i04:r2",
-            "targetText": "they",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i04:r3",
-            "targetText": "dear",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-52:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — day",
-            "feedbackByLocale": {
-              "ru": "«Они». Начинается не с «д».",
-              "uk": "«Вони». Починається не з «д»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — day",
-            "feedbackByLocale": {
-              "ru": "«Дорогой». Длиннее и с «р» на конце.",
-              "uk": "«Дорогий». Довше і з «р» на кінці."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -245,41 +269,44 @@
       "interactionId": "en:lesson-01:session-52:i05",
       "ordinal": 8,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — night",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите короткую фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-52:i05:audio"
       ],
-      "accessibilityLabel": "Карточка слова — night",
+      "accessibilityLabel": "Послушайте и соберите короткую фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-52:i05:audio",
-          "transcript": "night"
+          "transcript": "It's light."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "hiddenTargetPhrase": "It's light.",
+        "orderedTokens": [
+          "It's",
+          "light"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i05:r1",
-            "targetText": "night",
-            "meaningByLocale": {
-              "ru": "«ночь». Темно, город чужой, за окном тихо.",
-              "uk": "«ніч». Темно, місто чуже, за вікном тихо."
+            "responseId": "en:lesson-01:session-52:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `It's` — `It's light.`",
+              "uk": "тут потрібно `It's` — `It's light.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "night",
-          "definitionByLocale": {
-            "ru": "«ночь». Темно, город чужой, за окном тихо.",
-            "uk": "«ніч». Темно, місто чуже, за вікном тихо."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -288,75 +315,43 @@
       "interactionId": "en:lesson-01:session-52:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-52:i06:r1",
-          "text": "night"
-        },
-        {
-          "responseId": "en:lesson-01:session-52:i06:r2",
-          "text": "nice"
-        },
-        {
-          "responseId": "en:lesson-01:session-52:i06:r3",
-          "text": "new"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Две пустые дорожные сумки мало весят. Назовите их лёгкими",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-52:i06:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Две пустые дорожные сумки мало весят. Назовите их лёгкими",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-52:i06:audio",
-          "transcript": "night"
+        "family": "phrase_builder",
+        "targetPhrase": "They are light.",
+        "localizedMeaning": {
+          "ru": "Две пустые дорожные сумки мало весят. Назовите их лёгкими",
+          "uk": "Дві порожні дорожні сумки мало важать. Назвіть їх легкими"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-52:i06:r1",
-            "targetText": "night",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i06:r2",
-            "targetText": "nice",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i06:r3",
-            "targetText": "new",
-            "meaningByLocale": null
-          }
+        "orderedTokens": [
+          "They",
+          "are",
+          "light"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i06:r2",
+            "responseId": "en:lesson-01:session-52:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — night",
+            "testedDimension": "Две пустые дорожные сумки мало весят. Назовите их лёгкими",
             "feedbackByLocale": {
-              "ru": "«Милый». На конце «с», а не «т».",
-              "uk": "«Милий». На кінці «с», а не «т»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — night",
-            "feedbackByLocale": {
-              "ru": "«Новый». Другое слово целиком.",
-              "uk": "«Новий». Інше слово цілком."
+              "ru": "здесь нужно `are` — `They are light.`",
+              "uk": "тут потрібно `are` — `They are light.`"
             }
           }
         ],
-        "isWordCard": false,
-        "wordCard": null
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -364,67 +359,31 @@
       "interactionId": "en:lesson-01:session-52:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — неделя одна",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-52:i07:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-01:session-52:i07:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-01:session-52:i07:r3",
-          "text": "am"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коротко скажите, что выбранный рюкзак мало весит",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — неделя одна",
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Коротко скажите, что выбранный рюкзак мало весит",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте скрепку — неделя одна",
-          "uk": "Вставте скріпку — тиждень один"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i07:audio",
+          "transcript": "It's light."
         },
-        "gappedTargetPhrase": "The week ___ busy.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-52:i07:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i07:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i07:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Вставьте скрепку — неделя одна",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-52:i07:r2",
-            "correct": false,
-            "testedDimension": "Вставьте скрепку — неделя одна",
-            "feedbackByLocale": {
-              "ru": "`are` берут к «многим». Неделя тут одна.",
-              "uk": "`are` беруть до «багатьох». Тиждень тут один."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i07:r3",
-            "correct": false,
-            "testedDimension": "Вставьте скрепку — неделя одна",
-            "feedbackByLocale": {
-              "ru": "`am` уходит только к `I`. Неделя про себя не говорит.",
-              "uk": "`am` іде тільки до `I`. Тиждень про себе не говорить."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's light.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -433,42 +392,68 @@
       "interactionId": "en:lesson-01:session-52:i08",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — morning",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-52:i08:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — morning",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-52:i08:audio",
-          "transcript": "morning"
+      "prompt": "Подруга хочет узнать, как сделан материал. Назовите именно её любопытство",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i08:r1",
+          "text": "curious"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-01:session-52:i08:r2",
+          "text": "light"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i08:r3",
+          "text": "patient"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга хочет узнать, как сделан материал. Назовите именно её любопытство",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга хочет узнать, как сделан материал. Назовите именно её любопытство",
+          "uk": "Подруга хоче дізнатися, як зроблений матеріал. Назвіть саме її допитливість"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
           {
             "responseId": "en:lesson-01:session-52:i08:r1",
-            "targetText": "morning",
-            "meaningByLocale": {
-              "ru": "«утро». Часть суток, а не только половинка приветствия.",
-              "uk": "«ранок». Частина доби, а не тільки половинка привітання."
-            }
+            "text": "curious"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i08:r2",
+            "text": "light"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i08:r3",
+            "text": "patient"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "morning",
-          "definitionByLocale": {
-            "ru": "«утро». Часть суток, а не только половинка приветствия.",
-            "uk": "«ранок». Частина доби, а не тільки половинка привітання."
+        "testedDimension": "Подруга хочет узнать, как сделан материал. Назовите именно её любопытство",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Подруга хочет узнать, как сделан материал. Назовите именно её любопытство",
+            "feedbackByLocale": {
+              "ru": "Здесь не о весе. Любопытство — `curious`.",
+              "uk": "Тут не про вагу. Допитливість — `curious`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Подруга хочет узнать, как сделан материал. Назовите именно её любопытство",
+            "feedbackByLocale": {
+              "ru": "Это о терпении. Здесь нужно `curious`.",
+              "uk": "Це про терплячість. Тут потрібно `curious`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -478,47 +463,47 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте фразу о подруге",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-52:i09:r1",
-          "text": "morning"
+          "text": "She is curious."
         },
         {
           "responseId": "en:lesson-01:session-52:i09:r2",
-          "text": "moving"
+          "text": "She is patient."
         },
         {
           "responseId": "en:lesson-01:session-52:i09:r3",
-          "text": "money"
+          "text": "She is polite."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-52:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте фразу о подруге",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-52:i09:audio",
-          "transcript": "morning"
+          "transcript": "She is curious."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-52:i09:r1",
-            "targetText": "morning",
+            "targetText": "She is curious.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-52:i09:r2",
-            "targetText": "moving",
+            "targetText": "She is patient.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-52:i09:r3",
-            "targetText": "money",
+            "targetText": "She is polite.",
             "meaningByLocale": null
           }
         ],
@@ -527,19 +512,19 @@
           {
             "responseId": "en:lesson-01:session-52:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — morning",
+            "testedDimension": "Послушайте фразу о подруге",
             "feedbackByLocale": {
-              "ru": "В середине «в», а не «р».",
-              "uk": "Усередині «в», а не «р»."
+              "ru": "В записи последнее слово — `curious`, а в этом варианте — `patient`.",
+              "uk": "У записі останнє слово — `curious`, а в цьому варіанті — `patient`."
             }
           },
           {
             "responseId": "en:lesson-01:session-52:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — morning",
+            "testedDimension": "Послушайте фразу о подруге",
             "feedbackByLocale": {
-              "ru": "«Деньги». Другое слово.",
-              "uk": "«Гроші». Інше слово."
+              "ru": "В записи последнее слово — `curious`, а в этом варианте — `polite`.",
+              "uk": "У записі останнє слово — `curious`, а в цьому варіанті — `polite`."
             }
           }
         ],
@@ -554,58 +539,58 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините короткие начала с полными",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините короткие начала с полными",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-52:i10:p1",
-            "target": "week",
+            "target": "It's",
             "meaningByLocale": {
-              "ru": "неделя",
-              "uk": "тиждень"
+              "ru": "It is",
+              "uk": "It is"
             }
           },
           {
             "pairId": "en:lesson-01:session-52:i10:p2",
-            "target": "day",
+            "target": "They're",
             "meaningByLocale": {
-              "ru": "день",
-              "uk": "день"
+              "ru": "They are",
+              "uk": "They are"
             }
           },
           {
             "pairId": "en:lesson-01:session-52:i10:p3",
-            "target": "night",
+            "target": "She's",
             "meaningByLocale": {
-              "ru": "ночь",
-              "uk": "ніч"
+              "ru": "She is",
+              "uk": "She is"
             }
           },
           {
             "pairId": "en:lesson-01:session-52:i10:p4",
-            "target": "morning",
+            "target": "I'm",
             "meaningByLocale": {
-              "ru": "утро",
-              "uk": "ранок"
+              "ru": "I am",
+              "uk": "I am"
             }
           }
         ],
         "leftColumn": [
-          "week",
-          "day",
-          "night",
-          "morning"
+          "It's",
+          "They're",
+          "She's",
+          "I'm"
         ],
         "rightColumn": [
-          "неделя",
-          "день",
-          "ночь",
-          "утро"
+          "It is",
+          "They are",
+          "She is",
+          "I am"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -625,68 +610,45 @@
       "interactionId": "en:lesson-01:session-52:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — мама спрашивает про ночи, а за окном ни машин, ни голосов",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-52:i11:r1",
-          "text": "quiet"
-        },
-        {
-          "responseId": "en:lesson-01:session-52:i11:r2",
-          "text": "busy"
-        },
-        {
-          "responseId": "en:lesson-01:session-52:i11:r3",
-          "text": "tired"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу о сумках",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — мама спрашивает про ночи, а за окном ни машин, ни голосов",
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу о сумках",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — мама спрашивает про ночи, а за окном ни машин, ни голосов",
-          "uk": "Вставте слово — мама питає, як ночі в новому місті"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i11:audio",
+          "transcript": "They're light."
         },
-        "gappedTargetPhrase": "The nights are ___ .",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They're light.",
+        "orderedTokens": [
+          "They're",
+          "light"
+        ],
+        "authoredDistractorTokens": [
+          "We're"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i11:r1",
-            "text": "quiet"
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i11:r2",
-            "text": "busy"
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i11:r3",
-            "text": "tired"
+            "responseId": "en:lesson-01:session-52:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу о сумках",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `They're` — `They're light.`",
+              "uk": "тут потрібно `They're` — `They're light.`"
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — мама спрашивает про ноч",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-52:i11:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — мама спрашивает про ноч",
-            "feedbackByLocale": {
-              "ru": "«Оживлённый». Так говорят, когда за окном шумно, а тут ни звука.",
-              "uk": "«Завантажений» — це про день на роботі, а не про ніч удома."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i11:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — мама спрашивает про ноч",
-            "feedbackByLocale": {
-              "ru": "«Уставший» — про человека. Ночь не устаёт.",
-              "uk": "«Втомлений» — про людину. Ніч не втомлюється."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -696,96 +658,73 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «дни спокойные»",
+      "prompt": "Другой рюкзак наполнен книгами и много весит. Назовите его тяжёлым",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «дни спокойные»",
+      "accessibilityLabel": "Другой рюкзак наполнен книгами и много весит. Назовите его тяжёлым",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The days are quiet.",
+        "targetPhrase": "It is heavy.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «дни спокойные»",
-          "uk": "Складіть фразу — «дні спокійні»"
+          "ru": "Другой рюкзак наполнен книгами и много весит. Назовите его тяжёлым",
+          "uk": "Інший наплічник наповнений книжками й багато важить. Назвіть його важким"
         },
         "orderedTokens": [
-          "The",
-          "days",
-          "are",
-          "quiet"
+          "It",
+          "is",
+          "heavy"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Другой рюкзак наполнен книгами и много весит. Назовите его тяжёлым",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is heavy.`",
+              "uk": "тут потрібно `is` — `It is heavy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-52:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — мама спрашивает, всё ли у вас хорошо",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-52:i13:r1",
-          "text": "fine"
-        },
-        {
-          "responseId": "en:lesson-01:session-52:i13:r2",
-          "text": "night"
-        },
-        {
-          "responseId": "en:lesson-01:session-52:i13:r3",
-          "text": "week"
-        }
-      ],
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам тоже хочется узнать, как сделан рюкзак. Скажите о своём любопытстве",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — мама спрашивает, всё ли у вас хорошо",
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "Вам тоже хочется узнать, как сделан рюкзак. Скажите о своём любопытстве",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — мама спрашивает, всё ли у вас хорошо",
-          "uk": "Вставте слово — мама питає, чи все у вас гаразд"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i13:audio",
+          "transcript": "I am curious."
         },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-52:i13:r1",
-            "text": "fine"
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i13:r2",
-            "text": "night"
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i13:r3",
-            "text": "week"
-          }
-        ],
-        "testedDimension": "Вставьте слово — мама спрашивает, всё ли",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-52:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — мама спрашивает, всё ли",
-            "feedbackByLocale": {
-              "ru": "«Ночь». Это время суток, а не ваше состояние.",
-              "uk": "«Ніч». Це час доби, а не ваш стан."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-52:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — мама спрашивает, всё ли",
-            "feedbackByLocale": {
-              "ru": "«Неделя». То же самое: отрезок времени, а не то, как вам живётся.",
-              "uk": "«Тиждень». Те саме: відрізок часу, а не те, як вам живеться."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am curious.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -796,7 +735,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — мама спрашивает про коллег",
+      "prompt": "Одна пустая коробка мало весит. Дополните оценку веса",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-52:i14:r1",
@@ -804,23 +743,23 @@
         },
         {
           "responseId": "en:lesson-01:session-52:i14:r2",
-          "text": "are"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-01:session-52:i14:r3",
-          "text": "am"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — мама спрашивает про коллег",
+      "accessibilityLabel": "Одна пустая коробка мало весит. Дополните оценку веса",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — мама спрашивает про коллег",
-          "uk": "Вставте слово — мама питає про колег"
+          "ru": "Одна пустая коробка мало весит. Дополните оценку веса",
+          "uk": "Одна порожня коробка мало важить. Доповніть оцінку ваги"
         },
-        "gappedTargetPhrase": "Everyone ___ kind.",
+        "gappedTargetPhrase": "It ___ light.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-52:i14:r1",
@@ -828,31 +767,31 @@
           },
           {
             "responseId": "en:lesson-01:session-52:i14:r2",
-            "text": "are"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-01:session-52:i14:r3",
-            "text": "am"
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — мама спрашивает про кол",
+        "testedDimension": "Одна пустая коробка мало весит. Дополните оценку веса",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-52:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — мама спрашивает про кол",
+            "testedDimension": "Одна пустая коробка мало весит. Дополните оценку веса",
             "feedbackByLocale": {
-              "ru": "`everyone` — «все», но считается за одного. Скрепка `is`.",
-              "uk": "`everyone` — «усі», але рахується за одного. Скріпка `is`."
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-01:session-52:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — мама спрашивает про кол",
+            "testedDimension": "Одна пустая коробка мало весит. Дополните оценку веса",
             "feedbackByLocale": {
-              "ru": "`am` живёт только рядом с `I`.",
-              "uk": "`am` живе тільки поруч із `I`."
+              "ru": "Про одну коробку — `It is`.",
+              "uk": "Про одну коробку — `It is`."
             }
           }
         ]
@@ -862,34 +801,76 @@
     {
       "interactionId": "en:lesson-01:session-52:i15",
       "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «утро раннее»",
-      "responseOptions": [],
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте короткую оценку и выберите её",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i15:r1",
+          "text": "It's light."
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i15:r2",
+          "text": "It's heavy."
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i15:r3",
+          "text": "It's expensive."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-52:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «утро раннее»",
+      "accessibilityLabel": "Послушайте короткую оценку и выберите её",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-52:i15:audio",
-          "transcript": "The morning is early."
+          "transcript": "It's light."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The morning is early.",
-        "orderedTokens": [
-          "The",
-          "morning",
-          "is",
-          "early"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-52:i15:r1",
+            "targetText": "It's light.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i15:r2",
+            "targetText": "It's heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i15:r3",
+            "targetText": "It's expensive.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [
-          "are"
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте короткую оценку и выберите её",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `light`, а в этом варианте — `heavy`.",
+              "uk": "У записі останнє слово — `light`, а в цьому варіанті — `heavy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте короткую оценку и выберите её",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `light`, а в этом варианте — `expensive`.",
+              "uk": "У записі останнє слово — `light`, а в цьому варіанті — `expensive`."
+            }
+          }
         ],
-        "slotFeedback": []
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -897,32 +878,72 @@
       "interactionId": "en:lesson-01:session-52:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — будильник прозвенел, а встать тяжело; скажите, каким вы бываете по утрам",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — будильник прозвенел, а встать тяжело; скажите, каким вы бываете по утрам",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am tired in the morning.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — будильник прозвенел, а встать тяжело; скажите, каким вы бываете по утрам",
-          "uk": "Складіть фразу — будильник продзвенів, а встати важко; скажіть, яким ви буваєте зранку"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-52:i16:p1",
+            "target": "light",
+            "meaningByLocale": {
+              "ru": "мало весит",
+              "uk": "мало важить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-52:i16:p2",
+            "target": "heavy",
+            "meaningByLocale": {
+              "ru": "много весит",
+              "uk": "багато важить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-52:i16:p3",
+            "target": "curious",
+            "meaningByLocale": {
+              "ru": "хочет узнать",
+              "uk": "хоче дізнатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-52:i16:p4",
+            "target": "useful",
+            "meaningByLocale": {
+              "ru": "полезный",
+              "uk": "корисний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "light",
+          "heavy",
+          "curious",
+          "useful"
+        ],
+        "rightColumn": [
+          "мало весит",
+          "много весит",
+          "хочет узнать",
+          "полезный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "orderedTokens": [
-          "I",
-          "am",
-          "tired",
-          "in",
-          "the",
-          "morning"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -930,155 +951,34 @@
       "interactionId": "en:lesson-01:session-52:i17",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — мама просит сказать прямо, что у вас всё хорошо",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — мама просит сказать прямо, что у вас всё хорошо",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am fine.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — мама просит сказать прямо, что у вас всё хорошо",
-          "uk": "Складіть фразу — мама просить сказати прямо, що у вас усе гаразд"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "fine"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-52:i18:s01",
-      "ordinal": 21,
-      "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Дома вы поднимаете большую пустую корзину: она мало весит. Скажите другу именно о её небольшом весе",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-52:i18:s01:audio"
+        "en:lesson-01:session-52:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Дома вы поднимаете большую пустую корзину: она мало весит. Скажите другу именно о её небольшом весе",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-52:i18:s01:audio",
-          "transcript": "The week is busy."
+          "audioTargetId": "en:lesson-01:session-52:i17:audio",
+          "transcript": "It is light."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The week is busy.",
+        "targetPhrase": "It is light.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-52:i18:s02",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-52:i18:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-52:i18:s02:audio",
-          "transcript": "The days are busy."
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "The days are busy.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-52:i18:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-52:i18:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-52:i18:s03:audio",
-          "transcript": "The nights are quiet."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "The nights are quiet.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-52:i18:s04",
-      "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-52:i18:s04:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-52:i18:s04:audio",
-          "transcript": "I am tired in the morning."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am tired in the morning.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1089,11 +989,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4e4edeb5fe68545fbd5a1f9c5a690a1f5a1e4dc4f2af508aa6804f275c17207c"
+  "learnerFingerprint": "9774d4bd04249c9bac6bbe920d75a91211ca62b79d6fbc64e4961bd46566e111"
 }

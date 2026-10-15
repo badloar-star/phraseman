@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-50",
   "learningOutcomeByLocale": {
-    "ru": "применение — полные и короткие формы вперемешку",
-    "uk": "застосування — повні та короткі форми впереміш"
+    "ru": "назвать вещь дорогой по цене и отличить эту оценку от вежливости человека",
+    "uk": "назвати річ дорогою за ціною й відрізнити цю оцінку від ввічливості людини"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`It is` можно сжать в `It's`",
-        "uk": "`It is` можна стиснути до `It's`"
+        "ru": "Дорого стоит",
+        "uk": "Дорого коштує"
       },
       "bodyByLocale": {
-        "ru": "`job` — «работа»: место, куда вы ходите, и должность, которая там написана. Работа — вещь, поэтому про неё `it`.\n\n`It is new` — «она новая». В быстрой речи два слова слипаются: `It's new`. Обе формы верные.\n\nА вот `its` без значка — совсем другое слово, «его». Значок заменяет букву `i` из `is`.",
-        "uk": "`job` — «робота»: місце, куди ви ходите, і посада, яка там записана. Робота — річ, тому про неї `it`.\n\n`It is new` — «вона нова». У швидкій мові два слова злипаються: `It's new`. Обидві форми правильні.\n\nА от `its` без апострофа — зовсім інше слово, «його». Апостроф стоїть замість букви `i` зі слова `is`."
+        "ru": "`expensive` — «дорогой» по цене. `It is expensive` — «Это дорого» или «Она дорогая», если говорим о вещи. Вы смотрите на маленькую вазу: размер скромный, цена — совсем нет.",
+        "uk": "`expensive` — «дорогий» за ціною. `It is expensive` — «Це дорого» або «Вона дорога», якщо говоримо про річ. Ви дивитеся на маленьку вазу: розмір скромний, ціна — зовсім ні."
       },
       "question": {
         "interactionId": "en:lesson-01:session-50:intro1:q",
         "promptByLocale": {
-          "ru": "Мама не знает, давно ли вы там. Скажите, что работа новая.",
-          "uk": "Мама не знає, чи давно ви там. Скажіть, що робота нова."
+          "ru": "Ваза стоит дорого. Скажите другу о её высокой цене.",
+          "uk": "Ваза коштує дорого. Скажіть другові про її високу ціну."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-50:intro1:r1",
-              "text": "It's new."
+              "text": "It is expensive."
             },
             {
               "responseId": "en:lesson-01:session-50:intro1:r2",
-              "text": "It new."
+              "text": "It is cheap."
             },
             {
               "responseId": "en:lesson-01:session-50:intro1:r3",
-              "text": "Its new."
+              "text": "It are expensive."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-50:intro1:r1",
-              "text": "It's new."
+              "text": "It is expensive."
             },
             {
               "responseId": "en:lesson-01:session-50:intro1:r2",
-              "text": "It new."
+              "text": "It is cheap."
             },
             {
               "responseId": "en:lesson-01:session-50:intro1:r3",
-              "text": "Its new."
+              "text": "It are expensive."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама не знает, давно ли вы там. Скажите, что работа новая.",
-          "uk": "Мама не знає, чи давно ви там. Скажіть, що робота нова."
+          "ru": "Ваза стоит дорого. Скажите другу о её высокой цене.",
+          "uk": "Ваза коштує дорого. Скажіть другові про її високу ціну."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Про человека — `he` или `she`",
-        "uk": "Про людину — `he` або `she`"
+        "ru": "Две вещи — та же оценка",
+        "uk": "Дві речі — та сама оцінка"
       },
       "bodyByLocale": {
-        "ru": "`boss` — «начальник». Это человек, значит `he` или `she`, а не `it`.\n\n`kind` — «добрый». `He is kind`, или коротко — `He's kind`. Сокращается `is` и приклеивается к тому, кто впереди.\n\nНачальник не добрый? Тогда `He isn't kind`: тут `is` слиплось с `not`.",
-        "uk": "`boss` — «начальник». Це людина, отже `he` або `she`, а не `it`.\n\n`kind` — «добрий». `He is kind`, або коротко — `He's kind`. Скорочується `is` і приклеюється до того, хто попереду.\n\nНачальник не добрий? Тоді `He isn't kind`: тут `is` злиплося з `not`."
+        "ru": "Про две дорогие вещи — `They are expensive`. Коротко: `They're expensive`. К слову `expensive` ничего добавлять не нужно. Высокая цена сама по себе не доказывает ни пользу, ни качество вещи.",
+        "uk": "Про дві дорогі речі — `They are expensive`. Коротко: `They're expensive`. До слова `expensive` нічого додавати не потрібно. Висока ціна сама по собі не доводить ані користі, ані якості речі."
       },
       "question": {
         "interactionId": "en:lesson-01:session-50:intro2:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает, какой он. Он вам нравится — скажите, что добрый.",
-          "uk": "Мама питає, який він. Він вам подобається — скажіть, що добрий."
+          "ru": "Две рамки стоят дорого. Назовите их высокую цену одной фразой.",
+          "uk": "Дві рамки коштують дорого. Назвіть їхню високу ціну однією фразою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-50:intro2:r1",
-              "text": "He's kind."
+              "text": "They are expensive."
             },
             {
               "responseId": "en:lesson-01:session-50:intro2:r2",
-              "text": "He kind."
+              "text": "They is expensive."
             },
             {
               "responseId": "en:lesson-01:session-50:intro2:r3",
-              "text": "He's isn't kind."
+              "text": "They are useful."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-50:intro2:r1",
-              "text": "He's kind."
+              "text": "They are expensive."
             },
             {
               "responseId": "en:lesson-01:session-50:intro2:r2",
-              "text": "He kind."
+              "text": "They is expensive."
             },
             {
               "responseId": "en:lesson-01:session-50:intro2:r3",
-              "text": "He's isn't kind."
+              "text": "They are useful."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает, какой он. Он вам нравится — скажите, что добрый.",
-          "uk": "Мама питає, який він. Він вам подобається — скажіть, що добрий."
+          "ru": "Две рамки стоят дорого. Назовите их высокую цену одной фразой.",
+          "uk": "Дві рамки коштують дорого. Назвіть їхню високу ціну однією фразою."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сказать «не» можно двумя путями",
-        "uk": "Сказати «не» можна двома шляхами"
+        "ru": "Цена вещи и поведение человека",
+        "uk": "Ціна речі й поведінка людини"
       },
       "bodyByLocale": {
-        "ru": "`flat` — «квартира», `city` — «город». Вещи, значит про них `it`.\n\nКвартира маленькая — `It's small`. Дорогая — `It's expensive`.\n\nА «не дорогая» собирается двумя способами: `It isn't expensive` или `It's not expensive`. Значение одинаковое, берите любой.",
-        "uk": "`flat` — «квартира», `city` — «місто». Речі, отже про них `it`.\n\nКвартира маленька — `It's small`. Дорога — `It's expensive`.\n\nА «не дорога» збирається двома способами: `It isn't expensive` або `It's not expensive`. Значення однакове, беріть будь-який."
+        "ru": "`polite` — «вежливый». Продавщица внимательно слушает, не перебивает и благодарит вас: `She is polite`. Это оценка её поведения. Даже если подарок дорогой, продавщица может быть вежливой — одно не отменяет другого.",
+        "uk": "`polite` — «ввічливий». Продавчиня уважно слухає, не перебиває й дякує вам: `She is polite`. Це оцінка її поведінки. Навіть якщо подарунок дорогий, продавчиня може бути ввічливою — одне не скасовує іншого."
       },
       "question": {
         "interactionId": "en:lesson-01:session-50:intro3:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает про квартиру. Она маленькая — скажите так.",
-          "uk": "Мама питає про квартиру. Вона маленька — скажіть так."
+          "ru": "Продавщица обращается к вам уважительно и не перебивает. Назовите именно её вежливость.",
+          "uk": "Продавчиня звертається до вас шанобливо й не перебиває. Назвіть саме її ввічливість."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-50:intro3:r1",
-              "text": "It's small."
+              "text": "She is polite."
             },
             {
               "responseId": "en:lesson-01:session-50:intro3:r2",
-              "text": "It small."
+              "text": "She is expensive."
             },
             {
               "responseId": "en:lesson-01:session-50:intro3:r3",
-              "text": "It's isn't small."
+              "text": "She are polite."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-50:intro3:r1",
-              "text": "It's small."
+              "text": "She is polite."
             },
             {
               "responseId": "en:lesson-01:session-50:intro3:r2",
-              "text": "It small."
+              "text": "She is expensive."
             },
             {
               "responseId": "en:lesson-01:session-50:intro3:r3",
-              "text": "It's isn't small."
+              "text": "She are polite."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает про квартиру. Она маленькая — скажите так.",
-          "uk": "Мама питає про квартиру. Вона маленька — скажіть так."
+          "ru": "Продавщица обращается к вам уважительно и не перебивает. Назовите именно её вежливость.",
+          "uk": "Продавчиня звертається до вас шанобливо й не перебиває. Назвіть саме її ввічливість."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2734ea43b2edf4e1373278a09b843605f1c860b17cf025777f86760e0b97453b"
+  "introFingerprint": "7626712202354889836c555cd357cff8ec53fa6ca80590613e704dfd1051615c"
 }

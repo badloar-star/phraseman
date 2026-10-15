@@ -1,112 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-32:i01",
-    "correctText": "small",
-    "correctResponseId": "en:lesson-01:session-32:i01:r1"
+    "correctText": "We are proud.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i02",
-    "correctText": "small",
+    "correctText": "He is worried.",
     "correctResponseId": "en:lesson-01:session-32:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-32:i03",
-    "correctText": "dark",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-32:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-32:i04",
-    "correctText": "It is dark.",
+    "correctText": "en:lesson-01:session-32:i04:p1=ashamed\nen:lesson-01:session-32:i04:p2=surprised\nen:lesson-01:session-32:i04:p3=bored\nen:lesson-01:session-32:i04:p4=confused",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i05",
-    "correctText": "dark",
-    "correctResponseId": "en:lesson-01:session-32:i05:r1"
+    "correctText": "They are available.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i06",
-    "correctText": "expensive",
-    "correctResponseId": "en:lesson-01:session-32:i06:r1"
+    "correctText": "They are separate.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i07",
-    "correctText": "en:lesson-01:session-32:i07:p1=small\nen:lesson-01:session-32:i07:p2=dark\nen:lesson-01:session-32:i07:p3=expensive\nen:lesson-01:session-32:i07:p4=quiet",
+    "correctText": "I am certain.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i08",
-    "correctText": "It is not expensive.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-32:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-32:i09",
-    "correctText": "cold",
-    "correctResponseId": null
+    "correctText": "She is awake.",
+    "correctResponseId": "en:lesson-01:session-32:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-32:i10",
-    "correctText": "cold",
-    "correctResponseId": "en:lesson-01:session-32:i10:r1"
+    "correctText": "en:lesson-01:session-32:i10:p1=awake\nen:lesson-01:session-32:i10:p2=asleep\nen:lesson-01:session-32:i10:p3=local\nen:lesson-01:session-32:i10:p4=foreign",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i11",
-    "correctText": "It is not cold.",
+    "correctText": "It is missing.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i12",
-    "correctText": "rainy",
-    "correctResponseId": "en:lesson-01:session-32:i12:r1"
+    "correctText": "It is online.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i13",
-    "correctText": "rainy",
-    "correctResponseId": "en:lesson-01:session-32:i13:r1"
+    "correctText": "You are serious.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i14",
-    "correctText": "warm",
+    "correctText": "worried",
     "correctResponseId": "en:lesson-01:session-32:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-32:i15",
-    "correctText": "warm",
+    "correctText": "They are similar.",
     "correctResponseId": "en:lesson-01:session-32:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-32:i16",
-    "correctText": "clean",
+    "correctText": "en:lesson-01:session-32:i16:p1=alive\nen:lesson-01:session-32:i16:p2=dead\nen:lesson-01:session-32:i16:p3=missing\nen:lesson-01:session-32:i16:p4=available",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-32:i17",
-    "correctText": "clean",
-    "correctResponseId": "en:lesson-01:session-32:i17:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-32:i18",
-    "correctText": "en:lesson-01:session-32:i18:p1=cold\nen:lesson-01:session-32:i18:p2=rainy\nen:lesson-01:session-32:i18:p3=warm\nen:lesson-01:session-32:i18:p4=clean",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-32:i19:s01",
-    "correctText": "It is small.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-32:i19:s02",
-    "correctText": "It is not expensive.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-32:i19:s03",
-    "correctText": "It is warm.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-32:i19:s04",
-    "correctText": "It is rainy.",
+    "correctText": "I am confused.",
     "correctResponseId": null
   }
 ]

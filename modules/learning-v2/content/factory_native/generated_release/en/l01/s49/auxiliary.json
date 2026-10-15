@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-49:intro1:r2": {
+          "ru": "`useful` — полезная. Низкую цену здесь передаёт `cheap`.",
+          "uk": "`useful` — корисне. Низьку ціну тут передає `cheap`."
+        },
+        "en:lesson-01:session-49:intro1:r3": {
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-49:intro2:r2": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        },
+        "en:lesson-01:session-49:intro2:r3": {
+          "ru": "`useless` — бесполезные. Из низкой цены это не следует: здесь нужно `cheap`.",
+          "uk": "`useless` — марні. З низької ціни це не випливає: тут потрібно `cheap`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-49:intro3:r2": {
+          "ru": "Так не говорят, что у продавца низкие цены. Здесь оцениваем честность: `honest`.",
+          "uk": "Так не кажуть, що в продавця низькі ціни. Тут оцінюємо чесність: `honest`."
+        },
+        "en:lesson-01:session-49:intro3:r3": {
+          "ru": "После `He` нужно `is`.",
+          "uk": "Після `He` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "81af2d52171ccca20de9c40da99a94a5a66c579d00f2a05762b5abd0a8d9cdf1"
+}

@@ -1,122 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-18:i01",
-    "correctText": "shy",
+    "correctText": "I am wrong.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i02",
-    "correctText": "shy",
+    "correctText": "We are early.",
     "correctResponseId": "en:lesson-01:session-18:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-18:i03",
-    "correctText": "loud",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-18:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-18:i04",
-    "correctText": "loud",
-    "correctResponseId": "en:lesson-01:session-18:i04:r1"
+    "correctText": "en:lesson-01:session-18:i04:p1=wrong\nen:lesson-01:session-18:i04:p2=early\nen:lesson-01:session-18:i04:p3=lucky\nen:lesson-01:session-18:i04:p4=right",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i05",
-    "correctText": "quiet",
+    "correctText": "You are wrong.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i06",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-18:i06:r1"
+    "correctText": "We are lucky.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i07",
-    "correctText": "shy",
-    "correctResponseId": "en:lesson-01:session-18:i07:r1"
+    "correctText": "She is early.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i08",
-    "correctText": "is",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-18:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-18:i09",
-    "correctText": "clever",
-    "correctResponseId": null
+    "correctText": "He is lucky.",
+    "correctResponseId": "en:lesson-01:session-18:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-18:i10",
-    "correctText": "clever",
-    "correctResponseId": "en:lesson-01:session-18:i10:r1"
+    "correctText": "en:lesson-01:session-18:i10:p1=welcome\nen:lesson-01:session-18:i10:p2=safe\nen:lesson-01:session-18:i10:p3=old\nen:lesson-01:session-18:i10:p4=kind",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i11",
-    "correctText": "bossy",
+    "correctText": "They are early.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i12",
-    "correctText": "He is clever.",
+    "correctText": "They are wrong.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i13",
-    "correctText": "en:lesson-01:session-18:i13:p1=shy\nen:lesson-01:session-18:i13:p2=loud\nen:lesson-01:session-18:i13:p3=clever\nen:lesson-01:session-18:i13:p4=quiet",
+    "correctText": "You are lucky.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i14",
-    "correctText": "funny",
-    "correctResponseId": null
+    "correctText": "safe",
+    "correctResponseId": "en:lesson-01:session-18:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-18:i15",
-    "correctText": "funny",
+    "correctText": "She is funny.",
     "correctResponseId": "en:lesson-01:session-18:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-18:i16",
-    "correctText": "kind",
+    "correctText": "en:lesson-01:session-18:i16:p1=early\nen:lesson-01:session-18:i16:p2=lucky\nen:lesson-01:session-18:i16:p3=funny\nen:lesson-01:session-18:i16:p4=wrong",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i17",
-    "correctText": "He is kind.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:i18",
-    "correctText": "She is bossy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:i19",
-    "correctText": "smart",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:i20",
-    "correctText": "smart",
-    "correctResponseId": "en:lesson-01:session-18:i20:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:i21",
-    "correctText": "en:lesson-01:session-18:i21:p1=bossy\nen:lesson-01:session-18:i21:p2=funny\nen:lesson-01:session-18:i21:p3=kind\nen:lesson-01:session-18:i21:p4=smart",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:i22:s01",
-    "correctText": "She is loud.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:i22:s02",
-    "correctText": "He is quiet.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:i22:s03",
-    "correctText": "She is kind.",
+    "correctText": "We are early.",
     "correctResponseId": null
   }
 ]

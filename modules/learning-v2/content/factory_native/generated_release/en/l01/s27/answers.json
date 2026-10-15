@@ -1,122 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-27:i01",
-    "correctText": "cheap",
+    "correctText": "I am awake.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i02",
-    "correctText": "cheap",
+    "correctText": "She is asleep.",
     "correctResponseId": "en:lesson-01:session-27:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-27:i03",
-    "correctText": "far",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-27:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-27:i04",
-    "correctText": "far",
-    "correctResponseId": "en:lesson-01:session-27:i04:r1"
+    "correctText": "en:lesson-01:session-27:i04:p1=awake\nen:lesson-01:session-27:i04:p2=asleep\nen:lesson-01:session-27:i04:p3=available\nen:lesson-01:session-27:i04:p4=alone",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i05",
-    "correctText": "It is not cheap.",
+    "correctText": "We are awake.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i06",
-    "correctText": "dark",
+    "correctText": "He is asleep.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i07",
-    "correctText": "far",
-    "correctResponseId": "en:lesson-01:session-27:i07:r1"
+    "correctText": "I am available.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i08",
-    "correctText": "easy",
-    "correctResponseId": null
+    "correctText": "awake",
+    "correctResponseId": "en:lesson-01:session-27:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-27:i09",
-    "correctText": "hard",
-    "correctResponseId": null
+    "correctText": "You are available.",
+    "correctResponseId": "en:lesson-01:session-27:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-27:i10",
-    "correctText": "hard",
-    "correctResponseId": "en:lesson-01:session-27:i10:r1"
+    "correctText": "en:lesson-01:session-27:i10:p1=bored\nen:lesson-01:session-27:i10:p2=confused\nen:lesson-01:session-27:i10:p3=worried\nen:lesson-01:session-27:i10:p4=together",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i11",
-    "correctText": "warm",
+    "correctText": "They are asleep.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i12",
-    "correctText": "hard",
-    "correctResponseId": "en:lesson-01:session-27:i12:r1"
+    "correctText": "She is available.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i13",
-    "correctText": "en:lesson-01:session-27:i13:p1=cheap\nen:lesson-01:session-27:i13:p2=far\nen:lesson-01:session-27:i13:p3=easy\nen:lesson-01:session-27:i13:p4=hard",
+    "correctText": "He is nearby.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i14",
-    "correctText": "small",
-    "correctResponseId": null
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-27:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-27:i15",
-    "correctText": "is",
+    "correctText": "We are together.",
     "correctResponseId": "en:lesson-01:session-27:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-27:i16",
-    "correctText": "It is not far.",
+    "correctText": "en:lesson-01:session-27:i16:p1=nearby\nen:lesson-01:session-27:i16:p2=awake\nen:lesson-01:session-27:i16:p3=asleep\nen:lesson-01:session-27:i16:p4=available",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i17",
-    "correctText": "expensive",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-27:i18",
-    "correctText": "It is not expensive.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-27:i19",
-    "correctText": "It is dark.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-27:i20",
-    "correctText": "en:lesson-01:session-27:i20:p1=small\nen:lesson-01:session-27:i20:p2=dark\nen:lesson-01:session-27:i20:p3=expensive\nen:lesson-01:session-27:i20:p4=warm",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-27:i21:s01",
-    "correctText": "It is not cheap.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-27:i21:s02",
-    "correctText": "It is not far.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-27:i21:s03",
-    "correctText": "It is not easy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-27:i21:s04",
-    "correctText": "It is warm.",
+    "correctText": "We are available.",
     "correctResponseId": null
   }
 ]

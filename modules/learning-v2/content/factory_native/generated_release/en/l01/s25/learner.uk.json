@@ -1,0 +1,1031 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви пишаєтеся племінницею",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви пишаєтеся племінницею",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am proud.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы гордитесь племянницей",
+          "uk": "Складіть фразу — ви пишаєтеся племінницею"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "proud"
+        ],
+        "authoredDistractorTokens": [
+          "is",
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви пишаєтеся племінницею",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am proud.`",
+              "uk": "тут потрібно `am` — `I am proud.`"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i01:tile:d2",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви пишаєтеся племінницею",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am proud.`",
+              "uk": "тут потрібно `am` — `I am proud.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть почуте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-25:i02:r1",
+          "text": "She is surprised."
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i02:r2",
+          "text": "He is surprised."
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i02:r3",
+          "text": "She is proud."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:i02:audio",
+          "transcript": "She is surprised."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-25:i02:r1",
+            "targetText": "She is surprised.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i02:r2",
+            "targetText": "He is surprised.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i02:r3",
+            "targetText": "She is proud.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `surprised`, а в этом варианте — `proud`.",
+              "uk": "У записі останнє слово — `surprised`, а в цьому варіанті — `proud`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Двоє глядачів заважали виступу. Тепер їм соромно. Вставте слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-25:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двоє глядачів заважали виступу. Тепер їм соромно. Вставте слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Два зрителя мешали выступлению. Теперь им стыдно. Вставьте слово",
+          "uk": "Двоє глядачів заважали виступу. Тепер їм соромно. Вставте слово"
+        },
+        "gappedTargetPhrase": "They ___ ashamed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-25:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Двоє глядачів заважали виступу. Тепер їм соромно. Вставте слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Двоє глядачів заважали виступу. Тепер їм соромно. Вставте слово",
+            "feedbackByLocale": {
+              "ru": "После `They` выбираем `are`, а не `is`.",
+              "uk": "Після `They` вибираємо `are`, а не `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Двоє глядачів заважали виступу. Тепер їм соромно. Вставте слово",
+            "feedbackByLocale": {
+              "ru": "`am` нужно с `I`. Здесь говорится о них: `They are`.",
+              "uk": "`am` потрібне з `I`. Тут ідеться про них: `They are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-25:i04:p1",
+            "target": "proud",
+            "meaningByLocale": {
+              "ru": "гордится",
+              "uk": "пишається"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-25:i04:p2",
+            "target": "ashamed",
+            "meaningByLocale": {
+              "ru": "стыдно",
+              "uk": "соромно"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-25:i04:p3",
+            "target": "surprised",
+            "meaningByLocale": {
+              "ru": "удивлён",
+              "uk": "здивований"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-25:i04:p4",
+            "target": "different",
+            "meaningByLocale": {
+              "ru": "разный",
+              "uk": "різний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "proud",
+          "ashamed",
+          "surprised",
+          "different"
+        ],
+        "rightColumn": [
+          "пишається",
+          "соромно",
+          "здивований",
+          "різний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:i05:audio",
+          "transcript": "We are proud."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are proud.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "proud"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `We are proud.`",
+              "uk": "тут потрібно `are` — `We are proud.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Братові соромно за грубий жарт. Складіть фразу про його почуття",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Братові соромно за грубий жарт. Складіть фразу про його почуття",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is ashamed.",
+        "localizedMeaning": {
+          "ru": "Брату стыдно за грубую шутку. Соберите фразу о его чувстве",
+          "uk": "Братові соромно за грубий жарт. Складіть фразу про його почуття"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "ashamed"
+        ],
+        "authoredDistractorTokens": [
+          "am",
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Братові соромно за грубий жарт. Складіть фразу про його почуття",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is ashamed.`",
+              "uk": "тут потрібно `is` — `He is ashamed.`"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i06:tile:d2",
+            "correct": false,
+            "testedDimension": "Братові соромно за грубий жарт. Складіть фразу про його почуття",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is ashamed.`",
+              "uk": "тут потрібно `is` — `He is ashamed.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра каже, що не очікувала такого завершення. Скажіть їй: «Ти здивована»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Сестра каже, що не очікувала такого завершення. Скажіть їй: «Ти здивована»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:i07:audio",
+          "transcript": "You are surprised."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are surprised.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви заважали іншим глядачам і тепер соромитеся цього. Доповніть фразу про себе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-25:i08:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви заважали іншим глядачам і тепер соромитеся цього. Доповніть фразу про себе",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы мешали другим зрителям и теперь стыдитесь этого. Дополните фразу о себе",
+          "uk": "Ви заважали іншим глядачам і тепер соромитеся цього. Доповніть фразу про себе"
+        },
+        "gappedTargetPhrase": "I ___ ashamed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-25:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Ви заважали іншим глядачам і тепер соромитеся цього. Доповніть фразу про себе",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви заважали іншим глядачам і тепер соромитеся цього. Доповніть фразу про себе",
+            "feedbackByLocale": {
+              "ru": "С `I` нужна форма `am`.",
+              "uk": "Із `I` потрібна форма `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви заважали іншим глядачам і тепер соромитеся цього. Доповніть фразу про себе",
+            "feedbackByLocale": {
+              "ru": "О себе начинаем с `I am`.",
+              "uk": "Про себе починаємо з `I am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-25:i09:r1",
+          "text": "They are surprised."
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i09:r2",
+          "text": "We are surprised."
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i09:r3",
+          "text": "They are proud."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:i09:audio",
+          "transcript": "They are surprised."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-25:i09:r1",
+            "targetText": "They are surprised.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i09:r2",
+            "targetText": "We are surprised.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i09:r3",
+            "targetText": "They are proud.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `surprised`, а в этом варианте — `proud`.",
+              "uk": "У записі останнє слово — `surprised`, а в цьому варіанті — `proud`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте знайомі слова та значення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте знайомі слова та значення",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-25:i10:p1",
+            "target": "married",
+            "meaningByLocale": {
+              "ru": "состоит в браке",
+              "uk": "перебуває у шлюбі"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-25:i10:p2",
+            "target": "single",
+            "meaningByLocale": {
+              "ru": "не состоит в браке (в анкете)",
+              "uk": "не перебуває у шлюбі (в анкеті)"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-25:i10:p3",
+            "target": "welcome",
+            "meaningByLocale": {
+              "ru": "желанный",
+              "uk": "бажаний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-25:i10:p4",
+            "target": "safe",
+            "meaningByLocale": {
+              "ru": "в безопасности",
+              "uk": "у безпеці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "married",
+          "single",
+          "welcome",
+          "safe"
+        ],
+        "rightColumn": [
+          "перебуває у шлюбі",
+          "не перебуває у шлюбі (в анкеті)",
+          "бажаний",
+          "у безпеці"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть почуте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть почуте",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:i11:audio",
+          "transcript": "I am surprised."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am surprised.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "surprised"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть почуте",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am surprised.`",
+              "uk": "тут потрібно `am` — `I am surprised.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Мама пишається донькою після виступу. Складіть фразу про маму",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мама пишається донькою після виступу. Складіть фразу про маму",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is proud.",
+        "localizedMeaning": {
+          "ru": "Мама гордится дочерью после выступления. Соберите фразу о маме",
+          "uk": "Мама пишається донькою після виступу. Складіть фразу про маму"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "proud"
+        ],
+        "authoredDistractorTokens": [
+          "am",
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Мама пишається донькою після виступу. Складіть фразу про маму",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is proud.`",
+              "uk": "тут потрібно `is` — `She is proud.`"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i12:tile:d2",
+            "correct": false,
+            "testedDimension": "Мама пишається донькою після виступу. Складіть фразу про маму",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is proud.`",
+              "uk": "тут потрібно `is` — `She is proud.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра правильно назвала автора вистави. Скажіть їй уголос: «Ти маєш рацію»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Сестра правильно назвала автора вистави. Скажіть їй уголос: «Ти маєш рацію»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:i13:audio",
+          "transcript": "You are right."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are right.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви порівняли сьогоднішню виставу з торішньою. Скажіть про сьогоднішню: «Вона інша»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-25:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви порівняли сьогоднішню виставу з торішньою. Скажіть про сьогоднішню: «Вона інша»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сравнили сегодняшний спектакль с прошлогодним. Скажите о сегодняшнем: «Он другой»",
+          "uk": "Ви порівняли сьогоднішню виставу з торішньою. Скажіть про сьогоднішню: «Вона інша»"
+        },
+        "gappedTargetPhrase": "It ___ different.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-25:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Ви порівняли сьогоднішню виставу з торішньою. Скажіть про сьогоднішню: «Вона інша»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви порівняли сьогоднішню виставу з торішньою. Скажіть про сьогоднішню: «Вона інша»",
+            "feedbackByLocale": {
+              "ru": "О спектакле здесь говорим `It is`.",
+              "uk": "Про виставу тут кажемо `It is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви порівняли сьогоднішню виставу з торішньою. Скажіть про сьогоднішню: «Вона інша»",
+            "feedbackByLocale": {
+              "ru": "После `It` нужна форма `is`.",
+              "uk": "Після `It` потрібна форма `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть почуте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-25:i15:r1",
+          "text": "We are ashamed."
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i15:r2",
+          "text": "They are ashamed."
+        },
+        {
+          "responseId": "en:lesson-01:session-25:i15:r3",
+          "text": "We are surprised."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:i15:audio",
+          "transcript": "We are ashamed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-25:i15:r1",
+            "targetText": "We are ashamed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i15:r2",
+            "targetText": "They are ashamed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i15:r3",
+            "targetText": "We are surprised.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ashamed`, а в этом варианте — `surprised`.",
+              "uk": "У записі останнє слово — `ashamed`, а в цьому варіанті — `surprised`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-25:i16:p1",
+            "target": "right",
+            "meaningByLocale": {
+              "ru": "прав",
+              "uk": "має рацію"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-25:i16:p2",
+            "target": "proud",
+            "meaningByLocale": {
+              "ru": "гордится",
+              "uk": "пишається"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-25:i16:p3",
+            "target": "ashamed",
+            "meaningByLocale": {
+              "ru": "стыдно",
+              "uk": "соромно"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-25:i16:p4",
+            "target": "surprised",
+            "meaningByLocale": {
+              "ru": "удивлён",
+              "uk": "здивований"
+            }
+          }
+        ],
+        "leftColumn": [
+          "right",
+          "proud",
+          "ashamed",
+          "surprised"
+        ],
+        "rightColumn": [
+          "має рацію",
+          "пишається",
+          "соромно",
+          "здивований"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ваша команда завершила складний проєкт. Ви всі пишаєтеся результатом. Скажіть це за всю команду однією фразою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Ваша команда завершила складний проєкт. Ви всі пишаєтеся результатом. Скажіть це за всю команду однією фразою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:i17:audio",
+          "transcript": "We are proud."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are proud.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4ea70c81a4a4d7f577ff7f8f78846dff207d6f364d95d13d0779d50738146e15"
+}

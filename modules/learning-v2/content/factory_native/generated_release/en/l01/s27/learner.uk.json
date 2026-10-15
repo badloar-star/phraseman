@@ -1,0 +1,1001 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть відповідь другові — ви вже прокинулися: «Я не сплю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть відповідь другові — ви вже прокинулися: «Я не сплю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am awake.",
+        "localizedMeaning": {
+          "ru": "Соберите ответ другу — вы уже проснулись: «Я не сплю»",
+          "uk": "Складіть відповідь другові — ви вже прокинулися: «Я не сплю»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "awake"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть відповідь другові — ви вже прокинулися: «Я не сплю»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am awake.`",
+              "uk": "тут потрібно `am` — `I am awake.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть почуте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i02:r1",
+          "text": "She is asleep."
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i02:r2",
+          "text": "He is asleep."
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i02:r3",
+          "text": "She is awake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i02:audio",
+          "transcript": "She is asleep."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i02:r1",
+            "targetText": "She is asleep.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i02:r2",
+            "targetText": "He is asleep.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i02:r3",
+            "targetText": "She is awake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `asleep`, а в этом варианте — `awake`.",
+              "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `awake`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Двоє друзів закінчили справи й можуть зараз допомогти. Вставте слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двоє друзів закінчили справи й можуть зараз допомогти. Вставте слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Двое друзей закончили дела и могут сейчас помочь. Вставьте слово",
+          "uk": "Двоє друзів закінчили справи й можуть зараз допомогти. Вставте слово"
+        },
+        "gappedTargetPhrase": "They ___ available.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-27:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Двоє друзів закінчили справи й можуть зараз допомогти. Вставте слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Двоє друзів закінчили справи й можуть зараз допомогти. Вставте слово",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Двоє друзів закінчили справи й можуть зараз допомогти. Вставте слово",
+            "feedbackByLocale": {
+              "ru": "`am` нужно после `I`. Здесь `They are`.",
+              "uk": "`am` потрібне після `I`. Тут `They are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-27:i04:p1",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "не спит",
+              "uk": "не спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i04:p2",
+            "target": "asleep",
+            "meaningByLocale": {
+              "ru": "спит",
+              "uk": "спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i04:p3",
+            "target": "available",
+            "meaningByLocale": {
+              "ru": "свободен, может уделить время",
+              "uk": "вільний, може приділити час"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i04:p4",
+            "target": "alone",
+            "meaningByLocale": {
+              "ru": "без других людей",
+              "uk": "без інших людей"
+            }
+          }
+        ],
+        "leftColumn": [
+          "awake",
+          "asleep",
+          "available",
+          "alone"
+        ],
+        "rightColumn": [
+          "не спить",
+          "спить",
+          "вільний, може приділити час",
+          "без інших людей"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i05:audio",
+          "transcript": "We are awake."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are awake.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "awake"
+        ],
+        "authoredDistractorTokens": [
+          "They"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `We` — `We are awake.`",
+              "uk": "тут потрібно `We` — `We are awake.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг іще спить. Складіть повідомлення про нього",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг іще спить. Складіть повідомлення про нього",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is asleep.",
+        "localizedMeaning": {
+          "ru": "Друг ещё спит. Соберите сообщение о нём",
+          "uk": "Друг іще спить. Складіть повідомлення про нього"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "asleep"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг іще спить. Складіть повідомлення про нього",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is asleep.`",
+              "uk": "тут потрібно `is` — `He is asleep.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви закінчили свої справи й можете зараз допомогти сестрі. Скажіть їй, що ви вільні",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "Ви закінчили свої справи й можете зараз допомогти сестрі. Скажіть їй, що ви вільні",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i07:audio",
+          "transcript": "I am available."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am available.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга вже прокинулася. Треба сказати лише, що вона не спить. Виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i08:r1",
+          "text": "awake"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i08:r2",
+          "text": "asleep"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i08:r3",
+          "text": "worried"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга вже прокинулася. Треба сказати лише, що вона не спить. Виберіть слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга уже проснулась. Нужно сказать только, что она не спит. Выберите слово",
+          "uk": "Подруга вже прокинулася. Треба сказати лише, що вона не спить. Виберіть слово"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-27:i08:r1",
+            "text": "awake"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i08:r2",
+            "text": "asleep"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i08:r3",
+            "text": "worried"
+          }
+        ],
+        "testedDimension": "Подруга вже прокинулася. Треба сказати лише, що вона не спить. Виберіть слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Подруга вже прокинулася. Треба сказати лише, що вона не спить. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "`asleep` — «спит». Подруга уже не спит: `awake`.",
+              "uk": "`asleep` — «спить». Подруга вже не спить: `awake`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Подруга вже прокинулася. Треба сказати лише, що вона не спить. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "`worried` — «волнуется». О тревоге ничего не сказано; здесь `awake`.",
+              "uk": "`worried` — «хвилюється». Про тривогу нічого не сказано; тут `awake`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i09:r1",
+          "text": "You are available."
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i09:r2",
+          "text": "We are available."
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i09:r3",
+          "text": "You are confused."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i09:audio",
+          "transcript": "You are available."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i09:r1",
+            "targetText": "You are available.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i09:r2",
+            "targetText": "We are available.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i09:r3",
+            "targetText": "You are confused.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `available`, а в этом варианте — `confused`.",
+              "uk": "У записі останнє слово — `available`, а в цьому варіанті — `confused`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте знайомі слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-27:i10:p1",
+            "target": "bored",
+            "meaningByLocale": {
+              "ru": "скучает",
+              "uk": "нудьгує"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i10:p2",
+            "target": "confused",
+            "meaningByLocale": {
+              "ru": "запутался",
+              "uk": "заплутався"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i10:p3",
+            "target": "worried",
+            "meaningByLocale": {
+              "ru": "волнуется",
+              "uk": "хвилюється"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i10:p4",
+            "target": "together",
+            "meaningByLocale": {
+              "ru": "вместе",
+              "uk": "разом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bored",
+          "confused",
+          "worried",
+          "together"
+        ],
+        "rightColumn": [
+          "нудьгує",
+          "заплутався",
+          "хвилюється",
+          "разом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть почуте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть почуте",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i11:audio",
+          "transcript": "They are asleep."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are asleep.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "asleep"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть почуте",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are asleep.`",
+              "uk": "тут потрібно `are` — `They are asleep.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга звільнилася й готова приділити час вашому питанню. Складіть фразу про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга звільнилася й готова приділити час вашому питанню. Складіть фразу про це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is available.",
+        "localizedMeaning": {
+          "ru": "Подруга освободилась и готова уделить время вашему вопросу. Соберите фразу об этом",
+          "uk": "Подруга звільнилася й готова приділити час вашому питанню. Складіть фразу про це"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "available"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга звільнилася й готова приділити час вашому питанню. Складіть фразу про це",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is available.`",
+              "uk": "тут потрібно `is` — `She is available.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг уже біля сусіднього будинку. Скажіть про нього: «Він поблизу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i13:audio"
+      ],
+      "accessibilityLabel": "Друг уже біля сусіднього будинку. Скажіть про нього: «Він поблизу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i13:audio",
+          "transcript": "He is nearby."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is nearby.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви відповідаєте на дзвінок і повідомляєте, що вже не спите. Вставте слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i14:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви відповідаєте на дзвінок і повідомляєте, що вже не спите. Вставте слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы отвечаете на звонок и сообщаете, что уже не спите. Вставьте слово",
+          "uk": "Ви відповідаєте на дзвінок і повідомляєте, що вже не спите. Вставте слово"
+        },
+        "gappedTargetPhrase": "I ___ awake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-27:i14:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Ви відповідаєте на дзвінок і повідомляєте, що вже не спите. Вставте слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви відповідаєте на дзвінок і повідомляєте, що вже не спите. Вставте слово",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `am`.",
+              "uk": "Після `I` потрібно `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви відповідаєте на дзвінок і повідомляєте, що вже не спите. Вставте слово",
+            "feedbackByLocale": {
+              "ru": "О себе начинаем с `I am`.",
+              "uk": "Про себе починаємо з `I am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть почуте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i15:r1",
+          "text": "We are together."
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i15:r2",
+          "text": "They are together."
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i15:r3",
+          "text": "We are available."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i15:audio",
+          "transcript": "We are together."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i15:r1",
+            "targetText": "We are together.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i15:r2",
+            "targetText": "They are together.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i15:r3",
+            "targetText": "We are available.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `together`, а в этом варианте — `available`.",
+              "uk": "У записі останнє слово — `together`, а в цьому варіанті — `available`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова та значення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова та значення",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-27:i16:p1",
+            "target": "nearby",
+            "meaningByLocale": {
+              "ru": "поблизости",
+              "uk": "поблизу"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i16:p2",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "не спит",
+              "uk": "не спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i16:p3",
+            "target": "asleep",
+            "meaningByLocale": {
+              "ru": "спит",
+              "uk": "спить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i16:p4",
+            "target": "available",
+            "meaningByLocale": {
+              "ru": "свободен, может уделить время",
+              "uk": "вільний, може приділити час"
+            }
+          }
+        ],
+        "leftColumn": [
+          "nearby",
+          "awake",
+          "asleep",
+          "available"
+        ],
+        "rightColumn": [
+          "поблизу",
+          "не спить",
+          "спить",
+          "вільний, може приділити час"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега просить вас із напарником допомогти перенести стіл. Ви обоє вільні й можете приділити йому час. Скажіть це за вас обох",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Колега просить вас із напарником допомогти перенести стіл. Ви обоє вільні й можете приділити йому час. Скажіть це за вас обох",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i17:audio",
+          "transcript": "We are available."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are available.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dc22943c28eed80c6a6e480eaf1fd4dc523bbd16fdfc2f0b91fcce5a9b03fe9b"
+}

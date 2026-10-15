@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-26",
   "learningOutcomeByLocale": {
-    "ru": "применение `It is` + погода и время",
-    "uk": "застосування `It is` + погода й час"
+    "ru": "описать своё и чужое состояние знакомыми am, is, are",
+    "uk": "описати свій і чужий стан знайомими am, is, are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`rainy` — дождливо",
-        "uk": "`rainy` — дощово"
+        "ru": "Мне скучно",
+        "uk": "Мені нудно"
       },
       "bodyByLocale": {
-        "ru": "`rainy` — «дождливо». Про погоду фраза начинается с `it`: `It is rainy`.\n\nПо-русски хватает одного слова: «дождливо». По-английски перед ним нужны ещё два — `It is`.\n\nЭто `it` ни на что не показывает — ни на небо, ни на улицу. Оно стоит там потому, что без него фраза не собирается.",
-        "uk": "`rainy` — «дощово». Про погоду фраза починається з `it`: `It is rainy`.\n\nУкраїнською вистачає одного слова: «дощово». Англійською перед ним потрібні ще два — `It is`.\n\nЦе `it` ні на що не вказує — ні на небо, ні на вулицю. Воно стоїть там тому, що без нього фраза не збирається."
+        "ru": "`bored` — «скучно». Вы уже полчаса смотрите на неподвижное табло: `I am bored` — «Мне скучно». Часы, кажется, тоже никуда не спешат. Про другого человека скажем `He is bored` или `She is bored`. Это состояние человека, которому неинтересно.",
+        "uk": "`bored` — «нудно». Ви вже пів години дивитеся на незмінне табло: `I am bored` — «Мені нудно». Годинник, здається, теж нікуди не поспішає. Про іншу людину скажемо `He is bored` або `She is bored`. Це стан людини, якій нецікаво."
       },
       "question": {
         "interactionId": "en:lesson-01:session-26:intro1:q",
         "promptByLocale": {
-          "ru": "Утро, вы отодвинули штору: по стеклу течёт. Скажите про погоду.",
-          "uk": "Ранок, ви відсунули штору: по склу тече. Скажіть про погоду."
+          "ru": "Вы устали ждать без дела и скучаете. Скажите о своём состоянии.",
+          "uk": "Ви втомилися чекати без діла й нудьгуєте. Скажіть про свій стан."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-26:intro1:r1",
-              "text": "It is rainy."
+              "text": "I am bored."
             },
             {
               "responseId": "en:lesson-01:session-26:intro1:r2",
-              "text": "Is rainy."
+              "text": "I is bored."
             },
             {
               "responseId": "en:lesson-01:session-26:intro1:r3",
-              "text": "It rainy."
+              "text": "He is bored."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-26:intro1:r1",
-              "text": "It is rainy."
+              "text": "I am bored."
             },
             {
               "responseId": "en:lesson-01:session-26:intro1:r2",
-              "text": "Is rainy."
+              "text": "I is bored."
             },
             {
               "responseId": "en:lesson-01:session-26:intro1:r3",
-              "text": "It rainy."
+              "text": "He is bored."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Утро, вы отодвинули штору: по стеклу течёт. Скажите про погоду.",
-          "uk": "Ранок, ви відсунули штору: по склу тече. Скажіть про погоду."
+          "ru": "Вы устали ждать без дела и скучаете. Скажите о своём состоянии.",
+          "uk": "Ви втомилися чекати без діла й нудьгуєте. Скажіть про свій стан."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`windy` — ветрено",
-        "uk": "`windy` — вітряно"
+        "ru": "Я запутался",
+        "uk": "Я заплутався"
       },
       "bodyByLocale": {
-        "ru": "`windy` — «ветрено». Ветер гнёт деревья, дверь вырывается из рук — это `It is windy`.\n\nХвост «-и» тут делает всю работу: `wind` — сам ветер, само явление; `windy` — какая на улице погода. Скажете `It is wind` — получится «оно есть ветер», и вас переспросят.",
-        "uk": "`windy` — «вітряно». Вітер гне дерева, двері вириваються з рук — це `It is windy`.\n\nХвостик «-і» тут робить усю роботу: `wind` — сам вітер, саме явище; `windy` — яка на вулиці погода. Скажете `It is wind` — вийде «воно є вітер», і вас перепитають."
+        "ru": "`confused` — «запутался, не понимаю». В билете один выход, на табло другой: `I am confused` — «Я запутался». Если вы с другом оба не понимаете, что происходит: `We are confused`. Это не скука, а непонимание.",
+        "uk": "`confused` — «заплутався, не розумію». У квитку один вихід, на табло інший: `I am confused` — «Я заплутався». Якщо ви з другом обоє не розумієте, що відбувається: `We are confused`. Це не нудьга, а нерозуміння."
       },
       "question": {
         "interactionId": "en:lesson-01:session-26:intro2:q",
         "promptByLocale": {
-          "ru": "Вы открыли форточку, и штору сдуло на пол. Скажите про погоду.",
-          "uk": "Ви відчинили кватирку, і штору здуло на підлогу. Скажіть про погоду."
+          "ru": "Вы с другом не понимаете, к какому выходу идти: информация противоречивая. Скажите за вас обоих.",
+          "uk": "Ви з другом не розумієте, до якого виходу йти: інформація суперечлива. Скажіть за вас обох."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-26:intro2:r1",
-              "text": "It is windy."
+              "text": "We are confused."
             },
             {
               "responseId": "en:lesson-01:session-26:intro2:r2",
-              "text": "It is wind."
+              "text": "We are bored."
             },
             {
               "responseId": "en:lesson-01:session-26:intro2:r3",
-              "text": "Is windy."
+              "text": "We is confused."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-26:intro2:r1",
-              "text": "It is windy."
+              "text": "We are confused."
             },
             {
               "responseId": "en:lesson-01:session-26:intro2:r2",
-              "text": "It is wind."
+              "text": "We are bored."
             },
             {
               "responseId": "en:lesson-01:session-26:intro2:r3",
-              "text": "Is windy."
+              "text": "We is confused."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы открыли форточку, и штору сдуло на пол. Скажите про погоду.",
-          "uk": "Ви відчинили кватирку, і штору здуло на підлогу. Скажіть про погоду."
+          "ru": "Вы с другом не понимаете, к какому выходу идти: информация противоречивая. Скажите за вас обоих.",
+          "uk": "Ви з другом не розумієте, до якого виходу йти: інформація суперечлива. Скажіть за вас обох."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`early` и `late` — часы",
-        "uk": "`early` і `late` — годинник"
+        "ru": "Я волнуюсь",
+        "uk": "Я хвилююся"
       },
       "bodyByLocale": {
-        "ru": "`early` — «рано». `late` — «поздно». Про часы говорят теми же двумя словами, что и про погоду: `It is early`, `It is late`.\n\nИ вот тут ловушка. `I am late` — «я опаздываю», виноваты вы. `It is late` — «поздно», виноваты часы. Одно слово, два разных виноватых.",
-        "uk": "`early` — «рано». `late` — «пізно». Про годинник говорять тими самими двома словами, що й про погоду: `It is early`, `It is late`.\n\nІ ось тут пастка. `I am late` — «я запізнююсь», винні ви. `It is late` — «пізно», винний годинник. Одне слово, двоє різних винних."
+        "ru": "`worried` — «волнуется, тревожится». Друг не отвечает, и вы боитесь, что с ним что-то случилось: `I am worried` — «Я волнуюсь». Про сестру, которая тревожится, скажем `She is worried`.",
+        "uk": "`worried` — «хвилюється, тривожиться». Друг не відповідає, і ви боїтеся, що з ним щось сталося: `I am worried` — «Я хвилююся». Про сестру, яка тривожиться, скажемо `She is worried`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-26:intro3:q",
         "promptByLocale": {
-          "ru": "Вы глянули на часы: полседьмого, выходить только через час. Скажите про время.",
-          "uk": "Ви глянули на годинник: пів на сьому, виходити аж за годину. Скажіть про час."
+          "ru": "Сестра боится, что потеряла паспорт. Скажите о её тревоге.",
+          "uk": "Сестра боїться, що загубила паспорт. Скажіть про її тривогу."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-26:intro3:r1",
-              "text": "It is early."
+              "text": "She is worried."
             },
             {
               "responseId": "en:lesson-01:session-26:intro3:r2",
-              "text": "I am early."
+              "text": "She is confused."
             },
             {
               "responseId": "en:lesson-01:session-26:intro3:r3",
-              "text": "It early."
+              "text": "She are worried."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-26:intro3:r1",
-              "text": "It is early."
+              "text": "She is worried."
             },
             {
               "responseId": "en:lesson-01:session-26:intro3:r2",
-              "text": "I am early."
+              "text": "She is confused."
             },
             {
               "responseId": "en:lesson-01:session-26:intro3:r3",
-              "text": "It early."
+              "text": "She are worried."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы глянули на часы: полседьмого, выходить только через час. Скажите про время.",
-          "uk": "Ви глянули на годинник: пів на сьому, виходити аж за годину. Скажіть про час."
+          "ru": "Сестра боится, что потеряла паспорт. Скажите о её тревоге.",
+          "uk": "Сестра боїться, що загубила паспорт. Скажіть про її тривогу."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "967f3baf278c8ba40c9d3229b99a5a33e415f10f8b59d5f4b5eae566d6b9fd04"
+  "introFingerprint": "52d5282f8fddb89d0e24caf0448ce20a86b91ffd18ee915c352943421f2d8beb"
 }

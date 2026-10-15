@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-17:i01",
-    "correctText": "tall",
+    "correctText": "You are welcome.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i02",
-    "correctText": "tall",
+    "correctText": "You are safe.",
     "correctResponseId": "en:lesson-01:session-17:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-17:i03",
-    "correctText": "nice",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-17:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-17:i04",
-    "correctText": "nice",
-    "correctResponseId": "en:lesson-01:session-17:i04:r1"
+    "correctText": "en:lesson-01:session-17:i04:p1=welcome\nen:lesson-01:session-17:i04:p2=safe\nen:lesson-01:session-17:i04:p3=right\nen:lesson-01:session-17:i04:p4=ready",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i05",
-    "correctText": "He is tall.",
+    "correctText": "We are safe.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i06",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-17:i06:r1"
+    "correctText": "They are safe.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i07",
-    "correctText": "friendly",
+    "correctText": "You are right.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i08",
-    "correctText": "new",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-17:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-17:i09",
-    "correctText": "She is friendly.",
-    "correctResponseId": null
+    "correctText": "They are welcome.",
+    "correctResponseId": "en:lesson-01:session-17:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-17:i10",
-    "correctText": "nice",
-    "correctResponseId": "en:lesson-01:session-17:i10:r1"
+    "correctText": "en:lesson-01:session-17:i10:p1=tall\nen:lesson-01:session-17:i10:p2=short\nen:lesson-01:session-17:i10:p3=young\nen:lesson-01:session-17:i10:p4=happy",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i11",
-    "correctText": "tired",
+    "correctText": "You are ready.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i12",
-    "correctText": "tired",
-    "correctResponseId": "en:lesson-01:session-17:i12:r1"
+    "correctText": "We are welcome.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i13",
-    "correctText": "en:lesson-01:session-17:i13:p1=tall\nen:lesson-01:session-17:i13:p2=nice\nen:lesson-01:session-17:i13:p3=new\nen:lesson-01:session-17:i13:p4=friendly",
+    "correctText": "We are right.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i14",
-    "correctText": "quiet",
-    "correctResponseId": null
+    "correctText": "safe",
+    "correctResponseId": "en:lesson-01:session-17:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-17:i15",
-    "correctText": "He is quiet.",
-    "correctResponseId": null
+    "correctText": "It is easy.",
+    "correctResponseId": "en:lesson-01:session-17:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-17:i16",
-    "correctText": "kind",
-    "correctResponseId": "en:lesson-01:session-17:i16:r1"
+    "correctText": "en:lesson-01:session-17:i16:p1=easy\nen:lesson-01:session-17:i16:p2=difficult\nen:lesson-01:session-17:i16:p3=important\nen:lesson-01:session-17:i16:p4=here",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i17",
-    "correctText": "He is tired.",
+    "correctText": "You are welcome.",
     "correctResponseId": null
   }
 ]

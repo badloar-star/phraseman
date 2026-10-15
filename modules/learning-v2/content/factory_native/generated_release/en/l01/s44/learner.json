@@ -7,75 +7,43 @@
       "interactionId": "en:lesson-01:session-44:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — что вы услышали?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-44:i01:r1",
-          "text": "I'm tired."
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i01:r2",
-          "text": "I tired."
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i01:r3",
-          "text": "Am tired."
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вам интересно разобраться в устройстве машины. Соберите фразу о себе",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-44:i01:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — что вы услышали?",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам интересно разобраться в устройстве машины. Соберите фразу о себе",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i01:audio",
-          "transcript": "I'm tired."
+        "family": "phrase_builder",
+        "targetPhrase": "I am curious.",
+        "localizedMeaning": {
+          "ru": "Вам интересно разобраться в устройстве машины. Соберите фразу о себе",
+          "uk": "Вам цікаво розібратися в будові машини. Складіть фразу про себе"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-44:i01:r1",
-            "targetText": "I'm tired.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i01:r2",
-            "targetText": "I tired.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i01:r3",
-            "targetText": "Am tired.",
-            "meaningByLocale": null
-          }
+        "orderedTokens": [
+          "I",
+          "am",
+          "curious"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-44:i01:r2",
+            "responseId": "en:lesson-01:session-44:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что вы услышали?",
+            "testedDimension": "Вам интересно разобраться в устройстве машины. Соберите фразу о себе",
             "feedbackByLocale": {
-              "ru": "Здесь `am` пропало совсем. В записи оно есть — спрятано внутри `I'm`.",
-              "uk": "Тут `am` зникло зовсім. У записі воно є — сховане всередині `I'm`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i01:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — что вы услышали?",
-            "feedbackByLocale": {
-              "ru": "Пропало `I`. Без него непонятно, кто устал.",
-              "uk": "Зникло `I`. Без нього незрозуміло, хто втомився."
+              "ru": "здесь нужно `am` — `I am curious.`",
+              "uk": "тут потрібно `am` — `I am curious.`"
             }
           }
         ],
-        "isWordCard": false,
-        "wordCard": null
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -83,68 +51,75 @@
       "interactionId": "en:lesson-01:session-44:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы зеваете весь вечер",
+      "prompt": "Послушайте и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-44:i02:r1",
-          "text": "tired"
+          "text": "She is curious."
         },
         {
           "responseId": "en:lesson-01:session-44:i02:r2",
-          "text": "free"
+          "text": "He is curious."
         },
         {
           "responseId": "en:lesson-01:session-44:i02:r3",
-          "text": "wrong"
+          "text": "She is sleepy."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы зеваете весь вечер",
+      "audioTargetIds": [
+        "en:lesson-01:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите услышанное",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы зеваете весь вечер",
-          "uk": "Вставте слово — ви позіхаєте цілий вечір"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-44:i02:audio",
+          "transcript": "She is curious."
         },
-        "gappedTargetPhrase": "I'm ___ .",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-44:i02:r1",
-            "text": "tired"
+            "targetText": "She is curious.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-44:i02:r2",
-            "text": "free"
+            "targetText": "He is curious.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-44:i02:r3",
-            "text": "wrong"
+            "targetText": "She is sleepy.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Вставьте слово — вы зеваете весь вечер",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-44:i02:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы зеваете весь вечер",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "«Свободен». Про усталость это ничего не говорит.",
-              "uk": "«Вільний». Про втому це нічого не каже."
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
             }
           },
           {
             "responseId": "en:lesson-01:session-44:i02:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы зеваете весь вечер",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "«Не прав». Вы не спорите, вы зеваете.",
-              "uk": "«Не має рації». Ви не сперечаєтесь, ви позіхаєте."
+              "ru": "В записи последнее слово — `curious`, а в этом варианте — `sleepy`.",
+              "uk": "У записі останнє слово — `curious`, а в цьому варіанті — `sleepy`."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -152,75 +127,68 @@
       "interactionId": "en:lesson-01:session-44:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — про человека или про вещь?",
+      "prompt": "Олег хочет узнать, как работает экспонат. Дополните описание его любопытства",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-44:i03:r1",
-          "text": "He's cold."
+          "text": "is"
         },
         {
           "responseId": "en:lesson-01:session-44:i03:r2",
-          "text": "It's cold."
+          "text": "am"
         },
         {
           "responseId": "en:lesson-01:session-44:i03:r3",
-          "text": "They're cold."
+          "text": "are"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-44:i03:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — про человека или про вещь?",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Олег хочет узнать, как работает экспонат. Дополните описание его любопытства",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i03:audio",
-          "transcript": "He's cold."
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Олег хочет узнать, как работает экспонат. Дополните описание его любопытства",
+          "uk": "Олег хоче дізнатися, як працює експонат. Доповніть опис його допитливості"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "gappedTargetPhrase": "He ___ curious.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-01:session-44:i03:r1",
-            "targetText": "He's cold.",
-            "meaningByLocale": null
+            "text": "is"
           },
           {
             "responseId": "en:lesson-01:session-44:i03:r2",
-            "targetText": "It's cold.",
-            "meaningByLocale": null
+            "text": "am"
           },
           {
             "responseId": "en:lesson-01:session-44:i03:r3",
-            "targetText": "They're cold.",
-            "meaningByLocale": null
+            "text": "are"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
+        "testedDimension": "Олег хочет узнать, как работает экспонат. Дополните описание его любопытства",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-44:i03:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — про человека или",
+            "testedDimension": "Олег хочет узнать, как работает экспонат. Дополните описание его любопытства",
             "feedbackByLocale": {
-              "ru": "В записи первое слово другое — там `he's`.",
-              "uk": "У записі перше слово інше — там `he's`."
+              "ru": "После `He` нужно `is`.",
+              "uk": "Після `He` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-01:session-44:i03:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — про человека или",
+            "testedDimension": "Олег хочет узнать, как работает экспонат. Дополните описание его любопытства",
             "feedbackByLocale": {
-              "ru": "В записи первое слово другое — там `he's`, про одного.",
-              "uk": "У записі перше слово інше — там `he's`, про одного."
+              "ru": "Здесь `He is curious`.",
+              "uk": "Тут `He is curious`."
             }
           }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        ]
       },
       "scriptedAlternate": null
     },
@@ -228,417 +196,60 @@
       "interactionId": "en:lesson-01:session-44:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «пиво холодное»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «пиво холодное»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It's cold.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «пиво холодное»",
-          "uk": "Складіть фразу — «пиво холодне»"
-        },
-        "orderedTokens": [
-          "It's",
-          "cold"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «они не правы»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-44:i05:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите — «они не правы»",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i05:audio",
-          "transcript": "They're wrong."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They're wrong.",
-        "orderedTokens": [
-          "They're",
-          "wrong"
-        ],
-        "authoredDistractorTokens": [
-          "are",
-          "cold"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:i06",
-      "ordinal": 9,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — приятель весь вечер спорит и путает факты",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-44:i06:r1",
-          "text": "wrong"
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i06:r2",
-          "text": "cold"
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i06:r3",
-          "text": "free"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — приятель весь вечер спорит и путает факты",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — приятель весь вечер спорит и путает факты",
-          "uk": "Вставте слово — приятель цілий вечір сперечається і плутає факти"
-        },
-        "gappedTargetPhrase": "He's ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-44:i06:r1",
-            "text": "wrong"
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i06:r2",
-            "text": "cold"
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i06:r3",
-            "text": "free"
-          }
-        ],
-        "testedDimension": "Вставьте слово — приятель весь вечер спо",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-44:i06:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — приятель весь вечер спо",
-            "feedbackByLocale": {
-              "ru": "«Замёрз». Речь не о температуре, а о том, что он ошибается.",
-              "uk": "«Змерз». Ідеться не про температуру, а про те, що він помиляється."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i06:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — приятель весь вечер спо",
-            "feedbackByLocale": {
-              "ru": "«Свободен». Не про спор.",
-              "uk": "«Вільний». Не про суперечку."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "sound_contrast",
-      "inputMode": "single_choice",
-      "prompt": "Различите звуки — какое из двух про «холодно»?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-44:i07:r1",
-          "text": "cold"
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i07:r2",
-          "text": "called"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-44:i07:audioA",
-        "en:lesson-01:session-44:i07:audioB"
-      ],
-      "accessibilityLabel": "Различите звуки — какое из двух про «холодно»?",
-      "modePayload": {
-        "family": "sound_contrast",
-        "contrastA": "cold",
-        "contrastB": "called",
-        "ipaA": "",
-        "ipaB": "",
-        "audioA": {
-          "audioTargetId": "en:lesson-01:session-44:i07:audioA",
-          "transcript": "cold"
-        },
-        "audioB": {
-          "audioTargetId": "en:lesson-01:session-44:i07:audioB",
-          "transcript": "called"
-        },
-        "testedPhoneticContrast": "Различите звуки — какое из двух про «хол",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-44:i07:r2",
-            "correct": false,
-            "testedDimension": "Различите звуки — какое из двух про «хол",
-            "feedbackByLocale": {
-              "ru": "В `called` губы округлены и звук тянется на одной ноте. В `cold` он съезжает: начинается как «о» и уходит к «у».",
-              "uk": "У `called` губи округлені і звук тягнеться на одній ноті. У `cold` він з'їжджає: починається як «о» і йде до «у»."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вас зовут за столик, дел у вас нет, вы свободны",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-44:i08:r1",
-          "text": "free"
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i08:r2",
-          "text": "tired"
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i08:r3",
-          "text": "cold"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вас зовут за столик, дел у вас нет, вы свободны",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вас зовут за столик, дел у вас нет, вы свободны",
-          "uk": "Вставте слово — вас кличуть за столик, справ у вас немає, ви вільні"
-        },
-        "gappedTargetPhrase": "I'm ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-44:i08:r1",
-            "text": "free"
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i08:r2",
-            "text": "tired"
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i08:r3",
-            "text": "cold"
-          }
-        ],
-        "testedDimension": "Вставьте слово — вас зовут за столик, де",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-44:i08:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вас зовут за столик, де",
-            "feedbackByLocale": {
-              "ru": "«Устал». Тогда бы вы уходили, а не садились.",
-              "uk": "«Втомлений». Тоді б ви йшли додому, а не сідали."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i08:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вас зовут за столик, де",
-            "feedbackByLocale": {
-              "ru": "«Замёрз». Про занятость это ничего не говорит.",
-              "uk": "«Змерз». Про зайнятість це нічого не каже."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вас зовут за столик, и дел у вас нет",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вас зовут за столик, и дел у вас нет",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I'm free.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вас зовут за столик, и дел у вас нет",
-          "uk": "Складіть фразу — вас кличуть за столик, і справ у вас немає"
-        },
-        "orderedTokens": [
-          "I'm",
-          "free"
-        ],
-        "authoredDistractorTokens": [
-          "am"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — что вы услышали?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-44:i10:r1",
-          "text": "It's cold."
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i10:r2",
-          "text": "He's cold."
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i10:r3",
-          "text": "It cold."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-44:i10:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — что вы услышали?",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i10:audio",
-          "transcript": "It's cold."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-44:i10:r1",
-            "targetText": "It's cold.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i10:r2",
-            "targetText": "He's cold.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i10:r3",
-            "targetText": "It cold.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-44:i10:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — что вы услышали?",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово `it's` — про вещь, не про человека.",
-              "uk": "У записі перше слово `it's` — про річ, не про людину."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i10:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — что вы услышали?",
-            "feedbackByLocale": {
-              "ru": "Скрепка потерялась целиком, а в записи она есть.",
-              "uk": "Скріпка загубилася повністю, а в записі вона є."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:i11",
-      "ordinal": 14,
-      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-44:i11:p1",
-            "target": "tired",
+            "pairId": "en:lesson-01:session-44:i04:p1",
+            "target": "curious",
             "meaningByLocale": {
-              "ru": "устал",
-              "uk": "втомлений"
+              "ru": "хочет узнать",
+              "uk": "хоче дізнатися"
             }
           },
           {
-            "pairId": "en:lesson-01:session-44:i11:p2",
-            "target": "cold",
+            "pairId": "en:lesson-01:session-44:i04:p2",
+            "target": "sleepy",
             "meaningByLocale": {
-              "ru": "холодный",
-              "uk": "холодний"
+              "ru": "хочется спать",
+              "uk": "хочеться спати"
             }
           },
           {
-            "pairId": "en:lesson-01:session-44:i11:p3",
-            "target": "wrong",
+            "pairId": "en:lesson-01:session-44:i04:p3",
+            "target": "patient",
             "meaningByLocale": {
-              "ru": "не прав",
-              "uk": "не має рації"
+              "ru": "терпеливый",
+              "uk": "терплячий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-44:i11:p4",
-            "target": "free",
+            "pairId": "en:lesson-01:session-44:i04:p4",
+            "target": "polite",
             "meaningByLocale": {
-              "ru": "свободен",
-              "uk": "вільний"
+              "ru": "вежливый",
+              "uk": "ввічливий"
             }
           }
         ],
         "leftColumn": [
-          "tired",
-          "cold",
-          "wrong",
-          "free"
+          "curious",
+          "sleepy",
+          "patient",
+          "polite"
         ],
         "rightColumn": [
-          "устал",
-          "холодный",
-          "не прав",
-          "свободен"
+          "хочет узнать",
+          "хочется спать",
+          "терпеливый",
+          "вежливый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -655,124 +266,457 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-44:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-01:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите короткую фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-44:i05:audio",
+          "transcript": "We're curious."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We're curious.",
+        "orderedTokens": [
+          "We're",
+          "curious"
+        ],
+        "authoredDistractorTokens": [
+          "They're"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `We're` — `We're curious.`",
+              "uk": "тут потрібно `We're` — `We're curious.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Двое друзей хотят узнать историю изобретения. Вы рассказываете о них. Назовите их любопытство",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двое друзей хотят узнать историю изобретения. Вы рассказываете о них. Назовите их любопытство",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are curious.",
+        "localizedMeaning": {
+          "ru": "Двое друзей хотят узнать историю изобретения. Вы рассказываете о них. Назовите их любопытство",
+          "uk": "Двоє друзів хочуть дізнатися історію винаходу. Ви розповідаєте про них. Назвіть їхню цікавість"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "curious"
+        ],
+        "authoredDistractorTokens": [
+          "We"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Двое друзей хотят узнать историю изобретения. Вы рассказываете о них. Назовите их любопытство",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `They` — `They are curious.`",
+              "uk": "тут потрібно `They` — `They are curious.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коротко скажите о себе: вам любопытно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Коротко скажите о себе: вам любопытно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-44:i07:audio",
+          "transcript": "I'm curious."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm curious.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — про компанию за соседним столом",
+      "prompt": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-44:i12:r1",
-          "text": "are"
+          "responseId": "en:lesson-01:session-44:i08:r1",
+          "text": "sleepy"
         },
         {
-          "responseId": "en:lesson-01:session-44:i12:r2",
-          "text": "is"
+          "responseId": "en:lesson-01:session-44:i08:r2",
+          "text": "curious"
         },
         {
-          "responseId": "en:lesson-01:session-44:i12:r3",
-          "text": "am"
+          "responseId": "en:lesson-01:session-44:i08:r3",
+          "text": "patient"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — про компанию за соседним столом",
+      "accessibilityLabel": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — про компанию за соседним столом",
-          "uk": "Вставте скріпку — про компанію за сусіднім столом"
+          "ru": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
+          "uk": "Олег каже, що його хилить на сон. Назвіть саме бажання спати"
         },
-        "gappedTargetPhrase": "They ___ wrong.",
+        "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-44:i12:r1",
-            "text": "are"
+            "responseId": "en:lesson-01:session-44:i08:r1",
+            "text": "sleepy"
           },
           {
-            "responseId": "en:lesson-01:session-44:i12:r2",
-            "text": "is"
+            "responseId": "en:lesson-01:session-44:i08:r2",
+            "text": "curious"
           },
           {
-            "responseId": "en:lesson-01:session-44:i12:r3",
-            "text": "am"
+            "responseId": "en:lesson-01:session-44:i08:r3",
+            "text": "patient"
           }
         ],
-        "testedDimension": "Вставьте скрепку — про компанию за сосед",
+        "testedDimension": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-44:i12:r2",
+            "responseId": "en:lesson-01:session-44:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — про компанию за сосед",
+            "testedDimension": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
             "feedbackByLocale": {
-              "ru": "`is` работает с одним человеком или одной вещью. Их там несколько.",
-              "uk": "`is` працює з однією людиною або однією річчю. Їх там кілька."
+              "ru": "`curious` — «любопытный». Здесь нужно `sleepy`: хочется спать.",
+              "uk": "`curious` — «допитливий». Тут потрібно `sleepy`: хочеться спати."
             }
           },
           {
-            "responseId": "en:lesson-01:session-44:i12:r3",
+            "responseId": "en:lesson-01:session-44:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — про компанию за сосед",
+            "testedDimension": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
             "feedbackByLocale": {
-              "ru": "`am` бывает только с `I`.",
-              "uk": "`am` буває тільки з `I`."
+              "ru": "`patient` — «терпеливый». Желание спать — `sleepy`.",
+              "uk": "`patient` — «терплячий». Бажання спати — `sleepy`."
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите услышанное",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-44:i09:r1",
+          "text": "I am sleepy."
+        },
+        {
+          "responseId": "en:lesson-01:session-44:i09:r2",
+          "text": "I am curious."
+        },
+        {
+          "responseId": "en:lesson-01:session-44:i09:r3",
+          "text": "I am patient."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-44:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-44:i09:audio",
+          "transcript": "I am sleepy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-44:i09:r1",
+            "targetText": "I am sleepy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i09:r2",
+            "targetText": "I am curious.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i09:r3",
+            "targetText": "I am patient.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите услышанное",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `curious`.",
+              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `curious`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите услышанное",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `patient`.",
+              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `patient`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините короткие начала с полными",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините короткие начала с полными",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-44:i10:p1",
+            "target": "I'm",
+            "meaningByLocale": {
+              "ru": "I am",
+              "uk": "I am"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-44:i10:p2",
+            "target": "He's",
+            "meaningByLocale": {
+              "ru": "He is",
+              "uk": "He is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-44:i10:p3",
+            "target": "She's",
+            "meaningByLocale": {
+              "ru": "She is",
+              "uk": "She is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-44:i10:p4",
+            "target": "You're",
+            "meaningByLocale": {
+              "ru": "You are",
+              "uk": "You are"
+            }
+          }
+        ],
+        "leftColumn": [
+          "I'm",
+          "He's",
+          "She's",
+          "You're"
+        ],
+        "rightColumn": [
+          "I am",
+          "He is",
+          "She is",
+          "You are"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите короткую фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-44:i11:audio",
+          "transcript": "She's curious."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She's curious.",
+        "orderedTokens": [
+          "She's",
+          "curious"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `She's` — `She's curious.`",
+              "uk": "тут потрібно `She's` — `She's curious.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы и Маша хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы и Маша хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are curious.",
+        "localizedMeaning": {
+          "ru": "Вы и Маша хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
+          "uk": "Ви та Маша хочете дізнатися призначення незвичного приладу. Складіть фразу від вас двох"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "curious"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы и Маша хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `We are curious.`",
+              "uk": "тут потрібно `are` — `We are curious.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-44:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «он замёрз», внимательно: про мужчину",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «он замёрз», внимательно: про мужчину",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He's cold.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «он замёрз», внимательно: про мужчину",
-          "uk": "Складіть фразу — «він змерз», уважно: про чоловіка"
-        },
-        "orderedTokens": [
-          "He's",
-          "cold"
-        ],
-        "authoredDistractorTokens": [
-          "It's"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:i14:s01",
-      "ordinal": 17,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 1 из 2",
+      "prompt": "Друг хочет расспросить экскурсовода о каждом механизме. Обратитесь к другу и назовите его любопытным",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-44:i14:s01:audio"
+        "en:lesson-01:session-44:i13:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 2",
+      "accessibilityLabel": "Друг хочет расспросить экскурсовода о каждом механизме. Обратитесь к другу и назовите его любопытным",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i14:s01:audio",
-          "transcript": "I'm tired."
+          "audioTargetId": "en:lesson-01:session-44:i13:audio",
+          "transcript": "You are curious."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm tired.",
+        "targetPhrase": "You are curious.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -786,157 +730,255 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-44:i14:s02",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 2 из 2",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-44:i14:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 2",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i14:s02:audio",
-          "transcript": "It's cold."
+      "interactionId": "en:lesson-01:session-44:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Двое посетителей хотят разобраться в устройстве прибора. Скажите об их любопытстве",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-44:i14:r1",
+          "text": "are"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "It's cold.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-01:session-44:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-44:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двое посетителей хотят разобраться в устройстве прибора. Скажите об их любопытстве",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Двое посетителей хотят разобраться в устройстве прибора. Скажите об их любопытстве",
+          "uk": "Двоє відвідувачів хочуть розібратися в будові приладу. Скажіть про їхню цікавість"
+        },
+        "gappedTargetPhrase": "They ___ curious.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Двое посетителей хотят разобраться в устройстве прибора. Скажите об их любопытстве",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i14:r2",
+            "correct": false,
+            "testedDimension": "Двое посетителей хотят разобраться в устройстве прибора. Скажите об их любопытстве",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i14:r3",
+            "correct": false,
+            "testedDimension": "Двое посетителей хотят разобраться в устройстве прибора. Скажите об их любопытстве",
+            "feedbackByLocale": {
+              "ru": "Здесь `They are curious`.",
+              "uk": "Тут `They are curious`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-44:i15",
-      "ordinal": 19,
+      "ordinal": 18,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — Лина и её коллега говорят, что вы ошиблись, но правы вы",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — Лина и её коллега говорят, что вы ошиблись, но правы вы",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "They're wrong.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — Лина и её коллега говорят, что вы ошиблись, но правы вы",
-          "uk": "Складіть фразу — Ліна та її колега кажуть, що ви помилилися, але маєте рацію ви"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите короткую фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-44:i15:r1",
+          "text": "They're sleepy."
         },
-        "orderedTokens": [
-          "They're",
-          "wrong"
+        {
+          "responseId": "en:lesson-01:session-44:i15:r2",
+          "text": "We're sleepy."
+        },
+        {
+          "responseId": "en:lesson-01:session-44:i15:r3",
+          "text": "They're curious."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите короткую фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-44:i15:audio",
+          "transcript": "They're sleepy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-44:i15:r1",
+            "targetText": "They're sleepy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i15:r2",
+            "targetText": "We're sleepy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i15:r3",
+            "targetText": "They're curious.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [
-          "They"
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
+              "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `curious`.",
+              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `curious`."
+            }
+          }
         ],
-        "slotFeedback": []
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-44:i16:s01",
+      "interactionId": "en:lesson-01:session-44:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините формы и слова с соответствиями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините формы и слова с соответствиями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-44:i16:p1",
+            "target": "We're",
+            "meaningByLocale": {
+              "ru": "We are",
+              "uk": "We are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-44:i16:p2",
+            "target": "They're",
+            "meaningByLocale": {
+              "ru": "They are",
+              "uk": "They are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-44:i16:p3",
+            "target": "curious",
+            "meaningByLocale": {
+              "ru": "любопытный",
+              "uk": "допитливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-44:i16:p4",
+            "target": "sleepy",
+            "meaningByLocale": {
+              "ru": "сонный",
+              "uk": "сонний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "We're",
+          "They're",
+          "curious",
+          "sleepy"
+        ],
+        "rightColumn": [
+          "We are",
+          "They are",
+          "любопытный",
+          "сонный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 1 из 3",
+      "prompt": "Брат получил загадочную посылку и хочет узнать, что внутри. Расскажите сестре о его любопытстве",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-44:i16:s01:audio"
+        "en:lesson-01:session-44:i17:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
+      "accessibilityLabel": "Брат получил загадочную посылку и хочет узнать, что внутри. Расскажите сестре о его любопытстве",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i16:s01:audio",
-          "transcript": "It's cold."
+          "audioTargetId": "en:lesson-01:session-44:i17:audio",
+          "transcript": "He is curious."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's cold.",
+        "targetPhrase": "He is curious.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:i16:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 2 из 3",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-44:i16:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i16:s02:audio",
-          "transcript": "I'm tired."
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I'm tired.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-44:i16:s03",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 3 из 3",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-44:i16:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i16:s03:audio",
-          "transcript": "They're wrong."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "They're wrong.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -947,11 +989,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4fe3e8a72188b3ad43b4bd9299723beeb2669e37651f24eb1e07ac7a232fa292"
+  "learnerFingerprint": "57a56fd62c4e76aed50191c28646a080e96ea9864d9b11fe53b3f35caed6fb31"
 }

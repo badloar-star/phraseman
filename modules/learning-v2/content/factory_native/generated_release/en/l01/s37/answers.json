@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-37:i01",
-    "correctText": "am",
-    "correctResponseId": "en:lesson-01:session-37:i01:r1"
+    "correctText": "I am lonely.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i02",
-    "correctText": "are",
+    "correctText": "She is lonely.",
     "correctResponseId": "en:lesson-01:session-37:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-37:i03",
-    "correctText": "hot",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-37:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-37:i04",
-    "correctText": "She is cold.",
+    "correctText": "en:lesson-01:session-37:i04:p1=lonely\nen:lesson-01:session-37:i04:p2=local\nen:lesson-01:session-37:i04:p3=foreign\nen:lesson-01:session-37:i04:p4=online",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i05",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-37:i05:r1"
+    "correctText": "They are lonely.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i06",
-    "correctText": "en:lesson-01:session-37:i06:p1=tired\nen:lesson-01:session-37:i06:p2=happy\nen:lesson-01:session-37:i06:p3=cold\nen:lesson-01:session-37:i06:p4=hot",
+    "correctText": "We are lonely.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i07",
-    "correctText": "They are tired.",
+    "correctText": "I'm lonely.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i08",
-    "correctText": "is",
+    "correctText": "local",
     "correctResponseId": "en:lesson-01:session-37:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-37:i09",
-    "correctText": "I am not cold.",
-    "correctResponseId": null
+    "correctText": "It is online.",
+    "correctResponseId": "en:lesson-01:session-37:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-37:i10",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-37:i10:r1"
+    "correctText": "en:lesson-01:session-37:i10:p1=I'm\nen:lesson-01:session-37:i10:p2=She's\nen:lesson-01:session-37:i10:p3=We're\nen:lesson-01:session-37:i10:p4=They're",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i11",
-    "correctText": "hot",
-    "correctResponseId": "en:lesson-01:session-37:i11:r1"
+    "correctText": "He's lonely.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i12",
-    "correctText": "We are cold.",
+    "correctText": "It is foreign.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i13",
-    "correctText": "hot",
-    "correctResponseId": "en:lesson-01:session-37:i13:r1"
+    "correctText": "They are lonely.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-37:i14",
-    "correctText": "I am happy.",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-37:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i15",
+    "correctText": "We're lonely.",
+    "correctResponseId": "en:lesson-01:session-37:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i16",
+    "correctText": "en:lesson-01:session-37:i16:p1=online\nen:lesson-01:session-37:i16:p2=lonely\nen:lesson-01:session-37:i16:p3=foreign\nen:lesson-01:session-37:i16:p4=local",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-37:i15:s01",
-    "correctText": "She is cold.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-37:i15:s02",
-    "correctText": "I am not cold.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-37:i16:s01",
-    "correctText": "I am tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-37:i16:s02",
-    "correctText": "He is tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-37:i16:s03",
-    "correctText": "It is hot.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-37:i16:s04",
-    "correctText": "We are happy.",
+    "interactionId": "en:lesson-01:session-37:i17",
+    "correctText": "She is lonely.",
     "correctResponseId": null
   }
 ]

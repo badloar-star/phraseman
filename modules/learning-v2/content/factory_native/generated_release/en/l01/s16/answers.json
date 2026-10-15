@@ -1,112 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-16:i01",
-    "correctText": "kind",
-    "correctResponseId": "en:lesson-01:session-16:i01:r1"
+    "correctText": "I am kind.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i02",
-    "correctText": "kind",
+    "correctText": "He is short.",
     "correctResponseId": "en:lesson-01:session-16:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-16:i03",
-    "correctText": "honest",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-16:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-16:i04",
-    "correctText": "You are honest.",
+    "correctText": "en:lesson-01:session-16:i04:p1=tall\nen:lesson-01:session-16:i04:p2=short\nen:lesson-01:session-16:i04:p3=young\nen:lesson-01:session-16:i04:p4=old",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i05",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-16:i05:r1"
+    "correctText": "It is open.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i06",
-    "correctText": "You are not tired.",
+    "correctText": "It is clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i07",
-    "correctText": "en:lesson-01:session-16:i07:p1=kind\nen:lesson-01:session-16:i07:p2=honest\nen:lesson-01:session-16:i07:p3=calm\nen:lesson-01:session-16:i07:p4=tired",
+    "correctText": "I am strong.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i08",
-    "correctText": "wrong",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-16:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-16:i09",
-    "correctText": "You are not wrong.",
-    "correctResponseId": null
+    "correctText": "She is quiet.",
+    "correctResponseId": "en:lesson-01:session-16:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-16:i10",
-    "correctText": "brave",
-    "correctResponseId": "en:lesson-01:session-16:i10:r1"
+    "correctText": "en:lesson-01:session-16:i10:p1=kind\nen:lesson-01:session-16:i10:p2=funny\nen:lesson-01:session-16:i10:p3=smart\nen:lesson-01:session-16:i10:p4=strong",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i11",
-    "correctText": "sad",
-    "correctResponseId": "en:lesson-01:session-16:i11:r1"
+    "correctText": "It is important.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i12",
-    "correctText": "brave",
-    "correctResponseId": "en:lesson-01:session-16:i12:r1"
+    "correctText": "It is big.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i13",
-    "correctText": "You are lucky.",
+    "correctText": "She is helpful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i14",
-    "correctText": "tired",
+    "correctText": "closed",
     "correctResponseId": "en:lesson-01:session-16:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-16:i15",
-    "correctText": "en:lesson-01:session-16:i15:p1=brave\nen:lesson-01:session-16:i15:p2=lucky\nen:lesson-01:session-16:i15:p3=wrong\nen:lesson-01:session-16:i15:p4=sad",
+    "correctText": "It is difficult.",
+    "correctResponseId": "en:lesson-01:session-16:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i16",
+    "correctText": "en:lesson-01:session-16:i16:p1=loud\nen:lesson-01:session-16:i16:p2=quiet\nen:lesson-01:session-16:i16:p3=friendly\nen:lesson-01:session-16:i16:p4=helpful",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-16:i16:s01",
-    "correctText": "You are not sad.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-16:i16:s02",
-    "correctText": "You are lucky.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-16:i17:s01",
-    "correctText": "You are kind.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-16:i17:s02",
-    "correctText": "You are honest.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-16:i17:s03",
-    "correctText": "You are brave.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-16:i17:s04",
-    "correctText": "You are calm.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-16:i17:s05",
-    "correctText": "You are not wrong.",
+    "interactionId": "en:lesson-01:session-16:i17",
+    "correctText": "It is small.",
     "correctResponseId": null
   }
 ]

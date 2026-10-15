@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-01:session-38:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — lost",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви відчуваєте брак сил після дороги. Складіть фразу про себе",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — lost",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви відчуваєте брак сил після дороги. Складіть фразу про себе",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i01:audio",
-          "transcript": "lost"
+        "family": "phrase_builder",
+        "targetPhrase": "I am weak.",
+        "localizedMeaning": {
+          "ru": "Вы чувствуете нехватку сил после дороги. Соберите фразу о себе",
+          "uk": "Ви відчуваєте брак сил після дороги. Складіть фразу про себе"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "I",
+          "am",
+          "weak"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-38:i01:r1",
-            "targetText": "lost",
-            "meaningByLocale": {
-              "ru": "«заблудился». Шли уверенно, а теперь смотрите по сторонам и не узнаёте ни одного дома.",
-              "uk": "«заблукав». Ішли впевнено, а тепер роззираєтеся і не впізнаєте жодного будинку."
+            "responseId": "en:lesson-01:session-38:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви відчуваєте брак сил після дороги. Складіть фразу про себе",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am weak.`",
+              "uk": "тут потрібно `am` — `I am weak.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "lost",
-          "definitionByLocale": {
-            "ru": "«заблудился». Шли уверенно, а теперь смотрите по сторонам и не узнаёте ни одного дома.",
-            "uk": "«заблукав». Ішли впевнено, а тепер роззираєтеся і не впізнаєте жодного будинку."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть",
+      "prompt": "Послухайте й виберіть почуте",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-38:i02:r1",
-          "text": "lost"
+          "text": "He is weak."
         },
         {
           "responseId": "en:lesson-01:session-38:i02:r2",
-          "text": "lot"
+          "text": "She is weak."
         },
         {
           "responseId": "en:lesson-01:session-38:i02:r3",
-          "text": "last"
+          "text": "He is alive."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-38:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте і виберіть",
+      "accessibilityLabel": "Послухайте й виберіть почуте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-38:i02:audio",
-          "transcript": "lost"
+          "transcript": "He is weak."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-38:i02:r1",
-            "targetText": "lost",
+            "targetText": "He is weak.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-38:i02:r2",
-            "targetText": "lot",
+            "targetText": "She is weak.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-38:i02:r3",
-            "targetText": "last",
+            "targetText": "He is alive.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-01:session-38:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — lost",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "Без «с» на конце. `lot` — «много», совсем про другое.",
-              "uk": "Без «с» на кінці. `lot` — «багато», зовсім про інше."
+              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
             }
           },
           {
             "responseId": "en:lesson-01:session-38:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — lost",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "Похоже, но гласная другая. `last` — «последний».",
-              "uk": "Схоже, але голосна інша. `last` — «останній»."
+              "ru": "В записи последнее слово — `weak`, а в этом варианте — `alive`.",
+              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `alive`."
             }
           }
         ],
@@ -126,42 +127,68 @@
       "interactionId": "en:lesson-01:session-38:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — safe",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i03:audio"
-      ],
-      "accessibilityLabel": "Картка слова — safe",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i03:audio",
-          "transcript": "safe"
+      "prompt": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-38:i03:r1",
+          "text": "is"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-01:session-38:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра говорит, что чувствует слабость. Дополните фразу о ней",
+          "uk": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї"
+        },
+        "gappedTargetPhrase": "She ___ weak.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-01:session-38:i03:r1",
-            "targetText": "safe",
-            "meaningByLocale": {
-              "ru": "«в безопасности». Ничего страшного не происходит и не собирается.",
-              "uk": "«у безпеці». Нічого страшного не відбувається і не збирається."
-            }
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i03:r3",
+            "text": "are"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "safe",
-          "definitionByLocale": {
-            "ru": "«в безопасности». Ничего страшного не происходит и не собирается.",
-            "uk": "«у безпеці». Нічого страшного не відбувається і не збирається."
+        "testedDimension": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї",
+            "feedbackByLocale": {
+              "ru": "После `She` нужно `is`.",
+              "uk": "Після `She` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Сестра каже, що відчуває слабкість. Доповніть фразу про неї",
+            "feedbackByLocale": {
+              "ru": "Про сестру здесь `She is`.",
+              "uk": "Про сестру тут `She is`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,399 +196,60 @@
       "interactionId": "en:lesson-01:session-38:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — «ми заблукали»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — «ми заблукали»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We are lost.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «мы заблудились»",
-          "uk": "Складіть фразу — «ми заблукали»"
-        },
-        "orderedTokens": [
-          "We",
-          "are",
-          "lost"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — home",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i05:audio"
-      ],
-      "accessibilityLabel": "Картка слова — home",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i05:audio",
-          "transcript": "home"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-38:i05:r1",
-            "targetText": "home",
-            "meaningByLocale": {
-              "ru": "«дома, домой». Место, куда возвращаются в конце дня.",
-              "uk": "«вдома, додому». Місце, куди повертаються наприкінці дня."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "home",
-          "definitionByLocale": {
-            "ru": "«дома, домой». Место, куда возвращаются в конце дня.",
-            "uk": "«вдома, додому». Місце, куди повертаються наприкінці дня."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — back",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i06:audio"
-      ],
-      "accessibilityLabel": "Картка слова — back",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i06:audio",
-          "transcript": "back"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-38:i06:r1",
-            "targetText": "back",
-            "meaningByLocale": {
-              "ru": "«обратно, назад». Туда, откуда вышли.",
-              "uk": "«назад, звідки прийшли». Туди, звідки вийшли."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "back",
-          "definitionByLocale": {
-            "ru": "«обратно, назад». Туда, откуда вышли.",
-            "uk": "«назад, звідки прийшли». Туди, звідки вийшли."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — навколо спокійно, ніхто нікуди не біжить",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-38:i07:r1",
-          "text": "safe"
-        },
-        {
-          "responseId": "en:lesson-01:session-38:i07:r2",
-          "text": "lost"
-        },
-        {
-          "responseId": "en:lesson-01:session-38:i07:r3",
-          "text": "home"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — навколо спокійно, ніхто нікуди не біжить",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вокруг спокойно, никто никуда не бежит",
-          "uk": "Вставте слово — навколо спокійно, ніхто нікуди не біжить"
-        },
-        "gappedTargetPhrase": "We are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-38:i07:r1",
-            "text": "safe"
-          },
-          {
-            "responseId": "en:lesson-01:session-38:i07:r2",
-            "text": "lost"
-          },
-          {
-            "responseId": "en:lesson-01:session-38:i07:r3",
-            "text": "home"
-          }
-        ],
-        "testedDimension": "Вставте слово — навколо спокійно, ніхто ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-38:i07:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — навколо спокійно, ніхто ",
-            "feedbackByLocale": {
-              "ru": "Заблудились вы раньше. Сейчас надо сказать, что вокруг спокойно.",
-              "uk": "Заблукали ви раніше. Зараз треба сказати, що навколо спокійно."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-38:i07:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — навколо спокійно, ніхто ",
-            "feedbackByLocale": {
-              "ru": "Дома вас как раз нет — вы посреди чужой улицы.",
-              "uk": "Удома вас якраз немає — ви посеред чужої вулиці."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "sound_contrast",
-      "inputMode": "single_choice",
-      "prompt": "Розрізніть звуки — ви дісталися додому без пригод. Яке слово підходить?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-38:i08:r1",
-          "text": "safe"
-        },
-        {
-          "responseId": "en:lesson-01:session-38:i08:r2",
-          "text": "save"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i08:audioA",
-        "en:lesson-01:session-38:i08:audioB"
-      ],
-      "accessibilityLabel": "Розрізніть звуки — ви дісталися додому без пригод. Яке слово підходить?",
-      "modePayload": {
-        "family": "sound_contrast",
-        "contrastA": "safe",
-        "contrastB": "save",
-        "ipaA": "",
-        "ipaB": "",
-        "audioA": {
-          "audioTargetId": "en:lesson-01:session-38:i08:audioA",
-          "transcript": "safe"
-        },
-        "audioB": {
-          "audioTargetId": "en:lesson-01:session-38:i08:audioB",
-          "transcript": "save"
-        },
-        "testedPhoneticContrast": "Розрізніть звуки — ви дісталися додому без пригод. Яке слово підходить?",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-38:i08:r2",
-            "correct": false,
-            "testedDimension": "Розрізніть звуки — ви дісталися додому без пригод. Яке слово підходить?",
-            "feedbackByLocale": {
-              "ru": "Это «спасать». Здесь конец слова звонкий, тянется — а нужен короткий и глухой.",
-              "uk": "Це «рятувати». Тут кінець слова дзвінкий — а потрібен глухий."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте і складіть — «вони вдома»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i09:audio"
-      ],
-      "accessibilityLabel": "Послухайте і складіть — «вони вдома»",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i09:audio",
-          "transcript": "They are home."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are home.",
-        "orderedTokens": [
-          "They",
-          "are",
-          "home"
-        ],
-        "authoredDistractorTokens": [
-          "safe"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — усі розвернулися і йдуть тією ж дорогою",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-38:i10:r1",
-          "text": "back"
-        },
-        {
-          "responseId": "en:lesson-01:session-38:i10:r2",
-          "text": "lost"
-        },
-        {
-          "responseId": "en:lesson-01:session-38:i10:r3",
-          "text": "safe"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — усі розвернулися і йдуть тією ж дорогою",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — все развернулись и идут той же дорогой",
-          "uk": "Вставте слово — усі розвернулися і йдуть тією ж дорогою"
-        },
-        "gappedTargetPhrase": "We are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-38:i10:r1",
-            "text": "back"
-          },
-          {
-            "responseId": "en:lesson-01:session-38:i10:r2",
-            "text": "lost"
-          },
-          {
-            "responseId": "en:lesson-01:session-38:i10:r3",
-            "text": "safe"
-          }
-        ],
-        "testedDimension": "Вставте слово — усі розвернулися і йдуть",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-38:i10:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — усі розвернулися і йдуть",
-            "feedbackByLocale": {
-              "ru": "Заблудились вы раньше, а сейчас дорогу нашли и идёте обратно.",
-              "uk": "Заблукали ви раніше, а зараз дорогу знайшли і йдете назад."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-38:i10:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — усі розвернулися і йдуть",
-            "feedbackByLocale": {
-              "ru": "«В безопасности» — правда, но здесь надо сказать про направление.",
-              "uk": "«У безпеці» — правда, але тут треба сказати про напрямок."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З'єднайте пари",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З'єднайте пари",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-38:i11:p1",
-            "target": "lost",
+            "pairId": "en:lesson-01:session-38:i04:p1",
+            "target": "weak",
             "meaningByLocale": {
-              "ru": "заблудился",
-              "uk": "заблукав"
+              "ru": "слабый",
+              "uk": "слабкий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-38:i11:p2",
-            "target": "safe",
+            "pairId": "en:lesson-01:session-38:i04:p2",
+            "target": "alive",
             "meaningByLocale": {
-              "ru": "в безопасности",
-              "uk": "у безпеці"
+              "ru": "живой",
+              "uk": "живий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-38:i11:p3",
-            "target": "home",
+            "pairId": "en:lesson-01:session-38:i04:p3",
+            "target": "dead",
             "meaningByLocale": {
-              "ru": "дома",
-              "uk": "вдома"
+              "ru": "мёртвый",
+              "uk": "мертвий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-38:i11:p4",
-            "target": "back",
+            "pairId": "en:lesson-01:session-38:i04:p4",
+            "target": "missing",
             "meaningByLocale": {
-              "ru": "обратно",
-              "uk": "назад"
+              "ru": "пропавший",
+              "uk": "зниклий"
             }
           }
         ],
         "leftColumn": [
-          "lost",
-          "safe",
-          "home",
-          "back"
+          "weak",
+          "alive",
+          "dead",
+          "missing"
         ],
         "rightColumn": [
-          "заблудился",
-          "в безопасности",
-          "дома",
-          "обратно"
+          "слабкий",
+          "живий",
+          "мертвий",
+          "зниклий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -578,44 +266,433 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-38:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — together",
+      "interactionId": "en:lesson-01:session-38:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу про сигнал",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-38:i12:audio"
+        "en:lesson-01:session-38:i05:audio"
       ],
-      "accessibilityLabel": "Картка слова — together",
+      "accessibilityLabel": "Послухайте й складіть фразу про сигнал",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i05:audio",
+          "transcript": "It is weak."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is weak.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "weak"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу про сигнал",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is weak.`",
+              "uk": "тут потрібно `is` — `It is weak.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви та брат обоє відчуваєте брак сил. Складіть фразу від вас двох",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви та брат обоє відчуваєте брак сил. Складіть фразу від вас двох",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are weak.",
+        "localizedMeaning": {
+          "ru": "Вы и брат оба чувствуете нехватку сил. Соберите фразу от вас двоих",
+          "uk": "Ви та брат обоє відчуваєте брак сил. Складіть фразу від вас двох"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "weak"
+        ],
+        "authoredDistractorTokens": [
+          "They"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви та брат обоє відчуваєте брак сил. Складіть фразу від вас двох",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `We` — `We are weak.`",
+              "uk": "тут потрібно `We` — `We are weak.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коротко скажіть про свій стан: у вас мало сил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i07:audio"
+      ],
+      "accessibilityLabel": "Коротко скажіть про свій стан: у вас мало сил",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i07:audio",
+          "transcript": "I'm weak."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm weak.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Гаманця немає серед речей, і ви його шукаєте. Скажіть, що він зник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-38:i08:r1",
+          "text": "missing"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i08:r2",
+          "text": "alive"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i08:r3",
+          "text": "dead"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гаманця немає серед речей, і ви його шукаєте. Скажіть, що він зник",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Кошелька нет среди вещей, и вы его ищете. Назовите пропажу",
+          "uk": "Гаманця немає серед речей, і ви його шукаєте. Скажіть, що він зник"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i08:r1",
+            "text": "missing"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i08:r2",
+            "text": "alive"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i08:r3",
+            "text": "dead"
+          }
+        ],
+        "testedDimension": "Гаманця немає серед речей, і ви його шукаєте. Скажіть, що він зник",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Гаманця немає серед речей, і ви його шукаєте. Скажіть, що він зник",
+            "feedbackByLocale": {
+              "ru": "`alive` — «живой». Про пропавший кошелёк нужно `missing`.",
+              "uk": "`alive` — «живий». Про зниклий гаманець потрібно `missing`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Гаманця немає серед речей, і ви його шукаєте. Скажіть, що він зник",
+            "feedbackByLocale": {
+              "ru": "`dead` — «мёртвый». Здесь кошелька нет: `missing`.",
+              "uk": "`dead` — «мертвий». Тут гаманця немає: `missing`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про рослину",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-38:i09:r1",
+          "text": "It is alive."
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i09:r2",
+          "text": "It is dead."
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i09:r3",
+          "text": "It is missing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про рослину",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i12:audio",
-          "transcript": "together"
+          "audioTargetId": "en:lesson-01:session-38:i09:audio",
+          "transcript": "It is alive."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-01:session-38:i12:r1",
-            "targetText": "together",
-            "meaningByLocale": {
-              "ru": "«вместе». Идёте одной кучкой и никого не потеряли по дороге.",
-              "uk": "«разом». Ідете однією купкою і нікого не загубили дорогою."
-            }
+            "responseId": "en:lesson-01:session-38:i09:r1",
+            "targetText": "It is alive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i09:r2",
+            "targetText": "It is dead.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i09:r3",
+            "targetText": "It is missing.",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "together",
-          "definitionByLocale": {
-            "ru": "«вместе». Идёте одной кучкой и никого не потеряли по дороге.",
-            "uk": "«разом». Ідете однією купкою і нікого не загубили дорогою."
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про рослину",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `alive`, а в этом варианте — `dead`.",
+              "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `dead`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про рослину",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `alive`, а в этом варианте — `missing`.",
+              "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `missing`."
+            }
           }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте короткі початки з повними",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте короткі початки з повними",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-38:i10:p1",
+            "target": "I'm",
+            "meaningByLocale": {
+              "ru": "I am",
+              "uk": "I am"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-38:i10:p2",
+            "target": "He's",
+            "meaningByLocale": {
+              "ru": "He is",
+              "uk": "He is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-38:i10:p3",
+            "target": "It's",
+            "meaningByLocale": {
+              "ru": "It is",
+              "uk": "It is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-38:i10:p4",
+            "target": "We're",
+            "meaningByLocale": {
+              "ru": "We are",
+              "uk": "We are"
+            }
+          }
+        ],
+        "leftColumn": [
+          "I'm",
+          "He's",
+          "It's",
+          "We're"
+        ],
+        "rightColumn": [
+          "I am",
+          "He is",
+          "It is",
+          "We are"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть коротку фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i11:audio",
+          "transcript": "She's weak."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She's weak.",
+        "orderedTokens": [
+          "She's",
+          "weak"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `She's` — `She's weak.`",
+              "uk": "тут потрібно `She's` — `She's weak.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Одна рослина, на жаль, загинула. Складіть фразу про цю рослину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одна рослина, на жаль, загинула. Складіть фразу про цю рослину",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is dead.",
+        "localizedMeaning": {
+          "ru": "Одно растение, к сожалению, погибло. Соберите фразу об этом растении",
+          "uk": "Одна рослина, на жаль, загинула. Складіть фразу про цю рослину"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "dead"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Одна рослина, на жаль, загинула. Складіть фразу про цю рослину",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is dead.`",
+              "uk": "тут потрібно `is` — `It is dead.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -623,68 +700,32 @@
     {
       "interactionId": "en:lesson-01:session-38:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — ідете всім гуртом, не розбрідаючись",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-38:i13:r1",
-          "text": "together"
-        },
-        {
-          "responseId": "en:lesson-01:session-38:i13:r2",
-          "text": "home"
-        },
-        {
-          "responseId": "en:lesson-01:session-38:i13:r3",
-          "text": "back"
-        }
-      ],
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дві інші рослини збереглися й ростуть. Скажіть про них: «Вони живі»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — ідете всім гуртом, не розбрідаючись",
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i13:audio"
+      ],
+      "accessibilityLabel": "Дві інші рослини збереглися й ростуть. Скажіть про них: «Вони живі»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — идёте всей толпой, не разбредаясь",
-          "uk": "Вставте слово — ідете всім гуртом, не розбрідаючись"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i13:audio",
+          "transcript": "They are alive."
         },
-        "gappedTargetPhrase": "We are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-38:i13:r1",
-            "text": "together"
-          },
-          {
-            "responseId": "en:lesson-01:session-38:i13:r2",
-            "text": "home"
-          },
-          {
-            "responseId": "en:lesson-01:session-38:i13:r3",
-            "text": "back"
-          }
-        ],
-        "testedDimension": "Вставте слово — ідете всім гуртом, не ро",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-38:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — ідете всім гуртом, не ро",
-            "feedbackByLocale": {
-              "ru": "Дома вы окажетесь позже, сейчас вы посреди улицы.",
-              "uk": "Удома ви опинитеся пізніше, зараз ви посеред вулиці."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-38:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — ідете всім гуртом, не ро",
-            "feedbackByLocale": {
-              "ru": "«Обратно» — про направление. А сказать надо, что вы одной кучкой.",
-              "uk": "«Назад» — про напрямок. А сказати треба, що ви однією купкою."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are alive.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -693,42 +734,68 @@
       "interactionId": "en:lesson-01:session-38:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — far",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i14:audio"
-      ],
-      "accessibilityLabel": "Картка слова — far",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i14:audio",
-          "transcript": "far"
+      "prompt": "Двоє друзів теж повернулися без сил. Доповніть фразу про їхню слабкість",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-38:i14:r1",
+          "text": "are"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-01:session-38:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двоє друзів теж повернулися без сил. Доповніть фразу про їхню слабкість",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Двое друзей тоже вернулись без сил. Дополните фразу об их слабости",
+          "uk": "Двоє друзів теж повернулися без сил. Доповніть фразу про їхню слабкість"
+        },
+        "gappedTargetPhrase": "They ___ weak.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-01:session-38:i14:r1",
-            "targetText": "far",
-            "meaningByLocale": {
-              "ru": "«далеко». До нужного места ещё идти и идти.",
-              "uk": "«далеко». До потрібного місця ще йти і йти."
-            }
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i14:r3",
+            "text": "is"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "far",
-          "definitionByLocale": {
-            "ru": "«далеко». До нужного места ещё идти и идти.",
-            "uk": "«далеко». До потрібного місця ще йти і йти."
+        "testedDimension": "Двоє друзів теж повернулися без сил. Доповніть фразу про їхню слабкість",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i14:r2",
+            "correct": false,
+            "testedDimension": "Двоє друзів теж повернулися без сил. Доповніть фразу про їхню слабкість",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i14:r3",
+            "correct": false,
+            "testedDimension": "Двоє друзів теж повернулися без сил. Доповніть фразу про їхню слабкість",
+            "feedbackByLocale": {
+              "ru": "Здесь `They are weak`.",
+              "uk": "Тут `They are weak`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -736,29 +803,75 @@
       "interactionId": "en:lesson-01:session-38:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — до дому ще їхати й їхати",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — до дому ще їхати й їхати",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We are far.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — до дома ещё ехать и ехать",
-          "uk": "Складіть фразу — до дому ще їхати й їхати"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть коротку фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-38:i15:r1",
+          "text": "We're weak."
         },
-        "orderedTokens": [
-          "We",
-          "are",
-          "far"
+        {
+          "responseId": "en:lesson-01:session-38:i15:r2",
+          "text": "They're weak."
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i15:r3",
+          "text": "We're alive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i15:audio",
+          "transcript": "We're weak."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-38:i15:r1",
+            "targetText": "We're weak.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i15:r2",
+            "targetText": "They're weak.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i15:r3",
+            "targetText": "We're alive.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [
-          "is"
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We're`, а в этом варианте — `They're`.",
+              "uk": "У записі перше слово — `We're`, а в цьому варіанті — `They're`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `weak`, а в этом варианте — `alive`.",
+              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `alive`."
+            }
+          }
         ],
-        "slotFeedback": []
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -766,158 +879,107 @@
       "interactionId": "en:lesson-01:session-38:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте і складіть — «вони в безпеці»",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i16:audio"
-      ],
-      "accessibilityLabel": "Послухайте і складіть — «вони в безпеці»",
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i16:audio",
-          "transcript": "They are safe."
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-38:i16:p1",
+            "target": "missing",
+            "meaningByLocale": {
+              "ru": "отсутствует, пропал",
+              "uk": "відсутній, зник"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-38:i16:p2",
+            "target": "weak",
+            "meaningByLocale": {
+              "ru": "слабый",
+              "uk": "слабкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-38:i16:p3",
+            "target": "dead",
+            "meaningByLocale": {
+              "ru": "мёртвый",
+              "uk": "мертвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-38:i16:p4",
+            "target": "alive",
+            "meaningByLocale": {
+              "ru": "живой",
+              "uk": "живий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "missing",
+          "weak",
+          "dead",
+          "alive"
+        ],
+        "rightColumn": [
+          "відсутній, зник",
+          "слабкий",
+          "мертвий",
+          "живий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are safe.",
-        "orderedTokens": [
-          "They",
-          "are",
-          "safe"
-        ],
-        "authoredDistractorTokens": [
-          "home"
-        ],
-        "slotFeedback": []
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-38:i17:s01",
+      "interactionId": "en:lesson-01:session-38:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 4",
+      "prompt": "У кафе зв’язок ледве працює. Ви описуєте другові саме слабкий сигнал. Скажіть коротку фразу про нього",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-38:i17:s01:audio"
+        "en:lesson-01:session-38:i17:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 4",
+      "accessibilityLabel": "У кафе зв’язок ледве працює. Ви описуєте другові саме слабкий сигнал. Скажіть коротку фразу про нього",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i17:s01:audio",
-          "transcript": "We are lost."
+          "audioTargetId": "en:lesson-01:session-38:i17:audio",
+          "transcript": "It is weak."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are lost.",
+        "targetPhrase": "It is weak.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i17:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i17:s02:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i17:s02:audio",
-          "transcript": "We are together."
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "We are together.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i17:s03",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 3 із 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 3 із 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i17:s03:audio",
-          "transcript": "We are safe."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "We are safe.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-38:i17:s04",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 4 із 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-38:i17:s04:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 4 із 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-38:i17:s04:audio",
-          "transcript": "We are back."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "We are back.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -928,11 +990,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 20,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "34c32bc951e7787e88d0ef534ab3df21932a164c56a6caeda437474c485ef1dd"
+  "learnerFingerprint": "eb1d61d287c22c3b73daf2a89a30f1b862d3929c599bd135cc191507e5eb3379"
 }

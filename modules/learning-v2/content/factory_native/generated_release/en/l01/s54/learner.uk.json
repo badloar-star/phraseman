@@ -7,41 +7,42 @@
       "interactionId": "en:lesson-01:session-54:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — nervous",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви впізнаєте будинок, де часто бували. Скажіть, що він вам знайомий",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:i01:audio"
-      ],
-      "accessibilityLabel": "Картка слова — nervous",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви впізнаєте будинок, де часто бували. Скажіть, що він вам знайомий",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i01:audio",
-          "transcript": "nervous"
+        "family": "phrase_builder",
+        "targetPhrase": "It is familiar.",
+        "localizedMeaning": {
+          "ru": "Вы узнаёте дом, где часто бывали. Скажите, что он вам знаком",
+          "uk": "Ви впізнаєте будинок, де часто бували. Скажіть, що він вам знайомий"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "familiar"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-54:i01:r1",
-            "targetText": "nervous",
-            "meaningByLocale": {
-              "ru": "«волнуюсь». Руки холодные, голос чуть выше обычного, а разговор ещё даже не начался.",
-              "uk": "«хвилююся». Руки холодні, голос трохи вищий, ніж зазвичай, а розмова ще навіть не почалася."
+            "responseId": "en:lesson-01:session-54:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви впізнаєте будинок, де часто бували. Скажіть, що він вам знайомий",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is familiar.`",
+              "uk": "тут потрібно `is` — `It is familiar.`"
             }
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "nervous",
-          "definitionByLocale": {
-            "ru": "«волнуюсь». Руки холодные, голос чуть выше обычного, а разговор ещё даже не начался.",
-            "uk": "«хвилююся». Руки холодні, голос трохи вищий, ніж зазвичай, а розмова ще навіть не почалася."
-          }
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -52,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте та оберіть",
+      "prompt": "Послухайте й виберіть почуте",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-54:i02:r1",
-          "text": "nervous"
+          "text": "It is unfamiliar."
         },
         {
           "responseId": "en:lesson-01:session-54:i02:r2",
-          "text": "nurse"
+          "text": "It is familiar."
         },
         {
           "responseId": "en:lesson-01:session-54:i02:r3",
-          "text": "number"
+          "text": "It is unknown."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте та оберіть",
+      "accessibilityLabel": "Послухайте й виберіть почуте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-54:i02:audio",
-          "transcript": "nervous"
+          "transcript": "It is unfamiliar."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-54:i02:r1",
-            "targetText": "nervous",
+            "targetText": "It is unfamiliar.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-54:i02:r2",
-            "targetText": "nurse",
+            "targetText": "It is familiar.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-54:i02:r3",
-            "targetText": "number",
+            "targetText": "It is unknown.",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +102,19 @@
           {
             "responseId": "en:lesson-01:session-54:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте та оберіть — nervous",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "«Медсестра» — профессия, а не состояние человека.",
-              "uk": "«Медсестра» — професія, а не стан людини."
+              "ru": "В записи последнее слово — `unfamiliar`, а в этом варианте — `familiar`.",
+              "uk": "У записі останнє слово — `unfamiliar`, а в цьому варіанті — `familiar`."
             }
           },
           {
             "responseId": "en:lesson-01:session-54:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте та оберіть — nervous",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "«Число». Начинается с другого звука: `number` с «н-а», `nervous` — с «нёр».",
-              "uk": "«Число». Починається інакше: `number` — як «на-», а `nervous` — як «ньо-»."
+              "ru": "В записи последнее слово — `unfamiliar`, а в этом варианте — `unknown`.",
+              "uk": "У записі останнє слово — `unfamiliar`, а в цьому варіанті — `unknown`."
             }
           }
         ],
@@ -126,42 +127,68 @@
       "interactionId": "en:lesson-01:session-54:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — confident",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:i03:audio"
-      ],
-      "accessibilityLabel": "Картка слова — confident",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i03:audio",
-          "transcript": "confident"
+      "prompt": "На двох знімках двори, які ви впізнаєте. Доповніть фразу про двори",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i03:r1",
+          "text": "are"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
+        {
+          "responseId": "en:lesson-01:session-54:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На двох знімках двори, які ви впізнаєте. Доповніть фразу про двори",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На двух снимках дворы, которые вы узнаёте. Дополните фразу о дворах",
+          "uk": "На двох знімках двори, які ви впізнаєте. Доповніть фразу про двори"
+        },
+        "gappedTargetPhrase": "They ___ familiar.",
+        "gapOptions": [
           {
             "responseId": "en:lesson-01:session-54:i03:r1",
-            "targetText": "confident",
-            "meaningByLocale": {
-              "ru": "«уверен в себе». Человек говорит о своих умениях ровно, без хвастовства и без оправданий.",
-              "uk": "«упевнений у собі». Людина говорить про свої вміння рівно, без вихваляння й без виправдань."
-            }
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i03:r3",
+            "text": "is"
           }
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "confident",
-          "definitionByLocale": {
-            "ru": "«уверен в себе». Человек говорит о своих умениях ровно, без хвастовства и без оправданий.",
-            "uk": "«упевнений у собі». Людина говорить про свої вміння рівно, без вихваляння й без виправдань."
+        "testedDimension": "На двох знімках двори, які ви впізнаєте. Доповніть фразу про двори",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "На двох знімках двори, які ви впізнаєте. Доповніть фразу про двори",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "На двох знімках двори, які ви впізнаєте. Доповніть фразу про двори",
+            "feedbackByLocale": {
+              "ru": "Про два двора — `They are`.",
+              "uk": "Про два двори — `They are`."
+            }
           }
-        }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -169,720 +196,60 @@
       "interactionId": "en:lesson-01:session-54:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте та оберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-54:i04:r1",
-          "text": "confident"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i04:r2",
-          "text": "comfort"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i04:r3",
-          "text": "content"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:i04:audio"
-      ],
-      "accessibilityLabel": "Послухайте та оберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i04:audio",
-          "transcript": "confident"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-54:i04:r1",
-            "targetText": "confident",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i04:r2",
-            "targetText": "comfort",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i04:r3",
-            "targetText": "content",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-54:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте та оберіть — confident",
-            "feedbackByLocale": {
-              "ru": "«Удобство» — про кресло и обстановку, а не про человека.",
-              "uk": "«Зручність» — про крісло й обстановку, а не про людину."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте та оберіть — confident",
-            "feedbackByLocale": {
-              "ru": "«Доволен» — близкая тема, но это про удовлетворённость, а не про уверенность в своих силах.",
-              "uk": "«Задоволений» — близька тема, але це про вдоволеність, а не про впевненість у своїх силах."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — Анна питає, чи впораєтеся ви: ви робили це сто разів",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-54:i05:r1",
-          "text": "confident"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i05:r2",
-          "text": "fluent"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i05:r3",
-          "text": "honest"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — Анна питає, чи впораєтеся ви: ви робили це сто разів",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — Анна спрашивает, справитесь ли вы: вы делали это сто раз",
-          "uk": "Вставте слово — Анна питає, чи впораєтеся ви: ви робили це сто разів"
-        },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-54:i05:r1",
-            "text": "confident"
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i05:r2",
-            "text": "fluent"
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i05:r3",
-            "text": "honest"
-          }
-        ],
-        "testedDimension": "Вставте слово — Анна питає, чи впораєтеся ви",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-54:i05:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — Анна питає, чи впораєтеся ви",
-            "feedbackByLocale": {
-              "ru": "«Свободно говорю» — про язык, а спросили про ваши силы.",
-              "uk": "«Вільно говорю» — про мовлення, а спитали про ваші сили."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i05:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — Анна питає, чи впораєтеся ви",
-            "feedbackByLocale": {
-              "ru": "«Честный» — про правдивость, а не про уверенность в деле.",
-              "uk": "«Чесний» — про правдивість, а не про впевненість у справі."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — fluent",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:i06:audio"
-      ],
-      "accessibilityLabel": "Картка слова — fluent",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i06:audio",
-          "transcript": "fluent"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-54:i06:r1",
-            "targetText": "fluent",
-            "meaningByLocale": {
-              "ru": "«говорю свободно». Речь идёт сама, без пауз на поиск слова.",
-              "uk": "«говорю вільно». Мовлення йде саме, без пауз на пошук слова."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "fluent",
-          "definitionByLocale": {
-            "ru": "«говорю свободно». Речь идёт сама, без пауз на поиск слова.",
-            "uk": "«говорю вільно». Мовлення йде саме, без пауз на пошук слова."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте та оберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-54:i07:r1",
-          "text": "fluent"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i07:r2",
-          "text": "flat"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i07:r3",
-          "text": "floor"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:i07:audio"
-      ],
-      "accessibilityLabel": "Послухайте та оберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i07:audio",
-          "transcript": "fluent"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-54:i07:r1",
-            "targetText": "fluent",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i07:r2",
-            "targetText": "flat",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i07:r3",
-            "targetText": "floor",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-54:i07:r2",
-            "correct": false,
-            "testedDimension": "Послухайте та оберіть — fluent",
-            "feedbackByLocale": {
-              "ru": "«Квартира» — про жильё, а не про речь.",
-              "uk": "«Квартира» — про житло, а не про мовлення."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i07:r3",
-            "correct": false,
-            "testedDimension": "Послухайте та оберіть — fluent",
-            "feedbackByLocale": {
-              "ru": "«Пол». Обрывается сразу, а в `fluent` после первой части есть ещё одна.",
-              "uk": "«Підлога». Обривається одразу, а у `fluent` після першої частини є ще одна."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — «я хвилююся»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — «я хвилююся»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am nervous.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «я волнуюсь»",
-          "uk": "Складіть фразу — «я хвилююся»"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "nervous"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — Анна питає про вашу англійську",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-54:i09:r1",
-          "text": "fluent"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i09:r2",
-          "text": "nervous"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i09:r3",
-          "text": "honest"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — Анна питає про вашу англійську",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — Анна спрашивает про ваш английский",
-          "uk": "Вставте слово — Анна питає про вашу англійську"
-        },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-54:i09:r1",
-            "text": "fluent"
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i09:r2",
-            "text": "nervous"
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i09:r3",
-            "text": "honest"
-          }
-        ],
-        "testedDimension": "Вставте слово — Анна питає про англійську",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-54:i09:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — Анна питає про англійську",
-            "feedbackByLocale": {
-              "ru": "«Волнуюсь» — про состояние, а вопрос был про язык.",
-              "uk": "«Хвилююся» — про стан, а питання було про мовлення."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i09:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — Анна питає про англійську",
-            "feedbackByLocale": {
-              "ru": "«Честен» — про характер. Про речь говорят `fluent`.",
-              "uk": "«Чесний» — про вдачу. Про мовлення кажуть `fluent`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте скріпку — «я впевнений у собі»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-54:i10:r1",
-          "text": "am"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i10:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i10:r3",
-          "text": "is"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте скріпку — «я впевнений у собі»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте скрепку — «я уверен в себе»",
-          "uk": "Вставте скріпку — «я впевнений у собі»"
-        },
-        "gappedTargetPhrase": "I ___ confident.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-54:i10:r1",
-            "text": "am"
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i10:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i10:r3",
-            "text": "is"
-          }
-        ],
-        "testedDimension": "Вставте скріпку — «я впевнений у собі»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-54:i10:r2",
-            "correct": false,
-            "testedDimension": "Вставте скріпку — «я впевнений у собі»",
-            "feedbackByLocale": {
-              "ru": "Не для `I`. Про себя — `am`.",
-              "uk": "Не для `I`. Про себе — `am`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i10:r3",
-            "correct": false,
-            "testedDimension": "Вставте скріпку — «я впевнений у собі»",
-            "feedbackByLocale": {
-              "ru": "Чужая скрепка. `I am confident` — первые два слова не меняются.",
-              "uk": "Чужа скріпка. `I am confident` — перші два слова не змінюються."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте та складіть — «я говорю вільно»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте та складіть — «я говорю вільно»",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i11:audio",
-          "transcript": "I am fluent."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I am fluent.",
-        "orderedTokens": [
-          "I",
-          "am",
-          "fluent"
-        ],
-        "authoredDistractorTokens": [
-          "nervous"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — вас спитали, чи завжди ви кажете правду",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-54:i12:r1",
-          "text": "honest"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i12:r2",
-          "text": "calm"
-        },
-        {
-          "responseId": "en:lesson-01:session-54:i12:r3",
-          "text": "fluent"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — вас спитали, чи завжди ви кажете правду",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вас спросили, всегда ли вы говорите правду",
-          "uk": "Вставте слово — вас спитали, чи завжди ви кажете правду"
-        },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-54:i12:r1",
-            "text": "honest"
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i12:r2",
-            "text": "calm"
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i12:r3",
-            "text": "fluent"
-          }
-        ],
-        "testedDimension": "Вставте слово — вас спитали, чи завжди в",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-54:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — вас спитали, чи завжди в",
-            "feedbackByLocale": {
-              "ru": "`calm` — «спокоен». Про нервы, а не про правду.",
-              "uk": "`calm` — «спокійний». Про нерви, а не про правду."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-54:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — вас спитали, чи завжди в",
-            "feedbackByLocale": {
-              "ru": "«Говорю свободно» — про то, как звучит речь, а не про честность.",
-              "uk": "«Говорю вільно» — про те, як звучить мовлення, а не про чесність."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i13",
-      "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — вас спитали, чи не панікуєте ви у важкий день",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — вас спитали, чи не панікуєте ви у важкий день",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am calm.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вас спросили, не паникуете ли вы в трудный день",
-          "uk": "Складіть фразу — вас спитали, чи не панікуєте ви у важкий день"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "calm"
-        ],
-        "authoredDistractorTokens": [
-          "not"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i14:s01",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 2",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:i14:s01:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 2",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i14:s01:audio",
-          "transcript": "I am nervous."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am nervous.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i14:s02",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 2",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:i14:s02:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 2",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i14:s02:audio",
-          "transcript": "I am honest."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am honest.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i15",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — вас запитали, чи можна починати",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — вас запитали, чи можна починати",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am ready.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вас спросили, можно ли начинать",
-          "uk": "Складіть фразу — вас запитали, чи можна починати"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "ready"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-54:i16",
-      "ordinal": 20,
-      "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З'єднайте пари",
+      "prompt": "З’єднайте слова з основними значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З'єднайте пари",
+      "accessibilityLabel": "З’єднайте слова з основними значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-54:i16:p1",
-            "target": "nervous",
+            "pairId": "en:lesson-01:session-54:i04:p1",
+            "target": "familiar",
             "meaningByLocale": {
-              "ru": "волнуюсь",
-              "uk": "хвилююся"
+              "ru": "знакомый",
+              "uk": "знайомий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-54:i16:p2",
-            "target": "confident",
+            "pairId": "en:lesson-01:session-54:i04:p2",
+            "target": "unfamiliar",
             "meaningByLocale": {
-              "ru": "уверен в себе",
-              "uk": "упевнений у собі"
+              "ru": "незнакомый",
+              "uk": "незнайомий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-54:i16:p3",
-            "target": "fluent",
+            "pairId": "en:lesson-01:session-54:i04:p3",
+            "target": "unknown",
             "meaningByLocale": {
-              "ru": "говорю свободно",
-              "uk": "говорю вільно"
+              "ru": "неизвестный",
+              "uk": "невідомий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-54:i16:p4",
-            "target": "honest",
+            "pairId": "en:lesson-01:session-54:i04:p4",
+            "target": "useless",
             "meaningByLocale": {
-              "ru": "честен",
-              "uk": "чесний"
+              "ru": "бесполезный",
+              "uk": "марний"
             }
           }
         ],
         "leftColumn": [
-          "nervous",
-          "confident",
-          "fluent",
-          "honest"
+          "familiar",
+          "unfamiliar",
+          "unknown",
+          "useless"
         ],
         "rightColumn": [
-          "волнуюсь",
-          "уверен в себе",
-          "говорю свободно",
-          "честен"
+          "знайомий",
+          "незнайомий",
+          "невідомий",
+          "марний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -899,26 +266,116 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-54:i17:s01",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 4",
+      "interactionId": "en:lesson-01:session-54:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть коротку фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-54:i17:s01:audio"
+        "en:lesson-01:session-54:i05:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 4",
+      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i05:audio",
+          "transcript": "It's unknown."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It's unknown.",
+        "orderedTokens": [
+          "It's",
+          "unknown"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `It's` — `It's unknown.`",
+              "uk": "тут потрібно `It's` — `It's unknown.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вперше бачите цей провулок на фото. Назвіть його незнайомим вам",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вперше бачите цей провулок на фото. Назвіть його незнайомим вам",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is unfamiliar.",
+        "localizedMeaning": {
+          "ru": "Вы впервые видите этот переулок на фото. Назовите его незнакомым вам",
+          "uk": "Ви вперше бачите цей провулок на фото. Назвіть його незнайомим вам"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "unfamiliar"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви вперше бачите цей провулок на фото. Назвіть його незнайомим вам",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is unfamiliar.`",
+              "uk": "тут потрібно `is` — `It is unfamiliar.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коротко скажіть про знайомий вам двір на знімку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Коротко скажіть про знайомий вам двір на знімку",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i17:s01:audio",
-          "transcript": "I am confident."
+          "audioTargetId": "en:lesson-01:session-54:i07:audio",
+          "transcript": "It's familiar."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am confident.",
+        "targetPhrase": "It's familiar.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -932,26 +389,334 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-54:i17:s02",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 4",
+      "interactionId": "en:lesson-01:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ім’я автора знімка встановити не вдалося. Назвіть ім’я невідомим",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i08:r1",
+          "text": "unknown"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i08:r2",
+          "text": "familiar"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i08:r3",
+          "text": "useless"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ім’я автора знімка встановити не вдалося. Назвіть ім’я невідомим",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Имя автора снимка установить не удалось. Назовите имя неизвестным",
+          "uk": "Ім’я автора знімка встановити не вдалося. Назвіть ім’я невідомим"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-54:i08:r1",
+            "text": "unknown"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i08:r2",
+            "text": "familiar"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i08:r3",
+            "text": "useless"
+          }
+        ],
+        "testedDimension": "Ім’я автора знімка встановити не вдалося. Назвіть ім’я невідомим",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Ім’я автора знімка встановити не вдалося. Назвіть ім’я невідомим",
+            "feedbackByLocale": {
+              "ru": "Знакомое имя узнают. Здесь имя не установлено: `unknown`.",
+              "uk": "Знайоме ім’я впізнають. Тут ім’я не встановлене: `unknown`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Ім’я автора знімка встановити не вдалося. Назвіть ім’я невідомим",
+            "feedbackByLocale": {
+              "ru": "Это о бесполезности. Здесь нет сведений об имени: `unknown`.",
+              "uk": "Це про марність. Тут немає відомостей про ім’я: `unknown`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про місце",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i09:r1",
+          "text": "It is familiar."
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i09:r2",
+          "text": "It is unfamiliar."
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i09:r3",
+          "text": "It is unknown."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про місце",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i09:audio",
+          "transcript": "It is familiar."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:i09:r1",
+            "targetText": "It is familiar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i09:r2",
+            "targetText": "It is unfamiliar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i09:r3",
+            "targetText": "It is unknown.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про місце",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `familiar`, а в этом варианте — `unfamiliar`.",
+              "uk": "У записі останнє слово — `familiar`, а в цьому варіанті — `unfamiliar`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про місце",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `familiar`, а в этом варианте — `unknown`.",
+              "uk": "У записі останнє слово — `familiar`, а в цьому варіанті — `unknown`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте короткі початки з повними",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте короткі початки з повними",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-54:i10:p1",
+            "target": "It's",
+            "meaningByLocale": {
+              "ru": "It is",
+              "uk": "It is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-54:i10:p2",
+            "target": "They're",
+            "meaningByLocale": {
+              "ru": "They are",
+              "uk": "They are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-54:i10:p3",
+            "target": "He's",
+            "meaningByLocale": {
+              "ru": "He is",
+              "uk": "He is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-54:i10:p4",
+            "target": "She's",
+            "meaningByLocale": {
+              "ru": "She is",
+              "uk": "She is"
+            }
+          }
+        ],
+        "leftColumn": [
+          "It's",
+          "They're",
+          "He's",
+          "She's"
+        ],
+        "rightColumn": [
+          "It is",
+          "They are",
+          "He is",
+          "She is"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу про місця",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-54:i17:s02:audio"
+        "en:lesson-01:session-54:i11:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 4",
+      "accessibilityLabel": "Послухайте й складіть фразу про місця",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i11:audio",
+          "transcript": "They're unfamiliar."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They're unfamiliar.",
+        "orderedTokens": [
+          "They're",
+          "unfamiliar"
+        ],
+        "authoredDistractorTokens": [
+          "We're"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу про місця",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `They're` — `They're unfamiliar.`",
+              "uk": "тут потрібно `They're` — `They're unfamiliar.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Підпис повністю стерся й не допомагає дізнатися дату. Оцініть його марність для пошуку дати",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підпис повністю стерся й не допомагає дізнатися дату. Оцініть його марність для пошуку дати",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is useless.",
+        "localizedMeaning": {
+          "ru": "Подпись полностью стёрлась и не помогает узнать дату. Оцените её бесполезность для поиска даты",
+          "uk": "Підпис повністю стерся й не допомагає дізнатися дату. Оцініть його марність для пошуку дати"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "useless"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Підпис повністю стерся й не допомагає дізнатися дату. Оцініть його марність для пошуку дати",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is useless.`",
+              "uk": "тут потрібно `is` — `It is useless.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На двох фото місця, де ви часто гуляли й які одразу впізнаєте. Скажіть, що місця вам знайомі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "На двох фото місця, де ви часто гуляли й які одразу впізнаєте. Скажіть, що місця вам знайомі",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i17:s02:audio",
-          "transcript": "I am fluent."
+          "audioTargetId": "en:lesson-01:session-54:i13:audio",
+          "transcript": "They are familiar."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am fluent.",
+        "targetPhrase": "They are familiar.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -965,62 +730,255 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-54:i17:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 3 із 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-54:i17:s03:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 3 із 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i17:s03:audio",
-          "transcript": "I am calm."
+      "interactionId": "en:lesson-01:session-54:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Одна вулиця на знімку вам незнайома. Доповніть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i14:r1",
+          "text": "is"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am calm.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-01:session-54:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одна вулиця на знімку вам незнайома. Доповніть фразу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Одна улица на снимке вам незнакома. Дополните фразу",
+          "uk": "Одна вулиця на знімку вам незнайома. Доповніть фразу"
+        },
+        "gappedTargetPhrase": "It ___ unfamiliar.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-54:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Одна вулиця на знімку вам незнайома. Доповніть фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i14:r2",
+            "correct": false,
+            "testedDimension": "Одна вулиця на знімку вам незнайома. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i14:r3",
+            "correct": false,
+            "testedDimension": "Одна вулиця на знімку вам незнайома. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "Про одну улицу — `It is`.",
+              "uk": "Про одну вулицю — `It is`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-54:i17:s04",
-      "ordinal": 24,
+      "interactionId": "en:lesson-01:session-54:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте коротку фразу й виберіть її",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i15:r1",
+          "text": "It's unknown."
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i15:r2",
+          "text": "It's familiar."
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i15:r3",
+          "text": "It's unfamiliar."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте коротку фразу й виберіть її",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i15:audio",
+          "transcript": "It's unknown."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:i15:r1",
+            "targetText": "It's unknown.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i15:r2",
+            "targetText": "It's familiar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i15:r3",
+            "targetText": "It's unfamiliar.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте коротку фразу й виберіть її",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unknown`, а в этом варианте — `familiar`.",
+              "uk": "У записі останнє слово — `unknown`, а в цьому варіанті — `familiar`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте коротку фразу й виберіть її",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `unknown`, а в этом варианте — `unfamiliar`.",
+              "uk": "У записі останнє слово — `unknown`, а в цьому варіанті — `unfamiliar`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-54:i16:p1",
+            "target": "familiar",
+            "meaningByLocale": {
+              "ru": "узнаваемый",
+              "uk": "упізнаваний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-54:i16:p2",
+            "target": "unfamiliar",
+            "meaningByLocale": {
+              "ru": "незнакомый",
+              "uk": "незнайомий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-54:i16:p3",
+            "target": "unknown",
+            "meaningByLocale": {
+              "ru": "неизвестный",
+              "uk": "невідомий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-54:i16:p4",
+            "target": "useless",
+            "meaningByLocale": {
+              "ru": "не приносит пользы",
+              "uk": "не приносить користі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "familiar",
+          "unfamiliar",
+          "unknown",
+          "useless"
+        ],
+        "rightColumn": [
+          "упізнаваний",
+          "незнайомий",
+          "невідомий",
+          "не приносить користі"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i17",
+      "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 4 із 4",
+      "prompt": "У музеї біля старої картини немає імені художника: працівники поки не встановили його. Скажіть, що ім’я невідоме",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-54:i17:s04:audio"
+        "en:lesson-01:session-54:i17:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 4 із 4",
+      "accessibilityLabel": "У музеї біля старої картини немає імені художника: працівники поки не встановили його. Скажіть, що ім’я невідоме",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i17:s04:audio",
-          "transcript": "I am ready."
+          "audioTargetId": "en:lesson-01:session-54:i17:audio",
+          "transcript": "It is unknown."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am ready.",
+        "targetPhrase": "It is unknown.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1031,11 +989,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ecaa4b555bf058f1a1ccf50e2b2ad1bd52973263abe71b436e3dba7b119944a7"
+  "learnerFingerprint": "2de17f234c4c54dfa845e580d27ffa499e6899cf0b6149e2a4279b3b96475ead"
 }

@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-38:i01",
-    "correctText": "lost",
+    "correctText": "I am weak.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i02",
-    "correctText": "lost",
+    "correctText": "He is weak.",
     "correctResponseId": "en:lesson-01:session-38:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-38:i03",
-    "correctText": "safe",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-38:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-38:i04",
-    "correctText": "We are lost.",
+    "correctText": "en:lesson-01:session-38:i04:p1=weak\nen:lesson-01:session-38:i04:p2=alive\nen:lesson-01:session-38:i04:p3=dead\nen:lesson-01:session-38:i04:p4=missing",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i05",
-    "correctText": "home",
+    "correctText": "It is weak.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i06",
-    "correctText": "back",
+    "correctText": "We are weak.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i07",
-    "correctText": "safe",
-    "correctResponseId": "en:lesson-01:session-38:i07:r1"
+    "correctText": "I'm weak.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i08",
-    "correctText": "safe",
+    "correctText": "missing",
     "correctResponseId": "en:lesson-01:session-38:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-38:i09",
-    "correctText": "They are home.",
-    "correctResponseId": null
+    "correctText": "It is alive.",
+    "correctResponseId": "en:lesson-01:session-38:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-38:i10",
-    "correctText": "back",
-    "correctResponseId": "en:lesson-01:session-38:i10:r1"
+    "correctText": "en:lesson-01:session-38:i10:p1=I'm\nen:lesson-01:session-38:i10:p2=He's\nen:lesson-01:session-38:i10:p3=It's\nen:lesson-01:session-38:i10:p4=We're",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i11",
-    "correctText": "en:lesson-01:session-38:i11:p1=lost\nen:lesson-01:session-38:i11:p2=safe\nen:lesson-01:session-38:i11:p3=home\nen:lesson-01:session-38:i11:p4=back",
+    "correctText": "She's weak.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i12",
-    "correctText": "together",
+    "correctText": "It is dead.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i13",
-    "correctText": "together",
-    "correctResponseId": "en:lesson-01:session-38:i13:r1"
+    "correctText": "They are alive.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-38:i14",
-    "correctText": "far",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-38:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-38:i15",
-    "correctText": "We are far.",
-    "correctResponseId": null
+    "correctText": "We're weak.",
+    "correctResponseId": "en:lesson-01:session-38:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-38:i16",
-    "correctText": "They are safe.",
+    "correctText": "en:lesson-01:session-38:i16:p1=missing\nen:lesson-01:session-38:i16:p2=weak\nen:lesson-01:session-38:i16:p3=dead\nen:lesson-01:session-38:i16:p4=alive",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-38:i17:s01",
-    "correctText": "We are lost.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-38:i17:s02",
-    "correctText": "We are together.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-38:i17:s03",
-    "correctText": "We are safe.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-38:i17:s04",
-    "correctText": "We are back.",
+    "interactionId": "en:lesson-01:session-38:i17",
+    "correctText": "It is weak.",
     "correctResponseId": null
   }
 ]

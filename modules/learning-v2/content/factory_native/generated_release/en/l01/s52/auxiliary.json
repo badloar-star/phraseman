@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-52:intro1:r2": {
+          "ru": "`heavy` — тяжёлый. Здесь вес небольшой: `light`.",
+          "uk": "`heavy` — важкий. Тут вага невелика: `light`."
+        },
+        "en:lesson-01:session-52:intro1:r3": {
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-52:intro2:r2": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        },
+        "en:lesson-01:session-52:intro2:r3": {
+          "ru": "Здесь обе сумки мало весят: `light`.",
+          "uk": "Тут обидві сумки мало важать: `light`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-52:intro3:r2": {
+          "ru": "Это не о любопытстве. Здесь нужно `curious`.",
+          "uk": "Це не про допитливість. Тут потрібно `curious`."
+        },
+        "en:lesson-01:session-52:intro3:r3": {
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "252a430ee5d6c8959268a805d5a1f743e1d8b4b6abc2a64b3e1bc7931ee5d7b3"
+}

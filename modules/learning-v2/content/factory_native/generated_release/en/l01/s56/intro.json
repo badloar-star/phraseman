@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-56",
   "learningOutcomeByLocale": {
-    "ru": "повторение — `am` / `is` / `are` и `not` после скрепки",
-    "uk": "повторення — `am` / `is` / `are` і `not` після зв'язки"
+    "ru": "выбрать точное слово седьмой главы и подходящую форму am, is или are",
+    "uk": "вибрати точне слово сьомого розділу й відповідну форму am, is або are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Неделя — это `it`",
-        "uk": "Тиждень — це `it`"
+        "ru": "Цена, вес или место",
+        "uk": "Ціна, вага чи місце"
       },
       "bodyByLocale": {
-        "ru": "`week` — «неделя». Про неё говорят `it`, а рядом ставят `is`: `The week is hard` — то же самое, что `It is hard`. `hard` — «тяжело, трудно».\n\n`are` тут не подойдёт: его берут, когда речь о нескольких. Неделя одна, даже если по ощущениям их было три.",
-        "uk": "`week` — «тиждень». Про нього кажуть `it`, а поруч ставлять `is`: `The week is hard` — те саме, що `It is hard`. `hard` — «важко, тяжко».\n\n`are` тут не підійде: його беруть, коли мова про кількох. Тиждень один, навіть якщо за відчуттями їх було три."
+        "ru": "`cheap` и `expensive` — о цене; `light` и `heavy` — о весе; `full` — о заполненности. Корзина может быть недорогой, лёгкой и полной одновременно. Полная салфеток — это ещё не полная кирпичей.",
+        "uk": "`cheap` і `expensive` — про ціну; `light` і `heavy` — про вагу; `full` — про заповненість. Кошик може бути недорогим, легким і повним одночасно. Повний серветок — це ще не повний цегли."
       },
       "question": {
         "interactionId": "en:lesson-01:session-56:intro1:q",
         "promptByLocale": {
-          "ru": "Брат спрашивает, как прошла неделя. Она была тяжёлая — скажите про неделю.",
-          "uk": "Брат питає, як минув тиждень. Він був важкий — скажіть про тиждень."
+          "ru": "Корзина заполнена салфетками, но мало весит. Назовите именно её небольшой вес.",
+          "uk": "Кошик заповнений серветками, але мало важить. Назвіть саме його невелику вагу."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-56:intro1:r1",
-              "text": "It is hard."
+              "text": "It is light."
             },
             {
               "responseId": "en:lesson-01:session-56:intro1:r2",
-              "text": "It are hard."
+              "text": "It is full."
             },
             {
               "responseId": "en:lesson-01:session-56:intro1:r3",
-              "text": "It hard."
+              "text": "It are light."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-56:intro1:r1",
-              "text": "It is hard."
+              "text": "It is light."
             },
             {
               "responseId": "en:lesson-01:session-56:intro1:r2",
-              "text": "It are hard."
+              "text": "It is full."
             },
             {
               "responseId": "en:lesson-01:session-56:intro1:r3",
-              "text": "It hard."
+              "text": "It are light."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Брат спрашивает, как прошла неделя. Она была тяжёлая — скажите про неделю.",
-          "uk": "Брат питає, як минув тиждень. Він був важкий — скажіть про тиждень."
+          "ru": "Корзина заполнена салфетками, но мало весит. Назовите именно её небольшой вес.",
+          "uk": "Кошик заповнений серветками, але мало важить. Назвіть саме його невелику вагу."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`everyone` — «все», а глагол при нём один",
-        "uk": "`everyone` — «усі», а дієслово при ньому одне"
+        "ru": "Узнаю или ещё не знаю",
+        "uk": "Упізнаю чи ще не знаю"
       },
       "bodyByLocale": {
-        "ru": "`everyone` — «все, каждый». Людей много, и рука сама тянется к `are`. Но английский считает здесь по одному — «каждый», — и ставит `is`: `Everyone is kind`. `kind` — «добрый».\n\nОшибка живучая: `everyone are` хочется сказать даже тем, кто правило знает наизусть.",
-        "uk": "`everyone` — «усі, кожен». Людей багато, і рука сама тягнеться до `are`. Але англійська рахує тут по одному — «кожен», — і ставить `is`: `Everyone is kind`. `kind` — «добрий».\n\nПомилка живуча: `everyone are` хочеться сказати навіть тим, хто знає правило напам'ять."
+        "ru": "`familiar` — знакомый; `unfamiliar` — незнакомый. `unknown` подходит, когда сведения не установлены: например, время отправления пока неизвестно. Различайте личное узнавание и отсутствие информации в обсуждаемой ситуации.",
+        "uk": "`familiar` — знайомий; `unfamiliar` — незнайомий. `unknown` підходить, коли відомості не встановлені: наприклад, час відправлення поки невідомий. Розрізняйте особисте впізнавання й відсутність інформації в обговорюваній ситуації."
       },
       "question": {
         "interactionId": "en:lesson-01:session-56:intro2:q",
         "promptByLocale": {
-          "ru": "Брат спрашивает про новых коллег. Они хорошие — скажите про всех.",
-          "uk": "Брат питає про нових колег. Вони хороші — скажіть про всіх."
+          "ru": "Время отправления ещё не установлено. Вы обсуждаете именно это время. Скажите, что оно неизвестно.",
+          "uk": "Час відправлення ще не встановлено. Ви обговорюєте саме цей час. Скажіть, що він невідомий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-56:intro2:r1",
-              "text": "Everyone is kind."
+              "text": "It is unknown."
             },
             {
               "responseId": "en:lesson-01:session-56:intro2:r2",
-              "text": "Everyone are kind."
+              "text": "It is familiar."
             },
             {
               "responseId": "en:lesson-01:session-56:intro2:r3",
-              "text": "Everyone kind."
+              "text": "They are unknown."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-56:intro2:r1",
-              "text": "Everyone is kind."
+              "text": "It is unknown."
             },
             {
               "responseId": "en:lesson-01:session-56:intro2:r2",
-              "text": "Everyone are kind."
+              "text": "It is familiar."
             },
             {
               "responseId": "en:lesson-01:session-56:intro2:r3",
-              "text": "Everyone kind."
+              "text": "They are unknown."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Брат спрашивает про новых коллег. Они хорошие — скажите про всех.",
-          "uk": "Брат питає про нових колег. Вони хороші — скажіть про всіх."
+          "ru": "Время отправления ещё не установлено. Вы обсуждаете именно это время. Скажите, что оно неизвестно.",
+          "uk": "Час відправлення ще не встановлено. Ви обговорюєте саме цей час. Скажіть, що він невідомий."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`alone` — «один»",
-        "uk": "`alone` — «сам»"
+        "ru": "Три оценки человека",
+        "uk": "Три оцінки людини"
       },
       "bodyByLocale": {
-        "ru": "`alone` — «один, в одиночестве». Про себя это `I am alone`: скрепку `am` берут только с `I`, с другими словами она не идёт.\n\nЧтобы сказать обратное, `not` ставят после `am`: `I am not alone`. По-русски «я не один» обходится двумя словами, и третье кажется лишним — но выбросишь `am`, и фраза рассыпется.",
-        "uk": "`alone` — «сам, на самоті». Про себе це `I am alone`: зв'язку `am` беруть тільки з `I`, з іншими словами вона не йде.\n\nЩоб сказати навпаки, `not` ставлять після `am`: `I am not alone`. Українською «я не сам» обходиться двома словами, і третє здається зайвим — але викиньте `am`, і фраза розсиплеться."
+        "ru": "`responsible` — ответственный, `independent` — независимый, `dependent` — зависимый. Тот, кто сам решает свои повседневные дела, может быть `independent`. Тот, кому постоянно нужна забота других, — `dependent`. Ответственность описывает отношение к обязанностям.",
+        "uk": "`responsible` — відповідальний, `independent` — незалежний, `dependent` — залежний. Той, хто сам вирішує свої повсякденні справи, може бути `independent`. Той, кому постійно потрібна турбота інших, — `dependent`. Відповідальність описує ставлення до обов’язків."
       },
       "question": {
         "interactionId": "en:lesson-01:session-56:intro3:q",
         "promptByLocale": {
-          "ru": "Брат волнуется, что вы там совсем один. Успокойте его.",
-          "uk": "Брат хвилюється, що ви там зовсім самі. Заспокойте його."
+          "ru": "Друг серьёзно относится к обязанностям и выполняет обещания вовремя. Назовите именно его ответственность.",
+          "uk": "Друг серйозно ставиться до обов’язків і виконує обіцянки вчасно. Назвіть саме його відповідальність."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-56:intro3:r1",
-              "text": "I am not alone."
+              "text": "He is responsible."
             },
             {
               "responseId": "en:lesson-01:session-56:intro3:r2",
-              "text": "I not alone."
+              "text": "He is independent."
             },
             {
               "responseId": "en:lesson-01:session-56:intro3:r3",
-              "text": "I am no alone."
+              "text": "He are responsible."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-56:intro3:r1",
-              "text": "I am not alone."
+              "text": "He is responsible."
             },
             {
               "responseId": "en:lesson-01:session-56:intro3:r2",
-              "text": "I not alone."
+              "text": "He is independent."
             },
             {
               "responseId": "en:lesson-01:session-56:intro3:r3",
-              "text": "I am no alone."
+              "text": "He are responsible."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Брат волнуется, что вы там совсем один. Успокойте его.",
-          "uk": "Брат хвилюється, що ви там зовсім самі. Заспокойте його."
+          "ru": "Друг серьёзно относится к обязанностям и выполняет обещания вовремя. Назовите именно его ответственность.",
+          "uk": "Друг серйозно ставиться до обов’язків і виконує обіцянки вчасно. Назвіть саме його відповідальність."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "652b9674fc2c8b9a4c71b69c1c549623f5f6c3df50acad9890d0cd3fd0261b20"
+  "introFingerprint": "4a2f1636cb60f15aa8d1c4aded1559c634063a913109a63ea3bffd2e3bcc9bbf"
 }

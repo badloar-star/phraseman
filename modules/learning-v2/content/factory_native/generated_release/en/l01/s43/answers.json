@@ -1,97 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-43:i01",
-    "correctText": "bad",
+    "correctText": "She is patient.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i02",
-    "correctText": "bad",
+    "correctText": "He is patient.",
     "correctResponseId": "en:lesson-01:session-43:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-43:i03",
-    "correctText": "We're ready.",
-    "correctResponseId": null
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-43:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-43:i04",
-    "correctText": "real",
+    "correctText": "en:lesson-01:session-43:i04:p1=patient\nen:lesson-01:session-43:i04:p2=ill\nen:lesson-01:session-43:i04:p3=polite\nen:lesson-01:session-43:i04:p4=honest",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i05",
-    "correctText": "real",
-    "correctResponseId": "en:lesson-01:session-43:i05:r1"
+    "correctText": "We're patient.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i06",
-    "correctText": "true",
+    "correctText": "They are patient.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i07",
-    "correctText": "true",
-    "correctResponseId": "en:lesson-01:session-43:i07:r1"
+    "correctText": "You're patient.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i08",
-    "correctText": "are",
+    "correctText": "ill",
     "correctResponseId": "en:lesson-01:session-43:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-43:i09",
-    "correctText": "They aren't late.",
-    "correctResponseId": null
+    "correctText": "She is ill.",
+    "correctResponseId": "en:lesson-01:session-43:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-43:i10",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-43:i10:r1"
+    "correctText": "en:lesson-01:session-43:i10:p1=I'm\nen:lesson-01:session-43:i10:p2=You're\nen:lesson-01:session-43:i10:p3=We're\nen:lesson-01:session-43:i10:p4=They're",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i11",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-43:i11:r1"
+    "correctText": "He's patient.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i12",
-    "correctText": "We aren't late.",
+    "correctText": "We are patient.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i13",
-    "correctText": "I am not wrong.",
+    "correctText": "I am ill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i14",
-    "correctText": "wrong",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-43:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-43:i15",
-    "correctText": "ok",
+    "correctText": "They're patient.",
     "correctResponseId": "en:lesson-01:session-43:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-43:i16",
-    "correctText": "en:lesson-01:session-43:i16:p1=bad\nen:lesson-01:session-43:i16:p2=real\nen:lesson-01:session-43:i16:p3=true\nen:lesson-01:session-43:i16:p4=ok",
+    "correctText": "en:lesson-01:session-43:i16:p1=He's\nen:lesson-01:session-43:i16:p2=She's\nen:lesson-01:session-43:i16:p3=patient\nen:lesson-01:session-43:i16:p4=ill",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-43:i17:s01",
-    "correctText": "We're ready.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-43:i17:s02",
-    "correctText": "They aren't late.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-43:i17:s03",
-    "correctText": "It isn't bad.",
+    "interactionId": "en:lesson-01:session-43:i17",
+    "correctText": "He is patient.",
     "correctResponseId": null
   }
 ]

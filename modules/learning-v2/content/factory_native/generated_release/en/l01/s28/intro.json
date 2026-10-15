@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-28",
   "learningOutcomeByLocale": {
-    "ru": "`It is` про предметы (голос и слух)",
-    "uk": "`It is` про речі (голос і слух)"
+    "ru": "самостоятельно выбрать знакомую форму am, is или are и сообщить о верности, уверенности или серьёзности",
+    "uk": "самостійно вибрати знайому форму am, is або are та повідомити про правильність, упевненість або серйозність"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`broken` — сломано",
-        "uk": "`broken` — зламано"
+        "ru": "Это верно",
+        "uk": "Це правильно"
       },
       "bodyByLocale": {
-        "ru": "`broken` — «сломано». Не «плохое» и не «старое»: работало, а теперь нет.\n\nПо-русски между «оно» и «сломано» ничего не стоит. По-английски там всегда `is`: `It is broken`. Без него фразы просто нет.\n\n`broken` годится и для лампочки, и для лифта, и для телефона: одно слово на все поломки.",
-        "uk": "`broken` — «зламано». Не «погане» і не «старе»: працювало, а тепер ні.\n\nУкраїнською між «воно» і «зламано» нічого не стоїть. Англійською там завжди `is`: `It is broken`. Без нього фрази просто немає.\n\n`broken` годиться і для лампочки, і для ліфта, і для телефона: одне слово на всі поломки."
+        "ru": "`correct` — «верный, правильный». Вы сверили время в билете с расписанием: `It is correct` — «Оно верное». В этой ситуации можно также сказать `It is right`.",
+        "uk": "`correct` — «правильний». Ви звірили час у квитку з розкладом: `It is correct` — «Він правильний». У цій ситуації можна також сказати `It is right`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-28:intro1:q",
         "promptByLocale": {
-          "ru": "Вы жмёте выключатель в коридоре — тишина, темнота. Скажите про свет.",
-          "uk": "Ви тиснете вимикач у коридорі — тиша, темрява. Скажіть про світло."
+          "ru": "Время в билете совпадает с расписанием. Скажите о нём словом correct.",
+          "uk": "Час у квитку збігається з розкладом. Скажіть про нього словом correct."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-28:intro1:r1",
-              "text": "It is broken."
+              "text": "It is correct."
             },
             {
               "responseId": "en:lesson-01:session-28:intro1:r2",
-              "text": "It broken."
+              "text": "It are correct."
             },
             {
               "responseId": "en:lesson-01:session-28:intro1:r3",
-              "text": "It is break."
+              "text": "It correct."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-28:intro1:r1",
-              "text": "It is broken."
+              "text": "It is correct."
             },
             {
               "responseId": "en:lesson-01:session-28:intro1:r2",
-              "text": "It broken."
+              "text": "It are correct."
             },
             {
               "responseId": "en:lesson-01:session-28:intro1:r3",
-              "text": "It is break."
+              "text": "It correct."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы жмёте выключатель в коридоре — тишина, темнота. Скажите про свет.",
-          "uk": "Ви тиснете вимикач у коридорі — тиша, темрява. Скажіть про світло."
+          "ru": "Время в билете совпадает с расписанием. Скажите о нём словом correct.",
+          "uk": "Час у квитку збігається з розкладом. Скажіть про нього словом correct."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`open` и `closed` — открыто и закрыто",
-        "uk": "`open` і `closed` — відчинено і зачинено"
+        "ru": "Я уверен",
+        "uk": "Я впевнений"
       },
       "bodyByLocale": {
-        "ru": "`open` — «открыто», `closed` — «закрыто». `It is open.` `It is closed.` Меняется одно слово — и вас либо впустили, либо нет.\n\n`closed` запоминайте целиком, с `-d` на конце. У `open` в этой паре хвоста нет: про открытую дверь говорят просто `It is open`.",
-        "uk": "`open` — «відчинено», `closed` — «зачинено». `It is open.` `It is closed.` Змінюється одне слово — і вас або впустили, або ні.\n\n`closed` запам'ятовуйте цілком, з `-d` на кінці. У `open` у цій парі хвоста немає: про відчинені двері кажуть просто `It is open`."
+        "ru": "`certain` — «уверен, не сомневается». Вы проверили дату: `I am certain` — «Я уверен». Это описывает вашу уверенность. Уверенный человек тоже может ошибиться, поэтому `certain` и `correct` не одно и то же.",
+        "uk": "`certain` — «упевнений, не сумнівається». Ви перевірили дату: `I am certain` — «Я впевнений». Це описує вашу впевненість. Упевнена людина теж може помилитися, тому `certain` і `correct` не те саме."
       },
       "question": {
         "interactionId": "en:lesson-01:session-28:intro2:q",
         "promptByLocale": {
-          "ru": "Вы дёргаете окно на кухне — рама поддаётся, створка отходит. Скажите про окно.",
-          "uk": "Ви смикаєте вікно на кухні — рама піддається, стулка відходить. Скажіть про вікно."
+          "ru": "Сестра сомневается в дате, но вы уже сверили её и не сомневаетесь. Скажите о своей уверенности.",
+          "uk": "Сестра сумнівається в даті, але ви вже звірили її й не сумніваєтеся. Скажіть про свою впевненість."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-28:intro2:r1",
-              "text": "It is open."
+              "text": "I am certain."
             },
             {
               "responseId": "en:lesson-01:session-28:intro2:r2",
-              "text": "It is opened."
+              "text": "I is certain."
             },
             {
               "responseId": "en:lesson-01:session-28:intro2:r3",
-              "text": "It open."
+              "text": "He is certain."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-28:intro2:r1",
-              "text": "It is open."
+              "text": "I am certain."
             },
             {
               "responseId": "en:lesson-01:session-28:intro2:r2",
-              "text": "It is opened."
+              "text": "I is certain."
             },
             {
               "responseId": "en:lesson-01:session-28:intro2:r3",
-              "text": "It open."
+              "text": "He is certain."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы дёргаете окно на кухне — рама поддаётся, створка отходит. Скажите про окно.",
-          "uk": "Ви смикаєте вікно на кухні — рама піддається, стулка відходить. Скажіть про вікно."
+          "ru": "Сестра сомневается в дате, но вы уже сверили её и не сомневаетесь. Скажите о своей уверенности.",
+          "uk": "Сестра сумнівається в даті, але ви вже звірили її й не сумніваєтеся. Скажіть про свою впевненість."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`empty` — пусто",
-        "uk": "`empty` — порожньо"
+        "ru": "Я не шучу",
+        "uk": "Я не жартую"
       },
       "bodyByLocale": {
-        "ru": "`empty` — «пусто». Внутри ничего: ни еды, ни воды, ни денег на карте.\n\nСлово про содержимое, а не про размер: огромный зал без стульев — тоже `empty`, и полупустой автобус тоже.\n\nГолос давит на начало: ЭМ-пти, а не эм-ПТИ. Второй слог почти проглатывается.",
-        "uk": "`empty` — «порожньо». Усередині нічого: ні їжі, ні води, ні грошей на картці.\n\nСлово про вміст, а не про розмір: величезна зала без стільців — теж `empty`, і напівпорожній автобус теж.\n\nГолос тисне на початок: ЕМ-пті, а не ем-ПТІ. Другий склад майже ковтається."
+        "ru": "`serious` здесь — «говорит серьёзно». Друг смеётся, услышав про выезд в пять утра. Вы отвечаете: `I am serious` — «Я серьёзно». Будильник, к сожалению, тоже. Про сестру, которая говорит всерьёз, скажем `She is serious`.",
+        "uk": "`serious` тут — «говорить серйозно». Друг сміється, почувши про виїзд о п’ятій ранку. Ви відповідаєте: `I am serious` — «Я серйозно». Будильник, на жаль, теж. Про сестру, яка говорить усерйоз, скажемо `She is serious`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-28:intro3:q",
         "promptByLocale": {
-          "ru": "Вы открыли холодильник — свет горит, полки голые. Скажите про холодильник.",
-          "uk": "Ви відчинили холодильник — світло горить, полиці голі. Скажіть про холодильник."
+          "ru": "Сестра назначила выезд на пять утра и действительно так собирается сделать. Скажите другу, что она говорит серьёзно.",
+          "uk": "Сестра призначила виїзд на п’яту ранку й справді збирається так зробити. Скажіть другові, що вона говорить серйозно."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-28:intro3:r1",
-              "text": "It is empty."
+              "text": "She is serious."
             },
             {
               "responseId": "en:lesson-01:session-28:intro3:r2",
-              "text": "It is small."
+              "text": "She are serious."
             },
             {
               "responseId": "en:lesson-01:session-28:intro3:r3",
-              "text": "It empty."
+              "text": "She is certain."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-28:intro3:r1",
-              "text": "It is empty."
+              "text": "She is serious."
             },
             {
               "responseId": "en:lesson-01:session-28:intro3:r2",
-              "text": "It is small."
+              "text": "She are serious."
             },
             {
               "responseId": "en:lesson-01:session-28:intro3:r3",
-              "text": "It empty."
+              "text": "She is certain."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы открыли холодильник — свет горит, полки голые. Скажите про холодильник.",
-          "uk": "Ви відчинили холодильник — світло горить, полиці голі. Скажіть про холодильник."
+          "ru": "Сестра назначила выезд на пять утра и действительно так собирается сделать. Скажите другу, что она говорит серьёзно.",
+          "uk": "Сестра призначила виїзд на п’яту ранку й справді збирається так зробити. Скажіть другові, що вона говорить серйозно."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3151f031a8d822c774ae5332a83fd7327a46a2a23dc1e0ea2ec8faf3212c1893"
+  "introFingerprint": "0c4353a67204349d5cbc5be3a676c8856eff940bf6a0de4bee8241a12507da12"
 }

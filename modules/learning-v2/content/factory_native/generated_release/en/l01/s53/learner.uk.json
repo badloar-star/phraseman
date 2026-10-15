@@ -1,0 +1,999 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У кошику більше немає місця. Складіть фразу про його заповненість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У кошику більше немає місця. Складіть фразу про його заповненість",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is full.",
+        "localizedMeaning": {
+          "ru": "В корзине больше нет места. Соберите фразу о её заполненности",
+          "uk": "У кошику більше немає місця. Складіть фразу про його заповненість"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "full"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "У кошику більше немає місця. Складіть фразу про його заповненість",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is full.`",
+              "uk": "тут потрібно `is` — `It is full.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть почуте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i02:r1",
+          "text": "It is full."
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i02:r2",
+          "text": "It is heavy."
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i02:r3",
+          "text": "It is useful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i02:audio",
+          "transcript": "It is full."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-53:i02:r1",
+            "targetText": "It is full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i02:r2",
+            "targetText": "It is heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i02:r3",
+            "targetText": "It is useful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `full`, а в этом варианте — `heavy`.",
+              "uk": "У записі останнє слово — `full`, а в цьому варіанті — `heavy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть почуте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `full`, а в этом варианте — `useful`.",
+              "uk": "У записі останнє слово — `full`, а в цьому варіанті — `useful`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дві коробки заповнені доверху. Доповніть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дві коробки заповнені доверху. Доповніть фразу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Две коробки заполнены доверху. Дополните фразу",
+          "uk": "Дві коробки заповнені доверху. Доповніть фразу"
+        },
+        "gappedTargetPhrase": "They ___ full.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Дві коробки заповнені доверху. Доповніть фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Дві коробки заповнені доверху. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Дві коробки заповнені доверху. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "Про две коробки — `They are`.",
+              "uk": "Про дві коробки — `They are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-53:i04:p1",
+            "target": "full",
+            "meaningByLocale": {
+              "ru": "заполненный",
+              "uk": "заповнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i04:p2",
+            "target": "useful",
+            "meaningByLocale": {
+              "ru": "полезный",
+              "uk": "корисний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i04:p3",
+            "target": "heavy",
+            "meaningByLocale": {
+              "ru": "тяжёлый по весу",
+              "uk": "важкий за вагою"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i04:p4",
+            "target": "light",
+            "meaningByLocale": {
+              "ru": "лёгкий по весу",
+              "uk": "легкий за вагою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "full",
+          "useful",
+          "heavy",
+          "light"
+        ],
+        "rightColumn": [
+          "заповнений",
+          "корисний",
+          "важкий за вагою",
+          "легкий за вагою"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть коротку фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i05:audio",
+          "transcript": "It's full."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It's full.",
+        "orderedTokens": [
+          "It's",
+          "full"
+        ],
+        "authoredDistractorTokens": [
+          "He's"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть коротку фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `It's` — `It's full.`",
+              "uk": "тут потрібно `It's` — `It's full.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Обидві пляшки наповнені водою доверху. Назвіть їх повними",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Обидві пляшки наповнені водою доверху. Назвіть їх повними",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are full.",
+        "localizedMeaning": {
+          "ru": "Обе бутылки наполнены водой доверху. Назовите их полными",
+          "uk": "Обидві пляшки наповнені водою доверху. Назвіть їх повними"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "full"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Обидві пляшки наповнені водою доверху. Назвіть їх повними",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are full.`",
+              "uk": "тут потрібно `are` — `They are full.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коротко скажіть, що коробка заповнена й місця більше немає",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "Коротко скажіть, що коробка заповнена й місця більше немає",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i07:audio",
+          "transcript": "It's full."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's full.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Список допомагає нічого не забути. Назвіть саме його користь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i08:r1",
+          "text": "useful"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i08:r2",
+          "text": "full"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i08:r3",
+          "text": "heavy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Список допомагає нічого не забути. Назвіть саме його користь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Список помогает ничего не забыть. Назовите именно его пользу",
+          "uk": "Список допомагає нічого не забути. Назвіть саме його користь"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i08:r1",
+            "text": "useful"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i08:r2",
+            "text": "full"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i08:r3",
+            "text": "heavy"
+          }
+        ],
+        "testedDimension": "Список допомагає нічого не забути. Назвіть саме його користь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Список допомагає нічого не забути. Назвіть саме його користь",
+            "feedbackByLocale": {
+              "ru": "Это о заполненности. Здесь нужна польза: `useful`.",
+              "uk": "Це про заповненість. Тут потрібна користь: `useful`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Список допомагає нічого не забути. Назвіть саме його користь",
+            "feedbackByLocale": {
+              "ru": "Это о весе. Здесь нужно `useful`.",
+              "uk": "Це про вагу. Тут потрібно `useful`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про список",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i09:r1",
+          "text": "It is useful."
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i09:r2",
+          "text": "It is full."
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i09:r3",
+          "text": "It is useless."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про список",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i09:audio",
+          "transcript": "It is useful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-53:i09:r1",
+            "targetText": "It is useful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i09:r2",
+            "targetText": "It is full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i09:r3",
+            "targetText": "It is useless.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про список",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `useful`, а в этом варианте — `full`.",
+              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `full`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте фразу про список",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `useful`, а в этом варианте — `useless`.",
+              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `useless`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте короткі початки з повними",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте короткі початки з повними",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-53:i10:p1",
+            "target": "It's",
+            "meaningByLocale": {
+              "ru": "It is",
+              "uk": "It is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i10:p2",
+            "target": "They're",
+            "meaningByLocale": {
+              "ru": "They are",
+              "uk": "They are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i10:p3",
+            "target": "He's",
+            "meaningByLocale": {
+              "ru": "He is",
+              "uk": "He is"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i10:p4",
+            "target": "She's",
+            "meaningByLocale": {
+              "ru": "She is",
+              "uk": "She is"
+            }
+          }
+        ],
+        "leftColumn": [
+          "It's",
+          "They're",
+          "He's",
+          "She's"
+        ],
+        "rightColumn": [
+          "It is",
+          "They are",
+          "He is",
+          "She is"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу про коробки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу про коробки",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i11:audio",
+          "transcript": "They're full."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They're full.",
+        "orderedTokens": [
+          "They're",
+          "full"
+        ],
+        "authoredDistractorTokens": [
+          "We're"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу про коробки",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `They're` — `They're full.`",
+              "uk": "тут потрібно `They're` — `They're full.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коробка повна серветок, але мало важить. Скажіть саме про її невелику вагу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробка повна серветок, але мало важить. Скажіть саме про її невелику вагу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is light.",
+        "localizedMeaning": {
+          "ru": "Коробка полна салфеток, но мало весит. Скажите именно о её небольшом весе",
+          "uk": "Коробка повна серветок, але мало важить. Скажіть саме про її невелику вагу"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "light"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Коробка повна серветок, але мало важить. Скажіть саме про її невелику вагу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is light.`",
+              "uk": "тут потрібно `is` — `It is light.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дві невеликі коробки допомагають розкласти їжу окремо. Скажіть про їхню користь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i13:audio"
+      ],
+      "accessibilityLabel": "Дві невеликі коробки допомагають розкласти їжу окремо. Скажіть про їхню користь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i13:audio",
+          "transcript": "They are useful."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are useful.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Один термос наповнений доверху. Доповніть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Один термос наповнений доверху. Доповніть фразу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Один термос наполнен до верха. Дополните фразу",
+          "uk": "Один термос наповнений доверху. Доповніть фразу"
+        },
+        "gappedTargetPhrase": "It ___ full.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Один термос наповнений доверху. Доповніть фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i14:r2",
+            "correct": false,
+            "testedDimension": "Один термос наповнений доверху. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r3",
+            "correct": false,
+            "testedDimension": "Один термос наповнений доверху. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "Про один термос — `It is`.",
+              "uk": "Про один термос — `It is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте коротку оцінку й виберіть її",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i15:r1",
+          "text": "It's full."
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i15:r2",
+          "text": "It's light."
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i15:r3",
+          "text": "It's heavy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте коротку оцінку й виберіть її",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i15:audio",
+          "transcript": "It's full."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-53:i15:r1",
+            "targetText": "It's full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i15:r2",
+            "targetText": "It's light.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i15:r3",
+            "targetText": "It's heavy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте коротку оцінку й виберіть її",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `full`, а в этом варианте — `light`.",
+              "uk": "У записі останнє слово — `full`, а в цьому варіанті — `light`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте коротку оцінку й виберіть її",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `full`, а в этом варианте — `heavy`.",
+              "uk": "У записі останнє слово — `full`, а в цьому варіанті — `heavy`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова з їхніми значеннями тут",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова з їхніми значеннями тут",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-53:i16:p1",
+            "target": "full",
+            "meaningByLocale": {
+              "ru": "места больше нет",
+              "uk": "місця більше немає"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i16:p2",
+            "target": "useful",
+            "meaningByLocale": {
+              "ru": "приносит пользу",
+              "uk": "приносить користь"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i16:p3",
+            "target": "heavy",
+            "meaningByLocale": {
+              "ru": "много весит",
+              "uk": "багато важить"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i16:p4",
+            "target": "light",
+            "meaningByLocale": {
+              "ru": "мало весит",
+              "uk": "мало важить"
+            }
+          }
+        ],
+        "leftColumn": [
+          "full",
+          "useful",
+          "heavy",
+          "light"
+        ],
+        "rightColumn": [
+          "місця більше немає",
+          "приносить користь",
+          "багато важить",
+          "мало важить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після прогулянки ви кладете речі в шухляду, але вона вже заповнена доверху. Скажіть другові, що шухляда повна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Після прогулянки ви кладете речі в шухляду, але вона вже заповнена доверху. Скажіть другові, що шухляда повна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i17:audio",
+          "transcript": "It is full."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is full.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a989f65a22c1a8477a22263f0708c50ffb666ebe99926210d14b227e86cabb9c"
+}

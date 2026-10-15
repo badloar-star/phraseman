@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-31:intro1:r2": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        },
+        "en:lesson-01:session-31:intro1:r3": {
+          "ru": "Суммы одинаковые по величине, поэтому `equal`.",
+          "uk": "Суми однакові за величиною, тому `equal`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-31:intro2:r2": {
+          "ru": "`separate` — «отдельные». Здесь нужно назвать сходство: `similar`.",
+          "uk": "`separate` — «окремі». Тут треба назвати схожість: `similar`."
+        },
+        "en:lesson-01:session-31:intro2:r3": {
+          "ru": "После `They` ставим `are`.",
+          "uk": "Після `They` ставимо `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-31:intro3:r2": {
+          "ru": "Это говорит о равенстве сумм. Здесь речь о том, что счета отдельные: `separate`.",
+          "uk": "Це говорить про рівність сум. Тут ідеться про те, що рахунки окремі: `separate`."
+        },
+        "en:lesson-01:session-31:intro3:r3": {
+          "ru": "К слову-описанию `separate` здесь не добавляют `-s`.",
+          "uk": "До слова-опису `separate` тут не додають `-s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "deaaa5eb8b35ecbc4837c201b8756fecf65c4e45d58cdd14a3ef347653e34301"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-25:intro1:r2": {
+          "ru": "После `I` ставим `am`: `I am proud`.",
+          "uk": "Після `I` ставимо `am`: `I am proud`."
+        },
+        "en:lesson-01:session-25:intro1:r3": {
+          "ru": "`are` подходит к `You`, `We`, `They`, а с `I` нужно `am`.",
+          "uk": "`are` поєднується з `You`, `We`, `They`, а з `I` потрібно `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-25:intro2:r2": {
+          "ru": "После `He` нужно `is`; `am` ставим после `I`.",
+          "uk": "Після `He` потрібно `is`; `am` ставимо після `I`."
+        },
+        "en:lesson-01:session-25:intro2:r3": {
+          "ru": "Для `He`, `She`, `It` здесь выбираем `is`.",
+          "uk": "Для `He`, `She`, `It` тут вибираємо `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-25:intro3:r2": {
+          "ru": "После `We` нужно `are`; `am` остаётся с `I`.",
+          "uk": "Після `We` потрібно `are`; `am` залишається з `I`."
+        },
+        "en:lesson-01:session-25:intro3:r3": {
+          "ru": "`is` подходит к `He`, `She`, `It`. После `We` нужно `are`.",
+          "uk": "`is` поєднується з `He`, `She`, `It`. Після `We` потрібно `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "48804bf32483e18c03d911630195fc5c929581e10a1403711139adbf1716eaee"
+}

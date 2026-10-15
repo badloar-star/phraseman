@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-43:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-43:intro1:r2": {
-          "ru": "Без значка это «были». Фраза уехала в прошлое.",
-          "uk": "Без значка це «були». Фраза поїхала в минуле."
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібно `is`."
         },
         "en:lesson-01:session-43:intro1:r3": {
-          "ru": "`are` уже спрятано внутри `we're`. Второй раз его ставить не нужно.",
-          "uk": "`are` уже сховане всередині `we're`. Удруге його ставити не треба."
+          "ru": "`ill` — «болеет». Здесь нужно назвать терпение: `patient`.",
+          "uk": "`ill` — «хворіє». Тут треба назвати терплячість: `patient`."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-43:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-43:intro2:r2": {
-          "ru": "Скрепка пропала целиком. Между `they` и словом нужно `are` — или `they're`.",
-          "uk": "Скріпка зникла цілком. Між `they` і словом потрібне `are` — або `they're`."
+          "ru": "Это про них. Вы включаете себя: `We are patient`.",
+          "uk": "Це про них. Ви включаєте себе: `We are patient`."
         },
         "en:lesson-01:session-43:intro2:r3": {
-          "ru": "`are` уже внутри `they're`. Хватит одного.",
-          "uk": "`are` уже всередині `they're`. Досить одного."
+          "ru": "После `We` нужна форма `are`.",
+          "uk": "Після `We` потрібна форма `are`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-43:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-43:intro3:r2": {
-          "ru": "Значок встал не туда. Он стоит на месте выпавшей `o`: `isn't`.",
-          "uk": "Значок став не туди. Він стоїть на місці зниклої `o`: `isn't`."
+          "ru": "Это о терпении. Причина отсутствия здесь — болезнь: `ill`.",
+          "uk": "Це про терплячість. Причина відсутності тут — хвороба: `ill`."
         },
         "en:lesson-01:session-43:intro3:r3": {
-          "ru": "`aren't` — про нескольких. Про одного человека — `isn't`.",
-          "uk": "`aren't` — про кількох. Про одну людину — `isn't`."
+          "ru": "Это про него. Про подругу нужно `She`.",
+          "uk": "Це про нього. Про подругу потрібно `She`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "094dd3fc3d14402859dba0337f4d8e01ba561f3dc70ed889ca9404c8b46bddc7"
+  "auxiliaryFingerprint": "0516034811d9ac4b0ddce38fc6370318d287e96748ea8db1dfc470730f3819e1"
 }

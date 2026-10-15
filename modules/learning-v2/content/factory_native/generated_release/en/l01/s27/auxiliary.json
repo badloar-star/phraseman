@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-27:intro1:r2": {
+          "ru": "Между `She` и `awake` нужно `is`.",
+          "uk": "Між `She` і `awake` потрібно `is`."
+        },
+        "en:lesson-01:session-27:intro1:r3": {
+          "ru": "После `She` нужна форма `is`, а `am` ставим после `I`.",
+          "uk": "Після `She` потрібна форма `is`, а `am` ставимо після `I`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-27:intro2:r2": {
+          "ru": "`awake` — «не спят». Здесь они спят: `asleep`.",
+          "uk": "`awake` — «не сплять». Тут вони сплять: `asleep`."
+        },
+        "en:lesson-01:session-27:intro2:r3": {
+          "ru": "После `They` нужна форма `are`.",
+          "uk": "Після `They` потрібна форма `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-27:intro3:r2": {
+          "ru": "Это говорит лишь о том, что она не спит. Возможность уделить время — `available`.",
+          "uk": "Це говорить лише про те, що вона не спить. Можливість приділити час — `available`."
+        },
+        "en:lesson-01:session-27:intro3:r3": {
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c142779ce9b1969ba5ea675fcfa76ad9e47f3e5a11448afaee520a26ded876f5"
+}

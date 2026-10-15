@@ -1,107 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-26:i01",
-    "correctText": "rainy",
+    "correctText": "I am bored.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i02",
-    "correctText": "rainy",
+    "correctText": "They are worried.",
     "correctResponseId": "en:lesson-01:session-26:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-26:i03",
-    "correctText": "windy",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-26:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-26:i04",
-    "correctText": "windy",
-    "correctResponseId": "en:lesson-01:session-26:i04:r1"
+    "correctText": "en:lesson-01:session-26:i04:p1=bored\nen:lesson-01:session-26:i04:p2=confused\nen:lesson-01:session-26:i04:p3=worried\nen:lesson-01:session-26:i04:p4=surprised",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i05",
-    "correctText": "It is windy.",
+    "correctText": "She is bored.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i06",
-    "correctText": "early",
+    "correctText": "We are worried.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i07",
-    "correctText": "late",
+    "correctText": "I am confused.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i08",
-    "correctText": "early",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-26:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-26:i09",
-    "correctText": "It is late.",
-    "correctResponseId": null
+    "correctText": "We are confused.",
+    "correctResponseId": "en:lesson-01:session-26:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-26:i10",
-    "correctText": "rainy",
-    "correctResponseId": "en:lesson-01:session-26:i10:r1"
+    "correctText": "en:lesson-01:session-26:i10:p1=proud\nen:lesson-01:session-26:i10:p2=ashamed\nen:lesson-01:session-26:i10:p3=wrong\nen:lesson-01:session-26:i10:p4=early",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i11",
-    "correctText": "en:lesson-01:session-26:i11:p1=rainy\nen:lesson-01:session-26:i11:p2=windy\nen:lesson-01:session-26:i11:p3=early\nen:lesson-01:session-26:i11:p4=late",
+    "correctText": "He is worried.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i12",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-26:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-26:i13",
-    "correctText": "early",
-    "correctResponseId": "en:lesson-01:session-26:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-26:i14",
-    "correctText": "It is cold.",
+    "correctText": "They are bored.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-26:i13",
+    "correctText": "We are lucky.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i14",
+    "correctText": "confused",
+    "correctResponseId": "en:lesson-01:session-26:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-26:i15",
-    "correctText": "warm",
+    "correctText": "You are surprised.",
     "correctResponseId": "en:lesson-01:session-26:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-26:i16",
-    "correctText": "It is quiet.",
+    "correctText": "en:lesson-01:session-26:i16:p1=lucky\nen:lesson-01:session-26:i16:p2=bored\nen:lesson-01:session-26:i16:p3=confused\nen:lesson-01:session-26:i16:p4=worried",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i17",
-    "correctText": "It is warm.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-26:i18:s01",
-    "correctText": "It is quiet.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-26:i18:s02",
-    "correctText": "It is dark.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-26:i18:s03",
-    "correctText": "It is windy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-26:i18:s04",
-    "correctText": "It is rainy.",
+    "correctText": "I am worried.",
     "correctResponseId": null
   }
 ]

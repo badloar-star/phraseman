@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-27",
   "learningOutcomeByLocale": {
-    "ru": "`It is not` + признак",
-    "uk": "`It is not` + ознака"
+    "ru": "различать состояние и возможность помочь, выбирая знакомые формы am, is, are",
+    "uk": "розрізняти стан і можливість допомогти, вибираючи знайомі форми am, is, are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`not` встаёт после `is`",
-        "uk": "`not` стає після `is`"
+        "ru": "Уже не спит",
+        "uk": "Уже не спить"
       },
       "bodyByLocale": {
-        "ru": "`cheap` — «дёшево». Слово, которое чаще говорит продавец, чем покупатель.\n\nЧтобы поспорить, ставим `not` сразу после `is`: `It is not cheap`. Не в конец, не перед `It` — а вплотную к скрепке.\n\nГласный в `cheap` тянется. Оборвёте его — англичанин услышит другое слово.",
-        "uk": "`cheap` — «дешево». Слово, яке частіше каже продавець, ніж покупець.\n\nЩоб заперечити, ставимо `not` одразу після `is`: `It is not cheap`. Не в кінець, не перед `It` — а впритул до скріпки.\n\nГолосний у `cheap` тягнеться. Обірвете його — англієць почує інше слово."
+        "ru": "`awake` — «не спит, бодрствует». Друг уже читает сообщения: `He is awake` — «Он не спит». О себе скажите `I am awake`. Даже если кофе ещё не успел помочь, сна уже нет — значит, вы `awake`.",
+        "uk": "`awake` — «не спить». Друг уже читає повідомлення: `He is awake` — «Він не спить». Про себе скажіть `I am awake`. Навіть якщо кава ще не встигла допомогти, сну вже немає — отже, ви `awake`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-27:intro1:q",
         "promptByLocale": {
-          "ru": "Агент называет цену и говорит: «`Cheap!`» Цена вас не радует. Возразите.",
-          "uk": "Агент називає ціну й каже: «`Cheap!`» Ціна вас не тішить. Заперечте."
+          "ru": "Подруга уже проснулась и читает книгу. Скажите, что она не спит.",
+          "uk": "Подруга вже прокинулася й читає книжку. Скажіть, що вона не спить."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-27:intro1:r1",
-              "text": "It is not cheap."
+              "text": "She is awake."
             },
             {
               "responseId": "en:lesson-01:session-27:intro1:r2",
-              "text": "It not cheap."
+              "text": "She awake."
             },
             {
               "responseId": "en:lesson-01:session-27:intro1:r3",
-              "text": "It is cheap not."
+              "text": "She am awake."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-27:intro1:r1",
-              "text": "It is not cheap."
+              "text": "She is awake."
             },
             {
               "responseId": "en:lesson-01:session-27:intro1:r2",
-              "text": "It not cheap."
+              "text": "She awake."
             },
             {
               "responseId": "en:lesson-01:session-27:intro1:r3",
-              "text": "It is cheap not."
+              "text": "She am awake."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Агент называет цену и говорит: «`Cheap!`» Цена вас не радует. Возразите.",
-          "uk": "Агент називає ціну й каже: «`Cheap!`» Ціна вас не тішить. Заперечте."
+          "ru": "Подруга уже проснулась и читает книгу. Скажите, что она не спит.",
+          "uk": "Подруга вже прокинулася й читає книжку. Скажіть, що вона не спить."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`no` — это ответ, `not` — это фраза",
-        "uk": "`no` — це відповідь, `not` — це фраза"
+        "ru": "Ещё спит",
+        "uk": "Ще спить"
       },
       "bodyByLocale": {
-        "ru": "`far` — «далеко». Про расстояние: до работы, до магазина, до остановки.\n\nСпросят «`Far?`» — можно буркнуть `no` и закрыть тему. А можно сказать `It is not far`, и это уже разговор, а не отмашка.\n\nРазница простая: `no` живёт отдельно, само по себе. Внутри фразы после `is` стоит `not`.",
-        "uk": "`far` — «далеко». Про відстань: до роботи, до магазину, до зупинки.\n\nСпитають «`Far?`» — можна буркнути `no` і закрити тему. А можна сказати `It is not far`, і це вже розмова, а не відмашка.\n\nРізниця проста: `no` живе окремо, саме по собі. Усередині фрази після `is` стоїть `not`."
+        "ru": "`asleep` — «спит». Друг заснул: `He is asleep` — «Он спит». Это противоположно `awake`. В английской фразе `He is asleep` нужно `is`, хотя в русском «он спит» отдельного слова на этом месте нет.",
+        "uk": "`asleep` — «спить». Друг заснув: `He is asleep` — «Він спить». Це протилежне до `awake`. В англійській фразі `He is asleep` потрібне `is`, хоча в українському «він спить» окремого слова на цьому місці немає."
       },
       "question": {
         "interactionId": "en:lesson-01:session-27:intro2:q",
         "promptByLocale": {
-          "ru": "Агент уверяет, что до центра целый час. Вы шли пятнадцать минут. Возразите.",
-          "uk": "Агент запевняє, що до центру ціла година. Ви йшли п'ятнадцять хвилин. Заперечте."
+          "ru": "Двое друзей ещё спят в своей комнате. Скажите про них.",
+          "uk": "Двоє друзів іще сплять у своїй кімнаті. Скажіть про них."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-27:intro2:r1",
-              "text": "It is not far."
+              "text": "They are asleep."
             },
             {
               "responseId": "en:lesson-01:session-27:intro2:r2",
-              "text": "It is no far."
+              "text": "They are awake."
             },
             {
               "responseId": "en:lesson-01:session-27:intro2:r3",
-              "text": "It not far."
+              "text": "They is asleep."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-27:intro2:r1",
-              "text": "It is not far."
+              "text": "They are asleep."
             },
             {
               "responseId": "en:lesson-01:session-27:intro2:r2",
-              "text": "It is no far."
+              "text": "They are awake."
             },
             {
               "responseId": "en:lesson-01:session-27:intro2:r3",
-              "text": "It not far."
+              "text": "They is asleep."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Агент уверяет, что до центра целый час. Вы шли пятнадцать минут. Возразите.",
-          "uk": "Агент запевняє, що до центру ціла година. Ви йшли п'ятнадцять хвилин. Заперечте."
+          "ru": "Двое друзей ещё спят в своей комнате. Скажите про них.",
+          "uk": "Двоє друзів іще сплять у своїй кімнаті. Скажіть про них."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`easy` и `hard`",
-        "uk": "`easy` і `hard`"
+        "ru": "Может уделить время",
+        "uk": "Може приділити час"
       },
       "bodyByLocale": {
-        "ru": "`easy` — «легко, просто». `hard` — «трудно». Ими меряют любое дело: от замка на двери до дороги на работу.\n\n`It is hard` — прямо и жёстко: трудно. `It is not easy` — мягче: вы не спорите, что дело тяжёлое, вы просто не согласны, что оно простое. Возьмём мягкое.",
-        "uk": "`easy` — «легко, просто». `hard` — «важко». Ними міряють будь-яку справу: від замка на дверях до дороги на роботу.\n\n`It is hard` — прямо й різко: важко. `It is not easy` — м'якше: ви не сперечаєтесь, що справа важка, ви просто не згодні, що вона проста. Візьмемо м'яке."
+        "ru": "`available` здесь — «свободен, может уделить время». Друг уже закончил свои дела и может помочь: `He is available`. А `He is awake` сообщает только, что он не спит. Можно проснуться в семь и всё утро быть занятым.",
+        "uk": "`available` тут — «вільний, може приділити час». Друг уже закінчив свої справи й може допомогти: `He is available`. А `He is awake` повідомляє лише, що він не спить. Можна прокинутися о сьомій і весь ранок бути зайнятим."
       },
       "question": {
         "interactionId": "en:lesson-01:session-27:intro3:q",
         "promptByLocale": {
-          "ru": "Агент показывает окно, которое открывается с третьей попытки, и говорит: «`Easy!`» Возразите.",
-          "uk": "Агент показує вікно, яке відчиняється з третьої спроби, і каже: «`Easy!`» Заперечте."
+          "ru": "Подруга закончила работу и может сейчас помочь с маршрутом. Скажите, что она свободна для этого.",
+          "uk": "Подруга закінчила роботу й може зараз допомогти з маршрутом. Скажіть, що вона вільна для цього."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-27:intro3:r1",
-              "text": "It is not easy."
+              "text": "She is available."
             },
             {
               "responseId": "en:lesson-01:session-27:intro3:r2",
-              "text": "It is easy not."
+              "text": "She is awake."
             },
             {
               "responseId": "en:lesson-01:session-27:intro3:r3",
-              "text": "Is not easy."
+              "text": "She are available."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-27:intro3:r1",
-              "text": "It is not easy."
+              "text": "She is available."
             },
             {
               "responseId": "en:lesson-01:session-27:intro3:r2",
-              "text": "It is easy not."
+              "text": "She is awake."
             },
             {
               "responseId": "en:lesson-01:session-27:intro3:r3",
-              "text": "Is not easy."
+              "text": "She are available."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Агент показывает окно, которое открывается с третьей попытки, и говорит: «`Easy!`» Возразите.",
-          "uk": "Агент показує вікно, яке відчиняється з третьої спроби, і каже: «`Easy!`» Заперечте."
+          "ru": "Подруга закончила работу и может сейчас помочь с маршрутом. Скажите, что она свободна для этого.",
+          "uk": "Подруга закінчила роботу й може зараз допомогти з маршрутом. Скажіть, що вона вільна для цього."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e509c6973bed8637f93450d56e8bb548f135617480dd4698a42c6458588e89b6"
+  "introFingerprint": "8034a7fb45baca0221b114db87c0039fe3b245fb4ea41281fed0492b72ba90d8"
 }

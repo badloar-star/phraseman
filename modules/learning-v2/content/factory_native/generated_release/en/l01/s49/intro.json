@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-49",
   "learningOutcomeByLocale": {
-    "ru": "выбор `am` / `is` / `are` по тому, о ком речь",
-    "uk": "вибір `am` / `is` / `are` за тим, про кого мова"
+    "ru": "сказать, что вещь стоит недорого, и отдельно оценить честность человека",
+    "uk": "сказати, що річ коштує недорого, й окремо оцінити чесність людини"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "О ком речь — та и скрепка",
-        "uk": "Про кого мова — така й скріпка"
+        "ru": "Низкая цена",
+        "uk": "Низька ціна"
       },
       "bodyByLocale": {
-        "ru": "`I am tired` — «я устал». По-русски мы говорим просто «я занят», «я готов», без лишнего слова посередине. По-английски там обязательно стоит `am` — скрепка.\n\nСкрепка не одна, их три: `am`, `is`, `are`. И выбираете вы не наугад, а по тому, о ком речь. Про себя — всегда `am`, это единственная лёгкая часть сегодня.",
-        "uk": "`I am tired` — «я втомився». Українською ми кажемо просто «я зайнятий», «я готовий», без зайвого слова посередині. Англійською там обов'язково стоїть `am` — скріпка.\n\nСкріпка не одна, їх три: `am`, `is`, `are`. І вибираєте ви не навмання, а за тим, про кого мова. Про себе — завжди `am`, це єдина легка частина сьогодні."
+        "ru": "`cheap` — «дешёвый», «недорогой». `It is cheap` — «Это недорого» или «Она дешёвая», если говорим, например, о кружке. Здесь оцениваем цену. Кружка стоит меньше, чем кофе, который вы собираетесь в неё налить.",
+        "uk": "`cheap` — «дешевий», «недорогий». `It is cheap` — «Це недорого» або «Воно дешеве», якщо говоримо, наприклад, про горнятко. Тут оцінюємо ціну. Горнятко коштує менше, ніж кава, яку ви збираєтеся в нього налити."
       },
       "question": {
         "interactionId": "en:lesson-01:session-49:intro1:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает, как вы после недели. Скажите честно, что сил уже нет.",
-          "uk": "Мама питає, як ви після тижня. Скажіть чесно, що сил уже немає."
+          "ru": "Цена кружки низкая. Скажите именно о её невысокой цене.",
+          "uk": "Ціна горнятка низька. Скажіть саме про його невисоку ціну."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-49:intro1:r1",
-              "text": "I am tired."
+              "text": "It is cheap."
             },
             {
               "responseId": "en:lesson-01:session-49:intro1:r2",
-              "text": "I is tired."
+              "text": "It is useful."
             },
             {
               "responseId": "en:lesson-01:session-49:intro1:r3",
-              "text": "I tired."
+              "text": "It are cheap."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-49:intro1:r1",
-              "text": "I am tired."
+              "text": "It is cheap."
             },
             {
               "responseId": "en:lesson-01:session-49:intro1:r2",
-              "text": "I is tired."
+              "text": "It is useful."
             },
             {
               "responseId": "en:lesson-01:session-49:intro1:r3",
-              "text": "I tired."
+              "text": "It are cheap."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает, как вы после недели. Скажите честно, что сил уже нет.",
-          "uk": "Мама питає, як ви після тижня. Скажіть чесно, що сил уже немає."
+          "ru": "Цена кружки низкая. Скажите именно о её невысокой цене.",
+          "uk": "Ціна горнятка низька. Скажіть саме про його невисоку ціну."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Everyone считается за одного",
-        "uk": "Everyone рахується за одного"
+        "ru": "Цена — не вся история",
+        "uk": "Ціна — не вся історія"
       },
       "bodyByLocale": {
-        "ru": "`everyone` — «все». `kind` — «добрый», про того, кто помогает без просьбы. Все такие — `everyone is kind`.\n\nЗаметили `is`? Тут спотыкается любой: «все» же не один, рука сама тянет `are`. Но английский считает `everyone` за одну пачку людей, а к пачке скрепка идёт как к одному.",
-        "uk": "`everyone` — «всі». `kind` — «добрий», про того, хто допомагає без прохання. Усі такі — `everyone is kind`.\n\nПомітили `is`? Тут спотикається кожен: «всі» ж не один, рука сама тягне `are`. Але англійська рахує `everyone` за одну пачку людей, а до пачки скріпка йде як до одного."
+        "ru": "В этом занятии `cheap` говорит о низкой цене. Это само по себе не доказывает плохое качество. Недорогая кружка вполне может вам нравиться. Про две недорогие кружки — `They are cheap`, коротко `They're cheap`.",
+        "uk": "У цьому занятті `cheap` говорить про низьку ціну. Це саме по собі не доводить поганої якості. Недороге горнятко цілком може вам подобатися. Про два недорогі горнятка — `They are cheap`, коротко `They're cheap`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-49:intro2:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает про новых коллег. Скажите, что там все помогают и никто не рычит.",
-          "uk": "Мама питає про нових колег. Скажіть, що там усі допомагають і ніхто не гарчить."
+          "ru": "Обе кружки стоят недорого. Назовите их низкую цену одной фразой.",
+          "uk": "Обидва горнятка коштують недорого. Назвіть їхню низьку ціну однією фразою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-49:intro2:r1",
-              "text": "Everyone is kind."
+              "text": "They are cheap."
             },
             {
               "responseId": "en:lesson-01:session-49:intro2:r2",
-              "text": "Everyone are kind."
+              "text": "They is cheap."
             },
             {
               "responseId": "en:lesson-01:session-49:intro2:r3",
-              "text": "Everyone kind."
+              "text": "They are useless."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-49:intro2:r1",
-              "text": "Everyone is kind."
+              "text": "They are cheap."
             },
             {
               "responseId": "en:lesson-01:session-49:intro2:r2",
-              "text": "Everyone are kind."
+              "text": "They is cheap."
             },
             {
               "responseId": "en:lesson-01:session-49:intro2:r3",
-              "text": "Everyone kind."
+              "text": "They are useless."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает про новых коллег. Скажите, что там все помогают и никто не рычит.",
-          "uk": "Мама питає про нових колег. Скажіть, що там усі допомагають і ніхто не гарчить."
+          "ru": "Обе кружки стоят недорого. Назовите их низкую цену одной фразой.",
+          "uk": "Обидва горнятка коштують недорого. Назвіть їхню низьку ціну однією фразою."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "People — много, family — одна",
-        "uk": "People — багато, family — одна"
+        "ru": "Честная оценка человека",
+        "uk": "Чесна оцінка людини"
       },
       "bodyByLocale": {
-        "ru": "`people` — «люди». Их много, и скрепка для многих своя: `are`. `loud` — «громкий», про тех, кого слышно через стену: `people are loud`.\n\nА `family` — «семья». Народу внутри не меньше, но про свою семью целиком говорят `my family is fine` — «у меня в семье всё хорошо». Так и будем.",
-        "uk": "`people` — «люди». Їх багато, і скріпка для багатьох своя: `are`. `loud` — «гучний», про тих, кого чути крізь стіну: `people are loud`.\n\nА `family` — «сім'я». Народу всередині не менше, але про свою сім'ю загалом кажуть `my family is fine` — «у мене в сім'ї все добре». Так і робитимемо."
+        "ru": "`honest` — «честный». Продавец сам показывает небольшой дефект: вы можете оценить его честность фразой `He is honest`. `He is cheap` не означает «Он продаёт недорого»: о человеке так могут сказать, имея в виду скупость. Цену вещи описывайте через `It` или `They`.",
+        "uk": "`honest` — «чесний». Продавець сам показує невеликий дефект: ви можете оцінити його чесність фразою `He is honest`. `He is cheap` не означає «Він продає недорого»: про людину так можуть сказати, маючи на увазі скупість. Ціну речі описуйте через `It` або `They`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-49:intro3:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает про соседей за стенкой. Скажите, что через стену их слышно весь вечер.",
-          "uk": "Мама питає про сусідів за стіною. Скажіть, що крізь стіну їх чути цілий вечір."
+          "ru": "Продавец сам предупредил о незаметной трещине. Назовите его честным.",
+          "uk": "Продавець сам попередив про непомітну тріщину. Назвіть його чесним."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-49:intro3:r1",
-              "text": "People are loud."
+              "text": "He is honest."
             },
             {
               "responseId": "en:lesson-01:session-49:intro3:r2",
-              "text": "People is loud."
+              "text": "He is cheap."
             },
             {
               "responseId": "en:lesson-01:session-49:intro3:r3",
-              "text": "People am loud."
+              "text": "He are honest."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-49:intro3:r1",
-              "text": "People are loud."
+              "text": "He is honest."
             },
             {
               "responseId": "en:lesson-01:session-49:intro3:r2",
-              "text": "People is loud."
+              "text": "He is cheap."
             },
             {
               "responseId": "en:lesson-01:session-49:intro3:r3",
-              "text": "People am loud."
+              "text": "He are honest."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает про соседей за стенкой. Скажите, что через стену их слышно весь вечер.",
-          "uk": "Мама питає про сусідів за стіною. Скажіть, що крізь стіну їх чути цілий вечір."
+          "ru": "Продавец сам предупредил о незаметной трещине. Назовите его честным.",
+          "uk": "Продавець сам попередив про непомітну тріщину. Назвіть його чесним."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5dfde6acbf5d93370c8ccde9955f862514f91ebd21b513c4e3cdffee6c9f8019"
+  "introFingerprint": "c131f554c72abe076d8262db29d18eb3cec95f0478678b0c2928ca66743ab203"
 }

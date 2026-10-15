@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-53:i01",
-    "correctText": "am",
-    "correctResponseId": "en:lesson-01:session-53:i01:r1"
+    "correctText": "It is full.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i02",
-    "correctText": "is",
+    "correctText": "It is full.",
     "correctResponseId": "en:lesson-01:session-53:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-53:i03",
-    "correctText": "busy",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-53:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-53:i04",
-    "correctText": "We are home.",
+    "correctText": "en:lesson-01:session-53:i04:p1=full\nen:lesson-01:session-53:i04:p2=useful\nen:lesson-01:session-53:i04:p3=heavy\nen:lesson-01:session-53:i04:p4=light",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i05",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-53:i05:r1"
+    "correctText": "It's full.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i06",
-    "correctText": "She is not sick.",
+    "correctText": "They are full.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i07",
-    "correctText": "not",
-    "correctResponseId": "en:lesson-01:session-53:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-53:i08",
-    "correctText": "I am not busy.",
+    "correctText": "It's full.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-53:i08",
+    "correctText": "useful",
+    "correctResponseId": "en:lesson-01:session-53:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-53:i09",
-    "correctText": "sick",
+    "correctText": "It is useful.",
     "correctResponseId": "en:lesson-01:session-53:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-53:i10",
-    "correctText": "together",
-    "correctResponseId": "en:lesson-01:session-53:i10:r1"
+    "correctText": "en:lesson-01:session-53:i10:p1=It's\nen:lesson-01:session-53:i10:p2=They're\nen:lesson-01:session-53:i10:p3=He's\nen:lesson-01:session-53:i10:p4=She's",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i11",
-    "correctText": "He is not home.",
+    "correctText": "They're full.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i12",
-    "correctText": "en:lesson-01:session-53:i12:p1=tired\nen:lesson-01:session-53:i12:p2=busy\nen:lesson-01:session-53:i12:p3=sick\nen:lesson-01:session-53:i12:p4=home",
+    "correctText": "It is light.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i13",
-    "correctText": "He is busy.",
+    "correctText": "They are useful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-53:i14",
-    "correctText": "We are not tired.",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-53:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i15",
+    "correctText": "It's full.",
+    "correctResponseId": "en:lesson-01:session-53:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i16",
+    "correctText": "en:lesson-01:session-53:i16:p1=full\nen:lesson-01:session-53:i16:p2=useful\nen:lesson-01:session-53:i16:p3=heavy\nen:lesson-01:session-53:i16:p4=light",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-53:i15:s01",
-    "correctText": "We are together.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-53:i15:s02",
-    "correctText": "We are not tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-53:i16:s01",
-    "correctText": "I am tired.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-53:i16:s02",
-    "correctText": "He is busy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-53:i16:s03",
-    "correctText": "She is not sick.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-53:i16:s04",
-    "correctText": "We are together.",
+    "interactionId": "en:lesson-01:session-53:i17",
+    "correctText": "It is full.",
     "correctResponseId": null
   }
 ]

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-22",
   "learningOutcomeByLocale": {
-    "ru": "перенос `He is` / `She is` (+ `not`) на людей вне работы",
-    "uk": "перенесення `He is` / `She is` (+ `not`) на людей поза роботою"
+    "ru": "узнавать на слух знакомые I am, He/She is, You/We/They are и описывать героев фильма",
+    "uk": "впізнавати на слух знайомі I am, He/She is, You/We/They are та описувати героїв фільму"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`asleep` — спит",
-        "uk": "`asleep` — спить"
+        "ru": "У него много денег",
+        "uk": "У нього багато грошей"
       },
       "bodyByLocale": {
-        "ru": "`asleep` — «спит». Человек лежит, и звать его бесполезно.\n\nВ русском мы нигде не ставим «есть»: «он спит», «он дома», «он устал». В английском между `he` и словом о нём всегда стоит `is`: `He is asleep`. Выбросить его хочется каждому — и каждый раз фраза рассыпается.",
-        "uk": "`asleep` — «спить». Людина лежить, і гукати її марно.\n\nУкраїнською ми кажемо просто: «він спить», «він удома», «він утомився» — без жодної зв'язки. В англійській між `he` і словом про нього завжди стоїть `is`: `He is asleep`. Пропустити його хочеться кожному — і щоразу фраза розсипається."
+        "ru": "`rich` — «богатый». Герою принадлежат несколько дорогих домов: `He is rich` — «Он богатый». Про двух состоятельных героев скажем `They are rich`. Само `rich` остаётся тем же.",
+        "uk": "`rich` — «багатий». Героєві належать кілька дорогих будинків: `He is rich` — «Він багатий». Про двох заможних героїв скажемо `They are rich`. Саме `rich` залишається тим самим."
       },
       "question": {
         "interactionId": "en:lesson-01:session-22:intro1:q",
         "promptByLocale": {
-          "ru": "Сосед кивает на дверь: там сын, и его лучше не будить. Скажите про него.",
-          "uk": "Сусід киває на двері: там син, і його краще не будити. Скажіть про нього."
+          "ru": "Друг спрашивает о мужчине, которому принадлежат несколько дорогих домов. Скажите: «Он богатый».",
+          "uk": "Друг запитує про чоловіка, якому належать кілька дорогих будинків. Скажіть: «Він багатий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-22:intro1:r1",
-              "text": "He is asleep."
+              "text": "He is rich."
             },
             {
               "responseId": "en:lesson-01:session-22:intro1:r2",
-              "text": "He asleep."
+              "text": "He are rich."
             },
             {
               "responseId": "en:lesson-01:session-22:intro1:r3",
-              "text": "He am asleep."
+              "text": "They are rich."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-22:intro1:r1",
-              "text": "He is asleep."
+              "text": "He is rich."
             },
             {
               "responseId": "en:lesson-01:session-22:intro1:r2",
-              "text": "He asleep."
+              "text": "He are rich."
             },
             {
               "responseId": "en:lesson-01:session-22:intro1:r3",
-              "text": "He am asleep."
+              "text": "They are rich."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сосед кивает на дверь: там сын, и его лучше не будить. Скажите про него.",
-          "uk": "Сусід киває на двері: там син, і його краще не будити. Скажіть про нього."
+          "ru": "Друг спрашивает о мужчине, которому принадлежат несколько дорогих домов. Скажите: «Он богатый».",
+          "uk": "Друг запитує про чоловіка, якому належать кілька дорогих будинків. Скажіть: «Він багатий»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`awake` — не спит",
-        "uk": "`awake` — не спить"
+        "ru": "Денег мало",
+        "uk": "Грошей мало"
       },
       "bodyByLocale": {
-        "ru": "`awake` — «не спит». Человек проснулся и всё слышит.\n\nИ тут же ловушка: `awake` и `asleep` начинаются одинаково, а значат противоположное. Перепутаете — разбудите того, кого просили не трогать.\n\nОба слова не ставят перед человеком: не `an awake man`, а только после скрепки — `He is awake`.",
-        "uk": "`awake` — «не спить». Людина прокинулася і все чує.\n\nІ тут же пастка: `awake` й `asleep` починаються однаково, а означають протилежне. Переплутаєте — розбудите того, кого просили не чіпати.\n\nОбидва слова не ставлять перед людиною: не `an awake man`, а тільки після скріпки — `He is awake`."
+        "ru": "`poor` — «бедный»: в этой истории героине едва хватает денег на еду. `She is poor` — «Она бедная». Это про деньги, а не про доброту или ум. Если денег мало у двух героев, скажем `They are poor`.",
+        "uk": "`poor` — «бідний»: у цій історії героїні ледве вистачає грошей на їжу. `She is poor` — «Вона бідна». Це про гроші, а не про доброту чи розум. Якщо грошей мало у двох героїв, скажемо `They are poor`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-22:intro2:q",
         "promptByLocale": {
-          "ru": "Из комнаты слышно, что дочь соседа возится и не спит. Скажите про неё.",
-          "uk": "З кімнати чути, що донька сусіда вовтузиться і не спить. Скажіть про неї."
+          "ru": "У героини почти нет денег. Скажите другу о её положении.",
+          "uk": "У героїні майже немає грошей. Скажіть другові про її становище."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-22:intro2:r1",
-              "text": "She is awake."
+              "text": "She is poor."
             },
             {
               "responseId": "en:lesson-01:session-22:intro2:r2",
-              "text": "She is asleep."
+              "text": "She poor."
             },
             {
               "responseId": "en:lesson-01:session-22:intro2:r3",
-              "text": "She awake."
+              "text": "She is rich."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-22:intro2:r1",
-              "text": "She is awake."
+              "text": "She is poor."
             },
             {
               "responseId": "en:lesson-01:session-22:intro2:r2",
-              "text": "She is asleep."
+              "text": "She poor."
             },
             {
               "responseId": "en:lesson-01:session-22:intro2:r3",
-              "text": "She awake."
+              "text": "She is rich."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Из комнаты слышно, что дочь соседа возится и не спит. Скажите про неё.",
-          "uk": "З кімнати чути, що донька сусіда вовтузиться і не спить. Скажіть про неї."
+          "ru": "У героини почти нет денег. Скажите другу о её положении.",
+          "uk": "У героїні майже немає грошей. Скажіть другові про її становище."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`away` — его тут нет",
-        "uk": "`away` — його тут немає"
+        "ru": "Её узнают",
+        "uk": "Її впізнають"
       },
       "bodyByLocale": {
-        "ru": "`away` — «уехал, его нет на месте». Не «потерялся», а просто отсутствует: работа, другой город, магазин.\n\nХотите сказать «его нет» — не ищите слово «нет», берите `He is away`.\n\nЗвучит «эУЭЙ», ударение на второй слог. Первый почти проглатывается, как выдох перед словом.",
-        "uk": "`away` — «поїхав, його немає на місці». Не «загубився», а просто відсутній: робота, інше місто, магазин.\n\nХочете сказати «його немає» — не шукайте слово «немає», беріть `He is away`.\n\nЗвучить «аУЕЙ», наголос на другому складі. Перший склад майже проковтується, як видих перед словом."
+        "ru": "`famous` — «знаменитый». Героиню узнают незнакомые люди: `She is famous` — «Она знаменитая». Это ещё не значит, что она богатая: автографом за кофе обычно не расплатишься. Про известных людей говорим `They are famous`.",
+        "uk": "`famous` — «знаменитий». Героїню впізнають незнайомі люди: `She is famous` — «Вона знаменита». Це ще не означає, що вона багата: автографом за каву зазвичай не розплатишся. Про відомих людей кажемо `They are famous`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-22:intro3:q",
         "promptByLocale": {
-          "ru": "Сосед просит вас передать, где его старший сын: он уехал на неделю. Скажите про него.",
-          "uk": "Сусід просить вас передати, де його старший син: він поїхав на тиждень. Скажіть про нього."
+          "ru": "Двух певцов узнают по всей стране. Скажите про них: «Они знаменитые».",
+          "uk": "Двох співаків упізнають по всій країні. Скажіть про них: «Вони знамениті»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-22:intro3:r1",
-              "text": "He is away."
+              "text": "They are famous."
             },
             {
               "responseId": "en:lesson-01:session-22:intro3:r2",
-              "text": "He is not away."
+              "text": "They is famous."
             },
             {
               "responseId": "en:lesson-01:session-22:intro3:r3",
-              "text": "He away."
+              "text": "They are rich."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-22:intro3:r1",
-              "text": "He is away."
+              "text": "They are famous."
             },
             {
               "responseId": "en:lesson-01:session-22:intro3:r2",
-              "text": "He is not away."
+              "text": "They is famous."
             },
             {
               "responseId": "en:lesson-01:session-22:intro3:r3",
-              "text": "He away."
+              "text": "They are rich."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сосед просит вас передать, где его старший сын: он уехал на неделю. Скажите про него.",
-          "uk": "Сусід просить вас передати, де його старший син: він поїхав на тиждень. Скажіть про нього."
+          "ru": "Двух певцов узнают по всей стране. Скажите про них: «Они знаменитые».",
+          "uk": "Двох співаків упізнають по всій країні. Скажіть про них: «Вони знамениті»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6e5aace23fc6081625400a9ce8e5a911e6a3e03eb1cc34ec748800ed002ebf00"
+  "introFingerprint": "fe8c56f0658fcf70958ae009c391d45e1c22c2b68aa884d45b53388a5780f9eb"
 }

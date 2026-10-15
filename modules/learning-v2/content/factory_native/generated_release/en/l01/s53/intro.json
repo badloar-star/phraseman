@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-53",
   "learningOutcomeByLocale": {
-    "ru": "повторение — `am` / `is` / `are` и место `not`",
-    "uk": "повторення — `am` / `is` / `are` і місце `not`"
+    "ru": "сказать, что ёмкость заполнена, и отличить заполненность от веса и пользы",
+    "uk": "сказати, що ємність заповнена, й відрізнити заповненість від ваги та користі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`am` — только про себя",
-        "uk": "`am` — тільки про себе"
+        "ru": "Места больше нет",
+        "uk": "Місця більше немає"
       },
       "bodyByLocale": {
-        "ru": "`am` — это скрепка между `I` и словом о себе. `I am tired` — «я устал».\n\nПо-русски «я устал» обходится без «есть», и рука тянется написать так же: `I tired`. Без `am` фразы не выходит.\n\nЕщё соблазн — взять чужую скрепку: `I is`. Она красивая, но не ваша.",
-        "uk": "`am` — це скріпка між `I` і словом про себе. `I am tired` — «я втомився».\n\nУкраїнською «я втомився» обходиться без «є», і рука тягнеться написати так само: `I tired`. Без `am` фрази не виходить.\n\nЩе спокуса — взяти чужу скріпку: `I is`. Вона гарна, але не ваша."
+        "ru": "`full` — «полный», «заполненный». `It is full` — «Она полная», если говорим о корзине. Внутри уже нет места для других вещей. Последний бутерброд смотрит на вас: кажется, ему придётся ехать отдельно.",
+        "uk": "`full` — «повний», «заповнений». `It is full` — «Він повний», якщо говоримо про кошик. Усередині вже немає місця для інших речей. Останній бутерброд дивиться на вас: здається, йому доведеться їхати окремо."
       },
       "question": {
         "interactionId": "en:lesson-01:session-53:intro1:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает, как вы после недели. Вы устали — скажите про себя.",
-          "uk": "Мама питає, як ви після тижня. Ви втомилися — скажіть про себе."
+          "ru": "Корзина заполнена, места для бутерброда больше нет. Скажите, что она полная.",
+          "uk": "Кошик заповнений, місця для бутерброда більше немає. Скажіть, що він повний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-53:intro1:r1",
-              "text": "I am tired."
+              "text": "It is full."
             },
             {
               "responseId": "en:lesson-01:session-53:intro1:r2",
-              "text": "I tired."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-01:session-53:intro1:r3",
-              "text": "I is tired."
+              "text": "It are full."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-53:intro1:r1",
-              "text": "I am tired."
+              "text": "It is full."
             },
             {
               "responseId": "en:lesson-01:session-53:intro1:r2",
-              "text": "I tired."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-01:session-53:intro1:r3",
-              "text": "I is tired."
+              "text": "It are full."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает, как вы после недели. Вы устали — скажите про себя.",
-          "uk": "Мама питає, як ви після тижня. Ви втомилися — скажіть про себе."
+          "ru": "Корзина заполнена, места для бутерброда больше нет. Скажите, что она полная.",
+          "uk": "Кошик заповнений, місця для бутерброда більше немає. Скажіть, що він повний."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`are` — когда вас несколько",
-        "uk": "`are` — коли вас кілька"
+        "ru": "Полный — не обязательно тяжёлый",
+        "uk": "Повний — не обов’язково важкий"
       },
       "bodyByLocale": {
-        "ru": "`we` — это «мы». Про «мы» скрепка одна: `are`. `We are busy` — «мы заняты».\n\nРука тянется поставить `is`, потому что `is` знакомее и короче. Но `is` — про одного человека: `he is busy`. Как только людей стало двое, работает `are`.\n\nТо же самое с `they` — «они»: `they are busy`.",
-        "uk": "`we` — це «ми». Про «ми» скріпка одна: `are`. `We are busy` — «ми зайняті».\n\nРука тягнеться поставити `is`, бо `is` знайоміше й коротше. Але `is` — про одну людину: `he is busy`. Щойно людей стало двоє, працює `are`.\n\nТе саме з `they` — «вони»: `they are busy`."
+        "ru": "Коробка может быть полной салфеток и при этом мало весить. `full` говорит о заполненности, `heavy` — о весе. Про две заполненные коробки — `They are full`, коротко `They're full`.",
+        "uk": "Коробка може бути повною серветок і при цьому мало важити. `full` говорить про заповненість, `heavy` — про вагу. Про дві заповнені коробки — `They are full`, коротко `They're full`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-53:intro2:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает, чем вы там с братом заняты. Ответьте за двоих.",
-          "uk": "Мама питає, чим ви там із братом зайняті. Відповідьте за двох."
+          "ru": "Обе коробки заполнены до верха. Назовите их полными.",
+          "uk": "Обидві коробки заповнені доверху. Назвіть їх повними."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-53:intro2:r1",
-              "text": "We are busy."
+              "text": "They are full."
             },
             {
               "responseId": "en:lesson-01:session-53:intro2:r2",
-              "text": "We is busy."
+              "text": "They is full."
             },
             {
               "responseId": "en:lesson-01:session-53:intro2:r3",
-              "text": "We busy."
+              "text": "They are heavy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-53:intro2:r1",
-              "text": "We are busy."
+              "text": "They are full."
             },
             {
               "responseId": "en:lesson-01:session-53:intro2:r2",
-              "text": "We is busy."
+              "text": "They is full."
             },
             {
               "responseId": "en:lesson-01:session-53:intro2:r3",
-              "text": "We busy."
+              "text": "They are heavy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает, чем вы там с братом заняты. Ответьте за двоих.",
-          "uk": "Мама питає, чим ви там із братом зайняті. Відповідьте за двох."
+          "ru": "Обе коробки заполнены до верха. Назовите их полными.",
+          "uk": "Обидві коробки заповнені доверху. Назвіть їх повними."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`not` встаёт сразу после скрепки",
-        "uk": "`not` стає одразу після скріпки"
+        "ru": "Что помогает",
+        "uk": "Що допомагає"
       },
       "bodyByLocale": {
-        "ru": "`sick` — «болеет». Чтобы сказать «не болеет», нужно `not`: `she is not sick`.\n\nМесто у `not` одно — сразу после скрепки. Без скрепки он в такой фразе не работает: сначала `is`, потом `not`.\n\nРусское «не» стоит перед словом, поэтому рука тянет написать `she not is sick`. Тут спотыкаются все, честное слово.",
-        "uk": "`sick` — «хворіє». Щоб сказати «не хворіє», потрібне `not`: `she is not sick`.\n\nУ `not` одне місце — одразу після скріпки. Без скріпки він у такій фразі не працює: спершу `is`, потім `not`.\n\nУкраїнське «не» стоїть перед словом, тому рука тягне написати `she not is sick`. Тут спотикаються всі, чесне слово."
+        "ru": "Вспомните `useful` — «полезный». Список помогает ничего не забыть: `It is useful`. Это оценка пользы. `It is full` говорит о заполненности — эти слова отвечают на разные вопросы.",
+        "uk": "Згадайте `useful` — «корисний». Список допомагає нічого не забути: `It is useful`. Це оцінка користі. `It is full` говорить про заповненість — ці слова відповідають на різні запитання."
       },
       "question": {
         "interactionId": "en:lesson-01:session-53:intro3:q",
         "promptByLocale": {
-          "ru": "Мама волнуется, не заболела ли сестра. Она здорова — успокойте маму.",
-          "uk": "Мама хвилюється, чи не захворіла сестра. Вона здорова — заспокойте маму."
+          "ru": "Список помогает собрать всё нужное для пикника. Назовите его полезным.",
+          "uk": "Список допомагає зібрати все потрібне для пікніка. Назвіть його корисним."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-53:intro3:r1",
-              "text": "She is not sick."
+              "text": "It is useful."
             },
             {
               "responseId": "en:lesson-01:session-53:intro3:r2",
-              "text": "She not is sick."
+              "text": "It is full."
             },
             {
               "responseId": "en:lesson-01:session-53:intro3:r3",
-              "text": "She is sick not."
+              "text": "They are useful."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-53:intro3:r1",
-              "text": "She is not sick."
+              "text": "It is useful."
             },
             {
               "responseId": "en:lesson-01:session-53:intro3:r2",
-              "text": "She not is sick."
+              "text": "It is full."
             },
             {
               "responseId": "en:lesson-01:session-53:intro3:r3",
-              "text": "She is sick not."
+              "text": "They are useful."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама волнуется, не заболела ли сестра. Она здорова — успокойте маму.",
-          "uk": "Мама хвилюється, чи не захворіла сестра. Вона здорова — заспокойте маму."
+          "ru": "Список помогает собрать всё нужное для пикника. Назовите его полезным.",
+          "uk": "Список допомагає зібрати все потрібне для пікніка. Назвіть його корисним."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a57dd21fde84a5723a39775983b6327325fb55002ce13ac1cd2324cbb73df2fc"
+  "introFingerprint": "17b199ef4afbe7efb0d53af1c661c5f860f997da4c2b66b5a45e47a8a8202c80"
 }

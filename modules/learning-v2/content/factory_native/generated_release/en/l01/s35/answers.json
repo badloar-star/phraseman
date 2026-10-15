@@ -1,107 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-35:i01",
-    "correctText": "sure",
+    "correctText": "I am ill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-35:i02",
-    "correctText": "sure",
+    "correctText": "He is ill.",
     "correctResponseId": "en:lesson-01:session-35:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-35:i03",
-    "correctText": "wrong",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-35:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-35:i04",
-    "correctText": "wrong",
-    "correctResponseId": "en:lesson-01:session-35:i04:r1"
+    "correctText": "en:lesson-01:session-35:i04:p1=ill\nen:lesson-01:session-35:i04:p2=awake\nen:lesson-01:session-35:i04:p3=asleep\nen:lesson-01:session-35:i04:p4=available",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-35:i05",
-    "correctText": "We are not late.",
+    "correctText": "We are ill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-35:i06",
-    "correctText": "free",
+    "correctText": "They are ill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-35:i07",
-    "correctText": "free",
-    "correctResponseId": "en:lesson-01:session-35:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-35:i08",
-    "correctText": "alone",
+    "correctText": "I'm ill.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-35:i08",
+    "correctText": "asleep",
+    "correctResponseId": "en:lesson-01:session-35:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-35:i09",
-    "correctText": "sure",
+    "correctText": "She is awake.",
     "correctResponseId": "en:lesson-01:session-35:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-35:i10",
-    "correctText": "We are not alone.",
+    "correctText": "en:lesson-01:session-35:i10:p1=I'm\nen:lesson-01:session-35:i10:p2=He's\nen:lesson-01:session-35:i10:p3=We're\nen:lesson-01:session-35:i10:p4=They're",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-35:i11",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-35:i11:r1"
+    "correctText": "She's ill.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-35:i12",
-    "correctText": "en:lesson-01:session-35:i12:p1=sure\nen:lesson-01:session-35:i12:p2=wrong\nen:lesson-01:session-35:i12:p3=free\nen:lesson-01:session-35:i12:p4=alone",
+    "correctText": "I am available.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-35:i13",
-    "correctText": "free",
-    "correctResponseId": "en:lesson-01:session-35:i13:r1"
+    "correctText": "We are ill.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-35:i14",
-    "correctText": "We are ready.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-35:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-35:i15",
-    "correctText": "We are not busy.",
-    "correctResponseId": null
+    "correctText": "They're ill.",
+    "correctResponseId": "en:lesson-01:session-35:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-35:i16",
-    "correctText": "We are not wrong.",
+    "correctText": "en:lesson-01:session-35:i16:p1=available\nen:lesson-01:session-35:i16:p2=ill\nen:lesson-01:session-35:i16:p3=asleep\nen:lesson-01:session-35:i16:p4=awake",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-35:i17:s01",
-    "correctText": "We are not late.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-35:i17:s02",
-    "correctText": "We are hungry.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-35:i17:s03",
-    "correctText": "We are not busy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-35:i17:s04",
-    "correctText": "We are not sure.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-35:i17:s05",
-    "correctText": "We are ready.",
+    "interactionId": "en:lesson-01:session-35:i17",
+    "correctText": "She is ill.",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-56:intro1:r2": {
+          "ru": "Корзина действительно полная, но вопрос о весе: `light`.",
+          "uk": "Кошик справді повний, але запитання про вагу: `light`."
+        },
+        "en:lesson-01:session-56:intro1:r3": {
+          "ru": "После `It` нужно `is`.",
+          "uk": "Після `It` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-56:intro2:r2": {
+          "ru": "Здесь время не установлено: `unknown`.",
+          "uk": "Тут час не встановлено: `unknown`."
+        },
+        "en:lesson-01:session-56:intro2:r3": {
+          "ru": "Обсуждается одно время отправления: `It is`.",
+          "uk": "Обговорюється один час відправлення: `It is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-56:intro3:r2": {
+          "ru": "Вопрос не о независимости, а об отношении к обязанностям: `responsible`.",
+          "uk": "Запитання не про незалежність, а про ставлення до обов’язків: `responsible`."
+        },
+        "en:lesson-01:session-56:intro3:r3": {
+          "ru": "После `He` нужно `is`.",
+          "uk": "Після `He` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6a3c18b1e6988b4ff094aaa9eabb5c99a7f81e16a95ee6b168e040f8e07b2f3e"
+}

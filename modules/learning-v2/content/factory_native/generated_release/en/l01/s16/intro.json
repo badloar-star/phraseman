@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-16",
   "learningOutcomeByLocale": {
-    "ru": "повторение `You are` и `You are not`",
-    "uk": "повторення `You are` і `You are not`"
+    "ru": "описать себя, одного человека и предмет знакомыми сочетаниями I am, He is, She is, It is",
+    "uk": "описати себе, одну людину та предмет знайомими сполученнями I am, He is, She is, It is"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Про него — всегда `are`",
-        "uk": "Про нього — завжди `are`"
+        "ru": "О себе — I am",
+        "uk": "Про себе — I am"
       },
       "bodyByLocale": {
-        "ru": "`kind` — «добрый». Про человека напротив это будет `You are kind`.\n\nПо-русски «ты добрый» прекрасно живёт без связки, и рука тянется сделать так же. Выходит `You kind` — как стол на трёх ножках: стоять вроде стоит, а сесть страшно.",
-        "uk": "`kind` — «добрий». Про людину навпроти це буде `You are kind`.\n\nУкраїнською «ти добрий» чудово живе без зв'язки, і рука тягнеться зробити так само. Виходить `You kind` — як стілець на трьох ніжках: стояти начебто стоїть, а сісти страшно."
+        "ru": "Вы записываете свои качества для знакомства: `I am helpful` — «Я готов помочь». Здесь `helpful` описывает человека, который помогает другим. После `I` нужно `am`. Даже если вы помогли расставить все стулья, дополнительное `is` вам за это не полагается.",
+        "uk": "Ви записуєте свої якості для знайомства: `I am helpful` — «Я готовий допомогти». Тут `helpful` описує людину, яка допомагає іншим. Після `I` потрібно `am`. Навіть якщо ви допомогли розставити всі стільці, додаткове `is` вам за це не належить."
       },
       "question": {
         "interactionId": "en:lesson-01:session-16:intro1:q",
         "promptByLocale": {
-          "ru": "Коллега пожаловался, что помогает всем и никто не ценит. Скажите ему: «ты добрый».",
-          "uk": "Колега поскаржився, що допомагає всім, а ніхто цього не цінує. Скажіть йому: «ти добрий»."
+          "ru": "В карточке о себе вы хотите написать: «Я добрый». Выберите фразу.",
+          "uk": "У картці про себе ви хочете написати: «Я добрий». Виберіть фразу."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-16:intro1:r1",
-              "text": "You are kind."
+              "text": "I am kind."
             },
             {
               "responseId": "en:lesson-01:session-16:intro1:r2",
-              "text": "You kind."
+              "text": "I is kind."
             },
             {
               "responseId": "en:lesson-01:session-16:intro1:r3",
-              "text": "You is kind."
+              "text": "He is kind."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-16:intro1:r1",
-              "text": "You are kind."
+              "text": "I am kind."
             },
             {
               "responseId": "en:lesson-01:session-16:intro1:r2",
-              "text": "You kind."
+              "text": "I is kind."
             },
             {
               "responseId": "en:lesson-01:session-16:intro1:r3",
-              "text": "You is kind."
+              "text": "He is kind."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега пожаловался, что помогает всем и никто не ценит. Скажите ему: «ты добрый».",
-          "uk": "Колега поскаржився, що допомагає всім, а ніхто цього не цінує. Скажіть йому: «ти добрий»."
+          "ru": "В карточке о себе вы хотите написать: «Я добрый». Выберите фразу.",
+          "uk": "У картці про себе ви хочете написати: «Я добрий». Виберіть фразу."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`not` — сразу после `are`",
-        "uk": "`not` — одразу після `are`"
+        "ru": "О Лео и Мие",
+        "uk": "Про Лео та Мію"
       },
       "bodyByLocale": {
-        "ru": "`not` — «не». Место у него одно: между `are` и словом. `You are not tired` — «ты не устал».\n\nВперёд его выносить нельзя, хотя по-русски очень хочется. `You not tired` — это фраза, из которой вынули опору.\n\n`wrong` — «неправ». Пригодится, когда человек винит себя зря.",
-        "uk": "`not` — «не». Місце в нього одне: між `are` і словом. `You are not tired` — «ти не втомився».\n\nНаперед його виносити не можна, хоч українською дуже кортить. `You not tired` — це фраза, з якої витягли опору.\n\n`wrong` — «неправий». Знадобиться, коли людина винить себе даремно."
+        "ru": "О Лео говорим `He is`, о Мие — `She is`. Дальше ставим качество: `She is friendly` — «Она дружелюбная». В этих фразах слово-описание остаётся тем же: менять его окончание для Мии не нужно.",
+        "uk": "Про Лео кажемо `He is`, про Мію — `She is`. Далі ставимо якість: `She is friendly` — «Вона привітна». У цих фразах слово-опис залишається тим самим: змінювати його закінчення для Мії не треба."
       },
       "question": {
         "interactionId": "en:lesson-01:session-16:intro2:q",
         "promptByLocale": {
-          "ru": "Коллега уверен, что во всём ошибся. Возразите: «ты не ошибаешься».",
-          "uk": "Колега впевнений, що в усьому помилився. Заперечте: «ти не помиляєшся»."
+          "ru": "Мия приветливо встречает каждого гостя. Скажите о ней: «Она дружелюбная».",
+          "uk": "Мія привітно зустрічає кожного гостя. Скажіть про неї: «Вона привітна»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-16:intro2:r1",
-              "text": "You are not wrong."
+              "text": "She is friendly."
             },
             {
               "responseId": "en:lesson-01:session-16:intro2:r2",
-              "text": "You not wrong."
+              "text": "She am friendly."
             },
             {
               "responseId": "en:lesson-01:session-16:intro2:r3",
-              "text": "You are wrong not."
+              "text": "He is friendly."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-16:intro2:r1",
-              "text": "You are not wrong."
+              "text": "She is friendly."
             },
             {
               "responseId": "en:lesson-01:session-16:intro2:r2",
-              "text": "You not wrong."
+              "text": "She am friendly."
             },
             {
               "responseId": "en:lesson-01:session-16:intro2:r3",
-              "text": "You are wrong not."
+              "text": "He is friendly."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега уверен, что во всём ошибся. Возразите: «ты не ошибаешься».",
-          "uk": "Колега впевнений, що в усьому помилився. Заперечте: «ти не помиляєшся»."
+          "ru": "Мия приветливо встречает каждого гостя. Скажите о ней: «Она дружелюбная».",
+          "uk": "Мія привітно зустрічає кожного гостя. Скажіть про неї: «Вона привітна»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Мягче через `not`",
-        "uk": "М'якше через `not`"
+        "ru": "О предмете — It is",
+        "uk": "Про предмет — It is"
       },
       "bodyByLocale": {
-        "ru": "`brave` — «смелый», `calm` — «спокойный», `honest` — «честный».\n\nАнгличане любят хвалить через отрицание: вместо «ты прав» скажут `You are not wrong`. Похвала как бы боком, зато человек не краснеет.\n\nПорядок железный: `are`, потом `not`, потом слово.",
-        "uk": "`brave` — «сміливий», `calm` — «спокійний», `honest` — «чесний».\n\nАнглійці люблять хвалити через заперечення: замість «ти правий» скажуть `You are not wrong`. Хвалять ніби скоса, зате людина не червоніє.\n\nПорядок залізний: `are`, потім `not`, потім слово."
+        "ru": "Стол уже протёрли: `It is clean` — «Он чистый». Когда говорим об этом столе по-английски, используем `It`, хотя по-русски стол — «он». `He` оставляем для Лео.",
+        "uk": "Стіл уже протерли: `It is clean` — «Він чистий». Коли говоримо про цей стіл англійською, вживаємо `It`, хоча українською стіл — «він». `He` залишаємо для Лео."
       },
       "question": {
         "interactionId": "en:lesson-01:session-16:intro3:q",
         "promptByLocale": {
-          "ru": "Коллега боялся сказать начальнику про ошибку, но сказал. Похвалите его прямо: «ты смелый».",
-          "uk": "Колега боявся сказати начальнику про помилку, але сказав. Похваліть його прямо: «ти сміливий»."
+          "ru": "Вы показываете на чистый стол. Скажите: «Он чистый».",
+          "uk": "Ви показуєте на чистий стіл. Скажіть: «Він чистий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-16:intro3:r1",
-              "text": "You are brave."
+              "text": "It is clean."
             },
             {
               "responseId": "en:lesson-01:session-16:intro3:r2",
-              "text": "You brave."
+              "text": "He is clean."
             },
             {
               "responseId": "en:lesson-01:session-16:intro3:r3",
-              "text": "You am brave."
+              "text": "It clean."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-16:intro3:r1",
-              "text": "You are brave."
+              "text": "It is clean."
             },
             {
               "responseId": "en:lesson-01:session-16:intro3:r2",
-              "text": "You brave."
+              "text": "He is clean."
             },
             {
               "responseId": "en:lesson-01:session-16:intro3:r3",
-              "text": "You am brave."
+              "text": "It clean."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега боялся сказать начальнику про ошибку, но сказал. Похвалите его прямо: «ты смелый».",
-          "uk": "Колега боявся сказати начальнику про помилку, але сказав. Похваліть його прямо: «ти сміливий»."
+          "ru": "Вы показываете на чистый стол. Скажите: «Он чистый».",
+          "uk": "Ви показуєте на чистий стіл. Скажіть: «Він чистий»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fc0e949e3694f677acd886e02cf304c0c45d1de4cd665966bf2c447933ff6344"
+  "introFingerprint": "2a32c4be7e1527f76884cbc4b1d445da9243c3ce600bb871281f9fb9a803277e"
 }

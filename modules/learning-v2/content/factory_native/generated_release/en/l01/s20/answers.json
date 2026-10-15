@@ -1,87 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-20:i01",
-    "correctText": "married",
+    "correctText": "We are prepared.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i02",
-    "correctText": "married",
+    "correctText": "He is lost.",
     "correctResponseId": "en:lesson-01:session-20:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-20:i03",
-    "correctText": "single",
-    "correctResponseId": null
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-20:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-20:i04",
-    "correctText": "single",
-    "correctResponseId": "en:lesson-01:session-20:i04:r1"
+    "correctText": "en:lesson-01:session-20:i04:p1=lost\nen:lesson-01:session-20:i04:p2=prepared\nen:lesson-01:session-20:i04:p3=careful\nen:lesson-01:session-20:i04:p4=together",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i05",
-    "correctText": "funny",
+    "correctText": "They are careful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i06",
-    "correctText": "married",
-    "correctResponseId": "en:lesson-01:session-20:i06:r1"
+    "correctText": "We are lost.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i07",
-    "correctText": "She is single.",
+    "correctText": "She is prepared.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i08",
-    "correctText": "famous",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-20:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-20:i09",
-    "correctText": "famous",
+    "correctText": "I am lost.",
     "correctResponseId": "en:lesson-01:session-20:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-20:i10",
-    "correctText": "rich",
+    "correctText": "en:lesson-01:session-20:i10:p1=alone\nen:lesson-01:session-20:i10:p2=nearby\nen:lesson-01:session-20:i10:p3=friendly\nen:lesson-01:session-20:i10:p4=helpful",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i11",
-    "correctText": "rich",
-    "correctResponseId": "en:lesson-01:session-20:i11:r1"
+    "correctText": "You are prepared.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i12",
-    "correctText": "He is rich.",
+    "correctText": "He is helpful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i13",
-    "correctText": "famous",
-    "correctResponseId": "en:lesson-01:session-20:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-20:i14",
-    "correctText": "en:lesson-01:session-20:i14:p1=married\nen:lesson-01:session-20:i14:p2=single\nen:lesson-01:session-20:i14:p3=famous\nen:lesson-01:session-20:i14:p4=rich",
+    "correctText": "They are nearby.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-20:i14",
+    "correctText": "together",
+    "correctResponseId": "en:lesson-01:session-20:i14:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-20:i15",
-    "correctText": "quiet",
+    "correctText": "He is loud.",
     "correctResponseId": "en:lesson-01:session-20:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-20:i16",
-    "correctText": "She is kind.",
+    "correctText": "en:lesson-01:session-20:i16:p1=loud\nen:lesson-01:session-20:i16:p2=prepared\nen:lesson-01:session-20:i16:p3=lost\nen:lesson-01:session-20:i16:p4=careful",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i17",
-    "correctText": "He is funny.",
+    "correctText": "I am prepared.",
     "correctResponseId": null
   }
 ]

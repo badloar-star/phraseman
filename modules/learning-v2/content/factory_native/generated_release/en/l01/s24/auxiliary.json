@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-24:intro1:r2": {
+          "ru": "Это только о вас. Вы говорите за себя и сестру: `We are early`.",
+          "uk": "Це лише про вас. Ви говорите за себе та сестру: `We are early`."
+        },
+        "en:lesson-01:session-24:intro1:r3": {
+          "ru": "После `We` нужно `are`.",
+          "uk": "Після `We` потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-24:intro2:r2": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        },
+        "en:lesson-01:session-24:intro2:r3": {
+          "ru": "`outside` — «снаружи». Друзья на верхнем этаже: `upstairs`.",
+          "uk": "`outside` — «зовні». Друзі на верхньому поверсі: `upstairs`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-24:intro3:r2": {
+          "ru": "О деньгах ничего не сказано. Известность — `famous`.",
+          "uk": "Про гроші нічого не сказано. Популярність — `famous`."
+        },
+        "en:lesson-01:session-24:intro3:r3": {
+          "ru": "После `She` нужна форма `is`.",
+          "uk": "Після `She` потрібна форма `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "77db6aa3925eb34f8c8b4fb694cac5458e260edf2a7d264f8b948904579c9c95"
+}

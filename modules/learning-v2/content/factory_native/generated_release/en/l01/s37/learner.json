@@ -7,68 +7,43 @@
       "interactionId": "en:lesson-01:session-37:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — про себя после дороги",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-37:i01:r1",
-          "text": "am"
-        },
-        {
-          "responseId": "en:lesson-01:session-37:i01:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-01:session-37:i01:r3",
-          "text": "are"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В новом городе вам не хватает близкого общения. Соберите фразу о своём чувстве",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — про себя после дороги",
+      "accessibilityLabel": "В новом городе вам не хватает близкого общения. Соберите фразу о своём чувстве",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — про себя после дороги",
-          "uk": "Вставте слово — про себе після дороги"
+        "family": "phrase_builder",
+        "targetPhrase": "I am lonely.",
+        "localizedMeaning": {
+          "ru": "В новом городе вам не хватает близкого общения. Соберите фразу о своём чувстве",
+          "uk": "У новому місті вам бракує близького спілкування. Складіть фразу про своє почуття"
         },
-        "gappedTargetPhrase": "I ___ tired.",
-        "gapOptions": [
+        "orderedTokens": [
+          "I",
+          "am",
+          "lonely"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i01:r1",
-            "text": "am"
-          },
-          {
-            "responseId": "en:lesson-01:session-37:i01:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-01:session-37:i01:r3",
-            "text": "are"
+            "responseId": "en:lesson-01:session-37:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "В новом городе вам не хватает близкого общения. Соберите фразу о своём чувстве",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am lonely.`",
+              "uk": "тут потрібно `am` — `I am lonely.`"
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — про себя после дороги",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-37:i01:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — про себя после дороги",
-            "feedbackByLocale": {
-              "ru": "`is` — про кого-то одного со стороны. Про себя только `am`.",
-              "uk": "`is` — про когось одного збоку. Про себе тільки `am`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-37:i01:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — про себя после дороги",
-            "feedbackByLocale": {
-              "ru": "`are` — для `you`, `we`, `they`. С `I` не встаёт никогда.",
-              "uk": "`are` — для `you`, `we`, `they`. З `I` не стає ніколи."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -76,139 +51,70 @@
       "interactionId": "en:lesson-01:session-37:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — про всех за столом",
+      "prompt": "Послушайте и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-37:i02:r1",
-          "text": "are"
+          "text": "She is lonely."
         },
         {
           "responseId": "en:lesson-01:session-37:i02:r2",
-          "text": "is"
+          "text": "He is lonely."
         },
         {
           "responseId": "en:lesson-01:session-37:i02:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — про всех за столом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — про всех за столом",
-          "uk": "Вставте слово — про всіх за столом"
-        },
-        "gappedTargetPhrase": "We ___ happy.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-37:i02:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-01:session-37:i02:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-01:session-37:i02:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Вставьте слово — про всех за столом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-37:i02:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — про всех за столом",
-            "feedbackByLocale": {
-              "ru": "Их много. `is` — только про одного.",
-              "uk": "Їх багато. `is` — тільки про одного."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-37:i02:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — про всех за столом",
-            "feedbackByLocale": {
-              "ru": "`am` живёт исключительно рядом с `I`.",
-              "uk": "`am` живе виключно поруч із `I`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-37:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте — в комнате душно. Какое слово вы услышали?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-37:i03:r1",
-          "text": "hot"
-        },
-        {
-          "responseId": "en:lesson-01:session-37:i03:r2",
-          "text": "hat"
-        },
-        {
-          "responseId": "en:lesson-01:session-37:i03:r3",
-          "text": "hut"
+          "text": "She is online."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-37:i03:audio"
+        "en:lesson-01:session-37:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте — в комнате душно. Какое слово вы услышали?",
+      "accessibilityLabel": "Послушайте и выберите услышанное",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:i03:audio",
-          "transcript": "hot"
+          "audioTargetId": "en:lesson-01:session-37:i02:audio",
+          "transcript": "She is lonely."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-01:session-37:i03:r1",
-            "targetText": "hot",
+            "responseId": "en:lesson-01:session-37:i02:r1",
+            "targetText": "She is lonely.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-01:session-37:i03:r2",
-            "targetText": "hat",
+            "responseId": "en:lesson-01:session-37:i02:r2",
+            "targetText": "He is lonely.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-01:session-37:i03:r3",
-            "targetText": "hut",
+            "responseId": "en:lesson-01:session-37:i02:r3",
+            "targetText": "She is online.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i03:r2",
+            "responseId": "en:lesson-01:session-37:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — hot",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "Это «шляпа». В `hot` губы округлены, в `hat` растянуты в стороны.",
-              "uk": "Це «капелюх». У `hot` губи округлені, у `hat` розтягнуті вбік."
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
             }
           },
           {
-            "responseId": "en:lesson-01:session-37:i03:r3",
+            "responseId": "en:lesson-01:session-37:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — hot",
+            "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "«Хижина». В `hot` губы округлены, в `hut` рот расслаблен и губы не округляются.",
-              "uk": "«Хижка». У `hot` губи округлені, у `hut` рот розслаблений і губи не округлюються."
+              "ru": "В записи последнее слово — `lonely`, а в этом варианте — `online`.",
+              "uk": "У записі останнє слово — `lonely`, а в цьому варіанті — `online`."
             }
           }
         ],
@@ -218,96 +124,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-37:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — коллега дрожит у открытого окна",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — коллега дрожит у открытого окна",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She is cold.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — коллега дрожит у открытого окна",
-          "uk": "Складіть фразу — колега тремтить біля відчиненого вікна"
-        },
-        "orderedTokens": [
-          "She",
-          "is",
-          "cold"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-37:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-01:session-37:i03",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — про суп в тарелке",
+      "prompt": "Брат чувствует одиночество. Дополните фразу о нём",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-37:i05:r1",
+          "responseId": "en:lesson-01:session-37:i03:r1",
           "text": "is"
         },
         {
-          "responseId": "en:lesson-01:session-37:i05:r2",
-          "text": "are"
+          "responseId": "en:lesson-01:session-37:i03:r2",
+          "text": "am"
         },
         {
-          "responseId": "en:lesson-01:session-37:i05:r3",
-          "text": "am"
+          "responseId": "en:lesson-01:session-37:i03:r3",
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — про суп в тарелке",
+      "accessibilityLabel": "Брат чувствует одиночество. Дополните фразу о нём",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — про суп в тарелке",
-          "uk": "Вставте слово — про суп у тарілці"
+          "ru": "Брат чувствует одиночество. Дополните фразу о нём",
+          "uk": "Брат відчуває самотність. Доповніть фразу про нього"
         },
-        "gappedTargetPhrase": "It ___ hot.",
+        "gappedTargetPhrase": "He ___ lonely.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-37:i05:r1",
+            "responseId": "en:lesson-01:session-37:i03:r1",
             "text": "is"
           },
           {
-            "responseId": "en:lesson-01:session-37:i05:r2",
-            "text": "are"
+            "responseId": "en:lesson-01:session-37:i03:r2",
+            "text": "am"
           },
           {
-            "responseId": "en:lesson-01:session-37:i05:r3",
-            "text": "am"
+            "responseId": "en:lesson-01:session-37:i03:r3",
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — про суп в тарелке",
+        "testedDimension": "Брат чувствует одиночество. Дополните фразу о нём",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i05:r2",
+            "responseId": "en:lesson-01:session-37:i03:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — про суп в тарелке",
+            "testedDimension": "Брат чувствует одиночество. Дополните фразу о нём",
             "feedbackByLocale": {
-              "ru": "Тарелка одна. `are` — когда их несколько.",
-              "uk": "Тарілка одна. `are` — коли їх кілька."
+              "ru": "После `He` нужно `is`.",
+              "uk": "Після `He` потрібно `is`."
             }
           },
           {
-            "responseId": "en:lesson-01:session-37:i05:r3",
+            "responseId": "en:lesson-01:session-37:i03:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — про суп в тарелке",
+            "testedDimension": "Брат чувствует одиночество. Дополните фразу о нём",
             "feedbackByLocale": {
-              "ru": "`am` бывает только с `I`.",
-              "uk": "`am` буває тільки з `I`."
+              "ru": "Здесь `He is lonely`.",
+              "uk": "Тут `He is lonely`."
             }
           }
         ]
@@ -315,63 +193,63 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-37:i06",
-      "ordinal": 9,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-01:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-37:i06:p1",
-            "target": "tired",
+            "pairId": "en:lesson-01:session-37:i04:p1",
+            "target": "lonely",
             "meaningByLocale": {
-              "ru": "усталый",
-              "uk": "втомлений"
+              "ru": "чувствует одиночество",
+              "uk": "відчуває самотність"
             }
           },
           {
-            "pairId": "en:lesson-01:session-37:i06:p2",
-            "target": "happy",
+            "pairId": "en:lesson-01:session-37:i04:p2",
+            "target": "local",
             "meaningByLocale": {
-              "ru": "довольный",
-              "uk": "задоволений"
+              "ru": "местный",
+              "uk": "місцевий"
             }
           },
           {
-            "pairId": "en:lesson-01:session-37:i06:p3",
-            "target": "cold",
+            "pairId": "en:lesson-01:session-37:i04:p3",
+            "target": "foreign",
             "meaningByLocale": {
-              "ru": "замёрз",
-              "uk": "змерз"
+              "ru": "иностранный",
+              "uk": "іноземний"
             }
           },
           {
-            "pairId": "en:lesson-01:session-37:i06:p4",
-            "target": "hot",
+            "pairId": "en:lesson-01:session-37:i04:p4",
+            "target": "online",
             "meaningByLocale": {
-              "ru": "жарко",
-              "uk": "спекотно"
+              "ru": "в интернете",
+              "uk": "в інтернеті"
             }
           }
         ],
         "leftColumn": [
-          "tired",
-          "happy",
-          "cold",
-          "hot"
+          "lonely",
+          "local",
+          "foreign",
+          "online"
         ],
         "rightColumn": [
-          "усталый",
-          "довольный",
-          "замёрз",
-          "жарко"
+          "чувствует одиночество",
+          "местный",
+          "иностранный",
+          "в интернете"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -388,35 +266,126 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-37:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:i05:audio",
+          "transcript": "They are lonely."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are lonely.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "lonely"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-37:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are lonely.`",
+              "uk": "тут потрібно `are` — `They are lonely.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы и сестра оба чувствуете одиночество. Соберите фразу от вас двоих",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы и сестра оба чувствуете одиночество. Соберите фразу от вас двоих",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are lonely.",
+        "localizedMeaning": {
+          "ru": "Вы и сестра оба чувствуете одиночество. Соберите фразу от вас двоих",
+          "uk": "Ви та сестра обоє відчуваєте самотність. Складіть фразу від вас двох"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "lonely"
+        ],
+        "authoredDistractorTokens": [
+          "They"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-37:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы и сестра оба чувствуете одиночество. Соберите фразу от вас двоих",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `We` — `We are lonely.`",
+              "uk": "тут потрібно `We` — `We are lonely.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-37:i07",
       "ordinal": 10,
       "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — после дороги ваши коллеги устали",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В разговоре с другом коротко назовите своё чувство: вам одиноко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-37:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — после дороги ваши коллеги устали",
+      "accessibilityLabel": "В разговоре с другом коротко назовите своё чувство: вам одиноко",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-37:i07:audio",
-          "transcript": "They are tired."
+          "transcript": "I'm lonely."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are tired.",
-        "orderedTokens": [
-          "They",
-          "are",
-          "tired"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": []
+        "targetPhrase": "I'm lonely.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -426,63 +395,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — коллега напротив весь обед молчит и трёт глаза",
+      "prompt": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-37:i08:r1",
-          "text": "is"
+          "text": "local"
         },
         {
           "responseId": "en:lesson-01:session-37:i08:r2",
-          "text": "are"
+          "text": "lonely"
         },
         {
           "responseId": "en:lesson-01:session-37:i08:r3",
-          "text": "am"
+          "text": "foreign"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — коллега напротив весь обед молчит и трёт глаза",
+      "accessibilityLabel": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — коллега напротив весь обед молчит и трёт глаза",
-          "uk": "Вставте слово — колега навпроти весь обід мовчить і тре очі"
+          "ru": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
+          "uk": "Клуб організований мешканцями вашого міста й працює тут. Скажіть саме про його місцевий характер"
         },
-        "gappedTargetPhrase": "He ___ tired.",
+        "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-37:i08:r1",
-            "text": "is"
+            "text": "local"
           },
           {
             "responseId": "en:lesson-01:session-37:i08:r2",
-            "text": "are"
+            "text": "lonely"
           },
           {
             "responseId": "en:lesson-01:session-37:i08:r3",
-            "text": "am"
+            "text": "foreign"
           }
         ],
-        "testedDimension": "Вставьте слово — коллега напротив весь о",
+        "testedDimension": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-37:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — коллега напротив весь о",
+            "testedDimension": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
             "feedbackByLocale": {
-              "ru": "Он один. `are` — про нескольких.",
-              "uk": "Він один. `are` — про кількох."
+              "ru": "`lonely` описывает одиночество. Здесь нужно «местный»: `local`.",
+              "uk": "`lonely` описує самотність. Тут потрібно «місцевий»: `local`."
             }
           },
           {
             "responseId": "en:lesson-01:session-37:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — коллега напротив весь о",
+            "testedDimension": "Клуб организован жителями вашего города и работает здесь. Скажите именно о его местном характере",
             "feedbackByLocale": {
-              "ru": "`am` — только про себя.",
-              "uk": "`am` — тільки про себе."
+              "ru": "`foreign` — «иностранный». Здесь клуб местный: `local`.",
+              "uk": "`foreign` — «іноземний». Тут клуб місцевий: `local`."
             }
           }
         ]
@@ -493,28 +462,75 @@
       "interactionId": "en:lesson-01:session-37:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — коллега Мира спрашивает: «Cold?», а вам нормально",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — коллега Мира спрашивает: «Cold?», а вам нормально",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am not cold.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — коллега Мира спрашивает: «Cold?», а вам нормально",
-          "uk": "Складіть фразу — колега Міра питає: «Cold?», а вам нормально"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте описание встречи",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-37:i09:r1",
+          "text": "It is online."
         },
-        "orderedTokens": [
-          "I",
-          "am",
-          "not",
-          "cold"
+        {
+          "responseId": "en:lesson-01:session-37:i09:r2",
+          "text": "It is local."
+        },
+        {
+          "responseId": "en:lesson-01:session-37:i09:r3",
+          "text": "It is foreign."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте описание встречи",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:i09:audio",
+          "transcript": "It is online."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-37:i09:r1",
+            "targetText": "It is online.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i09:r2",
+            "targetText": "It is local.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i09:r3",
+            "targetText": "It is foreign.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте описание встречи",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `online`, а в этом варианте — `local`.",
+              "uk": "У записі останнє слово — `online`, а в цьому варіанті — `local`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте описание встречи",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `online`, а в этом варианте — `foreign`.",
+              "uk": "У записі останнє слово — `online`, а в цьому варіанті — `foreign`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -522,67 +538,71 @@
       "interactionId": "en:lesson-01:session-37:i10",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы обращаетесь к соседу по столу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-37:i10:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-01:session-37:i10:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-01:session-37:i10:r3",
-          "text": "am"
-        }
-      ],
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините короткие начала с полными",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы обращаетесь к соседу по столу",
+      "accessibilityLabel": "Соедините короткие начала с полными",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы обращаетесь к соседу по столу",
-          "uk": "Вставте слово — ви звертаєтеся до сусіда за столом"
-        },
-        "gappedTargetPhrase": "You ___ happy.",
-        "gapOptions": [
+        "family": "speed_match",
+        "pairGrid": [
           {
-            "responseId": "en:lesson-01:session-37:i10:r1",
-            "text": "are"
+            "pairId": "en:lesson-01:session-37:i10:p1",
+            "target": "I'm",
+            "meaningByLocale": {
+              "ru": "I am",
+              "uk": "I am"
+            }
           },
           {
-            "responseId": "en:lesson-01:session-37:i10:r2",
-            "text": "is"
+            "pairId": "en:lesson-01:session-37:i10:p2",
+            "target": "She's",
+            "meaningByLocale": {
+              "ru": "She is",
+              "uk": "She is"
+            }
           },
           {
-            "responseId": "en:lesson-01:session-37:i10:r3",
-            "text": "am"
+            "pairId": "en:lesson-01:session-37:i10:p3",
+            "target": "We're",
+            "meaningByLocale": {
+              "ru": "We are",
+              "uk": "We are"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-37:i10:p4",
+            "target": "They're",
+            "meaningByLocale": {
+              "ru": "They are",
+              "uk": "They are"
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — вы обращаетесь к соседу",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-37:i10:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы обращаетесь к соседу",
-            "feedbackByLocale": {
-              "ru": "`is` — про третьего, не про того, с кем говорите. К `you` идёт `are`.",
-              "uk": "`is` — про третього, не про того, з ким говорите. До `you` іде `are`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-37:i10:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы обращаетесь к соседу",
-            "feedbackByLocale": {
-              "ru": "`am` не выходит за пределы `I`.",
-              "uk": "`am` не виходить за межі `I`."
-            }
-          }
+        "leftColumn": [
+          "I'm",
+          "She's",
+          "We're",
+          "They're"
+        ],
+        "rightColumn": [
+          "I am",
+          "She is",
+          "We are",
+          "They are"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
@@ -590,52 +610,46 @@
     {
       "interactionId": "en:lesson-01:session-37:i11",
       "ordinal": 14,
-      "purpose": "retrieval_practice",
-      "family": "sound_contrast",
-      "inputMode": "single_choice",
-      "prompt": "Различите звуки — суп горячий. Какое слово подходит?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-37:i11:r1",
-          "text": "hot"
-        },
-        {
-          "responseId": "en:lesson-01:session-37:i11:r2",
-          "text": "hat"
-        }
-      ],
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите короткую фразу",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-37:i11:audioA",
-        "en:lesson-01:session-37:i11:audioB"
+        "en:lesson-01:session-37:i11:audio"
       ],
-      "accessibilityLabel": "Различите звуки — суп горячий. Какое слово подходит?",
+      "accessibilityLabel": "Послушайте и соберите короткую фразу",
       "modePayload": {
-        "family": "sound_contrast",
-        "contrastA": "hot",
-        "contrastB": "hat",
-        "ipaA": "",
-        "ipaB": "",
-        "audioA": {
-          "audioTargetId": "en:lesson-01:session-37:i11:audioA",
-          "transcript": "hot"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:i11:audio",
+          "transcript": "He's lonely."
         },
-        "audioB": {
-          "audioTargetId": "en:lesson-01:session-37:i11:audioB",
-          "transcript": "hat"
-        },
-        "testedPhoneticContrast": "Различите звуки — суп горячий. Какое слово подходит?",
-        "choiceFeedback": [
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He's lonely.",
+        "orderedTokens": [
+          "He's",
+          "lonely"
+        ],
+        "authoredDistractorTokens": [
+          "She's"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i11:r2",
+            "responseId": "en:lesson-01:session-37:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Различите звуки — суп горячий. Какое слово подходит?",
+            "testedDimension": "Послушайте и соберите короткую фразу",
             "feedbackByLocale": {
-              "ru": "Это «шляпа». В `hot` губы округлены, в `hat` растянуты в стороны.",
-              "uk": "Это «шляпа». В `hot` губы округлены, в `hat` растянуты в стороны."
+              "ru": "здесь нужно `He's` — `He's lonely.`",
+              "uk": "тут потрібно `He's` — `He's lonely.`"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -645,95 +659,73 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — на улице мороз, вы вдвоём с коллегой",
+      "prompt": "Для встречи киноклуба выбрали фильм другой страны. Соберите фразу о его иностранном происхождении",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — на улице мороз, вы вдвоём с коллегой",
+      "accessibilityLabel": "Для встречи киноклуба выбрали фильм другой страны. Соберите фразу о его иностранном происхождении",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are cold.",
+        "targetPhrase": "It is foreign.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — на улице мороз, вы вдвоём с коллегой",
-          "uk": "Складіть фразу — надворі мороз, ви вдвох із колегою"
+          "ru": "Для встречи киноклуба выбрали фильм другой страны. Соберите фразу о его иностранном происхождении",
+          "uk": "Для зустрічі кіноклубу вибрали фільм іншої країни. Складіть фразу про його іноземне походження"
         },
         "orderedTokens": [
-          "We",
-          "are",
-          "cold"
+          "It",
+          "is",
+          "foreign"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-37:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Для встречи киноклуба выбрали фильм другой страны. Соберите фразу о его иностранном происхождении",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is foreign.`",
+              "uk": "тут потрібно `is` — `It is foreign.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-37:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — за окном пекло",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-37:i13:r1",
-          "text": "hot"
-        },
-        {
-          "responseId": "en:lesson-01:session-37:i13:r2",
-          "text": "tired"
-        },
-        {
-          "responseId": "en:lesson-01:session-37:i13:r3",
-          "text": "happy"
-        }
-      ],
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Двое друзей признались вам, что чувствуют одиночество. Расскажите сестре именно об этом их чувстве",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — за окном пекло",
+      "audioTargetIds": [
+        "en:lesson-01:session-37:i13:audio"
+      ],
+      "accessibilityLabel": "Двое друзей признались вам, что чувствуют одиночество. Расскажите сестре именно об этом их чувстве",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — за окном пекло",
-          "uk": "Вставте слово — за вікном пекло"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:i13:audio",
+          "transcript": "They are lonely."
         },
-        "gappedTargetPhrase": "It is ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-37:i13:r1",
-            "text": "hot"
-          },
-          {
-            "responseId": "en:lesson-01:session-37:i13:r2",
-            "text": "tired"
-          },
-          {
-            "responseId": "en:lesson-01:session-37:i13:r3",
-            "text": "happy"
-          }
-        ],
-        "testedDimension": "Вставьте слово — за окном пекло",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-37:i13:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — за окном пекло",
-            "feedbackByLocale": {
-              "ru": "Погода не устаёт. `tired` — про человека.",
-              "uk": "Погода не втомлюється. `tired` — про людину."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-37:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — за окном пекло",
-            "feedbackByLocale": {
-              "ru": "Улица не бывает довольной. Про жару — `hot`.",
-              "uk": "Вулиця не буває задоволеною. Про спеку — `hot`."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are lonely.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -741,222 +733,253 @@
     {
       "interactionId": "en:lesson-01:session-37:i14",
       "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-37:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-37:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-37:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+          "uk": "Друг сказав, що йому самотньо. Ви звертаєтеся до нього: «Тобі самотньо». Вставте слово"
+        },
+        "gappedTargetPhrase": "You ___ lonely.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-37:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-37:i14:r2",
+            "correct": false,
+            "testedDimension": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+            "feedbackByLocale": {
+              "ru": "После `You` нужно `are`.",
+              "uk": "Після `You` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i14:r3",
+            "correct": false,
+            "testedDimension": "Друг сказал, что ему одиноко. Вы обращаетесь к нему: «Тебе одиноко». Вставьте слово",
+            "feedbackByLocale": {
+              "ru": "К одному другу тоже обращаемся `You are`.",
+              "uk": "До одного друга теж звертаємося `You are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i15",
+      "ordinal": 18,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — обед закончился, все довольны, и вы тоже",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите короткую фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-37:i15:r1",
+          "text": "We're lonely."
+        },
+        {
+          "responseId": "en:lesson-01:session-37:i15:r2",
+          "text": "They're lonely."
+        },
+        {
+          "responseId": "en:lesson-01:session-37:i15:r3",
+          "text": "We're online."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите короткую фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:i15:audio",
+          "transcript": "We're lonely."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-37:i15:r1",
+            "targetText": "We're lonely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i15:r2",
+            "targetText": "They're lonely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i15:r3",
+            "targetText": "We're online.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-37:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We're`, а в этом варианте — `They're`.",
+              "uk": "У записі перше слово — `We're`, а в цьому варіанті — `They're`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-37:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите короткую фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `lonely`, а в этом варианте — `online`.",
+              "uk": "У записі останнє слово — `lonely`, а в цьому варіанті — `online`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — обед закончился, все довольны, и вы тоже",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am happy.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — обед закончился, все довольны, и вы тоже",
-          "uk": "Складіть фразу — обід закінчився, усі задоволені, і ви теж"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "happy"
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-37:i16:p1",
+            "target": "online",
+            "meaningByLocale": {
+              "ru": "в сети",
+              "uk": "у мережі"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-37:i16:p2",
+            "target": "lonely",
+            "meaningByLocale": {
+              "ru": "одиноко",
+              "uk": "самотньо"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-37:i16:p3",
+            "target": "foreign",
+            "meaningByLocale": {
+              "ru": "иностранный",
+              "uk": "іноземний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-37:i16:p4",
+            "target": "local",
+            "meaningByLocale": {
+              "ru": "местный",
+              "uk": "місцевий"
+            }
+          }
         ],
-        "authoredDistractorTokens": [
-          "are"
+        "leftColumn": [
+          "online",
+          "lonely",
+          "foreign",
+          "local"
         ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-37:i15:s01",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — коллега мёрзнет у окна",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-37:i15:s01:audio"
-      ],
-      "accessibilityLabel": "Скажите вслух — коллега мёрзнет у окна",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:i15:s01:audio",
-          "transcript": "She is cold."
+        "rightColumn": [
+          "в сети",
+          "одиноко",
+          "иностранный",
+          "местный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "She is cold.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-37:i15:s02",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — на улице холодно, но вам не холодно",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-37:i15:s02:audio"
-      ],
-      "accessibilityLabel": "Скажите вслух — на улице холодно, но вам не холодно",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:i15:s02:audio",
-          "transcript": "I am not cold."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am not cold.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-37:i16:s01",
+      "interactionId": "en:lesson-01:session-37:i17",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — после дороги вы устали",
+      "prompt": "Подруга осталась на каникулы в общежитии и говорит, что ей не хватает общения. Объясните брату, что она чувствует одиночество",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-37:i16:s01:audio"
+        "en:lesson-01:session-37:i17:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — после дороги вы устали",
+      "accessibilityLabel": "Подруга осталась на каникулы в общежитии и говорит, что ей не хватает общения. Объясните брату, что она чувствует одиночество",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:i16:s01:audio",
-          "transcript": "I am tired."
+          "audioTargetId": "en:lesson-01:session-37:i17:audio",
+          "transcript": "She is lonely."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am tired.",
+        "targetPhrase": "She is lonely.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-37:i16:s02",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — коллега весь обед трёт глаза от усталости",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-37:i16:s02:audio"
-      ],
-      "accessibilityLabel": "Скажите вслух — коллега весь обед трёт глаза от усталости",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:i16:s02:audio",
-          "transcript": "He is tired."
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "He is tired.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-37:i16:s03",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — суп только принесли, и он горячий",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-37:i16:s03:audio"
-      ],
-      "accessibilityLabel": "Скажите вслух — суп только принесли, и он горячий",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:i16:s03:audio",
-          "transcript": "It is hot."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "It is hot.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-37:i16:s04",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вся команда довольна результатом",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-37:i16:s04:audio"
-      ],
-      "accessibilityLabel": "Скажите вслух — вся команда довольна результатом",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:i16:s04:audio",
-          "transcript": "We are happy."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "We are happy.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -967,11 +990,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 20,
+  "practiceInteractionCount": 17,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6240ffb7c3d26765c9ed544b23b85c78b236976fb375766af719a1067d85a8c7"
+  "learnerFingerprint": "90b75712fd0c67dd93e726266011baa736b76fcfede84aa65287912ded1decee"
 }

@@ -1,107 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-29:i01",
-    "correctText": "heavy",
+    "correctText": "I am local.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-29:i02",
-    "correctText": "heavy",
+    "correctText": "It is foreign.",
     "correctResponseId": "en:lesson-01:session-29:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-29:i03",
-    "correctText": "light",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-29:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-29:i04",
-    "correctText": "light",
-    "correctResponseId": "en:lesson-01:session-29:i04:r1"
+    "correctText": "en:lesson-01:session-29:i04:p1=local\nen:lesson-01:session-29:i04:p2=foreign\nen:lesson-01:session-29:i04:p3=online\nen:lesson-01:session-29:i04:p4=correct",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-29:i05",
-    "correctText": "It is heavy.",
+    "correctText": "They are local.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-29:i06",
-    "correctText": "clean",
+    "correctText": "It is online.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-29:i07",
-    "correctText": "clean",
-    "correctResponseId": "en:lesson-01:session-29:i07:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-29:i08",
-    "correctText": "dirty",
+    "correctText": "She is local.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-29:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-29:i08:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-29:i09",
-    "correctText": "dirty",
+    "correctText": "You are online.",
     "correctResponseId": "en:lesson-01:session-29:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-29:i10",
-    "correctText": "en:lesson-01:session-29:i10:p1=heavy\nen:lesson-01:session-29:i10:p2=light\nen:lesson-01:session-29:i10:p3=clean\nen:lesson-01:session-29:i10:p4=dirty",
+    "correctText": "en:lesson-01:session-29:i10:p1=certain\nen:lesson-01:session-29:i10:p2=serious\nen:lesson-01:session-29:i10:p3=inside\nen:lesson-01:session-29:i10:p4=outside",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-29:i11",
-    "correctText": "empty",
-    "correctResponseId": "en:lesson-01:session-29:i11:r1"
+    "correctText": "He is local.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-29:i12",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-29:i12:r1"
+    "correctText": "We are local.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-29:i13",
-    "correctText": "It is dirty.",
+    "correctText": "They are upstairs.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-29:i14",
-    "correctText": "broken",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-29:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-29:i15",
-    "correctText": "It is broken.",
-    "correctResponseId": null
+    "correctText": "I am certain.",
+    "correctResponseId": "en:lesson-01:session-29:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-29:i16",
-    "correctText": "small",
-    "correctResponseId": "en:lesson-01:session-29:i16:r1"
+    "correctText": "en:lesson-01:session-29:i16:p1=upstairs\nen:lesson-01:session-29:i16:p2=local\nen:lesson-01:session-29:i16:p3=foreign\nen:lesson-01:session-29:i16:p4=online",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-29:i17",
-    "correctText": "en:lesson-01:session-29:i17:p1=small\nen:lesson-01:session-29:i17:p2=new\nen:lesson-01:session-29:i17:p3=empty\nen:lesson-01:session-29:i17:p4=broken",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-29:i18:s01",
-    "correctText": "It is heavy.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-29:i18:s02",
-    "correctText": "It is dirty.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-29:i18:s03",
-    "correctText": "It is empty.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-29:i18:s04",
-    "correctText": "It is new.",
+    "correctText": "It is online.",
     "correctResponseId": null
   }
 ]

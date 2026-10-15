@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-36",
   "learningOutcomeByLocale": {
-    "ru": "повторение `We are` / `They are` вслух",
-    "uk": "повторення `We are` / `They are` вголос"
+    "ru": "сказать, кому хочется спать, и повторить фразы о правильности, уверенности и серьёзности",
+    "uk": "сказати, кому хочеться спати, й повторити фрази про правильність, упевненість і серйозність"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`colleagues` — «коллеги»",
-        "uk": "`colleagues` — «колеги»"
+        "ru": "Хочется спать",
+        "uk": "Хочеться спати"
       },
       "bodyByLocale": {
-        "ru": "`colleagues` — «коллеги». Люди, с которыми вы работаете, а не дружите. Про себя и своих говорят `we are colleagues`.\n\nСлово длинное, но пугает только на письме. В конце пишем `-gues`, а слышно «гз»: «ко́лигз». Буква `u` там не звучит совсем. И `-s` на конце обязательна: коллега один не бывает.",
-        "uk": "`colleagues` — «колеги». Люди, з якими ви працюєте, а не дружите. Про себе і своїх кажуть `we are colleagues`.\n\nСлово довге, але лякає тільки на письмі. У кінці пишемо `-gues`, а чути «ґз»: «ко́ліґз». Літера `u` там не звучить зовсім. І `-s` у кінці обов'язкова: колега один не буває."
+        "ru": "`sleepy` — «сонный», «хочется спать». `I am sleepy` — «Мне хочется спать». Это ещё не `asleep`: вы пока не спите. Можно даже объяснять правила, только всё чаще забывать, чья очередь. Короткий вариант — `I'm sleepy`.",
+        "uk": "`sleepy` — «сонний», «хочеться спати». `I am sleepy` — «Мені хочеться спати». Це ще не `asleep`: ви поки не спите. Можна навіть пояснювати правила, тільки дедалі частіше забувати, чия черга. Короткий варіант — `I'm sleepy`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-36:intro1:q",
         "promptByLocale": {
-          "ru": "Коллега Мира спрашивает, вы с соседом друзья или как. Вы вместе работаете.",
-          "uk": "Колега Міра питає, ви із сусідом друзі чи як. Ви разом працюєте."
+          "ru": "Вы ещё играете, но вам хочется спать. Назовите это состояние.",
+          "uk": "Ви ще граєте, але вам хочеться спати. Назвіть цей стан."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-36:intro1:r1",
-              "text": "We are colleagues."
+              "text": "I am sleepy."
             },
             {
               "responseId": "en:lesson-01:session-36:intro1:r2",
-              "text": "We colleagues."
+              "text": "I am asleep."
             },
             {
               "responseId": "en:lesson-01:session-36:intro1:r3",
-              "text": "We is colleagues."
+              "text": "I sleepy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-36:intro1:r1",
-              "text": "We are colleagues."
+              "text": "I am sleepy."
             },
             {
               "responseId": "en:lesson-01:session-36:intro1:r2",
-              "text": "We colleagues."
+              "text": "I am asleep."
             },
             {
               "responseId": "en:lesson-01:session-36:intro1:r3",
-              "text": "We is colleagues."
+              "text": "I sleepy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега Мира спрашивает, вы с соседом друзья или как. Вы вместе работаете.",
-          "uk": "Колега Міра питає, ви із сусідом друзі чи як. Ви разом працюєте."
+          "ru": "Вы ещё играете, но вам хочется спать. Назовите это состояние.",
+          "uk": "Ви ще граєте, але вам хочеться спати. Назвіть цей стан."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`friends` — «друзья»",
-        "uk": "`friends` — «друзі»"
+        "ru": "Она тоже сонная",
+        "uk": "Вона теж сонна"
       },
       "bodyByLocale": {
-        "ru": "`friends` — «друзья». Не «знакомые» и не «приятели по работе», а те, кому вы звоните просто так.\n\nПишется `friends`, читается «френдз». В середине порядок букв `ie`, не `ei` — здесь ошибаются чаще всего. И `friends` — это уже несколько человек, `-s` на конце.",
-        "uk": "`friends` — «друзі». Не «знайомі» й не «приятелі з роботи», а ті, кому ви телефонуєте просто так.\n\nПишеться `friends`, читається «френдз». У середині порядок літер `ie`, не `ei` — тут помиляються найчастіше. І `friends` — це вже кілька людей, `-s` у кінці."
+        "ru": "Про Машу скажем `She is sleepy`, про Олега — `He is sleepy`. Про вас вместе: `We are sleepy`. Число людей меняется, но к `sleepy` не добавляем `s`. В короткой фразе `She's sleepy` смысл тот же.",
+        "uk": "Про Машу скажемо `She is sleepy`, про Олега — `He is sleepy`. Про вас разом: `We are sleepy`. Кількість людей змінюється, але до `sleepy` не додаємо `s`. У короткій фразі `She's sleepy` зміст той самий."
       },
       "question": {
         "interactionId": "en:lesson-01:session-36:intro2:q",
         "promptByLocale": {
-          "ru": "Показывают на двоих за дальним столом: эти всё время вместе. Скажите, кто они друг другу.",
-          "uk": "Показують на двох за дальнім столом: ці весь час разом. Скажіть, хто вони одне одному."
+          "ru": "Маше хочется спать. Выберите фразу о ней.",
+          "uk": "Маші хочеться спати. Виберіть фразу про неї."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-36:intro2:r1",
-              "text": "They are friends."
+              "text": "She is sleepy."
             },
             {
               "responseId": "en:lesson-01:session-36:intro2:r2",
-              "text": "They friends."
+              "text": "He is sleepy."
             },
             {
               "responseId": "en:lesson-01:session-36:intro2:r3",
-              "text": "They are friend."
+              "text": "She are sleepy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-36:intro2:r1",
-              "text": "They are friends."
+              "text": "She is sleepy."
             },
             {
               "responseId": "en:lesson-01:session-36:intro2:r2",
-              "text": "They friends."
+              "text": "He is sleepy."
             },
             {
               "responseId": "en:lesson-01:session-36:intro2:r3",
-              "text": "They are friend."
+              "text": "She are sleepy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Показывают на двоих за дальним столом: эти всё время вместе. Скажите, кто они друг другу.",
-          "uk": "Показують на двох за дальнім столом: ці весь час разом. Скажіть, хто вони одне одному."
+          "ru": "Маше хочется спать. Выберите фразу о ней.",
+          "uk": "Маші хочеться спати. Виберіть фразу про неї."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`neighbours` и `guests`",
-        "uk": "`neighbours` і `guests`"
+        "ru": "Уверен — ещё не значит прав",
+        "uk": "Упевнений — ще не означає правий"
       },
       "bodyByLocale": {
-        "ru": "`neighbours` — «соседи»: те, кто живёт или сидит рядом. `guests` — «гости»: пришли ненадолго и уйдут.\n\nНазовёте гостей соседями — и человек решит, что они тут постоянно. В `neighbours` середина не звучит так, как пишется: `gh` немое, слышно «нэ́йборз». В `guests` наоборот — все согласные на месте: «гэстс».",
-        "uk": "`neighbours` — «сусіди»: ті, хто живе або сидить поруч. `guests` — «гості»: прийшли ненадовго й підуть.\n\nНазвете гостей сусідами — і людина вирішить, що вони тут постійно. У `neighbours` середина звучить не так, як пишеться: `gh` німе, чути «не́йборз». У `guests` навпаки — усі приголосні на місці: «ґестс»."
+        "ru": "`certain` — «уверен», `correct` — «правильный», `serious` — «серьёзный», «не шутит». `I am certain` сообщает о вашей уверенности. `It is correct` — о правильности, например счёта. Можно быть уверенным и всё же ошибиться, особенно когда хочется спать.",
+        "uk": "`certain` — «упевнений», `correct` — «правильний», `serious` — «серйозний», «не жартує». `I am certain` повідомляє про вашу впевненість. `It is correct` — про правильність, наприклад рахунку. Можна бути впевненим і все ж помилитися, особливо коли хочеться спати."
       },
       "question": {
         "interactionId": "en:lesson-01:session-36:intro3:q",
         "promptByLocale": {
-          "ru": "Вы киваете на людей у окна: они не отсюда, зашли на час. Скажите, кто это.",
-          "uk": "Ви киваєте на людей біля вікна: вони не звідси, зайшли на годину. Скажіть, хто це."
+          "ru": "Вы пересчитали очки: итог записан правильно. Скажите именно о результате подсчёта.",
+          "uk": "Ви перерахували очки: підсумок записано правильно. Скажіть саме про результат підрахунку."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-36:intro3:r1",
-              "text": "They are guests."
+              "text": "It is correct."
             },
             {
               "responseId": "en:lesson-01:session-36:intro3:r2",
-              "text": "They are neighbours."
+              "text": "I am certain."
             },
             {
               "responseId": "en:lesson-01:session-36:intro3:r3",
-              "text": "They guests."
+              "text": "It is sleepy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-36:intro3:r1",
-              "text": "They are guests."
+              "text": "It is correct."
             },
             {
               "responseId": "en:lesson-01:session-36:intro3:r2",
-              "text": "They are neighbours."
+              "text": "I am certain."
             },
             {
               "responseId": "en:lesson-01:session-36:intro3:r3",
-              "text": "They guests."
+              "text": "It is sleepy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы киваете на людей у окна: они не отсюда, зашли на час. Скажите, кто это.",
-          "uk": "Ви киваєте на людей біля вікна: вони не звідси, зайшли на годину. Скажіть, хто це."
+          "ru": "Вы пересчитали очки: итог записан правильно. Скажите именно о результате подсчёта.",
+          "uk": "Ви перерахували очки: підсумок записано правильно. Скажіть саме про результат підрахунку."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8e599b062dd58ff0419c1f0dadf6aaf0c41f886022eec8bd34cb90ae58d7f79a"
+  "introFingerprint": "9f7932330f8311786aec79896538c2c1ec4812d59983210ead70d53a029c8f25"
 }

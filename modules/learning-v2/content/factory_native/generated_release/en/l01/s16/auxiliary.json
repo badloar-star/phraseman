@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-16:intro1:r2": {
+          "ru": "После `I` нужна форма `am`: `I am kind`.",
+          "uk": "Після `I` потрібна форма `am`: `I am kind`."
+        },
+        "en:lesson-01:session-16:intro1:r3": {
+          "ru": "Это про него. О себе начните с `I am`.",
+          "uk": "Це про нього. Про себе почніть із `I am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-16:intro2:r2": {
+          "ru": "После `She` нужно `is`. `am` подходит к `I`.",
+          "uk": "Після `She` потрібно `is`. `am` поєднується з `I`."
+        },
+        "en:lesson-01:session-16:intro2:r3": {
+          "ru": "`He` означает «он», а речь о Мие: `She`.",
+          "uk": "`He` означає «він», а йдеться про Мію: `She`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-16:intro3:r2": {
+          "ru": "Здесь речь о столе, поэтому нужно `It`, а не `He`.",
+          "uk": "Тут ідеться про стіл, тому потрібно `It`, а не `He`."
+        },
+        "en:lesson-01:session-16:intro3:r3": {
+          "ru": "Между `It` и `clean` нужно `is`.",
+          "uk": "Між `It` і `clean` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f9f5d9376bc42f7dd7aa81eef67e5de59bf79a7867724b455756bcd5a100a5eb"
+}

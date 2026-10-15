@@ -1,107 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-49:i01",
-    "correctText": "everyone",
+    "correctText": "It is cheap.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i02",
-    "correctText": "everyone",
+    "correctText": "It is cheap.",
     "correctResponseId": "en:lesson-01:session-49:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-49:i03",
-    "correctText": "nobody",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-49:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-49:i04",
-    "correctText": "nobody",
-    "correctResponseId": "en:lesson-01:session-49:i04:r1"
+    "correctText": "en:lesson-01:session-49:i04:p1=cheap\nen:lesson-01:session-49:i04:p2=honest\nen:lesson-01:session-49:i04:p3=useful\nen:lesson-01:session-49:i04:p4=polite",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i05",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-49:i05:r1"
+    "correctText": "It's cheap.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i06",
-    "correctText": "people",
+    "correctText": "They are cheap.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i07",
-    "correctText": "family",
+    "correctText": "It's cheap.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i08",
-    "correctText": "family",
+    "correctText": "honest",
     "correctResponseId": "en:lesson-01:session-49:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-49:i09",
-    "correctText": "are",
+    "correctText": "He is honest.",
     "correctResponseId": "en:lesson-01:session-49:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-49:i10",
-    "correctText": "My family is fine.",
+    "correctText": "en:lesson-01:session-49:i10:p1=It's\nen:lesson-01:session-49:i10:p2=They're\nen:lesson-01:session-49:i10:p3=He's\nen:lesson-01:session-49:i10:p4=She's",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i11",
-    "correctText": "Nobody",
-    "correctResponseId": "en:lesson-01:session-49:i11:r1"
+    "correctText": "They're cheap.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i12",
-    "correctText": "en:lesson-01:session-49:i12:p1=everyone\nen:lesson-01:session-49:i12:p2=nobody\nen:lesson-01:session-49:i12:p3=people\nen:lesson-01:session-49:i12:p4=family",
+    "correctText": "She is honest.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i13",
-    "correctText": "Everyone is busy.",
+    "correctText": "It is useful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i14",
-    "correctText": "I am tired.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-49:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-49:i15",
-    "correctText": "am",
+    "correctText": "It's cheap.",
     "correctResponseId": "en:lesson-01:session-49:i15:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-49:i16:s01",
-    "correctText": "Everyone is kind.",
+    "interactionId": "en:lesson-01:session-49:i16",
+    "correctText": "en:lesson-01:session-49:i16:p1=cheap\nen:lesson-01:session-49:i16:p2=honest\nen:lesson-01:session-49:i16:p3=useful\nen:lesson-01:session-49:i16:p4=useless",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-49:i16:s02",
-    "correctText": "Nobody is loud.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-49:i17:s01",
-    "correctText": "People are loud.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-49:i17:s02",
-    "correctText": "Everyone is kind.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-49:i17:s03",
-    "correctText": "My family is fine.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-49:i17:s04",
-    "correctText": "I am tired.",
+    "interactionId": "en:lesson-01:session-49:i17",
+    "correctText": "It is cheap.",
     "correctResponseId": null
   }
 ]

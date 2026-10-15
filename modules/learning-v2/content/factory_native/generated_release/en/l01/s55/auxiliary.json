@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-55:intro1:r2": {
+          "ru": "Это о зависимости. Здесь оцениваем ответственность: `responsible`.",
+          "uk": "Це про залежність. Тут оцінюємо відповідальність: `responsible`."
+        },
+        "en:lesson-01:session-55:intro1:r3": {
+          "ru": "После `He` нужно `is`.",
+          "uk": "Після `He` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-55:intro2:r2": {
+          "ru": "`dependent` означает зависимость, а здесь самостоятельность: `independent`.",
+          "uk": "`dependent` означає залежність, а тут самостійність: `independent`."
+        },
+        "en:lesson-01:session-55:intro2:r3": {
+          "ru": "После `She` нужно `is`.",
+          "uk": "Після `She` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-55:intro3:r2": {
+          "ru": "Малыш пока не обходится без заботы взрослых: `dependent`.",
+          "uk": "Малюк поки не обходиться без турботи дорослих: `dependent`."
+        },
+        "en:lesson-01:session-55:intro3:r3": {
+          "ru": "После `He` нужно `is`.",
+          "uk": "Після `He` потрібно `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1c77f8522294abf95955197fcc3177d9f3890d7c2ad29326122276896267ba03"
+}

@@ -1,92 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-24:i01",
-    "correctText": "en:lesson-01:session-24:i01:p1=funny\nen:lesson-01:session-24:i01:p2=quiet\nen:lesson-01:session-24:i01:p3=hungry\nen:lesson-01:session-24:i01:p4=late",
+    "correctText": "You are welcome.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i02",
-    "correctText": "is",
+    "correctText": "We are prepared.",
     "correctResponseId": "en:lesson-01:session-24:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-24:i03",
-    "correctText": "quiet",
+    "correctText": "am",
     "correctResponseId": "en:lesson-01:session-24:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-24:i04",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-24:i04:r1"
+    "correctText": "en:lesson-01:session-24:i04:p1=welcome\nen:lesson-01:session-24:i04:p2=safe\nen:lesson-01:session-24:i04:p3=right\nen:lesson-01:session-24:i04:p4=wrong",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i05",
-    "correctText": "He is hungry.",
+    "correctText": "She is inside.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i06",
-    "correctText": "tired",
-    "correctResponseId": "en:lesson-01:session-24:i06:r1"
+    "correctText": "They are together.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i07",
-    "correctText": "She is not late.",
+    "correctText": "He is lost.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i08",
-    "correctText": "kind",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-24:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-24:i09",
-    "correctText": "kind",
+    "correctText": "They are married.",
     "correctResponseId": "en:lesson-01:session-24:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-24:i10",
-    "correctText": "He is not hungry.",
+    "correctText": "en:lesson-01:session-24:i10:p1=early\nen:lesson-01:session-24:i10:p2=lucky\nen:lesson-01:session-24:i10:p3=alone\nen:lesson-01:session-24:i10:p4=nearby",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i11",
-    "correctText": "She is funny.",
+    "correctText": "You are careful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i12",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-24:i12:r1"
+    "correctText": "He is poor.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i13",
-    "correctText": "He is quiet.",
+    "correctText": "She is single.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i14",
-    "correctText": "en:lesson-01:session-24:i14:p1=tired\nen:lesson-01:session-24:i14:p2=kind\nen:lesson-01:session-24:i14:p3=he\nen:lesson-01:session-24:i14:p4=she",
-    "correctResponseId": null
+    "correctText": "outside",
+    "correctResponseId": "en:lesson-01:session-24:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-24:i15",
-    "correctText": "She is not tired.",
+    "correctText": "They are different.",
+    "correctResponseId": "en:lesson-01:session-24:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i16",
+    "correctText": "en:lesson-01:session-24:i16:p1=rich\nen:lesson-01:session-24:i16:p2=poor\nen:lesson-01:session-24:i16:p3=famous\nen:lesson-01:session-24:i16:p4=married",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-24:i16:s01",
-    "correctText": "He is funny.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-24:i16:s02",
-    "correctText": "She is quiet.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-24:i16:s03",
-    "correctText": "She is kind.",
+    "interactionId": "en:lesson-01:session-24:i17",
+    "correctText": "We are prepared.",
     "correctResponseId": null
   }
 ]

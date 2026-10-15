@@ -1,102 +1,87 @@
 [
   {
     "interactionId": "en:lesson-01:session-51:i01",
-    "correctText": "there",
+    "correctText": "It is heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i02",
-    "correctText": "there",
+    "correctText": "It is heavy.",
     "correctResponseId": "en:lesson-01:session-51:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i03",
-    "correctText": "outside",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-51:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i04",
-    "correctText": "inside",
+    "correctText": "en:lesson-01:session-51:i04:p1=heavy\nen:lesson-01:session-51:i04:p2=patient\nen:lesson-01:session-51:i04:p3=expensive\nen:lesson-01:session-51:i04:p4=cheap",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i05",
-    "correctText": "inside",
-    "correctResponseId": "en:lesson-01:session-51:i05:r1"
+    "correctText": "It's heavy.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i06",
-    "correctText": "I am outside.",
+    "correctText": "They are heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i07",
-    "correctText": "upstairs",
+    "correctText": "It's heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i08",
-    "correctText": "upstairs",
+    "correctText": "patient",
     "correctResponseId": "en:lesson-01:session-51:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i09",
-    "correctText": "upstairs",
+    "correctText": "He is patient.",
     "correctResponseId": "en:lesson-01:session-51:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i10",
-    "correctText": "here",
-    "correctResponseId": "en:lesson-01:session-51:i10:r1"
+    "correctText": "en:lesson-01:session-51:i10:p1=It's\nen:lesson-01:session-51:i10:p2=They're\nen:lesson-01:session-51:i10:p3=He's\nen:lesson-01:session-51:i10:p4=We're",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i11",
-    "correctText": "en:lesson-01:session-51:i11:p1=there\nen:lesson-01:session-51:i11:p2=outside\nen:lesson-01:session-51:i11:p3=inside\nen:lesson-01:session-51:i11:p4=upstairs",
+    "correctText": "They're heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i12",
-    "correctText": "am",
-    "correctResponseId": "en:lesson-01:session-51:i12:r1"
+    "correctText": "She is patient.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i13",
-    "correctText": "He is there.",
+    "correctText": "You are patient.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i14",
-    "correctText": "I am not alone.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-51:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i15",
-    "correctText": "I am cold.",
-    "correctResponseId": null
+    "correctText": "It's heavy.",
+    "correctResponseId": "en:lesson-01:session-51:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i16",
-    "correctText": "en:lesson-01:session-51:i16:p1=here\nen:lesson-01:session-51:i16:p2=home\nen:lesson-01:session-51:i16:p3=tired\nen:lesson-01:session-51:i16:p4=cold",
+    "correctText": "en:lesson-01:session-51:i16:p1=heavy\nen:lesson-01:session-51:i16:p2=patient\nen:lesson-01:session-51:i16:p3=useful\nen:lesson-01:session-51:i16:p4=polite",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-51:i17:s01",
-    "correctText": "I am home.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-51:i17:s02",
-    "correctText": "He is upstairs.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-51:i17:s03",
-    "correctText": "I am not alone.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-51:i17:s04",
-    "correctText": "I am tired.",
+    "interactionId": "en:lesson-01:session-51:i17",
+    "correctText": "It is heavy.",
     "correctResponseId": null
   }
 ]

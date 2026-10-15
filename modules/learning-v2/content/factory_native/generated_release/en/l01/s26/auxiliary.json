@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-26:intro1:r2": {
+          "ru": "После `I` нужна форма `am`.",
+          "uk": "Після `I` потрібна форма `am`."
+        },
+        "en:lesson-01:session-26:intro1:r3": {
+          "ru": "Это про него. О себе говорим `I am bored`.",
+          "uk": "Це про нього. Про себе кажемо `I am bored`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-26:intro2:r2": {
+          "ru": "`bored` — «скучно». Здесь вы не понимаете информацию: `confused`.",
+          "uk": "`bored` — «нудно». Тут ви не розумієте інформацію: `confused`."
+        },
+        "en:lesson-01:session-26:intro2:r3": {
+          "ru": "После `We` нужно `are`.",
+          "uk": "Після `We` потрібно `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-26:intro3:r2": {
+          "ru": "`confused` — «запуталась». Здесь нужно назвать её тревогу: `worried`.",
+          "uk": "`confused` — «заплуталася». Тут треба назвати її тривогу: `worried`."
+        },
+        "en:lesson-01:session-26:intro3:r3": {
+          "ru": "После `She` нужна форма `is`.",
+          "uk": "Після `She` потрібна форма `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aa1b0179f3d77ab8199404681c7cb927d0e782a0422a7c43b2824250ecca39db"
+}

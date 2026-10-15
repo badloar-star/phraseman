@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-18:intro1:r2": {
+          "ru": "После `I` нужно `am`.",
+          "uk": "Після `I` потрібно `am`."
+        },
+        "en:lesson-01:session-18:intro1:r3": {
+          "ru": "Это «Ты ошибаешься». Здесь ошиблись вы сами: `I am wrong`.",
+          "uk": "Це «Ти помиляєшся». Тут помилилися ви самі: `I am wrong`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-18:intro2:r2": {
+          "ru": "После `We` нужна форма `are`.",
+          "uk": "Після `We` потрібна форма `are`."
+        },
+        "en:lesson-01:session-18:intro2:r3": {
+          "ru": "Это только о вас. За вас двоих говорим `We are early`.",
+          "uk": "Це лише про вас. За вас двох кажемо `We are early`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-18:intro3:r2": {
+          "ru": "После `They` ставим `are`.",
+          "uk": "Після `They` ставимо `are`."
+        },
+        "en:lesson-01:session-18:intro3:r3": {
+          "ru": "`early` говорит о раннем приходе. Здесь нужно сказать об удаче: `lucky`.",
+          "uk": "`early` говорить про ранній прихід. Тут треба сказати про удачу: `lucky`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5aa2c13629d78c432f38a7f4678adf40c97373ea8a13b079912d58add3fb6439"
+}

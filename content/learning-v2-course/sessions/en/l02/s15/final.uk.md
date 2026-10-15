@@ -1,224 +1,138 @@
-# Англійська · Урок 2 · Заняття 15 — «Elegant і plain»
+# Англійська · Урок 2 · Заняття 15 — Хвилина без звуку
 
-**Сцена заняття.** Кав'ярня перед обідом. За сусідніми столиками сидять Макс і Міра, а ваш супутник уточнює, як вони одягнені, як виглядають і чи зручно їм тут.
+**Ситуація.** Ви з друзями записуєте коротке привітання. Перевіряєте звук і домовляєтеся не розмовляти, поки говорить одна людина.
 
-**Як сказати:** повторення — `Is he …?` / `Is she …?` / `Is it …?` і короткі відповіді
-**Нові слова:** elegant, plain
-**Повертаються:** handsome, pretty, crowded, noisy, hungry, thirsty
+**Що ви опануєте:** сказати, що людина мовчить або звуку немає, повторити запитання й заперечення
+**Нові слова:** silent
 
 ---
 
 ## Інтро 1
 
-### `elegant` — стильно й точно
+### Мовчить
 
-`elegant` — «елегантний, вишуканий»: стильний і продуманий, без зайвих деталей. Так можна сказати про людину, одяг або просте й точне рішення. Цінник це слово не перевіряє: недорогий костюм теж може виглядати `elegant`. В англійській наголос падає на перший склад. Тут ви запитаєте `Is he elegant?`.
+`silent` — «той, хто мовчить», а про місце чи пристрій — «беззвучний». `He is silent` — «Він мовчить». Це не означає, що людина завжди мовчазна: можливо, зараз вона слухає. Олег пообіцяв мовчати під час запису й поки справляється. Навіть радить, як правильно мовчати, лише жестами.
 
-**За столиком біля вікна Макс у бездоганно припасованому костюмі. Запитайте супутника, чи він елегантний.**
+**Поки Анна записує привітання, Олег не вимовляє ні слова. Скажіть, що він мовчить.**
 
-- ✅ **Is he elegant?**
-- ❌ He is elegant? — *Так ви повідомляєте: «він елегантний». Запитання починають з `is`.*
-- ❌ Is elegant he? — *`he` відірвали від `is`. Спершу `is he`, потім саме слово.*
+- ✅ **He is silent.**
+- ❌ He silent. — *Після `He` потрібно `is`: `He is silent`.*
+- ❌ He is not silent. — *З `not` виходить, що він не мовчить. За умовою він не говорить.*
 
 ---
 
 ## Інтро 2
 
-### `plain` — просто, без оздоблення
+### А звук є?
 
-`plain` — «простий, без оздоблення»: без малюнка, візерунка чи зайвих деталей. Так кажуть про білу чашку без малюнка, однотонну сорочку або звичайну воду без газу. Про людину `plain` може означати «непоказний», тому тут питаємо лише про річ. Для чашки запитання звучить `Is it plain?`: `it` стосується речі.
+`It is silent` — «Воно беззвучне», якщо ви обговорюєте відео. Коротко — `It's silent`. `Is it silent?` — запитання: «Воно без звуку?» Спочатку `is`, потім `it`, далі `silent`.
 
-**На сусідньому столі стоїть біла чашка без жодного малюнка. Запитайте про неї: для речі використовують `it`.**
+**Друг відкрив записане відео, але ви його не чули. Запитайте, чи воно без звуку.**
 
-- ✅ **Is it plain?**
-- ❌ Is he plain? — *`he` — про чоловіка. Чашка — річ, для неї `it`.*
-- ❌ It is plain? — *Це повідомлення: «вона проста». Щоб запитати, `is` виходить наперед.*
+- ✅ **Is it silent?**
+- ❌ Are it silent? — *З `it` потрібно `is`: `Is it silent?`.*
+- ❌ Is silent it? — *Після `Is` ставимо `it`, потім `silent`.*
 
 ---
 
 ## Інтро 3
 
-### Коротка відповідь про `elegant`
+### Не мовчать
 
-`Yes, she is.` — коротке «так» на запитання `Is she elegant?`. Запитання вже назвало жінку й слово `elegant`, тому у відповіді лишаються `she` та `is`: спочатку людина, потім зв'язка. Одного `Yes` теж достатньо, але тут тренуємо повну коротку форму. Про чоловіка було б `Yes, he is.`
+`They are not silent` — «Вони не мовчать». Так можна сказати про людей, які розмовляють. Це не обов’язково означає, що вони кричать: розмова пошепки теж порушує мовчання. Коротко — `They're not silent`.
 
-**Міра біля стійки вдягнена просто й вишукано. Супутник питає: `Is she elegant?` Дайте коротку відповідь.**
+**Анна й Олег розмовляють пошепки під час запису. Скажіть, що вони не мовчать.**
 
-- ✅ **Yes, she is.**
-- ❌ Yes, she. — *Загубилося `is`. Воно приходить із запитання й лишається у відповіді.*
-- ❌ Yes, is she. — *Так знову виходить запитання. У відповіді спочатку `she`, потім `is`: `Yes, she is.`.*
+- ✅ **They are not silent.**
+- ❌ They is not silent. — *Після `They` потрібно `are`.*
+- ❌ They are silent. — *Без `not` це мовчання. За умовою вони розмовляють.*
 
 ---
 
-## Практика — по одній цільовій фразі
+## Практика (17 завдань)
 
-**1 · Картка слова — elegant**
-<!-- interaction_id: en:lesson-02:session-15:i01; family: listen_choose -->
-Ціль: `elegant`
+**1 · Анна слухає запис і нічого не говорить. Скажіть, що вона мовчить**
+<!-- interaction_id: en:lesson-02:session-15:i01; family: phrase_builder -->
+Плитки: `silent` `is` `She` `are` → **She is silent.**
+*(плитка `are` зайва: тут потрібно `is` — `She is silent.`)*
 
-**2 · Послухайте й виберіть**
+**2 · Послухайте запитання про завдання**
 <!-- interaction_id: en:lesson-02:session-15:i02; family: listen_choose -->
-Ціль: `elegant`
-Варіанти: `elegant` · `element` · `eleven`
-- element — *Це «елемент». Далі розходяться: в `elegant` чути «ґ», в `element` — «м».*
-- eleven — *Це «одинадцять». Теж починається з `ele`, далі розходяться.*
+🔊 *Is it easy?* → **Is it easy?** · Is it difficult? · Is it important?
+- Is it difficult? — *У записі останнє слово — `easy`, а в цьому варіанті — `difficult`.*
+- Is it important? — *У записі останнє слово — `easy`, а в цьому варіанті — `important`.*
 
+**3 · Із сусідньої кімнати ви не чуєте Олега. Запитайте Анну, чи він мовчить**
+<!-- interaction_id: en:lesson-02:session-15:i03; family: context_gap_grammar -->
+___ he silent? → **Is** · Am · Are
+- Am — *З `he` потрібно `Is`.*
+- Are — *Про нього — `Is he`.*
 
-**3 · Картка слова — plain**
-<!-- interaction_id: en:lesson-02:session-15:i03; family: listen_choose -->
-Ціль: `plain`
+**4 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-15:i04; family: speed_match -->
+silent — той, хто мовчить · easy — легкий за складністю · difficult — складний · important — важливий
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-02:session-15:i04; family: listen_choose -->
-Ціль: `plain`
-Варіанти: `plain` · `pain` · `rain`
-- pain — *Це «біль». У `plain` після «п» чути «л», у `pain` його немає.*
-- rain — *«Дощ». Перший звук інший: `plain` починається з «п», `rain` — з «р».*
+**5 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-15:i05; family: listen_build_dictation -->
+🔊 *It's silent.* Плитки: `silent` `It's` `They're` → **It's silent.**
+*(плитка `They're` зайва: тут потрібно `It's` — `It's silent.`)*
 
+**6 · Анна й Олег розмовляють під час запису. Скажіть, що вони не мовчать**
+<!-- interaction_id: en:lesson-02:session-15:i06; family: phrase_builder -->
+Плитки: `silent` `not` `are` `They` `is` → **They are not silent.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not silent.`)*
 
-**5 · Картка слова — handsome**
-<!-- interaction_id: en:lesson-02:session-15:i05; family: listen_choose -->
-Ціль: `handsome`
+**7 · Друг пропонує записати привітання ще раз. Запитайте, чи це необхідно**
+<!-- interaction_id: en:lesson-02:session-15:i07; family: scripted_repeat_compare -->
+🎙 **Is it necessary?**
 
-**6 · Картка слова — crowded**
-<!-- interaction_id: en:lesson-02:session-15:i06; family: listen_choose -->
-Ціль: `crowded`
+**8 · Записати одну коротку фразу нескладно. Доповніть фразу про це**
+<!-- interaction_id: en:lesson-02:session-15:i08; family: context_gap_grammar -->
+It ___ not difficult. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Про цю дію — `It is not`.*
 
-**7 · Вставте слово — Макс у костюмі, який сидить бездоганно**
-<!-- interaction_id: en:lesson-02:session-15:i07; family: context_gap_grammar -->
-Ціль: `Is he ___ ?`
-Варіанти: `elegant` · `hungry` · `thirsty`
-- hungry — *«Голодний». По костюму цього не побачиш.*
-- thirsty — *«Хоче пити». Костюм про це мовчить.*
+**9 · Послухайте фразу**
+<!-- interaction_id: en:lesson-02:session-15:i09; family: listen_choose -->
+🔊 *It is important.* → **It is important.** · It is easy. · It is necessary.
+- It is easy. — *У записі останнє слово — `important`, а в цьому варіанті — `easy`.*
+- It is necessary. — *У записі останнє слово — `important`, а в цьому варіанті — `necessary`.*
 
+**10 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-15:i10; family: speed_match -->
+necessary — необхідний · silent — той, хто мовчить · easy — легкий за складністю · difficult — складний
 
-**8 · Складіть фразу — «воно просте?» про білу чашку без малюнка**
-<!-- interaction_id: en:lesson-02:session-15:i08; family: phrase_builder -->
-Ціль: `Is it plain?`
-Плитки: `Is` `it` `plain` `she`
-*Плитка `she` зайва: йдеться про чашку, тому потрібне `it`: `Is it plain?`*
+**11 · Послухайте й складіть коротку фразу**
+<!-- interaction_id: en:lesson-02:session-15:i11; family: listen_build_dictation -->
+🔊 *We're not silent.* Плитки: `silent` `not` `We're` `He's` → **We're not silent.**
+*(плитка `He's` зайва: тут потрібно `We're` — `We're not silent.`)*
 
-**9 · Вставте слово — у залі жодного вільного столика**
-<!-- interaction_id: en:lesson-02:session-15:i09; family: context_gap_grammar -->
-Ціль: `The cafe is ___ .`
-Варіанти: `crowded` · `plain` · `elegant`
-- plain — *«Просте». Про кількість людей це нічого не каже.*
-- elegant — *«Елегантне». Про обстановку, а не про натовп.*
+**12 · Ви обговорюєте готове відео. Запитайте друга, чи воно без звуку**
+<!-- interaction_id: en:lesson-02:session-15:i12; family: phrase_builder -->
+Плитки: `silent` `it` `Is` `Are` → **Is it silent?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it silent?`)*
 
+**13 · Друг хоче записати вдале привітання заново. Це не потрібно. Коротко скажіть, що це необов’язково**
+<!-- interaction_id: en:lesson-02:session-15:i13; family: scripted_repeat_compare -->
+🎙 **It's not necessary.**
 
-**10 · Розрізніть звуки — яке з двох про «простий»?**
-<!-- interaction_id: en:lesson-02:session-15:i10; family: sound_contrast -->
-Варіанти: `plain` · `pain`
-- pain — *Це «біль». У `plain` після «п» чути «л», у `pain` його немає.*
+**14 · Запис триває в сусідній кімнаті. Запитайте друга, чи мовчать зараз Анна й Олег**
+<!-- interaction_id: en:lesson-02:session-15:i14; family: context_gap_grammar -->
+___ they silent? → **Are** · Am · Is
+- Am — *З `they` потрібно `Are`.*
+- Is — *Про двох — `Are they`.*
 
+**15 · Послухайте фразу**
+<!-- interaction_id: en:lesson-02:session-15:i15; family: listen_choose -->
+🔊 *It is not easy.* → **It is not easy.** · It is not important. · It is not necessary.
+- It is not important. — *У записі останнє слово — `easy`, а в цьому варіанті — `important`.*
+- It is not necessary. — *У записі останнє слово — `easy`, а в цьому варіанті — `necessary`.*
 
-**11 · Вставте слово — за столиком Макс, на якого озираються**
-<!-- interaction_id: en:lesson-02:session-15:i11; family: context_gap_grammar -->
-Ціль: `Is he ___ ?`
-Варіанти: `handsome` · `noisy` · `crowded`
-- noisy — *«Гучний». Про зовнішність так не скажеш.*
-- crowded — *«Повно людей». Одна людина повною людьми не буває.*
+**16 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-02:session-15:i16; family: speed_match -->
+easy — легкий за складністю · difficult — складний · important — важливий · necessary — необхідний
 
+**17 · Друг перевіряє відео в навушниках. Ви хочете дізнатися, чи є в ньому звук. Запитайте, чи воно без звуку**
+<!-- interaction_id: en:lesson-02:session-15:i17; family: scripted_repeat_compare; purpose: independent_check -->
+🎙 **Is it silent?**
 
-**12 · Послухайте й складіть — «Міра гарна?»**
-<!-- interaction_id: en:lesson-02:session-15:i12; family: listen_build_dictation -->
-Ціль: `Is she pretty?`
-🔊 *Is she pretty?* Плитки: `Is` `she` `pretty` `plain`
-*Плитка `plain` зайва: тут питають про зовнішність Міри, тому потрібне `pretty`: `Is she pretty?`*
-
-**13 · З'єднайте пари**
-<!-- interaction_id: en:lesson-02:session-15:i13; family: speed_match -->
-Пари: `elegant` — елегантний · `plain` — простий · `handsome` — вродливий (про чоловіка) · `crowded` — повно людей
-Ціль: `elegant · plain · handsome · crowded`
-
-**14 · Картка слова — noisy**
-<!-- interaction_id: en:lesson-02:session-15:i14; family: listen_choose -->
-Ціль: `noisy`
-
-**15 · Вставте слово — музика грає так, що доводиться підвищувати голос**
-<!-- interaction_id: en:lesson-02:session-15:i15; family: context_gap_grammar -->
-Ціль: `The cafe is ___ .`
-Варіанти: `noisy` · `pretty` · `elegant`
-- pretty — *«Гарне». Очима видно, вухами — ні.*
-- elegant — *«Елегантне». Про гучність мовчить.*
-
-
-**16 · Складіть фразу — Макс їсть уже другий сендвіч; запитайте, чи він голодний**
-<!-- interaction_id: en:lesson-02:session-15:i16; family: phrase_builder -->
-Ціль: `Is he hungry?`
-Плитки: `Is` `he` `hungry` `not`
-*Плитка `not` зайва: це питання про голод без заперечення: `Is he hungry?`*
-
-**17 · Вставте слово — Макс утретє тягнеться до води**
-<!-- interaction_id: en:lesson-02:session-15:i17; family: context_gap_grammar -->
-Ціль: `Is he ___ ?`
-Варіанти: `thirsty` · `plain` · `handsome`
-- plain — *«Простий». До води це стосунку не має.*
-- handsome — *«Вродливий». Склянка води вроди не виказує.*
-
-
-**18 · Складіть відповідь — Міра у вишуканій сукні; на запитання `Is she elegant?` ви погоджуєтесь**
-<!-- interaction_id: en:lesson-02:session-15:i18; family: phrase_builder -->
-Ціль: `Yes, she is.`
-Плитки: `Yes,` `she` `is` `are`
-*Плитка `are` зайва: з `she` потрібна форма `is`: `Yes, she is.`*
-
-**19 · Послухайте й виберіть почуту репліку про білу чашку без малюнка**
-<!-- interaction_id: en:lesson-02:session-15:i19; family: listen_choose -->
-Ціль: `Is it plain?`
-Варіанти: `Is it plain?` · `It is plain.` · `Is it elegant?`
-- It is plain. — *У запитанні першим звучить `Is`. `It is plain.` — твердження.*
-- Is it elegant? — *`elegant` — «елегантний». У записі звучить `plain`: «простий, без малюнка*
-
-
-**20 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-15:i20:s01; family: scripted_repeat_compare -->
-Ціль: `Is he elegant?`
-
-**21 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-15:i20:s02; family: scripted_repeat_compare -->
-Ціль: `Is it plain?`
-
-**22 · Промовте одну фразу**
-<!-- interaction_id: en:lesson-02:session-15:i20:s03; family: scripted_repeat_compare -->
-Ціль: `The cafe is noisy.`
-
-## Для сборщика
-
-new_words:
-elegant — елегантний, вишуканий — «елегантний, вишуканий». Стильний і продуманий, без зайвих деталей; це не обов'язково означає «дорогий».
-plain — простий, без оздоблення — «простий, без оздоблення». Без малюнка, візерунка чи зайвих деталей; про воду — звичайна негазована.
-
-modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=listen_choose, 6=listen_choose, 7=context_gap_grammar, 8=phrase_builder, 9=context_gap_grammar, 10=sound_contrast, 11=context_gap_grammar, 12=listen_build_dictation, 13=speed_match, 14=listen_choose, 15=context_gap_grammar, 16=phrase_builder, 17=context_gap_grammar, 18=phrase_builder, 19=listen_choose, 20=scripted_repeat_compare, 21=scripted_repeat_compare, 22=scripted_repeat_compare
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| handsome | 5, 11, 13, 17 | 11 (встав слово), 13 (дошка пар) |
-| pretty | інтро 3, 12, 15 | інтро 3, 12 (послухай і склади) |
-| crowded | 6, 9, 11, 13 | 9 (встав слово), 13 (дошка пар) |
-| noisy | 11, 14, 15, 20 | 15 (встав слово), 20 (уголос) |
-| hungry | 7, 16 | 16 (склади фразу) |
-| thirsty | 7, 17 | 17 (встав слово) |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД запитанням |
-|---|---|---|
-| Інтро 1 | elegant | так, пояснюється першим рядком |
-| Інтро 2 | plain, it | так, `plain` пояснюється, `it` назване в запитанні як «про річ» |
-| Інтро 3 | Yes, she is | так, повна відповідь розібрана в тексті, разом із `he`/`it` |
-
-**3. Дошка пар (завдання 13)**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| elegant | 1 | 2 (слух), 7 (встав слово) |
-| plain | 3 | 4 (слух), 8 (складання), 10 (звуки) |
-| handsome | 5 | 11 (встав слово) |
-| crowded | 6 | 9 (встав слово) |

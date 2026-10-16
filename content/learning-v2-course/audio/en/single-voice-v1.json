@@ -89248,6 +89248,309 @@
           "byteSize": 57216
         }
       ]
+    },
+    "l06/s15/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We sing here.",
+          "file": "5293afceca07ef525177a2614e550aabdd5da480f3d6fa9b7c9e524e46eb3832.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5293afceca07ef525177a2614e550aabdd5da480f3d6fa9b7c9e524e46eb3832.mp3",
+          "contentHash": "3a527758881b6345f3c4d98638d0e152da89efe3dc30a1497516f4b4a34ba384",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s15/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They are silent.",
+          "file": "f1a2e78bc0dcd0c34e33607f79d52d98a76c2be64ad579b43a3c910b4871c0de.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f1a2e78bc0dcd0c34e33607f79d52d98a76c2be64ad579b43a3c910b4871c0de.mp3",
+          "contentHash": "2ab9e3cddb890b06664c8c37f901a50067bca9b108e07d0918f957423bc18990",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l06/s15/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose helmet is this?",
+          "file": "ab9f8498cb1d4584b8b7baf854021dbeed39a6b6047c1bf372c3c0d73e3906a7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab9f8498cb1d4584b8b7baf854021dbeed39a6b6047c1bf372c3c0d73e3906a7.mp3",
+          "contentHash": "a055f96f0a16b6286c78e28de5cb436ae2f498afb335f7ff8ee83e19235bb5d8",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s15/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I sing at home.",
+          "file": "abb7f296c1306cffa062d48471f402f958b04dddb2727826ca89028efbbfb36f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/abb7f296c1306cffa062d48471f402f958b04dddb2727826ca89028efbbfb36f.mp3",
+          "contentHash": "4153194b83295daefa55fcd3894b2eebb02353d97f243bdfaaf06b4abfa905c8",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s15/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "sing",
+          "file": "50e8743fe2c6231e0c35eddcbc3cee994ac2ecfb97b6d5932fa94877c642937b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50e8743fe2c6231e0c35eddcbc3cee994ac2ecfb97b6d5932fa94877c642937b.mp3",
+          "contentHash": "1c9487af2c729ddbc8553ffcd74b36a6935fbdd28ccea019530d0c69f5732338",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l06/s15/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We sing here.",
+          "file": "3552bfafaa4ee422d2a75d69503bd7783a9245b8fbefa74c47b307c786aa5431.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3552bfafaa4ee422d2a75d69503bd7783a9245b8fbefa74c47b307c786aa5431.mp3",
+          "contentHash": "d44ae1841025951be530cda90c9da72e00334116dd75be87f48913f8886b8ae9",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l06/s15/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "sing",
+          "file": "50e8743fe2c6231e0c35eddcbc3cee994ac2ecfb97b6d5932fa94877c642937b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50e8743fe2c6231e0c35eddcbc3cee994ac2ecfb97b6d5932fa94877c642937b.mp3",
+          "contentHash": "1c9487af2c729ddbc8553ffcd74b36a6935fbdd28ccea019530d0c69f5732338",
+          "byteSize": 19584
+        },
+        {
+          "text": "silent",
+          "file": "7d4ccbcc2569c168b6d6e51ce49beda5b7494f45f1479689f9a8ac504ea3e87a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d4ccbcc2569c168b6d6e51ce49beda5b7494f45f1479689f9a8ac504ea3e87a.mp3",
+          "contentHash": "e2f05c5418df07195ff218aa228f6859137f4064e826ed87ecd11be9980e7f43",
+          "byteSize": 19584
+        },
+        {
+          "text": "gym",
+          "file": "d991276a76f7f3f8b8d011736f5a88e88c80cf179553628751666be80d155f8b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d991276a76f7f3f8b8d011736f5a88e88c80cf179553628751666be80d155f8b.mp3",
+          "contentHash": "92b113ffb0bca14f266f1d60af2a1d3e40759f163d5bedbed37f06c3ad06e128",
+          "byteSize": 18816
+        },
+        {
+          "text": "helmet",
+          "file": "8d468739102649a6a5c9a174bd7cf23d78b8e3e753fab5850d2afc250b02c710.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8d468739102649a6a5c9a174bd7cf23d78b8e3e753fab5850d2afc250b02c710.mp3",
+          "contentHash": "59bbfd3caef1a1127032b55d90c7513e742e69dd285d7eedf7c6a54b20b984f6",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l06/s15/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They sing at home.",
+          "file": "c4780b7a397767dcfdd034b9745075e36d6c1ef82949d3231f6d239ec61519d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c4780b7a397767dcfdd034b9745075e36d6c1ef82949d3231f6d239ec61519d1.mp3",
+          "contentHash": "5c07e40229ef5759d274e782eafd0c2206f1863742e625128e50624a22c5bc0f",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l06/s15/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They are silent.",
+          "file": "f1a2e78bc0dcd0c34e33607f79d52d98a76c2be64ad579b43a3c910b4871c0de.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f1a2e78bc0dcd0c34e33607f79d52d98a76c2be64ad579b43a3c910b4871c0de.mp3",
+          "contentHash": "2ab9e3cddb890b06664c8c37f901a50067bca9b108e07d0918f957423bc18990",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l06/s15/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "We are at the gym.",
+          "file": "d72e3132c70038ffad0b8699bee18ea6c535a69e5d88ef1012cc9ab08e20bf10.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d72e3132c70038ffad0b8699bee18ea6c535a69e5d88ef1012cc9ab08e20bf10.mp3",
+          "contentHash": "edaf091b6cc4219ad67844c72aa9746949ee1b14aa1f2090385f81a839aab58f",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l06/s15/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "That helmet is yours.",
+          "file": "7d8117ba00c92e2c040bed568eb304c5d20f03d6ca633fe98ad990de2b3fe071.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d8117ba00c92e2c040bed568eb304c5d20f03d6ca633fe98ad990de2b3fe071.mp3",
+          "contentHash": "c05b7da6048d73791ffc02c2121bda1d0a1c3e4c2f734ca12af1a01348f6ccbe",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l06/s15/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "My calendar is here.",
+          "file": "4910e7a1671416503a9ffb7f251548976f8156f4fb3f60a3ad1aef460e8a85fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4910e7a1671416503a9ffb7f251548976f8156f4fb3f60a3ad1aef460e8a85fd.mp3",
+          "contentHash": "647e80a0b56d55ac72a1763a0258f08dcc1cf4aff48f57b31c75c283d9bb1463",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l06/s15/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "sing",
+          "file": "6a1fe0f8957ab5b766002bc9fb5976fca8322fae0ef54648681bd7101e077eca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a1fe0f8957ab5b766002bc9fb5976fca8322fae0ef54648681bd7101e077eca.mp3",
+          "contentHash": "bc2021fe579894e98a619730c748a335cb4ffe51ff5278fafa2cf69973bab3c3",
+          "byteSize": 35712
+        },
+        {
+          "text": "silent",
+          "file": "43489931e6580eb2b0a787c9fd971063854be13e9de0b7cd28c469db9c991b43.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43489931e6580eb2b0a787c9fd971063854be13e9de0b7cd28c469db9c991b43.mp3",
+          "contentHash": "158f23c429a5512f6cd433e234cea2d6d5852cbb143c2b19530e22def8d33a0c",
+          "byteSize": 26880
+        },
+        {
+          "text": "helmet",
+          "file": "5a60a0b6acf7d2b4e5ee842a357808af5e5838f75a1f47e0bde0561ad075e997.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5a60a0b6acf7d2b4e5ee842a357808af5e5838f75a1f47e0bde0561ad075e997.mp3",
+          "contentHash": "873fede3c949fa0c5ef4a243ad957ff91eafabdedfc0f5967c70263435c5d559",
+          "byteSize": 33792
+        },
+        {
+          "text": "calendar",
+          "file": "393f14dad2a2a5f8bf9ec1f587e4f9f4d61fb25c4531c8d69f32ab8428c59ecf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/393f14dad2a2a5f8bf9ec1f587e4f9f4d61fb25c4531c8d69f32ab8428c59ecf.mp3",
+          "contentHash": "fd9a5852eda1d8e0c7674bdc438b72704af0807c3fddb0443f9deefd1bb59be3",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l06/s15/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The calendar is on the wall.",
+          "file": "b9a3851b32bd4e86632b6852abc256ac4e0f948122d28c627db307a9ffefe4e0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b9a3851b32bd4e86632b6852abc256ac4e0f948122d28c627db307a9ffefe4e0.mp3",
+          "contentHash": "56cbcb7009a976ad52e150c7c166126a5622e7076eb3f675f065a246f8e94cc8",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l06/s15/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose helmet is this?",
+          "file": "13f48860a5868eb5290e6b579f5ded269e33fb33d4ef213529625c850a579d50.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/13f48860a5868eb5290e6b579f5ded269e33fb33d4ef213529625c850a579d50.mp3",
+          "contentHash": "bfeb3049dd110a858c4d614502be522ad8c36bd5a5961ffeb52a5ef802721a40",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s15/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "You sing here.",
+          "file": "7bc5450ebdd89dd2038649d1745d72c24f6f229c30823cbbbd3e64659be1144b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7bc5450ebdd89dd2038649d1745d72c24f6f229c30823cbbbd3e64659be1144b.mp3",
+          "contentHash": "34fb704920f82972d17b79f0cc36d299400a5b3bd2ebe60406b144e5b0cef2bb",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s15/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I sing here.",
+          "file": "7f165095d946ff60374ccd9dc09828284d245dc78a26362cf38e1f53f7ceb71a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7f165095d946ff60374ccd9dc09828284d245dc78a26362cf38e1f53f7ceb71a.mp3",
+          "contentHash": "976145248de319a1121ccb994e3d4f7a43d2d74a9baf0eae444d27c965838f0a",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l06/s15/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The gym is open.",
+          "file": "a4ddc44fb5dfac4a7fd510fb357fb18e3ac4b3e5194b35d7081dc65f587059d8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a4ddc44fb5dfac4a7fd510fb357fb18e3ac4b3e5194b35d7081dc65f587059d8.mp3",
+          "contentHash": "a668c21dd6d232f3813ada2fdc81ef4365b8ddbd465d15babdf0945f94d237c1",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s15/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "sing",
+          "file": "9ed7d63eaf940d807bb42270ad999526b2dcb3e155a28a616152628fd1234de7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ed7d63eaf940d807bb42270ad999526b2dcb3e155a28a616152628fd1234de7.mp3",
+          "contentHash": "fc74ffd7d0648500cb8048037ee5820637f0a404f0c66b8fc6f41a0bf6aec8f7",
+          "byteSize": 25344
+        },
+        {
+          "text": "silent",
+          "file": "87c5d51db85f77d985b058b959fd476de72f14a5db105cc67f37df356b0bb950.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/87c5d51db85f77d985b058b959fd476de72f14a5db105cc67f37df356b0bb950.mp3",
+          "contentHash": "06026dae955063ada23308b0f5a8e3aae6418443fb4fad633f7f11d4d0b56c65",
+          "byteSize": 17280
+        },
+        {
+          "text": "gym",
+          "file": "4b916ff6fe1c498508999c21baea2c919985c51e1989a36b41290b0cf9860c47.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b916ff6fe1c498508999c21baea2c919985c51e1989a36b41290b0cf9860c47.mp3",
+          "contentHash": "3a43dc39c479b3d0d78e6c8910f52df2db1b6a68028d5259c8ca0e43e42f6c2c",
+          "byteSize": 31488
+        },
+        {
+          "text": "calendar",
+          "file": "f5948b8f95da71eedf935f8237a8c33d2af794d521af20bea4e7e6e133565add.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f5948b8f95da71eedf935f8237a8c33d2af794d521af20bea4e7e6e133565add.mp3",
+          "contentHash": "6245b6e6f582e091cdbec5c232f4618206ff25470f4225efaabae191008adcf3",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l06/s15/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We sing here.",
+          "file": "5293afceca07ef525177a2614e550aabdd5da480f3d6fa9b7c9e524e46eb3832.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5293afceca07ef525177a2614e550aabdd5da480f3d6fa9b7c9e524e46eb3832.mp3",
+          "contentHash": "3a527758881b6345f3c4d98638d0e152da89efe3dc30a1497516f4b4a34ba384",
+          "byteSize": 32640
+        }
+      ]
     }
   },
   "settings": {

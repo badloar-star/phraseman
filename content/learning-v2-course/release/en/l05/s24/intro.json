@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "найти вещи и назвать их владельцев без повторения названий",
+    "uk": "знайти речі й назвати їхніх власників без повторення назв"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Завтрак и одежда",
+        "uk": "Сніданок і одяг"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим: `yoghurt` — «йогурт», `jacket` — «куртка», `gloves` — «перчатки», `tablet` — «планшет». `There is no yoghurt` — «Йогурта нет». `The jacket is mine` — «Куртка моя», но `The gloves are yours` — «Перчатки твои»: форму `is` или `are` выбираем по вещи, не по владельцу.",
+        "uk": "Повторімо: `yoghurt` — «йогурт», `jacket` — «куртка», `gloves` — «рукавички», `tablet` — «планшет». `There is no yoghurt` — «Йогурту немає». `The jacket is mine` — «Куртка моя», але `The gloves are yours` — «Рукавички твої»: форму `is` чи `are` вибираємо за річчю, а не за власником."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Перчатки принадлежат другу. Скажите ему «Перчатки твои».",
+          "uk": "Рукавички належать другові. Скажіть йому «Рукавички твої»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-24:intro1:r1",
+              "text": "The gloves are yours."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro1:r2",
+              "text": "The gloves is yours."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro1:r3",
+              "text": "The gloves are your."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-24:intro1:r1",
+              "text": "The gloves are yours."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro1:r2",
+              "text": "The gloves is yours."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro1:r3",
+              "text": "The gloves are your."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Перчатки принадлежат другу. Скажите ему «Перчатки твои».",
+          "uk": "Рукавички належать другові. Скажіть йому «Рукавички твої»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Украшение, обувь и камера",
+        "uk": "Прикраса, взуття й камера"
+      },
+      "bodyByLocale": {
+        "ru": "`scarf` — «шарф», `necklace` — «ожерелье», `boots` — «ботинки», `camera` — «камера». `The scarf is his` — «Шарф его». `The necklace is hers` — «Ожерелье её». `The boots are theirs` — «Ботинки их». `The camera is ours` — «Камера наша». Здесь `his`, `hers`, `theirs`, `ours` стоят без следующего названия вещи.",
+        "uk": "`scarf` — «шарф», `necklace` — «намисто», `boots` — «черевики», `camera` — «камера». `The scarf is his` — «Шарф його». `The necklace is hers` — «Намисто її». `The boots are theirs` — «Черевики їхні». `The camera is ours` — «Камера наша». Тут `his`, `hers`, `theirs`, `ours` стоять без наступної назви речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Камера принадлежит вам и другу. Скажите «Камера наша».",
+          "uk": "Камера належить вам і другові. Скажіть «Камера наша»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-24:intro2:r1",
+              "text": "The camera is ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro2:r2",
+              "text": "The camera is our."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro2:r3",
+              "text": "The camera are ours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-24:intro2:r1",
+              "text": "The camera is ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro2:r2",
+              "text": "The camera is our."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro2:r3",
+              "text": "The camera are ours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Камера принадлежит вам и другу. Скажите «Камера наша».",
+          "uk": "Камера належить вам і другові. Скажіть «Камера наша»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Последний обход",
+        "uk": "Останній обхід"
+      },
+      "bodyByLocale": {
+        "ru": "`Where is my tablet?` — «Где мой планшет?» `Your boots are under the bed` — «Твои ботинки под кроватью». `I have your scarf` — «Твой шарф у меня». `My jacket is next to your gloves` — «Моя куртка рядом с твоими перчатками». Ботинки под кроватью: похоже, они решили продлить отпуск.",
+        "uk": "`Where is my tablet?` — «Де мій планшет?» `Your boots are under the bed` — «Твої черевики під ліжком». `I have your scarf` — «Твій шарф у мене». `My jacket is next to your gloves` — «Моя куртка поруч із твоїми рукавичками». Черевики під ліжком: схоже, вони вирішили продовжити відпустку."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Шарф друга у вас. Скажите ему «Твой шарф у меня».",
+          "uk": "Шарф друга у вас. Скажіть йому «Твій шарф у мене»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-24:intro3:r1",
+              "text": "I have your scarf."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro3:r2",
+              "text": "I has your scarf."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro3:r3",
+              "text": "I have my scarf."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-24:intro3:r1",
+              "text": "I have your scarf."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro3:r2",
+              "text": "I has your scarf."
+            },
+            {
+              "responseId": "en:lesson-05:session-24:intro3:r3",
+              "text": "I have my scarf."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Шарф друга у вас. Скажите ему «Твой шарф у меня».",
+          "uk": "Шарф друга у вас. Скажіть йому «Твій шарф у мене»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "919fc6f70bde6e9a5e8b88db2e33afc869fc4cdfca749b1ab9b3748fc69d7b54"
+}

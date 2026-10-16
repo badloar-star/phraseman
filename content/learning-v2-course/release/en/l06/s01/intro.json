@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "сказать о своей работе с помощью смыслового глагола",
+    "uk": "сказати про свою роботу за допомогою смислового дієслова"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Действие без am",
+        "uk": "Дія без am"
+      },
+      "bodyByLocale": {
+        "ru": "`work` — «работать». `I work here` — «Я работаю здесь». Это обычное место работы, а не обязательно действие прямо сейчас. После `I` сразу ставим `work`; `am` в эту фразу не добавляем. Сравните: `I am sure` — «Я уверен / уверена», но `I work` — «Я работаю». Слово `am` может отдохнуть: у `work` уже есть своя работа.",
+        "uk": "`work` — «працювати». `I work here` — «Я працюю тут». Це звичайне місце роботи, а не обов’язково дія саме зараз. Після `I` одразу ставимо `work`; `am` до цієї фрази не додаємо. Порівняйте: `I am sure` — «Я впевнений / впевнена», але `I work` — «Я працюю». Слово `am` може відпочити: у `work` уже є своя робота."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я работаю здесь».",
+          "uk": "Скажіть «Я працюю тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-01:intro1:r1",
+              "text": "I work here."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro1:r2",
+              "text": "I am work here."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro1:r3",
+              "text": "I work there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-01:intro1:r1",
+              "text": "I work here."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro1:r2",
+              "text": "I am work here."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro1:r3",
+              "text": "I work there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я работаю здесь».",
+          "uk": "Скажіть «Я працюю тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Места работы",
+        "uk": "Місця роботи"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим: `pharmacy` — «аптека», `library` — «библиотека», `bakery` — «пекарня», `garage` — «гараж». `I work in a pharmacy` — «Я работаю в аптеке». `I work in a library` — «Я работаю в библиотеке». `I work in a bakery` — «Я работаю в пекарне». `I work in a garage` — «Я работаю в гараже». Перед одним таким местом в этих фразах используем `a`.",
+        "uk": "Повторимо: `pharmacy` — «аптека», `library` — «бібліотека», `bakery` — «пекарня», `garage` — «гараж». `I work in a pharmacy` — «Я працюю в аптеці». `I work in a library` — «Я працюю в бібліотеці». `I work in a bakery` — «Я працюю в пекарні». `I work in a garage` — «Я працюю в гаражі». Перед одним таким місцем у цих фразах використовуємо `a`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я работаю в библиотеке».",
+          "uk": "Скажіть «Я працюю в бібліотеці»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-01:intro2:r1",
+              "text": "I work in a library."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro2:r2",
+              "text": "I am work in a library."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro2:r3",
+              "text": "I work in a bakery."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-01:intro2:r1",
+              "text": "I work in a library."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro2:r2",
+              "text": "I am work in a library."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro2:r3",
+              "text": "I work in a bakery."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я работаю в библиотеке».",
+          "uk": "Скажіть «Я працюю в бібліотеці»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Работа, состояние и вещи",
+        "uk": "Робота, стан і речі"
+      },
+      "bodyByLocale": {
+        "ru": "`interested` — «заинтересован»: `I am interested` — «Я заинтересован / заинтересована». `comfortable` — «чувствует себя комфортно»: `I am comfortable` — «Мне комфортно». Это состояния, поэтому здесь есть `am`. `have` — «иметь»: `I have a desk` — «У меня есть письменный стол». Как и в `I work`, перед `have` здесь не нужно `am`.",
+        "uk": "`interested` — «зацікавлений»: `I am interested` — «Я зацікавлений / зацікавлена». `comfortable` — «почувається комфортно»: `I am comfortable` — «Мені комфортно». Це стани, тому тут є `am`. `have` — «мати»: `I have a desk` — «У мене є письмовий стіл». Як і в `I work`, перед `have` тут не потрібне `am`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть письменный стол».",
+          "uk": "Скажіть «У мене є письмовий стіл»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-01:intro3:r1",
+              "text": "I have a desk."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro3:r2",
+              "text": "I am have a desk."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro3:r3",
+              "text": "I has a desk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-01:intro3:r1",
+              "text": "I have a desk."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro3:r2",
+              "text": "I am have a desk."
+            },
+            {
+              "responseId": "en:lesson-06:session-01:intro3:r3",
+              "text": "I has a desk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть письменный стол».",
+          "uk": "Скажіть «У мене є письмовий стіл»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "81321d3f8d75be426b3f8b0964007e0e9501188f41895926b6c3143b7ff20cc5"
+}

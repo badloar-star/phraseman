@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-01:intro1:r2": {
+          "ru": "Перед смысловым глаголом `work` в этой фразе не нужно `am`.",
+          "uk": "Перед смисловим дієсловом `work` у цій фразі не потрібне `am`."
+        },
+        "en:lesson-06:session-01:intro1:r3": {
+          "ru": "`there` — там; здесь — `here`.",
+          "uk": "`there` — там; тут — `here`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-01:intro2:r2": {
+          "ru": "Здесь действие: `I work`, без `am`.",
+          "uk": "Тут дія: `I work`, без `am`."
+        },
+        "en:lesson-06:session-01:intro2:r3": {
+          "ru": "`bakery` — пекарня; библиотека — `library`.",
+          "uk": "`bakery` — пекарня; бібліотека — `library`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-01:intro3:r2": {
+          "ru": "Перед `have` в этой фразе не нужно `am`.",
+          "uk": "Перед `have` у цій фразі не потрібне `am`."
+        },
+        "en:lesson-06:session-01:intro3:r3": {
+          "ru": "С `I` используется `have`.",
+          "uk": "З `I` використовується `have`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cb12035e39da10c2e9821d088e80ccaac2f1a980194a076c8a3a45bc1344f4f8"
+}

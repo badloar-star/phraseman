@@ -1,0 +1,947 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте людину біля стійки «Ви клієнт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте людину біля стійки «Ви клієнт?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are you a customer?",
+        "localizedMeaning": {
+          "ru": "Спросите человека у стойки «Вы клиент?»",
+          "uk": "Запитайте людину біля стійки «Ви клієнт?»"
+        },
+        "orderedTokens": [
+          "Are",
+          "you",
+          "a",
+          "customer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-06:i02:r1",
+          "text": "customer"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i02:r2",
+          "text": "ceiling"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i02:r3",
+          "text": "bookmark"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-06:i02:audio",
+          "transcript": "customer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-06:i02:r1",
+            "targetText": "customer",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i02:r2",
+            "targetText": "ceiling",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i02:r3",
+            "targetText": "bookmark",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `customer`, а в этом варианте — `ceiling`.",
+              "uk": "У записі перше слово — `customer`, а в цьому варіанті — `ceiling`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `customer`, а в этом варианте — `bookmark`.",
+              "uk": "У записі перше слово — `customer`, а в цьому варіанті — `bookmark`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Ви клієнт?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-06:i03:r1",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i03:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Ви клієнт?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Вы клиент?»",
+          "uk": "Запитайте «Ви клієнт?»"
+        },
+        "gappedTargetPhrase": "___ you a customer?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Запитайте «Ви клієнт?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Ви клієнт?»",
+            "feedbackByLocale": {
+              "ru": "Называем, кто человек: `Are you a customer?`.",
+              "uk": "Називаємо, хто людина: `Are you a customer?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Ви клієнт?»",
+            "feedbackByLocale": {
+              "ru": "С `you` нужно `are`.",
+              "uk": "З `you` потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-06:i04:p1",
+            "target": "customer",
+            "meaningByLocale": {
+              "ru": "клиент",
+              "uk": "клієнт"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-06:i04:p2",
+            "target": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать",
+              "uk": "ремонтувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-06:i04:p3",
+            "target": "pen",
+            "meaningByLocale": {
+              "ru": "ручка",
+              "uk": "ручка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-06:i04:p4",
+            "target": "bookmark",
+            "meaningByLocale": {
+              "ru": "закладка",
+              "uk": "закладка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "customer",
+          "repair",
+          "pen",
+          "bookmark"
+        ],
+        "rightColumn": [
+          "клієнт",
+          "ремонтувати",
+          "ручка",
+          "закладка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-06:i05:audio",
+          "transcript": "Are you a customer?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you a customer?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "a",
+          "customer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте працівника «Ви ремонтуєте велосипеди?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте працівника «Ви ремонтуєте велосипеди?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you repair bicycles?",
+        "localizedMeaning": {
+          "ru": "Спросите сотрудника «Вы ремонтируете велосипеды?»",
+          "uk": "Запитайте працівника «Ви ремонтуєте велосипеди?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "repair",
+          "bicycles"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покупець шукає ручку. Повідомте «Тут немає ручки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Покупець шукає ручку. Повідомте «Тут немає ручки»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-06:i07:audio",
+          "transcript": "There is no pen here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is no pen here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про ремонт велосипедів",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-06:i08:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i08:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i08:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про ремонт велосипедів",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о ремонте велосипедов",
+          "uk": "Запитайте про ремонт велосипедів"
+        },
+        "gappedTargetPhrase": "___ you repair bicycles?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i08:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i08:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Запитайте про ремонт велосипедів",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про ремонт велосипедів",
+            "feedbackByLocale": {
+              "ru": "С `repair` здесь нужно `Do you repair?`.",
+              "uk": "З `repair` тут потрібно `Do you repair?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про ремонт велосипедів",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do you repair?`.",
+              "uk": "Потрібно `Do you repair?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, ким цікавиться працівник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-06:i09:r1",
+          "text": "Are you a customer?"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i09:r2",
+          "text": "Are you a teacher?"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i09:r3",
+          "text": "Are you a doctor?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, ким цікавиться працівник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-06:i09:audio",
+          "transcript": "Are you a customer?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-06:i09:r1",
+            "targetText": "Are you a customer?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i09:r2",
+            "targetText": "Are you a teacher?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i09:r3",
+            "targetText": "Are you a doctor?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, ким цікавиться працівник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `customer`, а в этом варианте — `teacher`.",
+              "uk": "У записі останнє слово — `customer`, а в цьому варіанті — `teacher`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, ким цікавиться працівник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `customer`, а в этом варианте — `doctor`.",
+              "uk": "У записі останнє слово — `customer`, а в цьому варіанті — `doctor`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-06:i10:p1",
+            "target": "ceiling",
+            "meaningByLocale": {
+              "ru": "потолок",
+              "uk": "стеля"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-06:i10:p2",
+            "target": "customer",
+            "meaningByLocale": {
+              "ru": "покупатель",
+              "uk": "покупець"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-06:i10:p3",
+            "target": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать",
+              "uk": "ремонтувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-06:i10:p4",
+            "target": "pen",
+            "meaningByLocale": {
+              "ru": "ручка",
+              "uk": "ручка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ceiling",
+          "customer",
+          "repair",
+          "pen"
+        ],
+        "rightColumn": [
+          "стеля",
+          "покупець",
+          "ремонтувати",
+          "ручка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-06:i11:audio",
+          "transcript": "Do you repair bicycles?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you repair bicycles?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "repair",
+          "bicycles"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покупець хоче записати номер. Запитайте колегу «У вас є ручка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покупець хоче записати номер. Запитайте колегу «У вас є ручка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a pen?",
+        "localizedMeaning": {
+          "ru": "Покупатель хочет записать номер. Спросите коллегу «У вас есть ручка?»",
+          "uk": "Покупець хоче записати номер. Запитайте колегу «У вас є ручка?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "pen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг радить іншу майстерню. Запитайте «Вони ремонтують велосипеди?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-06:i13:audio"
+      ],
+      "accessibilityLabel": "Друг радить іншу майстерню. Запитайте «Вони ремонтують велосипеди?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-06:i13:audio",
+          "transcript": "Do they repair bicycles?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do they repair bicycles?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви перевірили стіл. Повідомте «Тут немає закладки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-06:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви перевірили стіл. Повідомте «Тут немає закладки»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы проверили стол. Сообщите «Здесь нет закладки»",
+          "uk": "Ви перевірили стіл. Повідомте «Тут немає закладки»"
+        },
+        "gappedTargetPhrase": "There ___ no bookmark here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-06:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви перевірили стіл. Повідомте «Тут немає закладки»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-06:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви перевірили стіл. Повідомте «Тут немає закладки»",
+            "feedbackByLocale": {
+              "ru": "Одна закладка: `There is no bookmark`.",
+              "uk": "Одна закладка: `There is no bookmark`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви перевірили стіл. Повідомте «Тут немає закладки»",
+            "feedbackByLocale": {
+              "ru": "Нужно `There is no`; `am` подходит к `I`.",
+              "uk": "Потрібно `There is no`; `am` підходить до `I`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання про річ",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-06:i15:r1",
+          "text": "Do you have a pen?"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i15:r2",
+          "text": "Do you have a bookmark?"
+        },
+        {
+          "responseId": "en:lesson-07:session-06:i15:r3",
+          "text": "Do you have a key?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про річ",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-06:i15:audio",
+          "transcript": "Do you have a pen?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-06:i15:r1",
+            "targetText": "Do you have a pen?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i15:r2",
+            "targetText": "Do you have a bookmark?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i15:r3",
+            "targetText": "Do you have a key?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-06:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання про річ",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `pen`, а в этом варианте — `bookmark`.",
+              "uk": "У записі останнє слово — `pen`, а в цьому варіанті — `bookmark`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-06:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання про річ",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `pen`, а в этом варианте — `key`.",
+              "uk": "У записі останнє слово — `pen`, а в цьому варіанті — `key`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-06:i16:p1",
+            "target": "customer",
+            "meaningByLocale": {
+              "ru": "клиент",
+              "uk": "клієнт"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-06:i16:p2",
+            "target": "ceiling",
+            "meaningByLocale": {
+              "ru": "потолок",
+              "uk": "стеля"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-06:i16:p3",
+            "target": "bookmark",
+            "meaningByLocale": {
+              "ru": "закладка",
+              "uk": "закладка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-06:i16:p4",
+            "target": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать",
+              "uk": "ремонтувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "customer",
+          "ceiling",
+          "bookmark",
+          "repair"
+        ],
+        "rightColumn": [
+          "клієнт",
+          "стеля",
+          "закладка",
+          "ремонтувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-06:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви телефонуєте до будівельної компанії. Дізнайтеся «Ви ремонтуєте дахи?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "Ви телефонуєте до будівельної компанії. Дізнайтеся «Ви ремонтуєте дахи?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-06:i17:audio",
+          "transcript": "Do you repair roofs?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you repair roofs?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "688ff54bdc33e6e4e5cfd6a2db265041b53dbe5f006e12c572be5e3b9c8cce1d"
+}

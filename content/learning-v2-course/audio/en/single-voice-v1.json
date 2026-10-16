@@ -103489,6 +103489,309 @@
           "byteSize": 34560
         }
       ]
+    },
+    "l07/s06/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Are you a customer?",
+          "file": "e5a0cec10e0dc43e3c8f2aecf2ff899e7005fa6531e3a01233762e09145f49ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e5a0cec10e0dc43e3c8f2aecf2ff899e7005fa6531e3a01233762e09145f49ac.mp3",
+          "contentHash": "88ca98c48a2f53a6216818faa2d6aaa9fbcb3cbb27830dd06baed13c8f2f19f4",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s06/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you repair bicycles?",
+          "file": "37e7b5a5afb6dd559b4efa26488b4d1a9d0ab671d1c7a96734151065cda1c2a4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/37e7b5a5afb6dd559b4efa26488b4d1a9d0ab671d1c7a96734151065cda1c2a4.mp3",
+          "contentHash": "03440ac051ab3946f017b3cc9efb3aaafc52e0b7cbcf661edb1e7e1db031e108",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s06/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is no pen here.",
+          "file": "a97e88d51fe065d6d607fe59247b496ff7d3bfe51eeb1e27168fda5bf17a1162.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a97e88d51fe065d6d607fe59247b496ff7d3bfe51eeb1e27168fda5bf17a1162.mp3",
+          "contentHash": "d911649f82ce9a71a3f68b13d67740745aae5c20517eabad9841f1cc340ee024",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s06/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Are you a customer?",
+          "file": "e5a0cec10e0dc43e3c8f2aecf2ff899e7005fa6531e3a01233762e09145f49ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e5a0cec10e0dc43e3c8f2aecf2ff899e7005fa6531e3a01233762e09145f49ac.mp3",
+          "contentHash": "88ca98c48a2f53a6216818faa2d6aaa9fbcb3cbb27830dd06baed13c8f2f19f4",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s06/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "customer",
+          "file": "96c27f82d2f9a173f6edfbc48e5bd4729455974b1055a661a9c2b90a3000494c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/96c27f82d2f9a173f6edfbc48e5bd4729455974b1055a661a9c2b90a3000494c.mp3",
+          "contentHash": "ce33023d883117e142e65dce5456f7b5e9528a88f74a396fe2f773d73261fc7a",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s06/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Are you a customer?",
+          "file": "cbb1e71b8524787ee3b600d1962a258eb219860c88393ce1349a0b147db0bc17.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cbb1e71b8524787ee3b600d1962a258eb219860c88393ce1349a0b147db0bc17.mp3",
+          "contentHash": "7ae2d832ea3ddd33dc81e0bdbaf343e0f2500ecf1beabba653b337de28d78eab",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s06/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "customer",
+          "file": "dd016744865ff0d9ab0215e5bea51b36a0c8962e11b13b60f2f1cf42fe8feaaa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd016744865ff0d9ab0215e5bea51b36a0c8962e11b13b60f2f1cf42fe8feaaa.mp3",
+          "contentHash": "6fb3db409d99966b647a3e52f20229cee8eb8d4aa5e7cf78658f2bc7b3b78695",
+          "byteSize": 24576
+        },
+        {
+          "text": "repair",
+          "file": "8ae63df2a5524e60b031bf0247a19dfa74d8c6242ceb9be0236aad19f31e30c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ae63df2a5524e60b031bf0247a19dfa74d8c6242ceb9be0236aad19f31e30c5.mp3",
+          "contentHash": "9c847b06e70b5a2b257970bf9206ce8e820419639a08d8b8a2f90c518cf0033e",
+          "byteSize": 11520
+        },
+        {
+          "text": "pen",
+          "file": "42e82eea56de06b01fe4421c7d052e008919ed317bee3fae86ef15a91d40efcc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/42e82eea56de06b01fe4421c7d052e008919ed317bee3fae86ef15a91d40efcc.mp3",
+          "contentHash": "883affa50f9914dbcf8ace342bc39e8bc7ffe9d50d825b02a89d306d821a246c",
+          "byteSize": 18048
+        },
+        {
+          "text": "bookmark",
+          "file": "26120efd117832a87a44ace295c63ccdfec404c64d3f20cccb6e621e9fc36938.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/26120efd117832a87a44ace295c63ccdfec404c64d3f20cccb6e621e9fc36938.mp3",
+          "contentHash": "498d57324b772f840f1c10787830eacdc62a243e1eed694a7bbdd6033e9f933f",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l07/s06/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Are you a customer?",
+          "file": "cbb1e71b8524787ee3b600d1962a258eb219860c88393ce1349a0b147db0bc17.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cbb1e71b8524787ee3b600d1962a258eb219860c88393ce1349a0b147db0bc17.mp3",
+          "contentHash": "7ae2d832ea3ddd33dc81e0bdbaf343e0f2500ecf1beabba653b337de28d78eab",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s06/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you repair bicycles?",
+          "file": "37e7b5a5afb6dd559b4efa26488b4d1a9d0ab671d1c7a96734151065cda1c2a4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/37e7b5a5afb6dd559b4efa26488b4d1a9d0ab671d1c7a96734151065cda1c2a4.mp3",
+          "contentHash": "03440ac051ab3946f017b3cc9efb3aaafc52e0b7cbcf661edb1e7e1db031e108",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s06/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is no pen here.",
+          "file": "49ae081fab9ff3fcdd012159016aa109fffce23d551f94cc9b0c1b101a96c025.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/49ae081fab9ff3fcdd012159016aa109fffce23d551f94cc9b0c1b101a96c025.mp3",
+          "contentHash": "edcdd268d8d31e724e9a0ba0cd76220cc0437d2b489446e8c5be87c98f84ef30",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l07/s06/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you repair bicycles?",
+          "file": "be57949f0831283ff2e86438b6e79d221216c4289a99d33845cf735b4eb90d17.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/be57949f0831283ff2e86438b6e79d221216c4289a99d33845cf735b4eb90d17.mp3",
+          "contentHash": "165d719c8dad0485808165aa2e716fe299dc5b4b890d958199e1553241612dcd",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l07/s06/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Are you a customer?",
+          "file": "8ec8337aff011ea6410fd24cc022253c53d98cc4b48a54dc3954cba14382bfc2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ec8337aff011ea6410fd24cc022253c53d98cc4b48a54dc3954cba14382bfc2.mp3",
+          "contentHash": "c92bfcfdb657e68efd3e65d942bfe143de47c63292c7879664eb7dece64c4f1c",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l07/s06/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "ceiling",
+          "file": "cb8591bcdcc21d6821e229947b482458b15f2ea7e1fc8976dd4942fdcf9b9b9e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/96f16e929047d5fa07f1a824-nova.mp3",
+          "contentHash": "d9fa032aec21a19d9505c71e49bdf452625dca38bf5809911bb7d8a7e5fd17fe",
+          "byteSize": 26112
+        },
+        {
+          "text": "customer",
+          "file": "dd016744865ff0d9ab0215e5bea51b36a0c8962e11b13b60f2f1cf42fe8feaaa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd016744865ff0d9ab0215e5bea51b36a0c8962e11b13b60f2f1cf42fe8feaaa.mp3",
+          "contentHash": "6fb3db409d99966b647a3e52f20229cee8eb8d4aa5e7cf78658f2bc7b3b78695",
+          "byteSize": 24576
+        },
+        {
+          "text": "repair",
+          "file": "8ae63df2a5524e60b031bf0247a19dfa74d8c6242ceb9be0236aad19f31e30c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ae63df2a5524e60b031bf0247a19dfa74d8c6242ceb9be0236aad19f31e30c5.mp3",
+          "contentHash": "9c847b06e70b5a2b257970bf9206ce8e820419639a08d8b8a2f90c518cf0033e",
+          "byteSize": 11520
+        },
+        {
+          "text": "pen",
+          "file": "42e82eea56de06b01fe4421c7d052e008919ed317bee3fae86ef15a91d40efcc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/42e82eea56de06b01fe4421c7d052e008919ed317bee3fae86ef15a91d40efcc.mp3",
+          "contentHash": "883affa50f9914dbcf8ace342bc39e8bc7ffe9d50d825b02a89d306d821a246c",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l07/s06/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you repair bicycles?",
+          "file": "45619065709b21a3f00937ea9c79f1dce3c4b6bf13c210c236a54e1a82416e17.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/45619065709b21a3f00937ea9c79f1dce3c4b6bf13c210c236a54e1a82416e17.mp3",
+          "contentHash": "6562d6685ff0f991b03110bff2981c59b885b8576adea7ff63987eb263586623",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l07/s06/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a pen?",
+          "file": "4dd6a3c7fbcc71a1e14a12ad97b67ad151e9f56be3b72317035ec32afe4d6729.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4dd6a3c7fbcc71a1e14a12ad97b67ad151e9f56be3b72317035ec32afe4d6729.mp3",
+          "contentHash": "517dde4074ad5f04422d7144aa95336b6fd05f4d72c99a3fbb3da7e4a7ee4308",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l07/s06/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do they repair bicycles?",
+          "file": "4044cc350deb55f63650b3829fe72f5724ad24fa7d06da7aa94ce190ec699152.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4044cc350deb55f63650b3829fe72f5724ad24fa7d06da7aa94ce190ec699152.mp3",
+          "contentHash": "29f4d8335b3cb3024ac84fa9f6efd89e812cafbc48ba2557e4e610c7d828c08c",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l07/s06/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is no bookmark here.",
+          "file": "08824fc2728793e89347ebabe36462039707ccec80ee8512391b7e2b5a5230c1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/08824fc2728793e89347ebabe36462039707ccec80ee8512391b7e2b5a5230c1.mp3",
+          "contentHash": "5dfcd187a44f37003a2115b7e5c434050a4bd01d5f7d2cb3395dec98489430e3",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s06/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you have a pen?",
+          "file": "aed50f51c54ca506ab433b6f8c0ffcfef896ce2c44e2499c681d816e3be40be1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aed50f51c54ca506ab433b6f8c0ffcfef896ce2c44e2499c681d816e3be40be1.mp3",
+          "contentHash": "e44c8c73722bac227878d1a1ac8e0152f981bf4a8f22bb7c1c8d2ffe65be466b",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s06/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "customer",
+          "file": "9bf1ab80dfd4627102b87c605af6d1e023416ca897bfab609a2a80a17c30fba3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9bf1ab80dfd4627102b87c605af6d1e023416ca897bfab609a2a80a17c30fba3.mp3",
+          "contentHash": "f3e2d115f6240cd62e6cc731807a0a45cd7472e3227be3b729516bc65cb4968e",
+          "byteSize": 18816
+        },
+        {
+          "text": "ceiling",
+          "file": "d807d0e7c59b9f4466751f638a051ddc47ef7de076e1329c9416c34d14e3cf84.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/96f16e929047d5fa07f1a824-onyx.mp3",
+          "contentHash": "c7579ff50d3fdecbaa21f8a4a52753e901289ad4f146726cf5218c52535ea8d0",
+          "byteSize": 23040
+        },
+        {
+          "text": "bookmark",
+          "file": "54a46aec3ff617cf34a0beb562f3cf1576e38cb14d00976245aeb96a8279eb10.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/54a46aec3ff617cf34a0beb562f3cf1576e38cb14d00976245aeb96a8279eb10.mp3",
+          "contentHash": "086790560967da1b98f6641c06529774cb05e06ade27351144bac1d1cb59ec33",
+          "byteSize": 18816
+        },
+        {
+          "text": "repair",
+          "file": "8922eb57ff29997692e61588c6c1488d31c0164f94da7e9f650c06539c5898f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8922eb57ff29997692e61588c6c1488d31c0164f94da7e9f650c06539c5898f0.mp3",
+          "contentHash": "0ae338ce4ffba843159031edbf715674ad96d65c6dda2b2196bc9c67bea8811f",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l07/s06/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you repair roofs?",
+          "file": "5d8d3d6301abf6c93601335cccd8d2a78d3e38c4b80de891d4509392eb25656b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d8d3d6301abf6c93601335cccd8d2a78d3e38c4b80de891d4509392eb25656b.mp3",
+          "contentHash": "9337fcbf00139d21eac8c4d514f1e4937061395eca2bc8cb3176a06a9870dba6",
+          "byteSize": 48384
+        }
+      ]
     }
   },
   "settings": {

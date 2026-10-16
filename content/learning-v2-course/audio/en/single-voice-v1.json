@@ -61978,6 +61978,309 @@
           "byteSize": 32256
         }
       ]
+    },
+    "l04/s37/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is a parcel locker.",
+          "file": "05924c87a98183cca256cdd88c4835d842743ff7f2d2d2ba3d0adb69e654fd59.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/05924c87a98183cca256cdd88c4835d842743ff7f2d2d2ba3d0adb69e654fd59.mp3",
+          "contentHash": "69dfd5825add85998e188975490691a2739f94e8cc3e3e8a78041f32279d1513",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s37/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The car is next to the shop.",
+          "file": "4ee693de4fc5d32ab10d3297d54a66363b456dc5101ff4a05bf756ca5cefcd81.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4ee693de4fc5d32ab10d3297d54a66363b456dc5101ff4a05bf756ca5cefcd81.mp3",
+          "contentHash": "e69f22696babd8d15df41c8f6ee26640f5b9b90b4fe0c05f391f3c66e1432933",
+          "byteSize": 52224
+        }
+      ]
+    },
+    "l04/s37/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's official.",
+          "file": "cc9fc6e5e248b6e0eece6a94d5b85e824a1c42c7da5cff76884287301c4162f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc9fc6e5e248b6e0eece6a94d5b85e824a1c42c7da5cff76884287301c4162f0.mp3",
+          "contentHash": "5f50a120d235a861dae433dc54ade6130a96ae92f654e844328ca4caf1db6889",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s37/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It is official.",
+          "file": "7dd48e5372bf49ca4265648b1242db6d8f68733166015a288c643bfe01d16146.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7dd48e5372bf49ca4265648b1242db6d8f68733166015a288c643bfe01d16146.mp3",
+          "contentHash": "0c334eb00daf4615feb23d84fe02ffce5c04980389d646130409738d2ba3e210",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s37/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "parcel locker",
+          "file": "e0ce33b97c1a3c643f0d923179352ebac638e91bc725dfd96191bf69c9bcb63e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0ce33b97c1a3c643f0d923179352ebac638e91bc725dfd96191bf69c9bcb63e.mp3",
+          "contentHash": "33383b15b3bc2bac1831c4e96d9cfb80e555e85c863915c5a8ece202c52d60e2",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l04/s37/task/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "parcel locker",
+          "file": "1f5d3832311b5e9a347aefbf172019816bdc96454a150408056ab70e5892e73d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f5d3832311b5e9a347aefbf172019816bdc96454a150408056ab70e5892e73d.mp3",
+          "contentHash": "1d25865fc41bd30f6059bf105d9d2877444ebfd2fcd7c1f028a7b9a01cf3ae3d",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s37/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "parcel locker",
+          "file": "1f5d3832311b5e9a347aefbf172019816bdc96454a150408056ab70e5892e73d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f5d3832311b5e9a347aefbf172019816bdc96454a150408056ab70e5892e73d.mp3",
+          "contentHash": "1d25865fc41bd30f6059bf105d9d2877444ebfd2fcd7c1f028a7b9a01cf3ae3d",
+          "byteSize": 24576
+        },
+        {
+          "text": "official",
+          "file": "c5871d3a7112560838d946a3f32a848f432ee02df127b4926af077541fe014ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c5871d3a7112560838d946a3f32a848f432ee02df127b4926af077541fe014ad.mp3",
+          "contentHash": "fdbfe7dff5f78c793d2fda33507d6a9e4d19c7b70dbfe2290ba90858e4f7c499",
+          "byteSize": 21888
+        },
+        {
+          "text": "car",
+          "file": "166896c1dddf9b1c53d5d6dc56e38d2f3b46669d56e359afe7a3d2598976ae09.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/166896c1dddf9b1c53d5d6dc56e38d2f3b46669d56e359afe7a3d2598976ae09.mp3",
+          "contentHash": "094ea35a13cfa888180601193eb116df261d7dfdc81b8e9b3898c32b4538fbe4",
+          "byteSize": 14976
+        },
+        {
+          "text": "bus stop",
+          "file": "c45281f0f42d2732ff7c2d2de5ea214910cd42b0f39ed35c9160294a01c45984.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c45281f0f42d2732ff7c2d2de5ea214910cd42b0f39ed35c9160294a01c45984.mp3",
+          "contentHash": "33ee8f752c3eab34b44589a13d3198a4c2c148c9ae7834b35c2ca4b5ccc80444",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s37/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a parcel locker.",
+          "file": "eca65cf602617f0330e69bca791865edb6dedc5cbeab79c71a5858e609ec43dd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eca65cf602617f0330e69bca791865edb6dedc5cbeab79c71a5858e609ec43dd.mp3",
+          "contentHash": "6c960b73e18615dcced3f6552fb821e130dc0d5b630f716ada703dd9f06a29f4",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s37/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The car is next to the shop.",
+          "file": "e2f2be6f9649648a9cad081c781d25df90d6c5f6ddf8b230618937b32cda6156.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e2f2be6f9649648a9cad081c781d25df90d6c5f6ddf8b230618937b32cda6156.mp3",
+          "contentHash": "4ec3fcb44861e6e05f18683bfa6b403855da6c60db0c09d12debfa06696dae91",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l04/s37/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's official.",
+          "file": "cc9fc6e5e248b6e0eece6a94d5b85e824a1c42c7da5cff76884287301c4162f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc9fc6e5e248b6e0eece6a94d5b85e824a1c42c7da5cff76884287301c4162f0.mp3",
+          "contentHash": "5f50a120d235a861dae433dc54ade6130a96ae92f654e844328ca4caf1db6889",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s37/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There isn't a parcel locker.",
+          "file": "b32fa76a58821ca58b22b0771be4a95d376d2c9ff7c88d8212cdcacfc4bdf5f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b32fa76a58821ca58b22b0771be4a95d376d2c9ff7c88d8212cdcacfc4bdf5f9.mp3",
+          "contentHash": "53c0cca41386a9860112ac7fa318b61774b10596b90ae67ac37c007305b9a870",
+          "byteSize": 52992
+        }
+      ]
+    },
+    "l04/s37/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bus stop is next to the hotel.",
+          "file": "02e6ab0563b431ee600e5233eece2ebfaccc26b37c118bc656bf6067535f3a8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/02e6ab0563b431ee600e5233eece2ebfaccc26b37c118bc656bf6067535f3a8c.mp3",
+          "contentHash": "11fb649fd0ec1bab7f27273c206a9a826d010f7f3a49dd0040369db842bca69d",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l04/s37/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "parcel locker",
+          "file": "049152f0883456be4825b04c34f76f51d10d1f57be875d6488535ecf4bb8af22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/049152f0883456be4825b04c34f76f51d10d1f57be875d6488535ecf4bb8af22.mp3",
+          "contentHash": "262849a5e220425571d0cb01aedfbbd79b05b910b9c59b22f6a6970c81ba305e",
+          "byteSize": 32256
+        },
+        {
+          "text": "official",
+          "file": "fd67d938de8f7196b5af32a0e56895bd348376d2502748a497c5c7302c7d78a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd67d938de8f7196b5af32a0e56895bd348376d2502748a497c5c7302c7d78a6.mp3",
+          "contentHash": "dc2cb09eba7512653893966671112225c0471d9a1b61ce7fa2663bbc56128257",
+          "byteSize": 25344
+        },
+        {
+          "text": "car",
+          "file": "91a24d9ba58b0d67c2f22e8d2e35462845d1ee5c998c2c9efe9ae292942228bc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/91a24d9ba58b0d67c2f22e8d2e35462845d1ee5c998c2c9efe9ae292942228bc.mp3",
+          "contentHash": "aa1eaf5c175cbe4a8c9f7fc47927e8918dd63943f382e92292debca6e4ebc23d",
+          "byteSize": 6912
+        },
+        {
+          "text": "bus stop",
+          "file": "918c6a0859da3c9afeea8a419b57ad9b0c55fa803a22f7e86491b1ff4e485678.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/918c6a0859da3c9afeea8a419b57ad9b0c55fa803a22f7e86491b1ff4e485678.mp3",
+          "contentHash": "1741db6b8700c9682afecdae4f2c6ceb8af9d83868e3c147f90d62265992f666",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l04/s37/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There aren't any parcel lockers.",
+          "file": "9f283c974af065970b3bf3f0b596e8bbbccd9e862ed80920550fa66f639ccaaf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9f283c974af065970b3bf3f0b596e8bbbccd9e862ed80920550fa66f639ccaaf.mp3",
+          "contentHash": "bbb3d179bbf65b8c0dbe6d8ae23238688b36b6950a7c333dd8a899973134b698",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l04/s37/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is a parcel locker.",
+          "file": "80458e4ea36fec1a30f295be2ce3371ee6171da5b8fd7575b3b44e19b42685ca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80458e4ea36fec1a30f295be2ce3371ee6171da5b8fd7575b3b44e19b42685ca.mp3",
+          "contentHash": "8e9cdec245051d12d494140f6dec5880be0fbed07c14a1ece6934ee35961a15a",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l04/s37/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a parcel locker?",
+          "file": "c4ddd8d30b69779ed6ebff8a039dec57afa1a011b9ddf8621536baf3a5dfd3d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c4ddd8d30b69779ed6ebff8a039dec57afa1a011b9ddf8621536baf3a5dfd3d0.mp3",
+          "contentHash": "59e18db33cc3341835c4f41ab3a10351ed9790e1ddd691b1e9acadb4531e6109",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s37/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The car is between the shops.",
+          "file": "bbac91ca00f41e9fb0dd5dbdf2134fe3e94dc1aa1becb27985413f92858c4221.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bbac91ca00f41e9fb0dd5dbdf2134fe3e94dc1aa1becb27985413f92858c4221.mp3",
+          "contentHash": "28e8b3af1cf1e63b7c1b6603dfa0abea740e0c2575e0c58123836c8162a83d02",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s37/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "That is a parcel locker.",
+          "file": "266241428963e649cba898ce728b9f0bd99fc2c86dc0c9308a5d42885a9a0fd3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/266241428963e649cba898ce728b9f0bd99fc2c86dc0c9308a5d42885a9a0fd3.mp3",
+          "contentHash": "d47c0873c3d207e0b06b7e0c0f7ee12ea2b7c8932689f36966addd5abba92158",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s37/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "parcel locker",
+          "file": "2de9d3e2cda75dcc3f4f8ee9283f809d6b26c1828d0fdc33ca7c9dbb7d8b03fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2de9d3e2cda75dcc3f4f8ee9283f809d6b26c1828d0fdc33ca7c9dbb7d8b03fc.mp3",
+          "contentHash": "32c35a67f08178ac0da80d5977d4e588ed694e1af38a71ef24f5245c69fc652a",
+          "byteSize": 26112
+        },
+        {
+          "text": "official",
+          "file": "3c131972d1799138f5e94958af14eb3b2b5742c110ced77b59b9bef2aedf0096.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c131972d1799138f5e94958af14eb3b2b5742c110ced77b59b9bef2aedf0096.mp3",
+          "contentHash": "495bf8b579133c355fd2192a1e97d8f963a411bff0c7b71605c536e6719827e1",
+          "byteSize": 32256
+        },
+        {
+          "text": "car",
+          "file": "31fbda4fafc55997b2b8143a67a27f049a6948f7b5fd6660dcdbb6ef3dedd0e7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31fbda4fafc55997b2b8143a67a27f049a6948f7b5fd6660dcdbb6ef3dedd0e7.mp3",
+          "contentHash": "38ba6831041c915ebc02a963f41ba93ab5ca44a435f7004cd82cd9f6b3dd68bc",
+          "byteSize": 22656
+        },
+        {
+          "text": "bus stop",
+          "file": "2661247007cf79547c7a75bd15516f3aaa3519bd7892db432ca4ba93c35905ed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2661247007cf79547c7a75bd15516f3aaa3519bd7892db432ca4ba93c35905ed.mp3",
+          "contentHash": "ee97ddb8865d2579f822068a7e47fdbef4ed336a54a0b09e14c7900c9946bbf8",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s37/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The parcel locker is next to the hotel.",
+          "file": "50b6ffbeab3ea4d0fd8e469cac0aeed0dcb67b99570a08f00c3a34444d7092db.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50b6ffbeab3ea4d0fd8e469cac0aeed0dcb67b99570a08f00c3a34444d7092db.mp3",
+          "contentHash": "927317ab6c58378128f9b05a5c648f154085ad8291fbb592014c6f5d1940e79b",
+          "byteSize": 44544
+        }
+      ]
     }
   },
   "settings": {

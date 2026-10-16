@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-15:intro1:r2": {
+          "ru": "Перед `my helmet` не нужно `a`.",
+          "uk": "Перед `my helmet` не потрібне `a`."
+        },
+        "en:lesson-05:session-15:intro1:r3": {
+          "ru": "`your` — твой / ваш; мой — `my`.",
+          "uk": "`your` — твій / ваш; мій — `my`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-15:intro2:r2": {
+          "ru": "`difficult` — сложно; легко — `easy`.",
+          "uk": "`difficult` — складно; легко — `easy`."
+        },
+        "en:lesson-05:session-15:intro2:r3": {
+          "ru": "С `It` нужно `is`.",
+          "uk": "З `It` потрібне `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-15:intro3:r2": {
+          "ru": "Один пульт: `remote is`.",
+          "uk": "Один пульт: `remote is`."
+        },
+        "en:lesson-05:session-15:intro3:r3": {
+          "ru": "`our` — наш; здесь их: `their`.",
+          "uk": "`our` — наш; тут їхній: `their`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2f0353bb625ac82e9c53895c365114fd594815b24b108331e30c29ffedb8eab3"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "назвать шлем и уточнить, кому принадлежит снаряжение",
+    "uk": "назвати шолом і уточнити, кому належить спорядження"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Для головы",
+        "uk": "Для голови"
+      },
+      "bodyByLocale": {
+        "ru": "`helmet` — «шлем»: защищает голову, например при езде на велосипеде. `my helmet` — «мой шлем», `your helmet` — «твой / ваш шлем». `This is my helmet` — «Это мой шлем». Шлем на полке хорошо защищает полку; перед поездкой ему лучше быть на голове. Перед `my helmet` не ставим `a` или `the`.",
+        "uk": "`helmet` — «шолом»: захищає голову, наприклад під час їзди велосипедом. `my helmet` — «мій шолом», `your helmet` — «твій / ваш шолом». `This is my helmet` — «Це мій шолом». Шолом на полиці добре захищає полицю; перед поїздкою йому краще бути на голові. Перед `my helmet` не ставимо `a` чи `the`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Покажите свой шлем.",
+          "uk": "Покажіть свій шолом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-15:intro1:r1",
+              "text": "This is my helmet."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro1:r2",
+              "text": "This is a my helmet."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro1:r3",
+              "text": "This is your helmet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-15:intro1:r1",
+              "text": "This is my helmet."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro1:r2",
+              "text": "This is a my helmet."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro1:r3",
+              "text": "This is your helmet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите свой шлем.",
+          "uk": "Покажіть свій шолом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Легко, сложно, важно",
+        "uk": "Легко, складно, важливо"
+      },
+      "bodyByLocale": {
+        "ru": "`easy` — «лёгкий» по сложности, `difficult` — «сложный», `important` — «важный». `It is easy` — «Это легко», `It is difficult` — «Это сложно», `It is important` — «Это важно». Здесь `easy` не означает «мало весит»: речь о том, насколько трудно что-то сделать.",
+        "uk": "`easy` — «легкий» за складністю, `difficult` — «складний», `important` — «важливий». `It is easy` — «Це легко», `It is difficult` — «Це складно», `It is important` — «Це важливо». Тут `easy` не означає «мало важить»: ідеться про те, наскільки важко щось зробити."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы легко справились с заданием. Скажите «Это легко» без сокращения.",
+          "uk": "Ви легко впоралися із завданням. Скажіть «Це легко» без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-15:intro2:r1",
+              "text": "It is easy."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro2:r2",
+              "text": "It is difficult."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro2:r3",
+              "text": "It are easy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-15:intro2:r1",
+              "text": "It is easy."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro2:r2",
+              "text": "It is difficult."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro2:r3",
+              "text": "It are easy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы легко справились с заданием. Скажите «Это легко» без сокращения.",
+          "uk": "Ви легко впоралися із завданням. Скажіть «Це легко» без скорочення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пальто, зал и пульт",
+        "uk": "Пальто, зал і пульт"
+      },
+      "bodyByLocale": {
+        "ru": "`coat` — «пальто», `gym` — «тренажёрный зал», `remote` — «пульт». `Her helmet is next to his coat` — «Её шлем рядом с его пальто»: владельцы могут быть разными. `Our gym is open` — «Наш тренажёрный зал открыт». `Their remote is on the table` — «Их пульт на столе»: несколько владельцев, один пульт, поэтому `is`.",
+        "uk": "`coat` — «пальто», `gym` — «тренажерний зал», `remote` — «пульт». `Her helmet is next to his coat` — «Її шолом поруч із його пальтом»: власники можуть бути різними. `Our gym is open` — «Наш тренажерний зал відкритий». `Their remote is on the table` — «Їхній пульт на столі»: кілька власників, один пульт, тому `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Пульт друзей на столе. Выберите фразу.",
+          "uk": "Пульт друзів на столі. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-15:intro3:r1",
+              "text": "Their remote is on the table."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro3:r2",
+              "text": "Their remote are on the table."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro3:r3",
+              "text": "Our remote is on the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-15:intro3:r1",
+              "text": "Their remote is on the table."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro3:r2",
+              "text": "Their remote are on the table."
+            },
+            {
+              "responseId": "en:lesson-05:session-15:intro3:r3",
+              "text": "Our remote is on the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Пульт друзей на столе. Выберите фразу.",
+          "uk": "Пульт друзів на столі. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7b9c0e9161b7a686fb5f63658ff49f0b2e0ef77497c22e597e0202cf37086cdc"
+}

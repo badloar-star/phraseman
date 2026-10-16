@@ -67735,6 +67735,309 @@
           "byteSize": 39552
         }
       ]
+    },
+    "l04/s56/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is a corner shop.",
+          "file": "ee24e676b5b694628846a1740a755e4e2c6e91556c0aa38f538e8ead147260f2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee24e676b5b694628846a1740a755e4e2c6e91556c0aa38f538e8ead147260f2.mp3",
+          "contentHash": "2b3d6447539f6627f7c0a26d03a00c427484a8543aa70b66b7c8a0b4bcf85a1e",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l04/s56/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a community kitchen?",
+          "file": "41da4f1b310f2d4b4abf7ddba9c356ff0d41f6809dbfa0e1a4676999ad01de23.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/41da4f1b310f2d4b4abf7ddba9c356ff0d41f6809dbfa0e1a4676999ad01de23.mp3",
+          "contentHash": "ee8629c67010f1f004cb1deaf7e9a95d80e313a28cb9a94a4b30233fa277597a",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s56/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There aren't any shortcuts.",
+          "file": "3c97d665275ad550ed7e0edd51f721ab98f774ea078298c61591c2337e894dcf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c97d665275ad550ed7e0edd51f721ab98f774ea078298c61591c2337e894dcf.mp3",
+          "contentHash": "289066012fff5dee405a159e02e0c057e53d80a75c97c811f135d622a5fe5d64",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s56/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a community kitchen.",
+          "file": "824b4017408def84384855182eb14d0f4df7e3c98c3306ab4ee93c2ec229cba1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/824b4017408def84384855182eb14d0f4df7e3c98c3306ab4ee93c2ec229cba1.mp3",
+          "contentHash": "2c9953c7e1826efe9dae8271b6753e578fc49f54b8d88a5445e5741149f44bbc",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s56/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "corner shop",
+          "file": "81ecc0de484ecd0c32b958ffc97915c8684b41835bab70f5e86ae3c787a5f845.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81ecc0de484ecd0c32b958ffc97915c8684b41835bab70f5e86ae3c787a5f845.mp3",
+          "contentHash": "c4316bba8eb134f38b8f8d6087bbb9104c21068716fb24661e154334b97884cf",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l04/s56/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "corner shop",
+          "file": "b8c80e0a88849845d8a74096e96a19f189a0952e8bf3e2f514cf502a11a50644.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8c80e0a88849845d8a74096e96a19f189a0952e8bf3e2f514cf502a11a50644.mp3",
+          "contentHash": "8eafe1b7115c493a803b13c9509feb2b33a124e2bb2fc20d8e5b522f7e3c7269",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s56/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "corner shop",
+          "file": "de1d9f0d87e1b15b47f4455a8b4447b11ac3dd0491a77e03a8c879b002d8a784.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de1d9f0d87e1b15b47f4455a8b4447b11ac3dd0491a77e03a8c879b002d8a784.mp3",
+          "contentHash": "c3947034cd5c16ad781a722cd3352f4ea1ca58a178bb185510cfcf800d648102",
+          "byteSize": 33792
+        },
+        {
+          "text": "canal",
+          "file": "9e773e9cf03cd315e119a7bdae3cf7c68e1f64f0212b9dfab4ba5fe0698e7252.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e773e9cf03cd315e119a7bdae3cf7c68e1f64f0212b9dfab4ba5fe0698e7252.mp3",
+          "contentHash": "9fd88387e734afc3eb6ef7b502bd46d02c03912d3453ce36bbf4078d51b733da",
+          "byteSize": 38784
+        },
+        {
+          "text": "river",
+          "file": "11e8abd46777f9d591a5ea41036e7140d4839818751c738bf8954cc7e28418c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11e8abd46777f9d591a5ea41036e7140d4839818751c738bf8954cc7e28418c6.mp3",
+          "contentHash": "8c3252b61ee8a883d29cd4ab24038a6537d82fb3e22e9bffa12ab172bd280de5",
+          "byteSize": 18048
+        },
+        {
+          "text": "community centre",
+          "file": "a08f6a5cc7c5b5f661a31403faef53dee31226e1ffb07fbb7cbc2161a0d725fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a08f6a5cc7c5b5f661a31403faef53dee31226e1ffb07fbb7cbc2161a0d725fc.mp3",
+          "contentHash": "e6a06e90a0c73e8d570f6a8c2bc98ab0064555da09f0626ed78ade15964f03fd",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s56/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is a corner shop.",
+          "file": "ee24e676b5b694628846a1740a755e4e2c6e91556c0aa38f538e8ead147260f2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee24e676b5b694628846a1740a755e4e2c6e91556c0aa38f538e8ead147260f2.mp3",
+          "contentHash": "2b3d6447539f6627f7c0a26d03a00c427484a8543aa70b66b7c8a0b4bcf85a1e",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l04/s56/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The nursery is next to the community centre.",
+          "file": "02ecbb25d93d898cde821eb9f8a7f02579f1ca2eb8ef72b34cacf7862e4c371d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/02ecbb25d93d898cde821eb9f8a7f02579f1ca2eb8ef72b34cacf7862e4c371d.mp3",
+          "contentHash": "2c49844c44df1e63fbd14f0f8cddbcb5a25ff005a8ee40079b3c74074160a9da",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l04/s56/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a police station?",
+          "file": "6f5b93747e159c876b29d47bdc90112e8d72567ed56fe77565b6b76cf056617f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6f5b93747e159c876b29d47bdc90112e8d72567ed56fe77565b6b76cf056617f.mp3",
+          "contentHash": "6813d18677179f08606cb471de650ec1bf2e93be20e5c8dfca764e9c8740f10f",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s56/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There isn't a petrol station.",
+          "file": "93730ba37100655559024a4783728f79531fa8ab71afce1d1d3f4f3d04151a40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/93730ba37100655559024a4783728f79531fa8ab71afce1d1d3f4f3d04151a40.mp3",
+          "contentHash": "10aa9f0e0f5b6cdb8b6997dcd8ee90a6580e8bc62f60893e61c2b209511fd1ce",
+          "byteSize": 54912
+        }
+      ]
+    },
+    "l04/s56/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The canal is next to the park.",
+          "file": "7fc9f213354e8a55260e68076144614a7888a88a0d9c465506a984b8e3457570.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7fc9f213354e8a55260e68076144614a7888a88a0d9c465506a984b8e3457570.mp3",
+          "contentHash": "d4855e10a33a3653a486f7bc697e9d5a4d14f5de505a7a30e5f8ad623fde7ff6",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l04/s56/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "nursery",
+          "file": "aee89083ae43f8dc02cbb44f13ef4eaa029e621fac68e17b08aa38f86a7ed948.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aee89083ae43f8dc02cbb44f13ef4eaa029e621fac68e17b08aa38f86a7ed948.mp3",
+          "contentHash": "19fb9bac9dd688d6d11cd36c0c193af7127e00685121a20e04b8b4f8baae5e0b",
+          "byteSize": 18048
+        },
+        {
+          "text": "police station",
+          "file": "dcd14ecb2a51ffe243358735570fedef4926f342ae2c8c8ba645c110d556f630.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dcd14ecb2a51ffe243358735570fedef4926f342ae2c8c8ba645c110d556f630.mp3",
+          "contentHash": "04ddfc845c7ac299c4da76549a22213a29492a9e25bc9b119379ed363970a9a4",
+          "byteSize": 26112
+        },
+        {
+          "text": "petrol station",
+          "file": "a213b790e45d2f4be58c8da7559a24b30322569fc9ccd81ec9abdc2b7f12550c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a213b790e45d2f4be58c8da7559a24b30322569fc9ccd81ec9abdc2b7f12550c.mp3",
+          "contentHash": "9b5d98f6cc436f517652b08b7a51936fc913fed7997d523130b7607a91fec91c",
+          "byteSize": 37248
+        },
+        {
+          "text": "shortcut",
+          "file": "caae708da6736f4ca90449bf4916151fbf5eb75ae07cde889911947433d19874.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/caae708da6736f4ca90449bf4916151fbf5eb75ae07cde889911947433d19874.mp3",
+          "contentHash": "d330a4039630742457c1b1ede3603efdf7787179378477ef75484c89fc5c294d",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l04/s56/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a corner shop?",
+          "file": "27fc70c61efe4cf2eb9672dbe0ada6746a51a8343cbdc2c3093cb0ddb65f09ee.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/27fc70c61efe4cf2eb9672dbe0ada6746a51a8343cbdc2c3093cb0ddb65f09ee.mp3",
+          "contentHash": "e67b67c4806997631238c8e1c99397a2c5d5404184adcfb8aa672e8ba77579e5",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s56/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The river is next to the park.",
+          "file": "c797142b90c8d3ee5cb20baba4b7138a145f7602580b82c3b2eb8d40b486bd34.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c797142b90c8d3ee5cb20baba4b7138a145f7602580b82c3b2eb8d40b486bd34.mp3",
+          "contentHash": "fe376b894c1cbdff9693d4a6b6f3df36a3f06bb8a780d9783ae769373f7d359e",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s56/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a shortcut?",
+          "file": "d019488f7174c9848b8869ece3aba2309cd62c5656980ad781bdcad224b20c99.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d019488f7174c9848b8869ece3aba2309cd62c5656980ad781bdcad224b20c99.mp3",
+          "contentHash": "c33de91e7c45b2b429eef14e90fba72e3e879796b0ffac88dd65076207a08068",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s56/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There aren't any shortcuts.",
+          "file": "936e09b1651d60663e77dbb28ab0b0fd10409cb4e37161c7f3f8ee0d47937b48.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/936e09b1651d60663e77dbb28ab0b0fd10409cb4e37161c7f3f8ee0d47937b48.mp3",
+          "contentHash": "c491dd4199234d7395aadbe173b4332b9fe0588797baf5f6b1210d668bd14f60",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s56/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's a community kitchen.",
+          "file": "b887e8eca3841d22f943a0def53b96cd789ad81768daec6160dd6404bbbae20c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b887e8eca3841d22f943a0def53b96cd789ad81768daec6160dd6404bbbae20c.mp3",
+          "contentHash": "abcc30798963cdbde783fb686ba46354a6dd04aa2d59a26fe51d239187677f00",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l04/s56/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "corner shop",
+          "file": "81ecc0de484ecd0c32b958ffc97915c8684b41835bab70f5e86ae3c787a5f845.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81ecc0de484ecd0c32b958ffc97915c8684b41835bab70f5e86ae3c787a5f845.mp3",
+          "contentHash": "c4316bba8eb134f38b8f8d6087bbb9104c21068716fb24661e154334b97884cf",
+          "byteSize": 20352
+        },
+        {
+          "text": "community kitchen",
+          "file": "51f1436ba692f29a3d769f47319f50f892cd6e0eefdae8a3bc2469e5bd3e367e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/51f1436ba692f29a3d769f47319f50f892cd6e0eefdae8a3bc2469e5bd3e367e.mp3",
+          "contentHash": "e92ac226de668baf2cafe3bac974cea65ace8a5b08c8f7f93750ed94c7c0ce43",
+          "byteSize": 29952
+        },
+        {
+          "text": "canal",
+          "file": "a2671d3a76fe3d3cd2ad575305d76f1728c5276c6fea39ff640730352cf1090f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a2671d3a76fe3d3cd2ad575305d76f1728c5276c6fea39ff640730352cf1090f.mp3",
+          "contentHash": "6c318df55ba513f8e3177d3f80d19fb74d7ac81d68aa5bfb7a67a30f824ec039",
+          "byteSize": 21888
+        },
+        {
+          "text": "river",
+          "file": "121c2af1db1f5858f3284d0c38dfa592ffdc2cb1ff4a7f26428239af1517d26e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/121c2af1db1f5858f3284d0c38dfa592ffdc2cb1ff4a7f26428239af1517d26e.mp3",
+          "contentHash": "753c73ddb6b9c92b3469b84190eea045e4b064a106546dacef78779deff344a7",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l04/s56/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The corner shop is next to the nursery.",
+          "file": "b64aabcde5d1403139f1d092bbc4f4dccd2f26b708ac478e2211ec70cd782e07.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b64aabcde5d1403139f1d092bbc4f4dccd2f26b708ac478e2211ec70cd782e07.mp3",
+          "contentHash": "9b1ef50d930d3faa7edf7cb4a1184bf3c00903cf03154fb23c885fa0df0cb8ca",
+          "byteSize": 49152
+        }
+      ]
     }
   },
   "settings": {

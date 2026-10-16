@@ -71068,6 +71068,309 @@
           "byteSize": 48384
         }
       ]
+    },
+    "l05/s11/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is my backpack.",
+          "file": "7c95ca9b8f13b4618ed3d61a0f80a16eaf21f4cf4098894fe9b2dd23fe20b5ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c95ca9b8f13b4618ed3d61a0f80a16eaf21f4cf4098894fe9b2dd23fe20b5ad.mp3",
+          "contentHash": "34d17469a21d7647ff7a8e22c174a9dd0c5c6fa5819b51af2772c5b04fb2dbb6",
+          "byteSize": 53760
+        }
+      ]
+    },
+    "l05/s11/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Her friend is smart.",
+          "file": "3d1500f251c70400b3e7d915d61578adbc731fa0cd4c14a197bdd06e91343984.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d1500f251c70400b3e7d915d61578adbc731fa0cd4c14a197bdd06e91343984.mp3",
+          "contentHash": "6d0aafdb2837f9ae649c13669d031421463e9e7a10a6716ee7cf40511ad4ff5b",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s11/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The backpack is under your desk.",
+          "file": "4533b2b94fa3f159a69fe3cbd100c045cdfc25b402ff443ccd40d1dfacded938.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4533b2b94fa3f159a69fe3cbd100c045cdfc25b402ff443ccd40d1dfacded938.mp3",
+          "contentHash": "18d4b0ada30e59b01277803eef18c8df49b4268658938098251649f88dcd8585",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s11/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Her friend is smart.",
+          "file": "194c530462b74a9a444d32140cd059ff3bd2b4c895468ff0f63f0955d5312186.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/194c530462b74a9a444d32140cd059ff3bd2b4c895468ff0f63f0955d5312186.mp3",
+          "contentHash": "08ab41aaf3fa0a7cabb495988b83e00462e65bcfa0850e3bf8c649aff296da7d",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s11/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "backpack",
+          "file": "9f341d61d566068eab305cd8ae4c38cecb6a19c21d115e2010ff3111f607cfff.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5f00368a6ad231c3c439c4f6-coral.mp3",
+          "contentHash": "f6549a990bd4475fd1d03781a634572405ba7450b44c0fa832dea97df755e715",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s11/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "backpack",
+          "file": "3e3e0b2bb9f2d7086f535b3e37be07a78a402fa191665dfba388c8e942c59d02.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5f00368a6ad231c3c439c4f6-onyx.mp3",
+          "contentHash": "fd09819b88af18d7ca82361d013a8cbf9706e961060fde64b535c858ccf65421",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s11/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "backpack",
+          "file": "9f341d61d566068eab305cd8ae4c38cecb6a19c21d115e2010ff3111f607cfff.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5f00368a6ad231c3c439c4f6-coral.mp3",
+          "contentHash": "f6549a990bd4475fd1d03781a634572405ba7450b44c0fa832dea97df755e715",
+          "byteSize": 25344
+        },
+        {
+          "text": "smart",
+          "file": "dcac7446346b2681fac2aca9fbc873205eeb7c0932339c8ea314fe5067985b35.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/544e2d6145f6ea1d858b94f7-coral.mp3",
+          "contentHash": "e238740aaaf533f8f4e49a373cd9c5064400177b9678318846e362c2a73fed87",
+          "byteSize": 21120
+        },
+        {
+          "text": "strong",
+          "file": "f5e6fe74c14d016754f1532e5c2fdbe5b6ec218051edec6915d82349b529b19e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/eda15ce4834ac303532bc697-coral.mp3",
+          "contentHash": "63639702c4457089b8a1686fa6d7c4acc65e5d22bbffe2a0d56b592823a9b13b",
+          "byteSize": 24576
+        },
+        {
+          "text": "quiet",
+          "file": "2b444c263852704d6a0a931a140306bb34896589409c7bdbaf745ebc0875a386.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/008f0747f4e27c8462baa991-coral.mp3",
+          "contentHash": "f542e8c38517429b4dd30f9527d5403ff471dcf0341869aafdcd0abc686c5b48",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l05/s11/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is my backpack.",
+          "file": "76075a5a1826d3c4195983f7cf5630f98599cd480d9c0da3ab3ed66d3d6c1cbd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/76075a5a1826d3c4195983f7cf5630f98599cd480d9c0da3ab3ed66d3d6c1cbd.mp3",
+          "contentHash": "9acd740f5bd820c5942d1c1f0d535785155a4d360ca1198280f85e8f834044b1",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s11/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "His friend is strong.",
+          "file": "e26c6e752bcaeaea3e31d0548dade114ca88434f5af99b93fb6b04c061b18ce0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e26c6e752bcaeaea3e31d0548dade114ca88434f5af99b93fb6b04c061b18ce0.mp3",
+          "contentHash": "6c52a6f2bbadd47e0af51302f285ca16c428563ef5356c3b9fee9ae47d11f831",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l05/s11/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Our room is quiet.",
+          "file": "3a256e04ea044f18ad80ddd7f649e8a180f82647f622a2c8b05d2bb08ea87112.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a256e04ea044f18ad80ddd7f649e8a180f82647f622a2c8b05d2bb08ea87112.mp3",
+          "contentHash": "0bf3087a2b71b02ddab6c097a10991a1b522006a2fe4f2a775b7542a7dcd2695",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s11/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is her backpack.",
+          "file": "9717b2912088e514abed61b0592fbc5e55906a39b446c53e83a31540ff88bb86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9717b2912088e514abed61b0592fbc5e55906a39b446c53e83a31540ff88bb86.mp3",
+          "contentHash": "2d99dadce4a53562eb651f180e76517e64c7911770c33f62c58802ab2be966df",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s11/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The backpack is under your desk.",
+          "file": "51ca43ba9900218ed94ef9ed5128152c205891233e05fc1adb8bd430d682d2eb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/51ca43ba9900218ed94ef9ed5128152c205891233e05fc1adb8bd430d682d2eb.mp3",
+          "contentHash": "e444a5ba471f9df68ebd6530f73c43ac8f1a7d9069564c4b0c5e778b8a0d7efa",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s11/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "backpack",
+          "file": "c7c69994856c22fc71b6d5e54e8228a3884ad3232f7dfd28098467a403830fa4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5f00368a6ad231c3c439c4f6-ash.mp3",
+          "contentHash": "82c1469f9917d268215105e26d86e430f774c06d54e578a29a6e65fd5b69b102",
+          "byteSize": 29184
+        },
+        {
+          "text": "room",
+          "file": "4b223b546d1c02e79fa67ab8f3562ba19dc39759cf1e01b7bf2042bc53e65e99.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b223b546d1c02e79fa67ab8f3562ba19dc39759cf1e01b7bf2042bc53e65e99.mp3",
+          "contentHash": "a36431864739c1006b0fd3fab09883311c6b42ac7708ce56bfb525163816c438",
+          "byteSize": 18816
+        },
+        {
+          "text": "tram",
+          "file": "71812677c3b6d6ee9cfd2a37a110ebfe101771ebba3ac2326c61df3bb2d47256.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/71812677c3b6d6ee9cfd2a37a110ebfe101771ebba3ac2326c61df3bb2d47256.mp3",
+          "contentHash": "822aa77df4fe206fa3db816e54c8c640708cb91b69707f1a874a7fee857fd5d8",
+          "byteSize": 24576
+        },
+        {
+          "text": "desk",
+          "file": "18cb06bf0817b4cbb81a3761406f97f15d803579689880fc7235b29156701dfa.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/49be417ad74080a0031b636b-ash.mp3",
+          "contentHash": "a110eb164a8ab849dff3aca4477bad51eff4b5704d4306850aa3328fbc763ee5",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s11/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Their room is quiet.",
+          "file": "3c161386ed84680c40afa9d99630eceb3f1f7678085bcd32f170915cb89f27df.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c161386ed84680c40afa9d99630eceb3f1f7678085bcd32f170915cb89f27df.mp3",
+          "contentHash": "4a08224b1a5d5cf1d4cd312a9073e328d7b561f38e8d20bcfb2477de228d5a6b",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s11/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Our tram is here.",
+          "file": "0f43eb60d0f89ba829283cc62aa6a8cc23baa2d7487e90a2fb79883a1d819022.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f43eb60d0f89ba829283cc62aa6a8cc23baa2d7487e90a2fb79883a1d819022.mp3",
+          "contentHash": "6323168e0673ee42d47351f9464fdc9bb4061beb1b2a9e531bced92bfeebf4ec",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l05/s11/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your backpack.",
+          "file": "4ca16cad9023f2eb3ab764dbdeb5a5b486f64e844ec89a63f06dea1ede439ca8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4ca16cad9023f2eb3ab764dbdeb5a5b486f64e844ec89a63f06dea1ede439ca8.mp3",
+          "contentHash": "699172feb8fc78137541a9807b501b86a1a134480b00d4618676e9e3249c2b47",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s11/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Their room is quiet.",
+          "file": "ad04ec3896690105a0cf40957f3d417595ff37d9c6e92f9b7f1bc57ec9b0b301.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ad04ec3896690105a0cf40957f3d417595ff37d9c6e92f9b7f1bc57ec9b0b301.mp3",
+          "contentHash": "8dc526c5cda635816dc1fe7b17595186c4e3c229ac42893e8dfe2f635b6728e3",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l05/s11/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "His backpack is here.",
+          "file": "7f1f13d9452ddcdcc9a2b09a65e998261e3830a60086e23bbff34a57252bcd7d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7f1f13d9452ddcdcc9a2b09a65e998261e3830a60086e23bbff34a57252bcd7d.mp3",
+          "contentHash": "f66f24260be0b87cba75e1ed549f085612dd7b2e865eb1a2b542bf91aa4355b5",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s11/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "backpack",
+          "file": "c7c69994856c22fc71b6d5e54e8228a3884ad3232f7dfd28098467a403830fa4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5f00368a6ad231c3c439c4f6-ash.mp3",
+          "contentHash": "82c1469f9917d268215105e26d86e430f774c06d54e578a29a6e65fd5b69b102",
+          "byteSize": 29184
+        },
+        {
+          "text": "room",
+          "file": "4b223b546d1c02e79fa67ab8f3562ba19dc39759cf1e01b7bf2042bc53e65e99.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b223b546d1c02e79fa67ab8f3562ba19dc39759cf1e01b7bf2042bc53e65e99.mp3",
+          "contentHash": "a36431864739c1006b0fd3fab09883311c6b42ac7708ce56bfb525163816c438",
+          "byteSize": 18816
+        },
+        {
+          "text": "tram",
+          "file": "71812677c3b6d6ee9cfd2a37a110ebfe101771ebba3ac2326c61df3bb2d47256.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/71812677c3b6d6ee9cfd2a37a110ebfe101771ebba3ac2326c61df3bb2d47256.mp3",
+          "contentHash": "822aa77df4fe206fa3db816e54c8c640708cb91b69707f1a874a7fee857fd5d8",
+          "byteSize": 24576
+        },
+        {
+          "text": "desk",
+          "file": "18cb06bf0817b4cbb81a3761406f97f15d803579689880fc7235b29156701dfa.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/49be417ad74080a0031b636b-ash.mp3",
+          "contentHash": "a110eb164a8ab849dff3aca4477bad51eff4b5704d4306850aa3328fbc763ee5",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s11/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The backpack is under your desk.",
+          "file": "60a754a6bad8a1341a7db14905e1007f80495d3605c72021747dda212fbc1bd9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60a754a6bad8a1341a7db14905e1007f80495d3605c72021747dda212fbc1bd9.mp3",
+          "contentHash": "242a0c114333ced584bab9471120fb902656e436d6188d23ec99c78d51fc3958",
+          "byteSize": 56448
+        }
+      ]
     }
   },
   "settings": {

@@ -74704,6 +74704,309 @@
           "byteSize": 43008
         }
       ]
+    },
+    "l05/s23/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The camera is mine.",
+          "file": "74a23e82e23fbfcc420de45396f32fee87c207f6d4feaba7923696fbbf2319a3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/74a23e82e23fbfcc420de45396f32fee87c207f6d4feaba7923696fbbf2319a3.mp3",
+          "contentHash": "6ce0bd7dd599abf7bb3d1658cd5eedcb6160e005f3ace54272d8e3a4fe6c2541",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s23/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The tickets are different.",
+          "file": "3fb876a4cad2d7c793881800a266b490788819e38a34c19031f4865cab595191.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3fb876a4cad2d7c793881800a266b490788819e38a34c19031f4865cab595191.mp3",
+          "contentHash": "a3685997712f0d21de5014a737c345df2fd86a6b404374453fe4dd726869bb4f",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l05/s23/intro/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The helmet is hers.",
+          "file": "64a059989b24635a9c3025c388303f4d2bc3958de2e0f17d4c76b9e94233dc9d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/64a059989b24635a9c3025c388303f4d2bc3958de2e0f17d4c76b9e94233dc9d.mp3",
+          "contentHash": "89d71b012c99e075dc2247aebf70f5e052200c8cf730e060eed4433729d36f3a",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s23/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They are married.",
+          "file": "4ea33ee1717b8f078db5b6ebafe83d10e2c083f8e2e85c57a980025f227cc57a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4ea33ee1717b8f078db5b6ebafe83d10e2c083f8e2e85c57a980025f227cc57a.mp3",
+          "contentHash": "edad0b89f3e8e00907c567721c4d8cf5ba6447391d63c6eb6079a3166a9c238a",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s23/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "camera",
+          "file": "585081f2431e21b333a1b055eac455527919f12424ec68648dc5d09f66cfa640.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/585081f2431e21b333a1b055eac455527919f12424ec68648dc5d09f66cfa640.mp3",
+          "contentHash": "5cd703a92129bf9ea8e622b220467c3e625000ac33b3990b031fc0646d507630",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l05/s23/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "camera",
+          "file": "585081f2431e21b333a1b055eac455527919f12424ec68648dc5d09f66cfa640.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/585081f2431e21b333a1b055eac455527919f12424ec68648dc5d09f66cfa640.mp3",
+          "contentHash": "5cd703a92129bf9ea8e622b220467c3e625000ac33b3990b031fc0646d507630",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l05/s23/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "camera",
+          "file": "95d7331035cc1fe92f38e5d3a7eed1d5ea834fbc3e43da6d6f569e3d5cf1c3c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/95d7331035cc1fe92f38e5d3a7eed1d5ea834fbc3e43da6d6f569e3d5cf1c3c2.mp3",
+          "contentHash": "c0dbaf42c798b87f64501261cede24575f50f5b6dc04c9de4aac222ad700ca54",
+          "byteSize": 23040
+        },
+        {
+          "text": "married",
+          "file": "255dab01c985ab6111f870e4b52fb38348570804d89f64688a232e9cfa1c4848.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f9ce3beb80492facbec35863-coral.mp3",
+          "contentHash": "4787badb721d15d099b5ffabc93c5bd3ea4016b9cdfe418c39cf88b848504bf5",
+          "byteSize": 27648
+        },
+        {
+          "text": "single",
+          "file": "337bbf82419e0911c0b8978bb37558321af449e02c3f2509992c8f1bf9ec4d7d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/947f187506f7629c81c81879-coral.mp3",
+          "contentHash": "589409336b967ee2207be228cf00f473e229061533c79452ff7187869823e349",
+          "byteSize": 44160
+        },
+        {
+          "text": "different",
+          "file": "45e813c9d6ab6e08df1c10432a8fc926d3949158cc7b7bfc5a5eab40fd20aaab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/45e813c9d6ab6e08df1c10432a8fc926d3949158cc7b7bfc5a5eab40fd20aaab.mp3",
+          "contentHash": "fee8cfde92a9de208830f322c48a3b6554231e12d453de4e37af39c3a8b7ebf2",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s23/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Your camera is on the table.",
+          "file": "08eed830fa00c487e37813a07ac16b02d3fd6fbf2bc13a88424e3811aad91e57.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/08eed830fa00c487e37813a07ac16b02d3fd6fbf2bc13a88424e3811aad91e57.mp3",
+          "contentHash": "3b14bbba71c4149bade96706a62158985563824bf1d0f001fb80106c9052c877",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s23/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The tickets are ours.",
+          "file": "659005de3f4ac709d0247a521f9731b14daf8c2ab67a123261854e25206b5650.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/659005de3f4ac709d0247a521f9731b14daf8c2ab67a123261854e25206b5650.mp3",
+          "contentHash": "b7f5809d225f0ec258737bffd13901a8f3726a5d53b8b85f051fb9aaf6fb6ba4",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l05/s23/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am single.",
+          "file": "6ee618adf3e0c878f79b3717700938b6dff4247db984fd31faf2722182f7a2e3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6ee618adf3e0c878f79b3717700938b6dff4247db984fd31faf2722182f7a2e3.mp3",
+          "contentHash": "2c6714a353f56ad874bc8c1660714b0557b0df0991c093e84e0e6a808a7d78a9",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s23/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The helmet is hers.",
+          "file": "e615df8091ff5009dd2097a338c3fc1c313265cf4d7c7f05c02677148264392d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e615df8091ff5009dd2097a338c3fc1c313265cf4d7c7f05c02677148264392d.mp3",
+          "contentHash": "974765c967275c5c479ab2d2ba5fced91478bf585c601777f4866648c920e923",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s23/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The tickets are different.",
+          "file": "3fb876a4cad2d7c793881800a266b490788819e38a34c19031f4865cab595191.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3fb876a4cad2d7c793881800a266b490788819e38a34c19031f4865cab595191.mp3",
+          "contentHash": "a3685997712f0d21de5014a737c345df2fd86a6b404374453fe4dd726869bb4f",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l05/s23/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "camera",
+          "file": "4c8608fbfd16633677c5962adcf63868b82bcb7fb019bdc6a32c6819179de642.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4c8608fbfd16633677c5962adcf63868b82bcb7fb019bdc6a32c6819179de642.mp3",
+          "contentHash": "37f290f31727179cb8db156b9b3164430f056c449f7ab9b004c17a645c5db3f4",
+          "byteSize": 6912
+        },
+        {
+          "text": "tickets",
+          "file": "350d25aab9525febb13045d1150bf312066c8ec286e019627b1c975a67d444fa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/350d25aab9525febb13045d1150bf312066c8ec286e019627b1c975a67d444fa.mp3",
+          "contentHash": "225e5fc4dd1e79ea5f5aa2891caeefbbbdc7b565607a48a72da231954af6e5ab",
+          "byteSize": 20352
+        },
+        {
+          "text": "cheese",
+          "file": "8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "contentHash": "a6c0ed3063da04429bb63cf78654d260ff8c123ddd91a72cf4678aa44553a6fd",
+          "byteSize": 28416
+        },
+        {
+          "text": "helmet",
+          "file": "8d468739102649a6a5c9a174bd7cf23d78b8e3e753fab5850d2afc250b02c710.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8d468739102649a6a5c9a174bd7cf23d78b8e3e753fab5850d2afc250b02c710.mp3",
+          "contentHash": "59bbfd3caef1a1127032b55d90c7513e742e69dd285d7eedf7c6a54b20b984f6",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l05/s23/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is my camera?",
+          "file": "3606cfe52f1ff39d5a436f2bcdf3cbdf370e60080cfc1f1e52324e32e32db6b7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3606cfe52f1ff39d5a436f2bcdf3cbdf370e60080cfc1f1e52324e32e32db6b7.mp3",
+          "contentHash": "a1c390e99db8b601fef48ce91101dcca0035b2278b82a94cfc41319b731281c6",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s23/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is no cheese.",
+          "file": "b7e3c3167ccc5bd1d66a080da6cf7cdb58114c95562e1408c0701a7b182d288e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b7e3c3167ccc5bd1d66a080da6cf7cdb58114c95562e1408c0701a7b182d288e.mp3",
+          "contentHash": "a0025637384ec60ab52f5274bba9fd201f5f095048264c09ed19055f8aaac2f7",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s23/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I have your camera.",
+          "file": "07083ee3b4384d78109a63d08e7b3ce3c8a0966ac164a6638994f3450be264ca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07083ee3b4384d78109a63d08e7b3ce3c8a0966ac164a6638994f3450be264ca.mp3",
+          "contentHash": "7cebb816fa13a03baac56b9b96c7403cf78bc7304aad5b5e8032d30a44f87c10",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s23/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The camera is theirs.",
+          "file": "798da4b32feab13f00f19e8a844428e192d6a90b4feefd1587633ac87f89bc8f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/798da4b32feab13f00f19e8a844428e192d6a90b4feefd1587633ac87f89bc8f.mp3",
+          "contentHash": "3b0055f738d36bbc5caa3b83fa4f65226d98141408d00647621536e50164d1f9",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s23/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The camera is yours.",
+          "file": "6d0ee1ef30c640fceb0b372bf49044afea4719eb17c5db533e1d6838f3766f3b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d0ee1ef30c640fceb0b372bf49044afea4719eb17c5db533e1d6838f3766f3b.mp3",
+          "contentHash": "4103abc7830a291d958200bd4060115c10a5186e6f6daab60e362a552a2a81c6",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s23/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "camera",
+          "file": "4c8608fbfd16633677c5962adcf63868b82bcb7fb019bdc6a32c6819179de642.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4c8608fbfd16633677c5962adcf63868b82bcb7fb019bdc6a32c6819179de642.mp3",
+          "contentHash": "37f290f31727179cb8db156b9b3164430f056c449f7ab9b004c17a645c5db3f4",
+          "byteSize": 6912
+        },
+        {
+          "text": "tickets",
+          "file": "350d25aab9525febb13045d1150bf312066c8ec286e019627b1c975a67d444fa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/350d25aab9525febb13045d1150bf312066c8ec286e019627b1c975a67d444fa.mp3",
+          "contentHash": "225e5fc4dd1e79ea5f5aa2891caeefbbbdc7b565607a48a72da231954af6e5ab",
+          "byteSize": 20352
+        },
+        {
+          "text": "cheese",
+          "file": "8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "contentHash": "a6c0ed3063da04429bb63cf78654d260ff8c123ddd91a72cf4678aa44553a6fd",
+          "byteSize": 28416
+        },
+        {
+          "text": "helmet",
+          "file": "8d468739102649a6a5c9a174bd7cf23d78b8e3e753fab5850d2afc250b02c710.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8d468739102649a6a5c9a174bd7cf23d78b8e3e753fab5850d2afc250b02c710.mp3",
+          "contentHash": "59bbfd3caef1a1127032b55d90c7513e742e69dd285d7eedf7c6a54b20b984f6",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l05/s23/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The camera is mine.",
+          "file": "74a23e82e23fbfcc420de45396f32fee87c207f6d4feaba7923696fbbf2319a3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/74a23e82e23fbfcc420de45396f32fee87c207f6d4feaba7923696fbbf2319a3.mp3",
+          "contentHash": "6ce0bd7dd599abf7bb3d1658cd5eedcb6160e005f3ace54272d8e3a4fe6c2541",
+          "byteSize": 28416
+        }
+      ]
     }
   },
   "settings": {

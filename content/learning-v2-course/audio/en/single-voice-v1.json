@@ -83188,6 +83188,309 @@
           "byteSize": 38784
         }
       ]
+    },
+    "l05/s51/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is the stadium?",
+          "file": "b36039050bbc326d154f74c76764729726180cc8e9f0c1a19b2d9d994912314d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b36039050bbc326d154f74c76764729726180cc8e9f0c1a19b2d9d994912314d.mp3",
+          "contentHash": "4f153abc19843c250f598e2adfc2b2a16d67fa4d75fc52beed91140210f86c18",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s51/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This bag is heavy.",
+          "file": "f81c77f6a96fdef8737b190204b8084978b197ad4836aa56eaa5666fb594d0d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f81c77f6a96fdef8737b190204b8084978b197ad4836aa56eaa5666fb594d0d2.mp3",
+          "contentHash": "2e673a42990598edebdc5c12f746982e8925291a9a96764c04c3484e8b80aad1",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s51/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where are the libraries?",
+          "file": "69d3e6e8618a6f819b1d887b67eb68dd1b4e07a5489f09d1fe606930a42f0b3e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/69d3e6e8618a6f819b1d887b67eb68dd1b4e07a5489f09d1fe606930a42f0b3e.mp3",
+          "contentHash": "de5602633f0752829739d219fb12b76434401e40591abdc34a7f513be849301d",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s51/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This bag is heavy.",
+          "file": "99beac067e85b6283ef32f46ced66b296498450bc0ebb0078ebb92ee88a5490e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99beac067e85b6283ef32f46ced66b296498450bc0ebb0078ebb92ee88a5490e.mp3",
+          "contentHash": "dbc6d3587e2ff57f98067644c3bfe927d7a2b887f835998ccea4ababe06a70fd",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s51/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "stadium",
+          "file": "7b01e12e3d5729bc1477b3b3139dc41e27fe6956791a8fcb2f2a53176fa2099a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b01e12e3d5729bc1477b3b3139dc41e27fe6956791a8fcb2f2a53176fa2099a.mp3",
+          "contentHash": "f79a73a0953ae24830e01dd56b5b17df7931f1c9245d9130e9531c034c066d5e",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s51/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "stadium",
+          "file": "7b01e12e3d5729bc1477b3b3139dc41e27fe6956791a8fcb2f2a53176fa2099a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b01e12e3d5729bc1477b3b3139dc41e27fe6956791a8fcb2f2a53176fa2099a.mp3",
+          "contentHash": "f79a73a0953ae24830e01dd56b5b17df7931f1c9245d9130e9531c034c066d5e",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s51/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "stadium",
+          "file": "c4206a1efbf6f25313bab2e623b9306d2aa8e809cdc3ed9408f8a4befbdcb552.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c4206a1efbf6f25313bab2e623b9306d2aa8e809cdc3ed9408f8a4befbdcb552.mp3",
+          "contentHash": "c4e3feba2b7cf24edc3b23aacc6a7c72768fabedbf656678b155c48b799208b9",
+          "byteSize": 29952
+        },
+        {
+          "text": "heavy",
+          "file": "626bf910407ec848b363ba803c46db5bac80b4b5ab6a07027c83da0463f6340e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/22d5925ed64680ab5f3f6de7-ash.mp3",
+          "contentHash": "0b1d497f55173f25f1cc573c622ffaf3475fc17cfddc01cd0fbc886685c10ead",
+          "byteSize": 24192
+        },
+        {
+          "text": "libraries",
+          "file": "ff078b75e2a7038d93789ddf1e07fad54808b7a9890bf9c72abf0df1bb501e46.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ff078b75e2a7038d93789ddf1e07fad54808b7a9890bf9c72abf0df1bb501e46.mp3",
+          "contentHash": "ae8f411ac8a84c3d6180d2084af3194284d113a0cc7ddfe9d1e07489ca1d29a1",
+          "byteSize": 19584
+        },
+        {
+          "text": "community centre",
+          "file": "a08f6a5cc7c5b5f661a31403faef53dee31226e1ffb07fbb7cbc2161a0d725fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a08f6a5cc7c5b5f661a31403faef53dee31226e1ffb07fbb7cbc2161a0d725fc.mp3",
+          "contentHash": "e6a06e90a0c73e8d570f6a8c2bc98ab0064555da09f0626ed78ade15964f03fd",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s51/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the stadium?",
+          "file": "abb0f999a53bc17ef89b532a5dfb1f63eac1b4ede64507dc318aab9a201c3b81.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/abb0f999a53bc17ef89b532a5dfb1f63eac1b4ede64507dc318aab9a201c3b81.mp3",
+          "contentHash": "56d6e4ed9bd6b16f2a0280c7838ce7f1a46ef91bbf4be8dc28433d71f031c4f9",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s51/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Anna is in the community centre.",
+          "file": "48d65e9cfa64254dc08ad309de9ead8042e28cf3f5e315623f6f04f757bb863e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/48d65e9cfa64254dc08ad309de9ead8042e28cf3f5e315623f6f04f757bb863e.mp3",
+          "contentHash": "68b0403182e32c5df2c1e4ca4f727c1b79ae90672073eae69cf2b0f19f1516d6",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l05/s51/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom is at the stadium.",
+          "file": "f0253c72540b5fb4849b28acf893e4e163365b824a24c09ee72014587d9d92c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f0253c72540b5fb4849b28acf893e4e163365b824a24c09ee72014587d9d92c5.mp3",
+          "contentHash": "adebd87676d7f5e425e24968011946545c867a5aa4be96e8fd9141aea740a96d",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s51/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where are the libraries?",
+          "file": "dda094215eec799bb351d26152679e6f6576ab997171e30bf99dc90f26d64bde.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dda094215eec799bb351d26152679e6f6576ab997171e30bf99dc90f26d64bde.mp3",
+          "contentHash": "3d8a1a50c2ab783e384f359b8395880c507fafc0b76e4a65b2e7d98cac6c7c26",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s51/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is Anna's bag.",
+          "file": "70a738adbc3518acacc838746b7c8a71f6a43d0875bdd0d934d7748d819875b3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/70a738adbc3518acacc838746b7c8a71f6a43d0875bdd0d934d7748d819875b3.mp3",
+          "contentHash": "f9e4902ff73de2c648c17b41f336319dbe241e59e4e13722bb6b8a60d653ec2c",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s51/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "stadium",
+          "file": "82b21a8a061f5c49dbe00c83864d0f7602d2cbef5ed31b0935ac16fcb8c64970.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/82b21a8a061f5c49dbe00c83864d0f7602d2cbef5ed31b0935ac16fcb8c64970.mp3",
+          "contentHash": "c51b55781f81ca60b6cb3b49a4262fcda40f83adedecdf03e3c5e7fd47763e17",
+          "byteSize": 21120
+        },
+        {
+          "text": "heavy",
+          "file": "3a7a89b8ba6d4ca4620eca57a3b8aa5e9c16a5e416bf4bec35aba3df2ff36543.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/22d5925ed64680ab5f3f6de7-onyx.mp3",
+          "contentHash": "ca4d646d9444421494cc99e5b307ffaebc3545d789404a8c89dacb169cb1b69f",
+          "byteSize": 24192
+        },
+        {
+          "text": "libraries",
+          "file": "01407d9e48e8846d1a8006ab4e9b51b2b5c35a311fc469121e8c4a81c5dcb18a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/01407d9e48e8846d1a8006ab4e9b51b2b5c35a311fc469121e8c4a81c5dcb18a.mp3",
+          "contentHash": "6f71c5bc3ec8f45cab48f2e3da2079a7464f4cbd64836deff368ea94eefef327",
+          "byteSize": 20352
+        },
+        {
+          "text": "community centre",
+          "file": "1844662055d6908266906f074fc4b7913bd42ed618bb2592dcb45b1766c1b182.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1844662055d6908266906f074fc4b7913bd42ed618bb2592dcb45b1766c1b182.mp3",
+          "contentHash": "3c3313429c675ddfde51aa9733d533188d90942259d2c21b2a3eec9ff72998db",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s51/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The stadium is near the river.",
+          "file": "781aa49acb530a898dd632de1b693f4f28e29e15adda3f66d084daf3747bc7bc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/781aa49acb530a898dd632de1b693f4f28e29e15adda3f66d084daf3747bc7bc.mp3",
+          "contentHash": "e8f5379efcac37ccbc5e304024109a78b476f056a6912c839ada3907308983b8",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s51/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bag is hers.",
+          "file": "a12385059f5bdfbdd5ea8c01bdb14e7162c3a53382bf43ba67900d08d6597412.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a12385059f5bdfbdd5ea8c01bdb14e7162c3a53382bf43ba67900d08d6597412.mp3",
+          "contentHash": "99cc9ba01be7a61fe1c4f280a1c27b79e7cd9cb48b3dbf2d85fb0afcc1ffa7e4",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s51/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I have your bag.",
+          "file": "5fd140d1a1ea81f1598c3717280a1c43c4f1f761a99df5a45bed132ad870c8d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fd140d1a1ea81f1598c3717280a1c43c4f1f761a99df5a45bed132ad870c8d2.mp3",
+          "contentHash": "a3db8bf9b9d3ff7fbf6baa55cffc264a17dfa0eea2f1479e6b17bf96f4207ba3",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s51/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose bag is this?",
+          "file": "6a29912b486128e70fc08960c028bb01839bf3506edaa00212be5fa879e65463.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a29912b486128e70fc08960c028bb01839bf3506edaa00212be5fa879e65463.mp3",
+          "contentHash": "45b8e2cc670288a7b22da7a0ece0d942464a46da0d317e3f0b04fdbbe0815e57",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s51/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bag is mine.",
+          "file": "0bbf47b13f39662d57f28f2dfb4ab4e8af165615a927cea5910910fb38ccb1c9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0bbf47b13f39662d57f28f2dfb4ab4e8af165615a927cea5910910fb38ccb1c9.mp3",
+          "contentHash": "6b50d982db9a1045b2acc52ec896f45030d01b7e1ecb1284347acf724a25a31d",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s51/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "stadium",
+          "file": "7b01e12e3d5729bc1477b3b3139dc41e27fe6956791a8fcb2f2a53176fa2099a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b01e12e3d5729bc1477b3b3139dc41e27fe6956791a8fcb2f2a53176fa2099a.mp3",
+          "contentHash": "f79a73a0953ae24830e01dd56b5b17df7931f1c9245d9130e9531c034c066d5e",
+          "byteSize": 36480
+        },
+        {
+          "text": "heavy",
+          "file": "a51a35b3d4334e192bb5f83d18d4d8ef76866d53f37d4cac086f97c1ed300e52.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/22d5925ed64680ab5f3f6de7-coral.mp3",
+          "contentHash": "77703c88084567dcd252761aa1a49a114ca0f0c78fa4ffef36e0be4b7a5468f5",
+          "byteSize": 21120
+        },
+        {
+          "text": "libraries",
+          "file": "7641bb15c2de2171f65d619457978d17dc4507e6719f3ba959fd11411a135364.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7641bb15c2de2171f65d619457978d17dc4507e6719f3ba959fd11411a135364.mp3",
+          "contentHash": "3ddba3a205324bc7513af0fc787f9eff9b4825a78a0d5329194c64c4d034048b",
+          "byteSize": 40320
+        },
+        {
+          "text": "community centre",
+          "file": "ea67320a7c19a975958ad7a142ff4f61aee8c320edfc4c794401de664f43389b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ea67320a7c19a975958ad7a142ff4f61aee8c320edfc4c794401de664f43389b.mp3",
+          "contentHash": "b93f213cc263bc3b0f0c5525ea2468c0d645e41d9dc122ca94b30d76ea5c11e2",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s51/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose bag is this?",
+          "file": "0ff15ab20ffedebc7f9867e356121645704e00ae1e7c3e79b83d233a02c502d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ff15ab20ffedebc7f9867e356121645704e00ae1e7c3e79b83d233a02c502d1.mp3",
+          "contentHash": "805d81af62c9977f05d9160dd756852433e4c54c2775908dd1d84638675755e1",
+          "byteSize": 50688
+        }
+      ]
     }
   },
   "settings": {

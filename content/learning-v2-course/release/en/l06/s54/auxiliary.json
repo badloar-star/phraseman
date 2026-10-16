@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-54:intro1:r2": {
+          "ru": "После `they` нужно `repair`.",
+          "uk": "Після `they` потрібне `repair`."
+        },
+        "en:lesson-06:session-54:intro1:r3": {
+          "ru": "Нужно `They repair`, без `are`.",
+          "uk": "Потрібно `They repair`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-54:intro2:r2": {
+          "ru": "После `she` нужно `repairs`.",
+          "uk": "Після `she` потрібне `repairs`."
+        },
+        "en:lesson-06:session-54:intro2:r3": {
+          "ru": "Нужно `She repairs`, без `is`.",
+          "uk": "Потрібно `She repairs`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-54:intro3:r2": {
+          "ru": "Один киоск: `is`.",
+          "uk": "Один кіоск: `is`."
+        },
+        "en:lesson-06:session-54:intro3:r3": {
+          "ru": "Для этой фразы нужно `is`: `The kiosk is`.",
+          "uk": "Для цієї фрази потрібне `is`: `The kiosk is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "37992eead963ea5cd8b6e6c09913a58c01a5e1e8e487ebbc648febe9082a26f0"
+}

@@ -1,0 +1,955 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Они ремонтируют крыши»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они ремонтируют крыши»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They repair roofs.",
+        "localizedMeaning": {
+          "ru": "Скажите «Они ремонтируют крыши»",
+          "uk": "Скажіть «Вони ремонтують дахи»"
+        },
+        "orderedTokens": [
+          "They",
+          "repair",
+          "roofs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-54:i02:r1",
+          "text": "repair"
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i02:r2",
+          "text": "reliable"
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i02:r3",
+          "text": "kiosk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:i02:audio",
+          "transcript": "repair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-54:i02:r1",
+            "targetText": "repair",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i02:r2",
+            "targetText": "reliable",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i02:r3",
+            "targetText": "kiosk",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `repair`, а в этом варианте — `reliable`.",
+              "uk": "У записі перше слово — `repair`, а в цьому варіанті — `reliable`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `repair`, а в этом варианте — `kiosk`.",
+              "uk": "У записі перше слово — `repair`, а в цьому варіанті — `kiosk`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она ремонтирует крыши»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-54:i03:r1",
+          "text": "repairs"
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i03:r2",
+          "text": "repair"
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i03:r3",
+          "text": "is repairs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она ремонтирует крыши»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она ремонтирует крыши»",
+          "uk": "Скажіть «Вона ремонтує дахи»"
+        },
+        "gappedTargetPhrase": "She ___ roofs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-54:i03:r1",
+            "text": "repairs"
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i03:r2",
+            "text": "repair"
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i03:r3",
+            "text": "is repairs"
+          }
+        ],
+        "testedDimension": "Скажите «Она ремонтирует крыши»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она ремонтирует крыши»",
+            "feedbackByLocale": {
+              "ru": "После `she` нужно `repairs`.",
+              "uk": "Після `she` потрібне `repairs`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она ремонтирует крыши»",
+            "feedbackByLocale": {
+              "ru": "Нужно `She repairs`, без `is`.",
+              "uk": "Потрібно `She repairs`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-54:i04:p1",
+            "target": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать",
+              "uk": "ремонтувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i04:p2",
+            "target": "reliable",
+            "meaningByLocale": {
+              "ru": "надёжный",
+              "uk": "надійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i04:p3",
+            "target": "petrol station",
+            "meaningByLocale": {
+              "ru": "заправочная станция",
+              "uk": "заправна станція"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i04:p4",
+            "target": "kiosk",
+            "meaningByLocale": {
+              "ru": "киоск",
+              "uk": "кіоск"
+            }
+          }
+        ],
+        "leftColumn": [
+          "repair",
+          "reliable",
+          "petrol station",
+          "kiosk"
+        ],
+        "rightColumn": [
+          "ремонтировать",
+          "надёжный",
+          "заправочная станция",
+          "киоск"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:i05:audio",
+          "transcript": "They repair roofs."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They repair roofs.",
+        "orderedTokens": [
+          "They",
+          "repair",
+          "roofs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о работе Анны «Она ремонтирует крыши»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о работе Анны «Она ремонтирует крыши»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She repairs roofs.",
+        "localizedMeaning": {
+          "ru": "Скажите о работе Анны «Она ремонтирует крыши»",
+          "uk": "Скажіть про роботу Анни «Вона ремонтує дахи»"
+        },
+        "orderedTokens": [
+          "She",
+          "repairs",
+          "roofs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сосед сомневается в мастерах. Скажите «Они надёжные»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Сосед сомневается в мастерах. Скажите «Они надёжные»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:i07:audio",
+          "transcript": "They are reliable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are reliable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Мы ремонтируем крыши»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-54:i08:r1",
+          "text": "repair"
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i08:r2",
+          "text": "repairs"
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i08:r3",
+          "text": "are repair"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Мы ремонтируем крыши»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Мы ремонтируем крыши»",
+          "uk": "Скажіть «Ми ремонтуємо дахи»"
+        },
+        "gappedTargetPhrase": "We ___ roofs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-54:i08:r1",
+            "text": "repair"
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i08:r2",
+            "text": "repairs"
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i08:r3",
+            "text": "are repair"
+          }
+        ],
+        "testedDimension": "Скажите «Мы ремонтируем крыши»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Мы ремонтируем крыши»",
+            "feedbackByLocale": {
+              "ru": "После `we` нужно `repair`.",
+              "uk": "Після `we` потрібне `repair`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Мы ремонтируем крыши»",
+            "feedbackByLocale": {
+              "ru": "Нужно `We repair`, без `are`.",
+              "uk": "Потрібно `We repair`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, о ком рассказывает сосед",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-54:i09:r1",
+          "text": "She repairs roofs."
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i09:r2",
+          "text": "He repairs roofs."
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i09:r3",
+          "text": "Anna repairs roofs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о ком рассказывает сосед",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:i09:audio",
+          "transcript": "She repairs roofs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-54:i09:r1",
+            "targetText": "She repairs roofs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i09:r2",
+            "targetText": "He repairs roofs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i09:r3",
+            "targetText": "Anna repairs roofs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает сосед",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, о ком рассказывает сосед",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `Anna`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `Anna`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-54:i10:p1",
+            "target": "mug",
+            "meaningByLocale": {
+              "ru": "кружка",
+              "uk": "кухоль"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i10:p2",
+            "target": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать",
+              "uk": "ремонтувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i10:p3",
+            "target": "kiosk",
+            "meaningByLocale": {
+              "ru": "киоск",
+              "uk": "кіоск"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i10:p4",
+            "target": "reliable",
+            "meaningByLocale": {
+              "ru": "надёжный",
+              "uk": "надійний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mug",
+          "repair",
+          "kiosk",
+          "reliable"
+        ],
+        "rightColumn": [
+          "кружка",
+          "ремонтировать",
+          "киоск",
+          "надёжный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:i11:audio",
+          "transcript": "The kiosk is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The kiosk is here.",
+        "orderedTokens": [
+          "The",
+          "kiosk",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The kiosk is here.`",
+              "uk": "тут потрібно `is` — `The kiosk is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "После перерыва на столе осталась кружка. Спросите «Чья это кружка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "После перерыва на столе осталась кружка. Спросите «Чья это кружка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose mug is this?",
+        "localizedMeaning": {
+          "ru": "После перерыва на столе осталась кружка. Спросите «Чья это кружка?»",
+          "uk": "Після перерви на столі залишився кухоль. Запитайте «Чий це кухоль?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "mug",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объясните соседу «Киоск рядом с заправочной станцией»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Объясните соседу «Киоск рядом с заправочной станцией»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:i13:audio",
+          "transcript": "The kiosk is next to the petrol station."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The kiosk is next to the petrol station.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите о работе «Том ремонтирует крыши»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-54:i14:r1",
+          "text": "repairs"
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i14:r2",
+          "text": "repair"
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i14:r3",
+          "text": "is repairs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о работе «Том ремонтирует крыши»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите о работе «Том ремонтирует крыши»",
+          "uk": "Скажіть про роботу «Том ремонтує дахи»"
+        },
+        "gappedTargetPhrase": "Tom ___ roofs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-54:i14:r1",
+            "text": "repairs"
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i14:r2",
+            "text": "repair"
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i14:r3",
+            "text": "is repairs"
+          }
+        ],
+        "testedDimension": "Скажите о работе «Том ремонтирует крыши»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите о работе «Том ремонтирует крыши»",
+            "feedbackByLocale": {
+              "ru": "Том — он: `Tom repairs`.",
+              "uk": "Том — він: `Tom repairs`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите о работе «Том ремонтирует крыши»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Tom repairs`, без `is`.",
+              "uk": "Потрібно `Tom repairs`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кто ремонтирует крыши",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-54:i15:r1",
+          "text": "They repair roofs."
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i15:r2",
+          "text": "We repair roofs."
+        },
+        {
+          "responseId": "en:lesson-06:session-54:i15:r3",
+          "text": "You repair roofs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто ремонтирует крыши",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:i15:audio",
+          "transcript": "They repair roofs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-54:i15:r1",
+            "targetText": "They repair roofs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i15:r2",
+            "targetText": "We repair roofs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i15:r3",
+            "targetText": "You repair roofs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кто ремонтирует крыши",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-54:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кто ремонтирует крыши",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-54:i16:p1",
+            "target": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать",
+              "uk": "ремонтувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i16:p2",
+            "target": "petrol station",
+            "meaningByLocale": {
+              "ru": "заправочная станция",
+              "uk": "заправна станція"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i16:p3",
+            "target": "mug",
+            "meaningByLocale": {
+              "ru": "кружка",
+              "uk": "кухоль"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i16:p4",
+            "target": "reliable",
+            "meaningByLocale": {
+              "ru": "надёжный",
+              "uk": "надійний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "repair",
+          "petrol station",
+          "mug",
+          "reliable"
+        ],
+        "rightColumn": [
+          "ремонтировать",
+          "заправочная станция",
+          "кружка",
+          "надёжный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Новый знакомый спрашивает о вашей работе. Ответьте «Я ремонтирую крыши»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Новый знакомый спрашивает о вашей работе. Ответьте «Я ремонтирую крыши»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:i17:audio",
+          "transcript": "I repair roofs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I repair roofs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "75919b7fa19ab178587906fd45d0993a05b9fb2c3fd9bdfd6fec36e614a5c085"
+}

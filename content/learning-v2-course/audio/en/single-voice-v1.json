@@ -101065,6 +101065,309 @@
           "byteSize": 40320
         }
       ]
+    },
+    "l06/s54/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They repair roofs.",
+          "file": "645e0c7bf7434e812e510c362aefaccacbe769d75ac17ac095e9a43772c0d2c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/645e0c7bf7434e812e510c362aefaccacbe769d75ac17ac095e9a43772c0d2c2.mp3",
+          "contentHash": "eebbfaaadb8d1189d756f1b74a516f4f8830055aa679bcbe93ed30aae31bfd1c",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s54/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She repairs roofs.",
+          "file": "2bd8fcfa34874f8e9bd446f4004aa77c822ab9943ae909bc6377efd4be4d7650.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2bd8fcfa34874f8e9bd446f4004aa77c822ab9943ae909bc6377efd4be4d7650.mp3",
+          "contentHash": "cf4979bdea53d9af4f62b0a11741f8ddf34c3972b58de1fd849a70e80d330af4",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s54/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The kiosk is next to the petrol station.",
+          "file": "2ccee88250a6c182bbe4dabaaaab9012af8b5a2881c5bbac6e3fa76e29eb8b55.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ccee88250a6c182bbe4dabaaaab9012af8b5a2881c5bbac6e3fa76e29eb8b55.mp3",
+          "contentHash": "59acf9d68e1b04dd23be805f39ebb5b86fbe0206516225abcb59d4689b192e83",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s54/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They repair roofs.",
+          "file": "645e0c7bf7434e812e510c362aefaccacbe769d75ac17ac095e9a43772c0d2c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/645e0c7bf7434e812e510c362aefaccacbe769d75ac17ac095e9a43772c0d2c2.mp3",
+          "contentHash": "eebbfaaadb8d1189d756f1b74a516f4f8830055aa679bcbe93ed30aae31bfd1c",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s54/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "repair",
+          "file": "55eb23ca22ba632f41573829220ed431b8d275aa3eb5143a0ab39dd7d5b7e3e0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/55eb23ca22ba632f41573829220ed431b8d275aa3eb5143a0ab39dd7d5b7e3e0.mp3",
+          "contentHash": "e041ef3fb318f753e2358d51511192a63a28f75dc111e7beea9a3304a0587799",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l06/s54/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She repairs roofs.",
+          "file": "dcbe4c5f36d8c208eadc8f8f67ef790d0e84b63db08f03d26c3b541ac7c1be92.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dcbe4c5f36d8c208eadc8f8f67ef790d0e84b63db08f03d26c3b541ac7c1be92.mp3",
+          "contentHash": "2859df35e83ca18290db5064e4b2a4078ecc7bd065b93dfd875e25255b46188e",
+          "byteSize": 56448
+        }
+      ]
+    },
+    "l06/s54/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "repair",
+          "file": "8922eb57ff29997692e61588c6c1488d31c0164f94da7e9f650c06539c5898f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8922eb57ff29997692e61588c6c1488d31c0164f94da7e9f650c06539c5898f0.mp3",
+          "contentHash": "0ae338ce4ffba843159031edbf715674ad96d65c6dda2b2196bc9c67bea8811f",
+          "byteSize": 14976
+        },
+        {
+          "text": "reliable",
+          "file": "bcd2d73f31c2125cd7a637fc379f9e8b4c951dc2461003c977f09a5524f91925.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bcd2d73f31c2125cd7a637fc379f9e8b4c951dc2461003c977f09a5524f91925.mp3",
+          "contentHash": "ccf32cc0b361d746e675a954c591c78a1e964aea864f52afcd40534c1d387b7e",
+          "byteSize": 32256
+        },
+        {
+          "text": "petrol station",
+          "file": "a213b790e45d2f4be58c8da7559a24b30322569fc9ccd81ec9abdc2b7f12550c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a213b790e45d2f4be58c8da7559a24b30322569fc9ccd81ec9abdc2b7f12550c.mp3",
+          "contentHash": "9b5d98f6cc436f517652b08b7a51936fc913fed7997d523130b7607a91fec91c",
+          "byteSize": 37248
+        },
+        {
+          "text": "kiosk",
+          "file": "31a504362e8ed49777912f975806f2985efc938675eb7d4f201812fa82b6d1c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31a504362e8ed49777912f975806f2985efc938675eb7d4f201812fa82b6d1c4.mp3",
+          "contentHash": "0ae4271b5b6b7e3b18d8b442fd659a6fdadc6d0f82fd41a636bc0b10208705f8",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s54/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They repair roofs.",
+          "file": "645e0c7bf7434e812e510c362aefaccacbe769d75ac17ac095e9a43772c0d2c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/645e0c7bf7434e812e510c362aefaccacbe769d75ac17ac095e9a43772c0d2c2.mp3",
+          "contentHash": "eebbfaaadb8d1189d756f1b74a516f4f8830055aa679bcbe93ed30aae31bfd1c",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s54/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She repairs roofs.",
+          "file": "d96925ce3f72967ee01f187a824490fd86a734c3e92d1c022c2bbd43ca9321b4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d96925ce3f72967ee01f187a824490fd86a734c3e92d1c022c2bbd43ca9321b4.mp3",
+          "contentHash": "302feaa532927c751c47007b252f5d11caaedf008193f5ecb51d30e8087e06b0",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s54/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They are reliable.",
+          "file": "e52c39eb81d32e59954df0926bf7829e8212b838a063453f80449141aad94ca1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e52c39eb81d32e59954df0926bf7829e8212b838a063453f80449141aad94ca1.mp3",
+          "contentHash": "eb82e34f2c9e4772fa08f03123139777d033bdbf2fe91b19f0b4ac49ee9b997f",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s54/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "We repair roofs.",
+          "file": "bc902ce0757310f594fea73bf1728ddc7a9e9164124b4e2686303bb107d97973.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc902ce0757310f594fea73bf1728ddc7a9e9164124b4e2686303bb107d97973.mp3",
+          "contentHash": "1c3ee9b6bc2639de0ce3ca168ebae2c1a64c6b1693149ace739f667c2e921435",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l06/s54/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She repairs roofs.",
+          "file": "dcbe4c5f36d8c208eadc8f8f67ef790d0e84b63db08f03d26c3b541ac7c1be92.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dcbe4c5f36d8c208eadc8f8f67ef790d0e84b63db08f03d26c3b541ac7c1be92.mp3",
+          "contentHash": "2859df35e83ca18290db5064e4b2a4078ecc7bd065b93dfd875e25255b46188e",
+          "byteSize": 56448
+        }
+      ]
+    },
+    "l06/s54/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "mug",
+          "file": "6d8d20892cbbbe00973c413947da10020a9924708878af42e9df08e27de3e9fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d8d20892cbbbe00973c413947da10020a9924708878af42e9df08e27de3e9fd.mp3",
+          "contentHash": "f59d23cda2eca987d44b3f42cb862d0c4754112657e2c3d2586198e164bec311",
+          "byteSize": 21120
+        },
+        {
+          "text": "repair",
+          "file": "aadd3029223a17966cb0bff90a1ad6018a348f66c12aab2840ced7cc84acc59b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aadd3029223a17966cb0bff90a1ad6018a348f66c12aab2840ced7cc84acc59b.mp3",
+          "contentHash": "9c17bf8faa06bc63b08ce7b97b22d3c7de867ee790d4bd60e770462684da216a",
+          "byteSize": 17280
+        },
+        {
+          "text": "kiosk",
+          "file": "351d0f71512543a8c4004d71995674d51544dc723e4028d49a47de2cc248c9c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/351d0f71512543a8c4004d71995674d51544dc723e4028d49a47de2cc248c9c4.mp3",
+          "contentHash": "258d0cb283b5e0af8d1368613fb3d972f82dc218add1b47c91180b5783ab99d6",
+          "byteSize": 41088
+        },
+        {
+          "text": "reliable",
+          "file": "2e95c99d9972aab0d93dc2adc5e85ba9166c877f4c1b2e2da5c68a8fe8b1cd78.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e95c99d9972aab0d93dc2adc5e85ba9166c877f4c1b2e2da5c68a8fe8b1cd78.mp3",
+          "contentHash": "8b88f3f183352e53605ba3f838a5639c9414291bfba487e5b450dcca4edd216b",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l06/s54/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The kiosk is here.",
+          "file": "b0284411ca229b6ede87c0da3e0f5cdff21b38e98cba5b7787dd14a4fb2901e0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0284411ca229b6ede87c0da3e0f5cdff21b38e98cba5b7787dd14a4fb2901e0.mp3",
+          "contentHash": "47d2871aebe4d0df3372525902ab0ba514b8cb40a5409a7962a55b0e364233f0",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l06/s54/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose mug is this?",
+          "file": "77234335bf7f8d9000ef42d948316b99273a45a60f5a34432f4f7d1f5f12441e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77234335bf7f8d9000ef42d948316b99273a45a60f5a34432f4f7d1f5f12441e.mp3",
+          "contentHash": "856054d92e1dc0735d9bffc1d7ed787b60f133f4059f1c7f85ecf48fba596fcb",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l06/s54/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The kiosk is next to the petrol station.",
+          "file": "2ccee88250a6c182bbe4dabaaaab9012af8b5a2881c5bbac6e3fa76e29eb8b55.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ccee88250a6c182bbe4dabaaaab9012af8b5a2881c5bbac6e3fa76e29eb8b55.mp3",
+          "contentHash": "59acf9d68e1b04dd23be805f39ebb5b86fbe0206516225abcb59d4689b192e83",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s54/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom repairs roofs.",
+          "file": "fe31155f14ac7af5cb71b2fb4caa8de8ae4c00dc81f893899df65365b40a3cce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fe31155f14ac7af5cb71b2fb4caa8de8ae4c00dc81f893899df65365b40a3cce.mp3",
+          "contentHash": "8779c8a191ba07d0dc303e11a489dd8ca5d0da78ed07d80b215332c508488a30",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l06/s54/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They repair roofs.",
+          "file": "645e0c7bf7434e812e510c362aefaccacbe769d75ac17ac095e9a43772c0d2c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/645e0c7bf7434e812e510c362aefaccacbe769d75ac17ac095e9a43772c0d2c2.mp3",
+          "contentHash": "eebbfaaadb8d1189d756f1b74a516f4f8830055aa679bcbe93ed30aae31bfd1c",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s54/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "repair",
+          "file": "aadd3029223a17966cb0bff90a1ad6018a348f66c12aab2840ced7cc84acc59b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aadd3029223a17966cb0bff90a1ad6018a348f66c12aab2840ced7cc84acc59b.mp3",
+          "contentHash": "9c17bf8faa06bc63b08ce7b97b22d3c7de867ee790d4bd60e770462684da216a",
+          "byteSize": 17280
+        },
+        {
+          "text": "petrol station",
+          "file": "26f3a47359b4a8a28615d8d44558ff311b41ef3680b9211f64808846970b51cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/26f3a47359b4a8a28615d8d44558ff311b41ef3680b9211f64808846970b51cc.mp3",
+          "contentHash": "e4f90dd89c75914c05527d0dbf8e7cb2d2ff4e0cbfa022b0a08c596744184d4b",
+          "byteSize": 36480
+        },
+        {
+          "text": "mug",
+          "file": "6d8d20892cbbbe00973c413947da10020a9924708878af42e9df08e27de3e9fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d8d20892cbbbe00973c413947da10020a9924708878af42e9df08e27de3e9fd.mp3",
+          "contentHash": "f59d23cda2eca987d44b3f42cb862d0c4754112657e2c3d2586198e164bec311",
+          "byteSize": 21120
+        },
+        {
+          "text": "reliable",
+          "file": "2e95c99d9972aab0d93dc2adc5e85ba9166c877f4c1b2e2da5c68a8fe8b1cd78.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e95c99d9972aab0d93dc2adc5e85ba9166c877f4c1b2e2da5c68a8fe8b1cd78.mp3",
+          "contentHash": "8b88f3f183352e53605ba3f838a5639c9414291bfba487e5b450dcca4edd216b",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l06/s54/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I repair roofs.",
+          "file": "4f380291c9967939c7be68beeae071b18a548e911062f1189e15d913bf8563c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f380291c9967939c7be68beeae071b18a548e911062f1189e15d913bf8563c8.mp3",
+          "contentHash": "ffa8633d13419709f8a91dea93fe977f8faecd9889b920d0409b0fbc1f1ec726",
+          "byteSize": 49920
+        }
+      ]
     }
   },
   "settings": {

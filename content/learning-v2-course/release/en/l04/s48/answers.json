@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-48:i01",
+    "correctText": "Is there a freezer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i02",
+    "correctText": "community kitchen",
+    "correctResponseId": "en:lesson-04:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i03",
+    "correctText": "community kitchen",
+    "correctResponseId": "en:lesson-04:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i04",
+    "correctText": "en:lesson-04:session-48:i04:p1=community kitchen\nen:lesson-04:session-48:i04:p2=freezer\nen:lesson-04:session-48:i04:p3=microwave\nen:lesson-04:session-48:i04:p4=pantry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i05",
+    "correctText": "This is a community kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i06",
+    "correctText": "The microwave is on the worktop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i07",
+    "correctText": "Are there any leftovers?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i09",
+    "correctText": "The recycling bin is next to the door.",
+    "correctResponseId": "en:lesson-04:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i10",
+    "correctText": "en:lesson-04:session-48:i10:p1=thermostat\nen:lesson-04:session-48:i10:p2=cashpoint\nen:lesson-04:session-48:i10:p3=bus shelter\nen:lesson-04:session-48:i10:p4=recycling bin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i11",
+    "correctText": "The cashpoint is next to the bus shelter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i12",
+    "correctText": "There is a community kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i13",
+    "correctText": "Is there a pantry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i14",
+    "correctText": "on",
+    "correctResponseId": "en:lesson-04:session-48:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i15",
+    "correctText": "That is a community kitchen.",
+    "correctResponseId": "en:lesson-04:session-48:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i16",
+    "correctText": "en:lesson-04:session-48:i16:p1=leftovers\nen:lesson-04:session-48:i16:p2=pantry\nen:lesson-04:session-48:i16:p3=thermostat\nen:lesson-04:session-48:i16:p4=community kitchen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i17",
+    "correctText": "Is there a community kitchen?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "назвать общественную кухню и повторить названия оборудования и городских объектов",
+    "uk": "назвати громадську кухню й повторити назви обладнання та міських об’єктів"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Готовим вместе",
+        "uk": "Готуємо разом"
+      },
+      "bodyByLocale": {
+        "ru": "`community kitchen` — «общественная кухня»: кухня, которой пользуется местное сообщество, например жители района. Одна кухня — `a community kitchen`. `This is a community kitchen` — «Это общественная кухня». Поваров может быть десять, но кухня остаётся одной.",
+        "uk": "`community kitchen` — «громадська кухня»: кухня, якою користується місцева громада, наприклад мешканці району. Одна кухня — `a community kitchen`. `This is a community kitchen` — «Це громадська кухня». Кухарів може бути десятеро, але кухня залишається одна."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одну такую кухню.",
+          "uk": "Назвіть одну таку кухню."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-48:intro1:r1",
+              "text": "This is a community kitchen."
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro1:r2",
+              "text": "This is community kitchen."
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro1:r3",
+              "text": "These are community kitchens."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-48:intro1:r1",
+              "text": "This is a community kitchen."
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro1:r2",
+              "text": "This is community kitchen."
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro1:r3",
+              "text": "These are community kitchens."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну такую кухню.",
+          "uk": "Назвіть одну таку кухню."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что есть внутри",
+        "uk": "Що є всередині"
+      },
+      "bodyByLocale": {
+        "ru": "`freezer` — морозильник, `microwave` — микроволновка, `pantry` — кладовая для продуктов, `thermostat` — термостат. `Is there a freezer?` — «Есть морозильник?» `The microwave is on the worktop` — «Микроволновка на столешнице». `leftover` — остаток еды; обычно говорят `leftovers`: `Are there any leftovers?` — «Осталась еда?» С этой формой нужно `are`.",
+        "uk": "`freezer` — морозильник, `microwave` — мікрохвильовка, `pantry` — комора для продуктів, `thermostat` — термостат. `Is there a freezer?` — «Є морозильник?» `The microwave is on the worktop` — «Мікрохвильовка на стільниці». `leftover` — залишок їжі; зазвичай кажуть `leftovers`: `Are there any leftovers?` — «Залишилася їжа?» Із цією формою потрібне `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, осталась ли еда, используя leftovers.",
+          "uk": "Запитайте, чи залишилася їжа, використовуючи leftovers."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-48:intro2:r1",
+              "text": "Are there any leftovers?"
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro2:r2",
+              "text": "Is there any leftovers?"
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro2:r3",
+              "text": "There are some leftovers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-48:intro2:r1",
+              "text": "Are there any leftovers?"
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro2:r2",
+              "text": "Is there any leftovers?"
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro2:r3",
+              "text": "There are some leftovers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, осталась ли еда, используя leftovers.",
+          "uk": "Запитайте, чи залишилася їжа, використовуючи leftovers."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рядом с кухней",
+        "uk": "Поруч із кухнею"
+      },
+      "bodyByLocale": {
+        "ru": "`cashpoint` — банкомат, `bus shelter` — остановочный павильон, `recycling bin` — контейнер для вторсырья. `The cashpoint is next to the bus shelter` — «Банкомат рядом с остановочным павильоном». `The recycling bin is next to the door` — «Контейнер для вторсырья рядом с дверью». Один объект — `is`, даже если его название состоит из двух слов.",
+        "uk": "`cashpoint` — банкомат, `bus shelter` — зупинковий павільйон, `recycling bin` — контейнер для вторсировини. `The cashpoint is next to the bus shelter` — «Банкомат поруч із зупинковим павільйоном». `The recycling bin is next to the door` — «Контейнер для вторсировини поруч із дверима». Один об’єкт — `is`, навіть якщо його назва складається з двох слів."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Контейнер для вторсырья рядом с дверью. Выберите описание.",
+          "uk": "Контейнер для вторсировини поруч із дверима. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-48:intro3:r1",
+              "text": "The recycling bin is next to the door."
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro3:r2",
+              "text": "The recycling bin are next to the door."
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro3:r3",
+              "text": "The recycling bin is under the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-48:intro3:r1",
+              "text": "The recycling bin is next to the door."
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro3:r2",
+              "text": "The recycling bin are next to the door."
+            },
+            {
+              "responseId": "en:lesson-04:session-48:intro3:r3",
+              "text": "The recycling bin is under the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Контейнер для вторсырья рядом с дверью. Выберите описание.",
+          "uk": "Контейнер для вторсировини поруч із дверима. Виберіть опис."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "38db45b9c19294bc88a8ed27764093cb50ffe951684f373c5be29ef6bdfdcabd"
+}

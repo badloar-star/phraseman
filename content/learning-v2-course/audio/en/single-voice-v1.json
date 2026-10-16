@@ -68947,6 +68947,309 @@
           "byteSize": 29184
         }
       ]
+    },
+    "l05/s04/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I have a curtain.",
+          "file": "c7964842a07781dd15b2126878e4a912b0551c1c98adaabb27a4a97c977f9310.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c7964842a07781dd15b2126878e4a912b0551c1c98adaabb27a4a97c977f9310.mp3",
+          "contentHash": "50d31a538f6d32052ed49f932c79cd79aac5cc150e075180017972afbc60c2c3",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s04/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She is thirsty.",
+          "file": "badf392cbd5e0c0cad1de39cfe3bbf1e80b746222ba53d82b3effd5a3a1bfca2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/badf392cbd5e0c0cad1de39cfe3bbf1e80b746222ba53d82b3effd5a3a1bfca2.mp3",
+          "contentHash": "22c50f021cb64a2d2de7b043a16db08affe26f67e2b0cf7df37184f1301e7c5d",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s04/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The curtain is in the bag.",
+          "file": "9bffb583086c151729a9dbbd1e6c535975dd8d3cf0a4c6f4ceec17f996d17ee3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9bffb583086c151729a9dbbd1e6c535975dd8d3cf0a4c6f4ceec17f996d17ee3.mp3",
+          "contentHash": "86bdc58096db9432b2bb60b323b966346f1f20e38a4484dead6ccb3c483005c9",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s04/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I'm hungry.",
+          "file": "57499ee95e16832e4f4e82a471944040e7aad19c4cf3aaea61fbdf306d7856b2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/57499ee95e16832e4f4e82a471944040e7aad19c4cf3aaea61fbdf306d7856b2.mp3",
+          "contentHash": "afd294b9521bd166625be86512eac817f2b902326203305d27ad1aa779a8b059",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s04/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "curtain",
+          "file": "3f5ee90d8d3cef1cf45108f55ddb211bc83ef6ad89fd771783dd3a2752c1b798.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/05e884950dccb9aad0801f6e-nova.mp3",
+          "contentHash": "03f1b820f87e12a7b4e873f24df6787aa84765b320a6f1f50ad78e5ccbf6d422",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s04/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "curtain",
+          "file": "57face8d331ba5b4b247b74ebd5c6456d3248582f75d4f402468377ba6e75ec1.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/05e884950dccb9aad0801f6e-coral.mp3",
+          "contentHash": "21e01ca22daaaa11ab54f7eeb7d147cf2c97a1aa185e4fc76d29af1e5f7f7226",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s04/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "curtain",
+          "file": "c413cef27e466d9011f78ea7d31dc757c70aefa72198db6c3013a5831032e411.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/05e884950dccb9aad0801f6e-ash.mp3",
+          "contentHash": "8fb0a9f2f6679d54518068aa9b19f07ef68a07647d7441c6250e9e3f372e30d6",
+          "byteSize": 27648
+        },
+        {
+          "text": "hungry",
+          "file": "4621aaa4305346a7981bd7d99aac2e183439fa249f4c6da4b2a3ee04237a87db.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ca4176138ea4086faada5ec8-ash.mp3",
+          "contentHash": "9e474920d7d94cfd6becf519efbfd0f63419ffb5e0096c3422f0a25a9f5ff80e",
+          "byteSize": 34560
+        },
+        {
+          "text": "thirsty",
+          "file": "60f780745a4ae648ded5058c581587fc6076b8e84521a27167fd7091c7b02c61.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/03f3ef306333f494f7a9a202-ash.mp3",
+          "contentHash": "d1569b6abf58e0cb5cf5b9e44eb7f76dae186aba5a27843d7b415031a919007e",
+          "byteSize": 26112
+        },
+        {
+          "text": "sick",
+          "file": "6a2cfca5e68131ddf5eec8ee34337bd1dac5b4b86c649798ba1cab1424358d4c.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3b04837881bb07b621ae7dc7-ash.mp3",
+          "contentHash": "dd46d76af78b3fa591ccde13eff26e2a8a753aab591988c440e40fc2c8d05bc3",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s04/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I have a curtain.",
+          "file": "a7a1bb86ab04adb10f662cfa78d09c3de9cbfc4ad121f784e80cbb70d695a921.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a7a1bb86ab04adb10f662cfa78d09c3de9cbfc4ad121f784e80cbb70d695a921.mp3",
+          "contentHash": "045fafa9f11751803dc4f4ee741c061c2f133973ab21c31c9d88fac8ecd96eea",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s04/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She has a bag.",
+          "file": "40e6ac975d5664e3508125baa7f793a4112ca4405b743321b8a2769f770469f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/40e6ac975d5664e3508125baa7f793a4112ca4405b743321b8a2769f770469f4.mp3",
+          "contentHash": "182465a5bfe21e8e59329025937077654da4d5e1eeacb52e0054aa9e595987a4",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s04/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He is sick.",
+          "file": "e175f1d1beb3ba4f0cef06616d63c8685b37de9aee1a3795ddff3b05b7c8289a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e175f1d1beb3ba4f0cef06616d63c8685b37de9aee1a3795ddff3b05b7c8289a.mp3",
+          "contentHash": "2c808407bca26ee164c46d9596117fb6e90ce7cf49026df1b1258faf81569da4",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l05/s04/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She is thirsty.",
+          "file": "cdf7e39970b9ca02c6a80f453870b330a9658bb6ccaabb1aba2afbc680cbdd67.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cdf7e39970b9ca02c6a80f453870b330a9658bb6ccaabb1aba2afbc680cbdd67.mp3",
+          "contentHash": "af18e3cc85cfb238a3512da1cb5fe61e4b18c05b1a1f2842bdb541d50cbf72c4",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s04/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The curtain is in the bag.",
+          "file": "9bffb583086c151729a9dbbd1e6c535975dd8d3cf0a4c6f4ceec17f996d17ee3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9bffb583086c151729a9dbbd1e6c535975dd8d3cf0a4c6f4ceec17f996d17ee3.mp3",
+          "contentHash": "86bdc58096db9432b2bb60b323b966346f1f20e38a4484dead6ccb3c483005c9",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s04/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "curtain",
+          "file": "57face8d331ba5b4b247b74ebd5c6456d3248582f75d4f402468377ba6e75ec1.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/05e884950dccb9aad0801f6e-coral.mp3",
+          "contentHash": "21e01ca22daaaa11ab54f7eeb7d147cf2c97a1aa185e4fc76d29af1e5f7f7226",
+          "byteSize": 25344
+        },
+        {
+          "text": "bag",
+          "file": "b8f2b6857375f8cb70ed9f57fc8a99e28b0a48d06ac17fe3a23e5b80f28054bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8f2b6857375f8cb70ed9f57fc8a99e28b0a48d06ac17fe3a23e5b80f28054bb.mp3",
+          "contentHash": "674a9f4b6455c9590548fe2e1409acee3f0fd4f8e05f3553b37fce71dfc8a2ea",
+          "byteSize": 16512
+        },
+        {
+          "text": "post office",
+          "file": "6feb90a25c89bcb5123714ccb01633675c543d6be8736f319ff6afab5aadef5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6feb90a25c89bcb5123714ccb01633675c543d6be8736f319ff6afab5aadef5d.mp3",
+          "contentHash": "cb7efda9b2dccca2b8130818c264d7b0c2bc22058b690465cc99236a836e9fdd",
+          "byteSize": 25344
+        },
+        {
+          "text": "nursery",
+          "file": "4f4c4a973366882f8f1e0ac38a90f1f6477e65103a926a1ec60deb6353645edb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f4c4a973366882f8f1e0ac38a90f1f6477e65103a926a1ec60deb6353645edb.mp3",
+          "contentHash": "ed5a2a8ad683ffa9235cf68606c4832b5d32f58b03a9e1579b54977aa9a6d139",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s04/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They have curtains.",
+          "file": "71bcdd8425ed0ca07e98d04db68f7ce30faf58dfa862e56f78db5d86c4d35539.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/71bcdd8425ed0ca07e98d04db68f7ce30faf58dfa862e56f78db5d86c4d35539.mp3",
+          "contentHash": "035b881495f06f2f250548fe8479b94564e1e098dd56ce7309bb1384c70331a1",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s04/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The nursery is next to the post office.",
+          "file": "3f50bee6bb201f6b2f32f0b12b39af78cc37d0c4beed34f1e1151cb5e47a7510.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3f50bee6bb201f6b2f32f0b12b39af78cc37d0c4beed34f1e1151cb5e47a7510.mp3",
+          "contentHash": "33737d00ef32b82abceaa2e843d35b8675c6c473f6da0ad2eacfdd673a708e9b",
+          "byteSize": 52224
+        }
+      ]
+    },
+    "l05/s04/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We have a curtain.",
+          "file": "f24b17feb5603fe2a6bbc0e379a3e182d1359ff3c036c063e1fcf1bf438ba090.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f24b17feb5603fe2a6bbc0e379a3e182d1359ff3c036c063e1fcf1bf438ba090.mp3",
+          "contentHash": "94b664f71ff5e80b24a246eff76f1e714fb2dc39200dc391f7ec09c49ddfc810",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s04/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He has a curtain.",
+          "file": "c105257a404d3f89aebd8b2bea5f00833dc15d85a4abd37b0020153f35f0090f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c105257a404d3f89aebd8b2bea5f00833dc15d85a4abd37b0020153f35f0090f.mp3",
+          "contentHash": "9f5e1843505f747e19b7e2d77c980a8a1328d60b2b8dcc2527de3fbb99f998c6",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s04/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We are hungry.",
+          "file": "4833fe9fa8998cd6db01da64789738f5d169b837aa4d6f22e8a8c579bf8acda3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4833fe9fa8998cd6db01da64789738f5d169b837aa4d6f22e8a8c579bf8acda3.mp3",
+          "contentHash": "1662a345d609da07b7adac770158eea4b4b583da1886bd857badc0d7c905ca59",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s04/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "curtain",
+          "file": "36f0be70b56a69ca8373d673a0ba6216066999f99ef2477bbfb83686ce108602.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/05e884950dccb9aad0801f6e-onyx.mp3",
+          "contentHash": "a3882664c39711bb1f8b053d08d0248f0153c0bd527517035bc340b62cd68c2e",
+          "byteSize": 10752
+        },
+        {
+          "text": "bag",
+          "file": "f412dc3e54312015182b2f27c01943caf1bb8fbae56694ebefa73a9d14c70429.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f412dc3e54312015182b2f27c01943caf1bb8fbae56694ebefa73a9d14c70429.mp3",
+          "contentHash": "74023146e29e6938fe9f9a377879190c925db2fc99c1e07b8a4280472656b882",
+          "byteSize": 18816
+        },
+        {
+          "text": "post office",
+          "file": "15b0651baa29ff21a24fd6e91633dd162d79b38fafef9b62d4503b0a2900b122.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/15b0651baa29ff21a24fd6e91633dd162d79b38fafef9b62d4503b0a2900b122.mp3",
+          "contentHash": "160e40d0b4143659d2a3515a86700892949aa28ada5b8e06d8c8dfe4aac298de",
+          "byteSize": 49920
+        },
+        {
+          "text": "nursery",
+          "file": "aee89083ae43f8dc02cbb44f13ef4eaa029e621fac68e17b08aa38f86a7ed948.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aee89083ae43f8dc02cbb44f13ef4eaa029e621fac68e17b08aa38f86a7ed948.mp3",
+          "contentHash": "19fb9bac9dd688d6d11cd36c0c193af7127e00685121a20e04b8b4f8baae5e0b",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l05/s04/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She has a curtain.",
+          "file": "21c5f324f10776f8dd663e3cc4eb8f3df1822ddc667fd87e951b81cadef40283.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/21c5f324f10776f8dd663e3cc4eb8f3df1822ddc667fd87e951b81cadef40283.mp3",
+          "contentHash": "3630ed65e7198715166646e8e833705ac7ac22d35d344fe2af7d8c6e0e505a8f",
+          "byteSize": 44544
+        }
+      ]
     }
   },
   "settings": {

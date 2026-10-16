@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-16:intro1:r2": {
+          "ru": "Вы пока не умеете: нужно `can’t`.",
+          "uk": "Ви поки не вмієте: потрібне `can’t`."
+        },
+        "en:lesson-08:session-16:intro1:r3": {
+          "ru": "После `can’t` нужно `skate`, без `to`.",
+          "uk": "Після `can’t` потрібне `skate`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-16:intro2:r2": {
+          "ru": "Вы умеете: нужно `can`.",
+          "uk": "Ви вмієте: потрібне `can`."
+        },
+        "en:lesson-08:session-16:intro2:r3": {
+          "ru": "После `can` нужно `code`, без `to`.",
+          "uk": "Після `can` потрібне `code`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-16:intro3:r2": {
+          "ru": "Для «чей» нужно `whose`.",
+          "uk": "Для «чий» потрібне `whose`."
+        },
+        "en:lesson-08:session-16:intro3:r3": {
+          "ru": "Шарф один: нужно `is this`.",
+          "uk": "Шарф один: потрібне `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e394176ce150ab382ed49505d9d3bbd6b649ea59ce32d4bd9ccf83599116c2f5"
+}

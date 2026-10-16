@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-16:i01",
+    "correctText": "I can’t skate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i02",
+    "correctText": "dive",
+    "correctResponseId": "en:lesson-08:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i03",
+    "correctText": "steer",
+    "correctResponseId": "en:lesson-08:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i04",
+    "correctText": "en:lesson-08:session-16:i04:p1=skate\nen:lesson-08:session-16:i04:p2=dive\nen:lesson-08:session-16:i04:p3=code\nen:lesson-08:session-16:i04:p4=knit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i05",
+    "correctText": "I can’t calculate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i06",
+    "correctText": "I can code.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i07",
+    "correctText": "Whose scarf is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i08",
+    "correctText": "knit",
+    "correctResponseId": "en:lesson-08:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i09",
+    "correctText": "I can’t code.",
+    "correctResponseId": "en:lesson-08:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i10",
+    "correctText": "en:lesson-08:session-16:i10:p1=steer\nen:lesson-08:session-16:i10:p2=spell\nen:lesson-08:session-16:i10:p3=calculate\nen:lesson-08:session-16:i10:p4=swimming pool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i11",
+    "correctText": "Whose scarf is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i12",
+    "correctText": "Where is the swimming pool?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i13",
+    "correctText": "I often skate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i14",
+    "correctText": "can’t",
+    "correctResponseId": "en:lesson-08:session-16:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i15",
+    "correctText": "I can’t steer.",
+    "correctResponseId": "en:lesson-08:session-16:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i16",
+    "correctText": "en:lesson-08:session-16:i16:p1=code\nen:lesson-08:session-16:i16:p2=knit\nen:lesson-08:session-16:i16:p3=spell\nen:lesson-08:session-16:i16:p4=calculate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:i17",
+    "correctText": "Tom can’t dive.",
+    "correctResponseId": null
+  }
+]

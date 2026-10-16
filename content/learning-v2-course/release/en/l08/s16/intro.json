@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "повторить умения, трудности и вопрос «чей?» без новых слов",
+    "uk": "повторити вміння, труднощі й запитання «чий?» без нових слів"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Друзья зовут на каток",
+        "uk": "Друзі кличуть на ковзанку"
+      },
+      "bodyByLocale": {
+        "ru": "Друзья предлагают покататься на коньках. Вы пока не умеете. `I can’t skate` — «Я не умею кататься на коньках». После `can’t` нужно `skate`, без `to`. Вы отлично держитесь за бортик — катание пока даётся хуже.",
+        "uk": "Друзі пропонують покататися на ковзанах. Ви поки не вмієте. `I can’t skate` — «Я не вмію кататися на ковзанах». Після `can’t` потрібне `skate`, без `to`. Ви чудово тримаєтеся за бортик — катання поки дається гірше."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте друзьям, что пока не умеете кататься на коньках.",
+          "uk": "Дайте друзям відповідь, що поки не вмієте кататися на ковзанах."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-16:intro1:r1",
+              "text": "I can’t skate."
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro1:r2",
+              "text": "I can skate."
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro1:r3",
+              "text": "I can’t to skate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-16:intro1:r1",
+              "text": "I can’t skate."
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro1:r2",
+              "text": "I can skate."
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro1:r3",
+              "text": "I can’t to skate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте друзьям, что пока не умеете кататься на коньках.",
+          "uk": "Дайте друзям відповідь, що поки не вмієте кататися на ковзанах."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Другу нужна программа",
+        "uk": "Другові потрібна програма"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет человека, который умеет писать код. Вы умеете и предлагаете помощь. `I can code` — «Я умею писать код». После `can` нужно `code`, без `to`.",
+        "uk": "Друг шукає людину, яка вміє писати код. Ви вмієте й пропонуєте допомогу. `I can code` — «Я вмію писати код». Після `can` потрібне `code`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что умеете писать код.",
+          "uk": "Скажіть другові, що вмієте писати код."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-16:intro2:r1",
+              "text": "I can code."
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro2:r2",
+              "text": "I can’t code."
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro2:r3",
+              "text": "I can to code."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-16:intro2:r1",
+              "text": "I can code."
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro2:r2",
+              "text": "I can’t code."
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro2:r3",
+              "text": "I can to code."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что умеете писать код.",
+          "uk": "Скажіть другові, що вмієте писати код."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шарф в раздевалке",
+        "uk": "Шарф у роздягальні"
+      },
+      "bodyByLocale": {
+        "ru": "В раздевалке лежит забытый шарф. Вы хотите вернуть его хозяину. `Whose scarf is this?` — «Чей это шарф?» Сначала `whose scarf`, затем `is this`.",
+        "uk": "У роздягальні лежить забутий шарф. Ви хочете повернути його власникові. `Whose scarf is this?` — «Чий це шарф?» Спочатку `whose scarf`, потім `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, чей это шарф.",
+          "uk": "Запитайте, чий це шарф."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-16:intro3:r1",
+              "text": "Whose scarf is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro3:r2",
+              "text": "Who scarf is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro3:r3",
+              "text": "Whose scarf are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-16:intro3:r1",
+              "text": "Whose scarf is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro3:r2",
+              "text": "Who scarf is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-16:intro3:r3",
+              "text": "Whose scarf are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чей это шарф.",
+          "uk": "Запитайте, чий це шарф."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "24545fa617d452f095f28aab6a086d04f61bc509a8e1e1fead5adc5fb1bada1a"
+}

@@ -70462,6 +70462,309 @@
           "byteSize": 51456
         }
       ]
+    },
+    "l05/s09/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is my charger.",
+          "file": "7ef21337f5baecdcc7a6978a34dfc91c874df7bd757f0b1a30b575b21bc14c85.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7ef21337f5baecdcc7a6978a34dfc91c874df7bd757f0b1a30b575b21bc14c85.mp3",
+          "contentHash": "3097a1004097373da050318db97c1a9cd102f50ad942c6e430b3989981b7aff8",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s09/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "his charger",
+          "file": "e8edad2baf26fd90b01082ceae869c15d4dc85e102606f83c407975329ca0890.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8edad2baf26fd90b01082ceae869c15d4dc85e102606f83c407975329ca0890.mp3",
+          "contentHash": "a5b091e935026f85b2d70024098a0e44cd854c4c6a8fa32f59d7c6515c585945",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l05/s09/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Their door is open.",
+          "file": "30af9c178d31aa2f67813bbfe488d8d70368733064e4cd7fd766415c86487e25.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/30af9c178d31aa2f67813bbfe488d8d70368733064e4cd7fd766415c86487e25.mp3",
+          "contentHash": "869a2e8a302dbea6f8425ef1fd05426a82395a8d036f00a3a6df8f77cbb53054",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s09/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Our dentist is young.",
+          "file": "699375174c3d4ca053b9c97480169d1514deacb5ba8f29dacb5ee71577661fe8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/699375174c3d4ca053b9c97480169d1514deacb5ba8f29dacb5ee71577661fe8.mp3",
+          "contentHash": "94af47e4ecee7d5ff7a2d59f2e8250346c7dccc55acaa95b7cf3bbd4a60d19c7",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s09/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "charger",
+          "file": "f70e7a1f6b26358a1bc9db8ab2aa813a8b3a9421558fd3675700b66ea6f36e06.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-onyx.mp3",
+          "contentHash": "4c16a1b2709cf9d5deebfd35f0ad38f4613a71c12ec06c5dd1908fdf8cd833ec",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s09/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "charger",
+          "file": "9d1b3f845cde570a789fc6b3d4ca28921f1a35de443e7712f7f839235b6fa237.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-coral.mp3",
+          "contentHash": "14181c8a90906fc188f2241f9136f1902fbf8b7376baafb5122a1e0c60ffac7c",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s09/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "charger",
+          "file": "b766905661bb9bb7ac3e055a7b3e763dcfca9a3ce6b3f974aa85238c4725b52b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-ash.mp3",
+          "contentHash": "0d21c547a4172b95b2a1d6357b59d06cd01bea13147f7fb8efaf4ac0caf9c5f8",
+          "byteSize": 21888
+        },
+        {
+          "text": "tall",
+          "file": "ee89b7e9c4b2139489c8c06464826368e0fc4f02c89156180cdd9421abbaaae0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/241daf2e753a6a2f37a1b147-ash.mp3",
+          "contentHash": "843d7728fbf2552ffa5302b6a7efcc6e66d08b46ab6468d88c3ee6d549e8cce1",
+          "byteSize": 22656
+        },
+        {
+          "text": "short",
+          "file": "2ea1de23e96dc0c52c6efa1af7227b1c39d7e25d4fef0fe7d7cb120278971d7d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f9b0078b5df596d2ea19010c-ash.mp3",
+          "contentHash": "2d1f835a7545b9f723b9002be30316d92c3294f546aa2dde2faa944d9a36d0d1",
+          "byteSize": 20352
+        },
+        {
+          "text": "young",
+          "file": "e5e3841263150846f0fcb49febbc6e0f112dd0ba9dde042d1cd91db755a92503.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/dbba921ce20510210ee7db98-ash.mp3",
+          "contentHash": "a5b2ab028c43b2ed438c824c1a28eaa499f16422b120180a48d83c883b040995",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l05/s09/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is my charger.",
+          "file": "f5c256b44336d5bf12f116c16f616860045e3f075499f844b996d2d5c4cb97e8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f5c256b44336d5bf12f116c16f616860045e3f075499f844b996d2d5c4cb97e8.mp3",
+          "contentHash": "b6320c33176a8e3c0dcdfe47de2db40f7a743e7bf8e7db84cab32a713637962c",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s09/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I have your charger.",
+          "file": "4f2ec86bb27ebe55fc17fbfa78dd2a3b81e1d0c7ee1e83c20287bfbce685a168.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f2ec86bb27ebe55fc17fbfa78dd2a3b81e1d0c7ee1e83c20287bfbce685a168.mp3",
+          "contentHash": "90c38ff9bd34e1fcfc152026a1f08906686bfac9d3177b5cacb8c61cf4310bb5",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s09/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Her dentist is tall.",
+          "file": "d6f53c0134e777a76ecfe4028fff56f0ab45eced3e5ef2eca6340a83222c46ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d6f53c0134e777a76ecfe4028fff56f0ab45eced3e5ef2eca6340a83222c46ef.mp3",
+          "contentHash": "922ae46dcd6b963bc47218fe9f631b52ffda8e2ed97db057e42b3cf7f24ba7c8",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s09/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is his charger.",
+          "file": "8b23a52001e51137fe6d3ea39714510277bdddc5f5e26693d5e056a5864f1c42.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8b23a52001e51137fe6d3ea39714510277bdddc5f5e26693d5e056a5864f1c42.mp3",
+          "contentHash": "87e75537b9348b1b4cb7081729fb4cc09a5958b479fa46c176eae807a3ccc155",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s09/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Their door is open.",
+          "file": "ec8f1d17db50e36a860c0168d4874f2f8eba6ba17b9142d5d617be3d2bb03cdc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ec8f1d17db50e36a860c0168d4874f2f8eba6ba17b9142d5d617be3d2bb03cdc.mp3",
+          "contentHash": "a3693eea62cf7e81afe6793fddb957223c0fc9d1f2fcfbcb72ed8fe885be00fa",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s09/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "charger",
+          "file": "f70e7a1f6b26358a1bc9db8ab2aa813a8b3a9421558fd3675700b66ea6f36e06.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-onyx.mp3",
+          "contentHash": "4c16a1b2709cf9d5deebfd35f0ad38f4613a71c12ec06c5dd1908fdf8cd833ec",
+          "byteSize": 25344
+        },
+        {
+          "text": "door",
+          "file": "52f2590ad48f3af8b4d0e66d7982f1cfbb49d2eec636296ef0f27250be76d7e9.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2534e2de1dec24fedab4c002-onyx.mp3",
+          "contentHash": "d55bef67b4114e1c0e279e02f1c1a369c55b58378ac0a2b1c001d3cbf14029e3",
+          "byteSize": 19584
+        },
+        {
+          "text": "dentist",
+          "file": "ae01ecffbaa05e8f076db3b65c914ca8f9db657c3a106bc4e768bbdae2abe936.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae01ecffbaa05e8f076db3b65c914ca8f9db657c3a106bc4e768bbdae2abe936.mp3",
+          "contentHash": "53bf4906d6ae7a4394e043b51ca2d2e16c7ab1ad7f5363ef8f54383a911f224d",
+          "byteSize": 32640
+        },
+        {
+          "text": "have",
+          "file": "ad0b1bd276c9a644bc269847d5ee763f988bccfbc65302544491392f113beee7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ad0b1bd276c9a644bc269847d5ee763f988bccfbc65302544491392f113beee7.mp3",
+          "contentHash": "71ac9e2648cde636c650561c91655a0fc609c6562737c02570d06ac218a54bec",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s09/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "We have their charger.",
+          "file": "f1c4beaa240235b3935055e3239ad3582ea64cfcd29ec4c8cad658733130ca23.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f1c4beaa240235b3935055e3239ad3582ea64cfcd29ec4c8cad658733130ca23.mp3",
+          "contentHash": "9bffdd3df3f613dd7c0a981c30579cb2f37bf4237b5805bc897cd86697438977",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s09/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "His dentist is short.",
+          "file": "7025b4108fbd158759a5b12afd0678ea6710204d2dcdfec1187c590d102baaec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7025b4108fbd158759a5b12afd0678ea6710204d2dcdfec1187c590d102baaec.mp3",
+          "contentHash": "e91bf1711612657a58111355bf7e72b7c0ae45af68cf965141b3d0b87f9184a7",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s09/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is our charger.",
+          "file": "2edc458c3eb5fe31067d65ba1f4dd22136342e26fa135f54e74cfe3cdc653d0c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2edc458c3eb5fe31067d65ba1f4dd22136342e26fa135f54e74cfe3cdc653d0c.mp3",
+          "contentHash": "d4f6dd45e6d3da31b00597015b72fad2d141e59774991def3895e5c68d2694ed",
+          "byteSize": 52992
+        }
+      ]
+    },
+    "l05/s09/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Its door is open.",
+          "file": "86ec8a7963e5b70deb13f79c9ad7f27d18629d3043209c50e51a824f649a0880.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/86ec8a7963e5b70deb13f79c9ad7f27d18629d3043209c50e51a824f649a0880.mp3",
+          "contentHash": "5bfa0b0383d229a178513e76909ca34a4e2910bfb50184c8cb8dae1f087bea07",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s09/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Her charger is here.",
+          "file": "fdcb3e727daf4c6522b987b921b099aa627492b00a06662b36f1d68c79cd20d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fdcb3e727daf4c6522b987b921b099aa627492b00a06662b36f1d68c79cd20d0.mp3",
+          "contentHash": "5a0ce1fe1e4832726502577b3279a1dc9941c520ce1fd5f58e699d57c90273ea",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s09/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "charger",
+          "file": "b766905661bb9bb7ac3e055a7b3e763dcfca9a3ce6b3f974aa85238c4725b52b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-ash.mp3",
+          "contentHash": "0d21c547a4172b95b2a1d6357b59d06cd01bea13147f7fb8efaf4ac0caf9c5f8",
+          "byteSize": 21888
+        },
+        {
+          "text": "door",
+          "file": "b0a4e0d6ba59ce832bf79c1b69aa1246d0a542819e2d95fd3e437e5551fd8de4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2534e2de1dec24fedab4c002-ash.mp3",
+          "contentHash": "c14742b2b41b27b5af94d749339418fbf9c91eb5b26e585a36714cac6f016ece",
+          "byteSize": 18816
+        },
+        {
+          "text": "dentist",
+          "file": "1d6c8778698a6346522ae9de7d0284e3a4c9b5050cf387b8ac2d262f864d7907.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d6c8778698a6346522ae9de7d0284e3a4c9b5050cf387b8ac2d262f864d7907.mp3",
+          "contentHash": "848516b629de95c592290325e234883a7e87e43944f51048f94f174bd3462803",
+          "byteSize": 29952
+        },
+        {
+          "text": "have",
+          "file": "0f4531bc29b6788a8dd662ba0f651313808bc053e39397e05ac7d3fdfa85a199.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f4531bc29b6788a8dd662ba0f651313808bc053e39397e05ac7d3fdfa85a199.mp3",
+          "contentHash": "92a822d39f4be5bd7908bb482c30413b09f97e83f8cf793f197f272a1673d41d",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l05/s09/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your charger.",
+          "file": "a93232981a174edc01183120a8e70d65bd439d67b0b4f870960c2df2802c2440.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a93232981a174edc01183120a8e70d65bd439d67b0b4f870960c2df2802c2440.mp3",
+          "contentHash": "823e6270dea61191618f228d0437c37bac51e43f467526e866af925634cbb482",
+          "byteSize": 33792
+        }
+      ]
     }
   },
   "settings": {

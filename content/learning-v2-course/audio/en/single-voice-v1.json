@@ -70765,6 +70765,309 @@
           "byteSize": 33792
         }
       ]
+    },
+    "l05/s10/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The key is in my pocket.",
+          "file": "ae267739ecf962379dc6b297fb659b27774e8455f7d222c2a2e0f7382c862158.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae267739ecf962379dc6b297fb659b27774e8455f7d222c2a2e0f7382c862158.mp3",
+          "contentHash": "c1f8a2ea0b3b19c65d5807a525d72271bc9a15291e6ef2bcb8204b2b7ff6e707",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s10/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Our friend is funny.",
+          "file": "38bf2a33119e949b71ee783b2eac5050a4e986510cbd2fb32a026c9354b1c158.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38bf2a33119e949b71ee783b2eac5050a4e986510cbd2fb32a026c9354b1c158.mp3",
+          "contentHash": "872b6f262972ba23879f0a6d09d40805e8275c60a63bafd87ff517d9514aa168",
+          "byteSize": 54528
+        }
+      ]
+    },
+    "l05/s10/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "its lock",
+          "file": "6469c9580132011622ddf7c8496714aaa4c3bda6ef3549563392eb3f39cde751.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6469c9580132011622ddf7c8496714aaa4c3bda6ef3549563392eb3f39cde751.mp3",
+          "contentHash": "bc32b3ded0402f08b59e14aba627bd75f9ea89c989ce8791e547234dda95f96c",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s10/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "My friend is old.",
+          "file": "0c1fd41218441ac257c6ae15f6f309664d3d8f8c98eb8d0f54fa17419893e672.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0c1fd41218441ac257c6ae15f6f309664d3d8f8c98eb8d0f54fa17419893e672.mp3",
+          "contentHash": "a237979d50dbdb52e1607e6f6725a3c2528c5cb757fa2cb60c8e3d29dca5f8df",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s10/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "pocket",
+          "file": "04b5a83c4d6394dec662bd569ddaf42c1afd424f6421e653a6993051efc4843f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/04b5a83c4d6394dec662bd569ddaf42c1afd424f6421e653a6993051efc4843f.mp3",
+          "contentHash": "e8396c226a5b8c98cbf291d683a18eb84f581b47d3672a8a1e2d646616f17595",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l05/s10/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "pocket",
+          "file": "09a1132c3cdf05845e74d8e50882d666615b1a99fcb2cb19f7efe53d5e98ef30.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/09a1132c3cdf05845e74d8e50882d666615b1a99fcb2cb19f7efe53d5e98ef30.mp3",
+          "contentHash": "dbb7cc02849e01010bbe43a9e3093df6ae9fde9eef971d6d77b4b42f21fad749",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s10/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "pocket",
+          "file": "09a1132c3cdf05845e74d8e50882d666615b1a99fcb2cb19f7efe53d5e98ef30.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/09a1132c3cdf05845e74d8e50882d666615b1a99fcb2cb19f7efe53d5e98ef30.mp3",
+          "contentHash": "dbb7cc02849e01010bbe43a9e3093df6ae9fde9eef971d6d77b4b42f21fad749",
+          "byteSize": 31488
+        },
+        {
+          "text": "old",
+          "file": "8ed465e835311b50b4296fd1a11917c957a31cf725cf9c0278b2f245f964a34c.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/cba06b5736faf67e54b07b56-ash.mp3",
+          "contentHash": "2184ba2710eee5dd5e92588c838a1c67b6b5d87bfc55af81c8f605d743839320",
+          "byteSize": 22656
+        },
+        {
+          "text": "kind",
+          "file": "ae64a7fcdd79d066243263df37f09f9eb5af1f7a28c41d76b038e7d71492feb2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0b27c158feb36ab18a10ff68-ash.mp3",
+          "contentHash": "b9f75a11385bd48478fe2800aa4f5f65e78db0d09fda8ffa8ceffab05de5d83a",
+          "byteSize": 24192
+        },
+        {
+          "text": "funny",
+          "file": "f2be181c1ae0ed84018d9bb9a3481b566cbc0a152620308df97d296a744827c9.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b22d1d8fe575253395402817-ash.mp3",
+          "contentHash": "bf7ebd4e9b809624c18bab0454ba94de14584d42a21841d26b7add6ff336cdbb",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s10/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The key is in my pocket.",
+          "file": "2640b76d80fb9d75f234475a76021f71c7b8a28c66b5003eabf0263fe26ebe27.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2640b76d80fb9d75f234475a76021f71c7b8a28c66b5003eabf0263fe26ebe27.mp3",
+          "contentHash": "404ab0f44d48eaf78353cb56d17f696cf108c71e4114a2162a7cd6dc0d5627da",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s10/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Your friend is kind.",
+          "file": "238bf26107fbdef2b32a05e9e9902fdd2844f379c7ae9486aea5e5f862888fdf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/238bf26107fbdef2b32a05e9e9902fdd2844f379c7ae9486aea5e5f862888fdf.mp3",
+          "contentHash": "edb06a067fb799e03112d9470bc3f4a5febbfb757e5250a6190cd995145fefbf",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l05/s10/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Our friend is funny.",
+          "file": "38bf2a33119e949b71ee783b2eac5050a4e986510cbd2fb32a026c9354b1c158.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38bf2a33119e949b71ee783b2eac5050a4e986510cbd2fb32a026c9354b1c158.mp3",
+          "contentHash": "872b6f262972ba23879f0a6d09d40805e8275c60a63bafd87ff517d9514aa168",
+          "byteSize": 54528
+        }
+      ]
+    },
+    "l05/s10/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The key is in his pocket.",
+          "file": "aaa2e8e30ea0d97ab50e0ecc3f8cc44bace558caa0d45e752754cee03a30b952.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aaa2e8e30ea0d97ab50e0ecc3f8cc44bace558caa0d45e752754cee03a30b952.mp3",
+          "contentHash": "fe0c93f71189c01018c40c4a5ad29e4da6ad20d79e11240d045cc0d4c5c00a5e",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s10/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Their hotel is next to the park.",
+          "file": "2821fab1f0c0084295959aa8d4abdde7eeddfce6cb7b6a5ab987188cec154fc7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2821fab1f0c0084295959aa8d4abdde7eeddfce6cb7b6a5ab987188cec154fc7.mp3",
+          "contentHash": "2ff4e8d1fb44608cb6c276ab36e6c7f919c4f195e2fade4bfcea99023a796ffe",
+          "byteSize": 60288
+        }
+      ]
+    },
+    "l05/s10/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "pocket",
+          "file": "1c165979a42f4c12e14506ad607bed846260ed37189bc6c0b21f425bd00a211e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c165979a42f4c12e14506ad607bed846260ed37189bc6c0b21f425bd00a211e.mp3",
+          "contentHash": "779931b57816c7b35ff4e30044194354b3aa41a0e8ef00754553c36eb6c72189",
+          "byteSize": 16512
+        },
+        {
+          "text": "lock",
+          "file": "1d0a4e0c964edecc5df616574db2d1528330ed7318861df1659c37ee1d81182c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d0a4e0c964edecc5df616574db2d1528330ed7318861df1659c37ee1d81182c.mp3",
+          "contentHash": "0e3085e11bbca21e38dac464d4f04ec41f9ecc9f89b966ec0b8ff9c63f6cf1ee",
+          "byteSize": 18816
+        },
+        {
+          "text": "hotel",
+          "file": "602a1ffa7d865a24ad54642dd3253bba45411673b8ba898a279575791d432d63.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/602a1ffa7d865a24ad54642dd3253bba45411673b8ba898a279575791d432d63.mp3",
+          "contentHash": "fb91d6938fc357f135f1ef150a68b53e52864db4f1d481a4a61d8a729bf2691a",
+          "byteSize": 27648
+        },
+        {
+          "text": "kind",
+          "file": "f0f4e70fb5f6b2ddb6c5fd3d15c951b8b2f74044b860c6223a91faaae1c807af.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0b27c158feb36ab18a10ff68-onyx.mp3",
+          "contentHash": "104fa6badf05d1b1634f6541d1137d0109fcfd89e74548d85ebfdddfac3fdbcc",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s10/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Her key is in his pocket.",
+          "file": "0912032b211dcf0d58329f82df53ae307c03977d0c0287744a26d93bc2c61d21.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0912032b211dcf0d58329f82df53ae307c03977d0c0287744a26d93bc2c61d21.mp3",
+          "contentHash": "1b43b3479ba6ad1249250dc12a2df1e84ca3db62e3cebf645b75212732542511",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s10/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Our hotel is here.",
+          "file": "5678308536de5f21653770542d81fe4d113257abb460400b995c5b846dff068f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5678308536de5f21653770542d81fe4d113257abb460400b995c5b846dff068f.mp3",
+          "contentHash": "ac633e9027a295dbed7dc38f559c41493ca46d4848de24fad2791ea6cf7a22f8",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l05/s10/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I have your key.",
+          "file": "a7a72d6ff83f1bfcd1a7ed0b9ae0e9b1a37790a1dcd99de1e4dd76063bff7d5b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a7a72d6ff83f1bfcd1a7ed0b9ae0e9b1a37790a1dcd99de1e4dd76063bff7d5b.mp3",
+          "contentHash": "9da465406e4b8acb52f9979bb519f95618ce7bfc41b3abc6d8405fd6f6458e17",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s10/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Its lock is new.",
+          "file": "a4acad5f8d199e906a32b84db2752852c89013e5befcd58693023b682b074be7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a4acad5f8d199e906a32b84db2752852c89013e5befcd58693023b682b074be7.mp3",
+          "contentHash": "7d98820c382f884e75bda9de115cccc9b113e17ffba3ce62facf5c56105a14bf",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s10/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Her pocket is empty.",
+          "file": "6d7c466d4b483b2b1d9ce554de1a0c419527402819802a91ad272febc0340cc6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d7c466d4b483b2b1d9ce554de1a0c419527402819802a91ad272febc0340cc6.mp3",
+          "contentHash": "b6af2d13b446cf4cdcf48df9f4e86eb9cccefb80e096c20d824b79057ccf101c",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s10/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "pocket",
+          "file": "09a1132c3cdf05845e74d8e50882d666615b1a99fcb2cb19f7efe53d5e98ef30.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/09a1132c3cdf05845e74d8e50882d666615b1a99fcb2cb19f7efe53d5e98ef30.mp3",
+          "contentHash": "dbb7cc02849e01010bbe43a9e3093df6ae9fde9eef971d6d77b4b42f21fad749",
+          "byteSize": 31488
+        },
+        {
+          "text": "lock",
+          "file": "89f648d6bf6169ad9b4a1e41a218ee197395a2333dc4c573bcc6857627a1eb94.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/89f648d6bf6169ad9b4a1e41a218ee197395a2333dc4c573bcc6857627a1eb94.mp3",
+          "contentHash": "1e3916e209435acf0abd5017bd5a6630e9a9301fa77c139289e5b31aff76b497",
+          "byteSize": 27648
+        },
+        {
+          "text": "hotel",
+          "file": "34e93b1803296b46fa47146642d31309f486f028359681e313e3bf020d8f7978.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34e93b1803296b46fa47146642d31309f486f028359681e313e3bf020d8f7978.mp3",
+          "contentHash": "e9e6f772bb88a884607a44bb909906476eb501efae635fa29a325d1de4b92a6c",
+          "byteSize": 23040
+        },
+        {
+          "text": "funny",
+          "file": "f2be181c1ae0ed84018d9bb9a3481b566cbc0a152620308df97d296a744827c9.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b22d1d8fe575253395402817-ash.mp3",
+          "contentHash": "bf7ebd4e9b809624c18bab0454ba94de14584d42a21841d26b7add6ff336cdbb",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s10/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The key is in your pocket.",
+          "file": "6b1aff271fd006e5ace54712d30296b3cf2ec064913fbc3a7c8fe4cf273af5fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6b1aff271fd006e5ace54712d30296b3cf2ec064913fbc3a7c8fe4cf273af5fb.mp3",
+          "contentHash": "4a08b517f19ca2a653eaf153a819438d55fb944b372ba05c5f85fb10d0ccc237",
+          "byteSize": 48384
+        }
+      ]
     }
   },
   "settings": {

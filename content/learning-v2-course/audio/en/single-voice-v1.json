@@ -63190,6 +63190,309 @@
           "byteSize": 38016
         }
       ]
+    },
+    "l04/s41/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is a cashpoint.",
+          "file": "d847901ee1663f998326e3edd2fabadc05642aa9739ada30041b2f15530131c3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d847901ee1663f998326e3edd2fabadc05642aa9739ada30041b2f15530131c3.mp3",
+          "contentHash": "157f063e1b3a7d409ea47b43d3cb322ccb574e568420ea7653d717f3ec317d81",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s41/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He is in the kitchen.",
+          "file": "dd4f41aaf084d0e8aaa7a4d46ec51c5dd37afb8e1c2516312711e6d2a61b0113.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd4f41aaf084d0e8aaa7a4d46ec51c5dd37afb8e1c2516312711e6d2a61b0113.mp3",
+          "contentHash": "a36214970cd9a5564896855f362810dd0fef3a04642342b8fc92ed4e7aa946f0",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s41/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's accurate.",
+          "file": "1c5fb5e982b377a721200a9a8df22f9cf2cbe697a7e494b0a9d80861052c46b5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c5fb5e982b377a721200a9a8df22f9cf2cbe697a7e494b0a9d80861052c46b5.mp3",
+          "contentHash": "062ea7fe75add910efa443f0d8163f0d4f2a529fb4833b182b223aec11e43e88",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l04/s41/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It is accurate.",
+          "file": "4be000502175111b3f58b7dd4f93cdba940805c12f1ca12f6baa8d14e5a7bec9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4be000502175111b3f58b7dd4f93cdba940805c12f1ca12f6baa8d14e5a7bec9.mp3",
+          "contentHash": "8ef55419d65f5dd7c29705db1360b8026e88e0986a829bffd42d69e2c5e5f02a",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l04/s41/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "cashpoint",
+          "file": "f688f9e76116a65b16ef9d628e7cfe5d3d5f40c34970a6a9079406c7a1b0e006.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f688f9e76116a65b16ef9d628e7cfe5d3d5f40c34970a6a9079406c7a1b0e006.mp3",
+          "contentHash": "db5474ed03cca977af4b7ebf08ecd34597168d81ac2b359d141cf171795b8b90",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s41/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "cashpoint",
+          "file": "3d9a05a803cdea6df274ed18caa5a6e1647a400b6bb63e2ab7f2f7a3bbae43f7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d9a05a803cdea6df274ed18caa5a6e1647a400b6bb63e2ab7f2f7a3bbae43f7.mp3",
+          "contentHash": "f25504f43ae4b94dabccc785d6ba29d5012f4ac9f20d2ee519b204ed407ffb14",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s41/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "cashpoint",
+          "file": "3d9a05a803cdea6df274ed18caa5a6e1647a400b6bb63e2ab7f2f7a3bbae43f7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d9a05a803cdea6df274ed18caa5a6e1647a400b6bb63e2ab7f2f7a3bbae43f7.mp3",
+          "contentHash": "f25504f43ae4b94dabccc785d6ba29d5012f4ac9f20d2ee519b204ed407ffb14",
+          "byteSize": 27648
+        },
+        {
+          "text": "accurate",
+          "file": "57bb51172aec52c4b493f9fc176cb0d73b9afe71b4988b0f68b312ea24145a86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/57bb51172aec52c4b493f9fc176cb0d73b9afe71b4988b0f68b312ea24145a86.mp3",
+          "contentHash": "4f0a9337ad2fbd78cbef26ce183ce213155d56ee5ecb39ebe37aa98160d6800c",
+          "byteSize": 14208
+        },
+        {
+          "text": "kitchen",
+          "file": "0975480173062d29791c084e9136e758ce881e6fa2cca21372c8a12ca891647f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0975480173062d29791c084e9136e758ce881e6fa2cca21372c8a12ca891647f.mp3",
+          "contentHash": "9ffeb08d130509b7a6c9a838107fcdfe7c0f1acf01fb608789beb717e9a1268a",
+          "byteSize": 19584
+        },
+        {
+          "text": "doorbell",
+          "file": "a002095001c98cb15cfbbe7d15e6e40eedc818662fc2d1368a2b0a805c238ed2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a002095001c98cb15cfbbe7d15e6e40eedc818662fc2d1368a2b0a805c238ed2.mp3",
+          "contentHash": "ff86747573a4c8f9918ca8a66a2e91b19532b5ca775c718670b644e8ce134fed",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s41/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a cashpoint.",
+          "file": "45b3df40efb5a4cf4cc29f511b4446129bbb04e37f7dfff2db46c9e136380cfe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/45b3df40efb5a4cf4cc29f511b4446129bbb04e37f7dfff2db46c9e136380cfe.mp3",
+          "contentHash": "5ffa53ab3c1c7c5dd833325dac05ea70c81db2e6f9ac7306cbf6702ce8035a40",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s41/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He is in the kitchen.",
+          "file": "249b33587a3689fc76e8441b4db746dc1f652855fdd4bed3e104ab9f02b2d182.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/249b33587a3689fc76e8441b4db746dc1f652855fdd4bed3e104ab9f02b2d182.mp3",
+          "contentHash": "804c164058f92cac7ef62c82d445b17df5dc089dc06b548e5ecc0b9946275086",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s41/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's accurate.",
+          "file": "70c90a521a660e5d8f72b59c8faeb291b77a97c602e49f11b47fe1323300b7be.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/70c90a521a660e5d8f72b59c8faeb291b77a97c602e49f11b47fe1323300b7be.mp3",
+          "contentHash": "76e31997cff5ce4ea50ae29c8e4ad9da72f81d9ebab19fff053836d68d6a5622",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l04/s41/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There isn't a doorbell.",
+          "file": "97d48c1fe9777d5da2306282f5704c2bd9f1033b8915bde6f0ebf323c6fdb205.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/97d48c1fe9777d5da2306282f5704c2bd9f1033b8915bde6f0ebf323c6fdb205.mp3",
+          "contentHash": "ef8062c94a60978ead0f5df8e9456d7574cb2238d1bb5e4e9836b798ff2eca9e",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s41/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The cashpoint is next to the shop.",
+          "file": "b25b14c8ecb35466336592275f35a356437e5ce108943018c4da8d3c3c1b744f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b25b14c8ecb35466336592275f35a356437e5ce108943018c4da8d3c3c1b744f.mp3",
+          "contentHash": "7adfc61c27fbd0c934ef88c87da6fa63371181c00617c71a7b80f96d4ebddd33",
+          "byteSize": 52992
+        }
+      ]
+    },
+    "l04/s41/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "cashpoint",
+          "file": "e816c3976c5dfbbb1d81c4e53d8d4bb25fa27e4f4d8ccd2dd9e465aa222e2778.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e816c3976c5dfbbb1d81c4e53d8d4bb25fa27e4f4d8ccd2dd9e465aa222e2778.mp3",
+          "contentHash": "91418d35ed1a6b4b26670a4c22f9e9ff0b7bddd6735422ef9ba6ad08de4d88e7",
+          "byteSize": 24576
+        },
+        {
+          "text": "accurate",
+          "file": "31078d8311339de8743570c64ff11f16726cfbe61246c6e7a981abb2d60b640f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31078d8311339de8743570c64ff11f16726cfbe61246c6e7a981abb2d60b640f.mp3",
+          "contentHash": "acb1dc799f6cc466768d92ac4630e2ed8358bd68aca96ed64c8896e02b4ebb53",
+          "byteSize": 16512
+        },
+        {
+          "text": "kitchen",
+          "file": "f3ae08dcf35ad27c4c502fe77dc33d7ed96a796b127b00b8ac6ca4a83711fd7b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3ae08dcf35ad27c4c502fe77dc33d7ed96a796b127b00b8ac6ca4a83711fd7b.mp3",
+          "contentHash": "5c95268e66947f977106d4e3e10825561a8ee7340397798a97e4063397c189d4",
+          "byteSize": 32640
+        },
+        {
+          "text": "doorbell",
+          "file": "129ec4298ee688e1c10e0472e4957bb98d96984e09d7f94e46a16a17f7f2ff66.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/129ec4298ee688e1c10e0472e4957bb98d96984e09d7f94e46a16a17f7f2ff66.mp3",
+          "contentHash": "afae317c4c52f02f6ddc6fa37f8f0fbae0757f772c4baef825bb45abf89d7258",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s41/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There aren't any cashpoints.",
+          "file": "b3171bcfaead0a9c99d228b8b5a135e6a71cca1429e55539095877b8d12b9a21.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3171bcfaead0a9c99d228b8b5a135e6a71cca1429e55539095877b8d12b9a21.mp3",
+          "contentHash": "7ac7ce8052f904980582d0e614d3755467f172505348bb7aff78945504f5694b",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s41/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is a cashpoint.",
+          "file": "d5c8a01c46a713dc8be1001acf49bec381c9342807275005c6cb72b05cec5da6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5c8a01c46a713dc8be1001acf49bec381c9342807275005c6cb72b05cec5da6.mp3",
+          "contentHash": "86a0011f22f01142bd3181e596008c6972638d0552c03a68048456d2b8158c1e",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s41/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a cashpoint?",
+          "file": "44637ff66940901a1fdefaf5a99610d6345f9c6dd0d7ac254ca5b3c430ddda30.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44637ff66940901a1fdefaf5a99610d6345f9c6dd0d7ac254ca5b3c430ddda30.mp3",
+          "contentHash": "e023752ebdd67cb464a947849bd2f15ca793e84a6c1b99197ff538916ef51d9d",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s41/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The cashpoint is between the shops.",
+          "file": "8e2692265ba3282aed954959adbc1687547c6307161ef96923f4bf691828b536.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e2692265ba3282aed954959adbc1687547c6307161ef96923f4bf691828b536.mp3",
+          "contentHash": "5a9fdad41fd3e31fcc7181b4a5afebbe76b39cfc27778aa3ae9c2b234db099cf",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l04/s41/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "That is a cashpoint.",
+          "file": "7c0a3b56875dfbbd9f1cebd58f51ec84f0b7eab6e7b680fcb26fca68447a04e4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c0a3b56875dfbbd9f1cebd58f51ec84f0b7eab6e7b680fcb26fca68447a04e4.mp3",
+          "contentHash": "4bc8a9e40d5c5c3314bbeddc3622153c176e8a167b5677f91ed5a347aef8c085",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s41/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "cashpoint",
+          "file": "3d9a05a803cdea6df274ed18caa5a6e1647a400b6bb63e2ab7f2f7a3bbae43f7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d9a05a803cdea6df274ed18caa5a6e1647a400b6bb63e2ab7f2f7a3bbae43f7.mp3",
+          "contentHash": "f25504f43ae4b94dabccc785d6ba29d5012f4ac9f20d2ee519b204ed407ffb14",
+          "byteSize": 27648
+        },
+        {
+          "text": "accurate",
+          "file": "57bb51172aec52c4b493f9fc176cb0d73b9afe71b4988b0f68b312ea24145a86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/57bb51172aec52c4b493f9fc176cb0d73b9afe71b4988b0f68b312ea24145a86.mp3",
+          "contentHash": "4f0a9337ad2fbd78cbef26ce183ce213155d56ee5ecb39ebe37aa98160d6800c",
+          "byteSize": 14208
+        },
+        {
+          "text": "kitchen",
+          "file": "0975480173062d29791c084e9136e758ce881e6fa2cca21372c8a12ca891647f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0975480173062d29791c084e9136e758ce881e6fa2cca21372c8a12ca891647f.mp3",
+          "contentHash": "9ffeb08d130509b7a6c9a838107fcdfe7c0f1acf01fb608789beb717e9a1268a",
+          "byteSize": 19584
+        },
+        {
+          "text": "doorbell",
+          "file": "a002095001c98cb15cfbbe7d15e6e40eedc818662fc2d1368a2b0a805c238ed2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a002095001c98cb15cfbbe7d15e6e40eedc818662fc2d1368a2b0a805c238ed2.mp3",
+          "contentHash": "ff86747573a4c8f9918ca8a66a2e91b19532b5ca775c718670b644e8ce134fed",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s41/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There isn't a cashpoint.",
+          "file": "50ed93b08d794da70f911f6835ba63890eaa9354cbbcbb3ca31c013d8c3a90ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50ed93b08d794da70f911f6835ba63890eaa9354cbbcbb3ca31c013d8c3a90ab.mp3",
+          "contentHash": "df2d4a120052072a3c90c84845ee75b3ce3ce9c44b8ebf2c8d90091291e0c062",
+          "byteSize": 45312
+        }
+      ]
     }
   },
   "settings": {

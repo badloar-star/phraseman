@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-51:i01",
+    "correctText": "This bag is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i02",
+    "correctText": "stadium",
+    "correctResponseId": "en:lesson-05:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i03",
+    "correctText": "stadium",
+    "correctResponseId": "en:lesson-05:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i04",
+    "correctText": "en:lesson-05:session-51:i04:p1=stadium\nen:lesson-05:session-51:i04:p2=heavy\nen:lesson-05:session-51:i04:p3=libraries\nen:lesson-05:session-51:i04:p4=community centre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i05",
+    "correctText": "Where is the stadium?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i06",
+    "correctText": "Anna is in the community centre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i07",
+    "correctText": "Tom is at the stadium.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i09",
+    "correctText": "This is Anna's bag.",
+    "correctResponseId": "en:lesson-05:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i10",
+    "correctText": "en:lesson-05:session-51:i10:p1=stadium\nen:lesson-05:session-51:i10:p2=heavy\nen:lesson-05:session-51:i10:p3=libraries\nen:lesson-05:session-51:i10:p4=community centre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i11",
+    "correctText": "The stadium is near the river.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i12",
+    "correctText": "The bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i13",
+    "correctText": "I have your bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i14",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-51:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i15",
+    "correctText": "The bag is mine.",
+    "correctResponseId": "en:lesson-05:session-51:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i16",
+    "correctText": "en:lesson-05:session-51:i16:p1=stadium\nen:lesson-05:session-51:i16:p2=heavy\nen:lesson-05:session-51:i16:p3=libraries\nen:lesson-05:session-51:i16:p4=community centre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-51:i17",
+    "correctText": "Whose bag is this?",
+    "correctResponseId": null
+  }
+]

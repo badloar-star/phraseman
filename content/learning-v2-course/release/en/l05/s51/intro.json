@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о городских местах и определить владельца сумки",
+    "uk": "запитати про міські місця й визначити власника сумки"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Большое место для спорта",
+        "uk": "Велике місце для спорту"
+      },
+      "bodyByLocale": {
+        "ru": "`stadium` — «стадион». `Where is the stadium?` — «Где стадион?» `The stadium is near the river` — «Стадион возле реки». `Tom is at the stadium` — «Том на стадионе».",
+        "uk": "`stadium` — «стадіон». `Where is the stadium?` — «Де стадіон?» `The stadium is near the river` — «Стадіон біля річки». `Tom is at the stadium` — «Том на стадіоні»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, где стадион.",
+          "uk": "Запитайте, де стадіон."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-51:intro1:r1",
+              "text": "Where is the stadium?"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro1:r2",
+              "text": "Whose stadium is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro1:r3",
+              "text": "Where are the stadium?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-51:intro1:r1",
+              "text": "Where is the stadium?"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro1:r2",
+              "text": "Whose stadium is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro1:r3",
+              "text": "Where are the stadium?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где стадион.",
+          "uk": "Запитайте, де стадіон."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тяжёлая сумка",
+        "uk": "Важка сумка"
+      },
+      "bodyByLocale": {
+        "ru": "`heavy` — «тяжёлый» по весу. `This bag is heavy` — «Эта сумка тяжёлая». `Whose bag is this?` — «Чья это сумка?» `The bag is hers` — «Сумка её». Сумка тяжёлая, но это ещё не значит, что внутри целый стадион.",
+        "uk": "`heavy` — «важкий» за вагою. `This bag is heavy` — «Ця сумка важка». `Whose bag is this?` — «Чия це сумка?» `The bag is hers` — «Сумка її». Сумка важка, але це ще не означає, що всередині цілий стадіон."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Эта сумка тяжёлая».",
+          "uk": "Скажіть «Ця сумка важка»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-51:intro2:r1",
+              "text": "This bag is heavy."
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro2:r2",
+              "text": "This bag are heavy."
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro2:r3",
+              "text": "This bag is expensive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-51:intro2:r1",
+              "text": "This bag is heavy."
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro2:r2",
+              "text": "This bag are heavy."
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro2:r3",
+              "text": "This bag is expensive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Эта сумка тяжёлая».",
+          "uk": "Скажіть «Ця сумка важка»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё два ориентира",
+        "uk": "Ще два орієнтири"
+      },
+      "bodyByLocale": {
+        "ru": "`libraries` — «библиотеки», `community centre` — «общественный центр», место для встреч и занятий жителей района. `Where are the libraries?` — «Где библиотеки?» `Anna is in the community centre` — «Анна в общественном центре». `I have your bag` — «Твоя сумка у меня».",
+        "uk": "`libraries` — «бібліотеки», `community centre` — «громадський центр», місце для зустрічей і занять мешканців району. `Where are the libraries?` — «Де бібліотеки?» `Anna is in the community centre` — «Анна в громадському центрі». `I have your bag` — «Твоя сумка в мене»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, где библиотеки.",
+          "uk": "Запитайте, де бібліотеки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-51:intro3:r1",
+              "text": "Where are the libraries?"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro3:r2",
+              "text": "Where is the libraries?"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro3:r3",
+              "text": "Whose libraries are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-51:intro3:r1",
+              "text": "Where are the libraries?"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro3:r2",
+              "text": "Where is the libraries?"
+            },
+            {
+              "responseId": "en:lesson-05:session-51:intro3:r3",
+              "text": "Whose libraries are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где библиотеки.",
+          "uk": "Запитайте, де бібліотеки."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d391f7b99742bbbb53fabdb5a9fa205379ec1d53375e83f83a284e9147a62c23"
+}

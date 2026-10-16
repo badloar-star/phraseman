@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-27:i01",
+    "correctText": "Charge it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i02",
+    "correctText": "charge",
+    "correctResponseId": "en:lesson-08:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i03",
+    "correctText": "Charge",
+    "correctResponseId": "en:lesson-08:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i04",
+    "correctText": "en:lesson-08:session-27:i04:p1=charge\nen:lesson-08:session-27:i04:p2=awning\nen:lesson-08:session-27:i04:p3=stay\nen:lesson-08:session-27:i04:p4=exercise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i05",
+    "correctText": "Charge it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i06",
+    "correctText": "Open the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i07",
+    "correctText": "Turn left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i08",
+    "correctText": "Open",
+    "correctResponseId": "en:lesson-08:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i09",
+    "correctText": "Charge it.",
+    "correctResponseId": "en:lesson-08:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i10",
+    "correctText": "en:lesson-08:session-27:i10:p1=explain\nen:lesson-08:session-27:i10:p2=charge\nen:lesson-08:session-27:i10:p3=awning\nen:lesson-08:session-27:i10:p4=stay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i11",
+    "correctText": "Turn left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i12",
+    "correctText": "Can you explain it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i13",
+    "correctText": "I often exercise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i14",
+    "correctText": "Turn",
+    "correctResponseId": "en:lesson-08:session-27:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i15",
+    "correctText": "Open the window.",
+    "correctResponseId": "en:lesson-08:session-27:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i16",
+    "correctText": "en:lesson-08:session-27:i16:p1=charge\nen:lesson-08:session-27:i16:p2=exercise\nen:lesson-08:session-27:i16:p3=explain\nen:lesson-08:session-27:i16:p4=awning",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-27:i17",
+    "correctText": "Charge it.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "назвать потолок, описать помещение и сказать, у кого есть ручка",
+    "uk": "назвати стелю, описати приміщення й сказати, у кого є ручка"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сверху, но внутри",
+        "uk": "Зверху, але всередині"
+      },
+      "bodyByLocale": {
+        "ru": "`ceiling` — «потолок»: верхняя поверхность внутри комнаты. `The room has a ceiling` — «У комнаты есть потолок». Потолок внутри, крыша снаружи: люстру обычно вешают не на крыше, иначе читать придётся воронам. Один потолок — `a ceiling`.",
+        "uk": "`ceiling` — «стеля»: верхня поверхня всередині кімнати. `The room has a ceiling` — «У кімнати є стеля». Стеля всередині, дах зовні: люстру зазвичай вішають не на даху, інакше читати доведеться воронам. Одна стеля — `a ceiling`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите потолок.",
+          "uk": "Назвіть стелю."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-06:intro1:r1",
+              "text": "ceiling"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro1:r2",
+              "text": "curtain"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro1:r3",
+              "text": "drawer"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-06:intro1:r1",
+              "text": "ceiling"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro1:r2",
+              "text": "curtain"
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro1:r3",
+              "text": "drawer"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите потолок.",
+          "uk": "Назвіть стелю."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Волнение бывает разным",
+        "uk": "Хвилювання буває різним"
+      },
+      "bodyByLocale": {
+        "ru": "`calm` — «спокойный», `nervous` — «нервничающий», `excited` — «радостно взволнованный». `I’m nervous` — «Я нервничаю»: переживаю, как всё пройдёт. `I’m excited` — «Я в радостном предвкушении»: жду первого дня с воодушевлением. `He is calm` — «Он спокоен». Для этих состояний нужны `am`, `is`, `are`.",
+        "uk": "`calm` — «спокійний», `nervous` — «знервований», `excited` — «радісно схвильований». `I’m nervous` — «Я нервую»: переживаю, як усе пройде. `I’m excited` — «Я в радісному очікуванні»: чекаю першого дня з натхненням. `He is calm` — «Він спокійний». Для цих станів потрібні `am`, `is`, `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы переживаете, боитесь ошибиться. Скажите «Я нервничаю» с сокращением.",
+          "uk": "Ви переживаєте, боїтеся помилитися. Скажіть «Я нервую» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-06:intro2:r1",
+              "text": "I'm nervous."
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro2:r2",
+              "text": "I'm calm."
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro2:r3",
+              "text": "I have nervous."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-06:intro2:r1",
+              "text": "I'm nervous."
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro2:r2",
+              "text": "I'm calm."
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro2:r3",
+              "text": "I have nervous."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы переживаете, боитесь ошибиться. Скажите «Я нервничаю» с сокращением.",
+          "uk": "Ви переживаєте, боїтеся помилитися. Скажіть «Я нервую» зі скороченням."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ручка и адрес",
+        "uk": "Ручка й адреса"
+      },
+      "bodyByLocale": {
+        "ru": "`pen` — «ручка», `clinic` — «клиника», `petrol station` — «заправка». `She has a pen` — «У неё есть ручка». `The clinic is next to the petrol station` — «Клиника рядом с заправкой». `has` сообщает, что есть у подруги; `is` в примере с клиникой говорит, где она.",
+        "uk": "`pen` — «ручка», `clinic` — «клініка», `petrol station` — «заправка». `She has a pen` — «У неї є ручка». `The clinic is next to the petrol station` — «Клініка поруч із заправкою». `has` повідомляє, що є в подруги; `is` у прикладі з клінікою каже, де вона."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "У подруги есть ручка. Выберите фразу.",
+          "uk": "У подруги є ручка. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-06:intro3:r1",
+              "text": "She has a pen."
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro3:r2",
+              "text": "She have a pen."
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro3:r3",
+              "text": "She is a pen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-06:intro3:r1",
+              "text": "She has a pen."
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro3:r2",
+              "text": "She have a pen."
+            },
+            {
+              "responseId": "en:lesson-05:session-06:intro3:r3",
+              "text": "She is a pen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У подруги есть ручка. Выберите фразу.",
+          "uk": "У подруги є ручка. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "93da7912f4d91cc19bbf5f8fe5a2f5d2fe853cfc4d8a62b35f6e53baa4993974"
+}

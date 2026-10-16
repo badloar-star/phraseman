@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-20:intro1:r2": {
+          "ru": "После `she` — `cooks`, с `s`.",
+          "uk": "Після `she` — `cooks`, з `s`."
+        },
+        "en:lesson-06:session-20:intro1:r3": {
+          "ru": "Говорим `She cooks`, без `is`.",
+          "uk": "Кажемо `She cooks`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-20:intro2:r2": {
+          "ru": "После `he` — `paints`, с `s`.",
+          "uk": "Після `he` — `paints`, з `s`."
+        },
+        "en:lesson-06:session-20:intro2:r3": {
+          "ru": "Говорим `He paints`, без `is`.",
+          "uk": "Кажемо `He paints`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-20:intro3:r2": {
+          "ru": "Здесь нужно `He is innocent`.",
+          "uk": "Тут потрібно `He is innocent`."
+        },
+        "en:lesson-06:session-20:intro3:r3": {
+          "ru": "С `he` — `is`, не `are`.",
+          "uk": "З `he` — `is`, не `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "471ac09e61dcd27744dfedd4f3d4cdcde4e8507d5cfff37406517074526ae6a5"
+}

@@ -62584,6 +62584,309 @@
           "byteSize": 46848
         }
       ]
+    },
+    "l04/s39/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a boiler.",
+          "file": "40a1cc9a5bcc17faa004ea425aae0cc37d8c9977fb2eb07af447b1fedcc5478f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/40a1cc9a5bcc17faa004ea425aae0cc37d8c9977fb2eb07af447b1fedcc5478f.mp3",
+          "contentHash": "0513c0552f500bd373f5ce88aebf8d3da2bb54003595544ab42ed9a0e4eb08b7",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s39/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The bottles are on the table.",
+          "file": "d408c81cb6dc73b62cf79ac5e606af284df0b13d8a3c783cb7b24e7c05783b2c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d408c81cb6dc73b62cf79ac5e606af284df0b13d8a3c783cb7b24e7c05783b2c.mp3",
+          "contentHash": "040e91f29c020db5290dae9ff1d79b77e64865ba29997a329a2f12ed44ad24ea",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s39/intro/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It's relevant.",
+          "file": "594ebcad464e4befb1ab49b0ac6ad63544afa870d7d3f84945fcd79330501bb0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/594ebcad464e4befb1ab49b0ac6ad63544afa870d7d3f84945fcd79330501bb0.mp3",
+          "contentHash": "d47fc9bdd434444a5cacc1820142ad30cd4a86dd5f7b24a5b77ad0c52d70b0fa",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s39/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It is relevant.",
+          "file": "5e4e113db4946e855ed1320886b49d3c7b80673f436ec1624eb3e03838eeb449.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5e4e113db4946e855ed1320886b49d3c7b80673f436ec1624eb3e03838eeb449.mp3",
+          "contentHash": "0686505b6fad3855276ecaa4bece04bcd8519b6898e3101d4c5a1f5acc29a878",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s39/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "boiler",
+          "file": "ab0252d0131df4387c00645c80c272d3c7d96fc3abee78e53a0a8c8f3d3f035c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab0252d0131df4387c00645c80c272d3c7d96fc3abee78e53a0a8c8f3d3f035c.mp3",
+          "contentHash": "55cbe02e9bb74f72c5119a3bf1c3bbc9970fe59e76d894ee90d5cf603f57d7b5",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l04/s39/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "boiler",
+          "file": "1c3ea5264b7c88a2b7be5870ade0eff13c085ebe4bb917b595ba7430fe66fb95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c3ea5264b7c88a2b7be5870ade0eff13c085ebe4bb917b595ba7430fe66fb95.mp3",
+          "contentHash": "9944b589c786c8db76f1e85ee744f970184a1d3c049908ce365f23ff9771783a",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l04/s39/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "boiler",
+          "file": "eb6b25fc09906548b3e7945f69b3c351e87c8f3d183c09a81a588eff10ef42c1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eb6b25fc09906548b3e7945f69b3c351e87c8f3d183c09a81a588eff10ef42c1.mp3",
+          "contentHash": "8e367182592d8d0680e048cb3fc840d4b36439d5f93327ceaa82bc267267d122",
+          "byteSize": 25344
+        },
+        {
+          "text": "relevant",
+          "file": "bee2383d106ce8e9f11c491d80ec26cf328b17c35ae35da7de204ccb56638292.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bee2383d106ce8e9f11c491d80ec26cf328b17c35ae35da7de204ccb56638292.mp3",
+          "contentHash": "2cb36cd5bfc0a3cc8cb9d88d56bb4898e0983cd9978ac370974dced0a8106502",
+          "byteSize": 15744
+        },
+        {
+          "text": "bottles",
+          "file": "905fe267b177f8869c88b1ab5c2591bcc2269cb3e7dfcc09d7f271b4ef46266f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/905fe267b177f8869c88b1ab5c2591bcc2269cb3e7dfcc09d7f271b4ef46266f.mp3",
+          "contentHash": "30fc91be515fb15a868bf338f150de0acfbbf153472d1c2df7b5ee09535f56c4",
+          "byteSize": 18816
+        },
+        {
+          "text": "car park",
+          "file": "9adea1e20f3960075d2fde928a8eca37332b27304597ca3c2676bcf17d5d5a50.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9adea1e20f3960075d2fde928a8eca37332b27304597ca3c2676bcf17d5d5a50.mp3",
+          "contentHash": "eaf423c579453a2522e3104c6cee7a1b96bc03d872c80f0edaa69764aeabe188",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l04/s39/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is a boiler.",
+          "file": "45cfbc450453fdbbd95cb24c939dc0ed1b8beb8a2fa17033b3343da172915795.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/45cfbc450453fdbbd95cb24c939dc0ed1b8beb8a2fa17033b3343da172915795.mp3",
+          "contentHash": "4cb71a518ef8a2933335743ad39138050cf8332fd4555b54698ee4c734738710",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l04/s39/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The bottles are on the table.",
+          "file": "c5db72135648d7ffdb7b3378330839e2be3842db7dca65ebd4f84e6883467540.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c5db72135648d7ffdb7b3378330839e2be3842db7dca65ebd4f84e6883467540.mp3",
+          "contentHash": "80e9f9debf6220f86b482d9e4c68a5a80691777b13c8bb8b33926a3df2e37add",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s39/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's relevant.",
+          "file": "b402ceb7141b2dfdc84afb4bd6420a9f807d07525ebb9d840afb5c38ce2ab2d3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b402ceb7141b2dfdc84afb4bd6420a9f807d07525ebb9d840afb5c38ce2ab2d3.mp3",
+          "contentHash": "b9054fd903c9cbed7eb9f7f7a9a14de23903d9ff162c448eac6f9665150999d6",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s39/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There isn't a boiler.",
+          "file": "46048342fce6b03a5a8788f1a6057e540e7b1c6772aa1cb4b13dd7676c967af7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46048342fce6b03a5a8788f1a6057e540e7b1c6772aa1cb4b13dd7676c967af7.mp3",
+          "contentHash": "649375f76abb1912e6e9cf64a9268a554b5188a80caeefdd167fab22af4ca17b",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s39/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The car park is next to the house.",
+          "file": "e952f08de9d56735e659d4cbe95b77744861fba0fa35a116e1e25f5358ddb1e5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e952f08de9d56735e659d4cbe95b77744861fba0fa35a116e1e25f5358ddb1e5.mp3",
+          "contentHash": "0002d63b68c07798d6855e723514c29414dd7bbbafe5c1fd38223905f8925038",
+          "byteSize": 57216
+        }
+      ]
+    },
+    "l04/s39/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "boiler",
+          "file": "1c3ea5264b7c88a2b7be5870ade0eff13c085ebe4bb917b595ba7430fe66fb95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c3ea5264b7c88a2b7be5870ade0eff13c085ebe4bb917b595ba7430fe66fb95.mp3",
+          "contentHash": "9944b589c786c8db76f1e85ee744f970184a1d3c049908ce365f23ff9771783a",
+          "byteSize": 19584
+        },
+        {
+          "text": "relevant",
+          "file": "dfe5fe08c2abfd14b10b78b5d1558a8489833db0a5938a42e4cb183d16121f18.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dfe5fe08c2abfd14b10b78b5d1558a8489833db0a5938a42e4cb183d16121f18.mp3",
+          "contentHash": "b7453ddeb24f53537fb731888d3f2619718c491cd840eb4a0156c8f8cae91b09",
+          "byteSize": 34560
+        },
+        {
+          "text": "bottles",
+          "file": "89f87b64a8b362e7e53d4afcc545b8df9d69f1a4907eb0e4b18bfcc6760dc227.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/89f87b64a8b362e7e53d4afcc545b8df9d69f1a4907eb0e4b18bfcc6760dc227.mp3",
+          "contentHash": "875188130bdf49832cb78ba8c3ed3b7b32aee52cc490ef3d3567023c42b66857",
+          "byteSize": 20352
+        },
+        {
+          "text": "car park",
+          "file": "e945f93d7d1f1dafe07cb98c466d870dcf95a0a78140c085d51b91faa4359bca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e945f93d7d1f1dafe07cb98c466d870dcf95a0a78140c085d51b91faa4359bca.mp3",
+          "contentHash": "3db7d6cd35d9287035f9c3dca32081a0988bfe76eaa1eb5166d9a5bad6bbe5d6",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l04/s39/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There aren't any boilers.",
+          "file": "56219ad8d55c0ee4910d601942fe42d508fa104cc8f1704cc52c5d15d01c5d06.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56219ad8d55c0ee4910d601942fe42d508fa104cc8f1704cc52c5d15d01c5d06.mp3",
+          "contentHash": "38ddcaa7e7b30eea11dc79c11c2769885154bee9808420e5abdfbc2e622fcf22",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s39/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a boiler.",
+          "file": "96bddcda52c516dfcbaf620671134734e6ffa2a0e7b95faf5c8cb5531f39c872.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/96bddcda52c516dfcbaf620671134734e6ffa2a0e7b95faf5c8cb5531f39c872.mp3",
+          "contentHash": "1fdc58e6d1f6fe77aff4a5e7215a67147cf8a4f53fbd753c1c0c1cd3e5efcf36",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s39/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a boiler?",
+          "file": "628005ceaf55863600d28f939fc0b6712526d051a960c5d02ab502bf2b73ea71.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/628005ceaf55863600d28f939fc0b6712526d051a960c5d02ab502bf2b73ea71.mp3",
+          "contentHash": "0acd7028ea639e2f8b34d0fb4e24c1906cf525bd6a289186e572c6ea53c1c08b",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s39/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bottles are in the bag.",
+          "file": "43318aed7d99e283b7050279a77d6211761080a827806c806c80cea1e1f1d3d4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43318aed7d99e283b7050279a77d6211761080a827806c806c80cea1e1f1d3d4.mp3",
+          "contentHash": "f3e569c482ef6d4b997ae1e4df98dc97e1b81889b6431be57b9fe187caeefc9a",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s39/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "That is a boiler.",
+          "file": "3bf0e1252c52d1ba7953463f7fda7bdb8885d9bc892018d86d6722d04ee2756f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3bf0e1252c52d1ba7953463f7fda7bdb8885d9bc892018d86d6722d04ee2756f.mp3",
+          "contentHash": "d4107343d1c2395163f397eab5ce7b3f01e5e0a2526af291a30189bbaf65f646",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s39/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "boiler",
+          "file": "ab0252d0131df4387c00645c80c272d3c7d96fc3abee78e53a0a8c8f3d3f035c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab0252d0131df4387c00645c80c272d3c7d96fc3abee78e53a0a8c8f3d3f035c.mp3",
+          "contentHash": "55cbe02e9bb74f72c5119a3bf1c3bbc9970fe59e76d894ee90d5cf603f57d7b5",
+          "byteSize": 22656
+        },
+        {
+          "text": "relevant",
+          "file": "ca3ebecfb076767a9ecfbce60fddb37b722da3bb1f28172ee64eb8652c0e5af8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca3ebecfb076767a9ecfbce60fddb37b722da3bb1f28172ee64eb8652c0e5af8.mp3",
+          "contentHash": "3f858cc3805ab64721240d8c65bd993b4f3149ae78173969b97365403c8349f4",
+          "byteSize": 15744
+        },
+        {
+          "text": "bottles",
+          "file": "ce80f7940d6b5a49c45cd7dbef5e2a344b74acaac73c4dc3332f9389890fb3f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce80f7940d6b5a49c45cd7dbef5e2a344b74acaac73c4dc3332f9389890fb3f0.mp3",
+          "contentHash": "5ee0888554b28b0347ce741d8784b73d78e3c83f3499adc26894109c68bb687b",
+          "byteSize": 18816
+        },
+        {
+          "text": "car park",
+          "file": "37d1e87f3329b68c9630dfe1fae07d3363e58bf3d1d16f72ed138d6e17c60be0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/37d1e87f3329b68c9630dfe1fae07d3363e58bf3d1d16f72ed138d6e17c60be0.mp3",
+          "contentHash": "0bea77bf63dd904271cdb825f53b65c5c6b550e6e6990915ab368e90aadfb59f",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l04/s39/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There isn't a boiler.",
+          "file": "46048342fce6b03a5a8788f1a6057e540e7b1c6772aa1cb4b13dd7676c967af7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46048342fce6b03a5a8788f1a6057e540e7b1c6772aa1cb4b13dd7676c967af7.mp3",
+          "contentHash": "649375f76abb1912e6e9cf64a9268a554b5188a80caeefdd167fab22af4ca17b",
+          "byteSize": 27648
+        }
+      ]
     }
   },
   "settings": {

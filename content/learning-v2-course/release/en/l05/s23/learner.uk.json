@@ -1,0 +1,995 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Двоє знайомих перебувають у шлюбі. Скажіть «Вони одружені» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двоє знайомих перебувають у шлюбі. Скажіть «Вони одружені» без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are married.",
+        "localizedMeaning": {
+          "ru": "Двое знакомых состоят в браке. Скажите «Они женаты» без сокращения",
+          "uk": "Двоє знайомих перебувають у шлюбі. Скажіть «Вони одружені» без скорочення"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "married"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Двоє знайомих перебувають у шлюбі. Скажіть «Вони одружені» без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are married.`",
+              "uk": "тут потрібно `are` — `They are married.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-23:i02:r1",
+          "text": "camera"
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i02:r2",
+          "text": "tablet"
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i02:r3",
+          "text": "helmet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:i02:audio",
+          "transcript": "camera"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-23:i02:r1",
+            "targetText": "camera",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i02:r2",
+            "targetText": "tablet",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i02:r3",
+            "targetText": "helmet",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `camera`, а в этом варианте — `tablet`.",
+              "uk": "У записі перше слово — `camera`, а в цьому варіанті — `tablet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `camera`, а в этом варианте — `helmet`.",
+              "uk": "У записі перше слово — `camera`, а в цьому варіанті — `helmet`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть камеру для знімання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-23:i03:r1",
+          "text": "camera"
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i03:r2",
+          "text": "charger"
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i03:r3",
+          "text": "helmet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть камеру для знімання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите камеру для съёмки",
+          "uk": "Назвіть камеру для знімання"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-23:i03:r1",
+            "text": "camera"
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i03:r2",
+            "text": "charger"
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i03:r3",
+            "text": "helmet"
+          }
+        ],
+        "testedDimension": "Назвіть камеру для знімання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть камеру для знімання",
+            "feedbackByLocale": {
+              "ru": "`charger` — зарядка; камера — `camera`.",
+              "uk": "`charger` — зарядка; камера — `camera`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть камеру для знімання",
+            "feedbackByLocale": {
+              "ru": "`helmet` — шлем; камера — `camera`.",
+              "uk": "`helmet` — шолом; камера — `camera`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями; single тут про стосунки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями; single тут про стосунки",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-23:i04:p1",
+            "target": "camera",
+            "meaningByLocale": {
+              "ru": "камера для съёмки",
+              "uk": "камера для знімання"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-23:i04:p2",
+            "target": "married",
+            "meaningByLocale": {
+              "ru": "состоят в браке",
+              "uk": "перебувають у шлюбі"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-23:i04:p3",
+            "target": "single",
+            "meaningByLocale": {
+              "ru": "не в отношениях",
+              "uk": "не у стосунках"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-23:i04:p4",
+            "target": "different",
+            "meaningByLocale": {
+              "ru": "разные",
+              "uk": "різні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "camera",
+          "married",
+          "single",
+          "different"
+        ],
+        "rightColumn": [
+          "камера для знімання",
+          "перебувають у шлюбі",
+          "не у стосунках",
+          "різні"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:i05:audio",
+          "transcript": "Your camera is on the table."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Your camera is on the table.",
+        "orderedTokens": [
+          "Your",
+          "camera",
+          "is",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Your camera is on the table.`",
+              "uk": "тут потрібно `is` — `Your camera is on the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Квитки належать вам і другові. Скажіть «Квитки наші»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Квитки належать вам і другові. Скажіть «Квитки наші»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tickets are ours.",
+        "localizedMeaning": {
+          "ru": "Билеты принадлежат вам и другу. Скажите «Билеты наши»",
+          "uk": "Квитки належать вам і другові. Скажіть «Квитки наші»"
+        },
+        "orderedTokens": [
+          "The",
+          "tickets",
+          "are",
+          "ours"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Квитки належать вам і другові. Скажіть «Квитки наші»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The tickets are ours.`",
+              "uk": "тут потрібно `are` — `The tickets are ours.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У розмові про стосунки скажіть «Я не у стосунках» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "У розмові про стосунки скажіть «Я не у стосунках» без скорочення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:i07:audio",
+          "transcript": "I am single."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am single.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Шолом належить подрузі. Скажіть «Шолом її»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-23:i08:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i08:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i08:r3",
+          "text": "ours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шолом належить подрузі. Скажіть «Шолом її»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Шлем принадлежит подруге. Скажите «Шлем её»",
+          "uk": "Шолом належить подрузі. Скажіть «Шолом її»"
+        },
+        "gappedTargetPhrase": "The helmet is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-23:i08:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i08:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i08:r3",
+            "text": "ours"
+          }
+        ],
+        "testedDimension": "Шолом належить подрузі. Скажіть «Шолом її»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Шолом належить подрузі. Скажіть «Шолом її»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `hers`.",
+              "uk": "Без назви речі потрібна форма `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Шолом належить подрузі. Скажіть «Шолом її»",
+            "feedbackByLocale": {
+              "ru": "`ours` — наш; её — `hers`.",
+              "uk": "`ours` — наш; її — `hers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що друг зауважує про квитки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-23:i09:r1",
+          "text": "The tickets are different."
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i09:r2",
+          "text": "The tickets are here."
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i09:r3",
+          "text": "The tickets are ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що друг зауважує про квитки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:i09:audio",
+          "transcript": "The tickets are different."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-23:i09:r1",
+            "targetText": "The tickets are different.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i09:r2",
+            "targetText": "The tickets are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i09:r3",
+            "targetText": "The tickets are ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що друг зауважує про квитки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `different`, а в этом варианте — `here`.",
+              "uk": "У записі останнє слово — `different`, а в цьому варіанті — `here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що друг зауважує про квитки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `different`, а в этом варианте — `ours`.",
+              "uk": "У записі останнє слово — `different`, а в цьому варіанті — `ours`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-23:i10:p1",
+            "target": "camera",
+            "meaningByLocale": {
+              "ru": "камера",
+              "uk": "камера"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-23:i10:p2",
+            "target": "tickets",
+            "meaningByLocale": {
+              "ru": "билеты",
+              "uk": "квитки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-23:i10:p3",
+            "target": "cheese",
+            "meaningByLocale": {
+              "ru": "сыр",
+              "uk": "сир"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-23:i10:p4",
+            "target": "helmet",
+            "meaningByLocale": {
+              "ru": "шлем",
+              "uk": "шолом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "camera",
+          "tickets",
+          "cheese",
+          "helmet"
+        ],
+        "rightColumn": [
+          "камера",
+          "квитки",
+          "сир",
+          "шолом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:i11:audio",
+          "transcript": "Where is my camera?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is my camera?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "my",
+          "camera"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сир закінчився. Скажіть «Сиру немає»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сир закінчився. Скажіть «Сиру немає»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is no cheese.",
+        "localizedMeaning": {
+          "ru": "Сыр закончился. Скажите «Сыра нет»",
+          "uk": "Сир закінчився. Скажіть «Сиру немає»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "no",
+          "cheese"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Сир закінчився. Скажіть «Сиру немає»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is no cheese.`",
+              "uk": "тут потрібно `is` — `There is no cheese.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Камера друга у вас. Скажіть йому «Твоя камера в мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:i13:audio"
+      ],
+      "accessibilityLabel": "Камера друга у вас. Скажіть йому «Твоя камера в мене»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:i13:audio",
+          "transcript": "I have your camera."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your camera.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Камера належить друзям. Скажіть «Камера їхня»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-23:i14:r1",
+          "text": "theirs"
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i14:r2",
+          "text": "their"
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i14:r3",
+          "text": "mine"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Камера належить друзям. Скажіть «Камера їхня»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Камера принадлежит друзьям. Скажите «Камера их»",
+          "uk": "Камера належить друзям. Скажіть «Камера їхня»"
+        },
+        "gappedTargetPhrase": "The camera is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-23:i14:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i14:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i14:r3",
+            "text": "mine"
+          }
+        ],
+        "testedDimension": "Камера належить друзям. Скажіть «Камера їхня»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i14:r2",
+            "correct": false,
+            "testedDimension": "Камера належить друзям. Скажіть «Камера їхня»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `theirs`.",
+              "uk": "Без назви речі потрібна форма `theirs`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i14:r3",
+            "correct": false,
+            "testedDimension": "Камера належить друзям. Скажіть «Камера їхня»",
+            "feedbackByLocale": {
+              "ru": "`mine` — моя; их — `theirs`.",
+              "uk": "`mine` — моя; їхня — `theirs`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить камера",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-23:i15:r1",
+          "text": "The camera is yours."
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i15:r2",
+          "text": "The camera is mine."
+        },
+        {
+          "responseId": "en:lesson-05:session-23:i15:r3",
+          "text": "The camera is his."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить камера",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:i15:audio",
+          "transcript": "The camera is yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-23:i15:r1",
+            "targetText": "The camera is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i15:r2",
+            "targetText": "The camera is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i15:r3",
+            "targetText": "The camera is his.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить камера",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-23:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить камера",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `his`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `his`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-23:i16:p1",
+            "target": "camera",
+            "meaningByLocale": {
+              "ru": "камера",
+              "uk": "камера"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-23:i16:p2",
+            "target": "tickets",
+            "meaningByLocale": {
+              "ru": "билеты",
+              "uk": "квитки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-23:i16:p3",
+            "target": "cheese",
+            "meaningByLocale": {
+              "ru": "сыр",
+              "uk": "сир"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-23:i16:p4",
+            "target": "helmet",
+            "meaningByLocale": {
+              "ru": "шлем",
+              "uk": "шолом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "camera",
+          "tickets",
+          "cheese",
+          "helmet"
+        ],
+        "rightColumn": [
+          "камера",
+          "квитки",
+          "сир",
+          "шолом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг знайшов вашу камеру. Уточніть «Камера моя»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Друг знайшов вашу камеру. Уточніть «Камера моя»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:i17:audio",
+          "transcript": "The camera is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The camera is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "21d34cf64284896c9e8a3801e48808040f1b2694adec5ebca4d3e74d0d9dfb27"
+}

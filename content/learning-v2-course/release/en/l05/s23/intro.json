@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "уточнить владельца вещей и описать людей",
+    "uk": "уточнити власника речей і описати людей"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто берёт камеру",
+        "uk": "Хто бере камеру"
+      },
+      "bodyByLocale": {
+        "ru": "`camera` — «камера, фотоаппарат». Здесь это устройство для съёмки. `The camera is mine` — «Камера моя». `Your camera is on the table` — «Твоя камера на столе». `my camera` — с названием вещи; `mine` — без повторения названия. Камера готова снимать поездку, но пока снимается только со стола.",
+        "uk": "`camera` — «камера, фотоапарат». Тут це пристрій для знімання. `The camera is mine` — «Камера моя». `Your camera is on the table` — «Твоя камера на столі». `my camera` — з назвою речі; `mine` — без повторення назви. Камера готова знімати поїздку, але поки її лише знімають зі столу."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Камера моя».",
+          "uk": "Скажіть «Камера моя»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-23:intro1:r1",
+              "text": "The camera is mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro1:r2",
+              "text": "The camera is my."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro1:r3",
+              "text": "The camera is yours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-23:intro1:r1",
+              "text": "The camera is mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro1:r2",
+              "text": "The camera is my."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro1:r3",
+              "text": "The camera is yours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Камера моя».",
+          "uk": "Скажіть «Камера моя»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Люди и различия",
+        "uk": "Люди й відмінності"
+      },
+      "bodyByLocale": {
+        "ru": "`married` — «состоит в браке»: `They are married` — «Они женаты / состоят в браке». `single` в разговоре об отношениях — «без партнёра»: `I am single` — «Я не в отношениях». В анкетах `single` может означать «не состоит в браке». `different` — «разные»: `The tickets are different` — «Билеты разные». Само слово не объясняет, чем именно они отличаются.",
+        "uk": "`married` — «перебуває у шлюбі»: `They are married` — «Вони одружені / перебувають у шлюбі». `single` у розмові про стосунки — «без партнера»: `I am single` — «Я не у стосунках». В анкетах `single` може означати «не перебуває у шлюбі». `different` — «різні»: `The tickets are different` — «Квитки різні». Саме слово не пояснює, чим вони відрізняються."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Билеты отличаются друг от друга. Скажите «Билеты разные».",
+          "uk": "Квитки відрізняються один від одного. Скажіть «Квитки різні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-23:intro2:r1",
+              "text": "The tickets are different."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro2:r2",
+              "text": "The tickets is different."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro2:r3",
+              "text": "The tickets are married."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-23:intro2:r1",
+              "text": "The tickets are different."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro2:r2",
+              "text": "The tickets is different."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro2:r3",
+              "text": "The tickets are married."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Билеты отличаются друг от друга. Скажите «Билеты разные».",
+          "uk": "Квитки відрізняються один від одного. Скажіть «Квитки різні»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Билеты, сыр и шлем",
+        "uk": "Квитки, сир і шолом"
+      },
+      "bodyByLocale": {
+        "ru": "`tickets` — «билеты», `cheese` — «сыр», `helmet` — «шлем». `The tickets are ours` — «Билеты наши». `The helmet is hers` — «Шлем её». `There is no cheese` — «Сыра нет»: здесь `cheese` не считаем поштучно, поэтому `is`. `Where is my camera?` — «Где моя камера?»",
+        "uk": "`tickets` — «квитки», `cheese` — «сир», `helmet` — «шолом». `The tickets are ours` — «Квитки наші». `The helmet is hers` — «Шолом її». `There is no cheese` — «Сиру немає»: тут `cheese` не рахуємо поштучно, тому `is`. `Where is my camera?` — «Де моя камера?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Шлем принадлежит подруге. Скажите «Шлем её».",
+          "uk": "Шолом належить подрузі. Скажіть «Шолом її»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-23:intro3:r1",
+              "text": "The helmet is hers."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro3:r2",
+              "text": "The helmet is her."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro3:r3",
+              "text": "The helmet is his."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-23:intro3:r1",
+              "text": "The helmet is hers."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro3:r2",
+              "text": "The helmet is her."
+            },
+            {
+              "responseId": "en:lesson-05:session-23:intro3:r3",
+              "text": "The helmet is his."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Шлем принадлежит подруге. Скажите «Шлем её».",
+          "uk": "Шолом належить подрузі. Скажіть «Шолом її»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "728d5d0b293a7376cb3b4365324481a503de70c4df5cbceae5a375c6c31cfcf3"
+}

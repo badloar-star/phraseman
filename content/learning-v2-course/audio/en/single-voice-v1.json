@@ -2259,11 +2259,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "I am ready.",
-          "file": "54de09c45d21fad39e0a1dbfd70463f20040f3ec9934d640c88d0c8e9bf79362.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/cafd51bb7859d65d640cf62f-ash.mp3",
-          "contentHash": "a30e22cb7c00fd48c2b74ae6f310b1005c494192d07bcded2d3ceaf140e7d5bc",
-          "byteSize": 21888
+          "text": "I am nervous.",
+          "file": "ce59b3944ee0497556a5a90f54348c95c8d161d08008afffedb9dde308635487.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce59b3944ee0497556a5a90f54348c95c8d161d08008afffedb9dde308635487.mp3",
+          "contentHash": "71371fbad9c47ccda74f2d3a7629bebccebc3df1d5f828c2a329fa1d83dd5748",
+          "byteSize": 38016
         }
       ]
     },
@@ -2271,11 +2271,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "I am not sure.",
-          "file": "9971d835cc3b27dbfb540e1469fe60fa8c55dad38a1efd2f2a792227d0c200e0.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/dca19910b3dec077aec8d3df-coral.mp3",
-          "contentHash": "5fb3c708e0a228c059bb7eb15335ac645a112c524682033a9f25032161fd7c01",
-          "byteSize": 25344
+          "text": "I am excited.",
+          "file": "098d1eaa9be0d4d17b2062b32cf975b4205297a8e18311cf2e9bdbb0f0f05bd9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/098d1eaa9be0d4d17b2062b32cf975b4205297a8e18311cf2e9bdbb0f0f05bd9.mp3",
+          "contentHash": "5d08b135f3ba9ea16a98693e4be5f2ffce58c26887d84ff40c5a8483c950d4b8",
+          "byteSize": 29184
         }
       ]
     },
@@ -2283,11 +2283,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "I am done.",
-          "file": "5227d6413c153c7633142b3dc9214148458ae21cfc7af4f2fbb5db6ba6ba4c87.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/60e3ded94a37d27c56e307ca-ash.mp3",
-          "contentHash": "f890711890a1cbd76be013ebf9403c305fe5f8e41bce280787dac15cd11ea47b",
-          "byteSize": 25344
+          "text": "I am thirsty.",
+          "file": "87e267d4395654c19b95ff462c5b2029ea475d5fd96713df6412a5f1a4e18a2e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/87e267d4395654c19b95ff462c5b2029ea475d5fd96713df6412a5f1a4e18a2e.mp3",
+          "contentHash": "d8b41da801cc4df96fad244176feca05a34e673fadaaf9e1a24f9c31c6d5308f",
+          "byteSize": 26880
         }
       ]
     },
@@ -2295,11 +2295,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "I am not lost .",
-          "file": "734c15506eff16c7fe615152133cc770efc52fa376db5fa7c6dccc22ce7f66a1.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/734c15506eff16c7fe615152133cc770efc52fa376db5fa7c6dccc22ce7f66a1.mp3",
-          "contentHash": "aab5dd5b2549dec182b265342b3c8a65012d5e18b38f34a07788f864a67ae28d",
-          "byteSize": 23040
+          "text": "calm",
+          "file": "4fbc712c772998d5edcf08b4c118b822eab7e1c16352319b0f83c10ec4516064.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2b4b2eadf7b2aece598d2f2a-nova.mp3",
+          "contentHash": "b67758908d5063c4e40ecef306c10cccd4dca3b1bcaa6390794809abaca2b5ec",
+          "byteSize": 17280
         }
       ]
     },
@@ -2307,11 +2307,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "tired",
-          "file": "00526eaff55e391d946d6fe4d2ecf627987d9ab8eba6266cf8d2513ff8fd49b7.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/c405760daf9bc32b76f4a57e-onyx.mp3",
-          "contentHash": "a9e766ba925cf1e1ced52bbb6ee3d27b65ea0b7cf09dd961b12ccee3a82401eb",
-          "byteSize": 22656
+          "text": "nervous",
+          "file": "09a379f11fffe4c70a956e6f349c411443c4b6da8ba88c63d728e27311fbaf67.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/fb3a7850111f293bfc97a5dd-onyx.mp3",
+          "contentHash": "e82af350fc2e3256a46ae1e7ed978d2860783493b3256ca26d373fcce1e7575c",
+          "byteSize": 31488
         }
       ]
     },
@@ -2319,15 +2319,63 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "I am tired.",
-          "file": "a6b5a0ad9bfefc27740fedf55534e8a486669e8cc822b4fca8fb8560904bad62.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f405fc9a481225d967d3cad0-ash.mp3",
-          "contentHash": "fa3f2d4d1ea5e89af14a2b5dbb914378993bc97ee9930211b1de75a8b2473eaa",
-          "byteSize": 31488
+          "text": "excited",
+          "file": "9a5c51aa4d2d6eb9c0ccb1d3bd559b20a997080e4480cab936436baef864c8e7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a5c51aa4d2d6eb9c0ccb1d3bd559b20a997080e4480cab936436baef864c8e7.mp3",
+          "contentHash": "679ffefc5a60adc86320d6cb97fbe4ce50b12c4573a9e993f62651bdda37d09f",
+          "byteSize": 37248
         }
       ]
     },
     "l01/s08/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "thirsty",
+          "file": "21ba584e222dcf9c3f0a850f425b7e6ddda9b1d7367074efb0782ef6b586e4c6.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/03f3ef306333f494f7a9a202-coral.mp3",
+          "contentHash": "83c6b04431c4242ea2fb3e9bb8cbce792a2cf85479d2a38d88b968d3d68c3784",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l01/s08/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I am calm.",
+          "file": "4b91bbe29c36f9579fc03c5c69084f5bb6f8beec8dae2d89b36a66bb645f7b31.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b91bbe29c36f9579fc03c5c69084f5bb6f8beec8dae2d89b36a66bb645f7b31.mp3",
+          "contentHash": "41942ac3ec45d3dd059419173cd3f1b2b09fa88e237f293620bc592a9b597fe4",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l01/s08/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "nervous",
+          "file": "38dc98421ca52ecbcd414d585a384f42dd1cdb3878d4cc6b1e5b5769ffbabf22.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/fb3a7850111f293bfc97a5dd-coral.mp3",
+          "contentHash": "a41130349a288d3e3c0796ec15c84fe4b81a06c42a690343fae9e7b33a42b1ea",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l01/s08/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I am excited.",
+          "file": "098d1eaa9be0d4d17b2062b32cf975b4205297a8e18311cf2e9bdbb0f0f05bd9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/098d1eaa9be0d4d17b2062b32cf975b4205297a8e18311cf2e9bdbb0f0f05bd9.mp3",
+          "contentHash": "5d08b135f3ba9ea16a98693e4be5f2ffce58c26887d84ff40c5a8483c950d4b8",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l01/s08/task/7": {
       "voice": "coral",
       "clips": [
         {
@@ -2339,84 +2387,15 @@
         }
       ]
     },
-    "l01/s08/task/4": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "I am not hungry.",
-          "file": "cdaf175b5c12ddc077b1ae4bf36030874255caf69c3180ad057c0c96b6e4ddc6.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/c1d575e00851feae657bf371-coral.mp3",
-          "contentHash": "a817f1c349036b8e2d35e1e0b1c508f1f357b24a96352ce87dde840a9a59ac7f",
-          "byteSize": 36480
-        }
-      ]
-    },
-    "l01/s08/task/5": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "ready",
-          "file": "6eac985e2602426c0ed8a1c18538c57ce48ac3766d636611479e30818aa4eeea.mp3",
-          "assetPath": "assets/audio/learning-v2/session1-production-v1/ready-coral.mp3",
-          "contentHash": "0b97657c3721fa999647c96257c58859cfabdfa4e8bfcccee16c09086f518b8d",
-          "byteSize": 17664
-        },
-        {
-          "text": "tired",
-          "file": "ce6af20320357450661b0fe2157ecf4d3a75e7b53a7f2fb920778ce5449dfe11.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/c405760daf9bc32b76f4a57e-coral.mp3",
-          "contentHash": "8c0c9db4be34fd894230ddbce298e3f8fbf94b5f694cd3453d8704ade4aa3e8e",
-          "byteSize": 31488
-        },
-        {
-          "text": "lost",
-          "file": "8755bab2d741a4811e09889187b5564fd4d9c0c96cb5cac6278386e41e718bbe.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/76f75e6129fe30135bd44d80-coral.mp3",
-          "contentHash": "95d1f1d06a8d90120358d5e7f0f84587df4da4f180eddabd5e628fa6601b6cbe",
-          "byteSize": 17280
-        },
-        {
-          "text": "hungry",
-          "file": "a06bf605906937db71cb85d882ee5a5e0c4c0089450a86c57b26df763c12d1c4.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/ca4176138ea4086faada5ec8-coral.mp3",
-          "contentHash": "c790227ca0472037dbac4a21142deadbfa3376980e7979c38c673798a525d342",
-          "byteSize": 21120
-        }
-      ]
-    },
-    "l01/s08/task/6": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "I am not hungry .",
-          "file": "999ce4df25cb9b8b8d86091848bf2d3f7e84a797780d6b823e268787d442a1b4.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/999ce4df25cb9b8b8d86091848bf2d3f7e84a797780d6b823e268787d442a1b4.mp3",
-          "contentHash": "ba351f8313f47753f4170334fa38a462f168a8dee2193c7e61bc821f912a4048",
-          "byteSize": 41856
-        }
-      ]
-    },
-    "l01/s08/task/7": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "I am not sure.",
-          "file": "9971d835cc3b27dbfb540e1469fe60fa8c55dad38a1efd2f2a792227d0c200e0.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/dca19910b3dec077aec8d3df-coral.mp3",
-          "contentHash": "5fb3c708e0a228c059bb7eb15335ac645a112c524682033a9f25032161fd7c01",
-          "byteSize": 25344
-        }
-      ]
-    },
     "l01/s08/task/8": {
       "voice": "ash",
       "clips": [
         {
-          "text": "free",
-          "file": "ab9ad714a52721df60693250ea73bf662730eeb279e341096800cb00e925c048.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/ad95d5fa651ba86d8923fe12-ash.mp3",
-          "contentHash": "0b200e7cdf203b64f996926c8a1ef5e158f0b3f298295ff1af478d3491815742",
-          "byteSize": 20352
+          "text": "I am not hungry.",
+          "file": "0f4a7b42e4e0a1fcf1b30bbea5d260cefbe0e2075b6cb383751785e73b9f09f2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c1d575e00851feae657bf371-ash.mp3",
+          "contentHash": "509501276e03363bb295a18f5e0d370904f2d083938425847d4db36e1b246848",
+          "byteSize": 36480
         }
       ]
     },
@@ -2424,11 +2403,32 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "I am free .",
-          "file": "0cdb4be0f2f82cb22033f727ae0c45e872b45b3c01407b7791b742a434e06bb2.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0cdb4be0f2f82cb22033f727ae0c45e872b45b3c01407b7791b742a434e06bb2.mp3",
-          "contentHash": "9b017e422d2e3b7d7691a5e1ad1bfd65026758ee96e18d5eceb72c24a4ced5a1",
-          "byteSize": 31488
+          "text": "ready",
+          "file": "2a1413c93a9cd479a988b6fd5a49a0f110be7e17130b16796f9caf60e03401ce.mp3",
+          "assetPath": "assets/audio/learning-v2/session1-production-v1/ready-nova.mp3",
+          "contentHash": "aa90c41484f00c63b538a5b9c2ac498ec64d31ce4e641c8b39703cebb4aa9742",
+          "byteSize": 12288
+        },
+        {
+          "text": "tired",
+          "file": "09c48e4af504cb09e571328494064bd733111136e237bace5a9b48b5a83c6c2d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c405760daf9bc32b76f4a57e-nova.mp3",
+          "contentHash": "9db52232c2a0cae0b98a978684cf0077d54a86f8b5172ba6d060f2ccfe830b4b",
+          "byteSize": 18048
+        },
+        {
+          "text": "lost",
+          "file": "839a867e6cfda88f1139ad84f192b0636a65182dd90c040143e9095f963ea717.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/76f75e6129fe30135bd44d80-nova.mp3",
+          "contentHash": "baef35d200c90a27da07e31efa8926375976a97f77c19e7453d4e64efc7523bd",
+          "byteSize": 26112
+        },
+        {
+          "text": "hungry",
+          "file": "b7e002cd393af75c142da762e3f0b6b15edc955c30b13b216d67be82989cffdd.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ca4176138ea4086faada5ec8-nova.mp3",
+          "contentHash": "d7320b11216cff6592d88a6a4f57d77b4c1b9e8b2c03cf4c8f2f26670c6edca1",
+          "byteSize": 15744
         }
       ]
     },
@@ -2436,11 +2436,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "I am ready.",
-          "file": "54de09c45d21fad39e0a1dbfd70463f20040f3ec9934d640c88d0c8e9bf79362.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/cafd51bb7859d65d640cf62f-ash.mp3",
-          "contentHash": "a30e22cb7c00fd48c2b74ae6f310b1005c494192d07bcded2d3ceaf140e7d5bc",
-          "byteSize": 21888
+          "text": "I am not hungry .",
+          "file": "ff592b7d3e77c20b2c8f0a2408c1d77ace543a31ae424f44c0a77b531fc3c9ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ff592b7d3e77c20b2c8f0a2408c1d77ace543a31ae424f44c0a77b531fc3c9ab.mp3",
+          "contentHash": "1aa5d989837f530aeeb0b459ab1efea1428c119222ea0e4420c3739c624d15d5",
+          "byteSize": 25344
         }
       ]
     },
@@ -2448,11 +2448,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "I am not new .",
-          "file": "de7447d25c21021b51ce15439990a0ca81e807b2d37d424bf10e79dd1e767597.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de7447d25c21021b51ce15439990a0ca81e807b2d37d424bf10e79dd1e767597.mp3",
-          "contentHash": "39542ecbc3f542834e4a1f5dbce9943fbaaf663b3f37b928ae07cd468eae8428",
-          "byteSize": 38016
+          "text": "I am not sure.",
+          "file": "07da02daedd08468bb29fdeff4b36cd86469201d89537c26e5b9cc301306eb9f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/dca19910b3dec077aec8d3df-ash.mp3",
+          "contentHash": "02f1e6374c882587c3431fefc68b38c2e0bcd7c19bcbb223a5b87222968cfe70",
+          "byteSize": 44544
         }
       ]
     },
@@ -2460,11 +2460,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "I am done.",
-          "file": "5227d6413c153c7633142b3dc9214148458ae21cfc7af4f2fbb5db6ba6ba4c87.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/60e3ded94a37d27c56e307ca-ash.mp3",
-          "contentHash": "f890711890a1cbd76be013ebf9403c305fe5f8e41bce280787dac15cd11ea47b",
-          "byteSize": 25344
+          "text": "thirsty",
+          "file": "60f780745a4ae648ded5058c581587fc6076b8e84521a27167fd7091c7b02c61.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/03f3ef306333f494f7a9a202-ash.mp3",
+          "contentHash": "d1569b6abf58e0cb5cf5b9e44eb7f76dae186aba5a27843d7b415031a919007e",
+          "byteSize": 26112
         }
       ]
     },
@@ -2472,32 +2472,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "sure",
-          "file": "17a7581cd9059261b0c095e907bfc6ba6ad470e9d54d50f3c599ff060d096ec9.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/c0cafcf0e2d6a236aca78b03-onyx.mp3",
-          "contentHash": "09b210cd37c29ecb2ea2a5a9d92ba17bbcc013187178807e882c64f4cfdcdcc3",
-          "byteSize": 25344
-        },
-        {
-          "text": "free",
-          "file": "631842fcd5dab2f92f7ff7700ada0930c683bd2dde271951ce7af3e40df9e637.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/ad95d5fa651ba86d8923fe12-onyx.mp3",
-          "contentHash": "7d672ded3050eecbb24e49cb87687e30f4872a4a357e7dc7bef37e482f49a122",
-          "byteSize": 41856
-        },
-        {
-          "text": "done",
-          "file": "f0dc70518d65ee936d6bda377b5866f0effdc97b4454d911ed3afcdadd09fb42.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/a4c3ed04a95a3da14a9d235c-onyx.mp3",
-          "contentHash": "6b7ef399f2b220e335c5c212e0a875296b9c7503a3a0da2e3f731c473af1857f",
-          "byteSize": 18048
-        },
-        {
-          "text": "new",
-          "file": "2f5965667994729e0fe53c188cbbb15100d7a0bae5d9da4beecedd27d69d0aa4.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/11507a0e2f5e69d5dfa40a62-onyx.mp3",
-          "contentHash": "a13b05bf2dac58730ec99bb895c0822627e7514820dc6aef6c9cc1581cd1b32e",
-          "byteSize": 38784
+          "text": "I am free .",
+          "file": "3e167d10a25eeaf5ac5a0976b37811d7f0171c85aac9dab737d883151dd2e19a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3e167d10a25eeaf5ac5a0976b37811d7f0171c85aac9dab737d883151dd2e19a.mp3",
+          "contentHash": "c4fd3071fa33d36411ae19816b49012a06cd04dca489522bde5ca69cd43f3f20",
+          "byteSize": 26112
         }
       ]
     },
@@ -2505,11 +2484,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "I am tired.",
-          "file": "cfcef11302e32641a7070d7cb2207903d9b045973fe9d707cb90532d73c4124d.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f405fc9a481225d967d3cad0-coral.mp3",
-          "contentHash": "d696f8e895f4a2a3919c7c16731cb037f9970866c7b3035be0bdd1e31d6bc779",
-          "byteSize": 33792
+          "text": "I am ready.",
+          "file": "c64860ba75fdd0d52510fb228b800c4ee38877d3f6485cead47b6e24f0850694.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/cafd51bb7859d65d640cf62f-coral.mp3",
+          "contentHash": "b9173fdd1bdac37660bbaecc4b18e43bcdf69306217b1221f06d1ea2938c8164",
+          "byteSize": 28416
         }
       ]
     },
@@ -2517,11 +2496,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "I am not hungry.",
-          "file": "cdaf175b5c12ddc077b1ae4bf36030874255caf69c3180ad057c0c96b6e4ddc6.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/c1d575e00851feae657bf371-coral.mp3",
-          "contentHash": "a817f1c349036b8e2d35e1e0b1c508f1f357b24a96352ce87dde840a9a59ac7f",
-          "byteSize": 36480
+          "text": "I am not new .",
+          "file": "73671691ce507a3219f5fcd79c9341dac62507575eeb838bd39280ebbde8a751.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/73671691ce507a3219f5fcd79c9341dac62507575eeb838bd39280ebbde8a751.mp3",
+          "contentHash": "62c3a116d11c5f2023f50c7701ed6e032f11505da1b8866c9b50f7bded9be930",
+          "byteSize": 26880
         }
       ]
     },
@@ -2529,11 +2508,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "I am free.",
-          "file": "ed26332b8d1db6f4a6e5c7851003fb889a1c231998a2bbc01269f8e791dd9a3b.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ed26332b8d1db6f4a6e5c7851003fb889a1c231998a2bbc01269f8e791dd9a3b.mp3",
-          "contentHash": "b9fb9c89dc909e79752af1ebd9925676a92658c15d8fb6af11d07e38ec5456bd",
-          "byteSize": 38016
+          "text": "I am done.",
+          "file": "a6dd6f85aa2f7b8060f5b06fb0906ccf3380c3cf3ae4ee60f11255a41968a670.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/60e3ded94a37d27c56e307ca-nova.mp3",
+          "contentHash": "711cd1af0bde7e097ea6c77a291e62fe5e83b8425a6c5a528a97e1968b4905d0",
+          "byteSize": 29184
         }
       ]
     },
@@ -2541,11 +2520,32 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "I am ready.",
-          "file": "8711f21f7a7b5ab4910a08f9bacfda75ffd2b90a0a40f7432cca622058428eb4.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/cafd51bb7859d65d640cf62f-nova.mp3",
-          "contentHash": "b43e023de0566ae747c2ec5b9c8964f110965307146ff40c7701fa7f37118975",
-          "byteSize": 30720
+          "text": "sure",
+          "file": "4ea8b85ad8ced6c2f321141288735ab9a1b3bff2aca21b087b32c9c0996d4226.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c0cafcf0e2d6a236aca78b03-nova.mp3",
+          "contentHash": "56369d5829d26a6b7dd885d69eac81249fcf29487316121c33b1d660c86fdcb1",
+          "byteSize": 19584
+        },
+        {
+          "text": "free",
+          "file": "f54c852e8c72172aed4f31fca3ed557d738b942b2851a1d6f3909a535ad2fd8a.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ad95d5fa651ba86d8923fe12-nova.mp3",
+          "contentHash": "feddc6163394eda8057fb62d7e7f545e850b6357b0fbe49e45aee029d5b20d5f",
+          "byteSize": 14976
+        },
+        {
+          "text": "done",
+          "file": "4f42101f5310c9b651cf2cf0d94a7337ceb8f08677a3165b8e73df5904c5f760.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a4c3ed04a95a3da14a9d235c-nova.mp3",
+          "contentHash": "67b840ba90e4b47e6583e3c3e159e495145e69d3deac5874ba6b9605e4240056",
+          "byteSize": 14208
+        },
+        {
+          "text": "new",
+          "file": "bb0a3d047cb8c89e51064d5f79f960ce6c3cd00031de47e389b14d678950f1ab.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/11507a0e2f5e69d5dfa40a62-nova.mp3",
+          "contentHash": "9861afdd345410adbbf9e7a86218d9788118aff659dbfb00d3e7eeb074bbbf59",
+          "byteSize": 32256
         }
       ]
     },
@@ -2553,11 +2553,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "I am not lost.",
-          "file": "1a3534aa0bfc3a7e6abe40c1b5c82be013608c20811dac928d39a9369e18ea36.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a3534aa0bfc3a7e6abe40c1b5c82be013608c20811dac928d39a9369e18ea36.mp3",
-          "contentHash": "322ecfaf63b9cb8721fb31d1e413edd09d4c92cea6c3ac69e4479870bf03884a",
-          "byteSize": 35712
+          "text": "I am tired.",
+          "file": "ea956c5c5797a56493080797e08e7beaa72b2d3105f63735e19bd6d6729df690.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f405fc9a481225d967d3cad0-onyx.mp3",
+          "contentHash": "c624450481cadb7aba858f4af8c4fe2a41ba059d940deaf109aeaf8d1c22ed86",
+          "byteSize": 28416
         }
       ]
     },
@@ -2577,11 +2577,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "I am done.",
-          "file": "5227d6413c153c7633142b3dc9214148458ae21cfc7af4f2fbb5db6ba6ba4c87.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/60e3ded94a37d27c56e307ca-ash.mp3",
-          "contentHash": "f890711890a1cbd76be013ebf9403c305fe5f8e41bce280787dac15cd11ea47b",
-          "byteSize": 25344
+          "text": "I am free.",
+          "file": "b75d9f5eee3813f09aa324751f73e8ee9255266287608c35bb2be7c771a76ccd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b75d9f5eee3813f09aa324751f73e8ee9255266287608c35bb2be7c771a76ccd.mp3",
+          "contentHash": "6def354f7cbae558aa0287df70f018e20444dfd2a8b59b132edea4b49ec00d05",
+          "byteSize": 41088
         }
       ]
     },
@@ -133825,6 +133825,54 @@
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1b64d027b4bb68a79af6dde5f8e367b09206ef17ec54fcc181364b40133d106d.mp3",
           "contentHash": "46106cae23feacfdec5f46aec848676fca346bf336975599200e6957418a63f7",
           "byteSize": 29952
+        }
+      ]
+    },
+    "l01/s08/task/21": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am ready.",
+          "file": "54de09c45d21fad39e0a1dbfd70463f20040f3ec9934d640c88d0c8e9bf79362.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/cafd51bb7859d65d640cf62f-ash.mp3",
+          "contentHash": "a30e22cb7c00fd48c2b74ae6f310b1005c494192d07bcded2d3ceaf140e7d5bc",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l01/s08/task/22": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I am not lost.",
+          "file": "1a3534aa0bfc3a7e6abe40c1b5c82be013608c20811dac928d39a9369e18ea36.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a3534aa0bfc3a7e6abe40c1b5c82be013608c20811dac928d39a9369e18ea36.mp3",
+          "contentHash": "322ecfaf63b9cb8721fb31d1e413edd09d4c92cea6c3ac69e4479870bf03884a",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l01/s08/task/23": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am calm.",
+          "file": "9cce0ac416ab60cd30814724d784bfb7c5cdba81f48151311fe50f1624dd2839.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9cce0ac416ab60cd30814724d784bfb7c5cdba81f48151311fe50f1624dd2839.mp3",
+          "contentHash": "562e2c933e45369dd7efe1d3a4382c7e3b46bc89dd203c45be9e0b5d660decbc",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l01/s08/task/24": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I am done.",
+          "file": "d1691a11a2814f00daadf8c488b50e7077a2bbdff2f80193aab45ff8da73f852.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/60e3ded94a37d27c56e307ca-coral.mp3",
+          "contentHash": "253d561cedca1960167a427159fe77fe3662af5d0dc535552f087604bc634cc8",
+          "byteSize": 26880
         }
       ]
     }

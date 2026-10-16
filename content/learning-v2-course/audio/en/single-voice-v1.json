@@ -81067,6 +81067,309 @@
           "byteSize": 36480
         }
       ]
+    },
+    "l05/s44/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose bicycle is this?",
+          "file": "9647b5caa530b4ac105b4135de17a95ed344864747ec6ad4d4605c8dde26040c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9647b5caa530b4ac105b4135de17a95ed344864747ec6ad4d4605c8dde26040c.mp3",
+          "contentHash": "9b315d45639d5f70c4bf441355fed2c979e9d77589eb734efb04cd758b8115d3",
+          "byteSize": 55680
+        }
+      ]
+    },
+    "l05/s44/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "You are curious.",
+          "file": "bf3ae70fdaddbe914ae52b4307d6eb362a6c96042b47714ce487960a2be3ba7a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf3ae70fdaddbe914ae52b4307d6eb362a6c96042b47714ce487960a2be3ba7a.mp3",
+          "contentHash": "07781adb45b842d306ccd3afbd9dd064546319cdf0f4ec1c600b11963605129f",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s44/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where are the hotels?",
+          "file": "9a3861f5f92b07bc741185698f19c529e07870afdd9dedc2df6888f876df8033.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a3861f5f92b07bc741185698f19c529e07870afdd9dedc2df6888f876df8033.mp3",
+          "contentHash": "94c6059f375a90076c9c24d65a50f498fb79cab28220c38efb32ae45b5231094",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l05/s44/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "You are curious.",
+          "file": "691efd3f1b44d368bf697ff4f3211bc954dedf4bfaf6887f52290d245564fb64.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/691efd3f1b44d368bf697ff4f3211bc954dedf4bfaf6887f52290d245564fb64.mp3",
+          "contentHash": "7cd92d21106ab759b2ce00a852f18626c09c6c4108cbfaa1290d6bdaba712fba",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s44/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bicycle",
+          "file": "5126bc2ccf146ab82fc1c073d5378b2b5d27f96866ceb20748a993a3c3a84ac0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-coral.mp3",
+          "contentHash": "9f3a16e7915e29be32753cebf0cd13925a37d6368881451b6906d011fdf863b8",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l05/s44/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bicycle",
+          "file": "5126bc2ccf146ab82fc1c073d5378b2b5d27f96866ceb20748a993a3c3a84ac0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-coral.mp3",
+          "contentHash": "9f3a16e7915e29be32753cebf0cd13925a37d6368881451b6906d011fdf863b8",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l05/s44/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bicycle",
+          "file": "ab4447d4d0cf07a4a6b3b07d6b5fca46793a2c68d767b80eaced5c002f618914.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-ash.mp3",
+          "contentHash": "f8a0735989991649142df0b5993c4f166cddbf59186437ec720f1db32d823c3f",
+          "byteSize": 17280
+        },
+        {
+          "text": "sunglasses",
+          "file": "381f4495dea8dbdce3d623f8624f041b5da174d63f02402429334085630444d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/381f4495dea8dbdce3d623f8624f041b5da174d63f02402429334085630444d2.mp3",
+          "contentHash": "4a6cbf2d5c85b32aac4ca5ee8b37be1982656a339fcd68e153384a94fa5b1997",
+          "byteSize": 33792
+        },
+        {
+          "text": "hotels",
+          "file": "46e9235c9a1fbdbde043e2b242bbcdf0856713bec03fe2be28a3764833951d1a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46e9235c9a1fbdbde043e2b242bbcdf0856713bec03fe2be28a3764833951d1a.mp3",
+          "contentHash": "3926fb31061fcf78cba8bed5a11d303dd38b8bdf1afeb834bfbf1a8d8396a0aa",
+          "byteSize": 40320
+        },
+        {
+          "text": "freezer",
+          "file": "38361b8ece80176b90fd8387d5e00adbe689d85e8d405725da0f25b4bc0cdf64.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38361b8ece80176b90fd8387d5e00adbe689d85e8d405725da0f25b4bc0cdf64.mp3",
+          "contentHash": "863f7715210c981198cfddafd25c052c076a659fcc47a4e753322c7275b3def0",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s44/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose bicycle is this?",
+          "file": "9647b5caa530b4ac105b4135de17a95ed344864747ec6ad4d4605c8dde26040c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9647b5caa530b4ac105b4135de17a95ed344864747ec6ad4d4605c8dde26040c.mp3",
+          "contentHash": "9b315d45639d5f70c4bf441355fed2c979e9d77589eb734efb04cd758b8115d3",
+          "byteSize": 55680
+        }
+      ]
+    },
+    "l05/s44/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where are the hotels?",
+          "file": "9a3861f5f92b07bc741185698f19c529e07870afdd9dedc2df6888f876df8033.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a3861f5f92b07bc741185698f19c529e07870afdd9dedc2df6888f876df8033.mp3",
+          "contentHash": "94c6059f375a90076c9c24d65a50f498fb79cab28220c38efb32ae45b5231094",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l05/s44/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bicycle is mine.",
+          "file": "5ff0b89aaed1e06a667d75fccd989d8497d51df9c6343a84920584b82089c261.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ff0b89aaed1e06a667d75fccd989d8497d51df9c6343a84920584b82089c261.mp3",
+          "contentHash": "8c94b21fd3b44a20e76f7de1cd290070d84050281f0ace50052d214ed6f52404",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s44/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose sunglasses are these?",
+          "file": "9639659701f51fe8e7e6e7246982483b229e92667a2e067da10f43f0611f7c77.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9639659701f51fe8e7e6e7246982483b229e92667a2e067da10f43f0611f7c77.mp3",
+          "contentHash": "391320ebb4e7828e9bff785b536d74cd0f6a42bee37080cc989225b8302ac5cc",
+          "byteSize": 59520
+        }
+      ]
+    },
+    "l05/s44/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is Anna's bicycle.",
+          "file": "b1e878fa0933ed5c3ec9496a0961f2a64b19a628f6f5d6c3078b226d775e6103.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b1e878fa0933ed5c3ec9496a0961f2a64b19a628f6f5d6c3078b226d775e6103.mp3",
+          "contentHash": "b0ad9a89adcff1f05d377fd634e8bb542675959a29c06f7bfe4f8f60693ebb7b",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s44/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bicycle",
+          "file": "5126bc2ccf146ab82fc1c073d5378b2b5d27f96866ceb20748a993a3c3a84ac0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-coral.mp3",
+          "contentHash": "9f3a16e7915e29be32753cebf0cd13925a37d6368881451b6906d011fdf863b8",
+          "byteSize": 22656
+        },
+        {
+          "text": "curious",
+          "file": "4f42e641f87bad486b3804041220abc17a089b5b5a9c36acbc922ef32ea5adad.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a9e7a8af89a3e21f6b9ed2fc-coral.mp3",
+          "contentHash": "9f1b305a669bdc8517003036cc4737da478e0d003090031fd062fb0006aa2f3f",
+          "byteSize": 34560
+        },
+        {
+          "text": "freezer",
+          "file": "cef544db3c66fab16095a95d80a65f2fd4d10d87194065a442790a4a1512a144.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cef544db3c66fab16095a95d80a65f2fd4d10d87194065a442790a4a1512a144.mp3",
+          "contentHash": "9ca93fca5a43698b646e8348a3448acb11e63ab02e943db007b407ad6ef88090",
+          "byteSize": 34560
+        },
+        {
+          "text": "sunglasses",
+          "file": "4d161e3bf38df2b4294ba6486d454d0e9a0b5309c25e672f7f81ccb7af255773.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4d161e3bf38df2b4294ba6486d454d0e9a0b5309c25e672f7f81ccb7af255773.mp3",
+          "contentHash": "83b2102b251dd34ca07978d926f17f5933033049a4d50ea6371e944ed8fbd770",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l05/s44/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The freezer is in the kitchen.",
+          "file": "f5f0da51027a0bd13e2d6999a047fc04676d0dcf331ca2da81eb23a0b07bc25d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f5f0da51027a0bd13e2d6999a047fc04676d0dcf331ca2da81eb23a0b07bc25d.mp3",
+          "contentHash": "8806f43fb84a5adff744814b82088768765116e1b2c48e36ce64590c64c25836",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l05/s44/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The sunglasses are hers.",
+          "file": "b7b613c8333a7dcf3b21d4e727c39dc65c7e0f2a49c974f5e1dffd6f6aae4791.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b7b613c8333a7dcf3b21d4e727c39dc65c7e0f2a49c974f5e1dffd6f6aae4791.mp3",
+          "contentHash": "f63f12682cf8038bff8cc3b01a91ba179759f878907c192189f35db37db731aa",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s44/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your sunglasses.",
+          "file": "1eaa81dcfb50b344f9f3f46503aeea7c88676b3d572fa10f6f7e3eadbdf4796d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1eaa81dcfb50b344f9f3f46503aeea7c88676b3d572fa10f6f7e3eadbdf4796d.mp3",
+          "contentHash": "ca36f695371625a2ad4c4e5c7fbab0a612a46680efc124b990d2fbb37cf2206d",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s44/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose bicycle is this?",
+          "file": "9647b5caa530b4ac105b4135de17a95ed344864747ec6ad4d4605c8dde26040c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9647b5caa530b4ac105b4135de17a95ed344864747ec6ad4d4605c8dde26040c.mp3",
+          "contentHash": "9b315d45639d5f70c4bf441355fed2c979e9d77589eb734efb04cd758b8115d3",
+          "byteSize": 55680
+        }
+      ]
+    },
+    "l05/s44/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Your bicycle is here.",
+          "file": "4ec98a2078f7490d4f7c65341f2d944d64e3eac3f6aff10f2bfd40b0260e5ed5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4ec98a2078f7490d4f7c65341f2d944d64e3eac3f6aff10f2bfd40b0260e5ed5.mp3",
+          "contentHash": "7af097fbc404fa213784ea13575fd7d63daa2835186036945b83cae49ead68b9",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l05/s44/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bicycle",
+          "file": "ab4447d4d0cf07a4a6b3b07d6b5fca46793a2c68d767b80eaced5c002f618914.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-ash.mp3",
+          "contentHash": "f8a0735989991649142df0b5993c4f166cddbf59186437ec720f1db32d823c3f",
+          "byteSize": 17280
+        },
+        {
+          "text": "curious",
+          "file": "34eb0023d96604364c3b5f5b2c4af3ac92a6cf8831d4b8e7230aba27466ce172.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a9e7a8af89a3e21f6b9ed2fc-ash.mp3",
+          "contentHash": "9dd92441559fc4dceeea0bd17f863fd14d03f6a8bd288fdef9a9a3d05c05939a",
+          "byteSize": 26112
+        },
+        {
+          "text": "hotels",
+          "file": "46e9235c9a1fbdbde043e2b242bbcdf0856713bec03fe2be28a3764833951d1a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46e9235c9a1fbdbde043e2b242bbcdf0856713bec03fe2be28a3764833951d1a.mp3",
+          "contentHash": "3926fb31061fcf78cba8bed5a11d303dd38b8bdf1afeb834bfbf1a8d8396a0aa",
+          "byteSize": 40320
+        },
+        {
+          "text": "sunglasses",
+          "file": "381f4495dea8dbdce3d623f8624f041b5da174d63f02402429334085630444d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/381f4495dea8dbdce3d623f8624f041b5da174d63f02402429334085630444d2.mp3",
+          "contentHash": "4a6cbf2d5c85b32aac4ca5ee8b37be1982656a339fcd68e153384a94fa5b1997",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s44/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose sunglasses are these?",
+          "file": "e3eeecba98db9486c2bc80f4248dea28083e6624c7c7d0f072c7e637ecc746e0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e3eeecba98db9486c2bc80f4248dea28083e6624c7c7d0f072c7e637ecc746e0.mp3",
+          "contentHash": "683d8d4dfe89907b503c90c7d2462429bec0c255523f365b6b61874ae2bd1276",
+          "byteSize": 51456
+        }
+      ]
     }
   },
   "settings": {

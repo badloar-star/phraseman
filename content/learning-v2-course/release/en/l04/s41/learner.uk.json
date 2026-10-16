@@ -1,0 +1,994 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Інформацію перевірено, вона точна. Скажіть про це без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Інформацію перевірено, вона точна. Скажіть про це без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is accurate.",
+        "localizedMeaning": {
+          "ru": "Информация проверена и точна. Скажите об этом без сокращения",
+          "uk": "Інформацію перевірено, вона точна. Скажіть про це без скорочення"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "accurate"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-41:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Інформацію перевірено, вона точна. Скажіть про це без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is accurate.`",
+              "uk": "тут потрібно `is` — `It is accurate.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-41:i02:r1",
+          "text": "cashpoint"
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i02:r2",
+          "text": "cashpoints"
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i02:r3",
+          "text": "doorbell"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-41:i02:audio",
+          "transcript": "cashpoint"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-41:i02:r1",
+            "targetText": "cashpoint",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i02:r2",
+            "targetText": "cashpoints",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i02:r3",
+            "targetText": "doorbell",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `cashpoint`, а в этом варианте — `cashpoints`.",
+              "uk": "У записі перше слово — `cashpoint`, а в цьому варіанті — `cashpoints`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `cashpoint`, а в этом варианте — `doorbell`.",
+              "uk": "У записі перше слово — `cashpoint`, а в цьому варіанті — `doorbell`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть банкомат одним словом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-41:i03:r1",
+          "text": "cashpoint"
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i03:r2",
+          "text": "parcel locker"
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i03:r3",
+          "text": "signpost"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть банкомат одним словом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите банкомат одним словом",
+          "uk": "Назвіть банкомат одним словом"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i03:r1",
+            "text": "cashpoint"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i03:r2",
+            "text": "parcel locker"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i03:r3",
+            "text": "signpost"
+          }
+        ],
+        "testedDimension": "Назвіть банкомат одним словом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть банкомат одним словом",
+            "feedbackByLocale": {
+              "ru": "`parcel locker` — постамат; банкомат — `cashpoint`.",
+              "uk": "`parcel locker` — поштомат; банкомат — `cashpoint`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть банкомат одним словом",
+            "feedbackByLocale": {
+              "ru": "`signpost` — столб с указателями; банкомат — `cashpoint`.",
+              "uk": "`signpost` — стовп із вказівниками; банкомат — `cashpoint`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-41:i04:p1",
+            "target": "cashpoint",
+            "meaningByLocale": {
+              "ru": "банкомат",
+              "uk": "банкомат"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-41:i04:p2",
+            "target": "accurate",
+            "meaningByLocale": {
+              "ru": "точный",
+              "uk": "точний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-41:i04:p3",
+            "target": "kitchen",
+            "meaningByLocale": {
+              "ru": "кухня",
+              "uk": "кухня"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-41:i04:p4",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cashpoint",
+          "accurate",
+          "kitchen",
+          "doorbell"
+        ],
+        "rightColumn": [
+          "банкомат",
+          "точний",
+          "кухня",
+          "дверний дзвінок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-41:i05:audio",
+          "transcript": "This is a cashpoint."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a cashpoint.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "cashpoint"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-41:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a cashpoint.`",
+              "uk": "тут потрібно `is` — `This is a cashpoint.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг на кухні. Скажіть, де він, без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг на кухні. Скажіть, де він, без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is in the kitchen.",
+        "localizedMeaning": {
+          "ru": "Друг на кухне. Скажите, где он, без сокращения",
+          "uk": "Друг на кухні. Скажіть, де він, без скорочення"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "in",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-41:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг на кухні. Скажіть, де він, без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is in the kitchen.`",
+              "uk": "тут потрібно `is` — `He is in the kitchen.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про точність інформації. Її перевірено, помилок немає. Дайте відповідь зі скороченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-41:i07:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про точність інформації. Її перевірено, помилок немає. Дайте відповідь зі скороченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-41:i07:audio",
+          "transcript": "It's accurate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's accurate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дверного дзвінка немає. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-41:i08:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i08:r3",
+          "text": "aren't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дверного дзвінка немає. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дверного звонка нет. Выберите форму",
+          "uk": "Дверного дзвінка немає. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a doorbell.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i08:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i08:r3",
+            "text": "aren't"
+          }
+        ],
+        "testedDimension": "Дверного дзвінка немає. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Дверного дзвінка немає. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "`is` — есть; здесь нет: `isn’t`.",
+              "uk": "`is` — є; тут немає: `isn’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Дверного дзвінка немає. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один звонок: `isn’t a doorbell`.",
+              "uk": "Один дзвінок: `isn’t a doorbell`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де банкомат",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-41:i09:r1",
+          "text": "The cashpoint is next to the shop."
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i09:r2",
+          "text": "The cashpoint is next to the hotel."
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i09:r3",
+          "text": "The cashpoint is next to the gym."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-41:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де банкомат",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-41:i09:audio",
+          "transcript": "The cashpoint is next to the shop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-41:i09:r1",
+            "targetText": "The cashpoint is next to the shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i09:r2",
+            "targetText": "The cashpoint is next to the hotel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i09:r3",
+            "targetText": "The cashpoint is next to the gym.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де банкомат",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `shop`, а в этом варианте — `hotel`.",
+              "uk": "У записі останнє слово — `shop`, а в цьому варіанті — `hotel`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де банкомат",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `shop`, а в этом варианте — `gym`.",
+              "uk": "У записі останнє слово — `shop`, а в цьому варіанті — `gym`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-41:i10:p1",
+            "target": "cashpoint",
+            "meaningByLocale": {
+              "ru": "банкомат",
+              "uk": "банкомат"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-41:i10:p2",
+            "target": "accurate",
+            "meaningByLocale": {
+              "ru": "точный",
+              "uk": "точний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-41:i10:p3",
+            "target": "kitchen",
+            "meaningByLocale": {
+              "ru": "кухня",
+              "uk": "кухня"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-41:i10:p4",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cashpoint",
+          "accurate",
+          "kitchen",
+          "doorbell"
+        ],
+        "rightColumn": [
+          "банкомат",
+          "точний",
+          "кухня",
+          "дверний дзвінок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-41:i11:audio",
+          "transcript": "There aren't any cashpoints."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There aren't any cashpoints.",
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "cashpoints"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Тут є банкомат. Повідомте про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тут є банкомат. Повідомте про це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a cashpoint.",
+        "localizedMeaning": {
+          "ru": "Здесь есть банкомат. Сообщите об этом",
+          "uk": "Тут є банкомат. Повідомте про це"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "cashpoint"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-41:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Тут є банкомат. Повідомте про це",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a cashpoint.`",
+              "uk": "тут потрібно `is` — `There is a cashpoint.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви в новому районі. Запитайте, чи є банкомат",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-41:i13:audio"
+      ],
+      "accessibilityLabel": "Ви в новому районі. Запитайте, чи є банкомат",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-41:i13:audio",
+          "transcript": "Is there a cashpoint?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a cashpoint?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Банкомат між двома магазинами, не всередині й не під ними. Виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-41:i14:r1",
+          "text": "between"
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i14:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i14:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Банкомат між двома магазинами, не всередині й не під ними. Виберіть слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Банкомат между двумя магазинами, не внутри и не под ними. Выберите слово",
+          "uk": "Банкомат між двома магазинами, не всередині й не під ними. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The cashpoint is ___ the shops.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-41:i14:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i14:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i14:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Банкомат між двома магазинами, не всередині й не під ними. Виберіть слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-41:i14:r2",
+            "correct": false,
+            "testedDimension": "Банкомат між двома магазинами, не всередині й не під ними. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; между — `between`.",
+              "uk": "`in` — усередині; між — `between`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i14:r3",
+            "correct": false,
+            "testedDimension": "Банкомат між двома магазинами, не всередині й не під ними. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; между — `between`.",
+              "uk": "`under` — під; між — `between`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що показує друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-41:i15:r1",
+          "text": "That is a cashpoint."
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i15:r2",
+          "text": "This is a cashpoint."
+        },
+        {
+          "responseId": "en:lesson-04:session-41:i15:r3",
+          "text": "That is a doorbell."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що показує друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-41:i15:audio",
+          "transcript": "That is a cashpoint."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-41:i15:r1",
+            "targetText": "That is a cashpoint.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i15:r2",
+            "targetText": "This is a cashpoint.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i15:r3",
+            "targetText": "That is a doorbell.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-41:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що показує друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-41:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що показує друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cashpoint`, а в этом варианте — `doorbell`.",
+              "uk": "У записі останнє слово — `cashpoint`, а в цьому варіанті — `doorbell`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-41:i16:p1",
+            "target": "cashpoint",
+            "meaningByLocale": {
+              "ru": "банкомат",
+              "uk": "банкомат"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-41:i16:p2",
+            "target": "accurate",
+            "meaningByLocale": {
+              "ru": "точный",
+              "uk": "точний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-41:i16:p3",
+            "target": "kitchen",
+            "meaningByLocale": {
+              "ru": "кухня",
+              "uk": "кухня"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-41:i16:p4",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cashpoint",
+          "accurate",
+          "kitchen",
+          "doorbell"
+        ],
+        "rightColumn": [
+          "банкомат",
+          "точний",
+          "кухня",
+          "дверний дзвінок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Біля іншого магазину банкомата немає. Повідомте «Банкомата немає»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Біля іншого магазину банкомата немає. Повідомте «Банкомата немає»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-41:i17:audio",
+          "transcript": "There isn't a cashpoint."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There isn't a cashpoint.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b13f24895a7d0f84f95de0bfd0ab307fd7807fe3aedb1161cd68d3596f23f4c5"
+}

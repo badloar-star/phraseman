@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-41:intro1:r2": {
+          "ru": "Перед одним банкоматом нужно `a`: `a cashpoint`.",
+          "uk": "Перед одним банкоматом потрібне `a`: `a cashpoint`."
+        },
+        "en:lesson-04:session-41:intro1:r3": {
+          "ru": "Здесь один банкомат: `This is a cashpoint`.",
+          "uk": "Тут один банкомат: `This is a cashpoint`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-41:intro2:r2": {
+          "ru": "`under` — под; на кухне — `in the kitchen`.",
+          "uk": "`under` — під; на кухні — `in the kitchen`."
+        },
+        "en:lesson-04:session-41:intro2:r3": {
+          "ru": "С `He` нужно `is`.",
+          "uk": "З `He` потрібне `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-41:intro3:r2": {
+          "ru": "`inaccurate` — неточно; здесь `accurate`.",
+          "uk": "`inaccurate` — неточно; тут `accurate`."
+        },
+        "en:lesson-04:session-41:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c822698d836a2310a7b1216d43ec4fd8d2ad5ddf48e8ca110ef5994146b89413"
+}

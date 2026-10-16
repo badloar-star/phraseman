@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-19:intro1:r2": {
+          "ru": "После `I` — `draw`, без `s`.",
+          "uk": "Після `I` — `draw`, без `s`."
+        },
+        "en:lesson-06:session-19:intro1:r3": {
+          "ru": "Говорим `I draw`, без `am`.",
+          "uk": "Кажемо `I draw`, без `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-19:intro2:r2": {
+          "ru": "После `he` — `learns`, с `s`.",
+          "uk": "Після `he` — `learns`, з `s`."
+        },
+        "en:lesson-06:session-19:intro2:r3": {
+          "ru": "Говорим `He learns`, без `is`.",
+          "uk": "Кажемо `He learns`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-19:intro3:r2": {
+          "ru": "Здесь нужно `I am guilty`.",
+          "uk": "Тут потрібно `I am guilty`."
+        },
+        "en:lesson-06:session-19:intro3:r3": {
+          "ru": "С `I` — `am`, не `is`.",
+          "uk": "З `I` — `am`, не `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c02f04c9b9682f50dee47b7ba3fd1004613143dd2bb7ebba217c83f6fc6d561e"
+}

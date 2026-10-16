@@ -1,0 +1,997 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ноутбук совсем не подходит для вашей задачи. Скажите «Этот ноутбук бесполезен»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ноутбук совсем не подходит для вашей задачи. Скажите «Этот ноутбук бесполезен»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This laptop is useless.",
+        "localizedMeaning": {
+          "ru": "Ноутбук совсем не подходит для вашей задачи. Скажите «Этот ноутбук бесполезен»",
+          "uk": "Ноутбук зовсім не підходить для вашого завдання. Скажіть «Цей ноутбук не приносить користі»"
+        },
+        "orderedTokens": [
+          "This",
+          "laptop",
+          "is",
+          "useless"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ноутбук совсем не подходит для вашей задачи. Скажите «Этот ноутбук бесполезен»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This laptop is useless.`",
+              "uk": "тут потрібно `is` — `This laptop is useless.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-46:i02:r1",
+          "text": "ferry"
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i02:r2",
+          "text": "airport"
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i02:r3",
+          "text": "pantry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:i02:audio",
+          "transcript": "ferry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-46:i02:r1",
+            "targetText": "ferry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i02:r2",
+            "targetText": "airport",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i02:r3",
+            "targetText": "pantry",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `ferry`, а в этом варианте — `airport`.",
+              "uk": "У записі перше слово — `ferry`, а в цьому варіанті — `airport`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `ferry`, а в этом варианте — `pantry`.",
+              "uk": "У записі перше слово — `ferry`, а в цьому варіанті — `pantry`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите паром",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-46:i03:r1",
+          "text": "ferry"
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i03:r2",
+          "text": "airport"
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i03:r3",
+          "text": "laptop"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите паром",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите паром",
+          "uk": "Назвіть пором"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-46:i03:r1",
+            "text": "ferry"
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i03:r2",
+            "text": "airport"
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i03:r3",
+            "text": "laptop"
+          }
+        ],
+        "testedDimension": "Назовите паром",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите паром",
+            "feedbackByLocale": {
+              "ru": "`airport` — аэропорт; паром — `ferry`.",
+              "uk": "`airport` — аеропорт; пором — `ferry`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите паром",
+            "feedbackByLocale": {
+              "ru": "`laptop` — ноутбук; паром — `ferry`.",
+              "uk": "`laptop` — ноутбук; пором — `ferry`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-46:i04:p1",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-46:i04:p2",
+            "target": "laptop",
+            "meaningByLocale": {
+              "ru": "ноутбук",
+              "uk": "ноутбук"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-46:i04:p3",
+            "target": "airport",
+            "meaningByLocale": {
+              "ru": "аэропорт",
+              "uk": "аеропорт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-46:i04:p4",
+            "target": "pantry",
+            "meaningByLocale": {
+              "ru": "кладовая для продуктов",
+              "uk": "комора для продуктів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ferry",
+          "laptop",
+          "airport",
+          "pantry"
+        ],
+        "rightColumn": [
+          "паром",
+          "ноутбук",
+          "аэропорт",
+          "кладовая для продуктов"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:i05:audio",
+          "transcript": "Where is the ferry?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the ferry?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "ferry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Сумка в кладовой для продуктов»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Сумка в кладовой для продуктов»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag is in the pantry.",
+        "localizedMeaning": {
+          "ru": "Скажите «Сумка в кладовой для продуктов»",
+          "uk": "Скажіть «Сумка в коморі для продуктів»"
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "is",
+          "in",
+          "the",
+          "pantry"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Сумка в кладовой для продуктов»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bag is in the pantry.`",
+              "uk": "тут потрібно `is` — `The bag is in the pantry.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы увидели паром. Скажите «Паром здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:i07:audio"
+      ],
+      "accessibilityLabel": "Вы увидели паром. Скажите «Паром здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:i07:audio",
+          "transcript": "The ferry is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The ferry is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о владельце ноутбука",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-46:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i08:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о владельце ноутбука",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце ноутбука",
+          "uk": "Запитайте про власника ноутбука"
+        },
+        "gappedTargetPhrase": "Whose laptop ___ this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-46:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Спросите о владельце ноутбука",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите о владельце ноутбука",
+            "feedbackByLocale": {
+              "ru": "Один ноутбук: `is this`.",
+              "uk": "Один ноутбук: `is this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите о владельце ноутбука",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `is this`.",
+              "uk": "`am` використовується з `I`; тут `is this`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какую вещь называет Том",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-46:i09:r1",
+          "text": "This is Anna's laptop."
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i09:r2",
+          "text": "This is Anna's bicycle."
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i09:r3",
+          "text": "This is Anna's ring."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какую вещь называет Том",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:i09:audio",
+          "transcript": "This is Anna's laptop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-46:i09:r1",
+            "targetText": "This is Anna's laptop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i09:r2",
+            "targetText": "This is Anna's bicycle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i09:r3",
+            "targetText": "This is Anna's ring.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какую вещь называет Том",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `laptop`, а в этом варианте — `bicycle`.",
+              "uk": "У записі останнє слово — `laptop`, а в цьому варіанті — `bicycle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какую вещь называет Том",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `laptop`, а в этом варианте — `ring`.",
+              "uk": "У записі останнє слово — `laptop`, а в цьому варіанті — `ring`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-46:i10:p1",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-46:i10:p2",
+            "target": "useless",
+            "meaningByLocale": {
+              "ru": "бесполезный",
+              "uk": "некорисний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-46:i10:p3",
+            "target": "pantry",
+            "meaningByLocale": {
+              "ru": "кладовая для продуктов",
+              "uk": "комора для продуктів"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-46:i10:p4",
+            "target": "laptop",
+            "meaningByLocale": {
+              "ru": "ноутбук",
+              "uk": "ноутбук"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ferry",
+          "useless",
+          "pantry",
+          "laptop"
+        ],
+        "rightColumn": [
+          "паром",
+          "бесполезный",
+          "кладовая для продуктов",
+          "ноутбук"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:i11:audio",
+          "transcript": "Tom is at the airport."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tom is at the airport.",
+        "orderedTokens": [
+          "Tom",
+          "is",
+          "at",
+          "the",
+          "airport"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Tom is at the airport.`",
+              "uk": "тут потрібно `is` — `Tom is at the airport.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ноутбук принадлежит Анне. Скажите «Ноутбук её»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ноутбук принадлежит Анне. Скажите «Ноутбук её»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The laptop is hers.",
+        "localizedMeaning": {
+          "ru": "Ноутбук принадлежит Анне. Скажите «Ноутбук её»",
+          "uk": "Ноутбук належить Анні. Скажіть «Ноутбук її»"
+        },
+        "orderedTokens": [
+          "The",
+          "laptop",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ноутбук принадлежит Анне. Скажите «Ноутбук её»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The laptop is hers.`",
+              "uk": "тут потрібно `is` — `The laptop is hers.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите Анне «Твой ноутбук у меня»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите Анне «Твой ноутбук у меня»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:i13:audio",
+          "transcript": "I have your laptop."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your laptop.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, где паром",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-46:i14:r1",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i14:r2",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i14:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, где паром",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, где паром",
+          "uk": "Запитайте, де пором"
+        },
+        "gappedTargetPhrase": "___ is the ferry?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-46:i14:r1",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i14:r2",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Спросите, где паром",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i14:r2",
+            "correct": false,
+            "testedDimension": "Спросите, где паром",
+            "feedbackByLocale": {
+              "ru": "`Whose` — чей; где — `Where`.",
+              "uk": "`Whose` — чий; де — `Where`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i14:r3",
+            "correct": false,
+            "testedDimension": "Спросите, где паром",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; где — `Where`.",
+              "uk": "`Who` — хто; де — `Where`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей ноутбук здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-46:i15:r1",
+          "text": "Your laptop is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i15:r2",
+          "text": "My laptop is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-46:i15:r3",
+          "text": "His laptop is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей ноутбук здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:i15:audio",
+          "transcript": "Your laptop is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-46:i15:r1",
+            "targetText": "Your laptop is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i15:r2",
+            "targetText": "My laptop is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i15:r3",
+            "targetText": "His laptop is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей ноутбук здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-46:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей ноутбук здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-46:i16:p1",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-46:i16:p2",
+            "target": "useless",
+            "meaningByLocale": {
+              "ru": "бесполезный",
+              "uk": "некорисний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-46:i16:p3",
+            "target": "airport",
+            "meaningByLocale": {
+              "ru": "аэропорт",
+              "uk": "аеропорт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-46:i16:p4",
+            "target": "laptop",
+            "meaningByLocale": {
+              "ru": "ноутбук",
+              "uk": "ноутбук"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ferry",
+          "useless",
+          "airport",
+          "laptop"
+        ],
+        "rightColumn": [
+          "паром",
+          "бесполезный",
+          "аэропорт",
+          "ноутбук"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед поездкой вы нашли ноутбук. Спросите друзей «Чей это ноутбук?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Перед поездкой вы нашли ноутбук. Спросите друзей «Чей это ноутбук?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:i17:audio",
+          "transcript": "Whose laptop is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose laptop is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "463dfc8b9c246b613c3efbc9342039491bcfbaa26a1654ed8c92a0e596b2dc65"
+}

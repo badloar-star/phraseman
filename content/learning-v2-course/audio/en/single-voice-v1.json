@@ -67129,6 +67129,309 @@
           "byteSize": 52224
         }
       ]
+    },
+    "l04/s54/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a petrol station.",
+          "file": "fe57e76546fe5d141359cdd261d1cb834fcaddd66b013e9ae281822a0d305f98.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fe57e76546fe5d141359cdd261d1cb834fcaddd66b013e9ae281822a0d305f98.mp3",
+          "contentHash": "dd5b085bf11a92d91b1aad6ff22b69a414e1852f57308191716f586ded84afcc",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s54/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The car is reliable.",
+          "file": "46452908fe3b45d9ef9be307aed4ed154a4257c2056b28441a1b04105ce77236.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46452908fe3b45d9ef9be307aed4ed154a4257c2056b28441a1b04105ce77236.mp3",
+          "contentHash": "019871eab17212b2d94a61eb1f4e1a7952b0d0102a3b46663885e1cd94cf0b3d",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s54/intro/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bag is in the pantry.",
+          "file": "ef0e1e71b53930ed9f52be9cbedfc5b723d4e2372f0bfbdea7928deffe0cae9e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef0e1e71b53930ed9f52be9cbedfc5b723d4e2372f0bfbdea7928deffe0cae9e.mp3",
+          "contentHash": "2b1bfb596949df2dd06195301ac184443e2bf411c0b9c1dfbf191d9877c59ee7",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s54/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The car is reliable.",
+          "file": "3096d96f135aaa78ceae3c2e0a859f8d14ba88305848b8552a1b10e8b2226bba.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3096d96f135aaa78ceae3c2e0a859f8d14ba88305848b8552a1b10e8b2226bba.mp3",
+          "contentHash": "496bd2e75e69708987a671925277846218359fd97c7a7b63fce8c540822fab12",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s54/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "petrol station",
+          "file": "8ca77d2f541326db42014e937da090a7d199cbf287464639dc43834c1c496d88.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ca77d2f541326db42014e937da090a7d199cbf287464639dc43834c1c496d88.mp3",
+          "contentHash": "2abc293855d2c5be83b1fbee3f6548ed73cfe806e71b365344bd8012b44376ef",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l04/s54/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "petrol station",
+          "file": "26f3a47359b4a8a28615d8d44558ff311b41ef3680b9211f64808846970b51cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/26f3a47359b4a8a28615d8d44558ff311b41ef3680b9211f64808846970b51cc.mp3",
+          "contentHash": "e4f90dd89c75914c05527d0dbf8e7cb2d2ff4e0cbfa022b0a08c596744184d4b",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s54/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "petrol station",
+          "file": "a213b790e45d2f4be58c8da7559a24b30322569fc9ccd81ec9abdc2b7f12550c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a213b790e45d2f4be58c8da7559a24b30322569fc9ccd81ec9abdc2b7f12550c.mp3",
+          "contentHash": "9b5d98f6cc436f517652b08b7a51936fc913fed7997d523130b7607a91fec91c",
+          "byteSize": 37248
+        },
+        {
+          "text": "reliable",
+          "file": "bcd2d73f31c2125cd7a637fc379f9e8b4c951dc2461003c977f09a5524f91925.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bcd2d73f31c2125cd7a637fc379f9e8b4c951dc2461003c977f09a5524f91925.mp3",
+          "contentHash": "ccf32cc0b361d746e675a954c591c78a1e964aea864f52afcd40534c1d387b7e",
+          "byteSize": 32256
+        },
+        {
+          "text": "striped",
+          "file": "b37b02f1b9467b72fd2ab430375508cbd3b95adb339f8b6c41dd4ec4896a7528.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b37b02f1b9467b72fd2ab430375508cbd3b95adb339f8b6c41dd4ec4896a7528.mp3",
+          "contentHash": "3fa7b3947852985342f3aa8242dc0c4fbf24846f53de423a4b16afa7bb92cfd1",
+          "byteSize": 42624
+        },
+        {
+          "text": "pantry",
+          "file": "44c52c18cc40f927c5911e1c24f685c1f893d20c6defc18807a492686514a30a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44c52c18cc40f927c5911e1c24f685c1f893d20c6defc18807a492686514a30a.mp3",
+          "contentHash": "4824ae91c00ebd5906a0e279d5a4c8f6df747ed2ae4709a6195829600d6ad858",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s54/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is a petrol station.",
+          "file": "785d72d35f7879658ddfda9998fda526fc33e758126d4a989678447c0d6aaed8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/785d72d35f7879658ddfda9998fda526fc33e758126d4a989678447c0d6aaed8.mp3",
+          "contentHash": "694baec7a97879c98be66ca4054b02d53f298fa1f6237d8984dcf5b1c98eacc6",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s54/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The bag is striped.",
+          "file": "fe01acf122711e8b592bf981dc8ed70f30c3375da2ae366b4d327ce3d748870d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fe01acf122711e8b592bf981dc8ed70f30c3375da2ae366b4d327ce3d748870d.mp3",
+          "contentHash": "e2ed593d5fcc063ed4e382fe0f7511ddda0258b676d82421435d1d808707ab0a",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s54/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's reliable.",
+          "file": "af8095b5151c9f35e1cf35ced32d2821cbcd3e128342eb10bcd9a60a6922385a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/af8095b5151c9f35e1cf35ced32d2821cbcd3e128342eb10bcd9a60a6922385a.mp3",
+          "contentHash": "98cbdb559b1ad71c6770b0b19582c36d14823dc0161f3488283fe4575ca65d12",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s54/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There isn't a pantry.",
+          "file": "f664233dc4af1f706038fc812646ae40156a5fb592bf1ff09a034b04008775bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f664233dc4af1f706038fc812646ae40156a5fb592bf1ff09a034b04008775bb.mp3",
+          "contentHash": "13d4c1bdb0d1b83f2ef23523c9b50f77ff0d25d9fb9fdba75983a9bdb34e5014",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l04/s54/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bag is in the pantry.",
+          "file": "4464a94213cb85b18d78bef927b552f4fd742cd8b504818b48ddeb575701fc8e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4464a94213cb85b18d78bef927b552f4fd742cd8b504818b48ddeb575701fc8e.mp3",
+          "contentHash": "a1f5cb6b918e2cd7f8f32d8e855fa3d3f2dc42914c8227dda8bf7fd70ac0d07d",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l04/s54/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "petrol station",
+          "file": "a213b790e45d2f4be58c8da7559a24b30322569fc9ccd81ec9abdc2b7f12550c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a213b790e45d2f4be58c8da7559a24b30322569fc9ccd81ec9abdc2b7f12550c.mp3",
+          "contentHash": "9b5d98f6cc436f517652b08b7a51936fc913fed7997d523130b7607a91fec91c",
+          "byteSize": 37248
+        },
+        {
+          "text": "reliable",
+          "file": "bcd2d73f31c2125cd7a637fc379f9e8b4c951dc2461003c977f09a5524f91925.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bcd2d73f31c2125cd7a637fc379f9e8b4c951dc2461003c977f09a5524f91925.mp3",
+          "contentHash": "ccf32cc0b361d746e675a954c591c78a1e964aea864f52afcd40534c1d387b7e",
+          "byteSize": 32256
+        },
+        {
+          "text": "striped",
+          "file": "b37b02f1b9467b72fd2ab430375508cbd3b95adb339f8b6c41dd4ec4896a7528.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b37b02f1b9467b72fd2ab430375508cbd3b95adb339f8b6c41dd4ec4896a7528.mp3",
+          "contentHash": "3fa7b3947852985342f3aa8242dc0c4fbf24846f53de423a4b16afa7bb92cfd1",
+          "byteSize": 42624
+        },
+        {
+          "text": "pantry",
+          "file": "44c52c18cc40f927c5911e1c24f685c1f893d20c6defc18807a492686514a30a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44c52c18cc40f927c5911e1c24f685c1f893d20c6defc18807a492686514a30a.mp3",
+          "contentHash": "4824ae91c00ebd5906a0e279d5a4c8f6df747ed2ae4709a6195829600d6ad858",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s54/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a petrol station?",
+          "file": "11c32268d249006d6ee29a2581340cfe5efe7c58dfa81714552fa3978bdd9031.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11c32268d249006d6ee29a2581340cfe5efe7c58dfa81714552fa3978bdd9031.mp3",
+          "contentHash": "39b9e8e595f924c8a9b000943791036e1caa59c1a6575ccf3ceba08be1fc0c18",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s54/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There isn't a petrol station.",
+          "file": "88fa98bc1e53abb1d719bb6a99ed065ec16aefb76a2ef8d93083ec78e6c2f238.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/88fa98bc1e53abb1d719bb6a99ed065ec16aefb76a2ef8d93083ec78e6c2f238.mp3",
+          "contentHash": "6ee94e7dbaf88669d1403bc5d357c0ee6b7be40eec853bdf1619235a759e70e1",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s54/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a pantry?",
+          "file": "1dbaa599a7d20d3786ffa9ffa709fcd1927dd382c5dfa3436366da8a4ef795b0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1dbaa599a7d20d3786ffa9ffa709fcd1927dd382c5dfa3436366da8a4ef795b0.mp3",
+          "contentHash": "2df3018ae2b612ecbd8de514d62cb22ff84f8a9fe4f282d97a386c0fe05810ee",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s54/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The petrol station is between the shops.",
+          "file": "4b54dda6f14ecbe9e6ae44d20412aeed139949d1d9588920b050a83b189ab091.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b54dda6f14ecbe9e6ae44d20412aeed139949d1d9588920b050a83b189ab091.mp3",
+          "contentHash": "ff01956f74e0325a4eb7f7caa45967425053c590e5cbf70a33aee700f66aa3c9",
+          "byteSize": 53760
+        }
+      ]
+    },
+    "l04/s54/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The shirt is striped.",
+          "file": "dafa71c024843ad2c63ff99de2914f0590a3e8a3cd0c8c4946a2925c0062f062.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dafa71c024843ad2c63ff99de2914f0590a3e8a3cd0c8c4946a2925c0062f062.mp3",
+          "contentHash": "a22b5b288c64458d533310e87ab8c3c642017affd4919c0c30afb54158bee285",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s54/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "petrol station",
+          "file": "a42038f8ab9799467cd52aa0f12b02c999cfe970c297de43a29880c879f082b1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a42038f8ab9799467cd52aa0f12b02c999cfe970c297de43a29880c879f082b1.mp3",
+          "contentHash": "6d478b3bb53046fae0cb7bab9d667bc398dab50c50ff244e72891f034d423a5d",
+          "byteSize": 47616
+        },
+        {
+          "text": "reliable",
+          "file": "9a3bbe92846e69c23adb00af18ab69bed3826cbae99f03acfc0657e527e283bc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a3bbe92846e69c23adb00af18ab69bed3826cbae99f03acfc0657e527e283bc.mp3",
+          "contentHash": "7c256634f7633fcabe2665a6feff2c200fb8d1959887521f093a8ede9b050818",
+          "byteSize": 22656
+        },
+        {
+          "text": "striped",
+          "file": "ec67541b99545050499b8d68bdb45313e1f9e41d36cee35f47263c2ed59387d8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ec67541b99545050499b8d68bdb45313e1f9e41d36cee35f47263c2ed59387d8.mp3",
+          "contentHash": "067aeef6a983e93bb8feba1da3846b3f008295d18c4336f3956bdccd5a1d58bd",
+          "byteSize": 23040
+        },
+        {
+          "text": "pantry",
+          "file": "7ce051fd61bae7a12c65acc223d1518c7e80db21343fa64cdbcf37b159765d30.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7ce051fd61bae7a12c65acc223d1518c7e80db21343fa64cdbcf37b159765d30.mp3",
+          "contentHash": "e53b6acb04df562a4fd7a55143ccbe7e4a2667dc9217071c4d780fe52505e3e8",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l04/s54/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The petrol station is next to the supermarket.",
+          "file": "04f514d674515206c696f342cf7d3758516592ba5a4f67c5b0f7457abefc2c0c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/04f514d674515206c696f342cf7d3758516592ba5a4f67c5b0f7457abefc2c0c.mp3",
+          "contentHash": "0c50f8db21e391d38ac02254fbc196dc545ae6fb8f39e4808e9e10a40e6364d5",
+          "byteSize": 61056
+        }
+      ]
     }
   },
   "settings": {

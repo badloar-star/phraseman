@@ -91672,6 +91672,309 @@
           "byteSize": 34944
         }
       ]
+    },
+    "l06/s23/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I teach English.",
+          "file": "da7359fb22d67037984ee9851ef79d772c336e4a36a97dcec2a449ed74939b54.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/da7359fb22d67037984ee9851ef79d772c336e4a36a97dcec2a449ed74939b54.mp3",
+          "contentHash": "bfd68a49a294cc62f6691f5fd4447c5f21a5efd7526d7f7c78c292fb7c435b7d",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s23/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She teaches English.",
+          "file": "e2218a4457875f5bec0fb7a49a5ef8ddd0eb565471acee8d04035836dbcc7a2d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e2218a4457875f5bec0fb7a49a5ef8ddd0eb565471acee8d04035836dbcc7a2d.mp3",
+          "contentHash": "286208147457404156fbbdf8eaba42e92ed6ba63211d21070bd520411ff4b483",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s23/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The ticket is valid.",
+          "file": "712a361948c5341299078e1d388d1cf1740ab3d4b69c5261d541d70e5ef278fa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/712a361948c5341299078e1d388d1cf1740ab3d4b69c5261d541d70e5ef278fa.mp3",
+          "contentHash": "55e5a1b5762b37a2c626efcf5df8f32f177c067385f736087d7e628e725c2164",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l06/s23/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I teach English.",
+          "file": "6fb0f1deceaf296b8a197cf6eafd3a0125261c2a8a44730060e2fbcd7cc4968c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6fb0f1deceaf296b8a197cf6eafd3a0125261c2a8a44730060e2fbcd7cc4968c.mp3",
+          "contentHash": "2290f925fc8ac4fddbb70f8712f25c427fcc3370d47cc3c887786973f66c326e",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s23/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "teach",
+          "file": "41f6358616473a24c5cc06336045ae1133580d8b3f3a2f369967342ba9103c95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/41f6358616473a24c5cc06336045ae1133580d8b3f3a2f369967342ba9103c95.mp3",
+          "contentHash": "2d7064488757e4d22cd08187016b3c6ba4271a7b28ebae847243856b0699dead",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l06/s23/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She teaches English.",
+          "file": "e2218a4457875f5bec0fb7a49a5ef8ddd0eb565471acee8d04035836dbcc7a2d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e2218a4457875f5bec0fb7a49a5ef8ddd0eb565471acee8d04035836dbcc7a2d.mp3",
+          "contentHash": "286208147457404156fbbdf8eaba42e92ed6ba63211d21070bd520411ff4b483",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s23/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "teach",
+          "file": "34e4a023f9cd57233e27337d8c4e1b9ad05c725f67108b1da6258e9131e9aaf4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34e4a023f9cd57233e27337d8c4e1b9ad05c725f67108b1da6258e9131e9aaf4.mp3",
+          "contentHash": "dfc809cd89cde396ed474992c9a66c3efd2e5eecd675bb538cd00424887d9fd2",
+          "byteSize": 32256
+        },
+        {
+          "text": "valid",
+          "file": "293f93f8ebda92a1988cd195c3f9339d05ba9986bce78d92665c88bf7431b317.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/293f93f8ebda92a1988cd195c3f9339d05ba9986bce78d92665c88bf7431b317.mp3",
+          "contentHash": "7d7e1f14fcbe81b886f55246211cfdb125010e605cc048e455dc2ede1ec86ae1",
+          "byteSize": 24192
+        },
+        {
+          "text": "cheese",
+          "file": "b8a9005f09c945a2825b665fb4742418072b3b3db58d7bbdf2d42306f6e25ac1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8a9005f09c945a2825b665fb4742418072b3b3db58d7bbdf2d42306f6e25ac1.mp3",
+          "contentHash": "4a0c4de0a19626abb182b5e3b55021c03d6c566a1967534abc249e123d19b6c1",
+          "byteSize": 34944
+        },
+        {
+          "text": "camera",
+          "file": "585081f2431e21b333a1b055eac455527919f12424ec68648dc5d09f66cfa640.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/585081f2431e21b333a1b055eac455527919f12424ec68648dc5d09f66cfa640.mp3",
+          "contentHash": "5cd703a92129bf9ea8e622b220467c3e625000ac33b3990b031fc0646d507630",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l06/s23/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Anna teaches here.",
+          "file": "f9727647a16e75d64f2c173f1420a1c097069b3b560f312f093ee3f99582e5f8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f9727647a16e75d64f2c173f1420a1c097069b3b560f312f093ee3f99582e5f8.mp3",
+          "contentHash": "f8dbf936344772fb9446706bb450b9e375123158574901916ff8971a72a98c40",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l06/s23/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He sings here.",
+          "file": "546d74537929fa902e8ee41f765c4307fff91dc035fc91753a3179df2ff71d2c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/546d74537929fa902e8ee41f765c4307fff91dc035fc91753a3179df2ff71d2c.mp3",
+          "contentHash": "66c9350071f74c47b3c6fc6613f953f22b18b89644ce232fab263ca6047368a0",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l06/s23/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The ticket is valid.",
+          "file": "1d16cb0b5d5d2485ccb655d3928579003090ec0c878861fc45c89bef467f2b90.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d16cb0b5d5d2485ccb655d3928579003090ec0c878861fc45c89bef467f2b90.mp3",
+          "contentHash": "660a17cbbad4cd70e9f96c0d3311a3f54edb116f96f2edd70910eef2c60c5d3f",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s23/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They teach here.",
+          "file": "e1f9a6bdad9937104e9dbeaf8d1e8a21d710e75105ccdacf7202c9eba00c2d1c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1f9a6bdad9937104e9dbeaf8d1e8a21d710e75105ccdacf7202c9eba00c2d1c.mp3",
+          "contentHash": "9c33372b6bded85cb74babaebecf1c7d6c33e4278638684d4bf80291c131a6c2",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s23/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "My camera is here.",
+          "file": "6a68a1457d2aa7fc7b31c0824954fd2cb0e3dfba3ece3e68b9903df947f17c80.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a68a1457d2aa7fc7b31c0824954fd2cb0e3dfba3ece3e68b9903df947f17c80.mp3",
+          "contentHash": "9b00765ea4d5f402e0c5c57ec35f404135ce61325194369ba1e7a8063ead337e",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l06/s23/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "teach",
+          "file": "34e4a023f9cd57233e27337d8c4e1b9ad05c725f67108b1da6258e9131e9aaf4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34e4a023f9cd57233e27337d8c4e1b9ad05c725f67108b1da6258e9131e9aaf4.mp3",
+          "contentHash": "dfc809cd89cde396ed474992c9a66c3efd2e5eecd675bb538cd00424887d9fd2",
+          "byteSize": 32256
+        },
+        {
+          "text": "sing",
+          "file": "6a1fe0f8957ab5b766002bc9fb5976fca8322fae0ef54648681bd7101e077eca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a1fe0f8957ab5b766002bc9fb5976fca8322fae0ef54648681bd7101e077eca.mp3",
+          "contentHash": "bc2021fe579894e98a619730c748a335cb4ffe51ff5278fafa2cf69973bab3c3",
+          "byteSize": 35712
+        },
+        {
+          "text": "camera",
+          "file": "585081f2431e21b333a1b055eac455527919f12424ec68648dc5d09f66cfa640.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/585081f2431e21b333a1b055eac455527919f12424ec68648dc5d09f66cfa640.mp3",
+          "contentHash": "5cd703a92129bf9ea8e622b220467c3e625000ac33b3990b031fc0646d507630",
+          "byteSize": 17280
+        },
+        {
+          "text": "valid",
+          "file": "293f93f8ebda92a1988cd195c3f9339d05ba9986bce78d92665c88bf7431b317.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/293f93f8ebda92a1988cd195c3f9339d05ba9986bce78d92665c88bf7431b317.mp3",
+          "contentHash": "7d7e1f14fcbe81b886f55246211cfdb125010e605cc048e455dc2ede1ec86ae1",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l06/s23/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The cheese is in the fridge.",
+          "file": "20f22de4ed2cbc29117138620282db89b17b966e443986e77ca1be1e16456cf4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/20f22de4ed2cbc29117138620282db89b17b966e443986e77ca1be1e16456cf4.mp3",
+          "contentHash": "4ab453d88045169a7e4b5fd12177893dfdd126f0fb900d1b7561926457722942",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s23/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose camera is this?",
+          "file": "219ddd6852df4ac558842f90c0062f8a0b9297cb95937e0d30a3a9989f1c0036.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/219ddd6852df4ac558842f90c0062f8a0b9297cb95937e0d30a3a9989f1c0036.mp3",
+          "contentHash": "707af7658e6c8432c69e7675c2977a1ea2244df3fb6f3d2c103f3302136a773b",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l06/s23/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They sing here.",
+          "file": "aac8de3f8f2335d13cbdd6439f717f46b0d56141369ac25600fddc5817fd0024.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aac8de3f8f2335d13cbdd6439f717f46b0d56141369ac25600fddc5817fd0024.mp3",
+          "contentHash": "050a6ff375d81038b4f3ad0a564bf95b0cd7eb61bd09d1532ef476d3baa99132",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l06/s23/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom sings at home.",
+          "file": "6a43ed3f2411133dad63e0d8a1dcc62fbde3a4f893079a64e9614dc2c5daa9a9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a43ed3f2411133dad63e0d8a1dcc62fbde3a4f893079a64e9614dc2c5daa9a9.mp3",
+          "contentHash": "09d4e157bdf5c7f383d25352aea2f17b77e23f19c42b9f81ffa9d26075acf2ae",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s23/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The cheese is fresh.",
+          "file": "ad8a51db9c654dd8f969331fe760cb9ab64b18bd49da2b3c3fc24974f03d8993.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ad8a51db9c654dd8f969331fe760cb9ab64b18bd49da2b3c3fc24974f03d8993.mp3",
+          "contentHash": "28a42794ea6efc4092ec3f7f16795d88ad1ceddadf94e5f25000fcf13d79e71c",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s23/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "teach",
+          "file": "41f6358616473a24c5cc06336045ae1133580d8b3f3a2f369967342ba9103c95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/41f6358616473a24c5cc06336045ae1133580d8b3f3a2f369967342ba9103c95.mp3",
+          "contentHash": "2d7064488757e4d22cd08187016b3c6ba4271a7b28ebae847243856b0699dead",
+          "byteSize": 20352
+        },
+        {
+          "text": "cheese",
+          "file": "8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e5f2d6691c32ad814a82b1634b68dc0424423ec4d9cb06deb52731c556eae40.mp3",
+          "contentHash": "a6c0ed3063da04429bb63cf78654d260ff8c123ddd91a72cf4678aa44553a6fd",
+          "byteSize": 28416
+        },
+        {
+          "text": "valid",
+          "file": "d8cbceb5a5e4db11c24d7084f76cb2f8d73f10f596fb37dd3479901caef94cf0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d8cbceb5a5e4db11c24d7084f76cb2f8d73f10f596fb37dd3479901caef94cf0.mp3",
+          "contentHash": "f81173776efa8863ff56b88fa9ef560be37f562888a03388f66328c082294511",
+          "byteSize": 14208
+        },
+        {
+          "text": "sing",
+          "file": "50e8743fe2c6231e0c35eddcbc3cee994ac2ecfb97b6d5932fa94877c642937b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50e8743fe2c6231e0c35eddcbc3cee994ac2ecfb97b6d5932fa94877c642937b.mp3",
+          "contentHash": "1c9487af2c729ddbc8553ffcd74b36a6935fbdd28ccea019530d0c69f5732338",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l06/s23/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She teaches English.",
+          "file": "e2218a4457875f5bec0fb7a49a5ef8ddd0eb565471acee8d04035836dbcc7a2d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e2218a4457875f5bec0fb7a49a5ef8ddd0eb565471acee8d04035836dbcc7a2d.mp3",
+          "contentHash": "286208147457404156fbbdf8eaba42e92ed6ba63211d21070bd520411ff4b483",
+          "byteSize": 35712
+        }
+      ]
     }
   },
   "settings": {

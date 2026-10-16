@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-10:intro1:r2": {
+          "ru": "Перед `practice` здесь не нужно `am`.",
+          "uk": "Перед `practice` тут не потрібно `am`."
+        },
+        "en:lesson-06:session-10:intro1:r3": {
+          "ru": "После `I` — `practice`, без `s`.",
+          "uk": "Після `I` — `practice`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-10:intro2:r2": {
+          "ru": "После `we` — `practice`, без `s`.",
+          "uk": "Після `we` — `practice`, без `s`."
+        },
+        "en:lesson-06:session-10:intro2:r3": {
+          "ru": "Говорим `We practice`, без `are`.",
+          "uk": "Кажемо `We practice`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-10:intro3:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-06:session-10:intro3:r3": {
+          "ru": "Одна папка: `is this`.",
+          "uk": "Одна папка: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6d465304a67ff2f6150c1cb5aa2d1e7f3e203934dcd7a37503bcdd68a5a89e27"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, что вы практикуете английский, и найти нужные вещи",
+    "uk": "сказати, що ви практикуєте англійську, і знайти потрібні речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Учимся, когда говорим",
+        "uk": "Вчимося, коли говоримо"
+      },
+      "bodyByLocale": {
+        "ru": "`practice` — «практиковаться». `I practice English` — «Я практикую английский»: например, говорю или выполняю упражнения. Просто носить учебник в сумке — ещё не практиковаться, даже если сумка тяжёлая. Здесь американское написание `practice`; в британском английском для действия пишут `practise`.",
+        "uk": "`practice` — «практикуватися». `I practice English` — «Я практикую англійську»: наприклад, говорю або виконую вправи. Просто носити підручник у сумці — ще не практикуватися, навіть якщо сумка важка. Тут американське написання `practice`; у британській англійській для дії пишуть `practise`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я практикую английский».",
+          "uk": "Скажіть «Я практикую англійську»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-10:intro1:r1",
+              "text": "I practice English."
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro1:r2",
+              "text": "I am practice English."
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro1:r3",
+              "text": "I practices English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-10:intro1:r1",
+              "text": "I practice English."
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro1:r2",
+              "text": "I am practice English."
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro1:r3",
+              "text": "I practices English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я практикую английский».",
+          "uk": "Скажіть «Я практикую англійську»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вместе тоже без s",
+        "uk": "Разом теж без s"
+      },
+      "bodyByLocale": {
+        "ru": "`We practice English` — «Мы практикуем английский». После `I`, `you`, `we`, `they` используем `practice`, без `s`. `We work in a hotel` — «Мы работаем в отеле». `It is impossible` — «Это невозможно»: так можно ответить, если предложение нельзя выполнить.",
+        "uk": "`We practice English` — «Ми практикуємо англійську». Після `I`, `you`, `we`, `they` використовуємо `practice`, без `s`. `We work in a hotel` — «Ми працюємо в готелі». `It is impossible` — «Це неможливо»: так можна відповісти, якщо пропозицію не можна виконати."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мы практикуем английский».",
+          "uk": "Скажіть «Ми практикуємо англійську»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-10:intro2:r1",
+              "text": "We practice English."
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro2:r2",
+              "text": "We practices English."
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro2:r3",
+              "text": "We are practice English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-10:intro2:r1",
+              "text": "We practice English."
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro2:r2",
+              "text": "We practices English."
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro2:r3",
+              "text": "We are practice English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мы практикуем английский».",
+          "uk": "Скажіть «Ми практикуємо англійську»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Перед сменой",
+        "uk": "Перед зміною"
+      },
+      "bodyByLocale": {
+        "ru": "`pocket` — «карман», `folder` — «папка». `The key is in my pocket` — «Ключ у меня в кармане». `Whose folder is this?` — «Чья это папка?» `That folder is yours` — «Та папка твоя»: название вещи после `yours` не нужно.",
+        "uk": "`pocket` — «кишеня», `folder` — «папка». `The key is in my pocket` — «Ключ у мене в кишені». `Whose folder is this?` — «Чия це папка?» `That folder is yours` — «Та папка твоя»: назва речі після `yours` не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Чья это папка?»",
+          "uk": "Запитайте «Чия це папка?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-10:intro3:r1",
+              "text": "Whose folder is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro3:r2",
+              "text": "Where is the folder?"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro3:r3",
+              "text": "Whose folder are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-10:intro3:r1",
+              "text": "Whose folder is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro3:r2",
+              "text": "Where is the folder?"
+            },
+            {
+              "responseId": "en:lesson-06:session-10:intro3:r3",
+              "text": "Whose folder are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Чья это папка?»",
+          "uk": "Запитайте «Чия це папка?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0c5ef13a15899f407d43fba84be9b83ec1d68f076de1f4f75b1cc3720759d751"
+}

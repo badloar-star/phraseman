@@ -1,12 +1,32 @@
 [
   {
+    "interactionId": "en:lesson-01:session-18:word:confused",
+    "correctText": "confused",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:word:sleepy",
+    "correctText": "sleepy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:word:relieved",
+    "correctText": "relieved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:word:funny",
+    "correctText": "funny",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-18:i01",
-    "correctText": "I am wrong.",
+    "correctText": "I am confused.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i02",
-    "correctText": "We are early.",
+    "correctText": "We are sleepy.",
     "correctResponseId": "en:lesson-01:session-18:i02:r1"
   },
   {
@@ -16,22 +36,22 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i04",
-    "correctText": "en:lesson-01:session-18:i04:p1=wrong\nen:lesson-01:session-18:i04:p2=early\nen:lesson-01:session-18:i04:p3=lucky\nen:lesson-01:session-18:i04:p4=right",
+    "correctText": "en:lesson-01:session-18:i04:p1=confused\nen:lesson-01:session-18:i04:p2=sleepy\nen:lesson-01:session-18:i04:p3=relieved\nen:lesson-01:session-18:i04:p4=funny",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i05",
-    "correctText": "You are wrong.",
+    "correctText": "You are confused.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i06",
-    "correctText": "We are lucky.",
+    "correctText": "We are relieved.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i07",
-    "correctText": "She is early.",
+    "correctText": "She is sleepy.",
     "correctResponseId": null
   },
   {

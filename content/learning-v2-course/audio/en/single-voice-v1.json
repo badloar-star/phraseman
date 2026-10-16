@@ -5280,11 +5280,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "I am wrong.",
-          "file": "1db31a678f45c50c09ffb6fc0c16030aa98d104a2c103ca6fd35af5fbd156196.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/d812b4a01f291bc97a9ba838-nova.mp3",
-          "contentHash": "13abaf1629e272f2c2b3b761ff136a20dd5416345f0f73f014fb069fb21bd7c7",
-          "byteSize": 28416
+          "text": "I am confused.",
+          "file": "9a2a347380dc6dfcb3261f954663eaee096aaf357603ad615c67b416359eca50.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a2a347380dc6dfcb3261f954663eaee096aaf357603ad615c67b416359eca50.mp3",
+          "contentHash": "701df4fe61836ef58025951b98d0ffd3432aa16741f49648f54af4e8a6de863c",
+          "byteSize": 27648
         }
       ]
     },
@@ -5292,11 +5292,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "We are early.",
-          "file": "358dce05293e255e942f1bfd72df8874361d93d96f9b0e1e0c6da9c789c122b8.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/45e7cff0cafd8e1b1f595d05-onyx.mp3",
-          "contentHash": "eb68b88b34c29dbffcd2b35ebc7dddb4d04340420d694bfbfac2fd2ff7050712",
-          "byteSize": 34944
+          "text": "We are sleepy.",
+          "file": "406dc7a17283d116afa73e36939b1a34f437721b7f29f49c80964b7c3fb7ed38.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/406dc7a17283d116afa73e36939b1a34f437721b7f29f49c80964b7c3fb7ed38.mp3",
+          "contentHash": "82f5d63fa8a41bd6b1761348bbc019e5ea5e80d96fd17dfd48c298f993b9797e",
+          "byteSize": 48384
         }
       ]
     },
@@ -5304,11 +5304,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "They are lucky.",
-          "file": "b9a0a7a785825c179e9e4486ac4aa49ac6a544c4fa03b4717528dac8a90eb2d7.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b9a0a7a785825c179e9e4486ac4aa49ac6a544c4fa03b4717528dac8a90eb2d7.mp3",
-          "contentHash": "f076e764a4182d4a7a7ad1d2fe08bad754aebc4801a5ad25ad309220febf58c4",
-          "byteSize": 25344
+          "text": "They are relieved.",
+          "file": "bc89bb3d6de91f6965b3ebee0f0e7a79bf928d969be73109c503c93c4d325983.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc89bb3d6de91f6965b3ebee0f0e7a79bf928d969be73109c503c93c4d325983.mp3",
+          "contentHash": "74f41a107eeee529158ccde0605184b2293741a2d98c1a6ae54905224a426da7",
+          "byteSize": 27648
         }
       ]
     },
@@ -5316,11 +5316,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "I am wrong.",
-          "file": "ee3c21607ac8db7a53c416792ca3ca21e542553fc8230e4808d26b607f5dfef9.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/d812b4a01f291bc97a9ba838-coral.mp3",
-          "contentHash": "c1d144459bfa15afcb06cdf213624813d12ad6e0fafb285b40eaaa096adab70d",
-          "byteSize": 34944
+          "text": "confused",
+          "file": "7561d632c6bcf6790e0e2e1418cff8cbeaf1c2c560f23e762ae0c70c85ef07da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7561d632c6bcf6790e0e2e1418cff8cbeaf1c2c560f23e762ae0c70c85ef07da.mp3",
+          "contentHash": "ae17372e050ae04b835e5f782f867be5493719944eb48144d85e9f79332ef0df",
+          "byteSize": 26112
         }
       ]
     },
@@ -5328,11 +5328,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "We are early.",
-          "file": "b5d741b71ca17c2bd1db3e9357b4b63974fc1723437cc05dbd26bbb0aadbe0ab.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/45e7cff0cafd8e1b1f595d05-nova.mp3",
-          "contentHash": "e40adb63ecdd9a32a29a49a7a0137ab66ed32ee47fcceaf01f4d4347227151c4",
-          "byteSize": 35712
+          "text": "sleepy",
+          "file": "327eee1f586e2bd0ce3d1846789379e9021d8638b434bb7ebc76466a98b335e0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e74ca13b4c0a61dcf7746ff7-nova.mp3",
+          "contentHash": "17b4db98b76de2960891a30a03436dd86e1957d1079482e0c13f9cde2959f005",
+          "byteSize": 29952
         }
       ]
     },
@@ -5340,11 +5340,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "They are lucky.",
-          "file": "b9a0a7a785825c179e9e4486ac4aa49ac6a544c4fa03b4717528dac8a90eb2d7.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b9a0a7a785825c179e9e4486ac4aa49ac6a544c4fa03b4717528dac8a90eb2d7.mp3",
-          "contentHash": "f076e764a4182d4a7a7ad1d2fe08bad754aebc4801a5ad25ad309220febf58c4",
-          "byteSize": 25344
+          "text": "relieved",
+          "file": "12d3c217bc381b1f4c404376f4736d2b6d153fa3a3b6d78569de36d247708fb8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/12d3c217bc381b1f4c404376f4736d2b6d153fa3a3b6d78569de36d247708fb8.mp3",
+          "contentHash": "7f9535b2b7c3344cfb7d4f7f089501980c59cefdd940878fdf84ebf7e47f9a7e",
+          "byteSize": 32640
         }
       ]
     },
@@ -5352,32 +5352,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "wrong",
-          "file": "09c88a5095cf1b6e4ba287987a8d77e413849c1a529681a252f0c96343aacc2f.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/8810ad581e59f2bc3928b261-coral.mp3",
-          "contentHash": "a3df7584e640ee3fc9857c7f6dc2f3644a5ffd293f01b98b14f88de077526c9b",
-          "byteSize": 40320
-        },
-        {
-          "text": "early",
-          "file": "d7887a69409d6f29565eb6957130e60f23180cb9d71740c4c69cd680fd301899.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f408830bcc7fab3708191722-coral.mp3",
-          "contentHash": "30f19a6c3c4d5459250489ef0d098e839604c0ee7aa5a47ba15ba8fb5b8b3e02",
-          "byteSize": 31488
-        },
-        {
-          "text": "lucky",
-          "file": "4b5080f08940d07e8a1032aab85d6266eacbb829e0f8b9f423ccf937daf2252b.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/db9fbddbd7caeff7a326645c-coral.mp3",
-          "contentHash": "4d7c5a81a984118a3b08777bf85cd8c266e25f682e32011381e810dfefacb6ec",
-          "byteSize": 21888
-        },
-        {
-          "text": "right",
-          "file": "04c40a1126993f59b7aef0aff9c5bdce87d78e9f39f0f74f069c88f08d0148b8.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/27042f4e6eca7d0b2a7ee402-coral.mp3",
-          "contentHash": "12d7ff5ff2d7caca9593df1d152020669ca245fcb67fc8b37b2a12ff3292e677",
-          "byteSize": 16512
+          "text": "funny",
+          "file": "bf948870192c656d6fee667347f13e93bb1aa77a639eb39f610b3d074825f17b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b22d1d8fe575253395402817-coral.mp3",
+          "contentHash": "c23b231d4a3bb74623fb1af0d99d440160bf9887e3147cba942f54d65bb83994",
+          "byteSize": 6912
         }
       ]
     },
@@ -5385,11 +5364,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "You are wrong.",
-          "file": "88cff1c23db20eabd4ae73ea22f6fd86e7fee6210231fa4caf063ebd9bc43d9b.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/88cff1c23db20eabd4ae73ea22f6fd86e7fee6210231fa4caf063ebd9bc43d9b.mp3",
-          "contentHash": "60b505c0c6d8496eb132a4c6020497dc6423d99fb864b4efb3caaa2948377328",
-          "byteSize": 35712
+          "text": "I am confused.",
+          "file": "53b9d0af5c1091fc4d1df698b745369fe08f526cfa532a5ae1a16307ddd1c9d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53b9d0af5c1091fc4d1df698b745369fe08f526cfa532a5ae1a16307ddd1c9d2.mp3",
+          "contentHash": "e1515d1d1d42d8c5cd3b7269656b217e257f46f703307b529238032a882935f8",
+          "byteSize": 38784
         }
       ]
     },
@@ -5397,11 +5376,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "We are lucky.",
-          "file": "b230df15c6e1c84034975f2439c7a92d0e810f1564655ee613564bfdb3dd58fc.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b230df15c6e1c84034975f2439c7a92d0e810f1564655ee613564bfdb3dd58fc.mp3",
-          "contentHash": "ab4c3aea7151a696bff0965efc8dd4b5b0ec7e86f72f4ac214565aee246c5a8d",
-          "byteSize": 32640
+          "text": "We are sleepy.",
+          "file": "406dc7a17283d116afa73e36939b1a34f437721b7f29f49c80964b7c3fb7ed38.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/406dc7a17283d116afa73e36939b1a34f437721b7f29f49c80964b7c3fb7ed38.mp3",
+          "contentHash": "82f5d63fa8a41bd6b1761348bbc019e5ea5e80d96fd17dfd48c298f993b9797e",
+          "byteSize": 48384
         }
       ]
     },
@@ -5409,10 +5388,10 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "She is early.",
-          "file": "9c6507b1cb653651a77902b8d71b39a362615b8ef6fe3b035d01afbb5c70d10d.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9c6507b1cb653651a77902b8d71b39a362615b8ef6fe3b035d01afbb5c70d10d.mp3",
-          "contentHash": "fe7bfc34ed0a790d6a973a62ae81633782e3c660845be3125dcdae0c6635ff33",
+          "text": "They are relieved.",
+          "file": "4428121d52f0b173ea5bd2aec6a83d5be7f01123eca9b726f8b7b5b2926acfbe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4428121d52f0b173ea5bd2aec6a83d5be7f01123eca9b726f8b7b5b2926acfbe.mp3",
+          "contentHash": "0a98864867b5a3b88e62de1059f184ff015779fb92453e1c4ad231c3feb03c55",
           "byteSize": 23040
         }
       ]
@@ -5421,11 +5400,32 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "You are right.",
-          "file": "976986bdae6389d7274ddba8596d4305400aeb925f7556d3ace0a41f48c3b7f1.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/22726a99c7e8b0eb96330229-onyx.mp3",
-          "contentHash": "d44993aeb5ac4a55ee5607430ecd209c3567a9ab315d1ef962c0b4427272b521",
-          "byteSize": 23040
+          "text": "confused",
+          "file": "2417a53d9b4a5b2c1142631d9f59f0134e223f64f1a67bb666f670c9efcea5ee.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2417a53d9b4a5b2c1142631d9f59f0134e223f64f1a67bb666f670c9efcea5ee.mp3",
+          "contentHash": "302c5b13b61b57f05701bd8aad0b412db44d82e6a2fb26b3d74eef36f8c7bf6e",
+          "byteSize": 25344
+        },
+        {
+          "text": "sleepy",
+          "file": "3df51390c556f4fea4fdbabeb06047008372ea4352b59bce1e7d29d4c5461d76.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e74ca13b4c0a61dcf7746ff7-onyx.mp3",
+          "contentHash": "c07eca50e6e3ef2125e3dd472e8409ac75dd4d5ff7b300f624150872cfdb3ac5",
+          "byteSize": 26112
+        },
+        {
+          "text": "relieved",
+          "file": "12d3c217bc381b1f4c404376f4736d2b6d153fa3a3b6d78569de36d247708fb8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/12d3c217bc381b1f4c404376f4736d2b6d153fa3a3b6d78569de36d247708fb8.mp3",
+          "contentHash": "7f9535b2b7c3344cfb7d4f7f089501980c59cefdd940878fdf84ebf7e47f9a7e",
+          "byteSize": 32640
+        },
+        {
+          "text": "funny",
+          "file": "de0de7b9878f4a19222740fe1f6446d293e169fd11cdf9b31a465ec91de2cf26.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b22d1d8fe575253395402817-onyx.mp3",
+          "contentHash": "58150a20a4542fc57e1cbf8fffcd07ca4f65d0a8c65e1ab932268faf8ae9df5c",
+          "byteSize": 20352
         }
       ]
     },
@@ -5433,15 +5433,63 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "He is lucky.",
-          "file": "07340796f9154aa8c79e545d8df701cef224dd61faea4e28d00c43ade6fbc0c5.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07340796f9154aa8c79e545d8df701cef224dd61faea4e28d00c43ade6fbc0c5.mp3",
-          "contentHash": "e820d1738c2d1046a3f9ce5169d7a8b858e74100f6fbe56cb331125e0886d89b",
-          "byteSize": 29952
+          "text": "You are confused.",
+          "file": "85f191cd8e172120698fef99d0828ec647f0d88ebf1542d134ca39737122c326.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/85f191cd8e172120698fef99d0828ec647f0d88ebf1542d134ca39737122c326.mp3",
+          "contentHash": "f82645fa144280a09a104bbcedab863cb15d317a92c3ef3cfe9638173a3ec88f",
+          "byteSize": 25344
         }
       ]
     },
     "l01/s18/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "We are relieved.",
+          "file": "62bb44fc53ce21d8b35a815e21ed259a845212d82d885581ba7708db349cae68.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/62bb44fc53ce21d8b35a815e21ed259a845212d82d885581ba7708db349cae68.mp3",
+          "contentHash": "287341afa746e80d36f252a3b68f69d9d21b5d5889863d9520f795e4cf028e6d",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l01/s18/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She is sleepy.",
+          "file": "bb35039acac2fff558722ed674814d486ae5e60ebde4caeac11133fff3e55de9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bb35039acac2fff558722ed674814d486ae5e60ebde4caeac11133fff3e55de9.mp3",
+          "contentHash": "f400781fa61d098b8330e4ee012dc95fb2dcff4e8329345a56f2770619b51245",
+          "byteSize": 52992
+        }
+      ]
+    },
+    "l01/s18/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "You are right.",
+          "file": "d6b1fd0a6effc5bcab869ea55c8c5f890cbdc9a1e8e0b7c048bca927dd4fde01.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/22726a99c7e8b0eb96330229-nova.mp3",
+          "contentHash": "74f7630ed6ef50836f23c7fe31d3ebb47473a8b87667f94dccea2a54ea149c05",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l01/s18/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He is lucky.",
+          "file": "e90e106dad5239540e5624293bfdd991f37b7fad15a558dfe161972d6309d96e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e90e106dad5239540e5624293bfdd991f37b7fad15a558dfe161972d6309d96e.mp3",
+          "contentHash": "4fc5c03cf0d51a74fef586793c3827f9e96f1f9261045d572a6f9caa6ed0ea04",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l01/s18/task/13": {
       "voice": "ash",
       "clips": [
         {
@@ -5474,31 +5522,31 @@
         }
       ]
     },
-    "l01/s18/task/10": {
-      "voice": "onyx",
+    "l01/s18/task/14": {
+      "voice": "coral",
       "clips": [
         {
           "text": "They are early.",
-          "file": "e691ab24ac6a8917b3a2f135bf99846d89d3bd7a84057f566e1d8b062030b54e.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e691ab24ac6a8917b3a2f135bf99846d89d3bd7a84057f566e1d8b062030b54e.mp3",
-          "contentHash": "90e5d304096f292f7234d1e87654b67394953eb8188410570bcb01f60c6890fd",
+          "file": "ca0b287333cfcdea406d068c722ebfdc0a8056734d5358adedb15d5cfadfc203.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca0b287333cfcdea406d068c722ebfdc0a8056734d5358adedb15d5cfadfc203.mp3",
+          "contentHash": "0aa1262be247d341616c8ad6c6c9c5fc9fe13dce1cc89b14b7b34e55d13da511",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l01/s18/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They are wrong.",
+          "file": "884fba8b49f33f46fb3b7ceab79bddbdf41b0ebafb914abbc8f5f4b77e83519e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/884fba8b49f33f46fb3b7ceab79bddbdf41b0ebafb914abbc8f5f4b77e83519e.mp3",
+          "contentHash": "32d2af717cf753b3c8c5b7895a64e374cd6a4fc8b69b57f962fbeb15fa046a89",
           "byteSize": 24192
         }
       ]
     },
-    "l01/s18/task/11": {
-      "voice": "nova",
-      "clips": [
-        {
-          "text": "They are wrong.",
-          "file": "9d162d9bbc6e34cd6f88744b29e777dac94b3c350c9afd1cc1951ae7df430397.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9d162d9bbc6e34cd6f88744b29e777dac94b3c350c9afd1cc1951ae7df430397.mp3",
-          "contentHash": "dde12a023d59a68b70affc1bca66223ec776f81384b05c2010dda3f3801f516e",
-          "byteSize": 25344
-        }
-      ]
-    },
-    "l01/s18/task/12": {
+    "l01/s18/task/16": {
       "voice": "coral",
       "clips": [
         {
@@ -5507,75 +5555,6 @@
           "assetPath": "assets/audio/learning-v2/factory-production-v1/54faa93596dd6701d69264bd-coral.mp3",
           "contentHash": "9c7780e239a3796aebf48b90e66887b32edbe6c37d0e0c06036edabad7671e6a",
           "byteSize": 29952
-        }
-      ]
-    },
-    "l01/s18/task/13": {
-      "voice": "ash",
-      "clips": [
-        {
-          "text": "We are safe .",
-          "file": "8205c0f54578f39ee1a792c76c0b499818f7c17c2e5513f87c172379428c656f.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8205c0f54578f39ee1a792c76c0b499818f7c17c2e5513f87c172379428c656f.mp3",
-          "contentHash": "65d0882d972cfc0d1633e168d535a32aead1ece343ac613178501509a2dc577b",
-          "byteSize": 30720
-        }
-      ]
-    },
-    "l01/s18/task/14": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "She is funny.",
-          "file": "9894cca2d980204228f5bc7445e73ce9a0814fea6dc7f2540cef1e9c37c81713.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9894cca2d980204228f5bc7445e73ce9a0814fea6dc7f2540cef1e9c37c81713.mp3",
-          "contentHash": "574827cf9fcf1f37e0f35f36fbad54c2709a689601fe8c940ffc799db8059d61",
-          "byteSize": 36480
-        }
-      ]
-    },
-    "l01/s18/task/15": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "early",
-          "file": "f18cb0115f04e87bd93e1be519b6df8b969cb279d8e4ef1b2a4b5f45eb6ae19f.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f408830bcc7fab3708191722-onyx.mp3",
-          "contentHash": "8e74c96ce152287e7255edd7e7dcfa6d1961b6dab32e4864493d196cedccdc82",
-          "byteSize": 19584
-        },
-        {
-          "text": "lucky",
-          "file": "668ac1771109c24d3638ab0e8e7bbb0a55fb32a84c9265c15d3e2c7323e6ee0f.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/db9fbddbd7caeff7a326645c-onyx.mp3",
-          "contentHash": "dcd7287c0ca4309aa510a34b1ed1f5cc5f6d4e6250325c89412424b9dca27a8c",
-          "byteSize": 20352
-        },
-        {
-          "text": "funny",
-          "file": "de0de7b9878f4a19222740fe1f6446d293e169fd11cdf9b31a465ec91de2cf26.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/b22d1d8fe575253395402817-onyx.mp3",
-          "contentHash": "58150a20a4542fc57e1cbf8fffcd07ca4f65d0a8c65e1ab932268faf8ae9df5c",
-          "byteSize": 20352
-        },
-        {
-          "text": "wrong",
-          "file": "554c7ed0421ce9c7a02a9b0da674843a2dd18081b549d79ddc41c98ec6e1b960.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/8810ad581e59f2bc3928b261-onyx.mp3",
-          "contentHash": "3b62051eab9bf5484daf02bea0b40943d1d28e297f7f5cfb7381b8159037b302",
-          "byteSize": 17280
-        }
-      ]
-    },
-    "l01/s18/task/16": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "We are early.",
-          "file": "9614ebe413b859579d5756cdc5d291ba05c280b4bc16b1452d92217924663746.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/45e7cff0cafd8e1b1f595d05-coral.mp3",
-          "contentHash": "787ab3ae8693c96e5001afb9c7a376cb65c9d6465e96ab25dac603b79753bb74",
-          "byteSize": 28416
         }
       ]
     },
@@ -133988,6 +133967,75 @@
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d05c421e25b301d45b45bd12fb069c216c3563c9e816d105668479dcc75f7f6.mp3",
           "contentHash": "64d8fabb61347ce4cdea6263db87aa8d08f77337a1b1b02022d99de8a2a1c6f5",
           "byteSize": 20352
+        }
+      ]
+    },
+    "l01/s18/task/17": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We are safe .",
+          "file": "5e87e8b110c0b55bf443f872beebc7c77adb59f75782b9ae535652652a6bd59b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5e87e8b110c0b55bf443f872beebc7c77adb59f75782b9ae535652652a6bd59b.mp3",
+          "contentHash": "f81bbfcd7caee76546f294a0f151da48aa64ae3d28ec6f3c86724f0b76fca6c9",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l01/s18/task/18": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She is funny.",
+          "file": "99a9b5237b942bf7bf6bbfdefb29f21931267f5afbed6d14d4735eab8e6b88f1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99a9b5237b942bf7bf6bbfdefb29f21931267f5afbed6d14d4735eab8e6b88f1.mp3",
+          "contentHash": "b13eae8217ae357a546a3568d8168f14453922cfa39f83bacfee98ea7b7ed789",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l01/s18/task/19": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "early",
+          "file": "f18cb0115f04e87bd93e1be519b6df8b969cb279d8e4ef1b2a4b5f45eb6ae19f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f408830bcc7fab3708191722-onyx.mp3",
+          "contentHash": "8e74c96ce152287e7255edd7e7dcfa6d1961b6dab32e4864493d196cedccdc82",
+          "byteSize": 19584
+        },
+        {
+          "text": "lucky",
+          "file": "668ac1771109c24d3638ab0e8e7bbb0a55fb32a84c9265c15d3e2c7323e6ee0f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/db9fbddbd7caeff7a326645c-onyx.mp3",
+          "contentHash": "dcd7287c0ca4309aa510a34b1ed1f5cc5f6d4e6250325c89412424b9dca27a8c",
+          "byteSize": 20352
+        },
+        {
+          "text": "funny",
+          "file": "de0de7b9878f4a19222740fe1f6446d293e169fd11cdf9b31a465ec91de2cf26.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b22d1d8fe575253395402817-onyx.mp3",
+          "contentHash": "58150a20a4542fc57e1cbf8fffcd07ca4f65d0a8c65e1ab932268faf8ae9df5c",
+          "byteSize": 20352
+        },
+        {
+          "text": "wrong",
+          "file": "554c7ed0421ce9c7a02a9b0da674843a2dd18081b549d79ddc41c98ec6e1b960.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/8810ad581e59f2bc3928b261-onyx.mp3",
+          "contentHash": "3b62051eab9bf5484daf02bea0b40943d1d28e297f7f5cfb7381b8159037b302",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l01/s18/task/20": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "We are early.",
+          "file": "b5d741b71ca17c2bd1db3e9357b4b63974fc1723437cc05dbd26bbb0aadbe0ab.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/45e7cff0cafd8e1b1f595d05-nova.mp3",
+          "contentHash": "e40adb63ecdd9a32a29a49a7a0137ab66ed32ee47fcceaf01f4d4347227151c4",
+          "byteSize": 35712
         }
       ]
     }

@@ -118033,6 +118033,309 @@
           "byteSize": 33792
         }
       ]
+    },
+    "l07/s54/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually browse online.",
+          "file": "5fbf25f9114f95abe6f390fcbf0b481a6dad896873499575e562edfc60c86669.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fbf25f9114f95abe6f390fcbf0b481a6dad896873499575e562edfc60c86669.mp3",
+          "contentHash": "1005aa502164cf6d8e5070aa1795766ef4bd20ffb7aacb633b38e0fba7bea6cb",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l07/s54/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually organize my books.",
+          "file": "e69cdfc87aceb0b0a27c5a8c1c25bcb2c212c5ac72ac5d67e49a3c0384bce631.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e69cdfc87aceb0b0a27c5a8c1c25bcb2c212c5ac72ac5d67e49a3c0384bce631.mp3",
+          "contentHash": "8afeb7b2957386dff1cf326bd2d76992ae46ef3693fa639cf229e4467c63995d",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s54/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you repair phones?",
+          "file": "fd6c73f89ef1817495084f2f49a6a2aab55ff9f0ceb804c74eda13ff687f8a54.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd6c73f89ef1817495084f2f49a6a2aab55ff9f0ceb804c74eda13ff687f8a54.mp3",
+          "contentHash": "faf93ae51e881bee580d45d5b13fea7b76a112c890d4163e7ebf3de870b495aa",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l07/s54/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually browse online.",
+          "file": "6773f435f3e8b4d1b2e9cdab1cb8fd1b04eb94458dc6366e7678f7656a2a8e39.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6773f435f3e8b4d1b2e9cdab1cb8fd1b04eb94458dc6366e7678f7656a2a8e39.mp3",
+          "contentHash": "23fa04595ea68e0cfe2dbc8f621c4d8646099def87aebd8f9e1942dea17a36eb",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s54/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "browse",
+          "file": "5eeb26ad6bb56435a19eac4eef66917832d54c9aabbf57d7cd29048d5d2497fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5eeb26ad6bb56435a19eac4eef66917832d54c9aabbf57d7cd29048d5d2497fb.mp3",
+          "contentHash": "ac7c797dbdab16afa7bc67953ecc8100e68f7514a381a2c8ec7962728a0fa827",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s54/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually browse online.",
+          "file": "6773f435f3e8b4d1b2e9cdab1cb8fd1b04eb94458dc6366e7678f7656a2a8e39.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6773f435f3e8b4d1b2e9cdab1cb8fd1b04eb94458dc6366e7678f7656a2a8e39.mp3",
+          "contentHash": "23fa04595ea68e0cfe2dbc8f621c4d8646099def87aebd8f9e1942dea17a36eb",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s54/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "browse",
+          "file": "5eeb26ad6bb56435a19eac4eef66917832d54c9aabbf57d7cd29048d5d2497fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5eeb26ad6bb56435a19eac4eef66917832d54c9aabbf57d7cd29048d5d2497fb.mp3",
+          "contentHash": "ac7c797dbdab16afa7bc67953ecc8100e68f7514a381a2c8ec7962728a0fa827",
+          "byteSize": 26880
+        },
+        {
+          "text": "repair",
+          "file": "8922eb57ff29997692e61588c6c1488d31c0164f94da7e9f650c06539c5898f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8922eb57ff29997692e61588c6c1488d31c0164f94da7e9f650c06539c5898f0.mp3",
+          "contentHash": "0ae338ce4ffba843159031edbf715674ad96d65c6dda2b2196bc9c67bea8811f",
+          "byteSize": 14976
+        },
+        {
+          "text": "kiosk",
+          "file": "31a504362e8ed49777912f975806f2985efc938675eb7d4f201812fa82b6d1c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31a504362e8ed49777912f975806f2985efc938675eb7d4f201812fa82b6d1c4.mp3",
+          "contentHash": "0ae4271b5b6b7e3b18d8b442fd659a6fdadc6d0f82fd41a636bc0b10208705f8",
+          "byteSize": 30720
+        },
+        {
+          "text": "striped",
+          "file": "b37b02f1b9467b72fd2ab430375508cbd3b95adb339f8b6c41dd4ec4896a7528.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b37b02f1b9467b72fd2ab430375508cbd3b95adb339f8b6c41dd4ec4896a7528.mp3",
+          "contentHash": "3fa7b3947852985342f3aa8242dc0c4fbf24846f53de423a4b16afa7bb92cfd1",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s54/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually browse online.",
+          "file": "5fbf25f9114f95abe6f390fcbf0b481a6dad896873499575e562edfc60c86669.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fbf25f9114f95abe6f390fcbf0b481a6dad896873499575e562edfc60c86669.mp3",
+          "contentHash": "1005aa502164cf6d8e5070aa1795766ef4bd20ffb7aacb633b38e0fba7bea6cb",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l07/s54/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually organize my books.",
+          "file": "4bcb27414d2d8d7fbae0ed379d418b4ccf733e2f6ce910f5cd60e7efb0f31bf1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4bcb27414d2d8d7fbae0ed379d418b4ccf733e2f6ce910f5cd60e7efb0f31bf1.mp3",
+          "contentHash": "c9355ef66ccfe6616bab730679974ddef833bd79517d953c442ccc9d519507eb",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l07/s54/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you repair phones?",
+          "file": "9d283e01f56228899b4e1b57d4edbf2037edb21c8aa90c7c0a3212614a971e27.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9d283e01f56228899b4e1b57d4edbf2037edb21c8aa90c7c0a3212614a971e27.mp3",
+          "contentHash": "5f8f1392daef7158fa776f3dd870320e329225f931ff6fe3a328e9603eee4549",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s54/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you repair phones?",
+          "file": "6043850d44879cfb92b60a122c2882f192cba8b63897c8393697ff7ef4b54f74.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6043850d44879cfb92b60a122c2882f192cba8b63897c8393697ff7ef4b54f74.mp3",
+          "contentHash": "2ff4bef1f58bdd66640b46a74ed3f292e362d8d7551fa2b9804156ae5938a715",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l07/s54/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually browse online.",
+          "file": "24fb88f2659f308f006277fd49151bf81e8121226aebbec39abdfd7e1882f427.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/24fb88f2659f308f006277fd49151bf81e8121226aebbec39abdfd7e1882f427.mp3",
+          "contentHash": "c5f1627d7b904149ed627c218b37a7a0cda09a4c5861495949bcacfc6510045a",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l07/s54/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "organize",
+          "file": "7d736c57573889bae2b7dc93a761bde8c28da9ce796c9419e8eb1e3a1572d986.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d736c57573889bae2b7dc93a761bde8c28da9ce796c9419e8eb1e3a1572d986.mp3",
+          "contentHash": "4331d8a21a74d5a4eda9d76132aea1ab92f13c38ef89810a37b6915dc3be5f47",
+          "byteSize": 18816
+        },
+        {
+          "text": "browse",
+          "file": "1d4d4f0052ad3a5b951c454ce314e55d2e0faab867adb85747918b0ad723b965.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d4d4f0052ad3a5b951c454ce314e55d2e0faab867adb85747918b0ad723b965.mp3",
+          "contentHash": "35b04f1a2c3440197a2f98870090043a0ac6746d30cf147cf8c86e6c52d9ef0d",
+          "byteSize": 20352
+        },
+        {
+          "text": "repair",
+          "file": "aadd3029223a17966cb0bff90a1ad6018a348f66c12aab2840ced7cc84acc59b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aadd3029223a17966cb0bff90a1ad6018a348f66c12aab2840ced7cc84acc59b.mp3",
+          "contentHash": "9c17bf8faa06bc63b08ce7b97b22d3c7de867ee790d4bd60e770462684da216a",
+          "byteSize": 17280
+        },
+        {
+          "text": "striped",
+          "file": "b263a94b80bc3383272e336c233ebd8afe05ace31de17c57b1726463e0a59501.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b263a94b80bc3383272e336c233ebd8afe05ace31de17c57b1726463e0a59501.mp3",
+          "contentHash": "942e9ffe6c633bf84e82f19bb98850ed96b8ee0383a29b736779a2773f6feb66",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l07/s54/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you repair phones?",
+          "file": "fd6c73f89ef1817495084f2f49a6a2aab55ff9f0ceb804c74eda13ff687f8a54.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd6c73f89ef1817495084f2f49a6a2aab55ff9f0ceb804c74eda13ff687f8a54.mp3",
+          "contentHash": "faf93ae51e881bee580d45d5b13fea7b76a112c890d4163e7ebf3de870b495aa",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l07/s54/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is the kiosk?",
+          "file": "07262159526235782a092d2ec5e64c8ae455ab22557cb8342addcf94836a8e1f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07262159526235782a092d2ec5e64c8ae455ab22557cb8342addcf94836a8e1f.mp3",
+          "contentHash": "8c738149ff7a6cf21ea710a95407b461e5609cfa1ead08672a4554d1e9015f83",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l07/s54/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "My shirt is striped.",
+          "file": "a6c10866c3c65e0de37caa4d4db58141fceaae97eca3c3cb39c23a94ee414b0f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a6c10866c3c65e0de37caa4d4db58141fceaae97eca3c3cb39c23a94ee414b0f.mp3",
+          "contentHash": "b41624a1a12d3a1fa1a5772b1589862c267c2ea9b8472562e26639b7ebd50dc6",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l07/s54/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually browse online.",
+          "file": "5fbf25f9114f95abe6f390fcbf0b481a6dad896873499575e562edfc60c86669.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fbf25f9114f95abe6f390fcbf0b481a6dad896873499575e562edfc60c86669.mp3",
+          "contentHash": "1005aa502164cf6d8e5070aa1795766ef4bd20ffb7aacb633b38e0fba7bea6cb",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l07/s54/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the kiosk?",
+          "file": "02005865463ebdffd48d1d2a00dbf6c965b2a95c37cf22b9d2aa4b353f4edea2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/02005865463ebdffd48d1d2a00dbf6c965b2a95c37cf22b9d2aa4b353f4edea2.mp3",
+          "contentHash": "9823b4cbb0d07ffac977115348d226db728b05c6f03c42b42e3ff4317d181141",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l07/s54/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "browse",
+          "file": "712a0712ef52d3f83acbce42f6edc7e4baf2ff8a2c6a1c1831dbdf29f69d81b8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/712a0712ef52d3f83acbce42f6edc7e4baf2ff8a2c6a1c1831dbdf29f69d81b8.mp3",
+          "contentHash": "eb12521f27dd80c6a6469073f44fbf3917f55007fc6aefa53b75e188af44c5d2",
+          "byteSize": 26880
+        },
+        {
+          "text": "kiosk",
+          "file": "a49725e37ddf477e6e57007dc91a0232f83dbbab97e85ed8b1f968a93a0a4216.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a49725e37ddf477e6e57007dc91a0232f83dbbab97e85ed8b1f968a93a0a4216.mp3",
+          "contentHash": "075f42dada2312b94dd66744c70b290e949a275e169a43e5001cba470eef11c6",
+          "byteSize": 18048
+        },
+        {
+          "text": "striped",
+          "file": "acc4fbbaa23a9c8fa4f6408ac02df5e8b748fec53958c2d219f3ff471a4ce527.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/acc4fbbaa23a9c8fa4f6408ac02df5e8b748fec53958c2d219f3ff471a4ce527.mp3",
+          "contentHash": "9cc3259fdbb707c46590508939bd2bfcf375fb8a602f1e69662d2f7051785e96",
+          "byteSize": 20352
+        },
+        {
+          "text": "organize",
+          "file": "8fcaa4367ab78b368845f534d4347640c681f911802475bae8d65a121677b8c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8fcaa4367ab78b368845f534d4347640c681f911802475bae8d65a121677b8c4.mp3",
+          "contentHash": "efbcf29517d8a5083f868a870d5b44b5a6d2a60d488473f464b23856705ea6af",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l07/s54/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom usually browses online.",
+          "file": "d529cf0a24efad00c79ec87a55bed64685e8fb969ace3e64dff342f127e55a38.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d529cf0a24efad00c79ec87a55bed64685e8fb969ace3e64dff342f127e55a38.mp3",
+          "contentHash": "95896be3064542d446fb7c0e4c494c81bb749ba073721cc1fe5847395504dafb",
+          "byteSize": 63360
+        }
+      ]
     }
   },
   "settings": {

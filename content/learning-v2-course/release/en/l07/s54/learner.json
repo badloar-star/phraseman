@@ -1,0 +1,947 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я обычно просматриваю сайты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно просматриваю сайты»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually browse online.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно просматриваю сайты»",
+          "uk": "Скажіть «Я зазвичай переглядаю сайти»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "browse",
+          "online"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-54:i02:r1",
+          "text": "browse"
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i02:r2",
+          "text": "repair"
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i02:r3",
+          "text": "organize"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:i02:audio",
+          "transcript": "browse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-54:i02:r1",
+            "targetText": "browse",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i02:r2",
+            "targetText": "repair",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i02:r3",
+            "targetText": "organize",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `browse`, а в этом варианте — `repair`.",
+              "uk": "У записі перше слово — `browse`, а в цьому варіанті — `repair`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `browse`, а в этом варианте — `organize`.",
+              "uk": "У записі перше слово — `browse`, а в цьому варіанті — `organize`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я обычно просматриваю сайты»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-54:i03:r1",
+          "text": "browse"
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i03:r2",
+          "text": "browses"
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i03:r3",
+          "text": "browsing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно просматриваю сайты»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно просматриваю сайты»",
+          "uk": "Скажіть «Я зазвичай переглядаю сайти»"
+        },
+        "gappedTargetPhrase": "I usually ___ online.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-54:i03:r1",
+            "text": "browse"
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i03:r2",
+            "text": "browses"
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i03:r3",
+            "text": "browsing"
+          }
+        ],
+        "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `browse`.",
+              "uk": "Після `I` потрібне `browse`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `browse`.",
+              "uk": "Тут потрібна форма `browse`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-54:i04:p1",
+            "target": "browse",
+            "meaningByLocale": {
+              "ru": "просматривать",
+              "uk": "переглядати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-54:i04:p2",
+            "target": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать",
+              "uk": "ремонтувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-54:i04:p3",
+            "target": "kiosk",
+            "meaningByLocale": {
+              "ru": "киоск",
+              "uk": "кіоск"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-54:i04:p4",
+            "target": "striped",
+            "meaningByLocale": {
+              "ru": "полосатый",
+              "uk": "смугастий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "browse",
+          "repair",
+          "kiosk",
+          "striped"
+        ],
+        "rightColumn": [
+          "просматривать",
+          "ремонтировать",
+          "киоск",
+          "полосатый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:i05:audio",
+          "transcript": "I usually browse online."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually browse online.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "browse",
+          "online"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я обычно раскладываю свои книги по порядку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно раскладываю свои книги по порядку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually organize my books.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно раскладываю свои книги по порядку»",
+          "uk": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "organize",
+          "my",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите мастера «Вы ремонтируете телефоны?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите мастера «Вы ремонтируете телефоны?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:i07:audio",
+          "transcript": "Do you repair phones?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you repair phones?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите «Вы ремонтируете телефоны?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-54:i08:r1",
+          "text": "repair"
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i08:r2",
+          "text": "repairs"
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i08:r3",
+          "text": "repairing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Вы ремонтируете телефоны?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Вы ремонтируете телефоны?»",
+          "uk": "Запитайте «Ви ремонтуєте телефони?»"
+        },
+        "gappedTargetPhrase": "Do you ___ phones?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-54:i08:r1",
+            "text": "repair"
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i08:r2",
+            "text": "repairs"
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i08:r3",
+            "text": "repairing"
+          }
+        ],
+        "testedDimension": "Спросите «Вы ремонтируете телефоны?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите «Вы ремонтируете телефоны?»",
+            "feedbackByLocale": {
+              "ru": "После `do you` нужно `repair`.",
+              "uk": "Після `do you` потрібне `repair`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите «Вы ремонтируете телефоны?»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `repair`.",
+              "uk": "Тут потрібна форма `repair`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-54:i09:r1",
+          "text": "I usually browse online."
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i09:r2",
+          "text": "We usually browse online."
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i09:r3",
+          "text": "They usually browse online."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:i09:audio",
+          "transcript": "I usually browse online."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-54:i09:r1",
+            "targetText": "I usually browse online.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i09:r2",
+            "targetText": "We usually browse online.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i09:r3",
+            "targetText": "They usually browse online.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `I`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `I`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `I`, а в этом варианте — `They`.",
+              "uk": "У записі перше слово — `I`, а в цьому варіанті — `They`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-54:i10:p1",
+            "target": "organize",
+            "meaningByLocale": {
+              "ru": "упорядочивать",
+              "uk": "упорядковувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-54:i10:p2",
+            "target": "browse",
+            "meaningByLocale": {
+              "ru": "просматривать",
+              "uk": "переглядати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-54:i10:p3",
+            "target": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать",
+              "uk": "ремонтувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-54:i10:p4",
+            "target": "striped",
+            "meaningByLocale": {
+              "ru": "полосатый",
+              "uk": "смугастий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "organize",
+          "browse",
+          "repair",
+          "striped"
+        ],
+        "rightColumn": [
+          "упорядочивать",
+          "просматривать",
+          "ремонтировать",
+          "полосатый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:i11:audio",
+          "transcript": "Do you repair phones?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you repair phones?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "repair",
+          "phones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотите купить газету. Спросите прохожего «Где киоск?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите купить газету. Спросите прохожего «Где киоск?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the kiosk?",
+        "localizedMeaning": {
+          "ru": "Вы хотите купить газету. Спросите прохожего «Где киоск?»",
+          "uk": "Ви хочете купити газету. Запитайте перехожого «Де кіоск?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "kiosk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, какая у вас рубашка. Скажите «Моя рубашка полосатая»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, какая у вас рубашка. Скажите «Моя рубашка полосатая»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:i13:audio",
+          "transcript": "My shirt is striped."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My shirt is striped.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я обычно просматриваю сайты»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-54:i14:r1",
+          "text": "usually"
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно просматриваю сайты»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно просматриваю сайты»",
+          "uk": "Скажіть «Я зазвичай переглядаю сайти»"
+        },
+        "gappedTargetPhrase": "I ___ browse online.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-54:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually` перед `browse`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `browse`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually`; `am` перед `browse` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `browse` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-54:i15:r1",
+          "text": "Where is the kiosk?"
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i15:r2",
+          "text": "Where is the museum?"
+        },
+        {
+          "responseId": "en:lesson-07:session-54:i15:r3",
+          "text": "Where is the cinema?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:i15:audio",
+          "transcript": "Where is the kiosk?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-54:i15:r1",
+            "targetText": "Where is the kiosk?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i15:r2",
+            "targetText": "Where is the museum?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i15:r3",
+            "targetText": "Where is the cinema?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `kiosk`, а в этом варианте — `museum`.",
+              "uk": "У записі останнє слово — `kiosk`, а в цьому варіанті — `museum`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-54:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `kiosk`, а в этом варианте — `cinema`.",
+              "uk": "У записі останнє слово — `kiosk`, а в цьому варіанті — `cinema`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-54:i16:p1",
+            "target": "browse",
+            "meaningByLocale": {
+              "ru": "просматривать",
+              "uk": "переглядати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-54:i16:p2",
+            "target": "kiosk",
+            "meaningByLocale": {
+              "ru": "киоск",
+              "uk": "кіоск"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-54:i16:p3",
+            "target": "striped",
+            "meaningByLocale": {
+              "ru": "полосатый",
+              "uk": "смугастий"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-54:i16:p4",
+            "target": "organize",
+            "meaningByLocale": {
+              "ru": "упорядочивать",
+              "uk": "упорядковувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "browse",
+          "kiosk",
+          "striped",
+          "organize"
+        ],
+        "rightColumn": [
+          "просматривать",
+          "киоск",
+          "полосатый",
+          "упорядочивать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, что Том обычно делает в интернете. Скажите «Том обычно просматривает сайты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, что Том обычно делает в интернете. Скажите «Том обычно просматривает сайты»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:i17:audio",
+          "transcript": "Tom usually browses online."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom usually browses online.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b227be3494f1fbcb3bb6ae9907344e4eb2333c64053711c4ecef180a1b509119"
+}

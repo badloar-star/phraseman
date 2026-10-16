@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-26:i01",
+    "correctText": "Plug it in.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i02",
+    "correctText": "plug",
+    "correctResponseId": "en:lesson-08:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i03",
+    "correctText": "Plug",
+    "correctResponseId": "en:lesson-08:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i04",
+    "correctText": "en:lesson-08:session-26:i04:p1=plug in\nen:lesson-08:session-26:i04:p2=worktop\nen:lesson-08:session-26:i04:p3=park\nen:lesson-08:session-26:i04:p4=jog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i05",
+    "correctText": "Plug it in.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i06",
+    "correctText": "Open the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i07",
+    "correctText": "Turn left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i08",
+    "correctText": "Open",
+    "correctResponseId": "en:lesson-08:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i09",
+    "correctText": "Plug it in.",
+    "correctResponseId": "en:lesson-08:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i10",
+    "correctText": "en:lesson-08:session-26:i10:p1=pass\nen:lesson-08:session-26:i10:p2=plug in\nen:lesson-08:session-26:i10:p3=worktop\nen:lesson-08:session-26:i10:p4=park",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i11",
+    "correctText": "Turn left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i12",
+    "correctText": "Can you pass me the key?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i13",
+    "correctText": "I often jog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i14",
+    "correctText": "Turn",
+    "correctResponseId": "en:lesson-08:session-26:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i15",
+    "correctText": "Open the window.",
+    "correctResponseId": "en:lesson-08:session-26:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i16",
+    "correctText": "en:lesson-08:session-26:i16:p1=plug in\nen:lesson-08:session-26:i16:p2=jog\nen:lesson-08:session-26:i16:p3=pass\nen:lesson-08:session-26:i16:p4=worktop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-26:i17",
+    "correctText": "Plug it in.",
+    "correctResponseId": null
+  }
+]

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-12:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-12:intro1:r2": {
-          "ru": "`am` не ходит дальше `I`. Для `you` — только `are`.",
-          "uk": "`am` не ходить далі за `I`. Для `you` — лише `are`."
+          "ru": "С you здесь используется are; am нужно с I.",
+          "uk": "З you тут уживається are; am потрібне з I."
         },
         "en:lesson-01:session-12:intro1:r3": {
-          "ru": "После `you` нужно `are`. По-русски мы говорим «ты спокойный» без связки, а по-английски она нужна.",
-          "uk": "Після `you` потрібне `are`. Українською зв'язки в цій фразі немає, а англійською вона потрібна."
+          "ru": "В английской фразе между you и polite нужно are.",
+          "uk": "В англійській фразі між you та polite потрібне are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-12:intro2:r2": {
-          "ru": "`I am` говорят о себе: «я смелый/смелая». Здесь вы обращаетесь к коллеге — `you are`.",
-          "uk": "`I am` кажуть про себе: «я сміливий/смілива». Тут ви звертаєтеся до колеги — `you are`."
+          "ru": "I am — о себе. Вы обращаетесь к Лине: You are brave.",
+          "uk": "I am — про себе. Ви звертаєтеся до Ліни: You are brave."
         },
         "en:lesson-01:session-12:intro2:r3": {
-          "ru": "`not` ставят сразу после `are`. Но здесь он и не нужен — вы его хвалите.",
-          "uk": "`not` ставлять одразу після `are`. Але тут він і не потрібен — ви його хвалите."
+          "ru": "Здесь нужна положительная оценка. В отрицании not стояло бы после are, а не в конце.",
+          "uk": "Тут потрібна позитивна оцінка. У запереченні not стояло б після are, а не в кінці."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-12:intro3:r2": {
-          "ru": "Честный — это когда сказал правду. Здесь он быстро придумал выход, а это `smart`.",
-          "uk": "Чесний — це коли сказав правду. Тут він швидко придумав вихід, а це `smart`."
+          "ru": "Честно поступил Никита; вы говорите ему You are honest.",
+          "uk": "Чесно вчинив Микита; ви кажете йому You are honest."
         },
         "en:lesson-01:session-12:intro3:r3": {
-          "ru": "После `you` нужно `are`: You are smart.",
-          "uk": "Після `you` потрібне `are`: You are smart."
+          "ru": "Перед honest в этой фразе нужно are.",
+          "uk": "Перед honest у цій фразі потрібне are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "481f9716dc73cb36317aaa77390b32e47e8da4f2f9e816a0924186bf930c1576"
+  "auxiliaryFingerprint": "2f238d4b62ea43cc52d25f66b26516430c957903c6fcaa087384f47ab10745c2"
 }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-16:intro1:r2": {
+          "ru": "Один руководитель: `Does the manager`.",
+          "uk": "Один керівник: `Does the manager`."
+        },
+        "en:lesson-07:session-16:intro1:r3": {
+          "ru": "После `Does` нужно `work`.",
+          "uk": "Після `Does` потрібне `work`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-16:intro2:r2": {
+          "ru": "Один принтер: `Does the printer`.",
+          "uk": "Один принтер: `Does the printer`."
+        },
+        "en:lesson-07:session-16:intro2:r3": {
+          "ru": "После `Does` нужно `work`.",
+          "uk": "Після `Does` потрібне `work`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-16:intro3:r2": {
+          "ru": "Один экран: `There is no screen`.",
+          "uk": "Один екран: `There is no screen`."
+        },
+        "en:lesson-07:session-16:intro3:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bb4c0d681e690481514a59bf58c562fe40ce2e0c52cfd2af3c03c3b678904444"
+}

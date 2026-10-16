@@ -1,0 +1,950 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Керівник працює тут?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Керівник працює тут?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does the manager work here?",
+        "localizedMeaning": {
+          "ru": "Спросите «Руководитель работает здесь?»",
+          "uk": "Запитайте «Керівник працює тут?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "the",
+          "manager",
+          "work",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання про принтер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-16:i02:r1",
+          "text": "Does the printer work?"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i02:r2",
+          "text": "Does the printer start?"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i02:r3",
+          "text": "Does the printer open?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про принтер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-16:i02:audio",
+          "transcript": "Does the printer work?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-16:i02:r1",
+            "targetText": "Does the printer work?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i02:r2",
+            "targetText": "Does the printer start?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i02:r3",
+            "targetText": "Does the printer open?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання про принтер",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `start`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `start`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання про принтер",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `open`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `open`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте людину біля входу «Ви працюєте тут?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-16:i03:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i03:r2",
+          "text": "Does"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i03:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте людину біля входу «Ви працюєте тут?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите человека у входа «Вы работаете здесь?»",
+          "uk": "Запитайте людину біля входу «Ви працюєте тут?»"
+        },
+        "gappedTargetPhrase": "___ you work here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i03:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i03:r2",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Запитайте людину біля входу «Ви працюєте тут?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте людину біля входу «Ви працюєте тут?»",
+            "feedbackByLocale": {
+              "ru": "С `you` нужно `Do`.",
+              "uk": "З `you` потрібне `Do`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте людину біля входу «Ви працюєте тут?»",
+            "feedbackByLocale": {
+              "ru": "С действием `work` здесь нужно `Do you work?`.",
+              "uk": "З дією `work` тут потрібно `Do you work?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-16:i04:p1",
+            "target": "manager",
+            "meaningByLocale": {
+              "ru": "руководитель",
+              "uk": "керівник"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-16:i04:p2",
+            "target": "machine",
+            "meaningByLocale": {
+              "ru": "устройство",
+              "uk": "пристрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-16:i04:p3",
+            "target": "printer",
+            "meaningByLocale": {
+              "ru": "принтер",
+              "uk": "принтер"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-16:i04:p4",
+            "target": "screen",
+            "meaningByLocale": {
+              "ru": "экран",
+              "uk": "екран"
+            }
+          }
+        ],
+        "leftColumn": [
+          "manager",
+          "machine",
+          "printer",
+          "screen"
+        ],
+        "rightColumn": [
+          "керівник",
+          "пристрій",
+          "принтер",
+          "екран"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-16:i05:audio",
+          "transcript": "Does the website work?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does the website work?",
+        "orderedTokens": [
+          "Does",
+          "the",
+          "website",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте «У цій кімнаті немає екрана»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте «У цій кімнаті немає екрана»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is no screen in this room.",
+        "localizedMeaning": {
+          "ru": "Сообщите «В этой комнате нет экрана»",
+          "uk": "Повідомте «У цій кімнаті немає екрана»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "no",
+          "screen",
+          "in",
+          "this",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам потрібно рано встати. Запитайте друга «Будильник працює?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-16:i07:audio"
+      ],
+      "accessibilityLabel": "Вам потрібно рано встати. Запитайте друга «Будильник працює?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-16:i07:audio",
+          "transcript": "Does the alarm work?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does the alarm work?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про Анну «Вона працює тут?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-16:i08:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i08:r2",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i08:r3",
+          "text": "is work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про Анну «Вона працює тут?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите об Анне «Она работает здесь?»",
+          "uk": "Запитайте про Анну «Вона працює тут?»"
+        },
+        "gappedTargetPhrase": "Does she ___ here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i08:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i08:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i08:r3",
+            "text": "is work"
+          }
+        ],
+        "testedDimension": "Запитайте про Анну «Вона працює тут?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про Анну «Вона працює тут?»",
+            "feedbackByLocale": {
+              "ru": "После `Does she` нужно `work`.",
+              "uk": "Після `Does she` потрібне `work`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про Анну «Вона працює тут?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Does she work?`, без `is`.",
+              "uk": "Потрібно `Does she work?`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання про місце роботи",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-16:i09:r1",
+          "text": "Does the manager work here?"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i09:r2",
+          "text": "Does the manager work there?"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i09:r3",
+          "text": "Does the manager work outside?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-16:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про місце роботи",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-16:i09:audio",
+          "transcript": "Does the manager work here?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-16:i09:r1",
+            "targetText": "Does the manager work here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i09:r2",
+            "targetText": "Does the manager work there?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i09:r3",
+            "targetText": "Does the manager work outside?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання про місце роботи",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання про місце роботи",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-16:i10:p1",
+            "target": "alarm",
+            "meaningByLocale": {
+              "ru": "будильник",
+              "uk": "будильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-16:i10:p2",
+            "target": "server",
+            "meaningByLocale": {
+              "ru": "сервер",
+              "uk": "сервер"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-16:i10:p3",
+            "target": "website",
+            "meaningByLocale": {
+              "ru": "сайт",
+              "uk": "сайт"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-16:i10:p4",
+            "target": "printer",
+            "meaningByLocale": {
+              "ru": "принтер",
+              "uk": "принтер"
+            }
+          }
+        ],
+        "leftColumn": [
+          "alarm",
+          "server",
+          "website",
+          "printer"
+        ],
+        "rightColumn": [
+          "будильник",
+          "сервер",
+          "сайт",
+          "принтер"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-16:i11:audio",
+          "transcript": "Do they work here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do they work here?",
+        "orderedTokens": [
+          "Do",
+          "they",
+          "work",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Файл не відкривається. Запитайте колегу «Сервер працює?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Файл не відкривається. Запитайте колегу «Сервер працює?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does the server work?",
+        "localizedMeaning": {
+          "ru": "Файл не открывается. Спросите коллегу «Сервер работает?»",
+          "uk": "Файл не відкривається. Запитайте колегу «Сервер працює?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "the",
+          "server",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У сусідній кімнаті запитайте працівника «У вас є принтер?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "У сусідній кімнаті запитайте працівника «У вас є принтер?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-16:i13:audio",
+          "transcript": "Do you have a printer?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have a printer?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви шукаєте торговий автомат. Повідомте «Тут немає автомата»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-16:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте торговий автомат. Повідомте «Тут немає автомата»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ищете торговый автомат. Сообщите «Здесь нет автомата»",
+          "uk": "Ви шукаєте торговий автомат. Повідомте «Тут немає автомата»"
+        },
+        "gappedTargetPhrase": "There ___ no machine here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-16:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви шукаєте торговий автомат. Повідомте «Тут немає автомата»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-16:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви шукаєте торговий автомат. Повідомте «Тут немає автомата»",
+            "feedbackByLocale": {
+              "ru": "Один автомат: `There is no machine`.",
+              "uk": "Один автомат: `There is no machine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви шукаєте торговий автомат. Повідомте «Тут немає автомата»",
+            "feedbackByLocale": {
+              "ru": "Нужно `There is no`; `am` подходит к `I`.",
+              "uk": "Потрібно `There is no`; `am` підходить до `I`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, про що запитує відвідувач",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-16:i15:r1",
+          "text": "Do you have a website?"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i15:r2",
+          "text": "Do you have a printer?"
+        },
+        {
+          "responseId": "en:lesson-07:session-16:i15:r3",
+          "text": "Do you have a server?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, про що запитує відвідувач",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-16:i15:audio",
+          "transcript": "Do you have a website?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-16:i15:r1",
+            "targetText": "Do you have a website?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i15:r2",
+            "targetText": "Do you have a printer?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i15:r3",
+            "targetText": "Do you have a server?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-16:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, про що запитує відвідувач",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `website`, а в этом варианте — `printer`.",
+              "uk": "У записі останнє слово — `website`, а в цьому варіанті — `printer`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-16:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, про що запитує відвідувач",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `website`, а в этом варианте — `server`.",
+              "uk": "У записі останнє слово — `website`, а в цьому варіанті — `server`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-16:i16:p1",
+            "target": "manager",
+            "meaningByLocale": {
+              "ru": "руководитель",
+              "uk": "керівник"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-16:i16:p2",
+            "target": "screen",
+            "meaningByLocale": {
+              "ru": "экран",
+              "uk": "екран"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-16:i16:p3",
+            "target": "alarm",
+            "meaningByLocale": {
+              "ru": "будильник",
+              "uk": "будильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-16:i16:p4",
+            "target": "website",
+            "meaningByLocale": {
+              "ru": "сайт",
+              "uk": "сайт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "manager",
+          "screen",
+          "alarm",
+          "website"
+        ],
+        "rightColumn": [
+          "керівник",
+          "екран",
+          "будильник",
+          "сайт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-16:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви хочете вранці застати керівника іншого офісу. Запитайте працівника «Керівник починає рано?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Ви хочете вранці застати керівника іншого офісу. Запитайте працівника «Керівник починає рано?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-16:i17:audio",
+          "transcript": "Does the manager start early?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does the manager start early?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7095d4f935d09ddb9b74baf03686465bb4d3b4d2dbe4f0d0e728d512d62414d8"
+}

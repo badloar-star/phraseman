@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно выбрать Do или Does и сообщить об отсутствии устройства",
+    "uk": "самостійно вибрати Do або Does і повідомити про відсутність пристрою"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто поможет на месте",
+        "uk": "Хто допоможе на місці"
+      },
+      "bodyByLocale": {
+        "ru": "В незнакомом офисе вы ищете руководителя. `Does the manager work here?` — «Руководитель работает здесь?» Об одном руководителе спрашиваем с `Does`, а дальше используем `work`, без `s`.",
+        "uk": "У незнайомому офісі ви шукаєте керівника. `Does the manager work here?` — «Керівник працює тут?» Про одного керівника запитуємо з `Does`, а далі використовуємо `work`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите сотрудника «Руководитель работает здесь?»",
+          "uk": "Запитайте працівника «Керівник працює тут?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-16:intro1:r1",
+              "text": "Does the manager work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro1:r2",
+              "text": "Do the manager work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro1:r3",
+              "text": "Does the manager works here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-16:intro1:r1",
+              "text": "Does the manager work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro1:r2",
+              "text": "Do the manager work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro1:r3",
+              "text": "Does the manager works here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите сотрудника «Руководитель работает здесь?»",
+          "uk": "Запитайте працівника «Керівник працює тут?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Распечатать расписание",
+        "uk": "Надрукувати розклад"
+      },
+      "bodyByLocale": {
+        "ru": "Перед встречей нужно распечатать расписание. `Does the printer work?` — «Принтер работает?» Об устройстве тоже спрашиваем с `Does`. После `Does the printer` нужно `work`. Принтер может быть большим и дорогим, но вопрос всё равно короткий: работает ли он?",
+        "uk": "Перед зустріччю потрібно надрукувати розклад. `Does the printer work?` — «Принтер працює?» Про пристрій теж запитуємо з `Does`. Після `Does the printer` потрібне `work`. Принтер може бути великим і дорогим, але запитання все одно коротке: чи працює він?"
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите коллегу «Принтер работает?»",
+          "uk": "Запитайте колегу «Принтер працює?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-16:intro2:r1",
+              "text": "Does the printer work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro2:r2",
+              "text": "Do the printer work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro2:r3",
+              "text": "Does the printer works?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-16:intro2:r1",
+              "text": "Does the printer work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro2:r2",
+              "text": "Do the printer work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro2:r3",
+              "text": "Does the printer works?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллегу «Принтер работает?»",
+          "uk": "Запитайте колегу «Принтер працює?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Экран не нашли",
+        "uk": "Екран не знайшли"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверили комнату для встречи. `There is no screen in this room` — «В этой комнате нет экрана». Так сообщаем, что экрана здесь нет: `There is no screen`. Мы не говорим, что экран сломан: в этой комнате его вообще нет.",
+        "uk": "Ви перевірили кімнату для зустрічі. `There is no screen in this room` — «У цій кімнаті немає екрана». Так повідомляємо, що екрана тут немає: `There is no screen`. Ми не кажемо, що екран зламаний: у цій кімнаті його взагалі немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите коллеге «В этой комнате нет экрана».",
+          "uk": "Повідомте колезі «У цій кімнаті немає екрана»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-16:intro3:r1",
+              "text": "There is no screen in this room."
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro3:r2",
+              "text": "There are no screen in this room."
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro3:r3",
+              "text": "There no screen in this room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-16:intro3:r1",
+              "text": "There is no screen in this room."
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro3:r2",
+              "text": "There are no screen in this room."
+            },
+            {
+              "responseId": "en:lesson-07:session-16:intro3:r3",
+              "text": "There no screen in this room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите коллеге «В этой комнате нет экрана».",
+          "uk": "Повідомте колезі «У цій кімнаті немає екрана»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f5c8e77d015032e2f64a768199fb21b418e2be90c59b9a5bf1813d81f873b80"
+}

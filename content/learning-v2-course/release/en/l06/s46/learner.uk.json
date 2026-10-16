@@ -1,0 +1,957 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Цей кухоль мій»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Цей кухоль мій»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This mug is mine.",
+        "localizedMeaning": {
+          "ru": "Скажите «Эта кружка моя»",
+          "uk": "Скажіть «Цей кухоль мій»"
+        },
+        "orderedTokens": [
+          "This",
+          "mug",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-46:i02:r1",
+          "text": "mug"
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i02:r2",
+          "text": "pantry"
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i02:r3",
+          "text": "ferry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:i02:audio",
+          "transcript": "mug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-46:i02:r1",
+            "targetText": "mug",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i02:r2",
+            "targetText": "pantry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i02:r3",
+            "targetText": "ferry",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `mug`, а в этом варианте — `pantry`.",
+              "uk": "У записі перше слово — `mug`, а в цьому варіанті — `pantry`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `mug`, а в этом варианте — `ferry`.",
+              "uk": "У записі перше слово — `mug`, а в цьому варіанті — `ferry`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Чий це кухоль?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-46:i03:r1",
+          "text": "mug"
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i03:r2",
+          "text": "mugs"
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i03:r3",
+          "text": "mug are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Чий це кухоль?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Чья это кружка?»",
+          "uk": "Запитайте «Чий це кухоль?»"
+        },
+        "gappedTargetPhrase": "Whose ___ is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-46:i03:r1",
+            "text": "mug"
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i03:r2",
+            "text": "mugs"
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i03:r3",
+            "text": "mug are"
+          }
+        ],
+        "testedDimension": "Запитайте «Чий це кухоль?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Чий це кухоль?»",
+            "feedbackByLocale": {
+              "ru": "Здесь одна кружка: `mug`, с `is this`.",
+              "uk": "Тут один кухоль: `mug`, з `is this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Чий це кухоль?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Whose mug is this?`, без дополнительного `are`.",
+              "uk": "Потрібно `Whose mug is this?`, без додаткового `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-46:i04:p1",
+            "target": "mug",
+            "meaningByLocale": {
+              "ru": "кружка",
+              "uk": "кухоль"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-46:i04:p2",
+            "target": "appropriate",
+            "meaningByLocale": {
+              "ru": "уместный",
+              "uk": "доречний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-46:i04:p3",
+            "target": "pantry",
+            "meaningByLocale": {
+              "ru": "кладовая",
+              "uk": "комора"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-46:i04:p4",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mug",
+          "appropriate",
+          "pantry",
+          "ferry"
+        ],
+        "rightColumn": [
+          "кухоль",
+          "доречний",
+          "комора",
+          "пором"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:i05:audio",
+          "transcript": "My mug is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My mug is here.",
+        "orderedTokens": [
+          "My",
+          "mug",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Вона відпочиває тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона відпочиває тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She rests here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Она отдыхает здесь»",
+          "uk": "Скажіть «Вона відпочиває тут»"
+        },
+        "orderedTokens": [
+          "She",
+          "rests",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега шукає комору. Скажіть «Комора тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:i07:audio"
+      ],
+      "accessibilityLabel": "Колега шукає комору. Скажіть «Комора тут»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:i07:audio",
+          "transcript": "The pantry is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The pantry is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вони відпочивають тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-46:i08:r1",
+          "text": "rest"
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i08:r2",
+          "text": "rests"
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i08:r3",
+          "text": "are rest"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вони відпочивають тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они отдыхают здесь»",
+          "uk": "Скажіть «Вони відпочивають тут»"
+        },
+        "gappedTargetPhrase": "They ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-46:i08:r1",
+            "text": "rest"
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i08:r2",
+            "text": "rests"
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i08:r3",
+            "text": "are rest"
+          }
+        ],
+        "testedDimension": "Скажіть «Вони відпочивають тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вони відпочивають тут»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `rest`, без `s`.",
+              "uk": "Після `they` — `rest`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вони відпочивають тут»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They rest`, без `are`.",
+              "uk": "Потрібно `They rest`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, який цей пором",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-46:i09:r1",
+          "text": "This ferry is new."
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i09:r2",
+          "text": "This ferry is old."
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i09:r3",
+          "text": "This ferry is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який цей пором",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:i09:audio",
+          "transcript": "This ferry is new."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-46:i09:r1",
+            "targetText": "This ferry is new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i09:r2",
+            "targetText": "This ferry is old.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i09:r3",
+            "targetText": "This ferry is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, який цей пором",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, який цей пором",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `small`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `small`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-46:i10:p1",
+            "target": "mug",
+            "meaningByLocale": {
+              "ru": "кружка",
+              "uk": "кухоль"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-46:i10:p2",
+            "target": "rest",
+            "meaningByLocale": {
+              "ru": "отдыхать",
+              "uk": "відпочивати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-46:i10:p3",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-46:i10:p4",
+            "target": "appropriate",
+            "meaningByLocale": {
+              "ru": "уместный",
+              "uk": "доречний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mug",
+          "rest",
+          "ferry",
+          "appropriate"
+        ],
+        "rightColumn": [
+          "кухоль",
+          "відпочивати",
+          "пором",
+          "доречний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:i11:audio",
+          "transcript": "The pantry is small."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The pantry is small.",
+        "orderedTokens": [
+          "The",
+          "pantry",
+          "is",
+          "small"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The pantry is small.`",
+              "uk": "тут потрібно `is` — `The pantry is small.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На столі залишився кухоль. Запитайте «Чий це кухоль?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столі залишився кухоль. Запитайте «Чий це кухоль?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose mug is this?",
+        "localizedMeaning": {
+          "ru": "На столе осталась кружка. Спросите «Чья это кружка?»",
+          "uk": "На столі залишився кухоль. Запитайте «Чий це кухоль?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "mug",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Ми відпочиваємо тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Ми відпочиваємо тут»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:i13:audio",
+          "transcript": "We rest here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We rest here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Том відпочиває тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-46:i14:r1",
+          "text": "rests"
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i14:r2",
+          "text": "rest"
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i14:r3",
+          "text": "is rests"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Том відпочиває тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Том отдыхает здесь»",
+          "uk": "Скажіть «Том відпочиває тут»"
+        },
+        "gappedTargetPhrase": "Tom ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-46:i14:r1",
+            "text": "rests"
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i14:r2",
+            "text": "rest"
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i14:r3",
+            "text": "is rests"
+          }
+        ],
+        "testedDimension": "Скажіть «Том відпочиває тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Том відпочиває тут»",
+            "feedbackByLocale": {
+              "ru": "Том — он: `Tom rests`.",
+              "uk": "Том — він: `Tom rests`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Том відпочиває тут»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Tom rests`, без `is`.",
+              "uk": "Потрібно `Tom rests`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить кухоль",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-46:i15:r1",
+          "text": "This mug is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i15:r2",
+          "text": "This mug is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-46:i15:r3",
+          "text": "This mug is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить кухоль",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:i15:audio",
+          "transcript": "This mug is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-46:i15:r1",
+            "targetText": "This mug is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i15:r2",
+            "targetText": "This mug is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i15:r3",
+            "targetText": "This mug is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить кухоль",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-46:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить кухоль",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-46:i16:p1",
+            "target": "mug",
+            "meaningByLocale": {
+              "ru": "кружка",
+              "uk": "кухоль"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-46:i16:p2",
+            "target": "pantry",
+            "meaningByLocale": {
+              "ru": "кладовая",
+              "uk": "комора"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-46:i16:p3",
+            "target": "appropriate",
+            "meaningByLocale": {
+              "ru": "уместный",
+              "uk": "доречний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-46:i16:p4",
+            "target": "rest",
+            "meaningByLocale": {
+              "ru": "отдыхать",
+              "uk": "відпочивати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mug",
+          "pantry",
+          "appropriate",
+          "rest"
+        ],
+        "rightColumn": [
+          "кухоль",
+          "комора",
+          "доречний",
+          "відпочивати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега збирає кухлі після перерви. Покажіть свій: «Цей кухоль мій»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Колега збирає кухлі після перерви. Покажіть свій: «Цей кухоль мій»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:i17:audio",
+          "transcript": "This mug is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This mug is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7e517a814796c7e01be0e5309df3b3f2ceea9ca06a4061722726633fa6bc84fd"
+}

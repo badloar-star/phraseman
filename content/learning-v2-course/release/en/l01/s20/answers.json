@@ -1,5 +1,25 @@
 [
   {
+    "interactionId": "en:lesson-01:session-20:word:prepared",
+    "correctText": "prepared",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:word:steep",
+    "correctText": "steep",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:word:muddy",
+    "correctText": "muddy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:word:loud",
+    "correctText": "loud",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-20:i01",
     "correctText": "We are prepared.",
     "correctResponseId": null
@@ -16,12 +36,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-20:i04",
-    "correctText": "en:lesson-01:session-20:i04:p1=lost\nen:lesson-01:session-20:i04:p2=prepared\nen:lesson-01:session-20:i04:p3=careful\nen:lesson-01:session-20:i04:p4=together",
+    "correctText": "en:lesson-01:session-20:i04:p1=prepared\nen:lesson-01:session-20:i04:p2=steep\nen:lesson-01:session-20:i04:p3=muddy\nen:lesson-01:session-20:i04:p4=loud",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i05",
-    "correctText": "They are careful.",
+    "correctText": "It is steep.",
     "correctResponseId": null
   },
   {
@@ -61,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-20:i13",
-    "correctText": "They are nearby.",
+    "correctText": "He is muddy.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-20:i16",
-    "correctText": "en:lesson-01:session-20:i16:p1=loud\nen:lesson-01:session-20:i16:p2=prepared\nen:lesson-01:session-20:i16:p3=lost\nen:lesson-01:session-20:i16:p4=careful",
+    "correctText": "en:lesson-01:session-20:i16:p1=loud\nen:lesson-01:session-20:i16:p2=muddy\nen:lesson-01:session-20:i16:p3=steep\nen:lesson-01:session-20:i16:p4=careful",
     "correctResponseId": null
   },
   {

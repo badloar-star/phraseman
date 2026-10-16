@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-20:i01",
+      "interactionId": "en:lesson-01:session-20:word:prepared",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — prepared",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:word:prepared:audio"
+      ],
+      "accessibilityLabel": "Картка слова — prepared",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:word:prepared:audio",
+          "transcript": "prepared"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:word:prepared:r1",
+            "targetText": "prepared",
+            "meaningByLocale": {
+              "ru": "подготовленный. We are prepared — «Мы подготовились»: заранее собрали вещи и изучили маршрут.",
+              "uk": "підготовлений. We are prepared — «Ми підготувалися»: заздалегідь зібрали речі й вивчили маршрут."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prepared",
+          "definitionByLocale": {
+            "ru": "подготовленный. We are prepared — «Мы подготовились»: заранее собрали вещи и изучили маршрут.",
+            "uk": "підготовлений. We are prepared — «Ми підготувалися»: заздалегідь зібрали речі й вивчили маршрут."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:word:steep",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — steep",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:word:steep:audio"
+      ],
+      "accessibilityLabel": "Картка слова — steep",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:word:steep:audio",
+          "transcript": "steep"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:word:steep:r1",
+            "targetText": "steep",
+            "meaningByLocale": {
+              "ru": "крутой — о склоне или подъёме с сильным наклоном. It is steep — «Он крутой»: вы показываете на подъём.",
+              "uk": "крутий — про схил або підйом із сильним нахилом. It is steep — «Він крутий»: ви показуєте на підйом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "steep",
+          "definitionByLocale": {
+            "ru": "крутой — о склоне или подъёме с сильным наклоном. It is steep — «Он крутой»: вы показываете на подъём.",
+            "uk": "крутий — про схил або підйом із сильним нахилом. It is steep — «Він крутий»: ви показуєте на підйом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:word:muddy",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — muddy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:word:muddy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — muddy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:word:muddy:audio",
+          "transcript": "muddy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:word:muddy:r1",
+            "targetText": "muddy",
+            "meaningByLocale": {
+              "ru": "в грязи, покрытый грязью. It is muddy — «Она в грязи»: например, куртка после падения в лужу с грязью.",
+              "uk": "у багнюці, вкритий багнюкою. It is muddy — «Вона в багнюці»: наприклад, куртка після падіння в брудну калюжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "muddy",
+          "definitionByLocale": {
+            "ru": "в грязи, покрытый грязью. It is muddy — «Она в грязи»: например, куртка после падения в лужу с грязью.",
+            "uk": "у багнюці, вкритий багнюкою. It is muddy — «Вона в багнюці»: наприклад, куртка після падіння в брудну калюжу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:word:loud",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — loud",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:word:loud:audio"
+      ],
+      "accessibilityLabel": "Картка слова — loud",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:word:loud:audio",
+          "transcript": "loud"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:word:loud:r1",
+            "targetText": "loud",
+            "meaningByLocale": {
+              "ru": "громкий. He is loud — «Он громкий»: турист разговаривает так громко, что его слышит вся группа.",
+              "uk": "гучний. He is loud — «Він гучний»: турист розмовляє так гучно, що його чує вся група."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loud",
+          "definitionByLocale": {
+            "ru": "громкий. He is loud — «Он громкий»: турист разговаривает так громко, что его слышит вся группа.",
+            "uk": "гучний. He is loud — «Він гучний»: турист розмовляє так гучно, що його чує вся група."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»",
+      "prompt": "Вставте слово — ви впали в багнюку. Скажіть про себе: «Я в багнюці»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-20:i03:r1",
@@ -146,14 +318,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»",
+      "accessibilityLabel": "Вставте слово — ви впали в багнюку. Скажіть про себе: «Я в багнюці»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вы внимательно идёте по скользкой тропинке. Скажите о себе: «Я осторожный»",
-          "uk": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»"
+          "ru": "Вставьте слово — вы упали в грязь. Скажите о себе: «Я в грязи»",
+          "uk": "Вставте слово — ви впали в багнюку. Скажіть про себе: «Я в багнюці»"
         },
-        "gappedTargetPhrase": "I ___ careful.",
+        "gappedTargetPhrase": "I ___ muddy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-20:i03:r1",
@@ -168,24 +340,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»",
+        "testedDimension": "Вставте слово — ви впали в багнюку. Скажіть про себе: «Я в багнюці»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-20:i03:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»",
+            "testedDimension": "Вставте слово — ви впали в багнюку. Скажіть про себе: «Я в багнюці»",
             "feedbackByLocale": {
-              "ru": "С `I` нужно `am`.",
-              "uk": "Із `I` потрібно `am`."
+              "ru": "С I нужно am.",
+              "uk": "З I потрібне am."
             }
           },
           {
             "responseId": "en:lesson-01:session-20:i03:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — ви уважно йдете слизькою стежкою. Скажіть про себе: «Я обережний»",
+            "testedDimension": "Вставте слово — ви впали в багнюку. Скажіть про себе: «Я в багнюці»",
             "feedbackByLocale": {
-              "ru": "Здесь вы говорите о себе: `I am`.",
-              "uk": "Тут ви говорите про себе: `I am`."
+              "ru": "О себе говорим I am.",
+              "uk": "Про себе говоримо I am."
             }
           }
         ]
@@ -194,28 +366,20 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова та значення",
+      "prompt": "З’єднайте нові слова та значення",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова та значення",
+      "accessibilityLabel": "З’єднайте нові слова та значення",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-20:i04:p1",
-            "target": "lost",
-            "meaningByLocale": {
-              "ru": "заблудившийся",
-              "uk": "той, хто заблукав"
-            }
-          },
-          {
-            "pairId": "en:lesson-01:session-20:i04:p2",
             "target": "prepared",
             "meaningByLocale": {
               "ru": "подготовленный",
@@ -223,33 +387,41 @@
             }
           },
           {
-            "pairId": "en:lesson-01:session-20:i04:p3",
-            "target": "careful",
+            "pairId": "en:lesson-01:session-20:i04:p2",
+            "target": "steep",
             "meaningByLocale": {
-              "ru": "осторожный",
-              "uk": "обережний"
+              "ru": "крутой (о склоне)",
+              "uk": "крутий (про схил)"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-20:i04:p3",
+            "target": "muddy",
+            "meaningByLocale": {
+              "ru": "в грязи",
+              "uk": "у багнюці"
             }
           },
           {
             "pairId": "en:lesson-01:session-20:i04:p4",
-            "target": "together",
+            "target": "loud",
             "meaningByLocale": {
-              "ru": "вместе",
-              "uk": "разом"
+              "ru": "громкий",
+              "uk": "гучний"
             }
           }
         ],
         "leftColumn": [
-          "lost",
           "prepared",
-          "careful",
-          "together"
+          "steep",
+          "muddy",
+          "loud"
         ],
         "rightColumn": [
-          "той, хто заблукав",
           "підготовлений",
-          "обережний",
-          "разом"
+          "крутий (про схил)",
+          "у багнюці",
+          "гучний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -282,17 +454,17 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-20:i05:audio",
-          "transcript": "They are careful."
+          "transcript": "It is steep."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are careful.",
+        "hiddenTargetPhrase": "It is steep.",
         "orderedTokens": [
-          "They",
-          "are",
-          "careful"
+          "It",
+          "is",
+          "steep"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
@@ -300,8 +472,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are careful.`",
-              "uk": "тут потрібно `are` — `They are careful.`"
+              "ru": "после It нужно is.",
+              "uk": "після It потрібне is."
             }
           }
         ],
@@ -314,8 +486,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Ви з подругою загубили дорогу. Складіть фразу для туриста, якого зустріли: «Ми заблукали»",
@@ -358,7 +530,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте знайомі слова зі значеннями",
@@ -576,8 +748,8 @@
             "pairId": "en:lesson-01:session-20:i10:p4",
             "target": "helpful",
             "meaningByLocale": {
-              "ru": "готовый помочь",
-              "uk": "готовий допомогти"
+              "ru": "охотно помогающий",
+              "uk": "охочий допомогти"
             }
           }
         ],
@@ -591,7 +763,7 @@
           "без інших людей",
           "поблизу",
           "привітний",
-          "готовий допомогти"
+          "охочий допомогти"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть почуте",
@@ -656,21 +828,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він готовий допомогти»",
+      "prompt": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він охоче допомагає»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він готовий допомогти»",
+      "accessibilityLabel": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він охоче допомагає»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is helpful.",
         "localizedMeaning": {
-          "ru": "Турист охотно помогает вам найти маршрут. Соберите фразу о нём: «Он готов помочь»",
-          "uk": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він готовий допомогти»"
+          "ru": "Турист охотно помогает вам найти маршрут. Соберите фразу о нём: «Он охотно помогает»",
+          "uk": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він охоче допомагає»"
         },
         "orderedTokens": [
           "He",
@@ -684,7 +856,7 @@
           {
             "responseId": "en:lesson-01:session-20:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він готовий допомогти»",
+            "testedDimension": "Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він охоче допомагає»",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `He is helpful.`",
               "uk": "тут потрібно `is` — `He is helpful.`"
@@ -700,25 +872,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друзі вже на сусідній стежці. Скажіть уголос про них: «Вони поблизу»",
+      "prompt": "Друг забруднився, допомагаючи вам підвестися після падіння. Скажіть про нього: «Він у багнюці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-20:i13:audio"
       ],
-      "accessibilityLabel": "Друзі вже на сусідній стежці. Скажіть уголос про них: «Вони поблизу»",
+      "accessibilityLabel": "Друг забруднився, допомагаючи вам підвестися після падіння. Скажіть про нього: «Він у багнюці»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-20:i13:audio",
-          "transcript": "They are nearby."
+          "transcript": "He is muddy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They are nearby.",
+        "targetPhrase": "He is muddy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Усі з вашої компанії знову зібралися в одному місці. Скажіть: «Ми разом»",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -900,18 +1072,18 @@
           },
           {
             "pairId": "en:lesson-01:session-20:i16:p2",
-            "target": "prepared",
+            "target": "muddy",
             "meaningByLocale": {
-              "ru": "подготовленный",
-              "uk": "підготовлений"
+              "ru": "в грязи",
+              "uk": "у багнюці"
             }
           },
           {
             "pairId": "en:lesson-01:session-20:i16:p3",
-            "target": "lost",
+            "target": "steep",
             "meaningByLocale": {
-              "ru": "заблудившийся",
-              "uk": "той, хто заблукав"
+              "ru": "крутой (о склоне)",
+              "uk": "крутий (про схил)"
             }
           },
           {
@@ -925,14 +1097,14 @@
         ],
         "leftColumn": [
           "loud",
-          "prepared",
-          "lost",
+          "muddy",
+          "steep",
           "careful"
         ],
         "rightColumn": [
           "гучний",
-          "підготовлений",
-          "той, хто заблукав",
+          "у багнюці",
+          "крутий (про схил)",
           "обережний"
         ],
         "pairingKey": "pair_id",
@@ -951,7 +1123,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a6095e85ff23821f0aa77aecf5d4f991136ba98839a18100d60a378723af8db6"
+  "learnerFingerprint": "c3dcbbc2f55f81cafeb5287daaf1ab4e7a0ba7bc499cd24777ad3c10ab00cca5"
 }

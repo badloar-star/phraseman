@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-40:i01",
+    "correctText": "I usually recycle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i02",
+    "correctText": "commute",
+    "correctResponseId": "en:lesson-07:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i03",
+    "correctText": "volunteer",
+    "correctResponseId": "en:lesson-07:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i04",
+    "correctText": "en:lesson-07:session-40:i04:p1=recycle\nen:lesson-07:session-40:i04:p2=volunteer\nen:lesson-07:session-40:i04:p3=commute\nen:lesson-07:session-40:i04:p4=relax",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i05",
+    "correctText": "I usually commute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i06",
+    "correctText": "Tom usually packs early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i07",
+    "correctText": "I often relax.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i08",
+    "correctText": "irons",
+    "correctResponseId": "en:lesson-07:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i09",
+    "correctText": "I usually bake.",
+    "correctResponseId": "en:lesson-07:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i10",
+    "correctText": "en:lesson-07:session-40:i10:p1=pack\nen:lesson-07:session-40:i10:p2=iron\nen:lesson-07:session-40:i10:p3=bake\nen:lesson-07:session-40:i10:p4=relax",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i11",
+    "correctText": "I often volunteer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i12",
+    "correctText": "Where do you work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i13",
+    "correctText": "I don’t smoke.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-40:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i15",
+    "correctText": "I often iron.",
+    "correctResponseId": "en:lesson-07:session-40:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i16",
+    "correctText": "en:lesson-07:session-40:i16:p1=commute\nen:lesson-07:session-40:i16:p2=pack\nen:lesson-07:session-40:i16:p3=bake\nen:lesson-07:session-40:i16:p4=recycle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-40:i17",
+    "correctText": "Tom usually recycles.",
+    "correctResponseId": null
+  }
+]

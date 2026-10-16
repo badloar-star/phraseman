@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-36:i01",
+    "correctText": "I often relax.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i02",
+    "correctText": "relax",
+    "correctResponseId": "en:lesson-07:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i03",
+    "correctText": "relax",
+    "correctResponseId": "en:lesson-07:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i04",
+    "correctText": "en:lesson-07:session-36:i04:p1=relax\nen:lesson-07:session-36:i04:p2=live\nen:lesson-07:session-36:i04:p3=children\nen:lesson-07:session-36:i04:p4=sunglasses",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i05",
+    "correctText": "I often relax.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i06",
+    "correctText": "I usually walk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i07",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i08",
+    "correctText": "calls",
+    "correctResponseId": "en:lesson-07:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i09",
+    "correctText": "I often relax.",
+    "correctResponseId": "en:lesson-07:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i10",
+    "correctText": "en:lesson-07:session-36:i10:p1=eat\nen:lesson-07:session-36:i10:p2=relax\nen:lesson-07:session-36:i10:p3=children\nen:lesson-07:session-36:i10:p4=live",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i11",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i12",
+    "correctText": "Do you have sunglasses?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i13",
+    "correctText": "Where do you eat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-36:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i15",
+    "correctText": "The children are here.",
+    "correctResponseId": "en:lesson-07:session-36:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i16",
+    "correctText": "en:lesson-07:session-36:i16:p1=relax\nen:lesson-07:session-36:i16:p2=sunglasses\nen:lesson-07:session-36:i16:p3=eat\nen:lesson-07:session-36:i16:p4=children",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:i17",
+    "correctText": "Tom often relaxes.",
+    "correctResponseId": null
+  }
+]

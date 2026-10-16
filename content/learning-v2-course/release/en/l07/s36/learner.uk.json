@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я часто відпочиваю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто відпочиваю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often relax.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто отдыхаю»",
+          "uk": "Скажіть «Я часто відпочиваю»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "relax"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-36:i02:r1",
+          "text": "relax"
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i02:r2",
+          "text": "live"
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i02:r3",
+          "text": "eat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-36:i02:audio",
+          "transcript": "relax"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-36:i02:r1",
+            "targetText": "relax",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i02:r2",
+            "targetText": "live",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i02:r3",
+            "targetText": "eat",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `relax`, а в этом варианте — `live`.",
+              "uk": "У записі перше слово — `relax`, а в цьому варіанті — `live`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `relax`, а в этом варианте — `eat`.",
+              "uk": "У записі перше слово — `relax`, а в цьому варіанті — `eat`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я часто відпочиваю»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-36:i03:r1",
+          "text": "relax"
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i03:r2",
+          "text": "relaxes"
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i03:r3",
+          "text": "relaxing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто відпочиваю»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто отдыхаю»",
+          "uk": "Скажіть «Я часто відпочиваю»"
+        },
+        "gappedTargetPhrase": "I often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i03:r1",
+            "text": "relax"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i03:r2",
+            "text": "relaxes"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i03:r3",
+            "text": "relaxing"
+          }
+        ],
+        "testedDimension": "Скажіть «Я часто відпочиваю»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто відпочиваю»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `relax`.",
+              "uk": "Після `I` потрібне `relax`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто відпочиваю»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `relax`.",
+              "uk": "Тут потрібна форма `relax`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-36:i04:p1",
+            "target": "relax",
+            "meaningByLocale": {
+              "ru": "отдыхать",
+              "uk": "відпочивати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-36:i04:p2",
+            "target": "live",
+            "meaningByLocale": {
+              "ru": "жить",
+              "uk": "жити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-36:i04:p3",
+            "target": "children",
+            "meaningByLocale": {
+              "ru": "дети",
+              "uk": "діти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-36:i04:p4",
+            "target": "sunglasses",
+            "meaningByLocale": {
+              "ru": "солнцезащитные очки",
+              "uk": "сонцезахисні окуляри"
+            }
+          }
+        ],
+        "leftColumn": [
+          "relax",
+          "live",
+          "children",
+          "sunglasses"
+        ],
+        "rightColumn": [
+          "відпочивати",
+          "жити",
+          "діти",
+          "сонцезахисні окуляри"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-36:i05:audio",
+          "transcript": "I often relax."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often relax.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "relax"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про дорогу до магазину: «Я зазвичай ходжу пішки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про дорогу до магазину: «Я зазвичай ходжу пішки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually walk.",
+        "localizedMeaning": {
+          "ru": "Расскажите о дороге до магазина: «Я обычно хожу пешком»",
+          "uk": "Розкажіть про дорогу до магазину: «Я зазвичай ходжу пішки»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "walk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про знайому «Вона часто телефонує»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть про знайому «Вона часто телефонує»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-36:i07:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She often calls.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вона часто телефонує»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-36:i08:r1",
+          "text": "calls"
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i08:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i08:r3",
+          "text": "calling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона часто телефонує»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она часто звонит»",
+          "uk": "Скажіть «Вона часто телефонує»"
+        },
+        "gappedTargetPhrase": "She often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i08:r1",
+            "text": "calls"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i08:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i08:r3",
+            "text": "calling"
+          }
+        ],
+        "testedDimension": "Скажіть «Вона часто телефонує»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "feedbackByLocale": {
+              "ru": "После `she` нужно `calls`.",
+              "uk": "Після `she` потрібне `calls`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `calls`.",
+              "uk": "Тут потрібна форма `calls`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-36:i09:r1",
+          "text": "I often relax."
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i09:r2",
+          "text": "I often walk."
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i09:r3",
+          "text": "I often call."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-36:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-36:i09:audio",
+          "transcript": "I often relax."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-36:i09:r1",
+            "targetText": "I often relax.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i09:r2",
+            "targetText": "I often walk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i09:r3",
+            "targetText": "I often call.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `relax`, а в этом варианте — `walk`.",
+              "uk": "У записі останнє слово — `relax`, а в цьому варіанті — `walk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `relax`, а в этом варианте — `call`.",
+              "uk": "У записі останнє слово — `relax`, а в цьому варіанті — `call`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-36:i10:p1",
+            "target": "eat",
+            "meaningByLocale": {
+              "ru": "есть",
+              "uk": "їсти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-36:i10:p2",
+            "target": "relax",
+            "meaningByLocale": {
+              "ru": "отдыхать",
+              "uk": "відпочивати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-36:i10:p3",
+            "target": "children",
+            "meaningByLocale": {
+              "ru": "дети",
+              "uk": "діти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-36:i10:p4",
+            "target": "live",
+            "meaningByLocale": {
+              "ru": "жить",
+              "uk": "жити"
+            }
+          }
+        ],
+        "leftColumn": [
+          "eat",
+          "relax",
+          "children",
+          "live"
+        ],
+        "rightColumn": [
+          "їсти",
+          "відпочивати",
+          "діти",
+          "жити"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-36:i11:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She often calls.",
+        "orderedTokens": [
+          "She",
+          "often",
+          "calls"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви збираєтеся на пляж. Запитайте подругу «У тебе є сонцезахисні окуляри?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви збираєтеся на пляж. Запитайте подругу «У тебе є сонцезахисні окуляри?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have sunglasses?",
+        "localizedMeaning": {
+          "ru": "Вы собираетесь на пляж. Спросите подругу «У тебя есть солнцезащитные очки?»",
+          "uk": "Ви збираєтеся на пляж. Запитайте подругу «У тебе є сонцезахисні окуляри?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "sunglasses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дізнайтеся звичне місце обіду колеги",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-36:i13:audio"
+      ],
+      "accessibilityLabel": "Дізнайтеся звичне місце обіду колеги",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-36:i13:audio",
+          "transcript": "Where do you eat?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where do you eat?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви часто їздите в інші місця, але зазвичай живете тут. Скажіть «Я зазвичай живу тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-36:i14:r1",
+          "text": "usually"
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви часто їздите в інші місця, але зазвичай живете тут. Скажіть «Я зазвичай живу тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы часто уезжаете, но обычно живёте здесь. Скажите «Я обычно живу здесь»",
+          "uk": "Ви часто їздите в інші місця, але зазвичай живете тут. Скажіть «Я зазвичай живу тут»"
+        },
+        "gappedTargetPhrase": "I ___ live here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви часто їздите в інші місця, але зазвичай живете тут. Скажіть «Я зазвичай живу тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-36:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви часто їздите в інші місця, але зазвичай живете тут. Скажіть «Я зазвичай живу тут»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually` перед `live`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `live`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви часто їздите в інші місця, але зазвичай живете тут. Скажіть «Я зазвичай живу тут»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually`; `am` перед `live` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `live` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-36:i15:r1",
+          "text": "The children are here."
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i15:r2",
+          "text": "The children are there."
+        },
+        {
+          "responseId": "en:lesson-07:session-36:i15:r3",
+          "text": "The children are outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-36:i15:audio",
+          "transcript": "The children are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-36:i15:r1",
+            "targetText": "The children are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i15:r2",
+            "targetText": "The children are there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i15:r3",
+            "targetText": "The children are outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-36:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-36:i16:p1",
+            "target": "relax",
+            "meaningByLocale": {
+              "ru": "отдыхать",
+              "uk": "відпочивати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-36:i16:p2",
+            "target": "sunglasses",
+            "meaningByLocale": {
+              "ru": "солнцезащитные очки",
+              "uk": "сонцезахисні окуляри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-36:i16:p3",
+            "target": "eat",
+            "meaningByLocale": {
+              "ru": "есть",
+              "uk": "їсти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-36:i16:p4",
+            "target": "children",
+            "meaningByLocale": {
+              "ru": "дети",
+              "uk": "діти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "relax",
+          "sunglasses",
+          "eat",
+          "children"
+        ],
+        "rightColumn": [
+          "відпочивати",
+          "сонцезахисні окуляри",
+          "їсти",
+          "діти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, чи знаходить Том час для відпочинку. Скажіть «Том часто розслабляється»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, чи знаходить Том час для відпочинку. Скажіть «Том часто розслабляється»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-36:i17:audio",
+          "transcript": "Tom often relaxes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom often relaxes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d0a77a8e5a15bc8442c2bbc2efed996a5bf0d02257a01353e780aeb11f6d1aa3"
+}

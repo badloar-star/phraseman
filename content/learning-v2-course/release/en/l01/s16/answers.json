@@ -1,5 +1,25 @@
 [
   {
+    "interactionId": "en:lesson-01:session-16:word:open",
+    "correctText": "open",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:word:big",
+    "correctText": "big",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:word:clean",
+    "correctText": "clean",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:word:closed",
+    "correctText": "closed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-16:i01",
     "correctText": "I am kind.",
     "correctResponseId": null
@@ -46,12 +66,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-16:i10",
-    "correctText": "en:lesson-01:session-16:i10:p1=kind\nen:lesson-01:session-16:i10:p2=funny\nen:lesson-01:session-16:i10:p3=smart\nen:lesson-01:session-16:i10:p4=strong",
+    "correctText": "en:lesson-01:session-16:i10:p1=kind\nen:lesson-01:session-16:i10:p2=calm\nen:lesson-01:session-16:i10:p3=smart\nen:lesson-01:session-16:i10:p4=strong",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i11",
-    "correctText": "It is important.",
+    "correctText": "It is closed.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-16:i15",
-    "correctText": "It is difficult.",
+    "correctText": "It is wet.",
     "correctResponseId": "en:lesson-01:session-16:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-16:i16",
-    "correctText": "en:lesson-01:session-16:i16:p1=loud\nen:lesson-01:session-16:i16:p2=quiet\nen:lesson-01:session-16:i16:p3=friendly\nen:lesson-01:session-16:i16:p4=helpful",
+    "correctText": "en:lesson-01:session-16:i16:p1=polite\nen:lesson-01:session-16:i16:p2=quiet\nen:lesson-01:session-16:i16:p3=friendly\nen:lesson-01:session-16:i16:p4=helpful",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-16:i17",
-    "correctText": "It is small.",
+    "correctText": "It is big.",
     "correctResponseId": null
   }
 ]

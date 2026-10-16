@@ -4716,11 +4716,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "I am kind.",
-          "file": "d841e5cf528d59134b25d07e097f653284d59740d473c1d0fdde6dd691f3f28f.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d841e5cf528d59134b25d07e097f653284d59740d473c1d0fdde6dd691f3f28f.mp3",
-          "contentHash": "32f9c1f6df7a33a961370dd602338197e44f11d76259e341b7b2385cc001c91c",
-          "byteSize": 35712
+          "text": "It is open.",
+          "file": "ab078b448b48665950776ad039d990a367263d3da7da0f2e9b0c2e3ce78498c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab078b448b48665950776ad039d990a367263d3da7da0f2e9b0c2e3ce78498c4.mp3",
+          "contentHash": "c64cc0e2f1ee7a533309e0d76529c2d88214e84ceb7bc862605f7b63646ce9cf",
+          "byteSize": 24576
         }
       ]
     },
@@ -4728,11 +4728,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "She is friendly.",
-          "file": "0264df30d634498dd67e66a353d43c2d3c8eaff81cbac0ae9dcff6eea382e61b.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/eeda8ac3704ac95e3fb8a4de-coral.mp3",
-          "contentHash": "d8135e7695140c9f314f87402561e044b003ac023c2d42c8ba5d3d5075e6111f",
-          "byteSize": 34944
+          "text": "It is big.",
+          "file": "7403ccc3181dc9df5469bdfd0f5235bdb226d3324cda142d4871ae6173e718f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7403ccc3181dc9df5469bdfd0f5235bdb226d3324cda142d4871ae6173e718f0.mp3",
+          "contentHash": "aa80c426f31e21bdc04d232ddc13985015ab71b9e251155f5c97e4e279d88192",
+          "byteSize": 26880
         }
       ]
     },
@@ -4752,11 +4752,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "I am kind.",
-          "file": "d841e5cf528d59134b25d07e097f653284d59740d473c1d0fdde6dd691f3f28f.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d841e5cf528d59134b25d07e097f653284d59740d473c1d0fdde6dd691f3f28f.mp3",
-          "contentHash": "32f9c1f6df7a33a961370dd602338197e44f11d76259e341b7b2385cc001c91c",
-          "byteSize": 35712
+          "text": "open",
+          "file": "45ae8f796cb5b37c73fdc12507fc47f690663758918954c31bd5f2b318426327.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2348f998744212575d859596-coral.mp3",
+          "contentHash": "e5bc44fb5d57f21ad0c5952234311f556d9107bf5bda9a3a54c3c82f40c117ef",
+          "byteSize": 37248
         }
       ]
     },
@@ -4764,11 +4764,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "He is short.",
-          "file": "d8debd7f23effeece26a9fafe373847f29275c63a2cc8cafb6e3fae844a0f333.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d8debd7f23effeece26a9fafe373847f29275c63a2cc8cafb6e3fae844a0f333.mp3",
-          "contentHash": "504b5477878027c83943862822a910a50531f00f8dca0e6ab46223194b0df125",
-          "byteSize": 30720
+          "text": "big",
+          "file": "1b8034dba489e640b12477968b4a74364ad33641f10e678fb53538cb764f4ae8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1b8034dba489e640b12477968b4a74364ad33641f10e678fb53538cb764f4ae8.mp3",
+          "contentHash": "c8745187295570eb7dc132dcfc8433a2c10f2ba40a3c4fa26045f6984680e461",
+          "byteSize": 19584
         }
       ]
     },
@@ -4776,11 +4776,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "She is friendly.",
-          "file": "c64c5f536e67c3180b6307b137c84e2eb712f702e3240911c9264818d9bdb100.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/eeda8ac3704ac95e3fb8a4de-ash.mp3",
-          "contentHash": "0de728d93675d4fc06e3496f9415b3c822ffb876d963d1c06c9a284718ae9883",
-          "byteSize": 27648
+          "text": "clean",
+          "file": "af73e0323e82b4bf013b90564fdb6a048c43555e27b3452be5a8e3d984fb2912.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3b066804f6d1d077173cfe4d-ash.mp3",
+          "contentHash": "e0ed56b6a6a57d800ecf3b942d0f2cbe5681176d24b1acaef4142a7d22d5b0e4",
+          "byteSize": 31488
         }
       ]
     },
@@ -4788,36 +4788,84 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "tall",
-          "file": "447f75402949cd5f58c9980106a92115671e525344ce37274f12b141429904a4.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/241daf2e753a6a2f37a1b147-coral.mp3",
-          "contentHash": "232d48b43c72087e8c479ddb5de9642efe8bcc21ca2b48c5134a978f2d4fac97",
-          "byteSize": 35712
-        },
-        {
-          "text": "short",
-          "file": "150031c10f5a932c24d2e764bf95c9fb1c811dabe4c55d4f3d512d1b338abec2.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f9b0078b5df596d2ea19010c-coral.mp3",
-          "contentHash": "d9569be7b87a9b60a5c8e0ac03cfc431f18fbf6527ea9a6a241dec83897fe1af",
-          "byteSize": 31488
-        },
-        {
-          "text": "young",
-          "file": "91e2e9c1e5a7c6c90d67a91c11e5b0c8b61ba5082bf1786f6a26b73b349f52fa.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/dbba921ce20510210ee7db98-coral.mp3",
-          "contentHash": "43a84fae67ec40fbae3ef572e9766e7aadbfce9cd915b8cd4da9af5089909bdf",
-          "byteSize": 14208
-        },
-        {
-          "text": "old",
-          "file": "8d26845a0fe2f1ce17d29e65ab50d42a2749a9aa33cb8c1c4e347ea7ae45cc96.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/cba06b5736faf67e54b07b56-coral.mp3",
-          "contentHash": "90800f86f4ba9465faa16e7a23a7c42193b85a7a2e5e482f4bf43f981a34cd7c",
-          "byteSize": 22656
+          "text": "closed",
+          "file": "322df9f58eb9bae1d29352d3f92cebbc315721e92393ede962abccf45922afb9.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c3eefb58d7c42440a9d4abec-coral.mp3",
+          "contentHash": "3ba320f1f7fe052f672ffb06ee2f9cd37f3bcacf9ebc3695eb464e01a194e9e9",
+          "byteSize": 18048
         }
       ]
     },
     "l01/s16/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I am kind.",
+          "file": "164bbbb7fd038df34fd54d1f537ad499ee2d1f40634d2b302efb7939a9f32d73.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/164bbbb7fd038df34fd54d1f537ad499ee2d1f40634d2b302efb7939a9f32d73.mp3",
+          "contentHash": "1d3c63add3653a8948c2b183a5b488a160975930370996b258009231e4a3958f",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l01/s16/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He is short.",
+          "file": "b4e1b14bc40dbaa3e1fa9e2d670336adda0843e5ceec958a3819dd4e253fadbb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b4e1b14bc40dbaa3e1fa9e2d670336adda0843e5ceec958a3819dd4e253fadbb.mp3",
+          "contentHash": "8c8c99eee7e5dd21a2712ef285258925494403d9570726a8015f6f45934186ee",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l01/s16/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She is friendly.",
+          "file": "0584912261db60904aecb89fbe62ae7400eb50457d8abfc643e7c94c8fe14f1c.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/eeda8ac3704ac95e3fb8a4de-onyx.mp3",
+          "contentHash": "1b430c12ebb5f32f446060397de287198af9c6f4173815a99574cd608a17bee6",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l01/s16/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "tall",
+          "file": "7997ef6c2660f393ee9dbe9a384dadbb75bb650b95ac5596a8c7bfc7889d0f1c.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/241daf2e753a6a2f37a1b147-onyx.mp3",
+          "contentHash": "073861f2d108312c58c5e451f0b5020e3aea6af65f69cb8ddce4f82bddb42629",
+          "byteSize": 18048
+        },
+        {
+          "text": "short",
+          "file": "43918699b9fed08199be602b3c693a3df94bd89425e46b15d011574153e669fa.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f9b0078b5df596d2ea19010c-onyx.mp3",
+          "contentHash": "45e4d42805535700832e5b320418e20946928832d7ab3a48bf5fd418310cb677",
+          "byteSize": 35712
+        },
+        {
+          "text": "young",
+          "file": "4b61da5feb20b45ca91134459a1e27891e8ed42349c5445546cb73dc0e721303.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/dbba921ce20510210ee7db98-onyx.mp3",
+          "contentHash": "e4d93dcde2978ed70ed9e5a9680e3dea97310d00892e8ff2f4377a05e690ae18",
+          "byteSize": 21120
+        },
+        {
+          "text": "old",
+          "file": "5d708adf25e1579c4b6a705c4e6469e1f016b192cf2a2d2da8d032e09a1cdec0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/cba06b5736faf67e54b07b56-onyx.mp3",
+          "contentHash": "86ee6fd463b0d7692047c2c432f5ecf270c492d4dfbc67b3836767248b34b514",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l01/s16/task/8": {
       "voice": "onyx",
       "clips": [
         {
@@ -4829,55 +4877,55 @@
         }
       ]
     },
-    "l01/s16/task/5": {
-      "voice": "coral",
+    "l01/s16/task/9": {
+      "voice": "onyx",
       "clips": [
         {
           "text": "It is clean.",
-          "file": "5be447630ae7415ce09b08c859971ab51bc4dbaa20f5a42c9436543945a3e258.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5be447630ae7415ce09b08c859971ab51bc4dbaa20f5a42c9436543945a3e258.mp3",
-          "contentHash": "f58d9b78a999f3c49695d9b5ea2c0466a1f14b0485b1274ac90b355d06964235",
-          "byteSize": 31488
+          "file": "dbe9edca757959bba0002dc37c7246864d892fbacdd3ec175ff334613344aae8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dbe9edca757959bba0002dc37c7246864d892fbacdd3ec175ff334613344aae8.mp3",
+          "contentHash": "0281d2837c9f1a03bd943f86b05c40199c23469f107e16bb4173dc465e9a5775",
+          "byteSize": 34560
         }
       ]
     },
-    "l01/s16/task/6": {
-      "voice": "onyx",
+    "l01/s16/task/10": {
+      "voice": "coral",
       "clips": [
         {
           "text": "I am strong.",
-          "file": "e0bdad6d6e22d487d5c609f37014133160b61d60d3689ca7fcf1da118d7f243c.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0bdad6d6e22d487d5c609f37014133160b61d60d3689ca7fcf1da118d7f243c.mp3",
-          "contentHash": "c44812b528b4364bdc94b26a3b304ed2aa510b605ae79990fd55565b43a084d7",
-          "byteSize": 25344
+          "file": "7291b4bb9ad5c1f4e38f767db943973cfb5f5b7d053e92c48a232a3dea1898c7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7291b4bb9ad5c1f4e38f767db943973cfb5f5b7d053e92c48a232a3dea1898c7.mp3",
+          "contentHash": "9d8a481a4aa8ddd52cbebcc40a74b421ae0eb587298eabe2708bc94c2ba76408",
+          "byteSize": 27648
         }
       ]
     },
-    "l01/s16/task/7": {
-      "voice": "onyx",
+    "l01/s16/task/11": {
+      "voice": "ash",
       "clips": [
         {
           "text": "He is smart.",
-          "file": "591d98b069d931deaee5c3999ec00c20c709111b6f192e87545955d850cb3e47.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/591d98b069d931deaee5c3999ec00c20c709111b6f192e87545955d850cb3e47.mp3",
-          "contentHash": "317aa10ea762168a3b975254574b8b31c8003f799009cafcf07c2335c40b2147",
-          "byteSize": 16512
+          "file": "6b5d73ae6fdb6485a1d24c56769615ca19139753810a52e8cf0c8d2d97e26a8b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6b5d73ae6fdb6485a1d24c56769615ca19139753810a52e8cf0c8d2d97e26a8b.mp3",
+          "contentHash": "3c4f64b395a5b2e798135b8586cf5b54f7143769d87fa2159be597e1c9ba80a3",
+          "byteSize": 24192
         }
       ]
     },
-    "l01/s16/task/8": {
-      "voice": "onyx",
+    "l01/s16/task/12": {
+      "voice": "coral",
       "clips": [
         {
           "text": "She is quiet.",
-          "file": "98942a088bf627f207809049e4592a48b0d220111822f0e0e533bacaa57728eb.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/98942a088bf627f207809049e4592a48b0d220111822f0e0e533bacaa57728eb.mp3",
-          "contentHash": "e52148fa296a31fb1963931218a472b449353320567b5c23e960f1d6456525c2",
-          "byteSize": 38784
+          "file": "67748b48566b118a7e7a6a3d6f2d1907e4f451e180e22336665ad75b51f7bd34.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/67748b48566b118a7e7a6a3d6f2d1907e4f451e180e22336665ad75b51f7bd34.mp3",
+          "contentHash": "e34ca504b0e775bb9b2764213ffdecedce8a1cc5e27f4b7b186c04a5565dfdc7",
+          "byteSize": 42624
         }
       ]
     },
-    "l01/s16/task/9": {
+    "l01/s16/task/13": {
       "voice": "onyx",
       "clips": [
         {
@@ -4888,11 +4936,11 @@
           "byteSize": 26112
         },
         {
-          "text": "funny",
-          "file": "de0de7b9878f4a19222740fe1f6446d293e169fd11cdf9b31a465ec91de2cf26.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/b22d1d8fe575253395402817-onyx.mp3",
-          "contentHash": "58150a20a4542fc57e1cbf8fffcd07ca4f65d0a8c65e1ab932268faf8ae9df5c",
-          "byteSize": 20352
+          "text": "calm",
+          "file": "398a8282457b7070f2b02e37a8acd7edbbe6f03b4e58dd5f8835c8ac452de9fb.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2b4b2eadf7b2aece598d2f2a-onyx.mp3",
+          "contentHash": "a5e134212c4e646f7adccb09d8fc7745d838803d4d160a79d37470a603cb43c6",
+          "byteSize": 22656
         },
         {
           "text": "smart",
@@ -4910,63 +4958,15 @@
         }
       ]
     },
-    "l01/s16/task/10": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "It is important.",
-          "file": "ee05a2204d80b16dc1f5125127b076d9863a4f2c0db898c88c4bd59c5fae39d8.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee05a2204d80b16dc1f5125127b076d9863a4f2c0db898c88c4bd59c5fae39d8.mp3",
-          "contentHash": "e0fa0b42ee15d7b78328110fdcc0b9eb325456672792eebd07e694d8e568609a",
-          "byteSize": 32640
-        }
-      ]
-    },
-    "l01/s16/task/11": {
-      "voice": "ash",
-      "clips": [
-        {
-          "text": "It is big.",
-          "file": "68cb478d411f83e2a51bb09e82c4eafd4f3fa7ff4e57bf3a0ea4c8e34a2f96b2.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/68cb478d411f83e2a51bb09e82c4eafd4f3fa7ff4e57bf3a0ea4c8e34a2f96b2.mp3",
-          "contentHash": "ebf30d35031ca6ea68dca1f21cc8fdaf285f3dfedbfc9329a154759e31aa850b",
-          "byteSize": 24192
-        }
-      ]
-    },
-    "l01/s16/task/12": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "She is helpful.",
-          "file": "9a00999cdcd6f06244ed23c1e474b9d2c983a60ffd8d6db99781ab911a398c02.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a00999cdcd6f06244ed23c1e474b9d2c983a60ffd8d6db99781ab911a398c02.mp3",
-          "contentHash": "d975523f4a463135d701058e8f6895be00a4ff0b0f2131b660aad04c33087f7e",
-          "byteSize": 29952
-        }
-      ]
-    },
-    "l01/s16/task/13": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "It is closed .",
-          "file": "fadc7af152388fa0125ec3ad215780f661cd0a8e175decd2c0cd359d74172aa9.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fadc7af152388fa0125ec3ad215780f661cd0a8e175decd2c0cd359d74172aa9.mp3",
-          "contentHash": "0c1203943f53dc279fa0aea6fc36f2b34a11c9ba19be9c4eec363a320ce23b72",
-          "byteSize": 32256
-        }
-      ]
-    },
     "l01/s16/task/14": {
       "voice": "onyx",
       "clips": [
         {
-          "text": "It is difficult.",
-          "file": "a58a0aef485a4231b973654c6e9a27803d539323604439fc904242663e254cd9.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a58a0aef485a4231b973654c6e9a27803d539323604439fc904242663e254cd9.mp3",
-          "contentHash": "fd32111687345a9b5e2970da3da9297b4e159d67e6cf12918b1347acc70b5608",
-          "byteSize": 25344
+          "text": "It is closed.",
+          "file": "8e4639a90dd0d3fcb7b91c5cf4e4a4703065f5c4dd4428c989b44181f2c05ec2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c01b6222de967bf5ebba6371-onyx.mp3",
+          "contentHash": "8cce814e990a3afd753c9ad8f9371d6f74915542bd5a6a52532d69e78ab22495",
+          "byteSize": 24192
         }
       ]
     },
@@ -4974,32 +4974,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "loud",
-          "file": "e399947ffb0c075c148bba09c9e54ab27e6f24ffa80e95580135720096e88f52.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/db1a60bbff220d0910f01747-nova.mp3",
-          "contentHash": "a392e1c95740f3819d7bb7f0a449d411c1d8df98bcbadf6760805f32860113d5",
-          "byteSize": 18816
-        },
-        {
-          "text": "quiet",
-          "file": "83c96fb3a7f73403f2916ee4eecb425f83cfffd3511d2dd787fbd4a80cb1d857.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/008f0747f4e27c8462baa991-nova.mp3",
-          "contentHash": "6018e7392fcebfcd54fc63303bbc83f0b070a50949536c61b24bb36e77db7ea7",
-          "byteSize": 21888
-        },
-        {
-          "text": "friendly",
-          "file": "5afc22059e2077d7e8854211c01aabd5185fb5a98226357a07d9a8e1adc71838.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/4c448a406dcdf064f7262820-nova.mp3",
-          "contentHash": "244746ce600994305987b2a6666a69e12abdbf5905e2f3926f5d6a9a7425af38",
-          "byteSize": 16512
-        },
-        {
-          "text": "helpful",
-          "file": "34333975f1e7bbfded1311c452f7c5e8e903a723b8a4b1fee5db491bc20ca82f.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34333975f1e7bbfded1311c452f7c5e8e903a723b8a4b1fee5db491bc20ca82f.mp3",
-          "contentHash": "c3b9408d666f97ff0328fe2044b9c8fb83446936a6438840f371025ca32c6ece",
-          "byteSize": 18048
+          "text": "It is big.",
+          "file": "7950e48e38a9a0aedc0363bf64a8145656fef89b6dd52333c9ac14cf977c9ab4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7950e48e38a9a0aedc0363bf64a8145656fef89b6dd52333c9ac14cf977c9ab4.mp3",
+          "contentHash": "5cc1d1aa42cda30ac30459c4a413a79819a167fa640047477b4967283c8e76c8",
+          "byteSize": 24192
         }
       ]
     },
@@ -5007,11 +4986,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "It is small.",
-          "file": "2b71ac19bf23e03d17837cb31b443dcbebad272f3c72a3462337537fbf1ca6c5.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2b71ac19bf23e03d17837cb31b443dcbebad272f3c72a3462337537fbf1ca6c5.mp3",
-          "contentHash": "daf043e707d4cc75a3fc8b0aad4cb51e763fc660bed0549527d60d7646d06c17",
-          "byteSize": 29184
+          "text": "She is helpful.",
+          "file": "42cfea9c77130f35d7003b191046253241658c308ae1389e44bf4de1346aedfd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/42cfea9c77130f35d7003b191046253241658c308ae1389e44bf4de1346aedfd.mp3",
+          "contentHash": "e046a6bdb3a3597c97f098ab1f0295d64b26210ed83d4a0c0710afb9fb14da22",
+          "byteSize": 21888
         }
       ]
     },
@@ -133892,6 +133871,75 @@
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c7af8d0f46ac9164fec614c87898f9cad86e09c159ac76bb3863aa9f330156d0.mp3",
           "contentHash": "00ecfc12108e79161aecc83a82c0db215c97404fbddb790f39c85ff12b65794b",
           "byteSize": 35712
+        }
+      ]
+    },
+    "l01/s16/task/17": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It is closed .",
+          "file": "ee83e26eff4a4d254a5272f8a436f221f31f333ac817a46626c89d7861752bdd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee83e26eff4a4d254a5272f8a436f221f31f333ac817a46626c89d7861752bdd.mp3",
+          "contentHash": "d171aa9262853b6da9c4717011280ee7ea812e5a9a0109175f603786fce75e48",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l01/s16/task/18": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It is wet.",
+          "file": "a5cfa5e759a48820b67ff679afaeeeddc8811efa73cc1dd4607ea75817baa7b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a5cfa5e759a48820b67ff679afaeeeddc8811efa73cc1dd4607ea75817baa7b9.mp3",
+          "contentHash": "f9a303547407de8aa1a54a24e10b6d91e29ee7a5e4dda5daf3861e292c3832e0",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l01/s16/task/19": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "polite",
+          "file": "d960b9f57ac518b360a2dd258b190851a1a55a97b71e14b190efe75330f804c8.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/cad2a80df44e3abf27b7cc4c-ash.mp3",
+          "contentHash": "1ff3da8f6235f6253c84c87ec0f71812e73e7127e768a945f23b597932f5bc26",
+          "byteSize": 26112
+        },
+        {
+          "text": "quiet",
+          "file": "685390b8ade4f766f965ee9e17c16e4b3bc913311be85b949a942530539e61ef.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/008f0747f4e27c8462baa991-ash.mp3",
+          "contentHash": "aefc499a163f556bdf8080be77f4bfeb4588f1a7345253a61c1ea035e5dd6efc",
+          "byteSize": 18816
+        },
+        {
+          "text": "friendly",
+          "file": "52e18ade7fcdfbb94e2bd65367096918fa0d8912acde7792dd653901c66528de.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4c448a406dcdf064f7262820-ash.mp3",
+          "contentHash": "50864e81b92b79fada54f1bcb1347d32cd5943cc1efa1c1bb1f6c7a687bf0a22",
+          "byteSize": 40320
+        },
+        {
+          "text": "helpful",
+          "file": "c16b31e646f84beb339dbd02206df957001ffa595421ca7f609fab963c3eaea4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c16b31e646f84beb339dbd02206df957001ffa595421ca7f609fab963c3eaea4.mp3",
+          "contentHash": "1b01a64dc45505f045b7e5c3e15b4e85b18f6cdf4f55956981c3614545621b49",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l01/s16/task/20": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is big.",
+          "file": "7950e48e38a9a0aedc0363bf64a8145656fef89b6dd52333c9ac14cf977c9ab4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7950e48e38a9a0aedc0363bf64a8145656fef89b6dd52333c9ac14cf977c9ab4.mp3",
+          "contentHash": "5cc1d1aa42cda30ac30459c4a413a79819a167fa640047477b4967283c8e76c8",
+          "byteSize": 24192
         }
       ]
     }

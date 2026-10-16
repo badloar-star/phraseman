@@ -1,0 +1,2435 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-16",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-16:word:open",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — open",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:open:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — open",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:open:audio",
+            "transcript": "open"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:open:r1",
+              "targetText": "open",
+              "meaningByLocale": {
+                "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
+                "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "open",
+            "definitionByLocale": {
+              "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
+              "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:word:big",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — big",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:big:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — big",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:big:audio",
+            "transcript": "big"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:big:r1",
+              "targetText": "big",
+              "meaningByLocale": {
+                "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
+                "uk": "великий. It is big — «Він великий», наприклад, зал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "big",
+            "definitionByLocale": {
+              "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
+              "uk": "великий. It is big — «Він великий», наприклад, зал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:word:clean",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — clean",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:clean:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — clean",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:clean:audio",
+            "transcript": "clean"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:clean:r1",
+              "targetText": "clean",
+              "meaningByLocale": {
+                "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
+                "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clean",
+            "definitionByLocale": {
+              "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
+              "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:word:closed",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — closed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:closed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — closed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:closed:audio",
+            "transcript": "closed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:closed:r1",
+              "targetText": "closed",
+              "meaningByLocale": {
+                "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
+                "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "closed",
+            "definitionByLocale": {
+              "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
+              "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите фразу о себе: «Я добрый»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соберите фразу о себе: «Я добрый»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am kind.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу о себе: «Я добрый»",
+            "uk": "Складіть фразу про себе: «Я добрий»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "kind"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу о себе: «Я добрый»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am kind.`",
+                "uk": "тут потрібно `am` — `I am kind.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте описание Лео и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i02:r1",
+            "text": "He is short."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i02:r2",
+            "text": "She is short."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i02:r3",
+            "text": "He is old."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте описание Лео и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i02:audio",
+            "transcript": "He is short."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:i02:r1",
+              "targetText": "He is short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i02:r2",
+              "targetText": "She is short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i02:r3",
+              "targetText": "He is old.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте описание Лео и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте описание Лео и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `short`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `short`, а в цьому варіанті — `old`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставьте слово — Мия дружелюбная",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте слово — Мия дружелюбная",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Мия дружелюбная",
+            "uk": "Вставте слово — Мія привітна"
+          },
+          "gappedTargetPhrase": "She ___ friendly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-16:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вставьте слово — Мия дружелюбная",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Вставьте слово — Мия дружелюбная",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `is`; `am` ставим с `I`.",
+                "uk": "Після `She` потрібно `is`; `am` ставимо з `I`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Вставьте слово — Мия дружелюбная",
+              "feedbackByLocale": {
+                "ru": "В сочетании `She is` нужна форма `is`.",
+                "uk": "У сполученні `She is` потрібна форма `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините описания людей со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините описания людей со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-16:i04:p1",
+              "target": "tall",
+              "meaningByLocale": {
+                "ru": "высокий",
+                "uk": "високий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i04:p2",
+              "target": "short",
+              "meaningByLocale": {
+                "ru": "невысокий",
+                "uk": "невисокий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i04:p3",
+              "target": "young",
+              "meaningByLocale": {
+                "ru": "молодой",
+                "uk": "молодий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i04:p4",
+              "target": "old",
+              "meaningByLocale": {
+                "ru": "старый",
+                "uk": "старий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tall",
+            "short",
+            "young",
+            "old"
+          ],
+          "rightColumn": [
+            "высокий",
+            "невысокий",
+            "молодой",
+            "старый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте фразу о входе и соберите её",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу о входе и соберите её",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i05:audio",
+            "transcript": "It is open."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is open.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "open"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте фразу о входе и соберите её",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is open.`",
+                "uk": "тут потрібно `is` — `It is open.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите фразу о протёртом столе: «Он чистый»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соберите фразу о протёртом столе: «Он чистый»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is clean.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу о протёртом столе: «Он чистый»",
+            "uk": "Складіть фразу про протертий стіл: «Він чистий»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "He"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу о протёртом столе: «Он чистый»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It` — `It is clean.`",
+                "uk": "тут потрібно `It` — `It is clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите вслух о себе: «Я сильный»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i07:audio"
+        ],
+        "accessibilityLabel": "Скажите вслух о себе: «Я сильный»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i07:audio",
+            "transcript": "I am strong."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am strong.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставьте слово — Лео умный",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте слово — Лео умный",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Лео умный",
+            "uk": "Вставте слово — Лео розумний"
+          },
+          "gappedTargetPhrase": "He ___ smart.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-16:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вставьте слово — Лео умный",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Вставьте слово — Лео умный",
+              "feedbackByLocale": {
+                "ru": "О Лео говорим `He is`, а `am` нужно после `I`.",
+                "uk": "Про Лео кажемо `He is`, а `am` потрібне після `I`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Вставьте слово — Лео умный",
+              "feedbackByLocale": {
+                "ru": "Здесь начало `He`, поэтому нужно `is`.",
+                "uk": "Тут початок `He`, тому потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу о Мие",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i09:r1",
+            "text": "She is quiet."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i09:r2",
+            "text": "He is quiet."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i09:r3",
+            "text": "She is calm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу о Мие",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i09:audio",
+            "transcript": "She is quiet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:i09:r1",
+              "targetText": "She is quiet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i09:r2",
+              "targetText": "He is quiet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i09:r3",
+              "targetText": "She is calm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу о Мие",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу о Мие",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `quiet`, а в этом варианте — `calm`.",
+                "uk": "У записі останнє слово — `quiet`, а в цьому варіанті — `calm`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините качества со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините качества со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-16:i10:p1",
+              "target": "kind",
+              "meaningByLocale": {
+                "ru": "добрый",
+                "uk": "добрий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i10:p2",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i10:p3",
+              "target": "smart",
+              "meaningByLocale": {
+                "ru": "умный",
+                "uk": "розумний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i10:p4",
+              "target": "strong",
+              "meaningByLocale": {
+                "ru": "сильный",
+                "uk": "сильний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kind",
+            "calm",
+            "smart",
+            "strong"
+          ],
+          "rightColumn": [
+            "добрый",
+            "спокойный",
+            "умный",
+            "сильный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте фразу о входе в кладовую и соберите её",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу о входе в кладовую и соберите её",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i11:audio",
+            "transcript": "It is closed."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is closed.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "closed"
+          ],
+          "authoredDistractorTokens": [
+            "I"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте фразу о входе в кладовую и соберите её",
+              "feedbackByLocale": {
+                "ru": "речь о входе — It, а не о себе — I.",
+                "uk": "ідеться про вхід — It, а не про себе — I."
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите фразу о просторном зале: «Он большой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соберите фразу о просторном зале: «Он большой»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is big.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу о просторном зале: «Он большой»",
+            "uk": "Складіть фразу про просторий зал: «Він великий»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "big"
+          ],
+          "authoredDistractorTokens": [
+            "He"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу о просторном зале: «Он большой»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It` — `It is big.`",
+                "uk": "тут потрібно `It` — `It is big.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мия охотно помогает другим волонтёрам. Скажите вслух: «Она охотно помогает»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i13:audio"
+        ],
+        "accessibilityLabel": "Мия охотно помогает другим волонтёрам. Скажите вслух: «Она охотно помогает»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i13:audio",
+            "transcript": "She is helpful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is helpful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вход в соседний зал закрыт. Дополните: «Он закрыт»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i14:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i14:r2",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i14:r3",
+            "text": "clean"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вход в соседний зал закрыт. Дополните: «Он закрыт»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вход в соседний зал закрыт. Дополните: «Он закрыт»",
+            "uk": "Вхід до сусіднього залу зачинений. Доповніть: «Він зачинений»"
+          },
+          "gappedTargetPhrase": "It is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-16:i14:r1",
+              "text": "closed"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i14:r2",
+              "text": "open"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i14:r3",
+              "text": "clean"
+            }
+          ],
+          "testedDimension": "Вход в соседний зал закрыт. Дополните: «Он закрыт»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i14:r2",
+              "correct": false,
+              "testedDimension": "Вход в соседний зал закрыт. Дополните: «Он закрыт»",
+              "feedbackByLocale": {
+                "ru": "Open — «открыт», но вход закрыт: closed.",
+                "uk": "Open — «відчинений», але вхід зачинений: closed."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i14:r3",
+              "correct": false,
+              "testedDimension": "Вход в соседний зал закрыт. Дополните: «Он закрыт»",
+              "feedbackByLocale": {
+                "ru": "Clean описывает чистоту. Нужно сообщить, что вход закрыт.",
+                "uk": "Clean описує чистоту. Потрібно повідомити, що вхід зачинений."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте описание пола после уборки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i15:r1",
+            "text": "It is wet."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i15:r2",
+            "text": "It is dry."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i15:r3",
+            "text": "It is clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте описание пола после уборки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i15:audio",
+            "transcript": "It is wet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:i15:r1",
+              "targetText": "It is wet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i15:r2",
+              "targetText": "It is dry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i15:r3",
+              "targetText": "It is clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте описание пола после уборки",
+              "feedbackByLocale": {
+                "ru": "В записи wet, а не dry.",
+                "uk": "У записі wet, а не dry."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте описание пола после уборки",
+              "feedbackByLocale": {
+                "ru": "В записи wet, а не clean.",
+                "uk": "У записі wet, а не clean."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините знакомые качества со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините знакомые качества со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-16:i16:p1",
+              "target": "polite",
+              "meaningByLocale": {
+                "ru": "вежливый",
+                "uk": "ввічливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i16:p2",
+              "target": "quiet",
+              "meaningByLocale": {
+                "ru": "тихий",
+                "uk": "тихий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i16:p3",
+              "target": "friendly",
+              "meaningByLocale": {
+                "ru": "дружелюбный",
+                "uk": "привітний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i16:p4",
+              "target": "helpful",
+              "meaningByLocale": {
+                "ru": "оказывающий полезную помощь",
+                "uk": "той, хто надає корисну допомогу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "polite",
+            "quiet",
+            "friendly",
+            "helpful"
+          ],
+          "rightColumn": [
+            "вежливый",
+            "тихий",
+            "дружелюбный",
+            "оказывающий полезную помощь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На следующий день вы выбираете шкаф для дома. Выбранный шкаф большой. Скажите о нём: «Он большой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "На следующий день вы выбираете шкаф для дома. Выбранный шкаф большой. Скажите о нём: «Он большой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i17:audio",
+            "transcript": "It is big."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is big.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-16:word:open",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — open",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:open:audio"
+        ],
+        "accessibilityLabel": "Картка слова — open",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:open:audio",
+            "transcript": "open"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:open:r1",
+              "targetText": "open",
+              "meaningByLocale": {
+                "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
+                "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "open",
+            "definitionByLocale": {
+              "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
+              "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:word:big",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — big",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:big:audio"
+        ],
+        "accessibilityLabel": "Картка слова — big",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:big:audio",
+            "transcript": "big"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:big:r1",
+              "targetText": "big",
+              "meaningByLocale": {
+                "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
+                "uk": "великий. It is big — «Він великий», наприклад, зал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "big",
+            "definitionByLocale": {
+              "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
+              "uk": "великий. It is big — «Він великий», наприклад, зал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:word:clean",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — clean",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:clean:audio"
+        ],
+        "accessibilityLabel": "Картка слова — clean",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:clean:audio",
+            "transcript": "clean"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:clean:r1",
+              "targetText": "clean",
+              "meaningByLocale": {
+                "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
+                "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clean",
+            "definitionByLocale": {
+              "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
+              "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:word:closed",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — closed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:closed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — closed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:closed:audio",
+            "transcript": "closed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:closed:r1",
+              "targetText": "closed",
+              "meaningByLocale": {
+                "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
+                "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "closed",
+            "definitionByLocale": {
+              "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
+              "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть фразу про себе: «Я добрий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Складіть фразу про себе: «Я добрий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am kind.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу о себе: «Я добрый»",
+            "uk": "Складіть фразу про себе: «Я добрий»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "kind"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Складіть фразу про себе: «Я добрий»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am kind.`",
+                "uk": "тут потрібно `am` — `I am kind.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте опис Лео й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i02:r1",
+            "text": "He is short."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i02:r2",
+            "text": "She is short."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i02:r3",
+            "text": "He is old."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте опис Лео й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i02:audio",
+            "transcript": "He is short."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:i02:r1",
+              "targetText": "He is short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i02:r2",
+              "targetText": "She is short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i02:r3",
+              "targetText": "He is old.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте опис Лео й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте опис Лео й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `short`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `short`, а в цьому варіанті — `old`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставте слово — Мія привітна",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте слово — Мія привітна",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Мия дружелюбная",
+            "uk": "Вставте слово — Мія привітна"
+          },
+          "gappedTargetPhrase": "She ___ friendly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-16:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вставте слово — Мія привітна",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Вставте слово — Мія привітна",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `is`; `am` ставим с `I`.",
+                "uk": "Після `She` потрібно `is`; `am` ставимо з `I`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Вставте слово — Мія привітна",
+              "feedbackByLocale": {
+                "ru": "В сочетании `She is` нужна форма `is`.",
+                "uk": "У сполученні `She is` потрібна форма `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте описи людей зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте описи людей зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-16:i04:p1",
+              "target": "tall",
+              "meaningByLocale": {
+                "ru": "высокий",
+                "uk": "високий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i04:p2",
+              "target": "short",
+              "meaningByLocale": {
+                "ru": "невысокий",
+                "uk": "невисокий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i04:p3",
+              "target": "young",
+              "meaningByLocale": {
+                "ru": "молодой",
+                "uk": "молодий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i04:p4",
+              "target": "old",
+              "meaningByLocale": {
+                "ru": "старый",
+                "uk": "старий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tall",
+            "short",
+            "young",
+            "old"
+          ],
+          "rightColumn": [
+            "високий",
+            "невисокий",
+            "молодий",
+            "старий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте фразу про вхід і складіть її",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про вхід і складіть її",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i05:audio",
+            "transcript": "It is open."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is open.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "open"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про вхід і складіть її",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is open.`",
+                "uk": "тут потрібно `is` — `It is open.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть фразу про протертий стіл: «Він чистий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Складіть фразу про протертий стіл: «Він чистий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is clean.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу о протёртом столе: «Он чистый»",
+            "uk": "Складіть фразу про протертий стіл: «Він чистий»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "He"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Складіть фразу про протертий стіл: «Він чистий»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It` — `It is clean.`",
+                "uk": "тут потрібно `It` — `It is clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть уголос про себе: «Я сильний»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i07:audio"
+        ],
+        "accessibilityLabel": "Скажіть уголос про себе: «Я сильний»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i07:audio",
+            "transcript": "I am strong."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am strong.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставте слово — Лео розумний",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте слово — Лео розумний",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Лео умный",
+            "uk": "Вставте слово — Лео розумний"
+          },
+          "gappedTargetPhrase": "He ___ smart.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-16:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вставте слово — Лео розумний",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Вставте слово — Лео розумний",
+              "feedbackByLocale": {
+                "ru": "О Лео говорим `He is`, а `am` нужно после `I`.",
+                "uk": "Про Лео кажемо `He is`, а `am` потрібне після `I`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Вставте слово — Лео розумний",
+              "feedbackByLocale": {
+                "ru": "Здесь начало `He`, поэтому нужно `is`.",
+                "uk": "Тут початок `He`, тому потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу про Мію",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i09:r1",
+            "text": "She is quiet."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i09:r2",
+            "text": "He is quiet."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i09:r3",
+            "text": "She is calm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу про Мію",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i09:audio",
+            "transcript": "She is quiet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:i09:r1",
+              "targetText": "She is quiet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i09:r2",
+              "targetText": "He is quiet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i09:r3",
+              "targetText": "She is calm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу про Мію",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу про Мію",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `quiet`, а в этом варианте — `calm`.",
+                "uk": "У записі останнє слово — `quiet`, а в цьому варіанті — `calm`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте якості зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте якості зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-16:i10:p1",
+              "target": "kind",
+              "meaningByLocale": {
+                "ru": "добрый",
+                "uk": "добрий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i10:p2",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i10:p3",
+              "target": "smart",
+              "meaningByLocale": {
+                "ru": "умный",
+                "uk": "розумний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i10:p4",
+              "target": "strong",
+              "meaningByLocale": {
+                "ru": "сильный",
+                "uk": "сильний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kind",
+            "calm",
+            "smart",
+            "strong"
+          ],
+          "rightColumn": [
+            "добрий",
+            "спокійний",
+            "розумний",
+            "сильний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте фразу про вхід до комори й складіть її",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про вхід до комори й складіть її",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i11:audio",
+            "transcript": "It is closed."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is closed.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "closed"
+          ],
+          "authoredDistractorTokens": [
+            "I"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про вхід до комори й складіть її",
+              "feedbackByLocale": {
+                "ru": "речь о входе — It, а не о себе — I.",
+                "uk": "ідеться про вхід — It, а не про себе — I."
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть фразу про просторий зал: «Він великий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Складіть фразу про просторий зал: «Він великий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is big.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу о просторном зале: «Он большой»",
+            "uk": "Складіть фразу про просторий зал: «Він великий»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "big"
+          ],
+          "authoredDistractorTokens": [
+            "He"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Складіть фразу про просторий зал: «Він великий»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It` — `It is big.`",
+                "uk": "тут потрібно `It` — `It is big.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мія охоче допомагає іншим волонтерам. Скажіть уголос: «Вона охоче допомагає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i13:audio"
+        ],
+        "accessibilityLabel": "Мія охоче допомагає іншим волонтерам. Скажіть уголос: «Вона охоче допомагає»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i13:audio",
+            "transcript": "She is helpful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is helpful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вхід до сусіднього залу зачинений. Доповніть: «Він зачинений»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i14:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i14:r2",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i14:r3",
+            "text": "clean"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вхід до сусіднього залу зачинений. Доповніть: «Він зачинений»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вход в соседний зал закрыт. Дополните: «Он закрыт»",
+            "uk": "Вхід до сусіднього залу зачинений. Доповніть: «Він зачинений»"
+          },
+          "gappedTargetPhrase": "It is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-16:i14:r1",
+              "text": "closed"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i14:r2",
+              "text": "open"
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i14:r3",
+              "text": "clean"
+            }
+          ],
+          "testedDimension": "Вхід до сусіднього залу зачинений. Доповніть: «Він зачинений»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i14:r2",
+              "correct": false,
+              "testedDimension": "Вхід до сусіднього залу зачинений. Доповніть: «Він зачинений»",
+              "feedbackByLocale": {
+                "ru": "Open — «открыт», но вход закрыт: closed.",
+                "uk": "Open — «відчинений», але вхід зачинений: closed."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i14:r3",
+              "correct": false,
+              "testedDimension": "Вхід до сусіднього залу зачинений. Доповніть: «Він зачинений»",
+              "feedbackByLocale": {
+                "ru": "Clean описывает чистоту. Нужно сообщить, что вход закрыт.",
+                "uk": "Clean описує чистоту. Потрібно повідомити, що вхід зачинений."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте опис підлоги після прибирання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i15:r1",
+            "text": "It is wet."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i15:r2",
+            "text": "It is dry."
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i15:r3",
+            "text": "It is clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте опис підлоги після прибирання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i15:audio",
+            "transcript": "It is wet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:i15:r1",
+              "targetText": "It is wet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i15:r2",
+              "targetText": "It is dry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i15:r3",
+              "targetText": "It is clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-16:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте опис підлоги після прибирання",
+              "feedbackByLocale": {
+                "ru": "В записи wet, а не dry.",
+                "uk": "У записі wet, а не dry."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-16:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте опис підлоги після прибирання",
+              "feedbackByLocale": {
+                "ru": "В записи wet, а не clean.",
+                "uk": "У записі wet, а не clean."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте знайомі якості зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте знайомі якості зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-16:i16:p1",
+              "target": "polite",
+              "meaningByLocale": {
+                "ru": "вежливый",
+                "uk": "ввічливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i16:p2",
+              "target": "quiet",
+              "meaningByLocale": {
+                "ru": "тихий",
+                "uk": "тихий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i16:p3",
+              "target": "friendly",
+              "meaningByLocale": {
+                "ru": "дружелюбный",
+                "uk": "привітний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-16:i16:p4",
+              "target": "helpful",
+              "meaningByLocale": {
+                "ru": "оказывающий полезную помощь",
+                "uk": "той, хто надає корисну допомогу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "polite",
+            "quiet",
+            "friendly",
+            "helpful"
+          ],
+          "rightColumn": [
+            "ввічливий",
+            "тихий",
+            "привітний",
+            "той, хто надає корисну допомогу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Наступного дня ви вибираєте шафу для дому. Вибрана шафа велика. Скажіть про неї: «Вона велика»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Наступного дня ви вибираєте шафу для дому. Вибрана шафа велика. Скажіть про неї: «Вона велика»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:i17:audio",
+            "transcript": "It is big."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is big.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-16:word:open",
+      "correctText": "open",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:word:big",
+      "correctText": "big",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:word:clean",
+      "correctText": "clean",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:word:closed",
+      "correctText": "closed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i01",
+      "correctText": "I am kind.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i02",
+      "correctText": "He is short.",
+      "correctResponseId": "en:lesson-01:session-16:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-16:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i05",
+      "correctText": "It is open.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i06",
+      "correctText": "It is clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i07",
+      "correctText": "I am strong.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-16:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i09",
+      "correctText": "She is quiet.",
+      "correctResponseId": "en:lesson-01:session-16:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i11",
+      "correctText": "It is closed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i12",
+      "correctText": "It is big.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i13",
+      "correctText": "She is helpful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i14",
+      "correctText": "closed",
+      "correctResponseId": "en:lesson-01:session-16:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i15",
+      "correctText": "It is wet.",
+      "correctResponseId": "en:lesson-01:session-16:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i17",
+      "correctText": "It is big.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "уточнить владельца велосипеда и очков и спросить о месте",
+    "uk": "уточнити власника велосипеда й окулярів і запитати про місце"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два колеса и педали",
+        "uk": "Два колеса й педалі"
+      },
+      "bodyByLocale": {
+        "ru": "`bicycle` — «велосипед». `Whose bicycle is this?` — «Чей это велосипед?» `The bicycle is mine` — «Велосипед мой». `This is Anna’s bicycle` — «Это велосипед Анны». У велосипеда два колеса, но владелец может быть один — вопрос всё равно стоит задать.",
+        "uk": "`bicycle` — «велосипед». `Whose bicycle is this?` — «Чий це велосипед?» `The bicycle is mine` — «Велосипед мій». `This is Anna’s bicycle` — «Це велосипед Анни». У велосипеда два колеса, але власник може бути один — запитати все одно варто."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце велосипеда.",
+          "uk": "Запитайте про власника велосипеда."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-44:intro1:r1",
+              "text": "Whose bicycle is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro1:r2",
+              "text": "Where is the bicycle?"
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro1:r3",
+              "text": "Whose bicycle are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-44:intro1:r1",
+              "text": "Whose bicycle is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro1:r2",
+              "text": "Where is the bicycle?"
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro1:r3",
+              "text": "Whose bicycle are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце велосипеда.",
+          "uk": "Запитайте про власника велосипеда."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Очки и любопытство",
+        "uk": "Окуляри й цікавість"
+      },
+      "bodyByLocale": {
+        "ru": "`sunglasses` — «солнцезащитные очки». `Whose sunglasses are these?` — «Чьи это солнцезащитные очки?» Очки требуют `are these`. `The sunglasses are hers` — «Солнцезащитные очки её». `curious` здесь — «любопытный», желающий узнать больше: `You are curious` — «Ты любопытный / любопытная».",
+        "uk": "`sunglasses` — «сонцезахисні окуляри». `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» Окуляри потребують `are these`. `The sunglasses are hers` — «Сонцезахисні окуляри її». `curious` тут — «допитливий», охочий дізнатися більше: `You are curious` — «Ти допитливий / допитлива»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ты любопытный» без сокращения.",
+          "uk": "Скажіть «Ти допитливий» без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-44:intro2:r1",
+              "text": "You are curious."
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro2:r2",
+              "text": "You is curious."
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro2:r3",
+              "text": "You are patient."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-44:intro2:r1",
+              "text": "You are curious."
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro2:r2",
+              "text": "You is curious."
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro2:r3",
+              "text": "You are patient."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ты любопытный» без сокращения.",
+          "uk": "Скажіть «Ти допитливий» без скорочення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В городе и на кухне",
+        "uk": "У місті й на кухні"
+      },
+      "bodyByLocale": {
+        "ru": "`hotels` — «отели», `freezer` — «морозильник». `Where are the hotels?` — «Где отели?» `The freezer is in the kitchen` — «Морозильник на кухне». `I have your sunglasses` — «Твои солнцезащитные очки у меня».",
+        "uk": "`hotels` — «готелі», `freezer` — «морозильник». `Where are the hotels?` — «Де готелі?» `The freezer is in the kitchen` — «Морозильник на кухні». `I have your sunglasses` — «Твої сонцезахисні окуляри в мене»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Где отели?»",
+          "uk": "Запитайте «Де готелі?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-44:intro3:r1",
+              "text": "Where are the hotels?"
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro3:r2",
+              "text": "Where is the hotels?"
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro3:r3",
+              "text": "Whose hotels are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-44:intro3:r1",
+              "text": "Where are the hotels?"
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro3:r2",
+              "text": "Where is the hotels?"
+            },
+            {
+              "responseId": "en:lesson-05:session-44:intro3:r3",
+              "text": "Whose hotels are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Где отели?»",
+          "uk": "Запитайте «Де готелі?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a81627ae54ea66ab706e84c81a177d58d5646976ffbd4f9debbcc6df082378f7"
+}

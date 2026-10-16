@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-44:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-44:intro1:r3": {
+          "ru": "Один велосипед: `is this`.",
+          "uk": "Один велосипед: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-44:intro2:r2": {
+          "ru": "С `you` нужна форма `are`.",
+          "uk": "З `you` потрібна форма `are`."
+        },
+        "en:lesson-05:session-44:intro2:r3": {
+          "ru": "`patient` — терпеливый; любопытный — `curious`.",
+          "uk": "`patient` — терплячий; допитливий — `curious`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-44:intro3:r2": {
+          "ru": "`hotels` — множественное число: `are`.",
+          "uk": "`hotels` — множина: `are`."
+        },
+        "en:lesson-05:session-44:intro3:r3": {
+          "ru": "Это вопрос о владельце, а нужен вопрос о месте: `Where`.",
+          "uk": "Це запитання про власника, а потрібне запитання про місце: `Where`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7cd81541abc1aa57007f750121a4e27f03031aa187ab12b0a995895b04d8c29b"
+}

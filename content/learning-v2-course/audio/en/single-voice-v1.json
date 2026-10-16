@@ -62887,6 +62887,309 @@
           "byteSize": 27648
         }
       ]
+    },
+    "l04/s40/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a thermostat.",
+          "file": "2ddc6d726f39dd8c43860231c5aaad6e7b2854e2f3acc15a0054833153bb5d40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ddc6d726f39dd8c43860231c5aaad6e7b2854e2f3acc15a0054833153bb5d40.mp3",
+          "contentHash": "ad68352641369debf1687fc3af2998a72d26e2d3c0d9582c7883b2e5a7cad4eb",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s40/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There isn’t a doorbell.",
+          "file": "b0f45ac3f17ca393aaf46662d87d3b4085d3fff6bd2b128cd9c92c0733897426.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0f45ac3f17ca393aaf46662d87d3b4085d3fff6bd2b128cd9c92c0733897426.mp3",
+          "contentHash": "cd352ce55e90ac2bc6cf3cf2afc9eedcf7aa8567c6d4535c90f55ce6613a5d7c",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l04/s40/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The fountain is between the shops.",
+          "file": "1f515f084fa1eeeec65c3093afc3e135c9f8f2be8f6b5c8cceed66f95932780b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f515f084fa1eeeec65c3093afc3e135c9f8f2be8f6b5c8cceed66f95932780b.mp3",
+          "contentHash": "2161ce13f4e3adb748331a5ff5574be20bcb2f03aeb41b19dc78a12b3ee75f42",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s40/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a boiler?",
+          "file": "b7d1a4ffceb3e22543066e62e58fb96105500e60f824153a52b141fcc2c6c0be.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b7d1a4ffceb3e22543066e62e58fb96105500e60f824153a52b141fcc2c6c0be.mp3",
+          "contentHash": "ee2196c7d6635baeaf275f22bb45598dac907f4b6b184bde0d42f54cb757031d",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l04/s40/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "thermostat",
+          "file": "3fe27118828042784401351a3e5381a116f9bbc74d1eef517e374821524d199d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3fe27118828042784401351a3e5381a116f9bbc74d1eef517e374821524d199d.mp3",
+          "contentHash": "482244aeafe10c931f263134b871e70ae53a6dab9a70df7603aa45491e083197",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s40/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "thermostat",
+          "file": "d5aea1398c0d97f79e429bb89149f76186900a20012e19320365d14a40dd2988.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5aea1398c0d97f79e429bb89149f76186900a20012e19320365d14a40dd2988.mp3",
+          "contentHash": "16e5e13fcd133c9f1a82896b9747e99e1cf1ad9f3db064ce8923715f8fff3401",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s40/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "thermostat",
+          "file": "3fe27118828042784401351a3e5381a116f9bbc74d1eef517e374821524d199d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3fe27118828042784401351a3e5381a116f9bbc74d1eef517e374821524d199d.mp3",
+          "contentHash": "482244aeafe10c931f263134b871e70ae53a6dab9a70df7603aa45491e083197",
+          "byteSize": 34560
+        },
+        {
+          "text": "boiler",
+          "file": "1c3ea5264b7c88a2b7be5870ade0eff13c085ebe4bb917b595ba7430fe66fb95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c3ea5264b7c88a2b7be5870ade0eff13c085ebe4bb917b595ba7430fe66fb95.mp3",
+          "contentHash": "9944b589c786c8db76f1e85ee744f970184a1d3c049908ce365f23ff9771783a",
+          "byteSize": 19584
+        },
+        {
+          "text": "doorbell",
+          "file": "a38a950e51a47086f63541b32756f9cfd74cc3f36a9feedea309da57ba3c847a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a38a950e51a47086f63541b32756f9cfd74cc3f36a9feedea309da57ba3c847a.mp3",
+          "contentHash": "f945751e8b09333caf83555c6c3a260cdb5ee9cdf25693eefa6da0f2d2d33796",
+          "byteSize": 21120
+        },
+        {
+          "text": "smoke alarm",
+          "file": "c8f2b370e62afac5509b30cea9f7248e6e1b5ffe2a845f845e8b0d7c86d5f961.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c8f2b370e62afac5509b30cea9f7248e6e1b5ffe2a845f845e8b0d7c86d5f961.mp3",
+          "contentHash": "fa8427d15d535122a08837180afee2f91bdfea608b35484126fb81766ffc146a",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s40/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a thermostat.",
+          "file": "72aa45bad2de6c7664cff2a1af9b4a85893936a86e456937cb5cd1f2b4db037e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/72aa45bad2de6c7664cff2a1af9b4a85893936a86e456937cb5cd1f2b4db037e.mp3",
+          "contentHash": "51efb89b7f873960fe600cf3d47f3d01327f4cb2452477b2864a83a29ad4a899",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s40/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The handrail is next to the ramp.",
+          "file": "ee9fa2165384ecd24b750e65a422e02a9cf29a55ed796362b39438cea3117b21.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee9fa2165384ecd24b750e65a422e02a9cf29a55ed796362b39438cea3117b21.mp3",
+          "contentHash": "143d1b005f561cfb5ecf1bb1912c98dbf2f83ef2cb661da7d76f615df879b9a4",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l04/s40/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There aren't any smoke alarms.",
+          "file": "88cd5fc55149ea09ad9696641d405b9ec5230f6d877e136a8264380a1345976c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/88cd5fc55149ea09ad9696641d405b9ec5230f6d877e136a8264380a1345976c.mp3",
+          "contentHash": "8673eac8304c3610ada1581015c109d4174d0a20e03a29935212369a707035e5",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s40/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There isn't a doorbell.",
+          "file": "6ca2de01a83ea4f29e9d6f5761f27bead60ebd763b2aa3c3bdf24f6ac15c4d95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6ca2de01a83ea4f29e9d6f5761f27bead60ebd763b2aa3c3bdf24f6ac15c4d95.mp3",
+          "contentHash": "4538c35aa3e42a68ae59f314ae4ec70d91d360c9ca98dbae5bccc91c5342d65d",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s40/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The fountain is next to the hotel.",
+          "file": "61428294ffc652c54fc8f1381cdc8cde14cde7caf20ae1ef2ce4edf7642e5a1c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/61428294ffc652c54fc8f1381cdc8cde14cde7caf20ae1ef2ce4edf7642e5a1c.mp3",
+          "contentHash": "a28dfa13e57019cfb41d88aaad2f73d3a1466a1c10ae93c24b74381f9b36b2ee",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l04/s40/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "handrail",
+          "file": "6d2c5cffa5ab1969d578fec6cf26b298f3e6cffb18c43380aaeb420f02a260d7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d2c5cffa5ab1969d578fec6cf26b298f3e6cffb18c43380aaeb420f02a260d7.mp3",
+          "contentHash": "3fda37b817f34625ab08d662e2b7c3cbba727d1c14d4ffc7b505308b9331d13c",
+          "byteSize": 36480
+        },
+        {
+          "text": "ramp",
+          "file": "3ad0ed7ff34f3a9dbb709d453fccf09a270ec59abf2d0a65f23972d30dac35cd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3ad0ed7ff34f3a9dbb709d453fccf09a270ec59abf2d0a65f23972d30dac35cd.mp3",
+          "contentHash": "e916ee9b696986e3fe81b1f1dc6141cdde5eec34b6e4b0537bb9d4f24728af10",
+          "byteSize": 15744
+        },
+        {
+          "text": "fountain",
+          "file": "4ac0c27610215db7f4c769e9860d443819f0945fd0408311f6a12bc7ca3a3b30.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4ac0c27610215db7f4c769e9860d443819f0945fd0408311f6a12bc7ca3a3b30.mp3",
+          "contentHash": "cba46eb4c24d11f1442e794911cb0c2c0412bca5dbf0937ababe1c37af907344",
+          "byteSize": 37248
+        },
+        {
+          "text": "parcel locker",
+          "file": "e0ce33b97c1a3c643f0d923179352ebac638e91bc725dfd96191bf69c9bcb63e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0ce33b97c1a3c643f0d923179352ebac638e91bc725dfd96191bf69c9bcb63e.mp3",
+          "contentHash": "33383b15b3bc2bac1831c4e96d9cfb80e555e85c863915c5a8ece202c52d60e2",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l04/s40/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The parcel locker is next to the bike shed.",
+          "file": "906827aa1f88a6d29814b01afe40d1c84f1c5a48e395677e67a1f5afab26aaa1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/906827aa1f88a6d29814b01afe40d1c84f1c5a48e395677e67a1f5afab26aaa1.mp3",
+          "contentHash": "38d1058680b6fbeac9d241c5a6ae72b672680ed063bdf88f0a320824a16a5199",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s40/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a thermostat.",
+          "file": "36ff8e39cbe0f80c444d9c72aa24a16fda06725405876c94d2c785b1e73df462.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36ff8e39cbe0f80c444d9c72aa24a16fda06725405876c94d2c785b1e73df462.mp3",
+          "contentHash": "bde266a71f621e2f6754686a7b8be2900e567237da5178197f566774c8407851",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s40/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there a thermostat?",
+          "file": "5b67af4f9442283091c646c8dd9d7e2c14fd6b94cc825407fa0fb1873ce36c97.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5b67af4f9442283091c646c8dd9d7e2c14fd6b94cc825407fa0fb1873ce36c97.mp3",
+          "contentHash": "f1762e61300b902a8baab8464708c6e22d87ea1968599140c7e934b4b80f0441",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s40/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The fountain is between the shops.",
+          "file": "1f515f084fa1eeeec65c3093afc3e135c9f8f2be8f6b5c8cceed66f95932780b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f515f084fa1eeeec65c3093afc3e135c9f8f2be8f6b5c8cceed66f95932780b.mp3",
+          "contentHash": "2161ce13f4e3adb748331a5ff5574be20bcb2f03aeb41b19dc78a12b3ee75f42",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s40/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That is a thermostat.",
+          "file": "06f58a330c0ba7a0250882ac406b4058feab815790acea1ee46c015912fbf681.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/06f58a330c0ba7a0250882ac406b4058feab815790acea1ee46c015912fbf681.mp3",
+          "contentHash": "48c8da2be8dfd9659ab372aaeb722593482fe811893a5bbea3a6f4806890310c",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s40/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "bike shed",
+          "file": "d66c5a3fab56f7d75deb9b7befb9a67309cdcf560b658039c2b53066c81e6ff5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d66c5a3fab56f7d75deb9b7befb9a67309cdcf560b658039c2b53066c81e6ff5.mp3",
+          "contentHash": "810b35695698f991c03c45989dd7da0b7b3a1fb4e61d0ea676111a8c3fd86c1a",
+          "byteSize": 19584
+        },
+        {
+          "text": "ramp",
+          "file": "a5c519dae66e6b7eac65b6f1a5036e3555680cfbd31f8ee89e334fa757422d1e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a5c519dae66e6b7eac65b6f1a5036e3555680cfbd31f8ee89e334fa757422d1e.mp3",
+          "contentHash": "663332325689ce639a8e596c068e3d43d70af018fa5ee4dee6af1108fd5d2354",
+          "byteSize": 26880
+        },
+        {
+          "text": "handrail",
+          "file": "d724a031e44c9448ee72c56a737c0f8c96fb9a9dbad12d6c2360c70317fe1d9b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d724a031e44c9448ee72c56a737c0f8c96fb9a9dbad12d6c2360c70317fe1d9b.mp3",
+          "contentHash": "56a2c90e5d5c3adf907b1c947934250548e7a2263d3effaa69909a04f0a6e0d0",
+          "byteSize": 26112
+        },
+        {
+          "text": "thermostat",
+          "file": "0f33b55257284647bd5d9db36dd9cd94445665130667296533e1b05a743d9d60.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f33b55257284647bd5d9db36dd9cd94445665130667296533e1b05a743d9d60.mp3",
+          "contentHash": "13f25c2fe0ad101f10699dc9a1d4a097459acca9fc703ce429bddd7e372abb29",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l04/s40/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There isn't a thermostat.",
+          "file": "9fbc81d16709e96e5bf7eb6b88cc4e6a9eb097977dcd409af9cb39e15fcf5363.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9fbc81d16709e96e5bf7eb6b88cc4e6a9eb097977dcd409af9cb39e15fcf5363.mp3",
+          "contentHash": "8307bbb47fe2db2d3537a2c98ae5263c9690da2858b9f234c742f2b56d4e8dd9",
+          "byteSize": 38016
+        }
+      ]
     }
   },
   "settings": {

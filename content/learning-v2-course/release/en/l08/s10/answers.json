@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-10:i01",
+    "correctText": "I can’t dive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i02",
+    "correctText": "dive",
+    "correctResponseId": "en:lesson-08:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i03",
+    "correctText": "dive",
+    "correctResponseId": "en:lesson-08:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i04",
+    "correctText": "en:lesson-08:session-10:i04:p1=dive\nen:lesson-08:session-10:i04:p2=hotel\nen:lesson-08:session-10:i04:p3=practice\nen:lesson-08:session-10:i04:p4=machine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i05",
+    "correctText": "I can’t dive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i06",
+    "correctText": "She can’t juggle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i07",
+    "correctText": "Whose machine is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i08",
+    "correctText": "juggle",
+    "correctResponseId": "en:lesson-08:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i09",
+    "correctText": "I can’t dive.",
+    "correctResponseId": "en:lesson-08:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i10",
+    "correctText": "en:lesson-08:session-10:i10:p1=juggle\nen:lesson-08:session-10:i10:p2=dive\nen:lesson-08:session-10:i10:p3=hotel\nen:lesson-08:session-10:i10:p4=practice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i11",
+    "correctText": "Whose machine is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i12",
+    "correctText": "I can swim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i13",
+    "correctText": "I often practice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i14",
+    "correctText": "can’t",
+    "correctResponseId": "en:lesson-08:session-10:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i15",
+    "correctText": "Where is the hotel?",
+    "correctResponseId": "en:lesson-08:session-10:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i16",
+    "correctText": "en:lesson-08:session-10:i16:p1=dive\nen:lesson-08:session-10:i16:p2=machine\nen:lesson-08:session-10:i16:p3=practice\nen:lesson-08:session-10:i16:p4=juggle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:i17",
+    "correctText": "Tom can’t dive.",
+    "correctResponseId": null
+  }
+]

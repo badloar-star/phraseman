@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-10:intro1:r2": {
+          "ru": "Здесь нужно `can’t` — «не умею».",
+          "uk": "Тут потрібне `can’t` — «не вмію»."
+        },
+        "en:lesson-08:session-10:intro1:r3": {
+          "ru": "После `can’t` нужно `dive`, без `to`.",
+          "uk": "Після `can’t` потрібне `dive`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-10:intro2:r2": {
+          "ru": "Здесь нужно `can’t` — «не умеет».",
+          "uk": "Тут потрібне `can’t` — «не вміє»."
+        },
+        "en:lesson-08:session-10:intro2:r3": {
+          "ru": "После `can’t` нужно `juggle`, без `s`.",
+          "uk": "Після `can’t` потрібне `juggle`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-10:intro3:r2": {
+          "ru": "Для «чьё» нужно `whose`, а не `who`.",
+          "uk": "Для «чий» потрібне `whose`, а не `who`."
+        },
+        "en:lesson-08:session-10:intro3:r3": {
+          "ru": "Устройство одно: нужно `is this`.",
+          "uk": "Пристрій один: потрібне `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4209bda04c8d7f413f19229eb0b96741bdfc5461f7674d65cfb2faf05634a2c7"
+}

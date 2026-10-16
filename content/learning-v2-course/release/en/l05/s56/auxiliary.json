@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-56:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-56:intro1:r3": {
+          "ru": "Один гараж: `is this`.",
+          "uk": "Один гараж: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-56:intro2:r2": {
+          "ru": "Один бассейн: `is`.",
+          "uk": "Один басейн: `is`."
+        },
+        "en:lesson-05:session-56:intro2:r3": {
+          "ru": "Здесь возле: `near`; `in` означает внутри.",
+          "uk": "Тут біля: `near`; `in` означає всередині."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-56:intro3:r2": {
+          "ru": "Это вопрос о принадлежности; о месте спрашиваем с `Where`.",
+          "uk": "Це запитання про належність; про місце запитуємо з `Where`."
+        },
+        "en:lesson-05:session-56:intro3:r3": {
+          "ru": "Одна роспись: `is`.",
+          "uk": "Один розпис: `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e73760aec5b85fe5a1b4f9d3cf2f44d6a412bc6e9f30493ed0516d719c39b94f"
+}

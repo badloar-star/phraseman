@@ -748,17 +748,17 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+        "prompt": "Соберите фразу — вы готовы начать; сообщите об этом начальнику",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+        "accessibilityLabel": "Соберите фразу — вы готовы начать; сообщите об этом начальнику",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am ready.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
-            "uk": "Складіть фразу — начальник питає, чи ви готові почати"
+            "ru": "Соберите фразу — вы готовы начать; сообщите об этом начальнику",
+            "uk": "Складіть фразу — ви готові почати; повідомте про це начальникові"
           },
           "orderedTokens": [
             "I",
@@ -772,7 +772,7 @@
             {
               "responseId": "en:lesson-01:session-01:i11:tile:d1",
               "correct": false,
-              "testedDimension": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+              "testedDimension": "Соберите фразу — вы готовы начать; сообщите об этом начальнику",
               "feedbackByLocale": {
                 "ru": "Happy означает «рад / рада». Здесь спрашивают о готовности: I am ready.",
                 "uk": "Happy означає «радий / рада». Тут питають про готовність: I am ready."
@@ -2029,17 +2029,17 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть фразу — начальник питає, чи ви готові почати",
+        "prompt": "Складіть фразу — ви готові почати; повідомте про це начальникові",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть фразу — начальник питає, чи ви готові почати",
+        "accessibilityLabel": "Складіть фразу — ви готові почати; повідомте про це начальникові",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am ready.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
-            "uk": "Складіть фразу — начальник питає, чи ви готові почати"
+            "ru": "Соберите фразу — вы готовы начать; сообщите об этом начальнику",
+            "uk": "Складіть фразу — ви готові почати; повідомте про це начальникові"
           },
           "orderedTokens": [
             "I",
@@ -2053,7 +2053,7 @@
             {
               "responseId": "en:lesson-01:session-01:i11:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — начальник питає, чи ви готові почати",
+              "testedDimension": "Складіть фразу — ви готові почати; повідомте про це начальникові",
               "feedbackByLocale": {
                 "ru": "Happy означает «рад / рада». Здесь спрашивают о готовности: I am ready.",
                 "uk": "Happy означає «радий / рада». Тут питають про готовність: I am ready."

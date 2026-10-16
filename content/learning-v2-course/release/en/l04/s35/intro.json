@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "назвать пандус, спросить о его наличии и описать расположение фотографий",
+    "uk": "назвати пандус, запитати про його наявність і описати розташування фотографій"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Плавный подъём",
+        "uk": "Плавний підйом"
+      },
+      "bodyByLocale": {
+        "ru": "`ramp` — «пандус»: наклонная поверхность для подъёма или спуска без ступеней. Один пандус — `a ramp`. `This is a ramp` — «Это пандус». У пандуса нет ступеней: считать их здесь — очень короткое занятие.",
+        "uk": "`ramp` — «пандус»: похила поверхня для підйому чи спуску без сходинок. Один пандус — `a ramp`. `This is a ramp` — «Це пандус». У пандуса немає сходинок: рахувати їх тут — дуже коротке заняття."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один пандус рядом.",
+          "uk": "Назвіть один пандус поруч."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-35:intro1:r1",
+              "text": "This is a ramp."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro1:r2",
+              "text": "This is ramp."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro1:r3",
+              "text": "These are ramps."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-35:intro1:r1",
+              "text": "This is a ramp."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro1:r2",
+              "text": "This is ramp."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro1:r3",
+              "text": "These are ramps."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один пандус рядом.",
+          "uk": "Назвіть один пандус поруч."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Под навесом",
+        "uk": "Під навісом"
+      },
+      "bodyByLocale": {
+        "ru": "`awning` — «навес», `photos` — «фотографии». `The ramp is under the awning` — «Пандус под навесом». `The photos are next to the door` — «Фотографии рядом с дверью». Один пандус требует `is`, несколько фотографий — `are`.",
+        "uk": "`awning` — «навіс», `photos` — «фотографії». `The ramp is under the awning` — «Пандус під навісом». `The photos are next to the door` — «Фотографії поруч із дверима». Один пандус потребує `is`, кілька фотографій — `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Фотографии рядом с дверью. Выберите описание.",
+          "uk": "Фотографії поруч із дверима. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-35:intro2:r1",
+              "text": "The photos are next to the door."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro2:r2",
+              "text": "The photos is next to the door."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro2:r3",
+              "text": "The photos are under the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-35:intro2:r1",
+              "text": "The photos are next to the door."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro2:r2",
+              "text": "The photos is next to the door."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro2:r3",
+              "text": "The photos are under the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Фотографии рядом с дверью. Выберите описание.",
+          "uk": "Фотографії поруч із дверима. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Есть ли пандус",
+        "uk": "Чи є пандус"
+      },
+      "bodyByLocale": {
+        "ru": "`Is there a ramp?` — «Есть пандус?» `There isn’t a ramp` — «Пандуса нет». `There aren’t any ramps` — «Нет ни одного пандуса». `formal` — «официальный»: о характере встречи можно сказать `It is formal`, короче `It’s formal`. Это описание встречи, а вопрос с `there` — о наличии пандуса.",
+        "uk": "`Is there a ramp?` — «Є пандус?» `There isn’t a ramp` — «Пандуса немає». `There aren’t any ramps` — «Немає жодного пандуса». `formal` — «офіційний»: про характер зустрічі можна сказати `It is formal`, коротше `It’s formal`. Це опис зустрічі, а запитання з `there` — про наявність пандуса."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Встреча проходит в строгом официальном формате. Выберите описание с сокращением.",
+          "uk": "Зустріч проходить у строгому офіційному форматі. Виберіть опис зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-35:intro3:r1",
+              "text": "It's formal."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro3:r2",
+              "text": "It's informal."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro3:r3",
+              "text": "It are formal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-35:intro3:r1",
+              "text": "It's formal."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro3:r2",
+              "text": "It's informal."
+            },
+            {
+              "responseId": "en:lesson-04:session-35:intro3:r3",
+              "text": "It are formal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Встреча проходит в строгом официальном формате. Выберите описание с сокращением.",
+          "uk": "Зустріч проходить у строгому офіційному форматі. Виберіть опис зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "56c474582721254866a0a2ca546bd0e219b695a6381df1f669d7db52856a9aa4"
+}

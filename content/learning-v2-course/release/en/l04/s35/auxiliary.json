@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-35:intro1:r2": {
+          "ru": "Перед одним пандусом нужно `a`: `a ramp`.",
+          "uk": "Перед одним пандусом потрібне `a`: `a ramp`."
+        },
+        "en:lesson-04:session-35:intro1:r3": {
+          "ru": "Здесь один пандус: `This is a ramp`.",
+          "uk": "Тут один пандус: `This is a ramp`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-35:intro2:r2": {
+          "ru": "Несколько фотографий: `The photos are`.",
+          "uk": "Кілька фотографій: `The photos are`."
+        },
+        "en:lesson-04:session-35:intro2:r3": {
+          "ru": "`under` — под; здесь рядом: `next to`.",
+          "uk": "`under` — під; тут поруч: `next to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-35:intro3:r2": {
+          "ru": "`informal` — неофициальная; здесь нужно `formal`.",
+          "uk": "`informal` — неофіційна; тут потрібне `formal`."
+        },
+        "en:lesson-04:session-35:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a520ef7c6cfb4ff333f28c4c659eb308a5515a82ce7381fe0e5fb1a68038f021"
+}

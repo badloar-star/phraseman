@@ -65311,6 +65311,309 @@
           "byteSize": 41856
         }
       ]
+    },
+    "l04/s48/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a community kitchen.",
+          "file": "9ef765b4963561a16378ba93dc569857b63e7685f4da1c7fdb13666d2233e093.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ef765b4963561a16378ba93dc569857b63e7685f4da1c7fdb13666d2233e093.mp3",
+          "contentHash": "31184f592b6acdee3d9e763e56c13ac43bb180ce4946d27bcd85a1d4639e882b",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s48/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Are there any leftovers?",
+          "file": "1eafed0ddfb79f2a80824332a1e935c3944cf63c72edcc8fa8ece39399f39647.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1eafed0ddfb79f2a80824332a1e935c3944cf63c72edcc8fa8ece39399f39647.mp3",
+          "contentHash": "e107fbe9ed260454ba6248ce06030b1160a76d7230ef211553d0aedc88248f1c",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s48/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The recycling bin is next to the door.",
+          "file": "efcacf50dd2204c873aadb051b55b57d1c7c41fe341d89423c50d115d40fd04a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/efcacf50dd2204c873aadb051b55b57d1c7c41fe341d89423c50d115d40fd04a.mp3",
+          "contentHash": "34b1c8b6093e4f87560067792a6ee4c17bd99486283c5b7c796f47e48645e36a",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l04/s48/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a freezer?",
+          "file": "12f2899535c2532a9e4491ea960137f45d55bae3cef26ec2a0a14a2747426b3a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/12f2899535c2532a9e4491ea960137f45d55bae3cef26ec2a0a14a2747426b3a.mp3",
+          "contentHash": "f01ff5a0d8dbe53863ab500b28bf32ebecc3242de4ab9b380c99bf5c090ba755",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s48/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "community kitchen",
+          "file": "d38cafb2205a9ce5e948bb1695943567048ab96edb4547f96c5a4807b54031f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d38cafb2205a9ce5e948bb1695943567048ab96edb4547f96c5a4807b54031f9.mp3",
+          "contentHash": "0947193736873fbf332abcc4099c70f75abb67232fcad8babce17758dfa5420f",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l04/s48/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "community kitchen",
+          "file": "e475875fcc6ad3ad51f41de6400463929a4f1e5022086908aa2ce4f29eddceb0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e475875fcc6ad3ad51f41de6400463929a4f1e5022086908aa2ce4f29eddceb0.mp3",
+          "contentHash": "4e005a898529a8efb11c192ca3dc9a3f8aa360d5057dac2558ad55436cbd39bd",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s48/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "community kitchen",
+          "file": "d38cafb2205a9ce5e948bb1695943567048ab96edb4547f96c5a4807b54031f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d38cafb2205a9ce5e948bb1695943567048ab96edb4547f96c5a4807b54031f9.mp3",
+          "contentHash": "0947193736873fbf332abcc4099c70f75abb67232fcad8babce17758dfa5420f",
+          "byteSize": 39552
+        },
+        {
+          "text": "freezer",
+          "file": "cef544db3c66fab16095a95d80a65f2fd4d10d87194065a442790a4a1512a144.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cef544db3c66fab16095a95d80a65f2fd4d10d87194065a442790a4a1512a144.mp3",
+          "contentHash": "9ca93fca5a43698b646e8348a3448acb11e63ab02e943db007b407ad6ef88090",
+          "byteSize": 34560
+        },
+        {
+          "text": "microwave",
+          "file": "ef6b14e026b931a94aa73f462cca477d0d90d58b4aa26de3ea84bd99d1cbd68b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef6b14e026b931a94aa73f462cca477d0d90d58b4aa26de3ea84bd99d1cbd68b.mp3",
+          "contentHash": "95d86320191aadf65d67118db4f88212c1860e9ea29bf9d286aa5e193873c085",
+          "byteSize": 33792
+        },
+        {
+          "text": "pantry",
+          "file": "b3702ce6ae8b749546ebdd06b4ebdfa81c97b39c3650359dc29df9979b59ab5e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3702ce6ae8b749546ebdd06b4ebdfa81c97b39c3650359dc29df9979b59ab5e.mp3",
+          "contentHash": "1e684ca5ebdfba3764571ec098d38403bfc02b63306a5ed379c7b0babce1a051",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l04/s48/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a community kitchen.",
+          "file": "6f34552c5d91e458e0b64c830e8b17698f7c1a09c3507c485dc80c4c7ab4337c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6f34552c5d91e458e0b64c830e8b17698f7c1a09c3507c485dc80c4c7ab4337c.mp3",
+          "contentHash": "b346f65c02afa07c86b3a8f9ccf69e2c324c43a4475e6035038d5f8becddfc09",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s48/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The microwave is on the worktop.",
+          "file": "9ae5e2beeb79fe90989b9f2956b709c04f05c30abcf3de2e7405e0a2f0f96e97.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ae5e2beeb79fe90989b9f2956b709c04f05c30abcf3de2e7405e0a2f0f96e97.mp3",
+          "contentHash": "55939bd8595c095394e7646a2199d143ac41c33cd0b09f2856d8d3b1884511d5",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l04/s48/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Are there any leftovers?",
+          "file": "3817b941b09fff3d8f96d9350d64df6d67385daac80469b60b0dfca3302caf75.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3817b941b09fff3d8f96d9350d64df6d67385daac80469b60b0dfca3302caf75.mp3",
+          "contentHash": "55ef9c0f82d5639bc42a67a29988529168c2ca58c85eea6669f79bd71139b2dc",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l04/s48/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There isn't a thermostat.",
+          "file": "9fbc81d16709e96e5bf7eb6b88cc4e6a9eb097977dcd409af9cb39e15fcf5363.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9fbc81d16709e96e5bf7eb6b88cc4e6a9eb097977dcd409af9cb39e15fcf5363.mp3",
+          "contentHash": "8307bbb47fe2db2d3537a2c98ae5263c9690da2858b9f234c742f2b56d4e8dd9",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s48/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The recycling bin is next to the door.",
+          "file": "efcacf50dd2204c873aadb051b55b57d1c7c41fe341d89423c50d115d40fd04a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/efcacf50dd2204c873aadb051b55b57d1c7c41fe341d89423c50d115d40fd04a.mp3",
+          "contentHash": "34b1c8b6093e4f87560067792a6ee4c17bd99486283c5b7c796f47e48645e36a",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l04/s48/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "thermostat",
+          "file": "3fe27118828042784401351a3e5381a116f9bbc74d1eef517e374821524d199d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3fe27118828042784401351a3e5381a116f9bbc74d1eef517e374821524d199d.mp3",
+          "contentHash": "482244aeafe10c931f263134b871e70ae53a6dab9a70df7603aa45491e083197",
+          "byteSize": 34560
+        },
+        {
+          "text": "cashpoint",
+          "file": "f688f9e76116a65b16ef9d628e7cfe5d3d5f40c34970a6a9079406c7a1b0e006.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f688f9e76116a65b16ef9d628e7cfe5d3d5f40c34970a6a9079406c7a1b0e006.mp3",
+          "contentHash": "db5474ed03cca977af4b7ebf08ecd34597168d81ac2b359d141cf171795b8b90",
+          "byteSize": 24576
+        },
+        {
+          "text": "bus shelter",
+          "file": "47c508f4dddf1569ef21b645b8b7802442715d832cb8ec2ef1014594b0d6784c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47c508f4dddf1569ef21b645b8b7802442715d832cb8ec2ef1014594b0d6784c.mp3",
+          "contentHash": "02a74c83033947daef7bd078d4e735b2c178afa34d05c2ce9fd6fbc67cc42688",
+          "byteSize": 27648
+        },
+        {
+          "text": "recycling bin",
+          "file": "52d207e7d8fe21b2c8b515861c4ec32db8c3918e0208e0849b40e108bc626717.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/52d207e7d8fe21b2c8b515861c4ec32db8c3918e0208e0849b40e108bc626717.mp3",
+          "contentHash": "66e6618868d49ff16c5f117f9330266e6f51513f67791d0eb798f04a66ae2913",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s48/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The cashpoint is next to the bus shelter.",
+          "file": "4e5dc7c61e88e4f9fc897e836fd9727552ea3c8b6f6a5df78703bfbdb8a316bc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4e5dc7c61e88e4f9fc897e836fd9727552ea3c8b6f6a5df78703bfbdb8a316bc.mp3",
+          "contentHash": "b666c5d8ffb71646981cf0f21194f94a9183a82eadac1b66a3dd0e9190f69cb6",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l04/s48/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a community kitchen.",
+          "file": "a28f739048ad3ec0bbe9caf4556fdb6da30ac09e93ec135f106bbb14f1018922.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a28f739048ad3ec0bbe9caf4556fdb6da30ac09e93ec135f106bbb14f1018922.mp3",
+          "contentHash": "8ded8a419c3e082267f43ba6f0cb9ddf4d61e96128d003cc85aac7ccc0800d5b",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s48/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a pantry?",
+          "file": "72d211a85699f8902dbf13e590a6be7914998255ccf91ceff85765d16441e8a5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/72d211a85699f8902dbf13e590a6be7914998255ccf91ceff85765d16441e8a5.mp3",
+          "contentHash": "34672165a135ad0808544be9738402025b8ed32d46153e37e4f784c06ef0aba0",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s48/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The leftovers are on the table.",
+          "file": "5af61036252fa480d2c9afcec663b529d7924a671de39073bbcc51f38a913c8f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5af61036252fa480d2c9afcec663b529d7924a671de39073bbcc51f38a913c8f.mp3",
+          "contentHash": "e92ec286c00fae9dfaef5140bf42af38905b5e1667854237409687fbfceec0f0",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s48/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "That is a community kitchen.",
+          "file": "a81c8e24fac55a8ac7b7f97bcd1f9bf07bed294732a5b032f865758e85a37643.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a81c8e24fac55a8ac7b7f97bcd1f9bf07bed294732a5b032f865758e85a37643.mp3",
+          "contentHash": "b552c40de30cebdfd0742bf491ca9c9cb4a08554dbee60b3827145e8a4ffe4d7",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l04/s48/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "leftovers",
+          "file": "df79cae071991330be7c84aa395736858dd1a9693e5bcf471abce150dece0a15.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/df79cae071991330be7c84aa395736858dd1a9693e5bcf471abce150dece0a15.mp3",
+          "contentHash": "f0cc7e3825b3302206023a055dcf699ba4af09a2be692e3387a99aeb89dc83bb",
+          "byteSize": 20352
+        },
+        {
+          "text": "pantry",
+          "file": "57f6122a9adf82bc56b930800629c49816485dbe59592c8e79518d56da817410.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/57f6122a9adf82bc56b930800629c49816485dbe59592c8e79518d56da817410.mp3",
+          "contentHash": "73fb634fd1160c90d6cb33098aa5fbc3b01c01cb79d469086f3b6ccaaada45a5",
+          "byteSize": 15744
+        },
+        {
+          "text": "thermostat",
+          "file": "0f33b55257284647bd5d9db36dd9cd94445665130667296533e1b05a743d9d60.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f33b55257284647bd5d9db36dd9cd94445665130667296533e1b05a743d9d60.mp3",
+          "contentHash": "13f25c2fe0ad101f10699dc9a1d4a097459acca9fc703ce429bddd7e372abb29",
+          "byteSize": 26880
+        },
+        {
+          "text": "community kitchen",
+          "file": "51f1436ba692f29a3d769f47319f50f892cd6e0eefdae8a3bc2469e5bd3e367e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/51f1436ba692f29a3d769f47319f50f892cd6e0eefdae8a3bc2469e5bd3e367e.mp3",
+          "contentHash": "e92ac226de668baf2cafe3bac974cea65ace8a5b08c8f7f93750ed94c7c0ce43",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s48/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a community kitchen?",
+          "file": "38339da12e1823dde5c9ca911642733643dd896e3c5e95d5af4251fb367609bd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38339da12e1823dde5c9ca911642733643dd896e3c5e95d5af4251fb367609bd.mp3",
+          "contentHash": "11440b17312da6ab8fc93d64795f36f07b66b01e2b0a1560c1db59231d9db62c",
+          "byteSize": 37248
+        }
+      ]
     }
   },
   "settings": {

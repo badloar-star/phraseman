@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-56:intro1:r2": {
+          "ru": "После `I` нужно `camp`.",
+          "uk": "Після `I` потрібне `camp`."
+        },
+        "en:lesson-07:session-56:intro1:r3": {
+          "ru": "Здесь нужна форма `camp`.",
+          "uk": "Тут потрібна форма `camp`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-56:intro2:r2": {
+          "ru": "После `I` нужно `dance`.",
+          "uk": "Після `I` потрібне `dance`."
+        },
+        "en:lesson-07:session-56:intro2:r3": {
+          "ru": "Здесь нужна форма `dance`.",
+          "uk": "Тут потрібна форма `dance`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-56:intro3:r2": {
+          "ru": "После `Tom` нужно `streams`.",
+          "uk": "Після `Tom` потрібне `streams`."
+        },
+        "en:lesson-07:session-56:intro3:r3": {
+          "ru": "Здесь нужна форма `streams`.",
+          "uk": "Тут потрібна форма `streams`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "877696a73394d433440d28b49dbf43acdc341d50be86860fef6b756345fb3e10"
+}

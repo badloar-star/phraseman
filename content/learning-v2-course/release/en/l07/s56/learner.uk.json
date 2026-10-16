@@ -1,0 +1,945 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-56:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я часто ночую в наметі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто ночую в наметі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often camp.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто ночую в палатке»",
+          "uk": "Скажіть «Я часто ночую в наметі»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "camp"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-56:i02:r1",
+          "text": "hike"
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i02:r2",
+          "text": "ski"
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i02:r3",
+          "text": "surf"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:i02:audio",
+          "transcript": "hike"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-56:i02:r1",
+            "targetText": "hike",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i02:r2",
+            "targetText": "ski",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i02:r3",
+            "targetText": "surf",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `hike`, а в этом варианте — `ski`.",
+              "uk": "У записі перше слово — `hike`, а в цьому варіанті — `ski`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `hike`, а в этом варианте — `surf`.",
+              "uk": "У записі перше слово — `hike`, а в цьому варіанті — `surf`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я часто танцюю вдома»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-56:i03:r1",
+          "text": "dance"
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i03:r2",
+          "text": "dances"
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i03:r3",
+          "text": "dancing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто танцюю вдома»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто танцую дома»",
+          "uk": "Скажіть «Я часто танцюю вдома»"
+        },
+        "gappedTargetPhrase": "I often ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-56:i03:r1",
+            "text": "dance"
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i03:r2",
+            "text": "dances"
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i03:r3",
+            "text": "dancing"
+          }
+        ],
+        "testedDimension": "Скажіть «Я часто танцюю вдома»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто танцюю вдома»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `dance`.",
+              "uk": "Після `I` потрібне `dance`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто танцюю вдома»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `dance`.",
+              "uk": "Тут потрібна форма `dance`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-56:i04:p1",
+            "target": "camp",
+            "meaningByLocale": {
+              "ru": "ночевать в палатке",
+              "uk": "ночувати в наметі"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-56:i04:p2",
+            "target": "hike",
+            "meaningByLocale": {
+              "ru": "ходить в пеший поход",
+              "uk": "ходити в піший похід"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-56:i04:p3",
+            "target": "dance",
+            "meaningByLocale": {
+              "ru": "танцевать",
+              "uk": "танцювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-56:i04:p4",
+            "target": "ski",
+            "meaningByLocale": {
+              "ru": "кататься на лыжах",
+              "uk": "кататися на лижах"
+            }
+          }
+        ],
+        "leftColumn": [
+          "camp",
+          "hike",
+          "dance",
+          "ski"
+        ],
+        "rightColumn": [
+          "ночувати в наметі",
+          "ходити в піший похід",
+          "танцювати",
+          "кататися на лижах"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:i05:audio",
+          "transcript": "I often dance at home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often dance at home.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "dance",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про зимовий відпочинок: «Я зазвичай катаюся на лижах»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про зимовий відпочинок: «Я зазвичай катаюся на лижах»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually ski.",
+        "localizedMeaning": {
+          "ru": "Расскажите о зимнем отдыхе: «Я обычно катаюсь на лыжах»",
+          "uk": "Розкажіть про зимовий відпочинок: «Я зазвичай катаюся на лижах»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "ski"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Том часто дивиться фільми онлайн»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Том часто дивиться фільми онлайн»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:i07:audio",
+          "transcript": "Tom often streams films."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom often streams films.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Том часто дивиться фільми онлайн»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-56:i08:r1",
+          "text": "streams"
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i08:r2",
+          "text": "stream"
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i08:r3",
+          "text": "streaming"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Том часто дивиться фільми онлайн»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Том часто смотрит фильмы онлайн»",
+          "uk": "Скажіть «Том часто дивиться фільми онлайн»"
+        },
+        "gappedTargetPhrase": "Tom often ___ films.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-56:i08:r1",
+            "text": "streams"
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i08:r2",
+            "text": "stream"
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i08:r3",
+            "text": "streaming"
+          }
+        ],
+        "testedDimension": "Скажіть «Том часто дивиться фільми онлайн»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Том часто дивиться фільми онлайн»",
+            "feedbackByLocale": {
+              "ru": "После `Tom` нужно `streams`.",
+              "uk": "Після `Tom` потрібне `streams`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Том часто дивиться фільми онлайн»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `streams`.",
+              "uk": "Тут потрібна форма `streams`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-56:i09:r1",
+          "text": "I often surf."
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i09:r2",
+          "text": "I often camp."
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i09:r3",
+          "text": "I often dance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:i09:audio",
+          "transcript": "I often surf."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-56:i09:r1",
+            "targetText": "I often surf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i09:r2",
+            "targetText": "I often camp.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i09:r3",
+            "targetText": "I often dance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `surf`, а в этом варианте — `camp`.",
+              "uk": "У записі останнє слово — `surf`, а в цьому варіанті — `camp`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `surf`, а в этом варианте — `dance`.",
+              "uk": "У записі останнє слово — `surf`, а в цьому варіанті — `dance`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-56:i10:p1",
+            "target": "surf",
+            "meaningByLocale": {
+              "ru": "заниматься сёрфингом",
+              "uk": "займатися серфінгом"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-56:i10:p2",
+            "target": "browse",
+            "meaningByLocale": {
+              "ru": "просматривать",
+              "uk": "переглядати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-56:i10:p3",
+            "target": "stream",
+            "meaningByLocale": {
+              "ru": "смотреть онлайн",
+              "uk": "дивитися онлайн"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-56:i10:p4",
+            "target": "hike",
+            "meaningByLocale": {
+              "ru": "ходить в пеший поход",
+              "uk": "ходити в піший похід"
+            }
+          }
+        ],
+        "leftColumn": [
+          "surf",
+          "browse",
+          "stream",
+          "hike"
+        ],
+        "rightColumn": [
+          "займатися серфінгом",
+          "переглядати",
+          "дивитися онлайн",
+          "ходити в піший похід"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:i11:audio",
+          "transcript": "I usually browse online."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually browse online.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "browse",
+          "online"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте друга «Ти часто ночуєш у наметі?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга «Ти часто ночуєш у наметі?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you often camp?",
+        "localizedMeaning": {
+          "ru": "Спросите друга «Ты часто ночуешь в палатке?»",
+          "uk": "Запитайте друга «Ти часто ночуєш у наметі?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "often",
+          "camp"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обговорюєте відпочинок Тома на морі. Запитайте його подругу «Том часто займається серфінгом?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:i13:audio"
+      ],
+      "accessibilityLabel": "Ви обговорюєте відпочинок Тома на морі. Запитайте його подругу «Том часто займається серфінгом?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:i13:audio",
+          "transcript": "Does Tom often surf?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does Tom often surf?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я зазвичай ходжу в піші походи»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-56:i14:r1",
+          "text": "usually"
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай ходжу в піші походи»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно хожу в пешие походы»",
+          "uk": "Скажіть «Я зазвичай ходжу в піші походи»"
+        },
+        "gappedTargetPhrase": "I ___ hike.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-56:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажіть «Я зазвичай ходжу в піші походи»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай ходжу в піші походи»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually` перед `hike`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `hike`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай ходжу в піші походи»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually`; `am` перед `hike` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `hike` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-56:i15:r1",
+          "text": "I usually browse online."
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i15:r2",
+          "text": "We usually browse online."
+        },
+        {
+          "responseId": "en:lesson-07:session-56:i15:r3",
+          "text": "They usually browse online."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:i15:audio",
+          "transcript": "I usually browse online."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-56:i15:r1",
+            "targetText": "I usually browse online.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i15:r2",
+            "targetText": "We usually browse online.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i15:r3",
+            "targetText": "They usually browse online.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `I`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `I`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-56:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `I`, а в этом варианте — `They`.",
+              "uk": "У записі перше слово — `I`, а в цьому варіанті — `They`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-56:i16:p1",
+            "target": "ski",
+            "meaningByLocale": {
+              "ru": "кататься на лыжах",
+              "uk": "кататися на лижах"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-56:i16:p2",
+            "target": "surf",
+            "meaningByLocale": {
+              "ru": "заниматься сёрфингом",
+              "uk": "займатися серфінгом"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-56:i16:p3",
+            "target": "browse",
+            "meaningByLocale": {
+              "ru": "просматривать",
+              "uk": "переглядати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-56:i16:p4",
+            "target": "stream",
+            "meaningByLocale": {
+              "ru": "смотреть онлайн",
+              "uk": "дивитися онлайн"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ski",
+          "surf",
+          "browse",
+          "stream"
+        ],
+        "rightColumn": [
+          "кататися на лижах",
+          "займатися серфінгом",
+          "переглядати",
+          "дивитися онлайн"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про звички Тома на природі. Скажіть «Том зазвичай ходить у піші походи»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про звички Тома на природі. Скажіть «Том зазвичай ходить у піші походи»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:i17:audio",
+          "transcript": "Tom usually hikes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom usually hikes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e5eda19b6497a1e20650857b546f3ae3113f01dc2ce4f31b6895eae17357d1e9"
+}

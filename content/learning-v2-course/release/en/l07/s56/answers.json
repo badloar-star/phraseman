@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-56:i01",
+    "correctText": "I often camp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i02",
+    "correctText": "hike",
+    "correctResponseId": "en:lesson-07:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i03",
+    "correctText": "dance",
+    "correctResponseId": "en:lesson-07:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i04",
+    "correctText": "en:lesson-07:session-56:i04:p1=camp\nen:lesson-07:session-56:i04:p2=hike\nen:lesson-07:session-56:i04:p3=dance\nen:lesson-07:session-56:i04:p4=ski",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i05",
+    "correctText": "I often dance at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i06",
+    "correctText": "I usually ski.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i07",
+    "correctText": "Tom often streams films.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i08",
+    "correctText": "streams",
+    "correctResponseId": "en:lesson-07:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i09",
+    "correctText": "I often surf.",
+    "correctResponseId": "en:lesson-07:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i10",
+    "correctText": "en:lesson-07:session-56:i10:p1=surf\nen:lesson-07:session-56:i10:p2=browse\nen:lesson-07:session-56:i10:p3=stream\nen:lesson-07:session-56:i10:p4=hike",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i11",
+    "correctText": "I usually browse online.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i12",
+    "correctText": "Do you often camp?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i13",
+    "correctText": "Does Tom often surf?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-56:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i15",
+    "correctText": "I usually browse online.",
+    "correctResponseId": "en:lesson-07:session-56:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i16",
+    "correctText": "en:lesson-07:session-56:i16:p1=ski\nen:lesson-07:session-56:i16:p2=surf\nen:lesson-07:session-56:i16:p3=browse\nen:lesson-07:session-56:i16:p4=stream",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:i17",
+    "correctText": "Tom usually hikes.",
+    "correctResponseId": null
+  }
+]

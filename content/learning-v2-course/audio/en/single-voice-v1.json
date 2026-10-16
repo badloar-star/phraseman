@@ -123184,6 +123184,309 @@
           "byteSize": 34944
         }
       ]
+    },
+    "l08/s15/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I can’t calculate.",
+          "file": "bddd07476214f62ece62063f13fb5fcf0e655b1eabf52338112b08a77d248dff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bddd07476214f62ece62063f13fb5fcf0e655b1eabf52338112b08a77d248dff.mp3",
+          "contentHash": "ffc6a619dce282a4bed9f16f2963086653cfef34873f30255d2545a96421ad6c",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l08/s15/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She can sing.",
+          "file": "e584a89640424bd940b095debac5a7b5d8a48d1a550d69808e7906140195528c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e584a89640424bd940b095debac5a7b5d8a48d1a550d69808e7906140195528c.mp3",
+          "contentHash": "f1126e467c9432d79a5db2c82fede102dabd260ac75b6affa2769b52ba02bac2",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s15/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose website is this?",
+          "file": "38b08b292f6c9133c54aa8d21f2c4355cd1e0d8ba428f6f08f41b52f9cbe9b42.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38b08b292f6c9133c54aa8d21f2c4355cd1e0d8ba428f6f08f41b52f9cbe9b42.mp3",
+          "contentHash": "d25841fa8e008e0960c20ffe8fd1ce989dc109c18ad3ab1e74d6aa55aebef306",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l08/s15/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I can’t calculate.",
+          "file": "8c9e20dce71265c9c9068523936c396b7680deb8b4e99e863e6cb9476c327515.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8c9e20dce71265c9c9068523936c396b7680deb8b4e99e863e6cb9476c327515.mp3",
+          "contentHash": "a26ec372fc2c102888f64beab64fe95b9228b2d9bd4d82ac73ba3644d6d1852b",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l08/s15/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "calculate",
+          "file": "56a068bad198f60bd4ccdcd6afedfdc3ee8fffe932fe9530c4c5b9869f87a332.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56a068bad198f60bd4ccdcd6afedfdc3ee8fffe932fe9530c4c5b9869f87a332.mp3",
+          "contentHash": "5f2c6327c2a148079662522babb43a98b27502974045bbe1b7c023476ca431e1",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l08/s15/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can’t calculate.",
+          "file": "d8a8a0bc4db3d67adaf414fd8e3e993c544942a2b7affe4a8e917d6087490893.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d8a8a0bc4db3d67adaf414fd8e3e993c544942a2b7affe4a8e917d6087490893.mp3",
+          "contentHash": "ea0ee1a54263bcbf76d26131566727f07c36b4d0acd321d26e934a6cb63a8025",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l08/s15/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "calculate",
+          "file": "1cb1f2076e446c1e8bc14116f5ead9544a913af3f391562809797c98be4ce2b2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1cb1f2076e446c1e8bc14116f5ead9544a913af3f391562809797c98be4ce2b2.mp3",
+          "contentHash": "1cb27777908dc75668f539b5b705490e1934c52e597a444a6575f210f9d6daa7",
+          "byteSize": 21120
+        },
+        {
+          "text": "gym",
+          "file": "7e68480bef0225f3baced9abda34bbc04faa98c2d50a0ce956c18514a9a42a8b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e68480bef0225f3baced9abda34bbc04faa98c2d50a0ce956c18514a9a42a8b.mp3",
+          "contentHash": "6d57d997d0c3ac10f4736a72d530acb31080e5affe3476775bf67d14612ce091",
+          "byteSize": 33792
+        },
+        {
+          "text": "sing",
+          "file": "6a1fe0f8957ab5b766002bc9fb5976fca8322fae0ef54648681bd7101e077eca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a1fe0f8957ab5b766002bc9fb5976fca8322fae0ef54648681bd7101e077eca.mp3",
+          "contentHash": "bc2021fe579894e98a619730c748a335cb4ffe51ff5278fafa2cf69973bab3c3",
+          "byteSize": 35712
+        },
+        {
+          "text": "website",
+          "file": "eceffaa085d5dd4aa14810566c765c73aaf3e108658243ce00a940ef71c0db5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eceffaa085d5dd4aa14810566c765c73aaf3e108658243ce00a940ef71c0db5d.mp3",
+          "contentHash": "8c40d22049022a5aa8582eff179355d817ad2197a9de3d53978bd10fd6b0ccff",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l08/s15/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can’t calculate.",
+          "file": "af33e78b15c5faf27df850c4a332d58df7f984ab9f94e530abf4e2c25ddad410.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/af33e78b15c5faf27df850c4a332d58df7f984ab9f94e530abf4e2c25ddad410.mp3",
+          "contentHash": "078140860fb4e497f10e12e6cfe6616ca51971ee64eae3d5b7f0e91950cac375",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l08/s15/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She can sing.",
+          "file": "e584a89640424bd940b095debac5a7b5d8a48d1a550d69808e7906140195528c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e584a89640424bd940b095debac5a7b5d8a48d1a550d69808e7906140195528c.mp3",
+          "contentHash": "f1126e467c9432d79a5db2c82fede102dabd260ac75b6affa2769b52ba02bac2",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s15/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose website is this?",
+          "file": "38b08b292f6c9133c54aa8d21f2c4355cd1e0d8ba428f6f08f41b52f9cbe9b42.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38b08b292f6c9133c54aa8d21f2c4355cd1e0d8ba428f6f08f41b52f9cbe9b42.mp3",
+          "contentHash": "d25841fa8e008e0960c20ffe8fd1ce989dc109c18ad3ab1e74d6aa55aebef306",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l08/s15/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She can sing.",
+          "file": "a615128af696ba9cfcc7782dfad4022555f360a91465e0eaa60b2808e159e004.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a615128af696ba9cfcc7782dfad4022555f360a91465e0eaa60b2808e159e004.mp3",
+          "contentHash": "227867a331db75c6bf38e9cae088f31aaffe4a776dbd7ab5a480b57649f5c5fa",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l08/s15/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I can’t calculate.",
+          "file": "8c9e20dce71265c9c9068523936c396b7680deb8b4e99e863e6cb9476c327515.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8c9e20dce71265c9c9068523936c396b7680deb8b4e99e863e6cb9476c327515.mp3",
+          "contentHash": "a26ec372fc2c102888f64beab64fe95b9228b2d9bd4d82ac73ba3644d6d1852b",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l08/s15/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "climb",
+          "file": "6887025c10c8234934c260b9c68a08b644f23cb74a116cd83f8e845d0856d449.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6887025c10c8234934c260b9c68a08b644f23cb74a116cd83f8e845d0856d449.mp3",
+          "contentHash": "619083b8f0989a13d4e48b53a150033b6ebc2cf25e27a257ca95fd93175ecb62",
+          "byteSize": 16512
+        },
+        {
+          "text": "calculate",
+          "file": "1de4ef0205d2f92029f42ff36e9553038ad091da9901645b3c1e0d8e8a041bae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1de4ef0205d2f92029f42ff36e9553038ad091da9901645b3c1e0d8e8a041bae.mp3",
+          "contentHash": "01c1d15966fcd1371920bd8bf1d9d77f355680935d7d61403645e23be4c2746e",
+          "byteSize": 14208
+        },
+        {
+          "text": "website",
+          "file": "5345dff8bb44eeb3629c9e50dfe74943e451f98f0cc4e9b2cd7b6f77ad4ac003.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5345dff8bb44eeb3629c9e50dfe74943e451f98f0cc4e9b2cd7b6f77ad4ac003.mp3",
+          "contentHash": "79f64117acb0c3984d5dc3cc0d76178f0c804bc802bca0fc51df76aab8a67403",
+          "byteSize": 18048
+        },
+        {
+          "text": "sing",
+          "file": "9ed7d63eaf940d807bb42270ad999526b2dcb3e155a28a616152628fd1234de7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ed7d63eaf940d807bb42270ad999526b2dcb3e155a28a616152628fd1234de7.mp3",
+          "contentHash": "fc74ffd7d0648500cb8048037ee5820637f0a404f0c66b8fc6f41a0bf6aec8f7",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s15/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose website is this?",
+          "file": "3cb190a4c59ddd9adbb0c76e97495d3b7fe9b3f23473cce4e15188ac2dea0c4b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3cb190a4c59ddd9adbb0c76e97495d3b7fe9b3f23473cce4e15188ac2dea0c4b.mp3",
+          "contentHash": "35d380f4dc293e165d0bca3bcd4b73d7bde501fcef79c935fed8cde4370dad37",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l08/s15/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can climb.",
+          "file": "d3bd7558a6e222448eab91c796cda7c9dae8f2727f887f9c027fc735f44eabaa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d3bd7558a6e222448eab91c796cda7c9dae8f2727f887f9c027fc735f44eabaa.mp3",
+          "contentHash": "45a1cc3310a7c75698b4383c9d365c7ba94736aad48f47a45ba90e6e81f87b39",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l08/s15/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often sing.",
+          "file": "2201fbe83dc1c83d15c021985fb9909130ea413ffd63e62788c8e141ea5b1223.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2201fbe83dc1c83d15c021985fb9909130ea413ffd63e62788c8e141ea5b1223.mp3",
+          "contentHash": "7cfb4ef4893e2b1c150f1afaaa8e6de1b500cb697b852bd799b6f4d6f7892968",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l08/s15/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He can’t calculate.",
+          "file": "4cd4ed8f668dfa5f6f2995dd9d4d7dcadf206b54ffe133bf98db8f5dddc2a828.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4cd4ed8f668dfa5f6f2995dd9d4d7dcadf206b54ffe133bf98db8f5dddc2a828.mp3",
+          "contentHash": "89809bfcfec7b563952b534016fde7eb8a446b43f60da404d1179410ee994352",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l08/s15/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is the gym?",
+          "file": "65cad4ab7e640b9da6fb2982023855596ada5748353a5610699fd8b2701efb33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/65cad4ab7e640b9da6fb2982023855596ada5748353a5610699fd8b2701efb33.mp3",
+          "contentHash": "920da091d5c5381168230cd9272f4979343045d19589b81d9efed4110a43e005",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l08/s15/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "calculate",
+          "file": "56a068bad198f60bd4ccdcd6afedfdc3ee8fffe932fe9530c4c5b9869f87a332.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56a068bad198f60bd4ccdcd6afedfdc3ee8fffe932fe9530c4c5b9869f87a332.mp3",
+          "contentHash": "5f2c6327c2a148079662522babb43a98b27502974045bbe1b7c023476ca431e1",
+          "byteSize": 29952
+        },
+        {
+          "text": "gym",
+          "file": "d991276a76f7f3f8b8d011736f5a88e88c80cf179553628751666be80d155f8b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d991276a76f7f3f8b8d011736f5a88e88c80cf179553628751666be80d155f8b.mp3",
+          "contentHash": "92b113ffb0bca14f266f1d60af2a1d3e40759f163d5bedbed37f06c3ad06e128",
+          "byteSize": 18816
+        },
+        {
+          "text": "climb",
+          "file": "44fc81266a24d1fa555c840dd0b5e72018c25edd1c3cce27ae95f3165d553fb9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44fc81266a24d1fa555c840dd0b5e72018c25edd1c3cce27ae95f3165d553fb9.mp3",
+          "contentHash": "5f71fb647c20ebd2dffbd7c6f05b3e8ed443d9b730179630b23b9491cff6d2cc",
+          "byteSize": 22656
+        },
+        {
+          "text": "website",
+          "file": "a6dddf3ca848a5b5ba2d69974edc7bfcf6d8ec396562ab463fe6251b4975d26a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a6dddf3ca848a5b5ba2d69974edc7bfcf6d8ec396562ab463fe6251b4975d26a.mp3",
+          "contentHash": "e422a46816aa7a86113de4344ab64546b20d0f4baa26749d42cb6c74f2192e4b",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l08/s15/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom can’t calculate.",
+          "file": "65ac8df5f7fd6865b15553370af6f931136e5d5d57e406c8b960967348c644eb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/65ac8df5f7fd6865b15553370af6f931136e5d5d57e406c8b960967348c644eb.mp3",
+          "contentHash": "31fa47149b77a7021497d5c843dbecf26cc91fb25a8fd9a815c8c75a2b471cdb",
+          "byteSize": 38016
+        }
+      ]
     }
   },
   "settings": {

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "назвать одну перчатку и пару, спросить о владельце и повторить рассказ о поездке на работу",
+    "uk": "назвати одну рукавичку й пару, запитати про власника та повторити розповідь про поїздку на роботу"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна перчатка нашлась",
+        "uk": "Одна рукавичка знайшлася"
+      },
+      "bodyByLocale": {
+        "ru": "Анна показывает Тому перчатку на скамейке. `glove` — «перчатка». `This glove is mine` — «Эта перчатка моя». Одна перчатка: `is`. Уже хорошо, но одной руке пока повезло больше, чем другой.",
+        "uk": "Анна показує Тому рукавичку на лавці. `glove` — «рукавичка». `This glove is mine` — «Ця рукавичка моя». Одна рукавичка: `is`. Уже добре, але одній руці поки пощастило більше, ніж іншій."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите Анне «Эта перчатка моя».",
+          "uk": "Скажіть Анні «Ця рукавичка моя»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-47:intro1:r1",
+              "text": "This glove is mine."
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro1:r2",
+              "text": "This glove is my."
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro1:r3",
+              "text": "This glove are mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-47:intro1:r1",
+              "text": "This glove is mine."
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro1:r2",
+              "text": "This glove is my."
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro1:r3",
+              "text": "This glove are mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите Анне «Эта перчатка моя».",
+          "uk": "Скажіть Анні «Ця рукавичка моя»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "А эти чьи",
+        "uk": "А ці чиї"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом лежит другая пара. `gloves` — «перчатки»: к `glove` добавляем `s`. `Whose gloves are these?` — «Чьи это перчатки?» Для нескольких предметов — `are these`. Если показываете только на одну, вопрос будет `Whose glove is this?` — «Чья это перчатка?»",
+        "uk": "Поруч лежить інша пара. `gloves` — «рукавички»: до `glove` додаємо `s`. `Whose gloves are these?` — «Чиї це рукавички?» Для кількох предметів — `are these`. Якщо показуєте лише на одну, запитання буде `Whose glove is this?` — «Чия це рукавичка?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Покажите на пару и спросите «Чьи это перчатки?»",
+          "uk": "Покажіть на пару й запитайте «Чиї це рукавички?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-47:intro2:r1",
+              "text": "Whose gloves are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro2:r2",
+              "text": "Whose gloves is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro2:r3",
+              "text": "Who gloves are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-47:intro2:r1",
+              "text": "Whose gloves are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro2:r2",
+              "text": "Whose gloves is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro2:r3",
+              "text": "Who gloves are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите на пару и спросите «Чьи это перчатки?»",
+          "uk": "Покажіть на пару й запитайте «Чиї це рукавички?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Почему Том берёт перчатки",
+        "uk": "Чому Том бере рукавички"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед спрашивает, как Том обычно добирается на работу. `He cycles to work` — «Он ездит на работу на велосипеде». После `he` у `cycle` появляется `s`. `They cycle to work` — «Они ездят на работу на велосипеде»: после `they` остаётся `cycle`. Вы рассказываете о привычке, а не о движении в эту секунду.",
+        "uk": "Сусід запитує, як Том зазвичай дістається на роботу. `He cycles to work` — «Він їздить на роботу велосипедом». Після `he` у `cycle` з’являється `s`. `They cycle to work` — «Вони їздять на роботу велосипедом»: після `they` залишається `cycle`. Ви розповідаєте про звичку, а не про рух цієї секунди."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте соседу о Томе «Он ездит на работу на велосипеде».",
+          "uk": "Дайте сусідові відповідь про Тома «Він їздить на роботу велосипедом»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-47:intro3:r1",
+              "text": "He cycles to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro3:r2",
+              "text": "He cycle to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro3:r3",
+              "text": "He is cycles to work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-47:intro3:r1",
+              "text": "He cycles to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro3:r2",
+              "text": "He cycle to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-47:intro3:r3",
+              "text": "He is cycles to work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте соседу о Томе «Он ездит на работу на велосипеде».",
+          "uk": "Дайте сусідові відповідь про Тома «Він їздить на роботу велосипедом»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "40d89ceb3bc80fa5626c41cc7a342e80ffdcf49c0041405f02efbde53c91aa32"
+}

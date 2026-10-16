@@ -98944,6 +98944,309 @@
           "byteSize": 43008
         }
       ]
+    },
+    "l06/s47/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This glove is mine.",
+          "file": "f35b2f6764639cdf16bddd179bdb13b11ad97740b2594a262e705559b5eec796.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f35b2f6764639cdf16bddd179bdb13b11ad97740b2594a262e705559b5eec796.mp3",
+          "contentHash": "453e71ce489539a7a676976060fc50be3dcdecf190b1c704ac6b1caec478c69b",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s47/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose gloves are these?",
+          "file": "af5b83143ee52e9a02d9fc736797a7e6cab56bc1db0e6adadae611639db8c2f6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/af5b83143ee52e9a02d9fc736797a7e6cab56bc1db0e6adadae611639db8c2f6.mp3",
+          "contentHash": "f9141103dbc234e34696a80148eebe3f8c4a042d74826ea259759e57b7b66a03",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l06/s47/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He cycles to work.",
+          "file": "ce9b9b1213af0e580952434e21d83d91d4dc1b03bd1a0446d2190c6da0e207a5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce9b9b1213af0e580952434e21d83d91d4dc1b03bd1a0446d2190c6da0e207a5.mp3",
+          "contentHash": "51ebbba23d38043055d9757ab1b6f4b1faa4684628498721235065396a883bcc",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s47/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This glove is mine.",
+          "file": "34d2e3d81ac13cb84a8988390317e1339aff1062bbf8e672be714d60e237ebe5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34d2e3d81ac13cb84a8988390317e1339aff1062bbf8e672be714d60e237ebe5.mp3",
+          "contentHash": "b6d784c4a696f69b0c3434c875bc9c02e25fc7a69c0caf0ecda0a47cd5ba0445",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s47/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "glove",
+          "file": "1e2844c3513bd21dd90a7b97a39ca44727b1e77f1c51907ebf350a0e50c229e4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4bc529d33e80672d2c818851-ash.mp3",
+          "contentHash": "96c2be1e528269903c06ce837c8e680aa8a6969582f07c6c0ad7ebef04203413",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s47/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose gloves are these?",
+          "file": "0ec45204cced328f80cc88c747ba86c5c7929e1fc1189b710a070cb453898485.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ec45204cced328f80cc88c747ba86c5c7929e1fc1189b710a070cb453898485.mp3",
+          "contentHash": "6df74df9ee60a7950a2310c604d8eac9276bd322470f1edf9ea3f9b95eb4aae4",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s47/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "glove",
+          "file": "60d7f38ea5a36969e058682667060df0ba56176531263a556d31ae03e4cdbd48.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4bc529d33e80672d2c818851-onyx.mp3",
+          "contentHash": "0f346a326ff5538b7ac29b5c6be6fc60ab9e204027051e13c2544ccd3985e8ef",
+          "byteSize": 17280
+        },
+        {
+          "text": "acceptable",
+          "file": "3f191e2a446269dcd2009d67ce169c231c5f650167c9d7c555678c329ceac4ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3f191e2a446269dcd2009d67ce169c231c5f650167c9d7c555678c329ceac4ef.mp3",
+          "contentHash": "4355d625735076839ba783524433b26f0d75f92fafd777a657fa0515be62c39d",
+          "byteSize": 27648
+        },
+        {
+          "text": "leftover",
+          "file": "206f860e52df7c66c7adb8cb75a4e6c36043d482a6d118c74784627fde6d7c93.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/206f860e52df7c66c7adb8cb75a4e6c36043d482a6d118c74784627fde6d7c93.mp3",
+          "contentHash": "2ba8411181cf8ccc17dad50b4f53c904fb9c03f7eeaeccf57df01bc9a88462a8",
+          "byteSize": 20352
+        },
+        {
+          "text": "subway",
+          "file": "b08b7ab86ceefc1d5bc02a91bf9e525f9e6f82e5006807d3dbc5fa5ba4eadfd6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b08b7ab86ceefc1d5bc02a91bf9e525f9e6f82e5006807d3dbc5fa5ba4eadfd6.mp3",
+          "contentHash": "f6a3f9a98b184136e8a3ab91c9048456e151832c8621c94ae7ee3ba074084a80",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l06/s47/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "My glove is here.",
+          "file": "e55b95f8108f1505de9cf8a2987bc326f3dee7d356eb1f46ab38038b6d8401e7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e55b95f8108f1505de9cf8a2987bc326f3dee7d356eb1f46ab38038b6d8401e7.mp3",
+          "contentHash": "7fa773b16272fd95c585009e037b4f64988f60e130050c7fef5f552c273daa70",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l06/s47/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He cycles to work.",
+          "file": "05e64757bd9b6b05a0fd45ce0411f043e7e0331755dd665a5f1bfd1ee010d2fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/05e64757bd9b6b05a0fd45ce0411f043e7e0331755dd665a5f1bfd1ee010d2fd.mp3",
+          "contentHash": "029c7c75149bc1a769e1e08c63a68b1508d4ca29007faf6209fb694eb9d74ecc",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l06/s47/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The subway is here.",
+          "file": "9ad08c9a344a68ec6f7ee3cfe1de709c732055565394ab3c2dd211e3f6cc770f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ad08c9a344a68ec6f7ee3cfe1de709c732055565394ab3c2dd211e3f6cc770f.mp3",
+          "contentHash": "67df7fc6bbd8de200bb7da8a4fb6b6e2d70ce336b40c816eb000b7544f8fa11d",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s47/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They cycle to work.",
+          "file": "9a0e3231f95029b21d45a2e43c08978b1875a23ea104b854272bb1010a542c09.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a0e3231f95029b21d45a2e43c08978b1875a23ea104b854272bb1010a542c09.mp3",
+          "contentHash": "266ca19c4bfe58ed0613827f9578f0b4685c87e76a72edcab8ff0469a096ccc6",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s47/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "These gloves are mine.",
+          "file": "cd3a6f2a60dd63fa72272d166807d16b442d228db1fe893589ffbc6f60ca0a46.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cd3a6f2a60dd63fa72272d166807d16b442d228db1fe893589ffbc6f60ca0a46.mp3",
+          "contentHash": "c2d7f77b55c3f8d2e5883181abc089e4ef59844d71cc86cd4ac2d93ad8cb89eb",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s47/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "glove",
+          "file": "1e2844c3513bd21dd90a7b97a39ca44727b1e77f1c51907ebf350a0e50c229e4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4bc529d33e80672d2c818851-ash.mp3",
+          "contentHash": "96c2be1e528269903c06ce837c8e680aa8a6969582f07c6c0ad7ebef04203413",
+          "byteSize": 34560
+        },
+        {
+          "text": "cycle",
+          "file": "961c89860b82012932a930a553c024cb9abca98103eba22ae3051414050b7dc3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/961c89860b82012932a930a553c024cb9abca98103eba22ae3051414050b7dc3.mp3",
+          "contentHash": "f1dc95538fe7e68a5ecbcf3647fb9e14fb516ef823eb48c35e2077dc7a74d272",
+          "byteSize": 26880
+        },
+        {
+          "text": "subway",
+          "file": "9f9dd4fc38ef1f186fe1be29478da70877eca81f75ec4459d6598438ab3649c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9f9dd4fc38ef1f186fe1be29478da70877eca81f75ec4459d6598438ab3649c5.mp3",
+          "contentHash": "eff15e0d5fde987795ccf43096dc4b5b44de9a02f34a7b1af36967b12a998b18",
+          "byteSize": 24576
+        },
+        {
+          "text": "acceptable",
+          "file": "c6c91e7f0ce053a65b31b4d1a2557595f6fe0b3c8b8848441a598bdb3fba1d03.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c6c91e7f0ce053a65b31b4d1a2557595f6fe0b3c8b8848441a598bdb3fba1d03.mp3",
+          "contentHash": "03e09bfa7b8ada03a1a63a7d6d48d9c363062f77890f5b4a92a6cc6ceaa806e5",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l06/s47/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "These gloves are mine.",
+          "file": "cd3a6f2a60dd63fa72272d166807d16b442d228db1fe893589ffbc6f60ca0a46.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cd3a6f2a60dd63fa72272d166807d16b442d228db1fe893589ffbc6f60ca0a46.mp3",
+          "contentHash": "c2d7f77b55c3f8d2e5883181abc089e4ef59844d71cc86cd4ac2d93ad8cb89eb",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s47/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose glove is this?",
+          "file": "23e9f35c1ca7c9a43f6d7d479ccee630e101b548b98e88e4f1368526f1e73093.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/23e9f35c1ca7c9a43f6d7d479ccee630e101b548b98e88e4f1368526f1e73093.mp3",
+          "contentHash": "8c7cd92ab4138603f0c6f66584ddae13a3e564f21f588bf3199b0d6d283dbd43",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s47/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "We cycle to work.",
+          "file": "5be4240385cdb183a14f4897d0b2b80fbcbfbac312371fc69c4416b949722212.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5be4240385cdb183a14f4897d0b2b80fbcbfbac312371fc69c4416b949722212.mp3",
+          "contentHash": "1a406eedb6d7ef4179c37f2a33eef09183a175e8e61fc644ccf13b820661c85d",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s47/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Anna cycles to work.",
+          "file": "d4120c8ffd778107cac01fcd6e96d37e615f6134b7e53bf086557aee632e0a1f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d4120c8ffd778107cac01fcd6e96d37e615f6134b7e53bf086557aee632e0a1f.mp3",
+          "contentHash": "e5a49f8636b67883e57d4986b9427261c4c7ab955f8c6075ce301a4e265f39a3",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l06/s47/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The subway is here.",
+          "file": "7a11e116add4c1d5d4d41eba15fde70584455f28fcea8bd249d73443ab9851cf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7a11e116add4c1d5d4d41eba15fde70584455f28fcea8bd249d73443ab9851cf.mp3",
+          "contentHash": "920fd4f8e10405e80667a2d9bda573274ef5452eac774d771be3390f7772181a",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l06/s47/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "glove",
+          "file": "12b52760bec88c6051a880a801fd4b7fbfd2b0b60a0b4ef80be5a15408fcf979.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4bc529d33e80672d2c818851-nova.mp3",
+          "contentHash": "330ea8e560c967a08ad8330c57478e3df25fa6c16ca66276d3b9ad8e581c8e8a",
+          "byteSize": 18048
+        },
+        {
+          "text": "leftover",
+          "file": "982e11b8944208c26945d899c127665206c9bab15eb62353cc55ce7ff3fbe33c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/982e11b8944208c26945d899c127665206c9bab15eb62353cc55ce7ff3fbe33c.mp3",
+          "contentHash": "fccb8ce11a0bf29108b552b254bdc4256609573277bae82529761f635039a325",
+          "byteSize": 20352
+        },
+        {
+          "text": "acceptable",
+          "file": "00dd797b3ce32d9dd007b30200c2fff146018d958287fac1d9574d9ff2b1db17.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/00dd797b3ce32d9dd007b30200c2fff146018d958287fac1d9574d9ff2b1db17.mp3",
+          "contentHash": "000879c9415f63d702c3a1c574431a2856b02b3e47b1591f2d870ab35aa74305",
+          "byteSize": 16512
+        },
+        {
+          "text": "cycle",
+          "file": "0453188d693bcc1dffd5bb31b03e46656fe683a67fbbe3a35cfdbee694cd7742.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0453188d693bcc1dffd5bb31b03e46656fe683a67fbbe3a35cfdbee694cd7742.mp3",
+          "contentHash": "233221e23f3bb69410a0f56551bf8075e2f6ea43102bfffb074d5461b16e5558",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l06/s47/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose gloves are these?",
+          "file": "c3c1800881321fbf2139d433b7a8e4085031cbb1e29522bd83adcc76f2a7846c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3c1800881321fbf2139d433b7a8e4085031cbb1e29522bd83adcc76f2a7846c.mp3",
+          "contentHash": "4ab6a4a515901fd2f8b8263f6d23f8b60dbd92d319a543b4f7cb106aeb3beba6",
+          "byteSize": 32256
+        }
+      ]
     }
   },
   "settings": {

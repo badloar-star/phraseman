@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-47:i01",
+    "correctText": "This place is dangerous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i02",
+    "correctText": "subway",
+    "correctResponseId": "en:lesson-05:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i03",
+    "correctText": "subway",
+    "correctResponseId": "en:lesson-05:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i04",
+    "correctText": "en:lesson-05:session-47:i04:p1=subway\nen:lesson-05:session-47:i04:p2=violin\nen:lesson-05:session-47:i04:p3=restaurants\nen:lesson-05:session-47:i04:p4=leftover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i05",
+    "correctText": "Where is the subway?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i06",
+    "correctText": "The leftovers are in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i07",
+    "correctText": "The subway is near the hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i09",
+    "correctText": "This is Anna's violin.",
+    "correctResponseId": "en:lesson-05:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i10",
+    "correctText": "en:lesson-05:session-47:i10:p1=subway\nen:lesson-05:session-47:i10:p2=dangerous\nen:lesson-05:session-47:i10:p3=leftover\nen:lesson-05:session-47:i10:p4=violin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i11",
+    "correctText": "Whose violin is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i12",
+    "correctText": "The violin is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i13",
+    "correctText": "I have your violin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i14",
+    "correctText": "Where",
+    "correctResponseId": "en:lesson-05:session-47:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i15",
+    "correctText": "Your violin is here.",
+    "correctResponseId": "en:lesson-05:session-47:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i16",
+    "correctText": "en:lesson-05:session-47:i16:p1=subway\nen:lesson-05:session-47:i16:p2=dangerous\nen:lesson-05:session-47:i16:p3=restaurants\nen:lesson-05:session-47:i16:p4=violin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-47:i17",
+    "correctText": "Whose violin is this?",
+    "correctResponseId": null
+  }
+]

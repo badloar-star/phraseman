@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-47:intro1:r2": {
+          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
+          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+        },
+        "en:lesson-05:session-47:intro1:r3": {
+          "ru": "Здесь `the subway` требует `is`.",
+          "uk": "Тут `the subway` потребує `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-47:intro2:r2": {
+          "ru": "Без следующего названия вещи нужна самостоятельная форма `hers`.",
+          "uk": "Без наступної назви речі потрібна самостійна форма `hers`."
+        },
+        "en:lesson-05:session-47:intro2:r3": {
+          "ru": "Одна скрипка: `is`.",
+          "uk": "Одна скрипка: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-47:intro3:r2": {
+          "ru": "С `leftovers` нужна форма `are`.",
+          "uk": "З `leftovers` потрібна форма `are`."
+        },
+        "en:lesson-05:session-47:intro3:r3": {
+          "ru": "Внутри холодильника — `in`; `under` — под ним.",
+          "uk": "Усередині холодильника — `in`; `under` — під ним."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e1100d46a266f34a8388f13b4108d05820c6fec337921d1f98c7e07e1a92720e"
+}

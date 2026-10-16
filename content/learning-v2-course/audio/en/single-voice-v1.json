@@ -72280,6 +72280,309 @@
           "byteSize": 41856
         }
       ]
+    },
+    "l05/s15/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is my helmet.",
+          "file": "7ed3243bd1f2bfc05d9fbb2019194841b170acfb38c497976c87d28fa727b71a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7ed3243bd1f2bfc05d9fbb2019194841b170acfb38c497976c87d28fa727b71a.mp3",
+          "contentHash": "4eaa75cc4bac596817c316a3fbea559e21b2de29095aae3688b26adcdd7e1c32",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s15/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is easy.",
+          "file": "f2c88ce745eea3190fff42946a22f38b54c516e201a2c055fe1aed2031029340.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f2c88ce745eea3190fff42946a22f38b54c516e201a2c055fe1aed2031029340.mp3",
+          "contentHash": "0c4ce0981666be2765532c5ff60120e915b587bdcb1ae294530d57c3b8485461",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s15/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Their remote is on the table.",
+          "file": "20fb903b94b3e03932d6fa005c92f51d510f3c06e97a7c2a62025085a2485d71.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/20fb903b94b3e03932d6fa005c92f51d510f3c06e97a7c2a62025085a2485d71.mp3",
+          "contentHash": "ca4cda3443c7f0bf2fc465c6eb1de2e826739ffa23537a913bc30b1a030793a3",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s15/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is easy.",
+          "file": "f2c88ce745eea3190fff42946a22f38b54c516e201a2c055fe1aed2031029340.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f2c88ce745eea3190fff42946a22f38b54c516e201a2c055fe1aed2031029340.mp3",
+          "contentHash": "0c4ce0981666be2765532c5ff60120e915b587bdcb1ae294530d57c3b8485461",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s15/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "helmet",
+          "file": "5a60a0b6acf7d2b4e5ee842a357808af5e5838f75a1f47e0bde0561ad075e997.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5a60a0b6acf7d2b4e5ee842a357808af5e5838f75a1f47e0bde0561ad075e997.mp3",
+          "contentHash": "873fede3c949fa0c5ef4a243ad957ff91eafabdedfc0f5967c70263435c5d559",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s15/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "helmet",
+          "file": "a7c720a9d6c3f4620df17fce3c3abf6d64fc2c9852779085a2e64176750cedfc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a7c720a9d6c3f4620df17fce3c3abf6d64fc2c9852779085a2e64176750cedfc.mp3",
+          "contentHash": "fe30b44c08c13c6baaf65fba587f22949ffb07bfea926f832cc1ca00bbc37dc8",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s15/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "helmet",
+          "file": "8d468739102649a6a5c9a174bd7cf23d78b8e3e753fab5850d2afc250b02c710.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8d468739102649a6a5c9a174bd7cf23d78b8e3e753fab5850d2afc250b02c710.mp3",
+          "contentHash": "59bbfd3caef1a1127032b55d90c7513e742e69dd285d7eedf7c6a54b20b984f6",
+          "byteSize": 15744
+        },
+        {
+          "text": "easy",
+          "file": "f8a66d22891531186610896508a9b2834050e237e007fb96ccfdb76b4b9306e8.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/97c10efe01d5c9c88704a12d-onyx.mp3",
+          "contentHash": "741dfd3ba537876e0142f5b531f8493ad9bb667828fdbf38b4e3aaf932e9620e",
+          "byteSize": 22656
+        },
+        {
+          "text": "difficult",
+          "file": "8e5ff5710dbf303a6a137d0a1d102511141b566897fb99c0c58a708c75206cd3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e5ff5710dbf303a6a137d0a1d102511141b566897fb99c0c58a708c75206cd3.mp3",
+          "contentHash": "d4a91cc84f350c6c1b2d948918673b354e29e7da137f0bf6ef49fd5cd4836151",
+          "byteSize": 35712
+        },
+        {
+          "text": "important",
+          "file": "3a93eb947ba334a4b12efcf89b8c36815ba375b2868bf37bd2a0eeadb153e71f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a93eb947ba334a4b12efcf89b8c36815ba375b2868bf37bd2a0eeadb153e71f.mp3",
+          "contentHash": "acb9672fd68538b57722d9547627b5162e7a500e090a5d0aa02e1eb899cf1ed0",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s15/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is my helmet.",
+          "file": "3462b65df9b55eac73392a4b2eb9461b08d09e04e25bbd81cdca3856655170e8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3462b65df9b55eac73392a4b2eb9461b08d09e04e25bbd81cdca3856655170e8.mp3",
+          "contentHash": "24d272242d1bb4fb0d7ffdf21bc279a087767b5bc21e5916d9ed6b10a9d07a87",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s15/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Her helmet is next to his coat.",
+          "file": "166e78b99795c1349d29aca5829a4ef2d4875831bf97d43f4c9ab4640a5a8d04.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/166e78b99795c1349d29aca5829a4ef2d4875831bf97d43f4c9ab4640a5a8d04.mp3",
+          "contentHash": "e79bd3987ea11a4671c8e8b50edfd11141330fe4f658a7abef6506c6123d8258",
+          "byteSize": 57216
+        }
+      ]
+    },
+    "l05/s15/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's difficult.",
+          "file": "9a02fcac495ddd02e2c5ee47d706e98d8f20375e5bdf863ca561dd42f1d55629.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a02fcac495ddd02e2c5ee47d706e98d8f20375e5bdf863ca561dd42f1d55629.mp3",
+          "contentHash": "50643d1b42b714fd3f27c47a8338f61089542274105be625af31c04558979f1c",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s15/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is important.",
+          "file": "6eba56d92854bce6caed574cd7625b1314d63c84b62854660a8626e5a13bd4ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6eba56d92854bce6caed574cd7625b1314d63c84b62854660a8626e5a13bd4ff.mp3",
+          "contentHash": "a185c911162aa53a2e0c17017a4486b72ab7d08a0f8db97b6faabc712bd12c24",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s15/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Their remote is on the table.",
+          "file": "20fb903b94b3e03932d6fa005c92f51d510f3c06e97a7c2a62025085a2485d71.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/20fb903b94b3e03932d6fa005c92f51d510f3c06e97a7c2a62025085a2485d71.mp3",
+          "contentHash": "ca4cda3443c7f0bf2fc465c6eb1de2e826739ffa23537a913bc30b1a030793a3",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s15/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "helmet",
+          "file": "8d468739102649a6a5c9a174bd7cf23d78b8e3e753fab5850d2afc250b02c710.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8d468739102649a6a5c9a174bd7cf23d78b8e3e753fab5850d2afc250b02c710.mp3",
+          "contentHash": "59bbfd3caef1a1127032b55d90c7513e742e69dd285d7eedf7c6a54b20b984f6",
+          "byteSize": 15744
+        },
+        {
+          "text": "coat",
+          "file": "235410469944a1526b12d75d53405e9b842c83a21eac42084922a612d120ff34.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/235410469944a1526b12d75d53405e9b842c83a21eac42084922a612d120ff34.mp3",
+          "contentHash": "7ecb3276f0fd4d067996c090e34a21724528a573b7986bf04036dfb1f577a872",
+          "byteSize": 17280
+        },
+        {
+          "text": "gym",
+          "file": "d991276a76f7f3f8b8d011736f5a88e88c80cf179553628751666be80d155f8b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d991276a76f7f3f8b8d011736f5a88e88c80cf179553628751666be80d155f8b.mp3",
+          "contentHash": "92b113ffb0bca14f266f1d60af2a1d3e40759f163d5bedbed37f06c3ad06e128",
+          "byteSize": 18816
+        },
+        {
+          "text": "remote",
+          "file": "2f0a3502c90c01db00a537e2e4689f3c86ab04cddcf71dacaec0082474061322.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b71199ebd070b36beab73179-onyx.mp3",
+          "contentHash": "ee129d87d21c9230ff251850c6c33ff649de7e4cff800b3368bde9f7e64bcb41",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s15/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Our gym is open.",
+          "file": "9eedc285cac77eb11db6b5087795d8aa15d17a0179251f5e5dab89d82f3531c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9eedc285cac77eb11db6b5087795d8aa15d17a0179251f5e5dab89d82f3531c0.mp3",
+          "contentHash": "675e9e9cf7c14b6e327dbcb381a0ca23598c418d419a2e46dd614714a8a99a9d",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s15/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "His coat is here.",
+          "file": "47b65dacc9167af39eb02aa1b41af894bac18b47f037eb59e69e8c07270c9728.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47b65dacc9167af39eb02aa1b41af894bac18b47f037eb59e69e8c07270c9728.mp3",
+          "contentHash": "06a449c08119b5a2be4045e22e9e8aca303f5d8d0bc51e89a84fdad170c16f16",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l05/s15/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I have your helmet.",
+          "file": "72bd83589da89528e746a24c2837308904a40bfc0ebe62f1aaabc76b19ba0857.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/72bd83589da89528e746a24c2837308904a40bfc0ebe62f1aaabc76b19ba0857.mp3",
+          "contentHash": "66d9dafb182b39df65f77a4c7dd928bac404579cb8887224e6f425a8a928cd4b",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s15/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Their gym is closed.",
+          "file": "56f19900d8e2d9dbb2fa9ebcf4e339306ff32d64edb22ab4ed8dd1cb5b34d3f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56f19900d8e2d9dbb2fa9ebcf4e339306ff32d64edb22ab4ed8dd1cb5b34d3f0.mp3",
+          "contentHash": "1d8b282558cff3b56b72ff3392dd45398621c26fb083136ef7e17deaa6aacd09",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s15/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Your helmet is here.",
+          "file": "7f8e28eac552093f02a1eabae7d792bcc3868aa81283c72c14288b1a59a7b729.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7f8e28eac552093f02a1eabae7d792bcc3868aa81283c72c14288b1a59a7b729.mp3",
+          "contentHash": "731526e11e650458fa4c861c9cd4813846bf08a9e600d2d344ccc10eceae8f60",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s15/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "helmet",
+          "file": "5a60a0b6acf7d2b4e5ee842a357808af5e5838f75a1f47e0bde0561ad075e997.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5a60a0b6acf7d2b4e5ee842a357808af5e5838f75a1f47e0bde0561ad075e997.mp3",
+          "contentHash": "873fede3c949fa0c5ef4a243ad957ff91eafabdedfc0f5967c70263435c5d559",
+          "byteSize": 33792
+        },
+        {
+          "text": "coat",
+          "file": "a846f1a991a3cc207422cce7e2d368a71b3be67bed2d8cddee0dbac750163b72.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a846f1a991a3cc207422cce7e2d368a71b3be67bed2d8cddee0dbac750163b72.mp3",
+          "contentHash": "78704a8bf56255ca0fb28ca73f6e6f45eebea659704ce7b40ea50eee8694a643",
+          "byteSize": 18048
+        },
+        {
+          "text": "gym",
+          "file": "7e68480bef0225f3baced9abda34bbc04faa98c2d50a0ce956c18514a9a42a8b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e68480bef0225f3baced9abda34bbc04faa98c2d50a0ce956c18514a9a42a8b.mp3",
+          "contentHash": "6d57d997d0c3ac10f4736a72d530acb31080e5affe3476775bf67d14612ce091",
+          "byteSize": 33792
+        },
+        {
+          "text": "remote",
+          "file": "28f2a7b927a2ea894b8d6d6734ca6131b07d44dc9304ac77cc6e5d634b2ebb8b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b71199ebd070b36beab73179-ash.mp3",
+          "contentHash": "b50ee2323aa5b0459d19c96eed8ab8249978863b2f64336290c8c969f27abee2",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l05/s15/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The helmet is next to your coat.",
+          "file": "379fff94c0c22c9e2a1536dcaac531dd70a409a95632eca34c51f0bd078d6b0a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/379fff94c0c22c9e2a1536dcaac531dd70a409a95632eca34c51f0bd078d6b0a.mp3",
+          "contentHash": "ca09cb0105af71fe88cb6f2c018973ee3dd2d78a0cac6ebb81d3f329716832fa",
+          "byteSize": 44544
+        }
+      ]
     }
   },
   "settings": {

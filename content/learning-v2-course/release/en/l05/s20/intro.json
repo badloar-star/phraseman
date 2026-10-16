@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "назвать владельца вещей и описать готовность к прогулке",
+    "uk": "назвати власника речей і описати готовність до прогулянки"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тепло для шеи",
+        "uk": "Тепло для шиї"
+      },
+      "bodyByLocale": {
+        "ru": "`scarf` — «шарф». `The scarf is mine` — «Шарф мой». `Your scarf is here` — «Твой шарф здесь». Перед названием вещи — `my`, без повторения названия — `mine`. `The scarf is hers` — «Шарф её». Шарф уже на шее, а вы ищете его в сумке: он готов к прогулке раньше вас.",
+        "uk": "`scarf` — «шарф». `The scarf is mine` — «Шарф мій». `Your scarf is here` — «Твій шарф тут». Перед назвою речі — `my`, без повторення назви — `mine`. `The scarf is hers` — «Шарф її». Шарф уже на шиї, а ви шукаєте його в сумці: він готовий до прогулянки раніше за вас."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Шарф мой».",
+          "uk": "Скажіть «Шарф мій»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-20:intro1:r1",
+              "text": "The scarf is mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro1:r2",
+              "text": "The scarf is my."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro1:r3",
+              "text": "The scarf is yours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-20:intro1:r1",
+              "text": "The scarf is mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro1:r2",
+              "text": "The scarf is my."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro1:r3",
+              "text": "The scarf is yours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Шарф мой».",
+          "uk": "Скажіть «Шарф мій»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подготовлены и осторожны",
+        "uk": "Підготовлені й обережні"
+      },
+      "bodyByLocale": {
+        "ru": "`prepared` — «подготовлен / подготовлены», `careful` — «осторожный / осторожны», `lost` — «заблудился / заблудились», когда речь о людях, не знающих дороги. `We are prepared` — «Мы подготовлены». `We are careful` — «Мы осторожны». `We are lost` — «Мы заблудились». Эти слова описывают состояние; с `We` ставим `are`.",
+        "uk": "`prepared` — «підготовлений / підготовлені», `careful` — «обережний / обережні», `lost` — «заблукав / заблукали», коли йдеться про людей, які не знають дороги. `We are prepared` — «Ми підготовлені». `We are careful` — «Ми обережні». `We are lost` — «Ми заблукали». Ці слова описують стан; з `We` ставимо `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "У вас есть карты и всё нужное для прогулки. Скажите «Мы подготовлены».",
+          "uk": "У вас є карти й усе потрібне для прогулянки. Скажіть «Ми підготовлені»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-20:intro2:r1",
+              "text": "We are prepared."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro2:r2",
+              "text": "We is prepared."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro2:r3",
+              "text": "We are lost."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-20:intro2:r1",
+              "text": "We are prepared."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro2:r2",
+              "text": "We is prepared."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro2:r3",
+              "text": "We are lost."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У вас есть карты и всё нужное для прогулки. Скажите «Мы подготовлены».",
+          "uk": "У вас є карти й усе потрібне для прогулянки. Скажіть «Ми підготовлені»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Карта, гриб и тетрадь",
+        "uk": "Карта, гриб і зошит"
+      },
+      "bodyByLocale": {
+        "ru": "`maps` — «карты», `mushroom` — «гриб», `notebook` — «тетрадь». `The maps are ours` — «Карты наши». `The notebook is his` — «Тетрадь его». `There is a mushroom next to the tree` — «Рядом с деревом есть гриб». `Where is my scarf?` — «Где мой шарф?» С одной вещью — `is`, с несколькими картами — `are`.",
+        "uk": "`maps` — «карти», `mushroom` — «гриб», `notebook` — «зошит». `The maps are ours` — «Карти наші». `The notebook is his` — «Зошит його». `There is a mushroom next to the tree` — «Поруч із деревом є гриб». `Where is my scarf?` — «Де мій шарф?» З однією річчю — `is`, з кількома картами — `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Карты принадлежат вам и другу. Скажите «Карты наши».",
+          "uk": "Карти належать вам і другові. Скажіть «Карти наші»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-20:intro3:r1",
+              "text": "The maps are ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro3:r2",
+              "text": "The maps is ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro3:r3",
+              "text": "The maps are our."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-20:intro3:r1",
+              "text": "The maps are ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro3:r2",
+              "text": "The maps is ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-20:intro3:r3",
+              "text": "The maps are our."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Карты принадлежат вам и другу. Скажите «Карты наши».",
+          "uk": "Карти належать вам і другові. Скажіть «Карти наші»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "351061603a950b0e789f2f929390eb99562c679eeb99673c4cb759a434ddb5a7"
+}

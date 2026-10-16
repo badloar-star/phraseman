@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-20:i01",
+    "correctText": "We are prepared.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i02",
+    "correctText": "scarf",
+    "correctResponseId": "en:lesson-05:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i03",
+    "correctText": "scarf",
+    "correctResponseId": "en:lesson-05:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i04",
+    "correctText": "en:lesson-05:session-20:i04:p1=scarf\nen:lesson-05:session-20:i04:p2=lost\nen:lesson-05:session-20:i04:p3=prepared\nen:lesson-05:session-20:i04:p4=careful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i05",
+    "correctText": "Your scarf is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i06",
+    "correctText": "The maps are ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i07",
+    "correctText": "We are lost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i08",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i09",
+    "correctText": "We are careful.",
+    "correctResponseId": "en:lesson-05:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i10",
+    "correctText": "en:lesson-05:session-20:i10:p1=scarf\nen:lesson-05:session-20:i10:p2=maps\nen:lesson-05:session-20:i10:p3=mushroom\nen:lesson-05:session-20:i10:p4=notebook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i11",
+    "correctText": "Where is my scarf?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i12",
+    "correctText": "The notebook is his.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i13",
+    "correctText": "There is a mushroom next to the tree.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-20:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i15",
+    "correctText": "The scarf is yours.",
+    "correctResponseId": "en:lesson-05:session-20:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i16",
+    "correctText": "en:lesson-05:session-20:i16:p1=scarf\nen:lesson-05:session-20:i16:p2=maps\nen:lesson-05:session-20:i16:p3=mushroom\nen:lesson-05:session-20:i16:p4=notebook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:i17",
+    "correctText": "The scarf is mine.",
+    "correctResponseId": null
+  }
+]

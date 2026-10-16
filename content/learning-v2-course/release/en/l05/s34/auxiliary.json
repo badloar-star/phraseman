@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-34:intro1:r2": {
+          "ru": "Это «Где кольцо?»; о владельце спрашиваем с `Whose`.",
+          "uk": "Це «Де каблучка?»; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-34:intro1:r3": {
+          "ru": "Одно кольцо: `is this`.",
+          "uk": "Одна каблучка: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-34:intro2:r2": {
+          "ru": "С `I` нужна форма `am`.",
+          "uk": "З `I` потрібна форма `am`."
+        },
+        "en:lesson-05:session-34:intro2:r3": {
+          "ru": "`bored` — скучно; страшно — `afraid`.",
+          "uk": "`bored` — нудно; страшно — `afraid`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-34:intro3:r2": {
+          "ru": "К имени владельца добавляем `’s`: `Tom’s ring`.",
+          "uk": "До імені власника додаємо `’s`: `Tom’s ring`."
+        },
+        "en:lesson-05:session-34:intro3:r3": {
+          "ru": "Это кольцо Анны; здесь владелец Том.",
+          "uk": "Це каблучка Анни; тут власник Том."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "eec76c53b706a168300caf0811269d7862a385ce165b2dfe362c40d91be5a998"
+}

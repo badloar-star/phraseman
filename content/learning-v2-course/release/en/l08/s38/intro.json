@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "успокоить человека словами Don’t panic и вежливо попросить не торопиться",
+    "uk": "заспокоїти людину словами Don’t panic і ввічливо попросити не поспішати"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Перед выступлением",
+        "uk": "Перед виступом"
+      },
+      "bodyByLocale": {
+        "ru": "Друг собирается выступать перед небольшой группой и сильно волнуется. `Panic` — «паниковать». `Don’t panic` — «Не паникуй». После `don’t` нужно `panic`, без `to` и окончаний. Так можно коротко подбодрить друга. Даже микрофон пока ведёт себя спокойно.",
+        "uk": "Друг збирається виступати перед невеликою групою й дуже хвилюється. `Panic` — «панікувати». `Don’t panic` — «Не панікуй». Після `don’t` потрібне `panic`, без `to` і закінчень. Так можна коротко підбадьорити друга. Навіть мікрофон поки поводиться спокійно."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Подбодрите друга: «Не паникуй».",
+          "uk": "Підбадьорте друга: «Не панікуй»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-38:intro1:r1",
+              "text": "Don’t panic."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro1:r2",
+              "text": "Don’t panics."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro1:r3",
+              "text": "Don’t to panic."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-38:intro1:r1",
+              "text": "Don’t panic."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro1:r2",
+              "text": "Don’t panics."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro1:r3",
+              "text": "Don’t to panic."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подбодрите друга: «Не паникуй».",
+          "uk": "Підбадьорте друга: «Не панікуй»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рисунок сохнет",
+        "uk": "Малюнок сохне"
+      },
+      "bodyByLocale": {
+        "ru": "Вы только что закончили рисунок красками. Друг хочет провести по нему пальцем. Покажите на рисунок: `Don’t touch this` — «Не трогай это». `This` указывает на то, что вы показываете.",
+        "uk": "Ви щойно закінчили малюнок фарбами. Друг хоче провести по ньому пальцем. Покажіть на малюнок: `Don’t touch this` — «Не чіпай це». `This` указує на те, що ви показуєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Покажите на рисунок и скажите «Не трогай это».",
+          "uk": "Покажіть на малюнок і скажіть «Не чіпай це»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-38:intro2:r1",
+              "text": "Don’t touch this."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro2:r2",
+              "text": "Don’t touches this."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro2:r3",
+              "text": "Not touch this."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-38:intro2:r1",
+              "text": "Don’t touch this."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro2:r2",
+              "text": "Don’t touches this."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro2:r3",
+              "text": "Not touch this."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите на рисунок и скажите «Не трогай это».",
+          "uk": "Покажіть на малюнок і скажіть «Не чіпай це»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Билет уже куплен",
+        "uk": "Квиток уже куплений"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спешит к поезду, хотя до отправления ещё полчаса. Попросите его идти спокойнее: `Please don’t rush` — «Пожалуйста, не торопись». `Please` смягчает просьбу.",
+        "uk": "Друг поспішає до потяга, хоча до відправлення ще пів години. Попросіть його йти спокійніше: `Please don’t rush` — «Будь ласка, не поспішай». `Please` пом’якшує прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Попросите друга вежливо не торопиться.",
+          "uk": "Ввічливо попросіть друга не поспішати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-38:intro3:r1",
+              "text": "Please don’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro3:r2",
+              "text": "Please doesn’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro3:r3",
+              "text": "Please don’t to rush."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-38:intro3:r1",
+              "text": "Please don’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro3:r2",
+              "text": "Please doesn’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-38:intro3:r3",
+              "text": "Please don’t to rush."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга вежливо не торопиться.",
+          "uk": "Ввічливо попросіть друга не поспішати."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ed6e8472466ba9c440fff899d571f4459787a17b5d77e0927d90390940d26252"
+}

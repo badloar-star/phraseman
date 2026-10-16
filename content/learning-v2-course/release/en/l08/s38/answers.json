@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-38:i01",
+    "correctText": "Don’t panic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i02",
+    "correctText": "panic",
+    "correctResponseId": "en:lesson-08:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i03",
+    "correctText": "panic",
+    "correctResponseId": "en:lesson-08:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i04",
+    "correctText": "en:lesson-08:session-38:i04:p1=panic\nen:lesson-08:session-38:i04:p2=bike shed\nen:lesson-08:session-38:i04:p3=rest\nen:lesson-08:session-38:i04:p4=label",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i05",
+    "correctText": "Don’t panic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i06",
+    "correctText": "Don’t touch this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i07",
+    "correctText": "Please don’t rush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i08",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-08:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i09",
+    "correctText": "Don’t panic.",
+    "correctResponseId": "en:lesson-08:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i10",
+    "correctText": "en:lesson-08:session-38:i10:p1=iron\nen:lesson-08:session-38:i10:p2=panic\nen:lesson-08:session-38:i10:p3=rest\nen:lesson-08:session-38:i10:p4=bike shed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i11",
+    "correctText": "Please don’t rush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i12",
+    "correctText": "Label it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i13",
+    "correctText": "I often iron.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i14",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-08:session-38:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i15",
+    "correctText": "Don’t rush.",
+    "correctResponseId": "en:lesson-08:session-38:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i16",
+    "correctText": "en:lesson-08:session-38:i16:p1=panic\nen:lesson-08:session-38:i16:p2=iron\nen:lesson-08:session-38:i16:p3=label\nen:lesson-08:session-38:i16:p4=bike shed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:i17",
+    "correctText": "Don’t panic.",
+    "correctResponseId": null
+  }
+]

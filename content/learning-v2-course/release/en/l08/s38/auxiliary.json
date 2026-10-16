@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-38:intro1:r2": {
+          "ru": "После `don’t` нужно `panic`, без `s`.",
+          "uk": "Після `don’t` потрібне `panic`, без `s`."
+        },
+        "en:lesson-08:session-38:intro1:r3": {
+          "ru": "После `don’t` нужно `panic`, без `to`.",
+          "uk": "Після `don’t` потрібне `panic`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-38:intro2:r2": {
+          "ru": "После `don’t` нужно `touch`, без `es`.",
+          "uk": "Після `don’t` потрібне `touch`, без `es`."
+        },
+        "en:lesson-08:session-38:intro2:r3": {
+          "ru": "В такой просьбе нужно `Don’t touch this`.",
+          "uk": "У такому проханні потрібне `Don’t touch this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-38:intro3:r2": {
+          "ru": "В обращении к человеку нужно `don’t rush`.",
+          "uk": "У звертанні до людини потрібне `don’t rush`."
+        },
+        "en:lesson-08:session-38:intro3:r3": {
+          "ru": "После `don’t` нужно `rush`, без `to`.",
+          "uk": "Після `don’t` потрібне `rush`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5d9bfa09716852fb00e447c2e61b835e8636a0695182ea1b8799464a6488e9db"
+}

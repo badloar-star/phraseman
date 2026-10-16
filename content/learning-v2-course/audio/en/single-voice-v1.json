@@ -130153,6 +130153,309 @@
           "byteSize": 33792
         }
       ]
+    },
+    "l08/s38/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Don’t panic.",
+          "file": "102312e7b323d5ff8eea4902e4143abd4539d09640d653050f21195fd6cad188.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/102312e7b323d5ff8eea4902e4143abd4539d09640d653050f21195fd6cad188.mp3",
+          "contentHash": "0f31da6ec5b1e0e9cd4ddc0e45a723ee061ff2508452484d67e360e28003fb61",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s38/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Don’t touch this.",
+          "file": "6934348fe0d82178bcb4a570fd8d66462e599fe5415cd76e4602135faa46030d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6934348fe0d82178bcb4a570fd8d66462e599fe5415cd76e4602135faa46030d.mp3",
+          "contentHash": "6c2b7be33209e4c377ec65cf11fbd3b581dd811673c461edfae9a72ce21466b4",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s38/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Please don’t rush.",
+          "file": "528995488048d0d3d90a15bf8baf941dd5c098b6321a919521a6efb469587d3a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/528995488048d0d3d90a15bf8baf941dd5c098b6321a919521a6efb469587d3a.mp3",
+          "contentHash": "b4efdcc3f081b9fa6e7a3b987d811a796a22d11ee824dfdbbfb9b71f7943caa7",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l08/s38/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Don’t panic.",
+          "file": "1a8d4c8cfba5ac2ca44386200c7034c44bfbbe7f3608a7378812c1a3784fc06d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a8d4c8cfba5ac2ca44386200c7034c44bfbbe7f3608a7378812c1a3784fc06d.mp3",
+          "contentHash": "6c78462f4f54df8bbec95a62f5b4c7798a6a4af7d0fff0ca2708c9558279b416",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l08/s38/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "panic",
+          "file": "bc7cba70de7192d719fa373fcb17be5daaf99419248a8f505b60fee1e007a85e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc7cba70de7192d719fa373fcb17be5daaf99419248a8f505b60fee1e007a85e.mp3",
+          "contentHash": "35c56871f48268287ed3a9ee471a330763ff09bd50d16ebaa15631328d99bf1e",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l08/s38/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Don’t panic.",
+          "file": "102312e7b323d5ff8eea4902e4143abd4539d09640d653050f21195fd6cad188.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/102312e7b323d5ff8eea4902e4143abd4539d09640d653050f21195fd6cad188.mp3",
+          "contentHash": "0f31da6ec5b1e0e9cd4ddc0e45a723ee061ff2508452484d67e360e28003fb61",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s38/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "panic",
+          "file": "59e32cd3cacb783f725d92509112c8946815d6d800b7d3af2de19b69ed597f32.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/59e32cd3cacb783f725d92509112c8946815d6d800b7d3af2de19b69ed597f32.mp3",
+          "contentHash": "943c3a5ff85061ab17ae94f59265d967537a717b643a66ccc5c85db1b6ec1bb2",
+          "byteSize": 34560
+        },
+        {
+          "text": "bike shed",
+          "file": "d66c5a3fab56f7d75deb9b7befb9a67309cdcf560b658039c2b53066c81e6ff5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d66c5a3fab56f7d75deb9b7befb9a67309cdcf560b658039c2b53066c81e6ff5.mp3",
+          "contentHash": "810b35695698f991c03c45989dd7da0b7b3a1fb4e61d0ea676111a8c3fd86c1a",
+          "byteSize": 19584
+        },
+        {
+          "text": "rest",
+          "file": "5c6b7c545a265675facf29a860685ee7e129200bb260ebf5ff6664ccaeae9c5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c6b7c545a265675facf29a860685ee7e129200bb260ebf5ff6664ccaeae9c5d.mp3",
+          "contentHash": "c894e0c1cfaeb226123104792045e8b7531b5339a1dd6eb253ea64394536231c",
+          "byteSize": 34560
+        },
+        {
+          "text": "label",
+          "file": "2247975f7adf07b5f29ae58dba99ad1fcd31bcd63dbafa72926a2780442fd16b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2247975f7adf07b5f29ae58dba99ad1fcd31bcd63dbafa72926a2780442fd16b.mp3",
+          "contentHash": "f01015a3c6da9f562a608bf692ce17f02e2ca775425af09a0d4fb55443783084",
+          "byteSize": 13440
+        }
+      ]
+    },
+    "l08/s38/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Don’t panic.",
+          "file": "80b8f4eb7358d8ee056e89f948c5f4c887c6ebbf25f90d2fccb27ffe1719e539.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80b8f4eb7358d8ee056e89f948c5f4c887c6ebbf25f90d2fccb27ffe1719e539.mp3",
+          "contentHash": "477c9e878803446dd495b80dc303d9d2e732cbe3063169d9a3af08a7c02b6da2",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l08/s38/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Don’t touch this.",
+          "file": "7055bcb0a58f977a8ecbe6094389690ce0a88bf7fe6fe5be397654f5f10f9738.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7055bcb0a58f977a8ecbe6094389690ce0a88bf7fe6fe5be397654f5f10f9738.mp3",
+          "contentHash": "2a5e748187744fc3f5d19482f023f18837bcf5ed8b2e981e4dd0a69ac36a3587",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s38/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Please don’t rush.",
+          "file": "528995488048d0d3d90a15bf8baf941dd5c098b6321a919521a6efb469587d3a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/528995488048d0d3d90a15bf8baf941dd5c098b6321a919521a6efb469587d3a.mp3",
+          "contentHash": "b4efdcc3f081b9fa6e7a3b987d811a796a22d11ee824dfdbbfb9b71f7943caa7",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l08/s38/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Please don’t rush.",
+          "file": "c705b7f9fd60668999a8cdf0a0028992df5ac31e320fba215d0fd15e3543c6a2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c705b7f9fd60668999a8cdf0a0028992df5ac31e320fba215d0fd15e3543c6a2.mp3",
+          "contentHash": "21d9c798d7297a360679ee6f816214679a804c3e5fb9552aeb6333b2f11d0168",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l08/s38/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Don’t panic.",
+          "file": "102312e7b323d5ff8eea4902e4143abd4539d09640d653050f21195fd6cad188.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/102312e7b323d5ff8eea4902e4143abd4539d09640d653050f21195fd6cad188.mp3",
+          "contentHash": "0f31da6ec5b1e0e9cd4ddc0e45a723ee061ff2508452484d67e360e28003fb61",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s38/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "iron",
+          "file": "b2b809f46b3fbb82754ddf8933120d8126ede150bd6388a327e76a9848295e3f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b2b809f46b3fbb82754ddf8933120d8126ede150bd6388a327e76a9848295e3f.mp3",
+          "contentHash": "4cdc2c52e6255d196ca16fb961e82c0f285f80d0024de31635c1108e46eda43b",
+          "byteSize": 14976
+        },
+        {
+          "text": "panic",
+          "file": "59e32cd3cacb783f725d92509112c8946815d6d800b7d3af2de19b69ed597f32.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/59e32cd3cacb783f725d92509112c8946815d6d800b7d3af2de19b69ed597f32.mp3",
+          "contentHash": "943c3a5ff85061ab17ae94f59265d967537a717b643a66ccc5c85db1b6ec1bb2",
+          "byteSize": 34560
+        },
+        {
+          "text": "rest",
+          "file": "5c6b7c545a265675facf29a860685ee7e129200bb260ebf5ff6664ccaeae9c5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c6b7c545a265675facf29a860685ee7e129200bb260ebf5ff6664ccaeae9c5d.mp3",
+          "contentHash": "c894e0c1cfaeb226123104792045e8b7531b5339a1dd6eb253ea64394536231c",
+          "byteSize": 34560
+        },
+        {
+          "text": "bike shed",
+          "file": "d66c5a3fab56f7d75deb9b7befb9a67309cdcf560b658039c2b53066c81e6ff5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d66c5a3fab56f7d75deb9b7befb9a67309cdcf560b658039c2b53066c81e6ff5.mp3",
+          "contentHash": "810b35695698f991c03c45989dd7da0b7b3a1fb4e61d0ea676111a8c3fd86c1a",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l08/s38/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Please don’t rush.",
+          "file": "528995488048d0d3d90a15bf8baf941dd5c098b6321a919521a6efb469587d3a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/528995488048d0d3d90a15bf8baf941dd5c098b6321a919521a6efb469587d3a.mp3",
+          "contentHash": "b4efdcc3f081b9fa6e7a3b987d811a796a22d11ee824dfdbbfb9b71f7943caa7",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l08/s38/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Label it.",
+          "file": "080a02bcef921a7e9e0db6d2b3661c3f35cbb7a28f5dbbe08123e7c413545c0b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/080a02bcef921a7e9e0db6d2b3661c3f35cbb7a28f5dbbe08123e7c413545c0b.mp3",
+          "contentHash": "c456083bb112d83ab8c85123ac78ce9e3322055779a8c80475e41c31f3517f6c",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s38/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often iron.",
+          "file": "4e9cbb20159f4bb43b71e4259aca8825d1bb9488c734ce5f3d04a8006f0f40df.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4e9cbb20159f4bb43b71e4259aca8825d1bb9488c734ce5f3d04a8006f0f40df.mp3",
+          "contentHash": "4083270b6c588b3f0d830492bd2b2f325929d149d4a22dce72cec0b94d25423a",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l08/s38/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Don’t touch this.",
+          "file": "6934348fe0d82178bcb4a570fd8d66462e599fe5415cd76e4602135faa46030d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6934348fe0d82178bcb4a570fd8d66462e599fe5415cd76e4602135faa46030d.mp3",
+          "contentHash": "6c2b7be33209e4c377ec65cf11fbd3b581dd811673c461edfae9a72ce21466b4",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s38/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Don’t rush.",
+          "file": "b93cd40f1d4e75018cd3cbef853181d41917489f3ca12518f7dd6b7c5f702f7a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b93cd40f1d4e75018cd3cbef853181d41917489f3ca12518f7dd6b7c5f702f7a.mp3",
+          "contentHash": "9e2c48d3b77a5680fa5c68660b9f3897fedd5fcfc7d42f5a7d5adedc93c09aa5",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s38/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "panic",
+          "file": "ebecfa047b72f9be73a74098dcc3084f49d60e1b5b641fbc74eb6b74581ea763.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebecfa047b72f9be73a74098dcc3084f49d60e1b5b641fbc74eb6b74581ea763.mp3",
+          "contentHash": "fcd1cf47dcc49b1566f15c89fa3c9ceeea3383a6e2a1937a08a75650861919ac",
+          "byteSize": 44160
+        },
+        {
+          "text": "iron",
+          "file": "539ce7d33a363e7e25edd8158eb420ff83d62e81842537556f656a04a60c4e5e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/539ce7d33a363e7e25edd8158eb420ff83d62e81842537556f656a04a60c4e5e.mp3",
+          "contentHash": "76994bda2f05b493532f6c1252f7373516b2a05fe0297e4bd4d42b0b615d242c",
+          "byteSize": 23040
+        },
+        {
+          "text": "label",
+          "file": "4446e013446f4578f3ba76936a2deaf983566bc7035f8be48e388276258b9c5f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4446e013446f4578f3ba76936a2deaf983566bc7035f8be48e388276258b9c5f.mp3",
+          "contentHash": "3124066698c416155afa360354ad726595aae4c7effa91a1c263c2660b5118c4",
+          "byteSize": 17280
+        },
+        {
+          "text": "bike shed",
+          "file": "dddfe6b14e8da2811b14b8dc17ce0efaf1fd26dd6f5292a613f6d62b58c5abb5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dddfe6b14e8da2811b14b8dc17ce0efaf1fd26dd6f5292a613f6d62b58c5abb5.mp3",
+          "contentHash": "223b88035de4b53b54678dbe0ea4288d061fddf91ef2be1aedec8a2648eea148",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l08/s38/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Don’t panic.",
+          "file": "1a8d4c8cfba5ac2ca44386200c7034c44bfbbe7f3608a7378812c1a3784fc06d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a8d4c8cfba5ac2ca44386200c7034c44bfbbe7f3608a7378812c1a3784fc06d.mp3",
+          "contentHash": "6c78462f4f54df8bbec95a62f5b4c7798a6a4af7d0fff0ca2708c9558279b416",
+          "byteSize": 20352
+        }
+      ]
     }
   },
   "settings": {

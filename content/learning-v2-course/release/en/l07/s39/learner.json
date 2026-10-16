@@ -1,0 +1,943 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я обычно занимаюсь выпечкой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно занимаюсь выпечкой»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually bake.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно занимаюсь выпечкой»",
+          "uk": "Скажіть «Я зазвичай займаюся випічкою»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "bake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-39:i02:r1",
+          "text": "bake"
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i02:r2",
+          "text": "cycle"
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i02:r3",
+          "text": "visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-39:i02:audio",
+          "transcript": "bake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-39:i02:r1",
+            "targetText": "bake",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i02:r2",
+            "targetText": "cycle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i02:r3",
+            "targetText": "visit",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `bake`, а в этом варианте — `cycle`.",
+              "uk": "У записі перше слово — `bake`, а в цьому варіанті — `cycle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `bake`, а в этом варианте — `visit`.",
+              "uk": "У записі перше слово — `bake`, а в цьому варіанті — `visit`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я обычно занимаюсь выпечкой»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-39:i03:r1",
+          "text": "bake"
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i03:r2",
+          "text": "bakes"
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i03:r3",
+          "text": "baking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно занимаюсь выпечкой»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно занимаюсь выпечкой»",
+          "uk": "Скажіть «Я зазвичай займаюся випічкою»"
+        },
+        "gappedTargetPhrase": "I usually ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i03:r1",
+            "text": "bake"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i03:r2",
+            "text": "bakes"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i03:r3",
+            "text": "baking"
+          }
+        ],
+        "testedDimension": "Скажите «Я обычно занимаюсь выпечкой»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно занимаюсь выпечкой»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `bake`.",
+              "uk": "Після `I` потрібне `bake`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно занимаюсь выпечкой»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `bake`.",
+              "uk": "Тут потрібна форма `bake`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-39:i04:p1",
+            "target": "bake",
+            "meaningByLocale": {
+              "ru": "печь",
+              "uk": "пекти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-39:i04:p2",
+            "target": "cycle",
+            "meaningByLocale": {
+              "ru": "ездить на велосипеде",
+              "uk": "їздити на велосипеді"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-39:i04:p3",
+            "target": "bottles",
+            "meaningByLocale": {
+              "ru": "бутылки",
+              "uk": "пляшки"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-39:i04:p4",
+            "target": "violin",
+            "meaningByLocale": {
+              "ru": "скрипка",
+              "uk": "скрипка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bake",
+          "cycle",
+          "bottles",
+          "violin"
+        ],
+        "rightColumn": [
+          "печь",
+          "ездить на велосипеде",
+          "бутылки",
+          "скрипка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-39:i05:audio",
+          "transcript": "I usually bake."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually bake.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "bake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о дороге на работу: «Я обычно езжу на велосипеде»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о дороге на работу: «Я обычно езжу на велосипеде»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually cycle.",
+        "localizedMeaning": {
+          "ru": "Расскажите о дороге на работу: «Я обычно езжу на велосипеде»",
+          "uk": "Розкажіть про дорогу на роботу: «Я зазвичай їжджу на велосипеді»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "cycle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о знакомой «Она часто звонит»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-39:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите о знакомой «Она часто звонит»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-39:i07:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She often calls.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она часто звонит»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-39:i08:r1",
+          "text": "calls"
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i08:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i08:r3",
+          "text": "calling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она часто звонит»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она часто звонит»",
+          "uk": "Скажіть «Вона часто телефонує»"
+        },
+        "gappedTargetPhrase": "She often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i08:r1",
+            "text": "calls"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i08:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i08:r3",
+            "text": "calling"
+          }
+        ],
+        "testedDimension": "Скажите «Она часто звонит»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она часто звонит»",
+            "feedbackByLocale": {
+              "ru": "После `she` нужно `calls`.",
+              "uk": "Після `she` потрібне `calls`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она часто звонит»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `calls`.",
+              "uk": "Тут потрібна форма `calls`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-39:i09:r1",
+          "text": "I usually bake."
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i09:r2",
+          "text": "I usually walk."
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i09:r3",
+          "text": "I usually cycle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-39:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-39:i09:audio",
+          "transcript": "I usually bake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-39:i09:r1",
+            "targetText": "I usually bake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i09:r2",
+            "targetText": "I usually walk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i09:r3",
+            "targetText": "I usually cycle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bake`, а в этом варианте — `walk`.",
+              "uk": "У записі останнє слово — `bake`, а в цьому варіанті — `walk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bake`, а в этом варианте — `cycle`.",
+              "uk": "У записі останнє слово — `bake`, а в цьому варіанті — `cycle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-39:i10:p1",
+            "target": "visit",
+            "meaningByLocale": {
+              "ru": "посещать",
+              "uk": "відвідувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-39:i10:p2",
+            "target": "bake",
+            "meaningByLocale": {
+              "ru": "печь",
+              "uk": "пекти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-39:i10:p3",
+            "target": "bottles",
+            "meaningByLocale": {
+              "ru": "бутылки",
+              "uk": "пляшки"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-39:i10:p4",
+            "target": "cycle",
+            "meaningByLocale": {
+              "ru": "ездить на велосипеде",
+              "uk": "їздити на велосипеді"
+            }
+          }
+        ],
+        "leftColumn": [
+          "visit",
+          "bake",
+          "bottles",
+          "cycle"
+        ],
+        "rightColumn": [
+          "посещать",
+          "печь",
+          "бутылки",
+          "ездить на велосипеде"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-39:i11:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She often calls.",
+        "orderedTokens": [
+          "She",
+          "often",
+          "calls"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы обсуждаете музыкальные инструменты. Спросите подругу «У тебя есть скрипка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы обсуждаете музыкальные инструменты. Спросите подругу «У тебя есть скрипка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a violin?",
+        "localizedMeaning": {
+          "ru": "Вы обсуждаете музыкальные инструменты. Спросите подругу «У тебя есть скрипка?»",
+          "uk": "Ви обговорюєте музичні інструменти. Запитайте подругу «У тебе є скрипка?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "violin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга «Ты посещаешь парки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Спросите друга «Ты посещаешь парки?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-39:i13:audio",
+          "transcript": "Do you visit parks?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you visit parks?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я обычно езжу на велосипеде»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-39:i14:r1",
+          "text": "usually"
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я обычно езжу на велосипеде»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно езжу на велосипеде»",
+          "uk": "Скажіть «Я зазвичай їжджу на велосипеді»"
+        },
+        "gappedTargetPhrase": "I ___ cycle.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажите «Я обычно езжу на велосипеде»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-39:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно езжу на велосипеде»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually` перед `cycle`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `cycle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я обычно езжу на велосипеде»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually`; `am` перед `cycle` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `cycle` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-39:i15:r1",
+          "text": "Do you have bottles?"
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i15:r2",
+          "text": "Do you have tickets?"
+        },
+        {
+          "responseId": "en:lesson-07:session-39:i15:r3",
+          "text": "Do you have maps?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-39:i15:audio",
+          "transcript": "Do you have bottles?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-39:i15:r1",
+            "targetText": "Do you have bottles?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i15:r2",
+            "targetText": "Do you have tickets?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i15:r3",
+            "targetText": "Do you have maps?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-39:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bottles`, а в этом варианте — `tickets`.",
+              "uk": "У записі останнє слово — `bottles`, а в цьому варіанті — `tickets`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bottles`, а в этом варианте — `maps`.",
+              "uk": "У записі останнє слово — `bottles`, а в цьому варіанті — `maps`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-39:i16:p1",
+            "target": "bake",
+            "meaningByLocale": {
+              "ru": "печь",
+              "uk": "пекти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-39:i16:p2",
+            "target": "violin",
+            "meaningByLocale": {
+              "ru": "скрипка",
+              "uk": "скрипка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-39:i16:p3",
+            "target": "visit",
+            "meaningByLocale": {
+              "ru": "посещать",
+              "uk": "відвідувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-39:i16:p4",
+            "target": "bottles",
+            "meaningByLocale": {
+              "ru": "бутылки",
+              "uk": "пляшки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bake",
+          "violin",
+          "visit",
+          "bottles"
+        ],
+        "rightColumn": [
+          "печь",
+          "скрипка",
+          "посещать",
+          "бутылки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, чем Том обычно занимается дома в выходные. Скажите «Том обычно занимается выпечкой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, чем Том обычно занимается дома в выходные. Скажите «Том обычно занимается выпечкой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-39:i17:audio",
+          "transcript": "Tom usually bakes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom usually bakes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "71e637d7fe956643501c392e30b9db1c15f53ef26b0e0b0ebb5e7526f9f346f0"
+}

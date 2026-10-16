@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-42:i01",
+    "correctText": "I usually decorate the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i02",
+    "correctText": "decorate",
+    "correctResponseId": "en:lesson-07:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i03",
+    "correctText": "decorate",
+    "correctResponseId": "en:lesson-07:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i04",
+    "correctText": "en:lesson-07:session-42:i04:p1=decorate\nen:lesson-07:session-42:i04:p2=share\nen:lesson-07:session-42:i04:p3=bathroom\nen:lesson-07:session-42:i04:p4=scooter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i05",
+    "correctText": "I usually decorate the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i06",
+    "correctText": "We share a scooter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i07",
+    "correctText": "I often volunteer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i08",
+    "correctText": "share",
+    "correctResponseId": "en:lesson-07:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i09",
+    "correctText": "I usually decorate the room.",
+    "correctResponseId": "en:lesson-07:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i10",
+    "correctText": "en:lesson-07:session-42:i10:p1=volunteer\nen:lesson-07:session-42:i10:p2=decorate\nen:lesson-07:session-42:i10:p3=bathroom\nen:lesson-07:session-42:i10:p4=share",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i11",
+    "correctText": "We share a scooter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i12",
+    "correctText": "Do you have a scooter?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i13",
+    "correctText": "The bathroom is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i14",
+    "correctText": "often",
+    "correctResponseId": "en:lesson-07:session-42:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i15",
+    "correctText": "The bathroom is here.",
+    "correctResponseId": "en:lesson-07:session-42:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i16",
+    "correctText": "en:lesson-07:session-42:i16:p1=decorate\nen:lesson-07:session-42:i16:p2=scooter\nen:lesson-07:session-42:i16:p3=volunteer\nen:lesson-07:session-42:i16:p4=bathroom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:i17",
+    "correctText": "Tom usually decorates the room.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "использовать usually и often перед привычными действиями",
+    "uk": "використовувати usually й often перед звичними діями"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Комната к празднику",
+        "uk": "Кімната до свята"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, кто обычно украшает комнату перед домашними праздниками. `decorate` — «украшать». `I usually decorate the room` — «Я обычно украшаю комнату». `Usually` стоит перед `decorate`. Комната известна собеседникам, поэтому `the room`. Даже стул может почувствовать себя праздничным, если рядом появилась гирлянда.",
+        "uk": "Друг запитує, хто зазвичай прикрашає кімнату перед домашніми святами. `decorate` — «прикрашати». `I usually decorate the room` — «Я зазвичай прикрашаю кімнату». `Usually` стоїть перед `decorate`. Кімната відома співрозмовникам, тому `the room`. Навіть стілець може відчути себе святковим, якщо поруч з’явилася гірлянда."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте другу: «Я обычно украшаю комнату».",
+          "uk": "Відповідайте другові: «Я зазвичай прикрашаю кімнату»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-42:intro1:r1",
+              "text": "I usually decorate the room."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro1:r2",
+              "text": "I usually decorates the room."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro1:r3",
+              "text": "I usually decorating the room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-42:intro1:r1",
+              "text": "I usually decorate the room."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro1:r2",
+              "text": "I usually decorates the room."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro1:r3",
+              "text": "I usually decorating the room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте другу: «Я обычно украшаю комнату».",
+          "uk": "Відповідайте другові: «Я зазвичай прикрашаю кімнату»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Один самокат на двоих",
+        "uk": "Один самокат на двох"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом пользуетесь одним самокатом. `We share a scooter` — «Мы пользуемся одним самокатом вместе». `Share` здесь означает совместное пользование: самокат один, и вы можете брать его по очереди. После `we` используем `share`, без `s`.",
+        "uk": "Ви з другом користуєтеся одним самокатом. `We share a scooter` — «Ми користуємося одним самокатом разом». `Share` тут означає спільне користування: самокат один, і ви можете брати його по черзі. Після `we` використовуємо `share`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Объясните: «Мы пользуемся одним самокатом вместе».",
+          "uk": "Поясніть: «Ми користуємося одним самокатом разом»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-42:intro2:r1",
+              "text": "We share a scooter."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro2:r2",
+              "text": "We shares a scooter."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro2:r3",
+              "text": "We sharing a scooter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-42:intro2:r1",
+              "text": "We share a scooter."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro2:r2",
+              "text": "We shares a scooter."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro2:r3",
+              "text": "We sharing a scooter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните: «Мы пользуемся одним самокатом вместе».",
+          "uk": "Поясніть: «Ми користуємося одним самокатом разом»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Помощь организации",
+        "uk": "Допомога організації"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, часто ли вы помогаете местной организации без оплаты. `I often volunteer` — «Я часто помогаю как волонтёр». `Often` стоит перед действием `volunteer`.",
+        "uk": "Друг запитує, чи часто ви допомагаєте місцевій організації без оплати. `I often volunteer` — «Я часто допомагаю як волонтер». `Often` стоїть перед дією `volunteer`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте: «Я часто помогаю как волонтёр».",
+          "uk": "Відповідайте: «Я часто допомагаю як волонтер»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-42:intro3:r1",
+              "text": "I often volunteer."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro3:r2",
+              "text": "I often volunteers."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro3:r3",
+              "text": "I often volunteering."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-42:intro3:r1",
+              "text": "I often volunteer."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro3:r2",
+              "text": "I often volunteers."
+            },
+            {
+              "responseId": "en:lesson-07:session-42:intro3:r3",
+              "text": "I often volunteering."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте: «Я часто помогаю как волонтёр».",
+          "uk": "Відповідайте: «Я часто допомагаю як волонтер»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "29b64c496511b6b98d13facbfbb81fd9eb1a590d125bae0bba1cafec17c8557d"
+}

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-21",
   "learningOutcomeByLocale": {
-    "ru": "сказать, где человек или компания, и исправить пропущенные am, is, are в знакомых фразах",
-    "uk": "сказати, де людина чи компанія, і виправити пропущені am, is, are у знайомих фразах"
+    "ru": "описать зал, столик и сумку; исправить пропущенные am, is, are в коротких фразах",
+    "uk": "описати залу, столик і сумку; виправити пропущені am, is, are в коротких фразах"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Уже внутри",
-        "uk": "Уже всередині"
+        "ru": "В зале тесно",
+        "uk": "У залі тісно"
       },
       "bodyByLocale": {
-        "ru": "`inside` — «внутри». Вы уже вошли в клуб: `I am inside` — «Я внутри». По-русски можно обойтись двумя словами. По-английски здесь нужно и `am`: билет проверяют у входа, а `am` из фразы всё равно не выпускаем.",
-        "uk": "`inside` — «всередині». Ви вже зайшли до клубу: `I am inside` — «Я всередині». Українською можна обійтися двома словами. Англійською тут потрібне й `am`: квиток перевіряють на вході, а `am` із фрази все одно не випускаємо."
+        "ru": "Вы заглянули в зал: люди стоят вплотную, свободного места почти нет. crowded — «переполненный людьми, многолюдный». Про зал скажите It is crowded — «В нём много людей», «Там тесно». Здесь недостаточно It crowded: между It и crowded нужно is.",
+        "uk": "Ви зазирнули до зали: люди стоять впритул, вільного місця майже немає. crowded — «переповнений людьми, багатолюдний». Про залу скажіть It is crowded — «У ній багато людей», «Там тісно». Тут недостатньо It crowded: між It і crowded потрібне is."
       },
       "question": {
         "interactionId": "en:lesson-01:session-21:intro1:q",
         "promptByLocale": {
-          "ru": "Вы уже в здании. Исправьте сообщение другу «I inside».",
-          "uk": "Ви вже в будівлі. Виправте повідомлення другові «I inside»."
+          "ru": "Вы пишете другу о переполненном зале. Исправьте сообщение «It crowded».",
+          "uk": "Ви пишете другові про переповнену залу. Виправте повідомлення «It crowded»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-21:intro1:r1",
-              "text": "I am inside."
+              "text": "It is crowded."
             },
             {
               "responseId": "en:lesson-01:session-21:intro1:r2",
-              "text": "I is inside."
+              "text": "It are crowded."
             },
             {
               "responseId": "en:lesson-01:session-21:intro1:r3",
-              "text": "I are inside."
+              "text": "It am crowded."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-21:intro1:r1",
-              "text": "I am inside."
+              "text": "It is crowded."
             },
             {
               "responseId": "en:lesson-01:session-21:intro1:r2",
-              "text": "I is inside."
+              "text": "It are crowded."
             },
             {
               "responseId": "en:lesson-01:session-21:intro1:r3",
-              "text": "I are inside."
+              "text": "It am crowded."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже в здании. Исправьте сообщение другу «I inside».",
-          "uk": "Ви вже в будівлі. Виправте повідомлення другові «I inside»."
+          "ru": "Вы пишете другу о переполненном зале. Исправьте сообщение «It crowded».",
+          "uk": "Ви пишете другові про переповнену залу. Виправте повідомлення «It crowded»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Снаружи",
-        "uk": "Зовні"
+        "ru": "За столиком никого",
+        "uk": "За столиком нікого"
       },
       "bodyByLocale": {
-        "ru": "`outside` — «снаружи». Друзья ждут перед входом: `They are outside` — «Они снаружи». Это противоположно `inside`. Если вы стоите вместе с ними, говорите `We are outside` — «Мы снаружи».",
-        "uk": "`outside` — «зовні». Друзі чекають перед входом: `They are outside` — «Вони зовні». Це протилежне до `inside`. Якщо ви стоїте разом із ними, кажіть `We are outside` — «Ми зовні»."
+        "ru": "Вы нашли столик, за которым никто не сидит и ничего не лежит. empty — «пустой». It is empty — «Он пустой». Фраза описывает то, что вы видите; она не гарантирует, что столик не забронирован.",
+        "uk": "Ви знайшли столик, за яким ніхто не сидить і нічого не лежить. empty — «порожній». It is empty — «Він порожній». Фраза описує те, що ви бачите; вона не гарантує, що столик не заброньований."
       },
       "question": {
         "interactionId": "en:lesson-01:session-21:intro2:q",
         "promptByLocale": {
-          "ru": "Двое друзей ждут перед входом, ещё не заходили. Скажите про них.",
-          "uk": "Двоє друзів чекають перед входом, іще не заходили. Скажіть про них."
+          "ru": "Друг спрашивает, есть ли кто-нибудь за найденным столиком. Скажите, что он пустой.",
+          "uk": "Друг запитує про знайдений столик. Скажіть, що столик порожній."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-21:intro2:r1",
-              "text": "They are outside."
+              "text": "It is empty."
             },
             {
               "responseId": "en:lesson-01:session-21:intro2:r2",
-              "text": "They are inside."
+              "text": "It is crowded."
             },
             {
               "responseId": "en:lesson-01:session-21:intro2:r3",
-              "text": "They is outside."
+              "text": "It are empty."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-21:intro2:r1",
-              "text": "They are outside."
+              "text": "It is empty."
             },
             {
               "responseId": "en:lesson-01:session-21:intro2:r2",
-              "text": "They are inside."
+              "text": "It is crowded."
             },
             {
               "responseId": "en:lesson-01:session-21:intro2:r3",
-              "text": "They is outside."
+              "text": "It are empty."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Двое друзей ждут перед входом, ещё не заходили. Скажите про них.",
-          "uk": "Двоє друзів чекають перед входом, іще не заходили. Скажіть про них."
+          "ru": "Друг спрашивает, есть ли кто-нибудь за найденным столиком. Скажите, что он пустой.",
+          "uk": "Друг запитує про знайдений столик. Скажіть, що столик порожній."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "На верхнем этаже",
-        "uk": "На верхньому поверсі"
+        "ru": "Сумка помещается",
+        "uk": "Сумка вміщується"
       },
       "bodyByLocale": {
-        "ru": "`upstairs` — «наверху, на верхнем этаже». Подруга уже поднялась на второй этаж: `She is upstairs` — «Она наверху». В этой фразе слово говорит о месте, а не о движении по лестнице. После `She` остаётся `is`.",
-        "uk": "`upstairs` — «нагорі, на верхньому поверсі». Подруга вже піднялася на другий поверх: `She is upstairs` — «Вона нагорі». У цій фразі слово говорить про місце, а не про рух сходами. Після `She` залишається `is`."
+        "ru": "В гардеробе осталась маленькая ячейка. Ваша сумка легко в неё помещается. small — «маленький». Про сумку скажите It is small — «Она маленькая». Русское «она» здесь не превращается в She: для сумки используем It. Для трёхнедельного отпуска сумка маловата, а для билета и телефона — в самый раз.",
+        "uk": "У гардеробі залишилася маленька комірка. Ваша сумка легко в неї вміщується. small — «маленький». Про сумку скажіть It is small — «Вона маленька». Українське «вона» тут не перетворюється на She: для сумки використовуємо It. Для тритижневої відпустки сумка замала, а для квитка й телефона — саме те."
       },
       "question": {
         "interactionId": "en:lesson-01:session-21:intro3:q",
         "promptByLocale": {
-          "ru": "Подруга ждёт на втором этаже. Исправьте сообщение о ней «She upstairs».",
-          "uk": "Подруга чекає на другому поверсі. Виправте повідомлення про неї «She upstairs»."
+          "ru": "Объясните гардеробщику, что ваша сумка маленькая. Исправьте «It small».",
+          "uk": "Поясніть гардеробникові, що ваша сумка маленька. Виправте «It small»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-21:intro3:r1",
-              "text": "She is upstairs."
+              "text": "It is small."
             },
             {
               "responseId": "en:lesson-01:session-21:intro3:r2",
-              "text": "She are upstairs."
+              "text": "She is small."
             },
             {
               "responseId": "en:lesson-01:session-21:intro3:r3",
-              "text": "She is outside."
+              "text": "It am small."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-21:intro3:r1",
-              "text": "She is upstairs."
+              "text": "It is small."
             },
             {
               "responseId": "en:lesson-01:session-21:intro3:r2",
-              "text": "She are upstairs."
+              "text": "She is small."
             },
             {
               "responseId": "en:lesson-01:session-21:intro3:r3",
-              "text": "She is outside."
+              "text": "It am small."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга ждёт на втором этаже. Исправьте сообщение о ней «She upstairs».",
-          "uk": "Подруга чекає на другому поверсі. Виправте повідомлення про неї «She upstairs»."
+          "ru": "Объясните гардеробщику, что ваша сумка маленькая. Исправьте «It small».",
+          "uk": "Поясніть гардеробникові, що ваша сумка маленька. Виправте «It small»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2968cc735e0b1b40168567e012ec854da980d65d044d965f39b8c0638ef0f3ec"
+  "introFingerprint": "cccd9008addb9780a502220f8f0d144f00fc4d4ee018bb66b0b8671bd449f1c3"
 }

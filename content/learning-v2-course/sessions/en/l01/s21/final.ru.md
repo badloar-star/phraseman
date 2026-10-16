@@ -1,138 +1,155 @@
 # Английский · Урок 1 · Занятие 21 — Встречаемся перед концертом
 
-**Ситуация.** Вы с друзьями пришли на концерт в двухэтажном клубе. По телефону объясняете, кто уже внутри, кто ещё снаружи и кто поднялся наверх.
+**Ситуация.** Вы с друзьями пришли на концерт в двухэтажном клубе. Выбираете место, проверяете свободный столик и оставляете вещи в гардеробе.
 
-**Что вы освоите:** сказать, где человек или компания, и исправить пропущенные am, is, are в знакомых фразах
-**Новые слова:** inside, outside, upstairs
+**Что вы освоите:** описать зал, столик и сумку; исправить пропущенные am, is, are в коротких фразах
+**Новые слова:** crowded, empty, small, noisy
+**Возвращаются:** inside, outside, upstairs, prepared, careful, big, clean
 
 ---
 
 ## Интро 1
 
-### Уже внутри
+### В зале тесно
 
-`inside` — «внутри». Вы уже вошли в клуб: `I am inside` — «Я внутри». По-русски можно обойтись двумя словами. По-английски здесь нужно и `am`: билет проверяют у входа, а `am` из фразы всё равно не выпускаем.
+Вы заглянули в зал: люди стоят вплотную, свободного места почти нет. crowded — «переполненный людьми, многолюдный». Про зал скажите It is crowded — «В нём много людей», «Там тесно». Здесь недостаточно It crowded: между It и crowded нужно is.
 
-**Вы уже в здании. Исправьте сообщение другу «I inside».**
+**Вы пишете другу о переполненном зале. Исправьте сообщение «It crowded».**
 
-- ✅ **I am inside.**
-- ❌ I is inside. — *После `I` нужна форма `am`.*
-- ❌ I are inside. — *С `I` используем `am`, а не `are`.*
+- ✅ **It is crowded.**
+- ❌ It are crowded. — *После It нужно is.*
+- ❌ It am crowded. — *am используем с I; здесь It is.*
 
 ---
 
 ## Интро 2
 
-### Снаружи
+### За столиком никого
 
-`outside` — «снаружи». Друзья ждут перед входом: `They are outside` — «Они снаружи». Это противоположно `inside`. Если вы стоите вместе с ними, говорите `We are outside` — «Мы снаружи».
+Вы нашли столик, за которым никто не сидит и ничего не лежит. empty — «пустой». It is empty — «Он пустой». Фраза описывает то, что вы видите; она не гарантирует, что столик не забронирован.
 
-**Двое друзей ждут перед входом, ещё не заходили. Скажите про них.**
+**Друг спрашивает, есть ли кто-нибудь за найденным столиком. Скажите, что он пустой.**
 
-- ✅ **They are outside.**
-- ❌ They are inside. — *`inside` — «внутри», а друзья ещё снаружи: `outside`.*
-- ❌ They is outside. — *После `They` нужно `are`.*
+- ✅ **It is empty.**
+- ❌ It is crowded. — *crowded — о множестве людей, а за столиком никого нет.*
+- ❌ It are empty. — *После It нужно is.*
 
 ---
 
 ## Интро 3
 
-### На верхнем этаже
+### Сумка помещается
 
-`upstairs` — «наверху, на верхнем этаже». Подруга уже поднялась на второй этаж: `She is upstairs` — «Она наверху». В этой фразе слово говорит о месте, а не о движении по лестнице. После `She` остаётся `is`.
+В гардеробе осталась маленькая ячейка. Ваша сумка легко в неё помещается. small — «маленький». Про сумку скажите It is small — «Она маленькая». Русское «она» здесь не превращается в She: для сумки используем It. Для трёхнедельного отпуска сумка маловата, а для билета и телефона — в самый раз.
 
-**Подруга ждёт на втором этаже. Исправьте сообщение о ней «She upstairs».**
+**Объясните гардеробщику, что ваша сумка маленькая. Исправьте «It small».**
 
-- ✅ **She is upstairs.**
-- ❌ She are upstairs. — *После `She` нужно `is`.*
-- ❌ She is outside. — *`outside` — «снаружи». Подруга на верхнем этаже: `upstairs`.*
+- ✅ **It is small.**
+- ❌ She is small. — *She — о человеке. Про сумку здесь нужно It.*
+- ❌ It am small. — *После It нужно is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Соберите исправленное сообщение о себе «I inside»: вы уже внутри клуба**
+**1 · Карточка слова — crowded**
+<!-- interaction_id: en:lesson-01:session-21:word:crowded; family: word_card -->
+> **crowded** — переполненный людьми, многолюдный. It is crowded — «Там много людей», «Там тесно»: например, в концертном зале.
+
+**2 · Карточка слова — empty**
+<!-- interaction_id: en:lesson-01:session-21:word:empty; family: word_card -->
+> **empty** — пустой. It is empty — «Он пустой»: например, столик без людей и вещей.
+
+**3 · Карточка слова — small**
+<!-- interaction_id: en:lesson-01:session-21:word:small; family: word_card -->
+> **small** — маленький. It is small — «Она маленькая»: например, сумка, которая помещается в небольшую ячейку.
+
+**4 · Карточка слова — noisy**
+<!-- interaction_id: en:lesson-01:session-21:word:noisy; family: word_card -->
+> **noisy** — шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.
+
+**5 · В зале почти нет свободного места. Исправьте сообщение «It crowded»**
 <!-- interaction_id: en:lesson-01:session-21:i01; family: phrase_builder -->
-Плитки: `inside` `am` `I` `are` → **I am inside.**
-*(плитка `are` лишняя: здесь нужно `am` — `I am inside.`)*
+Плитки: `crowded` `is` `It` `am` → **It is crowded.**
+Плитка `am` лишняя: после It нужно is.
 
-**2 · Послушайте и выберите услышанное**
+**6 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-21:i02; family: listen_choose -->
-🔊 *They are outside.* → **They are outside.** · We are outside. · They are upstairs.
-- We are outside. — *В записи первое слово — `They`, а в этом варианте — `We`.*
-- They are upstairs. — *В записи последнее слово — `outside`, а в этом варианте — `upstairs`.*
+🔊 *It is noisy.* → **It is noisy.** · It is small. · It is empty.
+- It is small. — *В записи noisy, а не small.*
+- It is empty. — *В записи noisy, а не empty.*
 
-**3 · Вставьте пропущенное слово — подруга на втором этаже**
+**7 · Вставьте слово — в комнате для отдыха никого нет: «Она пустая»**
 <!-- interaction_id: en:lesson-01:session-21:i03; family: context_gap_grammar -->
-She ___ upstairs. → **is** · am · are
-- am — *После `She` нужно `is`; `am` ставим с `I`.*
-- are — *Начало `She` требует здесь `is`.*
+It ___ empty. → **is** · am · are
+- am — *После It нужно is; am используется с I.*
+- are — *В этой фразе It is.*
 
-**4 · Соедините слова со значениями**
+**8 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-21:i04; family: speed_match -->
-inside — внутри · outside — снаружи · upstairs — на верхнем этаже · lost — заблудившийся
+crowded — переполненный людьми · empty — пустой · small — маленький · noisy — шумный
 
-**5 · Послушайте и соберите фразу**
+**9 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-01:session-21:i05; family: listen_build_dictation -->
-🔊 *We are upstairs.* Плитки: `upstairs` `are` `We` `They` → **We are upstairs.**
-*(плитка `They` лишняя: здесь нужно `We` — `We are upstairs.`)*
+🔊 *It is small.* Плитки: `small` `is` `It` `are` → **It is small.**
+Плитка `are` лишняя: после It нужно is.
 
-**6 · Друг ждёт перед входом. Исправьте его описание «He outside», собрав полную фразу**
+**10 · Ваша бутылка опустела: внутри ничего нет. Соберите фразу о ней: «Она пустая»**
 <!-- interaction_id: en:lesson-01:session-21:i06; family: phrase_builder -->
-Плитки: `outside` `is` `He` `am` → **He is outside.**
-*(плитка `am` лишняя: здесь нужно `is` — `He is outside.`)*
+Плитки: `empty` `is` `It` `am` → **It is empty.**
+Плитка `am` лишняя: после It нужно is.
 
-**7 · Вы с подругой уже вошли в клуб. Скажите за вас обеих: «Мы внутри»**
+**11 · Двое зрителей рядом громко разговаривают и смеются. Скажите другу о них: «Они шумные»**
 <!-- interaction_id: en:lesson-01:session-21:i07; family: scripted_repeat_compare -->
-🎙 **We are inside.**
+🎙 **They are noisy.**
 
-**8 · Вставьте слово — вы объясняете другу, где он сейчас: «Ты наверху»**
+**12 · Вставьте слово — вы объясняете другу, где он сейчас: «Ты наверху»**
 <!-- interaction_id: en:lesson-01:session-21:i08; family: context_gap_grammar -->
 You ___ upstairs. → **are** · is · am
 - is — *Обращаясь к другу, говорим `You are`.*
 - am — *`am` нужно с `I`. После `You` ставим `are`.*
 
-**9 · Послушайте сообщение о подруге**
+**13 · Послушайте сообщение о подруге**
 <!-- interaction_id: en:lesson-01:session-21:i09; family: listen_choose -->
 🔊 *She is inside.* → **She is inside.** · He is inside. · She is outside.
 - He is inside. — *В записи первое слово — `She`, а в этом варианте — `He`.*
 - She is outside. — *В записи последнее слово — `inside`, а в этом варианте — `outside`.*
 
-**10 · Соедините знакомые слова и значения**
+**14 · Соедините слова и значения**
 <!-- interaction_id: en:lesson-01:session-21:i10; family: speed_match -->
 prepared — подготовленный · careful — осторожный · small — маленький · big — большой
 
-**11 · Послушайте и соберите услышанное**
+**15 · Послушайте и соберите услышанное**
 <!-- interaction_id: en:lesson-01:session-21:i11; family: listen_build_dictation -->
 🔊 *I am outside.* Плитки: `outside` `am` `I` `is` → **I am outside.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am outside.`)*
 
-**12 · Двое друзей ждут на втором этаже. Исправьте «They is upstairs», собрав верную фразу**
+**16 · Двое друзей ждут на втором этаже. Исправьте «They is upstairs», собрав верную фразу**
 <!-- interaction_id: en:lesson-01:session-21:i12; family: phrase_builder -->
 Плитки: `upstairs` `are` `They` `is` → **They are upstairs.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are upstairs.`)*
 
-**13 · Вы показываете другу чистый стол. Скажите о столе: «Он чистый»**
+**17 · Вы показываете другу чистый стол. Скажите о столе: «Он чистый»**
 <!-- interaction_id: en:lesson-01:session-21:i13; family: scripted_repeat_compare -->
 🎙 **It is clean.**
 
-**14 · Друг ещё перед входом на улице. Дополните: «Он снаружи»**
+**18 · Друг ещё перед входом на улице. Дополните: «Он снаружи»**
 <!-- interaction_id: en:lesson-01:session-21:i14; family: context_gap_grammar -->
 He is ___ . → **outside** · inside · upstairs
 - inside — *`inside` — «внутри». Друг ещё на улице: `outside`.*
 - upstairs — *`upstairs` — «на верхнем этаже». Друг перед входом: `outside`.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-01:session-21:i15; family: listen_choose -->
 🔊 *You are prepared.* → **You are prepared.** · We are prepared. · You are careful.
 - We are prepared. — *В записи первое слово — `You`, а в этом варианте — `We`.*
 - You are careful. — *В записи последнее слово — `prepared`, а в этом варианте — `careful`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-01:session-21:i16; family: speed_match -->
 clean — чистый · inside — внутри · outside — снаружи · upstairs — наверху, на верхнем этаже
 
-**17 · Вы пришли к соседу в двухэтажный дом. Его брат ждёт на втором этаже. Скажите соседу, где брат: «Он наверху»**
+**21 · Вы осматриваете квартиру. В спальне совсем нет мебели. Скажите человеку рядом о комнате: «Она пустая»**
 <!-- interaction_id: en:lesson-01:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **He is upstairs.**
+🎙 **It is empty.**
 

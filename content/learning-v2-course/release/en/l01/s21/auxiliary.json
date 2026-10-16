@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-21:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-21:intro1:r2": {
-          "ru": "После `I` нужна форма `am`.",
-          "uk": "Після `I` потрібна форма `am`."
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
         },
         "en:lesson-01:session-21:intro1:r3": {
-          "ru": "С `I` используем `am`, а не `are`.",
-          "uk": "Із `I` вживаємо `am`, а не `are`."
+          "ru": "am используем с I; здесь It is.",
+          "uk": "am уживаємо з I; тут It is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-21:intro2:r2": {
-          "ru": "`inside` — «внутри», а друзья ещё снаружи: `outside`.",
-          "uk": "`inside` — «всередині», а друзі ще зовні: `outside`."
+          "ru": "crowded — о множестве людей, а за столиком никого нет.",
+          "uk": "crowded — про велику кількість людей, а за столиком нікого немає."
         },
         "en:lesson-01:session-21:intro2:r3": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-21:intro3:r2": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "She — о человеке. Про сумку здесь нужно It.",
+          "uk": "She — про людину. Про сумку тут потрібне It."
         },
         "en:lesson-01:session-21:intro3:r3": {
-          "ru": "`outside` — «снаружи». Подруга на верхнем этаже: `upstairs`.",
-          "uk": "`outside` — «зовні». Подруга на верхньому поверсі: `upstairs`."
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "46ba21243894e815cf0aacf5834283f5767f23a549d61223e2fdc1fab41df38c"
+  "auxiliaryFingerprint": "872201ff0671f312064fab6a5e870c44849f6aad13aa164a4555973df04c066b"
 }

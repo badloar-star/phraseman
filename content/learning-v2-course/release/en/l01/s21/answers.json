@@ -1,12 +1,32 @@
 [
   {
+    "interactionId": "en:lesson-01:session-21:word:crowded",
+    "correctText": "crowded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:word:empty",
+    "correctText": "empty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:word:small",
+    "correctText": "small",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:word:noisy",
+    "correctText": "noisy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-21:i01",
-    "correctText": "I am inside.",
+    "correctText": "It is crowded.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-21:i02",
-    "correctText": "They are outside.",
+    "correctText": "It is noisy.",
     "correctResponseId": "en:lesson-01:session-21:i02:r1"
   },
   {
@@ -16,22 +36,22 @@
   },
   {
     "interactionId": "en:lesson-01:session-21:i04",
-    "correctText": "en:lesson-01:session-21:i04:p1=inside\nen:lesson-01:session-21:i04:p2=outside\nen:lesson-01:session-21:i04:p3=upstairs\nen:lesson-01:session-21:i04:p4=lost",
+    "correctText": "en:lesson-01:session-21:i04:p1=crowded\nen:lesson-01:session-21:i04:p2=empty\nen:lesson-01:session-21:i04:p3=small\nen:lesson-01:session-21:i04:p4=noisy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-21:i05",
-    "correctText": "We are upstairs.",
+    "correctText": "It is small.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-21:i06",
-    "correctText": "He is outside.",
+    "correctText": "It is empty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-21:i07",
-    "correctText": "We are inside.",
+    "correctText": "They are noisy.",
     "correctResponseId": null
   },
   {
@@ -81,7 +101,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-21:i17",
-    "correctText": "He is upstairs.",
+    "correctText": "It is empty.",
     "correctResponseId": null
   }
 ]

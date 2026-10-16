@@ -73492,6 +73492,309 @@
           "byteSize": 31488
         }
       ]
+    },
+    "l05/s19/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The tablet is mine.",
+          "file": "9d3b05a78a5f9f32e712e7df49ede897473209ec9cdd9d8de6aaf490cfe4d5d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9d3b05a78a5f9f32e712e7df49ede897473209ec9cdd9d8de6aaf490cfe4d5d1.mp3",
+          "contentHash": "bc96aebec0609de6fe3d97b7f7c7f3d73ab16f5168f7d4f699f2aea0051fc34a",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s19/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She is nearby.",
+          "file": "290ad5eb0fd4306fb1cffaccbf68bdb66881a847436a58ba82cd3ac63f7465f6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/290ad5eb0fd4306fb1cffaccbf68bdb66881a847436a58ba82cd3ac63f7465f6.mp3",
+          "contentHash": "5ba0d269b4d965046cdb8961c18dc6055b59bae66721ad8300cc053ea5e60acb",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s19/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bags are ours.",
+          "file": "831d54ac4bf4551aa0832883e94e13d651d873a1c4bb0e435811ca9169ef7b8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/831d54ac4bf4551aa0832883e94e13d651d873a1c4bb0e435811ca9169ef7b8c.mp3",
+          "contentHash": "c24bb69cf537d1eaabe3015bd0d5ca2f23d2bc062a9029775b163b54badcebcd",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s19/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "We are together.",
+          "file": "12e9030a333cddfd3a42cd6d24e9193f124e028d9bddb2f5e4168c1b0ad992ff.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/50339389fdc5bfea082c6fe8-ash.mp3",
+          "contentHash": "802c948ef160a5744bc8dd93bfcb5f82f724bb58e889ac0d2de5ac9c7afc8243",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s19/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "tablet",
+          "file": "6f585fb80495d58e1bb26c788e85aa8b57dc4c484b0c00e01c900473873695bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6f585fb80495d58e1bb26c788e85aa8b57dc4c484b0c00e01c900473873695bb.mp3",
+          "contentHash": "942251bbc5c204656f6e8535fe0a252188e7fdd467f9e371dee9ee6fa622a1e9",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s19/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "tablet",
+          "file": "5446640be0b35346a212a76e6077db3fa7199af0dafaffcd2754d64612bbbe3f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5446640be0b35346a212a76e6077db3fa7199af0dafaffcd2754d64612bbbe3f.mp3",
+          "contentHash": "03951d0eae32c91e22a7875a1209e9746d2b3f71b10210b3f4f52c6f9b019b35",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s19/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "tablet",
+          "file": "cb67bc36fa4dba7a5c566396cbbca30488fed1237a746e24ff28fd1b591bb6f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cb67bc36fa4dba7a5c566396cbbca30488fed1237a746e24ff28fd1b591bb6f3.mp3",
+          "contentHash": "45120a8aa34f4e653abc88c8a8cad6d6aec5ef4d81301105d11d7a91bc1216e2",
+          "byteSize": 16512
+        },
+        {
+          "text": "together",
+          "file": "3f474dbf37cd21654661a1490c06ed14152691dc7f5acd7fd8f3e567b2be692d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0c24734d7bf5954f08e5bfe4-ash.mp3",
+          "contentHash": "62dd4612a6b596da3e7ff8a3fa4ca255e28f955076981682909533df49428c00",
+          "byteSize": 24576
+        },
+        {
+          "text": "alone",
+          "file": "4eb050d8fcc7a0b09b83506c1db78653df54b672c0d76381e74f2b4bc7faadb6.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/facf8b54e5c0b8c426bb1c4b-ash.mp3",
+          "contentHash": "01233e90db059ed4805202a7a4f99ebd392bbffcdcf2eeb411c5feb65b34b014",
+          "byteSize": 21120
+        },
+        {
+          "text": "nearby",
+          "file": "d2907e21369bc7e0f3b4e1d96535e6e5265ef35b7451761c1e9eb8297cdad0bf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2907e21369bc7e0f3b4e1d96535e6e5265ef35b7451761c1e9eb8297cdad0bf.mp3",
+          "contentHash": "ca97760cdce133a4892ed1472247a84cd4db166f4fc68e93b9f876b1b7682af3",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s19/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "My tablet is in your backpack.",
+          "file": "81229dc3c14f9cceba3e4a7623b89bc958d670b5cbfec2567d22a0fa7fde82a3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81229dc3c14f9cceba3e4a7623b89bc958d670b5cbfec2567d22a0fa7fde82a3.mp3",
+          "contentHash": "47d9f5ded0b564183465f05fe93963a17764f7b9e8f9b4d011f659a4c43c1aa4",
+          "byteSize": 59520
+        }
+      ]
+    },
+    "l05/s19/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The bags are ours.",
+          "file": "b73df01800c385f73c8e8e3cedc37e83a9bb429a08d2dd462ccc9bd6817d9616.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b73df01800c385f73c8e8e3cedc37e83a9bb429a08d2dd462ccc9bd6817d9616.mp3",
+          "contentHash": "959031b916f0599fa8c251fadaefc85dd359d0a2855a0a0b739c722800945c29",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s19/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am alone.",
+          "file": "ca2ec765921dad1fa4f0b74bfea9127d0e5c64d9dbbb29368b8f2c8b8972aa5f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca2ec765921dad1fa4f0b74bfea9127d0e5c64d9dbbb29368b8f2c8b8972aa5f.mp3",
+          "contentHash": "ba190ed3725b2614ff460c10414cc97a48018f62640db515dde060f96e08a4b3",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s19/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The tablet is his.",
+          "file": "6835e41e6a6086bfc0753d0ff5121db84034f5f9df030f8288d110a356655023.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6835e41e6a6086bfc0753d0ff5121db84034f5f9df030f8288d110a356655023.mp3",
+          "contentHash": "f7fd6dcd8963ebd371e5349c5cdc649b558ec9ac37e02682024b24ea8161bad9",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s19/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She is nearby.",
+          "file": "630072302d1f1ea5d81cdc51879ab57215332c7b6b38f37afd589bbd0deb423d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/630072302d1f1ea5d81cdc51879ab57215332c7b6b38f37afd589bbd0deb423d.mp3",
+          "contentHash": "96c706be01b1dd539743781d17eaac93e7d477eb31ade7eb75bc07408a1a392d",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s19/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "tablet",
+          "file": "cb67bc36fa4dba7a5c566396cbbca30488fed1237a746e24ff28fd1b591bb6f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cb67bc36fa4dba7a5c566396cbbca30488fed1237a746e24ff28fd1b591bb6f3.mp3",
+          "contentHash": "45120a8aa34f4e653abc88c8a8cad6d6aec5ef4d81301105d11d7a91bc1216e2",
+          "byteSize": 16512
+        },
+        {
+          "text": "bags",
+          "file": "d21b2e0645b28928ed37a08199dc95acda1d46ed2dcf6e533c0522f81f12da0f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d21b2e0645b28928ed37a08199dc95acda1d46ed2dcf6e533c0522f81f12da0f.mp3",
+          "contentHash": "7f0d41335f44225fa2d9cba0534fcb7f72a237ce5481d819c79977edd41c4d06",
+          "byteSize": 20352
+        },
+        {
+          "text": "soup",
+          "file": "bf8a4e111de8a8d8d95f9e3bec5e042b91a46af96ed8b8ef7da5705aa90c0637.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf8a4e111de8a8d8d95f9e3bec5e042b91a46af96ed8b8ef7da5705aa90c0637.mp3",
+          "contentHash": "c995a357bd948f1b1b609448121a8f7432c6b65ac6881826c0ed6699e8a1d764",
+          "byteSize": 34560
+        },
+        {
+          "text": "backpack",
+          "file": "c7c69994856c22fc71b6d5e54e8228a3884ad3232f7dfd28098467a403830fa4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5f00368a6ad231c3c439c4f6-ash.mp3",
+          "contentHash": "82c1469f9917d268215105e26d86e430f774c06d54e578a29a6e65fd5b69b102",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s19/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is my tablet?",
+          "file": "06bc5e236fe66265eef00c1f771a8b9face06ff388426205a55c481ab3d79a57.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/06bc5e236fe66265eef00c1f771a8b9face06ff388426205a55c481ab3d79a57.mp3",
+          "contentHash": "bb4e655d4c670d900b8d7b78f8ef25fe25c5d1b84c09c5dd52724d7c90d99bac",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s19/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is no soup.",
+          "file": "492ba2eacdb698d615e77322018977cc5320c89f6baf14c53faa4e8fb0ca7f08.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/492ba2eacdb698d615e77322018977cc5320c89f6baf14c53faa4e8fb0ca7f08.mp3",
+          "contentHash": "e514970554858b98fcd083053427df8e1988ef59e0321803838d56902abd1dc6",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s19/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your tablet.",
+          "file": "50337451971d2b3d26dbbc82477a2c5f83149ae26f991a8a1d42609f93a95ec4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50337451971d2b3d26dbbc82477a2c5f83149ae26f991a8a1d42609f93a95ec4.mp3",
+          "contentHash": "406111fc61a795a81708b3225e8e3956f2c9c38622dece961c519ac25c1f93a6",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s19/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The backpack is hers.",
+          "file": "5bd07f0c05d587f2b8af2dc748b790308d3435665a20c2b6503fa0be6a34283e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5bd07f0c05d587f2b8af2dc748b790308d3435665a20c2b6503fa0be6a34283e.mp3",
+          "contentHash": "e0097809f1fc21687cdd9b06b081a766ab4800d9eaa9c87791cc59f6261ce1da",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s19/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The tablet is yours.",
+          "file": "084844e430cdc5b1781ba55e97e044ceabcf2b4b52b3a591b6382b99cd718730.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/084844e430cdc5b1781ba55e97e044ceabcf2b4b52b3a591b6382b99cd718730.mp3",
+          "contentHash": "dff3915b40f8795704d85692d87ea1d3e00e946115ec8d7229217e4a0961e78f",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s19/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "tablet",
+          "file": "b3c3680ca6ffb1731aa0835955951be07fcfb901e677b0cff8e99ee7015b28da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3c3680ca6ffb1731aa0835955951be07fcfb901e677b0cff8e99ee7015b28da.mp3",
+          "contentHash": "20b2e963ec30f26cf08bd1fed0add57569ffc8e4f4bedf3f62492a16b2d79273",
+          "byteSize": 22656
+        },
+        {
+          "text": "bags",
+          "file": "9466e3170851eaa07234f4dcceab66c1f3335ef85370df5056650bec1e314d1b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9466e3170851eaa07234f4dcceab66c1f3335ef85370df5056650bec1e314d1b.mp3",
+          "contentHash": "f6ca719ff1fafbec527b2d80a54bfe10c30e25dc2459f4420c2c6c8759b2eb04",
+          "byteSize": 25344
+        },
+        {
+          "text": "soup",
+          "file": "0f288870fa666815f0f5ff9dacdf5281370d4e0fd3c4bccdc0571343db1c9289.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f288870fa666815f0f5ff9dacdf5281370d4e0fd3c4bccdc0571343db1c9289.mp3",
+          "contentHash": "5092d2dd55c5c8f38f84b79734c79bf11da844c3d763f78c9d0c672c47db3c7c",
+          "byteSize": 19584
+        },
+        {
+          "text": "backpack",
+          "file": "b57e855086cf7ae8a03d7bc8b572f3703368abee335bd581dbced403d9017f48.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5f00368a6ad231c3c439c4f6-nova.mp3",
+          "contentHash": "bb14a8d621c99f2f01fec600f6134e848830e2eb34544ec236589dbcbc9cadb8",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l05/s19/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The tablet is mine.",
+          "file": "67eb80f5071a85d94e6b4eb1758009e68f60de136def7f422ba2428d08a12c5a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/67eb80f5071a85d94e6b4eb1758009e68f60de136def7f422ba2428d08a12c5a.mp3",
+          "contentHash": "ddc9acc21daf950eae7b7d14029721fee9efcfb2943cc39c8eed048f11da32e4",
+          "byteSize": 31488
+        }
+      ]
     }
   },
   "settings": {

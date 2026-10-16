@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о привычке звонить близким и о человеке в отъезде",
+    "uk": "розповісти про звичку телефонувати близьким і про людину у від’їзді"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Звонить кому-то",
+        "uk": "Телефонувати комусь"
+      },
+      "bodyByLocale": {
+        "ru": "`call` — «звонить» по телефону. `I call my mother` — «Я звоню маме». После `call` сразу называем человека: `my mother`, без `to`. Телефон соединяет вас с мамой, а лишнее `to` ему не помогает. `She calls her mother` — «Она звонит своей маме»: после `she` добавляем `s`.",
+        "uk": "`call` — «телефонувати». `I call my mother` — «Я телефоную мамі». Після `call` одразу називаємо людину: `my mother`, без `to`. Телефон з’єднує вас із мамою, а зайве `to` йому не допомагає. `She calls her mother` — «Вона телефонує своїй мамі»: після `she` додаємо `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я звоню маме».",
+          "uk": "Скажіть «Я телефоную мамі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-29:intro1:r1",
+              "text": "I call my mother."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro1:r2",
+              "text": "I call to my mother."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro1:r3",
+              "text": "I calls my mother."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-29:intro1:r1",
+              "text": "I call my mother."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro1:r2",
+              "text": "I call to my mother."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro1:r3",
+              "text": "I calls my mother."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я звоню маме».",
+          "uk": "Скажіть «Я телефоную мамі»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мама в отъезде",
+        "uk": "Мама у від’їзді"
+      },
+      "bodyByLocale": {
+        "ru": "`away` — «не здесь», в отъезде или вне привычного места. `My mother is away` — «Моя мама в отъезде». Это не обязательно «далеко»: важно, что её сейчас нет здесь. `She calls her mother` описывает привычку Анны поддерживать связь; фраза не утверждает, что звонок идёт прямо сейчас. `write` — «писать»: `He writes at home` — «Он пишет дома».",
+        "uk": "`away` — «не тут», у від’їзді або поза звичним місцем. `My mother is away` — «Моя мама у від’їзді». Це не обов’язково «далеко»: важливо, що її зараз немає тут. `She calls her mother` описує звичку Анни підтримувати зв’язок; фраза не стверджує, що дзвінок триває просто зараз. `write` — «писати»: `He writes at home` — «Він пише вдома»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Моя мама в отъезде».",
+          "uk": "Скажіть «Моя мама у від’їзді»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-29:intro2:r1",
+              "text": "My mother is away."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro2:r2",
+              "text": "My mother are away."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro2:r3",
+              "text": "My mother away."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-29:intro2:r1",
+              "text": "My mother is away."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro2:r2",
+              "text": "My mother are away."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro2:r3",
+              "text": "My mother away."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Моя мама в отъезде».",
+          "uk": "Скажіть «Моя мама у від’їзді»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "На остановке",
+        "uk": "На зупинці"
+      },
+      "bodyByLocale": {
+        "ru": "`bus stop` — «автобусная остановка», `skateboard` — «скейтборд». `We are at the bus stop` — «Мы на автобусной остановке». `Whose skateboard is this?` — «Чей это скейтборд?» `They write here` — «Они пишут здесь»: после `they` используем `write` без `s`.",
+        "uk": "`bus stop` — «автобусна зупинка», `skateboard` — «скейтборд». `We are at the bus stop` — «Ми на автобусній зупинці». `Whose skateboard is this?` — «Чий це скейтборд?» `They write here` — «Вони пишуть тут»: після `they` використовуємо `write` без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мы на автобусной остановке».",
+          "uk": "Скажіть «Ми на автобусній зупинці»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-29:intro3:r1",
+              "text": "We are at the bus stop."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro3:r2",
+              "text": "We is at the bus stop."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro3:r3",
+              "text": "We at the bus stop."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-29:intro3:r1",
+              "text": "We are at the bus stop."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro3:r2",
+              "text": "We is at the bus stop."
+            },
+            {
+              "responseId": "en:lesson-06:session-29:intro3:r3",
+              "text": "We at the bus stop."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мы на автобусной остановке».",
+          "uk": "Скажіть «Ми на автобусній зупинці»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2264469d67ca3f4821cb02f86ba293114c1042807694861ff906fe01ea2bed26"
+}

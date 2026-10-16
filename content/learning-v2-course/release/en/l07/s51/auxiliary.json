@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-51:intro1:r2": {
+          "ru": "После `I` нужно `dance`.",
+          "uk": "Після `I` потрібне `dance`."
+        },
+        "en:lesson-07:session-51:intro1:r3": {
+          "ru": "Здесь нужна форма `dance`.",
+          "uk": "Тут потрібна форма `dance`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-51:intro2:r2": {
+          "ru": "С `you` нужно `do`.",
+          "uk": "З `you` потрібне `do`."
+        },
+        "en:lesson-07:session-51:intro2:r3": {
+          "ru": "После `do you` нужно `sell`.",
+          "uk": "Після `do you` потрібне `sell`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-51:intro3:r2": {
+          "ru": "Стадион один: нужно `is`.",
+          "uk": "Стадіон один: потрібне `is`."
+        },
+        "en:lesson-07:session-51:intro3:r3": {
+          "ru": "В этом вопросе `is` стоит перед `the stadium`.",
+          "uk": "У цьому запитанні `is` стоїть перед `the stadium`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cd20b493baa93393773bd0026dcc0533fa4caeeb7ef9a54c7631d07f671ce873"
+}

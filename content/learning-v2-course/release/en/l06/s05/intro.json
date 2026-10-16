@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "назвать брелок, спросить о владельце и рассказать о месте работы",
+    "uk": "назвати брелок, запитати про власника й розповісти про місце роботи"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Маленькая вещь для ключей",
+        "uk": "Маленька річ для ключів"
+      },
+      "bodyByLocale": {
+        "ru": "`keychain` — «брелок», небольшая вещь, которую прикрепляют к ключам. `This is my keychain` — «Это мой брелок». `Whose keychain is this?` — «Чей это брелок?» `The keychain is mine` — «Брелок мой». Брелок помогает узнать ключи, но сам дверь открывать не обязан.",
+        "uk": "`keychain` — «брелок», невелика річ, яку прикріплюють до ключів. `This is my keychain` — «Це мій брелок». `Whose keychain is this?` — «Чий це брелок?» `The keychain is mine` — «Брелок мій». Брелок допомагає впізнати ключі, але сам двері відчиняти не зобов’язаний."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце брелока.",
+          "uk": "Запитайте про власника брелока."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-05:intro1:r1",
+              "text": "Whose keychain is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro1:r2",
+              "text": "Where is the keychain?"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro1:r3",
+              "text": "Whose keychain are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-05:intro1:r1",
+              "text": "Whose keychain is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro1:r2",
+              "text": "Where is the keychain?"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro1:r3",
+              "text": "Whose keychain are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце брелока.",
+          "uk": "Запитайте про власника брелока."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "В ящике стола",
+        "uk": "У шухляді столу"
+      },
+      "bodyByLocale": {
+        "ru": "`drawer` — «ящик», выдвижная часть мебели. `The keychain is in the drawer` — «Брелок в ящике». `real` — «настоящий»: `This is a real key` — «Это настоящий ключ», а не его игрушечная копия. `That keychain is yours` — «Тот брелок твой»: `that` указывает на вещь дальше от говорящего.",
+        "uk": "`drawer` — «шухляда», висувна частина меблів. `The keychain is in the drawer` — «Брелок у шухляді». `real` — «справжній»: `This is a real key` — «Це справжній ключ», а не його іграшкова копія. `That keychain is yours` — «Той брелок твій»: `that` указує на річ далі від мовця."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Это настоящий ключ».",
+          "uk": "Скажіть «Це справжній ключ»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-05:intro2:r1",
+              "text": "This is a real key."
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro2:r2",
+              "text": "This are a real key."
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro2:r3",
+              "text": "This is a keychain."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-05:intro2:r1",
+              "text": "This is a real key."
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro2:r2",
+              "text": "This are a real key."
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro2:r3",
+              "text": "This is a keychain."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Это настоящий ключ».",
+          "uk": "Скажіть «Це справжній ключ»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Работа и ориентир",
+        "uk": "Робота й орієнтир"
+      },
+      "bodyByLocale": {
+        "ru": "`supermarket` — «супермаркет», `court` — спортивный «корт». `I work in a supermarket` — «Я работаю в супермаркете». Перед `work` в этой фразе не нужно `am`. `The supermarket is near the court` — «Супермаркет возле корта». `I have a keychain` — «У меня есть брелок».",
+        "uk": "`supermarket` — «супермаркет», `court` — спортивний «корт». `I work in a supermarket` — «Я працюю в супермаркеті». Перед `work` у цій фразі не потрібне `am`. `The supermarket is near the court` — «Супермаркет біля корту». `I have a keychain` — «У мене є брелок»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я работаю в супермаркете».",
+          "uk": "Скажіть «Я працюю в супермаркеті»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-05:intro3:r1",
+              "text": "I work in a supermarket."
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro3:r2",
+              "text": "I am work in a supermarket."
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro3:r3",
+              "text": "I work in a bank."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-05:intro3:r1",
+              "text": "I work in a supermarket."
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro3:r2",
+              "text": "I am work in a supermarket."
+            },
+            {
+              "responseId": "en:lesson-06:session-05:intro3:r3",
+              "text": "I work in a bank."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я работаю в супермаркете».",
+          "uk": "Скажіть «Я працюю в супермаркеті»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f770b9db1c0d61a8e13c706fefa8ac51f438ba4cacfc1c8484d92ba9a70a6c28"
+}

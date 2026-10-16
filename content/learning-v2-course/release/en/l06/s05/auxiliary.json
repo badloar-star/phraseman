@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-05:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-06:session-05:intro1:r3": {
+          "ru": "Один брелок: `is this`.",
+          "uk": "Один брелок: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-05:intro2:r2": {
+          "ru": "Один ключ: `This is`.",
+          "uk": "Один ключ: `This is`."
+        },
+        "en:lesson-06:session-05:intro2:r3": {
+          "ru": "Это «Это брелок»; нужен настоящий ключ: `a real key`.",
+          "uk": "Це «Це брелок»; потрібен справжній ключ: `a real key`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-05:intro3:r2": {
+          "ru": "Здесь действие: `I work`, без `am`.",
+          "uk": "Тут дія: `I work`, без `am`."
+        },
+        "en:lesson-06:session-05:intro3:r3": {
+          "ru": "`bank` — банк; супермаркет — `supermarket`.",
+          "uk": "`bank` — банк; супермаркет — `supermarket`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "22508ae63c8cb53c8aacf122ec3f708f0599db1495b9b0b7c33c4448ca837192"
+}

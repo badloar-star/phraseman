@@ -81673,6 +81673,309 @@
           "byteSize": 31488
         }
       ]
+    },
+    "l05/s46/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the ferry?",
+          "file": "c650e67a9649def137fc9b4a7093c66a2f5c829fbc8bcdc0179f548111ed4c33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c650e67a9649def137fc9b4a7093c66a2f5c829fbc8bcdc0179f548111ed4c33.mp3",
+          "contentHash": "79770094629cd04976f9a8852f190553036992a77dc5290130b280e9101cd0c2",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l05/s46/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The laptop is hers.",
+          "file": "908559e74564586bf894f886adc38c0915f0689ae9df24080957588be7390918.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/908559e74564586bf894f886adc38c0915f0689ae9df24080957588be7390918.mp3",
+          "contentHash": "bf106ce64caa74f8c459f4fad28a0e57389c75c30d0d5f22e9002ab33755aa30",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s46/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This laptop is useless.",
+          "file": "a01af215079307982b853db898b90d9627760353429d8e163bef43e290e2eb46.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a01af215079307982b853db898b90d9627760353429d8e163bef43e290e2eb46.mp3",
+          "contentHash": "a14a50580550ad8edd0174438116da29e7309756feba8662d22289becd0d49da",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s46/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This laptop is useless.",
+          "file": "95d0c4f53b7b7bec2c9de488ab214e75e92986f4da8a4e0db3c56e4362920335.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/95d0c4f53b7b7bec2c9de488ab214e75e92986f4da8a4e0db3c56e4362920335.mp3",
+          "contentHash": "e5d2cda05dcf13fb020bdc78f6994b3a97a6ed0b311ae527902d8413b658b58b",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s46/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "ferry",
+          "file": "dfa05497309b68c7669d1539d2c0ee113a2a5a0d4870cdb51819ff05ec468a05.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dfa05497309b68c7669d1539d2c0ee113a2a5a0d4870cdb51819ff05ec468a05.mp3",
+          "contentHash": "8ae507cca484ddc90a4d314d291822c06d3d7b974f8756955782e99526745475",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s46/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "ferry",
+          "file": "e30ead6d3808d090739894299cde3d65e8fc2845adb68e1dd32fb76ea622d164.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e30ead6d3808d090739894299cde3d65e8fc2845adb68e1dd32fb76ea622d164.mp3",
+          "contentHash": "38f21207b7a5114bbc2cd5881d07ec32e11c857b51023fad1767e31e2e1373a2",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l05/s46/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "ferry",
+          "file": "dfa05497309b68c7669d1539d2c0ee113a2a5a0d4870cdb51819ff05ec468a05.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dfa05497309b68c7669d1539d2c0ee113a2a5a0d4870cdb51819ff05ec468a05.mp3",
+          "contentHash": "8ae507cca484ddc90a4d314d291822c06d3d7b974f8756955782e99526745475",
+          "byteSize": 26880
+        },
+        {
+          "text": "laptop",
+          "file": "000c2f7b27b588f90cba3a4817fdc4db352801a65c44cc0075c573bd0d492fcc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/000c2f7b27b588f90cba3a4817fdc4db352801a65c44cc0075c573bd0d492fcc.mp3",
+          "contentHash": "150b87b88a606d1d9bd2b5ec1cbc067c9067d0c4ba409f689e72e7461c5638af",
+          "byteSize": 19584
+        },
+        {
+          "text": "airport",
+          "file": "359275e49bd6d6274571db6a1181911bd1ad5bd7af2f462e4f8cbaff770431d6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/359275e49bd6d6274571db6a1181911bd1ad5bd7af2f462e4f8cbaff770431d6.mp3",
+          "contentHash": "0f3f41c31a76ca21a8dc3a263c4d10f0357de643b43f35e56a2a3280bb4ba8fc",
+          "byteSize": 17280
+        },
+        {
+          "text": "pantry",
+          "file": "7ce051fd61bae7a12c65acc223d1518c7e80db21343fa64cdbcf37b159765d30.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7ce051fd61bae7a12c65acc223d1518c7e80db21343fa64cdbcf37b159765d30.mp3",
+          "contentHash": "e53b6acb04df562a4fd7a55143ccbe7e4a2667dc9217071c4d780fe52505e3e8",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s46/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the ferry?",
+          "file": "e5bd1231e657446998f4da4ccb1d1f5e8ca1d0cdad387fceffcfc5d6550b6259.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e5bd1231e657446998f4da4ccb1d1f5e8ca1d0cdad387fceffcfc5d6550b6259.mp3",
+          "contentHash": "0da55783df84167c034137fb69b01a3cfcd74afe5bdcda7c18bc93ade341b1cc",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s46/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bag is in the pantry.",
+          "file": "ef0e1e71b53930ed9f52be9cbedfc5b723d4e2372f0bfbdea7928deffe0cae9e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef0e1e71b53930ed9f52be9cbedfc5b723d4e2372f0bfbdea7928deffe0cae9e.mp3",
+          "contentHash": "2b1bfb596949df2dd06195301ac184443e2bf411c0b9c1dfbf191d9877c59ee7",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s46/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The ferry is here.",
+          "file": "07c9cbebe29f57f542e216fc619df705f8c7e1ecb77e0e18f32027e8441e600e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07c9cbebe29f57f542e216fc619df705f8c7e1ecb77e0e18f32027e8441e600e.mp3",
+          "contentHash": "5cec409e0232eb2862f33fdda8256ddef0e0393585560583e920ebfe407cd2a2",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s46/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose laptop is this?",
+          "file": "523ea228b9138aef937ae3754d5fd92fd986ae09e73392c94006ea0999495ee8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/523ea228b9138aef937ae3754d5fd92fd986ae09e73392c94006ea0999495ee8.mp3",
+          "contentHash": "b9ec6fedc39f855c656dfc9c431ca4c7c7604b4b20d15d471eb6cba1a67c2a1f",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s46/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is Anna's laptop.",
+          "file": "3721a8ee07cf48abf25d42717cc36ea75d0720851b68673cbdd7bb6e8ccb9f00.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3721a8ee07cf48abf25d42717cc36ea75d0720851b68673cbdd7bb6e8ccb9f00.mp3",
+          "contentHash": "466f1dac5fbb0afab42599c91773d59284772e156950cf8184e2a31419c31c4c",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s46/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "ferry",
+          "file": "e30ead6d3808d090739894299cde3d65e8fc2845adb68e1dd32fb76ea622d164.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e30ead6d3808d090739894299cde3d65e8fc2845adb68e1dd32fb76ea622d164.mp3",
+          "contentHash": "38f21207b7a5114bbc2cd5881d07ec32e11c857b51023fad1767e31e2e1373a2",
+          "byteSize": 17280
+        },
+        {
+          "text": "useless",
+          "file": "4918704f52aad5b629c00e588c8834753c61683aafc6d800a62af4b07476aefc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4918704f52aad5b629c00e588c8834753c61683aafc6d800a62af4b07476aefc.mp3",
+          "contentHash": "e2c1672db431fe558388ad89b913debe7fa46782104246e02ababf61252e22b5",
+          "byteSize": 30720
+        },
+        {
+          "text": "pantry",
+          "file": "b3702ce6ae8b749546ebdd06b4ebdfa81c97b39c3650359dc29df9979b59ab5e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3702ce6ae8b749546ebdd06b4ebdfa81c97b39c3650359dc29df9979b59ab5e.mp3",
+          "contentHash": "1e684ca5ebdfba3764571ec098d38403bfc02b63306a5ed379c7b0babce1a051",
+          "byteSize": 22656
+        },
+        {
+          "text": "laptop",
+          "file": "300004f1c06e6c8ac113570a9efc28485eceb96034a1f4557c4a30fb7896a648.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/300004f1c06e6c8ac113570a9efc28485eceb96034a1f4557c4a30fb7896a648.mp3",
+          "contentHash": "8afdb64987eca77dceb6b70bb2ca60b8e49215734e03048aceb10badaf6044a3",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l05/s46/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom is at the airport.",
+          "file": "3f8b9d03719f2c883753eda3144f8dfb0f34212ed8660519f7a67e3e84652981.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3f8b9d03719f2c883753eda3144f8dfb0f34212ed8660519f7a67e3e84652981.mp3",
+          "contentHash": "9e8d0bfcb86c6152acea397c50ab76bfd2fa6334e7aef019f7d1b785c091ba54",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s46/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The laptop is hers.",
+          "file": "960ea0f65c807343cf6096aad08f24e81ccff125afce346ac767dba4f63fa5dd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/960ea0f65c807343cf6096aad08f24e81ccff125afce346ac767dba4f63fa5dd.mp3",
+          "contentHash": "1cf482ea49b843cd123624f872aa0cd58bbca42f1e8347738d09d1d9e5996cf2",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s46/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I have your laptop.",
+          "file": "4b651e979ae9a52ee32886317ef2aea6149ecb79759b7d2f2a658d6261f69a65.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b651e979ae9a52ee32886317ef2aea6149ecb79759b7d2f2a658d6261f69a65.mp3",
+          "contentHash": "13ccce96f22bc91bf1fb6fbeaa8b44c915da0b53cfdb05d83884a9505ded5cc8",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s46/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the ferry?",
+          "file": "c650e67a9649def137fc9b4a7093c66a2f5c829fbc8bcdc0179f548111ed4c33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c650e67a9649def137fc9b4a7093c66a2f5c829fbc8bcdc0179f548111ed4c33.mp3",
+          "contentHash": "79770094629cd04976f9a8852f190553036992a77dc5290130b280e9101cd0c2",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l05/s46/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Your laptop is here.",
+          "file": "735bf8979f631b58ff126abe1a595828d71c76a1b0aedb565954e4594c0adcd9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/735bf8979f631b58ff126abe1a595828d71c76a1b0aedb565954e4594c0adcd9.mp3",
+          "contentHash": "a7516937afdb248c6334bf13479d4a72a2cea008c56c5a4cf581c1fa824d7687",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s46/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "ferry",
+          "file": "d383f519f86fb1b471a6bf6b907120165832a1c0d062dba29d1e38d96a139d54.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d383f519f86fb1b471a6bf6b907120165832a1c0d062dba29d1e38d96a139d54.mp3",
+          "contentHash": "5b1121060e5344e9e587fa093d9563a76e345f4606572fe073c5847ead14d836",
+          "byteSize": 29184
+        },
+        {
+          "text": "useless",
+          "file": "3874b828336b5d366b4adee06185c5545f44413a1eb2ea281cd818e3baa79a2a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3874b828336b5d366b4adee06185c5545f44413a1eb2ea281cd818e3baa79a2a.mp3",
+          "contentHash": "4cbacfe5c7261c814f10025197b560326b4890a7af3439428fe21e7d04071b22",
+          "byteSize": 19584
+        },
+        {
+          "text": "airport",
+          "file": "0551cfde85b399ef0b40ea1440ccbff5cbed153286b03a6f2094dba84e6c11b8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0551cfde85b399ef0b40ea1440ccbff5cbed153286b03a6f2094dba84e6c11b8.mp3",
+          "contentHash": "eeb8c1708ca478ceb55c0090b54e4d68d279d9d261f3387a53957b25b47f88fa",
+          "byteSize": 22656
+        },
+        {
+          "text": "laptop",
+          "file": "05f57dd2b5a08f5dbb9c7ce45771d03f8cd5b89ca6d86b844ec83ef854202c2a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/05f57dd2b5a08f5dbb9c7ce45771d03f8cd5b89ca6d86b844ec83ef854202c2a.mp3",
+          "contentHash": "2dc9ed9c6ab8a2aa5c414b33a28b91e22c9a0ad1b826c21d3312dedc20cc14e8",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l05/s46/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose laptop is this?",
+          "file": "5b0d2dfc373c8ffbc994c9ea11de5f0febc2edc6d1b25733d1c08594e54bcb07.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5b0d2dfc373c8ffbc994c9ea11de5f0febc2edc6d1b25733d1c08594e54bcb07.mp3",
+          "contentHash": "86f86986adeca71f4a9e7830f0bbc1cdd94f81ba5cb80792bcd616a95d109879",
+          "byteSize": 32640
+        }
+      ]
     }
   },
   "settings": {

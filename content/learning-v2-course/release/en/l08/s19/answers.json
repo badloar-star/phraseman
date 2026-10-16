@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-19:i01",
+    "correctText": "Can you explain it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i02",
+    "correctText": "explain",
+    "correctResponseId": "en:lesson-08:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i03",
+    "correctText": "explain",
+    "correctResponseId": "en:lesson-08:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i04",
+    "correctText": "en:lesson-08:session-19:i04:p1=explain\nen:lesson-08:session-19:i04:p2=soup\nen:lesson-08:session-19:i04:p3=draw\nen:lesson-08:session-19:i04:p4=code",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i05",
+    "correctText": "Can you explain it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i06",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i07",
+    "correctText": "I can’t code.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i08",
+    "correctText": "help",
+    "correctResponseId": "en:lesson-08:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i09",
+    "correctText": "Can you explain it?",
+    "correctResponseId": "en:lesson-08:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i10",
+    "correctText": "en:lesson-08:session-19:i10:p1=complain\nen:lesson-08:session-19:i10:p2=explain\nen:lesson-08:session-19:i10:p3=soup\nen:lesson-08:session-19:i10:p4=draw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i11",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i12",
+    "correctText": "Can you open the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i13",
+    "correctText": "I often draw.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i14",
+    "correctText": "Can",
+    "correctResponseId": "en:lesson-08:session-19:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i15",
+    "correctText": "Can you open the door?",
+    "correctResponseId": "en:lesson-08:session-19:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i16",
+    "correctText": "en:lesson-08:session-19:i16:p1=explain\nen:lesson-08:session-19:i16:p2=complain\nen:lesson-08:session-19:i16:p3=code\nen:lesson-08:session-19:i16:p4=soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:i17",
+    "correctText": "Can you explain it?",
+    "correctResponseId": null
+  }
+]

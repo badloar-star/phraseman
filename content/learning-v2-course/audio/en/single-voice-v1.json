@@ -73795,6 +73795,309 @@
           "byteSize": 31488
         }
       ]
+    },
+    "l05/s20/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The scarf is mine.",
+          "file": "0085f885beb08667a2e652c9503d94b25368f10df4c97605c5310bbd9286504d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0085f885beb08667a2e652c9503d94b25368f10df4c97605c5310bbd9286504d.mp3",
+          "contentHash": "aac3476822035998fef21b1f017db3912cdc2b1136d519e40d8ca9b271259cb1",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s20/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We are prepared.",
+          "file": "2a86c2ee17828a66dbf63821b5ea4f3ee79f321327d8e03c37fa5a9863ec04cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2a86c2ee17828a66dbf63821b5ea4f3ee79f321327d8e03c37fa5a9863ec04cc.mp3",
+          "contentHash": "07569a5a0ff8829c274d342cd3b9e2345937aecb5ae9e33110138c7003bcb304",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l05/s20/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The maps are ours.",
+          "file": "f7da3526bf819751d7c58431611f50aa393e6493e91a47249d53317d580238d9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f7da3526bf819751d7c58431611f50aa393e6493e91a47249d53317d580238d9.mp3",
+          "contentHash": "950c71502e11fc8e054459dd370857aa2165a809c9e56ecd298637e6c7bef28d",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s20/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We are prepared.",
+          "file": "aae2ef4694af5143f744b7c2774f02302c3ef6c365fe2d09019353d4ec89d555.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aae2ef4694af5143f744b7c2774f02302c3ef6c365fe2d09019353d4ec89d555.mp3",
+          "contentHash": "72dde992625a881773724366447e086ec7d775d94213cbe8d449a5fcc153562e",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s20/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "scarf",
+          "file": "b842c8b4dd6a4d27704eae92af31eb309dbb4f01d4fdaa9124a5f6765ca9b4a4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-coral.mp3",
+          "contentHash": "385b751f491565fbc21f180e75973c0241c14e7249d2bce4d3b3fd8f2b11c9a7",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l05/s20/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "scarf",
+          "file": "b842c8b4dd6a4d27704eae92af31eb309dbb4f01d4fdaa9124a5f6765ca9b4a4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-coral.mp3",
+          "contentHash": "385b751f491565fbc21f180e75973c0241c14e7249d2bce4d3b3fd8f2b11c9a7",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l05/s20/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "scarf",
+          "file": "1a2e7035984bb073280cc3e06ebf7905ae31abb7a526b77937f7ed64b943c4bd.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-ash.mp3",
+          "contentHash": "e5bfe1bdb563a051e031e9bc36ed35f332670d420d8d1d8568fe5d0d3ddf6f71",
+          "byteSize": 37248
+        },
+        {
+          "text": "lost",
+          "file": "3f80a75e99578ba5511feb7eecc53a7be78b133ffbb81c7d9d425b74d40cd2fc.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/76f75e6129fe30135bd44d80-ash.mp3",
+          "contentHash": "b0b824537cce821f3f27d0e1b624f59d89fe58f41fea79b9181b9dd2c13a35a7",
+          "byteSize": 31488
+        },
+        {
+          "text": "prepared",
+          "file": "70e3c5cb42e5d9e763c402bf7a11de064668fa743d5c0cef532a6350b94a3282.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/70e3c5cb42e5d9e763c402bf7a11de064668fa743d5c0cef532a6350b94a3282.mp3",
+          "contentHash": "9370f86a103642a939fd81a10857a1097be7f10204539be1742c61dd2de5edae",
+          "byteSize": 17280
+        },
+        {
+          "text": "careful",
+          "file": "218bd3e90f9e8ec4164e49c2146f927794bdc2b8ced45161975485d883d1b1eb.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/191c415261817259c49f435b-ash.mp3",
+          "contentHash": "ab549f6e17404cc8296706dc462f941162874038ee36fe10ba04d7a36b2d7c74",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s20/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Your scarf is here.",
+          "file": "29b0e5cdb786370dfe034fd1ff9ac34b3007fd362a535aa41b385ecbd7dd844b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/29b0e5cdb786370dfe034fd1ff9ac34b3007fd362a535aa41b385ecbd7dd844b.mp3",
+          "contentHash": "4e5c23170d877d827cd4e67b5644ef5de53e5e33bb4f011727da8419f9e69952",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s20/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The maps are ours.",
+          "file": "a180c7630dc5caacf5e686c5955ff16231497203c6e8c3c15babfddb6c00cb61.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a180c7630dc5caacf5e686c5955ff16231497203c6e8c3c15babfddb6c00cb61.mp3",
+          "contentHash": "ac8aef937d191dc3bde1b2a6346c744680a0222277311bc4cd49fa37cbc165a0",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s20/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "We are lost.",
+          "file": "a09b325e33a93e845a7d573dc14d72b1599e0a4482a24d3fb59383da4b8b1e42.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a09b325e33a93e845a7d573dc14d72b1599e0a4482a24d3fb59383da4b8b1e42.mp3",
+          "contentHash": "20fd5691f5dc01e12ceab554b6e03db01be41dcbdfa7a1a437da2114c0269c97",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s20/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The scarf is hers.",
+          "file": "fd20e68ae6f1c2ff1cfa402c9bff9c3bda42365e66439fa13cb2d4bb72e86593.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd20e68ae6f1c2ff1cfa402c9bff9c3bda42365e66439fa13cb2d4bb72e86593.mp3",
+          "contentHash": "c7d80810482444593a9dfd3d412711376df5c435a9db967198c2893bd3ff3af6",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s20/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We are careful.",
+          "file": "bdacedca2b4284df44b2850dec8b7fd2277c34390ddb53a4aeb24434239f7c1d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bdacedca2b4284df44b2850dec8b7fd2277c34390ddb53a4aeb24434239f7c1d.mp3",
+          "contentHash": "d06a94395e0ee5692163aa498bf32e3def43675cdd753307d628ffc5db5c465b",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s20/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "scarf",
+          "file": "b842c8b4dd6a4d27704eae92af31eb309dbb4f01d4fdaa9124a5f6765ca9b4a4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-coral.mp3",
+          "contentHash": "385b751f491565fbc21f180e75973c0241c14e7249d2bce4d3b3fd8f2b11c9a7",
+          "byteSize": 17280
+        },
+        {
+          "text": "maps",
+          "file": "ef37b3c333176c7b3ec65e6bced03db8088869c142be0ea1a8ae593ad82b305f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef37b3c333176c7b3ec65e6bced03db8088869c142be0ea1a8ae593ad82b305f.mp3",
+          "contentHash": "02176c19316156184bf84cb4433ae663e835949a3dd338343337de4d0e4d1165",
+          "byteSize": 24192
+        },
+        {
+          "text": "mushroom",
+          "file": "260fc6142e0256d989e670e49007eea614b585479bab5a69ae775c0445936f83.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/260fc6142e0256d989e670e49007eea614b585479bab5a69ae775c0445936f83.mp3",
+          "contentHash": "91f815ea4fdee79dc7c9ff102cb0154fc4825159fbc6c542e3f9aa2f35b5ebe1",
+          "byteSize": 21120
+        },
+        {
+          "text": "notebook",
+          "file": "4d4ca26228532281cb16ffb484ed0b99d3f4ec37a9f422cfc01d0bd6fb4d0cce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4d4ca26228532281cb16ffb484ed0b99d3f4ec37a9f422cfc01d0bd6fb4d0cce.mp3",
+          "contentHash": "e3db0c786722a2d2be0e2688ca407dbc74f7cc7ae360039308e03d1cfe0bca9f",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l05/s20/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is my scarf?",
+          "file": "0325cb842279e5c22b9c99a362fb5afb6d85ee6c86e025af1797fb76cc079a75.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0325cb842279e5c22b9c99a362fb5afb6d85ee6c86e025af1797fb76cc079a75.mp3",
+          "contentHash": "9e9a777655407c2752a193f23164e1a17e1fd289b4e839ca4f34f3bc2e435f96",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s20/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The notebook is his.",
+          "file": "1c13642f7b1baff2cae43c126c19403df122b5f37b9ad2f53fb1741a64d04970.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c13642f7b1baff2cae43c126c19403df122b5f37b9ad2f53fb1741a64d04970.mp3",
+          "contentHash": "26f5eb6730c3caed792c3b6163d895d176ee4c6417be3a2f19717344701ace5a",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s20/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is a mushroom next to the tree.",
+          "file": "b012706bae2ebd5db002b30b0c676d759b1e14ae0e5f1b4d022841fdcdf26884.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b012706bae2ebd5db002b30b0c676d759b1e14ae0e5f1b4d022841fdcdf26884.mp3",
+          "contentHash": "9cb7f50c9c08ac1bf8f9579ab5883eff0c4c0a2bfdac6ff6fdde524b930b856c",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s20/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There are no maps.",
+          "file": "7f6f6d11163f02534e030081c738d692399ad5725ec770b0439dd65283cc5004.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7f6f6d11163f02534e030081c738d692399ad5725ec770b0439dd65283cc5004.mp3",
+          "contentHash": "9d07636b9b56527ac6dcf717c1021918fe89a411b54915b86ab4e5ed79ca0a3f",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l05/s20/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The scarf is yours.",
+          "file": "0ab7b533fdfe16a1abd0529c7158263154e296a7b201e8a39d4c4f41755846f6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ab7b533fdfe16a1abd0529c7158263154e296a7b201e8a39d4c4f41755846f6.mp3",
+          "contentHash": "b84ff456cd32a839165ba6f4aabed067e7fe8432409fd6cec8ed0e48b43a1997",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s20/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "scarf",
+          "file": "6767544616be4095f2a61f23ad6cd052e182ba5b8f659c36079de4611595bca5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-nova.mp3",
+          "contentHash": "9f8974bee11b5ff0298e8c040db1c058777e55d0d1b2c24f3db8f8a502f26e39",
+          "byteSize": 17280
+        },
+        {
+          "text": "maps",
+          "file": "f62ccf87c42a1f324f36fd3ea318a9dc34eff21a88814a0ec44dea786e408c12.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f62ccf87c42a1f324f36fd3ea318a9dc34eff21a88814a0ec44dea786e408c12.mp3",
+          "contentHash": "f051d02a32a66eea878acc3301bec4753d979d5eab3d2adb79e3df7b1979af00",
+          "byteSize": 17280
+        },
+        {
+          "text": "mushroom",
+          "file": "ca21fb9016dd4bda2201aecd7a150ba19dcb34fccee18dc96df15cf54a32104f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca21fb9016dd4bda2201aecd7a150ba19dcb34fccee18dc96df15cf54a32104f.mp3",
+          "contentHash": "9905f83c06a73307b09d30991881f7edd7729c662e0957d2fc1b94aaa647660b",
+          "byteSize": 17280
+        },
+        {
+          "text": "notebook",
+          "file": "a34993a6146bdcffbff4e5bf220d25ac4e6b7a6c487ca4779994c28e482e5e8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a34993a6146bdcffbff4e5bf220d25ac4e6b7a6c487ca4779994c28e482e5e8c.mp3",
+          "contentHash": "8a440e2a79aa31e4b32355a7a97bbedc6fc3b1d7cdcf7354fcfe11a26e6455c4",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l05/s20/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The scarf is mine.",
+          "file": "d3bf39a69db8ef55a087b0178d269e7b2e83dd80e82e94eb66fb59d8f89790a7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d3bf39a69db8ef55a087b0178d269e7b2e83dd80e82e94eb66fb59d8f89790a7.mp3",
+          "contentHash": "b8ca1d06ace3488e8e08327878d298bd3300d122d25a4f9c4f162a9768176bc7",
+          "byteSize": 29184
+        }
+      ]
     }
   },
   "settings": {

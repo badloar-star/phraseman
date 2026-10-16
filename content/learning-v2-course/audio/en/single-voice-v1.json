@@ -95914,6 +95914,309 @@
           "byteSize": 22656
         }
       ]
+    },
+    "l06/s37/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I shop here.",
+          "file": "f3da72670796e28cdc250eb3e36c8901504f6ddc5ba36940f4ab9e02b2d3d71c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3da72670796e28cdc250eb3e36c8901504f6ddc5ba36940f4ab9e02b2d3d71c.mp3",
+          "contentHash": "a08968b1f096ac0cd75937f23ddec7de385eae3e6d8eae574f01acf947a1ed39",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s37/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She shops here.",
+          "file": "3d8f73867f70edff44c0d3c63e7bc128d5aaf62ca5cde294df05951817d3124e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d8f73867f70edff44c0d3c63e7bc128d5aaf62ca5cde294df05951817d3124e.mp3",
+          "contentHash": "a2655e4800350076a4d6c66390b4249e372f7cb0c5a644d4a668f6647a442daa",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l06/s37/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose earrings are these?",
+          "file": "a3beaf64ef32ff90c0cfa1b944d30d23f881ad98c244671b2fe37b3c102daeb0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a3beaf64ef32ff90c0cfa1b944d30d23f881ad98c244671b2fe37b3c102daeb0.mp3",
+          "contentHash": "4a4174ee3ec8963c161973cf876af761a72e533acb4725ad252e23a55db3169d",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s37/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I shop here.",
+          "file": "8fc22cc4bfa04e620405be7c76c6b58e06ad3bd70caaa294a2ffa137cf4240ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8fc22cc4bfa04e620405be7c76c6b58e06ad3bd70caaa294a2ffa137cf4240ad.mp3",
+          "contentHash": "e5de7d9f4a9da5fb91a5b5a976e21e8fb5e94d47a21c29aba4774ab6ea3617ff",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s37/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "shop",
+          "file": "28624093aa38df9994d09786e95c3179d18e0e44540391b8456cf9058a1b7403.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28624093aa38df9994d09786e95c3179d18e0e44540391b8456cf9058a1b7403.mp3",
+          "contentHash": "f6a8581f7cb987b934dae6144fd0e4e045380a166ff6457840286c65fd36f036",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s37/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She shops here.",
+          "file": "e43c2988931a4765676862bc53e1547140855ce1289522e7739048fb9b1e9e7b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e43c2988931a4765676862bc53e1547140855ce1289522e7739048fb9b1e9e7b.mp3",
+          "contentHash": "2274a255402354cf5e3fecaf8f502db67ca3b61128eff05df3ee93a74fea2aae",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l06/s37/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "shop",
+          "file": "fcaa64394a300129304af2a51662b4d0fd950a7120f8c6b1adb4178284be53f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fcaa64394a300129304af2a51662b4d0fd950a7120f8c6b1adb4178284be53f0.mp3",
+          "contentHash": "d940d006a109660e2f190005f89d471f58c605603ccfa0187c427f3d8fd652a9",
+          "byteSize": 16512
+        },
+        {
+          "text": "official",
+          "file": "b67ed4b12bffb1747106016ff25e96655d1251e700567d946cd9e7580d53bc33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b67ed4b12bffb1747106016ff25e96655d1251e700567d946cd9e7580d53bc33.mp3",
+          "contentHash": "bde9a5eb1f03fe7094368b9e931a9d6f2d48000681affdfd670d278c232df4db",
+          "byteSize": 19584
+        },
+        {
+          "text": "parcel locker",
+          "file": "e0ce33b97c1a3c643f0d923179352ebac638e91bc725dfd96191bf69c9bcb63e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0ce33b97c1a3c643f0d923179352ebac638e91bc725dfd96191bf69c9bcb63e.mp3",
+          "contentHash": "33383b15b3bc2bac1831c4e96d9cfb80e555e85c863915c5a8ece202c52d60e2",
+          "byteSize": 23040
+        },
+        {
+          "text": "earrings",
+          "file": "d2b5215d05e2cfab1d9eeea776f174e9842037bc83bb728548f0d8f6c44969f8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2b5215d05e2cfab1d9eeea776f174e9842037bc83bb728548f0d8f6c44969f8.mp3",
+          "contentHash": "507604ae5ff5bf45e11575e5895c1bb9b2cd79ba9ac7c90c66724d98d12f9266",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s37/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Anna shops here.",
+          "file": "43ad93c73593fdf7ac1f25cf364657e7528e2c12abb6267767e283f94d9bbf18.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43ad93c73593fdf7ac1f25cf364657e7528e2c12abb6267767e283f94d9bbf18.mp3",
+          "contentHash": "d1875f29512d52450bb408760601a3e929a65acd934a7fb10630ca13c013a1d0",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s37/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He calls his mother.",
+          "file": "388d8b027db3bec49f7a84693204df46a34a2133c06f40e16e08d492ce3033ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/388d8b027db3bec49f7a84693204df46a34a2133c06f40e16e08d492ce3033ef.mp3",
+          "contentHash": "13dcb5ff2dc67476925b427cd356e64df7acce1de09d4b3639827c43bc062c75",
+          "byteSize": 88320
+        }
+      ]
+    },
+    "l06/s37/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This parcel locker is new.",
+          "file": "a2dcea96ad34327b399393b8c3e94432536bed574dfe2a9140bcad3b875575ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a2dcea96ad34327b399393b8c3e94432536bed574dfe2a9140bcad3b875575ab.mp3",
+          "contentHash": "c64a6a7f640b028fe668bb2696277c31cdf14df2fc40891c78d2bd18b3a6be49",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l06/s37/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They shop here.",
+          "file": "2f453a8a7f90a4aea268b0284a5c6049440f61bcff5597b65a8c6e7f08fec2e5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2f453a8a7f90a4aea268b0284a5c6049440f61bcff5597b65a8c6e7f08fec2e5.mp3",
+          "contentHash": "30d24909457ca7472b3a0aac9b08a555d85f52be6998d9a1c3df2bf0098a276b",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l06/s37/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "These earrings are mine.",
+          "file": "d84b60a4c93781cf8112847318d3a4fc9f3e005b91718a8187506e4517aa34ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d84b60a4c93781cf8112847318d3a4fc9f3e005b91718a8187506e4517aa34ec.mp3",
+          "contentHash": "22f934674cd5946c6106c23248ac516d7359e1fb36b7d2a6859150b0e5cf6bd4",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l06/s37/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "shop",
+          "file": "fcaa64394a300129304af2a51662b4d0fd950a7120f8c6b1adb4178284be53f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fcaa64394a300129304af2a51662b4d0fd950a7120f8c6b1adb4178284be53f0.mp3",
+          "contentHash": "d940d006a109660e2f190005f89d471f58c605603ccfa0187c427f3d8fd652a9",
+          "byteSize": 16512
+        },
+        {
+          "text": "call",
+          "file": "53de7245adc05e0c322ccbea490a918d44fe28802536484ede0530034f3a4c34.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53de7245adc05e0c322ccbea490a918d44fe28802536484ede0530034f3a4c34.mp3",
+          "contentHash": "9b1ef8954104a820f6ec2467d7e46e65a1a5264104741b22dfce62ae04002ff9",
+          "byteSize": 22656
+        },
+        {
+          "text": "earrings",
+          "file": "d2b5215d05e2cfab1d9eeea776f174e9842037bc83bb728548f0d8f6c44969f8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2b5215d05e2cfab1d9eeea776f174e9842037bc83bb728548f0d8f6c44969f8.mp3",
+          "contentHash": "507604ae5ff5bf45e11575e5895c1bb9b2cd79ba9ac7c90c66724d98d12f9266",
+          "byteSize": 33792
+        },
+        {
+          "text": "official",
+          "file": "b67ed4b12bffb1747106016ff25e96655d1251e700567d946cd9e7580d53bc33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b67ed4b12bffb1747106016ff25e96655d1251e700567d946cd9e7580d53bc33.mp3",
+          "contentHash": "bde9a5eb1f03fe7094368b9e931a9d6f2d48000681affdfd670d278c232df4db",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l06/s37/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The parcel locker is here.",
+          "file": "2b193d1952d0c2105b6388f05910d82df2615ba413fe5c95dc061d1212ca5f67.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2b193d1952d0c2105b6388f05910d82df2615ba413fe5c95dc061d1212ca5f67.mp3",
+          "contentHash": "d7ff586071fa7095e99ed76baf5fe3e46c37d52d1110471de88b251272d531d9",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l06/s37/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose earrings are these?",
+          "file": "1f6cdad9c7780cb23c8f9e4090f76a58c8d57d5ed722d3fffe1dbc1266ac9115.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f6cdad9c7780cb23c8f9e4090f76a58c8d57d5ed722d3fffe1dbc1266ac9115.mp3",
+          "contentHash": "cc814023590ed12719f6385131d698db5a154c3a5305e7ff19a89248c98880ad",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l06/s37/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I call my mother.",
+          "file": "5c4cc09115ee1a7192094468b7ef4dd25a75d8225069d4dcf555aa01d8693abf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c4cc09115ee1a7192094468b7ef4dd25a75d8225069d4dcf555aa01d8693abf.mp3",
+          "contentHash": "27bf75a22c86ea2abffae3071fe51194ef66f06053f47d747312f72c9a9bd799",
+          "byteSize": 54528
+        }
+      ]
+    },
+    "l06/s37/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom shops here.",
+          "file": "3022433e4c97d1db89488c7854673c88f22af42d556a25122c351fcea67be588.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3022433e4c97d1db89488c7854673c88f22af42d556a25122c351fcea67be588.mp3",
+          "contentHash": "4940f33c2a97eb345cddcc9141fedf86fbe4cdae1dcf83de91dd49fea040d1db",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s37/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We shop here.",
+          "file": "0d6ef405d54fb4b9010afc50630b860d0d8d1cb5a365a082c32c6bbeffac6f7e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0d6ef405d54fb4b9010afc50630b860d0d8d1cb5a365a082c32c6bbeffac6f7e.mp3",
+          "contentHash": "7fe291d5ec5884241ff22629acd1388e99f948c3e6828e700593b73caf7e269b",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s37/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "shop",
+          "file": "4bf1ffa596d5dac73eb981b54e293e908472014606fe2425e6f0895b3e8e1802.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4bf1ffa596d5dac73eb981b54e293e908472014606fe2425e6f0895b3e8e1802.mp3",
+          "contentHash": "8e7fdffcf8fae8bf2d9f65dd82f4ac196814fcced48d72f83b851624fffdd592",
+          "byteSize": 21120
+        },
+        {
+          "text": "parcel locker",
+          "file": "2de9d3e2cda75dcc3f4f8ee9283f809d6b26c1828d0fdc33ca7c9dbb7d8b03fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2de9d3e2cda75dcc3f4f8ee9283f809d6b26c1828d0fdc33ca7c9dbb7d8b03fc.mp3",
+          "contentHash": "32c35a67f08178ac0da80d5977d4e588ed694e1af38a71ef24f5245c69fc652a",
+          "byteSize": 26112
+        },
+        {
+          "text": "official",
+          "file": "3c131972d1799138f5e94958af14eb3b2b5742c110ced77b59b9bef2aedf0096.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c131972d1799138f5e94958af14eb3b2b5742c110ced77b59b9bef2aedf0096.mp3",
+          "contentHash": "495bf8b579133c355fd2192a1e97d8f963a411bff0c7b71605c536e6719827e1",
+          "byteSize": 32256
+        },
+        {
+          "text": "call",
+          "file": "7989f86ffdc328d663a085bb0a963d05a8662cb127ebeab392c31c20c1d7d8ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7989f86ffdc328d663a085bb0a963d05a8662cb127ebeab392c31c20c1d7d8ae.mp3",
+          "contentHash": "7942cfa066d635cdfc7487c042e8f50c95348ae74a12032760d6b3f9835c365a",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l06/s37/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She shops here.",
+          "file": "564402b416adb1d745b79421b8f907496baadbebc3c5dad70640d93fdc889e40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/564402b416adb1d745b79421b8f907496baadbebc3c5dad70640d93fdc889e40.mp3",
+          "contentHash": "c068d71294b01c88aaede63d042b492d435ec9f94fbf2b55aa6ebf7fa9e16586",
+          "byteSize": 28416
+        }
+      ]
     }
   },
   "settings": {

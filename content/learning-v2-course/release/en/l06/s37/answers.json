@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-37:i01",
+    "correctText": "I shop here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i02",
+    "correctText": "shop",
+    "correctResponseId": "en:lesson-06:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i03",
+    "correctText": "shops",
+    "correctResponseId": "en:lesson-06:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i04",
+    "correctText": "en:lesson-06:session-37:i04:p1=shop\nen:lesson-06:session-37:i04:p2=official\nen:lesson-06:session-37:i04:p3=parcel locker\nen:lesson-06:session-37:i04:p4=earrings",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i05",
+    "correctText": "Anna shops here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i06",
+    "correctText": "He calls his mother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i07",
+    "correctText": "This parcel locker is new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i08",
+    "correctText": "shop",
+    "correctResponseId": "en:lesson-06:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i09",
+    "correctText": "These earrings are mine.",
+    "correctResponseId": "en:lesson-06:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i10",
+    "correctText": "en:lesson-06:session-37:i10:p1=shop\nen:lesson-06:session-37:i10:p2=call\nen:lesson-06:session-37:i10:p3=earrings\nen:lesson-06:session-37:i10:p4=official",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i11",
+    "correctText": "The parcel locker is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i12",
+    "correctText": "Whose earrings are these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i13",
+    "correctText": "I call my mother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i14",
+    "correctText": "shops",
+    "correctResponseId": "en:lesson-06:session-37:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i15",
+    "correctText": "We shop here.",
+    "correctResponseId": "en:lesson-06:session-37:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i16",
+    "correctText": "en:lesson-06:session-37:i16:p1=shop\nen:lesson-06:session-37:i16:p2=parcel locker\nen:lesson-06:session-37:i16:p3=official\nen:lesson-06:session-37:i16:p4=call",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:i17",
+    "correctText": "She shops here.",
+    "correctResponseId": null
+  }
+]

@@ -78037,6 +78037,309 @@
           "byteSize": 26880
         }
       ]
+    },
+    "l05/s34/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose ring is this?",
+          "file": "b33bcc831fdea4374353adc6e9c8e3b675ea7e6075d412ad6ae4fb413de370ee.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b33bcc831fdea4374353adc6e9c8e3b675ea7e6075d412ad6ae4fb413de370ee.mp3",
+          "contentHash": "a511fa494dc9fe9937e32ba6532390f7343c8bf6f6550f159c17bddc70be9b57",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s34/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I am afraid.",
+          "file": "7751a41f4f8c98dec5d5a80ef971794c6ef24452a840cc23c79a5ac838bb380b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7751a41f4f8c98dec5d5a80ef971794c6ef24452a840cc23c79a5ac838bb380b.mp3",
+          "contentHash": "a603078cda01d5c29bc40a4115b1e6d03c2e4ca4ff7a2cdb1989d6925a9e3649",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s34/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Tom's ring.",
+          "file": "0f953c6c6986f9d91a8af274180f6cf44b4c07c2ba0e3e9284ba4f71b898cc48.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f953c6c6986f9d91a8af274180f6cf44b4c07c2ba0e3e9284ba4f71b898cc48.mp3",
+          "contentHash": "926976ac070594330296de23f08a7bfdc6ae45c27001f1dbe600b40e11ffb961",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s34/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am afraid.",
+          "file": "405f6dba7ca618b7d512482dd3124080168a32f3d581c48349055f107326a004.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/405f6dba7ca618b7d512482dd3124080168a32f3d581c48349055f107326a004.mp3",
+          "contentHash": "e94451835aa376162c4ecf73e336e8c8dac0a3f321587d9395d644a99c3437a0",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s34/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "ring",
+          "file": "ca6a80bb521b75c7e4a8ddac9fbee83a982b3eefe586ac147215bb897b190e08.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca6a80bb521b75c7e4a8ddac9fbee83a982b3eefe586ac147215bb897b190e08.mp3",
+          "contentHash": "47806149dcd361570f6be381a1b39fc7e3094c50402d7327f97eae1cf85b2e22",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s34/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "ring",
+          "file": "ca6a80bb521b75c7e4a8ddac9fbee83a982b3eefe586ac147215bb897b190e08.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca6a80bb521b75c7e4a8ddac9fbee83a982b3eefe586ac147215bb897b190e08.mp3",
+          "contentHash": "47806149dcd361570f6be381a1b39fc7e3094c50402d7327f97eae1cf85b2e22",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s34/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "ring",
+          "file": "856e56c111ea2c21ce444b3c21bae58ba669ecdabb473ec2e62456e2388f84c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/856e56c111ea2c21ce444b3c21bae58ba669ecdabb473ec2e62456e2388f84c4.mp3",
+          "contentHash": "af5576d720cd9e9ddd865fcc7bf9de596ef60570012c88b2af4407ef9f42dac5",
+          "byteSize": 21120
+        },
+        {
+          "text": "wallet",
+          "file": "53618589846de374acc2ae587e549d432760348bba57d48c2205d0bedd4b30d5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e8d44050873dba865aa7c170-nova.mp3",
+          "contentHash": "4cee2523b1a17e3918486af188a11fbb0b006897ce1d7849ef45702da839a929",
+          "byteSize": 14208
+        },
+        {
+          "text": "handrail",
+          "file": "d724a031e44c9448ee72c56a737c0f8c96fb9a9dbad12d6c2360c70317fe1d9b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d724a031e44c9448ee72c56a737c0f8c96fb9a9dbad12d6c2360c70317fe1d9b.mp3",
+          "contentHash": "56a2c90e5d5c3adf907b1c947934250548e7a2263d3effaa69909a04f0a6e0d0",
+          "byteSize": 26112
+        },
+        {
+          "text": "badge",
+          "file": "e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "contentHash": "59c07ad813e54fe0ede388035e8362c5e0c41880dd795a5c0480086434b70c31",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l05/s34/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose ring is this?",
+          "file": "b33bcc831fdea4374353adc6e9c8e3b675ea7e6075d412ad6ae4fb413de370ee.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b33bcc831fdea4374353adc6e9c8e3b675ea7e6075d412ad6ae4fb413de370ee.mp3",
+          "contentHash": "a511fa494dc9fe9937e32ba6532390f7343c8bf6f6550f159c17bddc70be9b57",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s34/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose wallet is this?",
+          "file": "de800093d7cc0b213ed2af5d0951008bd9901c8f664117d806235cd1b8cd4cc8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de800093d7cc0b213ed2af5d0951008bd9901c8f664117d806235cd1b8cd4cc8.mp3",
+          "contentHash": "99cd34f47e1fe97bf0eb1c07ae096530d155a0cc4f79ec6d942b652606951eea",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s34/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The ring is mine.",
+          "file": "d4b0cd788562effad2495d23e67d43807dea3823dcd98c54332ec6685fffce58.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d4b0cd788562effad2495d23e67d43807dea3823dcd98c54332ec6685fffce58.mp3",
+          "contentHash": "bc3f7ffbd122ff5b7f4356f44d7c281e644ed11f1b0c1ef56f10fc1c5d4a0b91",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s34/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose badge is this?",
+          "file": "5440b9ab3205a5dfd9e6544ec60734d37e3ac5e79e4679918c0adf160f1949f7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5440b9ab3205a5dfd9e6544ec60734d37e3ac5e79e4679918c0adf160f1949f7.mp3",
+          "contentHash": "c01c25c94ce1d0f1063da622fc36e9a38a96fa95a6003c55e713da5ba409e4ee",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s34/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's wallet.",
+          "file": "31085050d9f5e71490828cab59b6d43aed03e957fd7efa3e7011eceb4b92290b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31085050d9f5e71490828cab59b6d43aed03e957fd7efa3e7011eceb4b92290b.mp3",
+          "contentHash": "b6591043d045c2763ac05eeda4e52e21f0b5605820e2ab707d58c67a6a0bdf7a",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s34/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "ring",
+          "file": "856e56c111ea2c21ce444b3c21bae58ba669ecdabb473ec2e62456e2388f84c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/856e56c111ea2c21ce444b3c21bae58ba669ecdabb473ec2e62456e2388f84c4.mp3",
+          "contentHash": "af5576d720cd9e9ddd865fcc7bf9de596ef60570012c88b2af4407ef9f42dac5",
+          "byteSize": 21120
+        },
+        {
+          "text": "afraid",
+          "file": "eae9564fb4034235b0c98c50842c4ebcf812f81cf24c83b44e600e2a4ad4a28a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eae9564fb4034235b0c98c50842c4ebcf812f81cf24c83b44e600e2a4ad4a28a.mp3",
+          "contentHash": "2d6ed7924a39ed8a0a9377d08229d31ed759acb695002436567541f660857711",
+          "byteSize": 27648
+        },
+        {
+          "text": "handrail",
+          "file": "d724a031e44c9448ee72c56a737c0f8c96fb9a9dbad12d6c2360c70317fe1d9b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d724a031e44c9448ee72c56a737c0f8c96fb9a9dbad12d6c2360c70317fe1d9b.mp3",
+          "contentHash": "56a2c90e5d5c3adf907b1c947934250548e7a2263d3effaa69909a04f0a6e0d0",
+          "byteSize": 26112
+        },
+        {
+          "text": "badge",
+          "file": "e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "contentHash": "59c07ad813e54fe0ede388035e8362c5e0c41880dd795a5c0480086434b70c31",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l05/s34/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Tom is next to the handrail.",
+          "file": "f31df7cb71025a27cce08b398eb751f3cde60e11c82d2ac6744cc04fbcb4162b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f31df7cb71025a27cce08b398eb751f3cde60e11c82d2ac6744cc04fbcb4162b.mp3",
+          "contentHash": "45d97e5b2baef4ae33826dd0380507af9e171552c097c1366fc738439c2a7ba2",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s34/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is Tom's ring.",
+          "file": "57ddcebc3110a695c7dc2bda98f40c209d13998d3fbba818bcc894efeaf8d1a1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/57ddcebc3110a695c7dc2bda98f40c209d13998d3fbba818bcc894efeaf8d1a1.mp3",
+          "contentHash": "b12316546be6b1aef2d7a1e16f692fb16c12ce74b6932da12d7514e9f4dd7822",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s34/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your wallet.",
+          "file": "abb8651d12282a4e4dce4552d06156a0474a813e5312a52d494994de6cf21f88.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/abb8651d12282a4e4dce4552d06156a0474a813e5312a52d494994de6cf21f88.mp3",
+          "contentHash": "3efa77dc3ef59da61b39389e99037a9ef73cc3e2330c2f14cfdd40fc9097643a",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s34/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The badge is hers.",
+          "file": "0273a8b06c2607a124a0c8a89a527519af9066ff8d67de1fc7b9d9be2af66cb4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0273a8b06c2607a124a0c8a89a527519af9066ff8d67de1fc7b9d9be2af66cb4.mp3",
+          "contentHash": "e96c917b1ba79a615f5b111157ce49af96a5f384e7ed33494144fc90eeb023c1",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s34/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Your ring is here.",
+          "file": "5932c59dcbf0a86e367339061246a27a45fd9bb949123103e0f028665f48f5a4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5932c59dcbf0a86e367339061246a27a45fd9bb949123103e0f028665f48f5a4.mp3",
+          "contentHash": "390971368a732cb85a99f0e71138afae270af86f4bd61d87714136f67b4cfdbb",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s34/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "ring",
+          "file": "856e56c111ea2c21ce444b3c21bae58ba669ecdabb473ec2e62456e2388f84c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/856e56c111ea2c21ce444b3c21bae58ba669ecdabb473ec2e62456e2388f84c4.mp3",
+          "contentHash": "af5576d720cd9e9ddd865fcc7bf9de596ef60570012c88b2af4407ef9f42dac5",
+          "byteSize": 21120
+        },
+        {
+          "text": "afraid",
+          "file": "eae9564fb4034235b0c98c50842c4ebcf812f81cf24c83b44e600e2a4ad4a28a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eae9564fb4034235b0c98c50842c4ebcf812f81cf24c83b44e600e2a4ad4a28a.mp3",
+          "contentHash": "2d6ed7924a39ed8a0a9377d08229d31ed759acb695002436567541f660857711",
+          "byteSize": 27648
+        },
+        {
+          "text": "wallet",
+          "file": "53618589846de374acc2ae587e549d432760348bba57d48c2205d0bedd4b30d5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e8d44050873dba865aa7c170-nova.mp3",
+          "contentHash": "4cee2523b1a17e3918486af188a11fbb0b006897ce1d7849ef45702da839a929",
+          "byteSize": 14208
+        },
+        {
+          "text": "badge",
+          "file": "e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "contentHash": "59c07ad813e54fe0ede388035e8362c5e0c41880dd795a5c0480086434b70c31",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l05/s34/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose ring is this?",
+          "file": "91a1e2d2703802877650b350671d6c18ae01cc30d8ecdc5f7f6ee6557153d338.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/91a1e2d2703802877650b350671d6c18ae01cc30d8ecdc5f7f6ee6557153d338.mp3",
+          "contentHash": "447b5587c54e7a3c6617728845faced0683bc1d53c59d879d28e68aa3f0e1bcc",
+          "byteSize": 29952
+        }
+      ]
     }
   },
   "settings": {

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-25:i01",
+    "correctText": "I walk to work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i02",
+    "correctText": "walk",
+    "correctResponseId": "en:lesson-06:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i03",
+    "correctText": "walks",
+    "correctResponseId": "en:lesson-06:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i04",
+    "correctText": "en:lesson-06:session-25:i04:p1=walk\nen:lesson-06:session-25:i04:p2=absent\nen:lesson-06:session-25:i04:p3=sink\nen:lesson-06:session-25:i04:p4=lunchbox",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i05",
+    "correctText": "Anna walks to work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i06",
+    "correctText": "He drives to work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i07",
+    "correctText": "He is absent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i08",
+    "correctText": "walk",
+    "correctResponseId": "en:lesson-06:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i09",
+    "correctText": "My lunchbox is here.",
+    "correctResponseId": "en:lesson-06:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i10",
+    "correctText": "en:lesson-06:session-25:i10:p1=walk\nen:lesson-06:session-25:i10:p2=drive\nen:lesson-06:session-25:i10:p3=lunchbox\nen:lesson-06:session-25:i10:p4=absent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i11",
+    "correctText": "The lunchbox is near the sink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i12",
+    "correctText": "Whose lunchbox is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i13",
+    "correctText": "They drive to work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i14",
+    "correctText": "walk",
+    "correctResponseId": "en:lesson-06:session-25:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i15",
+    "correctText": "The sink is clean.",
+    "correctResponseId": "en:lesson-06:session-25:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i16",
+    "correctText": "en:lesson-06:session-25:i16:p1=walk\nen:lesson-06:session-25:i16:p2=sink\nen:lesson-06:session-25:i16:p3=absent\nen:lesson-06:session-25:i16:p4=drive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-25:i17",
+    "correctText": "She walks to work.",
+    "correctResponseId": null
+  }
+]

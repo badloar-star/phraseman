@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о привычном способе добираться на работу",
+    "uk": "розповісти про звичний спосіб діставатися на роботу"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Идти пешком",
+        "uk": "Іти пішки"
+      },
+      "bodyByLocale": {
+        "ru": "`walk` — «ходить пешком», «гулять». `I walk to work` — «Я хожу на работу пешком». Знакомое `drive` означает ехать за рулём. Если машина осталась дома, зато ботинки дошли до офиса, сегодня пригодится `walk`.",
+        "uk": "`walk` — «ходити пішки», «гуляти». `I walk to work` — «Я ходжу на роботу пішки». Знайоме `drive` означає їхати за кермом. Якщо машина залишилася вдома, зате черевики дійшли до офісу, сьогодні знадобиться `walk`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я хожу на работу пешком».",
+          "uk": "Скажіть «Я ходжу на роботу пішки»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-25:intro1:r1",
+              "text": "I walk to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro1:r2",
+              "text": "I am walk to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro1:r3",
+              "text": "I walks to work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-25:intro1:r1",
+              "text": "I walk to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro1:r2",
+              "text": "I am walk to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro1:r3",
+              "text": "I walks to work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я хожу на работу пешком».",
+          "uk": "Скажіть «Я ходжу на роботу пішки»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Как обычно бывает",
+        "uk": "Як зазвичай буває"
+      },
+      "bodyByLocale": {
+        "ru": "`I walk to work` рассказывает о привычном способе добираться на работу. Эту фразу можно сказать, уже сидя в офисе: она не означает, что вы шагаете прямо во время разговора. `She walks to work` — «Она ходит на работу пешком». `He drives to work` — «Он ездит на работу за рулём». После `she` и `he` здесь добавляем `s`.",
+        "uk": "`I walk to work` розповідає про звичний спосіб діставатися на роботу. Цю фразу можна сказати, вже сидячи в офісі: вона не означає, що ви крокуєте просто під час розмови. `She walks to work` — «Вона ходить на роботу пішки». `He drives to work` — «Він їздить на роботу за кермом». Після `she` і `he` тут додаємо `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы уже сидите в офисе. Расскажите о привычке: «Она ходит на работу пешком».",
+          "uk": "Ви вже сидите в офісі. Розкажіть про звичку: «Вона ходить на роботу пішки»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-25:intro2:r1",
+              "text": "She walks to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro2:r2",
+              "text": "She walk to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro2:r3",
+              "text": "She is walks to work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-25:intro2:r1",
+              "text": "She walks to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro2:r2",
+              "text": "She walk to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro2:r3",
+              "text": "She is walks to work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы уже сидите в офисе. Расскажите о привычке: «Она ходит на работу пешком».",
+          "uk": "Ви вже сидите в офісі. Розкажіть про звичку: «Вона ходить на роботу пішки»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В офисной кухне",
+        "uk": "В офісній кухні"
+      },
+      "bodyByLocale": {
+        "ru": "`absent` — «отсутствующий». `He is absent` — «Он отсутствует»: коллеги нет на месте, где его ожидали. Здесь состояние, поэтому нужно `is`. `sink` — «раковина», `lunchbox` — «ланчбокс», контейнер для еды с собой. `The lunchbox is near the sink` — «Ланчбокс возле раковины».",
+        "uk": "`absent` — «відсутній». `He is absent` — «Він відсутній»: колеги немає на місці, де на нього чекали. Тут стан, тому потрібно `is`. `sink` — «раковина», `lunchbox` — «ланчбокс», контейнер для їжі із собою. `The lunchbox is near the sink` — «Ланчбокс біля раковини»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Он отсутствует».",
+          "uk": "Скажіть «Він відсутній»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-25:intro3:r1",
+              "text": "He is absent."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro3:r2",
+              "text": "He absent."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro3:r3",
+              "text": "He are absent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-25:intro3:r1",
+              "text": "He is absent."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro3:r2",
+              "text": "He absent."
+            },
+            {
+              "responseId": "en:lesson-06:session-25:intro3:r3",
+              "text": "He are absent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Он отсутствует».",
+          "uk": "Скажіть «Він відсутній»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "82425bb24e04385b9ea5446da5e83b220e21810ef0c0d0834ed68d5851774fb9"
+}

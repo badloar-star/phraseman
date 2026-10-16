@@ -1,0 +1,960 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о привычном маршруте: «Я хожу на работу пешком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о привычном маршруте: «Я хожу на работу пешком»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I walk to work.",
+        "localizedMeaning": {
+          "ru": "Расскажите о привычном маршруте: «Я хожу на работу пешком»",
+          "uk": "Розкажіть про звичний маршрут: «Я ходжу на роботу пішки»"
+        },
+        "orderedTokens": [
+          "I",
+          "walk",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-25:i02:r1",
+          "text": "walk"
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i02:r2",
+          "text": "drive"
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i02:r3",
+          "text": "read"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:i02:audio",
+          "transcript": "walk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-25:i02:r1",
+            "targetText": "walk",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i02:r2",
+            "targetText": "drive",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i02:r3",
+            "targetText": "read",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `walk`, а в этом варианте — `drive`.",
+              "uk": "У записі перше слово — `walk`, а в цьому варіанті — `drive`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `walk`, а в этом варианте — `read`.",
+              "uk": "У записі перше слово — `walk`, а в цьому варіанті — `read`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она ходит на работу пешком»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-25:i03:r1",
+          "text": "walks"
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i03:r2",
+          "text": "walk"
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i03:r3",
+          "text": "is walks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она ходит на работу пешком»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она ходит на работу пешком»",
+          "uk": "Скажіть «Вона ходить на роботу пішки»"
+        },
+        "gappedTargetPhrase": "She ___ to work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-25:i03:r1",
+            "text": "walks"
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i03:r2",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i03:r3",
+            "text": "is walks"
+          }
+        ],
+        "testedDimension": "Скажите «Она ходит на работу пешком»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она ходит на работу пешком»",
+            "feedbackByLocale": {
+              "ru": "После `she` — `walks`, с `s`.",
+              "uk": "Після `she` — `walks`, з `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она ходит на работу пешком»",
+            "feedbackByLocale": {
+              "ru": "Говорим `She walks`, без `is`.",
+              "uk": "Кажемо `She walks`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-25:i04:p1",
+            "target": "walk",
+            "meaningByLocale": {
+              "ru": "ходить пешком",
+              "uk": "ходити пішки"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i04:p2",
+            "target": "absent",
+            "meaningByLocale": {
+              "ru": "отсутствующий",
+              "uk": "відсутній"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i04:p3",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i04:p4",
+            "target": "lunchbox",
+            "meaningByLocale": {
+              "ru": "ланчбокс",
+              "uk": "ланчбокс"
+            }
+          }
+        ],
+        "leftColumn": [
+          "walk",
+          "absent",
+          "sink",
+          "lunchbox"
+        ],
+        "rightColumn": [
+          "ходить пешком",
+          "отсутствующий",
+          "раковина",
+          "ланчбокс"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:i05:audio",
+          "transcript": "Anna walks to work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Anna walks to work.",
+        "orderedTokens": [
+          "Anna",
+          "walks",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о привычке Тома: «Он ездит на работу за рулём»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о привычке Тома: «Он ездит на работу за рулём»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He drives to work.",
+        "localizedMeaning": {
+          "ru": "Скажите о привычке Тома: «Он ездит на работу за рулём»",
+          "uk": "Скажіть про звичку Тома: «Він їздить на роботу за кермом»"
+        },
+        "orderedTokens": [
+          "He",
+          "drives",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллеги сегодня нет на работе. Скажите «Он отсутствует»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Коллеги сегодня нет на работе. Скажите «Он отсутствует»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:i07:audio",
+          "transcript": "He is absent."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is absent.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они ходят на работу пешком»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-25:i08:r1",
+          "text": "walk"
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i08:r2",
+          "text": "walks"
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i08:r3",
+          "text": "are walk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они ходят на работу пешком»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они ходят на работу пешком»",
+          "uk": "Скажіть «Вони ходять на роботу пішки»"
+        },
+        "gappedTargetPhrase": "They ___ to work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-25:i08:r1",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i08:r2",
+            "text": "walks"
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i08:r3",
+            "text": "are walk"
+          }
+        ],
+        "testedDimension": "Скажите «Они ходят на работу пешком»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они ходят на работу пешком»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `walk`, без `s`.",
+              "uk": "Після `they` — `walk`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они ходят на работу пешком»",
+            "feedbackByLocale": {
+              "ru": "Говорим `They walk`, без `are`.",
+              "uk": "Кажемо `They walk`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей ланчбокс здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-25:i09:r1",
+          "text": "My lunchbox is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i09:r2",
+          "text": "Your lunchbox is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i09:r3",
+          "text": "His lunchbox is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей ланчбокс здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:i09:audio",
+          "transcript": "My lunchbox is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-25:i09:r1",
+            "targetText": "My lunchbox is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i09:r2",
+            "targetText": "Your lunchbox is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i09:r3",
+            "targetText": "His lunchbox is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей ланчбокс здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей ланчбокс здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-25:i10:p1",
+            "target": "walk",
+            "meaningByLocale": {
+              "ru": "ходить пешком",
+              "uk": "ходити пішки"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i10:p2",
+            "target": "drive",
+            "meaningByLocale": {
+              "ru": "водить машину",
+              "uk": "водити машину"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i10:p3",
+            "target": "lunchbox",
+            "meaningByLocale": {
+              "ru": "ланчбокс",
+              "uk": "ланчбокс"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i10:p4",
+            "target": "absent",
+            "meaningByLocale": {
+              "ru": "отсутствующий",
+              "uk": "відсутній"
+            }
+          }
+        ],
+        "leftColumn": [
+          "walk",
+          "drive",
+          "lunchbox",
+          "absent"
+        ],
+        "rightColumn": [
+          "ходить пешком",
+          "водить машину",
+          "ланчбокс",
+          "отсутствующий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:i11:audio",
+          "transcript": "The lunchbox is near the sink."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The lunchbox is near the sink.",
+        "orderedTokens": [
+          "The",
+          "lunchbox",
+          "is",
+          "near",
+          "the",
+          "sink"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The lunchbox is near the sink.`",
+              "uk": "тут потрібно `is` — `The lunchbox is near the sink.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Чей это ланчбокс?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Чей это ланчбокс?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose lunchbox is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чей это ланчбокс?»",
+          "uk": "Запитайте «Чий це ланчбокс?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "lunchbox",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Они ездят на работу за рулём»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Они ездят на работу за рулём»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:i13:audio",
+          "transcript": "They drive to work."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They drive to work.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-25:i14:r1",
+          "text": "walk"
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i14:r2",
+          "text": "am walking"
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i14:r3",
+          "text": "walks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+          "uk": "Ви сидите в офісі й розповідаєте про постійну звичку ходити на роботу пішки, а не про тимчасову зміну маршруту. Виберіть фразу про постійну звичку"
+        },
+        "gappedTargetPhrase": "I ___ to work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-25:i14:r1",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i14:r2",
+            "text": "am walking"
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i14:r3",
+            "text": "walks"
+          }
+        ],
+        "testedDimension": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+            "feedbackByLocale": {
+              "ru": "Здесь речь о привычном маршруте: `I walk to work`. `I am walking` может описывать ходьбу сейчас или временную ситуацию. Здесь нужна постоянная привычка.",
+              "uk": "Тут ідеться про звичний маршрут: `I walk to work`. `I am walking` може описувати ходьбу зараз або тимчасову ситуацію. Тут потрібна постійна звичка."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы сидите в офисе и рассказываете о постоянной привычке ходить на работу пешком, а не о временной смене маршрута. Выберите фразу о постоянной привычке",
+            "feedbackByLocale": {
+              "ru": "После `I` — `walk`, без `s`.",
+              "uk": "Після `I` — `walk`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что Анна говорит о раковине",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-25:i15:r1",
+          "text": "The sink is clean."
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i15:r2",
+          "text": "The sink is dirty."
+        },
+        {
+          "responseId": "en:lesson-06:session-25:i15:r3",
+          "text": "The sink is broken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что Анна говорит о раковине",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:i15:audio",
+          "transcript": "The sink is clean."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-25:i15:r1",
+            "targetText": "The sink is clean.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i15:r2",
+            "targetText": "The sink is dirty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i15:r3",
+            "targetText": "The sink is broken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-25:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что Анна говорит о раковине",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `clean`, а в этом варианте — `dirty`.",
+              "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `dirty`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-25:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что Анна говорит о раковине",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `clean`, а в этом варианте — `broken`.",
+              "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `broken`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-25:i16:p1",
+            "target": "walk",
+            "meaningByLocale": {
+              "ru": "ходить пешком",
+              "uk": "ходити пішки"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i16:p2",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i16:p3",
+            "target": "absent",
+            "meaningByLocale": {
+              "ru": "отсутствующий",
+              "uk": "відсутній"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-25:i16:p4",
+            "target": "drive",
+            "meaningByLocale": {
+              "ru": "водить машину",
+              "uk": "водити машину"
+            }
+          }
+        ],
+        "leftColumn": [
+          "walk",
+          "sink",
+          "absent",
+          "drive"
+        ],
+        "rightColumn": [
+          "ходить пешком",
+          "раковина",
+          "отсутствующий",
+          "водить машину"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы обедаете с коллегой. Расскажите о привычном маршруте Анны: «Она ходит на работу пешком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Вы обедаете с коллегой. Расскажите о привычном маршруте Анны: «Она ходит на работу пешком»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-25:i17:audio",
+          "transcript": "She walks to work."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She walks to work.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "84f22f1b40ad7cbb6c571cdf7fe4ac54956c907eb51ecb9c02651b12250b2555"
+}

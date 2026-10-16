@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-25:intro1:r2": {
+          "ru": "Говорим `I walk`, без `am`.",
+          "uk": "Кажемо `I walk`, без `am`."
+        },
+        "en:lesson-06:session-25:intro1:r3": {
+          "ru": "После `I` — `walk`, без `s`.",
+          "uk": "Після `I` — `walk`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-25:intro2:r2": {
+          "ru": "После `she` — `walks`, с `s`.",
+          "uk": "Після `she` — `walks`, з `s`."
+        },
+        "en:lesson-06:session-25:intro2:r3": {
+          "ru": "Говорим `She walks`, без `is`.",
+          "uk": "Кажемо `She walks`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-25:intro3:r2": {
+          "ru": "Здесь нужно `He is absent`.",
+          "uk": "Тут потрібно `He is absent`."
+        },
+        "en:lesson-06:session-25:intro3:r3": {
+          "ru": "С `he` — `is`, не `are`.",
+          "uk": "З `he` — `is`, не `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9d5b03990542bf2f993631c8e832917d6e1043d7addd908f6711ef6f6004eb7a"
+}

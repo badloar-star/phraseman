@@ -3270,11 +3270,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "You are not crazy.",
-          "file": "d71b2ff69af1506826b6e16b831ea3132b294ac7a3066a0cc40f75b66f1309d4.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d71b2ff69af1506826b6e16b831ea3132b294ac7a3066a0cc40f75b66f1309d4.mp3",
-          "contentHash": "4486ef78c482911d0ae39887e92af39f1bcc175500bdd8669d635c4813cc42f3",
-          "byteSize": 34560
+          "text": "You are not rude.",
+          "file": "4da7a8221cd3fcc517df39ef4f611828063828052cf089a4910ec3173e8cce56.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4da7a8221cd3fcc517df39ef4f611828063828052cf089a4910ec3173e8cce56.mp3",
+          "contentHash": "000c8cc703597606be186150f377d5dd99944f30a29ea2e353661756d1d19d75",
+          "byteSize": 54528
         }
       ]
     },
@@ -3282,11 +3282,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "You are not wrong.",
-          "file": "aebcffe3b7b2a8f744063f9c90d7e748bcc7890e58b44f1e134dbab58ec53258.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aebcffe3b7b2a8f744063f9c90d7e748bcc7890e58b44f1e134dbab58ec53258.mp3",
-          "contentHash": "93397f91a5c85f9f58675f93943fc80ac462c7c8cb3076ea4764bab4e48c4c60",
-          "byteSize": 32256
+          "text": "You are not slow.",
+          "file": "e3e2b74e7512305dfb1ade730477510479f98892b848bc0d0a61354447df15f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e3e2b74e7512305dfb1ade730477510479f98892b848bc0d0a61354447df15f4.mp3",
+          "contentHash": "68fd9888fed57b037ab2abafe2d67b412061fc74f780b63db4d518392d9220de",
+          "byteSize": 25344
         }
       ]
     },
@@ -3294,11 +3294,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "crazy",
-          "file": "a73be5a119e6ef8eab9c45e9e52b5f8e8874efa5c2f582ad3fdd25dceb24f44f.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/389ec5f1112d5e956ad212f6-onyx.mp3",
-          "contentHash": "3403960034f172129dc6291267564fd714a6fcd1e4e588ec4bd32dccc272f0ad",
-          "byteSize": 26880
+          "text": "rude",
+          "file": "43c49f755f73d1bb19048715cf890a81d873358c2c7bf8552eedf5f4686b5fd9.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/1a88367105ff0f2e007a734e-onyx.mp3",
+          "contentHash": "e15cc8deb75d6f57811d588a938b2156cea1a70dc69fb083be6d4054387cfc0b",
+          "byteSize": 21120
         }
       ]
     },
@@ -3306,11 +3306,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "crazy",
-          "file": "7a8b6296c2838b0a3318987b91ee8336ee2bce3f8f7bfefc128c90ea62e5e409.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/389ec5f1112d5e956ad212f6-ash.mp3",
-          "contentHash": "9c7cda9c766edf6caa7635f5d2770472463a4cc594889c30a6c58d965a27cb91",
-          "byteSize": 21120
+          "text": "rude",
+          "file": "0d093889e47178adedaa249839f9adf35cb9fba1a7cf54eff583e6073d5f5b4e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/1a88367105ff0f2e007a734e-ash.mp3",
+          "contentHash": "c64228bcd140a4db79f2b5560a19c20e3466133e2f518c0ec3a4f98221d529cc",
+          "byteSize": 17280
         }
       ]
     },
@@ -3335,13 +3335,6 @@
           "assetPath": "assets/audio/learning-v2/factory-production-v1/81fd67d02f679b818a4df6a5-nova.mp3",
           "contentHash": "201e0364e5aa62befad763955023951dc6a54dd20dd11ea727132a5216c3830f",
           "byteSize": 14208
-        },
-        {
-          "text": "crazy",
-          "file": "04281949aff986e5b41eeb1d60909fd5b7254765795916dd7a2c982738c18d50.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/389ec5f1112d5e956ad212f6-nova.mp3",
-          "contentHash": "30d3e119274982bec70e64dd583203839ad59a95bc0181a7f680eed0e0cbd5ab",
-          "byteSize": 14208
         }
       ]
     },
@@ -3361,11 +3354,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "wrong",
-          "file": "09c88a5095cf1b6e4ba287987a8d77e413849c1a529681a252f0c96343aacc2f.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/8810ad581e59f2bc3928b261-coral.mp3",
-          "contentHash": "a3df7584e640ee3fc9857c7f6dc2f3644a5ffd293f01b98b14f88de077526c9b",
-          "byteSize": 40320
+          "text": "slow",
+          "file": "5a23953497a57d41304a0ad1b9ea782b3e1c3ad31eb3400eb43dbcf52f95ef29.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5e0cf7bd1dfa3831788b0cf6-coral.mp3",
+          "contentHash": "2089af71a2c70bb7e150cbd63cf5b0217d9d1e0dec3509391ccb9d48033e41fd",
+          "byteSize": 33792
         }
       ]
     },
@@ -3373,11 +3366,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "wrong",
-          "file": "554c7ed0421ce9c7a02a9b0da674843a2dd18081b549d79ddc41c98ec6e1b960.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/8810ad581e59f2bc3928b261-onyx.mp3",
-          "contentHash": "3b62051eab9bf5484daf02bea0b40943d1d28e297f7f5cfb7381b8159037b302",
-          "byteSize": 17280
+          "text": "slow",
+          "file": "cab64b373bf5e6ab08d414e631b59ce5dc6fe5087880278ed5e54c2adbcd9e37.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5e0cf7bd1dfa3831788b0cf6-onyx.mp3",
+          "contentHash": "0b4fd4d55f3693ab89f913754ba886ccbea9d26410455f2d447f78bbf5896139",
+          "byteSize": 21120
         }
       ]
     },
@@ -3397,11 +3390,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "kind",
-          "file": "67cf62c0abc21b97def7d14cff6c2d4ac677df53aef96e45c57f15be9a0b3faf.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/0b27c158feb36ab18a10ff68-nova.mp3",
-          "contentHash": "8d8dd258761167f60e31da61eacded91dde16ded8292156494e032158e4d71b7",
-          "byteSize": 19584
+          "text": "careful",
+          "file": "2fa155aac5cf5d7acd5a48d213e7273073f993ca0f5f7fde86beff5b618990f2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/191c415261817259c49f435b-nova.mp3",
+          "contentHash": "d6ccfd9a545cef2cf8c29beb5ea65d5363e998e27b7fe5472a45807b8fa14129",
+          "byteSize": 21888
         }
       ]
     },
@@ -3409,11 +3402,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "kind",
-          "file": "05694b501864288f66bb3efb663c01fec972ce5291f25a978c437348b2aa9049.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/0b27c158feb36ab18a10ff68-coral.mp3",
-          "contentHash": "61084a31f04112c03931de8ac73a53c037617f43f6acb17a0d48791055631356",
-          "byteSize": 37248
+          "text": "careful",
+          "file": "ce5c15b34026462d7e0a7b0b825bf524e0fed7f3920ddae68f87fd95d7b19789.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/191c415261817259c49f435b-coral.mp3",
+          "contentHash": "ca743c6f15bd870b656cdff0f9ebb57854b117ff7947a576f69ccfd6e455f99d",
+          "byteSize": 33792
         }
       ]
     },
@@ -3421,24 +3414,17 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "She said: I am sure .",
-          "file": "4f57168461c0bd402a66da98a4653c79b8acc1de606d133d26c20455f8ebf587.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f57168461c0bd402a66da98a4653c79b8acc1de606d133d26c20455f8ebf587.mp3",
-          "contentHash": "a41f632365859a809c7f83502c3f5250f415526284371b009606c9ee57e89a2a",
-          "byteSize": 33792
+          "text": "I am sure .",
+          "file": "d8065223beaad632954e8484a45233f9f16e06eee6da6ecd0f14576bb339ff4f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d8065223beaad632954e8484a45233f9f16e06eee6da6ecd0f14576bb339ff4f.mp3",
+          "contentHash": "a194a69772a0f8a7995d604baa9e59ea0802ea7629f696dee0bd5564d0c1d583",
+          "byteSize": 34944
         }
       ]
     },
     "l01/s11/task/11": {
       "voice": "nova",
       "clips": [
-        {
-          "text": "crazy",
-          "file": "04281949aff986e5b41eeb1d60909fd5b7254765795916dd7a2c982738c18d50.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/389ec5f1112d5e956ad212f6-nova.mp3",
-          "contentHash": "30d3e119274982bec70e64dd583203839ad59a95bc0181a7f680eed0e0cbd5ab",
-          "byteSize": 14208
-        },
         {
           "text": "lazy",
           "file": "a9b367ca6ef24b723f4e69c256c0e88b63ae134f7912e7fdfffef06b8ecdd75e.mp3",
@@ -3447,18 +3433,25 @@
           "byteSize": 14208
         },
         {
-          "text": "wrong",
-          "file": "ed291940f1a4645fad0e16441558c4d62b4eb23f9c9f71cc953c3626dc1f4e31.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/8810ad581e59f2bc3928b261-nova.mp3",
-          "contentHash": "137633d1a052d6ab072c22a3870de9081e39a4fffafae55ad6efe23a86ef453d",
-          "byteSize": 18048
+          "text": "rude",
+          "file": "05c59e3f2c8b11801756fa6bcf7429c28c52695ddddc54fb5ddae9737c758caa.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/1a88367105ff0f2e007a734e-nova.mp3",
+          "contentHash": "9ed9b880170dafe60cd75b28f8f7c62d5b0fb7b619822090c4030189271684a0",
+          "byteSize": 16512
         },
         {
-          "text": "kind",
-          "file": "67cf62c0abc21b97def7d14cff6c2d4ac677df53aef96e45c57f15be9a0b3faf.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/0b27c158feb36ab18a10ff68-nova.mp3",
-          "contentHash": "8d8dd258761167f60e31da61eacded91dde16ded8292156494e032158e4d71b7",
-          "byteSize": 19584
+          "text": "slow",
+          "file": "837cc8d091a0873d64f69b746019f1a4be8f9e44756e4b531250fe09a2a086d4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/5e0cf7bd1dfa3831788b0cf6-nova.mp3",
+          "contentHash": "52534e0b758a44865ec8d05bc7a6bf5f4645ba4beefe8f5fe729196b5d9a1a4e",
+          "byteSize": 20352
+        },
+        {
+          "text": "careful",
+          "file": "2fa155aac5cf5d7acd5a48d213e7273073f993ca0f5f7fde86beff5b618990f2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/191c415261817259c49f435b-nova.mp3",
+          "contentHash": "d6ccfd9a545cef2cf8c29beb5ea65d5363e998e27b7fe5472a45807b8fa14129",
+          "byteSize": 21888
         }
       ]
     },
@@ -3466,11 +3459,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "You are not crazy.",
-          "file": "e75603bb1e2a290f47213e44476579f4891c9a1bd7b96982c4a94e1e624038e3.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e75603bb1e2a290f47213e44476579f4891c9a1bd7b96982c4a94e1e624038e3.mp3",
-          "contentHash": "3601c043367d8ca6e3ed8f7943fb5089d51cdf2249a9e53aa1bd52ab9c183c04",
-          "byteSize": 24576
+          "text": "You are not rude.",
+          "file": "ab2638a39f788b136e747c21bc7b03297a0126a7eb0ce8818248007367bd8fa8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab2638a39f788b136e747c21bc7b03297a0126a7eb0ce8818248007367bd8fa8.mp3",
+          "contentHash": "9443ac644dd6458fd23df1a905428186d75d9a8b28c9556b121b66d5d12d6fcb",
+          "byteSize": 27648
         }
       ]
     },
@@ -3478,11 +3471,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "You are sure.",
-          "file": "b4a21c8147ad1d723920d2f2132ee0131c5a9d2fa5b2282e46eac9863a36010c.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b4a21c8147ad1d723920d2f2132ee0131c5a9d2fa5b2282e46eac9863a36010c.mp3",
-          "contentHash": "68ee7b6683a163efb68fc634e9cdcfa3a66e5d42dfc3ebcbea0456ab848d70c2",
-          "byteSize": 32640
+          "text": "You are careful.",
+          "file": "f837f544497577c56d51355ea95f8f50f27ff1e20ea3498fef7a922d299e24da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f837f544497577c56d51355ea95f8f50f27ff1e20ea3498fef7a922d299e24da.mp3",
+          "contentHash": "0829a1aa9aa5c8ac4df267bac274e808e1fc7964dba722dbd0e36917a12393e8",
+          "byteSize": 29184
         }
       ]
     },

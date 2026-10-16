@@ -1,0 +1,972 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я плаваю в цьому басейні»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я плаваю в цьому басейні»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I swim in this pool.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я плаваю в этом бассейне»",
+          "uk": "Скажіть «Я плаваю в цьому басейні»"
+        },
+        "orderedTokens": [
+          "I",
+          "swim",
+          "in",
+          "this",
+          "pool"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-13:i02:r1",
+          "text": "swim"
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i02:r2",
+          "text": "paint"
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i02:r3",
+          "text": "work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:i02:audio",
+          "transcript": "swim"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-13:i02:r1",
+            "targetText": "swim",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i02:r2",
+            "targetText": "paint",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i02:r3",
+            "targetText": "work",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `swim`, а в этом варианте — `paint`.",
+              "uk": "У записі перше слово — `swim`, а в цьому варіанті — `paint`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `swim`, а в этом варианте — `work`.",
+              "uk": "У записі перше слово — `swim`, а в цьому варіанті — `work`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Ми плаваємо тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-13:i03:r1",
+          "text": "swim"
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i03:r2",
+          "text": "swims"
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i03:r3",
+          "text": "are swim"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Ми плаваємо тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Мы плаваем здесь»",
+          "uk": "Скажіть «Ми плаваємо тут»"
+        },
+        "gappedTargetPhrase": "We ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-13:i03:r1",
+            "text": "swim"
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i03:r2",
+            "text": "swims"
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i03:r3",
+            "text": "are swim"
+          }
+        ],
+        "testedDimension": "Скажіть «Ми плаваємо тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Ми плаваємо тут»",
+            "feedbackByLocale": {
+              "ru": "После `we` — `swim`, без `s`.",
+              "uk": "Після `we` — `swim`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Ми плаваємо тут»",
+            "feedbackByLocale": {
+              "ru": "Говорим `We swim`, без `are`.",
+              "uk": "Кажемо `We swim`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-13:i04:p1",
+            "target": "swim",
+            "meaningByLocale": {
+              "ru": "плавать",
+              "uk": "плавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i04:p2",
+            "target": "public",
+            "meaningByLocale": {
+              "ru": "общественный",
+              "uk": "громадський"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i04:p3",
+            "target": "taxi",
+            "meaningByLocale": {
+              "ru": "такси",
+              "uk": "таксі"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i04:p4",
+            "target": "umbrella",
+            "meaningByLocale": {
+              "ru": "зонт",
+              "uk": "парасоля"
+            }
+          }
+        ],
+        "leftColumn": [
+          "swim",
+          "public",
+          "taxi",
+          "umbrella"
+        ],
+        "rightColumn": [
+          "плавати",
+          "громадський",
+          "таксі",
+          "парасоля"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:i05:audio",
+          "transcript": "They swim here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They swim here.",
+        "orderedTokens": [
+          "They",
+          "swim",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Це громадський басейн»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Це громадський басейн»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a public pool.",
+        "localizedMeaning": {
+          "ru": "Скажите «Это общественный бассейн»",
+          "uk": "Скажіть «Це громадський басейн»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "public",
+          "pool"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажіть «Це громадський басейн»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a public pool.`",
+              "uk": "тут потрібно `is` — `This is a public pool.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Парасоля мокра»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Парасоля мокра»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:i07:audio",
+          "transcript": "The umbrella is wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The umbrella is wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Та парасоля твоя»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-13:i08:r1",
+          "text": "yours"
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i08:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i08:r3",
+          "text": "you"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Та парасоля твоя»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Тот зонт твой»",
+          "uk": "Скажіть «Та парасоля твоя»"
+        },
+        "gappedTargetPhrase": "That umbrella is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-13:i08:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i08:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i08:r3",
+            "text": "you"
+          }
+        ],
+        "testedDimension": "Скажіть «Та парасоля твоя»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Та парасоля твоя»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи после «твой» нужно `yours`.",
+              "uk": "Без назви речі після «твоя» потрібно `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Та парасоля твоя»",
+            "feedbackByLocale": {
+              "ru": "`you` — ты или вы; здесь «твой» — `yours`.",
+              "uk": "`you` — ти або ви; тут «твоя» — `yours`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чий брелок тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-13:i09:r1",
+          "text": "My keychain is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i09:r2",
+          "text": "Your keychain is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i09:r3",
+          "text": "His keychain is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чий брелок тут",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:i09:audio",
+          "transcript": "My keychain is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-13:i09:r1",
+            "targetText": "My keychain is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i09:r2",
+            "targetText": "Your keychain is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i09:r3",
+            "targetText": "His keychain is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чий брелок тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чий брелок тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-13:i10:p1",
+            "target": "swim",
+            "meaningByLocale": {
+              "ru": "плавать",
+              "uk": "плавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i10:p2",
+            "target": "keychain",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i10:p3",
+            "target": "umbrella",
+            "meaningByLocale": {
+              "ru": "зонт",
+              "uk": "парасоля"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i10:p4",
+            "target": "public",
+            "meaningByLocale": {
+              "ru": "общественный",
+              "uk": "громадський"
+            }
+          }
+        ],
+        "leftColumn": [
+          "swim",
+          "keychain",
+          "umbrella",
+          "public"
+        ],
+        "rightColumn": [
+          "плавати",
+          "брелок",
+          "парасоля",
+          "громадський"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:i11:audio",
+          "transcript": "They are in the taxi."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are in the taxi.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "in",
+          "the",
+          "taxi"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `They are in the taxi.`",
+              "uk": "тут потрібно `are` — `They are in the taxi.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Чий це брелок?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Чий це брелок?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose keychain is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чей это брелок?»",
+          "uk": "Запитайте «Чий це брелок?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "keychain",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть другові «Ти плаваєш у цьому басейні»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть другові «Ти плаваєш у цьому басейні»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:i13:audio",
+          "transcript": "You swim in this pool."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You swim in this pool.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я плаваю тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-13:i14:r1",
+          "text": "swim"
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i14:r2",
+          "text": "swims"
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i14:r3",
+          "text": "am swim"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я плаваю тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я плаваю здесь»",
+          "uk": "Скажіть «Я плаваю тут»"
+        },
+        "gappedTargetPhrase": "I ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-13:i14:r1",
+            "text": "swim"
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i14:r2",
+            "text": "swims"
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i14:r3",
+            "text": "am swim"
+          }
+        ],
+        "testedDimension": "Скажіть «Я плаваю тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я плаваю тут»",
+            "feedbackByLocale": {
+              "ru": "После `I` — `swim`, без `s`.",
+              "uk": "Після `I` — `swim`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я плаваю тут»",
+            "feedbackByLocale": {
+              "ru": "Говорим `I swim`, без `am`.",
+              "uk": "Кажемо `I swim`, без `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що Том каже про таксі",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-13:i15:r1",
+          "text": "The taxi is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i15:r2",
+          "text": "The taxi is there."
+        },
+        {
+          "responseId": "en:lesson-06:session-13:i15:r3",
+          "text": "The taxi is late."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що Том каже про таксі",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:i15:audio",
+          "transcript": "The taxi is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-13:i15:r1",
+            "targetText": "The taxi is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i15:r2",
+            "targetText": "The taxi is there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i15:r3",
+            "targetText": "The taxi is late.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що Том каже про таксі",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-13:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що Том каже про таксі",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `late`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `late`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-13:i16:p1",
+            "target": "swim",
+            "meaningByLocale": {
+              "ru": "плавать",
+              "uk": "плавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i16:p2",
+            "target": "public",
+            "meaningByLocale": {
+              "ru": "общественный",
+              "uk": "громадський"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i16:p3",
+            "target": "taxi",
+            "meaningByLocale": {
+              "ru": "такси",
+              "uk": "таксі"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i16:p4",
+            "target": "keychain",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "swim",
+          "public",
+          "taxi",
+          "keychain"
+        ],
+        "rightColumn": [
+          "плавати",
+          "громадський",
+          "таксі",
+          "брелок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажіть другові басейн, до якого ходите з Анною. Скажіть «Ми плаваємо тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Покажіть другові басейн, до якого ходите з Анною. Скажіть «Ми плаваємо тут»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:i17:audio",
+          "transcript": "We swim here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We swim here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9e8f15dc4f70f2c99a9e3968df2fa8ef90b457f1191c13bf9246e1c9dda1c127"
+}

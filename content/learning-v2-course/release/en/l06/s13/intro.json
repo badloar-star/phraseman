@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о плавании и спросить о владельце вещи",
+    "uk": "розповісти про плавання й запитати про власника речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Плавать",
+        "uk": "Плавати"
+      },
+      "bodyByLocale": {
+        "ru": "`swim` — «плавать». `I swim in this pool` — «Я плаваю в этом бассейне»: говорим об обычном занятии. `We swim here` — «Мы плаваем здесь». Промокнуть под дождём — ещё не `swim`: для плавания придётся хотя бы зайти в воду.",
+        "uk": "`swim` — «плавати». `I swim in this pool` — «Я плаваю в цьому басейні»: говоримо про звичне заняття. `We swim here` — «Ми плаваємо тут». Промокнути під дощем — ще не `swim`: для плавання доведеться хоча б зайти у воду."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мы плаваем здесь».",
+          "uk": "Скажіть «Ми плаваємо тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-13:intro1:r1",
+              "text": "We swim here."
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro1:r2",
+              "text": "We swims here."
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro1:r3",
+              "text": "We are swim here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-13:intro1:r1",
+              "text": "We swim here."
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro1:r2",
+              "text": "We swims here."
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro1:r3",
+              "text": "We are swim here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мы плаваем здесь».",
+          "uk": "Скажіть «Ми плаваємо тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Открыт для посетителей",
+        "uk": "Відкритий для відвідувачів"
+      },
+      "bodyByLocale": {
+        "ru": "`public` — «публичный», «общественный», доступный широкой публике. `This is a public pool` — «Это общественный бассейн». Он может быть платным: `public` не означает «бесплатный». `taxi` — «такси». `They are in the taxi` — «Они в такси»: место, поэтому нужно `are`.",
+        "uk": "`public` — «публічний», «громадський», доступний широкому загалу. `This is a public pool` — «Це громадський басейн». Він може бути платним: `public` не означає «безкоштовний». `taxi` — «таксі». `They are in the taxi` — «Вони в таксі»: місце, тому потрібно `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Это общественный бассейн».",
+          "uk": "Скажіть «Це громадський басейн»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-13:intro2:r1",
+              "text": "This is a public pool."
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro2:r2",
+              "text": "This are a public pool."
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro2:r3",
+              "text": "This is a private pool."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-13:intro2:r1",
+              "text": "This is a public pool."
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro2:r2",
+              "text": "This are a public pool."
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro2:r3",
+              "text": "This is a private pool."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Это общественный бассейн».",
+          "uk": "Скажіть «Це громадський басейн»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Зонт и брелок",
+        "uk": "Парасоля й брелок"
+      },
+      "bodyByLocale": {
+        "ru": "`umbrella` — «зонт», `keychain` — «брелок». `The umbrella is wet` — «Зонт мокрый». `Whose keychain is this?` — «Чей это брелок?» `That umbrella is yours` — «Тот зонт твой»: после `yours` название вещи не нужно.",
+        "uk": "`umbrella` — «парасоля», `keychain` — «брелок». `The umbrella is wet` — «Парасоля мокра». `Whose keychain is this?` — «Чий це брелок?» `That umbrella is yours` — «Та парасоля твоя»: після `yours` назва речі не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Чей это брелок?»",
+          "uk": "Запитайте «Чий це брелок?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-13:intro3:r1",
+              "text": "Whose keychain is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro3:r2",
+              "text": "Where is the keychain?"
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro3:r3",
+              "text": "Whose keychain are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-13:intro3:r1",
+              "text": "Whose keychain is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro3:r2",
+              "text": "Where is the keychain?"
+            },
+            {
+              "responseId": "en:lesson-06:session-13:intro3:r3",
+              "text": "Whose keychain are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Чей это брелок?»",
+          "uk": "Запитайте «Чий це брелок?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "987af3b4915e84a6dfd834be686efc38a378e93ba242ff1607909f3615982202"
+}

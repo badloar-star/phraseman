@@ -61675,6 +61675,309 @@
           "byteSize": 49152
         }
       ]
+    },
+    "l04/s36/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is a smoke alarm.",
+          "file": "78202938023ced2e10cb48598e8e6e4d9bf7258faea461eb08ac13e027acec38.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/78202938023ced2e10cb48598e8e6e4d9bf7258faea461eb08ac13e027acec38.mp3",
+          "contentHash": "e82b0bfed5e899596d44909d7bf7ead4872176a39ac5356b1e253dbd213aac54",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s36/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The children are next to the table.",
+          "file": "e500e17429815742f255cb733bb22c12a449824c6f9dfd9aa35a4999d6a8949a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e500e17429815742f255cb733bb22c12a449824c6f9dfd9aa35a4999d6a8949a.mp3",
+          "contentHash": "1b4754ea515df032c10e070ccf616f22e9099917a8014222593da1256dd7b402",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s36/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's informal.",
+          "file": "bc8b00fb7c47d22e53115467ec6d58e33b652c7b6040097194fe958bd053a3cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc8b00fb7c47d22e53115467ec6d58e33b652c7b6040097194fe958bd053a3cc.mp3",
+          "contentHash": "b043e9ccdb808a7db1d01b270f4751519c46989b93f539180adb464dab611b45",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s36/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It is informal.",
+          "file": "3890454e08bf9f6b839da7b503cfa5135718e280234294f9a769403bd9c2d56e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3890454e08bf9f6b839da7b503cfa5135718e280234294f9a769403bd9c2d56e.mp3",
+          "contentHash": "a091a0b8a742bf5c816a3ec919fde0533e9f760add558b646511b148b15b8cde",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s36/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "smoke alarm",
+          "file": "e75696da1d0f9e2f5ef149e409778a0539b3119f33d29e3f8df3d1373f11721c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e75696da1d0f9e2f5ef149e409778a0539b3119f33d29e3f8df3d1373f11721c.mp3",
+          "contentHash": "67af62d7ae80c4839260dd9ac290663995ee6705fbcde11742f3317735e4bfef",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s36/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "smoke alarm",
+          "file": "e75696da1d0f9e2f5ef149e409778a0539b3119f33d29e3f8df3d1373f11721c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e75696da1d0f9e2f5ef149e409778a0539b3119f33d29e3f8df3d1373f11721c.mp3",
+          "contentHash": "67af62d7ae80c4839260dd9ac290663995ee6705fbcde11742f3317735e4bfef",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s36/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "smoke alarm",
+          "file": "e75696da1d0f9e2f5ef149e409778a0539b3119f33d29e3f8df3d1373f11721c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e75696da1d0f9e2f5ef149e409778a0539b3119f33d29e3f8df3d1373f11721c.mp3",
+          "contentHash": "67af62d7ae80c4839260dd9ac290663995ee6705fbcde11742f3317735e4bfef",
+          "byteSize": 29952
+        },
+        {
+          "text": "informal",
+          "file": "7ef442be0873f30779f5352d263d6f46330f62b4bc555ff120f72bf46fc8f4da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7ef442be0873f30779f5352d263d6f46330f62b4bc555ff120f72bf46fc8f4da.mp3",
+          "contentHash": "8b11f1a6fc3090119c9c90be9f22303b3f776bb8c699127835a346d10e00fae1",
+          "byteSize": 27648
+        },
+        {
+          "text": "children",
+          "file": "ef5b6497b96c424dda5483bc72b2c4fcbbc23a2a5731dfef5c0f3888111bf8fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef5b6497b96c424dda5483bc72b2c4fcbbc23a2a5731dfef5c0f3888111bf8fc.mp3",
+          "contentHash": "33537d4206bd1ec43b4a7748b03439f790db397b65ee75f1255851053bd9f8c2",
+          "byteSize": 20352
+        },
+        {
+          "text": "alley",
+          "file": "7341022799710e8fa98b6d844cb4a80711dd3b9a883fc8d1d8ea3b006b47f549.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7341022799710e8fa98b6d844cb4a80711dd3b9a883fc8d1d8ea3b006b47f549.mp3",
+          "contentHash": "17dbfaa384c590d8faa6790a9ae0a660a960c9753e6bbbbf1dab8e21d641c394",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l04/s36/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a smoke alarm.",
+          "file": "56d892c2b023f8a5ae7f6ab3b862b6b529292b9f7f65794cbdde0e4b0c020971.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56d892c2b023f8a5ae7f6ab3b862b6b529292b9f7f65794cbdde0e4b0c020971.mp3",
+          "contentHash": "bd381490ab8a8de524841ab3b7adc19e816595a3f620152f38235f3265eab2ef",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s36/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The children are next to the table.",
+          "file": "c046f6ed8658f682a1ac1c80e58101fc2f27f3dedcc7547f5eea444827e27e5c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c046f6ed8658f682a1ac1c80e58101fc2f27f3dedcc7547f5eea444827e27e5c.mp3",
+          "contentHash": "f5f301a125b5be7d17485e50fe75382412c16fd128315f4a935e0ad7396a7f84",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s36/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's informal.",
+          "file": "bddf35b7c87eecf18978a776293c17168f0bb71700e04fa33546e1be11c099eb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bddf35b7c87eecf18978a776293c17168f0bb71700e04fa33546e1be11c099eb.mp3",
+          "contentHash": "4932a77cb0d2acb11d8fcc887ee3593c9ec914301180f51e0d3e027940bcbdbe",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s36/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There isn't a smoke alarm.",
+          "file": "90295e6d54e84b02708f7a68e75050366fb0ad16dda003271c83f4e30002cc84.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90295e6d54e84b02708f7a68e75050366fb0ad16dda003271c83f4e30002cc84.mp3",
+          "contentHash": "8672b6a2d9ecea5f206ae49879a82681337bb0b8b38375e23889ce30ff0851d3",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s36/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The door is in the alley.",
+          "file": "449f122e12208c6f646c74ad5090e60cf87fc367522d8e584e5e6b86f3debd6b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/449f122e12208c6f646c74ad5090e60cf87fc367522d8e584e5e6b86f3debd6b.mp3",
+          "contentHash": "9494656e331f67ca86dc7754b2673b3fa58b0886cae204182bbf00725d0dfea0",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s36/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "smoke alarm",
+          "file": "36284eed8a853b63e72f7c5444f6f4a09f1a4def3cc73f8969eda2bc3c9d78f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36284eed8a853b63e72f7c5444f6f4a09f1a4def3cc73f8969eda2bc3c9d78f0.mp3",
+          "contentHash": "a31cd60876769920589f8aa050560c14ea219e6b698f0706576723b2a4aa79ff",
+          "byteSize": 47616
+        },
+        {
+          "text": "informal",
+          "file": "8ad0b557074160af6dbcb7f326c2e359b26566eef1f099e6c1a7cd5763807de1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ad0b557074160af6dbcb7f326c2e359b26566eef1f099e6c1a7cd5763807de1.mp3",
+          "contentHash": "d97e0ab41a1aea8cd850f171f87ff9ced7b33cb8b218ae2cbe65ddf59d997063",
+          "byteSize": 24192
+        },
+        {
+          "text": "children",
+          "file": "3dfff6efaa153276d43a25cd88416e2d570268905312abbfb38126b06f0a6c2c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3dfff6efaa153276d43a25cd88416e2d570268905312abbfb38126b06f0a6c2c.mp3",
+          "contentHash": "41d24c42449c1757322bce628e67bcd861cec8a7c22b4c3e7821823d3d690776",
+          "byteSize": 29952
+        },
+        {
+          "text": "alley",
+          "file": "afc7994ee85a6310f8656c98481b58f7dd483aa7bf9542e520cbb4e46482a3e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/afc7994ee85a6310f8656c98481b58f7dd483aa7bf9542e520cbb4e46482a3e1.mp3",
+          "contentHash": "a555637052bc5ebd18e23d14e9f4429fc4f76ee7b9e89758a02e3243b86a0b7e",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l04/s36/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There aren't any smoke alarms.",
+          "file": "34cbcc17dcfb6d809889d7dbe0b2a3189ecc2c300115b2ee0e1b171d4e2e8a8b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34cbcc17dcfb6d809889d7dbe0b2a3189ecc2c300115b2ee0e1b171d4e2e8a8b.mp3",
+          "contentHash": "bada4b3f188c07fc527902b9c6be116cc038444bc50ec1b088d1c3790542ca78",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s36/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is a smoke alarm.",
+          "file": "7abe96106eda526f24b5b3a76c18aabdf0f9f74d7930bf10f1e1b62cd081a74f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7abe96106eda526f24b5b3a76c18aabdf0f9f74d7930bf10f1e1b62cd081a74f.mp3",
+          "contentHash": "3e56b82acd0190a49f8e2a1920d584d3815f3c80086da46f891d10b6ac9a6cea",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s36/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there a smoke alarm?",
+          "file": "4b625105b7bc0509f313249e0196787b2a9cc13c5bd633d638e2a3263ab34aff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b625105b7bc0509f313249e0196787b2a9cc13c5bd633d638e2a3263ab34aff.mp3",
+          "contentHash": "d012cf1eec106071a84d16744c49cb5faa144bcfb5c320f9b738e3278c892a38",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s36/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The children are in the room.",
+          "file": "60e8e78c2c3f0ca8ab4c403a387fd3f478387698153feb75b0082192dc1b513c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60e8e78c2c3f0ca8ab4c403a387fd3f478387698153feb75b0082192dc1b513c.mp3",
+          "contentHash": "22e89dbe989d96809d3a91faf8dfa871796db9ed94fc1cabb4eb0a8e19a1e243",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s36/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That is a smoke alarm.",
+          "file": "8dab0bde00f81c51170ddab225af3af5a3f5bde2517deb67c361e314a5983066.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8dab0bde00f81c51170ddab225af3af5a3f5bde2517deb67c361e314a5983066.mp3",
+          "contentHash": "6e49c6b2ec70f369fc4e467666485e8d739635e8ed767ffd3a628a403458bfe2",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l04/s36/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "smoke alarm",
+          "file": "e75696da1d0f9e2f5ef149e409778a0539b3119f33d29e3f8df3d1373f11721c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e75696da1d0f9e2f5ef149e409778a0539b3119f33d29e3f8df3d1373f11721c.mp3",
+          "contentHash": "67af62d7ae80c4839260dd9ac290663995ee6705fbcde11742f3317735e4bfef",
+          "byteSize": 29952
+        },
+        {
+          "text": "informal",
+          "file": "7ef442be0873f30779f5352d263d6f46330f62b4bc555ff120f72bf46fc8f4da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7ef442be0873f30779f5352d263d6f46330f62b4bc555ff120f72bf46fc8f4da.mp3",
+          "contentHash": "8b11f1a6fc3090119c9c90be9f22303b3f776bb8c699127835a346d10e00fae1",
+          "byteSize": 27648
+        },
+        {
+          "text": "children",
+          "file": "ef5b6497b96c424dda5483bc72b2c4fcbbc23a2a5731dfef5c0f3888111bf8fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef5b6497b96c424dda5483bc72b2c4fcbbc23a2a5731dfef5c0f3888111bf8fc.mp3",
+          "contentHash": "33537d4206bd1ec43b4a7748b03439f790db397b65ee75f1255851053bd9f8c2",
+          "byteSize": 20352
+        },
+        {
+          "text": "alley",
+          "file": "7341022799710e8fa98b6d844cb4a80711dd3b9a883fc8d1d8ea3b006b47f549.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7341022799710e8fa98b6d844cb4a80711dd3b9a883fc8d1d8ea3b006b47f549.mp3",
+          "contentHash": "17dbfaa384c590d8faa6790a9ae0a660a960c9753e6bbbbf1dab8e21d641c394",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l04/s36/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There isn't a smoke alarm.",
+          "file": "90295e6d54e84b02708f7a68e75050366fb0ad16dda003271c83f4e30002cc84.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90295e6d54e84b02708f7a68e75050366fb0ad16dda003271c83f4e30002cc84.mp3",
+          "contentHash": "8672b6a2d9ecea5f206ae49879a82681337bb0b8b38375e23889ce30ff0851d3",
+          "byteSize": 32256
+        }
+      ]
     }
   },
   "settings": {

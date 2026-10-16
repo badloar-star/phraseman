@@ -120760,6 +120760,309 @@
           "byteSize": 40320
         }
       ]
+    },
+    "l08/s07/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can climb.",
+          "file": "1e9abf36448f87c946fd0134a6ba5078ebb9cb6c948c38b746259f3db7e437c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1e9abf36448f87c946fd0134a6ba5078ebb9cb6c948c38b746259f3db7e437c8.mp3",
+          "contentHash": "7d79d13b9e6883d97b88a94ef3a0980ff5e7673a0cef0551e3f533b7bc1d9908",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l08/s07/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She can balance.",
+          "file": "fe3cc8d6021ce5d30c354fefaacaa578378220950167217a8d9db00ecf97b9fe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fe3cc8d6021ce5d30c354fefaacaa578378220950167217a8d9db00ecf97b9fe.mp3",
+          "contentHash": "865707098e42800ec0173899ce1a552865664cb5de5749c7110674e041603534",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l08/s07/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose calendar is this?",
+          "file": "4d50e34d0ad3c6345fd3de017dc106e7df7531d8ba95f645b7cd077c10f49950.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4d50e34d0ad3c6345fd3de017dc106e7df7531d8ba95f645b7cd077c10f49950.mp3",
+          "contentHash": "c45b44ab4202feb587c184ca832516791cf5b775ccc016d0d6f19304eb6366ff",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l08/s07/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can climb.",
+          "file": "1e9abf36448f87c946fd0134a6ba5078ebb9cb6c948c38b746259f3db7e437c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1e9abf36448f87c946fd0134a6ba5078ebb9cb6c948c38b746259f3db7e437c8.mp3",
+          "contentHash": "7d79d13b9e6883d97b88a94ef3a0980ff5e7673a0cef0551e3f533b7bc1d9908",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l08/s07/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "climb",
+          "file": "38923e9c23c39338af2753446149f3b00bcbcfc4885436ec1ddf4e16eb0e95d4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38923e9c23c39338af2753446149f3b00bcbcfc4885436ec1ddf4e16eb0e95d4.mp3",
+          "contentHash": "5e0d6e41ed1d50d77ec07b2eb5534c88ef17a2b34a394d642e38bf8b95d30b32",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l08/s07/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can climb.",
+          "file": "1e9abf36448f87c946fd0134a6ba5078ebb9cb6c948c38b746259f3db7e437c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1e9abf36448f87c946fd0134a6ba5078ebb9cb6c948c38b746259f3db7e437c8.mp3",
+          "contentHash": "7d79d13b9e6883d97b88a94ef3a0980ff5e7673a0cef0551e3f533b7bc1d9908",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l08/s07/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "climb",
+          "file": "4fe72dafc50e72d67b01c8e9321fd3b48d7c16ae7b4e0e9c8062c5d46f861625.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4fe72dafc50e72d67b01c8e9321fd3b48d7c16ae7b4e0e9c8062c5d46f861625.mp3",
+          "contentHash": "ad12ff2737b19ced29a1bd3c143659ae0b6e9a4e6a87595bf02d3966d649e06a",
+          "byteSize": 29184
+        },
+        {
+          "text": "playground",
+          "file": "287e884ce7b6d751b94d486efc0bfac2b3c267c0400cea8a466c197a21c28743.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/287e884ce7b6d751b94d486efc0bfac2b3c267c0400cea8a466c197a21c28743.mp3",
+          "contentHash": "2910fbbe79b91074867f370610e8913e6b9fdf68b400b658ddfee077a2d71e33",
+          "byteSize": 24192
+        },
+        {
+          "text": "calendar",
+          "file": "393f14dad2a2a5f8bf9ec1f587e4f9f4d61fb25c4531c8d69f32ab8428c59ecf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/393f14dad2a2a5f8bf9ec1f587e4f9f4d61fb25c4531c8d69f32ab8428c59ecf.mp3",
+          "contentHash": "fd9a5852eda1d8e0c7674bdc438b72704af0807c3fddb0443f9deefd1bb59be3",
+          "byteSize": 23040
+        },
+        {
+          "text": "schedule",
+          "file": "caf0319cbe5b74579d2110269beba108719e88981af6c029be296fd575d32e43.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/caf0319cbe5b74579d2110269beba108719e88981af6c029be296fd575d32e43.mp3",
+          "contentHash": "13e49cd1dc3039495b2948cd77fa1e2d7fe8e5ce6fdd613b03538d6974ff928b",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l08/s07/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I can climb.",
+          "file": "9004da09f0ac02d6fa0cb1ae5e8169ff7aecee74bf074a3f7f1f21bee670d2b6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9004da09f0ac02d6fa0cb1ae5e8169ff7aecee74bf074a3f7f1f21bee670d2b6.mp3",
+          "contentHash": "33874f36e9f20be66a279d804d0207dc408b5d06e2daf2882216c7468b896c41",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s07/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She can balance.",
+          "file": "907d80e984e6f926cf23988d8c0734b214fee3ca0562da2ffe05722085b6b006.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/907d80e984e6f926cf23988d8c0734b214fee3ca0562da2ffe05722085b6b006.mp3",
+          "contentHash": "8952004c91c9ef66b36cfb594f3dc2a602a2e1dacd2c99ae15a4541cb9141407",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l08/s07/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose calendar is this?",
+          "file": "5770cf75dc3377f0927694213724293f40efbc3daf15abada864bf7702335ca8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5770cf75dc3377f0927694213724293f40efbc3daf15abada864bf7702335ca8.mp3",
+          "contentHash": "f0e063cd808b35c37a89490b60a02348e1b2d050d80f53e3e9a1955c1006b888",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s07/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She can balance.",
+          "file": "3304e51c9fedefa3a8a83d6c6e3899698e2a5d4828385214f867bf04a030440a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3304e51c9fedefa3a8a83d6c6e3899698e2a5d4828385214f867bf04a030440a.mp3",
+          "contentHash": "04cb6869debd92be9fd7296255d701e20ec2c3485bdc568f55627dd30749b3b2",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s07/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I can climb.",
+          "file": "1bf8089439bccf01f084b1f312b8e665fa4c62512bb18c311064747634bc687a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1bf8089439bccf01f084b1f312b8e665fa4c62512bb18c311064747634bc687a.mp3",
+          "contentHash": "cc23dfe65a3c9e2bbe8c794a63d312cb55e257537ef31562c442c1cd83b43942",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l08/s07/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "stream",
+          "file": "a8a98f423be25824a6874a7308a521161a8066fc83f859902bf7098cc3a7ed4c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a8a98f423be25824a6874a7308a521161a8066fc83f859902bf7098cc3a7ed4c.mp3",
+          "contentHash": "e58e4d5290a29856e3b29b01da5844dd3f0e0305a0ee8c4ce9bcaef3d492aa93",
+          "byteSize": 23040
+        },
+        {
+          "text": "climb",
+          "file": "6887025c10c8234934c260b9c68a08b644f23cb74a116cd83f8e845d0856d449.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6887025c10c8234934c260b9c68a08b644f23cb74a116cd83f8e845d0856d449.mp3",
+          "contentHash": "619083b8f0989a13d4e48b53a150033b6ebc2cf25e27a257ca95fd93175ecb62",
+          "byteSize": 16512
+        },
+        {
+          "text": "playground",
+          "file": "9981a1f331814934fcb15b3279799eb1204f6ee562e8524e5bffa7e40cc35fd1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9981a1f331814934fcb15b3279799eb1204f6ee562e8524e5bffa7e40cc35fd1.mp3",
+          "contentHash": "62b9f2fff5cd62323bf50e5cde71d30820f843e96ac64b4cd0735d00015dc069",
+          "byteSize": 6912
+        },
+        {
+          "text": "schedule",
+          "file": "f1aba1a9862d79800543d89debb79e8665dca90a64246e8141e878ea95031b9a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f1aba1a9862d79800543d89debb79e8665dca90a64246e8141e878ea95031b9a.mp3",
+          "contentHash": "04fb18d29b273d1e7d073510d6f8f6c3b8ae83935d30ae2f422271866c9d3bb6",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l08/s07/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose calendar is this?",
+          "file": "ca1fdd1f72304e5d4e6e72bb8adb8c8ffed30ec91dbf098c8ebf74411fbf4ed6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca1fdd1f72304e5d4e6e72bb8adb8c8ffed30ec91dbf098c8ebf74411fbf4ed6.mp3",
+          "contentHash": "e50d8f734349bec7c70cc4c84567ae34257c90169fb632072cfd2341ba7b5e35",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l08/s07/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose schedule is this?",
+          "file": "57c99679d48b10ccc4254762c47ee75736fba499b8fef0bdf6e2a60410c77aa7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/57c99679d48b10ccc4254762c47ee75736fba499b8fef0bdf6e2a60410c77aa7.mp3",
+          "contentHash": "732271eeb943497742c582dd6a9ea55a0553deb9bd315d6613d45f289e14e4e1",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l08/s07/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often stream films.",
+          "file": "f51745e9c045087158724da5413817852722816bf01e947d36ca767a85f9edfd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f51745e9c045087158724da5413817852722816bf01e947d36ca767a85f9edfd.mp3",
+          "contentHash": "4c89cb372d1b943009ce35c0448c3152517eefd2831000fb8e82e146ffc34045",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l08/s07/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She can climb.",
+          "file": "7b0959e82bbb6ed3490367563491c00b91ebff79ddfd12ef326e3f9f5cb2db43.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b0959e82bbb6ed3490367563491c00b91ebff79ddfd12ef326e3f9f5cb2db43.mp3",
+          "contentHash": "46da8e4bedb3731df18159f7b29a4fa5d4396de7f86868778c3b53e7988b0a32",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l08/s07/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is the playground?",
+          "file": "4c9eb8f3965cc87fd3533bc7aea91e731fc849d95582904561a891cff49c5cd1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4c9eb8f3965cc87fd3533bc7aea91e731fc849d95582904561a891cff49c5cd1.mp3",
+          "contentHash": "15b31ec9e8fe61d6e712cb9faf4314f055a4f23239017752a1c0b25d020ab094",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l08/s07/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "climb",
+          "file": "38923e9c23c39338af2753446149f3b00bcbcfc4885436ec1ddf4e16eb0e95d4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38923e9c23c39338af2753446149f3b00bcbcfc4885436ec1ddf4e16eb0e95d4.mp3",
+          "contentHash": "5e0d6e41ed1d50d77ec07b2eb5534c88ef17a2b34a394d642e38bf8b95d30b32",
+          "byteSize": 19584
+        },
+        {
+          "text": "calendar",
+          "file": "73553043abe42ebdd2757f464d5a99e1a3fcd2d722179f34924ec3e3a2ede7c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/73553043abe42ebdd2757f464d5a99e1a3fcd2d722179f34924ec3e3a2ede7c2.mp3",
+          "contentHash": "1d110446d9b4476cbfcf43ec54314360a1716a1b0178d6fea6d7007215e832a9",
+          "byteSize": 28416
+        },
+        {
+          "text": "schedule",
+          "file": "3cbdd5adc234e242246e14a95cafa838f0f5be1a3fbc0151f476eec0bbf4d66e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3cbdd5adc234e242246e14a95cafa838f0f5be1a3fbc0151f476eec0bbf4d66e.mp3",
+          "contentHash": "547d210c8b552a0f5cc49099b43baaeb7e9c313d0263cdf142bd6e0b66dfe095",
+          "byteSize": 26112
+        },
+        {
+          "text": "stream",
+          "file": "5b77348493e51687e11b381d599590bca5010aefe8e70639a6c9681a682f7a29.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5b77348493e51687e11b381d599590bca5010aefe8e70639a6c9681a682f7a29.mp3",
+          "contentHash": "b291be726fea8f259f1cbb7ae591e66148c9560fbcc6f0da7c423acf143e1ffc",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l08/s07/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom can climb.",
+          "file": "5825afa4c5ff6e6a27b569e1d4c0796095308644c7b7c82aa1a0679b94f2c45b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5825afa4c5ff6e6a27b569e1d4c0796095308644c7b7c82aa1a0679b94f2c45b.mp3",
+          "contentHash": "3b6dd8e1b37b9c25beec96b49abaa3e31a1473f6fec8890e85886634261be1dc",
+          "byteSize": 32640
+        }
+      ]
     }
   },
   "settings": {

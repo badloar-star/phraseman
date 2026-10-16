@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-07:intro1:r2": {
+          "ru": "После `can` нужно `climb`, без `to`.",
+          "uk": "Після `can` потрібне `climb`, без `to`."
+        },
+        "en:lesson-08:session-07:intro1:r3": {
+          "ru": "После `can` нужно `climb`, без `s`.",
+          "uk": "Після `can` потрібне `climb`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-07:intro2:r2": {
+          "ru": "После `she` нужно `can`, без `s`.",
+          "uk": "Після `she` потрібне `can`, без `s`."
+        },
+        "en:lesson-08:session-07:intro2:r3": {
+          "ru": "После `can` нужно `balance`, без `s`.",
+          "uk": "Після `can` потрібне `balance`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-07:intro3:r2": {
+          "ru": "Для «чей» нужно `whose`, а не `who`.",
+          "uk": "Для «чий» потрібне `whose`, а не `who`."
+        },
+        "en:lesson-08:session-07:intro3:r3": {
+          "ru": "Календарь один: нужно `is this`.",
+          "uk": "Календар один: потрібне `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "51279bf83575f950fb626526974d9ae70a9ffdf03feb32b60f30f8e94b03b3c6"
+}

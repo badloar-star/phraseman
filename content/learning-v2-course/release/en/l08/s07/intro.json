@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить can для умений и повторить вопрос «чей?»",
+    "uk": "закріпити can для вмінь і повторити запитання «чий?»"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "На скалодроме",
+        "uk": "На скеледромі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли с другом на скалодром. Он спрашивает, умеете ли вы лазать. `Climb` — «лазать, взбираться». `I can climb` — «Я умею лазать». После `can` нужно `climb`, без `to` и окончания `s`. Лифта на этой стене нет — тут поднимаются сами.",
+        "uk": "Ви прийшли з другом на скеледром. Він запитує, чи вмієте ви лазити. `Climb` — «лазити, видиратися вгору». `I can climb` — «Я вмію лазити». Після `can` потрібне `climb`, без `to` й закінчення `s`. Ліфта на цій стіні немає — тут піднімаються самі."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу о своём умении.",
+          "uk": "Скажіть другові про своє вміння."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-07:intro1:r1",
+              "text": "I can climb."
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro1:r2",
+              "text": "I can to climb."
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro1:r3",
+              "text": "I can climbs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-07:intro1:r1",
+              "text": "I can climb."
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro1:r2",
+              "text": "I can to climb."
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro1:r3",
+              "text": "I can climbs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу о своём умении.",
+          "uk": "Скажіть другові про своє вміння."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она держит равновесие",
+        "uk": "Вона тримає рівновагу"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомая стоит на одной ноге, не держась за стул. Друг спрашивает о её умении. `She can balance` — «Она умеет держать равновесие». `Can` не меняется после `she`; после него нужно `balance`, без окончания `s`.",
+        "uk": "Знайома стоїть на одній нозі, не тримаючись за стілець. Друг запитує про її вміння. `She can balance` — «Вона вміє тримати рівновагу». `Can` не змінюється після `she`; після нього потрібне `balance`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-07:intro2:r1",
+              "text": "She can balance."
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro2:r2",
+              "text": "She cans balance."
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro2:r3",
+              "text": "She can balances."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-07:intro2:r1",
+              "text": "She can balance."
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro2:r2",
+              "text": "She cans balance."
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro2:r3",
+              "text": "She can balances."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чей календарь",
+        "uk": "Чий календар"
+      },
+      "bodyByLocale": {
+        "ru": "После переезда офиса остался настольный календарь. Вы ищете его владельца. `Whose calendar is this?` — «Чей это календарь?» Сначала `whose calendar` — «чей календарь», затем `is this`.",
+        "uk": "Після переїзду офісу залишився настільний календар. Ви шукаєте його власника. `Whose calendar is this?` — «Чий це календар?» Спочатку `whose calendar` — «чий календар», потім `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите коллег, чей это календарь.",
+          "uk": "Запитайте колег, чий це календар."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-07:intro3:r1",
+              "text": "Whose calendar is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro3:r2",
+              "text": "Who calendar is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro3:r3",
+              "text": "Whose calendar are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-07:intro3:r1",
+              "text": "Whose calendar is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro3:r2",
+              "text": "Who calendar is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-07:intro3:r3",
+              "text": "Whose calendar are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллег, чей это календарь.",
+          "uk": "Запитайте колег, чий це календар."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7b84823c90c05bacbdcab01264305f4df22b8205d12512a6466e9c730dd9aebe"
+}

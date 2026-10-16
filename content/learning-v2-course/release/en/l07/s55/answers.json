@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-55:i01",
+    "correctText": "I often stream films.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i02",
+    "correctText": "stream",
+    "correctResponseId": "en:lesson-07:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i03",
+    "correctText": "stream",
+    "correctResponseId": "en:lesson-07:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i04",
+    "correctText": "en:lesson-07:session-55:i04:p1=stream\nen:lesson-07:session-55:i04:p2=photograph\nen:lesson-07:session-55:i04:p3=cafes\nen:lesson-07:session-55:i04:p4=artist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i05",
+    "correctText": "I often stream films.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i06",
+    "correctText": "I often photograph birds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i07",
+    "correctText": "Where are the cafes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i08",
+    "correctText": "photograph",
+    "correctResponseId": "en:lesson-07:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i09",
+    "correctText": "I often stream films.",
+    "correctResponseId": "en:lesson-07:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i10",
+    "correctText": "en:lesson-07:session-55:i10:p1=mural\nen:lesson-07:session-55:i10:p2=stream\nen:lesson-07:session-55:i10:p3=photograph\nen:lesson-07:session-55:i10:p4=cafes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i11",
+    "correctText": "Where are the cafes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i12",
+    "correctText": "Where is the mural?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i13",
+    "correctText": "Is Tom an artist?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i14",
+    "correctText": "often",
+    "correctResponseId": "en:lesson-07:session-55:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i15",
+    "correctText": "Where are the cafes?",
+    "correctResponseId": "en:lesson-07:session-55:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i16",
+    "correctText": "en:lesson-07:session-55:i16:p1=stream\nen:lesson-07:session-55:i16:p2=artist\nen:lesson-07:session-55:i16:p3=mural\nen:lesson-07:session-55:i16:p4=photograph",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:i17",
+    "correctText": "Tom often streams films.",
+    "correctResponseId": null
+  }
+]

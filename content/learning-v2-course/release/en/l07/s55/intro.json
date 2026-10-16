@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "рассказывать о привычках и спрашивать о месте",
+    "uk": "розповідати про звички й запитувати про місце"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Фильм на вечер",
+        "uk": "Фільм на вечір"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, как вы обычно смотрите фильмы. `Stream` здесь — «смотреть через интернет, не скачивая сначала весь файл». `I often stream films` — «Я часто смотрю фильмы онлайн». `Often` стоит перед `stream`. Фильм уже можно смотреть — не надо ждать, пока весь он поместится в телефон.",
+        "uk": "Друг запитує, як ви зазвичай дивитеся фільми. `Stream` тут — «дивитися через інтернет, не завантажуючи спочатку весь файл». `I often stream films` — «Я часто дивлюся фільми онлайн». `Often` стоїть перед `stream`. Фільм уже можна дивитися — не треба чекати, поки весь він уміститься в телефон."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите другу о своей привычке.",
+          "uk": "Розкажіть другові про свою звичку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-55:intro1:r1",
+              "text": "I often stream films."
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro1:r2",
+              "text": "I often streams films."
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro1:r3",
+              "text": "I often streaming films."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-55:intro1:r1",
+              "text": "I often stream films."
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro1:r2",
+              "text": "I often streams films."
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro1:r3",
+              "text": "I often streaming films."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите другу о своей привычке.",
+          "uk": "Розкажіть другові про свою звичку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Снимки с прогулки",
+        "uk": "Знімки з прогулянки"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга смотрит ваши фотографии птиц. `I often photograph birds` — «Я часто фотографирую птиц». `Often` стоит перед `photograph`; `birds` говорит, кого вы фотографируете. Птица улетела, зато фотография осталась.",
+        "uk": "Подруга дивиться ваші фотографії птахів. `I often photograph birds` — «Я часто фотографую птахів». `Often` стоїть перед `photograph`; `birds` говорить, кого ви фотографуєте. Птах полетів, зате фотографія залишилася."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите подруге, кого вы часто фотографируете.",
+          "uk": "Розкажіть подрузі, кого ви часто фотографуєте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-55:intro2:r1",
+              "text": "I often photograph birds."
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro2:r2",
+              "text": "I often photographs birds."
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro2:r3",
+              "text": "I often photographing birds."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-55:intro2:r1",
+              "text": "I often photograph birds."
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro2:r2",
+              "text": "I often photographs birds."
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro2:r3",
+              "text": "I often photographing birds."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите подруге, кого вы часто фотографируете.",
+          "uk": "Розкажіть подрузі, кого ви часто фотографуєте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кафе на карте",
+        "uk": "Кафе на карті"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите выпить кофе и просите друга показать кафе на карте. `Where are the cafes?` — «Где кафе?» Речь о нескольких кафе, поэтому после `where` нужно `are`, затем `the cafes`.",
+        "uk": "Ви хочете випити кави й просите друга показати кафе на карті. `Where are the cafes?` — «Де кафе?» Йдеться про кілька кафе, тому після `where` потрібне `are`, потім `the cafes`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, где находятся кафе.",
+          "uk": "Запитайте, де розташовані кафе."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-55:intro3:r1",
+              "text": "Where are the cafes?"
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro3:r2",
+              "text": "Where is the cafes?"
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro3:r3",
+              "text": "Where the cafes are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-55:intro3:r1",
+              "text": "Where are the cafes?"
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro3:r2",
+              "text": "Where is the cafes?"
+            },
+            {
+              "responseId": "en:lesson-07:session-55:intro3:r3",
+              "text": "Where the cafes are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где находятся кафе.",
+          "uk": "Запитайте, де розташовані кафе."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "64ca8dcb38929046cdf74d0154a50811910aa1dadaa5b059273cfc7953a60697"
+}

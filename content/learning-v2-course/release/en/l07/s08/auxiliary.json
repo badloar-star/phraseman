@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-08:intro1:r2": {
+          "ru": "Нужно `Do you work?`, без `are`.",
+          "uk": "Потрібно `Do you work?`, без `are`."
+        },
+        "en:lesson-07:session-08:intro1:r3": {
+          "ru": "После `Do you` нужно `work`.",
+          "uk": "Після `Do you` потрібне `work`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-08:intro2:r2": {
+          "ru": "Нужно `Do you have?`.",
+          "uk": "Потрібно `Do you have?`."
+        },
+        "en:lesson-07:session-08:intro2:r3": {
+          "ru": "После `Do you` нужно `have`.",
+          "uk": "Після `Do you` потрібне `have`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-08:intro3:r2": {
+          "ru": "Одно расписание: `There is no schedule`.",
+          "uk": "Один розклад: `There is no schedule`."
+        },
+        "en:lesson-07:session-08:intro3:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d412b7c1ccd2edfeb9cb4ab0ec01a2b0f4a71ccf8ac6cb64dd68731de774912c"
+}

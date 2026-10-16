@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-05:i01",
+    "correctText": "Do you start your shift early?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i02",
+    "correctText": "shift",
+    "correctResponseId": "en:lesson-07:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i03",
+    "correctText": "start",
+    "correctResponseId": "en:lesson-07:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i04",
+    "correctText": "en:lesson-07:session-05:i04:p1=shift\nen:lesson-07:session-05:i04:p2=map\nen:lesson-07:session-05:i04:p3=drawer\nen:lesson-07:session-05:i04:p4=keychain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i05",
+    "correctText": "Do you start your shift early?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i06",
+    "correctText": "Do you have a uniform?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i07",
+    "correctText": "There is no keychain in the drawer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i08",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i09",
+    "correctText": "Do you start your shift early?",
+    "correctResponseId": "en:lesson-07:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i10",
+    "correctText": "en:lesson-07:session-05:i10:p1=uniform\nen:lesson-07:session-05:i10:p2=shift\nen:lesson-07:session-05:i10:p3=drawer\nen:lesson-07:session-05:i10:p4=keychain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i11",
+    "correctText": "Do you have a uniform?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i12",
+    "correctText": "Do you have a map?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i13",
+    "correctText": "Do they work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-07:session-05:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i15",
+    "correctText": "Do you have a map?",
+    "correctResponseId": "en:lesson-07:session-05:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i16",
+    "correctText": "en:lesson-07:session-05:i16:p1=shift\nen:lesson-07:session-05:i16:p2=uniform\nen:lesson-07:session-05:i16:p3=map\nen:lesson-07:session-05:i16:p4=keychain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:i17",
+    "correctText": "Do you start your shift late?",
+    "correctResponseId": null
+  }
+]

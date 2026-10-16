@@ -103186,6 +103186,309 @@
           "byteSize": 51456
         }
       ]
+    },
+    "l07/s05/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you start your shift early?",
+          "file": "a01f1ffc1b5619cfa2e042a50f24ca7705afb47d5acc66ea1226dd7963adc513.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a01f1ffc1b5619cfa2e042a50f24ca7705afb47d5acc66ea1226dd7963adc513.mp3",
+          "contentHash": "cd94cfe1b401722f19ef497d441a1e09cd8291caae81d6ece3a3e1e488812f2f",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l07/s05/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a uniform?",
+          "file": "1b13b19e8c64ca8af3beff6d9053c521bb373d0ea6473b42c561ee07d027dee8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1b13b19e8c64ca8af3beff6d9053c521bb373d0ea6473b42c561ee07d027dee8.mp3",
+          "contentHash": "556aa15da2bbbcbaedaabc36241a5369a98db91d50a2a4d7d9ee5f1a7f679ba2",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s05/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is no keychain in the drawer.",
+          "file": "fa767f8b6891f09b8848d9ae1e20cd4898f1922ddc7e4fafd1a886516a024919.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fa767f8b6891f09b8848d9ae1e20cd4898f1922ddc7e4fafd1a886516a024919.mp3",
+          "contentHash": "7322c79da8885983093373c024e142a88082c07928dd6c2a944161ca91122a0d",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l07/s05/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you start your shift early?",
+          "file": "083c9757053e3a64b2a638b2e0ff6975dcc0e6a3b9392f6d91ab134258227f13.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/083c9757053e3a64b2a638b2e0ff6975dcc0e6a3b9392f6d91ab134258227f13.mp3",
+          "contentHash": "c921b8b2476d109d6c64dbfafda944c74b6239ee0a7b8ff7f8e0864113d3a12e",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s05/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "shift",
+          "file": "5a62fdd796ebb7635b040543d8200d2aa9d3a3e65e81c1d14511ab5c4b6ae40d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5a62fdd796ebb7635b040543d8200d2aa9d3a3e65e81c1d14511ab5c4b6ae40d.mp3",
+          "contentHash": "afb31d34d038eaa6ae1e0e744f0ef4e813766ae5e57cb7b3bede12f714b5040b",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l07/s05/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you start your shift early?",
+          "file": "ede714e9d81f50f768dd27e5fdfe44d0f177cfdfc624107ef4d55369e7da461f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ede714e9d81f50f768dd27e5fdfe44d0f177cfdfc624107ef4d55369e7da461f.mp3",
+          "contentHash": "1a357de635a94581c7d409cb509c854de9327e71f0bf3a6fe0d9bd412e05c771",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s05/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "shift",
+          "file": "5a802cb7310bfd1ff7199546878fe05f2bf47fbccde88269ddd6494d6080f895.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5a802cb7310bfd1ff7199546878fe05f2bf47fbccde88269ddd6494d6080f895.mp3",
+          "contentHash": "09c27810ca9a092f071e70342987aaf403473a2fc41c63fcfd355ce605f7ad23",
+          "byteSize": 26880
+        },
+        {
+          "text": "map",
+          "file": "ebe51eca7513b612d5a892256f0a0acb6b6e93bfda126c44da8226042f5ac350.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebe51eca7513b612d5a892256f0a0acb6b6e93bfda126c44da8226042f5ac350.mp3",
+          "contentHash": "6db9299a208b6e858662a5e05df4691f72cc63de0b868caa54ef3e231e6142a1",
+          "byteSize": 14976
+        },
+        {
+          "text": "drawer",
+          "file": "91c8c45764c517aa1222893f30520c0dc0bdf5c833e3aab61d592c804223faf4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d329f11d9a60de9b6f268d88-onyx.mp3",
+          "contentHash": "2e7e7998f11e9757f507ffd62daa1bbf8e61b4db2bf3a056e4d41c3fa843f4d9",
+          "byteSize": 16512
+        },
+        {
+          "text": "keychain",
+          "file": "b30b4795199daa5988248b5e89578e220449fb3a3d0a3d93b1c1d8ec89043fe5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b30b4795199daa5988248b5e89578e220449fb3a3d0a3d93b1c1d8ec89043fe5.mp3",
+          "contentHash": "10a3348873a90ca6bd301ec1f0d49567d59b643e2481ebab3af41566c5f02710",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s05/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you start your shift early?",
+          "file": "ede714e9d81f50f768dd27e5fdfe44d0f177cfdfc624107ef4d55369e7da461f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ede714e9d81f50f768dd27e5fdfe44d0f177cfdfc624107ef4d55369e7da461f.mp3",
+          "contentHash": "1a357de635a94581c7d409cb509c854de9327e71f0bf3a6fe0d9bd412e05c771",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s05/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you have a uniform?",
+          "file": "d20aecd4dc393ab5cf2947645dfd4b8f335a258cf824b51dba0bd9f404c7b64c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d20aecd4dc393ab5cf2947645dfd4b8f335a258cf824b51dba0bd9f404c7b64c.mp3",
+          "contentHash": "c5859002140cefc47ee355dd595a6a5e7cee2b104eb17ad1e18158f99c3a3150",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s05/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is no keychain in the drawer.",
+          "file": "d859d8df547647440184480529c4f0e8ce0ce80e242d9ca1c1ea9a863d725441.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d859d8df547647440184480529c4f0e8ce0ce80e242d9ca1c1ea9a863d725441.mp3",
+          "contentHash": "6837ae1bf5eb008f06d85714eb24edebb74d23642414579b1dd2f4309aa3d147",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l07/s05/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you work here?",
+          "file": "1f5ba6fbb60a7e682117a9772499e7cb334aa346a5ca2ba197dbdbb2516278c7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f5ba6fbb60a7e682117a9772499e7cb334aa346a5ca2ba197dbdbb2516278c7.mp3",
+          "contentHash": "3fd74598b37b62d5d2e3d5a45bb15bf76679cb343d71b59a3c4da71ef5b1c03f",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s05/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you start your shift early?",
+          "file": "a01f1ffc1b5619cfa2e042a50f24ca7705afb47d5acc66ea1226dd7963adc513.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a01f1ffc1b5619cfa2e042a50f24ca7705afb47d5acc66ea1226dd7963adc513.mp3",
+          "contentHash": "cd94cfe1b401722f19ef497d441a1e09cd8291caae81d6ece3a3e1e488812f2f",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l07/s05/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "uniform",
+          "file": "741b7e32844d3e2dc640149cf1f4cc8f43780fbc62e7e36ce46870fbfedbf40f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ef379363dd0cb7be66638cf7-nova.mp3",
+          "contentHash": "ffda2673c96b4728310e9b3111bafc7d4e544fa31df83707c8d7c1bad5337f93",
+          "byteSize": 26112
+        },
+        {
+          "text": "shift",
+          "file": "5a62fdd796ebb7635b040543d8200d2aa9d3a3e65e81c1d14511ab5c4b6ae40d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5a62fdd796ebb7635b040543d8200d2aa9d3a3e65e81c1d14511ab5c4b6ae40d.mp3",
+          "contentHash": "afb31d34d038eaa6ae1e0e744f0ef4e813766ae5e57cb7b3bede12f714b5040b",
+          "byteSize": 18048
+        },
+        {
+          "text": "drawer",
+          "file": "f4463f991bb7a8823d5fdbff477f79fae0afdcd471a570c344b0cd406b1b565f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d329f11d9a60de9b6f268d88-nova.mp3",
+          "contentHash": "861d088c54c34e41562cd235c250ebc21d73e5c12fa103d163cef0abf75eb793",
+          "byteSize": 23040
+        },
+        {
+          "text": "keychain",
+          "file": "77ab6c18b1c4662d2536c7760a9c6f33b31afacb9cb006565975d0d1f4e1d88d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77ab6c18b1c4662d2536c7760a9c6f33b31afacb9cb006565975d0d1f4e1d88d.mp3",
+          "contentHash": "340df0cac2619fe5de46b436268687ee702c1c0ce0ed5dac7f5b4e961ece8b71",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l07/s05/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you have a uniform?",
+          "file": "d20aecd4dc393ab5cf2947645dfd4b8f335a258cf824b51dba0bd9f404c7b64c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d20aecd4dc393ab5cf2947645dfd4b8f335a258cf824b51dba0bd9f404c7b64c.mp3",
+          "contentHash": "c5859002140cefc47ee355dd595a6a5e7cee2b104eb17ad1e18158f99c3a3150",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s05/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a map?",
+          "file": "3c651081e5c0e4e89d26cdb4e7ea76ae9fc557b47ecba05c31c756ac6202d0ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c651081e5c0e4e89d26cdb4e7ea76ae9fc557b47ecba05c31c756ac6202d0ff.mp3",
+          "contentHash": "123796479fabdd0ccbba4663051fa04e0cb7a361275bc0cd6eba23bff3d5f8fa",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s05/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do they work here?",
+          "file": "72e205223ed7e0e4e6d8a582369a5fddf3f77507a35c9c3934ad39428ac6feaa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/72e205223ed7e0e4e6d8a582369a5fddf3f77507a35c9c3934ad39428ac6feaa.mp3",
+          "contentHash": "78f064275b630c46520fec7691bc5cc216f84b56fb428404baa95ed5d40dc448",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l07/s05/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is no keychain in the drawer.",
+          "file": "c2c4bf8343a9a717a026dd6fe86bcfd622e45f5c6a9a4297e1ba3204e8e53d5f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c2c4bf8343a9a717a026dd6fe86bcfd622e45f5c6a9a4297e1ba3204e8e53d5f.mp3",
+          "contentHash": "0d747f049c22a09a776d51f49db14e78a8a81ee8dc73b62d3a87590c0febff1b",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l07/s05/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a map?",
+          "file": "3c651081e5c0e4e89d26cdb4e7ea76ae9fc557b47ecba05c31c756ac6202d0ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c651081e5c0e4e89d26cdb4e7ea76ae9fc557b47ecba05c31c756ac6202d0ff.mp3",
+          "contentHash": "123796479fabdd0ccbba4663051fa04e0cb7a361275bc0cd6eba23bff3d5f8fa",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s05/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "shift",
+          "file": "5a62fdd796ebb7635b040543d8200d2aa9d3a3e65e81c1d14511ab5c4b6ae40d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5a62fdd796ebb7635b040543d8200d2aa9d3a3e65e81c1d14511ab5c4b6ae40d.mp3",
+          "contentHash": "afb31d34d038eaa6ae1e0e744f0ef4e813766ae5e57cb7b3bede12f714b5040b",
+          "byteSize": 18048
+        },
+        {
+          "text": "uniform",
+          "file": "741b7e32844d3e2dc640149cf1f4cc8f43780fbc62e7e36ce46870fbfedbf40f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ef379363dd0cb7be66638cf7-nova.mp3",
+          "contentHash": "ffda2673c96b4728310e9b3111bafc7d4e544fa31df83707c8d7c1bad5337f93",
+          "byteSize": 26112
+        },
+        {
+          "text": "map",
+          "file": "b6694e60c8a7ba53cf07c42e10800de228def434d66bb86f701f12d0d6c4a586.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b6694e60c8a7ba53cf07c42e10800de228def434d66bb86f701f12d0d6c4a586.mp3",
+          "contentHash": "ceb3e8ae91a187a944481d38e565959cf1cf4dbc93c55ace1afa42426a7a2e3c",
+          "byteSize": 15744
+        },
+        {
+          "text": "keychain",
+          "file": "77ab6c18b1c4662d2536c7760a9c6f33b31afacb9cb006565975d0d1f4e1d88d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77ab6c18b1c4662d2536c7760a9c6f33b31afacb9cb006565975d0d1f4e1d88d.mp3",
+          "contentHash": "340df0cac2619fe5de46b436268687ee702c1c0ce0ed5dac7f5b4e961ece8b71",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l07/s05/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you start your shift late?",
+          "file": "78fdc0a87b6fbcd9adef39a4aa799ea6a5a5f0e427d40add211899125bd6ff32.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/78fdc0a87b6fbcd9adef39a4aa799ea6a5a5f0e427d40add211899125bd6ff32.mp3",
+          "contentHash": "e266171d4dffcf96f9386ffccf07d19d2718c06c80ad954ad1a175cfcdbebb8b",
+          "byteSize": 34560
+        }
+      ]
     }
   },
   "settings": {

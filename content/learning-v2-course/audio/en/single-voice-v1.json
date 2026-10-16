@@ -75916,6 +75916,309 @@
           "byteSize": 38784
         }
       ]
+    },
+    "l05/s27/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's passport.",
+          "file": "e60391bcd7bee6636c51a313613f113b82581e455c77b9c499c7422aa4c7366a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e60391bcd7bee6636c51a313613f113b82581e455c77b9c499c7422aa4c7366a.mp3",
+          "contentHash": "e3ce0d32365ab9d477291f165925b2046875b82059f2ca67e897546efd6ed3c6",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s27/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Tom is asleep.",
+          "file": "72be4ebc686acf1183a77adede004c25eebe48b3ac234e9c05fed1b7d8e943e5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/72be4ebc686acf1183a77adede004c25eebe48b3ac234e9c05fed1b7d8e943e5.mp3",
+          "contentHash": "dfdf0bca82c165e9eafe0933beb8d4f8cefbf65564c26c6b683f79d06d413029",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s27/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The car is available.",
+          "file": "4da0d785a996609b4fadd12c03d31c7297de0de60328709f1f79affb162972e6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4da0d785a996609b4fadd12c03d31c7297de0de60328709f1f79affb162972e6.mp3",
+          "contentHash": "44f640caeb813f77739cf1ebfed4b7271a4bafb79fd1186eeb61cd3ad8376dc7",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s27/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Anna is awake.",
+          "file": "786e3eae037e97e3d868e2a67de73a6384927790c95f0ba60cdc1a80c0011097.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/786e3eae037e97e3d868e2a67de73a6384927790c95f0ba60cdc1a80c0011097.mp3",
+          "contentHash": "51da59d35588b3746384a7a4c446ed36b9d56688ced646424c921c479fce14a4",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s27/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "passport",
+          "file": "d42921f4a38433be40c8d9d288fc8d1744dd13d56ca29e9cd06479d2d0be8657.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d42921f4a38433be40c8d9d288fc8d1744dd13d56ca29e9cd06479d2d0be8657.mp3",
+          "contentHash": "6feaf1f71a02d2e2c8372da8cd9500b1e6c683f02a6b5be9a79bbe7b115a1ac9",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s27/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "passport",
+          "file": "1d5acb10a5b9de231b6b9122c7bd3ecdd7303ac53ce9d8c65be00139279bc27b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d5acb10a5b9de231b6b9122c7bd3ecdd7303ac53ce9d8c65be00139279bc27b.mp3",
+          "contentHash": "2e5e13924b405ffea60a06bdd859d4f50673d19dba1c43e0a9cfd1e38de247ee",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s27/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "passport",
+          "file": "1d5acb10a5b9de231b6b9122c7bd3ecdd7303ac53ce9d8c65be00139279bc27b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d5acb10a5b9de231b6b9122c7bd3ecdd7303ac53ce9d8c65be00139279bc27b.mp3",
+          "contentHash": "2e5e13924b405ffea60a06bdd859d4f50673d19dba1c43e0a9cfd1e38de247ee",
+          "byteSize": 27648
+        },
+        {
+          "text": "awake",
+          "file": "8579d49949e1b0d985b6a3ba82fb03fce6633357d7a5aa71145b3451476d8640.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f245940166d1611d76b3def5-ash.mp3",
+          "contentHash": "1fd05451d0ac99fdf436db9eb0f175fa926f54acb56b7df65e58fa6a7d2e6a06",
+          "byteSize": 26880
+        },
+        {
+          "text": "asleep",
+          "file": "087892ec6ad9cbda601c82bf58cb4528eaff30e39d3692cc6fd5fefefb4513ac.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ea51ae6e548ffbb851d2d383-ash.mp3",
+          "contentHash": "c286a10774197108bdcad1128a83ae907bcae42bd678ef518ccd6f25681c4780",
+          "byteSize": 25344
+        },
+        {
+          "text": "available",
+          "file": "e1f910bddffc6404f1e3ec620d32069a7e20d6498ced8c34192a798b477587d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1f910bddffc6404f1e3ec620d32069a7e20d6498ced8c34192a798b477587d2.mp3",
+          "contentHash": "ba1775f13a603c52da5b3869c84c234197a7048c7c34be5f16f64de841002319",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s27/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Anna's passport.",
+          "file": "3718ebfc30713eb1df2709cfaaceffc2145e381ecb3763520bdf17527576c395.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3718ebfc30713eb1df2709cfaaceffc2145e381ecb3763520bdf17527576c395.mp3",
+          "contentHash": "6b3ed052d8c3d68ce7f3feff04e5603b27576370ab96e436645498d19f93aa6e",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s27/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom's passport is here.",
+          "file": "bfa58ab7588b04d46242abb4701ecf4e82d5ac6044136cc9ebaf53183f6d1842.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bfa58ab7588b04d46242abb4701ecf4e82d5ac6044136cc9ebaf53183f6d1842.mp3",
+          "contentHash": "25498ba4bb1302d4101d50ba485fb0ae56fe891a4f1c850b8593bee19960200d",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s27/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Tom is asleep.",
+          "file": "72be4ebc686acf1183a77adede004c25eebe48b3ac234e9c05fed1b7d8e943e5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/72be4ebc686acf1183a77adede004c25eebe48b3ac234e9c05fed1b7d8e943e5.mp3",
+          "contentHash": "dfdf0bca82c165e9eafe0933beb8d4f8cefbf65564c26c6b683f79d06d413029",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s27/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Anna's tablet.",
+          "file": "7c90b21842721289d2cca81b204f38cbd58bcfaf01b05aecd77060489350ff49.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c90b21842721289d2cca81b204f38cbd58bcfaf01b05aecd77060489350ff49.mp3",
+          "contentHash": "e2235ed0d959e4c16c983593c865786f1a8c6f104fa45761c4d1476bdf30a74d",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s27/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The car is available.",
+          "file": "4da0d785a996609b4fadd12c03d31c7297de0de60328709f1f79affb162972e6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4da0d785a996609b4fadd12c03d31c7297de0de60328709f1f79affb162972e6.mp3",
+          "contentHash": "44f640caeb813f77739cf1ebfed4b7271a4bafb79fd1186eeb61cd3ad8376dc7",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s27/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "passport",
+          "file": "1d5acb10a5b9de231b6b9122c7bd3ecdd7303ac53ce9d8c65be00139279bc27b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d5acb10a5b9de231b6b9122c7bd3ecdd7303ac53ce9d8c65be00139279bc27b.mp3",
+          "contentHash": "2e5e13924b405ffea60a06bdd859d4f50673d19dba1c43e0a9cfd1e38de247ee",
+          "byteSize": 27648
+        },
+        {
+          "text": "cars",
+          "file": "cb20462a1ad98a08dea38017a1710ebc922ae0c7e86efb41d0290515deab02ea.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cb20462a1ad98a08dea38017a1710ebc922ae0c7e86efb41d0290515deab02ea.mp3",
+          "contentHash": "1b20f40489ea98d715440e2b17497e9327b8858a51797196f23f60947f8afb6b",
+          "byteSize": 23040
+        },
+        {
+          "text": "awning",
+          "file": "96c51260afa4b3ac5918a1aec90634cfe989c755a021c06a1d683033c00fc981.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/96c51260afa4b3ac5918a1aec90634cfe989c755a021c06a1d683033c00fc981.mp3",
+          "contentHash": "f30d8b8b811cfd7aac765a0c6e3f7611a523f9cd169957d36906cc15a01fa079",
+          "byteSize": 24192
+        },
+        {
+          "text": "tablet",
+          "file": "cb67bc36fa4dba7a5c566396cbbca30488fed1237a746e24ff28fd1b591bb6f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cb67bc36fa4dba7a5c566396cbbca30488fed1237a746e24ff28fd1b591bb6f3.mp3",
+          "contentHash": "45120a8aa34f4e653abc88c8a8cad6d6aec5ef4d81301105d11d7a91bc1216e2",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l05/s27/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The cars are under the awning.",
+          "file": "86e4298c437440ed4b87a9fbc0277b6fbf6e98fa0c1e19b14069156ff4b96eb3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/86e4298c437440ed4b87a9fbc0277b6fbf6e98fa0c1e19b14069156ff4b96eb3.mp3",
+          "contentHash": "6ed6a2d67d9b17bdcd4610a6856fa42e8f7f340ba91bb046e46d1d8ef7ed09a7",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l05/s27/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Anna's tablet is on the table.",
+          "file": "76491e08de00f8d1516c6999923eaf932a6897b6bdbf6fe9d1f52a1f897ee4a7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/76491e08de00f8d1516c6999923eaf932a6897b6bdbf6fe9d1f52a1f897ee4a7.mp3",
+          "contentHash": "c66898cbdbb682dd709ccb47f1983a523a38c4c1e3fcd90e40831bd773f7c901",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s27/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is my passport?",
+          "file": "576e2e9af6dcf9dc896fb2ad04e91b851a70d14e7cb0c74a932120c83e01d1bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/576e2e9af6dcf9dc896fb2ad04e91b851a70d14e7cb0c74a932120c83e01d1bb.mp3",
+          "contentHash": "3ffa6d87de7bb2176f0ac1a921ede6da176664bfe4154384d73e35e2b0e5b980",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s27/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The passport is his.",
+          "file": "5caa05259ceb70ef3a54b56b1d2362c6deef22cf0f55c75b9219689cbf528d7e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5caa05259ceb70ef3a54b56b1d2362c6deef22cf0f55c75b9219689cbf528d7e.mp3",
+          "contentHash": "5afa571815e73e3ededcda96a3d9a3d724ca7d221691aa06bf7624671d4f43d7",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s27/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Your passport is in the bag.",
+          "file": "a4148609637e44ea364afeff9c557ade248cc7016fd7dee7715e46e2b8057ce6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a4148609637e44ea364afeff9c557ade248cc7016fd7dee7715e46e2b8057ce6.mp3",
+          "contentHash": "dc795b995a47ae84540801edeb57661e6f4535829cb5b885959929e63e60a5ff",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s27/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "passport",
+          "file": "d42921f4a38433be40c8d9d288fc8d1744dd13d56ca29e9cd06479d2d0be8657.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d42921f4a38433be40c8d9d288fc8d1744dd13d56ca29e9cd06479d2d0be8657.mp3",
+          "contentHash": "6feaf1f71a02d2e2c8372da8cd9500b1e6c683f02a6b5be9a79bbe7b115a1ac9",
+          "byteSize": 20352
+        },
+        {
+          "text": "cars",
+          "file": "fd6854df26bba6f1369c8379ec30f1fcb34d86ae7ef27a4062b29ee802899d34.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd6854df26bba6f1369c8379ec30f1fcb34d86ae7ef27a4062b29ee802899d34.mp3",
+          "contentHash": "8556373c2a93ee985c8e8a37805047850d3bf5130fc983bb84cfc6f465ffedfe",
+          "byteSize": 24192
+        },
+        {
+          "text": "awning",
+          "file": "7d3e41496d26f48404ab040a4073aae0a063cbf466646ce1b1abd7d88ad27a7c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d3e41496d26f48404ab040a4073aae0a063cbf466646ce1b1abd7d88ad27a7c.mp3",
+          "contentHash": "9cbf59af103be2cdc78b902883f8e2ebde468fea80e91fb46ba5a376aff6eab8",
+          "byteSize": 41088
+        },
+        {
+          "text": "tablet",
+          "file": "5446640be0b35346a212a76e6077db3fa7199af0dafaffcd2754d64612bbbe3f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5446640be0b35346a212a76e6077db3fa7199af0dafaffcd2754d64612bbbe3f.mp3",
+          "contentHash": "03951d0eae32c91e22a7875a1209e9746d2b3f71b10210b3f4f52c6f9b019b35",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s27/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Anna's passport.",
+          "file": "3718ebfc30713eb1df2709cfaaceffc2145e381ecb3763520bdf17527576c395.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3718ebfc30713eb1df2709cfaaceffc2145e381ecb3763520bdf17527576c395.mp3",
+          "contentHash": "6b3ed052d8c3d68ce7f3feff04e5603b27576370ab96e436645498d19f93aa6e",
+          "byteSize": 34944
+        }
+      ]
     }
   },
   "settings": {

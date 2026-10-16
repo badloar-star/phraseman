@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-53:intro1:r2": {
+          "ru": "Перед одним участком нужно `a`: `a police station`.",
+          "uk": "Перед одним відділком потрібне `a`: `a police station`."
+        },
+        "en:lesson-04:session-53:intro1:r3": {
+          "ru": "Здесь один участок: `This is a police station`.",
+          "uk": "Тут один відділок: `This is a police station`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-53:intro2:r2": {
+          "ru": "Один участок: `isn’t a police station`.",
+          "uk": "Один відділок: `isn’t a police station`."
+        },
+        "en:lesson-04:session-53:intro2:r3": {
+          "ru": "Так вы сообщите, что участок есть; здесь `isn’t`.",
+          "uk": "Так ви повідомите, що відділок є; тут `isn’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-53:intro3:r2": {
+          "ru": "`fair` — справедливо; здесь `unfair`.",
+          "uk": "`fair` — справедливо; тут `unfair`."
+        },
+        "en:lesson-04:session-53:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "eb8f39161667b89a12ac9d4858226a12a1283f4229f70c7c7be916f4d6b14f5c"
+}

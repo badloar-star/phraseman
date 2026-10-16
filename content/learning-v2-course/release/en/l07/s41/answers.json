@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-41:i01",
+    "correctText": "I often meditate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i02",
+    "correctText": "meditate",
+    "correctResponseId": "en:lesson-07:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i03",
+    "correctText": "meditate",
+    "correctResponseId": "en:lesson-07:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i04",
+    "correctText": "en:lesson-07:session-41:i04:p1=meditate\nen:lesson-07:session-41:i04:p2=chat\nen:lesson-07:session-41:i04:p3=kitchen\nen:lesson-07:session-41:i04:p4=locker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i05",
+    "correctText": "I often meditate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i06",
+    "correctText": "I usually chat here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i07",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i08",
+    "correctText": "calls",
+    "correctResponseId": "en:lesson-07:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i09",
+    "correctText": "I often meditate.",
+    "correctResponseId": "en:lesson-07:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i10",
+    "correctText": "en:lesson-07:session-41:i10:p1=recycle\nen:lesson-07:session-41:i10:p2=meditate\nen:lesson-07:session-41:i10:p3=kitchen\nen:lesson-07:session-41:i10:p4=chat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i11",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i12",
+    "correctText": "Do you have a locker?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i13",
+    "correctText": "I usually recycle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-41:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i15",
+    "correctText": "Do you have a kitchen?",
+    "correctResponseId": "en:lesson-07:session-41:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i16",
+    "correctText": "en:lesson-07:session-41:i16:p1=meditate\nen:lesson-07:session-41:i16:p2=locker\nen:lesson-07:session-41:i16:p3=recycle\nen:lesson-07:session-41:i16:p4=kitchen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:i17",
+    "correctText": "Tom often meditates.",
+    "correctResponseId": null
+  }
+]

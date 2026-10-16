@@ -114094,6 +114094,309 @@
           "byteSize": 32256
         }
       ]
+    },
+    "l07/s41/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I often meditate.",
+          "file": "abc3a134715aea090ec8531bbb8093e049829689941659c6f5820fa631625e3d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/abc3a134715aea090ec8531bbb8093e049829689941659c6f5820fa631625e3d.mp3",
+          "contentHash": "fd0e70d23989be79e8f24c136098d527668e83ec17e6a0ede04d043acef22f94",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l07/s41/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually chat here.",
+          "file": "f21a1c8d1162151bf10397fafed669e20c7041401f3bd476e551816fea350d9a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f21a1c8d1162151bf10397fafed669e20c7041401f3bd476e551816fea350d9a.mp3",
+          "contentHash": "bd209cd0e00e6f6109b63cf1c259697d53171f561afdc844bd3fc00783fd87ac",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s41/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She often calls.",
+          "file": "b7d8a2bbd24df03918e10d0aca150e565e449e2d80f0afb7c9d63eb20f414934.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b7d8a2bbd24df03918e10d0aca150e565e449e2d80f0afb7c9d63eb20f414934.mp3",
+          "contentHash": "f58ee64599facd938d91bfd1aa7d4e642162d38738711d78d2c6c8a70d26ed82",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s41/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often meditate.",
+          "file": "395cf006ebc5feaf37d50840816b92631b9b0e35f610849dd4bf67fc4ae27021.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/395cf006ebc5feaf37d50840816b92631b9b0e35f610849dd4bf67fc4ae27021.mp3",
+          "contentHash": "e5e3a2a78a54cc4c1f6fa685196743b3797e44e7d9f77181f60e63b5d9e181ee",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s41/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "meditate",
+          "file": "4dee6cc686bac863ae2390cd106e2a76c68303226b8d6294fd44001c7208b9ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4dee6cc686bac863ae2390cd106e2a76c68303226b8d6294fd44001c7208b9ab.mp3",
+          "contentHash": "1533668fb9a9a55d5c5c4034b47660957df50862a0b9b634d7f24bd8b5b88e6c",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l07/s41/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often meditate.",
+          "file": "0ec390aeeba83977c5b7c454767ef14c055ec2b70e016b9b011479aa191d2597.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ec390aeeba83977c5b7c454767ef14c055ec2b70e016b9b011479aa191d2597.mp3",
+          "contentHash": "09f39b26bea014d79f16a92feebf035b9ab3767f67e8a02401340001131858d3",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l07/s41/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "meditate",
+          "file": "7e8a1194c1e7f5a6a5a213ca1cca47d0a5ea3c64e89ee65e6cfab662eebad9f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e8a1194c1e7f5a6a5a213ca1cca47d0a5ea3c64e89ee65e6cfab662eebad9f4.mp3",
+          "contentHash": "b377aa96deda131ddef52665e574a0279f5a612000a319e0ca575f8ba0c0db50",
+          "byteSize": 26112
+        },
+        {
+          "text": "chat",
+          "file": "f3348f4953c4b596adec5c2149b6e0d83bdf4fd683f690d83d810d3ba8828af6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3348f4953c4b596adec5c2149b6e0d83bdf4fd683f690d83d810d3ba8828af6.mp3",
+          "contentHash": "033927271be81b6c415bc037758bb0b322e7a4088d610c0cafc332572d89d446",
+          "byteSize": 22656
+        },
+        {
+          "text": "kitchen",
+          "file": "7e8b616131b606e7bad3d5bae9144b47162ea5d8e81241e5636e5d6738c1fe19.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e8b616131b606e7bad3d5bae9144b47162ea5d8e81241e5636e5d6738c1fe19.mp3",
+          "contentHash": "0e0b7f2fea08681c539085a9cb2fff1f6610ead384f3b4349d666650dfebec0d",
+          "byteSize": 23040
+        },
+        {
+          "text": "locker",
+          "file": "aa570ffabd4fe524ce331b6a4d8eb54b45580176ee86447c48f59bd98d270b87.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/8bca6dada231e0fd80bf5ff9-coral.mp3",
+          "contentHash": "e4e1494c93e59efceaff65f157cdfe11e6f04b7deba30c7133a1b315f99c68d9",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l07/s41/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often meditate.",
+          "file": "0ec390aeeba83977c5b7c454767ef14c055ec2b70e016b9b011479aa191d2597.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ec390aeeba83977c5b7c454767ef14c055ec2b70e016b9b011479aa191d2597.mp3",
+          "contentHash": "09f39b26bea014d79f16a92feebf035b9ab3767f67e8a02401340001131858d3",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l07/s41/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I usually chat here.",
+          "file": "d341ce387dda182a2b7943eb286781c4c2e460a4e7ecab17ae50b29d97302812.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d341ce387dda182a2b7943eb286781c4c2e460a4e7ecab17ae50b29d97302812.mp3",
+          "contentHash": "30322e22415f9964663cf16bbb23de5cb8b156c4bf3884062f8835ed9f51c986",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s41/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She often calls.",
+          "file": "a86b2a17792a588381d9f6b8063c488becc051f838e083f8e17793c3e191b4c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a86b2a17792a588381d9f6b8063c488becc051f838e083f8e17793c3e191b4c8.mp3",
+          "contentHash": "6efc2ce5520b77c1de4fe575ea2223cdddb70f753c6c3a5b2731bb344cd2017d",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l07/s41/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She often calls.",
+          "file": "a3ead625814ae7870268dd9ef55fc8a9cd2cf064dbbdd580e1dc4b853e1deb89.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a3ead625814ae7870268dd9ef55fc8a9cd2cf064dbbdd580e1dc4b853e1deb89.mp3",
+          "contentHash": "8e7bec34702b2780fbbb0f115e22565f95fc629acd70fecb14121e84fec3a031",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l07/s41/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often meditate.",
+          "file": "395cf006ebc5feaf37d50840816b92631b9b0e35f610849dd4bf67fc4ae27021.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/395cf006ebc5feaf37d50840816b92631b9b0e35f610849dd4bf67fc4ae27021.mp3",
+          "contentHash": "e5e3a2a78a54cc4c1f6fa685196743b3797e44e7d9f77181f60e63b5d9e181ee",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s41/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "recycle",
+          "file": "0480007fcd522d8ab90c7d20d4df86f768bbaa6662ff75c16a3298cdd1a1f2ea.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0480007fcd522d8ab90c7d20d4df86f768bbaa6662ff75c16a3298cdd1a1f2ea.mp3",
+          "contentHash": "3daed01f09c7f1a00d8c7ed5019546fc0206349aed12f98e680251bc77d55f99",
+          "byteSize": 44160
+        },
+        {
+          "text": "meditate",
+          "file": "7e8a1194c1e7f5a6a5a213ca1cca47d0a5ea3c64e89ee65e6cfab662eebad9f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e8a1194c1e7f5a6a5a213ca1cca47d0a5ea3c64e89ee65e6cfab662eebad9f4.mp3",
+          "contentHash": "b377aa96deda131ddef52665e574a0279f5a612000a319e0ca575f8ba0c0db50",
+          "byteSize": 26112
+        },
+        {
+          "text": "kitchen",
+          "file": "7e8b616131b606e7bad3d5bae9144b47162ea5d8e81241e5636e5d6738c1fe19.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e8b616131b606e7bad3d5bae9144b47162ea5d8e81241e5636e5d6738c1fe19.mp3",
+          "contentHash": "0e0b7f2fea08681c539085a9cb2fff1f6610ead384f3b4349d666650dfebec0d",
+          "byteSize": 23040
+        },
+        {
+          "text": "chat",
+          "file": "f3348f4953c4b596adec5c2149b6e0d83bdf4fd683f690d83d810d3ba8828af6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3348f4953c4b596adec5c2149b6e0d83bdf4fd683f690d83d810d3ba8828af6.mp3",
+          "contentHash": "033927271be81b6c415bc037758bb0b322e7a4088d610c0cafc332572d89d446",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l07/s41/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She often calls.",
+          "file": "a86b2a17792a588381d9f6b8063c488becc051f838e083f8e17793c3e191b4c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a86b2a17792a588381d9f6b8063c488becc051f838e083f8e17793c3e191b4c8.mp3",
+          "contentHash": "6efc2ce5520b77c1de4fe575ea2223cdddb70f753c6c3a5b2731bb344cd2017d",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l07/s41/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you have a locker?",
+          "file": "251b92ce9a209b7acef9b81df327cd2119b93a9f3e777ac847b7667f46f97610.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/251b92ce9a209b7acef9b81df327cd2119b93a9f3e777ac847b7667f46f97610.mp3",
+          "contentHash": "113ff57b0c4010e82b9afc3dfc9aac05b8ac597c282cd5f209e6bc8979ec4d10",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s41/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I usually recycle.",
+          "file": "1df3f0074afda61db6a21e38bf69b86d071c8a49326d2d6da6e5a33ce394550d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1df3f0074afda61db6a21e38bf69b86d071c8a49326d2d6da6e5a33ce394550d.mp3",
+          "contentHash": "dab8f3015515200740a9b18f539e9a2ec3eb93768612ad58a0ef73ce1fddc255",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s41/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I usually chat here.",
+          "file": "d341ce387dda182a2b7943eb286781c4c2e460a4e7ecab17ae50b29d97302812.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d341ce387dda182a2b7943eb286781c4c2e460a4e7ecab17ae50b29d97302812.mp3",
+          "contentHash": "30322e22415f9964663cf16bbb23de5cb8b156c4bf3884062f8835ed9f51c986",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s41/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you have a kitchen?",
+          "file": "7bab743442b2db22e139e08679f99e99d1600e289514de7f92c28809bedbf42e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7bab743442b2db22e139e08679f99e99d1600e289514de7f92c28809bedbf42e.mp3",
+          "contentHash": "01df0eb509f8daa16136d9d06ac70968b1acb2d2a3ded5ac49b59d11e694fb88",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s41/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "meditate",
+          "file": "df95dbf4e09ed06fc195ed2d0de3ef0c600729ca112edc566eae75f0e96d2218.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/df95dbf4e09ed06fc195ed2d0de3ef0c600729ca112edc566eae75f0e96d2218.mp3",
+          "contentHash": "8e5f934c54425319601d3c4232c00006de0ddedd8b948a290868a803f96cecb8",
+          "byteSize": 15744
+        },
+        {
+          "text": "locker",
+          "file": "8ba4efcd90e54b07ef44ecc96f7f9e1a6eb168e348d79c4fad0ea2a3402a3650.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/8bca6dada231e0fd80bf5ff9-nova.mp3",
+          "contentHash": "3a26cbc3d051a8dd6e20f22be3aa59922fe8b8aea0d63aa47361ac91d75dffed",
+          "byteSize": 38784
+        },
+        {
+          "text": "recycle",
+          "file": "1507b86b6fd369eac34830dc5c0eb7e726b1fcfeef3982fc6232e7aea31ac1de.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1507b86b6fd369eac34830dc5c0eb7e726b1fcfeef3982fc6232e7aea31ac1de.mp3",
+          "contentHash": "682aa8dff53741fc1c2b26d4db90a1ff359f600b80193d74fde16adb62a31ae1",
+          "byteSize": 33792
+        },
+        {
+          "text": "kitchen",
+          "file": "2ea3a5123ffc106520476aa70b5db63b1461f3dd577a7301368cdb25f3a3668f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ea3a5123ffc106520476aa70b5db63b1461f3dd577a7301368cdb25f3a3668f.mp3",
+          "contentHash": "aabbaf398ea9135029010e4bb5a8fe07eaead451099319bd3d1f3193e07e8d33",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l07/s41/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom often meditates.",
+          "file": "46f9017b40b3f86b0f5e4c46a438ad833a19ac2ea113d28d685c690b6c3f694b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46f9017b40b3f86b0f5e4c46a438ad833a19ac2ea113d28d685c690b6c3f694b.mp3",
+          "contentHash": "b61ccac3e3ca52be67dce0f0e31c3e8cdd6478b17c0a1299792a009e129f74fc",
+          "byteSize": 34560
+        }
+      ]
     }
   },
   "settings": {

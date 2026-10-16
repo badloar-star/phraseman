@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "назвать владельца вещей и сообщить об их отсутствии",
+    "uk": "назвати власника речей і повідомити про їхню відсутність"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наушники — are",
+        "uk": "Навушники — are"
+      },
+      "bodyByLocale": {
+        "ru": "`headphones` — «наушники». В английском это множественное число: `The headphones are mine` — «Наушники мои». `These are Anna’s headphones` — «Это наушники Анны»: владелица одна, но наушники требуют `are`. `Tom’s headphones are here` — «Наушники Тома здесь». Наушники не слышат, как их зовут: искать всё равно придётся глазами.",
+        "uk": "`headphones` — «навушники». В англійській це множина: `The headphones are mine` — «Навушники мої». `These are Anna’s headphones` — «Це навушники Анни»: власниця одна, але навушники потребують `are`. `Tom’s headphones are here` — «Навушники Тома тут». Навушники не чують, як їх кличуть: шукати все одно доведеться очима."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Укажите на наушники Анны.",
+          "uk": "Укажіть на навушники Анни."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-30:intro1:r1",
+              "text": "These are Anna's headphones."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro1:r2",
+              "text": "These is Anna's headphones."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro1:r3",
+              "text": "These are Anna headphones."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-30:intro1:r1",
+              "text": "These are Anna's headphones."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro1:r2",
+              "text": "These is Anna's headphones."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro1:r3",
+              "text": "These are Anna headphones."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Укажите на наушники Анны.",
+          "uk": "Укажіть на навушники Анни."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Живое и пропавшее",
+        "uk": "Живе й зникле"
+      },
+      "bodyByLocale": {
+        "ru": "`alive` — «живой», `dead` — «мёртвый», `missing` — «пропавший, отсутствующий». `The tree is alive` — «Дерево живо». `The tree is dead` — «Дерево погибло»: речь о его нынешнем состоянии. `My headphones are missing` — «Мои наушники пропали»: их нет на месте, но это не значит, что они сломаны.",
+        "uk": "`alive` — «живий», `dead` — «мертвий», `missing` — «зниклий, відсутній». `The tree is alive` — «Дерево живе». `The tree is dead` — «Дерево загинуло»: ідеться про його теперішній стан. `My headphones are missing` — «Мої навушники зникли»: їх немає на місці, але це не означає, що вони зламані."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Наушники не удаётся найти. Скажите «Мои наушники пропали».",
+          "uk": "Навушники не вдається знайти. Скажіть «Мої навушники зникли»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-30:intro2:r1",
+              "text": "My headphones are missing."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro2:r2",
+              "text": "My headphones is missing."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro2:r3",
+              "text": "My headphones are here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-30:intro2:r1",
+              "text": "My headphones are missing."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro2:r2",
+              "text": "My headphones is missing."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro2:r3",
+              "text": "My headphones are here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Наушники не удаётся найти. Скажите «Мои наушники пропали».",
+          "uk": "Навушники не вдається знайти. Скажіть «Мої навушники зникли»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Окна, указатель и ботинки",
+        "uk": "Вікна, вказівник і черевики"
+      },
+      "bodyByLocale": {
+        "ru": "`windows` — «окна», `signpost` — «указатель», `boots` — «ботинки». `The windows are open` — «Окна открыты». `Tom’s boots are next to the door` — «Ботинки Тома рядом с дверью». `Anna is next to the signpost` — «Анна рядом с указателем». `Where are my headphones?` — «Где мои наушники?»",
+        "uk": "`windows` — «вікна», `signpost` — «вказівник», `boots` — «черевики». `The windows are open` — «Вікна відчинені». `Tom’s boots are next to the door` — «Черевики Тома поруч із дверима». `Anna is next to the signpost` — «Анна поруч із вказівником». `Where are my headphones?` — «Де мої навушники?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Окна открыты. Выберите фразу.",
+          "uk": "Вікна відчинені. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-30:intro3:r1",
+              "text": "The windows are open."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro3:r2",
+              "text": "The windows is open."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro3:r3",
+              "text": "The windows are closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-30:intro3:r1",
+              "text": "The windows are open."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro3:r2",
+              "text": "The windows is open."
+            },
+            {
+              "responseId": "en:lesson-05:session-30:intro3:r3",
+              "text": "The windows are closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Окна открыты. Выберите фразу.",
+          "uk": "Вікна відчинені. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "175497899b5ebdf177a9647e0966a423fad35f8de4d4aea7437b455ecc4ea3ae"
+}

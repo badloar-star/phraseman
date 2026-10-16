@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-25:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-25:intro1:r2": {
-          "ru": "После `I` ставим `am`: `I am proud`.",
-          "uk": "Після `I` ставимо `am`: `I am proud`."
+          "ru": "После I нужно am.",
+          "uk": "Після I потрібне am."
         },
         "en:lesson-01:session-25:intro1:r3": {
-          "ru": "`are` подходит к `You`, `We`, `They`, а с `I` нужно `am`.",
-          "uk": "`are` поєднується з `You`, `We`, `They`, а з `I` потрібно `am`."
+          "ru": "О себе говорим I am.",
+          "uk": "Про себе говоримо I am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-25:intro2:r2": {
-          "ru": "После `He` нужно `is`; `am` ставим после `I`.",
-          "uk": "Після `He` потрібно `is`; `am` ставимо після `I`."
+          "ru": "После He нужно is; am ставим после I.",
+          "uk": "Після He потрібне is; am ставимо після I."
         },
         "en:lesson-01:session-25:intro2:r3": {
-          "ru": "Для `He`, `She`, `It` здесь выбираем `is`.",
-          "uk": "Для `He`, `She`, `It` тут вибираємо `is`."
+          "ru": "О брате здесь говорим He is.",
+          "uk": "Про брата тут говоримо He is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-25:intro3:r2": {
-          "ru": "После `We` нужно `are`; `am` остаётся с `I`.",
-          "uk": "Після `We` потрібно `are`; `am` залишається з `I`."
+          "ru": "После We нужно are; am используем с I.",
+          "uk": "Після We потрібне are; am уживаємо з I."
         },
         "en:lesson-01:session-25:intro3:r3": {
-          "ru": "`is` подходит к `He`, `She`, `It`. После `We` нужно `are`.",
-          "uk": "`is` поєднується з `He`, `She`, `It`. Після `We` потрібно `are`."
+          "ru": "За вас двоих говорим We are.",
+          "uk": "За вас двох говоримо We are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "48804bf32483e18c03d911630195fc5c929581e10a1403711139adbf1716eaee"
+  "auxiliaryFingerprint": "d1e40d09328467e7349c609513a602bb0564561d67b061eddcf5b11924c308b8"
 }

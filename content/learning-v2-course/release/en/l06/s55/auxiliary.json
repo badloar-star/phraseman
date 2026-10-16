@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-55:intro1:r2": {
+          "ru": "Чтобы назвать профессию, нужно `She is`.",
+          "uk": "Щоб назвати професію, потрібно `She is`."
+        },
+        "en:lesson-06:session-55:intro1:r3": {
+          "ru": "Перед `artist` нужно `an`.",
+          "uk": "Перед `artist` потрібне `an`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-55:intro2:r2": {
+          "ru": "Одна художница: `paints`.",
+          "uk": "Одна художниця: `paints`."
+        },
+        "en:lesson-06:session-55:intro2:r3": {
+          "ru": "Нужно `This artist paints`, без `is`.",
+          "uk": "Потрібно `This artist paints`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-55:intro3:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо `Whose`."
+        },
+        "en:lesson-06:session-55:intro3:r3": {
+          "ru": "Одна перчатка: `is this`.",
+          "uk": "Одна рукавичка: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "52cdfb011068d3d0c4539b47d6e3f5b0d99703b6d01ca4b12dee37d81343b60f"
+}

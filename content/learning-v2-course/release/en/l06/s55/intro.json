@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "назвать профессию художника, рассказать о его работе и найти владельца вещи",
+    "uk": "назвати професію художника, розповісти про його роботу й знайти власника речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кем работает Анна",
+        "uk": "Ким працює Анна"
+      },
+      "bodyByLocale": {
+        "ru": "Друг представляет вам Анну. `artist` — «художник» или «художница». `She is an artist` — «Она художница». Перед `artist` нужно `an`: слово начинается с гласного звука. Здесь называем профессию, поэтому после `she` стоит `is`.",
+        "uk": "Друг знайомить вас з Анною. `artist` — «художник» або «художниця». `She is an artist` — «Вона художниця». Перед `artist` потрібне `an`: слово починається з голосного звука. Тут називаємо професію, тому після `she` стоїть `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите об Анне «Она художница».",
+          "uk": "Скажіть про Анну «Вона художниця»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-55:intro1:r1",
+              "text": "She is an artist."
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro1:r2",
+              "text": "She an artist."
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro1:r3",
+              "text": "She is a artist."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-55:intro1:r1",
+              "text": "She is an artist."
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro1:r2",
+              "text": "She an artist."
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro1:r3",
+              "text": "She is a artist."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите об Анне «Она художница».",
+          "uk": "Скажіть про Анну «Вона художниця»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что рисует Анна",
+        "uk": "Що малює Анна"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, чем занимается Анна как художница. `This artist paints murals` — «Эта художница создаёт настенные росписи». Здесь `paints` — рисует красками, а `murals` — настенные росписи. Одна художница, поэтому `paints` с `s`. Роспись домой под мышкой не унесёшь: она остаётся на стене.",
+        "uk": "Друг запитує, чим займається Анна як художниця. `This artist paints murals` — «Ця художниця створює настінні розписи». Тут `paints` — малює фарбами, а `murals` — настінні розписи. Одна художниця, тому `paints` із `s`. Розпис додому під пахвою не понесеш: він залишається на стіні."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите другу «Эта художница создаёт настенные росписи».",
+          "uk": "Розкажіть другові «Ця художниця створює настінні розписи»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-55:intro2:r1",
+              "text": "This artist paints murals."
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro2:r2",
+              "text": "This artist paint murals."
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro2:r3",
+              "text": "This artist is paints murals."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-55:intro2:r1",
+              "text": "This artist paints murals."
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro2:r2",
+              "text": "This artist paint murals."
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro2:r3",
+              "text": "This artist is paints murals."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите другу «Эта художница создаёт настенные росписи».",
+          "uk": "Розкажіть другові «Ця художниця створює настінні розписи»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Забытая перчатка",
+        "uk": "Забута рукавичка"
+      },
+      "bodyByLocale": {
+        "ru": "У стены с росписью лежит перчатка. Вы не знаете, кому она принадлежит. `Whose glove is this?` — «Чья это перчатка?» После `whose` называем вещь, а затем `is this`, если она одна.",
+        "uk": "Біля стіни з розписом лежить рукавичка. Ви не знаєте, кому вона належить. `Whose glove is this?` — «Чия це рукавичка?» Після `whose` називаємо річ, а потім `is this`, якщо вона одна."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите людей рядом «Чья это перчатка?»",
+          "uk": "Запитайте людей поруч «Чия це рукавичка?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-55:intro3:r1",
+              "text": "Whose glove is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro3:r2",
+              "text": "Where is this glove?"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro3:r3",
+              "text": "Whose glove are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-55:intro3:r1",
+              "text": "Whose glove is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro3:r2",
+              "text": "Where is this glove?"
+            },
+            {
+              "responseId": "en:lesson-06:session-55:intro3:r3",
+              "text": "Whose glove are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите людей рядом «Чья это перчатка?»",
+          "uk": "Запитайте людей поруч «Чия це рукавичка?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "15777370e1b5a2c5a6db81d6e53b1a3a7dc8e0bebaabd9e39de533b6359ed486"
+}

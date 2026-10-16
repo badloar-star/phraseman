@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-37:intro1:r2": {
+          "ru": "`earrings` — множественное число: `are these`.",
+          "uk": "`earrings` — множина: `are these`."
+        },
+        "en:lesson-05:session-37:intro1:r3": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-37:intro2:r2": {
+          "ru": "С `I` нужна форма `am`.",
+          "uk": "З `I` потрібна форма `am`."
+        },
+        "en:lesson-05:session-37:intro2:r3": {
+          "ru": "Это «Я один»; чувство одиночества — `lonely`.",
+          "uk": "Це «Я сам»; почуття самотності — `lonely`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-37:intro3:r2": {
+          "ru": "Один скейтборд: `is this`.",
+          "uk": "Один скейтборд: `is this`."
+        },
+        "en:lesson-05:session-37:intro3:r3": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b97ec0fbc47daa0f7f2ba96cd0ea6637b88c1315311afd0ccb2d1fd1ff914de5"
+}

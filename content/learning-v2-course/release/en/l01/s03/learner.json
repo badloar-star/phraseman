@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-03:i02:r1",
@@ -60,18 +60,18 @@
         },
         {
           "responseId": "en:lesson-01:session-03:i02:r2",
-          "text": "angry"
+          "text": "tired"
         },
         {
           "responseId": "en:lesson-01:session-03:i02:r3",
-          "text": "hurry"
+          "text": "happy"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-03:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -87,12 +87,12 @@
           },
           {
             "responseId": "en:lesson-01:session-03:i02:r2",
-            "targetText": "angry",
+            "targetText": "tired",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-03:i02:r3",
-            "targetText": "hurry",
+            "targetText": "happy",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +101,19 @@
           {
             "responseId": "en:lesson-01:session-03:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — hungry",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В начале hungry слышен легкий выдох h; в angry его нет.",
-              "uk": "`angry` починається з голосного звука, а `hungry` — з видиху `h`."
+              "ru": "В записи hungry — «голодный», а tired означает «уставший».",
+              "uk": "У записі hungry — «голодний», а tired означає «стомлений»."
             }
           },
           {
             "responseId": "en:lesson-01:session-03:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — hungry",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В `hungry` в середине слышен носовой звук `/ŋ/`, как в `sing`, а за ним отчётливо слышно `/g/`.",
-              "uk": "У `hungry` посередині чути носовий звук `/ŋ/`, як у `sing`, а за ним чітко чути `/g/`."
+              "ru": "В записи hungry — «голодный», а happy означает «рад».",
+              "uk": "У записі hungry — «голодний», а happy означає «радий»."
             }
           }
         ],
@@ -169,64 +169,42 @@
       "interactionId": "en:lesson-01:session-03:i04",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "sound_contrast",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте две записи. Какое слово звучит в первой?",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-03:i04:r1",
-          "text": "sure"
-        },
-        {
-          "responseId": "en:lesson-01:session-03:i04:r2",
-          "text": "shirt"
-        },
-        {
-          "responseId": "en:lesson-01:session-03:i04:r3",
-          "text": "sugar"
-        }
-      ],
+      "prompt": "Карточка слова — sure",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-03:i04:audioA",
-        "en:lesson-01:session-03:i04:audioB"
+        "en:lesson-01:session-03:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте две записи. Какое слово звучит в первой?",
+      "accessibilityLabel": "Карточка слова — sure",
       "modePayload": {
-        "family": "sound_contrast",
-        "contrastA": "sure",
-        "contrastB": "shirt",
-        "ipaA": "",
-        "ipaB": "",
-        "audioA": {
-          "audioTargetId": "en:lesson-01:session-03:i04:audioA",
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i04:audio",
           "transcript": "sure"
         },
-        "audioB": {
-          "audioTargetId": "en:lesson-01:session-03:i04:audioB",
-          "transcript": "shirt"
-        },
-        "testedPhoneticContrast": "Послушайте две записи. Какое слово звучит в первой?",
-        "choiceFeedback": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-01:session-03:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте две записи. Какое слово звучит в первой?",
-            "feedbackByLocale": {
-              "ru": "shirt звучит вторым. Первым было sure.",
-              "uk": "shirt звучить другим. Першим було sure."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-03:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте две записи. Какое слово звучит в первой?",
-            "feedbackByLocale": {
-              "ru": "`sugar` не звучало первым: первым было sure.",
-              "uk": "`sugar` не звучало першим: першим було sure."
+            "responseId": "en:lesson-01:session-03:i04:r1",
+            "targetText": "sure",
+            "meaningByLocale": {
+              "ru": "«уверен / уверена»: вы не сомневаетесь. Если сомневаетесь во времени встречи, скажите I am not sure.",
+              "uk": "«впевнений / впевнена»: ви не сумніваєтеся. Якщо сумніваєтеся щодо часу зустрічі, скажіть I am not sure."
             }
           }
-        ]
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sure",
+          "definitionByLocale": {
+            "ru": "«уверен / уверена»: вы не сомневаетесь. Если сомневаетесь во времени встречи, скажите I am not sure.",
+            "uk": "«впевнений / впевнена»: ви не сумніваєтеся. Якщо сумніваєтеся щодо часу зустрічі, скажіть I am not sure."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -236,7 +214,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-03:i05:r1",
@@ -244,18 +222,18 @@
         },
         {
           "responseId": "en:lesson-01:session-03:i05:r2",
-          "text": "shirt"
+          "text": "cold"
         },
         {
           "responseId": "en:lesson-01:session-03:i05:r3",
-          "text": "sugar"
+          "text": "hungry"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-03:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -271,12 +249,12 @@
           },
           {
             "responseId": "en:lesson-01:session-03:i05:r2",
-            "targetText": "shirt",
+            "targetText": "cold",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-03:i05:r3",
-            "targetText": "sugar",
+            "targetText": "hungry",
             "meaningByLocale": null
           }
         ],
@@ -285,19 +263,19 @@
           {
             "responseId": "en:lesson-01:session-03:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — sure",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "«Рубашка». В конце слышно t, а у sure этого звука нет.",
-              "uk": "shirt — «сорочка». Наприкінці чути t, а в sure цього звука немає."
+              "ru": "В записи sure — «уверен», а cold означает «холодно».",
+              "uk": "У записі sure — «впевнений», а cold означає «холодно»."
             }
           },
           {
             "responseId": "en:lesson-01:session-03:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — sure",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "«Сахар». Слишком длинно — два слога вместо одного.",
-              "uk": "«Цукор». Задовге — два склади замість одного."
+              "ru": "В записи sure — «уверен», а hungry означает «голодный».",
+              "uk": "У записі sure — «впевнений», а hungry означає «голодний»."
             }
           }
         ],
@@ -331,8 +309,8 @@
             "responseId": "en:lesson-01:session-03:i06:r1",
             "targetText": "alone",
             "meaningByLocale": {
-              "ru": "«один, сам по себе». Не «одинокий», а просто без компании.",
-              "uk": "«сам, без компанії». Не «самотній», а просто без нікого поруч."
+              "ru": "«один / одна»: вы остались в кабинете без коллег. Это описание ситуации; вам необязательно грустно.",
+              "uk": "«сам / сама»: ви залишилися в кабінеті без колег. Це опис ситуації; вам необов’язково сумно."
             }
           }
         ],
@@ -342,8 +320,8 @@
         "wordCard": {
           "word": "alone",
           "definitionByLocale": {
-            "ru": "«один, сам по себе». Не «одинокий», а просто без компании.",
-            "uk": "«сам, без компанії». Не «самотній», а просто без нікого поруч."
+            "ru": "«один / одна»: вы остались в кабинете без коллег. Это описание ситуации; вам необязательно грустно.",
+            "uk": "«сам / сама»: ви залишилися в кабінеті без колег. Це опис ситуації; вам необов’язково сумно."
           }
         }
       },
@@ -352,7 +330,7 @@
     {
       "interactionId": "en:lesson-01:session-03:i07",
       "ordinal": 10,
-      "purpose": "guided_practice",
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините пары",
@@ -447,7 +425,11 @@
           "hungry"
         ],
         "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -557,7 +539,11 @@
               "uk": "«впевнений», але тут ви повідомляєте: «я не сам»"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -601,14 +587,18 @@
               "uk": "це окрема відповідь, а всередині фрази потрібне not"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-03:i12",
       "ordinal": 15,
-      "purpose": "retrieval_practice",
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вставьте слово — Мира спросила, устали ли вы. Скажите, что нет",
@@ -666,7 +656,7 @@
             "correct": false,
             "testedDimension": "Вставьте слово — Мира спросила, устали ли вы. Скажите, что нет",
             "feedbackByLocale": {
-              "ru": "С I нужна форма am: I am not tired.",
+              "ru": "С I нужна форма `am`: `I am not tired`.",
               "uk": "Для `I` потрібна форма `am`: `I am not tired`."
             }
           }
@@ -677,7 +667,7 @@
     {
       "interactionId": "en:lesson-01:session-03:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Утверждение или отрицание? Вы опоздали — признайте это",
@@ -710,7 +700,11 @@
               "uk": "вона змінила б зміст на «я не запізнився». Тут треба визнати, що ви запізнилися."
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -793,7 +787,7 @@
     {
       "interactionId": "en:lesson-01:session-03:i15:s01",
       "ordinal": 18,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
       "prompt": "Произнесите фразу — Мира предлагает включить обогреватель; скажите, что вам не холодно",
@@ -826,7 +820,7 @@
     {
       "interactionId": "en:lesson-01:session-03:i15:s02",
       "ordinal": 19,
-      "purpose": "independent_check",
+      "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Соберите фразу — «у меня всё хорошо»",
@@ -859,14 +853,18 @@
               "uk": "тут «у мене все добре», без заперечення"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-03:i16",
       "ordinal": 20,
-      "purpose": "independent_check",
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините пары — слова, которые уже ваши",
@@ -939,7 +937,7 @@
     {
       "interactionId": "en:lesson-01:session-03:i17:s01",
       "ordinal": 21,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
       "prompt": "Произнесите фразу — Мира спрашивает, устали ли вы после встречи; скажите, что нет",
@@ -1048,16 +1046,16 @@
     {
       "interactionId": "en:lesson-01:session-03:i17:s03",
       "ordinal": 23,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите фразу — Мира видит, что вы ждёте коллегу; скажите, что вы не один",
+      "prompt": "Произнесите фразу — коллега уже рядом с вами; сообщите Мире, что вы не один",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-03:i17:s03:audio"
       ],
-      "accessibilityLabel": "Произнесите фразу — Мира видит, что вы ждёте коллегу; скажите, что вы не один",
+      "accessibilityLabel": "Произнесите фразу — коллега уже рядом с вами; сообщите Мире, что вы не один",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1114,7 +1112,11 @@
               "uk": "тут ви кажете «я готовий»"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     }
@@ -1125,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "49ae477d3a0d52da4ee738cd04dce8fbe35387acd8ee36b2d98aca3395baca89"
+  "learnerFingerprint": "9f64b611dcb26fe5b45ed89f96d1e970c7e7949b78c166a3024eef57f6dccf70"
 }

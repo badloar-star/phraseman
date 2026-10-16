@@ -96520,6 +96520,309 @@
           "byteSize": 32256
         }
       ]
+    },
+    "l06/s39/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I cycle to work.",
+          "file": "4d0af28cf25c7b62d83e8951ce0e4e1f90d5d6d881e4044b50e7fad480b14966.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4d0af28cf25c7b62d83e8951ce0e4e1f90d5d6d881e4044b50e7fad480b14966.mp3",
+          "contentHash": "723ccf4c8a3eafe80bc65486c5305a9dc4661f834d1e266af2c69854d57fadb0",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s39/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He cycles to work.",
+          "file": "ce9b9b1213af0e580952434e21d83d91d4dc1b03bd1a0446d2190c6da0e207a5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce9b9b1213af0e580952434e21d83d91d4dc1b03bd1a0446d2190c6da0e207a5.mp3",
+          "contentHash": "51ebbba23d38043055d9757ab1b6f4b1faa4684628498721235065396a883bcc",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s39/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He showers at work.",
+          "file": "99b296051731ecb3400b2b101e40ad1a610a80101d582592b5e6cc9f4a3cd6e7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99b296051731ecb3400b2b101e40ad1a610a80101d582592b5e6cc9f4a3cd6e7.mp3",
+          "contentHash": "8cc8a1cff6b12716e59d56a3c39236be1596de77da197e82c1db9ec6cacb2f79",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s39/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I cycle to work.",
+          "file": "e36515e5a44ed6ea5e6507b41012724aef0b03454162b941c673c4868e065e52.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e36515e5a44ed6ea5e6507b41012724aef0b03454162b941c673c4868e065e52.mp3",
+          "contentHash": "e796951bbf74666e1717185fe29f422968f2703d5a80deadbeff58333e8e08cf",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s39/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "cycle",
+          "file": "885ffcf5a6d47b37cf192c8b5d16694932a965a50f621e20c266de8e470e5b83.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/885ffcf5a6d47b37cf192c8b5d16694932a965a50f621e20c266de8e470e5b83.mp3",
+          "contentHash": "376c5fb0ae26a34e4afbdd3441ece0c2964c3f533fd2707c893d9809d5738324",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l06/s39/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He cycles to work.",
+          "file": "ce9b9b1213af0e580952434e21d83d91d4dc1b03bd1a0446d2190c6da0e207a5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce9b9b1213af0e580952434e21d83d91d4dc1b03bd1a0446d2190c6da0e207a5.mp3",
+          "contentHash": "51ebbba23d38043055d9757ab1b6f4b1faa4684628498721235065396a883bcc",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s39/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "cycle",
+          "file": "0453188d693bcc1dffd5bb31b03e46656fe683a67fbbe3a35cfdbee694cd7742.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0453188d693bcc1dffd5bb31b03e46656fe683a67fbbe3a35cfdbee694cd7742.mp3",
+          "contentHash": "233221e23f3bb69410a0f56551bf8075e2f6ea43102bfffb074d5461b16e5558",
+          "byteSize": 28416
+        },
+        {
+          "text": "relevant",
+          "file": "9d44186c028909703c898d9923e06d4063ce876d1a1973268dc1ffee903e7c8f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9d44186c028909703c898d9923e06d4063ce876d1a1973268dc1ffee903e7c8f.mp3",
+          "contentHash": "bd452cde4f66c6fde7d0b8c0ff6c1b9a76b811eebc6aaceabb2acac8984993ff",
+          "byteSize": 16512
+        },
+        {
+          "text": "boiler",
+          "file": "770f198ff6272e99861d3c3ed4af5fa871e85ec5300f38290fa6b52e9053707c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/770f198ff6272e99861d3c3ed4af5fa871e85ec5300f38290fa6b52e9053707c.mp3",
+          "contentHash": "3054c0de39c8d371c46c1d69d55586a67f57b3a0d647f28bf0f0a0c5e71b976e",
+          "byteSize": 16512
+        },
+        {
+          "text": "violin",
+          "file": "4b5fbf862f8d6d73c5af3baaf60c54835102e19d6afbda829ba6d3b0632fa35a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b5fbf862f8d6d73c5af3baaf60c54835102e19d6afbda829ba6d3b0632fa35a.mp3",
+          "contentHash": "0f1a81161ede35093bf75b5460f38387eedb3f89f1b571542efb069ae94197d0",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l06/s39/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom cycles to work.",
+          "file": "301adf25d27ad606970f4a2890047b4bb19708bc3d0a63332ae2f8008df2c1ca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/301adf25d27ad606970f4a2890047b4bb19708bc3d0a63332ae2f8008df2c1ca.mp3",
+          "contentHash": "64e342dd6597e2611b33997f2e103d94500afb119653627a9b425f93039ba9d0",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s39/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He showers at work.",
+          "file": "520a2c1bbb3979f5a3ac6aa6219cfaeb51a607b330948d39488231a818bb6a98.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/520a2c1bbb3979f5a3ac6aa6219cfaeb51a607b330948d39488231a818bb6a98.mp3",
+          "contentHash": "95b22aba46ddb732ffb5bb27c7e123ae02c4393377f62f83079a76f3bf079543",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s39/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This boiler is new.",
+          "file": "bc20880d7ccf576a90c6d39eb9d27a286ae742dfc4ab6e472309bac486a2baab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc20880d7ccf576a90c6d39eb9d27a286ae742dfc4ab6e472309bac486a2baab.mp3",
+          "contentHash": "075a8a499c922c21735afeaa9ee0f212e8bee6f8bf1323e37d1cf7c1c25b7c57",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s39/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They cycle to work.",
+          "file": "b57ce17e4b107e917e84047b9288f568b92321a556d05619de38a642a017b047.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b57ce17e4b107e917e84047b9288f568b92321a556d05619de38a642a017b047.mp3",
+          "contentHash": "fc0aa35996f41e42ff9854bfce41d95271c2437d87926f8974453a1e2a616edc",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l06/s39/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This violin is mine.",
+          "file": "8411b71055a3e4707efa1fd706b750418b11a1e6f6414fb02853bdf44297d7de.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8411b71055a3e4707efa1fd706b750418b11a1e6f6414fb02853bdf44297d7de.mp3",
+          "contentHash": "b2d4dc12aa68d77905af379a81d8461347459b1d221877c820186dbf903d29f7",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l06/s39/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "cycle",
+          "file": "885ffcf5a6d47b37cf192c8b5d16694932a965a50f621e20c266de8e470e5b83.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/885ffcf5a6d47b37cf192c8b5d16694932a965a50f621e20c266de8e470e5b83.mp3",
+          "contentHash": "376c5fb0ae26a34e4afbdd3441ece0c2964c3f533fd2707c893d9809d5738324",
+          "byteSize": 19584
+        },
+        {
+          "text": "shower",
+          "file": "e91546d7b27f9b3c7e515a60ea346c9e5609c47bdd67e7ad2cb27476ea5fb9ea.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e91546d7b27f9b3c7e515a60ea346c9e5609c47bdd67e7ad2cb27476ea5fb9ea.mp3",
+          "contentHash": "3b654f7c75bf9a9ac08bf1338f6976859231babb555c2e9b68c505ee195d1b10",
+          "byteSize": 39552
+        },
+        {
+          "text": "violin",
+          "file": "d06efec17321e41b557a4c796d5fb2f069d761e3e32f26501b867b88fe65c65a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d06efec17321e41b557a4c796d5fb2f069d761e3e32f26501b867b88fe65c65a.mp3",
+          "contentHash": "99c19635b06dd5765137df20cbcc9118a3fa4c0d729d66b7dbe38de817a7a5f0",
+          "byteSize": 18816
+        },
+        {
+          "text": "relevant",
+          "file": "bee2383d106ce8e9f11c491d80ec26cf328b17c35ae35da7de204ccb56638292.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bee2383d106ce8e9f11c491d80ec26cf328b17c35ae35da7de204ccb56638292.mp3",
+          "contentHash": "2cb36cd5bfc0a3cc8cb9d88d56bb4898e0983cd9978ac370974dced0a8106502",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l06/s39/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The boiler is here.",
+          "file": "9cf31570f6706c584c267084a59c668bbe6fddcc7a1ebf2fa4f6744830532717.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9cf31570f6706c584c267084a59c668bbe6fddcc7a1ebf2fa4f6744830532717.mp3",
+          "contentHash": "3d15bbbea539c8a568a790c84664fbbc160c99e4af8c3d265fe3215d7866afc6",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l06/s39/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose violin is this?",
+          "file": "9a7085b276ecb68befc78c60c87126a5f8469b043c3de4f66a08eb9710219f7d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a7085b276ecb68befc78c60c87126a5f8469b043c3de4f66a08eb9710219f7d.mp3",
+          "contentHash": "4a058cb8ec2851f257a9cbac58430ac2b66582aa7675bd92056abec0d5fc848b",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s39/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I shower at home.",
+          "file": "eeb2be8af359a76605bbf36fd109f665d6dfd03a150cda9d088b2f043bf77ca1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eeb2be8af359a76605bbf36fd109f665d6dfd03a150cda9d088b2f043bf77ca1.mp3",
+          "contentHash": "ceb784ed53d2b3a73a989f9585ff9f1ad37abf3252e34a46798f09535c4b5442",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l06/s39/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Anna cycles to work.",
+          "file": "379d6a8e35b54b422c0b73c3e86cefb216061be9741bd16a1c49ef3a78301ce7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/379d6a8e35b54b422c0b73c3e86cefb216061be9741bd16a1c49ef3a78301ce7.mp3",
+          "contentHash": "d60f89ee9d83b3d5a9fcc62dd4919de993d396a1e476e61b95525d000947765b",
+          "byteSize": 53760
+        }
+      ]
+    },
+    "l06/s39/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He showers at work.",
+          "file": "9bbefcda9ca7d341b9c48698006fd6d94374eba78c64b80d3a075816a13547fe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9bbefcda9ca7d341b9c48698006fd6d94374eba78c64b80d3a075816a13547fe.mp3",
+          "contentHash": "3435456d7f1a5341c84c17403ac764ece38f7fb8eec79be7dcb5d7ee63c4504a",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s39/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "cycle",
+          "file": "0453188d693bcc1dffd5bb31b03e46656fe683a67fbbe3a35cfdbee694cd7742.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0453188d693bcc1dffd5bb31b03e46656fe683a67fbbe3a35cfdbee694cd7742.mp3",
+          "contentHash": "233221e23f3bb69410a0f56551bf8075e2f6ea43102bfffb074d5461b16e5558",
+          "byteSize": 28416
+        },
+        {
+          "text": "boiler",
+          "file": "770f198ff6272e99861d3c3ed4af5fa871e85ec5300f38290fa6b52e9053707c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/770f198ff6272e99861d3c3ed4af5fa871e85ec5300f38290fa6b52e9053707c.mp3",
+          "contentHash": "3054c0de39c8d371c46c1d69d55586a67f57b3a0d647f28bf0f0a0c5e71b976e",
+          "byteSize": 16512
+        },
+        {
+          "text": "relevant",
+          "file": "9d44186c028909703c898d9923e06d4063ce876d1a1973268dc1ffee903e7c8f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9d44186c028909703c898d9923e06d4063ce876d1a1973268dc1ffee903e7c8f.mp3",
+          "contentHash": "bd452cde4f66c6fde7d0b8c0ff6c1b9a76b811eebc6aaceabb2acac8984993ff",
+          "byteSize": 16512
+        },
+        {
+          "text": "shower",
+          "file": "028dbe9c6541ca8eedfc1b1b91121c7eb555b5a7df6dfdcb434100fb298d40a2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/028dbe9c6541ca8eedfc1b1b91121c7eb555b5a7df6dfdcb434100fb298d40a2.mp3",
+          "contentHash": "d8b9f235970e7305d1c5d4da98d93876fc8701b732c44fcb602f9c246c148cb1",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l06/s39/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He cycles to work.",
+          "file": "c1f82b419e574504dea50f8a347ef588534fae6e5cf056498607b3fff912424e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c1f82b419e574504dea50f8a347ef588534fae6e5cf056498607b3fff912424e.mp3",
+          "contentHash": "e01bb4c244ec17d83d923a67b53623158c83bb2f74741149fae30b9352191478",
+          "byteSize": 27648
+        }
+      ]
     }
   },
   "settings": {

@@ -1,0 +1,958 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите «Я езжу на работу на велосипеде»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите «Я езжу на работу на велосипеде»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cycle to work.",
+        "localizedMeaning": {
+          "ru": "Расскажите «Я езжу на работу на велосипеде»",
+          "uk": "Розкажіть «Я їжджу на роботу велосипедом»"
+        },
+        "orderedTokens": [
+          "I",
+          "cycle",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-39:i02:r1",
+          "text": "cycle"
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i02:r2",
+          "text": "shower"
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i02:r3",
+          "text": "rest"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-39:i02:audio",
+          "transcript": "cycle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-39:i02:r1",
+            "targetText": "cycle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i02:r2",
+            "targetText": "shower",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i02:r3",
+            "targetText": "rest",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `cycle`, а в этом варианте — `shower`.",
+              "uk": "У записі перше слово — `cycle`, а в цьому варіанті — `shower`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `cycle`, а в этом варианте — `rest`.",
+              "uk": "У записі перше слово — `cycle`, а в цьому варіанті — `rest`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Он ездит на работу на велосипеде»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-39:i03:r1",
+          "text": "cycles"
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i03:r2",
+          "text": "cycle"
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i03:r3",
+          "text": "is cycles"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он ездит на работу на велосипеде»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Он ездит на работу на велосипеде»",
+          "uk": "Скажіть «Він їздить на роботу велосипедом»"
+        },
+        "gappedTargetPhrase": "He ___ to work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-39:i03:r1",
+            "text": "cycles"
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i03:r2",
+            "text": "cycle"
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i03:r3",
+            "text": "is cycles"
+          }
+        ],
+        "testedDimension": "Скажите «Он ездит на работу на велосипеде»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Он ездит на работу на велосипеде»",
+            "feedbackByLocale": {
+              "ru": "После `he` — `cycles`.",
+              "uk": "Після `he` — `cycles`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Он ездит на работу на велосипеде»",
+            "feedbackByLocale": {
+              "ru": "Нужно `He cycles`, без `is`.",
+              "uk": "Потрібно `He cycles`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-39:i04:p1",
+            "target": "cycle",
+            "meaningByLocale": {
+              "ru": "ездить на велосипеде",
+              "uk": "їздити велосипедом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-39:i04:p2",
+            "target": "relevant",
+            "meaningByLocale": {
+              "ru": "относящийся к делу",
+              "uk": "доречний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-39:i04:p3",
+            "target": "boiler",
+            "meaningByLocale": {
+              "ru": "отопительный котёл",
+              "uk": "опалювальний котел"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-39:i04:p4",
+            "target": "violin",
+            "meaningByLocale": {
+              "ru": "скрипка",
+              "uk": "скрипка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cycle",
+          "relevant",
+          "boiler",
+          "violin"
+        ],
+        "rightColumn": [
+          "ездить на велосипеде",
+          "относящийся к делу",
+          "отопительный котёл",
+          "скрипка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-39:i05:audio",
+          "transcript": "Tom cycles to work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tom cycles to work.",
+        "orderedTokens": [
+          "Tom",
+          "cycles",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Он принимает душ на работе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он принимает душ на работе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He showers at work.",
+        "localizedMeaning": {
+          "ru": "Скажите «Он принимает душ на работе»",
+          "uk": "Скажіть «Він приймає душ на роботі»"
+        },
+        "orderedTokens": [
+          "He",
+          "showers",
+          "at",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В здании заменили отопительный котёл. Скажите «Этот отопительный котёл новый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-39:i07:audio"
+      ],
+      "accessibilityLabel": "В здании заменили отопительный котёл. Скажите «Этот отопительный котёл новый»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-39:i07:audio",
+          "transcript": "This boiler is new."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This boiler is new.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они ездят на работу на велосипеде»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-39:i08:r1",
+          "text": "cycle"
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i08:r2",
+          "text": "cycles"
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i08:r3",
+          "text": "are cycle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они ездят на работу на велосипеде»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они ездят на работу на велосипеде»",
+          "uk": "Скажіть «Вони їздять на роботу велосипедом»"
+        },
+        "gappedTargetPhrase": "They ___ to work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-39:i08:r1",
+            "text": "cycle"
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i08:r2",
+            "text": "cycles"
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i08:r3",
+            "text": "are cycle"
+          }
+        ],
+        "testedDimension": "Скажите «Они ездят на работу на велосипеде»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они ездят на работу на велосипеде»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `cycle`, без `s`.",
+              "uk": "Після `they` — `cycle`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они ездят на работу на велосипеде»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They cycle`, без `are`.",
+              "uk": "Потрібно `They cycle`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежит скрипка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-39:i09:r1",
+          "text": "This violin is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i09:r2",
+          "text": "This violin is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i09:r3",
+          "text": "This violin is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-39:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит скрипка",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-39:i09:audio",
+          "transcript": "This violin is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-39:i09:r1",
+            "targetText": "This violin is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i09:r2",
+            "targetText": "This violin is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i09:r3",
+            "targetText": "This violin is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит скрипка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит скрипка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-39:i10:p1",
+            "target": "cycle",
+            "meaningByLocale": {
+              "ru": "ездить на велосипеде",
+              "uk": "їздити велосипедом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-39:i10:p2",
+            "target": "shower",
+            "meaningByLocale": {
+              "ru": "принимать душ",
+              "uk": "приймати душ"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-39:i10:p3",
+            "target": "violin",
+            "meaningByLocale": {
+              "ru": "скрипка",
+              "uk": "скрипка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-39:i10:p4",
+            "target": "relevant",
+            "meaningByLocale": {
+              "ru": "относящийся к делу",
+              "uk": "доречний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cycle",
+          "shower",
+          "violin",
+          "relevant"
+        ],
+        "rightColumn": [
+          "ездить на велосипеде",
+          "принимать душ",
+          "скрипка",
+          "относящийся к делу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-39:i11:audio",
+          "transcript": "The boiler is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The boiler is here.",
+        "orderedTokens": [
+          "The",
+          "boiler",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-39:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The boiler is here.`",
+              "uk": "тут потрібно `is` — `The boiler is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В комнате оставили скрипку. Спросите «Чья это скрипка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В комнате оставили скрипку. Спросите «Чья это скрипка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose violin is this?",
+        "localizedMeaning": {
+          "ru": "В комнате оставили скрипку. Спросите «Чья это скрипка?»",
+          "uk": "У кімнаті залишили скрипку. Запитайте «Чия це скрипка?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "violin",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Я принимаю душ дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Я принимаю душ дома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-39:i13:audio",
+          "transcript": "I shower at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I shower at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Анна ездит на работу на велосипеде»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-39:i14:r1",
+          "text": "cycles"
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i14:r2",
+          "text": "cycle"
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i14:r3",
+          "text": "is cycles"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Анна ездит на работу на велосипеде»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна ездит на работу на велосипеде»",
+          "uk": "Скажіть «Анна їздить на роботу велосипедом»"
+        },
+        "gappedTargetPhrase": "Anna ___ to work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-39:i14:r1",
+            "text": "cycles"
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i14:r2",
+            "text": "cycle"
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i14:r3",
+            "text": "is cycles"
+          }
+        ],
+        "testedDimension": "Скажите «Анна ездит на работу на велосипеде»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-39:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Анна ездит на работу на велосипеде»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna cycles`.",
+              "uk": "Анна — вона: `Anna cycles`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Анна ездит на работу на велосипеде»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Anna cycles`, без `is`.",
+              "uk": "Потрібно `Anna cycles`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-39:i15:r1",
+          "text": "He showers at work."
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i15:r2",
+          "text": "He showers at home."
+        },
+        {
+          "responseId": "en:lesson-06:session-39:i15:r3",
+          "text": "She showers at work."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-39:i15:audio",
+          "transcript": "He showers at work."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-39:i15:r1",
+            "targetText": "He showers at work.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i15:r2",
+            "targetText": "He showers at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i15:r3",
+            "targetText": "She showers at work.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-39:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `home`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `home`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-39:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-39:i16:p1",
+            "target": "cycle",
+            "meaningByLocale": {
+              "ru": "ездить на велосипеде",
+              "uk": "їздити велосипедом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-39:i16:p2",
+            "target": "boiler",
+            "meaningByLocale": {
+              "ru": "отопительный котёл",
+              "uk": "опалювальний котел"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-39:i16:p3",
+            "target": "relevant",
+            "meaningByLocale": {
+              "ru": "относящийся к делу",
+              "uk": "доречний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-39:i16:p4",
+            "target": "shower",
+            "meaningByLocale": {
+              "ru": "принимать душ",
+              "uk": "приймати душ"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cycle",
+          "boiler",
+          "relevant",
+          "shower"
+        ],
+        "rightColumn": [
+          "ездить на велосипеде",
+          "отопительный котёл",
+          "относящийся к делу",
+          "принимать душ"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-39:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает, как Том добирается на работу. Ответьте «Он ездит на работу на велосипеде»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает, как Том добирается на работу. Ответьте «Он ездит на работу на велосипеде»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-39:i17:audio",
+          "transcript": "He cycles to work."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He cycles to work.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "721cfb720c18910309ab930a7b2c5bafeb4802f5abd3dfacdabf4c73de916d53"
+}

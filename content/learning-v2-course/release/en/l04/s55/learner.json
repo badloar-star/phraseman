@@ -1,0 +1,985 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-55:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На карте снова неправильный проход. Скажите «Карта ненадёжная»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На карте снова неправильный проход. Скажите «Карта ненадёжная»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The map is unreliable.",
+        "localizedMeaning": {
+          "ru": "На карте снова неправильный проход. Скажите «Карта ненадёжная»",
+          "uk": "На карті знову неправильний прохід. Скажіть «Карта ненадійна»"
+        },
+        "orderedTokens": [
+          "The",
+          "map",
+          "is",
+          "unreliable"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-55:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "На карте снова неправильный проход. Скажите «Карта ненадёжная»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The map is unreliable.`",
+              "uk": "тут потрібно `is` — `The map is unreliable.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-55:i02:r1",
+          "text": "shortcut"
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i02:r2",
+          "text": "shortcuts"
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i02:r3",
+          "text": "station"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-55:i02:audio",
+          "transcript": "shortcut"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-55:i02:r1",
+            "targetText": "shortcut",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i02:r2",
+            "targetText": "shortcuts",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i02:r3",
+            "targetText": "station",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `shortcut`, а в этом варианте — `shortcuts`.",
+              "uk": "У записі перше слово — `shortcut`, а в цьому варіанті — `shortcuts`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `shortcut`, а в этом варианте — `station`.",
+              "uk": "У записі перше слово — `shortcut`, а в цьому варіанті — `station`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Как назвать путь короче обычного?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-55:i03:r1",
+          "text": "shortcut"
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i03:r2",
+          "text": "canal"
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i03:r3",
+          "text": "pantry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Как назвать путь короче обычного?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Как назвать путь короче обычного?",
+          "uk": "Як назвати шлях коротший за звичайний?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i03:r1",
+            "text": "shortcut"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i03:r2",
+            "text": "canal"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i03:r3",
+            "text": "pantry"
+          }
+        ],
+        "testedDimension": "Как назвать путь короче обычного?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Как назвать путь короче обычного?",
+            "feedbackByLocale": {
+              "ru": "`canal` — канал; короткий путь — `shortcut`.",
+              "uk": "`canal` — канал; короткий шлях — `shortcut`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Как назвать путь короче обычного?",
+            "feedbackByLocale": {
+              "ru": "`pantry` — кладовая для продуктов; короткий путь — `shortcut`.",
+              "uk": "`pantry` — комора для продуктів; короткий шлях — `shortcut`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-55:i04:p1",
+            "target": "shortcut",
+            "meaningByLocale": {
+              "ru": "короткий путь",
+              "uk": "короткий шлях"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-55:i04:p2",
+            "target": "unreliable",
+            "meaningByLocale": {
+              "ru": "ненадёжный",
+              "uk": "ненадійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-55:i04:p3",
+            "target": "cafes",
+            "meaningByLocale": {
+              "ru": "кафе (несколько)",
+              "uk": "кафе (кілька)"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-55:i04:p4",
+            "target": "leftover",
+            "meaningByLocale": {
+              "ru": "остаток еды",
+              "uk": "залишок їжі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shortcut",
+          "unreliable",
+          "cafes",
+          "leftover"
+        ],
+        "rightColumn": [
+          "короткий путь",
+          "ненадёжный",
+          "кафе (несколько)",
+          "остаток еды"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-55:i05:audio",
+          "transcript": "This is a shortcut."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a shortcut.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "shortcut"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-55:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a shortcut.`",
+              "uk": "тут потрібно `is` — `This is a shortcut.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Несколько кафе рядом с парком. Скажите, где они",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Несколько кафе рядом с парком. Скажите, где они",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cafes are next to the park.",
+        "localizedMeaning": {
+          "ru": "Несколько кафе рядом с парком. Скажите, где они",
+          "uk": "Кілька кафе поруч із парком. Скажіть, де вони"
+        },
+        "orderedTokens": [
+          "The",
+          "cafes",
+          "are",
+          "next",
+          "to",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-55:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Несколько кафе рядом с парком. Скажите, где они",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The cafes are next to the park.`",
+              "uk": "тут потрібно `are` — `The cafes are next to the park.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Карта снова подвела. Скажите «Она ненадёжная» с сокращением и словом it",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "Карта снова подвела. Скажите «Она ненадёжная» с сокращением и словом it",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-55:i07:audio",
+          "transcript": "It's unreliable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's unreliable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Еду доели: остатков нет. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-55:i08:r1",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i08:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i08:r3",
+          "text": "isn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Еду доели: остатков нет. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Еду доели: остатков нет. Выберите форму",
+          "uk": "Їжу доїли: залишків немає. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ any leftovers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i08:r1",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i08:r3",
+            "text": "isn't"
+          }
+        ],
+        "testedDimension": "Еду доели: остатков нет. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Еду доели: остатков нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Здесь отрицание: `aren’t any leftovers`.",
+              "uk": "Тут заперечення: `aren’t any leftovers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Еду доели: остатков нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "С `leftovers` нужно `aren’t`.",
+              "uk": "З `leftovers` потрібне `aren’t`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где остатки еды",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-55:i09:r1",
+          "text": "The leftovers are in the fridge."
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i09:r2",
+          "text": "The leftovers are in the freezer."
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i09:r3",
+          "text": "The leftovers are in the microwave."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-55:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где остатки еды",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-55:i09:audio",
+          "transcript": "The leftovers are in the fridge."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-55:i09:r1",
+            "targetText": "The leftovers are in the fridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i09:r2",
+            "targetText": "The leftovers are in the freezer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i09:r3",
+            "targetText": "The leftovers are in the microwave.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где остатки еды",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `fridge`, а в этом варианте — `freezer`.",
+              "uk": "У записі останнє слово — `fridge`, а в цьому варіанті — `freezer`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где остатки еды",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `fridge`, а в этом варианте — `microwave`.",
+              "uk": "У записі останнє слово — `fridge`, а в цьому варіанті — `microwave`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-55:i10:p1",
+            "target": "shortcut",
+            "meaningByLocale": {
+              "ru": "короткий путь",
+              "uk": "короткий шлях"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-55:i10:p2",
+            "target": "unreliable",
+            "meaningByLocale": {
+              "ru": "ненадёжный",
+              "uk": "ненадійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-55:i10:p3",
+            "target": "cafes",
+            "meaningByLocale": {
+              "ru": "кафе (несколько)",
+              "uk": "кафе (кілька)"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-55:i10:p4",
+            "target": "leftover",
+            "meaningByLocale": {
+              "ru": "остаток еды",
+              "uk": "залишок їжі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shortcut",
+          "unreliable",
+          "cafes",
+          "leftover"
+        ],
+        "rightColumn": [
+          "короткий путь",
+          "ненадёжный",
+          "кафе (несколько)",
+          "остаток еды"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-55:i11:audio",
+          "transcript": "Is there a shortcut?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a shortcut?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "shortcut"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "До кафе можно дойти только обычной дорогой. Скажите «Короткого пути нет»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "До кафе можно дойти только обычной дорогой. Скажите «Короткого пути нет»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There isn't a shortcut.",
+        "localizedMeaning": {
+          "ru": "До кафе можно дойти только обычной дорогой. Скажите «Короткого пути нет»",
+          "uk": "До кафе можна дійти лише звичайною дорогою. Скажіть «Короткого шляху немає»"
+        },
+        "orderedTokens": [
+          "There",
+          "isn't",
+          "a",
+          "shortcut"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, осталась ли какая-нибудь еда после обеда, используя leftovers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-55:i13:audio"
+      ],
+      "accessibilityLabel": "Спросите, осталась ли какая-нибудь еда после обеда, используя leftovers",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-55:i13:audio",
+          "transcript": "Are there any leftovers?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are there any leftovers?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Короткий путь находится внутри парка, не под ним и не снаружи рядом. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-55:i14:r1",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i14:r2",
+          "text": "under"
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i14:r3",
+          "text": "next to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Короткий путь находится внутри парка, не под ним и не снаружи рядом. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Короткий путь находится внутри парка, не под ним и не снаружи рядом. Выберите слово",
+          "uk": "Короткий шлях розташований усередині парку, не під ним і не зовні поруч. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The shortcut is ___ the park.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-55:i14:r1",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i14:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i14:r3",
+            "text": "next to"
+          }
+        ],
+        "testedDimension": "Короткий путь находится внутри парка, не под ним и не снаружи рядом. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-55:i14:r2",
+            "correct": false,
+            "testedDimension": "Короткий путь находится внутри парка, не под ним и не снаружи рядом. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; здесь внутри: `in`.",
+              "uk": "`under` — під; тут усередині: `in`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i14:r3",
+            "correct": false,
+            "testedDimension": "Короткий путь находится внутри парка, не под ним и не снаружи рядом. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`next to` — рядом; здесь внутри: `in`.",
+              "uk": "`next to` — поруч; тут усередині: `in`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что показывает друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-55:i15:r1",
+          "text": "That is a shortcut."
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i15:r2",
+          "text": "This is a shortcut."
+        },
+        {
+          "responseId": "en:lesson-04:session-55:i15:r3",
+          "text": "That is a canal."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-55:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что показывает друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-55:i15:audio",
+          "transcript": "That is a shortcut."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-55:i15:r1",
+            "targetText": "That is a shortcut.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i15:r2",
+            "targetText": "This is a shortcut.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i15:r3",
+            "targetText": "That is a canal.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-55:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-55:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `shortcut`, а в этом варианте — `canal`.",
+              "uk": "У записі останнє слово — `shortcut`, а в цьому варіанті — `canal`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-55:i16:p1",
+            "target": "shortcut",
+            "meaningByLocale": {
+              "ru": "короткий путь",
+              "uk": "короткий шлях"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-55:i16:p2",
+            "target": "unreliable",
+            "meaningByLocale": {
+              "ru": "ненадёжный",
+              "uk": "ненадійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-55:i16:p3",
+            "target": "cafes",
+            "meaningByLocale": {
+              "ru": "кафе (несколько)",
+              "uk": "кафе (кілька)"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-55:i16:p4",
+            "target": "leftover",
+            "meaningByLocale": {
+              "ru": "остаток еды",
+              "uk": "залишок їжі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shortcut",
+          "unreliable",
+          "cafes",
+          "leftover"
+        ],
+        "rightColumn": [
+          "короткий путь",
+          "ненадёжный",
+          "кафе (несколько)",
+          "остаток еды"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-55:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На другой прогулке вы нашли путь короче обычного. Сообщите другу «Есть короткий путь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "На другой прогулке вы нашли путь короче обычного. Сообщите другу «Есть короткий путь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-55:i17:audio",
+          "transcript": "There is a shortcut."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a shortcut.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f544ac1a7ce01f97e08485bd75b46d66ce69bcbb94382a646c25f0991d5bbe5c"
+}

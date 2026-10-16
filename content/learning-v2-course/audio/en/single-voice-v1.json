@@ -105610,6 +105610,309 @@
           "byteSize": 46080
         }
       ]
+    },
+    "l07/s13/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does the screen work?",
+          "file": "ed6c922ac7402cd0a989b1e868608aa3284b4731cbbec80f8bccc459032f5347.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ed6c922ac7402cd0a989b1e868608aa3284b4731cbbec80f8bccc459032f5347.mp3",
+          "contentHash": "514cb039ccb2046ae0110ae5e6e43a42d4f957daecbc9c33f84e0c27dd33b1c0",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l07/s13/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is no umbrella near the window.",
+          "file": "cecbc0d441703724824e350bec2c37dc480b00e556f1178a0ac331cda7c554f7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cecbc0d441703724824e350bec2c37dc480b00e556f1178a0ac331cda7c554f7.mp3",
+          "contentHash": "b31624ee07f71745109f3c293ab472b08004551198e676d2c9f29595f51660db",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s13/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Does she start her shift early?",
+          "file": "ab78c629cafbdb77b92b3f9b59dd4673e1239f456706848ac7907ecff4fb229b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab78c629cafbdb77b92b3f9b59dd4673e1239f456706848ac7907ecff4fb229b.mp3",
+          "contentHash": "dbd5bf71fcc053a66d336a9e6cd32a7800e0d5cc7ced2a463f955ab64b0a9335",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s13/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does the screen work?",
+          "file": "b0aa407cae3359bdd4c3bc8f1196694bedee6261a66b23ab158b631777908237.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0aa407cae3359bdd4c3bc8f1196694bedee6261a66b23ab158b631777908237.mp3",
+          "contentHash": "6f5ed9ecdac54d8a8e445d5e33af9cb1d96afa0ee39f4ba57e8985b0aa687fe4",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l07/s13/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "screen",
+          "file": "de6e6f7bd9f8b14e9a6215afe1d4b03380b2d109c7d20fd162ce248e4ff646d7.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4cd6c2914887dd4a68e4c9ff-onyx.mp3",
+          "contentHash": "4c7efb6722b004edd1c3399d0197c6ed5e4962d5e6a066103feeb3ef5a147537",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l07/s13/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does the screen work?",
+          "file": "b0aa407cae3359bdd4c3bc8f1196694bedee6261a66b23ab158b631777908237.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0aa407cae3359bdd4c3bc8f1196694bedee6261a66b23ab158b631777908237.mp3",
+          "contentHash": "6f5ed9ecdac54d8a8e445d5e33af9cb1d96afa0ee39f4ba57e8985b0aa687fe4",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l07/s13/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "screen",
+          "file": "de6e6f7bd9f8b14e9a6215afe1d4b03380b2d109c7d20fd162ce248e4ff646d7.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4cd6c2914887dd4a68e4c9ff-onyx.mp3",
+          "contentHash": "4c7efb6722b004edd1c3399d0197c6ed5e4962d5e6a066103feeb3ef5a147537",
+          "byteSize": 24192
+        },
+        {
+          "text": "window",
+          "file": "aed834ecaa8d1b0f19a14c7408a94e5cca72fc64158871e3a9c5ee06285f32f2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/44ff7b02c80d38b26dd6aa31-onyx.mp3",
+          "contentHash": "957c4b61e7b8cfc6009ba216d24f17a4f6dbdfcd36c93ce98d45c9caba423dcd",
+          "byteSize": 18048
+        },
+        {
+          "text": "umbrella",
+          "file": "303c74968e6fbd7faf0bda5a2d4bc975f75c577527c05ef5f0e12eee7cdc3a9e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-onyx.mp3",
+          "contentHash": "8fa010d2a1ff65eb4a37a0c6a9d8b34bc6e87799b7eed27000ac9cefb3759a20",
+          "byteSize": 25344
+        },
+        {
+          "text": "shift",
+          "file": "5a802cb7310bfd1ff7199546878fe05f2bf47fbccde88269ddd6494d6080f895.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5a802cb7310bfd1ff7199546878fe05f2bf47fbccde88269ddd6494d6080f895.mp3",
+          "contentHash": "09c27810ca9a092f071e70342987aaf403473a2fc41c63fcfd355ce605f7ad23",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s13/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does the screen work?",
+          "file": "ed6c922ac7402cd0a989b1e868608aa3284b4731cbbec80f8bccc459032f5347.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ed6c922ac7402cd0a989b1e868608aa3284b4731cbbec80f8bccc459032f5347.mp3",
+          "contentHash": "514cb039ccb2046ae0110ae5e6e43a42d4f957daecbc9c33f84e0c27dd33b1c0",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l07/s13/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is no umbrella near the window.",
+          "file": "cecbc0d441703724824e350bec2c37dc480b00e556f1178a0ac331cda7c554f7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cecbc0d441703724824e350bec2c37dc480b00e556f1178a0ac331cda7c554f7.mp3",
+          "contentHash": "b31624ee07f71745109f3c293ab472b08004551198e676d2c9f29595f51660db",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s13/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Does she start her shift early?",
+          "file": "6eb089b37294859ac2644f3df6429b3d312503b0eaec7482162d3a05b3965937.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6eb089b37294859ac2644f3df6429b3d312503b0eaec7482162d3a05b3965937.mp3",
+          "contentHash": "97d98ff4e596799cd784cd172286035b411feb6539f4906ad36e29d1a2b385c7",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l07/s13/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you swim here?",
+          "file": "e46988e0fe116eea60b585c30cebaeac9abbf6519cb1e1fa560cd6c2df366e22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e46988e0fe116eea60b585c30cebaeac9abbf6519cb1e1fa560cd6c2df366e22.mp3",
+          "contentHash": "49ae47c8ed3d9d7bdeb2758a15e391780808902da7a08d2a8f1b12c6bb538727",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l07/s13/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Does she start her shift early?",
+          "file": "ab78c629cafbdb77b92b3f9b59dd4673e1239f456706848ac7907ecff4fb229b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab78c629cafbdb77b92b3f9b59dd4673e1239f456706848ac7907ecff4fb229b.mp3",
+          "contentHash": "dbd5bf71fcc053a66d336a9e6cd32a7800e0d5cc7ced2a463f955ab64b0a9335",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s13/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "swim",
+          "file": "467d03bdd7fbe4cc534f48c15d346346b5cd024ad832d919c05945d281335647.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/467d03bdd7fbe4cc534f48c15d346346b5cd024ad832d919c05945d281335647.mp3",
+          "contentHash": "52bfdc9916d722448182fe51bac403e416c94eac3648944cb0672a3c8acd7568",
+          "byteSize": 26880
+        },
+        {
+          "text": "screen",
+          "file": "fa5830c7b2783412b378cb55bf9a2f5996fdb2dc26ef9fa3c11189591e0045fc.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4cd6c2914887dd4a68e4c9ff-ash.mp3",
+          "contentHash": "40ac2306a09252f9e3239a462739bcf91c1ddb57992f0173d5691e31ed6955d2",
+          "byteSize": 25344
+        },
+        {
+          "text": "window",
+          "file": "c259a9d2cb378083f2967713b6942452d93b7391661c3785c7b830702d1e7a0b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/44ff7b02c80d38b26dd6aa31-ash.mp3",
+          "contentHash": "142bc9d9213eb71ce1ed627f2f09dd8358129aac9407d84712a5bb8924ccaa04",
+          "byteSize": 22656
+        },
+        {
+          "text": "umbrella",
+          "file": "5ad34db7f05e846948ac3ec7f70e454a3b55c10282db1788d143ea8f6bcbb063.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-ash.mp3",
+          "contentHash": "aa3d40f3b6c23e5c9729bbca03f5476ef61e3252566b5a4c712ae5d6cf8089bd",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l07/s13/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Does it work?",
+          "file": "5c17de165a76aa85bd98985b3622bc3a5e1f6c196b0b59738274a3d8ade13aa3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c17de165a76aa85bd98985b3622bc3a5e1f6c196b0b59738274a3d8ade13aa3.mp3",
+          "contentHash": "f38689c1b427c069a6a9295191e31143d1c36bc61f6a9548fb566fdc486d86f6",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l07/s13/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you have an umbrella?",
+          "file": "f6452a3b127da8dea18560516f7ee724d802ddf685a329e9e25e7894ebb4bc6a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f6452a3b127da8dea18560516f7ee724d802ddf685a329e9e25e7894ebb4bc6a.mp3",
+          "contentHash": "f67fdcce2d212e3b39bc39b7aca19a6f22d3156fb8d3231ab791ce5442d1f5a4",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l07/s13/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The screen is near the window.",
+          "file": "d19002e35a98b28029ac8ec4e0fea2da53561dab6cf23d61814223b5f1cb29fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d19002e35a98b28029ac8ec4e0fea2da53561dab6cf23d61814223b5f1cb29fd.mp3",
+          "contentHash": "7da710573de155b5655138a6e95f1acabb071d7c52c096c4bf47afec60cb05c0",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s13/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does he swim here?",
+          "file": "366cbf44869c72ab8eb6ea6a91b0dfb6bbda8c0bf61323b8bff71c364571fb33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/366cbf44869c72ab8eb6ea6a91b0dfb6bbda8c0bf61323b8bff71c364571fb33.mp3",
+          "contentHash": "7d439f85d47ab24a4c101e677b8c16486e2f5094eebd9941bc806e807ece7d18",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s13/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you swim here?",
+          "file": "e46988e0fe116eea60b585c30cebaeac9abbf6519cb1e1fa560cd6c2df366e22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e46988e0fe116eea60b585c30cebaeac9abbf6519cb1e1fa560cd6c2df366e22.mp3",
+          "contentHash": "49ae47c8ed3d9d7bdeb2758a15e391780808902da7a08d2a8f1b12c6bb538727",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l07/s13/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "screen",
+          "file": "4dfe1f3fb7189734cf0bb0e69f202582798369635f46b3d1d6032210b590d3ae.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4cd6c2914887dd4a68e4c9ff-coral.mp3",
+          "contentHash": "58b948fd67fe25b6478f2373e33e7157f34105d77d6b666b73e3f050ac3e9991",
+          "byteSize": 26112
+        },
+        {
+          "text": "shift",
+          "file": "d9320949f599305a7145583ebf0ccf9169cf768ca147d1011af982803f853fbf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d9320949f599305a7145583ebf0ccf9169cf768ca147d1011af982803f853fbf.mp3",
+          "contentHash": "8d2cb8ce7918adffd5957e5e4be2bdcc52f496b67532ebad72e1d2e53beb4ee8",
+          "byteSize": 38016
+        },
+        {
+          "text": "swim",
+          "file": "caf22998ed3348ddf3b3659a57a65891afe5cabdafba783268891ae2c07380f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/caf22998ed3348ddf3b3659a57a65891afe5cabdafba783268891ae2c07380f3.mp3",
+          "contentHash": "64350daa371da70c732eaae65173fe1d1f7490df7b6fc074239cb4d5d033ee7c",
+          "byteSize": 25344
+        },
+        {
+          "text": "umbrella",
+          "file": "2ddfd07803a0b5ccff0900e1fc7b0c74209dc6d82f2598a0daacd194a285cc90.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-coral.mp3",
+          "contentHash": "5a5dcb5c4357718b044e749c1aa668474acb74ba3d190672fcd4d8472778b0bd",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s13/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does Anna swim here?",
+          "file": "69f2f302b11b373e20ffb7486176abecf09aabf8ed116345d97cfe98654f1c74.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/69f2f302b11b373e20ffb7486176abecf09aabf8ed116345d97cfe98654f1c74.mp3",
+          "contentHash": "dc655ba3edc72bead22ce12fef2da3c9a61676b09ed2286e04dd06241d4a0fc2",
+          "byteSize": 39552
+        }
+      ]
     }
   },
   "settings": {

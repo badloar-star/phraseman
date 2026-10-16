@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-15:intro1:r2": {
+          "ru": "Один сайт: `Does the website`.",
+          "uk": "Один сайт: `Does the website`."
+        },
+        "en:lesson-07:session-15:intro1:r3": {
+          "ru": "После `Does` нужно `work`.",
+          "uk": "Після `Does` потрібне `work`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-15:intro2:r2": {
+          "ru": "Одно расписание: `There is no schedule`.",
+          "uk": "Один розклад: `There is no schedule`."
+        },
+        "en:lesson-07:session-15:intro2:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-15:intro3:r2": {
+          "ru": "С `she` нужно `Does`.",
+          "uk": "Із `she` потрібне `Does`."
+        },
+        "en:lesson-07:session-15:intro3:r3": {
+          "ru": "После `Does she` нужно `sing`.",
+          "uk": "Після `Does she` потрібне `sing`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "72b731fa5bf4799189a802a2c6c4cbbfc5be6acbac51d2a1f02deb739de0683f"
+}

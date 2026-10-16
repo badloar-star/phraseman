@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-37:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я зазвичай збираю речі заздалегідь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай збираю речі заздалегідь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually pack early.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно собираю вещи заранее»",
+          "uk": "Скажіть «Я зазвичай збираю речі заздалегідь»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "pack",
+          "early"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-37:i02:r1",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i02:r2",
+          "text": "shop"
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i02:r3",
+          "text": "play"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:i02:audio",
+          "transcript": "pack"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-37:i02:r1",
+            "targetText": "pack",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i02:r2",
+            "targetText": "shop",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i02:r3",
+            "targetText": "play",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `pack`, а в этом варианте — `shop`.",
+              "uk": "У записі перше слово — `pack`, а в цьому варіанті — `shop`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `pack`, а в этом варианте — `play`.",
+              "uk": "У записі перше слово — `pack`, а в цьому варіанті — `play`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Розкажіть про завчасні збори в поїздку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-37:i03:r1",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i03:r2",
+          "text": "packs"
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i03:r3",
+          "text": "packing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про завчасні збори в поїздку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите о заблаговременных сборах в поездку",
+          "uk": "Розкажіть про завчасні збори в поїздку"
+        },
+        "gappedTargetPhrase": "I usually ___ early.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-37:i03:r1",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i03:r2",
+            "text": "packs"
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i03:r3",
+            "text": "packing"
+          }
+        ],
+        "testedDimension": "Розкажіть про завчасні збори в поїздку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Розкажіть про завчасні збори в поїздку",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `pack`.",
+              "uk": "Після `I` потрібне `pack`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Розкажіть про завчасні збори в поїздку",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `pack`.",
+              "uk": "Тут потрібна форма `pack`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-37:i04:p1",
+            "target": "pack",
+            "meaningByLocale": {
+              "ru": "собирать вещи",
+              "uk": "збирати речі"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-37:i04:p2",
+            "target": "shop",
+            "meaningByLocale": {
+              "ru": "делать покупки",
+              "uk": "робити покупки"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-37:i04:p3",
+            "target": "car",
+            "meaningByLocale": {
+              "ru": "машина",
+              "uk": "машина"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-37:i04:p4",
+            "target": "earrings",
+            "meaningByLocale": {
+              "ru": "серьги",
+              "uk": "сережки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pack",
+          "shop",
+          "car",
+          "earrings"
+        ],
+        "rightColumn": [
+          "збирати речі",
+          "робити покупки",
+          "машина",
+          "сережки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:i05:audio",
+          "transcript": "I usually pack early."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually pack early.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "pack",
+          "early"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я часто роблю покупки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто роблю покупки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often shop.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто делаю покупки»",
+          "uk": "Скажіть «Я часто роблю покупки»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про знайому «Вона часто телефонує»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть про знайому «Вона часто телефонує»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:i07:audio",
+          "transcript": "She often calls."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She often calls.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вона часто телефонує»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-37:i08:r1",
+          "text": "calls"
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i08:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i08:r3",
+          "text": "calling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона часто телефонує»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она часто звонит»",
+          "uk": "Скажіть «Вона часто телефонує»"
+        },
+        "gappedTargetPhrase": "She often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-37:i08:r1",
+            "text": "calls"
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i08:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i08:r3",
+            "text": "calling"
+          }
+        ],
+        "testedDimension": "Скажіть «Вона часто телефонує»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "feedbackByLocale": {
+              "ru": "После `she` нужно `calls`.",
+              "uk": "Після `she` потрібне `calls`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `calls`.",
+              "uk": "Тут потрібна форма `calls`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-37:i09:r1",
+          "text": "I usually pack early."
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i09:r2",
+          "text": "I usually pack late."
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i09:r3",
+          "text": "I usually pack here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:i09:audio",
+          "transcript": "I usually pack early."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-37:i09:r1",
+            "targetText": "I usually pack early.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i09:r2",
+            "targetText": "I usually pack late.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i09:r3",
+            "targetText": "I usually pack here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `early`, а в этом варианте — `late`.",
+              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `late`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `early`, а в этом варианте — `here`.",
+              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `here`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-37:i10:p1",
+            "target": "play",
+            "meaningByLocale": {
+              "ru": "играть",
+              "uk": "грати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-37:i10:p2",
+            "target": "pack",
+            "meaningByLocale": {
+              "ru": "собирать вещи",
+              "uk": "збирати речі"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-37:i10:p3",
+            "target": "car",
+            "meaningByLocale": {
+              "ru": "машина",
+              "uk": "машина"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-37:i10:p4",
+            "target": "shop",
+            "meaningByLocale": {
+              "ru": "делать покупки",
+              "uk": "робити покупки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "play",
+          "pack",
+          "car",
+          "shop"
+        ],
+        "rightColumn": [
+          "грати",
+          "збирати речі",
+          "машина",
+          "робити покупки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:i11:audio",
+          "transcript": "I often shop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often shop.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви добираєте прикраси. Запитайте подругу «У тебе є сережки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви добираєте прикраси. Запитайте подругу «У тебе є сережки?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have earrings?",
+        "localizedMeaning": {
+          "ru": "Вы подбираете украшения. Спросите подругу «У тебя есть серьги?»",
+          "uk": "Ви добираєте прикраси. Запитайте подругу «У тебе є сережки?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "earrings"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг розповідає про регулярні настільні ігри. Запитайте «Де ти граєш?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:i13:audio"
+      ],
+      "accessibilityLabel": "Друг розповідає про регулярні настільні ігри. Запитайте «Де ти граєш?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:i13:audio",
+          "transcript": "Where do you play?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where do you play?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я часто роблю покупки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-37:i14:r1",
+          "text": "often"
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто роблю покупки»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто делаю покупки»",
+          "uk": "Скажіть «Я часто роблю покупки»"
+        },
+        "gappedTargetPhrase": "I ___ shop.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-37:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажіть «Я часто роблю покупки»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто роблю покупки»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often` перед `shop`.",
+              "uk": "Для «часто» потрібне `often` перед `shop`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто роблю покупки»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often`; `am` перед `shop` не ставим.",
+              "uk": "Для «часто» потрібне `often`; `am` перед `shop` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-37:i15:r1",
+          "text": "Do you have a car?"
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i15:r2",
+          "text": "Do you have a phone?"
+        },
+        {
+          "responseId": "en:lesson-07:session-37:i15:r3",
+          "text": "Do you have a watch?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть запитання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:i15:audio",
+          "transcript": "Do you have a car?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-37:i15:r1",
+            "targetText": "Do you have a car?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i15:r2",
+            "targetText": "Do you have a phone?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i15:r3",
+            "targetText": "Do you have a watch?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `car`, а в этом варианте — `phone`.",
+              "uk": "У записі останнє слово — `car`, а в цьому варіанті — `phone`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-37:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `car`, а в этом варианте — `watch`.",
+              "uk": "У записі останнє слово — `car`, а в цьому варіанті — `watch`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-37:i16:p1",
+            "target": "pack",
+            "meaningByLocale": {
+              "ru": "собирать вещи",
+              "uk": "збирати речі"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-37:i16:p2",
+            "target": "earrings",
+            "meaningByLocale": {
+              "ru": "серьги",
+              "uk": "сережки"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-37:i16:p3",
+            "target": "play",
+            "meaningByLocale": {
+              "ru": "играть",
+              "uk": "грати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-37:i16:p4",
+            "target": "car",
+            "meaningByLocale": {
+              "ru": "машина",
+              "uk": "машина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pack",
+          "earrings",
+          "play",
+          "car"
+        ],
+        "rightColumn": [
+          "збирати речі",
+          "сережки",
+          "грати",
+          "машина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, коли Том зазвичай збирає речі перед поїздкою. Скажіть «Том зазвичай збирає речі заздалегідь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, коли Том зазвичай збирає речі перед поїздкою. Скажіть «Том зазвичай збирає речі заздалегідь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:i17:audio",
+          "transcript": "Tom usually packs early."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom usually packs early.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4d36ca472e26bee6b93551fb19b92af83bb3a896b3d953db1b736de22fbd8bf9"
+}

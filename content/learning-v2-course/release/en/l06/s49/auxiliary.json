@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-49:intro1:r2": {
+          "ru": "О владельце спрашиваем `Whose`.",
+          "uk": "Про власника запитуємо `Whose`."
+        },
+        "en:lesson-06:session-49:intro1:r3": {
+          "ru": "Одна газета: `is this`.",
+          "uk": "Одна газета: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-49:intro2:r2": {
+          "ru": "В конце без названия вещи нужно `mine`.",
+          "uk": "У кінці без назви речі потрібне `mine`."
+        },
+        "en:lesson-06:session-49:intro2:r3": {
+          "ru": "Одна газета: `is`.",
+          "uk": "Одна газета: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-49:intro3:r2": {
+          "ru": "После `they` — `chat`, без `s`.",
+          "uk": "Після `they` — `chat`, без `s`."
+        },
+        "en:lesson-06:session-49:intro3:r3": {
+          "ru": "Нужно `They chat`, без `are`.",
+          "uk": "Потрібно `They chat`, без `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "92b5e4a8dde11a4c5e4f0f5b52ae1d9ccb248daf6b96a3f6a1ea75a9be9ec2e5"
+}

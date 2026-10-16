@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-49:i01",
+    "correctText": "Whose newspaper is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i02",
+    "correctText": "newspaper",
+    "correctResponseId": "en:lesson-06:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i03",
+    "correctText": "mine",
+    "correctResponseId": "en:lesson-06:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i04",
+    "correctText": "en:lesson-06:session-49:i04:p1=newspaper\nen:lesson-06:session-49:i04:p2=unacceptable\nen:lesson-06:session-49:i04:p3=canal\nen:lesson-06:session-49:i04:p4=garage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i05",
+    "correctText": "My newspaper is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i06",
+    "correctText": "They chat here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i07",
+    "correctText": "The canal is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i08",
+    "correctText": "chats",
+    "correctResponseId": "en:lesson-06:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i09",
+    "correctText": "This garage is mine.",
+    "correctResponseId": "en:lesson-06:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i10",
+    "correctText": "en:lesson-06:session-49:i10:p1=newspaper\nen:lesson-06:session-49:i10:p2=chat\nen:lesson-06:session-49:i10:p3=garage\nen:lesson-06:session-49:i10:p4=unacceptable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i11",
+    "correctText": "The garage is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i12",
+    "correctText": "Whose garage is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i13",
+    "correctText": "We chat here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i14",
+    "correctText": "chats",
+    "correctResponseId": "en:lesson-06:session-49:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i15",
+    "correctText": "This newspaper is mine.",
+    "correctResponseId": "en:lesson-06:session-49:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i16",
+    "correctText": "en:lesson-06:session-49:i16:p1=newspaper\nen:lesson-06:session-49:i16:p2=canal\nen:lesson-06:session-49:i16:p3=unacceptable\nen:lesson-06:session-49:i16:p4=chat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:i17",
+    "correctText": "Whose newspaper is this?",
+    "correctResponseId": null
+  }
+]

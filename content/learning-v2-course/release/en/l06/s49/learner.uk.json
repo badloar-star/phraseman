@@ -1,0 +1,957 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-49:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Чия це газета?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Чия це газета?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose newspaper is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чья это газета?»",
+          "uk": "Запитайте «Чия це газета?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "newspaper",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-49:i02:r1",
+          "text": "newspaper"
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i02:r2",
+          "text": "canal"
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i02:r3",
+          "text": "garage"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:i02:audio",
+          "transcript": "newspaper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-49:i02:r1",
+            "targetText": "newspaper",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i02:r2",
+            "targetText": "canal",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i02:r3",
+            "targetText": "garage",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `newspaper`, а в этом варианте — `canal`.",
+              "uk": "У записі перше слово — `newspaper`, а в цьому варіанті — `canal`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `newspaper`, а в этом варианте — `garage`.",
+              "uk": "У записі перше слово — `newspaper`, а в цьому варіанті — `garage`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Ця газета моя»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-49:i03:r1",
+          "text": "mine"
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i03:r2",
+          "text": "my"
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i03:r3",
+          "text": "I"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Ця газета моя»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Эта газета моя»",
+          "uk": "Скажіть «Ця газета моя»"
+        },
+        "gappedTargetPhrase": "This newspaper is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-49:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i03:r3",
+            "text": "I"
+          }
+        ],
+        "testedDimension": "Скажіть «Ця газета моя»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Ця газета моя»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи дальше нужно `mine`.",
+              "uk": "Без назви речі далі потрібне `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Ця газета моя»",
+            "feedbackByLocale": {
+              "ru": "`I` — «я»; здесь «моя» — `mine`.",
+              "uk": "`I` — «я»; тут «моя» — `mine`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-49:i04:p1",
+            "target": "newspaper",
+            "meaningByLocale": {
+              "ru": "газета",
+              "uk": "газета"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-49:i04:p2",
+            "target": "unacceptable",
+            "meaningByLocale": {
+              "ru": "неприемлемый",
+              "uk": "неприйнятний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-49:i04:p3",
+            "target": "canal",
+            "meaningByLocale": {
+              "ru": "канал",
+              "uk": "канал"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-49:i04:p4",
+            "target": "garage",
+            "meaningByLocale": {
+              "ru": "гараж",
+              "uk": "гараж"
+            }
+          }
+        ],
+        "leftColumn": [
+          "newspaper",
+          "unacceptable",
+          "canal",
+          "garage"
+        ],
+        "rightColumn": [
+          "газета",
+          "неприйнятний",
+          "канал",
+          "гараж"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:i05:audio",
+          "transcript": "My newspaper is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My newspaper is here.",
+        "orderedTokens": [
+          "My",
+          "newspaper",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Вони розмовляють тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вони розмовляють тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They chat here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Они беседуют здесь»",
+          "uk": "Скажіть «Вони розмовляють тут»"
+        },
+        "orderedTokens": [
+          "They",
+          "chat",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг шукає канал на карті. Покажіть «Канал тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:i07:audio"
+      ],
+      "accessibilityLabel": "Друг шукає канал на карті. Покажіть «Канал тут»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:i07:audio",
+          "transcript": "The canal is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The canal is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Він розмовляє тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-49:i08:r1",
+          "text": "chats"
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i08:r2",
+          "text": "chat"
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i08:r3",
+          "text": "is chats"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Він розмовляє тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Он беседует здесь»",
+          "uk": "Скажіть «Він розмовляє тут»"
+        },
+        "gappedTargetPhrase": "He ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-49:i08:r1",
+            "text": "chats"
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i08:r2",
+            "text": "chat"
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i08:r3",
+            "text": "is chats"
+          }
+        ],
+        "testedDimension": "Скажіть «Він розмовляє тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Він розмовляє тут»",
+            "feedbackByLocale": {
+              "ru": "После `he` — `chats`.",
+              "uk": "Після `he` — `chats`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Він розмовляє тут»",
+            "feedbackByLocale": {
+              "ru": "Нужно `He chats`, без `is`.",
+              "uk": "Потрібно `He chats`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить гараж",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-49:i09:r1",
+          "text": "This garage is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i09:r2",
+          "text": "This garage is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i09:r3",
+          "text": "This garage is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить гараж",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:i09:audio",
+          "transcript": "This garage is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-49:i09:r1",
+            "targetText": "This garage is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i09:r2",
+            "targetText": "This garage is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i09:r3",
+            "targetText": "This garage is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить гараж",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить гараж",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-49:i10:p1",
+            "target": "newspaper",
+            "meaningByLocale": {
+              "ru": "газета",
+              "uk": "газета"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-49:i10:p2",
+            "target": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать",
+              "uk": "розмовляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-49:i10:p3",
+            "target": "garage",
+            "meaningByLocale": {
+              "ru": "гараж",
+              "uk": "гараж"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-49:i10:p4",
+            "target": "unacceptable",
+            "meaningByLocale": {
+              "ru": "неприемлемый",
+              "uk": "неприйнятний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "newspaper",
+          "chat",
+          "garage",
+          "unacceptable"
+        ],
+        "rightColumn": [
+          "газета",
+          "розмовляти",
+          "гараж",
+          "неприйнятний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:i11:audio",
+          "transcript": "The garage is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The garage is here.",
+        "orderedTokens": [
+          "The",
+          "garage",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The garage is here.`",
+              "uk": "тут потрібно `is` — `The garage is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сусід показує гараж. Запитайте «Чий це гараж?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сусід показує гараж. Запитайте «Чий це гараж?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose garage is this?",
+        "localizedMeaning": {
+          "ru": "Сосед показывает гараж. Спросите «Чей это гараж?»",
+          "uk": "Сусід показує гараж. Запитайте «Чий це гараж?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "garage",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Ми розмовляємо тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Ми розмовляємо тут»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:i13:audio",
+          "transcript": "We chat here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We chat here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Анна розмовляє тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-49:i14:r1",
+          "text": "chats"
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i14:r2",
+          "text": "chat"
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i14:r3",
+          "text": "is chats"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Анна розмовляє тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна беседует здесь»",
+          "uk": "Скажіть «Анна розмовляє тут»"
+        },
+        "gappedTargetPhrase": "Anna ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-49:i14:r1",
+            "text": "chats"
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i14:r2",
+            "text": "chat"
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i14:r3",
+            "text": "is chats"
+          }
+        ],
+        "testedDimension": "Скажіть «Анна розмовляє тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Анна розмовляє тут»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna chats`.",
+              "uk": "Анна — вона: `Anna chats`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Анна розмовляє тут»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Anna chats`, без `is`.",
+              "uk": "Потрібно `Anna chats`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить газета",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-49:i15:r1",
+          "text": "This newspaper is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i15:r2",
+          "text": "This newspaper is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-49:i15:r3",
+          "text": "This newspaper is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить газета",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:i15:audio",
+          "transcript": "This newspaper is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-49:i15:r1",
+            "targetText": "This newspaper is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i15:r2",
+            "targetText": "This newspaper is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i15:r3",
+            "targetText": "This newspaper is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-49:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить газета",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-49:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить газета",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-49:i16:p1",
+            "target": "newspaper",
+            "meaningByLocale": {
+              "ru": "газета",
+              "uk": "газета"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-49:i16:p2",
+            "target": "canal",
+            "meaningByLocale": {
+              "ru": "канал",
+              "uk": "канал"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-49:i16:p3",
+            "target": "unacceptable",
+            "meaningByLocale": {
+              "ru": "неприемлемый",
+              "uk": "неприйнятний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-49:i16:p4",
+            "target": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать",
+              "uk": "розмовляти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "newspaper",
+          "canal",
+          "unacceptable",
+          "chat"
+        ],
+        "rightColumn": [
+          "газета",
+          "канал",
+          "неприйнятний",
+          "розмовляти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-49:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед тим як піти, ви помітили газету на лавці. Запитайте людей поруч «Чия це газета?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Перед тим як піти, ви помітили газету на лавці. Запитайте людей поруч «Чия це газета?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-49:i17:audio",
+          "transcript": "Whose newspaper is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose newspaper is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9526a84c4cccb05db18f13bc61473b053041ca2a67a4844d593235e4ed864bba"
+}

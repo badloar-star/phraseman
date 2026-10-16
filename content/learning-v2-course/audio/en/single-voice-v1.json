@@ -99550,6 +99550,309 @@
           "byteSize": 29184
         }
       ]
+    },
+    "l06/s49/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose newspaper is this?",
+          "file": "c267dbb41a6a2b9b6318460198ef6cd1127fd7bd898ff052deb0209ef96b8c5e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c267dbb41a6a2b9b6318460198ef6cd1127fd7bd898ff052deb0209ef96b8c5e.mp3",
+          "contentHash": "27298ebc303a3497a151e289979002a7a405d9f1ee251c382f5eb47da004d004",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l06/s49/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This newspaper is mine.",
+          "file": "352929f08f00e77972cbffb0209070c2047e7edceb2e2b9532e3db6d2cc28601.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/352929f08f00e77972cbffb0209070c2047e7edceb2e2b9532e3db6d2cc28601.mp3",
+          "contentHash": "f0cc6edbad9515900417fd6f683a33163c67bda7f9743c65ccde3b325a3e1983",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s49/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They chat here.",
+          "file": "bf7f3ad529b3da40e3366f5f0ffe72ea324f73322f39a7237e0ebda9c2e09671.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf7f3ad529b3da40e3366f5f0ffe72ea324f73322f39a7237e0ebda9c2e09671.mp3",
+          "contentHash": "2a1f5e2cadb728d91203a87b2f62f1dc5977216eddc894589f298477ade85368",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l06/s49/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose newspaper is this?",
+          "file": "83e05ddffd798190c41e88ad11bfb9cad95bf2356565ec4ea6c0ececed28832d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/83e05ddffd798190c41e88ad11bfb9cad95bf2356565ec4ea6c0ececed28832d.mp3",
+          "contentHash": "4ebab985d2a66244405fbc0d1aa45849ad97c7915128e70b955c377ad07f01e8",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s49/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "newspaper",
+          "file": "c772436d342a4f294910af69f69b00e16979618550568bdd8fac02f082f9ef2f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-ash.mp3",
+          "contentHash": "0b8e8a5360fb13e1c748ab85e0f86a1c4b4411ea313a5179d94bb63490dac423",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s49/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This newspaper is mine.",
+          "file": "352929f08f00e77972cbffb0209070c2047e7edceb2e2b9532e3db6d2cc28601.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/352929f08f00e77972cbffb0209070c2047e7edceb2e2b9532e3db6d2cc28601.mp3",
+          "contentHash": "f0cc6edbad9515900417fd6f683a33163c67bda7f9743c65ccde3b325a3e1983",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s49/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "newspaper",
+          "file": "30697894cb9288437c8b7b9f0d627a13217ff4bb0b3a21411be81b47526ed0b0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-onyx.mp3",
+          "contentHash": "ce49d4bf1356e535f41db40fec5bd30ace8b3467ba24f3614db01594bc504cea",
+          "byteSize": 33792
+        },
+        {
+          "text": "unacceptable",
+          "file": "7c5827069bb7073e31d15095bf5f3fc9b70ab1474edf6a77623258281d065798.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c5827069bb7073e31d15095bf5f3fc9b70ab1474edf6a77623258281d065798.mp3",
+          "contentHash": "17a61aeb40232febaee83b09ce253787829ef79a461c175fdf696b7a11a3240f",
+          "byteSize": 22656
+        },
+        {
+          "text": "canal",
+          "file": "e17f5dcfebba43076fe23cc484db00b3f901f9cdaa58c7396f7788829f33d676.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e17f5dcfebba43076fe23cc484db00b3f901f9cdaa58c7396f7788829f33d676.mp3",
+          "contentHash": "dd7008a3977ab4fd73373f2557c543b3f21b2903cfaac231a3a6bbfa99aa75fe",
+          "byteSize": 37248
+        },
+        {
+          "text": "garage",
+          "file": "2e5c8252c0701eb703644abad6fb7c8032fd8e2f73c2511066472f7b26bc6c87.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e5c8252c0701eb703644abad6fb7c8032fd8e2f73c2511066472f7b26bc6c87.mp3",
+          "contentHash": "256eeee307b0dd6f10b72c125074f39050328d350f9e1f15da822f81e828bb78",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s49/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "My newspaper is here.",
+          "file": "de0800a78315ad4c364a5bb0dc56c3e2dc614fa1638e26480ee77277cf61d376.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de0800a78315ad4c364a5bb0dc56c3e2dc614fa1638e26480ee77277cf61d376.mp3",
+          "contentHash": "0b10f06b351ca3319657b34759435355b3a59042b499171562121211d04efd61",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l06/s49/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They chat here.",
+          "file": "ac22a40e1aac074f6059e250b862cbd934dac5f96323c7908f955ffe29e75bf1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ac22a40e1aac074f6059e250b862cbd934dac5f96323c7908f955ffe29e75bf1.mp3",
+          "contentHash": "e2a0b6b06bc76729d40a0bc701d613a6783663701ce749fe1966d0406650b2d4",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l06/s49/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The canal is here.",
+          "file": "7fd32b1c7f12c99e57902bf6ae4ae2c1f376c05e915e5da9d8e417789d5ae439.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7fd32b1c7f12c99e57902bf6ae4ae2c1f376c05e915e5da9d8e417789d5ae439.mp3",
+          "contentHash": "68aa26df29e0d35abe3ce1d03647c6c99f865c33f914f4a689142585a204f12d",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s49/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He chats here.",
+          "file": "91519fc7b5b87c16edafb4ee46029a664c330589f0dec0fb208e4fe25e0eec20.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/91519fc7b5b87c16edafb4ee46029a664c330589f0dec0fb208e4fe25e0eec20.mp3",
+          "contentHash": "6569cbf16796f32b3e728928a4d63dff5763f317c44fc649c829ad9d190234a7",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l06/s49/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This garage is mine.",
+          "file": "dd69f249a82b00c1658a63a1dc112f667343d17699b0474be1079342f15dd0ca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd69f249a82b00c1658a63a1dc112f667343d17699b0474be1079342f15dd0ca.mp3",
+          "contentHash": "c249fa89d6b580364474c615b80555bac55c3e0e52224894f07fad56247ddf63",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s49/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "newspaper",
+          "file": "f4b021f52ac1600368f0c7bec391b0e881392e20e452e0df4edf7ac09233bfdb.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-nova.mp3",
+          "contentHash": "b9a68e0afceb761d923b773ec4ad1ffd90ae9a1045ff130335346e5b01111a2c",
+          "byteSize": 27648
+        },
+        {
+          "text": "chat",
+          "file": "d1264fb161c29efa04ecc21448a795ed327332cabe4c38e645356451dfe2fe8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d1264fb161c29efa04ecc21448a795ed327332cabe4c38e645356451dfe2fe8c.mp3",
+          "contentHash": "913109410ec39f469a2731dc96fd9523d95c8a7731f5f831070e792d1bbce6d5",
+          "byteSize": 21888
+        },
+        {
+          "text": "garage",
+          "file": "3f8721d46b4961230c8c8ef66774dea6d5df20b4f51700f88e9cb7a1dc3abaf2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3f8721d46b4961230c8c8ef66774dea6d5df20b4f51700f88e9cb7a1dc3abaf2.mp3",
+          "contentHash": "7b35e7e7e128de417fbda29ad5aaf9b35445046bf11557c73e5be6a2777020a7",
+          "byteSize": 19584
+        },
+        {
+          "text": "unacceptable",
+          "file": "2b8f67ee35e501649926e664bb9c04b8da3656f401247b18539a81a04d828343.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2b8f67ee35e501649926e664bb9c04b8da3656f401247b18539a81a04d828343.mp3",
+          "contentHash": "e0b13c2168f67fbef93e553b9e9647908515a69ec07b43b5549de8e8dc03749f",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l06/s49/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The garage is here.",
+          "file": "d6bab45c00f128b327af4ecf02a3ab43b6e536c5261c58e34ce807cafc978fd2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d6bab45c00f128b327af4ecf02a3ab43b6e536c5261c58e34ce807cafc978fd2.mp3",
+          "contentHash": "932289e7c288ca9660ef2b69fe1070231ce3fab7720555cb5b6a8a51d40cacee",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s49/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose garage is this?",
+          "file": "1347faed89db118dfb5af6c688a88c43b063e22e4ae30ba19a1b559a8e8f16e2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1347faed89db118dfb5af6c688a88c43b063e22e4ae30ba19a1b559a8e8f16e2.mp3",
+          "contentHash": "12ea5498a02f58e218e9dd14544193d6ae46a5ab4646262f5b3be45b9aef090a",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s49/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We chat here.",
+          "file": "ba84f34a5bcdcd5cea7dfc54b016ace20e68699df4698c529364232d6c15c8f2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ba84f34a5bcdcd5cea7dfc54b016ace20e68699df4698c529364232d6c15c8f2.mp3",
+          "contentHash": "5aa6f61a13fe2e4836b5e800436a72b5e8b9653728f667788e1fcba920042842",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l06/s49/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Anna chats here.",
+          "file": "f55fa97f04007a03329be2c761d75d978c4f42bead0a695ad1b0e721adb95f0c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f55fa97f04007a03329be2c761d75d978c4f42bead0a695ad1b0e721adb95f0c.mp3",
+          "contentHash": "5225a2b32887258ee4a12c11441664147a15e7c34cde1e249fd584259ca18ed7",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l06/s49/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This newspaper is mine.",
+          "file": "fdf3061c36c21b5ff8519df11713810e97fed8c2370e20c6dc1362276a7a5670.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fdf3061c36c21b5ff8519df11713810e97fed8c2370e20c6dc1362276a7a5670.mp3",
+          "contentHash": "ce4a5e9aa7d68c55ff47c1820591e669f9dce8053a8c5ecf5c5edc31ba6f8786",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l06/s49/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "newspaper",
+          "file": "76c7dff3125ff11abd4f0e6f7edc649c045e74e7b1c5bf3a2a08d739afcc106c.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-coral.mp3",
+          "contentHash": "752674303791ef16e17bdd48fb4c73c394ce2ff0f0253a0cc79080cdbe0679dd",
+          "byteSize": 36480
+        },
+        {
+          "text": "canal",
+          "file": "a6c9011800fa502b1dab7cebdf75fc17b2fd98332d8cf6d7c3802147e37af37b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a6c9011800fa502b1dab7cebdf75fc17b2fd98332d8cf6d7c3802147e37af37b.mp3",
+          "contentHash": "20308007713dc3a5373e266cf57a15b0cc10776bff6e6e50019f468a749cbb2c",
+          "byteSize": 24576
+        },
+        {
+          "text": "unacceptable",
+          "file": "9df86125ff3611d4e6433ef591a9346a79605ea39f0ea8724c64597fbcda38d3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9df86125ff3611d4e6433ef591a9346a79605ea39f0ea8724c64597fbcda38d3.mp3",
+          "contentHash": "5217e17e35602d1df72fa4668f28386b5aa81190a0b0d11c427a0baa98997654",
+          "byteSize": 32640
+        },
+        {
+          "text": "chat",
+          "file": "f3348f4953c4b596adec5c2149b6e0d83bdf4fd683f690d83d810d3ba8828af6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3348f4953c4b596adec5c2149b6e0d83bdf4fd683f690d83d810d3ba8828af6.mp3",
+          "contentHash": "033927271be81b6c415bc037758bb0b322e7a4088d610c0cafc332572d89d446",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l06/s49/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose newspaper is this?",
+          "file": "c267dbb41a6a2b9b6318460198ef6cd1127fd7bd898ff052deb0209ef96b8c5e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c267dbb41a6a2b9b6318460198ef6cd1127fd7bd898ff052deb0209ef96b8c5e.mp3",
+          "contentHash": "27298ebc303a3497a151e289979002a7a405d9f1ee251c382f5eb47da004d004",
+          "byteSize": 37248
+        }
+      ]
     }
   },
   "settings": {

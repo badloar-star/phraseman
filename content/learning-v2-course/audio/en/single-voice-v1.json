@@ -91066,6 +91066,309 @@
           "byteSize": 36480
         }
       ]
+    },
+    "l06/s21/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She writes at home.",
+          "file": "17712b5297d112ba750a971545c3c78b12b50b83fe913dbc8d5f96e52404ca55.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/17712b5297d112ba750a971545c3c78b12b50b83fe913dbc8d5f96e52404ca55.mp3",
+          "contentHash": "346a3cd5a17da172d8deefb91b342b2e0a813369c77483e75a078cdd62205839",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l06/s21/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He swims here.",
+          "file": "35ba68d8009d233ce03830c5ebcdd485d2a023d17a23394b7412ae4d89c89dec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/35ba68d8009d233ce03830c5ebcdd485d2a023d17a23394b7412ae4d89c89dec.mp3",
+          "contentHash": "292db9db7febbaf65891239caebef2ea4666982e53ca6c4bfa8ce67d53477caf",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l06/s21/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "My necklace is broken.",
+          "file": "2c77515c07c818633cbbecd95932554b02a24ddca9cfc2c442915362b075b1c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2c77515c07c818633cbbecd95932554b02a24ddca9cfc2c442915362b075b1c2.mp3",
+          "contentHash": "7e6f674be028b94e367076a999f9fc3c3b2239894fd82ba61b41109bd100377b",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l06/s21/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I write in my notebook.",
+          "file": "12d508cbc815a86a52306d6f090dc8de229536408a6850fa294c395f68be6b6d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/12d508cbc815a86a52306d6f090dc8de229536408a6850fa294c395f68be6b6d.mp3",
+          "contentHash": "033c214659e07c9c3689502e24223f23a8883de89d910824b919661cbfb3797c",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l06/s21/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "write",
+          "file": "60404400a49917bd8f8c0e566476facaea9a08c720b4fd7fd95f5f8218f23493.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60404400a49917bd8f8c0e566476facaea9a08c720b4fd7fd95f5f8218f23493.mp3",
+          "contentHash": "8c19800aca8e1db249b6c2948de0fc646a8b511e790548e0ee863da446a6e1ae",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l06/s21/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She writes at home.",
+          "file": "17712b5297d112ba750a971545c3c78b12b50b83fe913dbc8d5f96e52404ca55.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/17712b5297d112ba750a971545c3c78b12b50b83fe913dbc8d5f96e52404ca55.mp3",
+          "contentHash": "346a3cd5a17da172d8deefb91b342b2e0a813369c77483e75a078cdd62205839",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l06/s21/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "write",
+          "file": "60404400a49917bd8f8c0e566476facaea9a08c720b4fd7fd95f5f8218f23493.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60404400a49917bd8f8c0e566476facaea9a08c720b4fd7fd95f5f8218f23493.mp3",
+          "contentHash": "8c19800aca8e1db249b6c2948de0fc646a8b511e790548e0ee863da446a6e1ae",
+          "byteSize": 19584
+        },
+        {
+          "text": "broken",
+          "file": "49140c9311eee911e645b01aafaaf9784c996212df670623016b471516903b11.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f526795c95399cea27c055c8-nova.mp3",
+          "contentHash": "e885dfc626bb9a65aeb168160d8065ecab603890956416c46f5dcbf143682ca7",
+          "byteSize": 18816
+        },
+        {
+          "text": "juice",
+          "file": "e20d3198af5ee7b61eb6719b48cb76403b8b4f7d326d7993be98fb3c06a1a7d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e20d3198af5ee7b61eb6719b48cb76403b8b4f7d326d7993be98fb3c06a1a7d2.mp3",
+          "contentHash": "b89522ede47d88b3e5ca09b1c0827e7bad7795dce6c4e879afeb114c95b23c05",
+          "byteSize": 16512
+        },
+        {
+          "text": "necklace",
+          "file": "a24d5c502beca94e3069e987e75d48855568c210964bfd25aed1d257131ebae3.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-nova.mp3",
+          "contentHash": "cf616f5275f2214b2c55f02c46039c7fbe5ae01daf652d45e99f213f2190321d",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l06/s21/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Anna writes here.",
+          "file": "bc775c577c96c3c48c1b7749fb22b0de60a432bfac0057c7de3dfb57d8cea9e9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc775c577c96c3c48c1b7749fb22b0de60a432bfac0057c7de3dfb57d8cea9e9.mp3",
+          "contentHash": "eb3149eda6935210fe590bb758f00dbf968da2fb8e45d625972afa8467426cbc",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l06/s21/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He swims here.",
+          "file": "35ba68d8009d233ce03830c5ebcdd485d2a023d17a23394b7412ae4d89c89dec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/35ba68d8009d233ce03830c5ebcdd485d2a023d17a23394b7412ae4d89c89dec.mp3",
+          "contentHash": "292db9db7febbaf65891239caebef2ea4666982e53ca6c4bfa8ce67d53477caf",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l06/s21/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My necklace is broken.",
+          "file": "c043c1d5d741f2fbb09602d09650b9e9fd13ec6aac3f15ba8e0416425cae4221.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c043c1d5d741f2fbb09602d09650b9e9fd13ec6aac3f15ba8e0416425cae4221.mp3",
+          "contentHash": "7939324e611d893a04082b33e50d202950930aecb2b7567b1873747c94a67ce7",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s21/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They write here.",
+          "file": "18bb69798218d31182eff9fc25d2cdda7c1908dce118023499410363ffda4733.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/18bb69798218d31182eff9fc25d2cdda7c1908dce118023499410363ffda4733.mp3",
+          "contentHash": "b7f82dd92fc62caa5ae351d8972268d29dab9772da03b95495858107d32def96",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l06/s21/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "No.",
+          "file": "6b802b2c32675433d46370a1daccb5652e7252c8fae95e149794008ae9cb2fad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6b802b2c32675433d46370a1daccb5652e7252c8fae95e149794008ae9cb2fad.mp3",
+          "contentHash": "19b53ac58e08d9e75b36980f8e34d3563a2c701bee517c3215924ebb063a4f88",
+          "byteSize": 14208
+        }
+      ]
+    },
+    "l06/s21/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "write",
+          "file": "60404400a49917bd8f8c0e566476facaea9a08c720b4fd7fd95f5f8218f23493.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60404400a49917bd8f8c0e566476facaea9a08c720b4fd7fd95f5f8218f23493.mp3",
+          "contentHash": "8c19800aca8e1db249b6c2948de0fc646a8b511e790548e0ee863da446a6e1ae",
+          "byteSize": 19584
+        },
+        {
+          "text": "swim",
+          "file": "1d1991959b132f0c6cf08505006a74c9003c24fb6c89ba590dc240a33aadc2ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d1991959b132f0c6cf08505006a74c9003c24fb6c89ba590dc240a33aadc2ac.mp3",
+          "contentHash": "812a5c6a3ec0cd44633a5fc314ed5ef569add1e7dc4751412a2994604dda9420",
+          "byteSize": 18048
+        },
+        {
+          "text": "no",
+          "file": "e4c67985973c82b1d6dfcc2babb9d969ecbd57c00c2e184a47b290843d0ada0d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e4c67985973c82b1d6dfcc2babb9d969ecbd57c00c2e184a47b290843d0ada0d.mp3",
+          "contentHash": "dcdc88c4d9c8715c4f5a8c56c9ba78002476a00c4fd7db713ffcbceeb08005e8",
+          "byteSize": 12288
+        },
+        {
+          "text": "broken",
+          "file": "49140c9311eee911e645b01aafaaf9784c996212df670623016b471516903b11.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f526795c95399cea27c055c8-nova.mp3",
+          "contentHash": "e885dfc626bb9a65aeb168160d8065ecab603890956416c46f5dcbf143682ca7",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l06/s21/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The juice is cold.",
+          "file": "437558d73e57390a15573dc32fe204eefa87d8b4107319273be19fa91fb7f6fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/437558d73e57390a15573dc32fe204eefa87d8b4107319273be19fa91fb7f6fb.mp3",
+          "contentHash": "b3c167b794a18ce37e9b6006b3f9b640e67ca04ce6c84f14b01d3c9003de05a8",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s21/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose necklace is this?",
+          "file": "aa7f837691edf5a41dbcccd18324aa38428c0ee28c539af450a9a4d9566ae139.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aa7f837691edf5a41dbcccd18324aa38428c0ee28c539af450a9a4d9566ae139.mp3",
+          "contentHash": "3b959f2ae1992d5f015c68598c2d0af9c146bfc595e7b6a4593293d9c1d8e5ac",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l06/s21/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They swim here.",
+          "file": "e5047fc26b56144a2a801505d950cb0e2659ec8f0d71285951e93670cd1b5e84.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e5047fc26b56144a2a801505d950cb0e2659ec8f0d71285951e93670cd1b5e84.mp3",
+          "contentHash": "376dfd5d5e7783aae821db77a3341eb6aafd8158711492eabd891c7068d3509c",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l06/s21/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom swims here.",
+          "file": "81f7870d103fe2f9321e50cc6e134b93edc973d23635b0c975212fcbdf9cb5c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81f7870d103fe2f9321e50cc6e134b93edc973d23635b0c975212fcbdf9cb5c4.mp3",
+          "contentHash": "fe1ce8d9f855335d46a2ecd2f3f124f3f24f10767fb4753236bf123056e7401c",
+          "byteSize": 52224
+        }
+      ]
+    },
+    "l06/s21/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My necklace is here.",
+          "file": "f9bc18db3f44797985f5b8f4cf8d8251f8abb6981b202dc5fae6549fc655c543.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f9bc18db3f44797985f5b8f4cf8d8251f8abb6981b202dc5fae6549fc655c543.mp3",
+          "contentHash": "9397c1e736ba5a613845b50f1ecf633efda752c26095eb3643f5fa9278e4b3ee",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s21/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "write",
+          "file": "3809b07ff091886a4897f4b907d2b35393bbd1a9cc820b6cd4491d433827977f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3809b07ff091886a4897f4b907d2b35393bbd1a9cc820b6cd4491d433827977f.mp3",
+          "contentHash": "911a97f1641df09a843533571088bbc54e89db2bb53f040cc765c1274f2b7d0a",
+          "byteSize": 32256
+        },
+        {
+          "text": "juice",
+          "file": "37fc5d027528ebf5510730eab3d78e05b12b04d497576b6af8dffbcab3c61a1f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/37fc5d027528ebf5510730eab3d78e05b12b04d497576b6af8dffbcab3c61a1f.mp3",
+          "contentHash": "e581ea3a5671ffd4ca92242daf99510b71d845e04db5c6499aa47afca9a2c21e",
+          "byteSize": 21888
+        },
+        {
+          "text": "necklace",
+          "file": "cd8de44dbb6fccd9d1e0e5404e3aba37d12b0cef49db0d612d31887436f52fd4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-coral.mp3",
+          "contentHash": "5edc21eb132dbe746cd4517a5d597dec4f20650033467616fc0ac8339d2f43a2",
+          "byteSize": 28416
+        },
+        {
+          "text": "swim",
+          "file": "caf22998ed3348ddf3b3659a57a65891afe5cabdafba783268891ae2c07380f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/caf22998ed3348ddf3b3659a57a65891afe5cabdafba783268891ae2c07380f3.mp3",
+          "contentHash": "64350daa371da70c732eaae65173fe1d1f7490df7b6fc074239cb4d5d033ee7c",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l06/s21/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She writes at home.",
+          "file": "d8773a5a7b906325af991619ccfb03e318e347bd1fc58b2c478f9b7e8b773f13.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d8773a5a7b906325af991619ccfb03e318e347bd1fc58b2c478f9b7e8b773f13.mp3",
+          "contentHash": "db2a9b33df940391a11a948763c26ab7d51b8393f585268e8eec21f3f04d5729",
+          "byteSize": 34944
+        }
+      ]
     }
   },
   "settings": {

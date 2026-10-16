@@ -1,0 +1,987 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Анна на общей кухне»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Анна на общей кухне»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anna is in the community kitchen.",
+        "localizedMeaning": {
+          "ru": "Скажите «Анна на общей кухне»",
+          "uk": "Скажіть «Анна на спільній кухні»"
+        },
+        "orderedTokens": [
+          "Anna",
+          "is",
+          "in",
+          "the",
+          "community",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Анна на общей кухне»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Anna is in the community kitchen.`",
+              "uk": "тут потрібно `is` — `Anna is in the community kitchen.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-48:i02:r1",
+          "text": "motorbike"
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i02:r2",
+          "text": "bicycle"
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i02:r3",
+          "text": "scooter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:i02:audio",
+          "transcript": "motorbike"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-48:i02:r1",
+            "targetText": "motorbike",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i02:r2",
+            "targetText": "bicycle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i02:r3",
+            "targetText": "scooter",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `motorbike`, а в этом варианте — `bicycle`.",
+              "uk": "У записі перше слово — `motorbike`, а в цьому варіанті — `bicycle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `motorbike`, а в этом варианте — `scooter`.",
+              "uk": "У записі перше слово — `motorbike`, а в цьому варіанті — `scooter`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о владельце шкафчика",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-48:i03:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i03:r2",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i03:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о владельце шкафчика",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце шкафчика",
+          "uk": "Запитайте про власника шафки"
+        },
+        "gappedTargetPhrase": "___ locker is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-48:i03:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i03:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i03:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Спросите о владельце шкафчика",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите о владельце шкафчика",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чей — `Whose`.",
+              "uk": "`Where` — де; чия — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите о владельце шкафчика",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чей — `Whose`.",
+              "uk": "`Who` — хто; чия — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-48:i04:p1",
+            "target": "community kitchen",
+            "meaningByLocale": {
+              "ru": "общая кухня",
+              "uk": "спільна кухня"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-48:i04:p2",
+            "target": "locker",
+            "meaningByLocale": {
+              "ru": "шкафчик",
+              "uk": "шафка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-48:i04:p3",
+            "target": "scooter",
+            "meaningByLocale": {
+              "ru": "самокат",
+              "uk": "самокат"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-48:i04:p4",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          }
+        ],
+        "leftColumn": [
+          "community kitchen",
+          "locker",
+          "scooter",
+          "bicycle"
+        ],
+        "rightColumn": [
+          "общая кухня",
+          "шкафчик",
+          "самокат",
+          "велосипед"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:i05:audio",
+          "transcript": "Whose bicycle is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose bicycle is this?",
+        "orderedTokens": [
+          "Whose",
+          "bicycle",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Метро рядом с отелем»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Метро рядом с отелем»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The subway is near the hotel.",
+        "localizedMeaning": {
+          "ru": "Скажите «Метро рядом с отелем»",
+          "uk": "Скажіть «Метро поруч із готелем»"
+        },
+        "orderedTokens": [
+          "The",
+          "subway",
+          "is",
+          "near",
+          "the",
+          "hotel"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Метро рядом с отелем»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The subway is near the hotel.`",
+              "uk": "тут потрібно `is` — `The subway is near the hotel.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Укажите на свой шкафчик: «Этот шкафчик мой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:i07:audio"
+      ],
+      "accessibilityLabel": "Укажите на свой шкафчик: «Этот шкафчик мой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:i07:audio",
+          "transcript": "This locker is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This locker is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, где паром",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-48:i08:r1",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i08:r2",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i08:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, где паром",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, где паром",
+          "uk": "Запитайте, де пором"
+        },
+        "gappedTargetPhrase": "___ is the ferry?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-48:i08:r1",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i08:r2",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i08:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Спросите, где паром",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите, где паром",
+            "feedbackByLocale": {
+              "ru": "`Whose` — чей; где — `Where`.",
+              "uk": "`Whose` — чий; де — `Where`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите, где паром",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; где — `Where`.",
+              "uk": "`Who` — хто; де — `Where`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какой транспорт называет Анна",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-48:i09:r1",
+          "text": "This is Tom's scooter."
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i09:r2",
+          "text": "This is Tom's bicycle."
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i09:r3",
+          "text": "This is Tom's motorbike."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой транспорт называет Анна",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:i09:audio",
+          "transcript": "This is Tom's scooter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-48:i09:r1",
+            "targetText": "This is Tom's scooter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i09:r2",
+            "targetText": "This is Tom's bicycle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i09:r3",
+            "targetText": "This is Tom's motorbike.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какой транспорт называет Анна",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `scooter`, а в этом варианте — `bicycle`.",
+              "uk": "У записі останнє слово — `scooter`, а в цьому варіанті — `bicycle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какой транспорт называет Анна",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `scooter`, а в этом варианте — `motorbike`.",
+              "uk": "У записі останнє слово — `scooter`, а в цьому варіанті — `motorbike`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-48:i10:p1",
+            "target": "motorbike",
+            "meaningByLocale": {
+              "ru": "мотоцикл",
+              "uk": "мотоцикл"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-48:i10:p2",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-48:i10:p3",
+            "target": "subway",
+            "meaningByLocale": {
+              "ru": "метро (американский английский)",
+              "uk": "метро (американська англійська)"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-48:i10:p4",
+            "target": "locker",
+            "meaningByLocale": {
+              "ru": "шкафчик",
+              "uk": "шафка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "motorbike",
+          "ferry",
+          "subway",
+          "locker"
+        ],
+        "rightColumn": [
+          "мотоцикл",
+          "паром",
+          "метро (американский английский)",
+          "шкафчик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:i11:audio",
+          "transcript": "Where is the community kitchen?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the community kitchen?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "community",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The motorbike is hers.",
+        "localizedMeaning": {
+          "ru": "Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»",
+          "uk": "Мотоцикл належить Анні. Скажіть «Мотоцикл її»"
+        },
+        "orderedTokens": [
+          "The",
+          "motorbike",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The motorbike is hers.`",
+              "uk": "тут потрібно `is` — `The motorbike is hers.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы увидели паром. Скажите «Паром здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Вы увидели паром. Скажите «Паром здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:i13:audio",
+          "transcript": "The ferry is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The ferry is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Велосипед принадлежит вам. Скажите «Велосипед мой»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-48:i14:r1",
+          "text": "mine"
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i14:r2",
+          "text": "my"
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i14:r3",
+          "text": "I"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Велосипед принадлежит вам. Скажите «Велосипед мой»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Велосипед принадлежит вам. Скажите «Велосипед мой»",
+          "uk": "Велосипед належить вам. Скажіть «Велосипед мій»"
+        },
+        "gappedTargetPhrase": "The bicycle is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-48:i14:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i14:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i14:r3",
+            "text": "I"
+          }
+        ],
+        "testedDimension": "Велосипед принадлежит вам. Скажите «Велосипед мой»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i14:r2",
+            "correct": false,
+            "testedDimension": "Велосипед принадлежит вам. Скажите «Велосипед мой»",
+            "feedbackByLocale": {
+              "ru": "Перед названием вещи — `my`; здесь самостоятельное `mine`.",
+              "uk": "Перед назвою речі — `my`; тут самостійне `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i14:r3",
+            "correct": false,
+            "testedDimension": "Велосипед принадлежит вам. Скажите «Велосипед мой»",
+            "feedbackByLocale": {
+              "ru": "`I` — я; самостоятельное «мой» — `mine`.",
+              "uk": "`I` — я; самостійне «мій» — `mine`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей самокат здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-48:i15:r1",
+          "text": "Your scooter is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i15:r2",
+          "text": "My scooter is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-48:i15:r3",
+          "text": "His scooter is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей самокат здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:i15:audio",
+          "transcript": "Your scooter is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-48:i15:r1",
+            "targetText": "Your scooter is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i15:r2",
+            "targetText": "My scooter is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i15:r3",
+            "targetText": "His scooter is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей самокат здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-48:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей самокат здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-48:i16:p1",
+            "target": "community kitchen",
+            "meaningByLocale": {
+              "ru": "общая кухня",
+              "uk": "спільна кухня"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-48:i16:p2",
+            "target": "subway",
+            "meaningByLocale": {
+              "ru": "метро (американский английский)",
+              "uk": "метро (американська англійська)"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-48:i16:p3",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-48:i16:p4",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          }
+        ],
+        "leftColumn": [
+          "community kitchen",
+          "subway",
+          "bicycle",
+          "ferry"
+        ],
+        "rightColumn": [
+          "общая кухня",
+          "метро (американский английский)",
+          "велосипед",
+          "паром"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Во дворе стоит велосипед. Спросите друзей «Чей это велосипед?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Во дворе стоит велосипед. Спросите друзей «Чей это велосипед?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:i17:audio",
+          "transcript": "Whose bicycle is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose bicycle is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f66ff7a09e9c7d88412532260922c605dcb47cc0ac4966466a5735b15aee3e60"
+}

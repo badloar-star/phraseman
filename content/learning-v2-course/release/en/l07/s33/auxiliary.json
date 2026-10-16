@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-33:intro1:r2": {
+          "ru": "После `I` нужно `recycle`, без `s`.",
+          "uk": "Після `I` потрібне `recycle`, без `s`."
+        },
+        "en:lesson-07:session-33:intro1:r3": {
+          "ru": "Здесь нужна форма `recycle`.",
+          "uk": "Тут потрібна форма `recycle`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-33:intro2:r2": {
+          "ru": "После `I` нужно `walk`, без `s`.",
+          "uk": "Після `I` потрібне `walk`, без `s`."
+        },
+        "en:lesson-07:session-33:intro2:r3": {
+          "ru": "Здесь нужна форма `walk`.",
+          "uk": "Тут потрібна форма `walk`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-33:intro3:r2": {
+          "ru": "После `she` нужно `calls`, с `s`.",
+          "uk": "Після `she` потрібне `calls`, із `s`."
+        },
+        "en:lesson-07:session-33:intro3:r3": {
+          "ru": "Здесь нужна форма `calls`.",
+          "uk": "Тут потрібна форма `calls`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e947bca531cc06f28e1d30047ea92ca51c2422e12bb70b6f9a48460294fc69ed"
+}

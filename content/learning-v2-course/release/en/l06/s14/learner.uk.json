@@ -1,0 +1,973 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я багато сміюся»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я багато сміюся»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I laugh a lot.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я много смеюсь»",
+          "uk": "Скажіть «Я багато сміюся»"
+        },
+        "orderedTokens": [
+          "I",
+          "laugh",
+          "a",
+          "lot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-14:i02:r1",
+          "text": "laugh"
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i02:r2",
+          "text": "swim"
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i02:r3",
+          "text": "work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-14:i02:audio",
+          "transcript": "laugh"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-14:i02:r1",
+            "targetText": "laugh",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i02:r2",
+            "targetText": "swim",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i02:r3",
+            "targetText": "work",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `laugh`, а в этом варианте — `swim`.",
+              "uk": "У записі перше слово — `laugh`, а в цьому варіанті — `swim`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `laugh`, а в этом варианте — `work`.",
+              "uk": "У записі перше слово — `laugh`, а в цьому варіанті — `work`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Ми багато сміємося»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-14:i03:r1",
+          "text": "laugh"
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i03:r2",
+          "text": "laughs"
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i03:r3",
+          "text": "are laugh"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Ми багато сміємося»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Мы много смеёмся»",
+          "uk": "Скажіть «Ми багато сміємося»"
+        },
+        "gappedTargetPhrase": "We ___ a lot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i03:r1",
+            "text": "laugh"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i03:r2",
+            "text": "laughs"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i03:r3",
+            "text": "are laugh"
+          }
+        ],
+        "testedDimension": "Скажіть «Ми багато сміємося»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Ми багато сміємося»",
+            "feedbackByLocale": {
+              "ru": "После `we` — `laugh`, без `s`.",
+              "uk": "Після `we` — `laugh`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Ми багато сміємося»",
+            "feedbackByLocale": {
+              "ru": "Говорим `We laugh`, без `are`.",
+              "uk": "Кажемо `We laugh`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-14:i04:p1",
+            "target": "laugh",
+            "meaningByLocale": {
+              "ru": "смеяться",
+              "uk": "сміятися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-14:i04:p2",
+            "target": "obvious",
+            "meaningByLocale": {
+              "ru": "очевидный",
+              "uk": "очевидний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-14:i04:p3",
+            "target": "suitcase",
+            "meaningByLocale": {
+              "ru": "чемодан",
+              "uk": "валіза"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-14:i04:p4",
+            "target": "bookmark",
+            "meaningByLocale": {
+              "ru": "закладка",
+              "uk": "закладка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "laugh",
+          "obvious",
+          "suitcase",
+          "bookmark"
+        ],
+        "rightColumn": [
+          "сміятися",
+          "очевидний",
+          "валіза",
+          "закладка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-14:i05:audio",
+          "transcript": "They laugh a lot."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They laugh a lot.",
+        "orderedTokens": [
+          "They",
+          "laugh",
+          "a",
+          "lot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Ми в пральні самообслуговування»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Ми в пральні самообслуговування»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are in the laundrette.",
+        "localizedMeaning": {
+          "ru": "Скажите «Мы в прачечной самообслуживания»",
+          "uk": "Скажіть «Ми в пральні самообслуговування»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "in",
+          "the",
+          "laundrette"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-14:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажіть «Ми в пральні самообслуговування»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `We are in the laundrette.`",
+              "uk": "тут потрібно `are` — `We are in the laundrette.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Том пояснює причину, яка вам і так зрозуміла. Скажіть «Це очевидно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Том пояснює причину, яка вам і так зрозуміла. Скажіть «Це очевидно»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-14:i07:audio",
+          "transcript": "It is obvious."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is obvious.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Та валіза твоя»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-14:i08:r1",
+          "text": "yours"
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i08:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i08:r3",
+          "text": "you"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Та валіза твоя»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Тот чемодан твой»",
+          "uk": "Скажіть «Та валіза твоя»"
+        },
+        "gappedTargetPhrase": "That suitcase is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i08:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i08:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i08:r3",
+            "text": "you"
+          }
+        ],
+        "testedDimension": "Скажіть «Та валіза твоя»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Та валіза твоя»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи после «твой» нужно `yours`.",
+              "uk": "Без назви речі після «твоя» потрібно `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Та валіза твоя»",
+            "feedbackByLocale": {
+              "ru": "`you` — ты или вы; здесь «твой» — `yours`.",
+              "uk": "`you` — ти або ви; тут «твоя» — `yours`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чия закладка тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-14:i09:r1",
+          "text": "My bookmark is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i09:r2",
+          "text": "Your bookmark is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i09:r3",
+          "text": "His bookmark is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чия закладка тут",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-14:i09:audio",
+          "transcript": "My bookmark is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-14:i09:r1",
+            "targetText": "My bookmark is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i09:r2",
+            "targetText": "Your bookmark is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i09:r3",
+            "targetText": "His bookmark is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чия закладка тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чия закладка тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-14:i10:p1",
+            "target": "laugh",
+            "meaningByLocale": {
+              "ru": "смеяться",
+              "uk": "сміятися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-14:i10:p2",
+            "target": "laundrette",
+            "meaningByLocale": {
+              "ru": "прачечная самообслуживания",
+              "uk": "пральня самообслуговування"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-14:i10:p3",
+            "target": "suitcase",
+            "meaningByLocale": {
+              "ru": "чемодан",
+              "uk": "валіза"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-14:i10:p4",
+            "target": "obvious",
+            "meaningByLocale": {
+              "ru": "очевидный",
+              "uk": "очевидний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "laugh",
+          "laundrette",
+          "suitcase",
+          "obvious"
+        ],
+        "rightColumn": [
+          "сміятися",
+          "пральня самообслуговування",
+          "валіза",
+          "очевидний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-14:i11:audio",
+          "transcript": "The bookmark is in the book."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bookmark is in the book.",
+        "orderedTokens": [
+          "The",
+          "bookmark",
+          "is",
+          "in",
+          "the",
+          "book"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-14:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bookmark is in the book.`",
+              "uk": "тут потрібно `is` — `The bookmark is in the book.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Чия це валіза?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Чия це валіза?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose suitcase is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чей это чемодан?»",
+          "uk": "Запитайте «Чия це валіза?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "suitcase",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть другові «Ти багато смієшся»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-14:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть другові «Ти багато смієшся»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-14:i13:audio",
+          "transcript": "You laugh a lot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You laugh a lot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я багато сміюся»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-14:i14:r1",
+          "text": "laugh"
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i14:r2",
+          "text": "laughs"
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i14:r3",
+          "text": "am laugh"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я багато сміюся»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я много смеюсь»",
+          "uk": "Скажіть «Я багато сміюся»"
+        },
+        "gappedTargetPhrase": "I ___ a lot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-14:i14:r1",
+            "text": "laugh"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i14:r2",
+            "text": "laughs"
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i14:r3",
+            "text": "am laugh"
+          }
+        ],
+        "testedDimension": "Скажіть «Я багато сміюся»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-14:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я багато сміюся»",
+            "feedbackByLocale": {
+              "ru": "После `I` — `laugh`, без `s`.",
+              "uk": "Після `I` — `laugh`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я багато сміюся»",
+            "feedbackByLocale": {
+              "ru": "Говорим `I laugh`, без `am`.",
+              "uk": "Кажемо `I laugh`, без `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що Анна каже про пральню",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-14:i15:r1",
+          "text": "The laundrette is open."
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i15:r2",
+          "text": "The laundrette is closed."
+        },
+        {
+          "responseId": "en:lesson-06:session-14:i15:r3",
+          "text": "The laundrette is empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що Анна каже про пральню",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-14:i15:audio",
+          "transcript": "The laundrette is open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-14:i15:r1",
+            "targetText": "The laundrette is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i15:r2",
+            "targetText": "The laundrette is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i15:r3",
+            "targetText": "The laundrette is empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-14:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що Анна каже про пральню",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
+              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-14:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що Анна каже про пральню",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `open`, а в этом варианте — `empty`.",
+              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `empty`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-14:i16:p1",
+            "target": "laugh",
+            "meaningByLocale": {
+              "ru": "смеяться",
+              "uk": "сміятися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-14:i16:p2",
+            "target": "obvious",
+            "meaningByLocale": {
+              "ru": "очевидный",
+              "uk": "очевидний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-14:i16:p3",
+            "target": "laundrette",
+            "meaningByLocale": {
+              "ru": "прачечная самообслуживания",
+              "uk": "пральня самообслуговування"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-14:i16:p4",
+            "target": "bookmark",
+            "meaningByLocale": {
+              "ru": "закладка",
+              "uk": "закладка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "laugh",
+          "obvious",
+          "laundrette",
+          "bookmark"
+        ],
+        "rightColumn": [
+          "сміятися",
+          "очевидний",
+          "пральня самообслуговування",
+          "закладка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-14:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Розкажіть про зустрічі з Томом: «Ми багато сміємося»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Розкажіть про зустрічі з Томом: «Ми багато сміємося»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-14:i17:audio",
+          "transcript": "We laugh a lot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We laugh a lot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1d52caddfd1c45632d956b560d9e9635a25f757ae8e01f85297c2abcceeefeec"
+}

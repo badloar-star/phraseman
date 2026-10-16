@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о продаже вещей и отличить продавца от владельца",
+    "uk": "розповісти про продаж речей і відрізнити продавця від власника"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Магазин ламп",
+        "uk": "Магазин ламп"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет лампу. Вы показываете на магазин Анны и Тома. `sell` — «продавать». `They sell lamps` — «Они продают лампы». После `they` используем `sell`, без `s`. В `lamps` буква `s` означает несколько ламп.",
+        "uk": "Друг шукає лампу. Ви показуєте на магазин Анни й Тома. `sell` — «продавати». `They sell lamps` — «Вони продають лампи». Після `they` використовуємо `sell`, без `s`. У `lamps` літера `s` означає кілька ламп."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите другу «Они продают лампы».",
+          "uk": "Розкажіть другові «Вони продають лампи»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-51:intro1:r1",
+              "text": "They sell lamps."
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro1:r2",
+              "text": "They sells lamps."
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro1:r3",
+              "text": "They are sell lamps."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-51:intro1:r1",
+              "text": "They sell lamps."
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro1:r2",
+              "text": "They sells lamps."
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro1:r3",
+              "text": "They are sell lamps."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите другу «Они продают лампы».",
+          "uk": "Розкажіть другові «Вони продають лампи»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "К кому подойти",
+        "uk": "До кого підійти"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, чем торгует Анна в своём магазине. `She sells lamps` — «Она продаёт лампы». После `she` нужно `sells`. Лампы в магазине могут быть выключены, а фраза всё равно верна: вы рассказываете, чем Анна торгует, а не включён ли свет.",
+        "uk": "Друг запитує, чим торгує Анна у своєму магазині. `She sells lamps` — «Вона продає лампи». Після `she` потрібне `sells`. Лампи в магазині можуть бути вимкнені, а фраза все одно правильна: ви розповідаєте, чим Анна торгує, а не чи ввімкнене світло."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Покажите на Анну: «Она продаёт лампы».",
+          "uk": "Покажіть на Анну: «Вона продає лампи»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-51:intro2:r1",
+              "text": "She sells lamps."
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro2:r2",
+              "text": "She sell lamps."
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro2:r3",
+              "text": "She is sells lamps."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-51:intro2:r1",
+              "text": "She sells lamps."
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro2:r2",
+              "text": "She sell lamps."
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro2:r3",
+              "text": "She is sells lamps."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите на Анну: «Она продаёт лампы».",
+          "uk": "Покажіть на Анну: «Вона продає лампи»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Продавец или владелец",
+        "uk": "Продавець чи власник"
+      },
+      "bodyByLocale": {
+        "ru": "У входа стоит лампа без ценника. Вы хотите узнать, кому она принадлежит. `Whose lamp is this?` — «Чья это лампа?» Этот вопрос о владельце. Человек за столом может помогать другу продавать вещи, поэтому продавец и владелец — не обязательно один человек.",
+        "uk": "Біля входу стоїть лампа без цінника. Ви хочете дізнатися, кому вона належить. `Whose lamp is this?` — «Чия це лампа?» Це запитання про власника. Людина за столом може допомагати другові продавати речі, тому продавець і власник — не обов’язково одна людина."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Узнайте у людей рядом «Чья это лампа?»",
+          "uk": "Дізнайтеся в людей поруч «Чия це лампа?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-51:intro3:r1",
+              "text": "Whose lamp is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro3:r2",
+              "text": "Where is this lamp?"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro3:r3",
+              "text": "Whose lamp are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-51:intro3:r1",
+              "text": "Whose lamp is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro3:r2",
+              "text": "Where is this lamp?"
+            },
+            {
+              "responseId": "en:lesson-06:session-51:intro3:r3",
+              "text": "Whose lamp are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте у людей рядом «Чья это лампа?»",
+          "uk": "Дізнайтеся в людей поруч «Чия це лампа?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8529001a7164f77d01eeb98efa2c82cd7958cc1238aaf75f4e01de6d4cac328b"
+}

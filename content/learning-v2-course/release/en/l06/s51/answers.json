@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-51:i01",
+    "correctText": "They sell lamps.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i02",
+    "correctText": "sell",
+    "correctResponseId": "en:lesson-06:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i03",
+    "correctText": "sells",
+    "correctResponseId": "en:lesson-06:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i04",
+    "correctText": "en:lesson-06:session-51:i04:p1=sell\nen:lesson-06:session-51:i04:p2=ineffective\nen:lesson-06:session-51:i04:p3=community centre\nen:lesson-06:session-51:i04:p4=stadium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i05",
+    "correctText": "They sell lamps.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i06",
+    "correctText": "She sells lamps.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i07",
+    "correctText": "Whose lamp is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i08",
+    "correctText": "sell",
+    "correctResponseId": "en:lesson-06:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i09",
+    "correctText": "She sells lamps.",
+    "correctResponseId": "en:lesson-06:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i10",
+    "correctText": "en:lesson-06:session-51:i10:p1=speak\nen:lesson-06:session-51:i10:p2=sell\nen:lesson-06:session-51:i10:p3=stadium\nen:lesson-06:session-51:i10:p4=ineffective",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i11",
+    "correctText": "Whose lamp is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i12",
+    "correctText": "He speaks English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i13",
+    "correctText": "The stadium is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-06:session-51:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i15",
+    "correctText": "They sell lamps.",
+    "correctResponseId": "en:lesson-06:session-51:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i16",
+    "correctText": "en:lesson-06:session-51:i16:p1=community centre\nen:lesson-06:session-51:i16:p2=speak\nen:lesson-06:session-51:i16:p3=sell\nen:lesson-06:session-51:i16:p4=ineffective",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-51:i17",
+    "correctText": "Anna sells newspapers.",
+    "correctResponseId": null
+  }
+]

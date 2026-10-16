@@ -100156,6 +100156,309 @@
           "byteSize": 49152
         }
       ]
+    },
+    "l06/s51/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They sell lamps.",
+          "file": "8aa306f5bf890b85dfee8bb7a40861da1048e91c1f9ee94e5f8c7789be58ceac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8aa306f5bf890b85dfee8bb7a40861da1048e91c1f9ee94e5f8c7789be58ceac.mp3",
+          "contentHash": "3fed88b74d4884ceab3de56cf54ca78f4960c16619e9bd21bb4ea7c0e78e6ab8",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l06/s51/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She sells lamps.",
+          "file": "d5ab11ac79d15c837509e2f7483c100c237c275726deedb97b2a8593afa3f328.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5ab11ac79d15c837509e2f7483c100c237c275726deedb97b2a8593afa3f328.mp3",
+          "contentHash": "e8df19ed83d36b6d821e10085eea5fc94d67ee369c937869f2637e892fece2cc",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l06/s51/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose lamp is this?",
+          "file": "dc8b39bb79c2871a73b308fd8abcffe38fa88d02048c3f1bff660f476fe1588b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc8b39bb79c2871a73b308fd8abcffe38fa88d02048c3f1bff660f476fe1588b.mp3",
+          "contentHash": "78a782ff26bb4394d6630a203ffea85781260b892c902daa1d44e389fae1f267",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s51/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They sell lamps.",
+          "file": "83cd0da84c8447e4e93eaddb6132313a849ee91821b6f1ffc56acd58dc9efc81.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/83cd0da84c8447e4e93eaddb6132313a849ee91821b6f1ffc56acd58dc9efc81.mp3",
+          "contentHash": "5f21db48ea29ab5a406804f0fabf582f0049521edbd44a966dafed80cdb60e3a",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s51/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "sell",
+          "file": "cee207a2c58fa95ec05e0d9cf972e6cd5e2c707754367a2502fc66581949c94a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cee207a2c58fa95ec05e0d9cf972e6cd5e2c707754367a2502fc66581949c94a.mp3",
+          "contentHash": "9f36b2fc6746f29589e7048c970b248fd449f12b21ce5ff874e54e439505e8bd",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l06/s51/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She sells lamps.",
+          "file": "d5ab11ac79d15c837509e2f7483c100c237c275726deedb97b2a8593afa3f328.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5ab11ac79d15c837509e2f7483c100c237c275726deedb97b2a8593afa3f328.mp3",
+          "contentHash": "e8df19ed83d36b6d821e10085eea5fc94d67ee369c937869f2637e892fece2cc",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l06/s51/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "sell",
+          "file": "a5aa7c7400eb3855edffb3a5e5b2e34e5564dca47f3e0ac305bca41f8dc6b9b0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a5aa7c7400eb3855edffb3a5e5b2e34e5564dca47f3e0ac305bca41f8dc6b9b0.mp3",
+          "contentHash": "f2cdcc7715802252f54ea342c133ac8575f20f36f1b0dd9177305f61ae9a3d33",
+          "byteSize": 14976
+        },
+        {
+          "text": "ineffective",
+          "file": "8ce564193e3c4707b3cbaf428ab39babc8e9dfc3e986db67b10dc33f1087f7cb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ce564193e3c4707b3cbaf428ab39babc8e9dfc3e986db67b10dc33f1087f7cb.mp3",
+          "contentHash": "5a4291d32ea7d6f00f945c2216c18700b2df0e9965d33da00fc828dc28728f1c",
+          "byteSize": 32640
+        },
+        {
+          "text": "community centre",
+          "file": "255fe46df2eecba9d2fb3ff7b6cae68e9d6a20aac650c11b288f59af0a2a9276.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/255fe46df2eecba9d2fb3ff7b6cae68e9d6a20aac650c11b288f59af0a2a9276.mp3",
+          "contentHash": "37b96bd7291b81b3ed2bbef444224d3148367dca8f708a406c2040b2057ebc1e",
+          "byteSize": 50688
+        },
+        {
+          "text": "stadium",
+          "file": "058474859900896945eb7c16500a654f60bc1a055631fe6456d4589c66ad994b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/058474859900896945eb7c16500a654f60bc1a055631fe6456d4589c66ad994b.mp3",
+          "contentHash": "cc5fc2ee0a0fc92f65edd0890125ee0661bed5a5fe6832eda16f3530882ff0d6",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l06/s51/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They sell lamps.",
+          "file": "22af06203f5ab07d2d2091bb1e1e42830f7a800d1cb9796e74f971f6625e9ece.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/22af06203f5ab07d2d2091bb1e1e42830f7a800d1cb9796e74f971f6625e9ece.mp3",
+          "contentHash": "9c2a3923d603b08fd1fa6fc8c31cbe601cb9e4bf0c938ddd615a540251e4a29b",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l06/s51/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She sells lamps.",
+          "file": "b0a8c6d6cab95e7fee7201d2477fa04a34783a2d9b68aaca20f62c83955d1953.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0a8c6d6cab95e7fee7201d2477fa04a34783a2d9b68aaca20f62c83955d1953.mp3",
+          "contentHash": "6ea775927a230402e00c8a2fd8936058a36bfea015b75d066a6f871d79d892bf",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s51/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose lamp is this?",
+          "file": "dc8b39bb79c2871a73b308fd8abcffe38fa88d02048c3f1bff660f476fe1588b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc8b39bb79c2871a73b308fd8abcffe38fa88d02048c3f1bff660f476fe1588b.mp3",
+          "contentHash": "78a782ff26bb4394d6630a203ffea85781260b892c902daa1d44e389fae1f267",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s51/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We sell lamps.",
+          "file": "0c216932a1c8da3bc4f0683f1a10d5390c3fdf4b7e2f11651c2ebb8ce1e34b4d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0c216932a1c8da3bc4f0683f1a10d5390c3fdf4b7e2f11651c2ebb8ce1e34b4d.mp3",
+          "contentHash": "c794991919de1b8f492dbe2b913575280fb6db1daff213af5b9bd00ddb2b09a3",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s51/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She sells lamps.",
+          "file": "d5ab11ac79d15c837509e2f7483c100c237c275726deedb97b2a8593afa3f328.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5ab11ac79d15c837509e2f7483c100c237c275726deedb97b2a8593afa3f328.mp3",
+          "contentHash": "e8df19ed83d36b6d821e10085eea5fc94d67ee369c937869f2637e892fece2cc",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l06/s51/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "speak",
+          "file": "d47667935641bf694f709989cdbae9a76631c9bc1da9232a72002a3b646388a2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d47667935641bf694f709989cdbae9a76631c9bc1da9232a72002a3b646388a2.mp3",
+          "contentHash": "0ff3dccb4711840eb1d10d692f341087bfe3e4300e5c59670c5ecc5b15d82b7b",
+          "byteSize": 43008
+        },
+        {
+          "text": "sell",
+          "file": "a54a26424836e932bac6f8ab3ef84dfc6ada87d79d0c3c5ce42560b7d1b5abef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a54a26424836e932bac6f8ab3ef84dfc6ada87d79d0c3c5ce42560b7d1b5abef.mp3",
+          "contentHash": "41d27d8c788cb91b86bc8a0caa2d5c436dca442ca253252daae8ad13a730b3a4",
+          "byteSize": 16512
+        },
+        {
+          "text": "stadium",
+          "file": "82b21a8a061f5c49dbe00c83864d0f7602d2cbef5ed31b0935ac16fcb8c64970.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/82b21a8a061f5c49dbe00c83864d0f7602d2cbef5ed31b0935ac16fcb8c64970.mp3",
+          "contentHash": "c51b55781f81ca60b6cb3b49a4262fcda40f83adedecdf03e3c5e7fd47763e17",
+          "byteSize": 21120
+        },
+        {
+          "text": "ineffective",
+          "file": "c099c4ec434a280962a70565bef4209866cd03b8c9baf6ee69d6e6e212d25ea8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c099c4ec434a280962a70565bef4209866cd03b8c9baf6ee69d6e6e212d25ea8.mp3",
+          "contentHash": "33914918e8afe681ea51e3c8f10486386982d82f5a3018c1dabb0af7108c9f07",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s51/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose lamp is this?",
+          "file": "3fbe447f45ac2e00f39efa160af28c314a9e9e00ca157c22f60824365c674b06.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3fbe447f45ac2e00f39efa160af28c314a9e9e00ca157c22f60824365c674b06.mp3",
+          "contentHash": "3b687ff202a3aa6539f5eff24c0f334e1fa78b846b628f3726276a3ab2b3e289",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l06/s51/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He speaks English.",
+          "file": "a0b301f6ef7fe6ec1390769c63f2d03124f337e3fdc73f47d23cb4c852947904.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a0b301f6ef7fe6ec1390769c63f2d03124f337e3fdc73f47d23cb4c852947904.mp3",
+          "contentHash": "586f6e23ab8b55b00ea36abf3126641dbc4e8ce2e8a3c714c36a970e92cf5e01",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s51/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The stadium is here.",
+          "file": "207fefac2c2212b01623ae99a9c63eb13d1f8469678b72fc6a219635e7b10936.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/207fefac2c2212b01623ae99a9c63eb13d1f8469678b72fc6a219635e7b10936.mp3",
+          "contentHash": "c845c2a3fa534975b8b3721e25bc493ccae78851524ce104b967fa7eecf4d452",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l06/s51/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose lamps are these?",
+          "file": "a7e4c578495c8a24027731892064c76c0e716f719624a26e6a68580a4de555f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a7e4c578495c8a24027731892064c76c0e716f719624a26e6a68580a4de555f9.mp3",
+          "contentHash": "60cd41be48589785fe9c0604c6734bd99dd0a9c8e42f1b703e1dde99d1121958",
+          "byteSize": 52224
+        }
+      ]
+    },
+    "l06/s51/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They sell lamps.",
+          "file": "8aa306f5bf890b85dfee8bb7a40861da1048e91c1f9ee94e5f8c7789be58ceac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8aa306f5bf890b85dfee8bb7a40861da1048e91c1f9ee94e5f8c7789be58ceac.mp3",
+          "contentHash": "3fed88b74d4884ceab3de56cf54ca78f4960c16619e9bd21bb4ea7c0e78e6ab8",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l06/s51/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "community centre",
+          "file": "1844662055d6908266906f074fc4b7913bd42ed618bb2592dcb45b1766c1b182.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1844662055d6908266906f074fc4b7913bd42ed618bb2592dcb45b1766c1b182.mp3",
+          "contentHash": "3c3313429c675ddfde51aa9733d533188d90942259d2c21b2a3eec9ff72998db",
+          "byteSize": 38016
+        },
+        {
+          "text": "speak",
+          "file": "d47667935641bf694f709989cdbae9a76631c9bc1da9232a72002a3b646388a2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d47667935641bf694f709989cdbae9a76631c9bc1da9232a72002a3b646388a2.mp3",
+          "contentHash": "0ff3dccb4711840eb1d10d692f341087bfe3e4300e5c59670c5ecc5b15d82b7b",
+          "byteSize": 43008
+        },
+        {
+          "text": "sell",
+          "file": "a54a26424836e932bac6f8ab3ef84dfc6ada87d79d0c3c5ce42560b7d1b5abef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a54a26424836e932bac6f8ab3ef84dfc6ada87d79d0c3c5ce42560b7d1b5abef.mp3",
+          "contentHash": "41d27d8c788cb91b86bc8a0caa2d5c436dca442ca253252daae8ad13a730b3a4",
+          "byteSize": 16512
+        },
+        {
+          "text": "ineffective",
+          "file": "c099c4ec434a280962a70565bef4209866cd03b8c9baf6ee69d6e6e212d25ea8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c099c4ec434a280962a70565bef4209866cd03b8c9baf6ee69d6e6e212d25ea8.mp3",
+          "contentHash": "33914918e8afe681ea51e3c8f10486386982d82f5a3018c1dabb0af7108c9f07",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s51/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Anna sells newspapers.",
+          "file": "de59f2093789a62c39aed3e50f6cfe211e55b43d0cae682c6a28b994d423d40c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de59f2093789a62c39aed3e50f6cfe211e55b43d0cae682c6a28b994d423d40c.mp3",
+          "contentHash": "7c58f9212c88cfecbf9845d7541856a1220d695610d043c42ae23b14ed5dc098",
+          "byteSize": 61056
+        }
+      ]
     }
   },
   "settings": {

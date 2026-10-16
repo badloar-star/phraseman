@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-26:i01",
+    "correctText": "I jog in the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i02",
+    "correctText": "jog",
+    "correctResponseId": "en:lesson-06:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i03",
+    "correctText": "jogs",
+    "correctResponseId": "en:lesson-06:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i04",
+    "correctText": "en:lesson-06:session-26:i04:p1=jog\nen:lesson-06:session-26:i04:p2=careless\nen:lesson-06:session-26:i04:p3=worktop\nen:lesson-06:session-26:i04:p4=badge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i05",
+    "correctText": "Anna jogs here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i06",
+    "correctText": "He smiles a lot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i07",
+    "correctText": "He is careless.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i08",
+    "correctText": "jog",
+    "correctResponseId": "en:lesson-06:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i09",
+    "correctText": "My badge is here.",
+    "correctResponseId": "en:lesson-06:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i10",
+    "correctText": "en:lesson-06:session-26:i10:p1=jog\nen:lesson-06:session-26:i10:p2=smile\nen:lesson-06:session-26:i10:p3=badge\nen:lesson-06:session-26:i10:p4=careless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i11",
+    "correctText": "The badge is on the worktop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i12",
+    "correctText": "Whose badge is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i13",
+    "correctText": "They smile a lot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i14",
+    "correctText": "smiles",
+    "correctResponseId": "en:lesson-06:session-26:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i15",
+    "correctText": "The worktop is clean.",
+    "correctResponseId": "en:lesson-06:session-26:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i16",
+    "correctText": "en:lesson-06:session-26:i16:p1=jog\nen:lesson-06:session-26:i16:p2=worktop\nen:lesson-06:session-26:i16:p3=careless\nen:lesson-06:session-26:i16:p4=smile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-26:i17",
+    "correctText": "She jogs in the park.",
+    "correctResponseId": null
+  }
+]

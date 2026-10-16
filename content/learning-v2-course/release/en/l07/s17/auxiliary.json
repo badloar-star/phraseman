@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-17:intro1:r2": {
+          "ru": "Нужно `I don’t smoke`, а не просто `not`.",
+          "uk": "Потрібно `I don’t smoke`, а не просто `not`."
+        },
+        "en:lesson-07:session-17:intro1:r3": {
+          "ru": "После `I` нужно `don’t`.",
+          "uk": "Після `I` потрібне `don’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-17:intro2:r2": {
+          "ru": "Здесь действие `drive`: нужно `I don’t drive`.",
+          "uk": "Тут дія `drive`: потрібно `I don’t drive`."
+        },
+        "en:lesson-07:session-17:intro2:r3": {
+          "ru": "После `I` нужно `don’t`.",
+          "uk": "Після `I` потрібне `don’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-17:intro3:r2": {
+          "ru": "После `he` нужно `doesn’t`.",
+          "uk": "Після `he` потрібне `doesn’t`."
+        },
+        "en:lesson-07:session-17:intro3:r3": {
+          "ru": "После `doesn’t` нужно `work`, без `s`.",
+          "uk": "Після `doesn’t` потрібне `work`, без `s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "49522bedfe97f12cf8f8a80c78574509305e4e100e6eba106ae185e4c41c16ec"
+}

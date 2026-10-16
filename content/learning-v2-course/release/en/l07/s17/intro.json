@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, чего вы не делаете, с don’t и чего не делает другой человек — с doesn’t",
+    "uk": "сказати, чого ви не робите, з don’t і чого не робить інша людина — з doesn’t"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "На перерыве",
+        "uk": "На перерві"
+      },
+      "bodyByLocale": {
+        "ru": "`smoke` — «курить». Коллега предлагает сигарету. `I don’t smoke` — «Я не курю». Чтобы отрицать действие после `I`, ставим `don’t`, затем `smoke`. `Don’t` — короткая форма `do not`. Это сообщение о привычке.",
+        "uk": "`smoke` — «курити». Колега пропонує сигарету. `I don’t smoke` — «Я не курю». Щоб заперечити дію після `I`, ставимо `don’t`, потім `smoke`. `Don’t` — коротка форма `do not`. Це повідомлення про звичку."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите коллеге «Я не курю».",
+          "uk": "Скажіть колезі «Я не курю»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-17:intro1:r1",
+              "text": "I don’t smoke."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro1:r2",
+              "text": "I not smoke."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro1:r3",
+              "text": "I doesn’t smoke."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-17:intro1:r1",
+              "text": "I don’t smoke."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro1:r2",
+              "text": "I not smoke."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro1:r3",
+              "text": "I doesn’t smoke."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите коллеге «Я не курю».",
+          "uk": "Скажіть колезі «Я не курю»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поездка с другом",
+        "uk": "Поїздка з другом"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассчитывает, что вы его подвезёте. `I don’t drive` — «Я не вожу машину». После `I` снова `don’t`, затем `drive`. Это не обязательно означает, что вы не умеете водить: вы сообщаете, что не водите. Наличие куртки и ключей в кармане ещё не делает вас водителем.",
+        "uk": "Друг розраховує, що ви його підвезете. `I don’t drive` — «Я не воджу машину». Після `I` знову `don’t`, потім `drive`. Це не обов’язково означає, що ви не вмієте водити: ви повідомляєте, що не водите. Наявність куртки й ключів у кишені ще не робить вас водієм."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Объясните другу «Я не вожу машину».",
+          "uk": "Поясніть другові «Я не воджу машину»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-17:intro2:r1",
+              "text": "I don’t drive."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro2:r2",
+              "text": "I am not drive."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro2:r3",
+              "text": "I doesn’t drive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-17:intro2:r1",
+              "text": "I don’t drive."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro2:r2",
+              "text": "I am not drive."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro2:r3",
+              "text": "I doesn’t drive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните другу «Я не вожу машину».",
+          "uk": "Поясніть другові «Я не воджу машину»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Руководитель в другом офисе",
+        "uk": "Керівник в іншому офісі"
+      },
+      "bodyByLocale": {
+        "ru": "Посетитель ищет руководителя, но тот работает в другом офисе. `He doesn’t work here` — «Он не работает здесь». После `he` ставим `doesn’t`, то есть `does not`, затем `work`, без `s`.",
+        "uk": "Відвідувач шукає керівника, але той працює в іншому офісі. `He doesn’t work here` — «Він не працює тут». Після `he` ставимо `doesn’t`, тобто `does not`, потім `work`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите посетителю «Он не работает здесь».",
+          "uk": "Скажіть відвідувачеві «Він не працює тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-17:intro3:r1",
+              "text": "He doesn’t work here."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro3:r2",
+              "text": "He don’t work here."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro3:r3",
+              "text": "He doesn’t works here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-17:intro3:r1",
+              "text": "He doesn’t work here."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro3:r2",
+              "text": "He don’t work here."
+            },
+            {
+              "responseId": "en:lesson-07:session-17:intro3:r3",
+              "text": "He doesn’t works here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите посетителю «Он не работает здесь».",
+          "uk": "Скажіть відвідувачеві «Він не працює тут»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d431a98fb1f1decca1db50499c33b247d5cf1fcf56ff1cacd7f9679d1fc4900d"
+}

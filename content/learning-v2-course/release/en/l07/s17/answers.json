@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-17:i01",
+    "correctText": "I don’t smoke.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i02",
+    "correctText": "smoke",
+    "correctResponseId": "en:lesson-07:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i03",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-07:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i04",
+    "correctText": "en:lesson-07:session-17:i04:p1=smoke\nen:lesson-07:session-17:i04:p2=drive\nen:lesson-07:session-17:i04:p3=jacket\nen:lesson-07:session-17:i04:p4=books",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i05",
+    "correctText": "I don’t smoke.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i06",
+    "correctText": "I don’t drive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i07",
+    "correctText": "He doesn’t work here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i08",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i09",
+    "correctText": "I don’t smoke.",
+    "correctResponseId": "en:lesson-07:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i10",
+    "correctText": "en:lesson-07:session-17:i10:p1=manager\nen:lesson-07:session-17:i10:p2=smoke\nen:lesson-07:session-17:i10:p3=drive\nen:lesson-07:session-17:i10:p4=jacket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i11",
+    "correctText": "He doesn’t work here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i12",
+    "correctText": "Do you have a jacket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i13",
+    "correctText": "The books are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i14",
+    "correctText": "doesn’t",
+    "correctResponseId": "en:lesson-07:session-17:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i15",
+    "correctText": "I don’t drive.",
+    "correctResponseId": "en:lesson-07:session-17:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i16",
+    "correctText": "en:lesson-07:session-17:i16:p1=smoke\nen:lesson-07:session-17:i16:p2=books\nen:lesson-07:session-17:i16:p3=manager\nen:lesson-07:session-17:i16:p4=drive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-17:i17",
+    "correctText": "Tom doesn’t drive.",
+    "correctResponseId": null
+  }
+]

@@ -127123,6 +127123,309 @@
           "byteSize": 41088
         }
       ]
+    },
+    "l08/s28/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Fold it.",
+          "file": "a74c5a520843b44886547589f5bf93b4770fb095042177d9e39b7883e72b38af.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a74c5a520843b44886547589f5bf93b4770fb095042177d9e39b7883e72b38af.mp3",
+          "contentHash": "3c306b5f2538b4a406c2f8064a25625c08f3df147e0e6939dd5fc4074fc7f6ca",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l08/s28/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Turn left.",
+          "file": "c8b83ab7d11c9b6b807d8cbd205025b8b75b9b4963f03ad61cc5d93339ca8ada.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c8b83ab7d11c9b6b807d8cbd205025b8b75b9b4963f03ad61cc5d93339ca8ada.mp3",
+          "contentHash": "3af0d8b2bab988e21ca050ab4e933c0995e1f8824f034a34ff471ae9f9fc5ddc",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s28/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Can you hold this?",
+          "file": "508bd81090d713ab172e03f35a7495c05cf2de6bb148bdc2111daddadd9dedc3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/508bd81090d713ab172e03f35a7495c05cf2de6bb148bdc2111daddadd9dedc3.mp3",
+          "contentHash": "9f16952a88bd9cb71fe6833fca1f1e4e8c21647fe4ac72b6ff8e5c3b82ebfbb3",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l08/s28/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Fold it.",
+          "file": "2d2ea889973169e4c5bcb414bfa1cc0545c3fd98612f976d800d9bafd6ae0c71.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2d2ea889973169e4c5bcb414bfa1cc0545c3fd98612f976d800d9bafd6ae0c71.mp3",
+          "contentHash": "d5188fc919d69799cff21d53c3116055ebb66813bf1c29d22bdc5439dbcb93c6",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l08/s28/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "fold",
+          "file": "9cb48d517fc037fb2f5465dd8e2c7fb4bb5743508975e209696ca18894cd8147.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9cb48d517fc037fb2f5465dd8e2c7fb4bb5743508975e209696ca18894cd8147.mp3",
+          "contentHash": "aef1500c14a767da9c73dcca683869c4db5be8511a840b69da20eae8d9454412",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l08/s28/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Fold it.",
+          "file": "a74c5a520843b44886547589f5bf93b4770fb095042177d9e39b7883e72b38af.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a74c5a520843b44886547589f5bf93b4770fb095042177d9e39b7883e72b38af.mp3",
+          "contentHash": "3c306b5f2538b4a406c2f8064a25625c08f3df147e0e6939dd5fc4074fc7f6ca",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l08/s28/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "fold",
+          "file": "9cb48d517fc037fb2f5465dd8e2c7fb4bb5743508975e209696ca18894cd8147.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9cb48d517fc037fb2f5465dd8e2c7fb4bb5743508975e209696ca18894cd8147.mp3",
+          "contentHash": "aef1500c14a767da9c73dcca683869c4db5be8511a840b69da20eae8d9454412",
+          "byteSize": 20352
+        },
+        {
+          "text": "alley",
+          "file": "964429130e0eaabf814dfc525c594c3e0cf8b4258aa1202be83c6f86a4aa3bb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/964429130e0eaabf814dfc525c594c3e0cf8b4258aa1202be83c6f86a4aa3bb7.mp3",
+          "contentHash": "b943619998720d7f881c26395752dd9dacc846abe2c8af08ca785c1869a6fa81",
+          "byteSize": 14976
+        },
+        {
+          "text": "eat",
+          "file": "ea77e8e7e9e0227f4e65b77aca590a7c1946d531f2acf6dbe01f025277fb0055.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ea77e8e7e9e0227f4e65b77aca590a7c1946d531f2acf6dbe01f025277fb0055.mp3",
+          "contentHash": "efddaa76acd752df1dc32926ef14ed679bce467a42ec5ffcd1c0a8a259bf48d0",
+          "byteSize": 15744
+        },
+        {
+          "text": "stretch",
+          "file": "da7ac496d479760c27f23458588dc29453943881be4231240ca4fb53856a1346.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/da7ac496d479760c27f23458588dc29453943881be4231240ca4fb53856a1346.mp3",
+          "contentHash": "fdc7b8379e825ebea02fc1adb739c5cc0c3fa454b9ce9b975e9a7e728a6d0585",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l08/s28/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Fold it.",
+          "file": "fd4a124cc06bbe91dd1a0664e17e2be48575bf099250f4168fa0c6245760e1f5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd4a124cc06bbe91dd1a0664e17e2be48575bf099250f4168fa0c6245760e1f5.mp3",
+          "contentHash": "d5acfc954b5eb5207721d25f27a536b8862cfffe9d4f228b87733306a5e7bbd2",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l08/s28/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Open the window.",
+          "file": "3be86257f71b660d0fbd80ea69532fe55dd4821827d9327d387caaa99b21f120.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3be86257f71b660d0fbd80ea69532fe55dd4821827d9327d387caaa99b21f120.mp3",
+          "contentHash": "20c93e3f081539fc1ea6aa3e308750247cbdb3fcb69c262d4650e8c3a8b9c920",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l08/s28/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Turn left.",
+          "file": "c8b83ab7d11c9b6b807d8cbd205025b8b75b9b4963f03ad61cc5d93339ca8ada.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c8b83ab7d11c9b6b807d8cbd205025b8b75b9b4963f03ad61cc5d93339ca8ada.mp3",
+          "contentHash": "3af0d8b2bab988e21ca050ab4e933c0995e1f8824f034a34ff471ae9f9fc5ddc",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s28/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Open the window.",
+          "file": "8255a6f4493e16f6865f22f95a4cb680f9a1ce80537b0b453b2d9e954528f63a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8255a6f4493e16f6865f22f95a4cb680f9a1ce80537b0b453b2d9e954528f63a.mp3",
+          "contentHash": "f92f7ec286b407cb9d855851200d899433852083132944e43d05731f2b74586d",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l08/s28/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Fold it.",
+          "file": "fd4a124cc06bbe91dd1a0664e17e2be48575bf099250f4168fa0c6245760e1f5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd4a124cc06bbe91dd1a0664e17e2be48575bf099250f4168fa0c6245760e1f5.mp3",
+          "contentHash": "d5acfc954b5eb5207721d25f27a536b8862cfffe9d4f228b87733306a5e7bbd2",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l08/s28/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "hold",
+          "file": "49775e2331df330a5641114681f27e552e771bcb679319b467718c25813a92e2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/49775e2331df330a5641114681f27e552e771bcb679319b467718c25813a92e2.mp3",
+          "contentHash": "db2712031a4d2f57f679e674fb1a1f41eff4b1b3bdb139f7b9a2cbadd15a8e31",
+          "byteSize": 28416
+        },
+        {
+          "text": "fold",
+          "file": "3825a73dc2c808bd95bbc0a26f5b9f49fd6f845455a3b6b23aed15991f645343.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3825a73dc2c808bd95bbc0a26f5b9f49fd6f845455a3b6b23aed15991f645343.mp3",
+          "contentHash": "680c8a7adbfc76d7e087e8c9ca705268802f0f9390ebe7ec0778cd8f64d628b4",
+          "byteSize": 36480
+        },
+        {
+          "text": "alley",
+          "file": "afc7994ee85a6310f8656c98481b58f7dd483aa7bf9542e520cbb4e46482a3e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/afc7994ee85a6310f8656c98481b58f7dd483aa7bf9542e520cbb4e46482a3e1.mp3",
+          "contentHash": "a555637052bc5ebd18e23d14e9f4429fc4f76ee7b9e89758a02e3243b86a0b7e",
+          "byteSize": 18816
+        },
+        {
+          "text": "eat",
+          "file": "f1c50a96efdcdeeb9baae688a447e672cb4de3dd64140610db35751299205855.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f1c50a96efdcdeeb9baae688a447e672cb4de3dd64140610db35751299205855.mp3",
+          "contentHash": "c9f16cf2e24e43846037697ba9fdc9252f01ffd00625eac273674365e1e60db8",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l08/s28/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Turn left.",
+          "file": "c8b83ab7d11c9b6b807d8cbd205025b8b75b9b4963f03ad61cc5d93339ca8ada.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c8b83ab7d11c9b6b807d8cbd205025b8b75b9b4963f03ad61cc5d93339ca8ada.mp3",
+          "contentHash": "3af0d8b2bab988e21ca050ab4e933c0995e1f8824f034a34ff471ae9f9fc5ddc",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s28/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Can you hold this?",
+          "file": "4aa6dc0cb7c3cec512c9d476bb2c9d28d969b543528d2eb100469e31a0dbc7dd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4aa6dc0cb7c3cec512c9d476bb2c9d28d969b543528d2eb100469e31a0dbc7dd.mp3",
+          "contentHash": "8ee208162b2125fe707aae6300f6e9a1a7622073ff70f383e22b43efa26c569a",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l08/s28/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often stretch.",
+          "file": "56bf0fc95aebcef2a474f84d3c7b31e9e87958872cfe56c34ff9bd65183b5497.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56bf0fc95aebcef2a474f84d3c7b31e9e87958872cfe56c34ff9bd65183b5497.mp3",
+          "contentHash": "8243f6586167f68b69c966d059f4115d837cd356ad70a3e48c1e74a0edfd67dd",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l08/s28/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Turn left.",
+          "file": "1486d7943a3311025f05fcfba6286783ca7c5e0c7de01567f4c6c1161abe5fcb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1486d7943a3311025f05fcfba6286783ca7c5e0c7de01567f4c6c1161abe5fcb.mp3",
+          "contentHash": "180a586b7c26f0d6e7668e3cfa9d7f684c5bc0fa0e7ffaadddf4c4d1fc8bf052",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l08/s28/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Open the window.",
+          "file": "258eb9258953ea674564ba1fcc7f6eccbcb0286ab5e5eb1904e24af4e328e3ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/258eb9258953ea674564ba1fcc7f6eccbcb0286ab5e5eb1904e24af4e328e3ab.mp3",
+          "contentHash": "6a36bf910e66291f1e9129c0ef8fb9253d125739729df52895179d9f828c1de4",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l08/s28/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "fold",
+          "file": "3825a73dc2c808bd95bbc0a26f5b9f49fd6f845455a3b6b23aed15991f645343.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3825a73dc2c808bd95bbc0a26f5b9f49fd6f845455a3b6b23aed15991f645343.mp3",
+          "contentHash": "680c8a7adbfc76d7e087e8c9ca705268802f0f9390ebe7ec0778cd8f64d628b4",
+          "byteSize": 36480
+        },
+        {
+          "text": "stretch",
+          "file": "a82619164e3a2886b8463cbe4ec226716f2786eb20c6a99b81a67059aeb85fa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a82619164e3a2886b8463cbe4ec226716f2786eb20c6a99b81a67059aeb85fa4.mp3",
+          "contentHash": "960e0eedb350f591878565ff741fa84f68963788a7bec000d10452293084dec6",
+          "byteSize": 31488
+        },
+        {
+          "text": "hold",
+          "file": "49775e2331df330a5641114681f27e552e771bcb679319b467718c25813a92e2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/49775e2331df330a5641114681f27e552e771bcb679319b467718c25813a92e2.mp3",
+          "contentHash": "db2712031a4d2f57f679e674fb1a1f41eff4b1b3bdb139f7b9a2cbadd15a8e31",
+          "byteSize": 28416
+        },
+        {
+          "text": "alley",
+          "file": "afc7994ee85a6310f8656c98481b58f7dd483aa7bf9542e520cbb4e46482a3e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/afc7994ee85a6310f8656c98481b58f7dd483aa7bf9542e520cbb4e46482a3e1.mp3",
+          "contentHash": "a555637052bc5ebd18e23d14e9f4429fc4f76ee7b9e89758a02e3243b86a0b7e",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l08/s28/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Fold it.",
+          "file": "a74c5a520843b44886547589f5bf93b4770fb095042177d9e39b7883e72b38af.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a74c5a520843b44886547589f5bf93b4770fb095042177d9e39b7883e72b38af.mp3",
+          "contentHash": "3c306b5f2538b4a406c2f8064a25625c08f3df147e0e6939dd5fc4074fc7f6ca",
+          "byteSize": 26112
+        }
+      ]
     }
   },
   "settings": {

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить короткие указания со словом fold",
+    "uk": "закріпити короткі вказівки зі словом fold"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Полотенце в сумку",
+        "uk": "Рушник у сумку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг пытается убрать расправленное полотенце в небольшую сумку. `Fold` — «сложить», например полотенце или лист бумаги. `Fold it` — «Сложи его». Здесь `it` — полотенце. Начните сразу с `Fold`, без `to`. Полотенце уже собралось занять всю сумку — придётся немного уменьшить его планы.",
+        "uk": "Друг намагається прибрати розправлений рушник у невелику сумку. `Fold` — «скласти», наприклад рушник або аркуш паперу. `Fold it` — «Склади його». Тут `it` — рушник. Почніть одразу з `Fold`, без `to`. Рушник уже зібрався зайняти всю сумку — доведеться трохи зменшити його плани."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу сложить полотенце.",
+          "uk": "Скажіть другові скласти рушник."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-28:intro1:r1",
+              "text": "Fold it."
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro1:r2",
+              "text": "To fold it."
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro1:r3",
+              "text": "Folds it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-28:intro1:r1",
+              "text": "Fold it."
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro1:r2",
+              "text": "To fold it."
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro1:r3",
+              "text": "Folds it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу сложить полотенце.",
+          "uk": "Скажіть другові скласти рушник."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Переулок слева",
+        "uk": "Провулок ліворуч"
+      },
+      "bodyByLocale": {
+        "ru": "Вы идёте с другом по знакомой улице. Нужный переулок находится слева. `Turn left` — «Поверни налево». Начните с `Turn`, затем направление `left`.",
+        "uk": "Ви йдете з другом знайомою вулицею. Потрібний провулок розташований ліворуч. `Turn left` — «Поверни ліворуч». Почніть із `Turn`, потім напрямок `left`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Подскажите другу «Поверни налево».",
+          "uk": "Підкажіть другові «Поверни ліворуч»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-28:intro2:r1",
+              "text": "Turn left."
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro2:r2",
+              "text": "Turns left."
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro2:r3",
+              "text": "To turn left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-28:intro2:r1",
+              "text": "Turn left."
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro2:r2",
+              "text": "Turns left."
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro2:r3",
+              "text": "To turn left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подскажите другу «Поверни налево».",
+          "uk": "Підкажіть другові «Поверни ліворуч»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Освободить руки",
+        "uk": "Звільнити руки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы держите пакет и хотите застегнуть куртку. Друг рядом. Покажите ему пакет: `Can you hold this?` — «Можешь это подержать?» Для этой просьбы начните с `Can you`, затем `hold this`.",
+        "uk": "Ви тримаєте пакет і хочете застебнути куртку. Друг поруч. Покажіть йому пакет: `Can you hold this?` — «Можеш це потримати?» Для цього прохання почніть із `Can you`, потім `hold this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Попросите друга подержать пакет.",
+          "uk": "Попросіть друга потримати пакет."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-28:intro3:r1",
+              "text": "Can you hold this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro3:r2",
+              "text": "Can you holds this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro3:r3",
+              "text": "Can you to hold this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-28:intro3:r1",
+              "text": "Can you hold this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro3:r2",
+              "text": "Can you holds this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-28:intro3:r3",
+              "text": "Can you to hold this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга подержать пакет.",
+          "uk": "Попросіть друга потримати пакет."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6f8a09192c6e85d4a4dbec319c4e64a0d4932bd804b82516d930be8fbaac6af7"
+}

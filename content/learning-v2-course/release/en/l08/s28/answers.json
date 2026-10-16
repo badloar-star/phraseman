@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-28:i01",
+    "correctText": "Fold it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i02",
+    "correctText": "fold",
+    "correctResponseId": "en:lesson-08:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i03",
+    "correctText": "Fold",
+    "correctResponseId": "en:lesson-08:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i04",
+    "correctText": "en:lesson-08:session-28:i04:p1=fold\nen:lesson-08:session-28:i04:p2=alley\nen:lesson-08:session-28:i04:p3=eat\nen:lesson-08:session-28:i04:p4=stretch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i05",
+    "correctText": "Fold it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i06",
+    "correctText": "Open the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i07",
+    "correctText": "Turn left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i08",
+    "correctText": "Open",
+    "correctResponseId": "en:lesson-08:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i09",
+    "correctText": "Fold it.",
+    "correctResponseId": "en:lesson-08:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i10",
+    "correctText": "en:lesson-08:session-28:i10:p1=hold\nen:lesson-08:session-28:i10:p2=fold\nen:lesson-08:session-28:i10:p3=alley\nen:lesson-08:session-28:i10:p4=eat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i11",
+    "correctText": "Turn left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i12",
+    "correctText": "Can you hold this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i13",
+    "correctText": "I often stretch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i14",
+    "correctText": "Turn",
+    "correctResponseId": "en:lesson-08:session-28:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i15",
+    "correctText": "Open the window.",
+    "correctResponseId": "en:lesson-08:session-28:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i16",
+    "correctText": "en:lesson-08:session-28:i16:p1=fold\nen:lesson-08:session-28:i16:p2=stretch\nen:lesson-08:session-28:i16:p3=hold\nen:lesson-08:session-28:i16:p4=alley",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-28:i17",
+    "correctText": "Fold it.",
+    "correctResponseId": null
+  }
+]

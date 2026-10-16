@@ -74098,6 +74098,309 @@
           "byteSize": 29184
         }
       ]
+    },
+    "l05/s21/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The necklace is hers.",
+          "file": "1f9621c7fb9739bbb75ab63faf3289e28392b6f8af440f427834afb315eed4b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f9621c7fb9739bbb75ab63faf3289e28392b6f8af440f427834afb315eed4b9.mp3",
+          "contentHash": "7c404096224325298e3f828f8177d96788b29f44d5e8ce0b5a95ad3a49cbde31",
+          "byteSize": 58752
+        }
+      ]
+    },
+    "l05/s21/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He is outside.",
+          "file": "81bd49e06cd54136a59461a7cc2b892f0c6e276af4a4c425d23d7d424d591b5c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81bd49e06cd54136a59461a7cc2b892f0c6e276af4a4c425d23d7d424d591b5c.mp3",
+          "contentHash": "c9ee4ab22ebda6782df251f83c531e0dd440ccb106592454ebcd71c13b1cfc72",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s21/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The pens are ours.",
+          "file": "f87287b8161a582ce9e03fc2dc19f4d67e65de184db3c5ee9748d547f30ff6be.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f87287b8161a582ce9e03fc2dc19f4d67e65de184db3c5ee9748d547f30ff6be.mp3",
+          "contentHash": "8c476482a21f5659a0fb7808f6fd12500ff5594a6e7dffe160aa685c876d305c",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s21/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She is inside.",
+          "file": "c60a530f30ed4cbc38eb200215229ca36f29c3f9a40ca5ab1f5a5f0702624ff4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c60a530f30ed4cbc38eb200215229ca36f29c3f9a40ca5ab1f5a5f0702624ff4.mp3",
+          "contentHash": "b5c5700f664683f08b86614a19215cd407fa901ab60ed15150fe9d36e52d0d8d",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s21/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "necklace",
+          "file": "978619c2303d7bbda4ffd58391823e67b8cf92a07adcd34978dafa6dde33abcf.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-onyx.mp3",
+          "contentHash": "867fd0864af97276893003340558346bee324a3ec630d52fa8be6292dcbd3788",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s21/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "necklace",
+          "file": "978619c2303d7bbda4ffd58391823e67b8cf92a07adcd34978dafa6dde33abcf.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-onyx.mp3",
+          "contentHash": "867fd0864af97276893003340558346bee324a3ec630d52fa8be6292dcbd3788",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s21/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "necklace",
+          "file": "cd8de44dbb6fccd9d1e0e5404e3aba37d12b0cef49db0d612d31887436f52fd4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-coral.mp3",
+          "contentHash": "5edc21eb132dbe746cd4517a5d597dec4f20650033467616fc0ac8339d2f43a2",
+          "byteSize": 28416
+        },
+        {
+          "text": "inside",
+          "file": "24111d62a2435c06207473ac8978b78dff8d2ad3e86b64563d4249a1d6ddf711.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/106b086224a4d945eae25f7b-coral.mp3",
+          "contentHash": "398440ec4932306d0bca343d86cef9bda907cf9879bf7110dee4e3d9f81250e2",
+          "byteSize": 26880
+        },
+        {
+          "text": "outside",
+          "file": "718d80642466d68e12d5ccf25b1406a21eb6b71bc0358f8a51989058e3be7f40.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/31207a2065f46a5b948fce6f-coral.mp3",
+          "contentHash": "282ac58eaaee6f1e04d06891c2670feed119c30e4a49d8419c7409b0c900e211",
+          "byteSize": 17280
+        },
+        {
+          "text": "upstairs",
+          "file": "a11d9e01ab70ea474efa10cdf3f842fa642e060aeba3304a8ec8c2e7a546f86e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ab5db4901670272a1c0d9f01-coral.mp3",
+          "contentHash": "a2bee9356eb1a1b85b8dd9c5c9069e46a15d2a987d28752b91f8d2f43b7db3f9",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s21/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The necklace is upstairs.",
+          "file": "841266f33135ca49e6ac25299ca79ac2985b8201aa6d4604ba7001da7e257c94.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/841266f33135ca49e6ac25299ca79ac2985b8201aa6d4604ba7001da7e257c94.mp3",
+          "contentHash": "315875632c6e9b82bf6bf48d76bfc3dfc1efd6b2966696a355825ebbaf13d0e3",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s21/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The pens are ours.",
+          "file": "140ae01d6f08cec9b0c50544bf8d01b9509eaa6b43f652043f4aa7e4ffb46c1b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/140ae01d6f08cec9b0c50544bf8d01b9509eaa6b43f652043f4aa7e4ffb46c1b.mp3",
+          "contentHash": "c788740343b75334b1a0c369e771d8bae1706e3073864e73774a59bafe2b7dea",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s21/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He is outside.",
+          "file": "dd4fbfc04153e7970be1316fcb1d427f76b886fe6cd6eb886a4bca95e0603a49.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd4fbfc04153e7970be1316fcb1d427f76b886fe6cd6eb886a4bca95e0603a49.mp3",
+          "contentHash": "60b291483aa4531c03418c41160acfd38110247f50d2a23d2fddaa22ca846ef7",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s21/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The necklace is hers.",
+          "file": "7c259a4f5927a0b98378d4556da8006805ddd5568ce5ed634861fea76e17c7c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c259a4f5927a0b98378d4556da8006805ddd5568ce5ed634861fea76e17c7c8.mp3",
+          "contentHash": "3c93970c269688fe66af4a915398640dbc07e09ae70c8c8502de36f2b501f9dc",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l05/s21/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The umbrella is yours.",
+          "file": "69bc258a769c5ee8c567ae41b2711113a11b4a4f0c365dc35ffe8a9ed5ef6cd9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/69bc258a769c5ee8c567ae41b2711113a11b4a4f0c365dc35ffe8a9ed5ef6cd9.mp3",
+          "contentHash": "2748e150477e35b222aeba2c916b1a54738a2dd903d21ca6129286c4f0fdd080",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s21/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "necklace",
+          "file": "a24d5c502beca94e3069e987e75d48855568c210964bfd25aed1d257131ebae3.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-nova.mp3",
+          "contentHash": "cf616f5275f2214b2c55f02c46039c7fbe5ae01daf652d45e99f213f2190321d",
+          "byteSize": 18816
+        },
+        {
+          "text": "pens",
+          "file": "a3be15bc931d81de479033b3f9f7d86ad77b884975f96bf5d40fad1ea5528ad0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a3be15bc931d81de479033b3f9f7d86ad77b884975f96bf5d40fad1ea5528ad0.mp3",
+          "contentHash": "02c76891fdea9d045067c609de39d53a63c85d0b03a548c3c495e4c1824cfaef",
+          "byteSize": 28416
+        },
+        {
+          "text": "juice",
+          "file": "e20d3198af5ee7b61eb6719b48cb76403b8b4f7d326d7993be98fb3c06a1a7d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e20d3198af5ee7b61eb6719b48cb76403b8b4f7d326d7993be98fb3c06a1a7d2.mp3",
+          "contentHash": "b89522ede47d88b3e5ca09b1c0827e7bad7795dce6c4e879afeb114c95b23c05",
+          "byteSize": 16512
+        },
+        {
+          "text": "umbrella",
+          "file": "9b298240d78c6d9d10e7e2fd7a46821e87c6b897ada231d3e9ebb2fbbd15391f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-nova.mp3",
+          "contentHash": "54c1fa8e7d4611b9a58445191aa6e51317a09c1f6063e63e1efeeef81e703f7c",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s21/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is my necklace?",
+          "file": "4f0457d78485a8d52e4ccca1cc2edf93cd3097f0cfe8923b18c634e5b5fe7c5a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f0457d78485a8d52e4ccca1cc2edf93cd3097f0cfe8923b18c634e5b5fe7c5a.mp3",
+          "contentHash": "3158cae8be39a4801aa2b1048cd981a21545311be3e60b6d8bd3e514af25cfb9",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s21/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is no juice.",
+          "file": "65076a4eaf086e3ad19505169310f68c4da713092cc63233846ade5104b41ac4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/65076a4eaf086e3ad19505169310f68c4da713092cc63233846ade5104b41ac4.mp3",
+          "contentHash": "7231b517288da71d297ad378e45eb3a7dfbb7012b73365185ff4e69b79447ca0",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s21/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I have your necklace.",
+          "file": "5c29ae1c9b55e3cc88145a5cf1c0687f61fd3a8b51c121a371752c281cd6ad1a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c29ae1c9b55e3cc88145a5cf1c0687f61fd3a8b51c121a371752c281cd6ad1a.mp3",
+          "contentHash": "92a70ece9b649430cba170a446e563eba5facfc4e0548a846567538935aa7159",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s21/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The pens are in the box.",
+          "file": "50ee760e5f8dfaf083fb230de66a4764137b2626a24e23a5d4e3a501aeead381.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50ee760e5f8dfaf083fb230de66a4764137b2626a24e23a5d4e3a501aeead381.mp3",
+          "contentHash": "914e698a35cd2bee21a2899607962130cce47de8b86c613d1a9139583061b545",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s21/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Her necklace is here.",
+          "file": "470c961b4ac713bd00bc046e62e9683160d106d0e2006055a3f156289ec98acb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/470c961b4ac713bd00bc046e62e9683160d106d0e2006055a3f156289ec98acb.mp3",
+          "contentHash": "95fc522ff2b0b47c198f34593db707da770df258e9079a894d5559a5cb148fe8",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s21/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "necklace",
+          "file": "978619c2303d7bbda4ffd58391823e67b8cf92a07adcd34978dafa6dde33abcf.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-onyx.mp3",
+          "contentHash": "867fd0864af97276893003340558346bee324a3ec630d52fa8be6292dcbd3788",
+          "byteSize": 23040
+        },
+        {
+          "text": "pens",
+          "file": "8661593793dda2e70f3f2d36a0526e3099d2b09263c7b236529653dcc93839a0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8661593793dda2e70f3f2d36a0526e3099d2b09263c7b236529653dcc93839a0.mp3",
+          "contentHash": "34dc3cba8e6095c410d21e5cea00cc473037cb78f617a40a96f68fe62f8ec108",
+          "byteSize": 24576
+        },
+        {
+          "text": "juice",
+          "file": "f602f5092d9c40b4df4be67ebde5603d9111639bcdaa9d45328ab49e76e342c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f602f5092d9c40b4df4be67ebde5603d9111639bcdaa9d45328ab49e76e342c6.mp3",
+          "contentHash": "42f330ada1b9a2526a2b4f1e5b54f5b4161d36b9ac994dea7a1b88b1dcebbea3",
+          "byteSize": 16512
+        },
+        {
+          "text": "umbrella",
+          "file": "303c74968e6fbd7faf0bda5a2d4bc975f75c577527c05ef5f0e12eee7cdc3a9e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-onyx.mp3",
+          "contentHash": "8fa010d2a1ff65eb4a37a0c6a9d8b34bc6e87799b7eed27000ac9cefb3759a20",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s21/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The necklace is mine.",
+          "file": "8f41170f966f353626d264e29e096d3b37b5ea0ae82091b224955ae9271b9155.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8f41170f966f353626d264e29e096d3b37b5ea0ae82091b224955ae9271b9155.mp3",
+          "contentHash": "8817f15262020e7e5896eba17f95754678c0891adc1ede97a9411dfc35725e88",
+          "byteSize": 46080
+        }
+      ]
     }
   },
   "settings": {

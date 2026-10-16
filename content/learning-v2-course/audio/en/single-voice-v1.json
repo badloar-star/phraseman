@@ -74401,6 +74401,309 @@
           "byteSize": 46080
         }
       ]
+    },
+    "l05/s22/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The boots are mine.",
+          "file": "64e08f733fcee950840a3bea914919a387a27ef488c4eddf4302f30938241ecb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/64e08f733fcee950840a3bea914919a387a27ef488c4eddf4302f30938241ecb.mp3",
+          "contentHash": "5b1c7785d823ebad5f873bbe5ef558f1bccf2808ede02b97913c722ed5a4f45c",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s22/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They are famous.",
+          "file": "b3b462567670d2c32004738251ae3ffc38274aec57ee7dd43efe415872925db9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3b462567670d2c32004738251ae3ffc38274aec57ee7dd43efe415872925db9.mp3",
+          "contentHash": "1fd5dcaa6178b6a696fbfd4f0247a400d9738ef2319fc7be8f3f8fd76c3ef959",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s22/intro/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The suitcase is hers.",
+          "file": "907dbc7cd5299af8eb0adee623a3c9f02829bfa20f8777e74ea57f4e28edc91d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/907dbc7cd5299af8eb0adee623a3c9f02829bfa20f8777e74ea57f4e28edc91d.mp3",
+          "contentHash": "1551650e9382c7d3f64e511191adb6fd2f06607105517ef71c09f122b2575d7b",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s22/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They are famous.",
+          "file": "11191070ed96d097e77d8ec375c4fdbfaf87d04053f305d5ed43170d4ad6d42e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11191070ed96d097e77d8ec375c4fdbfaf87d04053f305d5ed43170d4ad6d42e.mp3",
+          "contentHash": "31f473babd3162f142d3eaf635a7e2a970285f0e53fd94988580e8a4a4a20db5",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s22/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "boots",
+          "file": "10be55c25103a4d05a2250f13a8d00d84ef3995c82261140c37f732f086327ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/10be55c25103a4d05a2250f13a8d00d84ef3995c82261140c37f732f086327ec.mp3",
+          "contentHash": "1cbd6d04a2dfbf3dd9fc2e51fa68ffb8af10194a896c48a7a32f229f4ec7c220",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s22/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "boots",
+          "file": "adb2b3dcf86a7f0000c6e7ef75c6635d4a894fa8fa5d19b89fc1576f56c59d3f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/adb2b3dcf86a7f0000c6e7ef75c6635d4a894fa8fa5d19b89fc1576f56c59d3f.mp3",
+          "contentHash": "0093c19493a17e5ab9f81b2976a954da856d6657892edf67111ec0cdaff20941",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s22/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "boots",
+          "file": "bdc3adcd3dea6c5c21494ecb685d2fa708bf1feeee923809372a29be6fa20349.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bdc3adcd3dea6c5c21494ecb685d2fa708bf1feeee923809372a29be6fa20349.mp3",
+          "contentHash": "2baf44ff746f45cb222154881907cbf85f748c4840af28faa7f9d65cebac7459",
+          "byteSize": 13440
+        },
+        {
+          "text": "rich",
+          "file": "81ac3065d5d47abf51a26c3cb8f329e19222286f2625bc07d24065b8ffac5dd4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/7baa68f2418ba82d2545a780-nova.mp3",
+          "contentHash": "1f43f15ba32fc057e0db2e4af07d9f29638bb61518296aa4006b4d52b9733bed",
+          "byteSize": 21888
+        },
+        {
+          "text": "poor",
+          "file": "7f3e025bdef155968a952730813c3e9fc10cefa7894c5575d31ad721e6517acb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7f3e025bdef155968a952730813c3e9fc10cefa7894c5575d31ad721e6517acb.mp3",
+          "contentHash": "f0ee36078a7aee8a64bb447ed62d23516f03017643ac24e523b94629c9726a54",
+          "byteSize": 26880
+        },
+        {
+          "text": "famous",
+          "file": "55ef224667e7f425f7c6c445f6a79a53015fa75d5c5ef518262ee534b0bba73a.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/79b1bc81314de30fec0e2a48-nova.mp3",
+          "contentHash": "251c439355d2f2fc597329eb22fa2a9fd5100374b33636350efe966bdd1933c7",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s22/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My boots are next to your suitcase.",
+          "file": "ac6417a32691ef12d331fd8a374fbcd8c1d7c0baad94ad14d922ad8d8fdfd519.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ac6417a32691ef12d331fd8a374fbcd8c1d7c0baad94ad14d922ad8d8fdfd519.mp3",
+          "contentHash": "c7801e401bd5553ebd6c3220935c635be2593549cfa851fbef16f2467f682403",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s22/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The cups are ours.",
+          "file": "5d2473f4dc7ef079f46af4cc59cde368981a4e8eaf1538f1c7cd2faeb2298fa5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d2473f4dc7ef079f46af4cc59cde368981a4e8eaf1538f1c7cd2faeb2298fa5.mp3",
+          "contentHash": "606627f60cc9511776a6b81d81485b5631fcce98e209469e14566c44322b22ba",
+          "byteSize": 59520
+        }
+      ]
+    },
+    "l05/s22/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They are rich.",
+          "file": "7c407a4b53d1078c22fd6d1f28c2d1d2af3df4411fae27cdae82f1bcdcb29786.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c407a4b53d1078c22fd6d1f28c2d1d2af3df4411fae27cdae82f1bcdcb29786.mp3",
+          "contentHash": "5455565d1e4b6115944426ad420fc416716013f48fcf1b885cf65eca6bb55ed6",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s22/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The suitcase is hers.",
+          "file": "907dbc7cd5299af8eb0adee623a3c9f02829bfa20f8777e74ea57f4e28edc91d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/907dbc7cd5299af8eb0adee623a3c9f02829bfa20f8777e74ea57f4e28edc91d.mp3",
+          "contentHash": "1551650e9382c7d3f64e511191adb6fd2f06607105517ef71c09f122b2575d7b",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s22/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They are poor.",
+          "file": "a487d534e77cf419742617f2f88108cbe6ff73fe9bb31a5591bb0a38880dde33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a487d534e77cf419742617f2f88108cbe6ff73fe9bb31a5591bb0a38880dde33.mp3",
+          "contentHash": "2ffe941c4989810b8c59ca050b029487d9dd7a3623e35d61faf58d72b3ced7bf",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s22/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "boots",
+          "file": "adb2b3dcf86a7f0000c6e7ef75c6635d4a894fa8fa5d19b89fc1576f56c59d3f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/adb2b3dcf86a7f0000c6e7ef75c6635d4a894fa8fa5d19b89fc1576f56c59d3f.mp3",
+          "contentHash": "0093c19493a17e5ab9f81b2976a954da856d6657892edf67111ec0cdaff20941",
+          "byteSize": 19584
+        },
+        {
+          "text": "cups",
+          "file": "a80e1c187cdce21e9fcf209db6a9954c8b17cc223c97ed0e6e7f9bbb4ded13ee.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a80e1c187cdce21e9fcf209db6a9954c8b17cc223c97ed0e6e7f9bbb4ded13ee.mp3",
+          "contentHash": "d8261dcf6768cffcf1cc9381a3bcf3de19d9e33dcd7958427705e77317d499cc",
+          "byteSize": 23040
+        },
+        {
+          "text": "carrot",
+          "file": "5e19d051f3aa33c27ab7b723ae8a61bc0507d2e820e73b6ccdb6e1b40815aea2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5e19d051f3aa33c27ab7b723ae8a61bc0507d2e820e73b6ccdb6e1b40815aea2.mp3",
+          "contentHash": "273d896baf4936b17e56377508d9832d842d33bc07572f0cf8bdd38c1a2abf44",
+          "byteSize": 16512
+        },
+        {
+          "text": "suitcase",
+          "file": "d098897c89a6d32d2dbf8aca72222bcc783a80b0e187778b9a43855edd6a032a.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/9817a64167e5ea6c638fedbd-coral.mp3",
+          "contentHash": "436cee9e22193254f7be07f05586922ed13f8cf9ce064dc81d042b1e91abf8c8",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s22/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where are my boots?",
+          "file": "f4a88496fd991b505796962e599042d44d6748c719f81aa7ee956c0c63717b67.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f4a88496fd991b505796962e599042d44d6748c719f81aa7ee956c0c63717b67.mp3",
+          "contentHash": "467ef20d96903d55e863873a5dd7566b6dd6fd498a9141d5c15561b6cbd4b10f",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s22/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The carrot is his.",
+          "file": "e9976d10e564e54a8193eb54627536ffa2e58665187479aff248013977e8c5ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e9976d10e564e54a8193eb54627536ffa2e58665187479aff248013977e8c5ad.mp3",
+          "contentHash": "48de26137926bc490bcb605f3ff4c2fd67e01612c54e4dd974762445d1a8328f",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s22/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I have your boots.",
+          "file": "06d11e621569277691c3c05846fc80e38956fbe8042001b479febc323e0fae16.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/06d11e621569277691c3c05846fc80e38956fbe8042001b479febc323e0fae16.mp3",
+          "contentHash": "00aad35456d29ff411074c6781a5ba4e30955ff0d5a40ac7edf07ae56948cb85",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l05/s22/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There are no cups.",
+          "file": "9b5db83ba584dcee8d3c9afd4f80bff877a0d4e33e8a6b3a32e5197477b1e77d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9b5db83ba584dcee8d3c9afd4f80bff877a0d4e33e8a6b3a32e5197477b1e77d.mp3",
+          "contentHash": "9fb09f6c6f405366700cf6d5b83e9ef7937c5669ae4b96f4391ba776cbf7aa44",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s22/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The boots are yours.",
+          "file": "2b7d885aab12030764b79f65a1af0a429a7d5ef21775c1977959655561ce12b2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2b7d885aab12030764b79f65a1af0a429a7d5ef21775c1977959655561ce12b2.mp3",
+          "contentHash": "141ed6d112c65dc847b1d7348487176c655b2aeca5af3c85ffce5b463e39812b",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l05/s22/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "boots",
+          "file": "10be55c25103a4d05a2250f13a8d00d84ef3995c82261140c37f732f086327ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/10be55c25103a4d05a2250f13a8d00d84ef3995c82261140c37f732f086327ec.mp3",
+          "contentHash": "1cbd6d04a2dfbf3dd9fc2e51fa68ffb8af10194a896c48a7a32f229f4ec7c220",
+          "byteSize": 33792
+        },
+        {
+          "text": "cups",
+          "file": "7b1bf8b9ffc458229df3c38d1c833467cbc70512937118c3cae2326cff19a9e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b1bf8b9ffc458229df3c38d1c833467cbc70512937118c3cae2326cff19a9e1.mp3",
+          "contentHash": "633a7baee0500dbeb21cccf4babc5b32e528f845f6d2b925f146725b41759633",
+          "byteSize": 17280
+        },
+        {
+          "text": "carrot",
+          "file": "f690da55b6a2dec1b8322186aaedeb04a0d4e290bcee8efc28dbcbdd00ef8b7a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f690da55b6a2dec1b8322186aaedeb04a0d4e290bcee8efc28dbcbdd00ef8b7a.mp3",
+          "contentHash": "37ffaba20be49890948d323faca4f6520683e8d6493646caf74bae3af3411b18",
+          "byteSize": 21120
+        },
+        {
+          "text": "suitcase",
+          "file": "095abcda487ac275804cb75b0ece737dcfbc85a56ed17fd890db9e3e73d2511b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/9817a64167e5ea6c638fedbd-onyx.mp3",
+          "contentHash": "00235eb0b3b939e53615f1c552343d3e9dea5be5328bc3c5c8dcb74d9ff4a4ee",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l05/s22/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The boots are mine.",
+          "file": "2c484b4f3786b9a43df40b8a4ecbd54c3435688f37e39b4c16a140107b6f3066.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2c484b4f3786b9a43df40b8a4ecbd54c3435688f37e39b4c16a140107b6f3066.mp3",
+          "contentHash": "25424d15853ac12561cc811a457ef14dc9a7c6259f490177a56fb3f7a2fa6610",
+          "byteSize": 43008
+        }
+      ]
     }
   },
   "settings": {

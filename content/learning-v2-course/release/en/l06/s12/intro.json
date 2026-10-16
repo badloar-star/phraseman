@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о рисовании красками и уточнить, кому принадлежат вещи",
+    "uk": "розповісти про малювання фарбами й уточнити, кому належать речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рисовать красками",
+        "uk": "Малювати фарбами"
+      },
+      "bodyByLocale": {
+        "ru": "`paint` — «рисовать красками», а ещё «красить». `I paint at home` — «Я рисую красками дома». `We paint here` — «Мы рисуем красками здесь». Карандашом тоже можно нарисовать прекрасный портрет, но для `paint` понадобятся краски. Желательно на бумаге, а не только на рукавах.",
+        "uk": "`paint` — «малювати фарбами», а ще «фарбувати». `I paint at home` — «Я малюю фарбами вдома». `We paint here` — «Ми малюємо фарбами тут». Олівцем теж можна намалювати чудовий портрет, але для `paint` знадобляться фарби. Бажано на папері, а не лише на рукавах."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я рисую красками дома».",
+          "uk": "Скажіть «Я малюю фарбами вдома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-12:intro1:r1",
+              "text": "I paint at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro1:r2",
+              "text": "I am paint at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro1:r3",
+              "text": "I paints at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-12:intro1:r1",
+              "text": "I paint at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro1:r2",
+              "text": "I am paint at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro1:r3",
+              "text": "I paints at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я рисую красками дома».",
+          "uk": "Скажіть «Я малюю фарбами вдома»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Личная тетрадь",
+        "uk": "Особистий зошит"
+      },
+      "bodyByLocale": {
+        "ru": "`notebook` — «тетрадь», `private` — «личный», не для посторонних. `This notebook is private` — «Эта тетрадь личная»: записи в ней не предназначены для чужих глаз. Это не просто «моя»: чужая тетрадь тоже может быть личной. `Whose notebook is this?` — «Чья это тетрадь?»",
+        "uk": "`notebook` — «зошит», `private` — «особистий», не для сторонніх. `This notebook is private` — «Цей зошит особистий»: записи в ньому не призначені для чужих очей. Це не просто «мій»: чужий зошит теж може бути особистим. `Whose notebook is this?` — «Чий це зошит?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Эта тетрадь личная».",
+          "uk": "Скажіть «Цей зошит особистий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-12:intro2:r1",
+              "text": "This notebook is private."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro2:r2",
+              "text": "This notebook are private."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro2:r3",
+              "text": "This notebook is empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-12:intro2:r1",
+              "text": "This notebook is private."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro2:r2",
+              "text": "This notebook are private."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro2:r3",
+              "text": "This notebook is empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Эта тетрадь личная».",
+          "uk": "Скажіть «Цей зошит особистий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "По дороге в мастерскую",
+        "uk": "Дорогою до майстерні"
+      },
+      "bodyByLocale": {
+        "ru": "`platform` — «платформа», здесь железнодорожная. `receipt` — «чек». `They are on the platform` — «Они на платформе»: место, поэтому нужно `are`. `They paint at home` — «Они рисуют красками дома»: действие, без `are`. `That receipt is yours` — «Тот чек твой».",
+        "uk": "`platform` — «платформа», тут залізнична. `receipt` — «чек». `They are on the platform` — «Вони на платформі»: місце, тому потрібно `are`. `They paint at home` — «Вони малюють фарбами вдома»: дія, без `are`. `That receipt is yours` — «Той чек твій»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Они рисуют красками дома».",
+          "uk": "Скажіть «Вони малюють фарбами вдома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-12:intro3:r1",
+              "text": "They paint at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro3:r2",
+              "text": "They paints at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro3:r3",
+              "text": "They are paint at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-12:intro3:r1",
+              "text": "They paint at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro3:r2",
+              "text": "They paints at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-12:intro3:r3",
+              "text": "They are paint at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Они рисуют красками дома».",
+          "uk": "Скажіть «Вони малюють фарбами вдома»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e21ba406f31b78dde1bfee7f7dc4e628135f8f42366f1966a6617af157c5d364"
+}

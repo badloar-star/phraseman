@@ -79552,6 +79552,309 @@
           "byteSize": 35712
         }
       ]
+    },
+    "l05/s39/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose violin is this?",
+          "file": "0173e8971c9279c17d6f248be250b423092dbdcb213407679417a0b7e60fec68.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0173e8971c9279c17d6f248be250b423092dbdcb213407679417a0b7e60fec68.mp3",
+          "contentHash": "2764560dd23eb75c7cbc05d3ffc0f2697ad19565610c075555bc1897614cd12e",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s39/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose bottles are these?",
+          "file": "1078d178dfba825733fe91548c69c3703d4e22d9d83a011c374e84f89503711e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1078d178dfba825733fe91548c69c3703d4e22d9d83a011c374e84f89503711e.mp3",
+          "contentHash": "2bf1bc3e5f554bc6bcb499e4641a25f7a93fe069bdaac77e3c29e1103f3abee4",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s39/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "You are brave.",
+          "file": "afb7e6769fcbff001426424cb8d37e8da774a86be387ffe848c9cf2590929b02.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/afb7e6769fcbff001426424cb8d37e8da774a86be387ffe848c9cf2590929b02.mp3",
+          "contentHash": "1249fdc58aa29f400aff859ea7a5457655d650649da1f17eb49631da1d7b0aaa",
+          "byteSize": 62592
+        }
+      ]
+    },
+    "l05/s39/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "You are brave.",
+          "file": "feb2a8e215d2afd5b618493049f5c74f6706ee01ae2c9a7699e6d8f7a3bc5324.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/feb2a8e215d2afd5b618493049f5c74f6706ee01ae2c9a7699e6d8f7a3bc5324.mp3",
+          "contentHash": "da5eec7ae9436e1276a0ad3012413f76ef72164002482f9ca2917220463add3d",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s39/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "violin",
+          "file": "d06efec17321e41b557a4c796d5fb2f069d761e3e32f26501b867b88fe65c65a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d06efec17321e41b557a4c796d5fb2f069d761e3e32f26501b867b88fe65c65a.mp3",
+          "contentHash": "99c19635b06dd5765137df20cbcc9118a3fa4c0d729d66b7dbe38de817a7a5f0",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s39/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "violin",
+          "file": "6fb70b268d1fac838b1c4b92a4a5c491d23162b2193b820ca7296338d4a33ecf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6fb70b268d1fac838b1c4b92a4a5c491d23162b2193b820ca7296338d4a33ecf.mp3",
+          "contentHash": "4e388114000dfc502ca1c75508e5eb7aa68f51f6a0b5f1b3ebada2626128b6cf",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s39/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "violin",
+          "file": "4b5fbf862f8d6d73c5af3baaf60c54835102e19d6afbda829ba6d3b0632fa35a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b5fbf862f8d6d73c5af3baaf60c54835102e19d6afbda829ba6d3b0632fa35a.mp3",
+          "contentHash": "0f1a81161ede35093bf75b5460f38387eedb3f89f1b571542efb069ae94197d0",
+          "byteSize": 16512
+        },
+        {
+          "text": "guitar",
+          "file": "0fc3009663d7d1d58295e41e0186f1d217bbcf5c974ecd67c58838e7d5a705f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0fc3009663d7d1d58295e41e0186f1d217bbcf5c974ecd67c58838e7d5a705f3.mp3",
+          "contentHash": "b3766e12c86fb84addf49c0cb9a884201803db2ee9c0786c1124e41484373ace",
+          "byteSize": 20352
+        },
+        {
+          "text": "bottles",
+          "file": "e2cf730a53144d00b4abf639da367bac4a8bb7f25b763e4dc765668a5c3b5204.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e2cf730a53144d00b4abf639da367bac4a8bb7f25b763e4dc765668a5c3b5204.mp3",
+          "contentHash": "cb7662e9a0a11b2b22139e8e420cb3cc73a9836b17f34499f32e4f10ac8a49d0",
+          "byteSize": 19584
+        },
+        {
+          "text": "boiler",
+          "file": "770f198ff6272e99861d3c3ed4af5fa871e85ec5300f38290fa6b52e9053707c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/770f198ff6272e99861d3c3ed4af5fa871e85ec5300f38290fa6b52e9053707c.mp3",
+          "contentHash": "3054c0de39c8d371c46c1d69d55586a67f57b3a0d647f28bf0f0a0c5e71b976e",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l05/s39/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose violin is this?",
+          "file": "904c0d5d6910bae04c941ec62885ab6206585167506378ae4b24422cbf6f2852.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/904c0d5d6910bae04c941ec62885ab6206585167506378ae4b24422cbf6f2852.mp3",
+          "contentHash": "8eef85fa7e90409f98fcbb0e59cd8fe6f3d24cd1d6758489454504ab02211038",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s39/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose guitar is this?",
+          "file": "3abb60e72e8131ca52ab21944774e51e1c154f237d54782f0386ddb3526b9757.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3abb60e72e8131ca52ab21944774e51e1c154f237d54782f0386ddb3526b9757.mp3",
+          "contentHash": "60b4a2300dfcc3cee2f8bc38b334ad22c37b75b8e6df1e56a9714d2209f66074",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s39/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The violin is hers.",
+          "file": "a48c64f321515f3280a5e0462c71b6b4d3b2a8b491231fe7b1f34f864066c46f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a48c64f321515f3280a5e0462c71b6b4d3b2a8b491231fe7b1f34f864066c46f.mp3",
+          "contentHash": "f16c94d23c9f0e9c4b7613d19e69aedd447f1f30097aeabfc151caecb052d79e",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s39/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose bottles are these?",
+          "file": "3cbafcfb6d0194b361f743c7166344af2cffba61cfca8a60fb05e67481aff209.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3cbafcfb6d0194b361f743c7166344af2cffba61cfca8a60fb05e67481aff209.mp3",
+          "contentHash": "bbeec067e910fc5358b8f660b1c587183215815be99ef8132e7c673143e3eafd",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s39/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Tom's violin.",
+          "file": "2fd4729d964bc65ad36eb2083e44e88e9376a2b947aa7c85d86aa63b0119ba38.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2fd4729d964bc65ad36eb2083e44e88e9376a2b947aa7c85d86aa63b0119ba38.mp3",
+          "contentHash": "a2b04f765feb42e8c0d390bd316a4bc845a0f6f6e07c18926f9cfed2cee467f6",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s39/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "violin",
+          "file": "fd0ce3e356bfaff792e75749dd141b9b5df18aae58a6b51aa2ff71ee4b8f33c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd0ce3e356bfaff792e75749dd141b9b5df18aae58a6b51aa2ff71ee4b8f33c8.mp3",
+          "contentHash": "b06e7d9f9a0a27a8e261cdbe2515a314348e331d06ddde6e27504956c465ea83",
+          "byteSize": 33792
+        },
+        {
+          "text": "brave",
+          "file": "62b7acbc605492b2eac777342296573c2892dfdd57b1693bb2fc488b1b7e5753.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a1bb216b2bbb7eb30b25960e-ash.mp3",
+          "contentHash": "1b27850c783f8c8dd51b1371d3fa6a705f5961e0179f645c0d766e67c70012b2",
+          "byteSize": 22656
+        },
+        {
+          "text": "boiler",
+          "file": "ab0252d0131df4387c00645c80c272d3c7d96fc3abee78e53a0a8c8f3d3f035c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab0252d0131df4387c00645c80c272d3c7d96fc3abee78e53a0a8c8f3d3f035c.mp3",
+          "contentHash": "55cbe02e9bb74f72c5119a3bf1c3bbc9970fe59e76d894ee90d5cf603f57d7b5",
+          "byteSize": 22656
+        },
+        {
+          "text": "bottles",
+          "file": "ce80f7940d6b5a49c45cd7dbef5e2a344b74acaac73c4dc3332f9389890fb3f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce80f7940d6b5a49c45cd7dbef5e2a344b74acaac73c4dc3332f9389890fb3f0.mp3",
+          "contentHash": "5ee0888554b28b0347ce741d8784b73d78e3c83f3499adc26894109c68bb687b",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s39/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The boiler is in the kitchen.",
+          "file": "c9571ed20441c263d44caa07f30dddc6be28a715896d50884976388bd9ec21f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c9571ed20441c263d44caa07f30dddc6be28a715896d50884976388bd9ec21f9.mp3",
+          "contentHash": "f983fa603106608f95f116df1a447002f89b58211aa5d95c21a16383253a4887",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s39/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bottles are ours.",
+          "file": "04561bde73433c72917bf631ee7727e910540df035e8f26e606f7f53c34df90d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/04561bde73433c72917bf631ee7727e910540df035e8f26e606f7f53c34df90d.mp3",
+          "contentHash": "08bbe9722036b38ae72973930cfadd789d286c228bc061c56982827ed3d18853",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s39/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your guitar.",
+          "file": "b0dd6310d396dd3a024a805da2899b84ef0bd99cc43a964b47ddae57392f4c28.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0dd6310d396dd3a024a805da2899b84ef0bd99cc43a964b47ddae57392f4c28.mp3",
+          "contentHash": "22755ee7a513e5c03306c844b8b78fda422fe6cb9a5205455c8f088d682dd3cc",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s39/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose violin is this?",
+          "file": "904c0d5d6910bae04c941ec62885ab6206585167506378ae4b24422cbf6f2852.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/904c0d5d6910bae04c941ec62885ab6206585167506378ae4b24422cbf6f2852.mp3",
+          "contentHash": "8eef85fa7e90409f98fcbb0e59cd8fe6f3d24cd1d6758489454504ab02211038",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s39/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "My violin is here.",
+          "file": "f0214c0895e54cca1533cc8e1332d2258a163280be838582148db3c11cbc86ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f0214c0895e54cca1533cc8e1332d2258a163280be838582148db3c11cbc86ae.mp3",
+          "contentHash": "f6f5f81bf878b96b28408255babd5c2ad53112b6520a458f3bb08ab5963204bd",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s39/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "violin",
+          "file": "4b5fbf862f8d6d73c5af3baaf60c54835102e19d6afbda829ba6d3b0632fa35a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b5fbf862f8d6d73c5af3baaf60c54835102e19d6afbda829ba6d3b0632fa35a.mp3",
+          "contentHash": "0f1a81161ede35093bf75b5460f38387eedb3f89f1b571542efb069ae94197d0",
+          "byteSize": 16512
+        },
+        {
+          "text": "brave",
+          "file": "b8f17cdc4b97de3e5dca28f5c0e106c103b5b53e6645c0e1d7c900466f82e6ef.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a1bb216b2bbb7eb30b25960e-nova.mp3",
+          "contentHash": "b43e8cac177ac84a817ea3f56fecdb4059cf1d87efb603873a133ac2842cb2a2",
+          "byteSize": 29184
+        },
+        {
+          "text": "guitar",
+          "file": "0fc3009663d7d1d58295e41e0186f1d217bbcf5c974ecd67c58838e7d5a705f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0fc3009663d7d1d58295e41e0186f1d217bbcf5c974ecd67c58838e7d5a705f3.mp3",
+          "contentHash": "b3766e12c86fb84addf49c0cb9a884201803db2ee9c0786c1124e41484373ace",
+          "byteSize": 20352
+        },
+        {
+          "text": "bottles",
+          "file": "e2cf730a53144d00b4abf639da367bac4a8bb7f25b763e4dc765668a5c3b5204.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e2cf730a53144d00b4abf639da367bac4a8bb7f25b763e4dc765668a5c3b5204.mp3",
+          "contentHash": "cb7662e9a0a11b2b22139e8e420cb3cc73a9836b17f34499f32e4f10ac8a49d0",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s39/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose bottles are these?",
+          "file": "3cbafcfb6d0194b361f743c7166344af2cffba61cfca8a60fb05e67481aff209.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3cbafcfb6d0194b361f743c7166344af2cffba61cfca8a60fb05e67481aff209.mp3",
+          "contentHash": "bbeec067e910fc5358b8f660b1c587183215815be99ef8132e7c673143e3eafd",
+          "byteSize": 37248
+        }
+      ]
     }
   },
   "settings": {

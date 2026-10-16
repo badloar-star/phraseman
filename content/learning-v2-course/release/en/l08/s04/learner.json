@@ -1,0 +1,943 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я умею держать равновесие»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я умею держать равновесие»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can balance.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я умею держать равновесие»",
+          "uk": "Скажіть «Я вмію тримати рівновагу»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "balance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-04:i02:r1",
+          "text": "balance"
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i02:r2",
+          "text": "ski"
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i02:r3",
+          "text": "type"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-04:i02:audio",
+          "transcript": "balance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-04:i02:r1",
+            "targetText": "balance",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i02:r2",
+            "targetText": "ski",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i02:r3",
+            "targetText": "type",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `balance`, а в этом варианте — `ski`.",
+              "uk": "У записі перше слово — `balance`, а в цьому варіанті — `ski`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `balance`, а в этом варианте — `type`.",
+              "uk": "У записі перше слово — `balance`, а в цьому варіанті — `type`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я умею держать равновесие»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-04:i03:r1",
+          "text": "balance"
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i03:r2",
+          "text": "to balance"
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i03:r3",
+          "text": "balances"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я умею держать равновесие»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я умею держать равновесие»",
+          "uk": "Скажіть «Я вмію тримати рівновагу»"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-04:i03:r1",
+            "text": "balance"
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i03:r2",
+            "text": "to balance"
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i03:r3",
+            "text": "balances"
+          }
+        ],
+        "testedDimension": "Скажите «Я умею держать равновесие»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я умею держать равновесие»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `balance`, без `to`.",
+              "uk": "Після `can` потрібне `balance`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я умею держать равновесие»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `balance`, без `s`.",
+              "uk": "Після `can` потрібне `balance`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-04:i04:p1",
+            "target": "balance",
+            "meaningByLocale": {
+              "ru": "держать равновесие",
+              "uk": "тримати рівновагу"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-04:i04:p2",
+            "target": "post office",
+            "meaningByLocale": {
+              "ru": "почта",
+              "uk": "пошта"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-04:i04:p3",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-04:i04:p4",
+            "target": "glasses",
+            "meaningByLocale": {
+              "ru": "очки",
+              "uk": "окуляри"
+            }
+          }
+        ],
+        "leftColumn": [
+          "balance",
+          "post office",
+          "receipt",
+          "glasses"
+        ],
+        "rightColumn": [
+          "держать равновесие",
+          "почта",
+          "чек",
+          "очки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-04:i05:audio",
+          "transcript": "I can balance."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can balance.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "balance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о знакомой «Она умеет кататься на лыжах»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о знакомой «Она умеет кататься на лыжах»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can ski.",
+        "localizedMeaning": {
+          "ru": "Скажите о знакомой «Она умеет кататься на лыжах»",
+          "uk": "Скажіть про знайому «Вона вміє кататися на лижах»"
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "ski"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите коллег «Чьи это очки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите коллег «Чьи это очки?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-04:i07:audio",
+          "transcript": "Whose glasses are these?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose glasses are these?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она умеет кататься на лыжах»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-04:i08:r1",
+          "text": "ski"
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i08:r2",
+          "text": "skis"
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i08:r3",
+          "text": "to ski"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она умеет кататься на лыжах»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет кататься на лыжах»",
+          "uk": "Скажіть «Вона вміє кататися на лижах»"
+        },
+        "gappedTargetPhrase": "She can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-04:i08:r1",
+            "text": "ski"
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i08:r2",
+            "text": "skis"
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i08:r3",
+            "text": "to ski"
+          }
+        ],
+        "testedDimension": "Скажите «Она умеет кататься на лыжах»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет кататься на лыжах»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `ski`, без `s`.",
+              "uk": "Після `can` потрібне `ski`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет кататься на лыжах»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `ski`, без `to`.",
+              "uk": "Після `can` потрібне `ski`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-04:i09:r1",
+          "text": "I can balance."
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i09:r2",
+          "text": "I can ski."
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i09:r3",
+          "text": "I can type."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-04:i09:audio",
+          "transcript": "I can balance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-04:i09:r1",
+            "targetText": "I can balance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i09:r2",
+            "targetText": "I can ski.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i09:r3",
+            "targetText": "I can type.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `balance`, а в этом варианте — `ski`.",
+              "uk": "У записі останнє слово — `balance`, а в цьому варіанті — `ski`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `balance`, а в этом варианте — `type`.",
+              "uk": "У записі останнє слово — `balance`, а в цьому варіанті — `type`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-04:i10:p1",
+            "target": "ski",
+            "meaningByLocale": {
+              "ru": "кататься на лыжах",
+              "uk": "кататися на лижах"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-04:i10:p2",
+            "target": "balance",
+            "meaningByLocale": {
+              "ru": "держать равновесие",
+              "uk": "тримати рівновагу"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-04:i10:p3",
+            "target": "post office",
+            "meaningByLocale": {
+              "ru": "почта",
+              "uk": "пошта"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-04:i10:p4",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ski",
+          "balance",
+          "post office",
+          "receipt"
+        ],
+        "rightColumn": [
+          "кататься на лыжах",
+          "держать равновесие",
+          "почта",
+          "чек"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-04:i11:audio",
+          "transcript": "Whose glasses are these?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose glasses are these?",
+        "orderedTokens": [
+          "Whose",
+          "glasses",
+          "are",
+          "these"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На общем столе лежит чек. Спросите коллег «Чей это чек?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На общем столе лежит чек. Спросите коллег «Чей это чек?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose receipt is this?",
+        "localizedMeaning": {
+          "ru": "На общем столе лежит чек. Спросите коллег «Чей это чек?»",
+          "uk": "На спільному столі лежить чек. Запитайте колег «Чий це чек?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "receipt",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о зимнем отдыхе. Скажите «Я обычно катаюсь на лыжах»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о зимнем отдыхе. Скажите «Я обычно катаюсь на лыжах»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-04:i13:audio",
+          "transcript": "I usually ski."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I usually ski.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она умеет держать равновесие»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-04:i14:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i14:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i14:r3",
+          "text": "is can"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она умеет держать равновесие»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет держать равновесие»",
+          "uk": "Скажіть «Вона вміє тримати рівновагу»"
+        },
+        "gappedTargetPhrase": "She ___ balance.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-04:i14:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i14:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i14:r3",
+            "text": "is can"
+          }
+        ],
+        "testedDimension": "Скажите «Она умеет держать равновесие»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-04:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет держать равновесие»",
+            "feedbackByLocale": {
+              "ru": "`Can` не меняется после `she`: окончание `s` не нужно.",
+              "uk": "`Can` не змінюється після `she`: закінчення `s` не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет держать равновесие»",
+            "feedbackByLocale": {
+              "ru": "Достаточно `she can`; `is` не нужно.",
+              "uk": "Достатньо `she can`; `is` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-04:i15:r1",
+          "text": "Where is the bank?"
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i15:r2",
+          "text": "Where is the library?"
+        },
+        {
+          "responseId": "en:lesson-08:session-04:i15:r3",
+          "text": "Where is the pharmacy?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-04:i15:audio",
+          "transcript": "Where is the bank?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-04:i15:r1",
+            "targetText": "Where is the bank?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i15:r2",
+            "targetText": "Where is the library?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i15:r3",
+            "targetText": "Where is the pharmacy?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-04:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bank`, а в этом варианте — `library`.",
+              "uk": "У записі останнє слово — `bank`, а в цьому варіанті — `library`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-04:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bank`, а в этом варианте — `pharmacy`.",
+              "uk": "У записі останнє слово — `bank`, а в цьому варіанті — `pharmacy`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-04:i16:p1",
+            "target": "balance",
+            "meaningByLocale": {
+              "ru": "держать равновесие",
+              "uk": "тримати рівновагу"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-04:i16:p2",
+            "target": "glasses",
+            "meaningByLocale": {
+              "ru": "очки",
+              "uk": "окуляри"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-04:i16:p3",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-04:i16:p4",
+            "target": "ski",
+            "meaningByLocale": {
+              "ru": "кататься на лыжах",
+              "uk": "кататися на лижах"
+            }
+          }
+        ],
+        "leftColumn": [
+          "balance",
+          "glasses",
+          "receipt",
+          "ski"
+        ],
+        "rightColumn": [
+          "держать равновесие",
+          "очки",
+          "чек",
+          "кататься на лыжах"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-04:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Том стоит на одной ноге, не держась за стул. Скажите другу «Том умеет держать равновесие»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Том стоит на одной ноге, не держась за стул. Скажите другу «Том умеет держать равновесие»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-04:i17:audio",
+          "transcript": "Tom can balance."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can balance.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a572f4b76982da1a419fad828038cbb576e954e204938ebcd127bffdef64788c"
+}

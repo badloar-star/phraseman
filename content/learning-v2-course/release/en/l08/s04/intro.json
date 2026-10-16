@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить can для умений и повторить вопрос «чей?»",
+    "uk": "закріпити can для вмінь і повторити запитання «чий?»"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Стою на одной ноге",
+        "uk": "Стою на одній нозі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает постоять на одной ноге без опоры. `Balance` — «держать равновесие». `I can balance` — «Я умею держать равновесие». После `can` нужно `balance`, без `to` и окончания `s`. Держаться за стул удобно, но это уже немного другое упражнение.",
+        "uk": "Друг пропонує постояти на одній нозі без опори. `Balance` — «тримати рівновагу». `I can balance` — «Я вмію тримати рівновагу». Після `can` потрібне `balance`, без `to` й закінчення `s`. Триматися за стілець зручно, але це вже трохи інша вправа."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что умеете держать равновесие.",
+          "uk": "Скажіть другові, що вмієте тримати рівновагу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-04:intro1:r1",
+              "text": "I can balance."
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro1:r2",
+              "text": "I can to balance."
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro1:r3",
+              "text": "I can balances."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-04:intro1:r1",
+              "text": "I can balance."
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro1:r2",
+              "text": "I can to balance."
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro1:r3",
+              "text": "I can balances."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что умеете держать равновесие.",
+          "uk": "Скажіть другові, що вмієте тримати рівновагу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она умеет кататься",
+        "uk": "Вона вміє кататися"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете зимнюю поездку. Друг спрашивает, умеет ли ваша знакомая кататься на лыжах. `She can ski` — «Она умеет кататься на лыжах». `Can` не меняется после `she`; после него нужно `ski`, без окончания `s`.",
+        "uk": "Ви обговорюєте зимову поїздку. Друг запитує, чи вміє ваша знайома кататися на лижах. `She can ski` — «Вона вміє кататися на лижах». `Can` не змінюється після `she`; після нього потрібне `ski`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-04:intro2:r1",
+              "text": "She can ski."
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro2:r2",
+              "text": "She cans ski."
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro2:r3",
+              "text": "She can skis."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-04:intro2:r1",
+              "text": "She can ski."
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro2:r2",
+              "text": "She cans ski."
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro2:r3",
+              "text": "She can skis."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чьи очки",
+        "uk": "Чиї окуляри"
+      },
+      "bodyByLocale": {
+        "ru": "На столе остались очки, и вы ищете их владельца. `Whose glasses are these?` — «Чьи это очки?» Сначала `whose glasses` — «чьи очки», затем `are these`. С `glasses` используем `are`, даже когда это одна пара очков.",
+        "uk": "На столі залишилися окуляри, і ви шукаєте їхнього власника. `Whose glasses are these?` — «Чиї це окуляри?» Спочатку `whose glasses` — «чиї окуляри», потім `are these`. З `glasses` використовуємо `are`, навіть коли це одна пара окулярів."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите коллег, чьи это очки.",
+          "uk": "Запитайте колег, чиї це окуляри."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-04:intro3:r1",
+              "text": "Whose glasses are these?"
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro3:r2",
+              "text": "Whose glasses is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro3:r3",
+              "text": "Who glasses are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-04:intro3:r1",
+              "text": "Whose glasses are these?"
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro3:r2",
+              "text": "Whose glasses is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-04:intro3:r3",
+              "text": "Who glasses are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллег, чьи это очки.",
+          "uk": "Запитайте колег, чиї це окуляри."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e0d8026ba5329ffa6e4c8fb54309e27ad628a6ae98ede506361e8fab5c4ce5ea"
+}

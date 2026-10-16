@@ -69250,6 +69250,309 @@
           "byteSize": 44544
         }
       ]
+    },
+    "l05/s05/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The desk has a drawer.",
+          "file": "8d44b273d3fe67bf95a9c8536a27567ecf1ec4335bd853a0aed266353e14628b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8d44b273d3fe67bf95a9c8536a27567ecf1ec4335bd853a0aed266353e14628b.mp3",
+          "contentHash": "e50799e99ca8ae2f71fd4d88a7a0820612e2d7e9b0565cdecde99a0218cfecc2",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l05/s05/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I'm warm.",
+          "file": "83a03ca7e72266f3499eeac576051abc2f4c24ff78d8f0a549cb843be6d511f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/83a03ca7e72266f3499eeac576051abc2f4c24ff78d8f0a549cb843be6d511f0.mp3",
+          "contentHash": "d62b3bfa5d342a3faacb6438488dce03e2af997bbd056191acfd83c7ffaab267",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s05/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The map is in the drawer.",
+          "file": "105cad4aee9aa155b45930f0e2bbec5a7392d8b02a13400c95dd9cc6657834da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/105cad4aee9aa155b45930f0e2bbec5a7392d8b02a13400c95dd9cc6657834da.mp3",
+          "contentHash": "86588c7dbbe2faff208d192406726376e1c1ea379ed431f97942b967a9dc4f47",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s05/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I'm cold.",
+          "file": "bbd3628741cd0fc49e00d6b47a906735af014efe0819e003702ce9e27518cfbf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bbd3628741cd0fc49e00d6b47a906735af014efe0819e003702ce9e27518cfbf.mp3",
+          "contentHash": "bdfadc2805f65d8fe7aa2cd9ae36109e9bebe2ecc5b29285498d7c0f777856d9",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s05/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "drawer",
+          "file": "91c8c45764c517aa1222893f30520c0dc0bdf5c833e3aab61d592c804223faf4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d329f11d9a60de9b6f268d88-onyx.mp3",
+          "contentHash": "2e7e7998f11e9757f507ffd62daa1bbf8e61b4db2bf3a056e4d41c3fa843f4d9",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l05/s05/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "drawer",
+          "file": "b8a45e8178eab19b91a222a48232fe8cbcf6520a90532c564fb9a19c6988a9a7.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d329f11d9a60de9b6f268d88-ash.mp3",
+          "contentHash": "e1bf0d4276c60243bd49529b0011e789a1e3b2bd44c3a8f1f1cc3f0aaf28e221",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l05/s05/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "drawer",
+          "file": "19418645513598f36b0a3a6f146f9de37d87285c051824e183d464e6d1064273.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d329f11d9a60de9b6f268d88-coral.mp3",
+          "contentHash": "6f9b0f69c46722f01ace637eb18cfec6cf132b453e0a3a46035629bb6a855b58",
+          "byteSize": 18048
+        },
+        {
+          "text": "cold",
+          "file": "a5795998bf0ba8b4dd266f1e6d3a99a4e229370e6d3bdfbe4590b4430103aec0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e272deecde720ffc773d7a6a-coral.mp3",
+          "contentHash": "f1a9b75c35f9abb6168316031f2c72945c3f50e532b3904df0817f2a00e35e9a",
+          "byteSize": 21120
+        },
+        {
+          "text": "hot",
+          "file": "c9db0c890ca1fe8cb685d20a79985bc2061f1bde1c0636141e9a6ceab0797388.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/7f5d1618e7d28cc7bf327886-coral.mp3",
+          "contentHash": "c839c6074c033da1031d97148f2473ce8a70738e22c51319f90957bba4cc14e6",
+          "byteSize": 29952
+        },
+        {
+          "text": "warm",
+          "file": "b6257d03ff8a816eaa0d598f861beb95f2522f3719121360b6d9accd3c05fecc.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0f0aa408c1832abefd06bced-coral.mp3",
+          "contentHash": "b53b0f3ee17b8d57e269468c5df875e4b505d9e8695ad8540eb477749742b53d",
+          "byteSize": 13440
+        }
+      ]
+    },
+    "l05/s05/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The desk has a drawer.",
+          "file": "b532a0c5e60b0d7d351f7eff3f325ff59f61b1ef6b9fddca1dfef92c27dea868.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b532a0c5e60b0d7d351f7eff3f325ff59f61b1ef6b9fddca1dfef92c27dea868.mp3",
+          "contentHash": "c08e94ef0edb9d2f4c2c1dfeaa8bc4fe4b3a9087f7ae674b31930b18571e2154",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s05/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She has a map.",
+          "file": "867d273fa6714adccd9c291a207623a6d06ff57623c473ab3370e1198533604c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/867d273fa6714adccd9c291a207623a6d06ff57623c473ab3370e1198533604c.mp3",
+          "contentHash": "ad727d8eb580e23118292c9cb5c33fd6074354e3cbf152b08a2eff6cf4494784",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s05/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I'm hot.",
+          "file": "351b641ab8b4d6b40e589af6f10d13c826943ea658690393255bc53fcfb95939.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/351b641ab8b4d6b40e589af6f10d13c826943ea658690393255bc53fcfb95939.mp3",
+          "contentHash": "fc16b1e86864daca2d24146a9518c3da6c2a3fd5763ee0775c6204271c06de7c",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s05/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "We are warm.",
+          "file": "fca2c43a8d989f8cecc9cae07a006d1b18ddfd0eacbd2b1d1b80f509fe6e8b95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fca2c43a8d989f8cecc9cae07a006d1b18ddfd0eacbd2b1d1b80f509fe6e8b95.mp3",
+          "contentHash": "5912c1620499582167fcaeaf63107a44d551dcb8ecdc27ec9ccb09a08a92e89c",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s05/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The map is in the drawer.",
+          "file": "47b7f1dbfc7d5d9a0c17cb49609d70e9058a48a1925066819d1c4d1a9466e4c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47b7f1dbfc7d5d9a0c17cb49609d70e9058a48a1925066819d1c4d1a9466e4c5.mp3",
+          "contentHash": "7fc4a184ac1f92873412315121931695b348b7e02f774c84c9b9a8b109a32254",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s05/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "drawer",
+          "file": "91c8c45764c517aa1222893f30520c0dc0bdf5c833e3aab61d592c804223faf4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d329f11d9a60de9b6f268d88-onyx.mp3",
+          "contentHash": "2e7e7998f11e9757f507ffd62daa1bbf8e61b4db2bf3a056e4d41c3fa843f4d9",
+          "byteSize": 16512
+        },
+        {
+          "text": "map",
+          "file": "ebe51eca7513b612d5a892256f0a0acb6b6e93bfda126c44da8226042f5ac350.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebe51eca7513b612d5a892256f0a0acb6b6e93bfda126c44da8226042f5ac350.mp3",
+          "contentHash": "6db9299a208b6e858662a5e05df4691f72cc63de0b868caa54ef3e231e6142a1",
+          "byteSize": 14976
+        },
+        {
+          "text": "supermarket",
+          "file": "63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "contentHash": "8d5cc3538a7a8c8f0172915ae1e5359ca9307fa53f146a7b277aaa28f9f4a264",
+          "byteSize": 6912
+        },
+        {
+          "text": "police station",
+          "file": "dcd14ecb2a51ffe243358735570fedef4926f342ae2c8c8ba645c110d556f630.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dcd14ecb2a51ffe243358735570fedef4926f342ae2c8c8ba645c110d556f630.mp3",
+          "contentHash": "04ddfc845c7ac299c4da76549a22213a29492a9e25bc9b119379ed363970a9a4",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s05/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They have drawers.",
+          "file": "b974f433f84c81a650f732d70675f1007ebadbf8ea0c08e7bbc9123aee37ad87.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b974f433f84c81a650f732d70675f1007ebadbf8ea0c08e7bbc9123aee37ad87.mp3",
+          "contentHash": "8eb821f94af61167e2d5e96c8ae3ec0ec09bb0e7b4bca6444afa91c140767401",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s05/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The supermarket is next to the police station.",
+          "file": "7fa7d7eac8c80e4b41ad00fc015170062582b7f0ea83f2c211f0ee4bd6869882.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7fa7d7eac8c80e4b41ad00fc015170062582b7f0ea83f2c211f0ee4bd6869882.mp3",
+          "contentHash": "216c5a855204392f79b3467dcd13dff83b645d576e4a55a49092ef43db7e746c",
+          "byteSize": 57984
+        }
+      ]
+    },
+    "l05/s05/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I have a map.",
+          "file": "01e198ff3cca16c0bec9d90caef11ae3a623301b8ee982e8f38e24ed2b949d6f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/01e198ff3cca16c0bec9d90caef11ae3a623301b8ee982e8f38e24ed2b949d6f.mp3",
+          "contentHash": "6d39b54d4195c334f3ad4e2145ada836fca178472aa1356e14705a2b91650600",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l05/s05/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The desk has drawers.",
+          "file": "8e3559848ea143f5f440d7c04de7baefcca2d18e58f5d02484584c32c8a87fd3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e3559848ea143f5f440d7c04de7baefcca2d18e58f5d02484584c32c8a87fd3.mp3",
+          "contentHash": "505e4354adb46d458cf12dc7ca5651ba284a338d8f91d56de8d6f8b72e5d57a8",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s05/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She's cold.",
+          "file": "d722b63fb8fbe2378b235dfd4e03ae339c54ea25ad13a5d74b98b7ebf44cb0bf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d722b63fb8fbe2378b235dfd4e03ae339c54ea25ad13a5d74b98b7ebf44cb0bf.mp3",
+          "contentHash": "fee4c5cf3ef3a0864bb2c68a94cb7268509b200f3eb1f4c051a378296a806a60",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s05/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "drawer",
+          "file": "91c8c45764c517aa1222893f30520c0dc0bdf5c833e3aab61d592c804223faf4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d329f11d9a60de9b6f268d88-onyx.mp3",
+          "contentHash": "2e7e7998f11e9757f507ffd62daa1bbf8e61b4db2bf3a056e4d41c3fa843f4d9",
+          "byteSize": 16512
+        },
+        {
+          "text": "map",
+          "file": "ebe51eca7513b612d5a892256f0a0acb6b6e93bfda126c44da8226042f5ac350.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebe51eca7513b612d5a892256f0a0acb6b6e93bfda126c44da8226042f5ac350.mp3",
+          "contentHash": "6db9299a208b6e858662a5e05df4691f72cc63de0b868caa54ef3e231e6142a1",
+          "byteSize": 14976
+        },
+        {
+          "text": "supermarket",
+          "file": "63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63bfb8796633587ec0b98d5861bb4a6fe0cfe4e42af1d482ac397ad68c628106.mp3",
+          "contentHash": "8d5cc3538a7a8c8f0172915ae1e5359ca9307fa53f146a7b277aaa28f9f4a264",
+          "byteSize": 6912
+        },
+        {
+          "text": "police station",
+          "file": "dcd14ecb2a51ffe243358735570fedef4926f342ae2c8c8ba645c110d556f630.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dcd14ecb2a51ffe243358735570fedef4926f342ae2c8c8ba645c110d556f630.mp3",
+          "contentHash": "04ddfc845c7ac299c4da76549a22213a29492a9e25bc9b119379ed363970a9a4",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s05/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The desk has a drawer.",
+          "file": "d71be8b81cc692c5e18ee332252d568a40d77fe404fffa13fd85fad7246c5740.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d71be8b81cc692c5e18ee332252d568a40d77fe404fffa13fd85fad7246c5740.mp3",
+          "contentHash": "34f2a9acecd07f7fa030c986e611c3178b707f006f0f0593a027513e4e142a76",
+          "byteSize": 32256
+        }
+      ]
     }
   },
   "settings": {

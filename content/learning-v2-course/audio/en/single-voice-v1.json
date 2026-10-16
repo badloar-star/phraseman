@@ -104398,6 +104398,309 @@
           "byteSize": 38784
         }
       ]
+    },
+    "l07/s09/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Does the manager work here?",
+          "file": "8730178035f72bea5534d365ca3da44e15717deac9c3c8115ced3118cd40caa7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8730178035f72bea5534d365ca3da44e15717deac9c3c8115ced3118cd40caa7.mp3",
+          "contentHash": "e9f4ffdf14d30d1b3973777bf80516867598fca0ad66f78259ee3c2fd0191dfe",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s09/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Does she work in a factory?",
+          "file": "a793ee15e9f2969382885386101e600db441ce93b881fe4b98d952dc810491b5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a793ee15e9f2969382885386101e600db441ce93b881fe4b98d952dc810491b5.mp3",
+          "contentHash": "740c17823c34e2d871b13a7635e6fcade0273d0ef5ed9f21f42e0aad644b5947",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s09/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does he start early?",
+          "file": "99777c86abe35f2bd2af2976bc599db3800191e5bc6db2b3afc0dbc0c0bb5ef4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99777c86abe35f2bd2af2976bc599db3800191e5bc6db2b3afc0dbc0c0bb5ef4.mp3",
+          "contentHash": "96f32372ddef7da40edc8e8649ca5d8483fec754678cab9a4af872d4a1814bb8",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s09/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Does the manager work here?",
+          "file": "796f00e0274ac665e634466c376845e15c13d728c446da021cb63eb6acbef25b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/796f00e0274ac665e634466c376845e15c13d728c446da021cb63eb6acbef25b.mp3",
+          "contentHash": "0740e08e4e1b355c19ee361f0bc2f54dffe49719cc9f9da9154a8ddbe1a94c9c",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s09/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "manager",
+          "file": "3407e0b128fd419e3c7daa92ca1fc9865803e7302398f91e82e06872fdd5df9e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/6ee4a469cd4e91053847f5d3-onyx.mp3",
+          "contentHash": "916c32b48a40f28cb4743c132d4f99db85dd6dfb1455bee0e267f0a610afce33",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l07/s09/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does the manager work here?",
+          "file": "1f2cac7e34c9b9ef4c22d593bf6b6ac2d75c59ec882822be48b9ce855194b669.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f2cac7e34c9b9ef4c22d593bf6b6ac2d75c59ec882822be48b9ce855194b669.mp3",
+          "contentHash": "9cd61fd01dbbe37545b6c24e7b17157a8296c6d12deda1fd6cfbfb233af08c1f",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l07/s09/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "manager",
+          "file": "3407e0b128fd419e3c7daa92ca1fc9865803e7302398f91e82e06872fdd5df9e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/6ee4a469cd4e91053847f5d3-onyx.mp3",
+          "contentHash": "916c32b48a40f28cb4743c132d4f99db85dd6dfb1455bee0e267f0a610afce33",
+          "byteSize": 20352
+        },
+        {
+          "text": "factory",
+          "file": "4cf3f12c651bd44e7bf90c691d1c96ce9d14008e43d2f2d80e68181870ccfc12.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4cf3f12c651bd44e7bf90c691d1c96ce9d14008e43d2f2d80e68181870ccfc12.mp3",
+          "contentHash": "5d92c228837a8bb004cc19c9f08b61023a0c380272278c21f87b31a5d823c682",
+          "byteSize": 31488
+        },
+        {
+          "text": "charger",
+          "file": "f70e7a1f6b26358a1bc9db8ab2aa813a8b3a9421558fd3675700b66ea6f36e06.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-onyx.mp3",
+          "contentHash": "4c16a1b2709cf9d5deebfd35f0ad38f4613a71c12ec06c5dd1908fdf8cd833ec",
+          "byteSize": 25344
+        },
+        {
+          "text": "door",
+          "file": "52f2590ad48f3af8b4d0e66d7982f1cfbb49d2eec636296ef0f27250be76d7e9.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2534e2de1dec24fedab4c002-onyx.mp3",
+          "contentHash": "d55bef67b4114e1c0e279e02f1c1a369c55b58378ac0a2b1c001d3cbf14029e3",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l07/s09/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Does the manager work here?",
+          "file": "796f00e0274ac665e634466c376845e15c13d728c446da021cb63eb6acbef25b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/796f00e0274ac665e634466c376845e15c13d728c446da021cb63eb6acbef25b.mp3",
+          "contentHash": "0740e08e4e1b355c19ee361f0bc2f54dffe49719cc9f9da9154a8ddbe1a94c9c",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s09/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Does she work in a factory?",
+          "file": "c3895bc21124df616fcce6747f558f9410d79f19a1c987b122235b88a77cbb5a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3895bc21124df616fcce6747f558f9410d79f19a1c987b122235b88a77cbb5a.mp3",
+          "contentHash": "2bd5857a9a2586ef4e11d9347c43113fc5b6deed93ab6f90a29a06f7856c59d3",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l07/s09/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does he start early?",
+          "file": "99777c86abe35f2bd2af2976bc599db3800191e5bc6db2b3afc0dbc0c0bb5ef4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99777c86abe35f2bd2af2976bc599db3800191e5bc6db2b3afc0dbc0c0bb5ef4.mp3",
+          "contentHash": "96f32372ddef7da40edc8e8649ca5d8483fec754678cab9a4af872d4a1814bb8",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s09/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Does she work here?",
+          "file": "8c3a1da6a5aea1bee7d8469ac50108762aff17064c779f77aca5f4b0caeff35d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8c3a1da6a5aea1bee7d8469ac50108762aff17064c779f77aca5f4b0caeff35d.mp3",
+          "contentHash": "bfb665fecbaef9f1967d1612edf279bdb83376141b68cda5c439fe1d3d20fe29",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l07/s09/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Does he start early?",
+          "file": "75252a3db97c23829a25f54a2c0d064d6c8b9564a1619e591d771c8500eb907d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75252a3db97c23829a25f54a2c0d064d6c8b9564a1619e591d771c8500eb907d.mp3",
+          "contentHash": "6f3dd505fbb6f320e86e9f2a77ec9265a937191afe6ce940da74cb9a29ac81da",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l07/s09/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "start",
+          "file": "01d93b2a00db17c7cc23eaa99db93abb22ebe3d6b25df032fa154969843bdc94.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/01d93b2a00db17c7cc23eaa99db93abb22ebe3d6b25df032fa154969843bdc94.mp3",
+          "contentHash": "fa941fb018f6f8f39d3c55483f340cdca99c7177a1d0f2b241bf9878089b5743",
+          "byteSize": 19584
+        },
+        {
+          "text": "manager",
+          "file": "3407e0b128fd419e3c7daa92ca1fc9865803e7302398f91e82e06872fdd5df9e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/6ee4a469cd4e91053847f5d3-onyx.mp3",
+          "contentHash": "916c32b48a40f28cb4743c132d4f99db85dd6dfb1455bee0e267f0a610afce33",
+          "byteSize": 20352
+        },
+        {
+          "text": "factory",
+          "file": "4cf3f12c651bd44e7bf90c691d1c96ce9d14008e43d2f2d80e68181870ccfc12.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4cf3f12c651bd44e7bf90c691d1c96ce9d14008e43d2f2d80e68181870ccfc12.mp3",
+          "contentHash": "5d92c228837a8bb004cc19c9f08b61023a0c380272278c21f87b31a5d823c682",
+          "byteSize": 31488
+        },
+        {
+          "text": "charger",
+          "file": "f70e7a1f6b26358a1bc9db8ab2aa813a8b3a9421558fd3675700b66ea6f36e06.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-onyx.mp3",
+          "contentHash": "4c16a1b2709cf9d5deebfd35f0ad38f4613a71c12ec06c5dd1908fdf8cd833ec",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l07/s09/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does she work here?",
+          "file": "84776e863565e39dfa31d9856ab704558abadecb431eb3fd83a275b3268eba3d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/84776e863565e39dfa31d9856ab704558abadecb431eb3fd83a275b3268eba3d.mp3",
+          "contentHash": "1a810b9eaba9e0c406e059146863bed49f700d8e9ecef393afccbcd3206a4b7f",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l07/s09/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you have a charger?",
+          "file": "cb680df40d3d3c1e53b5acf3bb3b585797d0440e9e6d6d71abd1bcd0929aa4ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cb680df40d3d3c1e53b5acf3bb3b585797d0440e9e6d6d71abd1bcd0929aa4ef.mp3",
+          "contentHash": "8f962bdea64a83d62e7192fa222db6ea60d0b40dd5a7fa0584511fc002465607",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s09/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The door is open.",
+          "file": "4da67dcf1e93054eb238f20c60fdc7482aa321be0a72fab09f4407968597d8f1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4da67dcf1e93054eb238f20c60fdc7482aa321be0a72fab09f4407968597d8f1.mp3",
+          "contentHash": "9fcda7451fac28b35d7afbf965820638b0b83365f10a128841e0792678b168bc",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l07/s09/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does he start early?",
+          "file": "99777c86abe35f2bd2af2976bc599db3800191e5bc6db2b3afc0dbc0c0bb5ef4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99777c86abe35f2bd2af2976bc599db3800191e5bc6db2b3afc0dbc0c0bb5ef4.mp3",
+          "contentHash": "96f32372ddef7da40edc8e8649ca5d8483fec754678cab9a4af872d4a1814bb8",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s09/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does she work here?",
+          "file": "84776e863565e39dfa31d9856ab704558abadecb431eb3fd83a275b3268eba3d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/84776e863565e39dfa31d9856ab704558abadecb431eb3fd83a275b3268eba3d.mp3",
+          "contentHash": "1a810b9eaba9e0c406e059146863bed49f700d8e9ecef393afccbcd3206a4b7f",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l07/s09/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "manager",
+          "file": "3407e0b128fd419e3c7daa92ca1fc9865803e7302398f91e82e06872fdd5df9e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/6ee4a469cd4e91053847f5d3-onyx.mp3",
+          "contentHash": "916c32b48a40f28cb4743c132d4f99db85dd6dfb1455bee0e267f0a610afce33",
+          "byteSize": 20352
+        },
+        {
+          "text": "door",
+          "file": "52f2590ad48f3af8b4d0e66d7982f1cfbb49d2eec636296ef0f27250be76d7e9.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2534e2de1dec24fedab4c002-onyx.mp3",
+          "contentHash": "d55bef67b4114e1c0e279e02f1c1a369c55b58378ac0a2b1c001d3cbf14029e3",
+          "byteSize": 19584
+        },
+        {
+          "text": "start",
+          "file": "01d93b2a00db17c7cc23eaa99db93abb22ebe3d6b25df032fa154969843bdc94.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/01d93b2a00db17c7cc23eaa99db93abb22ebe3d6b25df032fa154969843bdc94.mp3",
+          "contentHash": "fa941fb018f6f8f39d3c55483f340cdca99c7177a1d0f2b241bf9878089b5743",
+          "byteSize": 19584
+        },
+        {
+          "text": "charger",
+          "file": "f70e7a1f6b26358a1bc9db8ab2aa813a8b3a9421558fd3675700b66ea6f36e06.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-onyx.mp3",
+          "contentHash": "4c16a1b2709cf9d5deebfd35f0ad38f4613a71c12ec06c5dd1908fdf8cd833ec",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l07/s09/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does Tom work here?",
+          "file": "bf48af1bc996c7d3d84c86384ff835e9880c0850921755de7bd144dbe84029c3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf48af1bc996c7d3d84c86384ff835e9880c0850921755de7bd144dbe84029c3.mp3",
+          "contentHash": "25705858ff613a1bb2aa3835c489d1d73839191add3fb3e0936625b1d678e315",
+          "byteSize": 31488
+        }
+      ]
     }
   },
   "settings": {

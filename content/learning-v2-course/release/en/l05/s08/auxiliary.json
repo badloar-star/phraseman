@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-08:intro1:r2": {
+          "ru": "Смотрим на один стол: `has`, даже если ящиков несколько.",
+          "uk": "Дивимося на один стіл: `has`, навіть якщо шухляд кілька."
+        },
+        "en:lesson-05:session-08:intro1:r3": {
+          "ru": "Сказать, что есть у стола: `has drawers`.",
+          "uk": "Сказати, що є у столу: `has drawers`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-08:intro2:r2": {
+          "ru": "С несколькими занавесками `curtains` нужно `aren’t`.",
+          "uk": "З кількома завісками `curtains` потрібне `aren’t`."
+        },
+        "en:lesson-05:session-08:intro2:r3": {
+          "ru": "Здесь занавесок нет: `aren’t any curtains`.",
+          "uk": "Тут завісок немає: `aren’t any curtains`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-08:intro3:r2": {
+          "ru": "В этом прямом вопросе порядок `Where is the corner shop?`.",
+          "uk": "У цьому прямому запитанні порядок `Where is the corner shop?`."
+        },
+        "en:lesson-05:session-08:intro3:r3": {
+          "ru": "Один магазин: `Where is`.",
+          "uk": "Один магазин: `Where is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "67610e0562dd0c6ddbbdc0cf1b042f9965fffb508735dcfc76261540b6013c89"
+}

@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я не вмію кататися на ковзанах»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я не вмію кататися на ковзанах»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can’t skate.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я не умею кататься на коньках»",
+          "uk": "Скажіть «Я не вмію кататися на ковзанах»"
+        },
+        "orderedTokens": [
+          "I",
+          "can’t",
+          "skate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-09:i02:r1",
+          "text": "skate"
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i02:r2",
+          "text": "ski"
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i02:r3",
+          "text": "whistle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-09:i02:audio",
+          "transcript": "skate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-09:i02:r1",
+            "targetText": "skate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i02:r2",
+            "targetText": "ski",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i02:r3",
+            "targetText": "whistle",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `skate`, а в этом варианте — `ski`.",
+              "uk": "У записі перше слово — `skate`, а в цьому варіанті — `ski`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `skate`, а в этом варианте — `whistle`.",
+              "uk": "У записі перше слово — `skate`, а в цьому варіанті — `whistle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я не вмію кататися на ковзанах»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-09:i03:r1",
+          "text": "skate"
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i03:r2",
+          "text": "to skate"
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i03:r3",
+          "text": "skates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я не вмію кататися на ковзанах»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я не умею кататься на коньках»",
+          "uk": "Скажіть «Я не вмію кататися на ковзанах»"
+        },
+        "gappedTargetPhrase": "I can’t ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-09:i03:r1",
+            "text": "skate"
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i03:r2",
+            "text": "to skate"
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i03:r3",
+            "text": "skates"
+          }
+        ],
+        "testedDimension": "Скажіть «Я не вмію кататися на ковзанах»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я не вмію кататися на ковзанах»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `skate`, без `to`.",
+              "uk": "Після `can’t` потрібне `skate`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я не вмію кататися на ковзанах»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `skate`, без `s`.",
+              "uk": "Після `can’t` потрібне `skate`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-09:i04:p1",
+            "target": "skate",
+            "meaningByLocale": {
+              "ru": "кататься на коньках",
+              "uk": "кататися на ковзанах"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-09:i04:p2",
+            "target": "dentist",
+            "meaningByLocale": {
+              "ru": "стоматолог",
+              "uk": "стоматолог"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-09:i04:p3",
+            "target": "manager",
+            "meaningByLocale": {
+              "ru": "руководитель",
+              "uk": "керівник"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-09:i04:p4",
+            "target": "whistle",
+            "meaningByLocale": {
+              "ru": "свистеть",
+              "uk": "свистіти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "skate",
+          "dentist",
+          "manager",
+          "whistle"
+        ],
+        "rightColumn": [
+          "кататися на ковзанах",
+          "стоматолог",
+          "керівник",
+          "свистіти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-09:i05:audio",
+          "transcript": "I can’t skate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can’t skate.",
+        "orderedTokens": [
+          "I",
+          "can’t",
+          "skate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть про знайому «Вона не вміє свистіти»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть про знайому «Вона не вміє свистіти»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can’t whistle.",
+        "localizedMeaning": {
+          "ru": "Скажите о знакомой «Она не умеет свистеть»",
+          "uk": "Скажіть про знайому «Вона не вміє свистіти»"
+        },
+        "orderedTokens": [
+          "She",
+          "can’t",
+          "whistle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про брата «Він не вміє плавати»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть про брата «Він не вміє плавати»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-09:i07:audio",
+          "transcript": "He can’t swim."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He can’t swim.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вона не вміє свистіти»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-09:i08:r1",
+          "text": "whistle"
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i08:r2",
+          "text": "whistles"
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i08:r3",
+          "text": "to whistle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона не вміє свистіти»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она не умеет свистеть»",
+          "uk": "Скажіть «Вона не вміє свистіти»"
+        },
+        "gappedTargetPhrase": "She can’t ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-09:i08:r1",
+            "text": "whistle"
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i08:r2",
+            "text": "whistles"
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i08:r3",
+            "text": "to whistle"
+          }
+        ],
+        "testedDimension": "Скажіть «Вона не вміє свистіти»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона не вміє свистіти»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `whistle`, без `s`.",
+              "uk": "Після `can’t` потрібне `whistle`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона не вміє свистіти»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `whistle`, без `to`.",
+              "uk": "Після `can’t` потрібне `whistle`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-09:i09:r1",
+          "text": "I can’t skate."
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i09:r2",
+          "text": "I can’t swim."
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i09:r3",
+          "text": "I can’t whistle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-09:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-09:i09:audio",
+          "transcript": "I can’t skate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-09:i09:r1",
+            "targetText": "I can’t skate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i09:r2",
+            "targetText": "I can’t swim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i09:r3",
+            "targetText": "I can’t whistle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `skate`, а в этом варианте — `swim`.",
+              "uk": "У записі останнє слово — `skate`, а в цьому варіанті — `swim`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `skate`, а в этом варианте — `whistle`.",
+              "uk": "У записі останнє слово — `skate`, а в цьому варіанті — `whistle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-09:i10:p1",
+            "target": "start",
+            "meaningByLocale": {
+              "ru": "начинать",
+              "uk": "починати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-09:i10:p2",
+            "target": "skate",
+            "meaningByLocale": {
+              "ru": "кататься на коньках",
+              "uk": "кататися на ковзанах"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-09:i10:p3",
+            "target": "dentist",
+            "meaningByLocale": {
+              "ru": "стоматолог",
+              "uk": "стоматолог"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-09:i10:p4",
+            "target": "manager",
+            "meaningByLocale": {
+              "ru": "руководитель",
+              "uk": "керівник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "start",
+          "skate",
+          "dentist",
+          "manager"
+        ],
+        "rightColumn": [
+          "починати",
+          "кататися на ковзанах",
+          "стоматолог",
+          "керівник"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-09:i11:audio",
+          "transcript": "He can’t swim."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He can’t swim.",
+        "orderedTokens": [
+          "He",
+          "can’t",
+          "swim"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваш керівник прийшов. Скажіть колезі «Мій керівник тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваш керівник прийшов. Скажіть колезі «Мій керівник тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My manager is here.",
+        "localizedMeaning": {
+          "ru": "Ваш руководитель пришёл. Скажите коллеге «Мой руководитель здесь»",
+          "uk": "Ваш керівник прийшов. Скажіть колезі «Мій керівник тут»"
+        },
+        "orderedTokens": [
+          "My",
+          "manager",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега запитує про початок вашого робочого дня. Скажіть «Я зазвичай починаю рано»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Колега запитує про початок вашого робочого дня. Скажіть «Я зазвичай починаю рано»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-09:i13:audio",
+          "transcript": "I usually start early."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I usually start early.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Він не вміє плавати»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-09:i14:r1",
+          "text": "can’t"
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i14:r2",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i14:r3",
+          "text": "is can’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Він не вміє плавати»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Он не умеет плавать»",
+          "uk": "Скажіть «Він не вміє плавати»"
+        },
+        "gappedTargetPhrase": "He ___ swim.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-09:i14:r1",
+            "text": "can’t"
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i14:r2",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i14:r3",
+            "text": "is can’t"
+          }
+        ],
+        "testedDimension": "Скажіть «Він не вміє плавати»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-09:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Він не вміє плавати»",
+            "feedbackByLocale": {
+              "ru": "`Can` значит «умеет», здесь нужно `can’t` — «не умеет».",
+              "uk": "`Can` означає «вміє», тут потрібне `can’t` — «не вміє»."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Він не вміє плавати»",
+            "feedbackByLocale": {
+              "ru": "Достаточно `he can’t`; `is` не нужно.",
+              "uk": "Достатньо `he can’t`; `is` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-09:i15:r1",
+          "text": "Where is the dentist?"
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i15:r2",
+          "text": "Where is the manager?"
+        },
+        {
+          "responseId": "en:lesson-08:session-09:i15:r3",
+          "text": "Where is the customer?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-09:i15:audio",
+          "transcript": "Where is the dentist?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-09:i15:r1",
+            "targetText": "Where is the dentist?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i15:r2",
+            "targetText": "Where is the manager?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i15:r3",
+            "targetText": "Where is the customer?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-09:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `dentist`, а в этом варианте — `manager`.",
+              "uk": "У записі останнє слово — `dentist`, а в цьому варіанті — `manager`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-09:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `dentist`, а в этом варианте — `customer`.",
+              "uk": "У записі останнє слово — `dentist`, а в цьому варіанті — `customer`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-09:i16:p1",
+            "target": "skate",
+            "meaningByLocale": {
+              "ru": "кататься на коньках",
+              "uk": "кататися на ковзанах"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-09:i16:p2",
+            "target": "whistle",
+            "meaningByLocale": {
+              "ru": "свистеть",
+              "uk": "свистіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-09:i16:p3",
+            "target": "start",
+            "meaningByLocale": {
+              "ru": "начинать",
+              "uk": "починати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-09:i16:p4",
+            "target": "dentist",
+            "meaningByLocale": {
+              "ru": "стоматолог",
+              "uk": "стоматолог"
+            }
+          }
+        ],
+        "leftColumn": [
+          "skate",
+          "whistle",
+          "start",
+          "dentist"
+        ],
+        "rightColumn": [
+          "кататися на ковзанах",
+          "свистіти",
+          "починати",
+          "стоматолог"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг кличе Тома на ковзанку, але Том поки не навчився. Скажіть «Том не вміє кататися на ковзанах»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Друг кличе Тома на ковзанку, але Том поки не навчився. Скажіть «Том не вміє кататися на ковзанах»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-09:i17:audio",
+          "transcript": "Tom can’t skate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can’t skate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aa6005059c68becfadd0e2bea468a69f17321518b17608a90a14349e9c14e786"
+}

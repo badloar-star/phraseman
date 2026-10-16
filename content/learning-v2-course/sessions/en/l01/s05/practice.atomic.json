@@ -1,13 +1,11 @@
 {
   "schemaVersion": "learning_v2_atomic_practice_source_v1",
   "courseSessionId": "en:lesson-01:session-05",
-  "sourceSnapshotSha256": "f249f9620ff23bcbd3a57a675f4d6c9646a66f317c664bb11130c87e2f8b2f7c",
-  "preservationLedgerSha256": "67076d0a866d864c7a4ce9f53cb90f7c204a363b6e8429f75a1da905f5a72745",
   "interactionsByLocale": {
     "ru": [
       {
         "interactionId": "en:lesson-01:session-05:i01",
-        "ordinal": 1,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -50,11 +48,11 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i02",
-        "ordinal": 2,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Послушайте и выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-05:i02:r1",
@@ -62,18 +60,18 @@
           },
           {
             "responseId": "en:lesson-01:session-05:i02:r2",
-            "text": "hat"
+            "text": "cold"
           },
           {
             "responseId": "en:lesson-01:session-05:i02:r3",
-            "text": "hurt"
+            "text": "tired"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-05:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -89,12 +87,12 @@
             },
             {
               "responseId": "en:lesson-01:session-05:i02:r2",
-              "targetText": "hat",
+              "targetText": "cold",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-05:i02:r3",
-              "targetText": "hurt",
+              "targetText": "tired",
               "meaningByLocale": null
             }
           ],
@@ -103,19 +101,19 @@
             {
               "responseId": "en:lesson-01:session-05:i02:r2",
               "correct": false,
-          "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите слово",
               "feedbackByLocale": {
-              "ru": "Вы выбрали `hat`. В этом слове другой гласный; в записи звучит `hot`. Переслушайте контраст `hat` — `hot`.",
-              "uk": "Ви вибрали `hat`. У цьому слові інший голосний; у записі звучить `hot`. Переслухайте контраст `hat` — `hot`."
+                "ru": "В записи hot, а не cold.",
+                "uk": "У записі hot, а не cold."
               }
             },
             {
               "responseId": "en:lesson-01:session-05:i02:r3",
               "correct": false,
-          "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите слово",
               "feedbackByLocale": {
-              "ru": "Вы выбрали `hurt`. Это другое слово. В нём другой гласный; в записи звучит `hot`. Переслушайте контраст `hurt` — `hot`.",
-              "uk": "Ви вибрали `hurt`. Це інше слово. У ньому інший голосний; у записі звучить `hot`. Переслухайте контраст `hurt` — `hot`."
+                "ru": "В записи hot, а не tired.",
+                "uk": "У записі hot, а не tired."
               }
             }
           ],
@@ -126,7 +124,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i03",
-        "ordinal": 3,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -169,7 +167,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i04",
-        "ordinal": 4,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -191,13 +189,17 @@
             "hot"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i05",
-        "ordinal": 5,
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -220,8 +222,8 @@
               "responseId": "en:lesson-01:session-05:i05:r1",
               "targetText": "lost",
               "meaningByLocale": {
-                "ru": "не знать, где находишься.",
-                "uk": "не знати, де перебуваєш."
+                "ru": "«заблудился / заблудилась»: вы не можете найти дорогу.",
+                "uk": "«заблукав / заблукала»: ви не можете знайти дорогу."
               }
             }
           ],
@@ -231,8 +233,8 @@
           "wordCard": {
             "word": "lost",
             "definitionByLocale": {
-            "ru": "не знать, где находишься.",
-            "uk": "не знати, де перебуваєш."
+              "ru": "«заблудился / заблудилась»: вы не можете найти дорогу.",
+              "uk": "«заблукав / заблукала»: ви не можете знайти дорогу."
             }
           }
         },
@@ -240,11 +242,11 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i06",
-        "ordinal": 6,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Послушайте и выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-05:i06:r1",
@@ -252,18 +254,18 @@
           },
           {
             "responseId": "en:lesson-01:session-05:i06:r2",
-            "text": "last"
+            "text": "hot"
           },
           {
             "responseId": "en:lesson-01:session-05:i06:r3",
-            "text": "list"
+            "text": "early"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-05:i06:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -279,12 +281,12 @@
             },
             {
               "responseId": "en:lesson-01:session-05:i06:r2",
-              "targetText": "last",
+              "targetText": "hot",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-05:i06:r3",
-              "targetText": "list",
+              "targetText": "early",
               "meaningByLocale": null
             }
           ],
@@ -293,19 +295,19 @@
             {
               "responseId": "en:lesson-01:session-05:i06:r2",
               "correct": false,
-          "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите слово",
               "feedbackByLocale": {
-                "ru": "Вы выбрали `last`. В этом слове другой гласный; в записи звучит `lost`. Переслушайте контраст `last` — `lost`.",
-                "uk": "Ви вибрали `last`. У цьому слові інший голосний; у записі звучить `lost`. Переслухайте контраст `last` — `lost`."
+                "ru": "В записи lost, а не hot.",
+                "uk": "У записі lost, а не hot."
               }
             },
             {
               "responseId": "en:lesson-01:session-05:i06:r3",
               "correct": false,
-          "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите слово",
               "feedbackByLocale": {
-                "ru": "Вы выбрали `list`. В этом слове другой гласный; в записи звучит `lost`. Переслушайте контраст `list` — `lost`.",
-                "uk": "Ви вибрали `list`. У цьому слові інший голосний; у записі звучить `lost`. Переслухайте контраст `list` — `lost`."
+                "ru": "В записи lost, а не early.",
+                "uk": "У записі lost, а не early."
               }
             }
           ],
@@ -316,8 +318,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i07",
-        "ordinal": 7,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Карточка слова — new",
@@ -359,11 +361,11 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i08",
-        "ordinal": 8,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Послушайте и выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-05:i08:r1",
@@ -371,18 +373,18 @@
           },
           {
             "responseId": "en:lesson-01:session-05:i08:r2",
-            "text": "six"
+            "text": "fine"
           },
           {
             "responseId": "en:lesson-01:session-05:i08:r3",
-            "text": "seek"
+            "text": "sad"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-05:i08:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -398,12 +400,12 @@
             },
             {
               "responseId": "en:lesson-01:session-05:i08:r2",
-              "targetText": "six",
+              "targetText": "fine",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-05:i08:r3",
-              "targetText": "seek",
+              "targetText": "sad",
               "meaningByLocale": null
             }
           ],
@@ -412,19 +414,19 @@
             {
               "responseId": "en:lesson-01:session-05:i08:r2",
               "correct": false,
-          "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите слово",
               "feedbackByLocale": {
-                "ru": "Это «шесть». Слушайте конец: у `sick` там «к», а не «кс».",
-                "uk": "Це «шість». Слухайте кінець: у `sick` там «к», а не «кс»."
+                "ru": "В записи sick, а не fine.",
+                "uk": "У записі sick, а не fine."
               }
             },
             {
               "responseId": "en:lesson-01:session-05:i08:r3",
               "correct": false,
-          "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите слово",
               "feedbackByLocale": {
-                "ru": "Гласная длиннее, как «и-и». У `sick` она короткая и резкая.",
-                "uk": "Голосна довша, як «і-і». У `sick` вона коротка й різка."
+                "ru": "В записи sick, а не sad.",
+                "uk": "У записі sick, а не sad."
               }
             }
           ],
@@ -435,7 +437,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i09",
-        "ordinal": 9,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -448,8 +450,8 @@
           "family": "phrase_builder",
           "targetPhrase": "I am new.",
           "localizedMeaning": {
-            "ru": "Вы здесь недавно: соберите полную фразу.",
-            "uk": "Ви тут недавно: складіть повну фразу."
+            "ru": "Соберите фразу — вы только начали работать в команде",
+            "uk": "Складіть фразу — ви щойно почали працювати в команді"
           },
           "orderedTokens": [
             "I",
@@ -479,13 +481,17 @@
                 "uk": "додавання `not` перетворило б фразу на заперечення; контекст говорить, що ви нещодавно приєдналися до команди"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i10",
-        "ordinal": 10,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -554,7 +560,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i11",
-        "ordinal": 11,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
@@ -587,7 +593,7 @@
               "target": "lost",
               "meaningByLocale": {
                 "ru": "не знать, где находишься",
-                "uk": "не знати, де перебуваєш."
+                "uk": "не знати, де перебуваєш"
               }
             },
             {
@@ -609,7 +615,7 @@
             "жарко",
             "болею",
             "не знать, где находишься",
-            "недавно присоединившийся к команде"
+            "человек, недавно присоединившийся к команде"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -627,7 +633,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i12",
-        "ordinal": 12,
+        "ordinal": 15,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -655,7 +661,7 @@
             "ru": "Вставьте слово — коллега приболел, а вы здоровы",
             "uk": "Вставте слово — колега занедужав, а ви здорові"
           },
-          "gappedTargetPhrase": "I am ___ .",
+          "gappedTargetPhrase": "I am ___ sick.",
           "gapOptions": [
             {
               "responseId": "en:lesson-01:session-05:i12:r1",
@@ -675,16 +681,16 @@
             {
               "responseId": "en:lesson-01:session-05:i12:r2",
               "correct": false,
-          "testedDimension": "Вставьте слово — коллега приболел, а вы здоровы",
+              "testedDimension": "Вставьте слово — коллега приболел, а вы здоровы",
               "feedbackByLocale": {
-              "ru": "В этой конструкции `no` не подходит: для «я не болею» нужно `not` после `am`.",
-              "uk": "У цій конструкції `no` не підходить: для «я не хворію» потрібне `not` після `am`."
+                "ru": "В этой конструкции `no` не подходит: для «я не болею» нужно `not` после `am`.",
+                "uk": "У цій конструкції `no` не підходить: для «я не хворію» потрібне `not` після `am`."
               }
             },
             {
               "responseId": "en:lesson-01:session-05:i12:r3",
               "correct": false,
-          "testedDimension": "Вставьте слово — коллега приболел, а вы здоровы",
+              "testedDimension": "Вставьте слово — коллега приболел, а вы здоровы",
               "feedbackByLocale": {
                 "ru": "`am` уже стоит в начале. Второй не нужен, нужен `not`.",
                 "uk": "`am` уже стоїть на початку. Другий не потрібен, потрібен `not`."
@@ -696,8 +702,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i13",
-        "ordinal": 13,
-        "purpose": "retrieval_practice",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Послушайте и соберите — «я не знаю наверняка»",
@@ -706,7 +712,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-05:i13:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите — «я не уверен»",
+        "accessibilityLabel": "Послушайте и соберите — «я не знаю наверняка»",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
@@ -730,17 +736,21 @@
               "correct": false,
               "testedDimension": "Послушайте и соберите — «я не знаю наверняка»",
               "feedbackByLocale": {
-            "ru": "в этой фразе отрицание — `not`, сразу после `am`",
-            "uk": "у цій фразі заперечення — `not`, одразу після `am`"
+                "ru": "в этой фразе отрицание — `not`, сразу после `am`",
+                "uk": "у цій фразі заперечення — `not`, одразу після `am`"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i14",
-        "ordinal": 14,
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -763,13 +773,17 @@
             "hot"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i15",
-        "ordinal": 15,
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -828,8 +842,8 @@
               "correct": false,
               "testedDimension": "Вставьте слово — Марина спрашивает, как вы себя чувствуете; всё в порядке",
               "feedbackByLocale": {
-                "ru": "Не для `I`. Что бы ни стояло дальше, начало одно: `I am`.",
-                "uk": "Не для `I`. Що б не стояло далі, початок один: `I am`."
+                "ru": "В этой фразе с fine после I нужно am, а не are.",
+                "uk": "У цій фразі з fine після I потрібне am, а не are."
               }
             }
           ]
@@ -838,7 +852,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i16",
-        "ordinal": 16,
+        "ordinal": 19,
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -846,7 +860,7 @@
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Правда или отрицание? Вы правда устали — признайтесь честно",
+        "accessibilityLabel": "Соберите фразу: после долгого дня сообщите, что чувствуете усталость",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am tired.",
@@ -872,13 +886,60 @@
                 "uk": "з нею фраза заперечувала б втому"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-05:word:sorry",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sorry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-05:word:sorry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sorry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-05:word:sorry:audio",
+            "transcript": "sorry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-05:word:sorry:r1",
+              "targetText": "sorry",
+              "meaningByLocale": {
+                "ru": "«извините» в I am sorry. Вы случайно задели Марину в коридоре и извиняетесь.",
+                "uk": "«вибачте» в I am sorry. Ви випадково зачепили Марину в коридорі й перепрошуєте."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sorry",
+            "definitionByLocale": {
+              "ru": "«извините» в I am sorry. Вы случайно задели Марину в коридоре и извиняетесь.",
+              "uk": "«вибачте» в I am sorry. Ви випадково зачепили Марину в коридорі й перепрошуєте."
+            }
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i17",
-        "ordinal": 17,
+        "ordinal": 21,
         "purpose": "independent_check",
         "family": "speed_match",
         "inputMode": "pair_grid",
@@ -886,7 +947,7 @@
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините пары — слова, которые уже ваши",
+        "accessibilityLabel": "Соедините английские слова с их значением",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
@@ -951,8 +1012,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i18:s01",
-        "ordinal": 18,
-        "purpose": "independent_check",
+        "ordinal": 22,
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
         "prompt": "Скажите вслух — вы задели коллегу в коридоре",
@@ -984,7 +1045,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i18:s02",
-        "ordinal": 19,
+        "ordinal": 23,
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1031,13 +1092,17 @@
                 "uk": "фраза заперечувала б, що ви запізнилися"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i19",
-        "ordinal": 20,
+        "ordinal": 24,
         "purpose": "independent_check",
         "family": "speed_match",
         "inputMode": "pair_grid",
@@ -1045,7 +1110,7 @@
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Итог — соедините фразы с фактами",
+        "accessibilityLabel": "Итог — соедините фразы со значениями",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
@@ -1089,19 +1154,21 @@
             "I am not hot."
           ],
           "rightColumn": [
-            "жарко",
+            "мне жарко",
             "я не болею",
             "с моей стороны всё готово",
             "мне не жарко"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
-            "enabledByDefault": false,
+            "enabledByDefault": true,
             "learnerCanDisable": true,
             "pausesOnInterruption": true
           },
           "finishStats": [
-            "accuracy"
+            "speed",
+            "accuracy",
+            "personal_best"
           ]
         },
         "scriptedAlternate": null
@@ -1110,7 +1177,7 @@
     "uk": [
       {
         "interactionId": "en:lesson-01:session-05:i01",
-        "ordinal": 1,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1153,11 +1220,11 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i02",
-        "ordinal": 2,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-05:i02:r1",
@@ -1165,18 +1232,18 @@
           },
           {
             "responseId": "en:lesson-01:session-05:i02:r2",
-            "text": "hat"
+            "text": "cold"
           },
           {
             "responseId": "en:lesson-01:session-05:i02:r3",
-            "text": "hurt"
+            "text": "tired"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-05:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1192,12 +1259,12 @@
             },
             {
               "responseId": "en:lesson-01:session-05:i02:r2",
-              "targetText": "hat",
+              "targetText": "cold",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-05:i02:r3",
-              "targetText": "hurt",
+              "targetText": "tired",
               "meaningByLocale": null
             }
           ],
@@ -1206,19 +1273,19 @@
             {
               "responseId": "en:lesson-01:session-05:i02:r2",
               "correct": false,
-          "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть слово",
               "feedbackByLocale": {
-                "ru": "Вы выбрали `hat`. В этом слове другой гласный; в записи звучит `hot`. Переслушайте контраст `hat` — `hot`.",
-                "uk": "Ви вибрали `hat`. У цьому слові інший голосний; у записі звучить `hot`. Переслухайте контраст `hat` — `hot`."
+                "ru": "В записи hot, а не cold.",
+                "uk": "У записі hot, а не cold."
               }
             },
             {
               "responseId": "en:lesson-01:session-05:i02:r3",
               "correct": false,
-          "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть слово",
               "feedbackByLocale": {
-                "ru": "Вы выбрали `hurt`. Это другое слово. В нём другой гласный; в записи звучит `hot`. Переслушайте контраст `hurt` — `hot`.",
-                "uk": "Ви вибрали `hurt`. Це інше слово. У ньому інший голосний; у записі звучить `hot`. Переслухайте контраст `hurt` — `hot`."
+                "ru": "В записи hot, а не tired.",
+                "uk": "У записі hot, а не tired."
               }
             }
           ],
@@ -1229,7 +1296,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i03",
-        "ordinal": 3,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1272,7 +1339,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i04",
-        "ordinal": 4,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1294,13 +1361,17 @@
             "hot"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i05",
-        "ordinal": 5,
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1323,8 +1394,8 @@
               "responseId": "en:lesson-01:session-05:i05:r1",
               "targetText": "lost",
               "meaningByLocale": {
-                "ru": "не знать, где находишься",
-                "uk": "не знати, де перебуваєш."
+                "ru": "«заблудился / заблудилась»: вы не можете найти дорогу.",
+                "uk": "«заблукав / заблукала»: ви не можете знайти дорогу."
               }
             }
           ],
@@ -1334,8 +1405,8 @@
           "wordCard": {
             "word": "lost",
             "definitionByLocale": {
-            "ru": "не знать, где находишься",
-            "uk": "не знати, де перебуваєш."
+              "ru": "«заблудился / заблудилась»: вы не можете найти дорогу.",
+              "uk": "«заблукав / заблукала»: ви не можете знайти дорогу."
             }
           }
         },
@@ -1343,11 +1414,11 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i06",
-        "ordinal": 6,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-05:i06:r1",
@@ -1355,18 +1426,18 @@
           },
           {
             "responseId": "en:lesson-01:session-05:i06:r2",
-            "text": "last"
+            "text": "hot"
           },
           {
             "responseId": "en:lesson-01:session-05:i06:r3",
-            "text": "list"
+            "text": "early"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-05:i06:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1382,12 +1453,12 @@
             },
             {
               "responseId": "en:lesson-01:session-05:i06:r2",
-              "targetText": "last",
+              "targetText": "hot",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-05:i06:r3",
-              "targetText": "list",
+              "targetText": "early",
               "meaningByLocale": null
             }
           ],
@@ -1396,19 +1467,19 @@
             {
               "responseId": "en:lesson-01:session-05:i06:r2",
               "correct": false,
-          "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть слово",
               "feedbackByLocale": {
-                "ru": "Вы выбрали `last`. В этом слове другой гласный; в записи звучит `lost`. Переслушайте контраст `last` — `lost`.",
-                "uk": "Ви вибрали `last`. У цьому слові інший голосний; у записі звучить `lost`. Переслухайте контраст `last` — `lost`."
+                "ru": "В записи lost, а не hot.",
+                "uk": "У записі lost, а не hot."
               }
             },
             {
               "responseId": "en:lesson-01:session-05:i06:r3",
               "correct": false,
-          "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть слово",
               "feedbackByLocale": {
-                "ru": "Вы выбрали `list`. В этом слове другой гласный; в записи звучит `lost`. Переслушайте контраст `list` — `lost`.",
-                "uk": "Ви вибрали `list`. У цьому слові інший голосний; у записі звучить `lost`. Переслухайте контраст `list` — `lost`."
+                "ru": "В записи lost, а не early.",
+                "uk": "У записі lost, а не early."
               }
             }
           ],
@@ -1419,8 +1490,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i07",
-        "ordinal": 7,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Картка слова — new",
@@ -1462,11 +1533,11 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i08",
-        "ordinal": 8,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-05:i08:r1",
@@ -1474,18 +1545,18 @@
           },
           {
             "responseId": "en:lesson-01:session-05:i08:r2",
-            "text": "six"
+            "text": "fine"
           },
           {
             "responseId": "en:lesson-01:session-05:i08:r3",
-            "text": "seek"
+            "text": "sad"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-05:i08:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1501,12 +1572,12 @@
             },
             {
               "responseId": "en:lesson-01:session-05:i08:r2",
-              "targetText": "six",
+              "targetText": "fine",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-05:i08:r3",
-              "targetText": "seek",
+              "targetText": "sad",
               "meaningByLocale": null
             }
           ],
@@ -1515,19 +1586,19 @@
             {
               "responseId": "en:lesson-01:session-05:i08:r2",
               "correct": false,
-          "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть слово",
               "feedbackByLocale": {
-                "ru": "Это «шесть». Слушайте конец: у `sick` там «к», а не «кс».",
-                "uk": "Це «шість». Слухайте кінець: у `sick` там «к», а не «кс»."
+                "ru": "В записи sick, а не fine.",
+                "uk": "У записі sick, а не fine."
               }
             },
             {
               "responseId": "en:lesson-01:session-05:i08:r3",
               "correct": false,
-          "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть слово",
               "feedbackByLocale": {
-                "ru": "Гласная длиннее, как «и-и». У `sick` она короткая и резкая.",
-                "uk": "Голосна довша, як «і-і». У `sick` вона коротка й різка."
+                "ru": "В записи sick, а не sad.",
+                "uk": "У записі sick, а не sad."
               }
             }
           ],
@@ -1538,7 +1609,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i09",
-        "ordinal": 9,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1551,8 +1622,8 @@
           "family": "phrase_builder",
           "targetPhrase": "I am new.",
           "localizedMeaning": {
-            "ru": "Вы здесь недавно: соберите полную фразу.",
-            "uk": "Ви тут недавно: складіть повну фразу."
+            "ru": "Соберите фразу — вы только начали работать в команде",
+            "uk": "Складіть фразу — ви щойно почали працювати в команді"
           },
           "orderedTokens": [
             "I",
@@ -1582,13 +1653,17 @@
                 "uk": "додавання `not` перетворило б фразу на заперечення; контекст говорить, що ви нещодавно приєдналися до команди"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i10",
-        "ordinal": 10,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1657,7 +1732,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i11",
-        "ordinal": 11,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
@@ -1709,10 +1784,10 @@
             "new"
           ],
           "rightColumn": [
-            "жарко",
-            "болею",
-            "не знать, где находишься",
-            "людина, яка недавно приєдналася до команди"
+            "спекотно",
+            "хворію",
+            "не знати, де перебуваєш",
+            "людина, яка нещодавно приєдналася до команди"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -1730,7 +1805,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i12",
-        "ordinal": 12,
+        "ordinal": 15,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1758,7 +1833,7 @@
             "ru": "Вставьте слово — коллега приболел, а вы здоровы",
             "uk": "Вставте слово — колега занедужав, а ви здорові"
           },
-          "gappedTargetPhrase": "I am ___ .",
+          "gappedTargetPhrase": "I am ___ sick.",
           "gapOptions": [
             {
               "responseId": "en:lesson-01:session-05:i12:r1",
@@ -1778,16 +1853,16 @@
             {
               "responseId": "en:lesson-01:session-05:i12:r2",
               "correct": false,
-          "testedDimension": "Вставте слово — колега занедужав, а ви здорові",
+              "testedDimension": "Вставте слово — колега занедужав, а ви здорові",
               "feedbackByLocale": {
-              "ru": "В этой конструкции `no` не подходит: для «я не болею» нужно `not` после `am`.",
-              "uk": "У цій конструкції `no` не підходить: для «я не хворію» потрібне `not` після `am`."
+                "ru": "В этой конструкции `no` не подходит: для «я не болею» нужно `not` после `am`.",
+                "uk": "У цій конструкції `no` не підходить: для «я не хворію» потрібне `not` після `am`."
               }
             },
             {
               "responseId": "en:lesson-01:session-05:i12:r3",
               "correct": false,
-          "testedDimension": "Вставте слово — колега занедужав, а ви здорові",
+              "testedDimension": "Вставте слово — колега занедужав, а ви здорові",
               "feedbackByLocale": {
                 "ru": "`am` уже стоит в начале. Второй не нужен, нужен `not`.",
                 "uk": "`am` уже стоїть на початку. Другий не потрібен, потрібен `not`."
@@ -1799,8 +1874,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i13",
-        "ordinal": 13,
-        "purpose": "retrieval_practice",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Послухайте і складіть — «я не знаю напевно»",
@@ -1833,17 +1908,21 @@
               "correct": false,
               "testedDimension": "Послухайте і складіть — «я не знаю напевно»",
               "feedbackByLocale": {
-            "ru": "в этой фразе отрицание — `not`, сразу после `am`",
-            "uk": "у цій фразі заперечення — `not`, одразу після `am`"
+                "ru": "в этой фразе отрицание — `not`, сразу после `am`",
+                "uk": "у цій фразі заперечення — `not`, одразу після `am`"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i14",
-        "ordinal": 14,
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1866,13 +1945,17 @@
             "hot"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i15",
-        "ordinal": 15,
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1931,8 +2014,8 @@
               "correct": false,
               "testedDimension": "Вставте слово — Марина питає, як ви почуваєтеся; усе гаразд",
               "feedbackByLocale": {
-                "ru": "Не для `I`. Что бы ни стояло дальше, начало одно: `I am`.",
-                "uk": "Не для `I`. Що б не стояло далі, початок один: `I am`."
+                "ru": "В этой фразе с fine после I нужно am, а не are.",
+                "uk": "У цій фразі з fine після I потрібне am, а не are."
               }
             }
           ]
@@ -1941,7 +2024,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i16",
-        "ordinal": 16,
+        "ordinal": 19,
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1949,7 +2032,7 @@
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Правда чи заперечення? Ви справді втомилися — визнайте це чесно",
+        "accessibilityLabel": "Складіть фразу: після довгого дня повідомте, що відчуваєте втому",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am tired.",
@@ -1975,13 +2058,60 @@
                 "uk": "з нею фраза заперечувала б втому"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-05:word:sorry",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sorry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-05:word:sorry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sorry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-05:word:sorry:audio",
+            "transcript": "sorry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-05:word:sorry:r1",
+              "targetText": "sorry",
+              "meaningByLocale": {
+                "ru": "«извините» в I am sorry. Вы случайно задели Марину в коридоре и извиняетесь.",
+                "uk": "«вибачте» в I am sorry. Ви випадково зачепили Марину в коридорі й перепрошуєте."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sorry",
+            "definitionByLocale": {
+              "ru": "«извините» в I am sorry. Вы случайно задели Марину в коридоре и извиняетесь.",
+              "uk": "«вибачте» в I am sorry. Ви випадково зачепили Марину в коридорі й перепрошуєте."
+            }
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i17",
-        "ordinal": 17,
+        "ordinal": 21,
         "purpose": "independent_check",
         "family": "speed_match",
         "inputMode": "pair_grid",
@@ -1989,7 +2119,7 @@
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З'єднайте пари — слова, які вже ваші",
+        "accessibilityLabel": "З'єднайте англійські слова з їхнім значенням",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
@@ -2033,10 +2163,10 @@
             "sorry"
           ],
           "rightColumn": [
-            "в порядке",
-            "без сомнений",
-            "готовность начать",
-            "извините"
+            "гаразд",
+            "без сумнівів",
+            "готовність почати",
+            "вибачте"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2054,8 +2184,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i18:s01",
-        "ordinal": 18,
-        "purpose": "independent_check",
+        "ordinal": 22,
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
         "prompt": "Скажіть уголос — ви зачепили колегу в коридорі",
@@ -2087,7 +2217,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-05:i18:s02",
-        "ordinal": 19,
+        "ordinal": 23,
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -2134,13 +2264,17 @@
                 "uk": "фраза заперечувала б, що ви запізнилися"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-05:i19",
-        "ordinal": 20,
+        "ordinal": 24,
         "purpose": "independent_check",
         "family": "speed_match",
         "inputMode": "pair_grid",
@@ -2192,19 +2326,21 @@
             "I am not hot."
           ],
           "rightColumn": [
-            "спекотно",
+            "мені жарко",
             "я не хворію",
             "з мого боку все готово",
             "мені не спекотно"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
-            "enabledByDefault": false,
+            "enabledByDefault": true,
             "learnerCanDisable": true,
             "pausesOnInterruption": true
           },
           "finishStats": [
-            "accuracy"
+            "speed",
+            "accuracy",
+            "personal_best"
           ]
         },
         "scriptedAlternate": null
@@ -2253,13 +2389,18 @@
       "correctResponseId": "en:lesson-01:session-05:i08:r1"
     },
     {
+      "interactionId": "en:lesson-01:session-05:i09",
+      "correctText": "I am new.",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-05:i10",
       "correctText": "am",
       "correctResponseId": "en:lesson-01:session-05:i10:r1"
     },
     {
       "interactionId": "en:lesson-01:session-05:i11",
-      "correctText": "en:lesson-01:session-05:i11:p1=hot\nen:lesson-01:session-05:i11:p2=sick\nen:lesson-01:session-05:i11:p3=lost\nen:lesson-01:session-05:i11:p4=new",
+      "correctText": "",
       "correctResponseId": null
     },
     {
@@ -2288,18 +2429,18 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-01:session-05:word:sorry",
+      "correctText": "sorry",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-05:i17",
-      "correctText": "en:lesson-01:session-05:i17:p1=fine\nen:lesson-01:session-05:i17:p2=sure\nen:lesson-01:session-05:i17:p3=ready\nen:lesson-01:session-05:i17:p4=sorry",
+      "correctText": "",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-05:i18:s01",
       "correctText": "I am sorry.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-05:i09",
-      "correctText": "I am new.",
       "correctResponseId": null
     },
     {
@@ -2309,7 +2450,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-05:i19",
-      "correctText": "en:lesson-01:session-05:i19:p1=I am hot.\nen:lesson-01:session-05:i19:p2=I am not sick.\nen:lesson-01:session-05:i19:p3=I am ready.\nen:lesson-01:session-05:i19:p4=I am not hot.",
+      "correctText": "",
       "correctResponseId": null
     }
   ]

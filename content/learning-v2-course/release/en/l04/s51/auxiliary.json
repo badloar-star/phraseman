@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-51:intro1:r2": {
+          "ru": "Перед одним центром нужно `a`: `a community centre`.",
+          "uk": "Перед одним центром потрібне `a`: `a community centre`."
+        },
+        "en:lesson-04:session-51:intro1:r3": {
+          "ru": "Здесь один центр: `This is a community centre`.",
+          "uk": "Тут один центр: `This is a community centre`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-51:intro2:r2": {
+          "ru": "Несколько библиотек: `The libraries are`.",
+          "uk": "Кілька бібліотек: `The libraries are`."
+        },
+        "en:lesson-04:session-51:intro2:r3": {
+          "ru": "`in` — внутри; здесь рядом: `next to`.",
+          "uk": "`in` — усередині; тут поруч: `next to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-51:intro3:r2": {
+          "ru": "`effective` — эффективно; здесь `ineffective`.",
+          "uk": "`effective` — ефективно; тут `ineffective`."
+        },
+        "en:lesson-04:session-51:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9d92e286f178e4e645c06adeeb0a3585d5c363adb4e2468f1d816aefdcb3135e"
+}

@@ -1,0 +1,999 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Способ не даёт нужного результата. Скажите «Это неэффективно» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Способ не даёт нужного результата. Скажите «Это неэффективно» без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is ineffective.",
+        "localizedMeaning": {
+          "ru": "Способ не даёт нужного результата. Скажите «Это неэффективно» без сокращения",
+          "uk": "Спосіб не дає потрібного результату. Скажіть «Це неефективно» без скорочення"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "ineffective"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-51:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Способ не даёт нужного результата. Скажите «Это неэффективно» без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is ineffective.`",
+              "uk": "тут потрібно `is` — `It is ineffective.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите название",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-51:i02:r1",
+          "text": "community centre"
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i02:r2",
+          "text": "community centres"
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i02:r3",
+          "text": "community kitchen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите название",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-51:i02:audio",
+          "transcript": "community centre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-51:i02:r1",
+            "targetText": "community centre",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i02:r2",
+            "targetText": "community centres",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i02:r3",
+            "targetText": "community kitchen",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите название",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `centre`, а в этом варианте — `centres`.",
+              "uk": "У записі останнє слово — `centre`, а в цьому варіанті — `centres`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите название",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `centre`, а в этом варианте — `kitchen`.",
+              "uk": "У записі останнє слово — `centre`, а в цьому варіанті — `kitchen`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите общественный центр для встреч и занятий жителей",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-51:i03:r1",
+          "text": "community centre"
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i03:r2",
+          "text": "bus shelter"
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i03:r3",
+          "text": "parcel locker"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите общественный центр для встреч и занятий жителей",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите общественный центр для встреч и занятий жителей",
+          "uk": "Назвіть громадський центр для зустрічей і занять мешканців"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i03:r1",
+            "text": "community centre"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i03:r2",
+            "text": "bus shelter"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i03:r3",
+            "text": "parcel locker"
+          }
+        ],
+        "testedDimension": "Назовите общественный центр для встреч и занятий жителей",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите общественный центр для встреч и занятий жителей",
+            "feedbackByLocale": {
+              "ru": "`bus shelter` — остановочный павильон; здесь `community centre`.",
+              "uk": "`bus shelter` — зупинковий павільйон; тут `community centre`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите общественный центр для встреч и занятий жителей",
+            "feedbackByLocale": {
+              "ru": "`parcel locker` — постамат; здесь `community centre`.",
+              "uk": "`parcel locker` — поштомат; тут `community centre`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-51:i04:p1",
+            "target": "community centre",
+            "meaningByLocale": {
+              "ru": "общественный центр",
+              "uk": "громадський центр"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-51:i04:p2",
+            "target": "ineffective",
+            "meaningByLocale": {
+              "ru": "недейственный",
+              "uk": "недієвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-51:i04:p3",
+            "target": "libraries",
+            "meaningByLocale": {
+              "ru": "библиотеки",
+              "uk": "бібліотеки"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-51:i04:p4",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для вторсырья",
+              "uk": "контейнер для вторсировини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "community centre",
+          "ineffective",
+          "libraries",
+          "recycling bin"
+        ],
+        "rightColumn": [
+          "общественный центр",
+          "недейственный",
+          "библиотеки",
+          "контейнер для вторсырья"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-51:i05:audio",
+          "transcript": "This is a community centre."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a community centre.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "community",
+          "centre"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-51:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a community centre.`",
+              "uk": "тут потрібно `is` — `This is a community centre.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Библиотеки рядом с парком. Скажите, где они",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Библиотеки рядом с парком. Скажите, где они",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The libraries are next to the park.",
+        "localizedMeaning": {
+          "ru": "Библиотеки рядом с парком. Скажите, где они",
+          "uk": "Бібліотеки поруч із парком. Скажіть, де вони"
+        },
+        "orderedTokens": [
+          "The",
+          "libraries",
+          "are",
+          "next",
+          "to",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-51:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Библиотеки рядом с парком. Скажите, где они",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The libraries are next to the park.`",
+              "uk": "тут потрібно `are` — `The libraries are next to the park.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Способ объяснять дорогу не помогает гостям находить место. Скажите «Это неэффективно» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Способ объяснять дорогу не помогает гостям находить место. Скажите «Это неэффективно» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-51:i07:audio",
+          "transcript": "It's ineffective."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's ineffective.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Контейнера для вторсырья нет. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-51:i08:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i08:r3",
+          "text": "aren't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Контейнера для вторсырья нет. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Контейнера для вторсырья нет. Выберите форму",
+          "uk": "Контейнера для вторсировини немає. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a recycling bin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i08:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i08:r3",
+            "text": "aren't"
+          }
+        ],
+        "testedDimension": "Контейнера для вторсырья нет. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Контейнера для вторсырья нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "`is` — есть; здесь нет: `isn’t`.",
+              "uk": "`is` — є; тут немає: `isn’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Контейнера для вторсырья нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Один контейнер: `isn’t a recycling bin`.",
+              "uk": "Один контейнер: `isn’t a recycling bin`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где контейнер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-51:i09:r1",
+          "text": "The recycling bin is next to the door."
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i09:r2",
+          "text": "The recycling bin is next to the table."
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i09:r3",
+          "text": "The recycling bin is next to the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где контейнер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-51:i09:audio",
+          "transcript": "The recycling bin is next to the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-51:i09:r1",
+            "targetText": "The recycling bin is next to the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i09:r2",
+            "targetText": "The recycling bin is next to the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i09:r3",
+            "targetText": "The recycling bin is next to the shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где контейнер",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `table`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где контейнер",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `shop`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `shop`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-51:i10:p1",
+            "target": "community centre",
+            "meaningByLocale": {
+              "ru": "общественный центр",
+              "uk": "громадський центр"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-51:i10:p2",
+            "target": "ineffective",
+            "meaningByLocale": {
+              "ru": "недейственный",
+              "uk": "недієвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-51:i10:p3",
+            "target": "libraries",
+            "meaningByLocale": {
+              "ru": "библиотеки",
+              "uk": "бібліотеки"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-51:i10:p4",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для вторсырья",
+              "uk": "контейнер для вторсировини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "community centre",
+          "ineffective",
+          "libraries",
+          "recycling bin"
+        ],
+        "rightColumn": [
+          "общественный центр",
+          "недейственный",
+          "библиотеки",
+          "контейнер для вторсырья"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-51:i11:audio",
+          "transcript": "Is there a community centre?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a community centre?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "community",
+          "centre"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Здесь есть общественный центр. Сообщите об этом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Здесь есть общественный центр. Сообщите об этом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a community centre.",
+        "localizedMeaning": {
+          "ru": "Здесь есть общественный центр. Сообщите об этом",
+          "uk": "Тут є громадський центр. Повідомте про це"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "community",
+          "centre"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-51:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Здесь есть общественный центр. Сообщите об этом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a community centre.`",
+              "uk": "тут потрібно `is` — `There is a community centre.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, есть ли контейнер для вторсырья",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Спросите, есть ли контейнер для вторсырья",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-51:i13:audio",
+          "transcript": "Is there a recycling bin?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a recycling bin?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Центр между двумя магазинами, не внутри и не под ними. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-51:i14:r1",
+          "text": "between"
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i14:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i14:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Центр между двумя магазинами, не внутри и не под ними. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Центр между двумя магазинами, не внутри и не под ними. Выберите слово",
+          "uk": "Центр між двома магазинами, не всередині й не під ними. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The community centre is ___ the shops.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-51:i14:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i14:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i14:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Центр между двумя магазинами, не внутри и не под ними. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-51:i14:r2",
+            "correct": false,
+            "testedDimension": "Центр между двумя магазинами, не внутри и не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; между — `between`.",
+              "uk": "`in` — усередині; між — `between`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i14:r3",
+            "correct": false,
+            "testedDimension": "Центр между двумя магазинами, не внутри и не под ними. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; между — `between`.",
+              "uk": "`under` — під; між — `between`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что показывает друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-51:i15:r1",
+          "text": "That is a community centre."
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i15:r2",
+          "text": "This is a community centre."
+        },
+        {
+          "responseId": "en:lesson-04:session-51:i15:r3",
+          "text": "That is a community kitchen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что показывает друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-51:i15:audio",
+          "transcript": "That is a community centre."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-51:i15:r1",
+            "targetText": "That is a community centre.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i15:r2",
+            "targetText": "This is a community centre.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i15:r3",
+            "targetText": "That is a community kitchen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-51:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-51:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `centre`, а в этом варианте — `kitchen`.",
+              "uk": "У записі останнє слово — `centre`, а в цьому варіанті — `kitchen`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-51:i16:p1",
+            "target": "community centre",
+            "meaningByLocale": {
+              "ru": "общественный центр",
+              "uk": "громадський центр"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-51:i16:p2",
+            "target": "ineffective",
+            "meaningByLocale": {
+              "ru": "недейственный",
+              "uk": "недієвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-51:i16:p3",
+            "target": "libraries",
+            "meaningByLocale": {
+              "ru": "библиотеки",
+              "uk": "бібліотеки"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-51:i16:p4",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для вторсырья",
+              "uk": "контейнер для вторсировини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "community centre",
+          "ineffective",
+          "libraries",
+          "recycling bin"
+        ],
+        "rightColumn": [
+          "общественный центр",
+          "недейственный",
+          "библиотеки",
+          "контейнер для вторсырья"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-51:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другом районе общественный центр рядом с парком. Объясните другу, где он, полной фразой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "В другом районе общественный центр рядом с парком. Объясните другу, где он, полной фразой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-51:i17:audio",
+          "transcript": "The community centre is next to the park."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The community centre is next to the park.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9bb0a31e0b15cd4cda46f852bb2cd893884101b7f545ddcf0f90b74cdb213bea"
+}

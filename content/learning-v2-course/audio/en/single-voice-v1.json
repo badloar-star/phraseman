@@ -80764,6 +80764,309 @@
           "byteSize": 36480
         }
       ]
+    },
+    "l05/s43/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose bracelet is this?",
+          "file": "0de2dfe923888bfc2538faeda3bbf01e0b75f8dd210f82d17339b58a2e051e1e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0de2dfe923888bfc2538faeda3bbf01e0b75f8dd210f82d17339b58a2e051e1e.mp3",
+          "contentHash": "9aa305f08646eed3b3cf49af88e04ccb0a92bb3e475567fbd7d9211a0d847344",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s43/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "You are patient.",
+          "file": "2f3e69630fd16a3cd81feac6e147fa8b16ccb0d89814d0e252d7de773ff9a712.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2f3e69630fd16a3cd81feac6e147fa8b16ccb0d89814d0e252d7de773ff9a712.mp3",
+          "contentHash": "4b4eb6cf9b9bfd425fe1a4ace1f7d6a7fce2868f69ab93d1e9a799a67bd299be",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s43/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The bedrooms are small.",
+          "file": "c762c86de65f6ac2344ec8290905b849e9789407e1a048e0a36a2467b397062f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c762c86de65f6ac2344ec8290905b849e9789407e1a048e0a36a2467b397062f.mp3",
+          "contentHash": "d0f38c5adf9616cb712f38d0be47fe2b3c488403f54903e92a0c6dbf125337bb",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s43/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "You are patient.",
+          "file": "c7af8d0f46ac9164fec614c87898f9cad86e09c159ac76bb3863aa9f330156d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c7af8d0f46ac9164fec614c87898f9cad86e09c159ac76bb3863aa9f330156d0.mp3",
+          "contentHash": "00ecfc12108e79161aecc83a82c0db215c97404fbddb790f39c85ff12b65794b",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s43/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "tram",
+          "file": "96e571a642462451ebb32ec0b77fc81058491527d18c288c2b5737a289428160.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/96e571a642462451ebb32ec0b77fc81058491527d18c288c2b5737a289428160.mp3",
+          "contentHash": "6d8a5eb610e5a599035a9a4ce78847a865ce6ce4ed83d2e89b2f80bf6c3b66da",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l05/s43/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The bedrooms are small.",
+          "file": "d0958f98dd1c91b88283f8558a50ce814810f7bdff9e70ced28d73344dcbec2b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d0958f98dd1c91b88283f8558a50ce814810f7bdff9e70ced28d73344dcbec2b.mp3",
+          "contentHash": "0752afe9d7837693df6f9961f69b7322b4afce06b110792701480396cf521f4b",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s43/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "tram",
+          "file": "f52665e516026713644b9c246cd9043523462b9cbaa248cb7086190ae8ed7cf6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f52665e516026713644b9c246cd9043523462b9cbaa248cb7086190ae8ed7cf6.mp3",
+          "contentHash": "8a740fabf66f7091ecbbb0e370056cd4e8688192a5aa0eba64d24216ad434bf9",
+          "byteSize": 22656
+        },
+        {
+          "text": "bracelet",
+          "file": "fc1dca4740a56edc62aa67602a02309fc11eb7d26b7f7af9bdd70bd65165e959.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/da7fc2ffdb753178e421e652-coral.mp3",
+          "contentHash": "8182203e7c491cc082bb9d1337ff2ccbe493339a50d697cc1ffcdaf5f8a6cb07",
+          "byteSize": 21120
+        },
+        {
+          "text": "bedrooms",
+          "file": "92a211d2ca27ad30a828ae2d77c77135b1af4939f97236f75fc7e097647a567d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/92a211d2ca27ad30a828ae2d77c77135b1af4939f97236f75fc7e097647a567d.mp3",
+          "contentHash": "1c9986078570ed7d79fec1ca5b45adbb537245464780a2de7c647963addd94e2",
+          "byteSize": 26112
+        },
+        {
+          "text": "recycling bin",
+          "file": "52d207e7d8fe21b2c8b515861c4ec32db8c3918e0208e0849b40e108bc626717.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/52d207e7d8fe21b2c8b515861c4ec32db8c3918e0208e0849b40e108bc626717.mp3",
+          "contentHash": "66e6618868d49ff16c5f117f9330266e6f51513f67791d0eb798f04a66ae2913",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s43/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose bracelet is this?",
+          "file": "0de2dfe923888bfc2538faeda3bbf01e0b75f8dd210f82d17339b58a2e051e1e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0de2dfe923888bfc2538faeda3bbf01e0b75f8dd210f82d17339b58a2e051e1e.mp3",
+          "contentHash": "9aa305f08646eed3b3cf49af88e04ccb0a92bb3e475567fbd7d9211a0d847344",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s43/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom is next to the recycling bin.",
+          "file": "c1cd862c14f63b9b6ba98662587d45da2abf2e95e5c23a80308aab17180b128f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c1cd862c14f63b9b6ba98662587d45da2abf2e95e5c23a80308aab17180b128f.mp3",
+          "contentHash": "362186a61d26686e8b113ccc3c15e35cca07c83780b247efd1ec96f5ba3a99b2",
+          "byteSize": 66432
+        }
+      ]
+    },
+    "l05/s43/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bracelet is hers.",
+          "file": "79029c304a5b18a74bb7ad28522da95abf34fa29108dacce153e1edfd329d3d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/79029c304a5b18a74bb7ad28522da95abf34fa29108dacce153e1edfd329d3d0.mp3",
+          "contentHash": "0d4fafdfbccbdb68742eff881e98507f453cb055f9c88fadc5e148f690045381",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s43/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bracelet is mine.",
+          "file": "ee941696abbc0ab58ead73782e9451e9edd2aebb0bd3671c1f555239308a7fdc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee941696abbc0ab58ead73782e9451e9edd2aebb0bd3671c1f555239308a7fdc.mp3",
+          "contentHash": "b353df2180b3c42d5881dc72f0d529614565b817abb62c2e22402a192f0b6538",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s43/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is Anna's bracelet.",
+          "file": "84c3454837ecb9c4c1046c509c9a2a1715b8a298892a7b8a8a31ded45f69b018.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/84c3454837ecb9c4c1046c509c9a2a1715b8a298892a7b8a8a31ded45f69b018.mp3",
+          "contentHash": "45a030eedd7e2ce2c3f69c0da9e3ef2e6282e0aa9bd4caa27b5f54585f968706",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l05/s43/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "patient",
+          "file": "e391c19e783970702ca6704ae9d89637e10618229701135268d327681f649fe2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2295ff7a8bd8b3f2884c6482-onyx.mp3",
+          "contentHash": "3186146dde863b65431deb92c0cd25cf59314ee2b84b6bd92cf362b38c0ca521",
+          "byteSize": 19584
+        },
+        {
+          "text": "recycling bin",
+          "file": "d3bcad2ddf89eea1e2c86476cad4b4b68331f7e533aa0c4d3259c4a22e63c4ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d3bcad2ddf89eea1e2c86476cad4b4b68331f7e533aa0c4d3259c4a22e63c4ae.mp3",
+          "contentHash": "74d9bbedceecb021d611931ad39fbd263b27c7836874fac3c80a24e676c72936",
+          "byteSize": 26112
+        },
+        {
+          "text": "bracelet",
+          "file": "3218d7d5ed19f53aa7b318f101c0edcddc98dd488c5c60f9ef4dddb5be4701c4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/da7fc2ffdb753178e421e652-onyx.mp3",
+          "contentHash": "98e5dbb87e649d11a4ccad19623d0fa9a8d7ae27646e07ef5916f8cbbeb11a6b",
+          "byteSize": 28416
+        },
+        {
+          "text": "tram",
+          "file": "96e571a642462451ebb32ec0b77fc81058491527d18c288c2b5737a289428160.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/96e571a642462451ebb32ec0b77fc81058491527d18c288c2b5737a289428160.mp3",
+          "contentHash": "6d8a5eb610e5a599035a9a4ce78847a865ce6ce4ed83d2e89b2f80bf6c3b66da",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l05/s43/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The tram is here.",
+          "file": "6a03fe6cbbc6cd87f92f436da4a761993d92f2d0f3f21e9d6d87aade0d712796.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a03fe6cbbc6cd87f92f436da4a761993d92f2d0f3f21e9d6d87aade0d712796.mp3",
+          "contentHash": "8ee4d80fd071c6f6290a7d40fa0d9540f72c70b8244f58566075edb96fe6f7d1",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l05/s43/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where are the bedrooms?",
+          "file": "124c4f21a0d1669227f7f2974a3f736406317fa240fb468f3ea67f53606b1546.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/124c4f21a0d1669227f7f2974a3f736406317fa240fb468f3ea67f53606b1546.mp3",
+          "contentHash": "01f0552e4864f78fdb39c2ad62cde37bc08ef425881342c4a8d39301631ffad5",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s43/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your bracelet.",
+          "file": "03a2cffc55362ccfd02b078603da8b8eec5d5302dfd07c2089567261a7e4310b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/03a2cffc55362ccfd02b078603da8b8eec5d5302dfd07c2089567261a7e4310b.mp3",
+          "contentHash": "9ff98f86854e411b83a53cad887b32e8f6dcfac7dba4396a92ab2583e9b41bae",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s43/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose bracelet is this?",
+          "file": "1a7e80ce0090988317fb7dae87eccced9b2e7af1c65ff21095642b884655995a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a7e80ce0090988317fb7dae87eccced9b2e7af1c65ff21095642b884655995a.mp3",
+          "contentHash": "2151aeea9d081dc23e62c6d45b699e1c42e5f1cc595621b0284c74ea005a1f3b",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s43/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Your bracelet is here.",
+          "file": "a66da01a4ed32933ea8a489513fadf532c1a09f516761b22ed2027c0f04f6210.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a66da01a4ed32933ea8a489513fadf532c1a09f516761b22ed2027c0f04f6210.mp3",
+          "contentHash": "8d89ed04a646fa86c160cf94bd918cdbbfaaf8aa17a313dd04677948f2ea1f65",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s43/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "patient",
+          "file": "85e15c744f4067852cbf86147643e4eaf192fcb1e10502162f6da7e1348151e7.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2295ff7a8bd8b3f2884c6482-nova.mp3",
+          "contentHash": "b98ca76fa27770c7a05701f41a08938ad7aec602748fe7886de385a697dedb0c",
+          "byteSize": 18816
+        },
+        {
+          "text": "bedrooms",
+          "file": "b9d69bfb1908459876fcf3ba28c1e1b709f1f18ce0aa0c9f13305da8473d534c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b9d69bfb1908459876fcf3ba28c1e1b709f1f18ce0aa0c9f13305da8473d534c.mp3",
+          "contentHash": "21b70cacea2bdcb32f5669a0d9be3025a3d5f3262d4cc4e99afab9303be8c73e",
+          "byteSize": 25344
+        },
+        {
+          "text": "tram",
+          "file": "453ff017aa82dcd7684494329c1828f7e496f9dde10a4348dccdf038e97f0100.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/453ff017aa82dcd7684494329c1828f7e496f9dde10a4348dccdf038e97f0100.mp3",
+          "contentHash": "5dab49f2abcbb46134fdf2888625d563220abb400d6735963d6029a2b766787b",
+          "byteSize": 18816
+        },
+        {
+          "text": "bracelet",
+          "file": "98ed311218fc5ce73b39535a640355a891d2b4df81d1e2ef8f71d36783b5984a.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/da7fc2ffdb753178e421e652-nova.mp3",
+          "contentHash": "a2f642245106b22157b9118e847454785becbccf1c7e8cd46475f7b9028b3940",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l05/s43/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose bracelet is this?",
+          "file": "1a7e80ce0090988317fb7dae87eccced9b2e7af1c65ff21095642b884655995a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a7e80ce0090988317fb7dae87eccced9b2e7af1c65ff21095642b884655995a.mp3",
+          "contentHash": "2151aeea9d081dc23e62c6d45b699e1c42e5f1cc595621b0284c74ea005a1f3b",
+          "byteSize": 36480
+        }
+      ]
     }
   },
   "settings": {

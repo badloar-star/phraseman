@@ -92581,6 +92581,309 @@
           "byteSize": 36480
         }
       ]
+    },
+    "l06/s26/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She jogs in the park.",
+          "file": "a3beabc8e7fca50325a90dedfa997a120993952c6732b85ecd89a3f6ef4817c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a3beabc8e7fca50325a90dedfa997a120993952c6732b85ecd89a3f6ef4817c0.mp3",
+          "contentHash": "47c7b0960e507ffdb5ba010ee48a154141a5de8fa2364bbeb2fde28496ae7bac",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s26/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He smiles a lot.",
+          "file": "8be25a4f8c3a7a46e23d086bd0adf9890f82456f327f3afa185e6825a79313d7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8be25a4f8c3a7a46e23d086bd0adf9890f82456f327f3afa185e6825a79313d7.mp3",
+          "contentHash": "9933dc75fb9ff47792aa1c6914ffc38e74e257527c06846271c376ee593041d5",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s26/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He is careless.",
+          "file": "dbcd966ff22c5d1fbe86cae35aa70a5e5eb98115585fd2118a7446e5441e2822.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dbcd966ff22c5d1fbe86cae35aa70a5e5eb98115585fd2118a7446e5441e2822.mp3",
+          "contentHash": "e4407dcb18144c1fe8dda0488bab5711fc33686abfc08f8cc3f881c98fe4945e",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l06/s26/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I jog in the park.",
+          "file": "ae61b53e11ff35150150e3431e84e7dd631470db8e18262712de4f8e293d6c6f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae61b53e11ff35150150e3431e84e7dd631470db8e18262712de4f8e293d6c6f.mp3",
+          "contentHash": "2533998c9a711b1b583ae867aba677cb8744fe5538b5824c7b314e5ab473c478",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l06/s26/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "jog",
+          "file": "119d12b19d109157a183fc74995209ee6abb7dbdaf20dcc704515db6173a870c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/119d12b19d109157a183fc74995209ee6abb7dbdaf20dcc704515db6173a870c.mp3",
+          "contentHash": "bd62379b3cb9c139db8a6bf49ecb0b6a3268cbb20b6452bcc8506f00a803b38e",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l06/s26/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She jogs in the park.",
+          "file": "a3beabc8e7fca50325a90dedfa997a120993952c6732b85ecd89a3f6ef4817c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a3beabc8e7fca50325a90dedfa997a120993952c6732b85ecd89a3f6ef4817c0.mp3",
+          "contentHash": "47c7b0960e507ffdb5ba010ee48a154141a5de8fa2364bbeb2fde28496ae7bac",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s26/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "jog",
+          "file": "0e9b5a64386b2700cd361b3ba179ae3432b9ff2b9446895b6b6a550230e3a8b0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e9b5a64386b2700cd361b3ba179ae3432b9ff2b9446895b6b6a550230e3a8b0.mp3",
+          "contentHash": "45ed5bdbce7c3d95827430b6f91d0ecb8a57ed4a6390f8701b46b16a5c88b302",
+          "byteSize": 24576
+        },
+        {
+          "text": "careless",
+          "file": "dcaa98b4acd3f3d19ed45407a5abc000b603459f4b90fb75f75a45c6d1e10ae5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dcaa98b4acd3f3d19ed45407a5abc000b603459f4b90fb75f75a45c6d1e10ae5.mp3",
+          "contentHash": "e175be2dd485542a9179388a7d46fd31236167af8a93d2e0ea12a61628a5e349",
+          "byteSize": 20352
+        },
+        {
+          "text": "worktop",
+          "file": "6edcd54fba4d79a677a8a94dcdeb7eabde4309b1298ec0841ea2663f5c372ff8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6edcd54fba4d79a677a8a94dcdeb7eabde4309b1298ec0841ea2663f5c372ff8.mp3",
+          "contentHash": "ec6b309655c9d4f6ebab90e5f3da74b96209c61bd4c5f90c261cf9ad5d4f385a",
+          "byteSize": 20352
+        },
+        {
+          "text": "badge",
+          "file": "733a99a1114476f884ffafbf0310a2012dbe0f639d5704258ddb711a00d582c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/733a99a1114476f884ffafbf0310a2012dbe0f639d5704258ddb711a00d582c0.mp3",
+          "contentHash": "b117dea41fa8df1d398903066f6037e6a0f918e280d8f899bf26cac1e0a10925",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l06/s26/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Anna jogs here.",
+          "file": "f851977fed16427521276bad232a36ccea11f93dab869a66e3ccf23589bad0ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f851977fed16427521276bad232a36ccea11f93dab869a66e3ccf23589bad0ec.mp3",
+          "contentHash": "48c22d511e39c2e03b47adf65638e9b75905f535c15e9cc1ae552d7ebb659c4f",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s26/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He smiles a lot.",
+          "file": "843816e5101db4d8b9ef0a7ec6272d7410821f9bb5d811c54cd60c4e198a66c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/843816e5101db4d8b9ef0a7ec6272d7410821f9bb5d811c54cd60c4e198a66c4.mp3",
+          "contentHash": "86eec61ede169391d491854709568b2baf73e46ba5fea46d6665cfd717fa1023",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l06/s26/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He is careless.",
+          "file": "ab9ba507f47937dc13ad8f26bc24aca3052c81b8587b131dd0be9a78feb3e03a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab9ba507f47937dc13ad8f26bc24aca3052c81b8587b131dd0be9a78feb3e03a.mp3",
+          "contentHash": "9df766fe2888bfce1c786e1781ba481999ba9fa88c29a014b7d914d75a0de9cf",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l06/s26/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They jog here.",
+          "file": "8317e2245f870964fa764db318cf8393e46a970467f4d2ee417fd49e6e12523c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8317e2245f870964fa764db318cf8393e46a970467f4d2ee417fd49e6e12523c.mp3",
+          "contentHash": "822c27c1878ac51fdbee918148f91eeeda42f1b9e1986d146538933e9348992c",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s26/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "My badge is here.",
+          "file": "149442b033efe7aed20be4d5541dda5e887f48720f5f864ff9b11a770db81147.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/149442b033efe7aed20be4d5541dda5e887f48720f5f864ff9b11a770db81147.mp3",
+          "contentHash": "51b23081743bb9ea87487ff327966d74cd4a893c452cc995a19af8a874482b0c",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s26/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "jog",
+          "file": "0e9b5a64386b2700cd361b3ba179ae3432b9ff2b9446895b6b6a550230e3a8b0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e9b5a64386b2700cd361b3ba179ae3432b9ff2b9446895b6b6a550230e3a8b0.mp3",
+          "contentHash": "45ed5bdbce7c3d95827430b6f91d0ecb8a57ed4a6390f8701b46b16a5c88b302",
+          "byteSize": 24576
+        },
+        {
+          "text": "smile",
+          "file": "3094c6bc40c5707ae36a11f5b7eabc96b41158704ba957c8ba45433c814a07a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3094c6bc40c5707ae36a11f5b7eabc96b41158704ba957c8ba45433c814a07a6.mp3",
+          "contentHash": "4798232b2bb55462f4386ef9de471915d1aef3888c24260423dbb96837a9a90b",
+          "byteSize": 19584
+        },
+        {
+          "text": "badge",
+          "file": "733a99a1114476f884ffafbf0310a2012dbe0f639d5704258ddb711a00d582c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/733a99a1114476f884ffafbf0310a2012dbe0f639d5704258ddb711a00d582c0.mp3",
+          "contentHash": "b117dea41fa8df1d398903066f6037e6a0f918e280d8f899bf26cac1e0a10925",
+          "byteSize": 18048
+        },
+        {
+          "text": "careless",
+          "file": "dcaa98b4acd3f3d19ed45407a5abc000b603459f4b90fb75f75a45c6d1e10ae5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dcaa98b4acd3f3d19ed45407a5abc000b603459f4b90fb75f75a45c6d1e10ae5.mp3",
+          "contentHash": "e175be2dd485542a9179388a7d46fd31236167af8a93d2e0ea12a61628a5e349",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l06/s26/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The badge is on the worktop.",
+          "file": "057ad563d2bc3253f679b5645f436bdf2b96fcce148b01d5dfce1b8142abf155.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/057ad563d2bc3253f679b5645f436bdf2b96fcce148b01d5dfce1b8142abf155.mp3",
+          "contentHash": "9fd27cc77102a643764a6eaa14da8de0919bd42d26c201f24c6faf7a9f4566fb",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l06/s26/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose badge is this?",
+          "file": "cc18ea6adfdaf7d6a77876f58628f8d2de3796f2502befb35fc7fabfec9da77a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc18ea6adfdaf7d6a77876f58628f8d2de3796f2502befb35fc7fabfec9da77a.mp3",
+          "contentHash": "669b0bedb98f391173b96e15032a59aec6ed7682bd8f0730bf4dfb305191ba3c",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l06/s26/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They smile a lot.",
+          "file": "18597d441d07372596ee92636454d6211e45107efa04cee8dc347109a88aa4da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/18597d441d07372596ee92636454d6211e45107efa04cee8dc347109a88aa4da.mp3",
+          "contentHash": "a609040f42d029c3cd06329d19370a3c46e254960e3edc94985ac8e78d1f09ce",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s26/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom smiles a lot.",
+          "file": "11a1c6cf41d954be26812fbecad412419de11e6878feb9c7f4d406bcabc7646b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11a1c6cf41d954be26812fbecad412419de11e6878feb9c7f4d406bcabc7646b.mp3",
+          "contentHash": "8ae21fae09c9bcc2ec88dfb7d7cd00f6b4a9a565db4bce72b25822ff61eed0f0",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s26/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The worktop is clean.",
+          "file": "b2803962cc2b455a45584038b018dd65aa327a683eac617a8c090ff25ef362c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b2803962cc2b455a45584038b018dd65aa327a683eac617a8c090ff25ef362c6.mp3",
+          "contentHash": "7bfeb5047b1a4ccb4d6884c4fbbe5cafb316cbd05ad246193f4d01410c90c988",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s26/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "jog",
+          "file": "365775ce6731351cfc5550d63a6df963ae80d2bcfe9fbb2309705426de0377a2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/365775ce6731351cfc5550d63a6df963ae80d2bcfe9fbb2309705426de0377a2.mp3",
+          "contentHash": "38941faf60ae67a0b12fd3b294749fe942e9fe1367bb15905963d9009ea917ae",
+          "byteSize": 18816
+        },
+        {
+          "text": "worktop",
+          "file": "19e43e3e49916c772064210ca8dde5c4c96c8e45d3b244786caef632f882aef6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/19e43e3e49916c772064210ca8dde5c4c96c8e45d3b244786caef632f882aef6.mp3",
+          "contentHash": "e398b60a5f547c829140f73a90a42b266551b6acb6713661668e43f22231bc01",
+          "byteSize": 26880
+        },
+        {
+          "text": "careless",
+          "file": "ae2e1d145b97b555636f5c858b308f68d98ebb3f72f41c105836f00630191480.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae2e1d145b97b555636f5c858b308f68d98ebb3f72f41c105836f00630191480.mp3",
+          "contentHash": "63d5926deff3224164c3075613afc9429feb7b7add9f88108727bfc6343dcd4a",
+          "byteSize": 18048
+        },
+        {
+          "text": "smile",
+          "file": "34100923695836b2d98b61a2f0f573011244f5acb926f8911f3621f68f837d72.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34100923695836b2d98b61a2f0f573011244f5acb926f8911f3621f68f837d72.mp3",
+          "contentHash": "d8e04b021c249e6459ec4b166cf40d009156689ab2524bd471994ed6973fd14c",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s26/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She jogs in the park.",
+          "file": "5c3e4404210927ca6b9b78a62fb625b93b15d4039b5e137fd3876240fee0fc02.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c3e4404210927ca6b9b78a62fb625b93b15d4039b5e137fd3876240fee0fc02.mp3",
+          "contentHash": "a7b189e1a12d21e067b57a8b4521086c749182bcd7b9d5a1f859d2e8015d51d3",
+          "byteSize": 40320
+        }
+      ]
     }
   },
   "settings": {

@@ -1,0 +1,1010 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-10:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Мой друг пожилой. Скажите это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мой друг пожилой. Скажите это",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My friend is old.",
+        "localizedMeaning": {
+          "ru": "Мой друг пожилой. Скажите это",
+          "uk": "Мій друг літній. Скажіть це"
+        },
+        "orderedTokens": [
+          "My",
+          "friend",
+          "is",
+          "old"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Мой друг пожилой. Скажите это",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `My friend is old.`",
+              "uk": "тут потрібно `is` — `My friend is old.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-10:i02:r1",
+          "text": "pocket"
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i02:r2",
+          "text": "pockets"
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i02:r3",
+          "text": "packet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:i02:audio",
+          "transcript": "pocket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-10:i02:r1",
+            "targetText": "pocket",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i02:r2",
+            "targetText": "pockets",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i02:r3",
+            "targetText": "packet",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `pocket`, а в этом варианте — `pockets`.",
+              "uk": "У записі перше слово — `pocket`, а в цьому варіанті — `pockets`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `pocket`, а в этом варианте — `packet`.",
+              "uk": "У записі перше слово — `pocket`, а в цьому варіанті — `packet`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите карман",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-10:i03:r1",
+          "text": "pocket"
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i03:r2",
+          "text": "lock"
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i03:r3",
+          "text": "drawer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите карман",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите карман",
+          "uk": "Назвіть кишеню"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-10:i03:r1",
+            "text": "pocket"
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i03:r2",
+            "text": "lock"
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i03:r3",
+            "text": "drawer"
+          }
+        ],
+        "testedDimension": "Назовите карман",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите карман",
+            "feedbackByLocale": {
+              "ru": "`lock` — замок; карман — `pocket`.",
+              "uk": "`lock` — замок; кишеня — `pocket`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите карман",
+            "feedbackByLocale": {
+              "ru": "`drawer` — выдвижной ящик; карман — `pocket`.",
+              "uk": "`drawer` — шухляда; кишеня — `pocket`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-10:i04:p1",
+            "target": "pocket",
+            "meaningByLocale": {
+              "ru": "карман",
+              "uk": "кишеня"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-10:i04:p2",
+            "target": "old",
+            "meaningByLocale": {
+              "ru": "пожилой",
+              "uk": "літній"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-10:i04:p3",
+            "target": "kind",
+            "meaningByLocale": {
+              "ru": "добрый",
+              "uk": "добрий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-10:i04:p4",
+            "target": "funny",
+            "meaningByLocale": {
+              "ru": "забавный",
+              "uk": "кумедний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pocket",
+          "old",
+          "kind",
+          "funny"
+        ],
+        "rightColumn": [
+          "карман",
+          "пожилой",
+          "добрый",
+          "забавный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:i05:audio",
+          "transcript": "The key is in my pocket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The key is in my pocket.",
+        "orderedTokens": [
+          "The",
+          "key",
+          "is",
+          "in",
+          "my",
+          "pocket"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The key is in my pocket.`",
+              "uk": "тут потрібно `is` — `The key is in my pocket.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг собеседника добрый. Скажите «Твой друг добрый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг собеседника добрый. Скажите «Твой друг добрый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Your friend is kind.",
+        "localizedMeaning": {
+          "ru": "Друг собеседника добрый. Скажите «Твой друг добрый»",
+          "uk": "Друг співрозмовника добрий. Скажіть «Твій друг добрий»"
+        },
+        "orderedTokens": [
+          "Your",
+          "friend",
+          "is",
+          "kind"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг собеседника добрый. Скажите «Твой друг добрый»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Your friend is kind.`",
+              "uk": "тут потрібно `is` — `Your friend is kind.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Наш друг забавный»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Наш друг забавный»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:i07:audio",
+          "transcript": "Our friend is funny."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Our friend is funny.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-10:i08:r1",
+          "text": "his"
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i08:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i08:r3",
+          "text": "their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+          "uk": "Ключ у кишені вашого друга-чоловіка. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The key is in ___ pocket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-10:i08:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i08:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i08:r3",
+            "text": "their"
+          }
+        ],
+        "testedDimension": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`her` — её; здесь его: `his`.",
+              "uk": "`her` — її; тут його: `his`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`their` — их; здесь его: `his`.",
+              "uk": "`their` — їхній; тут його: `his`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где отель",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-10:i09:r1",
+          "text": "Their hotel is next to the park."
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i09:r2",
+          "text": "Their hotel is next to the bank."
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i09:r3",
+          "text": "Our hotel is next to the park."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где отель",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:i09:audio",
+          "transcript": "Their hotel is next to the park."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-10:i09:r1",
+            "targetText": "Their hotel is next to the park.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i09:r2",
+            "targetText": "Their hotel is next to the bank.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i09:r3",
+            "targetText": "Our hotel is next to the park.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где отель",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `park`, а в этом варианте — `bank`.",
+              "uk": "У записі останнє слово — `park`, а в цьому варіанті — `bank`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где отель",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Their`, а в этом варианте — `Our`.",
+              "uk": "У записі перше слово — `Their`, а в цьому варіанті — `Our`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-10:i10:p1",
+            "target": "pocket",
+            "meaningByLocale": {
+              "ru": "карман",
+              "uk": "кишеня"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-10:i10:p2",
+            "target": "lock",
+            "meaningByLocale": {
+              "ru": "замок для ключа",
+              "uk": "замок для ключа"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-10:i10:p3",
+            "target": "hotel",
+            "meaningByLocale": {
+              "ru": "отель",
+              "uk": "готель"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-10:i10:p4",
+            "target": "kind",
+            "meaningByLocale": {
+              "ru": "добрый",
+              "uk": "добрий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pocket",
+          "lock",
+          "hotel",
+          "kind"
+        ],
+        "rightColumn": [
+          "карман",
+          "замок для ключа",
+          "отель",
+          "добрый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:i11:audio",
+          "transcript": "Her key is in his pocket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Her key is in his pocket.",
+        "orderedTokens": [
+          "Her",
+          "key",
+          "is",
+          "in",
+          "his",
+          "pocket"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Her key is in his pocket.`",
+              "uk": "тут потрібно `is` — `Her key is in his pocket.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Наш отель здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Наш отель здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our hotel is here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Наш отель здесь»",
+          "uk": "Скажіть «Наш готель тут»"
+        },
+        "orderedTokens": [
+          "Our",
+          "hotel",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Наш отель здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Our hotel is here.`",
+              "uk": "тут потрібно `is` — `Our hotel is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У вас ключ собеседника. Скажите «Твой ключ у меня»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:i13:audio"
+      ],
+      "accessibilityLabel": "У вас ключ собеседника. Скажите «Твой ключ у меня»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:i13:audio",
+          "transcript": "I have your key."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your key.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-10:i14:r1",
+          "text": "Its"
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i14:r2",
+          "text": "It's"
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i14:r3",
+          "text": "Their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+          "uk": "Ідеться про одні двері, названі англійською it. Замок цих дверей новий. Виберіть слово"
+        },
+        "gappedTargetPhrase": "___ lock is new.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-10:i14:r1",
+            "text": "Its"
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i14:r2",
+            "text": "It's"
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i14:r3",
+            "text": "Their"
+          }
+        ],
+        "testedDimension": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i14:r2",
+            "correct": false,
+            "testedDimension": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`It’s` — `it is`; здесь нужно `Its lock`.",
+              "uk": "`It’s` — `it is`; тут потрібне `Its lock`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i14:r3",
+            "correct": false,
+            "testedDimension": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "Для одной двери, названной `it`, нужно `Its`.",
+              "uk": "Для одних дверей, названих `it`, потрібне `Its`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей карман пуст",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-10:i15:r1",
+          "text": "Her pocket is empty."
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i15:r2",
+          "text": "His pocket is empty."
+        },
+        {
+          "responseId": "en:lesson-05:session-10:i15:r3",
+          "text": "My pocket is empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей карман пуст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:i15:audio",
+          "transcript": "Her pocket is empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-10:i15:r1",
+            "targetText": "Her pocket is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i15:r2",
+            "targetText": "His pocket is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i15:r3",
+            "targetText": "My pocket is empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-10:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей карман пуст",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Her`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `His`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-10:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей карман пуст",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Her`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `My`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-10:i16:p1",
+            "target": "pocket",
+            "meaningByLocale": {
+              "ru": "карман",
+              "uk": "кишеня"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-10:i16:p2",
+            "target": "lock",
+            "meaningByLocale": {
+              "ru": "замок для ключа",
+              "uk": "замок для ключа"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-10:i16:p3",
+            "target": "hotel",
+            "meaningByLocale": {
+              "ru": "отель",
+              "uk": "готель"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-10:i16:p4",
+            "target": "funny",
+            "meaningByLocale": {
+              "ru": "забавный",
+              "uk": "кумедний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pocket",
+          "lock",
+          "hotel",
+          "funny"
+        ],
+        "rightColumn": [
+          "карман",
+          "замок для ключа",
+          "отель",
+          "забавный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг ищет ключ. Вы видите его в кармане друга. Скажите ему «Ключ в твоём кармане»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Друг ищет ключ. Вы видите его в кармане друга. Скажите ему «Ключ в твоём кармане»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:i17:audio",
+          "transcript": "The key is in your pocket."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The key is in your pocket.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "322d6dc8436d7a151fe6a151ea48b0c943d294c3edff83747db76a59bcb5e239"
+}

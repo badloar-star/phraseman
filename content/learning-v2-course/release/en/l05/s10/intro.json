@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "назвать карман и уточнить, в чьём кармане вещь",
+    "uk": "назвати кишеню й уточнити, у чиїй кишені річ"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Проверить карманы",
+        "uk": "Перевірити кишені"
+      },
+      "bodyByLocale": {
+        "ru": "`pocket` — «карман». `my pocket` — «мой карман», `your pocket` — «твой / ваш карман». `The key is in my pocket` — «Ключ в моём кармане». Перед поисковой операцией по всему отелю полезно проверить карман: ключ часто не знает, что его уже потеряли. Перед `my pocket` не нужно `a` или `the`.",
+        "uk": "`pocket` — «кишеня». `my pocket` — «моя кишеня», `your pocket` — «твоя / ваша кишеня». `The key is in my pocket` — «Ключ у моїй кишені». Перед пошуковою операцією по всьому готелю корисно перевірити кишеню: ключ часто не знає, що його вже загубили. Перед `my pocket` не потрібне `a` чи `the`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Ключ в вашем собственном кармане. Выберите фразу.",
+          "uk": "Ключ у вашій власній кишені. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-10:intro1:r1",
+              "text": "The key is in my pocket."
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro1:r2",
+              "text": "The key is in a my pocket."
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro1:r3",
+              "text": "The key is in your pocket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-10:intro1:r1",
+              "text": "The key is in my pocket."
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro1:r2",
+              "text": "The key is in a my pocket."
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro1:r3",
+              "text": "The key is in your pocket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ключ в вашем собственном кармане. Выберите фразу.",
+          "uk": "Ключ у вашій власній кишені. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Люди рядом",
+        "uk": "Люди поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`old` о человеке — «пожилой», `kind` — «добрый», `funny` — «забавный, смешной». `My friend is old` — «Мой друг пожилой». `Your friend is kind` — «Твой друг добрый». `Our friend is funny` — «Наш друг забавный». Слова `my`, `your`, `our` стоят перед `friend`; описание человека — после `is`.",
+        "uk": "`old` про людину — «літній», `kind` — «добрий», `funny` — «кумедний, смішний». `My friend is old` — «Мій друг літній». `Your friend is kind` — «Твій друг добрий». `Our friend is funny` — «Наш друг кумедний». Слова `my`, `your`, `our` стоять перед `friend`; опис людини — після `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Ваш общий друг забавный. Выберите описание.",
+          "uk": "Ваш спільний друг кумедний. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-10:intro2:r1",
+              "text": "Our friend is funny."
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro2:r2",
+              "text": "Their friend is funny."
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro2:r3",
+              "text": "Our friend are funny."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-10:intro2:r1",
+              "text": "Our friend is funny."
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro2:r2",
+              "text": "Their friend is funny."
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro2:r3",
+              "text": "Our friend are funny."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ваш общий друг забавный. Выберите описание.",
+          "uk": "Ваш спільний друг кумедний. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Номер и замок",
+        "uk": "Номер і замок"
+      },
+      "bodyByLocale": {
+        "ru": "`hotel` — «отель», `lock` — «замок», который открывают ключом. `Their hotel is next to the park` — «Их отель рядом с парком». `Her key is in his pocket` — «Её ключ в его кармане»: ключ принадлежит женщине, карман — мужчине. Для двери, которую назвали `it`: `its lock` — «её замок». `its` без апострофа сообщает, чей замок; `it’s` означает `it is`.",
+        "uk": "`hotel` — «готель», `lock` — «замок», який відчиняють ключем. `Their hotel is next to the park` — «Їхній готель поруч із парком». `Her key is in his pocket` — «Її ключ у його кишені»: ключ належить жінці, кишеня — чоловікові. Для дверей, які назвали `it`: `its lock` — «їхній замок». `its` без апострофа повідомляє, чий замок; `it’s` означає `it is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Дверь назвали it. Как сказать «её замок»?",
+          "uk": "Двері назвали it. Як сказати «замок цих дверей»?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-10:intro3:r1",
+              "text": "its lock"
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro3:r2",
+              "text": "it's lock"
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro3:r3",
+              "text": "their lock"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-10:intro3:r1",
+              "text": "its lock"
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro3:r2",
+              "text": "it's lock"
+            },
+            {
+              "responseId": "en:lesson-05:session-10:intro3:r3",
+              "text": "their lock"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Дверь назвали it. Как сказать «её замок»?",
+          "uk": "Двері назвали it. Як сказати «замок цих дверей»?"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "30b4f12b7bf22be8bc37c81dd61b28352144401ffc8ba79327591e9b9cde0528"
+}

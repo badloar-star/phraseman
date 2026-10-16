@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-29:i01",
+    "correctText": "Where do you play?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i02",
+    "correctText": "play",
+    "correctResponseId": "en:lesson-07:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i03",
+    "correctText": "do",
+    "correctResponseId": "en:lesson-07:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i04",
+    "correctText": "en:lesson-07:session-29:i04:p1=play\nen:lesson-07:session-29:i04:p2=call\nen:lesson-07:session-29:i04:p3=skateboard\nen:lesson-07:session-29:i04:p4=tables",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i05",
+    "correctText": "Where do you play?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i06",
+    "correctText": "When do you call?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i07",
+    "correctText": "When does she start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i08",
+    "correctText": "does",
+    "correctResponseId": "en:lesson-07:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i09",
+    "correctText": "Where do you play?",
+    "correctResponseId": "en:lesson-07:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i10",
+    "correctText": "en:lesson-07:session-29:i10:p1=lie\nen:lesson-07:session-29:i10:p2=play\nen:lesson-07:session-29:i10:p3=tables\nen:lesson-07:session-29:i10:p4=call",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i11",
+    "correctText": "When do you call?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i12",
+    "correctText": "Do you have a skateboard?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i13",
+    "correctText": "I don’t lie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i14",
+    "correctText": "play",
+    "correctResponseId": "en:lesson-07:session-29:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i15",
+    "correctText": "The tables are here.",
+    "correctResponseId": "en:lesson-07:session-29:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i16",
+    "correctText": "en:lesson-07:session-29:i16:p1=play\nen:lesson-07:session-29:i16:p2=skateboard\nen:lesson-07:session-29:i16:p3=lie\nen:lesson-07:session-29:i16:p4=tables",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-29:i17",
+    "correctText": "When does Tom play?",
+    "correctResponseId": null
+  }
+]

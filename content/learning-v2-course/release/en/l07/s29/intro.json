@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "спрашивать о месте и времени привычных действий",
+    "uk": "запитувати про місце й час звичних дій"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место для игры",
+        "uk": "Місце для гри"
+      },
+      "bodyByLocale": {
+        "ru": "Друг регулярно играет с компанией в настольные игры. `play` — «играть». `Where do you play?` — «Где ты играешь?» Вы уже знаете, о каких играх речь, и уточняете место. После `where` идут `do you play`. Игровому полю тоже нужен стол, а не только героические планы.",
+        "uk": "Друг регулярно грає з компанією в настільні ігри. `play` — «грати». `Where do you play?` — «Де ти граєш?» Ви вже знаєте, про які ігри йдеться, і уточнюєте місце. Після `where` ідуть `do you play`. Ігровому полю теж потрібен стіл, а не лише героїчні плани."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Узнайте обычное место игр друга.",
+          "uk": "Дізнайтеся звичне місце ігор друга."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-29:intro1:r1",
+              "text": "Where do you play?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro1:r2",
+              "text": "Where does you play?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro1:r3",
+              "text": "Where you play?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-29:intro1:r1",
+              "text": "Where do you play?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro1:r2",
+              "text": "Where does you play?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro1:r3",
+              "text": "Where you play?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте обычное место игр друга.",
+          "uk": "Дізнайтеся звичне місце ігор друга."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Время звонка",
+        "uk": "Час дзвінка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг регулярно звонит родителям. `When do you call?` — «Когда ты звонишь?» В этом разговоре понятно, кому он звонит. `When` спрашивает о времени, затем идут `do you call`.",
+        "uk": "Друг регулярно телефонує батькам. `When do you call?` — «Коли ти телефонуєш?» У цій розмові зрозуміло, кому він телефонує. `When` запитує про час, потім ідуть `do you call`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Узнайте, когда друг обычно звонит родителям.",
+          "uk": "Дізнайтеся, коли друг зазвичай телефонує батькам."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-29:intro2:r1",
+              "text": "When do you call?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro2:r2",
+              "text": "When does you call?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro2:r3",
+              "text": "When do you calls?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-29:intro2:r1",
+              "text": "When do you call?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro2:r2",
+              "text": "When does you call?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro2:r3",
+              "text": "When do you calls?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте, когда друг обычно звонит родителям.",
+          "uk": "Дізнайтеся, коли друг зазвичай телефонує батькам."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Начало работы",
+        "uk": "Початок роботи"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете рабочее расписание коллеги. `When does she start?` — «Когда она начинает?» Здесь речь о начале работы. После `when` идут `does she start`: с `she` нужно `does`, а у `start` нет окончания `s`.",
+        "uk": "Ви обговорюєте робочий розклад колеги. `When does she start?` — «Коли вона починає?» Тут ідеться про початок роботи. Після `when` ідуть `does she start`: з `she` потрібне `does`, а у `start` немає закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите о начале её работы.",
+          "uk": "Запитайте про початок її роботи."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-29:intro3:r1",
+              "text": "When does she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro3:r2",
+              "text": "When do she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro3:r3",
+              "text": "When does she starts?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-29:intro3:r1",
+              "text": "When does she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro3:r2",
+              "text": "When do she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-29:intro3:r3",
+              "text": "When does she starts?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о начале её работы.",
+          "uk": "Запитайте про початок її роботи."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "81d6aa7335495b22073aa4414c9fa42fa274b8fd510a865c197faa64edf9b97f"
+}

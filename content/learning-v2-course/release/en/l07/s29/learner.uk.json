@@ -1,0 +1,947 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-29:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дізнайтеся звичне місце гри: «Де ти граєш?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дізнайтеся звичне місце гри: «Де ти граєш?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where do you play?",
+        "localizedMeaning": {
+          "ru": "Узнайте обычное место игры: «Где ты играешь?»",
+          "uk": "Дізнайтеся звичне місце гри: «Де ти граєш?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "play"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-29:i02:r1",
+          "text": "play"
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i02:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i02:r3",
+          "text": "skateboard"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:i02:audio",
+          "transcript": "play"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-29:i02:r1",
+            "targetText": "play",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i02:r2",
+            "targetText": "call",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i02:r3",
+            "targetText": "skateboard",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `play`, а в этом варианте — `call`.",
+              "uk": "У записі перше слово — `play`, а в цьому варіанті — `call`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `play`, а в этом варианте — `skateboard`.",
+              "uk": "У записі перше слово — `play`, а в цьому варіанті — `skateboard`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про звичне місце гри",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-29:i03:r1",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i03:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про звичне місце гри",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о привычном месте игры",
+          "uk": "Запитайте про звичне місце гри"
+        },
+        "gappedTargetPhrase": "Where ___ you play?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-29:i03:r1",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i03:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Запитайте про звичне місце гри",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про звичне місце гри",
+            "feedbackByLocale": {
+              "ru": "С `you` нужно `do`.",
+              "uk": "З `you` потрібне `do`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про звичне місце гри",
+            "feedbackByLocale": {
+              "ru": "Вопрос о привычном действии `play` строим с `do`.",
+              "uk": "Запитання про звичну дію `play` будуємо з `do`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-29:i04:p1",
+            "target": "play",
+            "meaningByLocale": {
+              "ru": "играть",
+              "uk": "грати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-29:i04:p2",
+            "target": "call",
+            "meaningByLocale": {
+              "ru": "звонить",
+              "uk": "телефонувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-29:i04:p3",
+            "target": "skateboard",
+            "meaningByLocale": {
+              "ru": "скейтборд",
+              "uk": "скейтборд"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-29:i04:p4",
+            "target": "tables",
+            "meaningByLocale": {
+              "ru": "столы",
+              "uk": "столи"
+            }
+          }
+        ],
+        "leftColumn": [
+          "play",
+          "call",
+          "skateboard",
+          "tables"
+        ],
+        "rightColumn": [
+          "грати",
+          "телефонувати",
+          "скейтборд",
+          "столи"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:i05:audio",
+          "transcript": "Where do you play?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where do you play?",
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "play"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дізнайтеся звичний час дзвінка: «Коли ти телефонуєш?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дізнайтеся звичний час дзвінка: «Коли ти телефонуєш?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "When do you call?",
+        "localizedMeaning": {
+          "ru": "Узнайте обычное время звонка: «Когда ты звонишь?»",
+          "uk": "Дізнайтеся звичний час дзвінка: «Коли ти телефонуєш?»"
+        },
+        "orderedTokens": [
+          "When",
+          "do",
+          "you",
+          "call"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте про початок робочого дня колеги «Коли вона починає?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте про початок робочого дня колеги «Коли вона починає?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:i07:audio",
+          "transcript": "When does she start?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When does she start?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про початок її роботи",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-29:i08:r1",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i08:r2",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i08:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про початок її роботи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о начале её работы",
+          "uk": "Запитайте про початок її роботи"
+        },
+        "gappedTargetPhrase": "When ___ she start?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-29:i08:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i08:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i08:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Запитайте про початок її роботи",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про початок її роботи",
+            "feedbackByLocale": {
+              "ru": "С `she` нужно `does`.",
+              "uk": "З `she` потрібне `does`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про початок її роботи",
+            "feedbackByLocale": {
+              "ru": "Вопрос о действии `start` с `she` строим с `does`.",
+              "uk": "Запитання про дію `start` з `she` будуємо з `does`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть запитання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-29:i09:r1",
+          "text": "Where do you play?"
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i09:r2",
+          "text": "When do you play?"
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i09:r3",
+          "text": "Where do you work?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть запитання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:i09:audio",
+          "transcript": "Where do you play?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-29:i09:r1",
+            "targetText": "Where do you play?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i09:r2",
+            "targetText": "When do you play?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i09:r3",
+            "targetText": "Where do you work?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть запитання",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
+              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть запитання",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `play`, а в этом варианте — `work`.",
+              "uk": "У записі останнє слово — `play`, а в цьому варіанті — `work`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-29:i10:p1",
+            "target": "lie",
+            "meaningByLocale": {
+              "ru": "лгать",
+              "uk": "брехати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-29:i10:p2",
+            "target": "play",
+            "meaningByLocale": {
+              "ru": "играть",
+              "uk": "грати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-29:i10:p3",
+            "target": "tables",
+            "meaningByLocale": {
+              "ru": "столы",
+              "uk": "столи"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-29:i10:p4",
+            "target": "call",
+            "meaningByLocale": {
+              "ru": "звонить",
+              "uk": "телефонувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lie",
+          "play",
+          "tables",
+          "call"
+        ],
+        "rightColumn": [
+          "брехати",
+          "грати",
+          "столи",
+          "телефонувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:i11:audio",
+          "transcript": "When do you call?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "When do you call?",
+        "orderedTokens": [
+          "When",
+          "do",
+          "you",
+          "call"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перед прогулянкою запитайте друга «У тебе є скейтборд?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед прогулянкою запитайте друга «У тебе є скейтборд?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a skateboard?",
+        "localizedMeaning": {
+          "ru": "Перед прогулкой спросите друга «У тебя есть скейтборд?»",
+          "uk": "Перед прогулянкою запитайте друга «У тебе є скейтборд?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "skateboard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Обговорюючи чесність, скажіть «Я не брешу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:i13:audio"
+      ],
+      "accessibilityLabel": "Обговорюючи чесність, скажіть «Я не брешу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:i13:audio",
+          "transcript": "I don’t lie."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I don’t lie.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дізнайтеся, де Том зазвичай грає",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-29:i14:r1",
+          "text": "play"
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i14:r2",
+          "text": "plays"
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i14:r3",
+          "text": "is play"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дізнайтеся, де Том зазвичай грає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Узнайте, где Том обычно играет",
+          "uk": "Дізнайтеся, де Том зазвичай грає"
+        },
+        "gappedTargetPhrase": "Where does Tom ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-29:i14:r1",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i14:r2",
+            "text": "plays"
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i14:r3",
+            "text": "is play"
+          }
+        ],
+        "testedDimension": "Дізнайтеся, де Том зазвичай грає",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-29:i14:r2",
+            "correct": false,
+            "testedDimension": "Дізнайтеся, де Том зазвичай грає",
+            "feedbackByLocale": {
+              "ru": "После `does` нужно `play`.",
+              "uk": "Після `does` потрібне `play`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i14:r3",
+            "correct": false,
+            "testedDimension": "Дізнайтеся, де Том зазвичай грає",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно `play`, без `is`.",
+              "uk": "Тут потрібне `play`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де столи",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-29:i15:r1",
+          "text": "The tables are here."
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i15:r2",
+          "text": "The tables are there."
+        },
+        {
+          "responseId": "en:lesson-07:session-29:i15:r3",
+          "text": "The tables are outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де столи",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:i15:audio",
+          "transcript": "The tables are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-29:i15:r1",
+            "targetText": "The tables are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i15:r2",
+            "targetText": "The tables are there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i15:r3",
+            "targetText": "The tables are outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-29:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де столи",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-29:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де столи",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-29:i16:p1",
+            "target": "play",
+            "meaningByLocale": {
+              "ru": "играть",
+              "uk": "грати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-29:i16:p2",
+            "target": "skateboard",
+            "meaningByLocale": {
+              "ru": "скейтборд",
+              "uk": "скейтборд"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-29:i16:p3",
+            "target": "lie",
+            "meaningByLocale": {
+              "ru": "лгать",
+              "uk": "брехати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-29:i16:p4",
+            "target": "tables",
+            "meaningByLocale": {
+              "ru": "столы",
+              "uk": "столи"
+            }
+          }
+        ],
+        "leftColumn": [
+          "play",
+          "skateboard",
+          "lie",
+          "tables"
+        ],
+        "rightColumn": [
+          "грати",
+          "скейтборд",
+          "брехати",
+          "столи"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обговорюєте звичний розклад ігор Тома. Запитайте «Коли Том грає?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Ви обговорюєте звичний розклад ігор Тома. Запитайте «Коли Том грає?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:i17:audio",
+          "transcript": "When does Tom play?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When does Tom play?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e9c01af4600a67dc7453b1fc3ba8c1f9d6f0d3b93af8eafd008b84b8bc90688b"
+}

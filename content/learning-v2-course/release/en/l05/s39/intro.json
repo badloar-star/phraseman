@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о владельце инструмента и описать вещи в комнате",
+    "uk": "запитати про власника інструмента й описати речі в кімнаті"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Инструмент ищет хозяина",
+        "uk": "Інструмент шукає господаря"
+      },
+      "bodyByLocale": {
+        "ru": "`violin` — «скрипка». `Whose violin is this?` — «Чья это скрипка?» `The violin is hers` — «Скрипка её». `This is Tom’s violin` — «Это скрипка Тома». Скрипка уже на месте; осталось найти музыканта.",
+        "uk": "`violin` — «скрипка». `Whose violin is this?` — «Чия це скрипка?» `The violin is hers` — «Скрипка її». `This is Tom’s violin` — «Це скрипка Тома». Скрипка вже на місці; залишилося знайти музиканта."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, кому принадлежит скрипка.",
+          "uk": "Запитайте, кому належить скрипка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-39:intro1:r1",
+              "text": "Whose violin is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro1:r2",
+              "text": "Where is the violin?"
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro1:r3",
+              "text": "Whose violin are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-39:intro1:r1",
+              "text": "Whose violin is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro1:r2",
+              "text": "Where is the violin?"
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro1:r3",
+              "text": "Whose violin are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, кому принадлежит скрипка.",
+          "uk": "Запитайте, кому належить скрипка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Гитара и вода",
+        "uk": "Гітара й вода"
+      },
+      "bodyByLocale": {
+        "ru": "`guitar` — «гитара», `bottles` — «бутылки». `Whose guitar is this?` — «Чья это гитара?» `Whose bottles are these?` — «Чьи это бутылки?» Для одной гитары — `is this`, для нескольких бутылок — `are these`.",
+        "uk": "`guitar` — «гітара», `bottles` — «пляшки». `Whose guitar is this?` — «Чия це гітара?» `Whose bottles are these?` — «Чиї це пляшки?» Для однієї гітари — `is this`, для кількох пляшок — `are these`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце бутылок.",
+          "uk": "Запитайте про власника пляшок."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-39:intro2:r1",
+              "text": "Whose bottles are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro2:r2",
+              "text": "Whose bottles is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro2:r3",
+              "text": "Where are the bottles?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-39:intro2:r1",
+              "text": "Whose bottles are these?"
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro2:r2",
+              "text": "Whose bottles is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro2:r3",
+              "text": "Where are the bottles?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце бутылок.",
+          "uk": "Запитайте про власника пляшок."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Смелость перед концертом",
+        "uk": "Сміливість перед концертом"
+      },
+      "bodyByLocale": {
+        "ru": "`brave` — «смелый»: `You are brave` — «Ты смелый / смелая». `boiler` — «отопительный котёл», устройство для нагрева воды в системе отопления. `The boiler is in the kitchen` — «Отопительный котёл на кухне». `I have your guitar` — «Твоя гитара у меня».",
+        "uk": "`brave` — «сміливий»: `You are brave` — «Ти сміливий / смілива». `boiler` — «опалювальний котел», пристрій для нагрівання води в системі опалення. `The boiler is in the kitchen` — «Опалювальний котел на кухні». `I have your guitar` — «Твоя гітара в мене»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Поддержите друга: «Ты смелый», без сокращения.",
+          "uk": "Підтримайте друга: «Ти сміливий», без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-39:intro3:r1",
+              "text": "You are brave."
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro3:r2",
+              "text": "You is brave."
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro3:r3",
+              "text": "You are sleepy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-39:intro3:r1",
+              "text": "You are brave."
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro3:r2",
+              "text": "You is brave."
+            },
+            {
+              "responseId": "en:lesson-05:session-39:intro3:r3",
+              "text": "You are sleepy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Поддержите друга: «Ты смелый», без сокращения.",
+          "uk": "Підтримайте друга: «Ти сміливий», без скорочення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f67f44539c5552fa7da62b338b9aa59d14a9cb5be88ba390ca1ff0004ab76ba3"
+}

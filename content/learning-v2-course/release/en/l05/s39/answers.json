@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-39:i01",
+    "correctText": "You are brave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i02",
+    "correctText": "violin",
+    "correctResponseId": "en:lesson-05:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i03",
+    "correctText": "violin",
+    "correctResponseId": "en:lesson-05:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i04",
+    "correctText": "en:lesson-05:session-39:i04:p1=violin\nen:lesson-05:session-39:i04:p2=guitar\nen:lesson-05:session-39:i04:p3=bottles\nen:lesson-05:session-39:i04:p4=boiler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i05",
+    "correctText": "Whose violin is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i06",
+    "correctText": "Whose guitar is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i07",
+    "correctText": "The violin is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i09",
+    "correctText": "This is Tom's violin.",
+    "correctResponseId": "en:lesson-05:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i10",
+    "correctText": "en:lesson-05:session-39:i10:p1=violin\nen:lesson-05:session-39:i10:p2=brave\nen:lesson-05:session-39:i10:p3=boiler\nen:lesson-05:session-39:i10:p4=bottles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i11",
+    "correctText": "The boiler is in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i12",
+    "correctText": "The bottles are ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i13",
+    "correctText": "I have your guitar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i14",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-39:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i15",
+    "correctText": "My violin is here.",
+    "correctResponseId": "en:lesson-05:session-39:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i16",
+    "correctText": "en:lesson-05:session-39:i16:p1=violin\nen:lesson-05:session-39:i16:p2=brave\nen:lesson-05:session-39:i16:p3=guitar\nen:lesson-05:session-39:i16:p4=bottles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i17",
+    "correctText": "Whose bottles are these?",
+    "correctResponseId": null
+  }
+]

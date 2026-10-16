@@ -1,0 +1,945 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-49:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я часто ночую в наметі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто ночую в наметі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often camp.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я часто ночую в палатке»",
+          "uk": "Скажіть «Я часто ночую в наметі»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "camp"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-49:i02:r1",
+          "text": "camp"
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i02:r2",
+          "text": "sew"
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i02:r3",
+          "text": "bake"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:i02:audio",
+          "transcript": "camp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-49:i02:r1",
+            "targetText": "camp",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i02:r2",
+            "targetText": "sew",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i02:r3",
+            "targetText": "bake",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `camp`, а в этом варианте — `sew`.",
+              "uk": "У записі перше слово — `camp`, а в цьому варіанті — `sew`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `camp`, а в этом варианте — `bake`.",
+              "uk": "У записі перше слово — `camp`, а в цьому варіанті — `bake`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я часто ночую в наметі»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-49:i03:r1",
+          "text": "camp"
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i03:r2",
+          "text": "camps"
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i03:r3",
+          "text": "camping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто ночую в наметі»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто ночую в палатке»",
+          "uk": "Скажіть «Я часто ночую в наметі»"
+        },
+        "gappedTargetPhrase": "I often ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-49:i03:r1",
+            "text": "camp"
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i03:r2",
+            "text": "camps"
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i03:r3",
+            "text": "camping"
+          }
+        ],
+        "testedDimension": "Скажіть «Я часто ночую в наметі»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто ночую в наметі»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `camp`.",
+              "uk": "Після `I` потрібне `camp`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто ночую в наметі»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `camp`.",
+              "uk": "Тут потрібна форма `camp`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-49:i04:p1",
+            "target": "camp",
+            "meaningByLocale": {
+              "ru": "ночевать в палатке",
+              "uk": "ночувати в наметі"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-49:i04:p2",
+            "target": "meditate",
+            "meaningByLocale": {
+              "ru": "медитировать",
+              "uk": "медитувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-49:i04:p3",
+            "target": "hospital",
+            "meaningByLocale": {
+              "ru": "больница",
+              "uk": "лікарня"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-49:i04:p4",
+            "target": "garage",
+            "meaningByLocale": {
+              "ru": "гараж",
+              "uk": "гараж"
+            }
+          }
+        ],
+        "leftColumn": [
+          "camp",
+          "meditate",
+          "hospital",
+          "garage"
+        ],
+        "rightColumn": [
+          "ночувати в наметі",
+          "медитувати",
+          "лікарня",
+          "гараж"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:i05:audio",
+          "transcript": "I often camp."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often camp.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "camp"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я зазвичай медитую вдома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай медитую вдома»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually meditate at home.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно медитирую дома»",
+          "uk": "Скажіть «Я зазвичай медитую вдома»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "meditate",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте перехожого «Де лікарня?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте перехожого «Де лікарня?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:i07:audio",
+          "transcript": "Where is the hospital?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the hospital?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я зазвичай медитую вдома»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-49:i08:r1",
+          "text": "meditate"
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i08:r2",
+          "text": "meditates"
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i08:r3",
+          "text": "meditating"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай медитую вдома»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно медитирую дома»",
+          "uk": "Скажіть «Я зазвичай медитую вдома»"
+        },
+        "gappedTargetPhrase": "I usually ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-49:i08:r1",
+            "text": "meditate"
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i08:r2",
+            "text": "meditates"
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i08:r3",
+            "text": "meditating"
+          }
+        ],
+        "testedDimension": "Скажіть «Я зазвичай медитую вдома»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай медитую вдома»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `meditate`.",
+              "uk": "Після `I` потрібне `meditate`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай медитую вдома»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `meditate`.",
+              "uk": "Тут потрібна форма `meditate`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-49:i09:r1",
+          "text": "I often camp."
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i09:r2",
+          "text": "I often sew."
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i09:r3",
+          "text": "I often bake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:i09:audio",
+          "transcript": "I often camp."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-49:i09:r1",
+            "targetText": "I often camp.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i09:r2",
+            "targetText": "I often sew.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i09:r3",
+            "targetText": "I often bake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `camp`, а в этом варианте — `sew`.",
+              "uk": "У записі останнє слово — `camp`, а в цьому варіанті — `sew`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `camp`, а в этом варианте — `bake`.",
+              "uk": "У записі останнє слово — `camp`, а в цьому варіанті — `bake`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-49:i10:p1",
+            "target": "meditate",
+            "meaningByLocale": {
+              "ru": "медитировать",
+              "uk": "медитувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-49:i10:p2",
+            "target": "camp",
+            "meaningByLocale": {
+              "ru": "ночевать в палатке",
+              "uk": "ночувати в наметі"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-49:i10:p3",
+            "target": "newspaper",
+            "meaningByLocale": {
+              "ru": "газета",
+              "uk": "газета"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-49:i10:p4",
+            "target": "hospital",
+            "meaningByLocale": {
+              "ru": "больница",
+              "uk": "лікарня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "meditate",
+          "camp",
+          "newspaper",
+          "hospital"
+        ],
+        "rightColumn": [
+          "медитувати",
+          "ночувати в наметі",
+          "газета",
+          "лікарня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:i11:audio",
+          "transcript": "Where is the hospital?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the hospital?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "hospital"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви приїхали до друга машиною. Запитайте «Де гараж?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви приїхали до друга машиною. Запитайте «Де гараж?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the garage?",
+        "localizedMeaning": {
+          "ru": "Вы приехали к другу на машине. Спросите «Где гараж?»",
+          "uk": "Ви приїхали до друга машиною. Запитайте «Де гараж?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "garage"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви шукаєте свою газету. Запитайте друга «Де моя газета?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:i13:audio"
+      ],
+      "accessibilityLabel": "Ви шукаєте свою газету. Запитайте друга «Де моя газета?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:i13:audio",
+          "transcript": "Where is my newspaper?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is my newspaper?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я часто ночую в наметі»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-49:i14:r1",
+          "text": "often"
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я часто ночую в наметі»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я часто ночую в палатке»",
+          "uk": "Скажіть «Я часто ночую в наметі»"
+        },
+        "gappedTargetPhrase": "I ___ camp.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-49:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажіть «Я часто ночую в наметі»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто ночую в наметі»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often` перед `camp`.",
+              "uk": "Для «часто» потрібне `often` перед `camp`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я часто ночую в наметі»",
+            "feedbackByLocale": {
+              "ru": "Для «часто» нужно `often`; `am` перед `camp` не ставим.",
+              "uk": "Для «часто» потрібне `often`; `am` перед `camp` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-49:i15:r1",
+          "text": "Where is the hospital?"
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i15:r2",
+          "text": "Where is the garage?"
+        },
+        {
+          "responseId": "en:lesson-07:session-49:i15:r3",
+          "text": "Where is the airport?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:i15:audio",
+          "transcript": "Where is the hospital?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-49:i15:r1",
+            "targetText": "Where is the hospital?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i15:r2",
+            "targetText": "Where is the garage?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i15:r3",
+            "targetText": "Where is the airport?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `hospital`, а в этом варианте — `garage`.",
+              "uk": "У записі останнє слово — `hospital`, а в цьому варіанті — `garage`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-49:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `hospital`, а в этом варианте — `airport`.",
+              "uk": "У записі останнє слово — `hospital`, а в цьому варіанті — `airport`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-49:i16:p1",
+            "target": "camp",
+            "meaningByLocale": {
+              "ru": "ночевать в палатке",
+              "uk": "ночувати в наметі"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-49:i16:p2",
+            "target": "garage",
+            "meaningByLocale": {
+              "ru": "гараж",
+              "uk": "гараж"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-49:i16:p3",
+            "target": "meditate",
+            "meaningByLocale": {
+              "ru": "медитировать",
+              "uk": "медитувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-49:i16:p4",
+            "target": "newspaper",
+            "meaningByLocale": {
+              "ru": "газета",
+              "uk": "газета"
+            }
+          }
+        ],
+        "leftColumn": [
+          "camp",
+          "garage",
+          "meditate",
+          "newspaper"
+        ],
+        "rightColumn": [
+          "ночувати в наметі",
+          "гараж",
+          "медитувати",
+          "газета"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, чи любить Том ночівлі в наметі. Скажіть «Том часто ночує в наметі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, чи любить Том ночівлі в наметі. Скажіть «Том часто ночує в наметі»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:i17:audio",
+          "transcript": "Tom often camps."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom often camps.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "04e79e9db5779758760569abb5d6d725ca871a867c9b793c9281e01f31b9b73b"
+}

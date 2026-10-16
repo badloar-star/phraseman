@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-49:intro1:r2": {
+          "ru": "После `I` нужно `camp`, без `s`.",
+          "uk": "Після `I` потрібне `camp`, без `s`."
+        },
+        "en:lesson-07:session-49:intro1:r3": {
+          "ru": "Здесь нужна форма `camp`.",
+          "uk": "Тут потрібна форма `camp`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-49:intro2:r2": {
+          "ru": "После `I` нужно `meditate`.",
+          "uk": "Після `I` потрібне `meditate`."
+        },
+        "en:lesson-07:session-49:intro2:r3": {
+          "ru": "Здесь нужна форма `meditate`.",
+          "uk": "Тут потрібна форма `meditate`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-49:intro3:r2": {
+          "ru": "Больница одна: нужно `is`.",
+          "uk": "Лікарня одна: потрібне `is`."
+        },
+        "en:lesson-07:session-49:intro3:r3": {
+          "ru": "В этом вопросе `is` стоит перед `the hospital`.",
+          "uk": "У цьому запитанні `is` стоїть перед `the hospital`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5eeae9b273db6d58cc48a3f70d392b717989675db9d5008d2ff7bac4cb07e76a"
+}

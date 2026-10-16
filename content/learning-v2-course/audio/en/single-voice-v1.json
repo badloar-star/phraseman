@@ -116518,6 +116518,309 @@
           "byteSize": 42624
         }
       ]
+    },
+    "l07/s49/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often camp.",
+          "file": "34486a6f9fecf39f5a5a48e3e29d4117df4601e4bc0a11ffaf4f172b98bf8fff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34486a6f9fecf39f5a5a48e3e29d4117df4601e4bc0a11ffaf4f172b98bf8fff.mp3",
+          "contentHash": "cc95bf018c96da1fab52be6f6b802fc5b5dc9fab025e109099ae263d4bd2355f",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s49/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I usually meditate at home.",
+          "file": "12f94e938a9432d1a62f9888f63f64594b19d4d08ddf330deb56e92b8294e649.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/12f94e938a9432d1a62f9888f63f64594b19d4d08ddf330deb56e92b8294e649.mp3",
+          "contentHash": "873b03c5208fe7a4af40d01c678fbc0d3f35a2cc6d4fb215b8d82df4f8e4b64f",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s49/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is the hospital?",
+          "file": "1fa57d57c7be54dfc48b97be1c0b7e8ab6c952e9a2f0a6ed7418765d34150afa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1fa57d57c7be54dfc48b97be1c0b7e8ab6c952e9a2f0a6ed7418765d34150afa.mp3",
+          "contentHash": "9326319936f75ebbfe0cd5bc34d51caa1a0d102af7d6a6a6f5707009858a79a5",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s49/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I often camp.",
+          "file": "22b2f6c9679a64c03d6194b1755f59d9cefd9fa182a20106d0f304a524dc6d9a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/22b2f6c9679a64c03d6194b1755f59d9cefd9fa182a20106d0f304a524dc6d9a.mp3",
+          "contentHash": "7430071385a472c1ca58cc0349b6d42c0497463f12459daabffe1f8c3472a9f7",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l07/s49/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "camp",
+          "file": "dfddde53f46f18e78f5b6274df24902db735217917aa65895caa8a9bb2032b85.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dfddde53f46f18e78f5b6274df24902db735217917aa65895caa8a9bb2032b85.mp3",
+          "contentHash": "8749bcd941bda6999046c0c5e76b125fb13ddac4eb9b6b66263b36824fd84718",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l07/s49/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often camp.",
+          "file": "7f5bfaed62c19c7f46bd154f4772e1d1852821ef163748479ed0dcaacc9a3d9c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7f5bfaed62c19c7f46bd154f4772e1d1852821ef163748479ed0dcaacc9a3d9c.mp3",
+          "contentHash": "e5a78c7f2cff00d5f0306e2038ad4355306ae67eaeed9bdac7e7ed01b0998974",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s49/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "camp",
+          "file": "5c4131a12668e3d690305cb6f6756e7f8e26b23fff2fd66e01d0cd874258988f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c4131a12668e3d690305cb6f6756e7f8e26b23fff2fd66e01d0cd874258988f.mp3",
+          "contentHash": "9e82f3ab2add67e5d731677a2eb07ce0b723f2a11c760cf8f9f64ab568a30b54",
+          "byteSize": 17280
+        },
+        {
+          "text": "meditate",
+          "file": "4dee6cc686bac863ae2390cd106e2a76c68303226b8d6294fd44001c7208b9ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4dee6cc686bac863ae2390cd106e2a76c68303226b8d6294fd44001c7208b9ab.mp3",
+          "contentHash": "1533668fb9a9a55d5c5c4034b47660957df50862a0b9b634d7f24bd8b5b88e6c",
+          "byteSize": 28416
+        },
+        {
+          "text": "hospital",
+          "file": "5de212a313fd6b087dc6b1e5240a34e8a1025a8c638c26ba360947ca1c646afe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5de212a313fd6b087dc6b1e5240a34e8a1025a8c638c26ba360947ca1c646afe.mp3",
+          "contentHash": "0614329ad618760a1700f6893dd3d67bf29e1f7ccde1ea990e35ddb44e1095ff",
+          "byteSize": 21120
+        },
+        {
+          "text": "garage",
+          "file": "aae8371ae6252ebc11a37cb68c76dd89c2175c950f8e20908f44fb0f6f494073.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aae8371ae6252ebc11a37cb68c76dd89c2175c950f8e20908f44fb0f6f494073.mp3",
+          "contentHash": "6473d4f9dc79dcecef09a8dc8d06e43e0599ef0476500b3a63124f6de4d6a0dd",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l07/s49/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I often camp.",
+          "file": "64f4830dc4992bc8bf0f8048148ac4dfbc1f5044c3c1543b6c60983c46537fd8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/64f4830dc4992bc8bf0f8048148ac4dfbc1f5044c3c1543b6c60983c46537fd8.mp3",
+          "contentHash": "e73ee888c674bd84121c9f7ebcbdabb0022a0d371439c759b2ef1581a1d809a2",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s49/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually meditate at home.",
+          "file": "3608692cc59a39361ff6127800844590d1d2e2f1413c809a7bd82d4e2d039de7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3608692cc59a39361ff6127800844590d1d2e2f1413c809a7bd82d4e2d039de7.mp3",
+          "contentHash": "f04c631ebf30b940b41572997bac6ef5d0d435b9d82e8c25049152064affb964",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l07/s49/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the hospital?",
+          "file": "f65b1ba4c694d5554e025fbf24edfbf9aae7deffc54f62a5a8cbcbb6e4568f2c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f65b1ba4c694d5554e025fbf24edfbf9aae7deffc54f62a5a8cbcbb6e4568f2c.mp3",
+          "contentHash": "4f719482810b1d4ee07d124044ae3ca57e676b3f5401db7153b75f36ae872049",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l07/s49/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I usually meditate at home.",
+          "file": "12f94e938a9432d1a62f9888f63f64594b19d4d08ddf330deb56e92b8294e649.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/12f94e938a9432d1a62f9888f63f64594b19d4d08ddf330deb56e92b8294e649.mp3",
+          "contentHash": "873b03c5208fe7a4af40d01c678fbc0d3f35a2cc6d4fb215b8d82df4f8e4b64f",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s49/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often camp.",
+          "file": "34486a6f9fecf39f5a5a48e3e29d4117df4601e4bc0a11ffaf4f172b98bf8fff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34486a6f9fecf39f5a5a48e3e29d4117df4601e4bc0a11ffaf4f172b98bf8fff.mp3",
+          "contentHash": "cc95bf018c96da1fab52be6f6b802fc5b5dc9fab025e109099ae263d4bd2355f",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s49/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "meditate",
+          "file": "4dee6cc686bac863ae2390cd106e2a76c68303226b8d6294fd44001c7208b9ab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4dee6cc686bac863ae2390cd106e2a76c68303226b8d6294fd44001c7208b9ab.mp3",
+          "contentHash": "1533668fb9a9a55d5c5c4034b47660957df50862a0b9b634d7f24bd8b5b88e6c",
+          "byteSize": 28416
+        },
+        {
+          "text": "camp",
+          "file": "5c4131a12668e3d690305cb6f6756e7f8e26b23fff2fd66e01d0cd874258988f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c4131a12668e3d690305cb6f6756e7f8e26b23fff2fd66e01d0cd874258988f.mp3",
+          "contentHash": "9e82f3ab2add67e5d731677a2eb07ce0b723f2a11c760cf8f9f64ab568a30b54",
+          "byteSize": 17280
+        },
+        {
+          "text": "newspaper",
+          "file": "c772436d342a4f294910af69f69b00e16979618550568bdd8fac02f082f9ef2f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-ash.mp3",
+          "contentHash": "0b8e8a5360fb13e1c748ab85e0f86a1c4b4411ea313a5179d94bb63490dac423",
+          "byteSize": 29952
+        },
+        {
+          "text": "hospital",
+          "file": "5de212a313fd6b087dc6b1e5240a34e8a1025a8c638c26ba360947ca1c646afe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5de212a313fd6b087dc6b1e5240a34e8a1025a8c638c26ba360947ca1c646afe.mp3",
+          "contentHash": "0614329ad618760a1700f6893dd3d67bf29e1f7ccde1ea990e35ddb44e1095ff",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l07/s49/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is the hospital?",
+          "file": "ee691ccedabc8922349d0b64217dc46b32bc9c9a056dc88279c9e736db93c1d4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee691ccedabc8922349d0b64217dc46b32bc9c9a056dc88279c9e736db93c1d4.mp3",
+          "contentHash": "013ccdce52556d7af7cee459bfc4f3d0759cf4c02364707b8ee78e74424f1e07",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l07/s49/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the garage?",
+          "file": "1834a18bf83e859bc627b3895191f0109b61df415e76d3be87b22563cb78be8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1834a18bf83e859bc627b3895191f0109b61df415e76d3be87b22563cb78be8c.mp3",
+          "contentHash": "c07fcba8c796b8ed82c440c5ec5c072f05f34db833b50773be11c019640b51e1",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l07/s49/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is my newspaper?",
+          "file": "e24cd921f2e18f1162d5e3169399742cf60eeb5808c1150bc7c7c796023cd128.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e24cd921f2e18f1162d5e3169399742cf60eeb5808c1150bc7c7c796023cd128.mp3",
+          "contentHash": "113140b30d9ec23c5ced70418f0b959453029592c4d8c1a4feda463f0dcb39af",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s49/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I often camp.",
+          "file": "22b2f6c9679a64c03d6194b1755f59d9cefd9fa182a20106d0f304a524dc6d9a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/22b2f6c9679a64c03d6194b1755f59d9cefd9fa182a20106d0f304a524dc6d9a.mp3",
+          "contentHash": "7430071385a472c1ca58cc0349b6d42c0497463f12459daabffe1f8c3472a9f7",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l07/s49/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the hospital?",
+          "file": "f65b1ba4c694d5554e025fbf24edfbf9aae7deffc54f62a5a8cbcbb6e4568f2c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f65b1ba4c694d5554e025fbf24edfbf9aae7deffc54f62a5a8cbcbb6e4568f2c.mp3",
+          "contentHash": "4f719482810b1d4ee07d124044ae3ca57e676b3f5401db7153b75f36ae872049",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l07/s49/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "camp",
+          "file": "27ef3ab4e46f780b7e8aada55f7369ab227036028e0911f59ca361e3ad6107da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/27ef3ab4e46f780b7e8aada55f7369ab227036028e0911f59ca361e3ad6107da.mp3",
+          "contentHash": "c632c710d673fe22c1b90195a0c8580c1fc282fdadc9b15c81e2a0958b7c201a",
+          "byteSize": 18048
+        },
+        {
+          "text": "garage",
+          "file": "2e5c8252c0701eb703644abad6fb7c8032fd8e2f73c2511066472f7b26bc6c87.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e5c8252c0701eb703644abad6fb7c8032fd8e2f73c2511066472f7b26bc6c87.mp3",
+          "contentHash": "256eeee307b0dd6f10b72c125074f39050328d350f9e1f15da822f81e828bb78",
+          "byteSize": 36480
+        },
+        {
+          "text": "meditate",
+          "file": "53d3969521ed1112179428cabf67c0f6b55e0784e5f2fbd363d2088474df7b5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53d3969521ed1112179428cabf67c0f6b55e0784e5f2fbd363d2088474df7b5d.mp3",
+          "contentHash": "08bbd597b9a3f7a8e49765462c27570228dbe17e1e5e5be0a3cf0bd40fbbec90",
+          "byteSize": 23040
+        },
+        {
+          "text": "newspaper",
+          "file": "30697894cb9288437c8b7b9f0d627a13217ff4bb0b3a21411be81b47526ed0b0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-onyx.mp3",
+          "contentHash": "ce49d4bf1356e535f41db40fec5bd30ace8b3467ba24f3614db01594bc504cea",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l07/s49/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom often camps.",
+          "file": "4cc0f0afa51e591b217fc12897bedae39a410ad79e1efab2beda3566193ed7f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4cc0f0afa51e591b217fc12897bedae39a410ad79e1efab2beda3566193ed7f4.mp3",
+          "contentHash": "de281791bb4e887d9dbb9869db5683906595dcd296f6b8c06440731810d805a5",
+          "byteSize": 39552
+        }
+      ]
     }
   },
   "settings": {

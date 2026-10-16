@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-43:i01",
+    "correctText": "I am uncertain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i02",
+    "correctText": "recycling bin",
+    "correctResponseId": "en:lesson-04:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i03",
+    "correctText": "recycling bin",
+    "correctResponseId": "en:lesson-04:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i04",
+    "correctText": "en:lesson-04:session-43:i04:p1=recycling bin\nen:lesson-04:session-43:i04:p2=uncertain\nen:lesson-04:session-43:i04:p3=bedrooms\nen:lesson-04:session-43:i04:p4=ramp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i05",
+    "correctText": "This is a recycling bin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i06",
+    "correctText": "The bedrooms are upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i07",
+    "correctText": "I'm uncertain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i09",
+    "correctText": "The recycling bin is next to the ramp.",
+    "correctResponseId": "en:lesson-04:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i10",
+    "correctText": "en:lesson-04:session-43:i10:p1=recycling bin\nen:lesson-04:session-43:i10:p2=uncertain\nen:lesson-04:session-43:i10:p3=bedrooms\nen:lesson-04:session-43:i10:p4=ramp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i11",
+    "correctText": "There aren't any recycling bins.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i12",
+    "correctText": "There is a recycling bin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i13",
+    "correctText": "Is there a recycling bin?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-43:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i15",
+    "correctText": "That is a recycling bin.",
+    "correctResponseId": "en:lesson-04:session-43:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i16",
+    "correctText": "en:lesson-04:session-43:i16:p1=recycling bin\nen:lesson-04:session-43:i16:p2=uncertain\nen:lesson-04:session-43:i16:p3=bedrooms\nen:lesson-04:session-43:i16:p4=ramp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i17",
+    "correctText": "The recycling bin is next to the shop.",
+    "correctResponseId": null
+  }
+]

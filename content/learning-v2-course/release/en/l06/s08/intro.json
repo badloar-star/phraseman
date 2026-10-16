@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о работе, назвать знакомые вещи и спросить, кому они принадлежат",
+    "uk": "розповісти про роботу, назвати знайомі речі й запитати, кому вони належать"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Знакомый район",
+        "uk": "Знайомий район"
+      },
+      "bodyByLocale": {
+        "ru": "`neighbourhood` — «район», окрестности дома или другого места. `I work in this neighbourhood` — «Я работаю в этом районе». Здесь `I work`, без `am`: вы говорите, что делаете. `This is my folder` — «Это моя папка».",
+        "uk": "`neighbourhood` — «район», околиці будинку чи іншого місця. `I work in this neighbourhood` — «Я працюю в цьому районі». Тут `I work`, без `am`: ви кажете, що робите. `This is my folder` — «Це моя папка»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я работаю в этом районе».",
+          "uk": "Скажіть «Я працюю в цьому районі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-08:intro1:r1",
+              "text": "I work in this neighbourhood."
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro1:r2",
+              "text": "I am work in this neighbourhood."
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro1:r3",
+              "text": "I work in that neighbourhood."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-08:intro1:r1",
+              "text": "I work in this neighbourhood."
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro1:r2",
+              "text": "I am work in this neighbourhood."
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro1:r3",
+              "text": "I work in that neighbourhood."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я работаю в этом районе».",
+          "uk": "Скажіть «Я працюю в цьому районі»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посылка и чек",
+        "uk": "Посилка й чек"
+      },
+      "bodyByLocale": {
+        "ru": "`parcel` — «посылка», `receipt` — «чек». `That parcel is yours` — «Та посылка твоя». `Whose receipt is this?` — «Чей это чек?» Переезд: вещей много, а фраза «это не моё» уже у всех готова. Вопрос с `Whose` помогает найти владельца.",
+        "uk": "`parcel` — «посилка», `receipt` — «чек». `That parcel is yours` — «Та посилка твоя». `Whose receipt is this?` — «Чий це чек?» Переїзд: речей багато, а фраза «це не моє» вже в усіх напоготові. Запитання з `Whose` допомагає знайти власника."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Чей это чек?»",
+          "uk": "Запитайте «Чий це чек?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-08:intro2:r1",
+              "text": "Whose receipt is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro2:r2",
+              "text": "Where is the receipt?"
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro2:r3",
+              "text": "Whose receipt are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-08:intro2:r1",
+              "text": "Whose receipt is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro2:r2",
+              "text": "Where is the receipt?"
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro2:r3",
+              "text": "Whose receipt are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Чей это чек?»",
+          "uk": "Запитайте «Чий це чек?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мелочи тоже нужны",
+        "uk": "Дрібниці теж потрібні"
+      },
+      "bodyByLocale": {
+        "ru": "`keychain` — «брелок», `bookmark` — «закладка», `calendar` — «календарь». `The keychain is in the drawer` — «Брелок в ящике». `The bookmark is in the book` — «Закладка в книге». `My calendar is here` — «Мой календарь здесь».",
+        "uk": "`keychain` — «брелок», `bookmark` — «закладка», `calendar` — «календар». `The keychain is in the drawer` — «Брелок у шухляді». `The bookmark is in the book` — «Закладка в книжці». `My calendar is here` — «Мій календар тут»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мой календарь здесь».",
+          "uk": "Скажіть «Мій календар тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-08:intro3:r1",
+              "text": "My calendar is here."
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro3:r2",
+              "text": "Your calendar is here."
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro3:r3",
+              "text": "My calendar are here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-08:intro3:r1",
+              "text": "My calendar is here."
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro3:r2",
+              "text": "Your calendar is here."
+            },
+            {
+              "responseId": "en:lesson-06:session-08:intro3:r3",
+              "text": "My calendar are here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мой календарь здесь».",
+          "uk": "Скажіть «Мій календар тут»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5bfabc2e596b5e1da8a9d415a32f0da63f0348a350648325bb0ca7bd51bca28e"
+}

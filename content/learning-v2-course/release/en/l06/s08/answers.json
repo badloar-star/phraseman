@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-08:i01",
+    "correctText": "I work in this neighbourhood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i02",
+    "correctText": "receipt",
+    "correctResponseId": "en:lesson-06:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i03",
+    "correctText": "yours",
+    "correctResponseId": "en:lesson-06:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i04",
+    "correctText": "en:lesson-06:session-08:i04:p1=folder\nen:lesson-06:session-08:i04:p2=parcel\nen:lesson-06:session-08:i04:p3=receipt\nen:lesson-06:session-08:i04:p4=keychain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i05",
+    "correctText": "This is my folder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i06",
+    "correctText": "Whose receipt is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i07",
+    "correctText": "The bookmark is in the book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i08",
+    "correctText": "in",
+    "correctResponseId": "en:lesson-06:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i09",
+    "correctText": "My calendar is here.",
+    "correctResponseId": "en:lesson-06:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i10",
+    "correctText": "en:lesson-06:session-08:i10:p1=bookmark\nen:lesson-06:session-08:i10:p2=calendar\nen:lesson-06:session-08:i10:p3=neighbourhood\nen:lesson-06:session-08:i10:p4=work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i11",
+    "correctText": "The parcel is on the desk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i12",
+    "correctText": "That folder is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i13",
+    "correctText": "I have a bookmark.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i14",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-06:session-08:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i15",
+    "correctText": "The receipt is here.",
+    "correctResponseId": "en:lesson-06:session-08:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i16",
+    "correctText": "en:lesson-06:session-08:i16:p1=keychain\nen:lesson-06:session-08:i16:p2=calendar\nen:lesson-06:session-08:i16:p3=neighbourhood\nen:lesson-06:session-08:i16:p4=work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:i17",
+    "correctText": "Whose calendar is this?",
+    "correctResponseId": null
+  }
+]

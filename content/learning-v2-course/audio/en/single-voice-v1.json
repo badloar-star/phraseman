@@ -88642,6 +88642,309 @@
           "byteSize": 30720
         }
       ]
+    },
+    "l06/s13/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We swim here.",
+          "file": "968e54eca919f91d941d1663775907d8a2b0fccd2a30e622f23dd3c77403662d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/968e54eca919f91d941d1663775907d8a2b0fccd2a30e622f23dd3c77403662d.mp3",
+          "contentHash": "54484332ea8982043a07ee27740b57694190aa5ef5f1d3387f0cbf1edabaaf12",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s13/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a public pool.",
+          "file": "d0080b43d09bdbb6fdd264c338960dd7c538fb266d1c9da2b32bfffd7c149317.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d0080b43d09bdbb6fdd264c338960dd7c538fb266d1c9da2b32bfffd7c149317.mp3",
+          "contentHash": "d33509c45564169137a2df0d5abc8d583a10bfb609b6f84567d8e06737575805",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s13/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose keychain is this?",
+          "file": "bf2ec2caac8c2b4938f8280d71bfc8f1ff80715491ff87fce273eb245ae71962.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf2ec2caac8c2b4938f8280d71bfc8f1ff80715491ff87fce273eb245ae71962.mp3",
+          "contentHash": "0068be2d40bc322c3bb8f00603f9cd9949308532b7cbf2f2828804d13a9e4765",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l06/s13/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I swim in this pool.",
+          "file": "f22475c1954488f8d515643ec2f1410ef2313cf43d0cea97ca5788cd4f100ed4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f22475c1954488f8d515643ec2f1410ef2313cf43d0cea97ca5788cd4f100ed4.mp3",
+          "contentHash": "6f01379c66ee39322c97c5737f956e68f74d2726908394cbbfa7a528d4424d1f",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l06/s13/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "swim",
+          "file": "1d1991959b132f0c6cf08505006a74c9003c24fb6c89ba590dc240a33aadc2ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d1991959b132f0c6cf08505006a74c9003c24fb6c89ba590dc240a33aadc2ac.mp3",
+          "contentHash": "812a5c6a3ec0cd44633a5fc314ed5ef569add1e7dc4751412a2994604dda9420",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l06/s13/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We swim here.",
+          "file": "184c7308255488f5305bd39b2d6b49737ec0976691a75f2b9e09de0f69fa2ca4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/184c7308255488f5305bd39b2d6b49737ec0976691a75f2b9e09de0f69fa2ca4.mp3",
+          "contentHash": "e3e45b28358bd40c68de93aec3403575231ff73e6d96b873ead3336c7e644a8f",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l06/s13/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "swim",
+          "file": "467d03bdd7fbe4cc534f48c15d346346b5cd024ad832d919c05945d281335647.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/467d03bdd7fbe4cc534f48c15d346346b5cd024ad832d919c05945d281335647.mp3",
+          "contentHash": "52bfdc9916d722448182fe51bac403e416c94eac3648944cb0672a3c8acd7568",
+          "byteSize": 26880
+        },
+        {
+          "text": "public",
+          "file": "77618bd6edfcff28a67996ffbd05c5781d4cb3ad6cfa07ea44eacac3c0e064f7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77618bd6edfcff28a67996ffbd05c5781d4cb3ad6cfa07ea44eacac3c0e064f7.mp3",
+          "contentHash": "f1d0388d76eebb73929b35b16a89e79ca98bb031d56e6c4f3a4ff80169cc0a2e",
+          "byteSize": 19584
+        },
+        {
+          "text": "taxi",
+          "file": "1e4156f534493ef9dc58f3a9ce854e01f4c250ad4149e1a1979a6ac76ff81267.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1e4156f534493ef9dc58f3a9ce854e01f4c250ad4149e1a1979a6ac76ff81267.mp3",
+          "contentHash": "022f82bbfeeb55d35f57b455b3bca699bc3ac83cf766f5d4c8343d0cd3be2b24",
+          "byteSize": 19584
+        },
+        {
+          "text": "umbrella",
+          "file": "5ad34db7f05e846948ac3ec7f70e454a3b55c10282db1788d143ea8f6bcbb063.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-ash.mp3",
+          "contentHash": "aa3d40f3b6c23e5c9729bbca03f5476ef61e3252566b5a4c712ae5d6cf8089bd",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l06/s13/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They swim here.",
+          "file": "3b8083e8d0d63d6673c8d7f7ee813f97c852cfb17fdb7c67c2f25afd12968bb6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3b8083e8d0d63d6673c8d7f7ee813f97c852cfb17fdb7c67c2f25afd12968bb6.mp3",
+          "contentHash": "49efc34a683d5d9c9196d93dc99017478c5663c7dbc904ffa7dc59c2af3a0237",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s13/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a public pool.",
+          "file": "d0080b43d09bdbb6fdd264c338960dd7c538fb266d1c9da2b32bfffd7c149317.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d0080b43d09bdbb6fdd264c338960dd7c538fb266d1c9da2b32bfffd7c149317.mp3",
+          "contentHash": "d33509c45564169137a2df0d5abc8d583a10bfb609b6f84567d8e06737575805",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s13/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The umbrella is wet.",
+          "file": "a8059beff713e2c1726f840be39f0fb0e32cfb0c1534f7abc1e49381bd3647bf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a8059beff713e2c1726f840be39f0fb0e32cfb0c1534f7abc1e49381bd3647bf.mp3",
+          "contentHash": "b3f387a0c637e6804e577c123276982685be70e3e6109f49b1872da426a99abf",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s13/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "That umbrella is yours.",
+          "file": "b4acaee9b24e2b6eb57a6cbc8f8fa7405c30cd759f9c471b39df6a1be434e510.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b4acaee9b24e2b6eb57a6cbc8f8fa7405c30cd759f9c471b39df6a1be434e510.mp3",
+          "contentHash": "b60f833c7ccee65c8a18e049a219da93aded97489bb46109950e136c034495d6",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l06/s13/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My keychain is here.",
+          "file": "e93bf6501420f68fc6f2ae6cb180ecdd639c8c4246417744e58393cc9f1f42a5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e93bf6501420f68fc6f2ae6cb180ecdd639c8c4246417744e58393cc9f1f42a5.mp3",
+          "contentHash": "0e64357203506822bd9f2efd5be0ea5a053cb01873efa2db43882c00044ad1eb",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s13/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "swim",
+          "file": "1d1991959b132f0c6cf08505006a74c9003c24fb6c89ba590dc240a33aadc2ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d1991959b132f0c6cf08505006a74c9003c24fb6c89ba590dc240a33aadc2ac.mp3",
+          "contentHash": "812a5c6a3ec0cd44633a5fc314ed5ef569add1e7dc4751412a2994604dda9420",
+          "byteSize": 18048
+        },
+        {
+          "text": "keychain",
+          "file": "77ab6c18b1c4662d2536c7760a9c6f33b31afacb9cb006565975d0d1f4e1d88d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77ab6c18b1c4662d2536c7760a9c6f33b31afacb9cb006565975d0d1f4e1d88d.mp3",
+          "contentHash": "340df0cac2619fe5de46b436268687ee702c1c0ce0ed5dac7f5b4e961ece8b71",
+          "byteSize": 17280
+        },
+        {
+          "text": "umbrella",
+          "file": "9b298240d78c6d9d10e7e2fd7a46821e87c6b897ada231d3e9ebb2fbbd15391f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-nova.mp3",
+          "contentHash": "54c1fa8e7d4611b9a58445191aa6e51317a09c1f6063e63e1efeeef81e703f7c",
+          "byteSize": 19584
+        },
+        {
+          "text": "public",
+          "file": "02d44fc4456ba117f36b5787330cc72938ce818475960c3eb4c69c9dd81ec0c3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/02d44fc4456ba117f36b5787330cc72938ce818475960c3eb4c69c9dd81ec0c3.mp3",
+          "contentHash": "40c6ba3b2ff8b67ad8127a47a64e21f612a76d8501b44f799b5801cccde4a569",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l06/s13/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They are in the taxi.",
+          "file": "eb3defce03ad0132f3b40b5568ae913e4914bb35f2cb19e072f733024aa9d8a5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eb3defce03ad0132f3b40b5568ae913e4914bb35f2cb19e072f733024aa9d8a5.mp3",
+          "contentHash": "6f1298b26360b5f4df320895f0c2085cc3aafb0d9e2adce57ae7b8b7a883cab8",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s13/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose keychain is this?",
+          "file": "bf2ec2caac8c2b4938f8280d71bfc8f1ff80715491ff87fce273eb245ae71962.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf2ec2caac8c2b4938f8280d71bfc8f1ff80715491ff87fce273eb245ae71962.mp3",
+          "contentHash": "0068be2d40bc322c3bb8f00603f9cd9949308532b7cbf2f2828804d13a9e4765",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l06/s13/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "You swim in this pool.",
+          "file": "3212cca585d44f65ce62de2af9fbccf0f993225c8841231583888b2c31aacf3f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3212cca585d44f65ce62de2af9fbccf0f993225c8841231583888b2c31aacf3f.mp3",
+          "contentHash": "d8f7d193e543a77af6774ca680fc53f905d21f0c0fba5b115d0ff5b21c6ef525",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s13/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I swim here.",
+          "file": "e037c599ad3b1f0f0a3c8b132d1c5138f3ddd905ae6d71c9d368b3243927f40b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e037c599ad3b1f0f0a3c8b132d1c5138f3ddd905ae6d71c9d368b3243927f40b.mp3",
+          "contentHash": "320c352c22d487f8b504ed117ab957accd52340f9aa6d6afa16ac84e19ba429c",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s13/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The taxi is here.",
+          "file": "d4a51c2728fb2748da3acdbbcd9e14d15a8ca575da0bf451eab4208bb2f14f86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d4a51c2728fb2748da3acdbbcd9e14d15a8ca575da0bf451eab4208bb2f14f86.mp3",
+          "contentHash": "3397554977dee289f901e7573acbc18cce045981dae8d1a295df046f23752939",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s13/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "swim",
+          "file": "1ac455e09b4427d5b10ea8142258092c45f8be0da409697f7b9a19150c93ba97.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1ac455e09b4427d5b10ea8142258092c45f8be0da409697f7b9a19150c93ba97.mp3",
+          "contentHash": "a680f4eb1a31b664318ef2adf2c957f2d21855857129b1eadf79abd28a8976c0",
+          "byteSize": 22656
+        },
+        {
+          "text": "public",
+          "file": "360f7d7869abce066d112a3614074300961146c2662239958c060ad6fc083114.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/360f7d7869abce066d112a3614074300961146c2662239958c060ad6fc083114.mp3",
+          "contentHash": "bcf949261738753a7b5058b5ca60a7459322389acfa5757dc1752c92b5984a73",
+          "byteSize": 20352
+        },
+        {
+          "text": "taxi",
+          "file": "07f0d0018453e4c9d3a70e572c9bea53ed689bdad32b7ad377fced4118845aa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07f0d0018453e4c9d3a70e572c9bea53ed689bdad32b7ad377fced4118845aa4.mp3",
+          "contentHash": "217d27331222e12a1f85a6be341966a5806976418612dfb443f5e2be7e2b26cc",
+          "byteSize": 24576
+        },
+        {
+          "text": "keychain",
+          "file": "b30b4795199daa5988248b5e89578e220449fb3a3d0a3d93b1c1d8ec89043fe5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b30b4795199daa5988248b5e89578e220449fb3a3d0a3d93b1c1d8ec89043fe5.mp3",
+          "contentHash": "10a3348873a90ca6bd301ec1f0d49567d59b643e2481ebab3af41566c5f02710",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s13/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "We swim here.",
+          "file": "80b2c3e37743058db928df89fdc53b6cf7ef8ef2bb8614be49a46ade66966a47.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80b2c3e37743058db928df89fdc53b6cf7ef8ef2bb8614be49a46ade66966a47.mp3",
+          "contentHash": "fb38423172d40c59979c6efa8aa3fe91c50f48495b330a7853378e1c4be6e7a9",
+          "byteSize": 24192
+        }
+      ]
     }
   },
   "settings": {

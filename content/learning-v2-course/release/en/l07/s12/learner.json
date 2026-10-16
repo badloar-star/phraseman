@@ -1,0 +1,949 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Будильник работает?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Будильник работает?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does the alarm work?",
+        "localizedMeaning": {
+          "ru": "Спросите «Будильник работает?»",
+          "uk": "Запитайте «Будильник працює?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "the",
+          "alarm",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-12:i02:r1",
+          "text": "alarm"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i02:r2",
+          "text": "table"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i02:r3",
+          "text": "notebook"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:i02:audio",
+          "transcript": "alarm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-12:i02:r1",
+            "targetText": "alarm",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i02:r2",
+            "targetText": "table",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i02:r3",
+            "targetText": "notebook",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `alarm`, а в этом варианте — `table`.",
+              "uk": "У записі перше слово — `alarm`, а в цьому варіанті — `table`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `alarm`, а в этом варианте — `notebook`.",
+              "uk": "У записі перше слово — `alarm`, а в цьому варіанті — `notebook`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, работает ли будильник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-12:i03:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i03:r2",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i03:r3",
+          "text": "is work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, работает ли будильник",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, работает ли будильник",
+          "uk": "Запитайте, чи працює будильник"
+        },
+        "gappedTargetPhrase": "Does the alarm ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-12:i03:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i03:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i03:r3",
+            "text": "is work"
+          }
+        ],
+        "testedDimension": "Спросите, работает ли будильник",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите, работает ли будильник",
+            "feedbackByLocale": {
+              "ru": "После `Does` нужно `work`.",
+              "uk": "Після `Does` потрібне `work`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите, работает ли будильник",
+            "feedbackByLocale": {
+              "ru": "Нужно `Does the alarm work?`, без `is`.",
+              "uk": "Потрібно `Does the alarm work?`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-12:i04:p1",
+            "target": "alarm",
+            "meaningByLocale": {
+              "ru": "будильник",
+              "uk": "будильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-12:i04:p2",
+            "target": "table",
+            "meaningByLocale": {
+              "ru": "стол",
+              "uk": "стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-12:i04:p3",
+            "target": "notebook",
+            "meaningByLocale": {
+              "ru": "тетрадь",
+              "uk": "зошит"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-12:i04:p4",
+            "target": "glasses",
+            "meaningByLocale": {
+              "ru": "очки",
+              "uk": "окуляри"
+            }
+          }
+        ],
+        "leftColumn": [
+          "alarm",
+          "table",
+          "notebook",
+          "glasses"
+        ],
+        "rightColumn": [
+          "будильник",
+          "стол",
+          "тетрадь",
+          "очки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:i05:audio",
+          "transcript": "Does the alarm work?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does the alarm work?",
+        "orderedTokens": [
+          "Does",
+          "the",
+          "alarm",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите «На столе нет очков»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите «На столе нет очков»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are no glasses on the table.",
+        "localizedMeaning": {
+          "ru": "Сообщите «На столе нет очков»",
+          "uk": "Повідомте «На столі немає окулярів»"
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "no",
+          "glasses",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите о начале работы Анны «Она начинает рано?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите о начале работы Анны «Она начинает рано?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:i07:audio",
+          "transcript": "Does she start early?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does she start early?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-12:i08:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i08:r2",
+          "text": "Does"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i08:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+          "uk": "У художній майстерні запитайте друга «Ти малюєш тут фарбами?»"
+        },
+        "gappedTargetPhrase": "___ you paint here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-12:i08:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i08:r2",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i08:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+            "feedbackByLocale": {
+              "ru": "С `you` нужно `Do`.",
+              "uk": "З `you` потрібне `Do`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "В художественной мастерской спросите друга «Ты рисуешь здесь красками?»",
+            "feedbackByLocale": {
+              "ru": "С действием `paint` здесь нужно `Do you paint?`.",
+              "uk": "З дією `paint` тут потрібно `Do you paint?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос о начале работы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-12:i09:r1",
+          "text": "Does she start early?"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i09:r2",
+          "text": "Does she start late?"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i09:r3",
+          "text": "Does she start here?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о начале работы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:i09:audio",
+          "transcript": "Does she start early?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-12:i09:r1",
+            "targetText": "Does she start early?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i09:r2",
+            "targetText": "Does she start late?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i09:r3",
+            "targetText": "Does she start here?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос о начале работы",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `early`, а в этом варианте — `late`.",
+              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `late`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос о начале работы",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `early`, а в этом варианте — `here`.",
+              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `here`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-12:i10:p1",
+            "target": "paint",
+            "meaningByLocale": {
+              "ru": "рисовать красками",
+              "uk": "малювати фарбами"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-12:i10:p2",
+            "target": "alarm",
+            "meaningByLocale": {
+              "ru": "будильник",
+              "uk": "будильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-12:i10:p3",
+            "target": "table",
+            "meaningByLocale": {
+              "ru": "стол",
+              "uk": "стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-12:i10:p4",
+            "target": "notebook",
+            "meaningByLocale": {
+              "ru": "тетрадь",
+              "uk": "зошит"
+            }
+          }
+        ],
+        "leftColumn": [
+          "paint",
+          "alarm",
+          "table",
+          "notebook"
+        ],
+        "rightColumn": [
+          "рисовать красками",
+          "будильник",
+          "стол",
+          "тетрадь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:i11:audio",
+          "transcript": "Does it work?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does it work?",
+        "orderedTokens": [
+          "Does",
+          "it",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чтобы записать время встречи, спросите друга «У тебя есть тетрадь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Чтобы записать время встречи, спросите друга «У тебя есть тетрадь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a notebook?",
+        "localizedMeaning": {
+          "ru": "Чтобы записать время встречи, спросите друга «У тебя есть тетрадь?»",
+          "uk": "Щоб записати час зустрічі, запитайте друга «У тебе є зошит?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "notebook"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите другу «Будильник на столе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:i13:audio"
+      ],
+      "accessibilityLabel": "Покажите другу «Будильник на столе»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:i13:audio",
+          "transcript": "The alarm is on the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The alarm is on the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сообщите «Здесь нет очков»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-12:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите «Здесь нет очков»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите «Здесь нет очков»",
+          "uk": "Повідомте «Тут немає окулярів»"
+        },
+        "gappedTargetPhrase": "There ___ no glasses here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-12:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Сообщите «Здесь нет очков»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-12:i14:r2",
+            "correct": false,
+            "testedDimension": "Сообщите «Здесь нет очков»",
+            "feedbackByLocale": {
+              "ru": "С `glasses` нужно `are`.",
+              "uk": "З `glasses` потрібне `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i14:r3",
+            "correct": false,
+            "testedDimension": "Сообщите «Здесь нет очков»",
+            "feedbackByLocale": {
+              "ru": "Нужно `There are no`; `am` подходит к `I`.",
+              "uk": "Потрібно `There are no`; `am` підходить до `I`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос о месте работы художника",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-12:i15:r1",
+          "text": "Do you paint here?"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i15:r2",
+          "text": "Do you paint there?"
+        },
+        {
+          "responseId": "en:lesson-07:session-12:i15:r3",
+          "text": "Do you paint outside?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о месте работы художника",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:i15:audio",
+          "transcript": "Do you paint here?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-12:i15:r1",
+            "targetText": "Do you paint here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i15:r2",
+            "targetText": "Do you paint there?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i15:r3",
+            "targetText": "Do you paint outside?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-12:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос о месте работы художника",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-12:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос о месте работы художника",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-12:i16:p1",
+            "target": "alarm",
+            "meaningByLocale": {
+              "ru": "будильник",
+              "uk": "будильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-12:i16:p2",
+            "target": "glasses",
+            "meaningByLocale": {
+              "ru": "очки",
+              "uk": "окуляри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-12:i16:p3",
+            "target": "paint",
+            "meaningByLocale": {
+              "ru": "рисовать красками",
+              "uk": "малювати фарбами"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-12:i16:p4",
+            "target": "notebook",
+            "meaningByLocale": {
+              "ru": "тетрадь",
+              "uk": "зошит"
+            }
+          }
+        ],
+        "leftColumn": [
+          "alarm",
+          "glasses",
+          "paint",
+          "notebook"
+        ],
+        "rightColumn": [
+          "будильник",
+          "очки",
+          "рисовать красками",
+          "тетрадь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-12:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы пришли в другую художественную мастерскую. Уточните у сотрудника «Анна рисует здесь красками?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Вы пришли в другую художественную мастерскую. Уточните у сотрудника «Анна рисует здесь красками?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-12:i17:audio",
+          "transcript": "Does Anna paint here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does Anna paint here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e348f7d616b48dc475acf20bdb601500f87a2b47c8e7358e68e855562cb53c04"
+}

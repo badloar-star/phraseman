@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "спросить об устройстве и привычках человека, сообщить об отсутствии вещей",
+    "uk": "запитати про пристрій і звички людини, повідомити про відсутність речей"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Проверяем будильник",
+        "uk": "Перевіряємо будильник"
+      },
+      "bodyByLocale": {
+        "ru": "`alarm` здесь — «будильник». У слова есть и другие значения, но сейчас говорим об устройстве, которое вас разбудит. `Does the alarm work?` — «Будильник работает?» Один будильник: `Does the alarm`, затем `work`, без `s`. Лучше спросить вечером, чем выяснить ответ после начала смены.",
+        "uk": "`alarm` тут — «будильник». Слово має й інші значення, але зараз говоримо про пристрій, який вас розбудить. `Does the alarm work?` — «Будильник працює?» Один будильник: `Does the alarm`, потім `work`, без `s`. Краще запитати ввечері, ніж дізнатися відповідь після початку зміни."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите друга «Будильник работает?»",
+          "uk": "Запитайте друга «Будильник працює?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-12:intro1:r1",
+              "text": "Does the alarm work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro1:r2",
+              "text": "Do the alarm work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro1:r3",
+              "text": "Does the alarm works?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-12:intro1:r1",
+              "text": "Does the alarm work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro1:r2",
+              "text": "Do the alarm work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro1:r3",
+              "text": "Does the alarm works?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга «Будильник работает?»",
+          "uk": "Запитайте друга «Будильник працює?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Очки на столе",
+        "uk": "Окуляри на столі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ищете очки, чтобы рассмотреть циферблат. Друг проверил стол. `There are no glasses on the table` — «На столе нет очков». С `glasses` используем `are`, даже если ищем одни очки. `On the table` уточняет место.",
+        "uk": "Ви шукаєте окуляри, щоб роздивитися циферблат. Друг перевірив стіл. `There are no glasses on the table` — «На столі немає окулярів». З `glasses` використовуємо `are`, навіть якщо шукаємо одні окуляри. `On the table` уточнює місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «На столе нет очков».",
+          "uk": "Повідомте «На столі немає окулярів»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-12:intro2:r1",
+              "text": "There are no glasses on the table."
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro2:r2",
+              "text": "There is no glasses on the table."
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro2:r3",
+              "text": "There no glasses on the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-12:intro2:r1",
+              "text": "There are no glasses on the table."
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro2:r2",
+              "text": "There is no glasses on the table."
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro2:r3",
+              "text": "There no glasses on the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «На столе нет очков».",
+          "uk": "Повідомте «На столі немає окулярів»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Раннее начало работы",
+        "uk": "Ранній початок роботи"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает поставить будильник для Анны. Вы уточняете `Does she start early?` — «Она начинает рано?» Из разговора понятно, что речь о работе. С `she` вопрос начинается с `Does`, а `start` остаётся без `s`.",
+        "uk": "Друг пропонує поставити будильник для Анни. Ви уточнюєте `Does she start early?` — «Вона починає рано?» З розмови зрозуміло, що йдеться про роботу. Із `she` запитання починається з `Does`, а `start` залишається без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите друга об Анне «Она начинает рано?»",
+          "uk": "Запитайте друга про Анну «Вона починає рано?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-12:intro3:r1",
+              "text": "Does she start early?"
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro3:r2",
+              "text": "Do she start early?"
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro3:r3",
+              "text": "Does she starts early?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-12:intro3:r1",
+              "text": "Does she start early?"
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro3:r2",
+              "text": "Do she start early?"
+            },
+            {
+              "responseId": "en:lesson-07:session-12:intro3:r3",
+              "text": "Does she starts early?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга об Анне «Она начинает рано?»",
+          "uk": "Запитайте друга про Анну «Вона починає рано?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b1aa61eec9a4fad03dac48de3fb98eefc79ef82b355552525ec396d4a1873829"
+}

@@ -67432,6 +67432,309 @@
           "byteSize": 61056
         }
       ]
+    },
+    "l04/s55/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a shortcut.",
+          "file": "738d3afef921191d0d3f7bf67a34220e06510f20b028788e8cf73ead8741822b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/738d3afef921191d0d3f7bf67a34220e06510f20b028788e8cf73ead8741822b.mp3",
+          "contentHash": "4c998fda91068783757bf42b58b65c0a3d63a563433f1e904982bb7c6d5816f0",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s55/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The map is unreliable.",
+          "file": "f9ab6dd023417607a283a74f4df630f6680eaf9cccc7ed38ae6a0ce1ffe9f15d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f9ab6dd023417607a283a74f4df630f6680eaf9cccc7ed38ae6a0ce1ffe9f15d.mp3",
+          "contentHash": "1976422f835a2744419d5ab39aa063f94da29f71861c174fa2a761f31b91bf2b",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l04/s55/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The leftovers are in the fridge.",
+          "file": "459a26bb95fb69690e513d0a163e539a8df871c00a97642f383c455b746b5c87.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/459a26bb95fb69690e513d0a163e539a8df871c00a97642f383c455b746b5c87.mp3",
+          "contentHash": "b89cd2510a5514534fda8a6beed3563126429dd2d696401742c74175df44a6ba",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s55/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The map is unreliable.",
+          "file": "6dbeb8c2f8f2f5d022e98428e8c03ff464578f26764ceb087420b83338ccc42f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6dbeb8c2f8f2f5d022e98428e8c03ff464578f26764ceb087420b83338ccc42f.mp3",
+          "contentHash": "10f873c47aa0dea90a8a6fed4a5008eabc1615ce967d13817aea53a8dbbe7a65",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s55/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "shortcut",
+          "file": "bc32a030351c603463b14c04fbc71e302b8e157f9227daa2dba73ab2555c6b70.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc32a030351c603463b14c04fbc71e302b8e157f9227daa2dba73ab2555c6b70.mp3",
+          "contentHash": "2150a79401b20adfd6ffb622a2cc8d2aaca87a3491712e36956810de76bde9ba",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s55/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "shortcut",
+          "file": "bc32a030351c603463b14c04fbc71e302b8e157f9227daa2dba73ab2555c6b70.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc32a030351c603463b14c04fbc71e302b8e157f9227daa2dba73ab2555c6b70.mp3",
+          "contentHash": "2150a79401b20adfd6ffb622a2cc8d2aaca87a3491712e36956810de76bde9ba",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l04/s55/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "shortcut",
+          "file": "a0a55cebf7312a4a76c747bcd762c85701364df9c916d9e58e3c932a78b159d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a0a55cebf7312a4a76c747bcd762c85701364df9c916d9e58e3c932a78b159d0.mp3",
+          "contentHash": "86569d956d164c374052126cfa2df04e267f763282d4470c01775e291afa5703",
+          "byteSize": 27648
+        },
+        {
+          "text": "unreliable",
+          "file": "4984e5388c1c595f86b6d6b862f934eb7f3ddc1673c727a24ccfc5e28bf114f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4984e5388c1c595f86b6d6b862f934eb7f3ddc1673c727a24ccfc5e28bf114f3.mp3",
+          "contentHash": "728fa42fa262be9593a66b6261d048fd3cb96946223806adbad5e4ba4e39662a",
+          "byteSize": 29952
+        },
+        {
+          "text": "cafes",
+          "file": "eeedabc494d25ad1da98b48aca7359e0881eb3e948fd67e8335f9638a22e63fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eeedabc494d25ad1da98b48aca7359e0881eb3e948fd67e8335f9638a22e63fc.mp3",
+          "contentHash": "83239ea1fd67f48167ac52415bace9c76dbe79f81dc6a2a66bcd796bf20b46c1",
+          "byteSize": 27648
+        },
+        {
+          "text": "leftover",
+          "file": "982e11b8944208c26945d899c127665206c9bab15eb62353cc55ce7ff3fbe33c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/982e11b8944208c26945d899c127665206c9bab15eb62353cc55ce7ff3fbe33c.mp3",
+          "contentHash": "fccb8ce11a0bf29108b552b254bdc4256609573277bae82529761f635039a325",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l04/s55/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a shortcut.",
+          "file": "6e2be9e75e599af0276137e5847dcf54312e3bcc8335126f7bf81749202d17bf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6e2be9e75e599af0276137e5847dcf54312e3bcc8335126f7bf81749202d17bf.mp3",
+          "contentHash": "b4d6a802b6e8da67bafc78bf7679ee2c8973d8b3fb9d3e11f569c61c93119e7d",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s55/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The cafes are next to the park.",
+          "file": "5955b442c1109b70d918dec4b250850e02c52d91266b8ec0ff348aae3e56b219.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5955b442c1109b70d918dec4b250850e02c52d91266b8ec0ff348aae3e56b219.mp3",
+          "contentHash": "d3d7674b03879de4f5c91f50c412933c1c2001c3fa2e77a38aa4ebb340b83af9",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l04/s55/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's unreliable.",
+          "file": "44583c6866d38e0042a4638aac78c70eb54a337cf9ade5a9c33e790b7099fd09.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44583c6866d38e0042a4638aac78c70eb54a337cf9ade5a9c33e790b7099fd09.mp3",
+          "contentHash": "34a32666a924d78539d94be352c7e429b1af1a287bb40756daae6813af6692ee",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s55/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There aren't any leftovers.",
+          "file": "c2ee352b79476b7af6dbcce334aaa8a3a07a88ba6fceeebdb1885e4fd00c7f59.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c2ee352b79476b7af6dbcce334aaa8a3a07a88ba6fceeebdb1885e4fd00c7f59.mp3",
+          "contentHash": "b621b7843f7ddf8cc5f9c233aefbae97672c76cc156bbc19413374d61b621bad",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l04/s55/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The leftovers are in the fridge.",
+          "file": "bc71c2451dffb696fe5f0e4aa08f4df333d1784e61259069aa4fb0e2dfb634dc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc71c2451dffb696fe5f0e4aa08f4df333d1784e61259069aa4fb0e2dfb634dc.mp3",
+          "contentHash": "18d6c1672d1e55fc6aa14075dedeab231d42f98d48217bc676a1ca61936f2915",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s55/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "shortcut",
+          "file": "bc32a030351c603463b14c04fbc71e302b8e157f9227daa2dba73ab2555c6b70.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc32a030351c603463b14c04fbc71e302b8e157f9227daa2dba73ab2555c6b70.mp3",
+          "contentHash": "2150a79401b20adfd6ffb622a2cc8d2aaca87a3491712e36956810de76bde9ba",
+          "byteSize": 40320
+        },
+        {
+          "text": "unreliable",
+          "file": "c3eb0704e9392053accb472851968977964bf672233b7d8402d3bfe03959d82b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3eb0704e9392053accb472851968977964bf672233b7d8402d3bfe03959d82b.mp3",
+          "contentHash": "48d868ce5561d11775bc00f092a584299b46852823e25aa97a8a887d4a269c1d",
+          "byteSize": 26880
+        },
+        {
+          "text": "cafes",
+          "file": "86f90599a8627e823e54a4c3c3252a752264846344be7ea8099065ac0120e475.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/86f90599a8627e823e54a4c3c3252a752264846344be7ea8099065ac0120e475.mp3",
+          "contentHash": "7e46d644556b23d7bf37133b03e361d360a74453f2bd4d33ffa9e432469c1ae0",
+          "byteSize": 18816
+        },
+        {
+          "text": "leftover",
+          "file": "2ad86b934097302ee54f7cac77d44fff4853f584bcf6c3589b59090d74f814cf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ad86b934097302ee54f7cac77d44fff4853f584bcf6c3589b59090d74f814cf.mp3",
+          "contentHash": "1e3344c5e43e4c51f66d51dd07677a60b8358d39d5fecf2854ea03614935c83b",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s55/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there a shortcut?",
+          "file": "1146568c52b809da182f6f8a9e281e94b9ff122dc1aeb930d60de9116eda902e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1146568c52b809da182f6f8a9e281e94b9ff122dc1aeb930d60de9116eda902e.mp3",
+          "contentHash": "b3b3c141e408c8deba66c2374353f221ef2ed9555a841ea2ddc89559648d0659",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l04/s55/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There isn't a shortcut.",
+          "file": "636913d6f70839e23f7ef5a9e022fcfe423651393a532a100da706ca2214151c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/636913d6f70839e23f7ef5a9e022fcfe423651393a532a100da706ca2214151c.mp3",
+          "contentHash": "e939ea5d26c9de34f4b93c9e42aebf6b16009da714aae513c6ef8055b91df697",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s55/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Are there any leftovers?",
+          "file": "aae49ab4caf5ccedf97d0c978632dc7f4cb15f210341afdf1039ade738222653.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aae49ab4caf5ccedf97d0c978632dc7f4cb15f210341afdf1039ade738222653.mp3",
+          "contentHash": "020a9d8b13e4ea367ccddfd4bba98069ab4e7c61d770d8855a99dc8c28885ddb",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l04/s55/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The shortcut is in the park.",
+          "file": "7fdc65d32d647bb74b138e7959595dfcf20172aaeecfbf476c1859daffacd106.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7fdc65d32d647bb74b138e7959595dfcf20172aaeecfbf476c1859daffacd106.mp3",
+          "contentHash": "030ea2ddaa08a50b7af91ed8ee80f362a6af1488f5640e53d25601a54e6856e1",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s55/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "That is a shortcut.",
+          "file": "3b7be09611d41f6f65a3456d036f09a71a5e2e09caddd002b6642ee99593bac7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3b7be09611d41f6f65a3456d036f09a71a5e2e09caddd002b6642ee99593bac7.mp3",
+          "contentHash": "cc3629f5d9c26daaf07c2bc6413190249322a27eae0f327a07c2b52949e3f975",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s55/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "shortcut",
+          "file": "caae708da6736f4ca90449bf4916151fbf5eb75ae07cde889911947433d19874.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/caae708da6736f4ca90449bf4916151fbf5eb75ae07cde889911947433d19874.mp3",
+          "contentHash": "d330a4039630742457c1b1ede3603efdf7787179378477ef75484c89fc5c294d",
+          "byteSize": 18816
+        },
+        {
+          "text": "unreliable",
+          "file": "036f7691ef1c2f99fdf2b65878e95d4ee95aedb62a9d73ab53b8dc13f2c5c126.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/036f7691ef1c2f99fdf2b65878e95d4ee95aedb62a9d73ab53b8dc13f2c5c126.mp3",
+          "contentHash": "e76709799378969d5726ffa8884c0a2939303e5cdc730aeef59288c4b88ca4ea",
+          "byteSize": 20352
+        },
+        {
+          "text": "cafes",
+          "file": "7875748d2b5e9191f0d0406f14db09e37cd968461fe8122c7938338441d50f8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7875748d2b5e9191f0d0406f14db09e37cd968461fe8122c7938338441d50f8c.mp3",
+          "contentHash": "4af84bf4c0fdf640e985468b81fb8a821b1a24e614594cba03dfc87722679f5b",
+          "byteSize": 21120
+        },
+        {
+          "text": "leftover",
+          "file": "206f860e52df7c66c7adb8cb75a4e6c36043d482a6d118c74784627fde6d7c93.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/206f860e52df7c66c7adb8cb75a4e6c36043d482a6d118c74784627fde6d7c93.mp3",
+          "contentHash": "2ba8411181cf8ccc17dad50b4f53c904fb9c03f7eeaeccf57df01bc9a88462a8",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l04/s55/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is a shortcut.",
+          "file": "9f036b4c09c312fd797f8c36e64c1d7f73a68c2e0060b94d520a00fb8c3e362d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9f036b4c09c312fd797f8c36e64c1d7f73a68c2e0060b94d520a00fb8c3e362d.mp3",
+          "contentHash": "819ab9239e4a533699628f771831791a0c81879f20d5d8a926d13dfc944985c1",
+          "byteSize": 39552
+        }
+      ]
     }
   },
   "settings": {

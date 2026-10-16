@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-33:intro1:r2": {
+          "ru": "Обращаясь к человеку, скажите `Don’t rush`.",
+          "uk": "Звертаючись до людини, скажіть `Don’t rush`."
+        },
+        "en:lesson-08:session-33:intro1:r3": {
+          "ru": "После `don’t` нужно `rush`, без `to`.",
+          "uk": "Після `don’t` потрібне `rush`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-33:intro2:r2": {
+          "ru": "После `don’t` нужно `touch`, без `es`.",
+          "uk": "Після `don’t` потрібне `touch`, без `es`."
+        },
+        "en:lesson-08:session-33:intro2:r3": {
+          "ru": "Для такого указания начните с `Don’t`.",
+          "uk": "Для такої вказівки почніть із `Don’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-33:intro3:r2": {
+          "ru": "В обращении нужно `don’t wait`, не `doesn’t wait`.",
+          "uk": "У звертанні потрібне `don’t wait`, не `doesn’t wait`."
+        },
+        "en:lesson-08:session-33:intro3:r3": {
+          "ru": "После `don’t` нужно `wait`, без `to`.",
+          "uk": "Після `don’t` потрібне `wait`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0bb02f600b6fcb778ca84bb4cf464b88bd8dc2e606461644e5f17e2c9a76b8fc"
+}

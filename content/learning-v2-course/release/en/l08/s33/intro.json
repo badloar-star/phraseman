@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "сказать «не делай» через Don’t и смягчить просьбу словом please",
+    "uk": "сказати «не роби» через Don’t і пом’якшити прохання словом please"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Времени достаточно",
+        "uk": "Часу достатньо"
+      },
+      "bodyByLocale": {
+        "ru": "Друг торопится собирать вещи, хотя до выхода ещё есть время. `Rush` — «торопиться». `Don’t rush` — «Не торопись». Чтобы сказать человеку не делать что-то, начните с `Don’t`, затем назовите действие: `rush`, без `to` и `s`. Обуваться быстрее не всегда полезно: можно уйти в разных ботинках.",
+        "uk": "Друг поспішає збирати речі, хоча до виходу ще є час. `Rush` — «поспішати». `Don’t rush` — «Не поспішай». Щоб сказати людині не робити чогось, почніть із `Don’t`, потім назвіть дію: `rush`, без `to` і `s`. Взуватися швидше не завжди корисно: можна піти в різних черевиках."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу не торопиться.",
+          "uk": "Скажіть другові не поспішати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-33:intro1:r1",
+              "text": "Don’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro1:r2",
+              "text": "Doesn’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro1:r3",
+              "text": "Don’t to rush."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-33:intro1:r1",
+              "text": "Don’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro1:r2",
+              "text": "Doesn’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro1:r3",
+              "text": "Don’t to rush."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу не торопиться.",
+          "uk": "Скажіть другові не поспішати."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Свежая краска",
+        "uk": "Свіжа фарба"
+      },
+      "bodyByLocale": {
+        "ru": "Друг тянется к только что покрашенной скамейке. Покажите на неё: `Don’t touch this` — «Не трогай это». После `Don’t` нужно `touch this`.",
+        "uk": "Друг тягнеться до щойно пофарбованої лавки. Покажіть на неї: `Don’t touch this` — «Не чіпай це». Після `Don’t` потрібне `touch this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Предупредите друга: «Не трогай это».",
+          "uk": "Попередьте друга: «Не чіпай це»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-33:intro2:r1",
+              "text": "Don’t touch this."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro2:r2",
+              "text": "Don’t touches this."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro2:r3",
+              "text": "Not touch this."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-33:intro2:r1",
+              "text": "Don’t touch this."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro2:r2",
+              "text": "Don’t touches this."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro2:r3",
+              "text": "Not touch this."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Предупредите друга: «Не трогай это».",
+          "uk": "Попередьте друга: «Не чіпай це»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вы задерживаетесь",
+        "uk": "Ви затримуєтеся"
+      },
+      "bodyByLocale": {
+        "ru": "Друг готов идти, а вам нужно закончить работу. Вы хотите, чтобы он шёл без вас. `Please don’t wait` — «Пожалуйста, не жди». `Please` добавляет вежливое «пожалуйста», а `don’t wait` означает «не жди».",
+        "uk": "Друг готовий іти, а вам потрібно закінчити роботу. Ви хочете, щоб він ішов без вас. `Please don’t wait` — «Будь ласка, не чекай». `Please` додає ввічливе «будь ласка», а `don’t wait` означає «не чекай»."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Вежливо попросите друга не ждать.",
+          "uk": "Ввічливо попросіть друга не чекати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-33:intro3:r1",
+              "text": "Please don’t wait."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro3:r2",
+              "text": "Please doesn’t wait."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro3:r3",
+              "text": "Please don’t to wait."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-33:intro3:r1",
+              "text": "Please don’t wait."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro3:r2",
+              "text": "Please doesn’t wait."
+            },
+            {
+              "responseId": "en:lesson-08:session-33:intro3:r3",
+              "text": "Please don’t to wait."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вежливо попросите друга не ждать.",
+          "uk": "Ввічливо попросіть друга не чекати."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "458e6b6d0745f61778ee522e3c3739a5b0c30b8d552f7bc2720a64f8ca4785ad"
+}

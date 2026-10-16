@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-32:intro1:r2": {
+          "ru": "Для указания начните с `Attach`, без `to`.",
+          "uk": "Для вказівки почніть із `Attach`, без `to`."
+        },
+        "en:lesson-08:session-32:intro1:r3": {
+          "ru": "Нужно `Attach`, без `es`.",
+          "uk": "Потрібне `Attach`, без `es`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-32:intro2:r2": {
+          "ru": "С `it` нужен порядок `Plug it in`.",
+          "uk": "З `it` потрібен порядок `Plug it in`."
+        },
+        "en:lesson-08:session-32:intro2:r3": {
+          "ru": "Для указания нужно `Plug`, без `s`.",
+          "uk": "Для вказівки потрібне `Plug`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-32:intro3:r2": {
+          "ru": "Для указания нужно `Label`, без `s`.",
+          "uk": "Для вказівки потрібне `Label`, без `s`."
+        },
+        "en:lesson-08:session-32:intro3:r3": {
+          "ru": "Начните с `Label`, без `to`.",
+          "uk": "Почніть із `Label`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3447435bb00e23ee581d9a4db34243eb060454e7decc1e4b4620eaaa4b817b56"
+}

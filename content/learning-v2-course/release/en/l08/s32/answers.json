@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-32:i01",
+    "correctText": "Attach it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i02",
+    "correctText": "measure",
+    "correctResponseId": "en:lesson-08:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i03",
+    "correctText": "Charge",
+    "correctResponseId": "en:lesson-08:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i04",
+    "correctText": "en:lesson-08:session-32:i04:p1=attach\nen:lesson-08:session-32:i04:p2=plug in\nen:lesson-08:session-32:i04:p3=charge\nen:lesson-08:session-32:i04:p4=fold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i05",
+    "correctText": "Measure it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i06",
+    "correctText": "Plug it in.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i07",
+    "correctText": "Fold it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i08",
+    "correctText": "Wipe",
+    "correctResponseId": "en:lesson-08:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i09",
+    "correctText": "Label it.",
+    "correctResponseId": "en:lesson-08:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i10",
+    "correctText": "en:lesson-08:session-32:i10:p1=measure\nen:lesson-08:session-32:i10:p2=label\nen:lesson-08:session-32:i10:p3=wipe\nen:lesson-08:session-32:i10:p4=fountain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i11",
+    "correctText": "Plug it in.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i12",
+    "correctText": "Where is the fountain?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i13",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i14",
+    "correctText": "Label",
+    "correctResponseId": "en:lesson-08:session-32:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i15",
+    "correctText": "Charge it.",
+    "correctResponseId": "en:lesson-08:session-32:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i16",
+    "correctText": "en:lesson-08:session-32:i16:p1=fold\nen:lesson-08:session-32:i16:p2=measure\nen:lesson-08:session-32:i16:p3=label\nen:lesson-08:session-32:i16:p4=wipe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:i17",
+    "correctText": "Wipe it.",
+    "correctResponseId": null
+  }
+]

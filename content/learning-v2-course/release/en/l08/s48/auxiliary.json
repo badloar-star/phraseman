@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-48:intro1:r2": {
+          "ru": "После `can` нужно `negotiate`, без `to`.",
+          "uk": "Після `can` потрібне `negotiate`, без `to`."
+        },
+        "en:lesson-08:session-48:intro1:r3": {
+          "ru": "После `can` нужно `negotiate`, без `s`.",
+          "uk": "Після `can` потрібне `negotiate`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-48:intro2:r2": {
+          "ru": "После `can` нужно `assemble`, без `s`.",
+          "uk": "Після `can` потрібне `assemble`, без `s`."
+        },
+        "en:lesson-08:session-48:intro2:r3": {
+          "ru": "После `can` нужно `assemble`, без `to`.",
+          "uk": "Після `can` потрібне `assemble`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-48:intro3:r2": {
+          "ru": "После `can` нужно `adapt`, без `s`.",
+          "uk": "Після `can` потрібне `adapt`, без `s`."
+        },
+        "en:lesson-08:session-48:intro3:r3": {
+          "ru": "После `can` нужно `adapt`, без `to`.",
+          "uk": "Після `can` потрібне `adapt`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "773bf16a726e6dd35f3d4aeb0718f8584d79eafe3d552af634b6dc156a045fce"
+}

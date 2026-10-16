@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я умею вести переговоры»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я умею вести переговоры»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can negotiate.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я умею вести переговоры»",
+          "uk": "Скажіть «Я вмію вести переговори»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "negotiate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-48:i02:r1",
+          "text": "navigate"
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i02:r2",
+          "text": "assemble"
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i02:r3",
+          "text": "adapt"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-48:i02:audio",
+          "transcript": "navigate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-48:i02:r1",
+            "targetText": "navigate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i02:r2",
+            "targetText": "assemble",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i02:r3",
+            "targetText": "adapt",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `navigate`, а в этом варианте — `assemble`.",
+              "uk": "У записі перше слово — `navigate`, а в цьому варіанті — `assemble`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `navigate`, а в этом варианте — `adapt`.",
+              "uk": "У записі перше слово — `navigate`, а в цьому варіанті — `adapt`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я могу это собрать»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-48:i03:r1",
+          "text": "assemble"
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i03:r2",
+          "text": "assembles"
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i03:r3",
+          "text": "to assemble"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я могу это собрать»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я могу это собрать»",
+          "uk": "Скажіть «Я можу це зібрати»"
+        },
+        "gappedTargetPhrase": "I can ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-48:i03:r1",
+            "text": "assemble"
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i03:r2",
+            "text": "assembles"
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i03:r3",
+            "text": "to assemble"
+          }
+        ],
+        "testedDimension": "Скажите «Я могу это собрать»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я могу это собрать»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `assemble`, без `s`.",
+              "uk": "Після `can` потрібне `assemble`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я могу это собрать»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `assemble`, без `to`.",
+              "uk": "Після `can` потрібне `assemble`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-48:i04:p1",
+            "target": "negotiate",
+            "meaningByLocale": {
+              "ru": "вести переговоры",
+              "uk": "вести переговори"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-48:i04:p2",
+            "target": "navigate",
+            "meaningByLocale": {
+              "ru": "ориентироваться",
+              "uk": "орієнтуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-48:i04:p3",
+            "target": "assemble",
+            "meaningByLocale": {
+              "ru": "собирать",
+              "uk": "збирати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-48:i04:p4",
+            "target": "community kitchen",
+            "meaningByLocale": {
+              "ru": "общая кухня",
+              "uk": "спільна кухня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "negotiate",
+          "navigate",
+          "assemble",
+          "community kitchen"
+        ],
+        "rightColumn": [
+          "вести переговоры",
+          "ориентироваться",
+          "собирать",
+          "общая кухня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-48:i05:audio",
+          "transcript": "I can assemble it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can assemble it.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "assemble",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы знакомы с этим проектором. Скажите «Я умею с этим работать»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы знакомы с этим проектором. Скажите «Я умею с этим работать»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can operate it.",
+        "localizedMeaning": {
+          "ru": "Вы знакомы с этим проектором. Скажите «Я умею с этим работать»",
+          "uk": "Ви знайомі з цим проєктором. Скажіть «Я вмію з цим працювати»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "operate",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В новой команде другой распорядок. Скажите «Я могу адаптироваться»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-48:i07:audio"
+      ],
+      "accessibilityLabel": "В новой команде другой распорядок. Скажите «Я могу адаптироваться»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-48:i07:audio",
+          "transcript": "I can adapt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can adapt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Предложите «Я могу проследить за работой»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-48:i08:r1",
+          "text": "supervise"
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i08:r2",
+          "text": "supervises"
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i08:r3",
+          "text": "to supervise"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите «Я могу проследить за работой»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Предложите «Я могу проследить за работой»",
+          "uk": "Запропонуйте «Я можу простежити за роботою»"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-48:i08:r1",
+            "text": "supervise"
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i08:r2",
+            "text": "supervises"
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i08:r3",
+            "text": "to supervise"
+          }
+        ],
+        "testedDimension": "Предложите «Я могу проследить за работой»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Предложите «Я могу проследить за работой»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `supervise`, без `s`.",
+              "uk": "Після `can` потрібне `supervise`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Предложите «Я могу проследить за работой»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `supervise`, без `to`.",
+              "uk": "Після `can` потрібне `supervise`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-48:i09:r1",
+          "text": "I can negotiate."
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i09:r2",
+          "text": "I can navigate."
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i09:r3",
+          "text": "I can supervise."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-48:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-48:i09:audio",
+          "transcript": "I can negotiate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-48:i09:r1",
+            "targetText": "I can negotiate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i09:r2",
+            "targetText": "I can navigate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i09:r3",
+            "targetText": "I can supervise.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `negotiate`, а в этом варианте — `navigate`.",
+              "uk": "У записі останнє слово — `negotiate`, а в цьому варіанті — `navigate`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `negotiate`, а в этом варианте — `supervise`.",
+              "uk": "У записі останнє слово — `negotiate`, а в цьому варіанті — `supervise`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-48:i10:p1",
+            "target": "operate",
+            "meaningByLocale": {
+              "ru": "работать с устройством",
+              "uk": "працювати з пристроєм"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-48:i10:p2",
+            "target": "supervise",
+            "meaningByLocale": {
+              "ru": "контролировать работу",
+              "uk": "контролювати роботу"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-48:i10:p3",
+            "target": "diagnose",
+            "meaningByLocale": {
+              "ru": "диагностировать",
+              "uk": "діагностувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-48:i10:p4",
+            "target": "adapt",
+            "meaningByLocale": {
+              "ru": "адаптироваться",
+              "uk": "адаптуватися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "operate",
+          "supervise",
+          "diagnose",
+          "adapt"
+        ],
+        "rightColumn": [
+          "работать с устройством",
+          "контролировать работу",
+          "диагностировать",
+          "адаптироваться"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-48:i11:audio",
+          "transcript": "I can adapt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can adapt.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "adapt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У компьютера неисправность. Скажите «Я могу определить причину»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У компьютера неисправность. Скажите «Я могу определить причину»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can diagnose it.",
+        "localizedMeaning": {
+          "ru": "У компьютера неисправность. Скажите «Я могу определить причину»",
+          "uk": "У комп’ютера несправність. Скажіть «Я можу визначити причину»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "diagnose",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы умеете находить путь по карте. Скажите «Я умею ориентироваться»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Вы умеете находить путь по карте. Скажите «Я умею ориентироваться»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-48:i13:audio",
+          "transcript": "I can navigate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can navigate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я могу адаптироваться»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-48:i14:r1",
+          "text": "adapt"
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i14:r2",
+          "text": "adapts"
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i14:r3",
+          "text": "to adapt"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я могу адаптироваться»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я могу адаптироваться»",
+          "uk": "Скажіть «Я можу адаптуватися»"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-48:i14:r1",
+            "text": "adapt"
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i14:r2",
+            "text": "adapts"
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i14:r3",
+            "text": "to adapt"
+          }
+        ],
+        "testedDimension": "Скажите «Я могу адаптироваться»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-48:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я могу адаптироваться»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `adapt`, без `s`.",
+              "uk": "Після `can` потрібне `adapt`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я могу адаптироваться»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `adapt`, без `to`.",
+              "uk": "Після `can` потрібне `adapt`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-48:i15:r1",
+          "text": "I can operate it."
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i15:r2",
+          "text": "I can operate this."
+        },
+        {
+          "responseId": "en:lesson-08:session-48:i15:r3",
+          "text": "I can operate that."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-48:i15:audio",
+          "transcript": "I can operate it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-48:i15:r1",
+            "targetText": "I can operate it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i15:r2",
+            "targetText": "I can operate this.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i15:r3",
+            "targetText": "I can operate that.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-48:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-48:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-48:i16:p1",
+            "target": "community kitchen",
+            "meaningByLocale": {
+              "ru": "общая кухня",
+              "uk": "спільна кухня"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-48:i16:p2",
+            "target": "supervise",
+            "meaningByLocale": {
+              "ru": "контролировать работу",
+              "uk": "контролювати роботу"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-48:i16:p3",
+            "target": "negotiate",
+            "meaningByLocale": {
+              "ru": "вести переговоры",
+              "uk": "вести переговори"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-48:i16:p4",
+            "target": "assemble",
+            "meaningByLocale": {
+              "ru": "собирать",
+              "uk": "збирати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "community kitchen",
+          "supervise",
+          "negotiate",
+          "assemble"
+        ],
+        "rightColumn": [
+          "общая кухня",
+          "контролировать работу",
+          "вести переговоры",
+          "собирать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-48:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Команда готовит помещение к выставке. Нужен человек, который проследит за работой. Скажите «Я могу проследить за работой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Команда готовит помещение к выставке. Нужен человек, который проследит за работой. Скажите «Я могу проследить за работой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-48:i17:audio",
+          "transcript": "I can supervise."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can supervise.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4f7090ce5a2b93122c9b4d535400fd3ceccb89020712c270aa89d1bd23f4eb75"
+}

@@ -119245,6 +119245,309 @@
           "byteSize": 32640
         }
       ]
+    },
+    "l08/s02/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I can juggle.",
+          "file": "356cb5ec3764b0cc87f776a077f3dfc6ba6917ec88cde8b8f9e1077037ff9dba.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/356cb5ec3764b0cc87f776a077f3dfc6ba6917ec88cde8b8f9e1077037ff9dba.mp3",
+          "contentHash": "8370ee9f5dfa50979da805cd432a0bd21a0e2663d0f36f49a05606267e47632d",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l08/s02/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She can whistle.",
+          "file": "e571c49672c7bc1fc815dacee69b49fb2dda9f801c3dd22fcf70ed116732b1db.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e571c49672c7bc1fc815dacee69b49fb2dda9f801c3dd22fcf70ed116732b1db.mp3",
+          "contentHash": "31c86953775e9562a87ec5001f18c44dcfa8173ed30e431a5b9c611002843f9d",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l08/s02/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose folder is this?",
+          "file": "bf08a6fc88b4a2c04296e8814600f406ecd99d40f056830251b8266c97242234.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf08a6fc88b4a2c04296e8814600f406ecd99d40f056830251b8266c97242234.mp3",
+          "contentHash": "af2a5dc18cc0ce45dc2444731b07c0e382577cd99698b4524b2ce3b25927f6e8",
+          "byteSize": 52992
+        }
+      ]
+    },
+    "l08/s02/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can juggle.",
+          "file": "90b06f811b26bce3d53ddbe27f915cd70c988be41f9ab986b55df29bd1a63893.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90b06f811b26bce3d53ddbe27f915cd70c988be41f9ab986b55df29bd1a63893.mp3",
+          "contentHash": "e317d3ea481292b0f89e4738679a9f574c0d1e86bbfe6ca92f7837275c822888",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l08/s02/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "juggle",
+          "file": "fcba998ef71003ae8496f99de946542860e570f68c7dcb536d2ffccc3f71997f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fcba998ef71003ae8496f99de946542860e570f68c7dcb536d2ffccc3f71997f.mp3",
+          "contentHash": "cd7a2b9d003f8b392ec842aa813ae766822afab1ba8c5534728297bc72d3c5d2",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l08/s02/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I can juggle.",
+          "file": "356cb5ec3764b0cc87f776a077f3dfc6ba6917ec88cde8b8f9e1077037ff9dba.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/356cb5ec3764b0cc87f776a077f3dfc6ba6917ec88cde8b8f9e1077037ff9dba.mp3",
+          "contentHash": "8370ee9f5dfa50979da805cd432a0bd21a0e2663d0f36f49a05606267e47632d",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l08/s02/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "juggle",
+          "file": "4a7f0b7006733fee113f8ab6a6910382b949be4926ae1e14c6874f2e669befe1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a7f0b7006733fee113f8ab6a6910382b949be4926ae1e14c6874f2e669befe1.mp3",
+          "contentHash": "b2e5a87c9e37cc96ccc898a0c4877113d8411438e1989b80a04285da49ab3508",
+          "byteSize": 26880
+        },
+        {
+          "text": "garden",
+          "file": "2299d634582f58cd6847735be86f620e499bb0bf3d6940914f9985c5f1602f40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2299d634582f58cd6847735be86f620e499bb0bf3d6940914f9985c5f1602f40.mp3",
+          "contentHash": "23f57003c4d4cfdfd45a8ad07e6b806737ac0a7296b0820eed50be3816f79d70",
+          "byteSize": 21888
+        },
+        {
+          "text": "folder",
+          "file": "bf093674264600de49d830b8e38f3b65179197c6ef21f46f84864e28b8e5a979.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf093674264600de49d830b8e38f3b65179197c6ef21f46f84864e28b8e5a979.mp3",
+          "contentHash": "fe9abf79bb3bb03b81159398493fa491969f9e9a1276c94fcaada8972a515f3a",
+          "byteSize": 23040
+        },
+        {
+          "text": "package",
+          "file": "0ea1cfd6871a6631e6964c1eecb10f8639fbf30bec52d80faac6699db0251cc2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ea1cfd6871a6631e6964c1eecb10f8639fbf30bec52d80faac6699db0251cc2.mp3",
+          "contentHash": "d9ba21ef93688477c9520232917cd7e6b17300edf2f26745e9c14cb4a65791b7",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l08/s02/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can juggle.",
+          "file": "90b06f811b26bce3d53ddbe27f915cd70c988be41f9ab986b55df29bd1a63893.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90b06f811b26bce3d53ddbe27f915cd70c988be41f9ab986b55df29bd1a63893.mp3",
+          "contentHash": "e317d3ea481292b0f89e4738679a9f574c0d1e86bbfe6ca92f7837275c822888",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l08/s02/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She can whistle.",
+          "file": "e4096a9de6b98e51b0a06d533f51ffe18e62a85d7cd88767505deb7a2b041157.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e4096a9de6b98e51b0a06d533f51ffe18e62a85d7cd88767505deb7a2b041157.mp3",
+          "contentHash": "436f337e269b73f32da1fd8f41f360af94fd5475cc67a0a054bc209a052e67bd",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l08/s02/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose folder is this?",
+          "file": "0663d5f6a4cba5d7c0e99214b133ee71de4d5c9f7117f0498f3cf0d560ae24a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0663d5f6a4cba5d7c0e99214b133ee71de4d5c9f7117f0498f3cf0d560ae24a6.mp3",
+          "contentHash": "3088be9b993175875502b2774ad2cc7cf1d0ddf9f22d9133fcea0ff046a66cd2",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l08/s02/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She can whistle.",
+          "file": "31ac4bdf92370cc9389c531ca98d45d3d2bab2773728ff4754497dbced93286a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31ac4bdf92370cc9389c531ca98d45d3d2bab2773728ff4754497dbced93286a.mp3",
+          "contentHash": "a0deeb3192dd763f5b9731e21c466bfb22feb247e8e09165471c4b9d062fa289",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l08/s02/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can juggle.",
+          "file": "816fcc8f3418bf99d857c9ec9c08342178b6e2d1587b1d87e4dc3847efe41eb6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/816fcc8f3418bf99d857c9ec9c08342178b6e2d1587b1d87e4dc3847efe41eb6.mp3",
+          "contentHash": "f9451c0ffbf940c3d46a229e5af2de30dde6e9013961b30ddac495a94c9efa55",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l08/s02/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "hike",
+          "file": "27ddf0692aa9dc58531417b414310acd8908cee124f468665b1cf32591fa1e7d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/27ddf0692aa9dc58531417b414310acd8908cee124f468665b1cf32591fa1e7d.mp3",
+          "contentHash": "83ac7ae90efd706d20376d76e89c1fe4a13d37e08c1c80d9bef1f5b3988eb326",
+          "byteSize": 16512
+        },
+        {
+          "text": "juggle",
+          "file": "fcba998ef71003ae8496f99de946542860e570f68c7dcb536d2ffccc3f71997f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fcba998ef71003ae8496f99de946542860e570f68c7dcb536d2ffccc3f71997f.mp3",
+          "contentHash": "cd7a2b9d003f8b392ec842aa813ae766822afab1ba8c5534728297bc72d3c5d2",
+          "byteSize": 22656
+        },
+        {
+          "text": "garden",
+          "file": "fe5e87762b4787f6e7627e6b77441155eaf3ee6624aacb479d48fa45c382d506.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fe5e87762b4787f6e7627e6b77441155eaf3ee6624aacb479d48fa45c382d506.mp3",
+          "contentHash": "d4d615ad3f3ab25c4396c3b0c380de822dace9ca8c826d8f789b9cf6a2558816",
+          "byteSize": 19584
+        },
+        {
+          "text": "package",
+          "file": "43b71b76864dc6d70b15bde5dab1246e1fc7272d1c0a5907bb01d13081eee269.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43b71b76864dc6d70b15bde5dab1246e1fc7272d1c0a5907bb01d13081eee269.mp3",
+          "contentHash": "8bc1982d9fc8cdb9c3d66496946bbd8880c44b0a94e875121fce6dde0ec199bd",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l08/s02/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose folder is this?",
+          "file": "0663d5f6a4cba5d7c0e99214b133ee71de4d5c9f7117f0498f3cf0d560ae24a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0663d5f6a4cba5d7c0e99214b133ee71de4d5c9f7117f0498f3cf0d560ae24a6.mp3",
+          "contentHash": "3088be9b993175875502b2774ad2cc7cf1d0ddf9f22d9133fcea0ff046a66cd2",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l08/s02/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose package is this?",
+          "file": "2f724e7b5e0d8cebe693c7996044515fb405b0337feef5b5b6064dedd11dd96e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2f724e7b5e0d8cebe693c7996044515fb405b0337feef5b5b6064dedd11dd96e.mp3",
+          "contentHash": "2c57ffb73475bf6019829894c8444f263e02c420295ca583524103118924b2a1",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l08/s02/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually hike.",
+          "file": "4e09b48709eb8d3ba56f5549484406e79c52e8a41ca31f1059e5b31e229f5f16.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4e09b48709eb8d3ba56f5549484406e79c52e8a41ca31f1059e5b31e229f5f16.mp3",
+          "contentHash": "4975dde770906a08f6dfc1736e9fa4f7494f993263a895670a42706dc9afbe12",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l08/s02/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She can juggle.",
+          "file": "70f23c96ddea9514136a0ceb7c5a27577262c8bea0b4ff4926c7bc0f1296ef83.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/70f23c96ddea9514136a0ceb7c5a27577262c8bea0b4ff4926c7bc0f1296ef83.mp3",
+          "contentHash": "834db9ef29c8adc7dc01b8be2239d087acab2b7b714f0d9d5b8acf90f6f3df01",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l08/s02/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the garden?",
+          "file": "2e8fa49b810caa36de5a719578c81d009c4382a958023ad5ea05689b63855f0e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e8fa49b810caa36de5a719578c81d009c4382a958023ad5ea05689b63855f0e.mp3",
+          "contentHash": "fa9c0d5ae21728109aa4b1c4e76960c70664357ea27b36514043c99a39c2d897",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l08/s02/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "juggle",
+          "file": "fcba998ef71003ae8496f99de946542860e570f68c7dcb536d2ffccc3f71997f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fcba998ef71003ae8496f99de946542860e570f68c7dcb536d2ffccc3f71997f.mp3",
+          "contentHash": "cd7a2b9d003f8b392ec842aa813ae766822afab1ba8c5534728297bc72d3c5d2",
+          "byteSize": 22656
+        },
+        {
+          "text": "folder",
+          "file": "e6c0fd9df370708c9b7b43d36dce6cac0fc65d46acb130b11f8a5689b8eed367.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e6c0fd9df370708c9b7b43d36dce6cac0fc65d46acb130b11f8a5689b8eed367.mp3",
+          "contentHash": "262a75d3dbae2b5356aa7c063675b54972949a6b3dfda48b1974042682dffe8f",
+          "byteSize": 19584
+        },
+        {
+          "text": "package",
+          "file": "43b71b76864dc6d70b15bde5dab1246e1fc7272d1c0a5907bb01d13081eee269.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43b71b76864dc6d70b15bde5dab1246e1fc7272d1c0a5907bb01d13081eee269.mp3",
+          "contentHash": "8bc1982d9fc8cdb9c3d66496946bbd8880c44b0a94e875121fce6dde0ec199bd",
+          "byteSize": 18048
+        },
+        {
+          "text": "hike",
+          "file": "27ddf0692aa9dc58531417b414310acd8908cee124f468665b1cf32591fa1e7d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/27ddf0692aa9dc58531417b414310acd8908cee124f468665b1cf32591fa1e7d.mp3",
+          "contentHash": "83ac7ae90efd706d20376d76e89c1fe4a13d37e08c1c80d9bef1f5b3988eb326",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l08/s02/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom can juggle.",
+          "file": "6195bd8fa7e03e93b333ff617eddf110cabe7a33c442a0e24d40675a1a1fb4c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6195bd8fa7e03e93b333ff617eddf110cabe7a33c442a0e24d40675a1a1fb4c5.mp3",
+          "contentHash": "f721e362717a6bd1a39132f67a6d2dbd4e0702c443e7d184d9e59cdaf3ac6dbd",
+          "byteSize": 42624
+        }
+      ]
     }
   },
   "settings": {

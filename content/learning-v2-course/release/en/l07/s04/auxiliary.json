@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-04:intro1:r2": {
+          "ru": "С `wear` здесь нужно `Do you wear?`.",
+          "uk": "З `wear` тут потрібно `Do you wear?`."
+        },
+        "en:lesson-07:session-04:intro1:r3": {
+          "ru": "В этом значении говорим `glasses`, без `a`.",
+          "uk": "У цьому значенні кажемо `glasses`, без `a`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-04:intro2:r2": {
+          "ru": "После `Do they` нужно `wear`.",
+          "uk": "Після `Do they` потрібне `wear`."
+        },
+        "en:lesson-07:session-04:intro2:r3": {
+          "ru": "Нужно `Do they wear?`, без `are`.",
+          "uk": "Потрібно `Do they wear?`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-04:intro3:r2": {
+          "ru": "С `glasses` нужно `There are no`.",
+          "uk": "З `glasses` потрібно `There are no`."
+        },
+        "en:lesson-07:session-04:intro3:r3": {
+          "ru": "Нужно `There are no`, с `are`.",
+          "uk": "Потрібно `There are no`, з `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "57bd89d7bcae6da0a5dd42861242f9b9bd1e30714f96748678880d02e9b8a3f2"
+}

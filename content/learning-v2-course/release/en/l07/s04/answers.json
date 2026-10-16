@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-04:i01",
+    "correctText": "Do you wear glasses?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i02",
+    "correctText": "glasses",
+    "correctResponseId": "en:lesson-07:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i03",
+    "correctText": "wear",
+    "correctResponseId": "en:lesson-07:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i04",
+    "correctText": "en:lesson-07:session-04:i04:p1=glasses\nen:lesson-07:session-04:i04:p2=wear\nen:lesson-07:session-04:i04:p3=bag\nen:lesson-07:session-04:i04:p4=curtain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i05",
+    "correctText": "Do you wear glasses?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i06",
+    "correctText": "Do they wear glasses?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i07",
+    "correctText": "There are no glasses here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i08",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i09",
+    "correctText": "Do you wear glasses?",
+    "correctResponseId": "en:lesson-07:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i10",
+    "correctText": "en:lesson-07:session-04:i10:p1=receipt\nen:lesson-07:session-04:i10:p2=glasses\nen:lesson-07:session-04:i10:p3=bag\nen:lesson-07:session-04:i10:p4=curtain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i11",
+    "correctText": "Do they have a receipt?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i12",
+    "correctText": "Do you have a bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i13",
+    "correctText": "Do they have a receipt?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-07:session-04:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i15",
+    "correctText": "Do you have a receipt?",
+    "correctResponseId": "en:lesson-07:session-04:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i16",
+    "correctText": "en:lesson-07:session-04:i16:p1=glasses\nen:lesson-07:session-04:i16:p2=receipt\nen:lesson-07:session-04:i16:p3=curtain\nen:lesson-07:session-04:i16:p4=wear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-04:i17",
+    "correctText": "Do you have glasses?",
+    "correctResponseId": null
+  }
+]

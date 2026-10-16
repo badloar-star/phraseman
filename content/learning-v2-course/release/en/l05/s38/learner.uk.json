@@ -1,0 +1,984 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У вас мало фізичних сил. Скажіть «Я слабкий» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вас мало фізичних сил. Скажіть «Я слабкий» без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am weak.",
+        "localizedMeaning": {
+          "ru": "У вас мало физических сил. Скажите «Я слаб» без сокращения",
+          "uk": "У вас мало фізичних сил. Скажіть «Я слабкий» без скорочення"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "weak"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "У вас мало фізичних сил. Скажіть «Я слабкий» без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am weak.`",
+              "uk": "тут потрібно `am` — `I am weak.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-38:i02:r1",
+          "text": "laptop"
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i02:r2",
+          "text": "tablet"
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i02:r3",
+          "text": "camera"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:i02:audio",
+          "transcript": "laptop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-38:i02:r1",
+            "targetText": "laptop",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i02:r2",
+            "targetText": "tablet",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i02:r3",
+            "targetText": "camera",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `laptop`, а в этом варианте — `tablet`.",
+              "uk": "У записі перше слово — `laptop`, а в цьому варіанті — `tablet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `laptop`, а в этом варианте — `camera`.",
+              "uk": "У записі перше слово — `laptop`, а в цьому варіанті — `camera`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть ноутбук",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-38:i03:r1",
+          "text": "laptop"
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i03:r2",
+          "text": "tablet"
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i03:r3",
+          "text": "ticket"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть ноутбук",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите ноутбук",
+          "uk": "Назвіть ноутбук"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-38:i03:r1",
+            "text": "laptop"
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i03:r2",
+            "text": "tablet"
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i03:r3",
+            "text": "ticket"
+          }
+        ],
+        "testedDimension": "Назвіть ноутбук",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть ноутбук",
+            "feedbackByLocale": {
+              "ru": "`tablet` — планшет; ноутбук — `laptop`.",
+              "uk": "`tablet` — планшет; ноутбук — `laptop`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть ноутбук",
+            "feedbackByLocale": {
+              "ru": "`ticket` — билет; ноутбук — `laptop`.",
+              "uk": "`ticket` — квиток; ноутбук — `laptop`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-38:i04:p1",
+            "target": "laptop",
+            "meaningByLocale": {
+              "ru": "ноутбук",
+              "uk": "ноутбук"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-38:i04:p2",
+            "target": "ticket",
+            "meaningByLocale": {
+              "ru": "билет",
+              "uk": "квиток"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-38:i04:p3",
+            "target": "bike shed",
+            "meaningByLocale": {
+              "ru": "велосипедный сарай",
+              "uk": "велосипедний сарай"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-38:i04:p4",
+            "target": "headphones",
+            "meaningByLocale": {
+              "ru": "наушники",
+              "uk": "навушники"
+            }
+          }
+        ],
+        "leftColumn": [
+          "laptop",
+          "ticket",
+          "bike shed",
+          "headphones"
+        ],
+        "rightColumn": [
+          "ноутбук",
+          "квиток",
+          "велосипедний сарай",
+          "навушники"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:i05:audio",
+          "transcript": "Whose laptop is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose laptop is this?",
+        "orderedTokens": [
+          "Whose",
+          "laptop",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знайшли квиток. Запитайте «Чий це квиток?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайшли квиток. Запитайте «Чий це квиток?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose ticket is this?",
+        "localizedMeaning": {
+          "ru": "Вы нашли билет. Спросите «Чей это билет?»",
+          "uk": "Ви знайшли квиток. Запитайте «Чий це квиток?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "ticket",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ноутбук належить вам. Скажіть «Ноутбук мій»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:i07:audio"
+      ],
+      "accessibilityLabel": "Ноутбук належить вам. Скажіть «Ноутбук мій»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:i07:audio",
+          "transcript": "The laptop is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The laptop is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про власника навушників. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-38:i08:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про власника навушників. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце наушников. Выберите форму",
+          "uk": "Запитайте про власника навушників. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Whose headphones ___ these?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-38:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Запитайте про власника навушників. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про власника навушників. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "`headphones` — множественное число: `are these`.",
+              "uk": "`headphones` — множина: `are these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про власника навушників. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `are these`.",
+              "uk": "`am` використовується з `I`; тут `are these`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, яку річ називає друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-38:i09:r1",
+          "text": "This is Anna's laptop."
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i09:r2",
+          "text": "This is Anna's ticket."
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i09:r3",
+          "text": "This is Anna's tablet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, яку річ називає друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:i09:audio",
+          "transcript": "This is Anna's laptop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-38:i09:r1",
+            "targetText": "This is Anna's laptop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i09:r2",
+            "targetText": "This is Anna's ticket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i09:r3",
+            "targetText": "This is Anna's tablet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, яку річ називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `laptop`, а в этом варианте — `ticket`.",
+              "uk": "У записі останнє слово — `laptop`, а в цьому варіанті — `ticket`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, яку річ називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `laptop`, а в этом варианте — `tablet`.",
+              "uk": "У записі останнє слово — `laptop`, а в цьому варіанті — `tablet`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-38:i10:p1",
+            "target": "laptop",
+            "meaningByLocale": {
+              "ru": "ноутбук",
+              "uk": "ноутбук"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-38:i10:p2",
+            "target": "weak",
+            "meaningByLocale": {
+              "ru": "слабый",
+              "uk": "слабкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-38:i10:p3",
+            "target": "bike shed",
+            "meaningByLocale": {
+              "ru": "велосипедный сарай",
+              "uk": "велосипедний сарай"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-38:i10:p4",
+            "target": "headphones",
+            "meaningByLocale": {
+              "ru": "наушники",
+              "uk": "навушники"
+            }
+          }
+        ],
+        "leftColumn": [
+          "laptop",
+          "weak",
+          "bike shed",
+          "headphones"
+        ],
+        "rightColumn": [
+          "ноутбук",
+          "слабкий",
+          "велосипедний сарай",
+          "навушники"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:i11:audio",
+          "transcript": "Tom is next to the bike shed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tom is next to the bike shed.",
+        "orderedTokens": [
+          "Tom",
+          "is",
+          "next",
+          "to",
+          "the",
+          "bike",
+          "shed"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Tom is next to the bike shed.`",
+              "uk": "тут потрібно `is` — `Tom is next to the bike shed.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Навушники належать подрузі. Скажіть «Навушники її»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Навушники належать подрузі. Скажіть «Навушники її»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The headphones are hers.",
+        "localizedMeaning": {
+          "ru": "Наушники принадлежат подруге. Скажите «Наушники её»",
+          "uk": "Навушники належать подрузі. Скажіть «Навушники її»"
+        },
+        "orderedTokens": [
+          "The",
+          "headphones",
+          "are",
+          "hers"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Навушники належать подрузі. Скажіть «Навушники її»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The headphones are hers.`",
+              "uk": "тут потрібно `are` — `The headphones are hers.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Квиток друга у вас. Скажіть йому «Твій квиток у мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:i13:audio"
+      ],
+      "accessibilityLabel": "Квиток друга у вас. Скажіть йому «Твій квиток у мене»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:i13:audio",
+          "transcript": "I have your ticket."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your ticket.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про власника ноутбука",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-38:i14:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i14:r2",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i14:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про власника ноутбука",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце ноутбука",
+          "uk": "Запитайте про власника ноутбука"
+        },
+        "gappedTargetPhrase": "___ laptop is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-38:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i14:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Запитайте про власника ноутбука",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i14:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про власника ноутбука",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чей — `Whose`.",
+              "uk": "`Where` — де; чий — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i14:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про власника ноутбука",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чей — `Whose`.",
+              "uk": "`Who` — хто; чий — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чий ноутбук тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-38:i15:r1",
+          "text": "Your laptop is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i15:r2",
+          "text": "My laptop is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-38:i15:r3",
+          "text": "His laptop is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чий ноутбук тут",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:i15:audio",
+          "transcript": "Your laptop is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-38:i15:r1",
+            "targetText": "Your laptop is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i15:r2",
+            "targetText": "My laptop is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i15:r3",
+            "targetText": "His laptop is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-38:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чий ноутбук тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-38:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чий ноутбук тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-38:i16:p1",
+            "target": "laptop",
+            "meaningByLocale": {
+              "ru": "ноутбук",
+              "uk": "ноутбук"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-38:i16:p2",
+            "target": "weak",
+            "meaningByLocale": {
+              "ru": "слабый",
+              "uk": "слабкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-38:i16:p3",
+            "target": "ticket",
+            "meaningByLocale": {
+              "ru": "билет",
+              "uk": "квиток"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-38:i16:p4",
+            "target": "headphones",
+            "meaningByLocale": {
+              "ru": "наушники",
+              "uk": "навушники"
+            }
+          }
+        ],
+        "leftColumn": [
+          "laptop",
+          "weak",
+          "ticket",
+          "headphones"
+        ],
+        "rightColumn": [
+          "ноутбук",
+          "слабкий",
+          "квиток",
+          "навушники"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-38:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знайшли навушники й хочете повернути їх власникові. Запитайте «Чиї це навушники?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Ви знайшли навушники й хочете повернути їх власникові. Запитайте «Чиї це навушники?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-38:i17:audio",
+          "transcript": "Whose headphones are these?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose headphones are these?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "645d10c9df7f06d0b844a6565dee26856a838235a304c434cd739916be2a3de7"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-49:i01",
+    "correctText": "This locker is cheap.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i02",
+    "correctText": "garage",
+    "correctResponseId": "en:lesson-05:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i03",
+    "correctText": "garage",
+    "correctResponseId": "en:lesson-05:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i04",
+    "correctText": "en:lesson-05:session-49:i04:p1=garage\nen:lesson-05:session-49:i04:p2=locker\nen:lesson-05:session-49:i04:p3=hospital\nen:lesson-05:session-49:i04:p4=canal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i05",
+    "correctText": "The bicycle is in the garage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i06",
+    "correctText": "Whose garage is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i07",
+    "correctText": "The locker is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i08",
+    "correctText": "ours",
+    "correctResponseId": "en:lesson-05:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i09",
+    "correctText": "This is Tom's garage.",
+    "correctResponseId": "en:lesson-05:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i10",
+    "correctText": "en:lesson-05:session-49:i10:p1=garage\nen:lesson-05:session-49:i10:p2=cheap\nen:lesson-05:session-49:i10:p3=canal\nen:lesson-05:session-49:i10:p4=locker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i11",
+    "correctText": "The hospital is near the canal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i12",
+    "correctText": "Where is the canal?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i13",
+    "correctText": "Your bicycle is in the garage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i14",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-49:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i15",
+    "correctText": "My garage is here.",
+    "correctResponseId": "en:lesson-05:session-49:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i16",
+    "correctText": "en:lesson-05:session-49:i16:p1=garage\nen:lesson-05:session-49:i16:p2=cheap\nen:lesson-05:session-49:i16:p3=hospital\nen:lesson-05:session-49:i16:p4=locker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-49:i17",
+    "correctText": "Whose garage is this?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,986 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-49:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о цене: «Этот шкафчик дешёвый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о цене: «Этот шкафчик дешёвый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This locker is cheap.",
+        "localizedMeaning": {
+          "ru": "Скажите о цене: «Этот шкафчик дешёвый»",
+          "uk": "Скажіть про ціну: «Ця шафка дешева»"
+        },
+        "orderedTokens": [
+          "This",
+          "locker",
+          "is",
+          "cheap"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите о цене: «Этот шкафчик дешёвый»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This locker is cheap.`",
+              "uk": "тут потрібно `is` — `This locker is cheap.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-49:i02:r1",
+          "text": "garage"
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i02:r2",
+          "text": "hospital"
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i02:r3",
+          "text": "canal"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:i02:audio",
+          "transcript": "garage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-49:i02:r1",
+            "targetText": "garage",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i02:r2",
+            "targetText": "hospital",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i02:r3",
+            "targetText": "canal",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `garage`, а в этом варианте — `hospital`.",
+              "uk": "У записі перше слово — `garage`, а в цьому варіанті — `hospital`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `garage`, а в этом варианте — `canal`.",
+              "uk": "У записі перше слово — `garage`, а в цьому варіанті — `canal`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите гараж",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-49:i03:r1",
+          "text": "garage"
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i03:r2",
+          "text": "locker"
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i03:r3",
+          "text": "hospital"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите гараж",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите гараж",
+          "uk": "Назвіть гараж"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-49:i03:r1",
+            "text": "garage"
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i03:r2",
+            "text": "locker"
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i03:r3",
+            "text": "hospital"
+          }
+        ],
+        "testedDimension": "Назовите гараж",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите гараж",
+            "feedbackByLocale": {
+              "ru": "`locker` — шкафчик; гараж — `garage`.",
+              "uk": "`locker` — шафка; гараж — `garage`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите гараж",
+            "feedbackByLocale": {
+              "ru": "`hospital` — больница; гараж — `garage`.",
+              "uk": "`hospital` — лікарня; гараж — `garage`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-49:i04:p1",
+            "target": "garage",
+            "meaningByLocale": {
+              "ru": "гараж",
+              "uk": "гараж"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-49:i04:p2",
+            "target": "locker",
+            "meaningByLocale": {
+              "ru": "шкафчик",
+              "uk": "шафка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-49:i04:p3",
+            "target": "hospital",
+            "meaningByLocale": {
+              "ru": "больница",
+              "uk": "лікарня"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-49:i04:p4",
+            "target": "canal",
+            "meaningByLocale": {
+              "ru": "канал",
+              "uk": "канал"
+            }
+          }
+        ],
+        "leftColumn": [
+          "garage",
+          "locker",
+          "hospital",
+          "canal"
+        ],
+        "rightColumn": [
+          "гараж",
+          "шкафчик",
+          "больница",
+          "канал"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:i05:audio",
+          "transcript": "The bicycle is in the garage."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bicycle is in the garage.",
+        "orderedTokens": [
+          "The",
+          "bicycle",
+          "is",
+          "in",
+          "the",
+          "garage"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bicycle is in the garage.`",
+              "uk": "тут потрібно `is` — `The bicycle is in the garage.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Чей это гараж?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Чей это гараж?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose garage is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чей это гараж?»",
+          "uk": "Запитайте «Чий це гараж?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "garage",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Шкафчик принадлежит вам. Скажите «Шкафчик мой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:i07:audio"
+      ],
+      "accessibilityLabel": "Шкафчик принадлежит вам. Скажите «Шкафчик мой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:i07:audio",
+          "transcript": "The locker is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The locker is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Гараж принадлежит вашей семье. Скажите «Гараж наш»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-49:i08:r1",
+          "text": "ours"
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i08:r2",
+          "text": "our"
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i08:r3",
+          "text": "we"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гараж принадлежит вашей семье. Скажите «Гараж наш»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Гараж принадлежит вашей семье. Скажите «Гараж наш»",
+          "uk": "Гараж належить вашій родині. Скажіть «Гараж наш»"
+        },
+        "gappedTargetPhrase": "The garage is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-49:i08:r1",
+            "text": "ours"
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i08:r2",
+            "text": "our"
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i08:r3",
+            "text": "we"
+          }
+        ],
+        "testedDimension": "Гараж принадлежит вашей семье. Скажите «Гараж наш»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Гараж принадлежит вашей семье. Скажите «Гараж наш»",
+            "feedbackByLocale": {
+              "ru": "Перед названием вещи — `our`; здесь самостоятельное `ours`.",
+              "uk": "Перед назвою речі — `our`; тут самостійне `ours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Гараж принадлежит вашей семье. Скажите «Гараж наш»",
+            "feedbackByLocale": {
+              "ru": "`we` — мы; самостоятельное «наш» — `ours`.",
+              "uk": "`we` — ми; самостійне «наш» — `ours`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что принадлежит Тому",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-49:i09:r1",
+          "text": "This is Tom's garage."
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i09:r2",
+          "text": "This is Tom's locker."
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i09:r3",
+          "text": "This is Tom's bicycle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что принадлежит Тому",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:i09:audio",
+          "transcript": "This is Tom's garage."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-49:i09:r1",
+            "targetText": "This is Tom's garage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i09:r2",
+            "targetText": "This is Tom's locker.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i09:r3",
+            "targetText": "This is Tom's bicycle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что принадлежит Тому",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `garage`, а в этом варианте — `locker`.",
+              "uk": "У записі останнє слово — `garage`, а в цьому варіанті — `locker`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что принадлежит Тому",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `garage`, а в этом варианте — `bicycle`.",
+              "uk": "У записі останнє слово — `garage`, а в цьому варіанті — `bicycle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-49:i10:p1",
+            "target": "garage",
+            "meaningByLocale": {
+              "ru": "гараж",
+              "uk": "гараж"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-49:i10:p2",
+            "target": "cheap",
+            "meaningByLocale": {
+              "ru": "дешёвый",
+              "uk": "дешевий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-49:i10:p3",
+            "target": "canal",
+            "meaningByLocale": {
+              "ru": "канал",
+              "uk": "канал"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-49:i10:p4",
+            "target": "locker",
+            "meaningByLocale": {
+              "ru": "шкафчик",
+              "uk": "шафка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "garage",
+          "cheap",
+          "canal",
+          "locker"
+        ],
+        "rightColumn": [
+          "гараж",
+          "дешёвый",
+          "канал",
+          "шкафчик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:i11:audio",
+          "transcript": "The hospital is near the canal."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The hospital is near the canal.",
+        "orderedTokens": [
+          "The",
+          "hospital",
+          "is",
+          "near",
+          "the",
+          "canal"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The hospital is near the canal.`",
+              "uk": "тут потрібно `is` — `The hospital is near the canal.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Где канал?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Где канал?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the canal?",
+        "localizedMeaning": {
+          "ru": "Спросите «Где канал?»",
+          "uk": "Запитайте «Де канал?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "canal"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите Анне «Твой велосипед в гараже»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите Анне «Твой велосипед в гараже»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:i13:audio",
+          "transcript": "Your bicycle is in the garage."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Your bicycle is in the garage.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о владельце гаража",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-49:i14:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i14:r2",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i14:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о владельце гаража",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце гаража",
+          "uk": "Запитайте про власника гаража"
+        },
+        "gappedTargetPhrase": "___ garage is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-49:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i14:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Спросите о владельце гаража",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i14:r2",
+            "correct": false,
+            "testedDimension": "Спросите о владельце гаража",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чей — `Whose`.",
+              "uk": "`Where` — де; чий — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i14:r3",
+            "correct": false,
+            "testedDimension": "Спросите о владельце гаража",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чей — `Whose`.",
+              "uk": "`Who` — хто; чий — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей гараж здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-49:i15:r1",
+          "text": "My garage is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i15:r2",
+          "text": "Your garage is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-49:i15:r3",
+          "text": "His garage is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей гараж здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:i15:audio",
+          "transcript": "My garage is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-49:i15:r1",
+            "targetText": "My garage is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i15:r2",
+            "targetText": "Your garage is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i15:r3",
+            "targetText": "His garage is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-49:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей гараж здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-49:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей гараж здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-49:i16:p1",
+            "target": "garage",
+            "meaningByLocale": {
+              "ru": "гараж",
+              "uk": "гараж"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-49:i16:p2",
+            "target": "cheap",
+            "meaningByLocale": {
+              "ru": "дешёвый",
+              "uk": "дешевий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-49:i16:p3",
+            "target": "hospital",
+            "meaningByLocale": {
+              "ru": "больница",
+              "uk": "лікарня"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-49:i16:p4",
+            "target": "locker",
+            "meaningByLocale": {
+              "ru": "шкафчик",
+              "uk": "шафка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "garage",
+          "cheap",
+          "hospital",
+          "locker"
+        ],
+        "rightColumn": [
+          "гараж",
+          "дешёвый",
+          "больница",
+          "шкафчик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы хотите узнать владельца гаража у дома. Спросите «Чей это гараж?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Вы хотите узнать владельца гаража у дома. Спросите «Чей это гараж?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-49:i17:audio",
+          "transcript": "Whose garage is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose garage is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "eee0a7c487602d69df3eb59370072462d41ff2340b31859804401abed6d36c07"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "назвать место хранения и спросить о владельце помещения",
+    "uk": "назвати місце зберігання й запитати про власника приміщення"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дом для транспорта",
+        "uk": "Дім для транспорту"
+      },
+      "bodyByLocale": {
+        "ru": "`garage` — «гараж», помещение для хранения машины или другого транспорта. `The bicycle is in the garage` — «Велосипед в гараже». `Whose garage is this?` — «Чей это гараж?» `This is Tom’s garage` — «Это гараж Тома». Велосипеду досталась целая комната, хотя он даже не платит за жильё.",
+        "uk": "`garage` — «гараж», приміщення для зберігання машини чи іншого транспорту. `The bicycle is in the garage` — «Велосипед у гаражі». `Whose garage is this?` — «Чий це гараж?» `This is Tom’s garage` — «Це гараж Тома». Велосипедові дісталася ціла кімната, хоча він навіть не платить за житло."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, кому принадлежит гараж.",
+          "uk": "Запитайте, кому належить гараж."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-49:intro1:r1",
+              "text": "Whose garage is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro1:r2",
+              "text": "Where is the garage?"
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro1:r3",
+              "text": "Whose garage are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-49:intro1:r1",
+              "text": "Whose garage is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro1:r2",
+              "text": "Where is the garage?"
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro1:r3",
+              "text": "Whose garage are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, кому принадлежит гараж.",
+          "uk": "Запитайте, кому належить гараж."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шкафчик и цена",
+        "uk": "Шафка й ціна"
+      },
+      "bodyByLocale": {
+        "ru": "`locker` — «шкафчик», `cheap` — «дешёвый», недорогой по цене. `This locker is cheap` — «Этот шкафчик дешёвый». Само слово `cheap` здесь описывает цену, а не доказывает плохое качество. `The locker is mine` — «Шкафчик мой».",
+        "uk": "`locker` — «шафка», `cheap` — «дешевий», недорогий за ціною. `This locker is cheap` — «Ця шафка дешева». Саме слово `cheap` тут описує ціну, а не доводить погану якість. `The locker is mine` — «Шафка моя»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Этот шкафчик дешёвый».",
+          "uk": "Скажіть «Ця шафка дешева»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-49:intro2:r1",
+              "text": "This locker is cheap."
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro2:r2",
+              "text": "This locker are cheap."
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro2:r3",
+              "text": "This locker is dangerous."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-49:intro2:r1",
+              "text": "This locker is cheap."
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro2:r2",
+              "text": "This locker are cheap."
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro2:r3",
+              "text": "This locker is dangerous."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Этот шкафчик дешёвый».",
+          "uk": "Скажіть «Ця шафка дешева»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ориентиры по дороге",
+        "uk": "Орієнтири дорогою"
+      },
+      "bodyByLocale": {
+        "ru": "`hospital` — «больница», `canal` — «канал», искусственный водный путь. `The hospital is near the canal` — «Больница возле канала». `Where is the canal?` — «Где канал?» `The garage is ours` — «Гараж наш»: `ours` используется без следующего названия вещи.",
+        "uk": "`hospital` — «лікарня», `canal` — «канал», штучний водний шлях. `The hospital is near the canal` — «Лікарня біля каналу». `Where is the canal?` — «Де канал?» `The garage is ours` — «Гараж наш»: `ours` використовується без наступної назви речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Гараж наш».",
+          "uk": "Скажіть «Гараж наш»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-49:intro3:r1",
+              "text": "The garage is ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro3:r2",
+              "text": "The garage is our."
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro3:r3",
+              "text": "The garage are ours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-49:intro3:r1",
+              "text": "The garage is ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro3:r2",
+              "text": "The garage is our."
+            },
+            {
+              "responseId": "en:lesson-05:session-49:intro3:r3",
+              "text": "The garage are ours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Гараж наш».",
+          "uk": "Скажіть «Гараж наш»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7aef73ac87bfa7a7d0726d9cad918538f68af46f920bc01c07c1ffb84dcb2fc8"
+}

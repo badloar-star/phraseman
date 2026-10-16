@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-49:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-49:intro1:r3": {
+          "ru": "Один гараж: `is this`.",
+          "uk": "Один гараж: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-49:intro2:r2": {
+          "ru": "Один шкафчик: `is`.",
+          "uk": "Одна шафка: `is`."
+        },
+        "en:lesson-05:session-49:intro2:r3": {
+          "ru": "`dangerous` — опасный; дешёвый — `cheap`.",
+          "uk": "`dangerous` — небезпечний; дешевий — `cheap`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-49:intro3:r2": {
+          "ru": "Без следующего существительного нужна самостоятельная форма `ours`.",
+          "uk": "Без наступного іменника потрібна самостійна форма `ours`."
+        },
+        "en:lesson-05:session-49:intro3:r3": {
+          "ru": "Один гараж: `is`.",
+          "uk": "Один гараж: `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4dbc54b85d7730de714f0a25008a43487a43ec938a237e5e5f868d12d1848935"
+}

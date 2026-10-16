@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить просьбы Can you…? со словом reserve",
+    "uk": "закріпити прохання Can you…? зі словом reserve"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ужин в ресторане",
+        "uk": "Вечеря в ресторані"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом собираетесь поужинать в ресторане. Вечером там много гостей. `Reserve` — «забронировать». `Can you reserve a table?` — «Можешь забронировать столик?» После `Can you` нужно `reserve a table`, без `to`. Столик бронируют, чтобы вечером выбирать еду, а не место в очереди.",
+        "uk": "Ви з другом збираєтеся повечеряти в ресторані. Увечері там багато гостей. `Reserve` — «забронювати». `Can you reserve a table?` — «Можеш забронювати столик?» Після `Can you` потрібне `reserve a table`, без `to`. Столик бронюють, щоб увечері вибирати їжу, а не місце в черзі."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Попросите друга забронировать столик.",
+          "uk": "Попросіть друга забронювати столик."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-23:intro1:r1",
+              "text": "Can you reserve a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro1:r2",
+              "text": "Can you to reserve a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro1:r3",
+              "text": "You can reserve a table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-23:intro1:r1",
+              "text": "Can you reserve a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro1:r2",
+              "text": "Can you to reserve a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro1:r3",
+              "text": "You can reserve a table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга забронировать столик.",
+          "uk": "Попросіть друга забронювати столик."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Записать номер",
+        "uk": "Записати номер"
+      },
+      "bodyByLocale": {
+        "ru": "Вам нужно записать номер телефона, но ручки с собой нет. У друга есть ручка. `Can you lend me a pen?` — «Можешь одолжить мне ручку?» Вы просите дать ручку на время.",
+        "uk": "Вам потрібно записати номер телефону, але ручки із собою немає. У друга є ручка. `Can you lend me a pen?` — «Можеш позичити мені ручку?» Ви просите дати ручку на певний час."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Попросите друга одолжить вам ручку.",
+          "uk": "Попросіть друга позичити вам ручку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-23:intro2:r1",
+              "text": "Can you lend me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro2:r2",
+              "text": "Can you lends me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro2:r3",
+              "text": "Can you to lend me a pen?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-23:intro2:r1",
+              "text": "Can you lend me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro2:r2",
+              "text": "Can you lends me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro2:r3",
+              "text": "Can you to lend me a pen?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга одолжить вам ручку.",
+          "uk": "Попросіть друга позичити вам ручку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сложить цены",
+        "uk": "Додати ціни"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пытаетесь сложить цены покупок в уме, но сбиваетесь. `I can’t calculate` — «Я не могу посчитать». Здесь `can’t` описывает то, что сейчас не получается. После него нужно `calculate`, без `to`.",
+        "uk": "Ви намагаєтеся додати ціни покупок подумки, але збиваєтеся. `I can’t calculate` — «Я не можу порахувати». Тут `can’t` описує те, що зараз не виходить. Після нього потрібне `calculate`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что не можете посчитать.",
+          "uk": "Скажіть другові, що не можете порахувати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-23:intro3:r1",
+              "text": "I can’t calculate."
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro3:r2",
+              "text": "I can calculate."
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro3:r3",
+              "text": "I can’t to calculate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-23:intro3:r1",
+              "text": "I can’t calculate."
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro3:r2",
+              "text": "I can calculate."
+            },
+            {
+              "responseId": "en:lesson-08:session-23:intro3:r3",
+              "text": "I can’t to calculate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что не можете посчитать.",
+          "uk": "Скажіть другові, що не можете порахувати."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2bcffa02270985ea66c19bbda0916430ad59981c7501d1a71e5eaa5515ed135e"
+}

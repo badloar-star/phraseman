@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-23:intro1:r2": {
+          "ru": "После `can` нужно `reserve`, без `to`.",
+          "uk": "Після `can` потрібне `reserve`, без `to`."
+        },
+        "en:lesson-08:session-23:intro1:r3": {
+          "ru": "Для этой просьбы начните с `Can you`.",
+          "uk": "Для цього прохання почніть із `Can you`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-23:intro2:r2": {
+          "ru": "После `can` нужно `lend`, без `s`.",
+          "uk": "Після `can` потрібне `lend`, без `s`."
+        },
+        "en:lesson-08:session-23:intro2:r3": {
+          "ru": "После `can` нужно `lend`, без `to`.",
+          "uk": "Після `can` потрібне `lend`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-23:intro3:r2": {
+          "ru": "Сейчас не получается: нужно `can’t`.",
+          "uk": "Зараз не виходить: потрібне `can’t`."
+        },
+        "en:lesson-08:session-23:intro3:r3": {
+          "ru": "После `can’t` нужно `calculate`, без `to`.",
+          "uk": "Після `can’t` потрібне `calculate`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "43bb954486ac10a98f26677c2df642bd07762be119fe5b7731cd013423963cef"
+}

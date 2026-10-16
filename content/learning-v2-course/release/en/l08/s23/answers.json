@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-23:i01",
+    "correctText": "Can you reserve a table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i02",
+    "correctText": "reserve",
+    "correctResponseId": "en:lesson-08:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i03",
+    "correctText": "reserve",
+    "correctResponseId": "en:lesson-08:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i04",
+    "correctText": "en:lesson-08:session-23:i04:p1=reserve\nen:lesson-08:session-23:i04:p2=cheese\nen:lesson-08:session-23:i04:p3=teach\nen:lesson-08:session-23:i04:p4=calculate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i05",
+    "correctText": "Can you reserve a table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i06",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i07",
+    "correctText": "I can’t calculate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i08",
+    "correctText": "help",
+    "correctResponseId": "en:lesson-08:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i09",
+    "correctText": "Can you reserve a table?",
+    "correctResponseId": "en:lesson-08:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i10",
+    "correctText": "en:lesson-08:session-23:i10:p1=cheat\nen:lesson-08:session-23:i10:p2=reserve\nen:lesson-08:session-23:i10:p3=cheese\nen:lesson-08:session-23:i10:p4=teach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i11",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i12",
+    "correctText": "Can you open the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i13",
+    "correctText": "I often teach.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i14",
+    "correctText": "Can",
+    "correctResponseId": "en:lesson-08:session-23:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i15",
+    "correctText": "Can you open the door?",
+    "correctResponseId": "en:lesson-08:session-23:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i16",
+    "correctText": "en:lesson-08:session-23:i16:p1=reserve\nen:lesson-08:session-23:i16:p2=cheat\nen:lesson-08:session-23:i16:p3=calculate\nen:lesson-08:session-23:i16:p4=cheese",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-23:i17",
+    "correctText": "Can you reserve a table?",
+    "correctResponseId": null
+  }
+]

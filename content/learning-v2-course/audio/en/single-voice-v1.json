@@ -129244,6 +129244,309 @@
           "byteSize": 32256
         }
       ]
+    },
+    "l08/s35/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Don’t spill it.",
+          "file": "2fbce95fe2ce2e3f53c4f2cfd2c047a821d06d118429d45f2a3ae5c2af935149.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2fbce95fe2ce2e3f53c4f2cfd2c047a821d06d118429d45f2a3ae5c2af935149.mp3",
+          "contentHash": "f2701d8da7412a37e023a5f9079ea27d52e0d5eade7e0d90803e96f3674f49d0",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l08/s35/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Don’t touch this.",
+          "file": "6934348fe0d82178bcb4a570fd8d66462e599fe5415cd76e4602135faa46030d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6934348fe0d82178bcb4a570fd8d66462e599fe5415cd76e4602135faa46030d.mp3",
+          "contentHash": "6c2b7be33209e4c377ec65cf11fbd3b581dd811673c461edfae9a72ce21466b4",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s35/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Please don’t wait.",
+          "file": "f071200cc6b78a3eebf7f7e5b6ebbf5bbecacfa3f6fe4fd7174669659c9f00e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f071200cc6b78a3eebf7f7e5b6ebbf5bbecacfa3f6fe4fd7174669659c9f00e1.mp3",
+          "contentHash": "1832cbce60deb36243ef04b7d5cd83dc1b20b435d269d5c3b4ab0b2653b79af9",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l08/s35/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Don’t spill it.",
+          "file": "2fbce95fe2ce2e3f53c4f2cfd2c047a821d06d118429d45f2a3ae5c2af935149.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2fbce95fe2ce2e3f53c4f2cfd2c047a821d06d118429d45f2a3ae5c2af935149.mp3",
+          "contentHash": "f2701d8da7412a37e023a5f9079ea27d52e0d5eade7e0d90803e96f3674f49d0",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l08/s35/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "spill",
+          "file": "4a0f3ee01a25cb3a50d863c10075c4534bf975e69af9d49c6fa2de89359638e5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a0f3ee01a25cb3a50d863c10075c4534bf975e69af9d49c6fa2de89359638e5.mp3",
+          "contentHash": "e0d60ca16686d0c2a001db93ce7566ca7ba43f8d8462622357293ac487adcef0",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s35/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Don’t spill it.",
+          "file": "0c8c81f5cc8a1a0b1b9440bbdef07b0767058e44a5f952c07ffadb018af3f91a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0c8c81f5cc8a1a0b1b9440bbdef07b0767058e44a5f952c07ffadb018af3f91a.mp3",
+          "contentHash": "e4abbba5677cd8162bdf786d0d02c1bfaed881ef8b5ac7256a0d4ae863b8ae07",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l08/s35/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "spill",
+          "file": "3954c2ba5547a23c765bc69ff6bf3efd3144c0f3d0656cc954e51921110045d9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3954c2ba5547a23c765bc69ff6bf3efd3144c0f3d0656cc954e51921110045d9.mp3",
+          "contentHash": "d3549aba88e14d5175bc1ea00c3f2a3a270c2379799d80b5333d64a1f9f4d0fc",
+          "byteSize": 17280
+        },
+        {
+          "text": "ramp",
+          "file": "e0098a4314ce6a1986f247c60cd3ad57a618ecd0ef11b9ea18c0aa86a3bc1d5a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0098a4314ce6a1986f247c60cd3ad57a618ecd0ef11b9ea18c0aa86a3bc1d5a.mp3",
+          "contentHash": "38078ff5900b16bc7c20182e999f1ebd4cd21f4addefbaa70213436e8f9ece8e",
+          "byteSize": 12672
+        },
+        {
+          "text": "sleep",
+          "file": "9762f92514d76a540151c80f3c1bc66c40eb5c7cdf9a28669230ab622701b7be.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9762f92514d76a540151c80f3c1bc66c40eb5c7cdf9a28669230ab622701b7be.mp3",
+          "contentHash": "56ab1b213e04f8ae61f194bb9914ce1b97d3e73e2ea2010cc40d84aa2612e4c5",
+          "byteSize": 29184
+        },
+        {
+          "text": "charge",
+          "file": "e8b87d07f0c9cb325c330988fb4db703d6ac3c6de4a45bd44dc84b2e29e9427f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8b87d07f0c9cb325c330988fb4db703d6ac3c6de4a45bd44dc84b2e29e9427f.mp3",
+          "contentHash": "bdf3cf16cb9d6c411b014ac0e620953d2dc4ff55c4c2b6b31c569a739892632b",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s35/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Don’t spill it.",
+          "file": "0c8c81f5cc8a1a0b1b9440bbdef07b0767058e44a5f952c07ffadb018af3f91a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0c8c81f5cc8a1a0b1b9440bbdef07b0767058e44a5f952c07ffadb018af3f91a.mp3",
+          "contentHash": "e4abbba5677cd8162bdf786d0d02c1bfaed881ef8b5ac7256a0d4ae863b8ae07",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l08/s35/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Don’t touch this.",
+          "file": "6934348fe0d82178bcb4a570fd8d66462e599fe5415cd76e4602135faa46030d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6934348fe0d82178bcb4a570fd8d66462e599fe5415cd76e4602135faa46030d.mp3",
+          "contentHash": "6c2b7be33209e4c377ec65cf11fbd3b581dd811673c461edfae9a72ce21466b4",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s35/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Please don’t wait.",
+          "file": "e1e79054d6e7b8cc795597e844be026f6eb47ddec110672c2b24f9dac5f480b4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1e79054d6e7b8cc795597e844be026f6eb47ddec110672c2b24f9dac5f480b4.mp3",
+          "contentHash": "3ca5c3f4f24d4454ab089af68f5bf208e06fb4df6e4809938bad2f97d8bc9822",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l08/s35/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Please don’t wait.",
+          "file": "ad0407ea38ac7ac33e12023486813b451c8bbe026d15012ea5e1634e48f0e62a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ad0407ea38ac7ac33e12023486813b451c8bbe026d15012ea5e1634e48f0e62a.mp3",
+          "contentHash": "3b49686079fe16b809a470eca86633b1e72de8baa457f8df8086f3f240a27909",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l08/s35/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Don’t spill it.",
+          "file": "174f3abc1d76594c115b43632fa385c0aca7411e836196d1c14e787c0c3cbe57.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/174f3abc1d76594c115b43632fa385c0aca7411e836196d1c14e787c0c3cbe57.mp3",
+          "contentHash": "f836d24b64f8d0b08616116d583f93bbcc008b29a4759b780f80c5191b954c33",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l08/s35/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "commute",
+          "file": "11df365211abc8626938328b6971bed2c518f189e0fd03f17c07d39e04c6e80d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11df365211abc8626938328b6971bed2c518f189e0fd03f17c07d39e04c6e80d.mp3",
+          "contentHash": "b25f13f0771e9f59715d2dccd70416b498d1fabf5c27de3c0211e410ef4e2195",
+          "byteSize": 18048
+        },
+        {
+          "text": "spill",
+          "file": "3954c2ba5547a23c765bc69ff6bf3efd3144c0f3d0656cc954e51921110045d9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3954c2ba5547a23c765bc69ff6bf3efd3144c0f3d0656cc954e51921110045d9.mp3",
+          "contentHash": "d3549aba88e14d5175bc1ea00c3f2a3a270c2379799d80b5333d64a1f9f4d0fc",
+          "byteSize": 17280
+        },
+        {
+          "text": "sleep",
+          "file": "9762f92514d76a540151c80f3c1bc66c40eb5c7cdf9a28669230ab622701b7be.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9762f92514d76a540151c80f3c1bc66c40eb5c7cdf9a28669230ab622701b7be.mp3",
+          "contentHash": "56ab1b213e04f8ae61f194bb9914ce1b97d3e73e2ea2010cc40d84aa2612e4c5",
+          "byteSize": 29184
+        },
+        {
+          "text": "ramp",
+          "file": "e0098a4314ce6a1986f247c60cd3ad57a618ecd0ef11b9ea18c0aa86a3bc1d5a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0098a4314ce6a1986f247c60cd3ad57a618ecd0ef11b9ea18c0aa86a3bc1d5a.mp3",
+          "contentHash": "38078ff5900b16bc7c20182e999f1ebd4cd21f4addefbaa70213436e8f9ece8e",
+          "byteSize": 12672
+        }
+      ]
+    },
+    "l08/s35/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Please don’t wait.",
+          "file": "ad0407ea38ac7ac33e12023486813b451c8bbe026d15012ea5e1634e48f0e62a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ad0407ea38ac7ac33e12023486813b451c8bbe026d15012ea5e1634e48f0e62a.mp3",
+          "contentHash": "3b49686079fe16b809a470eca86633b1e72de8baa457f8df8086f3f240a27909",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l08/s35/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Charge it.",
+          "file": "8268995227c028d0460008cd35a7d9300c826bd9546c99a702d0fcd64b22e67f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8268995227c028d0460008cd35a7d9300c826bd9546c99a702d0fcd64b22e67f.mp3",
+          "contentHash": "ac6b6ce13c39eaa2a880dbe50becea37ff61fc2be900b97bde89597bcaed2431",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l08/s35/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often commute.",
+          "file": "d5a8820a45a29c173511e8c53e0af4dd34e261e844b3329f161db6818946a6af.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5a8820a45a29c173511e8c53e0af4dd34e261e844b3329f161db6818946a6af.mp3",
+          "contentHash": "b737991292b736fede0b3392d68d26309988726bf5dba2e5abe3ff41aef9358a",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l08/s35/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Don’t touch this.",
+          "file": "6934348fe0d82178bcb4a570fd8d66462e599fe5415cd76e4602135faa46030d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6934348fe0d82178bcb4a570fd8d66462e599fe5415cd76e4602135faa46030d.mp3",
+          "contentHash": "6c2b7be33209e4c377ec65cf11fbd3b581dd811673c461edfae9a72ce21466b4",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s35/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Don’t rush.",
+          "file": "98548b65be58908d0c7737eeade8a51a0f73db79e118cf4bc9c2653f24932d40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/98548b65be58908d0c7737eeade8a51a0f73db79e118cf4bc9c2653f24932d40.mp3",
+          "contentHash": "3cf43b8668478e04307a2f996317dd633bdf023219e16e3e6fd2e54937109a02",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s35/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "spill",
+          "file": "d081c6bab8bbff6a4c914f94b5f4ab69545f68cf3b13787d7cbf3ec6d56b2ff5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d081c6bab8bbff6a4c914f94b5f4ab69545f68cf3b13787d7cbf3ec6d56b2ff5.mp3",
+          "contentHash": "6c2a3b060ec6af731112454160515393590d3214af70f12e5e86b37effaf82fd",
+          "byteSize": 37248
+        },
+        {
+          "text": "commute",
+          "file": "51cf9546a3f078a53c6d9ae15df01690690d198ec98aed0d52b15b4705caebc1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/51cf9546a3f078a53c6d9ae15df01690690d198ec98aed0d52b15b4705caebc1.mp3",
+          "contentHash": "0b24f8375dd56026c844e0caf2f1f4d402ae5a9c20eb11c46cddb17bdc330151",
+          "byteSize": 21888
+        },
+        {
+          "text": "charge",
+          "file": "75ffd968a25d20a12dec04b56bc13199a46d4c0e144fbf86aba92a2979fbe2eb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75ffd968a25d20a12dec04b56bc13199a46d4c0e144fbf86aba92a2979fbe2eb.mp3",
+          "contentHash": "071dd598e03df04051f51537ad22acecd8302fb72dbf1fee45cbf64a142c49b8",
+          "byteSize": 36480
+        },
+        {
+          "text": "ramp",
+          "file": "3d0ec8849eb3cda0af3de160eba708090d9088797d6399ca66affaf58fcd988d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d0ec8849eb3cda0af3de160eba708090d9088797d6399ca66affaf58fcd988d.mp3",
+          "contentHash": "f80485184bc0d5d3cccd1938a6d0723990247d55bd9026f0c5734a3012e463d0",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l08/s35/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Don’t spill it.",
+          "file": "2fbce95fe2ce2e3f53c4f2cfd2c047a821d06d118429d45f2a3ae5c2af935149.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2fbce95fe2ce2e3f53c4f2cfd2c047a821d06d118429d45f2a3ae5c2af935149.mp3",
+          "contentHash": "f2701d8da7412a37e023a5f9079ea27d52e0d5eade7e0d90803e96f3674f49d0",
+          "byteSize": 40320
+        }
+      ]
     }
   },
   "settings": {

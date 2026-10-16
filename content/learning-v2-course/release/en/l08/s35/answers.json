@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-35:i01",
+    "correctText": "Don’t spill it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i02",
+    "correctText": "spill",
+    "correctResponseId": "en:lesson-08:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i03",
+    "correctText": "spill",
+    "correctResponseId": "en:lesson-08:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i04",
+    "correctText": "en:lesson-08:session-35:i04:p1=spill\nen:lesson-08:session-35:i04:p2=ramp\nen:lesson-08:session-35:i04:p3=sleep\nen:lesson-08:session-35:i04:p4=charge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i05",
+    "correctText": "Don’t spill it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i06",
+    "correctText": "Don’t touch this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i07",
+    "correctText": "Please don’t wait.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i08",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-08:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i09",
+    "correctText": "Don’t spill it.",
+    "correctResponseId": "en:lesson-08:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i10",
+    "correctText": "en:lesson-08:session-35:i10:p1=commute\nen:lesson-08:session-35:i10:p2=spill\nen:lesson-08:session-35:i10:p3=sleep\nen:lesson-08:session-35:i10:p4=ramp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i11",
+    "correctText": "Please don’t wait.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i12",
+    "correctText": "Charge it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i13",
+    "correctText": "I often commute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i14",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-08:session-35:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i15",
+    "correctText": "Don’t rush.",
+    "correctResponseId": "en:lesson-08:session-35:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i16",
+    "correctText": "en:lesson-08:session-35:i16:p1=spill\nen:lesson-08:session-35:i16:p2=commute\nen:lesson-08:session-35:i16:p3=charge\nen:lesson-08:session-35:i16:p4=ramp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:i17",
+    "correctText": "Don’t spill it.",
+    "correctResponseId": null
+  }
+]

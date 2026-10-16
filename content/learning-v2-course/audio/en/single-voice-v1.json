@@ -7854,11 +7854,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "I am awake.",
-          "file": "b3263798060b6d70542f4937c3de629bd36777bdc1b7b7107155984016229ff8.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3263798060b6d70542f4937c3de629bd36777bdc1b7b7107155984016229ff8.mp3",
-          "contentHash": "ed41484f6f95027e75b4a238f3225192a1dc935827ce3dfd8632c21e31bb46c5",
-          "byteSize": 33792
+          "text": "awake",
+          "file": "4c1b29ac6fd5e0b2324b405fada24889c5efea92db2e5668261e26045ac929b9.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f245940166d1611d76b3def5-onyx.mp3",
+          "contentHash": "3257a5415f9368a4685ce23a110b1b9f89fff54236bb9c5183e0b31b7ca9d6d2",
+          "byteSize": 34560
         }
       ]
     },
@@ -7866,11 +7866,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "She is asleep.",
-          "file": "29b522e1f2d87f4bbbce50d3f0b5527c9ea2aaeed378eaa8a075fe53ee48f4c8.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/29b522e1f2d87f4bbbce50d3f0b5527c9ea2aaeed378eaa8a075fe53ee48f4c8.mp3",
-          "contentHash": "0b22c04fb16af61bb083830f6e28d153d2e7247212bf846e33e7652c4bb1666c",
-          "byteSize": 28416
+          "text": "asleep",
+          "file": "64e330832eec98893ba425738324f078970e11a658caafd0f13b878fe756bd92.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ea51ae6e548ffbb851d2d383-onyx.mp3",
+          "contentHash": "1e062dec2de56ec8b04d446a6ff7d31f2ad111e7299c30e214ceb1e15565feed",
+          "byteSize": 29184
         }
       ]
     },
@@ -7878,11 +7878,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "They are available.",
-          "file": "7ed2eb1c9cc726158af03e2998bad8ec12c5eee1dbbe56664e4d130bc2f32dc9.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7ed2eb1c9cc726158af03e2998bad8ec12c5eee1dbbe56664e4d130bc2f32dc9.mp3",
-          "contentHash": "7b43215c56cbf6c143436eafa94c37d3220aedbbb7c2b7bf64872756b551b07a",
-          "byteSize": 30720
+          "text": "available",
+          "file": "80dc44d679bb15d4fa29874d3671c871b3dbf956b1de7e7682449ceb257da560.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80dc44d679bb15d4fa29874d3671c871b3dbf956b1de7e7682449ceb257da560.mp3",
+          "contentHash": "cd6e934d4dfc28ef6ae175d0681141f0f01e70d5458b43e17b69e2b3adeca4f8",
+          "byteSize": 17280
         }
       ]
     },
@@ -7890,165 +7890,15 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "awake",
-          "file": "bd7ddcd53e338dc57b49e5468b1e983d1e7eea3a7bb1fedb99d8777d2f063340.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f245940166d1611d76b3def5-coral.mp3",
-          "contentHash": "65b133bf29b5abcbe04e6ee04f1402cf888b2c4805e9e8de4352d83aedb0402a",
-          "byteSize": 31488
-        },
-        {
-          "text": "asleep",
-          "file": "2d5ee6fc7c7a58b9c44b02ef745c02e499221cb75004bc231e62db2f0546341d.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/ea51ae6e548ffbb851d2d383-coral.mp3",
-          "contentHash": "e5f406e6c8f4b21ef84fd56c14429c6cb42d6cd98368328902431df56c5976f0",
-          "byteSize": 18816
-        },
-        {
-          "text": "available",
-          "file": "128158b12e79fc3f6423dd2ab650759104bda5af194c956f6056fabb069b6c5e.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/128158b12e79fc3f6423dd2ab650759104bda5af194c956f6056fabb069b6c5e.mp3",
-          "contentHash": "5166a28bb5c06bae98b1b0c9c46099e4dd609cd26b2ce00bb6116ab4c035c84c",
-          "byteSize": 21888
-        },
-        {
-          "text": "alone",
-          "file": "fadeebde4aee7c7b1b8f78f0e074e4e3ddfe68a5f7858db1340b6256f09135ba.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/facf8b54e5c0b8c426bb1c4b-coral.mp3",
-          "contentHash": "c0f59e90519b8a87075b89311b476350b3215338f2f54b3bdcdf19c5cec19ab6",
-          "byteSize": 22656
+          "text": "dressed",
+          "file": "77c64ed6f937cf424be72535ce6ec3772a61f92d13e1f731e935ee39459d9eeb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77c64ed6f937cf424be72535ce6ec3772a61f92d13e1f731e935ee39459d9eeb.mp3",
+          "contentHash": "b83e3c7e947cdc66f2ffd27753802587615ca808bd89a1e908907fa4098fb3e7",
+          "byteSize": 17280
         }
       ]
     },
     "l01/s27/task/4": {
-      "voice": "ash",
-      "clips": [
-        {
-          "text": "We are awake.",
-          "file": "c0b305e11a31f92846a00e6d70100cad3041b0d19357947a86dc5875afba29b2.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c0b305e11a31f92846a00e6d70100cad3041b0d19357947a86dc5875afba29b2.mp3",
-          "contentHash": "1ccbff37450e26cc86a9d3aa08b58b8ecb91e9c6b0c92675f07fb4472de0103e",
-          "byteSize": 29184
-        }
-      ]
-    },
-    "l01/s27/task/5": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "He is asleep.",
-          "file": "47a7590522aa2d4c681d09b875674c60433c7529e5137190489720b4febaad4f.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47a7590522aa2d4c681d09b875674c60433c7529e5137190489720b4febaad4f.mp3",
-          "contentHash": "6a36e226cb6e0bdd981b1db46ab800b8cec91ecfca912e540cdc548f19837830",
-          "byteSize": 26112
-        }
-      ]
-    },
-    "l01/s27/task/6": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "I am available.",
-          "file": "c7107638c13ab5ed99246462445ed52012693c9130ad7e45f6e59c990f5b014a.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c7107638c13ab5ed99246462445ed52012693c9130ad7e45f6e59c990f5b014a.mp3",
-          "contentHash": "3ae3acb6e6a0936c0fdb61cfc8329c9be9722724c337de4d041ff98ad219a057",
-          "byteSize": 29184
-        }
-      ]
-    },
-    "l01/s27/task/7": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "She is awake .",
-          "file": "3667d97d35ce89ac6c8451578692241584cdfafa5980f294f32aeda9e808120f.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3667d97d35ce89ac6c8451578692241584cdfafa5980f294f32aeda9e808120f.mp3",
-          "contentHash": "41ba2312057ecdf5b3a597a3885d3f2fd9a5cccdeaac1ef8301f3c381a791cbc",
-          "byteSize": 20352
-        }
-      ]
-    },
-    "l01/s27/task/8": {
-      "voice": "nova",
-      "clips": [
-        {
-          "text": "You are available.",
-          "file": "bc03f232e5317dbb0c08e4a47babfed2c0df5e683e1a43e3319358040cda32a9.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc03f232e5317dbb0c08e4a47babfed2c0df5e683e1a43e3319358040cda32a9.mp3",
-          "contentHash": "7ac3aef9b9f6cc6c30960047478c1ec94e982fcd7fc6ff9fcb9a6ce55aecd40b",
-          "byteSize": 23040
-        }
-      ]
-    },
-    "l01/s27/task/9": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "bored",
-          "file": "a03e1bcb3fd79712b99481dcd9dba4388f91b1fc7dca4aedf0aff146ed02b826.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/60e6aa4ad2d315ff8ab59a82-onyx.mp3",
-          "contentHash": "529d086626e413a812d826f819e1130a94dbf2e14dc9380254c6fdc506db2866",
-          "byteSize": 21120
-        },
-        {
-          "text": "confused",
-          "file": "2417a53d9b4a5b2c1142631d9f59f0134e223f64f1a67bb666f670c9efcea5ee.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2417a53d9b4a5b2c1142631d9f59f0134e223f64f1a67bb666f670c9efcea5ee.mp3",
-          "contentHash": "302c5b13b61b57f05701bd8aad0b412db44d82e6a2fb26b3d74eef36f8c7bf6e",
-          "byteSize": 25344
-        },
-        {
-          "text": "worried",
-          "file": "6928c14ed0b5f16040bdab46ba10194bc37fd0f0a374f74edef45a5a71263130.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6928c14ed0b5f16040bdab46ba10194bc37fd0f0a374f74edef45a5a71263130.mp3",
-          "contentHash": "611dad43d4cc672aa88fda2874679d1138eaedae58bd8cc74486fe7a8bcd225a",
-          "byteSize": 35712
-        },
-        {
-          "text": "together",
-          "file": "a94505fceed5a2b30cf45d86a97fccbaa087abedfe602bb3294624fd9a3abc39.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/0c24734d7bf5954f08e5bfe4-onyx.mp3",
-          "contentHash": "e8522cb350ffcdd0d8ab9f3c3c4247cade1655e3cd871685835785029f0485d9",
-          "byteSize": 21888
-        }
-      ]
-    },
-    "l01/s27/task/10": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "They are asleep.",
-          "file": "97958415a30b94c995a39b4596f586adce3ce2dbfe3646b8ba929c52858bac06.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/97958415a30b94c995a39b4596f586adce3ce2dbfe3646b8ba929c52858bac06.mp3",
-          "contentHash": "fd95974ee7ed777dbe2283f80565f03a6865163495009837b33d2def8fcab2bb",
-          "byteSize": 29952
-        }
-      ]
-    },
-    "l01/s27/task/11": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "She is available.",
-          "file": "1798705943e4e9975c46f41c83c3ba6150a66c00bd0e9d274ff3c244f3ea7fb6.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1798705943e4e9975c46f41c83c3ba6150a66c00bd0e9d274ff3c244f3ea7fb6.mp3",
-          "contentHash": "525288249076e21038694693d16806f90ec769a483347a93ca8ce6969458f9bc",
-          "byteSize": 40320
-        }
-      ]
-    },
-    "l01/s27/task/12": {
-      "voice": "ash",
-      "clips": [
-        {
-          "text": "He is nearby.",
-          "file": "3c6278a57921f341ad57f4243589375c83ea507423dfce74540d7124aa161498.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c6278a57921f341ad57f4243589375c83ea507423dfce74540d7124aa161498.mp3",
-          "contentHash": "d2c22825edbe992846e2fd16667ca0f1c2ce947d306de6b3dd533226ca9ab45d",
-          "byteSize": 35712
-        }
-      ]
-    },
-    "l01/s27/task/13": {
       "voice": "ash",
       "clips": [
         {
@@ -8060,15 +7910,165 @@
         }
       ]
     },
+    "l01/s27/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She is asleep.",
+          "file": "29b522e1f2d87f4bbbce50d3f0b5527c9ea2aaeed378eaa8a075fe53ee48f4c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/29b522e1f2d87f4bbbce50d3f0b5527c9ea2aaeed378eaa8a075fe53ee48f4c8.mp3",
+          "contentHash": "0b22c04fb16af61bb083830f6e28d153d2e7247212bf846e33e7652c4bb1666c",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l01/s27/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They are available.",
+          "file": "7ed2eb1c9cc726158af03e2998bad8ec12c5eee1dbbe56664e4d130bc2f32dc9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7ed2eb1c9cc726158af03e2998bad8ec12c5eee1dbbe56664e4d130bc2f32dc9.mp3",
+          "contentHash": "7b43215c56cbf6c143436eafa94c37d3220aedbbb7c2b7bf64872756b551b07a",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l01/s27/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "awake",
+          "file": "4c1b29ac6fd5e0b2324b405fada24889c5efea92db2e5668261e26045ac929b9.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f245940166d1611d76b3def5-onyx.mp3",
+          "contentHash": "3257a5415f9368a4685ce23a110b1b9f89fff54236bb9c5183e0b31b7ca9d6d2",
+          "byteSize": 34560
+        },
+        {
+          "text": "asleep",
+          "file": "64e330832eec98893ba425738324f078970e11a658caafd0f13b878fe756bd92.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ea51ae6e548ffbb851d2d383-onyx.mp3",
+          "contentHash": "1e062dec2de56ec8b04d446a6ff7d31f2ad111e7299c30e214ceb1e15565feed",
+          "byteSize": 29184
+        },
+        {
+          "text": "available",
+          "file": "80dc44d679bb15d4fa29874d3671c871b3dbf956b1de7e7682449ceb257da560.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80dc44d679bb15d4fa29874d3671c871b3dbf956b1de7e7682449ceb257da560.mp3",
+          "contentHash": "cd6e934d4dfc28ef6ae175d0681141f0f01e70d5458b43e17b69e2b3adeca4f8",
+          "byteSize": 17280
+        },
+        {
+          "text": "dressed",
+          "file": "82bc5150c533f5d272d8c34dc7ce22bc713744d1ef914cae8e85a3f558018d94.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/82bc5150c533f5d272d8c34dc7ce22bc713744d1ef914cae8e85a3f558018d94.mp3",
+          "contentHash": "cd3f9e7d61d554e516915273a5636e5ef0d593eba0771293bb68ed0a66a35370",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l01/s27/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "We are awake.",
+          "file": "35a07e73557b9dbada8f5972f5b827f60a06b0eede9ee641a30c82a31842f891.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/35a07e73557b9dbada8f5972f5b827f60a06b0eede9ee641a30c82a31842f891.mp3",
+          "contentHash": "a7c5f9395b93f9f46dbff65679de7e00074f3cbda17d8be8b6daaa7694af7e57",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l01/s27/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He is asleep.",
+          "file": "47a7590522aa2d4c681d09b875674c60433c7529e5137190489720b4febaad4f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47a7590522aa2d4c681d09b875674c60433c7529e5137190489720b4febaad4f.mp3",
+          "contentHash": "6a36e226cb6e0bdd981b1db46ab800b8cec91ecfca912e540cdc548f19837830",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l01/s27/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I am available.",
+          "file": "72507fc8916907c5891a752476cdc4c122e0c08e5580b43099ad077897c7395b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/72507fc8916907c5891a752476cdc4c122e0c08e5580b43099ad077897c7395b.mp3",
+          "contentHash": "4bff4db41214f775fa4c34d1910e7d6eb464d35776febc17689dda1f3c755817",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l01/s27/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She is awake .",
+          "file": "a06f4666fab59ec2015f677b847bfdc26e22ffe14af895ed74a968579dc7d03a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a06f4666fab59ec2015f677b847bfdc26e22ffe14af895ed74a968579dc7d03a.mp3",
+          "contentHash": "49d35c3a1c2b8d588c4272d172e59f92d99c0fe0c5a6be31ff2ec62b3eab6463",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l01/s27/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "You are available.",
+          "file": "2e514c8bf3be9f48768f8a32114fbffe18057aa7ae8a2682fe8866ecbf35d9c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e514c8bf3be9f48768f8a32114fbffe18057aa7ae8a2682fe8866ecbf35d9c4.mp3",
+          "contentHash": "e0a50ff1240d2900ee14fc29ddf8b21994ff25a9c7a309b42373edd471ea764a",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l01/s27/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bored",
+          "file": "db1cc2b91d5401fcd503aa1c9cfa1ad45f5a102b1e5f1733330db2c9e8212be5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/60e6aa4ad2d315ff8ab59a82-ash.mp3",
+          "contentHash": "c854d799f86c9f72ada6d728b53e2bffbe6e9767467861943540a1db3c14ad8b",
+          "byteSize": 26880
+        },
+        {
+          "text": "confused",
+          "file": "6f281ca66f0be85048070c4ae8943a4577a6a623dbd914c69dd61fc1655ca4ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6f281ca66f0be85048070c4ae8943a4577a6a623dbd914c69dd61fc1655ca4ac.mp3",
+          "contentHash": "507e25763ba739f87263d18155638236b7d5f8121d5e80f30fe629548cbe7bf2",
+          "byteSize": 27648
+        },
+        {
+          "text": "worried",
+          "file": "84a9ec9d33b2fb6995b89398284aa3c7fe5b5bc8a3d549c5ccf2f822d8b88c5b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/84a9ec9d33b2fb6995b89398284aa3c7fe5b5bc8a3d549c5ccf2f822d8b88c5b.mp3",
+          "contentHash": "58099557a9d3d623e8c83e4ae0bc01d63880e3759aeb190e57c5fa0c85292bf0",
+          "byteSize": 18048
+        },
+        {
+          "text": "together",
+          "file": "3f474dbf37cd21654661a1490c06ed14152691dc7f5acd7fd8f3e567b2be692d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0c24734d7bf5954f08e5bfe4-ash.mp3",
+          "contentHash": "62dd4612a6b596da3e7ff8a3fa4ca255e28f955076981682909533df49428c00",
+          "byteSize": 24576
+        }
+      ]
+    },
     "l01/s27/task/14": {
       "voice": "onyx",
       "clips": [
         {
-          "text": "We are together.",
-          "file": "ee7198245e8859e9aa2099857d11930fecc80914a659869de5e67a2063f1ba64.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/50339389fdc5bfea082c6fe8-onyx.mp3",
-          "contentHash": "00ec1964876c5c7f81fe69aa0ad3fef2c6e86e2648f7f6db70b3725de4a8d6a9",
-          "byteSize": 24192
+          "text": "They are asleep.",
+          "file": "4aaa4ec2607ef559e3d7f6aadcd672c15c50d96464affc85a9b5497649f05d55.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4aaa4ec2607ef559e3d7f6aadcd672c15c50d96464affc85a9b5497649f05d55.mp3",
+          "contentHash": "71ebfefbf9cb8c1dbac62153ea454b3256d449f523d4bf75e27f9d3c08dece17",
+          "byteSize": 29184
         }
       ]
     },
@@ -8076,32 +8076,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "nearby",
-          "file": "49d6fbb0ea4677e8284f8ed75fc789a55d1faa4988089ee308dc652bdca09690.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/49d6fbb0ea4677e8284f8ed75fc789a55d1faa4988089ee308dc652bdca09690.mp3",
-          "contentHash": "8bda2a56591e4a8d2e7634cbc0530a9c5228757523a105c6c80735afbd77877f",
-          "byteSize": 16512
-        },
-        {
-          "text": "awake",
-          "file": "bd7ddcd53e338dc57b49e5468b1e983d1e7eea3a7bb1fedb99d8777d2f063340.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f245940166d1611d76b3def5-coral.mp3",
-          "contentHash": "65b133bf29b5abcbe04e6ee04f1402cf888b2c4805e9e8de4352d83aedb0402a",
-          "byteSize": 31488
-        },
-        {
-          "text": "asleep",
-          "file": "2d5ee6fc7c7a58b9c44b02ef745c02e499221cb75004bc231e62db2f0546341d.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/ea51ae6e548ffbb851d2d383-coral.mp3",
-          "contentHash": "e5f406e6c8f4b21ef84fd56c14429c6cb42d6cd98368328902431df56c5976f0",
-          "byteSize": 18816
-        },
-        {
-          "text": "available",
-          "file": "128158b12e79fc3f6423dd2ab650759104bda5af194c956f6056fabb069b6c5e.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/128158b12e79fc3f6423dd2ab650759104bda5af194c956f6056fabb069b6c5e.mp3",
-          "contentHash": "5166a28bb5c06bae98b1b0c9c46099e4dd609cd26b2ce00bb6116ab4c035c84c",
-          "byteSize": 21888
+          "text": "She is dressed.",
+          "file": "d69566087f1db9e72dc7af35061792750ccf4b0004f0dc84351b37faead31c9e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d69566087f1db9e72dc7af35061792750ccf4b0004f0dc84351b37faead31c9e.mp3",
+          "contentHash": "915c335d732544e8562509a98c633041f1ea70dad6bfbd5b0813b7e84959f1ba",
+          "byteSize": 32640
         }
       ]
     },
@@ -8109,11 +8088,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "We are available.",
-          "file": "1438d8fce965f8d4991765123f1ec59aa25ef504ea038197d65a1bf877bba047.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1438d8fce965f8d4991765123f1ec59aa25ef504ea038197d65a1bf877bba047.mp3",
-          "contentHash": "fa3958207c1c689a3f613b812a6d5907b534b8d32701f9591f0671a4c6eea76f",
-          "byteSize": 33792
+          "text": "He is nearby.",
+          "file": "163be4eabbb13c42a205ec33c7d19a5a3d579bc47e70c8ba3d17b3104ceae602.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/163be4eabbb13c42a205ec33c7d19a5a3d579bc47e70c8ba3d17b3104ceae602.mp3",
+          "contentHash": "4baf44f432aba6fbd7cbec956dc083251d4481ac6eb79bbcb0cae6b685132b45",
+          "byteSize": 26112
         }
       ]
     },
@@ -134420,6 +134399,75 @@
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2af143f04eef486d67365108aa79f88f918ba6fc9f4d473ee0907e2f5c2d7da8.mp3",
           "contentHash": "6cc0ef08d6d81be3cac8686d482b6bbbb0c0b08dd18d4bf4f362f091cd174f47",
           "byteSize": 29184
+        }
+      ]
+    },
+    "l01/s27/task/17": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am awake.",
+          "file": "97f5344280c9e536af552e1f65cde9c1cb73a289e146afaaac5da5cdbec24953.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/97f5344280c9e536af552e1f65cde9c1cb73a289e146afaaac5da5cdbec24953.mp3",
+          "contentHash": "e4b5ec74c3e3c7cffc967d32fd0c36c705b840e16f743481907094433af22060",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l01/s27/task/18": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "We are dressed.",
+          "file": "c3b123e9c84822824fbacd5ac241491b23903c753c9c57c9eb538f1679920d6d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3b123e9c84822824fbacd5ac241491b23903c753c9c57c9eb538f1679920d6d.mp3",
+          "contentHash": "97698529f9c8b73ab3c019c0fff4c7d99af769dc56b88dcff9924a6cb02ae816",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l01/s27/task/19": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "dressed",
+          "file": "d2fc43d375dac91e1f6030eadc4437c2ed07ed1ab2acb2c1f00798d530b353f8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2fc43d375dac91e1f6030eadc4437c2ed07ed1ab2acb2c1f00798d530b353f8.mp3",
+          "contentHash": "affe6a312e3c80d077902c494ab1276ceb26816506cec86e8a3cb14a362ad16e",
+          "byteSize": 31488
+        },
+        {
+          "text": "awake",
+          "file": "88450c6f14fd0be44ac0dc17cd2454e037487f5def6ba52d6a80c279b0e34964.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f245940166d1611d76b3def5-nova.mp3",
+          "contentHash": "f18344cff5e2d6c8ff4a7c196c11cdda97fce9ba73a7e9075a04ae7096b3eff6",
+          "byteSize": 15744
+        },
+        {
+          "text": "asleep",
+          "file": "58a6ad9def24e31ca759b2a4def083673e2659da3e4a7dfc14b94cce8cd1a90b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ea51ae6e548ffbb851d2d383-nova.mp3",
+          "contentHash": "9599cd7c590ec3b9e45aef0f0b947132be51f45e1a7f6942c2ae8b4c78ce04e3",
+          "byteSize": 17280
+        },
+        {
+          "text": "available",
+          "file": "80626606d040c12d67bc89ea8ca02af12646c6cedb19e5f44bee1ed2942ff589.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80626606d040c12d67bc89ea8ca02af12646c6cedb19e5f44bee1ed2942ff589.mp3",
+          "contentHash": "15938f867539ee0a4011ca9c58e3dcdc3f66be1fa6b4ddf0ebf80fe9c5f58ef9",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l01/s27/task/20": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We are available.",
+          "file": "1438d8fce965f8d4991765123f1ec59aa25ef504ea038197d65a1bf877bba047.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1438d8fce965f8d4991765123f1ec59aa25ef504ea038197d65a1bf877bba047.mp3",
+          "contentHash": "fa3958207c1c689a3f613b812a6d5907b534b8d32701f9591f0671a4c6eea76f",
+          "byteSize": 33792
         }
       ]
     }

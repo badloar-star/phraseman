@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-27:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-27:intro1:r2": {
-          "ru": "Между `She` и `awake` нужно `is`.",
-          "uk": "Між `She` і `awake` потрібно `is`."
+          "ru": "Между She и awake нужно is.",
+          "uk": "Між She та awake потрібне is."
         },
         "en:lesson-01:session-27:intro1:r3": {
-          "ru": "После `She` нужна форма `is`, а `am` ставим после `I`.",
-          "uk": "Після `She` потрібна форма `is`, а `am` ставимо після `I`."
+          "ru": "После She нужно is; am ставим после I.",
+          "uk": "Після She потрібне is; am ставимо після I."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-27:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-27:intro2:r2": {
-          "ru": "`awake` — «не спят». Здесь они спят: `asleep`.",
-          "uk": "`awake` — «не сплять». Тут вони сплять: `asleep`."
+          "ru": "awake — не спят. Здесь оба спят: asleep.",
+          "uk": "awake — не сплять. Тут обоє сплять: asleep."
         },
         "en:lesson-01:session-27:intro2:r3": {
-          "ru": "После `They` нужна форма `are`.",
-          "uk": "Після `They` потрібна форма `are`."
+          "ru": "После They нужно are.",
+          "uk": "Після They потрібне are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-27:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-27:intro3:r2": {
-          "ru": "Это говорит лишь о том, что она не спит. Возможность уделить время — `available`.",
-          "uk": "Це говорить лише про те, що вона не спить. Можливість приділити час — `available`."
+          "ru": "awake говорит только об отсутствии сна. Возможность уделить время — available.",
+          "uk": "awake говорить лише про відсутність сну. Можливість приділити час — available."
         },
         "en:lesson-01:session-27:intro3:r3": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "После She нужно is.",
+          "uk": "Після She потрібне is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c142779ce9b1969ba5ea675fcfa76ad9e47f3e5a11448afaee520a26ded876f5"
+  "auxiliaryFingerprint": "6abd2aa4de6e6e968f232bd63650ad220f03b564bd2986b0bcbeedf56df45870"
 }

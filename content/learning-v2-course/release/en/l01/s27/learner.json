@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-27:i01",
+      "interactionId": "en:lesson-01:session-27:word:awake",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — awake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:word:awake:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — awake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:word:awake:audio",
+          "transcript": "awake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:word:awake:r1",
+            "targetText": "awake",
+            "meaningByLocale": {
+              "ru": "не спит, бодрствует. She is awake — «Она не спит». Человек может уже не спать, но ещё чувствовать сонливость.",
+              "uk": "не спить. She is awake — «Вона не спить». Людина може вже не спати, але ще відчувати сонливість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "awake",
+          "definitionByLocale": {
+            "ru": "не спит, бодрствует. She is awake — «Она не спит». Человек может уже не спать, но ещё чувствовать сонливость.",
+            "uk": "не спить. She is awake — «Вона не спить». Людина може вже не спати, але ще відчувати сонливість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:word:asleep",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — asleep",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:word:asleep:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — asleep",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:word:asleep:audio",
+          "transcript": "asleep"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:word:asleep:r1",
+            "targetText": "asleep",
+            "meaningByLocale": {
+              "ru": "спит. They are asleep — «Они спят». Это состояние сна, а не просто желание спать.",
+              "uk": "спить. They are asleep — «Вони сплять». Це стан сну, а не просто бажання спати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "asleep",
+          "definitionByLocale": {
+            "ru": "спит. They are asleep — «Они спят». Это состояние сна, а не просто желание спать.",
+            "uk": "спить. They are asleep — «Вони сплять». Це стан сну, а не просто бажання спати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:word:available",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — available",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:word:available:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — available",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:word:available:audio",
+          "transcript": "available"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:word:available:r1",
+            "targetText": "available",
+            "meaningByLocale": {
+              "ru": "свободен, может уделить время. I am available — «Я свободен / свободна»: сейчас можете поговорить или помочь. Знакомое free тоже может обозначать свободное время.",
+              "uk": "вільний, може приділити час. I am available — «Я вільний / вільна»: зараз можете поговорити або допомогти. Знайоме free теж може позначати вільний час."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "available",
+          "definitionByLocale": {
+            "ru": "свободен, может уделить время. I am available — «Я свободен / свободна»: сейчас можете поговорить или помочь. Знакомое free тоже может обозначать свободное время.",
+            "uk": "вільний, може приділити час. I am available — «Я вільний / вільна»: зараз можете поговорити або допомогти. Знайоме free теж може позначати вільний час."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:word:dressed",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dressed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:word:dressed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dressed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:word:dressed:audio",
+          "transcript": "dressed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:word:dressed:r1",
+            "targetText": "dressed",
+            "meaningByLocale": {
+              "ru": "одет. She is dressed — «Она одета»: уже надела одежду. Это ещё не значит, что она закончила все сборы.",
+              "uk": "одягнений. She is dressed — «Вона одягнена»: уже вдягнула одяг. Це ще не означає, що вона завершила всі збори."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dressed",
+          "definitionByLocale": {
+            "ru": "одет. She is dressed — «Она одета»: уже надела одежду. Это ещё не значит, что она закончила все сборы.",
+            "uk": "одягнений. She is dressed — «Вона одягнена»: уже вдягнула одяг. Це ще не означає, що вона завершила всі збори."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -194,15 +366,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -232,10 +404,10 @@
           },
           {
             "pairId": "en:lesson-01:session-27:i04:p4",
-            "target": "alone",
+            "target": "dressed",
             "meaningByLocale": {
-              "ru": "без других людей",
-              "uk": "без інших людей"
+              "ru": "одет",
+              "uk": "одягнений"
             }
           }
         ],
@@ -243,13 +415,13 @@
           "awake",
           "asleep",
           "available",
-          "alone"
+          "dressed"
         ],
         "rightColumn": [
           "не спит",
           "спит",
           "свободен, может уделить время",
-          "без других людей"
+          "одет"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -314,8 +486,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Друг ещё спит. Соберите сообщение о нём",
@@ -358,17 +530,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы закончили свои дела и можете сейчас помочь сестре. Скажите ей, что вы свободны",
+      "prompt": "Вы закончили свои дела и можете сейчас помочь сестре. Скажите ей, что вы свободны, используя available",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-27:i07:audio"
       ],
-      "accessibilityLabel": "Вы закончили свои дела и можете сейчас помочь сестре. Скажите ей, что вы свободны",
+      "accessibilityLabel": "Вы закончили свои дела и можете сейчас помочь сестре. Скажите ей, что вы свободны, используя available",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова со значениями",
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите услышанное",
@@ -656,26 +828,26 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга освободилась и готова уделить время вашему вопросу. Соберите фразу об этом",
+      "prompt": "Подруга уже надела одежду для прогулки. Соберите фразу о ней: «Она одета»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга освободилась и готова уделить время вашему вопросу. Соберите фразу об этом",
+      "accessibilityLabel": "Подруга уже надела одежду для прогулки. Соберите фразу о ней: «Она одета»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is available.",
+        "targetPhrase": "She is dressed.",
         "localizedMeaning": {
-          "ru": "Подруга освободилась и готова уделить время вашему вопросу. Соберите фразу об этом",
-          "uk": "Подруга звільнилася й готова приділити час вашому питанню. Складіть фразу про це"
+          "ru": "Подруга уже надела одежду для прогулки. Соберите фразу о ней: «Она одета»",
+          "uk": "Подруга вже вдягнулася для прогулянки. Складіть фразу про неї: «Вона одягнена»"
         },
         "orderedTokens": [
           "She",
           "is",
-          "available"
+          "dressed"
         ],
         "authoredDistractorTokens": [
           "am"
@@ -684,10 +856,10 @@
           {
             "responseId": "en:lesson-01:session-27:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга освободилась и готова уделить время вашему вопросу. Соберите фразу об этом",
+            "testedDimension": "Подруга уже надела одежду для прогулки. Соберите фразу о ней: «Она одета»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `She is available.`",
-              "uk": "тут потрібно `is` — `She is available.`"
+              "ru": "после She нужно is.",
+              "uk": "після She потрібне is."
             }
           }
         ],
@@ -700,7 +872,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вы отвечаете на звонок и сообщаете, что уже не спите. Вставьте слово",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -810,11 +982,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-27:i15:r1",
-          "text": "We are together."
+          "text": "We are dressed."
         },
         {
           "responseId": "en:lesson-01:session-27:i15:r2",
-          "text": "They are together."
+          "text": "They are dressed."
         },
         {
           "responseId": "en:lesson-01:session-27:i15:r3",
@@ -830,18 +1002,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-27:i15:audio",
-          "transcript": "We are together."
+          "transcript": "We are dressed."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-27:i15:r1",
-            "targetText": "We are together.",
+            "targetText": "We are dressed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-27:i15:r2",
-            "targetText": "They are together.",
+            "targetText": "They are dressed.",
             "meaningByLocale": null
           },
           {
@@ -857,8 +1029,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
-              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+              "ru": "В записи We, а не They.",
+              "uk": "У записі We, а не They."
             }
           },
           {
@@ -866,8 +1038,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `together`, а в этом варианте — `available`.",
-              "uk": "У записі останнє слово — `together`, а в цьому варіанті — `available`."
+              "ru": "В записи dressed, а не available.",
+              "uk": "У записі dressed, а не available."
             }
           }
         ],
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -892,10 +1064,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-27:i16:p1",
-            "target": "nearby",
+            "target": "dressed",
             "meaningByLocale": {
-              "ru": "поблизости",
-              "uk": "поблизу"
+              "ru": "одет",
+              "uk": "одягнений"
             }
           },
           {
@@ -924,13 +1096,13 @@
           }
         ],
         "leftColumn": [
-          "nearby",
+          "dressed",
           "awake",
           "asleep",
           "available"
         ],
         "rightColumn": [
-          "поблизости",
+          "одет",
           "не спит",
           "спит",
           "свободен, может уделить время"
@@ -951,17 +1123,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-27:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коллега просит вас с напарником помочь с переносом стола. Вы оба свободны и можете уделить ему время. Скажите это за вас обоих",
+      "prompt": "Коллега просит вас с напарником помочь с переносом стола. Вы оба свободны и можете уделить ему время. Скажите это за вас обоих, используя available",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-27:i17:audio"
       ],
-      "accessibilityLabel": "Коллега просит вас с напарником помочь с переносом стола. Вы оба свободны и можете уделить ему время. Скажите это за вас обоих",
+      "accessibilityLabel": "Коллега просит вас с напарником помочь с переносом стола. Вы оба свободны и можете уделить ему время. Скажите это за вас обоих, используя available",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "eb565ba58a20efd6532885875e7f65ea72708a9b7bc8380fe5563d54d4140186"
+  "learnerFingerprint": "21b5a89931eb891f6680638b7f9e95388f6f117b0c438a8a14ba7c520f775893"
 }

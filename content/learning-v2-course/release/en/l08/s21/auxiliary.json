@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-21:intro1:r2": {
+          "ru": "После `can` нужно `fetch`, без `to`.",
+          "uk": "Після `can` потрібне `fetch`, без `to`."
+        },
+        "en:lesson-08:session-21:intro1:r3": {
+          "ru": "Для этой просьбы начните с `Can you`.",
+          "uk": "Для цього прохання почніть із `Can you`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-21:intro2:r2": {
+          "ru": "После `can` нужно `lend`, без `s`.",
+          "uk": "Після `can` потрібне `lend`, без `s`."
+        },
+        "en:lesson-08:session-21:intro2:r3": {
+          "ru": "После `can` нужно `lend`, без `to`.",
+          "uk": "Після `can` потрібне `lend`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-21:intro3:r2": {
+          "ru": "Вы пока не умеете: нужно `can’t`.",
+          "uk": "Ви поки не вмієте: потрібне `can’t`."
+        },
+        "en:lesson-08:session-21:intro3:r3": {
+          "ru": "После `can’t` нужно `steer`, без `to`.",
+          "uk": "Після `can’t` потрібне `steer`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5cb41b8ac9ff4eb31809f06f9ec3b9599fe48ee2561c2cbe0481d4b6ef6555b0"
+}

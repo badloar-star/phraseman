@@ -1,0 +1,989 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о месте работы: «Я работаю на почте»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о месте работы: «Я работаю на почте»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I work in a post office.",
+        "localizedMeaning": {
+          "ru": "Расскажите о месте работы: «Я работаю на почте»",
+          "uk": "Розкажіть про місце роботи: «Я працюю на пошті»"
+        },
+        "orderedTokens": [
+          "I",
+          "work",
+          "in",
+          "a",
+          "post",
+          "office"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-04:i02:r1",
+          "text": "receipt"
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i02:r2",
+          "text": "parcel"
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i02:r3",
+          "text": "folder"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-04:i02:audio",
+          "transcript": "receipt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-04:i02:r1",
+            "targetText": "receipt",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i02:r2",
+            "targetText": "parcel",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i02:r3",
+            "targetText": "folder",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `receipt`, а в этом варианте — `parcel`.",
+              "uk": "У записі перше слово — `receipt`, а в цьому варіанті — `parcel`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `receipt`, а в этом варианте — `folder`.",
+              "uk": "У записі перше слово — `receipt`, а в цьому варіанті — `folder`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите чек об оплате",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-04:i03:r1",
+          "text": "receipt"
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i03:r2",
+          "text": "parcel"
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i03:r3",
+          "text": "folder"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите чек об оплате",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите чек об оплате",
+          "uk": "Назвіть чек про оплату"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i03:r1",
+            "text": "receipt"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i03:r2",
+            "text": "parcel"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i03:r3",
+            "text": "folder"
+          }
+        ],
+        "testedDimension": "Назовите чек об оплате",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите чек об оплате",
+            "feedbackByLocale": {
+              "ru": "`parcel` — посылка; чек — `receipt`.",
+              "uk": "`parcel` — посилка; чек — `receipt`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите чек об оплате",
+            "feedbackByLocale": {
+              "ru": "`folder` — папка; чек — `receipt`.",
+              "uk": "`folder` — папка; чек — `receipt`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-04:i04:p1",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-04:i04:p2",
+            "target": "visible",
+            "meaningByLocale": {
+              "ru": "видимый",
+              "uk": "видимий"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-04:i04:p3",
+            "target": "hidden",
+            "meaningByLocale": {
+              "ru": "скрытый",
+              "uk": "прихований"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-04:i04:p4",
+            "target": "clear",
+            "meaningByLocale": {
+              "ru": "ясный, понятный",
+              "uk": "ясний, зрозумілий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "receipt",
+          "visible",
+          "hidden",
+          "clear"
+        ],
+        "rightColumn": [
+          "чек",
+          "видимый",
+          "скрытый",
+          "ясный, понятный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-04:i05:audio",
+          "transcript": "This is my receipt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is my receipt.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "my",
+          "receipt"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-04:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is my receipt.`",
+              "uk": "тут потрібно `is` — `This is my receipt.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Чей это чек?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Чей это чек?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose receipt is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чей это чек?»",
+          "uk": "Запитайте «Чий це чек?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "receipt",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Через окно хорошо видно бассейн. Скажите «Бассейн виден»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Через окно хорошо видно бассейн. Скажите «Бассейн виден»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-04:i07:audio",
+          "transcript": "The pool is visible."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The pool is visible.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сумка спрятана из виду. Скажите «Сумка скрыта»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-04:i08:r1",
+          "text": "hidden"
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i08:r2",
+          "text": "visible"
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i08:r3",
+          "text": "clear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка спрятана из виду. Скажите «Сумка скрыта»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сумка спрятана из виду. Скажите «Сумка скрыта»",
+          "uk": "Сумку сховано від очей. Скажіть «Сумку приховано»"
+        },
+        "gappedTargetPhrase": "The bag is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i08:r1",
+            "text": "hidden"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i08:r2",
+            "text": "visible"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i08:r3",
+            "text": "clear"
+          }
+        ],
+        "testedDimension": "Сумка спрятана из виду. Скажите «Сумка скрыта»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Сумка спрятана из виду. Скажите «Сумка скрыта»",
+            "feedbackByLocale": {
+              "ru": "`visible` — видимый; скрытый — `hidden`.",
+              "uk": "`visible` — видимий; прихований — `hidden`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Сумка спрятана из виду. Скажите «Сумка скрыта»",
+            "feedbackByLocale": {
+              "ru": "В этой фразе `clear` означает прозрачную сумку; скрытый — `hidden`.",
+              "uk": "У цій фразі `clear` означає прозору сумку; прихований — `hidden`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежит тот чек",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-04:i09:r1",
+          "text": "That receipt is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i09:r2",
+          "text": "That receipt is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i09:r3",
+          "text": "That receipt is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит тот чек",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-04:i09:audio",
+          "transcript": "That receipt is yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-04:i09:r1",
+            "targetText": "That receipt is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i09:r2",
+            "targetText": "That receipt is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i09:r3",
+            "targetText": "That receipt is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит тот чек",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит тот чек",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-04:i10:p1",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-04:i10:p2",
+            "target": "post office",
+            "meaningByLocale": {
+              "ru": "почта",
+              "uk": "пошта"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-04:i10:p3",
+            "target": "curtain",
+            "meaningByLocale": {
+              "ru": "занавеска",
+              "uk": "фіранка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-04:i10:p4",
+            "target": "pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          }
+        ],
+        "leftColumn": [
+          "receipt",
+          "post office",
+          "curtain",
+          "pool"
+        ],
+        "rightColumn": [
+          "чек",
+          "почта",
+          "занавеска",
+          "бассейн"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-04:i11:audio",
+          "transcript": "The bag is behind the curtain."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bag is behind the curtain.",
+        "orderedTokens": [
+          "The",
+          "bag",
+          "is",
+          "behind",
+          "the",
+          "curtain"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-04:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bag is behind the curtain.`",
+              "uk": "тут потрібно `is` — `The bag is behind the curtain.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Почта возле бассейна»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Почта возле бассейна»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The post office is near the pool.",
+        "localizedMeaning": {
+          "ru": "Скажите «Почта возле бассейна»",
+          "uk": "Скажіть «Пошта біля басейну»"
+        },
+        "orderedTokens": [
+          "The",
+          "post",
+          "office",
+          "is",
+          "near",
+          "the",
+          "pool"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-04:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Почта возле бассейна»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The post office is near the pool.`",
+              "uk": "тут потрібно `is` — `The post office is near the pool.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объяснение вам понятно. Скажите «Это понятно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Объяснение вам понятно. Скажите «Это понятно»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-04:i13:audio",
+          "transcript": "This is clear."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is clear.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я работаю здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-04:i14:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i14:r2",
+          "text": "am work"
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i14:r3",
+          "text": "is work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я работаю здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я работаю здесь»",
+          "uk": "Скажіть «Я працюю тут»"
+        },
+        "gappedTargetPhrase": "I ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i14:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i14:r2",
+            "text": "am work"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i14:r3",
+            "text": "is work"
+          }
+        ],
+        "testedDimension": "Скажите «Я работаю здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-04:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я работаю здесь»",
+            "feedbackByLocale": {
+              "ru": "Здесь действие: `I work`, без `am`.",
+              "uk": "Тут дія: `I work`, без `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я работаю здесь»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно `I work`, без `is`.",
+              "uk": "Тут потрібно `I work`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежит чек",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-04:i15:r1",
+          "text": "The receipt is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i15:r2",
+          "text": "The receipt is hers."
+        },
+        {
+          "responseId": "en:lesson-06:session-04:i15:r3",
+          "text": "The receipt is ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит чек",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-04:i15:audio",
+          "transcript": "The receipt is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-04:i15:r1",
+            "targetText": "The receipt is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i15:r2",
+            "targetText": "The receipt is hers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i15:r3",
+            "targetText": "The receipt is ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-04:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит чек",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит чек",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `ours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `ours`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-04:i16:p1",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-04:i16:p2",
+            "target": "visible",
+            "meaningByLocale": {
+              "ru": "видимый",
+              "uk": "видимий"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-04:i16:p3",
+            "target": "hidden",
+            "meaningByLocale": {
+              "ru": "скрытый",
+              "uk": "прихований"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-04:i16:p4",
+            "target": "clear",
+            "meaningByLocale": {
+              "ru": "ясный, понятный",
+              "uk": "ясний, зрозумілий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "receipt",
+          "visible",
+          "hidden",
+          "clear"
+        ],
+        "rightColumn": [
+          "чек",
+          "видимый",
+          "скрытый",
+          "ясный, понятный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы нашли чек на столе. Спросите коллегу «Чей это чек?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Вы нашли чек на столе. Спросите коллегу «Чей это чек?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-04:i17:audio",
+          "transcript": "Whose receipt is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose receipt is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ba08f162b836e241a66e91eb954ae623037a50f1379080eb549984dc72a93b67"
+}

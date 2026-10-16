@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-04:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-06:session-04:intro1:r3": {
+          "ru": "Один чек: `is this`.",
+          "uk": "Один чек: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-04:intro2:r2": {
+          "ru": "Один бассейн: `is`.",
+          "uk": "Один басейн: `is`."
+        },
+        "en:lesson-06:session-04:intro2:r3": {
+          "ru": "`hidden` — скрыт; виден — `visible`.",
+          "uk": "`hidden` — прихований; видимий — `visible`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-04:intro3:r2": {
+          "ru": "Здесь действие: `I work`, без `am`.",
+          "uk": "Тут дія: `I work`, без `am`."
+        },
+        "en:lesson-06:session-04:intro3:r3": {
+          "ru": "`bank` — банк; почта — `post office`.",
+          "uk": "`bank` — банк; пошта — `post office`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "56553882ff5b394fb092ad3cde8de54ef79733d4b1bf032fcbc89fb516131201"
+}

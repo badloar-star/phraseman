@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "назвать чек, спросить о владельце и описать, что видно",
+    "uk": "назвати чек, запитати про власника й описати, що видно"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подтверждение оплаты",
+        "uk": "Підтвердження оплати"
+      },
+      "bodyByLocale": {
+        "ru": "`receipt` — «чек», подтверждение оплаты. `This is my receipt` — «Это мой чек». `Whose receipt is this?` — «Чей это чек?» `The receipt is mine` — «Чек мой». В слове `receipt` буква `p` не произносится: она присутствует на бумаге, но молчит.",
+        "uk": "`receipt` — «чек», підтвердження оплати. `This is my receipt` — «Це мій чек». `Whose receipt is this?` — «Чий це чек?» `The receipt is mine` — «Чек мій». У слові `receipt` літера `p` не вимовляється: вона присутня на папері, але мовчить."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце чека.",
+          "uk": "Запитайте про власника чека."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-04:intro1:r1",
+              "text": "Whose receipt is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro1:r2",
+              "text": "Where is the receipt?"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro1:r3",
+              "text": "Whose receipt are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-04:intro1:r1",
+              "text": "Whose receipt is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro1:r2",
+              "text": "Where is the receipt?"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro1:r3",
+              "text": "Whose receipt are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце чека.",
+          "uk": "Запитайте про власника чека."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Видно или скрыто",
+        "uk": "Видно чи приховано"
+      },
+      "bodyByLocale": {
+        "ru": "`visible` — «видимый»: `The pool is visible` — «Бассейн виден». `hidden` — «скрытый»: `The bag is hidden` — «Сумка скрыта». `curtain` — «занавеска»: `The bag is behind the curtain` — «Сумка за занавеской». `clear` — «ясный, понятный»: `This is clear` — «Это понятно». В этих примерах описываем состояние, поэтому нужен `is`.",
+        "uk": "`visible` — «видимий»: `The pool is visible` — «Басейн видно». `hidden` — «прихований»: `The bag is hidden` — «Сумку приховано». `curtain` — «фіранка»: `The bag is behind the curtain` — «Сумка за фіранкою». `clear` — «ясний, зрозумілий»: `This is clear` — «Це зрозуміло». У цих прикладах описуємо стан, тому потрібне `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Бассейн виден».",
+          "uk": "Скажіть «Басейн видно»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-04:intro2:r1",
+              "text": "The pool is visible."
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro2:r2",
+              "text": "The pool are visible."
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro2:r3",
+              "text": "The pool is hidden."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-04:intro2:r1",
+              "text": "The pool is visible."
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro2:r2",
+              "text": "The pool are visible."
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro2:r3",
+              "text": "The pool is hidden."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Бассейн виден».",
+          "uk": "Скажіть «Басейн видно»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Работа на почте",
+        "uk": "Робота на пошті"
+      },
+      "bodyByLocale": {
+        "ru": "`post office` — «почта», почтовое отделение. `I work in a post office` — «Я работаю на почте». Перед `work` в этой фразе нет `am`. `The post office is near the pool` — «Почта возле бассейна». Если показываем чек дальше от нас: `That receipt is yours` — «Тот чек твой».",
+        "uk": "`post office` — «пошта», поштове відділення. `I work in a post office` — «Я працюю на пошті». Перед `work` у цій фразі немає `am`. `The post office is near the pool` — «Пошта біля басейну». Якщо показуємо чек далі від нас: `That receipt is yours` — «Той чек твій»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я работаю на почте».",
+          "uk": "Скажіть «Я працюю на пошті»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-04:intro3:r1",
+              "text": "I work in a post office."
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro3:r2",
+              "text": "I am work in a post office."
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro3:r3",
+              "text": "I work in a bank."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-04:intro3:r1",
+              "text": "I work in a post office."
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro3:r2",
+              "text": "I am work in a post office."
+            },
+            {
+              "responseId": "en:lesson-06:session-04:intro3:r3",
+              "text": "I work in a bank."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я работаю на почте».",
+          "uk": "Скажіть «Я працюю на пошті»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ee80be93d632a205f3bf66e30c87669796e060d872c4db3f3b5593ba40f4e439"
+}

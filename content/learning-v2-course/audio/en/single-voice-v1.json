@@ -124093,6 +124093,309 @@
           "byteSize": 45312
         }
       ]
+    },
+    "l08/s18/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Can you pass me the key?",
+          "file": "7325be4d54c4713784aaad5e87b6b13b9b691e6ab680154a0291bff6663d9faa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7325be4d54c4713784aaad5e87b6b13b9b691e6ab680154a0291bff6663d9faa.mp3",
+          "contentHash": "87e2f1be27fe742e1b727f3cbef714671fab2858e8c524440a6b22c187bfd975",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l08/s18/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Can you pass me the milk?",
+          "file": "f606dc5817cb7a3806ecfbaff7dd39142df4acb95672820ba53c4e167cdeff7a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f606dc5817cb7a3806ecfbaff7dd39142df4acb95672820ba53c4e167cdeff7a.mp3",
+          "contentHash": "20d129c75233f89471939086a2a33bf9b7b80f285cc0507110ec9067b0cca1f7",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l08/s18/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can’t dive.",
+          "file": "fd2c480cc1dc97040ffcea466344691159f7e8fd20e2c78a752c0884bdc50b78.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd2c480cc1dc97040ffcea466344691159f7e8fd20e2c78a752c0884bdc50b78.mp3",
+          "contentHash": "e05988608256604df4e57b2d408270cb0a3cff860f8559734d13b3ee047faf68",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l08/s18/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Can you pass me the key?",
+          "file": "acfaa36f5cf76bd7cec5bbbcbc284a0067977e33e9c153bdc51ca162167a083b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/acfaa36f5cf76bd7cec5bbbcbc284a0067977e33e9c153bdc51ca162167a083b.mp3",
+          "contentHash": "58df2fbde004329f96da34d12ae8a3f6f5afb31c4caad365375ea255e8951a27",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l08/s18/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "pass",
+          "file": "b0b454933ab131383241b608378b50070338853eb7e7deefb78bef1cbff90366.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0b454933ab131383241b608378b50070338853eb7e7deefb78bef1cbff90366.mp3",
+          "contentHash": "fc2cd0eb85f3408e3a1bc2b0890c24b6041410ea1d7e3dba6c608b5976b0b755",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l08/s18/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Can you pass me the key?",
+          "file": "7325be4d54c4713784aaad5e87b6b13b9b691e6ab680154a0291bff6663d9faa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7325be4d54c4713784aaad5e87b6b13b9b691e6ab680154a0291bff6663d9faa.mp3",
+          "contentHash": "87e2f1be27fe742e1b727f3cbef714671fab2858e8c524440a6b22c187bfd975",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l08/s18/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "pass",
+          "file": "b0b454933ab131383241b608378b50070338853eb7e7deefb78bef1cbff90366.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0b454933ab131383241b608378b50070338853eb7e7deefb78bef1cbff90366.mp3",
+          "contentHash": "fc2cd0eb85f3408e3a1bc2b0890c24b6041410ea1d7e3dba6c608b5976b0b755",
+          "byteSize": 39552
+        },
+        {
+          "text": "milk",
+          "file": "63849f694769638f2ed9b51d5e113ffe6e81ef6b035bd727cccb5b7327166c3b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63849f694769638f2ed9b51d5e113ffe6e81ef6b035bd727cccb5b7327166c3b.mp3",
+          "contentHash": "189238aa2e6f4f30e61798c9fbcd843388abb493d7def10a96ac5bcd542013a5",
+          "byteSize": 29184
+        },
+        {
+          "text": "smile",
+          "file": "3094c6bc40c5707ae36a11f5b7eabc96b41158704ba957c8ba45433c814a07a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3094c6bc40c5707ae36a11f5b7eabc96b41158704ba957c8ba45433c814a07a6.mp3",
+          "contentHash": "4798232b2bb55462f4386ef9de471915d1aef3888c24260423dbb96837a9a90b",
+          "byteSize": 19584
+        },
+        {
+          "text": "dive",
+          "file": "785f3d7b1659dd5d39a67e48340af2ca48c502dd00332d328f06affa0ae07fc4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/785f3d7b1659dd5d39a67e48340af2ca48c502dd00332d328f06affa0ae07fc4.mp3",
+          "contentHash": "8b2c064596fc50bd7bcf2cd731967c635ba0507071dcc75198d95c4d6cd7c726",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l08/s18/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Can you pass me the key?",
+          "file": "182b2cb04b4be1e8e9f837f2baf88e7d951c6c7c8760a291a98632e8e2774a39.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/182b2cb04b4be1e8e9f837f2baf88e7d951c6c7c8760a291a98632e8e2774a39.mp3",
+          "contentHash": "0d3ad88aea6ac5bfc2559a58e78e9584e2b614a4f02eb79ad8bf6653bffd1b61",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l08/s18/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Can you pass me the milk?",
+          "file": "f606dc5817cb7a3806ecfbaff7dd39142df4acb95672820ba53c4e167cdeff7a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f606dc5817cb7a3806ecfbaff7dd39142df4acb95672820ba53c4e167cdeff7a.mp3",
+          "contentHash": "20d129c75233f89471939086a2a33bf9b7b80f285cc0507110ec9067b0cca1f7",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l08/s18/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can’t dive.",
+          "file": "fd2c480cc1dc97040ffcea466344691159f7e8fd20e2c78a752c0884bdc50b78.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd2c480cc1dc97040ffcea466344691159f7e8fd20e2c78a752c0884bdc50b78.mp3",
+          "contentHash": "e05988608256604df4e57b2d408270cb0a3cff860f8559734d13b3ee047faf68",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l08/s18/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Can you help me?",
+          "file": "662c884f8792af592c52b6a97840f6410f7daa45fbb42fdec0a4050c7deeace1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/662c884f8792af592c52b6a97840f6410f7daa45fbb42fdec0a4050c7deeace1.mp3",
+          "contentHash": "df53fcfd10968fdaa0c0f4d47093dfd5944df5c43f91afdea91a1d5601646a1c",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l08/s18/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Can you pass me the key?",
+          "file": "182b2cb04b4be1e8e9f837f2baf88e7d951c6c7c8760a291a98632e8e2774a39.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/182b2cb04b4be1e8e9f837f2baf88e7d951c6c7c8760a291a98632e8e2774a39.mp3",
+          "contentHash": "0d3ad88aea6ac5bfc2559a58e78e9584e2b614a4f02eb79ad8bf6653bffd1b61",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l08/s18/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "gamble",
+          "file": "7e0e9fceb0f36b2ee96a27b888a14db506a938b632f7f9a0c1a1d89458443c47.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e0e9fceb0f36b2ee96a27b888a14db506a938b632f7f9a0c1a1d89458443c47.mp3",
+          "contentHash": "06e67d8c9da02a9a99d7f3bae04753274b615796887ad502802a4a91d4f0d706",
+          "byteSize": 27648
+        },
+        {
+          "text": "pass",
+          "file": "b0b454933ab131383241b608378b50070338853eb7e7deefb78bef1cbff90366.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0b454933ab131383241b608378b50070338853eb7e7deefb78bef1cbff90366.mp3",
+          "contentHash": "fc2cd0eb85f3408e3a1bc2b0890c24b6041410ea1d7e3dba6c608b5976b0b755",
+          "byteSize": 39552
+        },
+        {
+          "text": "milk",
+          "file": "63849f694769638f2ed9b51d5e113ffe6e81ef6b035bd727cccb5b7327166c3b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63849f694769638f2ed9b51d5e113ffe6e81ef6b035bd727cccb5b7327166c3b.mp3",
+          "contentHash": "189238aa2e6f4f30e61798c9fbcd843388abb493d7def10a96ac5bcd542013a5",
+          "byteSize": 29184
+        },
+        {
+          "text": "smile",
+          "file": "3094c6bc40c5707ae36a11f5b7eabc96b41158704ba957c8ba45433c814a07a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3094c6bc40c5707ae36a11f5b7eabc96b41158704ba957c8ba45433c814a07a6.mp3",
+          "contentHash": "4798232b2bb55462f4386ef9de471915d1aef3888c24260423dbb96837a9a90b",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l08/s18/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Can you help me?",
+          "file": "8aa2b54b9fbab49f32288d9cb19ec1d49bc1b29891a195d64ce42a4ab5866802.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8aa2b54b9fbab49f32288d9cb19ec1d49bc1b29891a195d64ce42a4ab5866802.mp3",
+          "contentHash": "79201097951a264412f1d2705451cb47e7d1aa2eeb23535d9edb6e701cb9a00f",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l08/s18/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Can you open the door?",
+          "file": "3da810c864be9785fb1720607bbd8d3ef918d4e152f6d56e15fbbaa6cf888e18.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3da810c864be9785fb1720607bbd8d3ef918d4e152f6d56e15fbbaa6cf888e18.mp3",
+          "contentHash": "2798675d328ca6f6eede1af23c5b4d782b8a8059d2a9ea36b25ef5e7b15ecefe",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l08/s18/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I often smile.",
+          "file": "afd34995fffecc75557469fadbd92b26b353ba8a35eafd606d84ea6feb7a5f49.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/afd34995fffecc75557469fadbd92b26b353ba8a35eafd606d84ea6feb7a5f49.mp3",
+          "contentHash": "5be14a9b0a109cef4ce062a7dff47ce06054504b17dee8be2961209955bb697b",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l08/s18/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Can you pass me the key?",
+          "file": "6ff0b7e9943d170c00463614bd1c1f62f62bb86a0199f883f8430feb18d919ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6ff0b7e9943d170c00463614bd1c1f62f62bb86a0199f883f8430feb18d919ac.mp3",
+          "contentHash": "a9f10f2cbc38fd1354215eca1472e9e4394051a702b42f70be12b5c42aef44b9",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l08/s18/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Can you open the door?",
+          "file": "3da810c864be9785fb1720607bbd8d3ef918d4e152f6d56e15fbbaa6cf888e18.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3da810c864be9785fb1720607bbd8d3ef918d4e152f6d56e15fbbaa6cf888e18.mp3",
+          "contentHash": "2798675d328ca6f6eede1af23c5b4d782b8a8059d2a9ea36b25ef5e7b15ecefe",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l08/s18/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "pass",
+          "file": "a7e5330d6c34f2d440915ce0cea1dd6f1484ef38175a51eddf240e2674bf5500.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a7e5330d6c34f2d440915ce0cea1dd6f1484ef38175a51eddf240e2674bf5500.mp3",
+          "contentHash": "8dafa954617ef5bb9d50b353df87520e85bf4f13a92dba3040342cb424a6e1c6",
+          "byteSize": 26880
+        },
+        {
+          "text": "gamble",
+          "file": "610c68e83d5b764719fcd91e4e581c7af62a44d7e7e0e59bc0f5192ac720edd9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/610c68e83d5b764719fcd91e4e581c7af62a44d7e7e0e59bc0f5192ac720edd9.mp3",
+          "contentHash": "9d28dfae9a2f686993a5df86892e92bbb32f3c27be0496fa30848b0488cb641e",
+          "byteSize": 18048
+        },
+        {
+          "text": "dive",
+          "file": "4f77a8c4856620945c5e52f29d3c162f9cc273ae9bf105b590fc76b8317396cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f77a8c4856620945c5e52f29d3c162f9cc273ae9bf105b590fc76b8317396cc.mp3",
+          "contentHash": "dc06d353078d60a8898f59fb44fdc98edeee17d95dc42460107b4833f37d1311",
+          "byteSize": 28416
+        },
+        {
+          "text": "milk",
+          "file": "d1bd4b850709cdf852209b25a3d53a31c556e0b30e48bda976362327a9a3aaa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d1bd4b850709cdf852209b25a3d53a31c556e0b30e48bda976362327a9a3aaa4.mp3",
+          "contentHash": "0387bad0ed9d4498aecac5e4b03e92a65539afeaa1da23592d1df38b1df98573",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l08/s18/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Can you pass me the book?",
+          "file": "331d5d865f26e8e51fa59a9b66daca7c0bf5befbdddf580892586cd80b27c298.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/331d5d865f26e8e51fa59a9b66daca7c0bf5befbdddf580892586cd80b27c298.mp3",
+          "contentHash": "25b32873097712c046125a62e087338a0bd934ef11940bdde70f5a546498f290",
+          "byteSize": 25344
+        }
+      ]
     }
   },
   "settings": {

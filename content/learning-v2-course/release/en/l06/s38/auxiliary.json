@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-38:intro1:r2": {
+          "ru": "Говорим `I rest`, без `am`.",
+          "uk": "Кажемо `I rest`, без `am`."
+        },
+        "en:lesson-06:session-38:intro1:r3": {
+          "ru": "После `I` — `rest`, без `s`.",
+          "uk": "Після `I` — `rest`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-38:intro2:r2": {
+          "ru": "После `she` — `rests`.",
+          "uk": "Після `she` — `rests`."
+        },
+        "en:lesson-06:session-38:intro2:r3": {
+          "ru": "Нужно `She rests`, без `is`.",
+          "uk": "Потрібно `She rests`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-38:intro3:r2": {
+          "ru": "О владельце спрашиваем `Whose`.",
+          "uk": "Про власника запитуємо `Whose`."
+        },
+        "en:lesson-06:session-38:intro3:r3": {
+          "ru": "Один ноутбук: `is this`.",
+          "uk": "Один ноутбук: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5fe5e901dc6bbe7020c39b73f21a1dfbde5566a0c50aa94a08c7ffbe9e2ffd35"
+}

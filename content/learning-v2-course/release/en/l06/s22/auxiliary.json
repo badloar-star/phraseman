@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-22:intro1:r2": {
+          "ru": "После `she` — `reads`, с `s`.",
+          "uk": "Після `she` — `reads`, з `s`."
+        },
+        "en:lesson-06:session-22:intro1:r3": {
+          "ru": "Говорим `She reads`, без `is`.",
+          "uk": "Кажемо `She reads`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-22:intro2:r2": {
+          "ru": "После `he` — `laughs`, с `s`.",
+          "uk": "Після `he` — `laughs`, з `s`."
+        },
+        "en:lesson-06:session-22:intro2:r3": {
+          "ru": "Говорим `He laughs`, без `is`.",
+          "uk": "Кажемо `He laughs`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-22:intro3:r2": {
+          "ru": "Один список: `is`.",
+          "uk": "Один список: `is`."
+        },
+        "en:lesson-06:session-22:intro3:r3": {
+          "ru": "`empty` — пустой; полный, без пропусков — `complete`.",
+          "uk": "`empty` — порожній; повний, без пропусків — `complete`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c427158da1a1fae6e2b726de6b8a1cf51c32ff23d2123b15b5dd890865cd2d65"
+}

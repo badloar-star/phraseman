@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать, кто читает и смеётся, и уточнить полноту списка",
+    "uk": "розповісти, хто читає й сміється, та уточнити повноту списку"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Читать",
+        "uk": "Читати"
+      },
+      "bodyByLocale": {
+        "ru": "`read` — «читать». `I read at home` — «Я читаю дома». В этих фразах `read` произносится /riːd/. `She reads at home` — «Она читает дома»: после `she` добавляем `s`. Смотреть на обложку — ещё не `read`, даже если книга очень умная.",
+        "uk": "`read` — «читати». `I read at home` — «Я читаю вдома». У цих фразах `read` вимовляється /riːd/. `She reads at home` — «Вона читає вдома»: після `she` додаємо `s`. Дивитися на обкладинку — ще не `read`, навіть якщо книжка дуже розумна."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она читает дома».",
+          "uk": "Скажіть «Вона читає вдома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-22:intro1:r1",
+              "text": "She reads at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro1:r2",
+              "text": "She read at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro1:r3",
+              "text": "She is reads at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-22:intro1:r1",
+              "text": "She reads at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro1:r2",
+              "text": "She read at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro1:r3",
+              "text": "She is reads at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она читает дома».",
+          "uk": "Скажіть «Вона читає вдома»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Смешная книга",
+        "uk": "Кумедна книжка"
+      },
+      "bodyByLocale": {
+        "ru": "`laugh` — «смеяться». `He laughs a lot` — «Он много смеётся». `They laugh a lot` — «Они много смеются»: после `they` окончания `s` нет. `Anna reads here` — «Анна читает здесь»: здесь `Anna` соответствует `she`.",
+        "uk": "`laugh` — «сміятися». `He laughs a lot` — «Він багато сміється». `They laugh a lot` — «Вони багато сміються»: після `they` закінчення `s` немає. `Anna reads here` — «Анна читає тут»: тут `Anna` відповідає `she`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Он много смеётся».",
+          "uk": "Скажіть «Він багато сміється»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-22:intro2:r1",
+              "text": "He laughs a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro2:r2",
+              "text": "He laugh a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro2:r3",
+              "text": "He is laughs a lot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-22:intro2:r1",
+              "text": "He laughs a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro2:r2",
+              "text": "He laugh a lot."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro2:r3",
+              "text": "He is laughs a lot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Он много смеётся».",
+          "uk": "Скажіть «Він багато сміється»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Полный список",
+        "uk": "Повний список"
+      },
+      "bodyByLocale": {
+        "ru": "`complete` — «полный», когда ничего необходимого не пропущено. `The list is complete` — «Список полный»: все нужные покупки записаны. `carrot` — «морковка», `boots` — «ботинки» или «сапоги», обувь, закрывающая щиколотку или выше. `The carrot is in the bag` — «Морковка в сумке». `These boots are mine` — «Эти ботинки мои».",
+        "uk": "`complete` — «повний», коли нічого необхідного не пропущено. `The list is complete` — «Список повний»: усі потрібні покупки записані. `carrot` — «морквина», `boots` — «черевики» або «чоботи», взуття, що закриває щиколотку чи вище. `The carrot is in the bag` — «Морквина в сумці». `These boots are mine` — «Ці черевики мої»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Список полный».",
+          "uk": "Скажіть «Список повний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-22:intro3:r1",
+              "text": "The list is complete."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro3:r2",
+              "text": "The list are complete."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro3:r3",
+              "text": "The list is empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-22:intro3:r1",
+              "text": "The list is complete."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro3:r2",
+              "text": "The list are complete."
+            },
+            {
+              "responseId": "en:lesson-06:session-22:intro3:r3",
+              "text": "The list is empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Список полный».",
+          "uk": "Скажіть «Список повний»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fe46688773947bb4768d6f10880d37fc1b1e7cd0eb6c7606b232a3e191dc6ffd"
+}

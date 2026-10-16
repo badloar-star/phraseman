@@ -91369,6 +91369,309 @@
           "byteSize": 34944
         }
       ]
+    },
+    "l06/s22/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She reads at home.",
+          "file": "e33c3c38405b52d862263ed1199b2f228e1ef3203d3800ca607bfb97a5deeab7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e33c3c38405b52d862263ed1199b2f228e1ef3203d3800ca607bfb97a5deeab7.mp3",
+          "contentHash": "bdefb0c85cfbd19731894a39019aff7ae44eb800e1dcb9c048c44349ae5fda65",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s22/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He laughs a lot.",
+          "file": "8aa0501f5344b2932cc58312c859bcfd6c213ae075f8cd6d73188c93281d5293.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8aa0501f5344b2932cc58312c859bcfd6c213ae075f8cd6d73188c93281d5293.mp3",
+          "contentHash": "1dbd799bb8eea3230d7c7ef3f75c02b9e5b70975abb06c3c9d0ab0582d0a9b2a",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s22/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The list is complete.",
+          "file": "9d10227c551bce783267f1c83338379acc386f653a2e2115933035fa5c56eb44.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9d10227c551bce783267f1c83338379acc386f653a2e2115933035fa5c56eb44.mp3",
+          "contentHash": "d161fbb4058580ba6af585b19029fef15e558d452a1f0fbd02144cf08dfad913",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s22/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I read at home.",
+          "file": "1e929dbe5011d85e250e1d19c5a24cad7dc80ccb50569e731b01120778eba3b8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1e929dbe5011d85e250e1d19c5a24cad7dc80ccb50569e731b01120778eba3b8.mp3",
+          "contentHash": "f0e6156aed0f1ba7015c949cc6a64448e46e0095aff7c78fc43f6421ce8e0ca2",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l06/s22/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "read",
+          "file": "5bb2dc3fa0e72cbce407fe2fac47adca349eb4d33779f0f37d78a6c4d7d06dbc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5bb2dc3fa0e72cbce407fe2fac47adca349eb4d33779f0f37d78a6c4d7d06dbc.mp3",
+          "contentHash": "50f029914fdaac8abd80e7ae57dc9c4ca331a31e03c1c0619d55f3f62ff3a932",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l06/s22/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She reads at home.",
+          "file": "350638e6a7df6e54f1130f4912e535d23b71d3a5fb5c07f05035b9ac087eb78a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/350638e6a7df6e54f1130f4912e535d23b71d3a5fb5c07f05035b9ac087eb78a.mp3",
+          "contentHash": "d3d018a0930be7e307b5205dc480faf38ce2490b7e865f869399e7e7258d4bbe",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s22/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "read",
+          "file": "efafc0178f7f3a73366419a0fd41a4592636772eb1e77356dee4c4f721b912fe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/efafc0178f7f3a73366419a0fd41a4592636772eb1e77356dee4c4f721b912fe.mp3",
+          "contentHash": "12c233d7c6b7983ac053898f5cd48a3901307faa5a175cd470f4b97fd3789e3c",
+          "byteSize": 24576
+        },
+        {
+          "text": "complete",
+          "file": "20b613afec976ce453f6e800cac8f7d5125e3774b2ae242cc8f40acebb70d19f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/20b613afec976ce453f6e800cac8f7d5125e3774b2ae242cc8f40acebb70d19f.mp3",
+          "contentHash": "36eb54557c39c42a616ab34238244b7054cd6c2c43dc8e79a7a0b5c4ddecaf16",
+          "byteSize": 40320
+        },
+        {
+          "text": "carrot",
+          "file": "5e19d051f3aa33c27ab7b723ae8a61bc0507d2e820e73b6ccdb6e1b40815aea2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5e19d051f3aa33c27ab7b723ae8a61bc0507d2e820e73b6ccdb6e1b40815aea2.mp3",
+          "contentHash": "273d896baf4936b17e56377508d9832d842d33bc07572f0cf8bdd38c1a2abf44",
+          "byteSize": 16512
+        },
+        {
+          "text": "boots",
+          "file": "adb2b3dcf86a7f0000c6e7ef75c6635d4a894fa8fa5d19b89fc1576f56c59d3f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/adb2b3dcf86a7f0000c6e7ef75c6635d4a894fa8fa5d19b89fc1576f56c59d3f.mp3",
+          "contentHash": "0093c19493a17e5ab9f81b2976a954da856d6657892edf67111ec0cdaff20941",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l06/s22/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Anna reads here.",
+          "file": "2c4f8e638e88389ce31873393f4b07188cf31683ac2c34b7acbb3f438fb6f299.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2c4f8e638e88389ce31873393f4b07188cf31683ac2c34b7acbb3f438fb6f299.mp3",
+          "contentHash": "62fc76213122c9ad270da8954fa3793dcffd4b8bf8bbc8d23a11ae5acac7bc5f",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l06/s22/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He laughs a lot.",
+          "file": "7b3883b82e10fe8c4eff03d86ec3f67af96e742166b7606f0afe4ea6e83a6cb9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b3883b82e10fe8c4eff03d86ec3f67af96e742166b7606f0afe4ea6e83a6cb9.mp3",
+          "contentHash": "e073b6cfefb045185bb1eb103d725b4382183cf9b08564d9c1a9946c7dfa8f25",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l06/s22/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The list is complete.",
+          "file": "d6a0f61f93eb890ad2bf82425a227fbaa88da93b036151d80508e355aee415a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d6a0f61f93eb890ad2bf82425a227fbaa88da93b036151d80508e355aee415a6.mp3",
+          "contentHash": "abcfcc4794467bee01d1feabd4c85dd87d7ace7771ab74c89b82b98343b478c1",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s22/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They read here.",
+          "file": "009e69fddc253e9f5d074b9077cc3f1eb20aab9041bc22d1bb78ec1bb2f5cdc5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/009e69fddc253e9f5d074b9077cc3f1eb20aab9041bc22d1bb78ec1bb2f5cdc5.mp3",
+          "contentHash": "11785e3ad63d8683ec1247159432f2bcc42505332c1ec069989e6cc3f213e7f0",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l06/s22/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "These boots are mine.",
+          "file": "e38526af4425013b68ddb41d1c174fcffa141b2752ab5bacb4a0a60924889eec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e38526af4425013b68ddb41d1c174fcffa141b2752ab5bacb4a0a60924889eec.mp3",
+          "contentHash": "1f6a521dda1e4efe8f11d5bbe5c0639a0dee0ef0b9dcea81776931f7439aebb6",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s22/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "read",
+          "file": "9b7d6e37a21c36dd544026c5e698a87b92eae39f93057ba8832183f6c2dbd873.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9b7d6e37a21c36dd544026c5e698a87b92eae39f93057ba8832183f6c2dbd873.mp3",
+          "contentHash": "020d2490e7e6689385f161ae40b384b6106d8360c1bc3e65bef22761a46f3cbc",
+          "byteSize": 16512
+        },
+        {
+          "text": "laugh",
+          "file": "ef58e8f8f0be31bf2c1634952abb6185a2f3584b4e2eeafe0354f80dca8f6be9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef58e8f8f0be31bf2c1634952abb6185a2f3584b4e2eeafe0354f80dca8f6be9.mp3",
+          "contentHash": "c8624460d4659ad0d1a8f34e9c88087ab0aa773e951f774caceff18951816b60",
+          "byteSize": 21888
+        },
+        {
+          "text": "boots",
+          "file": "9c41be4857d36b4d0bd8d96eeff36024885ae33dfbc42b60f1897a354f6faa52.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9c41be4857d36b4d0bd8d96eeff36024885ae33dfbc42b60f1897a354f6faa52.mp3",
+          "contentHash": "af43b90f1e4bb2778db4a5dba7862b7aaf7d8ec948f53f6989eb99e2a66aee76",
+          "byteSize": 20352
+        },
+        {
+          "text": "complete",
+          "file": "079b1d3f297c7e2d45994d39c90ae4421db7282cd109e63f247ee5a2e876d2bc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/079b1d3f297c7e2d45994d39c90ae4421db7282cd109e63f247ee5a2e876d2bc.mp3",
+          "contentHash": "367956c413551cd254b52a84bcb5f83244560bb67b221a1eec92e9e0487d88c1",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l06/s22/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The carrot is in the bag.",
+          "file": "0710c4a4ba92cc619144193d4eea7c0cb6769975ea2cbe90012c5c933f764b86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0710c4a4ba92cc619144193d4eea7c0cb6769975ea2cbe90012c5c933f764b86.mp3",
+          "contentHash": "08cfa9b3f7300661368834dd64bdfbc38808a6262644878c924f5842b27f6cea",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l06/s22/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose boots are these?",
+          "file": "9108c2936df9ec2eca5a568c341c78fa1d29edb68a6cb7bdec6488e9fa1ab504.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9108c2936df9ec2eca5a568c341c78fa1d29edb68a6cb7bdec6488e9fa1ab504.mp3",
+          "contentHash": "52e392bafb6c013de822fdc656446d9e9b10cff8e1afe1787aea54087a90fcf4",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l06/s22/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They laugh a lot.",
+          "file": "7e4a19230c52b73c964b548a7a05a96522cb72a34970b13b094782a99e5a1339.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e4a19230c52b73c964b548a7a05a96522cb72a34970b13b094782a99e5a1339.mp3",
+          "contentHash": "22ccc5ebbaf497a40d8dc2f227b82b7c50ae446d7b6b5a6fd3845ed8b35f23e8",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s22/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom laughs a lot.",
+          "file": "f1ea9e092991203c49fa70e09db746b8d36436eca4ff71d96a70186534e9246a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f1ea9e092991203c49fa70e09db746b8d36436eca4ff71d96a70186534e9246a.mp3",
+          "contentHash": "443c97c2eb77db563f283302a387a1217e4cbe40ecbdef21e9dc5a7710e81833",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s22/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The carrot is fresh.",
+          "file": "eed48354f4668166b22918d16d7c7763e05147a7ab037a670e22e67ada82e1d3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eed48354f4668166b22918d16d7c7763e05147a7ab037a670e22e67ada82e1d3.mp3",
+          "contentHash": "bfca643fd780bb41459802747788bea226beaccf3d53a61af4a8a1e1c1d60999",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l06/s22/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "read",
+          "file": "5bb2dc3fa0e72cbce407fe2fac47adca349eb4d33779f0f37d78a6c4d7d06dbc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5bb2dc3fa0e72cbce407fe2fac47adca349eb4d33779f0f37d78a6c4d7d06dbc.mp3",
+          "contentHash": "50f029914fdaac8abd80e7ae57dc9c4ca331a31e03c1c0619d55f3f62ff3a932",
+          "byteSize": 14976
+        },
+        {
+          "text": "carrot",
+          "file": "f690da55b6a2dec1b8322186aaedeb04a0d4e290bcee8efc28dbcbdd00ef8b7a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f690da55b6a2dec1b8322186aaedeb04a0d4e290bcee8efc28dbcbdd00ef8b7a.mp3",
+          "contentHash": "37ffaba20be49890948d323faca4f6520683e8d6493646caf74bae3af3411b18",
+          "byteSize": 21120
+        },
+        {
+          "text": "complete",
+          "file": "11c9b67393c8520addc1efcaffe9fe0f6ab54ece4637370589be1ebcd23b640e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11c9b67393c8520addc1efcaffe9fe0f6ab54ece4637370589be1ebcd23b640e.mp3",
+          "contentHash": "99454fdb07816a6f5fb6ceb9d9909a732f6f618a7580eab0acd3f1f39efd53e8",
+          "byteSize": 24192
+        },
+        {
+          "text": "laugh",
+          "file": "46937365aaf37c0110bceab3773d14c43a6d3763b6ab444153aa75ff5738b047.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46937365aaf37c0110bceab3773d14c43a6d3763b6ab444153aa75ff5738b047.mp3",
+          "contentHash": "00cc64a91685d48a428e9ac2f8d8489027f6292232265f4a3654550e64af8d7f",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l06/s22/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She reads at home.",
+          "file": "1b331f53178c0adec21ea272f4dc3e787658fc53b54856dd2600a7bc488b0110.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1b331f53178c0adec21ea272f4dc3e787658fc53b54856dd2600a7bc488b0110.mp3",
+          "contentHash": "21cc1c571ce6c2d4ed8f0f4ea9f1f4382e7cd90cd71854ee1159550d63c08ce1",
+          "byteSize": 34944
+        }
+      ]
     }
   },
   "settings": {

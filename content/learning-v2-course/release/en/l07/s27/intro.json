@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "спрашивать о месте привычного действия с where и о времени с when",
+    "uk": "запитувати про місце звичної дії з where і про час з when"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ночлег в поездках",
+        "uk": "Ночівля в поїздках"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомый часто ездит в один город. Вы спрашиваете, где он обычно останавливается на время поездки. `stay` здесь — «останавливаться, временно проживать». `Where do you stay?` — «Где ты останавливаешься?» После `where` идут `do you stay`. Чемодан сам гостиницу не выберет.",
+        "uk": "Знайомий часто їздить до одного міста. Ви запитуєте, де він зазвичай зупиняється на час поїздки. `stay` тут — «зупинятися, тимчасово проживати». `Where do you stay?` — «Де ти зупиняєшся?» Після `where` ідуть `do you stay`. Валіза сама готель не вибере."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о привычном месте проживания в поездках: «Где ты останавливаешься?»",
+          "uk": "Запитайте про звичне місце проживання в поїздках: «Де ти зупиняєшся?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-27:intro1:r1",
+              "text": "Where do you stay?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro1:r2",
+              "text": "Where does you stay?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro1:r3",
+              "text": "Where you stay?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-27:intro1:r1",
+              "text": "Where do you stay?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro1:r2",
+              "text": "Where does you stay?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro1:r3",
+              "text": "Where you stay?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о привычном месте проживания в поездках: «Где ты останавливаешься?»",
+          "uk": "Запитайте про звичне місце проживання в поїздках: «Де ти зупиняєшся?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Место тренировок",
+        "uk": "Місце тренувань"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассказывает, что регулярно тренируется. `Where do you exercise?` — «Где ты тренируешься?» `Where` спрашивает о месте его обычных тренировок. После `do you` ставим `exercise`, без `s`.",
+        "uk": "Друг розповідає, що регулярно тренується. `Where do you exercise?` — «Де ти тренуєшся?» `Where` запитує про місце його звичних тренувань. Після `do you` ставимо `exercise`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Узнайте место тренировок друга.",
+          "uk": "Дізнайтеся місце тренувань друга."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-27:intro2:r1",
+              "text": "Where do you exercise?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro2:r2",
+              "text": "Where does you exercise?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro2:r3",
+              "text": "Where do you exercises?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-27:intro2:r1",
+              "text": "Where do you exercise?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro2:r2",
+              "text": "Where does you exercise?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro2:r3",
+              "text": "Where do you exercises?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте место тренировок друга.",
+          "uk": "Дізнайтеся місце тренувань друга."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Начало смены",
+        "uk": "Початок зміни"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете рабочее расписание коллеги. `When does she start?` — «Когда она начинает?» В этом разговоре имеется в виду начало её работы. `When` спрашивает о времени; с `she` используем `does`, затем `start`, без `s`.",
+        "uk": "Ви обговорюєте робочий розклад колеги. `When does she start?` — «Коли вона починає?» У цій розмові мається на увазі початок її роботи. `When` запитує про час; з `she` використовуємо `does`, потім `start`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите о начале её работы: «Когда она начинает?»",
+          "uk": "Запитайте про початок її роботи: «Коли вона починає?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-27:intro3:r1",
+              "text": "When does she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro3:r2",
+              "text": "When do she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro3:r3",
+              "text": "When does she starts?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-27:intro3:r1",
+              "text": "When does she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro3:r2",
+              "text": "When do she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-27:intro3:r3",
+              "text": "When does she starts?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о начале её работы: «Когда она начинает?»",
+          "uk": "Запитайте про початок її роботи: «Коли вона починає?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7b4a6131d429d1488e7e3fc3e97f24fa63562cc171c536d909037d2d56348888"
+}

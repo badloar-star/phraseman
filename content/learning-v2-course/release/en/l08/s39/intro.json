@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "попросить человека не толкаться и повторить другие просьбы с don’t",
+    "uk": "попросити людину не штовхатися й повторити інші прохання з don’t"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Очередь у входа",
+        "uk": "Черга біля входу"
+      },
+      "bodyByLocale": {
+        "ru": "Друг пытается протиснуться вперёд в очереди и толкает стоящих рядом людей. `Shove` — «грубо толкать». `Don’t shove` — «Не толкайся». После `don’t` нужно `shove`, без `to` и окончаний. Так вы просите прекратить толкаться. Очередь от толчков короче не станет.",
+        "uk": "Друг намагається протиснутися вперед у черзі й штовхає людей поруч. `Shove` — «грубо штовхати». `Don’t shove` — «Не штовхайся». Після `don’t` потрібне `shove`, без `to` і закінчень. Так ви просите припинити штовхатися. Черга від поштовхів коротшою не стане."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Попросите друга: «Не толкайся».",
+          "uk": "Попросіть друга: «Не штовхайся»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-39:intro1:r1",
+              "text": "Don’t shove."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro1:r2",
+              "text": "Don’t shoves."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro1:r3",
+              "text": "Don’t to shove."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-39:intro1:r1",
+              "text": "Don’t shove."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro1:r2",
+              "text": "Don’t shoves."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro1:r3",
+              "text": "Don’t to shove."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга: «Не толкайся».",
+          "uk": "Попросіть друга: «Не штовхайся»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Форма горячая",
+        "uk": "Форма гаряча"
+      },
+      "bodyByLocale": {
+        "ru": "Вы достали из духовки форму для выпечки. Друг хочет взять её голыми руками. Покажите на форму: `Don’t touch this` — «Не трогай это». `This` указывает на то, что вы показываете.",
+        "uk": "Ви дістали з духовки форму для випікання. Друг хоче взяти її голими руками. Покажіть на форму: `Don’t touch this` — «Не чіпай це». `This` указує на те, що ви показуєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Покажите на форму и скажите «Не трогай это».",
+          "uk": "Покажіть на форму і скажіть «Не чіпай це»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-39:intro2:r1",
+              "text": "Don’t touch this."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro2:r2",
+              "text": "Don’t touches this."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro2:r3",
+              "text": "Not touch this."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-39:intro2:r1",
+              "text": "Don’t touch this."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro2:r2",
+              "text": "Don’t touches this."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro2:r3",
+              "text": "Not touch this."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите на форму и скажите «Не трогай это».",
+          "uk": "Покажіть на форму і скажіть «Не чіпай це»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Собираем полку",
+        "uk": "Складаємо полицю"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираете полку. Друг торопится и пропускает шаги в инструкции. Попросите его не спешить: `Please don’t rush` — «Пожалуйста, не торопись». `Please` смягчает просьбу.",
+        "uk": "Ви складаєте полицю. Друг поспішає й пропускає кроки в інструкції. Попросіть його не поспішати: `Please don’t rush` — «Будь ласка, не поспішай». `Please` пом’якшує прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Попросите друга вежливо не торопиться.",
+          "uk": "Ввічливо попросіть друга не поспішати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-39:intro3:r1",
+              "text": "Please don’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro3:r2",
+              "text": "Please doesn’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro3:r3",
+              "text": "Please don’t to rush."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-39:intro3:r1",
+              "text": "Please don’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro3:r2",
+              "text": "Please doesn’t rush."
+            },
+            {
+              "responseId": "en:lesson-08:session-39:intro3:r3",
+              "text": "Please don’t to rush."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга вежливо не торопиться.",
+          "uk": "Ввічливо попросіть друга не поспішати."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "69a4564afa846f6c03ad8fcae8fe95dc946f3283ae0887af751029ffe1c0f537"
+}

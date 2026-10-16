@@ -82885,6 +82885,309 @@
           "byteSize": 34560
         }
       ]
+    },
+    "l05/s50/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose scooter is this?",
+          "file": "340496f05cd589c7d372c8a95ab3243bda3e3af70607f85691913bda6b42c33a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/340496f05cd589c7d372c8a95ab3243bda3e3af70607f85691913bda6b42c33a.mp3",
+          "contentHash": "d6d51ea05f0057378e534cd4430fad7e3274600d3bdb63111284adef876d1862",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l05/s50/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The playground is near the river.",
+          "file": "9ae0f6bdcd2bdb958318ee19a0dccf521c7a2a36a55a0eceaaf9958f41d97d47.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ae0f6bdcd2bdb958318ee19a0dccf521c7a2a36a55a0eceaaf9958f41d97d47.mp3",
+          "contentHash": "18a662b0581b4a7e826e8f4ff03b36530935346597a9badb343508d462769edd",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s50/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The scooter is ours.",
+          "file": "2fdfa1cd6c847fabb24089acc9132974f661fa97c78d24fdf7086378a1abefa9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2fdfa1cd6c847fabb24089acc9132974f661fa97c78d24fdf7086378a1abefa9.mp3",
+          "contentHash": "cae4e9ac375b1ce04cf5556dbf5b2280dfa01ef25b1bb4e6a809bf2099ca2c79",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s50/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This scooter is expensive.",
+          "file": "5720e356df776fe5323f448d18216e5a4faf2514a5b5bf7dec7ca53e2f9b0eaf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5720e356df776fe5323f448d18216e5a4faf2514a5b5bf7dec7ca53e2f9b0eaf.mp3",
+          "contentHash": "768ca83f33e4808343cc3fcb458b67c278b7cbc502e391371606af4545115879",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s50/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "playground",
+          "file": "876def5b2d34b4444f9ce368ecfd165cda408cf825148c1c78db087c9789078c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/876def5b2d34b4444f9ce368ecfd165cda408cf825148c1c78db087c9789078c.mp3",
+          "contentHash": "803d573fcf35c23a9baae2a189469ac5a225e6a74403b5a282d82c89d78a2857",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s50/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose scooter is this?",
+          "file": "7a062bbbf93104e4dab6d939f01bf4b160bc0f05964a329898d1da6ee1b60889.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7a062bbbf93104e4dab6d939f01bf4b160bc0f05964a329898d1da6ee1b60889.mp3",
+          "contentHash": "1a8cdd3be65986ccc413ada2b8dd90becb1a410192188acb9518c8abaabdda26",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s50/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "playground",
+          "file": "7d32ec68421b410914d333990bac59c30b13d0ac7498e505d54a90a12fc003a9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d32ec68421b410914d333990bac59c30b13d0ac7498e505d54a90a12fc003a9.mp3",
+          "contentHash": "de3898bdfdefa706e503ff047ab0225e83c31931e532c56b2ab24b42300e8f9d",
+          "byteSize": 27648
+        },
+        {
+          "text": "scooter",
+          "file": "9a4b31e6d410064a7d80223821c7ee2b8a5ab354663a74d6e34675842d7b4f33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a4b31e6d410064a7d80223821c7ee2b8a5ab354663a74d6e34675842d7b4f33.mp3",
+          "contentHash": "8e5825cfaa70472657a8952b719e2645bad90654cc3a5524973cfe3f5d3af8f1",
+          "byteSize": 29952
+        },
+        {
+          "text": "cinema",
+          "file": "b104359e98bda543e4ccae3b5bdeef3ece7027cd25484ddbbd756d7698f33cca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b104359e98bda543e4ccae3b5bdeef3ece7027cd25484ddbbd756d7698f33cca.mp3",
+          "contentHash": "8348377857dccf823d2daf66707412d270216cf791017279590589c70b7409e6",
+          "byteSize": 24192
+        },
+        {
+          "text": "river",
+          "file": "e1ee5453d2a560c9aa7844fef6b58f0f63b57631562e66d2980a9b12c6b97eca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1ee5453d2a560c9aa7844fef6b58f0f63b57631562e66d2980a9b12c6b97eca.mp3",
+          "contentHash": "181f8a770f1b09b7635900685b055f963f28bcd1aef2a795a0269758d3978a9f",
+          "byteSize": 14208
+        }
+      ]
+    },
+    "l05/s50/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The playground is near the river.",
+          "file": "001ec6c652e7dc2e7aedde2754c944ad68086ddc7e79c4476157436cfa4fe936.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/001ec6c652e7dc2e7aedde2754c944ad68086ddc7e79c4476157436cfa4fe936.mp3",
+          "contentHash": "195785a1f5a555f272251e2dce81c0b12983be531a0fd53dcca2983823967fc7",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s50/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the cinema?",
+          "file": "7d34206e1be8fdc662b4ff8c5404e8960ff0844b62c436c99ba10324d1260a23.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d34206e1be8fdc662b4ff8c5404e8960ff0844b62c436c99ba10324d1260a23.mp3",
+          "contentHash": "4ce4a8fb114a64bfb649f7dd3e85ebd6e34118aebfb80e0416193ca908d1a941",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s50/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The scooter is hers.",
+          "file": "233afe4d275a6573d878e158f0dfc32447d2ca3b422d7bba9278ca80188873c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/233afe4d275a6573d878e158f0dfc32447d2ca3b422d7bba9278ca80188873c0.mp3",
+          "contentHash": "0fd6fe887e0092074e3df469c316a32073cad27e420ba4d5d47b314259536a2a",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s50/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The scooter is ours.",
+          "file": "83ba3cfdb0c449f38b2495b439b5dc096f7a1269978833b89b4fe9b6e1ba107d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/83ba3cfdb0c449f38b2495b439b5dc096f7a1269978833b89b4fe9b6e1ba107d.mp3",
+          "contentHash": "eb3776081be8a6860a5713b6fc2b575337a25eed37f2726e9da66698ac5df3e1",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s50/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's scooter.",
+          "file": "b3de752bc3f23e556f9a95518190de07236b433135bc889266c95225ca28892f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3de752bc3f23e556f9a95518190de07236b433135bc889266c95225ca28892f.mp3",
+          "contentHash": "92a268c7997c887e73a1d1351b17c1e4d8c3f28876f9bf115dabb54fa8f91999",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s50/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "playground",
+          "file": "7d32ec68421b410914d333990bac59c30b13d0ac7498e505d54a90a12fc003a9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d32ec68421b410914d333990bac59c30b13d0ac7498e505d54a90a12fc003a9.mp3",
+          "contentHash": "de3898bdfdefa706e503ff047ab0225e83c31931e532c56b2ab24b42300e8f9d",
+          "byteSize": 27648
+        },
+        {
+          "text": "expensive",
+          "file": "5ed9f276dd1f72f050de348831688803645ab0a66659903d0fd00c6d4cec357f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f3cca575ff7e90bd5ef386b9-onyx.mp3",
+          "contentHash": "3629c26a8c2f3f0c778b330491a1d36f5c37e2b6180ffa1a0bfc4b027a3cc8fe",
+          "byteSize": 29952
+        },
+        {
+          "text": "river",
+          "file": "e1ee5453d2a560c9aa7844fef6b58f0f63b57631562e66d2980a9b12c6b97eca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1ee5453d2a560c9aa7844fef6b58f0f63b57631562e66d2980a9b12c6b97eca.mp3",
+          "contentHash": "181f8a770f1b09b7635900685b055f963f28bcd1aef2a795a0269758d3978a9f",
+          "byteSize": 14208
+        },
+        {
+          "text": "scooter",
+          "file": "9a4b31e6d410064a7d80223821c7ee2b8a5ab354663a74d6e34675842d7b4f33.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a4b31e6d410064a7d80223821c7ee2b8a5ab354663a74d6e34675842d7b4f33.mp3",
+          "contentHash": "8e5825cfaa70472657a8952b719e2645bad90654cc3a5524973cfe3f5d3af8f1",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s50/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The scooter is next to the playground.",
+          "file": "540ef99ebe9b1c4d6a78fbcb14579184b9e1cf99b2e867c48ca6c12539c3f6d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/540ef99ebe9b1c4d6a78fbcb14579184b9e1cf99b2e867c48ca6c12539c3f6d2.mp3",
+          "contentHash": "0f14601e9944fa2ff943a774efdcf611a220bed5b64499bbb92b2d51afd3f4af",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l05/s50/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the river?",
+          "file": "41a478dd536cb85328cd5e3cf3545c6218e0b030ed3c7f6753525417c9a36f86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/41a478dd536cb85328cd5e3cf3545c6218e0b030ed3c7f6753525417c9a36f86.mp3",
+          "contentHash": "87665cc3625ba2b671604875b8876cce43f40856e4cf9790a611f2d0e468d079",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s50/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Your scooter is here.",
+          "file": "2ddadc786e03dfd3b63d3edc239b0f46ba99682addde24032ac0c793e72fa72d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ddadc786e03dfd3b63d3edc239b0f46ba99682addde24032ac0c793e72fa72d.mp3",
+          "contentHash": "bd85241db3ba6ea30380cb771c9c4a6ca9a32816d55d502be95726ffd373e4bd",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s50/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is the cinema?",
+          "file": "b13b20c5c2aeeeb3c4984c336a14a66f5e1ec839fe9d983a01cd9f49ab53861c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b13b20c5c2aeeeb3c4984c336a14a66f5e1ec839fe9d983a01cd9f49ab53861c.mp3",
+          "contentHash": "6d0e857894c58a4e01f204814da9ed9c634da7c0626cdbbf06b561cd3478972e",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s50/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The scooter is mine.",
+          "file": "f4031ba6606f45d67795b7998fee0beb773a9363bdcf53af179a578419eed3bd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f4031ba6606f45d67795b7998fee0beb773a9363bdcf53af179a578419eed3bd.mp3",
+          "contentHash": "5d18fa807bf0200ed43548bb905e737da7ff56eeb6a95d5c6b5f7cf3b65952cf",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s50/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "playground",
+          "file": "9981a1f331814934fcb15b3279799eb1204f6ee562e8524e5bffa7e40cc35fd1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9981a1f331814934fcb15b3279799eb1204f6ee562e8524e5bffa7e40cc35fd1.mp3",
+          "contentHash": "62b9f2fff5cd62323bf50e5cde71d30820f843e96ac64b4cd0735d00015dc069",
+          "byteSize": 6912
+        },
+        {
+          "text": "expensive",
+          "file": "39910f655d3e7a630f486dbb65bf4a4d168fe6c6b3535698e36699376635f035.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f3cca575ff7e90bd5ef386b9-nova.mp3",
+          "contentHash": "7501517c0325865abc672bae37ccd451e7f35b17658f8b007bb33f9fe7cdbb44",
+          "byteSize": 18816
+        },
+        {
+          "text": "cinema",
+          "file": "5d487c8a64d265c7f4d523f6490728c93265f9df8c12807042dec8ac3b46e767.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d487c8a64d265c7f4d523f6490728c93265f9df8c12807042dec8ac3b46e767.mp3",
+          "contentHash": "d020dc4a2c7bd6b4755a1b8bc9a2d624e55e0dfccd97e3dbde1445943ff47573",
+          "byteSize": 17280
+        },
+        {
+          "text": "scooter",
+          "file": "f72ee2c4f6d7ae3684935ee56eb995f1d2e077c014694598103d4a71781b2f4d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f72ee2c4f6d7ae3684935ee56eb995f1d2e077c014694598103d4a71781b2f4d.mp3",
+          "contentHash": "169dbdb566697e64b269bfe4f1a3526c4ef9429696c506331688124d9c590e68",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s50/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose scooter is this?",
+          "file": "7a062bbbf93104e4dab6d939f01bf4b160bc0f05964a329898d1da6ee1b60889.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7a062bbbf93104e4dab6d939f01bf4b160bc0f05964a329898d1da6ee1b60889.mp3",
+          "contentHash": "1a8cdd3be65986ccc413ada2b8dd90becb1a410192188acb9518c8abaabdda26",
+          "byteSize": 38784
+        }
+      ]
     }
   },
   "settings": {

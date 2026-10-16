@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-18:i01",
+    "correctText": "I don’t gamble.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i02",
+    "correctText": "gamble",
+    "correctResponseId": "en:lesson-07:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i03",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-07:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i04",
+    "correctText": "en:lesson-07:session-18:i04:p1=gamble\nen:lesson-07:session-18:i04:p2=smile\nen:lesson-07:session-18:i04:p3=gloves\nen:lesson-07:session-18:i04:p4=boxes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i05",
+    "correctText": "I don’t gamble.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i06",
+    "correctText": "The machine doesn’t work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i07",
+    "correctText": "There are no gloves here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i08",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i09",
+    "correctText": "I don’t gamble.",
+    "correctResponseId": "en:lesson-07:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i10",
+    "correctText": "en:lesson-07:session-18:i10:p1=machine\nen:lesson-07:session-18:i10:p2=gamble\nen:lesson-07:session-18:i10:p3=boxes\nen:lesson-07:session-18:i10:p4=smile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i11",
+    "correctText": "The machine doesn’t work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i12",
+    "correctText": "Do you have gloves?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i13",
+    "correctText": "The boxes are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-07:session-18:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i15",
+    "correctText": "There are no gloves here.",
+    "correctResponseId": "en:lesson-07:session-18:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i16",
+    "correctText": "en:lesson-07:session-18:i16:p1=gloves\nen:lesson-07:session-18:i16:p2=machine\nen:lesson-07:session-18:i16:p3=gamble\nen:lesson-07:session-18:i16:p4=boxes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-18:i17",
+    "correctText": "Tom doesn’t gamble.",
+    "correctResponseId": null
+  }
+]

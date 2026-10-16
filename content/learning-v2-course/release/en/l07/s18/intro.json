@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "использовать don’t и doesn’t для отрицания действий и there are no для отсутствующих вещей",
+    "uk": "використовувати don’t і doesn’t для заперечення дій та there are no для відсутніх речей"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Без ставок",
+        "uk": "Без ставок"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает сыграть на деньги. `gamble` — «играть в азартные игры». `I don’t gamble` — «Я не играю в азартные игры». После `don’t` ставим `gamble`. Вы объясняете свою привычку, а не запрещаете другу играть. Кошелёк может спокойно выдохнуть.",
+        "uk": "Друг пропонує зіграти на гроші. `gamble` — «грати в азартні ігри». `I don’t gamble` — «Я не граю в азартні ігри». Після `don’t` ставимо `gamble`. Ви пояснюєте свою звичку, а не забороняєте другові грати. Гаманець може спокійно видихнути."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Объясните другу, что вы не играете в азартные игры.",
+          "uk": "Поясніть другові, що ви не граєте в азартні ігри."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-18:intro1:r1",
+              "text": "I don’t gamble."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro1:r2",
+              "text": "I doesn’t gamble."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro1:r3",
+              "text": "I not gamble."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-18:intro1:r1",
+              "text": "I don’t gamble."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro1:r2",
+              "text": "I doesn’t gamble."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro1:r3",
+              "text": "I not gamble."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните другу, что вы не играете в азартные игры.",
+          "uk": "Поясніть другові, що ви не граєте в азартні ігри."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Устройство не работает",
+        "uk": "Пристрій не працює"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега собирается включить устройство, которое не работает. `The machine doesn’t work` — «Устройство не работает». `The machine` — одно устройство, поэтому используем `doesn’t`. После него — `work`, без `s`.",
+        "uk": "Колега збирається ввімкнути пристрій, який не працює. `The machine doesn’t work` — «Пристрій не працює». `The machine` — один пристрій, тому використовуємо `doesn’t`. Після нього — `work`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Предупредите коллегу: «Устройство не работает».",
+          "uk": "Попередьте колегу: «Пристрій не працює»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-18:intro2:r1",
+              "text": "The machine doesn’t work."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro2:r2",
+              "text": "The machine don’t work."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro2:r3",
+              "text": "The machine doesn’t works."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-18:intro2:r1",
+              "text": "The machine doesn’t work."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro2:r2",
+              "text": "The machine don’t work."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro2:r3",
+              "text": "The machine doesn’t works."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Предупредите коллегу: «Устройство не работает».",
+          "uk": "Попередьте колегу: «Пристрій не працює»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где перчатки?",
+        "uk": "Де рукавички?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверили место, где обычно лежат перчатки, но не нашли их. `There are no gloves here` — «Здесь нет перчаток». `Gloves` — множественное число, поэтому `are no`. Эта фраза сообщает об отсутствии перчаток в этом месте.",
+        "uk": "Ви перевірили місце, де зазвичай лежать рукавички, але не знайшли їх. `There are no gloves here` — «Тут немає рукавичок». `Gloves` — множина, тому `are no`. Ця фраза повідомляє про відсутність рукавичок у цьому місці."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Здесь нет перчаток».",
+          "uk": "Скажіть: «Тут немає рукавичок»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-18:intro3:r1",
+              "text": "There are no gloves here."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro3:r2",
+              "text": "There is no gloves here."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro3:r3",
+              "text": "There are gloves here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-18:intro3:r1",
+              "text": "There are no gloves here."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro3:r2",
+              "text": "There is no gloves here."
+            },
+            {
+              "responseId": "en:lesson-07:session-18:intro3:r3",
+              "text": "There are gloves here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Здесь нет перчаток».",
+          "uk": "Скажіть: «Тут немає рукавичок»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3eddf19a038780667728bcb6d7ef666b1ebb9851caacbef827ad00c02f817e3a"
+}

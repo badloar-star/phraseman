@@ -1,0 +1,987 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я работаю возле детской площадки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я работаю возле детской площадки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I work near the playground.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я работаю возле детской площадки»",
+          "uk": "Скажіть «Я працюю біля дитячого майданчика»"
+        },
+        "orderedTokens": [
+          "I",
+          "work",
+          "near",
+          "the",
+          "playground"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-07:i02:r1",
+          "text": "calendar"
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i02:r2",
+          "text": "bookmark"
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i02:r3",
+          "text": "folder"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:i02:audio",
+          "transcript": "calendar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-07:i02:r1",
+            "targetText": "calendar",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i02:r2",
+            "targetText": "bookmark",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i02:r3",
+            "targetText": "folder",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `calendar`, а в этом варианте — `bookmark`.",
+              "uk": "У записі перше слово — `calendar`, а в цьому варіанті — `bookmark`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `calendar`, а в этом варианте — `folder`.",
+              "uk": "У записі перше слово — `calendar`, а в цьому варіанті — `folder`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите календарь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-07:i03:r1",
+          "text": "calendar"
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i03:r2",
+          "text": "bookmark"
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i03:r3",
+          "text": "folder"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите календарь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите календарь",
+          "uk": "Назвіть календар"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i03:r1",
+            "text": "calendar"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i03:r2",
+            "text": "bookmark"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i03:r3",
+            "text": "folder"
+          }
+        ],
+        "testedDimension": "Назовите календарь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите календарь",
+            "feedbackByLocale": {
+              "ru": "`bookmark` — закладка; календарь — `calendar`.",
+              "uk": "`bookmark` — закладка; календар — `calendar`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите календарь",
+            "feedbackByLocale": {
+              "ru": "`folder` — папка; календарь — `calendar`.",
+              "uk": "`folder` — папка; календар — `calendar`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-07:i04:p1",
+            "target": "calendar",
+            "meaningByLocale": {
+              "ru": "календарь",
+              "uk": "календар"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-07:i04:p2",
+            "target": "necessary",
+            "meaningByLocale": {
+              "ru": "необходимый",
+              "uk": "необхідний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-07:i04:p3",
+            "target": "remote",
+            "meaningByLocale": {
+              "ru": "пульт",
+              "uk": "пульт"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-07:i04:p4",
+            "target": "playground",
+            "meaningByLocale": {
+              "ru": "детская площадка",
+              "uk": "дитячий майданчик"
+            }
+          }
+        ],
+        "leftColumn": [
+          "calendar",
+          "necessary",
+          "remote",
+          "playground"
+        ],
+        "rightColumn": [
+          "календарь",
+          "необходимый",
+          "пульт",
+          "детская площадка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:i05:audio",
+          "transcript": "This is my calendar."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is my calendar.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "my",
+          "calendar"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is my calendar.`",
+              "uk": "тут потрібно `is` — `This is my calendar.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Чей это календарь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Чей это календарь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose calendar is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чей это календарь?»",
+          "uk": "Запитайте «Чий це календар?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "calendar",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В календаре отмечены рабочие дни. Скажите «Календарь необходим»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "В календаре отмечены рабочие дни. Скажите «Календарь необходим»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:i07:audio",
+          "transcript": "The calendar is necessary."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The calendar is necessary.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Тот пульт твой»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-07:i08:r1",
+          "text": "yours"
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i08:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i08:r3",
+          "text": "you"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Тот пульт твой»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Тот пульт твой»",
+          "uk": "Скажіть «Той пульт твій»"
+        },
+        "gappedTargetPhrase": "That remote is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i08:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i08:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i08:r3",
+            "text": "you"
+          }
+        ],
+        "testedDimension": "Скажите «Тот пульт твой»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Тот пульт твой»",
+            "feedbackByLocale": {
+              "ru": "После `your` нужно название вещи; здесь оно уже названо, поэтому `yours`.",
+              "uk": "Після `your` потрібна назва речі; тут її вже названо, тому `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Тот пульт твой»",
+            "feedbackByLocale": {
+              "ru": "`you` — ты или вы; здесь «твой» без названия вещи — `yours`.",
+              "uk": "`you` — ти або ви; тут «твій» без назви речі — `yours`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где календарь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-07:i09:r1",
+          "text": "The calendar is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i09:r2",
+          "text": "The calendar is there."
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i09:r3",
+          "text": "The calendar is upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где календарь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:i09:audio",
+          "transcript": "The calendar is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-07:i09:r1",
+            "targetText": "The calendar is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i09:r2",
+            "targetText": "The calendar is there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i09:r3",
+            "targetText": "The calendar is upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где календарь",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где календарь",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-07:i10:p1",
+            "target": "calendar",
+            "meaningByLocale": {
+              "ru": "календарь",
+              "uk": "календар"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-07:i10:p2",
+            "target": "mural",
+            "meaningByLocale": {
+              "ru": "настенная роспись",
+              "uk": "настінний розпис"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-07:i10:p3",
+            "target": "remote",
+            "meaningByLocale": {
+              "ru": "пульт",
+              "uk": "пульт"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-07:i10:p4",
+            "target": "necessary",
+            "meaningByLocale": {
+              "ru": "необходимый",
+              "uk": "необхідний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "calendar",
+          "mural",
+          "remote",
+          "necessary"
+        ],
+        "rightColumn": [
+          "календарь",
+          "настенная роспись",
+          "пульт",
+          "необходимый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:i11:audio",
+          "transcript": "The mural is on the wall."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The mural is on the wall.",
+        "orderedTokens": [
+          "The",
+          "mural",
+          "is",
+          "on",
+          "the",
+          "wall"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The mural is on the wall.`",
+              "uk": "тут потрібно `is` — `The mural is on the wall.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Календарь на письменном столе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Календарь на письменном столе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The calendar is on the desk.",
+        "localizedMeaning": {
+          "ru": "Скажите «Календарь на письменном столе»",
+          "uk": "Скажіть «Календар на письмовому столі»"
+        },
+        "orderedTokens": [
+          "The",
+          "calendar",
+          "is",
+          "on",
+          "the",
+          "desk"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Календарь на письменном столе»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The calendar is on the desk.`",
+              "uk": "тут потрібно `is` — `The calendar is on the desk.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «У меня есть календарь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «У меня есть календарь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:i13:audio",
+          "transcript": "I have a calendar."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have a calendar.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я работаю здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-07:i14:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i14:r2",
+          "text": "am work"
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i14:r3",
+          "text": "is work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я работаю здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я работаю здесь»",
+          "uk": "Скажіть «Я працюю тут»"
+        },
+        "gappedTargetPhrase": "I ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i14:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i14:r2",
+            "text": "am work"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i14:r3",
+            "text": "is work"
+          }
+        ],
+        "testedDimension": "Скажите «Я работаю здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я работаю здесь»",
+            "feedbackByLocale": {
+              "ru": "Действие: `I work`, без `am`.",
+              "uk": "Дія: `I work`, без `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я работаю здесь»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно `I work`, без `is`.",
+              "uk": "Тут потрібно `I work`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей календарь синий",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-07:i15:r1",
+          "text": "My calendar is blue."
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i15:r2",
+          "text": "Your calendar is blue."
+        },
+        {
+          "responseId": "en:lesson-06:session-07:i15:r3",
+          "text": "His calendar is blue."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей календарь синий",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:i15:audio",
+          "transcript": "My calendar is blue."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-07:i15:r1",
+            "targetText": "My calendar is blue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i15:r2",
+            "targetText": "Your calendar is blue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i15:r3",
+            "targetText": "His calendar is blue.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей календарь синий",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей календарь синий",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-07:i16:p1",
+            "target": "calendar",
+            "meaningByLocale": {
+              "ru": "календарь",
+              "uk": "календар"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-07:i16:p2",
+            "target": "playground",
+            "meaningByLocale": {
+              "ru": "детская площадка",
+              "uk": "дитячий майданчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-07:i16:p3",
+            "target": "mural",
+            "meaningByLocale": {
+              "ru": "настенная роспись",
+              "uk": "настінний розпис"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-07:i16:p4",
+            "target": "necessary",
+            "meaningByLocale": {
+              "ru": "необходимый",
+              "uk": "необхідний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "calendar",
+          "playground",
+          "mural",
+          "necessary"
+        ],
+        "rightColumn": [
+          "календарь",
+          "детская площадка",
+          "настенная роспись",
+          "необходимый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна находит календарь на столе. Спросите от её лица «Чей это календарь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Анна находит календарь на столе. Спросите от её лица «Чей это календарь?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:i17:audio",
+          "transcript": "Whose calendar is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose calendar is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d80c8b124483b95998d6a582eb929f5e7223d0d3ef7fd6d40d1e999ee6e3a055"
+}

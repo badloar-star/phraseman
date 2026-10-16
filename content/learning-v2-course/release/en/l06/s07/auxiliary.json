@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-07:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-06:session-07:intro1:r3": {
+          "ru": "Один календарь: `is this`.",
+          "uk": "Один календар: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-07:intro2:r2": {
+          "ru": "Один календарь: `is`.",
+          "uk": "Один календар: `is`."
+        },
+        "en:lesson-06:session-07:intro2:r3": {
+          "ru": "`fake` — поддельный; необходимый — `necessary`.",
+          "uk": "`fake` — підроблений; необхідний — `necessary`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-07:intro3:r2": {
+          "ru": "Говорим о действии: `I work`, без `am`.",
+          "uk": "Говоримо про дію: `I work`, без `am`."
+        },
+        "en:lesson-06:session-07:intro3:r3": {
+          "ru": "`bank` — банк; детская площадка — `playground`.",
+          "uk": "`bank` — банк; дитячий майданчик — `playground`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "25fef8173eb66d98ad4b39b661dcc5fd2398601babd026d9e330c3ae6b96c3a2"
+}

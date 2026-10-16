@@ -1,12 +1,12 @@
 [
   {
     "interactionId": "en:lesson-01:session-10:i01",
-    "correctText": "early",
+    "correctText": "kind",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-10:i02",
-    "correctText": "early",
+    "correctText": "kind",
     "correctResponseId": "en:lesson-01:session-10:i02:r1"
   },
   {
@@ -50,8 +50,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-10:word:patient",
+    "correctText": "patient",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-10:i11",
-    "correctText": "en:lesson-01:session-10:i11:p1=early\nen:lesson-01:session-10:i11:p2=fast\nen:lesson-01:session-10:i11:p3=quiet\nen:lesson-01:session-10:i11:p4=late",
+    "correctText": "en:lesson-01:session-10:i11:p1=kind\nen:lesson-01:session-10:i11:p2=fast\nen:lesson-01:session-10:i11:p3=quiet\nen:lesson-01:session-10:i11:p4=patient",
     "correctResponseId": null
   },
   {
@@ -66,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-10:i14",
-    "correctText": "sorry",
+    "correctText": "patient",
     "correctResponseId": "en:lesson-01:session-10:i14:r1"
   },
   {
@@ -96,7 +101,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-10:i20",
-    "correctText": "You are fast.",
+    "correctText": "You are patient.",
     "correctResponseId": null
   }
 ]

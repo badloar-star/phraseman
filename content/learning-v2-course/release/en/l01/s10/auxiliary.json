@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-10:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-10:intro1:r2": {
-          "ru": "После `you` нужно `are`: `You are early`.",
-          "uk": "Після `you` потрібне `are`: `You are early`."
+          "ru": "После you нужно are; am используется с I.",
+          "uk": "Після you потрібне are; am вживається з I."
         },
         "en:lesson-01:session-10:intro1:r3": {
-          "ru": "`am` живёт только с `I` и никуда от него не уходит. Для `you` — `are`.",
-          "uk": "`am` живе тільки з `I` і нікуди від нього не йде. Для `you` — `are`."
+          "ru": "Вы отмечаете доброту Миры, а не свою: You are kind.",
+          "uk": "Ви відзначаєте доброту Міри, а не свою: You are kind."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-10:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-10:intro2:r2": {
-          "ru": "После `you` нужно `are`: `You are fast`.",
-          "uk": "Після `you` потрібне `are`: `You are fast`."
+          "ru": "Между you и fast нужно are.",
+          "uk": "Між you та fast потрібне are."
         },
         "en:lesson-01:session-10:intro2:r3": {
-          "ru": "`is` — не для `you`. `You are` ходят парой и не меняются.",
-          "uk": "`is` — не для `you`. `You are` ходять парою і не міняються."
+          "ru": "С you используется are, а не is.",
+          "uk": "З you вживається are, а не is."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "528567cd960c63c3f834e9a897826b9c9d6cced54251337dd4359e31fcaf4e0e"
+  "auxiliaryFingerprint": "fd645f372de7bdac3babd8c1febaa0651953afe079376fb51a06b86d481cfa08"
 }

@@ -1,0 +1,943 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я умею печатать на клавиатуре»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я умею печатать на клавиатуре»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can type.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я умею печатать на клавиатуре»",
+          "uk": "Скажіть «Я вмію друкувати на клавіатурі»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "type"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-03:i02:r1",
+          "text": "type"
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i02:r2",
+          "text": "dance"
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i02:r3",
+          "text": "juggle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:i02:audio",
+          "transcript": "type"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-03:i02:r1",
+            "targetText": "type",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i02:r2",
+            "targetText": "dance",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i02:r3",
+            "targetText": "juggle",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `type`, а в этом варианте — `dance`.",
+              "uk": "У записі перше слово — `type`, а в цьому варіанті — `dance`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `type`, а в этом варианте — `juggle`.",
+              "uk": "У записі перше слово — `type`, а в цьому варіанті — `juggle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я умею печатать на клавиатуре»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-03:i03:r1",
+          "text": "type"
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i03:r2",
+          "text": "to type"
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i03:r3",
+          "text": "types"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я умею печатать на клавиатуре»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я умею печатать на клавиатуре»",
+          "uk": "Скажіть «Я вмію друкувати на клавіатурі»"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-03:i03:r1",
+            "text": "type"
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i03:r2",
+            "text": "to type"
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i03:r3",
+            "text": "types"
+          }
+        ],
+        "testedDimension": "Скажите «Я умею печатать на клавиатуре»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я умею печатать на клавиатуре»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `type`, без `to`.",
+              "uk": "Після `can` потрібне `type`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я умею печатать на клавиатуре»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `type`, без `s`.",
+              "uk": "Після `can` потрібне `type`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-03:i04:p1",
+            "target": "type",
+            "meaningByLocale": {
+              "ru": "печатать на клавиатуре",
+              "uk": "друкувати на клавіатурі"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-03:i04:p2",
+            "target": "bank",
+            "meaningByLocale": {
+              "ru": "банк",
+              "uk": "банк"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-03:i04:p3",
+            "target": "parcel",
+            "meaningByLocale": {
+              "ru": "посылка",
+              "uk": "посилка"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-03:i04:p4",
+            "target": "poster",
+            "meaningByLocale": {
+              "ru": "плакат",
+              "uk": "плакат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "type",
+          "bank",
+          "parcel",
+          "poster"
+        ],
+        "rightColumn": [
+          "печатать на клавиатуре",
+          "банк",
+          "посылка",
+          "плакат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:i05:audio",
+          "transcript": "I can type."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can type.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "type"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о знакомой «Она умеет танцевать»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о знакомой «Она умеет танцевать»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can dance.",
+        "localizedMeaning": {
+          "ru": "Скажите о знакомой «Она умеет танцевать»",
+          "uk": "Скажіть про знайому «Вона вміє танцювати»"
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "dance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите участников встречи «Чей это плакат?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите участников встречи «Чей это плакат?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:i07:audio",
+          "transcript": "Whose poster is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose poster is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она умеет танцевать»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-03:i08:r1",
+          "text": "dance"
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i08:r2",
+          "text": "dances"
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i08:r3",
+          "text": "to dance"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она умеет танцевать»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет танцевать»",
+          "uk": "Скажіть «Вона вміє танцювати»"
+        },
+        "gappedTargetPhrase": "She can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-03:i08:r1",
+            "text": "dance"
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i08:r2",
+            "text": "dances"
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i08:r3",
+            "text": "to dance"
+          }
+        ],
+        "testedDimension": "Скажите «Она умеет танцевать»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет танцевать»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `dance`, без `s`.",
+              "uk": "Після `can` потрібне `dance`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет танцевать»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `dance`, без `to`.",
+              "uk": "Після `can` потрібне `dance`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-03:i09:r1",
+          "text": "I can type."
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i09:r2",
+          "text": "I can dance."
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i09:r3",
+          "text": "I can juggle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:i09:audio",
+          "transcript": "I can type."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-03:i09:r1",
+            "targetText": "I can type.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i09:r2",
+            "targetText": "I can dance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i09:r3",
+            "targetText": "I can juggle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `type`, а в этом варианте — `dance`.",
+              "uk": "У записі останнє слово — `type`, а в цьому варіанті — `dance`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `type`, а в этом варианте — `juggle`.",
+              "uk": "У записі останнє слово — `type`, а в цьому варіанті — `juggle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-03:i10:p1",
+            "target": "dance",
+            "meaningByLocale": {
+              "ru": "танцевать",
+              "uk": "танцювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-03:i10:p2",
+            "target": "type",
+            "meaningByLocale": {
+              "ru": "печатать на клавиатуре",
+              "uk": "друкувати на клавіатурі"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-03:i10:p3",
+            "target": "bank",
+            "meaningByLocale": {
+              "ru": "банк",
+              "uk": "банк"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-03:i10:p4",
+            "target": "parcel",
+            "meaningByLocale": {
+              "ru": "посылка",
+              "uk": "посилка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dance",
+          "type",
+          "bank",
+          "parcel"
+        ],
+        "rightColumn": [
+          "танцевать",
+          "печатать на клавиатуре",
+          "банк",
+          "посылка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:i11:audio",
+          "transcript": "Whose poster is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose poster is this?",
+        "orderedTokens": [
+          "Whose",
+          "poster",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На общем столе лежит посылка. Спросите коллег «Чья это посылка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На общем столе лежит посылка. Спросите коллег «Чья это посылка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose parcel is this?",
+        "localizedMeaning": {
+          "ru": "На общем столе лежит посылка. Спросите коллег «Чья это посылка?»",
+          "uk": "На спільному столі лежить посилка. Запитайте колег «Чия це посилка?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "parcel",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, что вы делаете дома под музыку. Скажите «Я часто танцую дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:i13:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, что вы делаете дома под музыку. Скажите «Я часто танцую дома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:i13:audio",
+          "transcript": "I often dance at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often dance at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она умеет печатать на клавиатуре»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-03:i14:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i14:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i14:r3",
+          "text": "is can"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она умеет печатать на клавиатуре»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет печатать на клавиатуре»",
+          "uk": "Скажіть «Вона вміє друкувати на клавіатурі»"
+        },
+        "gappedTargetPhrase": "She ___ type.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-03:i14:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i14:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i14:r3",
+            "text": "is can"
+          }
+        ],
+        "testedDimension": "Скажите «Она умеет печатать на клавиатуре»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-03:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет печатать на клавиатуре»",
+            "feedbackByLocale": {
+              "ru": "`Can` не меняется после `she`: окончание `s` не нужно.",
+              "uk": "`Can` не змінюється після `she`: закінчення `s` не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет печатать на клавиатуре»",
+            "feedbackByLocale": {
+              "ru": "Достаточно `she can`; `is` не нужно.",
+              "uk": "Достатньо `she can`; `is` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-03:i15:r1",
+          "text": "Where is the bank?"
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i15:r2",
+          "text": "Where is the pharmacy?"
+        },
+        {
+          "responseId": "en:lesson-08:session-03:i15:r3",
+          "text": "Where is the library?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:i15:audio",
+          "transcript": "Where is the bank?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-03:i15:r1",
+            "targetText": "Where is the bank?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i15:r2",
+            "targetText": "Where is the pharmacy?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i15:r3",
+            "targetText": "Where is the library?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-03:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bank`, а в этом варианте — `pharmacy`.",
+              "uk": "У записі останнє слово — `bank`, а в цьому варіанті — `pharmacy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-03:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bank`, а в этом варианте — `library`.",
+              "uk": "У записі останнє слово — `bank`, а в цьому варіанті — `library`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-03:i16:p1",
+            "target": "type",
+            "meaningByLocale": {
+              "ru": "печатать на клавиатуре",
+              "uk": "друкувати на клавіатурі"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-03:i16:p2",
+            "target": "poster",
+            "meaningByLocale": {
+              "ru": "плакат",
+              "uk": "плакат"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-03:i16:p3",
+            "target": "parcel",
+            "meaningByLocale": {
+              "ru": "посылка",
+              "uk": "посилка"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-03:i16:p4",
+            "target": "dance",
+            "meaningByLocale": {
+              "ru": "танцевать",
+              "uk": "танцювати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "type",
+          "poster",
+          "parcel",
+          "dance"
+        ],
+        "rightColumn": [
+          "печатать на клавиатуре",
+          "плакат",
+          "посылка",
+          "танцевать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает об умении Тома. Скажите «Том умеет печатать на клавиатуре»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает об умении Тома. Скажите «Том умеет печатать на клавиатуре»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:i17:audio",
+          "transcript": "Tom can type."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can type.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f55d7eeb02d5f64e3a7875b91784495bbb25aa0d9e3cef0ede662bee2a5a94e9"
+}

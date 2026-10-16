@@ -81976,6 +81976,309 @@
           "byteSize": 32640
         }
       ]
+    },
+    "l05/s47/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is the subway?",
+          "file": "1be6066035fa80aa6186c7787a33965406feb4e155a9d43db33c7439553a662d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1be6066035fa80aa6186c7787a33965406feb4e155a9d43db33c7439553a662d.mp3",
+          "contentHash": "9ef01b1b56b1ef3d62588ba79cb042b09865292301060c858519d85a84a25830",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s47/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The violin is hers.",
+          "file": "5b9076966f51318af6261b06242ae2ec60b15b5153ef4aa272be70361f828948.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5b9076966f51318af6261b06242ae2ec60b15b5153ef4aa272be70361f828948.mp3",
+          "contentHash": "0ccb525ef8366d1c88996388c15c8f702b227e732ba442164afd24f882060f40",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s47/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The leftovers are in the fridge.",
+          "file": "bc71c2451dffb696fe5f0e4aa08f4df333d1784e61259069aa4fb0e2dfb634dc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc71c2451dffb696fe5f0e4aa08f4df333d1784e61259069aa4fb0e2dfb634dc.mp3",
+          "contentHash": "18d6c1672d1e55fc6aa14075dedeab231d42f98d48217bc676a1ca61936f2915",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s47/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This place is dangerous.",
+          "file": "ef47172d7ea59154c15b18e3d01b437b46d7104347a434df58f49cc2bab992e5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef47172d7ea59154c15b18e3d01b437b46d7104347a434df58f49cc2bab992e5.mp3",
+          "contentHash": "eccb9e142d2001b0df0a728951eb4563aa28fb73f8ac33b6d138a5520ca59fb1",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s47/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "subway",
+          "file": "b08b7ab86ceefc1d5bc02a91bf9e525f9e6f82e5006807d3dbc5fa5ba4eadfd6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b08b7ab86ceefc1d5bc02a91bf9e525f9e6f82e5006807d3dbc5fa5ba4eadfd6.mp3",
+          "contentHash": "f6a3f9a98b184136e8a3ab91c9048456e151832c8621c94ae7ee3ba074084a80",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s47/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "subway",
+          "file": "b08b7ab86ceefc1d5bc02a91bf9e525f9e6f82e5006807d3dbc5fa5ba4eadfd6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b08b7ab86ceefc1d5bc02a91bf9e525f9e6f82e5006807d3dbc5fa5ba4eadfd6.mp3",
+          "contentHash": "f6a3f9a98b184136e8a3ab91c9048456e151832c8621c94ae7ee3ba074084a80",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s47/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "subway",
+          "file": "b378b65027d9d3548e676b9472e4b01013f9b7c92e2860bbbd0fe849e55b42d3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b378b65027d9d3548e676b9472e4b01013f9b7c92e2860bbbd0fe849e55b42d3.mp3",
+          "contentHash": "8f4cbb05df4ea3da4c34374b9590a02b5c0e6bbb017e37e961e643348897845d",
+          "byteSize": 29952
+        },
+        {
+          "text": "violin",
+          "file": "4b5fbf862f8d6d73c5af3baaf60c54835102e19d6afbda829ba6d3b0632fa35a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b5fbf862f8d6d73c5af3baaf60c54835102e19d6afbda829ba6d3b0632fa35a.mp3",
+          "contentHash": "0f1a81161ede35093bf75b5460f38387eedb3f89f1b571542efb069ae94197d0",
+          "byteSize": 16512
+        },
+        {
+          "text": "restaurants",
+          "file": "fc5fb454cf09f332683f308075ff153d15482f1015cd114441ed2e96f26809e8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fc5fb454cf09f332683f308075ff153d15482f1015cd114441ed2e96f26809e8.mp3",
+          "contentHash": "ab085c348f1971cba71413076081853c3ba39b66bf7382a0bb3dbceea8ff9b09",
+          "byteSize": 17280
+        },
+        {
+          "text": "leftover",
+          "file": "982e11b8944208c26945d899c127665206c9bab15eb62353cc55ce7ff3fbe33c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/982e11b8944208c26945d899c127665206c9bab15eb62353cc55ce7ff3fbe33c.mp3",
+          "contentHash": "fccb8ce11a0bf29108b552b254bdc4256609573277bae82529761f635039a325",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s47/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the subway?",
+          "file": "cf1befd47019c9d238ad52527cab2750b00ac18e8c514110aee43e0587d02313.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cf1befd47019c9d238ad52527cab2750b00ac18e8c514110aee43e0587d02313.mp3",
+          "contentHash": "1028829fb4acaf185ff4e9eeb0a73d1b268fb7572751e0d90b0dd72771030393",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s47/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The leftovers are in the fridge.",
+          "file": "ace5409121ac4e47b9a1eccbdf8f10c90693b4f39e0642ee7307b746d44ef120.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ace5409121ac4e47b9a1eccbdf8f10c90693b4f39e0642ee7307b746d44ef120.mp3",
+          "contentHash": "af05f5635099539ddaf7a96c4055e538f586421b3b487e362482f1a640721261",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s47/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The subway is near the hotel.",
+          "file": "5006591708d78b9e9c067b4b5964c9bc3fdec645e559c91e09eb816221b78f1d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5006591708d78b9e9c067b4b5964c9bc3fdec645e559c91e09eb816221b78f1d.mp3",
+          "contentHash": "8f3fe8d799b96e7772a1820203064b2ae9becd3c2ecd8c9234cb6a343404daa7",
+          "byteSize": 61056
+        }
+      ]
+    },
+    "l05/s47/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where are the restaurants?",
+          "file": "7884705db93e0e84e179a02c1d26861c3ec23031348864e6a1b84e5fe3cf9365.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7884705db93e0e84e179a02c1d26861c3ec23031348864e6a1b84e5fe3cf9365.mp3",
+          "contentHash": "f9c670a4132289f6b1e50db86171bdbe8fb5780e8f421c3202fac191c74aa080",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s47/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's violin.",
+          "file": "291bb49eb1f180528da79027c3eae9c522ac5cdb7f439d1ec941977ba640b672.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/291bb49eb1f180528da79027c3eae9c522ac5cdb7f439d1ec941977ba640b672.mp3",
+          "contentHash": "b7ca0028605d680c1fdf7c9aeeadfbf0b021457a7ae3067e7367df6049e15b8a",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s47/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "subway",
+          "file": "b08b7ab86ceefc1d5bc02a91bf9e525f9e6f82e5006807d3dbc5fa5ba4eadfd6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b08b7ab86ceefc1d5bc02a91bf9e525f9e6f82e5006807d3dbc5fa5ba4eadfd6.mp3",
+          "contentHash": "f6a3f9a98b184136e8a3ab91c9048456e151832c8621c94ae7ee3ba074084a80",
+          "byteSize": 20352
+        },
+        {
+          "text": "dangerous",
+          "file": "f59d436419457ae2381d169f8770f132916fa4786be2fd7f01aa9cb6c09c3ae3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f59d436419457ae2381d169f8770f132916fa4786be2fd7f01aa9cb6c09c3ae3.mp3",
+          "contentHash": "771c09e793f1455ca084f50c5e29caac2dce77db686cf6ca4e8929ba9118a72d",
+          "byteSize": 21120
+        },
+        {
+          "text": "leftover",
+          "file": "206f860e52df7c66c7adb8cb75a4e6c36043d482a6d118c74784627fde6d7c93.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/206f860e52df7c66c7adb8cb75a4e6c36043d482a6d118c74784627fde6d7c93.mp3",
+          "contentHash": "2ba8411181cf8ccc17dad50b4f53c904fb9c03f7eeaeccf57df01bc9a88462a8",
+          "byteSize": 20352
+        },
+        {
+          "text": "violin",
+          "file": "d06efec17321e41b557a4c796d5fb2f069d761e3e32f26501b867b88fe65c65a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d06efec17321e41b557a4c796d5fb2f069d761e3e32f26501b867b88fe65c65a.mp3",
+          "contentHash": "99c19635b06dd5765137df20cbcc9118a3fa4c0d729d66b7dbe38de817a7a5f0",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s47/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose violin is this?",
+          "file": "0173e8971c9279c17d6f248be250b423092dbdcb213407679417a0b7e60fec68.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0173e8971c9279c17d6f248be250b423092dbdcb213407679417a0b7e60fec68.mp3",
+          "contentHash": "2764560dd23eb75c7cbc05d3ffc0f2697ad19565610c075555bc1897614cd12e",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s47/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The violin is hers.",
+          "file": "8d6c0a67d736e1566ea01610e6d0cf2393b7d843909bb1685b89cb31b7b5a3df.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8d6c0a67d736e1566ea01610e6d0cf2393b7d843909bb1685b89cb31b7b5a3df.mp3",
+          "contentHash": "5e54892f6e6b00b0ccc420965dc2a468fbdddab981b0010da634ea18257ed303",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s47/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I have your violin.",
+          "file": "c36c7591354ee7a476ead9f2a0b5ba30c3cfb315e5a25a838f8c2426d5cc46e3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c36c7591354ee7a476ead9f2a0b5ba30c3cfb315e5a25a838f8c2426d5cc46e3.mp3",
+          "contentHash": "d3b29fcfe3c04fcea16c2ce82a5feb9bd8c80b83bb97c9bb4cdf66678c989844",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s47/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the subway?",
+          "file": "cf1befd47019c9d238ad52527cab2750b00ac18e8c514110aee43e0587d02313.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cf1befd47019c9d238ad52527cab2750b00ac18e8c514110aee43e0587d02313.mp3",
+          "contentHash": "1028829fb4acaf185ff4e9eeb0a73d1b268fb7572751e0d90b0dd72771030393",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s47/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Your violin is here.",
+          "file": "511ed5c250275e3c1f5acddcd2c40cc727c2eced9924e6ef68c6780b2be98e3c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/511ed5c250275e3c1f5acddcd2c40cc727c2eced9924e6ef68c6780b2be98e3c.mp3",
+          "contentHash": "005db3318283a6300d3c00c390f76a2f678e305a5ee8ae1dbbd6c447cadda0f5",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s47/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "subway",
+          "file": "9f9dd4fc38ef1f186fe1be29478da70877eca81f75ec4459d6598438ab3649c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9f9dd4fc38ef1f186fe1be29478da70877eca81f75ec4459d6598438ab3649c5.mp3",
+          "contentHash": "eff15e0d5fde987795ccf43096dc4b5b44de9a02f34a7b1af36967b12a998b18",
+          "byteSize": 24576
+        },
+        {
+          "text": "dangerous",
+          "file": "ee3df784dbf9b8a6d5c186bf44c6db190b3d6bba17706e72dd493bc027a97ad1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee3df784dbf9b8a6d5c186bf44c6db190b3d6bba17706e72dd493bc027a97ad1.mp3",
+          "contentHash": "96095dafeec2cab4fe0b4894e65689bd0ebe4777b8e5b9f6c6ad0e5531bc8ec3",
+          "byteSize": 19584
+        },
+        {
+          "text": "restaurants",
+          "file": "121971cca22d1de27f39663f54e432809d9d122e02589a3a921805ac9c3aa90c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/121971cca22d1de27f39663f54e432809d9d122e02589a3a921805ac9c3aa90c.mp3",
+          "contentHash": "b7e796b82745bb5ecec1aa6d4a5979032ce5e4590fc9ba3e49624bcb7f3f6f93",
+          "byteSize": 23040
+        },
+        {
+          "text": "violin",
+          "file": "fd0ce3e356bfaff792e75749dd141b9b5df18aae58a6b51aa2ff71ee4b8f33c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd0ce3e356bfaff792e75749dd141b9b5df18aae58a6b51aa2ff71ee4b8f33c8.mp3",
+          "contentHash": "b06e7d9f9a0a27a8e261cdbe2515a314348e331d06ddde6e27504956c465ea83",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s47/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose violin is this?",
+          "file": "801b6f8303d061f853295435eeca1102e3e123d531afc4a729bda283bf5831a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/801b6f8303d061f853295435eeca1102e3e123d531afc4a729bda283bf5831a6.mp3",
+          "contentHash": "c8c3b8f0421d1592c065c0439bcd198cd0a96c2768ae2ecfebbad839b53fd467",
+          "byteSize": 42624
+        }
+      ]
     }
   },
   "settings": {

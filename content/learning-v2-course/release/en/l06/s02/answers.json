@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-02:i01",
+    "correctText": "I work here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i02",
+    "correctText": "folder",
+    "correctResponseId": "en:lesson-06:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i03",
+    "correctText": "folder",
+    "correctResponseId": "en:lesson-06:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i04",
+    "correctText": "en:lesson-06:session-02:i04:p1=folder\nen:lesson-06:session-02:i04:p2=confident\nen:lesson-06:session-02:i04:p3=relaxed\nen:lesson-06:session-02:i04:p4=satisfied",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i05",
+    "correctText": "This is my folder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i06",
+    "correctText": "Whose folder is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i07",
+    "correctText": "I am confident.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i08",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-06:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i09",
+    "correctText": "That folder is yours.",
+    "correctResponseId": "en:lesson-06:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i10",
+    "correctText": "en:lesson-06:session-02:i10:p1=folder\nen:lesson-06:session-02:i10:p2=garden\nen:lesson-06:session-02:i10:p3=confident\nen:lesson-06:session-02:i10:p4=relaxed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i11",
+    "correctText": "The garden is near the office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i12",
+    "correctText": "The folder is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i13",
+    "correctText": "I am relaxed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i14",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-06:session-02:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i15",
+    "correctText": "I have a folder.",
+    "correctResponseId": "en:lesson-06:session-02:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i16",
+    "correctText": "en:lesson-06:session-02:i16:p1=folder\nen:lesson-06:session-02:i16:p2=garden\nen:lesson-06:session-02:i16:p3=satisfied\nen:lesson-06:session-02:i16:p4=confident",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-02:i17",
+    "correctText": "Whose folder is this?",
+    "correctResponseId": null
+  }
+]

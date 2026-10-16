@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "назвать рабочую вещь, спросить о её владельце и описать своё состояние",
+    "uk": "назвати робочу річ, запитати про її власника й описати свій стан"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Бумаги на месте",
+        "uk": "Папери на місці"
+      },
+      "bodyByLocale": {
+        "ru": "`folder` — «папка»; здесь папка для бумажных документов. `This is my folder` — «Это моя папка». `Whose folder is this?` — «Чья это папка?» `The folder is mine` — «Папка моя». Папка держит бумаги вместе, но заполнять их за вас не обещает.",
+        "uk": "`folder` — «папка»; тут папка для паперових документів. `This is my folder` — «Це моя папка». `Whose folder is this?` — «Чия це папка?» `The folder is mine` — «Папка моя». Папка тримає папери разом, але заповнювати їх за вас не обіцяє."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце папки.",
+          "uk": "Запитайте про власника папки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-02:intro1:r1",
+              "text": "Whose folder is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro1:r2",
+              "text": "Where is the folder?"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro1:r3",
+              "text": "Whose folder are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-02:intro1:r1",
+              "text": "Whose folder is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro1:r2",
+              "text": "Where is the folder?"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro1:r3",
+              "text": "Whose folder are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце папки.",
+          "uk": "Запитайте про власника папки."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Работа и сад",
+        "uk": "Робота й сад"
+      },
+      "bodyByLocale": {
+        "ru": "`garden` — «сад». `The garden is near the office` — «Сад возле офиса». `I work here` — «Я работаю здесь»: перед `work` в этой фразе не нужно `am`. `I have a folder` — «У меня есть папка». Если показываем одну папку рядом — `this folder`, дальше от нас — `that folder`: `That folder is yours` — «Та папка твоя».",
+        "uk": "`garden` — «сад». `The garden is near the office` — «Сад біля офісу». `I work here` — «Я працюю тут»: перед `work` у цій фразі не потрібне `am`. `I have a folder` — «У мене є папка». Якщо показуємо одну папку поруч — `this folder`, далі від нас — `that folder`: `That folder is yours` — «Та папка твоя»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я работаю здесь».",
+          "uk": "Скажіть «Я працюю тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-02:intro2:r1",
+              "text": "I work here."
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro2:r2",
+              "text": "I am work here."
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro2:r3",
+              "text": "I work there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-02:intro2:r1",
+              "text": "I work here."
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro2:r2",
+              "text": "I am work here."
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro2:r3",
+              "text": "I work there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я работаю здесь».",
+          "uk": "Скажіть «Я працюю тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Как вы себя чувствуете",
+        "uk": "Як ви почуваєтеся"
+      },
+      "bodyByLocale": {
+        "ru": "`confident` — «уверенный в себе»: `I am confident` — «Я уверен / уверена в себе». `relaxed` — «расслабленный»: `I am relaxed` — «Я расслаблен / расслаблена». `satisfied` — «довольный»: `I am satisfied` — «Я доволен / довольна». Эти слова описывают состояние, поэтому в данных фразах используется `am`.",
+        "uk": "`confident` — «впевнений у собі»: `I am confident` — «Я впевнений / впевнена в собі». `relaxed` — «розслаблений»: `I am relaxed` — «Я розслаблений / розслаблена». `satisfied` — «задоволений»: `I am satisfied` — «Я задоволений / задоволена». Ці слова описують стан, тому в цих фразах використовується `am`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я доволен» без сокращения.",
+          "uk": "Скажіть «Я задоволений» без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-02:intro3:r1",
+              "text": "I am satisfied."
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro3:r2",
+              "text": "I satisfied."
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro3:r3",
+              "text": "I am relaxed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-02:intro3:r1",
+              "text": "I am satisfied."
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro3:r2",
+              "text": "I satisfied."
+            },
+            {
+              "responseId": "en:lesson-06:session-02:intro3:r3",
+              "text": "I am relaxed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я доволен» без сокращения.",
+          "uk": "Скажіть «Я задоволений» без скорочення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3add67b20d98a405490df5fe3d7f5a664a91fc14cb7c7dbedd70ba1cbfdd6b87"
+}

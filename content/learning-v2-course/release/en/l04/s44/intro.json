@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "назвать морозильник, спросить о наличии оборудования и понять слово legal",
+    "uk": "назвати морозильник, запитати про наявність обладнання й зрозуміти слово legal"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Для замороженных продуктов",
+        "uk": "Для заморожених продуктів"
+      },
+      "bodyByLocale": {
+        "ru": "`freezer` — «морозильник», отделение или прибор для хранения замороженных продуктов. Один морозильник — `a freezer`. `This is a freezer` — «Это морозильник». Мороженому там хорошо, а вам для ночлега лучше выбрать комнату.",
+        "uk": "`freezer` — «морозильник», відділення або прилад для зберігання заморожених продуктів. Один морозильник — `a freezer`. `This is a freezer` — «Це морозильник». Морозиву там добре, а вам для ночівлі краще вибрати кімнату."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один морозильник.",
+          "uk": "Назвіть один морозильник."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-44:intro1:r1",
+              "text": "This is a freezer."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro1:r2",
+              "text": "This is freezer."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro1:r3",
+              "text": "These are freezers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-44:intro1:r1",
+              "text": "This is a freezer."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro1:r2",
+              "text": "This is freezer."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro1:r3",
+              "text": "These are freezers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один морозильник.",
+          "uk": "Назвіть один морозильник."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что есть в отеле",
+        "uk": "Що є в готелі"
+      },
+      "bodyByLocale": {
+        "ru": "`hotels` — «отели», `smoke alarm` — «дымовой пожарный извещатель». `The hotels are next to the park` — «Отели рядом с парком». `Is there a smoke alarm?` — «Есть дымовой пожарный извещатель?» `There is a freezer` — «Есть морозильник». С несколькими отелями используйте `are`, с одним прибором — `is`.",
+        "uk": "`hotels` — «готелі», `smoke alarm` — «димовий пожежний сповіщувач». `The hotels are next to the park` — «Готелі поруч із парком». `Is there a smoke alarm?` — «Є димовий пожежний сповіщувач?» `There is a freezer` — «Є морозильник». Із кількома готелями використовуйте `are`, з одним приладом — `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Отели рядом с парком. Выберите описание.",
+          "uk": "Готелі поруч із парком. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-44:intro2:r1",
+              "text": "The hotels are next to the park."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro2:r2",
+              "text": "The hotels is next to the park."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro2:r3",
+              "text": "The hotels are under the park."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-44:intro2:r1",
+              "text": "The hotels are next to the park."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro2:r2",
+              "text": "The hotels is next to the park."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro2:r3",
+              "text": "The hotels are under the park."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Отели рядом с парком. Выберите описание.",
+          "uk": "Готелі поруч із парком. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Разрешено законом",
+        "uk": "Дозволено законом"
+      },
+      "bodyByLocale": {
+        "ru": "`legal` — «законный, разрешённый законом». `It is legal` — «Это законно», короче `It’s legal`. Эта фраза сообщает именно о законе; она не означает, что действие удобно или нравится хозяину.",
+        "uk": "`legal` — «законний, дозволений законом». `It is legal` — «Це законно», коротше `It’s legal`. Ця фраза повідомляє саме про закон; вона не означає, що дія зручна чи подобається господарю."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы переводите фразу «Это законно». Выберите вариант с сокращением.",
+          "uk": "Ви перекладаєте фразу «Це законно». Виберіть варіант зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-44:intro3:r1",
+              "text": "It's legal."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro3:r2",
+              "text": "It's illegal."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro3:r3",
+              "text": "It are legal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-44:intro3:r1",
+              "text": "It's legal."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro3:r2",
+              "text": "It's illegal."
+            },
+            {
+              "responseId": "en:lesson-04:session-44:intro3:r3",
+              "text": "It are legal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы переводите фразу «Это законно». Выберите вариант с сокращением.",
+          "uk": "Ви перекладаєте фразу «Це законно». Виберіть варіант зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5a9fdb8d1a83813714f3a7f51159bb22498f75e9c367e184feda9258780a9c5c"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-44:i01",
+    "correctText": "It is legal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i02",
+    "correctText": "freezer",
+    "correctResponseId": "en:lesson-04:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i03",
+    "correctText": "freezer",
+    "correctResponseId": "en:lesson-04:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i04",
+    "correctText": "en:lesson-04:session-44:i04:p1=freezer\nen:lesson-04:session-44:i04:p2=legal\nen:lesson-04:session-44:i04:p3=hotels\nen:lesson-04:session-44:i04:p4=smoke alarm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i05",
+    "correctText": "This is a freezer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i06",
+    "correctText": "The hotels are next to the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i07",
+    "correctText": "It's legal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i09",
+    "correctText": "The hotels are next to the shop.",
+    "correctResponseId": "en:lesson-04:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i10",
+    "correctText": "en:lesson-04:session-44:i10:p1=freezer\nen:lesson-04:session-44:i10:p2=legal\nen:lesson-04:session-44:i10:p3=hotels\nen:lesson-04:session-44:i10:p4=smoke alarm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i11",
+    "correctText": "There aren't any freezers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i12",
+    "correctText": "There is a freezer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i13",
+    "correctText": "Is there a smoke alarm?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i14",
+    "correctText": "in",
+    "correctResponseId": "en:lesson-04:session-44:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i15",
+    "correctText": "That is a freezer.",
+    "correctResponseId": "en:lesson-04:session-44:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i16",
+    "correctText": "en:lesson-04:session-44:i16:p1=freezer\nen:lesson-04:session-44:i16:p2=legal\nen:lesson-04:session-44:i16:p3=hotels\nen:lesson-04:session-44:i16:p4=smoke alarm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i17",
+    "correctText": "Is there a freezer?",
+    "correctResponseId": null
+  }
+]

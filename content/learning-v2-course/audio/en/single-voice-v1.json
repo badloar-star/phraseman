@@ -89854,6 +89854,309 @@
           "byteSize": 32640
         }
       ]
+    },
+    "l06/s17/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I drive to work.",
+          "file": "2e0f0e394a77a20940fc1a242d34099aa6c5845cda726e7edcc865e97b7b82d6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e0f0e394a77a20940fc1a242d34099aa6c5845cda726e7edcc865e97b7b82d6.mp3",
+          "contentHash": "d0428c983d9913786d3502664461e4b5c42fcc7dbcf0f31635015479ae769afa",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l06/s17/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She drives to work.",
+          "file": "1354e757d85bb4afd8655dc50e92a9a06ce8ee14f5d61511866ab3d3461fe476.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1354e757d85bb4afd8655dc50e92a9a06ce8ee14f5d61511866ab3d3461fe476.mp3",
+          "contentHash": "158d89fafc05092ae85ffe44763aecb46c96f7ea369a9411afc6c9195b32e95c",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l06/s17/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She is well.",
+          "file": "b491a3b2f545c469b9ed7fc56fd30c0f6ac893d579e8b9f4bd513ebda06cd1b4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b491a3b2f545c469b9ed7fc56fd30c0f6ac893d579e8b9f4bd513ebda06cd1b4.mp3",
+          "contentHash": "70fc9d2e326f04b29a4d35c9f7e7698bd9859d1cba3e52c0c52d6b8e5c9e384a",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l06/s17/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I drive to work.",
+          "file": "2e0f0e394a77a20940fc1a242d34099aa6c5845cda726e7edcc865e97b7b82d6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e0f0e394a77a20940fc1a242d34099aa6c5845cda726e7edcc865e97b7b82d6.mp3",
+          "contentHash": "d0428c983d9913786d3502664461e4b5c42fcc7dbcf0f31635015479ae769afa",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l06/s17/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "drive",
+          "file": "cc6535f5b5df4200224094cab45e9919bf1e73dca6ec0a47265c2881d908c861.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc6535f5b5df4200224094cab45e9919bf1e73dca6ec0a47265c2881d908c861.mp3",
+          "contentHash": "86a5d0820493d373da01ab743d9cd51a2185846a5561282dc5e03ebe6aca006b",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l06/s17/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She drives to work.",
+          "file": "adb24240918325df4d2b00732657ec9e69dd5d5aea1f51fc0924dda0c4efda0e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/adb24240918325df4d2b00732657ec9e69dd5d5aea1f51fc0924dda0c4efda0e.mp3",
+          "contentHash": "6ee28554c16fad736aadad219d6bfe1218c71d833379952626f410d6524f6a76",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l06/s17/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "drive",
+          "file": "09be7790519e58839185845826f4a905fbf53233f5877673b0f7c5162c1d352c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/09be7790519e58839185845826f4a905fbf53233f5877673b0f7c5162c1d352c.mp3",
+          "contentHash": "568eeb9164fb48bd5c601684dd002aecd28caa296d3594c57ceaa205d4c846a6",
+          "byteSize": 18048
+        },
+        {
+          "text": "well",
+          "file": "3c7145073cd1450c727efced76af3bbbe43a930cfce7dfd1134ce0d51720ab21.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c7145073cd1450c727efced76af3bbbe43a930cfce7dfd1134ce0d51720ab21.mp3",
+          "contentHash": "1c0adf4e68c38704de666ae1aff300ee1f665f953b333c35dd6ae0bf53253f74",
+          "byteSize": 13440
+        },
+        {
+          "text": "jacket",
+          "file": "aa89799577ddad2b055e7201d42199cd254d6fc237b381f46613767197175567.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aa89799577ddad2b055e7201d42199cd254d6fc237b381f46613767197175567.mp3",
+          "contentHash": "a1ae4230f83f0c367bd66688878902f797b90943cb94fdae13760a6442c21258",
+          "byteSize": 26880
+        },
+        {
+          "text": "berry",
+          "file": "04e8dd00c59949958f294851787408fb8f46684385bd589a7562cff377b0cd9a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/04e8dd00c59949958f294851787408fb8f46684385bd589a7562cff377b0cd9a.mp3",
+          "contentHash": "20a4a5ce7e39ee6fe61dd8a329ad976831fd1e442224eaf601ccb8479ac31383",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s17/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Anna drives to work.",
+          "file": "fc9693079d01a5ae26d12b0ac3fcf4b7b8426e56f83bf8419fae37bf0d996034.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fc9693079d01a5ae26d12b0ac3fcf4b7b8426e56f83bf8419fae37bf0d996034.mp3",
+          "contentHash": "0e6b8e1a8a968c0228e841abc3b68993264fc967997716d086b3f53319b0e1d3",
+          "byteSize": 53760
+        }
+      ]
+    },
+    "l06/s17/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He starts at nine.",
+          "file": "44f9ddb955fa6a7f0441fe710bf71951e5e200479e2e760a6226314dbaf8c3a5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44f9ddb955fa6a7f0441fe710bf71951e5e200479e2e760a6226314dbaf8c3a5.mp3",
+          "contentHash": "a74e9522cfb40ea06722f261c5733273fc40c34e570f3e444f749c421182d949",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l06/s17/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She is well.",
+          "file": "f30513c50b1c6b74f91ec46af6642fee644608d25af9d1ce1f441c3baac1ab89.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f30513c50b1c6b74f91ec46af6642fee644608d25af9d1ce1f441c3baac1ab89.mp3",
+          "contentHash": "919dcda86c22ff46b3d6172927d036de5ed248bee7432fdd67bca74bcfbe0a88",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l06/s17/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He works here.",
+          "file": "f9ef3ee0195c491f02243e28fdd8fa2e9927bab9d6061550704fa43da809722e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f9ef3ee0195c491f02243e28fdd8fa2e9927bab9d6061550704fa43da809722e.mp3",
+          "contentHash": "791334c3d77a395f4b4f4f836a17381f6899ded073fb416fbe21b76ae64b54f0",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s17/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She starts at eight.",
+          "file": "acd936a70c8e8405e0847416e510418ff648e98a306930f42eecff2a55a1bf88.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/acd936a70c8e8405e0847416e510418ff648e98a306930f42eecff2a55a1bf88.mp3",
+          "contentHash": "c0e78d9c08eae79763778460da054356a1ec9181c70fb954b16d291d0f033847",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s17/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "drive",
+          "file": "cc6535f5b5df4200224094cab45e9919bf1e73dca6ec0a47265c2881d908c861.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc6535f5b5df4200224094cab45e9919bf1e73dca6ec0a47265c2881d908c861.mp3",
+          "contentHash": "86a5d0820493d373da01ab743d9cd51a2185846a5561282dc5e03ebe6aca006b",
+          "byteSize": 16512
+        },
+        {
+          "text": "start",
+          "file": "d4cd329771830c198bf667d170b3827ab604cb87b9336ff7d7e0081709a070c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d4cd329771830c198bf667d170b3827ab604cb87b9336ff7d7e0081709a070c0.mp3",
+          "contentHash": "e746cb6c80aa41a0336466135638b6e2d1b2cf99182caabd9a8bc08449a652fd",
+          "byteSize": 18816
+        },
+        {
+          "text": "berry",
+          "file": "3f4b1a875229925f6b932591cc2f1fad9409410df086bfcc9c43908a1b10aa0f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3f4b1a875229925f6b932591cc2f1fad9409410df086bfcc9c43908a1b10aa0f.mp3",
+          "contentHash": "cb10c03e282be7f2332d69df4c55d62d5f93a2d3420e7ab97b46205552970cb4",
+          "byteSize": 13440
+        },
+        {
+          "text": "jacket",
+          "file": "5dba692723f9227db9c66e699d8351a01d1744675109b85c274425e4153977e9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5dba692723f9227db9c66e699d8351a01d1744675109b85c274425e4153977e9.mp3",
+          "contentHash": "09814bd96379f7bada895a96ec252059fef8c6f722d88bd0d5f068652a6dc8c7",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l06/s17/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The berry is on my jacket.",
+          "file": "8772f38c3ae7bc7b484141aa8e1d41bcb975bb46a933fb53978303d16c32ee01.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8772f38c3ae7bc7b484141aa8e1d41bcb975bb46a933fb53978303d16c32ee01.mp3",
+          "contentHash": "925402ccbb2f81b839edf76d89ff779abd5b74ba72abf6ffba2f10c0736aa242",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s17/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They drive to work.",
+          "file": "0ee69e514e7ac5e324a0ab6f0c6f9fe8f807a8f8133049bc9d48b2dcf8cc21e6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ee69e514e7ac5e324a0ab6f0c6f9fe8f807a8f8133049bc9d48b2dcf8cc21e6.mp3",
+          "contentHash": "ff7565aeb575eb9a0298533c85b48cb4c9a3def86030d83c36b6308c32ac1f8f",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s17/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am well.",
+          "file": "09c60d5799c4107b3f764a8134cabbf8a397508780850e355289c4e42a74acfa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/09c60d5799c4107b3f764a8134cabbf8a397508780850e355289c4e42a74acfa.mp3",
+          "contentHash": "dcdcf8b257bace311ad43cfd820a7a07fabd32387ff8067722886225ceb4b7ee",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l06/s17/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Anna works here.",
+          "file": "f09eee2bf0eb17c82b15f058fbdbe8f5cf6473aa693253229afee29baf0e1979.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f09eee2bf0eb17c82b15f058fbdbe8f5cf6473aa693253229afee29baf0e1979.mp3",
+          "contentHash": "8a500b49a0c1de1bf3785f85ddf7f8afcc7b8716fd86ca0e79f13dc4282ae182",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s17/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My jacket is here.",
+          "file": "3324fe8c93a6cc2972582bc1e6fa168f049fb1c77f3eda4ca651ed9db9349934.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3324fe8c93a6cc2972582bc1e6fa168f049fb1c77f3eda4ca651ed9db9349934.mp3",
+          "contentHash": "6b974facf1d4d348aec90bad6c346063ab89ebfaf894ec427181640a5389f82d",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l06/s17/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "drive",
+          "file": "cc6535f5b5df4200224094cab45e9919bf1e73dca6ec0a47265c2881d908c861.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc6535f5b5df4200224094cab45e9919bf1e73dca6ec0a47265c2881d908c861.mp3",
+          "contentHash": "86a5d0820493d373da01ab743d9cd51a2185846a5561282dc5e03ebe6aca006b",
+          "byteSize": 16512
+        },
+        {
+          "text": "well",
+          "file": "745aa96782eda33e32d0c0419389277794e660e2a99378607cf52ad16a39b924.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/745aa96782eda33e32d0c0419389277794e660e2a99378607cf52ad16a39b924.mp3",
+          "contentHash": "c61e205f727e61b2c0a9a23f8f4e09fd4663d30e03cd53735886ce7079e537d8",
+          "byteSize": 18048
+        },
+        {
+          "text": "start",
+          "file": "d4cd329771830c198bf667d170b3827ab604cb87b9336ff7d7e0081709a070c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d4cd329771830c198bf667d170b3827ab604cb87b9336ff7d7e0081709a070c0.mp3",
+          "contentHash": "e746cb6c80aa41a0336466135638b6e2d1b2cf99182caabd9a8bc08449a652fd",
+          "byteSize": 18816
+        },
+        {
+          "text": "berry",
+          "file": "3f4b1a875229925f6b932591cc2f1fad9409410df086bfcc9c43908a1b10aa0f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3f4b1a875229925f6b932591cc2f1fad9409410df086bfcc9c43908a1b10aa0f.mp3",
+          "contentHash": "cb10c03e282be7f2332d69df4c55d62d5f93a2d3420e7ab97b46205552970cb4",
+          "byteSize": 13440
+        }
+      ]
+    },
+    "l06/s17/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She drives to work.",
+          "file": "bbc4259777c8bfe1fa743f421d691980f16c91ea07b5a128430c40fa99c33d56.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bbc4259777c8bfe1fa743f421d691980f16c91ea07b5a128430c40fa99c33d56.mp3",
+          "contentHash": "3f038ecd620a4eb8fb5a3ac5f1501c2a9b70b532083e8d85fb072caa2786281e",
+          "byteSize": 32256
+        }
+      ]
     }
   },
   "settings": {

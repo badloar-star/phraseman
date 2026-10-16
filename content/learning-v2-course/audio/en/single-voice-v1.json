@@ -100762,6 +100762,309 @@
           "byteSize": 28416
         }
       ]
+    },
+    "l06/s53/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They wear uniforms.",
+          "file": "d8ab6aa072dd79c6d506046ad48a31b07d68f7d15dab650e121415f4d159083e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d8ab6aa072dd79c6d506046ad48a31b07d68f7d15dab650e121415f4d159083e.mp3",
+          "contentHash": "a18ed17693f01ec2b48ef1b53e31f1831f7160a5487754dfa7a088cb034ca2b5",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s53/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She wears a uniform.",
+          "file": "28fca78d8253cc582e209016a12f3ed6ceb9b266d75d2efc5aba98b029d15b2e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28fca78d8253cc582e209016a12f3ed6ceb9b266d75d2efc5aba98b029d15b2e.mp3",
+          "contentHash": "c60fb08a03778b762fb80f1a063381c9cd5673ccea35c3655c009a49ce7aa225",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s53/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose uniform is this?",
+          "file": "7b556c6296dbe5dcf899deecd3a4ff1b5d5949cea04aead522d6a5714147b780.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b556c6296dbe5dcf899deecd3a4ff1b5d5949cea04aead522d6a5714147b780.mp3",
+          "contentHash": "d0667af1447c345c785b683c3805cb7d3c04f021ecdb29153514b4f851250455",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s53/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They wear uniforms.",
+          "file": "30923dbaa17d1730ccd58309671d4b0274965f588ac1c7bc08379ff3e13c5d97.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/30923dbaa17d1730ccd58309671d4b0274965f588ac1c7bc08379ff3e13c5d97.mp3",
+          "contentHash": "f9e42959f730107cbc96603496855520002e54c138d9a8a877b8edcc8901e8a0",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l06/s53/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "uniform",
+          "file": "741b7e32844d3e2dc640149cf1f4cc8f43780fbc62e7e36ce46870fbfedbf40f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ef379363dd0cb7be66638cf7-nova.mp3",
+          "contentHash": "ffda2673c96b4728310e9b3111bafc7d4e544fa31df83707c8d7c1bad5337f93",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l06/s53/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She wears a uniform.",
+          "file": "f689aca9612d7cda364792ab41127d20a4bec3c67fd77c067e5036d7e79678af.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f689aca9612d7cda364792ab41127d20a4bec3c67fd77c067e5036d7e79678af.mp3",
+          "contentHash": "37cf02c98a2d53457170f5fbc996eec02d3c38ca8a3597a491637c2e65898153",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l06/s53/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "uniform",
+          "file": "a84cae13b0e6fc5118160c71c5876866b67b2f044b480b01eb894bb3d9398c57.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ef379363dd0cb7be66638cf7-coral.mp3",
+          "contentHash": "5c5560492023f2093be978812775431adfb9063e2f133fa3e89a8c3e101cd0e4",
+          "byteSize": 44544
+        },
+        {
+          "text": "unfair",
+          "file": "fb12c682444d9a338574488f6aae585b80d55244bd72c7dfeb85816966332f7c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fb12c682444d9a338574488f6aae585b80d55244bd72c7dfeb85816966332f7c.mp3",
+          "contentHash": "9dc7811b01e1d24bf595bdcafa131f0c20b41bf4a65c2ade227f0d40972104da",
+          "byteSize": 31488
+        },
+        {
+          "text": "police station",
+          "file": "2033cd7f8ee5ed7d6a39b81252658266e44c0d655c3eeada47a02eb6f90a97a7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2033cd7f8ee5ed7d6a39b81252658266e44c0d655c3eeada47a02eb6f90a97a7.mp3",
+          "contentHash": "6654cd9ed01b4939764cf5f26ee907b8d07a77afe59c415a6929ae92f711b80b",
+          "byteSize": 39552
+        },
+        {
+          "text": "court",
+          "file": "7c1003e2f9c2ec2568b0d2409125ca7ac58fbd9d4db3f4f4aec83f397a894474.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c1003e2f9c2ec2568b0d2409125ca7ac58fbd9d4db3f4f4aec83f397a894474.mp3",
+          "contentHash": "cd8684c8772b724aa9ce224560e421f12a8a541854673228c50880fa6a3c0a7b",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l06/s53/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They wear uniforms.",
+          "file": "d8ab6aa072dd79c6d506046ad48a31b07d68f7d15dab650e121415f4d159083e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d8ab6aa072dd79c6d506046ad48a31b07d68f7d15dab650e121415f4d159083e.mp3",
+          "contentHash": "a18ed17693f01ec2b48ef1b53e31f1831f7160a5487754dfa7a088cb034ca2b5",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s53/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She wears a uniform.",
+          "file": "f689aca9612d7cda364792ab41127d20a4bec3c67fd77c067e5036d7e79678af.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f689aca9612d7cda364792ab41127d20a4bec3c67fd77c067e5036d7e79678af.mp3",
+          "contentHash": "37cf02c98a2d53457170f5fbc996eec02d3c38ca8a3597a491637c2e65898153",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l06/s53/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose uniform is this?",
+          "file": "7b556c6296dbe5dcf899deecd3a4ff1b5d5949cea04aead522d6a5714147b780.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b556c6296dbe5dcf899deecd3a4ff1b5d5949cea04aead522d6a5714147b780.mp3",
+          "contentHash": "d0667af1447c345c785b683c3805cb7d3c04f021ecdb29153514b4f851250455",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s53/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He wears a uniform.",
+          "file": "828707c9cda58e871b203a580a30c97906a4007a60cca8a9dc06ae3f485c2567.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/828707c9cda58e871b203a580a30c97906a4007a60cca8a9dc06ae3f485c2567.mp3",
+          "contentHash": "4250b1ee81a8b055524137f56d67f11b76f2f6ca09c2ccf36479f4e038ed2ccd",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s53/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She wears a uniform.",
+          "file": "90020d2ee3387387fafc31814ccecc40bec09bd172ee43e307af07ab68920e98.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90020d2ee3387387fafc31814ccecc40bec09bd172ee43e307af07ab68920e98.mp3",
+          "contentHash": "fbbab9a54b7da116e36867937ce44f916a80e15dc21b95e6569109c7e00d2690",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s53/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "pencil",
+          "file": "45563d9852d2ac962f531c44965bbcdb217f279759a610b676a4d2b442f8c5fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/45563d9852d2ac962f531c44965bbcdb217f279759a610b676a4d2b442f8c5fb.mp3",
+          "contentHash": "42e2d210800d375ddafe9938dce8aa810fc63d35fb8c292a3658a96a4da3b7a2",
+          "byteSize": 26880
+        },
+        {
+          "text": "uniform",
+          "file": "741b7e32844d3e2dc640149cf1f4cc8f43780fbc62e7e36ce46870fbfedbf40f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ef379363dd0cb7be66638cf7-nova.mp3",
+          "contentHash": "ffda2673c96b4728310e9b3111bafc7d4e544fa31df83707c8d7c1bad5337f93",
+          "byteSize": 26112
+        },
+        {
+          "text": "court",
+          "file": "9aa547a56a980cd56d4454b874e5ad8b86bfc8fdf7440804141283d49f60e6fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9aa547a56a980cd56d4454b874e5ad8b86bfc8fdf7440804141283d49f60e6fb.mp3",
+          "contentHash": "7fccb82769606132bcbd0d0eab98b0bedc476fa45759acb9bf9f7aa2ad29548c",
+          "byteSize": 14976
+        },
+        {
+          "text": "unfair",
+          "file": "77fb584a6711054a7c740017452b8ea67fa74fceb613952adb4a9c629c6fba3b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/77fb584a6711054a7c740017452b8ea67fa74fceb613952adb4a9c629c6fba3b.mp3",
+          "contentHash": "d83c7d21bbd103b611fc7014f2a95e16cf89d4c72c9470a4908338a7882b7743",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l06/s53/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose uniform is this?",
+          "file": "7b556c6296dbe5dcf899deecd3a4ff1b5d5949cea04aead522d6a5714147b780.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b556c6296dbe5dcf899deecd3a4ff1b5d5949cea04aead522d6a5714147b780.mp3",
+          "contentHash": "d0667af1447c345c785b683c3805cb7d3c04f021ecdb29153514b4f851250455",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s53/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose pencil is this?",
+          "file": "898ae1a63f6e6fa13383a3274ee5aa8c97915596438111b27bc993068c165490.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/898ae1a63f6e6fa13383a3274ee5aa8c97915596438111b27bc993068c165490.mp3",
+          "contentHash": "3576140d92f233489f5dc176684e42374c09e5c9d97af02708114db2d4aaa789",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l06/s53/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The police station is near the court.",
+          "file": "d88c4c2a150c324a04c0f3c6f6edaff62c85732e567f0d2e53f7476892e34374.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d88c4c2a150c324a04c0f3c6f6edaff62c85732e567f0d2e53f7476892e34374.mp3",
+          "contentHash": "c8a04680c413ce84bbc1a6763ff901c4d994e06f5fd52a7bcd02e8ae0c00136d",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s53/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose uniforms are these?",
+          "file": "a251452421ed085c06d7fff5a314536d4ea0e626ff2641bb5213a6fe25adf9a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a251452421ed085c06d7fff5a314536d4ea0e626ff2641bb5213a6fe25adf9a6.mp3",
+          "contentHash": "5f38b43722a256ed451c269295f101a2b4db97b0fac0925cc700e92cf07b4f36",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s53/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They wear uniforms.",
+          "file": "d8ab6aa072dd79c6d506046ad48a31b07d68f7d15dab650e121415f4d159083e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d8ab6aa072dd79c6d506046ad48a31b07d68f7d15dab650e121415f4d159083e.mp3",
+          "contentHash": "a18ed17693f01ec2b48ef1b53e31f1831f7160a5487754dfa7a088cb034ca2b5",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s53/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "uniform",
+          "file": "52feb619194b0ed94c440a95f29a80a3805a5414e46a169a6ddb9dad5292b598.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ef379363dd0cb7be66638cf7-onyx.mp3",
+          "contentHash": "fc8a0803d47aa7ddac345e68c4c6d06edcba36770fd5a51e01534516f3dbe521",
+          "byteSize": 36480
+        },
+        {
+          "text": "police station",
+          "file": "dcd14ecb2a51ffe243358735570fedef4926f342ae2c8c8ba645c110d556f630.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dcd14ecb2a51ffe243358735570fedef4926f342ae2c8c8ba645c110d556f630.mp3",
+          "contentHash": "04ddfc845c7ac299c4da76549a22213a29492a9e25bc9b119379ed363970a9a4",
+          "byteSize": 26112
+        },
+        {
+          "text": "pencil",
+          "file": "0e594a802decd89ddd44ee44addc10d7f9e3dc7bc273e18ef880405eb5d9b83a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e594a802decd89ddd44ee44addc10d7f9e3dc7bc273e18ef880405eb5d9b83a.mp3",
+          "contentHash": "452ff2011eeed915b761c32cdc047947819e7d09570236c73d2b90d6ffb2cf05",
+          "byteSize": 6912
+        },
+        {
+          "text": "unfair",
+          "file": "98b173da84c745e44af23d53a3922df007bb9e75a12c7d7da1afb24d00884310.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/98b173da84c745e44af23d53a3922df007bb9e75a12c7d7da1afb24d00884310.mp3",
+          "contentHash": "a9da0f429b2f3b42c06693d6d61499fbced807df123a4b9a29eeeb36b1c1301e",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l06/s53/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I wear a uniform.",
+          "file": "c56fb17227b22aa3053b3a851ea88fd725566de1bd6b72112206fe5c141a770d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c56fb17227b22aa3053b3a851ea88fd725566de1bd6b72112206fe5c141a770d.mp3",
+          "contentHash": "ca177e25d76ba3b51f502eed1c5b0de0e508ef4db55148d77871b4aa152856bc",
+          "byteSize": 40320
+        }
+      ]
     }
   },
   "settings": {

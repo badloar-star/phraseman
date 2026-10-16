@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о рабочей форме и уточнить, кому она принадлежит",
+    "uk": "розповісти про робочу форму й уточнити, кому вона належить"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что надевать на работу",
+        "uk": "Що вдягати на роботу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы спрашиваете друга об одежде сотрудников. `uniform` — «униформа», рабочая форма. `They wear uniforms` — «Они носят форму». В английской фразе `uniforms` означает несколько комплектов формы. По-русски здесь естественно сказать просто «форму».",
+        "uk": "Ви запитуєте друга про одяг працівників. `uniform` — «уніформа», робоча форма. `They wear uniforms` — «Вони носять форму». В англійській фразі `uniforms` означає кілька комплектів форми. Українською тут природно сказати просто «форму»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите о сотрудниках «Они носят форму».",
+          "uk": "Розкажіть про працівників «Вони носять форму»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-53:intro1:r1",
+              "text": "They wear uniforms."
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro1:r2",
+              "text": "They wears uniforms."
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro1:r3",
+              "text": "They are wear uniforms."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-53:intro1:r1",
+              "text": "They wear uniforms."
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro1:r2",
+              "text": "They wears uniforms."
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro1:r3",
+              "text": "They are wear uniforms."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о сотрудниках «Они носят форму».",
+          "uk": "Розкажіть про працівників «Вони носять форму»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Форма Анны",
+        "uk": "Форма Анни"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, носит ли Анна форму на работе. `She wears a uniform` — «Она носит форму». После `she` нужно `wears`. Перед `uniform` ставим `a`: слово начинается со звука «й», как английское `you`. Буква `u` есть, но сама по себе она не требует `an`.",
+        "uk": "Друг запитує, чи носить Анна форму на роботі. `She wears a uniform` — «Вона носить форму». Після `she` потрібне `wears`. Перед `uniform` ставимо `a`: слово починається зі звука «й», як англійське `you`. Літера `u` є, але сама по собі вона не вимагає `an`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте об Анне «Она носит форму».",
+          "uk": "Дайте відповідь про Анну «Вона носить форму»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-53:intro2:r1",
+              "text": "She wears a uniform."
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro2:r2",
+              "text": "She wear a uniform."
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro2:r3",
+              "text": "She wears an uniform."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-53:intro2:r1",
+              "text": "She wears a uniform."
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro2:r2",
+              "text": "She wear a uniform."
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro2:r3",
+              "text": "She wears an uniform."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте об Анне «Она носит форму».",
+          "uk": "Дайте відповідь про Анну «Вона носить форму»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чей комплект на стуле",
+        "uk": "Чий комплект на стільці"
+      },
+      "bodyByLocale": {
+        "ru": "В раздевалке на стуле лежит комплект формы. `Whose uniform is this?` — «Чья это форма?» Мы спрашиваем о владельце одного комплекта: `is this`. Форма без имени — ещё не подарок новому сотруднику, сначала узнаем, чья она.",
+        "uk": "У роздягальні на стільці лежить комплект форми. `Whose uniform is this?` — «Чия це форма?» Ми запитуємо про власника одного комплекту: `is this`. Форма без імені — ще не подарунок новому працівникові, спочатку дізнаємося, чия вона."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите коллег «Чья это форма?»",
+          "uk": "Запитайте колег «Чия це форма?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-53:intro3:r1",
+              "text": "Whose uniform is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro3:r2",
+              "text": "Where is this uniform?"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro3:r3",
+              "text": "Whose uniform are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-53:intro3:r1",
+              "text": "Whose uniform is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro3:r2",
+              "text": "Where is this uniform?"
+            },
+            {
+              "responseId": "en:lesson-06:session-53:intro3:r3",
+              "text": "Whose uniform are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллег «Чья это форма?»",
+          "uk": "Запитайте колег «Чия це форма?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "43a2cb936912d9cb0fc4df8e5c3dcf013e88639561c222835c89f809482387bc"
+}

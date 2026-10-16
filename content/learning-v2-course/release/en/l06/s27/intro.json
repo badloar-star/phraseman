@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о привычке тренироваться и занятиях другого человека",
+    "uk": "розповісти про звичку тренуватися й заняття іншої людини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тренироваться",
+        "uk": "Тренуватися"
+      },
+      "bodyByLocale": {
+        "ru": "`exercise` — «тренироваться», выполнять физические упражнения. `I exercise at home` — «Я тренируюсь дома». Здесь речь о привычке: можно сказать это, сидя за завтраком. Для `exercise` не нужен дорогой зал. Но просто носить спортивную сумку на работу — ещё не полноценная тренировка.",
+        "uk": "`exercise` — «тренуватися», виконувати фізичні вправи. `I exercise at home` — «Я тренуюся вдома». Тут ідеться про звичку: можна сказати це, сидячи за сніданком. Для `exercise` не потрібен дорогий зал. Але просто носити спортивну сумку на роботу — ще не повноцінне тренування."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я тренируюсь дома».",
+          "uk": "Скажіть «Я тренуюся вдома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-27:intro1:r1",
+              "text": "I exercise at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro1:r2",
+              "text": "I exercises at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro1:r3",
+              "text": "I am exercise at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-27:intro1:r1",
+              "text": "I exercise at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro1:r2",
+              "text": "I exercises at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro1:r3",
+              "text": "I am exercise at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я тренируюсь дома».",
+          "uk": "Скажіть «Я тренуюся вдома»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она тренируется, он рисует",
+        "uk": "Вона тренується, він малює"
+      },
+      "bodyByLocale": {
+        "ru": "`She exercises at home` — «Она тренируется дома». К `exercise` добавляем `s`: `exercises`. `draw` — «рисовать». `He draws here` — «Он рисует здесь». `They draw here` — «Они рисуют здесь»: после `they` окончания `s` нет.",
+        "uk": "`She exercises at home` — «Вона тренується вдома». До `exercise` додаємо `s`: `exercises`. `draw` — «малювати». `He draws here` — «Він малює тут». `They draw here` — «Вони малюють тут»: після `they` закінчення `s` немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она тренируется дома».",
+          "uk": "Скажіть «Вона тренується вдома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-27:intro2:r1",
+              "text": "She exercises at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro2:r2",
+              "text": "She exercise at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro2:r3",
+              "text": "She is exercises at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-27:intro2:r1",
+              "text": "She exercises at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro2:r2",
+              "text": "She exercise at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro2:r3",
+              "text": "She is exercises at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она тренируется дома».",
+          "uk": "Скажіть «Вона тренується вдома»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Под навесом",
+        "uk": "Під навісом"
+      },
+      "bodyByLocale": {
+        "ru": "`awning` — «навес», например тканевый над террасой. `We are under the awning` — «Мы под навесом». `passport` — «паспорт»: `Whose passport is this?` — «Чей это паспорт?» `generous` — «щедрый», охотно делящийся с другими. `He is generous` — «Он щедрый»: качество, поэтому нужно `is`.",
+        "uk": "`awning` — «навіс», наприклад тканинний над терасою. `We are under the awning` — «Ми під навісом». `passport` — «паспорт»: `Whose passport is this?` — «Чий це паспорт?» `generous` — «щедрий», той, хто охоче ділиться з іншими. `He is generous` — «Він щедрий»: риса, тому потрібно `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Он щедрый».",
+          "uk": "Скажіть «Він щедрий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-27:intro3:r1",
+              "text": "He is generous."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro3:r2",
+              "text": "He generous."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro3:r3",
+              "text": "He are generous."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-27:intro3:r1",
+              "text": "He is generous."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro3:r2",
+              "text": "He generous."
+            },
+            {
+              "responseId": "en:lesson-06:session-27:intro3:r3",
+              "text": "He are generous."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Он щедрый».",
+          "uk": "Скажіть «Він щедрий»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b491d34ea875e67415cffbffbfb5c1d0ee1748b5af5df334cae06b3c9582060c"
+}

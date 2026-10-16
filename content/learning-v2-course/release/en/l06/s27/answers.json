@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-27:i01",
+    "correctText": "I exercise at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i02",
+    "correctText": "exercise",
+    "correctResponseId": "en:lesson-06:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i03",
+    "correctText": "exercises",
+    "correctResponseId": "en:lesson-06:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i04",
+    "correctText": "en:lesson-06:session-27:i04:p1=exercise\nen:lesson-06:session-27:i04:p2=generous\nen:lesson-06:session-27:i04:p3=awning\nen:lesson-06:session-27:i04:p4=passport",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i05",
+    "correctText": "Anna exercises here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i06",
+    "correctText": "He draws here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i07",
+    "correctText": "He is generous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i08",
+    "correctText": "exercise",
+    "correctResponseId": "en:lesson-06:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i09",
+    "correctText": "My passport is here.",
+    "correctResponseId": "en:lesson-06:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i10",
+    "correctText": "en:lesson-06:session-27:i10:p1=exercise\nen:lesson-06:session-27:i10:p2=draw\nen:lesson-06:session-27:i10:p3=passport\nen:lesson-06:session-27:i10:p4=generous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i11",
+    "correctText": "We are under the awning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i12",
+    "correctText": "Whose passport is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i13",
+    "correctText": "They draw here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i14",
+    "correctText": "draws",
+    "correctResponseId": "en:lesson-06:session-27:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i15",
+    "correctText": "The awning is blue.",
+    "correctResponseId": "en:lesson-06:session-27:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i16",
+    "correctText": "en:lesson-06:session-27:i16:p1=exercise\nen:lesson-06:session-27:i16:p2=awning\nen:lesson-06:session-27:i16:p3=generous\nen:lesson-06:session-27:i16:p4=draw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-27:i17",
+    "correctText": "She exercises at home.",
+    "correctResponseId": null
+  }
+]

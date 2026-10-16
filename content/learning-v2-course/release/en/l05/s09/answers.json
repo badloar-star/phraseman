@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-09:i01",
+    "correctText": "Our dentist is young.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i02",
+    "correctText": "charger",
+    "correctResponseId": "en:lesson-05:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i03",
+    "correctText": "charger",
+    "correctResponseId": "en:lesson-05:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i04",
+    "correctText": "en:lesson-05:session-09:i04:p1=charger\nen:lesson-05:session-09:i04:p2=tall\nen:lesson-05:session-09:i04:p3=short\nen:lesson-05:session-09:i04:p4=young",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i05",
+    "correctText": "This is my charger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i06",
+    "correctText": "I have your charger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i07",
+    "correctText": "Her dentist is tall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i08",
+    "correctText": "his",
+    "correctResponseId": "en:lesson-05:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i09",
+    "correctText": "Their door is open.",
+    "correctResponseId": "en:lesson-05:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i10",
+    "correctText": "en:lesson-05:session-09:i10:p1=charger\nen:lesson-05:session-09:i10:p2=door\nen:lesson-05:session-09:i10:p3=dentist\nen:lesson-05:session-09:i10:p4=have",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i11",
+    "correctText": "We have their charger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i12",
+    "correctText": "His dentist is short.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i13",
+    "correctText": "This is our charger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i14",
+    "correctText": "Its",
+    "correctResponseId": "en:lesson-05:session-09:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i15",
+    "correctText": "Her charger is here.",
+    "correctResponseId": "en:lesson-05:session-09:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i16",
+    "correctText": "en:lesson-05:session-09:i16:p1=charger\nen:lesson-05:session-09:i16:p2=door\nen:lesson-05:session-09:i16:p3=dentist\nen:lesson-05:session-09:i16:p4=have",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:i17",
+    "correctText": "I have your charger.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,970 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Наш стоматолог молодий. Скажіть це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Наш стоматолог молодий. Скажіть це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our dentist is young.",
+        "localizedMeaning": {
+          "ru": "Наш стоматолог молодой. Скажите это",
+          "uk": "Наш стоматолог молодий. Скажіть це"
+        },
+        "orderedTokens": [
+          "Our",
+          "dentist",
+          "is",
+          "young"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Наш стоматолог молодий. Скажіть це",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Our dentist is young.`",
+              "uk": "тут потрібно `is` — `Our dentist is young.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-09:i02:r1",
+          "text": "charger"
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i02:r2",
+          "text": "chargers"
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i02:r3",
+          "text": "curtain"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:i02:audio",
+          "transcript": "charger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-09:i02:r1",
+            "targetText": "charger",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i02:r2",
+            "targetText": "chargers",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i02:r3",
+            "targetText": "curtain",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `charger`, а в этом варианте — `chargers`.",
+              "uk": "У записі перше слово — `charger`, а в цьому варіанті — `chargers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `charger`, а в этом варианте — `curtain`.",
+              "uk": "У записі перше слово — `charger`, а в цьому варіанті — `curtain`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть зарядний пристрій",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-09:i03:r1",
+          "text": "charger"
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i03:r2",
+          "text": "remote"
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i03:r3",
+          "text": "drawer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть зарядний пристрій",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите зарядное устройство",
+          "uk": "Назвіть зарядний пристрій"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-09:i03:r1",
+            "text": "charger"
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i03:r2",
+            "text": "remote"
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i03:r3",
+            "text": "drawer"
+          }
+        ],
+        "testedDimension": "Назвіть зарядний пристрій",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть зарядний пристрій",
+            "feedbackByLocale": {
+              "ru": "`remote` — пульт; зарядка — `charger`.",
+              "uk": "`remote` — пульт; зарядка — `charger`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть зарядний пристрій",
+            "feedbackByLocale": {
+              "ru": "`drawer` — выдвижной ящик; зарядка — `charger`.",
+              "uk": "`drawer` — шухляда; зарядка — `charger`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-09:i04:p1",
+            "target": "charger",
+            "meaningByLocale": {
+              "ru": "зарядное устройство",
+              "uk": "зарядний пристрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-09:i04:p2",
+            "target": "tall",
+            "meaningByLocale": {
+              "ru": "высокий (человек)",
+              "uk": "високий (людина)"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-09:i04:p3",
+            "target": "short",
+            "meaningByLocale": {
+              "ru": "невысокий (человек)",
+              "uk": "невисокий (людина)"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-09:i04:p4",
+            "target": "young",
+            "meaningByLocale": {
+              "ru": "молодой",
+              "uk": "молодий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "charger",
+          "tall",
+          "short",
+          "young"
+        ],
+        "rightColumn": [
+          "зарядний пристрій",
+          "високий (людина)",
+          "невисокий (людина)",
+          "молодий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:i05:audio",
+          "transcript": "This is my charger."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is my charger.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "my",
+          "charger"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зарядка співрозмовника у вас. Скажіть «Ваша зарядка в мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зарядка співрозмовника у вас. Скажіть «Ваша зарядка в мене»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have your charger.",
+        "localizedMeaning": {
+          "ru": "Зарядка собеседника у вас. Скажите «Ваша зарядка у меня»",
+          "uk": "Зарядка співрозмовника у вас. Скажіть «Ваша зарядка в мене»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "your",
+          "charger"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Стоматолог вашої подруги високий. Скажіть «Її стоматолог високий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Стоматолог вашої подруги високий. Скажіть «Її стоматолог високий»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:i07:audio",
+          "transcript": "Her dentist is tall."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Her dentist is tall.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Покажіть зарядку вашого друга-чоловіка: «Це його зарядка»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-09:i08:r1",
+          "text": "his"
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i08:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i08:r3",
+          "text": "their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть зарядку вашого друга-чоловіка: «Це його зарядка»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Покажите зарядку вашего друга-мужчины: «Это его зарядка»",
+          "uk": "Покажіть зарядку вашого друга-чоловіка: «Це його зарядка»"
+        },
+        "gappedTargetPhrase": "This is ___ charger.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-09:i08:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i08:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i08:r3",
+            "text": "their"
+          }
+        ],
+        "testedDimension": "Покажіть зарядку вашого друга-чоловіка: «Це його зарядка»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Покажіть зарядку вашого друга-чоловіка: «Це його зарядка»",
+            "feedbackByLocale": {
+              "ru": "`her` — её; здесь его: `his`.",
+              "uk": "`her` — її; тут його: `his`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Покажіть зарядку вашого друга-чоловіка: «Це його зарядка»",
+            "feedbackByLocale": {
+              "ru": "`their` — их; здесь его: `his`.",
+              "uk": "`their` — їхня; тут його: `his`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте про двері",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-09:i09:r1",
+          "text": "Their door is open."
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i09:r2",
+          "text": "Their door is closed."
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i09:r3",
+          "text": "Our door is open."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте про двері",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:i09:audio",
+          "transcript": "Their door is open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-09:i09:r1",
+            "targetText": "Their door is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i09:r2",
+            "targetText": "Their door is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i09:r3",
+            "targetText": "Our door is open.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте про двері",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
+              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте про двері",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Their`, а в этом варианте — `Our`.",
+              "uk": "У записі перше слово — `Their`, а в цьому варіанті — `Our`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-09:i10:p1",
+            "target": "charger",
+            "meaningByLocale": {
+              "ru": "зарядное устройство",
+              "uk": "зарядний пристрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-09:i10:p2",
+            "target": "door",
+            "meaningByLocale": {
+              "ru": "дверь",
+              "uk": "двері"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-09:i10:p3",
+            "target": "dentist",
+            "meaningByLocale": {
+              "ru": "стоматолог",
+              "uk": "стоматолог"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-09:i10:p4",
+            "target": "have",
+            "meaningByLocale": {
+              "ru": "иметь",
+              "uk": "мати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "charger",
+          "door",
+          "dentist",
+          "have"
+        ],
+        "rightColumn": [
+          "зарядний пристрій",
+          "двері",
+          "стоматолог",
+          "мати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:i11:audio",
+          "transcript": "We have their charger."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have their charger.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "their",
+          "charger"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Стоматолог вашого друга невисокий. Скажіть «Його стоматолог невисокий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стоматолог вашого друга невисокий. Скажіть «Його стоматолог невисокий»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "His dentist is short.",
+        "localizedMeaning": {
+          "ru": "Стоматолог вашего друга невысокий. Скажите «Его стоматолог невысокий»",
+          "uk": "Стоматолог вашого друга невисокий. Скажіть «Його стоматолог невисокий»"
+        },
+        "orderedTokens": [
+          "His",
+          "dentist",
+          "is",
+          "short"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Стоматолог вашого друга невисокий. Скажіть «Його стоматолог невисокий»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `His dentist is short.`",
+              "uk": "тут потрібно `is` — `His dentist is short.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зарядка спільна, ваша й друга. Скажіть «Це наша зарядка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Зарядка спільна, ваша й друга. Скажіть «Це наша зарядка»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:i13:audio",
+          "transcript": "This is our charger."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is our charger.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ідеться про одну шафу, яку ви називаєте it. Її дверцята відчинені. Виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-09:i14:r1",
+          "text": "Its"
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i14:r2",
+          "text": "It's"
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i14:r3",
+          "text": "Their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ідеться про одну шафу, яку ви називаєте it. Її дверцята відчинені. Виберіть слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном шкафе, который вы называете it. Его дверца открыта. Выберите слово",
+          "uk": "Ідеться про одну шафу, яку ви називаєте it. Її дверцята відчинені. Виберіть слово"
+        },
+        "gappedTargetPhrase": "___ door is open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-09:i14:r1",
+            "text": "Its"
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i14:r2",
+            "text": "It's"
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i14:r3",
+            "text": "Their"
+          }
+        ],
+        "testedDimension": "Ідеться про одну шафу, яку ви називаєте it. Її дверцята відчинені. Виберіть слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i14:r2",
+            "correct": false,
+            "testedDimension": "Ідеться про одну шафу, яку ви називаєте it. Її дверцята відчинені. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "`It’s` — это `it is`; перед дверью нужно `Its` без апострофа.",
+              "uk": "`It’s` — це `it is`; перед назвою дверей потрібне `Its` без апострофа."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i14:r3",
+            "correct": false,
+            "testedDimension": "Ідеться про одну шафу, яку ви називаєте it. Її дверцята відчинені. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "`Their` — их; для одного шкафа, названного `it`, нужно `Its`.",
+              "uk": "`Their` — їхні; для однієї шафи, названої `it`, потрібне `Its`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чия зарядка тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-09:i15:r1",
+          "text": "Her charger is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i15:r2",
+          "text": "His charger is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-09:i15:r3",
+          "text": "My charger is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чия зарядка тут",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:i15:audio",
+          "transcript": "Her charger is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-09:i15:r1",
+            "targetText": "Her charger is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i15:r2",
+            "targetText": "His charger is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i15:r3",
+            "targetText": "My charger is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-09:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чия зарядка тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Her`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `His`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-09:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чия зарядка тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Her`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `My`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-09:i16:p1",
+            "target": "charger",
+            "meaningByLocale": {
+              "ru": "зарядное устройство",
+              "uk": "зарядний пристрій"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-09:i16:p2",
+            "target": "door",
+            "meaningByLocale": {
+              "ru": "дверь",
+              "uk": "двері"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-09:i16:p3",
+            "target": "dentist",
+            "meaningByLocale": {
+              "ru": "стоматолог",
+              "uk": "стоматолог"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-09:i16:p4",
+            "target": "have",
+            "meaningByLocale": {
+              "ru": "иметь",
+              "uk": "мати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "charger",
+          "door",
+          "dentist",
+          "have"
+        ],
+        "rightColumn": [
+          "зарядний пристрій",
+          "двері",
+          "стоматолог",
+          "мати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-09:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг шукає свою зарядку. Вона у вас. Повідомте йому «Твоя зарядка в мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Друг шукає свою зарядку. Вона у вас. Повідомте йому «Твоя зарядка в мене»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-09:i17:audio",
+          "transcript": "I have your charger."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your charger.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1a7077b15e050e1ab43184b7c9479931ecb7b8866125fd4b9b49283a2aef203b"
+}

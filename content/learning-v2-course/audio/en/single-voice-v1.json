@@ -129850,6 +129850,309 @@
           "byteSize": 39552
         }
       ]
+    },
+    "l08/s37/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Don’t bend it.",
+          "file": "9251b9b7d3e856892064a46f37103680a95a35de9d8fa85ab5d369bfd5966e86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9251b9b7d3e856892064a46f37103680a95a35de9d8fa85ab5d369bfd5966e86.mp3",
+          "contentHash": "c9a3552f95c73842287bf73d6645da1037b484873a00f71a6df40a5773f10e80",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l08/s37/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Don’t touch this.",
+          "file": "7055bcb0a58f977a8ecbe6094389690ce0a88bf7fe6fe5be397654f5f10f9738.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7055bcb0a58f977a8ecbe6094389690ce0a88bf7fe6fe5be397654f5f10f9738.mp3",
+          "contentHash": "2a5e748187744fc3f5d19482f023f18837bcf5ed8b2e981e4dd0a69ac36a3587",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s37/intro/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Please don’t wait.",
+          "file": "e1e79054d6e7b8cc795597e844be026f6eb47ddec110672c2b24f9dac5f480b4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1e79054d6e7b8cc795597e844be026f6eb47ddec110672c2b24f9dac5f480b4.mp3",
+          "contentHash": "3ca5c3f4f24d4454ab089af68f5bf208e06fb4df6e4809938bad2f97d8bc9822",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l08/s37/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Don’t bend it.",
+          "file": "9251b9b7d3e856892064a46f37103680a95a35de9d8fa85ab5d369bfd5966e86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9251b9b7d3e856892064a46f37103680a95a35de9d8fa85ab5d369bfd5966e86.mp3",
+          "contentHash": "c9a3552f95c73842287bf73d6645da1037b484873a00f71a6df40a5773f10e80",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l08/s37/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "bend",
+          "file": "2236c31700271753cd306900c2a5f1e0cc94ad2e993895da27e2c381bc59f168.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2236c31700271753cd306900c2a5f1e0cc94ad2e993895da27e2c381bc59f168.mp3",
+          "contentHash": "fdfcb3fb4f4f953649b7240fcc7d6cbc746a568b7c5f1113f29df5433b5882fe",
+          "byteSize": 13440
+        }
+      ]
+    },
+    "l08/s37/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Don’t bend it.",
+          "file": "1067490ff53e7496a9910339e936a62bc27de3c3a238e5639ca18b04ec81e42e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1067490ff53e7496a9910339e936a62bc27de3c3a238e5639ca18b04ec81e42e.mp3",
+          "contentHash": "383afa481e48307de6b6a6f41e7377ce7f61a38fb885fc495a0eeee8ea7cae74",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l08/s37/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bend",
+          "file": "0500f3ab1c7848cadf140d5a46e55c8f7c81f45da68724e35d983d287d7fd624.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0500f3ab1c7848cadf140d5a46e55c8f7c81f45da68724e35d983d287d7fd624.mp3",
+          "contentHash": "3404f1be4c997205da8fcdef6123ba369d10f71b523bbbc5e77d4e86fb34652c",
+          "byteSize": 24576
+        },
+        {
+          "text": "parcel locker",
+          "file": "049152f0883456be4825b04c34f76f51d10d1f57be875d6488535ecf4bb8af22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/049152f0883456be4825b04c34f76f51d10d1f57be875d6488535ecf4bb8af22.mp3",
+          "contentHash": "262849a5e220425571d0cb01aedfbbd79b05b910b9c59b22f6a6970c81ba305e",
+          "byteSize": 32256
+        },
+        {
+          "text": "shop",
+          "file": "28624093aa38df9994d09786e95c3179d18e0e44540391b8456cf9058a1b7403.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28624093aa38df9994d09786e95c3179d18e0e44540391b8456cf9058a1b7403.mp3",
+          "contentHash": "f6a8581f7cb987b934dae6144fd0e4e045380a166ff6457840286c65fd36f036",
+          "byteSize": 30720
+        },
+        {
+          "text": "measure",
+          "file": "1b423357ee887da5fe42e94302b15cf59d9fe6ae411085cd372ae1277339860c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1b423357ee887da5fe42e94302b15cf59d9fe6ae411085cd372ae1277339860c.mp3",
+          "contentHash": "586299788dd280943898daaed8cd8d1c9efcae8c80ba02c4486abbd9eb1eeb59",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l08/s37/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Don’t bend it.",
+          "file": "9251b9b7d3e856892064a46f37103680a95a35de9d8fa85ab5d369bfd5966e86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9251b9b7d3e856892064a46f37103680a95a35de9d8fa85ab5d369bfd5966e86.mp3",
+          "contentHash": "c9a3552f95c73842287bf73d6645da1037b484873a00f71a6df40a5773f10e80",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l08/s37/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Don’t touch this.",
+          "file": "8215d51871cf1dca20dc1ebeca4799e488bfe1a9bc1698fe340bfad1e2989b84.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8215d51871cf1dca20dc1ebeca4799e488bfe1a9bc1698fe340bfad1e2989b84.mp3",
+          "contentHash": "7679dd3f3f20ba31c0438eed7fa0ff36efbd3eb7b799c87fa8cd8619090c99f3",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l08/s37/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Please don’t wait.",
+          "file": "e1e79054d6e7b8cc795597e844be026f6eb47ddec110672c2b24f9dac5f480b4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1e79054d6e7b8cc795597e844be026f6eb47ddec110672c2b24f9dac5f480b4.mp3",
+          "contentHash": "3ca5c3f4f24d4454ab089af68f5bf208e06fb4df6e4809938bad2f97d8bc9822",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l08/s37/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Please don’t wait.",
+          "file": "e1e79054d6e7b8cc795597e844be026f6eb47ddec110672c2b24f9dac5f480b4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1e79054d6e7b8cc795597e844be026f6eb47ddec110672c2b24f9dac5f480b4.mp3",
+          "contentHash": "3ca5c3f4f24d4454ab089af68f5bf208e06fb4df6e4809938bad2f97d8bc9822",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l08/s37/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Don’t bend it.",
+          "file": "6c33a9a402de5657c86d69548d79e11ab6d020475ecc04395110871d0ae845b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6c33a9a402de5657c86d69548d79e11ab6d020475ecc04395110871d0ae845b9.mp3",
+          "contentHash": "1a105b8170c4e9178056925c61de20cad41291c90b0331d77e1bc262aa29ecab",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l08/s37/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "pack",
+          "file": "60181c1727d707a298e6b18bc48441b6c49d9572b6e6a10daf435d995b454cfa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60181c1727d707a298e6b18bc48441b6c49d9572b6e6a10daf435d995b454cfa.mp3",
+          "contentHash": "8d58ffadcd5dbe63f889079bf07920ef483a5ed4132da982251fbbc9be1cbf4a",
+          "byteSize": 26880
+        },
+        {
+          "text": "bend",
+          "file": "c32ab81834c06364337a16b03ba051093adaba1ca2136f75f267041414302f15.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c32ab81834c06364337a16b03ba051093adaba1ca2136f75f267041414302f15.mp3",
+          "contentHash": "59c94754c775c050417bd9dceba8eb0df362b9f0404aca1363c4d64d71246f3f",
+          "byteSize": 14208
+        },
+        {
+          "text": "shop",
+          "file": "fcaa64394a300129304af2a51662b4d0fd950a7120f8c6b1adb4178284be53f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fcaa64394a300129304af2a51662b4d0fd950a7120f8c6b1adb4178284be53f0.mp3",
+          "contentHash": "d940d006a109660e2f190005f89d471f58c605603ccfa0187c427f3d8fd652a9",
+          "byteSize": 16512
+        },
+        {
+          "text": "parcel locker",
+          "file": "e0ce33b97c1a3c643f0d923179352ebac638e91bc725dfd96191bf69c9bcb63e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0ce33b97c1a3c643f0d923179352ebac638e91bc725dfd96191bf69c9bcb63e.mp3",
+          "contentHash": "33383b15b3bc2bac1831c4e96d9cfb80e555e85c863915c5a8ece202c52d60e2",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s37/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Please don’t wait.",
+          "file": "1bd7eebf5a6d7e26fba831c3aeb5de53124db679314d2ec9f4ce648c2b047c22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1bd7eebf5a6d7e26fba831c3aeb5de53124db679314d2ec9f4ce648c2b047c22.mp3",
+          "contentHash": "d69cc7a1c33c65dcb96976af1f53a296c08bfb82d697af6df9c1cf2f2358b938",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l08/s37/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Measure it.",
+          "file": "517d3c11a62bd23ff4fc3afb5db43c7dfeaaaf0e1e1925bbdcf61ea03d7a8bf7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/517d3c11a62bd23ff4fc3afb5db43c7dfeaaaf0e1e1925bbdcf61ea03d7a8bf7.mp3",
+          "contentHash": "b8f169177d305f48044d891d614e13d414dc3db4bea8638d9bbb67130cb409c1",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l08/s37/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I often pack.",
+          "file": "bb6b0d24006aaa9f921871b26748170c899958504e72a6ee7068de000f77a19a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bb6b0d24006aaa9f921871b26748170c899958504e72a6ee7068de000f77a19a.mp3",
+          "contentHash": "b03ef0896f90dbf390d2c92e8e5a4af50f0e79a580ea42d619de2c0ab0f16a54",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l08/s37/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Don’t touch this.",
+          "file": "bb940223102340093735766a2b0dcb48b8cd24d7ec04454bc290c3664ab68a5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bb940223102340093735766a2b0dcb48b8cd24d7ec04454bc290c3664ab68a5d.mp3",
+          "contentHash": "0b6fbb1adcb28383098fc089488658b29d6667df3e0485521fc4122f2358e93f",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s37/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Don’t rush.",
+          "file": "b93cd40f1d4e75018cd3cbef853181d41917489f3ca12518f7dd6b7c5f702f7a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b93cd40f1d4e75018cd3cbef853181d41917489f3ca12518f7dd6b7c5f702f7a.mp3",
+          "contentHash": "9e2c48d3b77a5680fa5c68660b9f3897fedd5fcfc7d42f5a7d5adedc93c09aa5",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s37/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bend",
+          "file": "c32ab81834c06364337a16b03ba051093adaba1ca2136f75f267041414302f15.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c32ab81834c06364337a16b03ba051093adaba1ca2136f75f267041414302f15.mp3",
+          "contentHash": "59c94754c775c050417bd9dceba8eb0df362b9f0404aca1363c4d64d71246f3f",
+          "byteSize": 14208
+        },
+        {
+          "text": "pack",
+          "file": "60181c1727d707a298e6b18bc48441b6c49d9572b6e6a10daf435d995b454cfa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60181c1727d707a298e6b18bc48441b6c49d9572b6e6a10daf435d995b454cfa.mp3",
+          "contentHash": "8d58ffadcd5dbe63f889079bf07920ef483a5ed4132da982251fbbc9be1cbf4a",
+          "byteSize": 26880
+        },
+        {
+          "text": "measure",
+          "file": "d7bce54a48d08cca8920ebb4e3c3fee3bdd8359bffff80a81c093676c88d6422.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d7bce54a48d08cca8920ebb4e3c3fee3bdd8359bffff80a81c093676c88d6422.mp3",
+          "contentHash": "5c5a646497ea9e347014f482d4944c19b2f9cadf863d2b5b41f74354899cfd20",
+          "byteSize": 15744
+        },
+        {
+          "text": "parcel locker",
+          "file": "e0ce33b97c1a3c643f0d923179352ebac638e91bc725dfd96191bf69c9bcb63e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0ce33b97c1a3c643f0d923179352ebac638e91bc725dfd96191bf69c9bcb63e.mp3",
+          "contentHash": "33383b15b3bc2bac1831c4e96d9cfb80e555e85c863915c5a8ece202c52d60e2",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s37/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Don’t bend it.",
+          "file": "2521e7c8a5c2881dd3251cb51e1a8c2c8aabc732725171e33b653561377dea94.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2521e7c8a5c2881dd3251cb51e1a8c2c8aabc732725171e33b653561377dea94.mp3",
+          "contentHash": "2d6eb0c8f0bef945ca63a2a667e1918525ddfd0cc590938de5ef8d4adfd31b83",
+          "byteSize": 33792
+        }
+      ]
     }
   },
   "settings": {

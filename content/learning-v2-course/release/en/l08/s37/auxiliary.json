@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-37:intro1:r2": {
+          "ru": "После `don’t` нужно `bend`, без `s`.",
+          "uk": "Після `don’t` потрібне `bend`, без `s`."
+        },
+        "en:lesson-08:session-37:intro1:r3": {
+          "ru": "После `don’t` нужно `bend`, без `to`.",
+          "uk": "Після `don’t` потрібне `bend`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-37:intro2:r2": {
+          "ru": "После `don’t` нужно `touch`, без `es`.",
+          "uk": "Після `don’t` потрібне `touch`, без `es`."
+        },
+        "en:lesson-08:session-37:intro2:r3": {
+          "ru": "В такой просьбе нужно `Don’t touch this`.",
+          "uk": "У такому проханні потрібне `Don’t touch this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-37:intro3:r2": {
+          "ru": "В обращении к человеку нужно `don’t wait`.",
+          "uk": "У звертанні до людини потрібне `don’t wait`."
+        },
+        "en:lesson-08:session-37:intro3:r3": {
+          "ru": "После `don’t` нужно `wait`, без `to`.",
+          "uk": "Після `don’t` потрібне `wait`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "885fdd1cd8924c0129c8aa1945b746882730978fd5bec64fc409133d109ceaca"
+}

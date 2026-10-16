@@ -93490,6 +93490,612 @@
           "byteSize": 42624
         }
       ]
+    },
+    "l06/s29/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I call my mother.",
+          "file": "5c4cc09115ee1a7192094468b7ef4dd25a75d8225069d4dcf555aa01d8693abf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c4cc09115ee1a7192094468b7ef4dd25a75d8225069d4dcf555aa01d8693abf.mp3",
+          "contentHash": "27bf75a22c86ea2abffae3071fe51194ef66f06053f47d747312f72c9a9bd799",
+          "byteSize": 54528
+        }
+      ]
+    },
+    "l06/s29/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My mother is away.",
+          "file": "b58dee5b279f1c5c950f34d0be34532d9adb6c6a39202690b358f1841ab54c1d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b58dee5b279f1c5c950f34d0be34532d9adb6c6a39202690b358f1841ab54c1d.mp3",
+          "contentHash": "84a9ae5e41abe8c5f8fbbc87d17baf0c7a29c6909787ed8881dc5d1c5437625f",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l06/s29/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We are at the bus stop.",
+          "file": "e2d632fe5462ea07bb4bf460095a9d05e19a069a6596ab814afca3d567e9690f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e2d632fe5462ea07bb4bf460095a9d05e19a069a6596ab814afca3d567e9690f.mp3",
+          "contentHash": "5bb8681cfe4b5a8f14dbbffd822f5fa738e58ae827eff74395808d3fecf84248",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s29/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I call my mother.",
+          "file": "5c4cc09115ee1a7192094468b7ef4dd25a75d8225069d4dcf555aa01d8693abf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c4cc09115ee1a7192094468b7ef4dd25a75d8225069d4dcf555aa01d8693abf.mp3",
+          "contentHash": "27bf75a22c86ea2abffae3071fe51194ef66f06053f47d747312f72c9a9bd799",
+          "byteSize": 54528
+        }
+      ]
+    },
+    "l06/s29/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "call",
+          "file": "94be45c021b73dcb2f7bde013e531b524cc1bf02f008ecf147e4d39ecbc78f7b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/94be45c021b73dcb2f7bde013e531b524cc1bf02f008ecf147e4d39ecbc78f7b.mp3",
+          "contentHash": "e9045878278f9a82c51d42df1568e41a4c9bb21a5271836893955cac8e75bec5",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l06/s29/task/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She calls her mother.",
+          "file": "f55bd5fc0c822837fa29f21a13adbb5073b7b65c3b1aff0d9c416ebea41634f2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f55bd5fc0c822837fa29f21a13adbb5073b7b65c3b1aff0d9c416ebea41634f2.mp3",
+          "contentHash": "9a9865fad70dc125d490129687171a57c05c7fbaa5ada99915c1c102175b997a",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s29/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "call",
+          "file": "94be45c021b73dcb2f7bde013e531b524cc1bf02f008ecf147e4d39ecbc78f7b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/94be45c021b73dcb2f7bde013e531b524cc1bf02f008ecf147e4d39ecbc78f7b.mp3",
+          "contentHash": "e9045878278f9a82c51d42df1568e41a4c9bb21a5271836893955cac8e75bec5",
+          "byteSize": 21888
+        },
+        {
+          "text": "away",
+          "file": "0b5c093804c250d120d1fd86f1334397458ad6f799820718329ca4f4ac3706ee.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/378ce56a9d146d5174c89d1c-nova.mp3",
+          "contentHash": "3f572458824a35dbb306578c7088bbb7224d64db34f283c2ba76769c8f8f4df2",
+          "byteSize": 13440
+        },
+        {
+          "text": "bus stop",
+          "file": "c45281f0f42d2732ff7c2d2de5ea214910cd42b0f39ed35c9160294a01c45984.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c45281f0f42d2732ff7c2d2de5ea214910cd42b0f39ed35c9160294a01c45984.mp3",
+          "contentHash": "33ee8f752c3eab34b44589a13d3198a4c2c148c9ae7834b35c2ca4b5ccc80444",
+          "byteSize": 25344
+        },
+        {
+          "text": "skateboard",
+          "file": "b6894e359302e16e84542ed4197e8da1a6cfa6dc03733a6709a6fdede22d7a53.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b6894e359302e16e84542ed4197e8da1a6cfa6dc03733a6709a6fdede22d7a53.mp3",
+          "contentHash": "10c7a36279296335304d9208f5c05b71c266edd13857774cac11b9428f6b419e",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l06/s29/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Anna calls her mother.",
+          "file": "c7307ecf4dcd76e48973a916f2f2ea53aa758e6b450699be02fa160614929333.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c7307ecf4dcd76e48973a916f2f2ea53aa758e6b450699be02fa160614929333.mp3",
+          "contentHash": "5648ae38facb3464d5e4159366f309c25028f4ce55231bbfa428ca737f4928f6",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s29/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He writes at home.",
+          "file": "da1267b2e574bd72af5157f03d8a8bf35901161ca110bd9eecda32b1b8ea5475.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/da1267b2e574bd72af5157f03d8a8bf35901161ca110bd9eecda32b1b8ea5475.mp3",
+          "contentHash": "1ad605b5197379a21f4e9babc36f0811771d21aa2f75f3027f7e9f9740bd22ce",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s29/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My mother is away.",
+          "file": "b58dee5b279f1c5c950f34d0be34532d9adb6c6a39202690b358f1841ab54c1d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b58dee5b279f1c5c950f34d0be34532d9adb6c6a39202690b358f1841ab54c1d.mp3",
+          "contentHash": "84a9ae5e41abe8c5f8fbbc87d17baf0c7a29c6909787ed8881dc5d1c5437625f",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l06/s29/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I call my mother.",
+          "file": "02b535f374900d87e00c732856eac124c278730bb4fab4539ce071e0cc345647.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/02b535f374900d87e00c732856eac124c278730bb4fab4539ce071e0cc345647.mp3",
+          "contentHash": "d7b4ebe5adce20f684e1b12f6c32e9879b2c96c4b38f58f3ead5bbbaed278e41",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l06/s29/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My skateboard is here.",
+          "file": "2f04e811b332a3f2c0527aeb8d4d791cc10758588993707e9f36c84d8700036e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2f04e811b332a3f2c0527aeb8d4d791cc10758588993707e9f36c84d8700036e.mp3",
+          "contentHash": "735fb65340236bcae2494b269c09a1edad6a3105e544b247625ee5f2e326d0ab",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l06/s29/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "call",
+          "file": "53de7245adc05e0c322ccbea490a918d44fe28802536484ede0530034f3a4c34.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53de7245adc05e0c322ccbea490a918d44fe28802536484ede0530034f3a4c34.mp3",
+          "contentHash": "9b1ef8954104a820f6ec2467d7e46e65a1a5264104741b22dfce62ae04002ff9",
+          "byteSize": 22656
+        },
+        {
+          "text": "write",
+          "file": "f2f39008e3f89d81bd6225c85b84e558943e71e065a076a04e20ee188285f1d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f2f39008e3f89d81bd6225c85b84e558943e71e065a076a04e20ee188285f1d1.mp3",
+          "contentHash": "5f761668ed8cc71e5733d2c1a783fb94937de17d5e003d607fecd472399bf113",
+          "byteSize": 32640
+        },
+        {
+          "text": "skateboard",
+          "file": "a49f705de3854793beed1be10443fd269bda8718983ca7dcd794ed8f0f461259.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a49f705de3854793beed1be10443fd269bda8718983ca7dcd794ed8f0f461259.mp3",
+          "contentHash": "409b423b373b1dec2b94911371938abeac475c25c1b51705b88f6107e11d7d9b",
+          "byteSize": 24192
+        },
+        {
+          "text": "away",
+          "file": "48a10a2ec8fa2f4936cea2db28d218b250dff77c88f781cdf98dfbcf30af6aac.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/378ce56a9d146d5174c89d1c-ash.mp3",
+          "contentHash": "713422c4a3beafb9b200a38e47abad29b5cd77a0f8b5255e85274c0129a3716e",
+          "byteSize": 6912
+        }
+      ]
+    },
+    "l06/s29/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We are at the bus stop.",
+          "file": "e2d632fe5462ea07bb4bf460095a9d05e19a069a6596ab814afca3d567e9690f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e2d632fe5462ea07bb4bf460095a9d05e19a069a6596ab814afca3d567e9690f.mp3",
+          "contentHash": "5bb8681cfe4b5a8f14dbbffd822f5fa738e58ae827eff74395808d3fecf84248",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s29/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose skateboard is this?",
+          "file": "8f55d3513bf76553b3369ebe73727a83207c3cf998a2521e5f9b680e8aa163ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8f55d3513bf76553b3369ebe73727a83207c3cf998a2521e5f9b680e8aa163ef.mp3",
+          "contentHash": "15fadb2700608ad20c87669707aa59cec1cc125a6b2287aa0fcfa7d19ff76a2b",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s29/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They write here.",
+          "file": "e1a15f9e6d18db07acfbadcdb55833d2ed7d639c667a98b0689e346c5df9c6f7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1a15f9e6d18db07acfbadcdb55833d2ed7d639c667a98b0689e346c5df9c6f7.mp3",
+          "contentHash": "510b04377082eb5c08deba2ee586823b88d53accbae772d3fc93940e409f176a",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s29/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Tom writes at home.",
+          "file": "787e8fc86ac4adea7ef6ac6a4cbd562c62a5d1e18d34443faafda4e23a3bcebd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/787e8fc86ac4adea7ef6ac6a4cbd562c62a5d1e18d34443faafda4e23a3bcebd.mp3",
+          "contentHash": "eb298eacb8d7b4b491ed07da745343d86caa43c683f81f3354a3fc9b72402380",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l06/s29/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bus stop is here.",
+          "file": "90d08633d34679b96bfc98d241b957b67f01c3b1605129d202b6f5f0e61806cd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90d08633d34679b96bfc98d241b957b67f01c3b1605129d202b6f5f0e61806cd.mp3",
+          "contentHash": "89c2ef8452ca310a66bda014e898797223240b2a711d7c1abf2152b94236eff5",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l06/s29/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "call",
+          "file": "7989f86ffdc328d663a085bb0a963d05a8662cb127ebeab392c31c20c1d7d8ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7989f86ffdc328d663a085bb0a963d05a8662cb127ebeab392c31c20c1d7d8ae.mp3",
+          "contentHash": "7942cfa066d635cdfc7487c042e8f50c95348ae74a12032760d6b3f9835c365a",
+          "byteSize": 20352
+        },
+        {
+          "text": "bus stop",
+          "file": "2661247007cf79547c7a75bd15516f3aaa3519bd7892db432ca4ba93c35905ed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2661247007cf79547c7a75bd15516f3aaa3519bd7892db432ca4ba93c35905ed.mp3",
+          "contentHash": "ee97ddb8865d2579f822068a7e47fdbef4ed336a54a0b09e14c7900c9946bbf8",
+          "byteSize": 30720
+        },
+        {
+          "text": "away",
+          "file": "9e5c2a0b179ec09e4558202c3c75aaecdbbec1264e816d14dfcc54134ea2af6d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/378ce56a9d146d5174c89d1c-onyx.mp3",
+          "contentHash": "173d4fb2346395febc1fb5ce9776a39c063e1ae3ea2decdbd10e5cc0ef027b22",
+          "byteSize": 14976
+        },
+        {
+          "text": "write",
+          "file": "d5cd7c15be167eb74b0d713249ee4e0e37fe7b607536ad74ac3ea7e4e9449c50.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5cd7c15be167eb74b0d713249ee4e0e37fe7b607536ad74ac3ea7e4e9449c50.mp3",
+          "contentHash": "679013179884c8c380f1773a345a99d14fb09f2697a55d7e479c9a8d1054678d",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l06/s29/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She calls her mother.",
+          "file": "8369504f7e11b1497e1ed85240151d5a8f26c33509fbcd2cf542c3540651943d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8369504f7e11b1497e1ed85240151d5a8f26c33509fbcd2cf542c3540651943d.mp3",
+          "contentHash": "36ffb1511d0e1f44daf6bed4816a8c43111cbdefd6e6933991da04af69b0143b",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l06/s30/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She cleans her room.",
+          "file": "9a32dfd4ae8da70a7bd758bc31b578e3f8dde3f6bf14f1a6b5cac7e88a4aa56f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a32dfd4ae8da70a7bd758bc31b578e3f8dde3f6bf14f1a6b5cac7e88a4aa56f.mp3",
+          "contentHash": "01f39a77bb49fc2ad3e425cff16de5a1d5c94770aa64ec106e2542a7d3d19d23",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s30/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "My headphones are elsewhere.",
+          "file": "470806a2022505c60f7eb2bc00ca74a34b712a4676a4f63680784f3f1b473d55.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/470806a2022505c60f7eb2bc00ca74a34b712a4676a4f63680784f3f1b473d55.mp3",
+          "contentHash": "1025d978e89553b4ce33ce839d2e041cf8b8b2a9cb5f10b314f200965b241068",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s30/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose headphones are these?",
+          "file": "d599a26d5718705cb67682081e3ffd3ea8bad11abcd43279a6de83757823735e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d599a26d5718705cb67682081e3ffd3ea8bad11abcd43279a6de83757823735e.mp3",
+          "contentHash": "331e97a7bb50797dbcafc39be5e8ec9e8ae1a61b506ef3396e8ea434ca016fe8",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s30/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I clean my room.",
+          "file": "0534bbf267f8be2b89c15f2c22e3c2b4398f8d242825c18a562e1811d2f48fb3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0534bbf267f8be2b89c15f2c22e3c2b4398f8d242825c18a562e1811d2f48fb3.mp3",
+          "contentHash": "edf3505d58d8b5bb3d34f15a88f1d47e7e21e50c8489857e454faa7b336c377c",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s30/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "clean",
+          "file": "e75e8cd4b8e4eedb3ef541bb4271d749d903fd1f3c228ed852054998e55b1bda.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3b066804f6d1d077173cfe4d-nova.mp3",
+          "contentHash": "1f1a36258ca3b4821b2615d5632eb715b3883dd2b097674c0c539a7ad3769f20",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l06/s30/task/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She cleans her room.",
+          "file": "a83a207385aea0aa3ddbcbed60acf0f98b66a11651b595a0e508ac74799b0550.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a83a207385aea0aa3ddbcbed60acf0f98b66a11651b595a0e508ac74799b0550.mp3",
+          "contentHash": "4f4ddb648938056bde211342af89e2d8f245b05a2f26225d27db92d41aac4b22",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s30/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "clean",
+          "file": "e5fb1253a47d0e228740d553f1ae150f6024433d7aa18b81f36ae7f4c820d122.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3b066804f6d1d077173cfe4d-coral.mp3",
+          "contentHash": "53da315c393ade2ba91a75e3a421210837e57ee97a51ad1b7b85013d435c2f5a",
+          "byteSize": 24576
+        },
+        {
+          "text": "elsewhere",
+          "file": "e862ec1aa5c3aa5ceefb6b6799a32756f6c38e3c9b3c7f13998f74c7bd244eb3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e862ec1aa5c3aa5ceefb6b6799a32756f6c38e3c9b3c7f13998f74c7bd244eb3.mp3",
+          "contentHash": "fc35fad516243aa5b0b5accb90d420fd43c95d30b04445bf9bdffcb0437ba43e",
+          "byteSize": 18048
+        },
+        {
+          "text": "signpost",
+          "file": "a801278658746d4bee5a9ff6c6a328833b45ef459802ccea4b0d023daa750ded.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a801278658746d4bee5a9ff6c6a328833b45ef459802ccea4b0d023daa750ded.mp3",
+          "contentHash": "77da4978060acd0e9201d615f03d9330de8902b70d4eccc6e1d88563d8bb9f34",
+          "byteSize": 24192
+        },
+        {
+          "text": "headphones",
+          "file": "db0267501febf3330aced2547d5ba1e63b426933f195edaf5f986bdf8d92f633.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/db0267501febf3330aced2547d5ba1e63b426933f195edaf5f986bdf8d92f633.mp3",
+          "contentHash": "ea18fe9cf13ab7fd0f44621e16d3f4aeef03f122ebf33a42a980546341242faa",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l06/s30/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom cleans his room.",
+          "file": "ba30538359534160be572675665dc18b1e7b79a9f8f2c3740714b6d0b8767155.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ba30538359534160be572675665dc18b1e7b79a9f8f2c3740714b6d0b8767155.mp3",
+          "contentHash": "df427cb22e341f9ce2b2b56e626f7205ae6879633488056d15daab80d66e8395",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l06/s30/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He reads here.",
+          "file": "a17fba0a5ec07c41af33e61432db9ab52e6924eb8c349ad59b200c54d5da25d7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a17fba0a5ec07c41af33e61432db9ab52e6924eb8c349ad59b200c54d5da25d7.mp3",
+          "contentHash": "9fab7e57d32190cd4f20af695b50bdb0bf96a08fb2fdc92414230df25576d646",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s30/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "My headphones are elsewhere.",
+          "file": "470806a2022505c60f7eb2bc00ca74a34b712a4676a4f63680784f3f1b473d55.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/470806a2022505c60f7eb2bc00ca74a34b712a4676a4f63680784f3f1b473d55.mp3",
+          "contentHash": "1025d978e89553b4ce33ce839d2e041cf8b8b2a9cb5f10b314f200965b241068",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s30/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We clean our room.",
+          "file": "4cb3f159adb71e1cb8f2d18e234e46e61b961e81d8a14f08e84b67a75b5520bc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4cb3f159adb71e1cb8f2d18e234e46e61b961e81d8a14f08e84b67a75b5520bc.mp3",
+          "contentHash": "b0153970741cb09127acbaa1701ba48ff93aaa6f7db43297f6a7f703cbc99ee4",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s30/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This signpost is new.",
+          "file": "d4c989dddadbd619f072470156599dfdeb0f5338e3e89631e8c50714ffcd486a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d4c989dddadbd619f072470156599dfdeb0f5338e3e89631e8c50714ffcd486a.mp3",
+          "contentHash": "6a4b4d2ccd066cd3efdbcd6507413b4b89330e9b4fbbf0167a49eeb8957bffc2",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l06/s30/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "clean",
+          "file": "af73e0323e82b4bf013b90564fdb6a048c43555e27b3452be5a8e3d984fb2912.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3b066804f6d1d077173cfe4d-ash.mp3",
+          "contentHash": "e0ed56b6a6a57d800ecf3b942d0f2cbe5681176d24b1acaef4142a7d22d5b0e4",
+          "byteSize": 31488
+        },
+        {
+          "text": "read",
+          "file": "9b7d6e37a21c36dd544026c5e698a87b92eae39f93057ba8832183f6c2dbd873.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9b7d6e37a21c36dd544026c5e698a87b92eae39f93057ba8832183f6c2dbd873.mp3",
+          "contentHash": "020d2490e7e6689385f161ae40b384b6106d8360c1bc3e65bef22761a46f3cbc",
+          "byteSize": 16512
+        },
+        {
+          "text": "headphones",
+          "file": "4a242cbc1688078bfc1ae45912015de597fdfc10502906cd605eaf2f83c65505.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a242cbc1688078bfc1ae45912015de597fdfc10502906cd605eaf2f83c65505.mp3",
+          "contentHash": "5f1571790734422d65aef45afbb6d7b7ddb2742faa0e1c63537f4b26aa721aba",
+          "byteSize": 32640
+        },
+        {
+          "text": "elsewhere",
+          "file": "383e67f6cf124eba0d7bea49d8e3fd922137bbc15f7af6daaf38bd610f71b5ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/383e67f6cf124eba0d7bea49d8e3fd922137bbc15f7af6daaf38bd610f71b5ad.mp3",
+          "contentHash": "0718824efd46615f3c8cfddb3df56513c98587c52c41e14f8c17a08ae0c82c43",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s30/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "These headphones are mine.",
+          "file": "e89d936dcd937f222cbb6823cf46b23f87203873d69e7c1c43096b63e04ac5bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e89d936dcd937f222cbb6823cf46b23f87203873d69e7c1c43096b63e04ac5bb.mp3",
+          "contentHash": "94759d46f581cc0547e0a3631b47d6e3cdd8b0ef05a246be961329f642612394",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l06/s30/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose headphones are these?",
+          "file": "d599a26d5718705cb67682081e3ffd3ea8bad11abcd43279a6de83757823735e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d599a26d5718705cb67682081e3ffd3ea8bad11abcd43279a6de83757823735e.mp3",
+          "contentHash": "331e97a7bb50797dbcafc39be5e8ec9e8ae1a61b506ef3396e8ea434ca016fe8",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s30/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They read elsewhere.",
+          "file": "2b658bf47f8dd3abdf0df99c37def99e2340efa7c47c020ea2c052500b531ebf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2b658bf47f8dd3abdf0df99c37def99e2340efa7c47c020ea2c052500b531ebf.mp3",
+          "contentHash": "f9a91c8689bee7df4b844d11647087770977acfa7185bf48f24fd4a0f826cd75",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s30/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Anna reads here.",
+          "file": "3e3514604d948d0c0aa816c56282722501b33df81bcfcdba8c3d16bf2e90ecbd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3e3514604d948d0c0aa816c56282722501b33df81bcfcdba8c3d16bf2e90ecbd.mp3",
+          "contentHash": "be00a19364614bd6d8dc81577885fed85958c579564dce85579f624dc3133483",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s30/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Your headphones are here.",
+          "file": "15019520ca4786395831b90175861f7bbd7cd547e34bf30aded13321a9c562d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/15019520ca4786395831b90175861f7bbd7cd547e34bf30aded13321a9c562d0.mp3",
+          "contentHash": "9900221fc9f9ce934d5c5a669c75a76bf9c8b240d939dda40ab8efa03f190be6",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l06/s30/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "clean",
+          "file": "e75e8cd4b8e4eedb3ef541bb4271d749d903fd1f3c228ed852054998e55b1bda.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3b066804f6d1d077173cfe4d-nova.mp3",
+          "contentHash": "1f1a36258ca3b4821b2615d5632eb715b3883dd2b097674c0c539a7ad3769f20",
+          "byteSize": 17280
+        },
+        {
+          "text": "signpost",
+          "file": "891641a673e91bb2df777addd61850f4722bd2b585b1a6d6fce2fb8bfafa1a1f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/891641a673e91bb2df777addd61850f4722bd2b585b1a6d6fce2fb8bfafa1a1f.mp3",
+          "contentHash": "5c6b9aa5d61c7a854805ec85c2bcf6f3e9110fe2126a3d374dcb972dd5f04f34",
+          "byteSize": 21120
+        },
+        {
+          "text": "elsewhere",
+          "file": "cc011b603221f74f337254e92d5781bb5c07d0ba25464b8a825f422cc2f66748.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc011b603221f74f337254e92d5781bb5c07d0ba25464b8a825f422cc2f66748.mp3",
+          "contentHash": "650fa635ca70b38d0f83e576264f0e40418489645e542b64995802dd336dca58",
+          "byteSize": 16512
+        },
+        {
+          "text": "read",
+          "file": "4835b0b5ea5c21709a6eb6d215952b52c8014df306f83b566c67bbf9af3ab6a2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4835b0b5ea5c21709a6eb6d215952b52c8014df306f83b566c67bbf9af3ab6a2.mp3",
+          "contentHash": "c1f9f93eed781ec6dad9f8a80d299fed468b50659f793b2becb8979a47f9bd27",
+          "byteSize": 13440
+        }
+      ]
+    },
+    "l06/s30/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She cleans her room.",
+          "file": "636b8a45baa7f06e138877b844e66f0b50aeac32bb91a79d1735cebc90d7bf55.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/636b8a45baa7f06e138877b844e66f0b50aeac32bb91a79d1735cebc90d7bf55.mp3",
+          "contentHash": "86f348d35b96472b28275d0a8a7c646397d101f75cc096a4a64d6dfeb63bbc6f",
+          "byteSize": 41088
+        }
+      ]
     }
   },
   "settings": {

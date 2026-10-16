@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-46:intro1:r2": {
+          "ru": "Перед одной кладовой нужно `a`: `a pantry`.",
+          "uk": "Перед однією коморою потрібне `a`: `a pantry`."
+        },
+        "en:lesson-04:session-46:intro1:r3": {
+          "ru": "Здесь одна кладовая: `This is a pantry`.",
+          "uk": "Тут одна комора: `This is a pantry`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-46:intro2:r2": {
+          "ru": "`in` — внутри; здесь рядом: `next to`.",
+          "uk": "`in` — усередині; тут поруч: `next to`."
+        },
+        "en:lesson-04:session-46:intro2:r3": {
+          "ru": "Один отель: `The hotel is`.",
+          "uk": "Один готель: `The hotel is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-46:intro3:r2": {
+          "ru": "`inappropriate` — неуместно; здесь `appropriate`.",
+          "uk": "`inappropriate` — недоречно; тут `appropriate`."
+        },
+        "en:lesson-04:session-46:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5d06bd833e2adb749131c64648974f11e2dd951a11a067aa173a814c50ad751e"
+}

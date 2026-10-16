@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "назвать кладовую для продуктов, спросить о ней и выразить уместность выбора",
+    "uk": "назвати комору для продуктів, запитати про неї й висловити доречність вибору"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место для запасов",
+        "uk": "Місце для запасів"
+      },
+      "bodyByLocale": {
+        "ru": "`pantry` — «кладовая для продуктов»: место, где хранят продукты и кухонные запасы. Одна кладовая — `a pantry`. `This is a pantry` — «Это кладовая для продуктов». Запас печенья здесь считается запасом, даже если вы уже строите на него планы.",
+        "uk": "`pantry` — «комора для продуктів»: місце, де зберігають продукти й кухонні запаси. Одна комора — `a pantry`. `This is a pantry` — «Це комора для продуктів». Запас печива тут вважається запасом, навіть якщо ви вже маєте на нього плани."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одну кладовую для продуктов.",
+          "uk": "Назвіть одну комору для продуктів."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-46:intro1:r1",
+              "text": "This is a pantry."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro1:r2",
+              "text": "This is pantry."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro1:r3",
+              "text": "These are pantries."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-46:intro1:r1",
+              "text": "This is a pantry."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro1:r2",
+              "text": "This is pantry."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro1:r3",
+              "text": "These are pantries."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну кладовую для продуктов.",
+          "uk": "Назвіть одну комору для продуктів."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дом и дорога",
+        "uk": "Будинок і дорога"
+      },
+      "bodyByLocale": {
+        "ru": "`bike shed` — «сарай для велосипедов», `airport` — «аэропорт». `The bike shed is next to the house` — «Сарай для велосипедов рядом с домом». `The hotel is next to the airport` — «Отель рядом с аэропортом». `Is there a pantry?` — «Есть кладовая для продуктов?»",
+        "uk": "`bike shed` — «сарай для велосипедів», `airport` — «аеропорт». `The bike shed is next to the house` — «Сарай для велосипедів поруч із будинком». `The hotel is next to the airport` — «Готель поруч з аеропортом». `Is there a pantry?` — «Є комора для продуктів?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Отель рядом с аэропортом. Выберите описание.",
+          "uk": "Готель поруч з аеропортом. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-46:intro2:r1",
+              "text": "The hotel is next to the airport."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro2:r2",
+              "text": "The hotel is in the airport."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro2:r3",
+              "text": "The hotel are next to the airport."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-46:intro2:r1",
+              "text": "The hotel is next to the airport."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro2:r2",
+              "text": "The hotel is in the airport."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro2:r3",
+              "text": "The hotel are next to the airport."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Отель рядом с аэропортом. Выберите описание.",
+          "uk": "Готель поруч з аеропортом. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подходит к ситуации",
+        "uk": "Пасує до ситуації"
+      },
+      "bodyByLocale": {
+        "ru": "`appropriate` — «уместный, подходящий для ситуации». Вы выбираете одежду для встречи; друг подтверждает, что она подходит к формату: `It is appropriate`, короче `It’s appropriate`. Это оценка соответствия ситуации, а не просто симпатия: вещь может нравиться, но не подходить к случаю.",
+        "uk": "`appropriate` — «доречний, відповідний для ситуації». Ви вибираєте одяг для зустрічі; друг підтверджує, що він відповідає формату: `It is appropriate`, коротше `It’s appropriate`. Це оцінка відповідності ситуації, а не просто симпатія: річ може подобатися, але не пасувати до нагоди."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выбранная одежда подходит к формату встречи. Скажите, что она уместна, с сокращением.",
+          "uk": "Вибраний одяг відповідає формату зустрічі. Скажіть, що він доречний, зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-46:intro3:r1",
+              "text": "It's appropriate."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro3:r2",
+              "text": "It's inappropriate."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro3:r3",
+              "text": "It are appropriate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-46:intro3:r1",
+              "text": "It's appropriate."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro3:r2",
+              "text": "It's inappropriate."
+            },
+            {
+              "responseId": "en:lesson-04:session-46:intro3:r3",
+              "text": "It are appropriate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выбранная одежда подходит к формату встречи. Скажите, что она уместна, с сокращением.",
+          "uk": "Вибраний одяг відповідає формату зустрічі. Скажіть, що він доречний, зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "409024a6a832f91113f9b348d7235a54be5a913a221f99cb6b8741953b05b46c"
+}

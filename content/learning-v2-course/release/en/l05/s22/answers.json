@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-22:i01",
+    "correctText": "They are famous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i02",
+    "correctText": "boots",
+    "correctResponseId": "en:lesson-05:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i03",
+    "correctText": "boots",
+    "correctResponseId": "en:lesson-05:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i04",
+    "correctText": "en:lesson-05:session-22:i04:p1=boots\nen:lesson-05:session-22:i04:p2=rich\nen:lesson-05:session-22:i04:p3=poor\nen:lesson-05:session-22:i04:p4=famous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i05",
+    "correctText": "My boots are next to your suitcase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i06",
+    "correctText": "The cups are ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i07",
+    "correctText": "They are rich.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i08",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i09",
+    "correctText": "They are poor.",
+    "correctResponseId": "en:lesson-05:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i10",
+    "correctText": "en:lesson-05:session-22:i10:p1=boots\nen:lesson-05:session-22:i10:p2=cups\nen:lesson-05:session-22:i10:p3=carrot\nen:lesson-05:session-22:i10:p4=suitcase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i11",
+    "correctText": "Where are my boots?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i12",
+    "correctText": "The carrot is his.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i13",
+    "correctText": "I have your boots.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-22:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i15",
+    "correctText": "The boots are yours.",
+    "correctResponseId": "en:lesson-05:session-22:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i16",
+    "correctText": "en:lesson-05:session-22:i16:p1=boots\nen:lesson-05:session-22:i16:p2=cups\nen:lesson-05:session-22:i16:p3=carrot\nen:lesson-05:session-22:i16:p4=suitcase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:i17",
+    "correctText": "The boots are mine.",
+    "correctResponseId": null
+  }
+]

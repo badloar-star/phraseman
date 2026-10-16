@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-14:intro1:r2": {
+          "ru": "Один сервер: `Does the server`.",
+          "uk": "Один сервер: `Does the server`."
+        },
+        "en:lesson-07:session-14:intro1:r3": {
+          "ru": "После `Does` нужно `work`.",
+          "uk": "Після `Does` потрібне `work`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-14:intro2:r2": {
+          "ru": "Один сервер: `There is no server`.",
+          "uk": "Один сервер: `There is no server`."
+        },
+        "en:lesson-07:session-14:intro2:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-14:intro3:r2": {
+          "ru": "Анна — она: `Does Anna`.",
+          "uk": "Анна — вона: `Does Anna`."
+        },
+        "en:lesson-07:session-14:intro3:r3": {
+          "ru": "После `Does Anna` нужно `work`.",
+          "uk": "Після `Does Anna` потрібне `work`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "590f22b4e81b3c338f9544cde718a4f46b85783f94e75d2cc7ff8431ee390623"
+}

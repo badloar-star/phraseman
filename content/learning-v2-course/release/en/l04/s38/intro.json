@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "назвать сарай для велосипедов, спросить о его наличии и уточнить расположение",
+    "uk": "назвати сарай для велосипедів, запитати про його наявність і уточнити розташування"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Домик для велосипедов",
+        "uk": "Будиночок для велосипедів"
+      },
+      "bodyByLocale": {
+        "ru": "`bike shed` — «сарай для велосипедов», небольшое строение для их хранения. Два слова называют один объект: `a bike shed`. `This is a bike shed` — «Это сарай для велосипедов». Велосипедам отдельные спальни не нужны: в одном сарае их может быть несколько.",
+        "uk": "`bike shed` — «сарай для велосипедів», невелика споруда для їх зберігання. Два слова називають один об’єкт: `a bike shed`. `This is a bike shed` — «Це сарай для велосипедів». Велосипедам окремі спальні не потрібні: в одному сараї їх може бути кілька."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одно такое строение рядом.",
+          "uk": "Назвіть одну таку споруду поруч."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-38:intro1:r1",
+              "text": "This is a bike shed."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro1:r2",
+              "text": "This is bike shed."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro1:r3",
+              "text": "These are bike sheds."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-38:intro1:r1",
+              "text": "This is a bike shed."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro1:r2",
+              "text": "This is bike shed."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro1:r3",
+              "text": "These are bike sheds."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одно такое строение рядом.",
+          "uk": "Назвіть одну таку споруду поруч."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Указатель и билет",
+        "uk": "Вказівник і квиток"
+      },
+      "bodyByLocale": {
+        "ru": "`signpost` — «столб с указателями», `ticket` — «билет». `The bike shed is next to the signpost` — «Сарай для велосипедов рядом со столбом с указателями». `The ticket is in the bag` — «Билет в сумке». Сначала найдите билет, а потом место для велосипеда: указатель билет не заменит.",
+        "uk": "`signpost` — «стовп із вказівниками», `ticket` — «квиток». `The bike shed is next to the signpost` — «Сарай для велосипедів поруч зі стовпом із вказівниками». `The ticket is in the bag` — «Квиток у сумці». Спочатку знайдіть квиток, а потім місце для велосипеда: вказівник квиток не замінить."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Билет внутри сумки. Выберите описание.",
+          "uk": "Квиток усередині сумки. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-38:intro2:r1",
+              "text": "The ticket is in the bag."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro2:r2",
+              "text": "The ticket is on the bag."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro2:r3",
+              "text": "The ticket are in the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-38:intro2:r1",
+              "text": "The ticket is in the bag."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro2:r2",
+              "text": "The ticket is on the bag."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro2:r3",
+              "text": "The ticket are in the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Билет внутри сумки. Выберите описание.",
+          "uk": "Квиток усередині сумки. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пока неофициально",
+        "uk": "Поки неофіційно"
+      },
+      "bodyByLocale": {
+        "ru": "`unofficial` — «неофициальный»: информацию передал знакомый, но организаторы её не подтверждали. `It is unofficial` — «Это неофициально», короче `It’s unofficial`. `Is there a bike shed?` — «Есть сарай для велосипедов?» Если его нет: `There isn’t a bike shed`. `There aren’t any bike sheds` — «Нет ни одного сарая для велосипедов».",
+        "uk": "`unofficial` — «неофіційний»: інформацію передав знайомий, але організатори її не підтверджували. `It is unofficial` — «Це неофіційно», коротше `It’s unofficial`. `Is there a bike shed?` — «Є сарай для велосипедів?» Якщо його немає: `There isn’t a bike shed`. `There aren’t any bike sheds` — «Немає жодного сараю для велосипедів»."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Информация не от организаторов и официально не подтверждена. Скажите «Это неофициально» с сокращением.",
+          "uk": "Інформація не від організаторів і офіційно не підтверджена. Скажіть «Це неофіційно» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-38:intro3:r1",
+              "text": "It's unofficial."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro3:r2",
+              "text": "It's official."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro3:r3",
+              "text": "It are unofficial."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-38:intro3:r1",
+              "text": "It's unofficial."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro3:r2",
+              "text": "It's official."
+            },
+            {
+              "responseId": "en:lesson-04:session-38:intro3:r3",
+              "text": "It are unofficial."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Информация не от организаторов и официально не подтверждена. Скажите «Это неофициально» с сокращением.",
+          "uk": "Інформація не від організаторів і офіційно не підтверджена. Скажіть «Це неофіційно» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0e34ecf829f10b17e3e97096590e0057ae0fba5a69736a337fa7e0c6e34593f3"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-38:i01",
+    "correctText": "It is unofficial.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i02",
+    "correctText": "bike shed",
+    "correctResponseId": "en:lesson-04:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i03",
+    "correctText": "bike shed",
+    "correctResponseId": "en:lesson-04:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i04",
+    "correctText": "en:lesson-04:session-38:i04:p1=bike shed\nen:lesson-04:session-38:i04:p2=unofficial\nen:lesson-04:session-38:i04:p3=ticket\nen:lesson-04:session-38:i04:p4=signpost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i05",
+    "correctText": "This is a bike shed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i06",
+    "correctText": "The ticket is in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i07",
+    "correctText": "It's unofficial.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i09",
+    "correctText": "The bike shed is next to the signpost.",
+    "correctResponseId": "en:lesson-04:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i10",
+    "correctText": "en:lesson-04:session-38:i10:p1=bike shed\nen:lesson-04:session-38:i10:p2=unofficial\nen:lesson-04:session-38:i10:p3=ticket\nen:lesson-04:session-38:i10:p4=signpost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i11",
+    "correctText": "There aren't any bike sheds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i12",
+    "correctText": "There is a bike shed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i13",
+    "correctText": "Is there a bike shed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i14",
+    "correctText": "under",
+    "correctResponseId": "en:lesson-04:session-38:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i15",
+    "correctText": "That is a bike shed.",
+    "correctResponseId": "en:lesson-04:session-38:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i16",
+    "correctText": "en:lesson-04:session-38:i16:p1=bike shed\nen:lesson-04:session-38:i16:p2=unofficial\nen:lesson-04:session-38:i16:p3=ticket\nen:lesson-04:session-38:i16:p4=signpost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-38:i17",
+    "correctText": "The bike shed is next to the hotel.",
+    "correctResponseId": null
+  }
+]

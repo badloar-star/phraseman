@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-38:intro1:r2": {
+          "ru": "Перед одним строением нужно `a`: `a bike shed`.",
+          "uk": "Перед однією спорудою потрібне `a`: `a bike shed`."
+        },
+        "en:lesson-04:session-38:intro1:r3": {
+          "ru": "Здесь одно строение: `This is a bike shed`.",
+          "uk": "Тут одна споруда: `This is a bike shed`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-38:intro2:r2": {
+          "ru": "`on` — на поверхности; внутри — `in`.",
+          "uk": "`on` — на поверхні; усередині — `in`."
+        },
+        "en:lesson-04:session-38:intro2:r3": {
+          "ru": "Один билет: `The ticket is`.",
+          "uk": "Один квиток: `The ticket is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-38:intro3:r2": {
+          "ru": "`official` — официально; здесь `unofficial`.",
+          "uk": "`official` — офіційно; тут `unofficial`."
+        },
+        "en:lesson-04:session-38:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f256e2bfbe0ebdd3aeb8a4f39fa8b0fa55a50141518bcd4d13810cde48930913"
+}

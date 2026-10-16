@@ -92278,6 +92278,309 @@
           "byteSize": 35712
         }
       ]
+    },
+    "l06/s25/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I walk to work.",
+          "file": "0620208aed89a798b79cb7469af52e623e3f9b349702f6f0ceafcf545b0e4e22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0620208aed89a798b79cb7469af52e623e3f9b349702f6f0ceafcf545b0e4e22.mp3",
+          "contentHash": "4072866e815feb813214201e777394c7679f298d3308be1baca480ad169ceab5",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s25/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She walks to work.",
+          "file": "80b37eb4070f607367c7dedfd608f1c54b77252115bf205ebbc9d95c9d7a8229.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80b37eb4070f607367c7dedfd608f1c54b77252115bf205ebbc9d95c9d7a8229.mp3",
+          "contentHash": "e3177aa3065debe5946b1d66ccd2b6c46ef22e6e3a8729305af7eac035534b58",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l06/s25/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He is absent.",
+          "file": "5af998ca75595b4d54d351946a2f823e3d03875392edf99b4b0e3e416597ab37.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5af998ca75595b4d54d351946a2f823e3d03875392edf99b4b0e3e416597ab37.mp3",
+          "contentHash": "62d135ad85ec4ae9bdaa231a96989ca66b568cfdbc0b17decb49214cd2e20752",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l06/s25/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I walk to work.",
+          "file": "0620208aed89a798b79cb7469af52e623e3f9b349702f6f0ceafcf545b0e4e22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0620208aed89a798b79cb7469af52e623e3f9b349702f6f0ceafcf545b0e4e22.mp3",
+          "contentHash": "4072866e815feb813214201e777394c7679f298d3308be1baca480ad169ceab5",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s25/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "walk",
+          "file": "d14d5775e5528801ec1375265be2c37adc80782a0557ae72ad8abe051a3af0df.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d14d5775e5528801ec1375265be2c37adc80782a0557ae72ad8abe051a3af0df.mp3",
+          "contentHash": "391a45313531fccb297d20bdc0d38a61e0f7a843fd181d2a061404f7e10cf0ec",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s25/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She walks to work.",
+          "file": "8981496e0ee338f563c9754706b14d3b7d2045b6db963ed48690ffdb8045ad7f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8981496e0ee338f563c9754706b14d3b7d2045b6db963ed48690ffdb8045ad7f.mp3",
+          "contentHash": "b9129bb03512c78cde48973ed951658d915c84dc976a05b50412fb92edebfe72",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s25/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "walk",
+          "file": "c3d33b63e3d2161331db7b0471a7554a462b7da53a54a15b71291b0dc149a135.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3d33b63e3d2161331db7b0471a7554a462b7da53a54a15b71291b0dc149a135.mp3",
+          "contentHash": "3675e2610573456553ad47142d1ff1421a7285ee09e5c976e6a211c85f22fe6a",
+          "byteSize": 13440
+        },
+        {
+          "text": "absent",
+          "file": "ed75d05fe3dcf62b5c11102a491e84271db8918a9595236a5ea07972dd6fd5a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ed75d05fe3dcf62b5c11102a491e84271db8918a9595236a5ea07972dd6fd5a6.mp3",
+          "contentHash": "2a28cccb372173834cd3392ccbaa0ad06dd3b002c986422c7ecd3e2b9445baf9",
+          "byteSize": 29952
+        },
+        {
+          "text": "sink",
+          "file": "28dab884ca1f2f9100f447987967f48b86136794b5bc870d0ac3ee158caccdff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28dab884ca1f2f9100f447987967f48b86136794b5bc870d0ac3ee158caccdff.mp3",
+          "contentHash": "339d197490a6adca766858ba768c5aef6d0b36cd8ab74beddcf1177ab042db84",
+          "byteSize": 28416
+        },
+        {
+          "text": "lunchbox",
+          "file": "1d90abadb4c2bfa010cf27cda4122099bfcb2f9100f044d944bbe81e1afb19d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d90abadb4c2bfa010cf27cda4122099bfcb2f9100f044d944bbe81e1afb19d1.mp3",
+          "contentHash": "382a022c571c314105e24bc3450610e7fb986ca5b6463bce2a39c0bcd43e8e98",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l06/s25/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Anna walks to work.",
+          "file": "d803dd2c7102e9a067dd9708b703b7da5fba46bb43969652d2cb067801d85d2f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d803dd2c7102e9a067dd9708b703b7da5fba46bb43969652d2cb067801d85d2f.mp3",
+          "contentHash": "d3275c2375a34186fdefa7655fe00cb86100326991c913922256fb6ffe577dea",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s25/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He drives to work.",
+          "file": "bff4d6345876b55bb47a8a9ce5d0d74306b07f3e1c1d53220d31e81ec88ff18e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bff4d6345876b55bb47a8a9ce5d0d74306b07f3e1c1d53220d31e81ec88ff18e.mp3",
+          "contentHash": "e5ad080ad1b423ddf133604991c1d7e2e982ac1b9e605f41a558daaccb4a9518",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l06/s25/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He is absent.",
+          "file": "76b7d81985489bf79404ba9f16a7ffd9999628d49d39fe521c3d600451b0a671.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/76b7d81985489bf79404ba9f16a7ffd9999628d49d39fe521c3d600451b0a671.mp3",
+          "contentHash": "f8192cf3e85d3397ed3acb5c88c39179912e2685779a2be734a1c165d157db69",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l06/s25/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They walk to work.",
+          "file": "96943c4abb1f9d06f3e23acccf053214dbe00c74a6c4b713297fab106fb9c079.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/96943c4abb1f9d06f3e23acccf053214dbe00c74a6c4b713297fab106fb9c079.mp3",
+          "contentHash": "3728bbdeace126168822cf39aef29783cda88e2f3fd50343f34cdc30bbe0813d",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l06/s25/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "My lunchbox is here.",
+          "file": "4415115a6a73db98609c09ad694504147d25218a678545ec7829f85f98b84f09.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4415115a6a73db98609c09ad694504147d25218a678545ec7829f85f98b84f09.mp3",
+          "contentHash": "da17487650cfae9ef3725fc6e6598382d087811e7fca8552f275fa40dc2434c1",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s25/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "walk",
+          "file": "c3d33b63e3d2161331db7b0471a7554a462b7da53a54a15b71291b0dc149a135.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3d33b63e3d2161331db7b0471a7554a462b7da53a54a15b71291b0dc149a135.mp3",
+          "contentHash": "3675e2610573456553ad47142d1ff1421a7285ee09e5c976e6a211c85f22fe6a",
+          "byteSize": 13440
+        },
+        {
+          "text": "drive",
+          "file": "cc6535f5b5df4200224094cab45e9919bf1e73dca6ec0a47265c2881d908c861.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc6535f5b5df4200224094cab45e9919bf1e73dca6ec0a47265c2881d908c861.mp3",
+          "contentHash": "86a5d0820493d373da01ab743d9cd51a2185846a5561282dc5e03ebe6aca006b",
+          "byteSize": 16512
+        },
+        {
+          "text": "lunchbox",
+          "file": "1d90abadb4c2bfa010cf27cda4122099bfcb2f9100f044d944bbe81e1afb19d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d90abadb4c2bfa010cf27cda4122099bfcb2f9100f044d944bbe81e1afb19d1.mp3",
+          "contentHash": "382a022c571c314105e24bc3450610e7fb986ca5b6463bce2a39c0bcd43e8e98",
+          "byteSize": 24576
+        },
+        {
+          "text": "absent",
+          "file": "ed75d05fe3dcf62b5c11102a491e84271db8918a9595236a5ea07972dd6fd5a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ed75d05fe3dcf62b5c11102a491e84271db8918a9595236a5ea07972dd6fd5a6.mp3",
+          "contentHash": "2a28cccb372173834cd3392ccbaa0ad06dd3b002c986422c7ecd3e2b9445baf9",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s25/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The lunchbox is near the sink.",
+          "file": "83f298ebf841a530cd684c95f108df78808b593d1cb7558ddf8ab63604825b68.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/83f298ebf841a530cd684c95f108df78808b593d1cb7558ddf8ab63604825b68.mp3",
+          "contentHash": "19446fbbc83c4ecd415fac059fdbd7005632120fc28cf2de74e2c66c7e8de0e3",
+          "byteSize": 58752
+        }
+      ]
+    },
+    "l06/s25/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose lunchbox is this?",
+          "file": "e699187b8b5290df436aca7b95bb5dd2e17ca0913c638c4bc43b03e3dc2765cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e699187b8b5290df436aca7b95bb5dd2e17ca0913c638c4bc43b03e3dc2765cc.mp3",
+          "contentHash": "8c26b7c044e6974b7f5972950f6a05ce4d5b5f759f228835716bd1e4148a3f34",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s25/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They drive to work.",
+          "file": "dba1e6586d9ed558a3ebdebcc7b2da0ac25b7e77051864530204e0e1211af55e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dba1e6586d9ed558a3ebdebcc7b2da0ac25b7e77051864530204e0e1211af55e.mp3",
+          "contentHash": "d495086a1d2b16b3c0893300b0671f794c2d205f27acec5b6b50ea4359081d84",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s25/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I walk to work.",
+          "file": "0620208aed89a798b79cb7469af52e623e3f9b349702f6f0ceafcf545b0e4e22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0620208aed89a798b79cb7469af52e623e3f9b349702f6f0ceafcf545b0e4e22.mp3",
+          "contentHash": "4072866e815feb813214201e777394c7679f298d3308be1baca480ad169ceab5",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s25/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The sink is clean.",
+          "file": "3f606a632f663345092b0a804d33754ea46319e42d57cb7c6fc6bab7336f2413.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3f606a632f663345092b0a804d33754ea46319e42d57cb7c6fc6bab7336f2413.mp3",
+          "contentHash": "781027e2340f12ef91affc6bebd76fb3313a7ff8958964c7e73ace1ee7b818a3",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s25/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "walk",
+          "file": "fe633403bf7d367ba39b4b82549d0d9ef7fb9998945e065e9f3bbcd637d64b39.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fe633403bf7d367ba39b4b82549d0d9ef7fb9998945e065e9f3bbcd637d64b39.mp3",
+          "contentHash": "0f1beae48be91dbc9efb3d6704f3e9fdd7309969f9eeae05f37e358cbc074fb5",
+          "byteSize": 16512
+        },
+        {
+          "text": "sink",
+          "file": "296dace32588fc7dff2472f4344c80e4ac62666a20be0b1b3b5432258736ea8f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/296dace32588fc7dff2472f4344c80e4ac62666a20be0b1b3b5432258736ea8f.mp3",
+          "contentHash": "c98b3707142192f0104b01658787eb03ebe3e5222a56874a279c0acf6f88376e",
+          "byteSize": 18816
+        },
+        {
+          "text": "absent",
+          "file": "fbee49a2e441086195f899858b29e6858eef855b7b134e9809e5190ce0713c13.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fbee49a2e441086195f899858b29e6858eef855b7b134e9809e5190ce0713c13.mp3",
+          "contentHash": "b66788ad9ef3a48041ef15fb76457d13261e519b00d38dfebc2dae3ca86d7856",
+          "byteSize": 18816
+        },
+        {
+          "text": "drive",
+          "file": "326d44823a833939ed9af57a79c2b7346d2e617ed2dec714cc1b7deaa9d9073b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/326d44823a833939ed9af57a79c2b7346d2e617ed2dec714cc1b7deaa9d9073b.mp3",
+          "contentHash": "a24b3174c502f3e72dafdd0085ea160d7ecf5ba36d5e322bff32393d6f5ae222",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s25/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She walks to work.",
+          "file": "60e33b3c3e9eb082d20976e089e7a2505f51917935f444fe296f01fa1d308400.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60e33b3c3e9eb082d20976e089e7a2505f51917935f444fe296f01fa1d308400.mp3",
+          "contentHash": "f270df4d30f2f1b54387d379036e016a970d0509378dbc4f1d7886345b6313ea",
+          "byteSize": 36480
+        }
+      ]
     }
   },
   "settings": {

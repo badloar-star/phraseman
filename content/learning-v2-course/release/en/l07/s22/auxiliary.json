@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-22:intro1:r2": {
+          "ru": "После `I` нужно `don’t`.",
+          "uk": "Після `I` потрібне `don’t`."
+        },
+        "en:lesson-07:session-22:intro1:r3": {
+          "ru": "Для отрицания действия нужно `don’t`.",
+          "uk": "Для заперечення дії потрібне `don’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-22:intro2:r2": {
+          "ru": "С `you` нужно `do`.",
+          "uk": "З `you` потрібне `do`."
+        },
+        "en:lesson-07:session-22:intro2:r3": {
+          "ru": "После `you` здесь нужно `read`, без `s`.",
+          "uk": "Після `you` тут потрібне `read`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-22:intro3:r2": {
+          "ru": "С `cups` нужно `are`.",
+          "uk": "З `cups` потрібне `are`."
+        },
+        "en:lesson-07:session-22:intro3:r3": {
+          "ru": "Без `no` фраза сообщает, что чашки есть.",
+          "uk": "Без `no` фраза повідомляє, що чашки є."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9e72b0ac30b7f04e62034f5a9269f7fa916ed822ae6d4b5781847e391e634ff8"
+}

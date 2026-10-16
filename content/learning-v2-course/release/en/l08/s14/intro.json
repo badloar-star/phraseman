@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "повторить can’t, can, whose и место often",
+    "uk": "повторити can’t, can, whose та місце often"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Слова на бумаге",
+        "uk": "Слова на папері"
+      },
+      "bodyByLocale": {
+        "ru": "На занятии вы можете произнести знакомые английские слова, но пока не умеете правильно их записывать. `Spell` — писать слово, выбирая нужные буквы; ещё это слово используют, когда называют буквы по порядку. `I can’t spell` — «У меня не получается правильно писать слова». После `can’t` нужно `spell`, без `to`. Сказать слово получилось — на бумаге оно почему-то стало длиннее.",
+        "uk": "На занятті ви можете вимовити знайомі англійські слова, але поки не вмієте правильно їх записувати. `Spell` — писати слово, вибираючи потрібні літери; ще це слово використовують, коли називають літери по порядку. `I can’t spell` — «У мене не виходить правильно писати слова». Після `can’t` потрібне `spell`, без `to`. Сказати слово вдалося — на папері воно чомусь стало довшим."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите преподавателю, что с написанием слов пока трудно.",
+          "uk": "Скажіть викладачеві, що з написанням слів поки складно."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-14:intro1:r1",
+              "text": "I can’t spell."
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro1:r2",
+              "text": "I can spell."
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro1:r3",
+              "text": "I can’t to spell."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-14:intro1:r1",
+              "text": "I can’t spell."
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro1:r2",
+              "text": "I can spell."
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro1:r3",
+              "text": "I can’t to spell."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите преподавателю, что с написанием слов пока трудно.",
+          "uk": "Скажіть викладачеві, що з написанням слів поки складно."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рядом спит ребёнок",
+        "uk": "Поруч спить дитина"
+      },
+      "bodyByLocale": {
+        "ru": "Друг разговаривает громко рядом со спящим ребёнком. Вы знаете, что он умеет шептать. `He can whisper` — «Он умеет шептать». После `can` нужно `whisper`, без окончания `s`.",
+        "uk": "Друг розмовляє голосно поруч зі сплячою дитиною. Ви знаєте, що він уміє шепотіти. `He can whisper` — «Він уміє шепотіти». Після `can` потрібне `whisper`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что друг умеет шептать.",
+          "uk": "Скажіть, що друг уміє шепотіти."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-14:intro2:r1",
+              "text": "He can whisper."
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro2:r2",
+              "text": "He can whispers."
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro2:r3",
+              "text": "He can’t whisper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-14:intro2:r1",
+              "text": "He can whisper."
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro2:r2",
+              "text": "He can whispers."
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro2:r3",
+              "text": "He can’t whisper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что друг умеет шептать.",
+          "uk": "Скажіть, що друг уміє шепотіти."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сервер в офисе",
+        "uk": "Сервер в офісі"
+      },
+      "bodyByLocale": {
+        "ru": "В офис привезли сервер — компьютер для хранения данных и работы сервисов. На коробке не указали владельца. `Whose server is this?` — «Чей это сервер?» Начните с `whose server`, затем добавьте `is this`.",
+        "uk": "В офіс привезли сервер — комп’ютер для зберігання даних і роботи сервісів. На коробці не вказали власника. `Whose server is this?` — «Чий це сервер?» Почніть із `whose server`, потім додайте `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите коллег, чей это сервер.",
+          "uk": "Запитайте колег, чий це сервер."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-14:intro3:r1",
+              "text": "Whose server is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro3:r2",
+              "text": "Who server is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro3:r3",
+              "text": "Whose server are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-14:intro3:r1",
+              "text": "Whose server is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro3:r2",
+              "text": "Who server is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-14:intro3:r3",
+              "text": "Whose server are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллег, чей это сервер.",
+          "uk": "Запитайте колег, чий це сервер."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "64f394aab0a4ca6c196ae008d43f6d9d59dab69bfc8ea87d83ac77cb21dbb4c8"
+}

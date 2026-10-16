@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-14:intro1:r2": {
+          "ru": "Здесь вы говорите о трудности: нужно `can’t`.",
+          "uk": "Тут ви говорите про труднощі: потрібне `can’t`."
+        },
+        "en:lesson-08:session-14:intro1:r3": {
+          "ru": "После `can’t` нужно `spell`, без `to`.",
+          "uk": "Після `can’t` потрібне `spell`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-14:intro2:r2": {
+          "ru": "После `can` нужно `whisper`, без `s`.",
+          "uk": "Після `can` потрібне `whisper`, без `s`."
+        },
+        "en:lesson-08:session-14:intro2:r3": {
+          "ru": "Вы говорите, что он умеет: нужно `can`.",
+          "uk": "Ви говорите, що він уміє: потрібне `can`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-14:intro3:r2": {
+          "ru": "Для «чей» нужно `whose`.",
+          "uk": "Для «чий» потрібне `whose`."
+        },
+        "en:lesson-08:session-14:intro3:r3": {
+          "ru": "Сервер один: нужно `is this`.",
+          "uk": "Сервер один: потрібне `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "018e550575eb329bfcbd776c10f972b00b53c829090fe0a671c999e17e5fd95b"
+}

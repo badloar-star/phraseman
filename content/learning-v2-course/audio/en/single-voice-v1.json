@@ -109549,6 +109549,309 @@
           "byteSize": 38016
         }
       ]
+    },
+    "l07/s26/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where do you park?",
+          "file": "b8b5677b55c63ba7f22a67eb97521d15cf3a2e41d79b0ebc2f21e1ab895a2eff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8b5677b55c63ba7f22a67eb97521d15cf3a2e41d79b0ebc2f21e1ab895a2eff.mp3",
+          "contentHash": "43be5b62956dc5340662d4a08983885ed86e365772b2a87de4b799d061414854",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s26/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where do you jog?",
+          "file": "419f1f876b551c533b6486774aad1ef34eb6cb11f4ffedbab26ce5f2e1805e54.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/419f1f876b551c533b6486774aad1ef34eb6cb11f4ffedbab26ce5f2e1805e54.mp3",
+          "contentHash": "244bb543c752bb42bfadb7a9a3278f120660c408fbe02bdd5294a6c376be5b45",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l07/s26/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "When does she start?",
+          "file": "5fa31624bd3c517c5970125bdda1e6cfd63833db426c5c288ed681e483e4de64.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fa31624bd3c517c5970125bdda1e6cfd63833db426c5c288ed681e483e4de64.mp3",
+          "contentHash": "b35598579f36efc58735a42d27bea13588787abdc08794cc5bad596c676bf783",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s26/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where do you park?",
+          "file": "13639dce37bb703db7dd8a3d7f21dfea3472b9f40a637afa9713c5390913b772.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/13639dce37bb703db7dd8a3d7f21dfea3472b9f40a637afa9713c5390913b772.mp3",
+          "contentHash": "911f82892d293ca5b1d586b242c218740377f44020a43f3c81ee411335351338",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s26/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "park",
+          "file": "e6e071be80af3b037c34c7f5cd95aa400be059fcc1b3bf44ca78f0ea01633644.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e6e071be80af3b037c34c7f5cd95aa400be059fcc1b3bf44ca78f0ea01633644.mp3",
+          "contentHash": "4251edefe89585a905a8d8b7ffbf38fdd20d3c45bd733e9e03c49a23953f2dda",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s26/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where do you park?",
+          "file": "903abc563de76c8658ed5e271edbc41fcfb9b1b1c8bf7c8b38e34d26f90a50bc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/903abc563de76c8658ed5e271edbc41fcfb9b1b1c8bf7c8b38e34d26f90a50bc.mp3",
+          "contentHash": "77e457c4664ed54612fceca063e840f2ca9f1f66af2cd361b46e8cc545a42cc4",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l07/s26/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "park",
+          "file": "3ff77222c03b1ee186eb7c6f39b35ed37807999fbda7e897742f2c5790223c29.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3ff77222c03b1ee186eb7c6f39b35ed37807999fbda7e897742f2c5790223c29.mp3",
+          "contentHash": "5c3504cff00cc56d05b37738d938a2680a09c269f1fcaa4efe9e6bc71938dccf",
+          "byteSize": 39552
+        },
+        {
+          "text": "jog",
+          "file": "0e9b5a64386b2700cd361b3ba179ae3432b9ff2b9446895b6b6a550230e3a8b0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e9b5a64386b2700cd361b3ba179ae3432b9ff2b9446895b6b6a550230e3a8b0.mp3",
+          "contentHash": "45ed5bdbce7c3d95827430b6f91d0ecb8a57ed4a6390f8701b46b16a5c88b302",
+          "byteSize": 24576
+        },
+        {
+          "text": "badge",
+          "file": "733a99a1114476f884ffafbf0310a2012dbe0f639d5704258ddb711a00d582c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/733a99a1114476f884ffafbf0310a2012dbe0f639d5704258ddb711a00d582c0.mp3",
+          "contentHash": "b117dea41fa8df1d398903066f6037e6a0f918e280d8f899bf26cac1e0a10925",
+          "byteSize": 18048
+        },
+        {
+          "text": "cats",
+          "file": "87281f7ae454df53ab53d02c7f3dfde0733aff8582a1947392cb15f3106adbb6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/87281f7ae454df53ab53d02c7f3dfde0733aff8582a1947392cb15f3106adbb6.mp3",
+          "contentHash": "b9f3aece4ad173952dfb85566acf7f166c4343db2e1a5570b680cd3b18137e9e",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l07/s26/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where do you park?",
+          "file": "5ca7b3332f2ce98e0eebb861ed986fe5b3a919596b2ab69057219cf160a3cdde.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ca7b3332f2ce98e0eebb861ed986fe5b3a919596b2ab69057219cf160a3cdde.mp3",
+          "contentHash": "b5993a90683c865078f110a2bf69a4d184361d05b7049aeaa439920c8593f42f",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l07/s26/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where do you jog?",
+          "file": "e4747e1d26a89a40d05d019c60eab9a2e298bf39a8de263d58c87df4c67e23bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e4747e1d26a89a40d05d019c60eab9a2e298bf39a8de263d58c87df4c67e23bb.mp3",
+          "contentHash": "5e28e0012d2b4e7ea5b87d7e03468244bb309d511e1768c3fc4aa00c5478ac36",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s26/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "When does she start?",
+          "file": "6988762eb8aba2a402685193d78dc7e461087ecc67743b5ecddc97282a114a4b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6988762eb8aba2a402685193d78dc7e461087ecc67743b5ecddc97282a114a4b.mp3",
+          "contentHash": "77e0c33d30cc1341563a187a478395a93a72628000382799cae02b8992e80bb7",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s26/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "When does she start?",
+          "file": "5fa31624bd3c517c5970125bdda1e6cfd63833db426c5c288ed681e483e4de64.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fa31624bd3c517c5970125bdda1e6cfd63833db426c5c288ed681e483e4de64.mp3",
+          "contentHash": "b35598579f36efc58735a42d27bea13588787abdc08794cc5bad596c676bf783",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s26/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where do you park?",
+          "file": "13639dce37bb703db7dd8a3d7f21dfea3472b9f40a637afa9713c5390913b772.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/13639dce37bb703db7dd8a3d7f21dfea3472b9f40a637afa9713c5390913b772.mp3",
+          "contentHash": "911f82892d293ca5b1d586b242c218740377f44020a43f3c81ee411335351338",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s26/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "gamble",
+          "file": "610c68e83d5b764719fcd91e4e581c7af62a44d7e7e0e59bc0f5192ac720edd9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/610c68e83d5b764719fcd91e4e581c7af62a44d7e7e0e59bc0f5192ac720edd9.mp3",
+          "contentHash": "9d28dfae9a2f686993a5df86892e92bbb32f3c27be0496fa30848b0488cb641e",
+          "byteSize": 18048
+        },
+        {
+          "text": "park",
+          "file": "7b92221a887128bb69910e20039fa47480aea1b48fcbe25f090b7a985914bea6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b92221a887128bb69910e20039fa47480aea1b48fcbe25f090b7a985914bea6.mp3",
+          "contentHash": "d37ef00e5131f46dcd5a84789583709e473986d7d3d273f98019dc726888c793",
+          "byteSize": 21120
+        },
+        {
+          "text": "cats",
+          "file": "de6b1118f7ecbb37409b78b22469f79f79fa91fea1122af9b83015b40d4f5cb8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de6b1118f7ecbb37409b78b22469f79f79fa91fea1122af9b83015b40d4f5cb8.mp3",
+          "contentHash": "a3750e3e080b71135beca9dc2da19892f1c40d6f5cfa0c983efcd87c1eadb642",
+          "byteSize": 22656
+        },
+        {
+          "text": "jog",
+          "file": "365775ce6731351cfc5550d63a6df963ae80d2bcfe9fbb2309705426de0377a2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/365775ce6731351cfc5550d63a6df963ae80d2bcfe9fbb2309705426de0377a2.mp3",
+          "contentHash": "38941faf60ae67a0b12fd3b294749fe942e9fe1367bb15905963d9009ea917ae",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l07/s26/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where do you jog?",
+          "file": "419f1f876b551c533b6486774aad1ef34eb6cb11f4ffedbab26ce5f2e1805e54.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/419f1f876b551c533b6486774aad1ef34eb6cb11f4ffedbab26ce5f2e1805e54.mp3",
+          "contentHash": "244bb543c752bb42bfadb7a9a3278f120660c408fbe02bdd5294a6c376be5b45",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l07/s26/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a badge?",
+          "file": "9a756639ca4e35e995c9e0dd4f9d291dc0554c738535d5e712d3fb7d8a47b05c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a756639ca4e35e995c9e0dd4f9d291dc0554c738535d5e712d3fb7d8a47b05c.mp3",
+          "contentHash": "5d8b05b55c99c4b35b690ea33d176b93725ac29d1c33b1fa39c5edff30a89eae",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s26/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I don’t gamble.",
+          "file": "19b150f3aa53372cdca642b942e4478b88812d520aea52dbe93882ecc796b7b6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/19b150f3aa53372cdca642b942e4478b88812d520aea52dbe93882ecc796b7b6.mp3",
+          "contentHash": "b18ae3483909cb076077c4390892f0f5e8aef74d536c70efb12d920f11e05908",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s26/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where does Tom park?",
+          "file": "2462700cad39702468cf4df16198558b616c205d4a15f47a27b7d3813098571d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2462700cad39702468cf4df16198558b616c205d4a15f47a27b7d3813098571d.mp3",
+          "contentHash": "d3e0bbd4a67b9f453f4b7bbb6a0c5a5c7102a4467adedbd8a54e318c8bf63c88",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s26/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The cats are here.",
+          "file": "8971c4fea63ede01bacc247f5d3b8ef7034a4271b8ef4b3dde2d0c33840eb255.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8971c4fea63ede01bacc247f5d3b8ef7034a4271b8ef4b3dde2d0c33840eb255.mp3",
+          "contentHash": "f9c6cd29a9fcd20eb654e3cfa4f523fd836fb9c024db1a8a432df80134beeb2e",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s26/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "park",
+          "file": "7b92221a887128bb69910e20039fa47480aea1b48fcbe25f090b7a985914bea6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b92221a887128bb69910e20039fa47480aea1b48fcbe25f090b7a985914bea6.mp3",
+          "contentHash": "d37ef00e5131f46dcd5a84789583709e473986d7d3d273f98019dc726888c793",
+          "byteSize": 21120
+        },
+        {
+          "text": "badge",
+          "file": "f484d0b1bb1b860ed9929b097e063946b8bb204d9731074b3f682d2eb6bcbf53.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f484d0b1bb1b860ed9929b097e063946b8bb204d9731074b3f682d2eb6bcbf53.mp3",
+          "contentHash": "12e84142393d736a56dd1b2d9205966ad31e50a4abea0802a070f94c40b8054a",
+          "byteSize": 17280
+        },
+        {
+          "text": "gamble",
+          "file": "610c68e83d5b764719fcd91e4e581c7af62a44d7e7e0e59bc0f5192ac720edd9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/610c68e83d5b764719fcd91e4e581c7af62a44d7e7e0e59bc0f5192ac720edd9.mp3",
+          "contentHash": "9d28dfae9a2f686993a5df86892e92bbb32f3c27be0496fa30848b0488cb641e",
+          "byteSize": 18048
+        },
+        {
+          "text": "cats",
+          "file": "de6b1118f7ecbb37409b78b22469f79f79fa91fea1122af9b83015b40d4f5cb8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de6b1118f7ecbb37409b78b22469f79f79fa91fea1122af9b83015b40d4f5cb8.mp3",
+          "contentHash": "a3750e3e080b71135beca9dc2da19892f1c40d6f5cfa0c983efcd87c1eadb642",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l07/s26/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where does Tom jog?",
+          "file": "29f4e89bae2e70ee1e5dfedadc10aad4e9cb7c439adda3566bfdbf4ac164d176.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/29f4e89bae2e70ee1e5dfedadc10aad4e9cb7c439adda3566bfdbf4ac164d176.mp3",
+          "contentHash": "12bce6f17936fbb493f0e2cf7ebbf7cbe84f5513d0a2d68f47c76f438e350d19",
+          "byteSize": 57216
+        }
+      ]
     }
   },
   "settings": {

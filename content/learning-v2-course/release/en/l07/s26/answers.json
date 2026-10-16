@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-26:i01",
+    "correctText": "Where do you park?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i02",
+    "correctText": "park",
+    "correctResponseId": "en:lesson-07:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i03",
+    "correctText": "do",
+    "correctResponseId": "en:lesson-07:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i04",
+    "correctText": "en:lesson-07:session-26:i04:p1=park\nen:lesson-07:session-26:i04:p2=jog\nen:lesson-07:session-26:i04:p3=badge\nen:lesson-07:session-26:i04:p4=cats",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i05",
+    "correctText": "Where do you park?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i06",
+    "correctText": "Where do you jog?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i07",
+    "correctText": "When does she start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i08",
+    "correctText": "does",
+    "correctResponseId": "en:lesson-07:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i09",
+    "correctText": "Where do you park?",
+    "correctResponseId": "en:lesson-07:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i10",
+    "correctText": "en:lesson-07:session-26:i10:p1=gamble\nen:lesson-07:session-26:i10:p2=park\nen:lesson-07:session-26:i10:p3=cats\nen:lesson-07:session-26:i10:p4=jog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i11",
+    "correctText": "Where do you jog?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i12",
+    "correctText": "Do you have a badge?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i13",
+    "correctText": "I don’t gamble.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i14",
+    "correctText": "park",
+    "correctResponseId": "en:lesson-07:session-26:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i15",
+    "correctText": "The cats are here.",
+    "correctResponseId": "en:lesson-07:session-26:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i16",
+    "correctText": "en:lesson-07:session-26:i16:p1=park\nen:lesson-07:session-26:i16:p2=badge\nen:lesson-07:session-26:i16:p3=gamble\nen:lesson-07:session-26:i16:p4=cats",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:i17",
+    "correctText": "Where does Tom jog?",
+    "correctResponseId": null
+  }
+]

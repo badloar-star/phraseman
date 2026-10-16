@@ -1,0 +1,947 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Где ты паркуешься?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Где ты паркуешься?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where do you park?",
+        "localizedMeaning": {
+          "ru": "Спросите «Где ты паркуешься?»",
+          "uk": "Запитайте «Де ти паркуєшся?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "park"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-26:i02:r1",
+          "text": "park"
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i02:r2",
+          "text": "jog"
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i02:r3",
+          "text": "badge"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-26:i02:audio",
+          "transcript": "park"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-26:i02:r1",
+            "targetText": "park",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i02:r2",
+            "targetText": "jog",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i02:r3",
+            "targetText": "badge",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `park`, а в этом варианте — `jog`.",
+              "uk": "У записі перше слово — `park`, а в цьому варіанті — `jog`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `park`, а в этом варианте — `badge`.",
+              "uk": "У записі перше слово — `park`, а в цьому варіанті — `badge`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите «Где ты паркуешься?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-26:i03:r1",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i03:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Где ты паркуешься?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Где ты паркуешься?»",
+          "uk": "Запитайте «Де ти паркуєшся?»"
+        },
+        "gappedTargetPhrase": "Where ___ you park?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i03:r1",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i03:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Спросите «Где ты паркуешься?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите «Где ты паркуешься?»",
+            "feedbackByLocale": {
+              "ru": "С `you` нужно `do`.",
+              "uk": "З `you` потрібне `do`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите «Где ты паркуешься?»",
+            "feedbackByLocale": {
+              "ru": "Вопрос о привычном действии `park` строим с `do`.",
+              "uk": "Запитання про звичну дію `park` будуємо з `do`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-26:i04:p1",
+            "target": "park",
+            "meaningByLocale": {
+              "ru": "парковаться",
+              "uk": "паркуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-26:i04:p2",
+            "target": "jog",
+            "meaningByLocale": {
+              "ru": "бегать трусцой",
+              "uk": "бігати підтюпцем"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-26:i04:p3",
+            "target": "badge",
+            "meaningByLocale": {
+              "ru": "значок",
+              "uk": "значок"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-26:i04:p4",
+            "target": "cats",
+            "meaningByLocale": {
+              "ru": "кошки",
+              "uk": "коти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "park",
+          "jog",
+          "badge",
+          "cats"
+        ],
+        "rightColumn": [
+          "парковаться",
+          "бегать трусцой",
+          "значок",
+          "кошки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-26:i05:audio",
+          "transcript": "Where do you park?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where do you park?",
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "park"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите друга «Где ты бегаешь трусцой?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите друга «Где ты бегаешь трусцой?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where do you jog?",
+        "localizedMeaning": {
+          "ru": "Спросите друга «Где ты бегаешь трусцой?»",
+          "uk": "Запитайте друга «Де ти бігаєш підтюпцем?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "jog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-26:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-26:i07:audio",
+          "transcript": "When does she start?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When does she start?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о начале её работы «Когда она начинает?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-26:i08:r1",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i08:r2",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i08:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о начале её работы «Когда она начинает?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о начале её работы «Когда она начинает?»",
+          "uk": "Запитайте про початок її роботи «Коли вона починає?»"
+        },
+        "gappedTargetPhrase": "When ___ she start?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i08:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i08:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i08:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Спросите о начале её работы «Когда она начинает?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-26:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите о начале её работы «Когда она начинает?»",
+            "feedbackByLocale": {
+              "ru": "С `she` нужно `does`.",
+              "uk": "З `she` потрібне `does`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите о начале её работы «Когда она начинает?»",
+            "feedbackByLocale": {
+              "ru": "Для вопроса о действии `start` с `she` нужно `does`.",
+              "uk": "Для запитання про дію `start` з `she` потрібне `does`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-26:i09:r1",
+          "text": "Where do you park?"
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i09:r2",
+          "text": "When do you park?"
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i09:r3",
+          "text": "Where do you jog?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-26:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите вопрос",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-26:i09:audio",
+          "transcript": "Where do you park?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-26:i09:r1",
+            "targetText": "Where do you park?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i09:r2",
+            "targetText": "When do you park?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i09:r3",
+            "targetText": "Where do you jog?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-26:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
+              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите вопрос",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `park`, а в этом варианте — `jog`.",
+              "uk": "У записі останнє слово — `park`, а в цьому варіанті — `jog`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-26:i10:p1",
+            "target": "gamble",
+            "meaningByLocale": {
+              "ru": "играть в азартные игры",
+              "uk": "грати в азартні ігри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-26:i10:p2",
+            "target": "park",
+            "meaningByLocale": {
+              "ru": "парковаться",
+              "uk": "паркуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-26:i10:p3",
+            "target": "cats",
+            "meaningByLocale": {
+              "ru": "кошки",
+              "uk": "коти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-26:i10:p4",
+            "target": "jog",
+            "meaningByLocale": {
+              "ru": "бегать трусцой",
+              "uk": "бігати підтюпцем"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gamble",
+          "park",
+          "cats",
+          "jog"
+        ],
+        "rightColumn": [
+          "играть в азартные игры",
+          "парковаться",
+          "кошки",
+          "бегать трусцой"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-26:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-26:i11:audio",
+          "transcript": "Where do you jog?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where do you jog?",
+        "orderedTokens": [
+          "Where",
+          "do",
+          "you",
+          "jog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите коллекционера «У тебя есть значок?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите коллекционера «У тебя есть значок?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a badge?",
+        "localizedMeaning": {
+          "ru": "Спросите коллекционера «У тебя есть значок?»",
+          "uk": "Запитайте колекціонера «У тебе є значок?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "badge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На предложение сыграть на деньги ответьте «Я не играю в азартные игры»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-26:i13:audio"
+      ],
+      "accessibilityLabel": "На предложение сыграть на деньги ответьте «Я не играю в азартные игры»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-26:i13:audio",
+          "transcript": "I don’t gamble."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I don’t gamble.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите «Где Том паркуется?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-26:i14:r1",
+          "text": "park"
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i14:r2",
+          "text": "parks"
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i14:r3",
+          "text": "is park"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Где Том паркуется?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Где Том паркуется?»",
+          "uk": "Запитайте «Де Том паркується?»"
+        },
+        "gappedTargetPhrase": "Where does Tom ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i14:r1",
+            "text": "park"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i14:r2",
+            "text": "parks"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i14:r3",
+            "text": "is park"
+          }
+        ],
+        "testedDimension": "Спросите «Где Том паркуется?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-26:i14:r2",
+            "correct": false,
+            "testedDimension": "Спросите «Где Том паркуется?»",
+            "feedbackByLocale": {
+              "ru": "После `does` нужно `park`.",
+              "uk": "Після `does` потрібне `park`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i14:r3",
+            "correct": false,
+            "testedDimension": "Спросите «Где Том паркуется?»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно `park`, без `is`.",
+              "uk": "Тут потрібне `park`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где кошки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-26:i15:r1",
+          "text": "The cats are here."
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i15:r2",
+          "text": "The cats are there."
+        },
+        {
+          "responseId": "en:lesson-07:session-26:i15:r3",
+          "text": "The cats are upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-26:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где кошки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-26:i15:audio",
+          "transcript": "The cats are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-26:i15:r1",
+            "targetText": "The cats are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i15:r2",
+            "targetText": "The cats are there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i15:r3",
+            "targetText": "The cats are upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-26:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где кошки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где кошки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-26:i16:p1",
+            "target": "park",
+            "meaningByLocale": {
+              "ru": "парковаться",
+              "uk": "паркуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-26:i16:p2",
+            "target": "badge",
+            "meaningByLocale": {
+              "ru": "значок",
+              "uk": "значок"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-26:i16:p3",
+            "target": "gamble",
+            "meaningByLocale": {
+              "ru": "играть в азартные игры",
+              "uk": "грати в азартні ігри"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-26:i16:p4",
+            "target": "cats",
+            "meaningByLocale": {
+              "ru": "кошки",
+              "uk": "коти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "park",
+          "badge",
+          "gamble",
+          "cats"
+        ],
+        "rightColumn": [
+          "парковаться",
+          "значок",
+          "играть в азартные игры",
+          "кошки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг рассказывает о регулярных пробежках Тома. Спросите «Где Том бегает трусцой?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "Друг рассказывает о регулярных пробежках Тома. Спросите «Где Том бегает трусцой?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-26:i17:audio",
+          "transcript": "Where does Tom jog?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where does Tom jog?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ece93b9bde30ea19438e30d78b1ce4865eddba9d6a62bd8644f01efdd4ed3a26"
+}

@@ -2,84 +2,74 @@
 
 **Ситуация.** После рабочего дня вы пьёте кофе с коллегой Викой и рассказываете друг другу, как прошёл день.
 **Что вы освоите:** как сказать о себе и собеседнике `I am` / `You are`, включая `not`
-**Новые слова:** polite, serious, lucky, sad
-**Возвращаются:** kind, calm, honest, tired
+**Новые слова:** friendly, serious, lucky, helpful
+**Возвращаются:** kind, calm, honest, tired, polite, sad
 
 ---
 
 ## Интро 1
 
-### Polite — «вежливый»
+### Новичок за общим столом
 
-Так называют человека, который говорит «пожалуйста» и «спасибо» и относится к людям учтиво.
+Новый коллега пришёл на обед один. Вика улыбнулась, пригласила его за общий стол и начала с ним разговор. friendly — «дружелюбный». You are friendly — «Ты дружелюбная». Вы отмечаете, как легко и тепло она общается с незнакомым человеком.
 
-Про себя — `I am polite`. Про собеседника — `You are polite`. Меняется только `am` на `are`, само слово одно и то же.
+**Вика радушно приняла нового коллегу. Скажите ей: «Ты дружелюбная».**
 
-**Вика весь день благодарила коллег и пропускала их вперёд у двери. Скажите ей, что она вежливая.**
-
-- ✅ **You are polite.**
-- ❌ You polite. — *После `you` нужно `are`: без него английская фраза неполная.*
-- ❌ You am polite. — *`am` живёт только рядом с `I`. Про собеседника — всегда `are`.*
+- ✅ **You are friendly.**
+- ❌ You friendly. — *В этой фразе между you и friendly нужно are.*
+- ❌ I am friendly. — *Вы говорите Вике о ней: You are friendly.*
 
 ---
 
 ## Интро 2
 
-### Serious — «серьёзный»
+### Намерение — не шутка
 
-`serious` — «серьёзный». Человек не шутит: он правда собирается это сделать.
+Вы решили записаться на марафон. Вика смеётся, потому что считает это шуткой, но вы говорите всерьёз. serious — «серьёзный». I am serious — «Я серьёзно». Здесь фраза подтверждает, что вы не шутите.
 
-Когда вы объясняете, что не говорили всерьёз, поставьте `not` сразу после `am`.
+**Вика приняла ваше решение за шутку. Подтвердите: «Я серьёзно».**
 
-`I am not serious` — «я не говорю всерьёз». Три слова вместо нашего «да шучу я».
-
-**Вы пошутили, и Вика решила, что это правда. Уточните: «я говорю не всерьёз».**
-
-- ✅ **I am not serious.**
-- ❌ I not am serious. — *Сначала `I am`, затем `not`: `I am not serious`.*
-- ❌ I am no serious. — *В этой фразе отрицание — `not`: `I am not serious`.*
+- ✅ **I am serious.**
+- ❌ I am not serious. — *Not отрицает серьёзность. По условию вы действительно намерены это сделать.*
+- ❌ I are serious. — *С I в этой фразе нужно am.*
 
 ---
 
 ## Интро 3
 
-### Lucky и sad
+### Призовой билет
 
-`lucky` — «везучий» или «везучая»: человеку просто повезло.
+На небольшом розыгрыше среди коллег Вика вытянула единственный призовой билет. lucky — «везучий»: в этой ситуации ей повезло. You are lucky — «Тебе повезло» или «Ты везучая». Это оценка удачи, а не умения выбирать билет.
 
-`sad` — «грустный». Это слово о грусти; `lucky` — о том, что человеку повезло.
-
-В этих фразах перед признаком человека стоит `I am`: `I am sad`, `I am lucky`.
-
-**На розыгрыше среди коллег Вика вытянула призовой билет. Скажите ей: «ты везучая».**
+**Вика случайно вытянула призовой билет. Отметьте её удачу, обращаясь к ней.**
 
 - ✅ **You are lucky.**
-- ❌ You is lucky. — *После `you` нужно `are`, не `is`.*
-- ❌ You lucky are. — *`are` стоит сразу после `you`, а не в хвосте.*
+- ❌ You is lucky. — *В обращении с you нужно are, а не is.*
+- ❌ You lucky are. — *Are ставится после you, перед lucky.*
 
 ---
 
 ## Практика (22 задания)
 
-**1 · Карточка слова — polite**
-<!-- interaction_id: en:lesson-01:session-15:i01; family: listen_choose -->
-> **polite** — «вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится.
+**1 · Карточка слова — friendly**
+<!-- interaction_id: en:lesson-01:session-15:i01; family: word_card -->
+> **friendly** — дружелюбный: приветливо общается с людьми. You are friendly — «Ты дружелюбный / дружелюбная».
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-01:session-15:i02; family: listen_choose -->
-🔊 *polite* → **polite** · pilot · plate
-- pilot — *`pilot` — пилот, а `polite` — вежливый; это разные слова и значения.*
-- plate — *`plate` — тарелка, а `polite` описывает вежливого человека.*
+🔊 *friendly* → **friendly** · free · ready
+- free — *В записи звучит friendly, а не free.*
+- ready — *В записи звучит friendly, а не ready.*
 
 **3 · Карточка слова — serious**
-<!-- interaction_id: en:lesson-01:session-15:i03; family: listen_choose -->
-> **serious** — «серьёзный». Не шутит, не отмахивается — говорит как есть.
+<!-- interaction_id: en:lesson-01:session-15:i03; family: word_card -->
+> **serious** — серьёзный. В I am serious — «Я серьёзно»: человек говорит не в шутку.
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-01:session-15:i04; family: listen_choose -->
-🔊 *serious* → **serious** · series · service
-- series — *`series` — серия, а `serious` значит «серьёзный».*
-- service — *`service` — обслуживание, а `serious` описывает серьёзное отношение.*
+🔊 *serious* → **serious** · sure · strong
+- sure — *В записи звучит serious, а не sure.*
+- strong — *В записи звучит serious, а не strong.*
 
 **5 · Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»**
 <!-- interaction_id: en:lesson-01:session-15:i05; family: context_gap_grammar -->
@@ -87,33 +77,34 @@ You are ___ . → **polite** · serious · tired
 - serious — *«Серьёзный» — про другое. Тут человек вежливый.*
 - tired — *«Уставшая» — про силы, а не про манеры. Тут Вика благодарит коллег.*
 
-**6 · Соберите фразу — «я не серьёзен»**
+**6 · Соберите фразу — вы не шутите и хотите сказать: «Я серьёзно»**
 <!-- interaction_id: en:lesson-01:session-15:i06; family: phrase_builder -->
-Плитки: `not` `serious` `I` `am` → **I am not serious.**
+Плитки: `serious` `I` `am` `not` → **I am serious.**
+Плитка `not` лишняя: вы подтверждаете, что говорите всерьёз.
 
 **7 · Карточка слова — lucky**
-<!-- interaction_id: en:lesson-01:session-15:i07; family: listen_choose -->
-> **lucky** — «везучий» или «везучая»: человеку просто повезло.
+<!-- interaction_id: en:lesson-01:session-15:i07; family: word_card -->
+> **lucky** — везучий: человеку повезло. You are lucky — «Ты везучий / везучая», «Тебе повезло».
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-01:session-15:i08; family: listen_choose -->
-🔊 *lucky* → **lucky** · luck · lock
-- luck — *`luck` — удача, а `lucky` — везучая.*
-- lock — *`lock` — замок, а `lucky` значит «везучая».*
+🔊 *lucky* → **lucky** · lazy · lost
+- lazy — *В записи звучит lucky, а не lazy.*
+- lost — *В записи звучит lucky, а не lost.*
 
-**9 · Карточка слова — sad**
-<!-- interaction_id: en:lesson-01:session-15:i09; family: listen_choose -->
-> **sad** — «грустный». Не в слезах, но радости в человеке сейчас ноль.
+**9 · Карточка слова — helpful**
+<!-- interaction_id: en:lesson-01:session-15:i09; family: word_card -->
+> **helpful** — охотно помогающий, оказывающий полезную помощь. You are helpful — «Ты мне помогаешь, от твоей помощи есть польза». Например, коллега помогает разобраться с непонятной формой.
 
 **10 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-01:session-15:i10; family: listen_choose -->
-🔊 *sad* → **sad** · said · sand
-- said — *`said` значит «сказал», а `sad` — «грустный».*
-- sand — *`sand` значит «песок», а `sad` — «грустный».*
+🔊 *helpful* → **helpful** · happy · honest
+- happy — *В записи звучит helpful, а не happy.*
+- honest — *В записи звучит helpful, а не honest.*
 
 **11 · Соедините пары**
 <!-- interaction_id: en:lesson-01:session-15:i11; family: speed_match -->
-polite — вежливый · serious — серьёзный · lucky — везучий / везучая · sad — грустный / грустная
+friendly — дружелюбный · serious — серьёзный · lucky — везучий · helpful — оказывающий полезную помощь
 
 **12 · Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово**
 <!-- interaction_id: en:lesson-01:session-15:i12; family: context_gap_grammar -->
@@ -127,19 +118,21 @@ You ___ lucky. → **are** · am · is
 *(плитка `am` лишняя: с `you` употребляется `are`; `am` используют с `I`.)*
 
 
-**14 · Карточка слова — calm**
-<!-- interaction_id: en:lesson-01:session-15:i14; family: listen_choose -->
-> **calm** — «спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была.
+**14 · Вставьте слово — Вика помогла вам разобраться с непонятной формой. Отметьте полезность её помощи**
+<!-- interaction_id: en:lesson-01:session-15:i14; family: context_gap_grammar -->
+You are ___ . → **helpful** · lucky · tired
+- lucky — *Нужно отметить помощь, а не случайную удачу.*
+- tired — *Tired — «уставшая». Здесь вы отмечаете помощь: helpful.*
 
-**15 · Прослушайте первую запись и выберите услышанное слово**
-<!-- interaction_id: en:lesson-01:session-15:i15; family: sound_contrast -->
-🔊 Два слова подряд.
-*calm · come* → **calm**
-- come — *`come` стоит во второй записи; в первой записи — `calm`.*
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-15:i15; family: listen_choose -->
+🔊 *calm* → **calm** · cold · kind
+- cold — *В записи звучит calm, а не cold.*
+- kind — *В записи звучит calm, а не kind.*
 
-**16 · Карточка слова — honest**
-<!-- interaction_id: en:lesson-01:session-15:i16; family: listen_choose -->
-> **honest** — «честный». Говорит как есть, даже когда правда невыгодна ему самому.
+**16 · Скажите вслух — Вика приветливо познакомилась с новыми соседями. Скажите ей, что она дружелюбная**
+<!-- interaction_id: en:lesson-01:session-15:i16; family: scripted_repeat_compare -->
+🎙 Скажите: **You are friendly.**
 
 **17 · Соберите фразу — Вика честно призналась, что не успела ответить; скажите ей: «ты честная»**
 <!-- interaction_id: en:lesson-01:session-15:i17:s01; family: phrase_builder -->
@@ -153,9 +146,10 @@ You ___ lucky. → **are** · am · is
 *(плитка `is` лишняя: когда говорите о себе, используйте `I am`, не `I is`.)*
 
 
-**19 · Карточка слова — kind**
-<!-- interaction_id: en:lesson-01:session-15:i18; family: listen_choose -->
-> **kind** — «добрый». Помогает, когда его не просили и ему за это ничего не будет.
+**19 · Соберите фразу — Вика помогла найти нужный пункт в инструкции. Скажите ей, что её помощь полезна**
+<!-- interaction_id: en:lesson-01:session-15:i18; family: phrase_builder -->
+Плитки: `helpful` `are` `You` `am` → **You are helpful.**
+Плитка `am` лишняя: с You здесь нужно are.
 
 **20 · Соберите фразу — Вика помогла человеку с коробками; скажите ей: «ты добрая»**
 <!-- interaction_id: en:lesson-01:session-15:i19:s01; family: phrase_builder -->
@@ -167,25 +161,9 @@ You ___ lucky. → **are** · am · is
 *(плитка `is` лишняя: когда говорите о себе, используйте `I am`, не `I is`.)*
 
 
-**22 · Скажите вслух — Вика придержала дверь для человека с коробками и сказала «спасибо»; скажите Вике: «ты вежливая»**
+**22 · Скажите вслух — человек придержал дверь для Вики с коробками, и она поблагодарила его; скажите Вике: «ты вежливая»**
 <!-- interaction_id: en:lesson-01:session-15:i20; family: scripted_repeat_compare -->
 🎙 **You are polite.**
 
 ---
 
-## Для сборщика
-
-new_words:
-polite — вежливый — «вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится.
-serious — серьёзный — «серьёзный». Не шутит, не отмахивается — говорит как есть.
-lucky — везучий / везучая — «везучий / везучая». Человеку просто повезло.
-sad — грустный — «грустный». Не в слезах, но радости в человеке сейчас ноль.
-
-review_cards:
-calm — спокойный — «спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была.
-honest — честный — «честный». Говорит как есть, даже когда правда невыгодна ему самому.
-kind — добрый — «добрый». Помогает, когда его не просили и ему за это ничего не будет.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=word_card, 8=listen_choose, 9=word_card, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=word_card, 15=sound_contrast, 16=word_card, 17=phrase_builder, 18=listen_build_dictation, 19=word_card, 20=phrase_builder, 21=listen_build_dictation, 22=scripted_repeat_compare
-
----

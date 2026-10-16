@@ -1,8 +1,6 @@
 {
   "schemaVersion": "learning_v2_atomic_practice_source_v1",
   "courseSessionId": "en:lesson-01:session-15",
-  "sourceSnapshotSha256": "5aa60bc6ca38832241e921960a15b6674514c89fbbdd33fd5714bf510164ac86",
-  "preservationLedgerSha256": "948ee544284fe8f39214239a8fd62a5e9a6d3a3b327345004da88767c0604c81",
   "interactionsByLocale": {
     "ru": [
       {
@@ -11,27 +9,27 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — polite",
+        "prompt": "Карточка слова — friendly",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-15:i01:audio"
         ],
-        "accessibilityLabel": "Карточка слова — polite",
+        "accessibilityLabel": "Карточка слова — friendly",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-15:i01:audio",
-            "transcript": "polite"
+            "transcript": "friendly"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-15:i01:r1",
-              "targetText": "polite",
+              "targetText": "friendly",
               "meaningByLocale": {
-                "ru": "«вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится.",
-                "uk": "«ввічливий». Той, хто притримає двері й скаже «дякую», навіть коли поспішає."
+                "ru": "дружелюбный: приветливо общается с людьми. You are friendly — «Ты дружелюбный / дружелюбная».",
+                "uk": "дружелюбний: привітно спілкується з людьми. You are friendly — «Ти дружелюбний / дружелюбна»."
               }
             }
           ],
@@ -39,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "polite",
+            "word": "friendly",
             "definitionByLocale": {
-              "ru": "«вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится.",
-              "uk": "«ввічливий». Той, хто притримає двері й скаже «дякую», навіть коли поспішає."
+              "ru": "дружелюбный: приветливо общается с людьми. You are friendly — «Ты дружелюбный / дружелюбная».",
+              "uk": "дружелюбний: привітно спілкується з людьми. You are friendly — «Ти дружелюбний / дружелюбна»."
             }
           }
         },
@@ -58,15 +56,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-15:i02:r1",
-            "text": "polite"
+            "text": "friendly"
           },
           {
             "responseId": "en:lesson-01:session-15:i02:r2",
-            "text": "pilot"
+            "text": "free"
           },
           {
             "responseId": "en:lesson-01:session-15:i02:r3",
-            "text": "plate"
+            "text": "ready"
           }
         ],
         "mediaIds": [],
@@ -78,23 +76,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-15:i02:audio",
-            "transcript": "polite"
+            "transcript": "friendly"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-15:i02:r1",
-              "targetText": "polite",
+              "targetText": "friendly",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i02:r2",
-              "targetText": "pilot",
+              "targetText": "free",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i02:r3",
-              "targetText": "plate",
+              "targetText": "ready",
               "meaningByLocale": null
             }
           ],
@@ -105,8 +103,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`pilot` — пилот, а `polite` — вежливый; это разные слова и значения.",
-                "uk": "`pilot` — пілот, а `polite` — ввічлива; це різні слова й значення."
+                "ru": "В записи звучит friendly, а не free.",
+                "uk": "У записі звучить friendly, а не free."
               }
             },
             {
@@ -114,8 +112,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`plate` — тарелка, а `polite` описывает вежливого человека.",
-                "uk": "`plate` — тарілка, а `polite` описує ввічливу людину."
+                "ru": "В записи звучит friendly, а не ready.",
+                "uk": "У записі звучить friendly, а не ready."
               }
             }
           ],
@@ -149,8 +147,8 @@
               "responseId": "en:lesson-01:session-15:i03:r1",
               "targetText": "serious",
               "meaningByLocale": {
-                "ru": "«серьёзный». Не шутит, не отмахивается — говорит как есть.",
-                "uk": "«серйозний». Не жартує, не відмахується — каже як є."
+                "ru": "серьёзный. В I am serious — «Я серьёзно»: человек говорит не в шутку.",
+                "uk": "серйозний. У I am serious — «Я серйозно»: людина говорить не жартома."
               }
             }
           ],
@@ -160,8 +158,8 @@
           "wordCard": {
             "word": "serious",
             "definitionByLocale": {
-              "ru": "«серьёзный». Не шутит, не отмахивается — говорит как есть.",
-              "uk": "«серйозний». Не жартує, не відмахується — каже як є."
+              "ru": "серьёзный. В I am serious — «Я серьёзно»: человек говорит не в шутку.",
+              "uk": "серйозний. У I am serious — «Я серйозно»: людина говорить не жартома."
             }
           }
         },
@@ -181,11 +179,11 @@
           },
           {
             "responseId": "en:lesson-01:session-15:i04:r2",
-            "text": "series"
+            "text": "sure"
           },
           {
             "responseId": "en:lesson-01:session-15:i04:r3",
-            "text": "service"
+            "text": "strong"
           }
         ],
         "mediaIds": [],
@@ -208,12 +206,12 @@
             },
             {
               "responseId": "en:lesson-01:session-15:i04:r2",
-              "targetText": "series",
+              "targetText": "sure",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i04:r3",
-              "targetText": "service",
+              "targetText": "strong",
               "meaningByLocale": null
             }
           ],
@@ -224,8 +222,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`series` — серия, а `serious` значит «серьёзный».",
-                "uk": "`series` — серія, а `serious` означає «серйозний»."
+                "ru": "В записи звучит serious, а не sure.",
+                "uk": "У записі звучить serious, а не sure."
               }
             },
             {
@@ -233,8 +231,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`service` — обслуживание, а `serious` описывает серьёзное отношение.",
-                "uk": "`service` — обслуговування, а `serious` описує серйозне ставлення."
+                "ru": "В записи звучит serious, а не strong.",
+                "uk": "У записі звучить serious, а не strong."
               }
             }
           ],
@@ -288,7 +286,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставьте слово — коллега всем говорит «с",
+          "testedDimension": "Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-15:i05:r2",
@@ -318,27 +316,37 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соберите фразу — «я не серьёзен»",
+        "prompt": "Соберите фразу — вы не шутите и хотите сказать: «Я серьёзно»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соберите фразу — «я не серьёзен»",
+        "accessibilityLabel": "Соберите фразу — вы не шутите и хотите сказать: «Я серьёзно»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am not serious.",
+          "targetPhrase": "I am serious.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — «я не серьёзен»",
-            "uk": "Складіть фразу — «я не серйозний»"
+            "ru": "Соберите фразу — вы не шутите и хотите сказать: «Я серьёзно»",
+            "uk": "Складіть фразу — ви не жартуєте й хочете сказати: «Я серйозно»"
           },
           "orderedTokens": [
             "I",
             "am",
-            "not",
             "serious"
           ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "choiceFeedback": [],
+          "authoredDistractorTokens": [
+            "not"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы не шутите и хотите сказать: «Я серьёзно»",
+              "feedbackByLocale": {
+                "ru": "вы подтверждаете, что говорите всерьёз.",
+                "uk": "ви підтверджуєте, що говорите серйозно."
+              }
+            }
+          ],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -349,7 +357,7 @@
       {
         "interactionId": "en:lesson-01:session-15:i07",
         "ordinal": 10,
-        "purpose": "guided_practice",
+        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Карточка слова — lucky",
@@ -371,8 +379,8 @@
               "responseId": "en:lesson-01:session-15:i07:r1",
               "targetText": "lucky",
               "meaningByLocale": {
-                "ru": "«везучий» или «везучая»: человеку просто повезло.",
-                "uk": "«везучий» або «везуча»: людині просто пощастило."
+                "ru": "везучий: человеку повезло. You are lucky — «Ты везучий / везучая», «Тебе повезло».",
+                "uk": "везучий: людині пощастило. You are lucky — «Ти везучий / везуча», «Тобі пощастило»."
               }
             }
           ],
@@ -382,8 +390,8 @@
           "wordCard": {
             "word": "lucky",
             "definitionByLocale": {
-              "ru": "«везучий» или «везучая»: человеку просто повезло.",
-              "uk": "«везучий» або «везуча»: людині просто пощастило."
+              "ru": "везучий: человеку повезло. You are lucky — «Ты везучий / везучая», «Тебе повезло».",
+              "uk": "везучий: людині пощастило. You are lucky — «Ти везучий / везуча», «Тобі пощастило»."
             }
           }
         },
@@ -403,11 +411,11 @@
           },
           {
             "responseId": "en:lesson-01:session-15:i08:r2",
-            "text": "luck"
+            "text": "lazy"
           },
           {
             "responseId": "en:lesson-01:session-15:i08:r3",
-            "text": "lock"
+            "text": "lost"
           }
         ],
         "mediaIds": [],
@@ -430,12 +438,12 @@
             },
             {
               "responseId": "en:lesson-01:session-15:i08:r2",
-              "targetText": "luck",
+              "targetText": "lazy",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i08:r3",
-              "targetText": "lock",
+              "targetText": "lost",
               "meaningByLocale": null
             }
           ],
@@ -446,8 +454,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`luck` — удача, а `lucky` — везучая.",
-                "uk": "`luck` — удача, а `lucky` — везуча."
+                "ru": "В записи звучит lucky, а не lazy.",
+                "uk": "У записі звучить lucky, а не lazy."
               }
             },
             {
@@ -455,8 +463,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`lock` — замок, а `lucky` значит «везучая».",
-                "uk": "`lock` — замок, а `lucky` означає «везуча»."
+                "ru": "В записи звучит lucky, а не lost.",
+                "uk": "У записі звучить lucky, а не lost."
               }
             }
           ],
@@ -471,27 +479,27 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — sad",
+        "prompt": "Карточка слова — helpful",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-15:i09:audio"
         ],
-        "accessibilityLabel": "Карточка слова — sad",
+        "accessibilityLabel": "Карточка слова — helpful",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-15:i09:audio",
-            "transcript": "sad"
+            "transcript": "helpful"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-15:i09:r1",
-              "targetText": "sad",
+              "targetText": "helpful",
               "meaningByLocale": {
-                "ru": "«грустный». Не в слезах, но радости в человеке сейчас ноль.",
-                "uk": "«сумний». Не в сльозах, але радості в людині зараз нуль."
+                "ru": "охотно помогающий, оказывающий полезную помощь. You are helpful — «Ты мне помогаешь, от твоей помощи есть польза». Например, коллега помогает разобраться с непонятной формой.",
+                "uk": "той, хто охоче допомагає та надає корисну допомогу. You are helpful — «Ти мені допомагаєш, твоя допомога корисна». Наприклад, колега допомагає розібратися з незрозумілою формою."
               }
             }
           ],
@@ -499,10 +507,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "sad",
+            "word": "helpful",
             "definitionByLocale": {
-              "ru": "«грустный». Не в слезах, но радости в человеке сейчас ноль.",
-              "uk": "«сумний». Не в сльозах, але радості в людині зараз нуль."
+              "ru": "охотно помогающий, оказывающий полезную помощь. You are helpful — «Ты мне помогаешь, от твоей помощи есть польза». Например, коллега помогает разобраться с непонятной формой.",
+              "uk": "той, хто охоче допомагає та надає корисну допомогу. You are helpful — «Ти мені допомагаєш, твоя допомога корисна». Наприклад, колега допомагає розібратися з незрозумілою формою."
             }
           }
         },
@@ -518,15 +526,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-15:i10:r1",
-            "text": "sad"
+            "text": "helpful"
           },
           {
             "responseId": "en:lesson-01:session-15:i10:r2",
-            "text": "said"
+            "text": "happy"
           },
           {
             "responseId": "en:lesson-01:session-15:i10:r3",
-            "text": "sand"
+            "text": "honest"
           }
         ],
         "mediaIds": [],
@@ -538,23 +546,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-15:i10:audio",
-            "transcript": "sad"
+            "transcript": "helpful"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-15:i10:r1",
-              "targetText": "sad",
+              "targetText": "helpful",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i10:r2",
-              "targetText": "said",
+              "targetText": "happy",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i10:r3",
-              "targetText": "sand",
+              "targetText": "honest",
               "meaningByLocale": null
             }
           ],
@@ -565,8 +573,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`said` значит «сказал», а `sad` — «грустный».",
-                "uk": "`said` означає «сказав», а `sad` — «сумний»."
+                "ru": "В записи звучит helpful, а не happy.",
+                "uk": "У записі звучить helpful, а не happy."
               }
             },
             {
@@ -574,8 +582,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`sand` значит «песок», а `sad` — «грустный».",
-                "uk": "`sand` означає «пісок», а `sad` — «сумний»."
+                "ru": "В записи звучит helpful, а не honest.",
+                "uk": "У записі звучить helpful, а не honest."
               }
             }
           ],
@@ -600,10 +608,10 @@
           "pairGrid": [
             {
               "pairId": "en:lesson-01:session-15:i11:p1",
-              "target": "polite",
+              "target": "friendly",
               "meaningByLocale": {
-                "ru": "вежливый",
-                "uk": "ввічливий"
+                "ru": "дружелюбный",
+                "uk": "дружелюбний"
               }
             },
             {
@@ -618,30 +626,30 @@
               "pairId": "en:lesson-01:session-15:i11:p3",
               "target": "lucky",
               "meaningByLocale": {
-                "ru": "везучий / везучая",
-                "uk": "везучий / везуча"
+                "ru": "везучий",
+                "uk": "везучий"
               }
             },
             {
               "pairId": "en:lesson-01:session-15:i11:p4",
-              "target": "sad",
+              "target": "helpful",
               "meaningByLocale": {
-                "ru": "грустный / грустная",
-                "uk": "сумний / сумна"
+                "ru": "оказывающий полезную помощь",
+                "uk": "той, хто надає корисну допомогу"
               }
             }
           ],
           "leftColumn": [
-            "polite",
+            "friendly",
             "serious",
             "lucky",
-            "sad"
+            "helpful"
           ],
           "rightColumn": [
-            "вежливый",
+            "дружелюбный",
             "серьёзный",
-            "везучий / везучая",
-            "грустный / грустная"
+            "везучий",
+            "оказывающий полезную помощь"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -653,8 +661,7 @@
             "speed",
             "accuracy",
             "personal_best"
-          ],
-          "choiceFeedback": []
+          ]
         },
         "scriptedAlternate": null
       },
@@ -703,7 +710,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Выберите нужное слово после `you`.",
+          "testedDimension": "Вика вытянула призовой билет. Скажите ей: «ты везучая» — вставьте слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-15:i12:r2",
@@ -730,7 +737,7 @@
       {
         "interactionId": "en:lesson-01:session-15:i13",
         "ordinal": 16,
-        "purpose": "retrieval_practice",
+        "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Вика говорит, что просто устала и не грустит. Скажите ей: «ты не грустная»",
@@ -768,7 +775,6 @@
               }
             }
           ],
-          "choiceFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -779,92 +785,66 @@
       {
         "interactionId": "en:lesson-01:session-15:i14",
         "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — calm",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-15:i14:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — calm",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-15:i14:audio",
-            "transcript": "calm"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-15:i14:r1",
-              "targetText": "calm",
-              "meaningByLocale": {
-                "ru": "«спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была.",
-                "uk": "«спокійний». Голос рівний, руки не тремтять, хоча причина понервувати була."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "calm",
-            "definitionByLocale": {
-              "ru": "«спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была.",
-              "uk": "«спокійний». Голос рівний, руки не тремтять, хоча причина понервувати була."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-15:i15",
-        "ordinal": 18,
         "purpose": "guided_practice",
-        "family": "sound_contrast",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Прослушайте первую запись и выберите услышанное слово",
+        "prompt": "Вставьте слово — Вика помогла вам разобраться с непонятной формой. Отметьте полезность её помощи",
         "responseOptions": [
           {
-            "responseId": "en:lesson-01:session-15:i15:r1",
-            "text": "calm"
+            "responseId": "en:lesson-01:session-15:i14:r1",
+            "text": "helpful"
           },
           {
-            "responseId": "en:lesson-01:session-15:i15:r2",
-            "text": "come"
+            "responseId": "en:lesson-01:session-15:i14:r2",
+            "text": "lucky"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i14:r3",
+            "text": "tired"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-15:i15:audioA",
-          "en:lesson-01:session-15:i15:audioB"
-        ],
-        "accessibilityLabel": "Прослушайте первую запись и выберите услышанное слово",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте слово — Вика помогла вам разобраться с непонятной формой. Отметьте полезность её помощи",
         "modePayload": {
-          "family": "sound_contrast",
-          "contrastA": "calm",
-          "contrastB": "come",
-          "ipaA": "",
-          "ipaB": "",
-          "audioA": {
-            "audioTargetId": "en:lesson-01:session-15:i15:audioA",
-            "transcript": "calm"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Вика помогла вам разобраться с непонятной формой. Отметьте полезность её помощи",
+            "uk": "Вставте слово — Віка допомогла вам розібратися з незрозумілою формою. Відзначте користь її допомоги"
           },
-          "audioB": {
-            "audioTargetId": "en:lesson-01:session-15:i15:audioB",
-            "transcript": "come"
-          },
-          "testedPhoneticContrast": "Прослушайте первую запись и выберите услышанное слово",
+          "gappedTargetPhrase": "You are ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i14:r1",
+              "text": "helpful"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i14:r2",
+              "text": "lucky"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i14:r3",
+              "text": "tired"
+            }
+          ],
+          "testedDimension": "Вставьте слово — Вика помогла вам разобраться с непонятной формой. Отметьте полезность её помощи",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-01:session-15:i15:r2",
+              "responseId": "en:lesson-01:session-15:i14:r2",
               "correct": false,
-              "testedDimension": "Прослушайте первую запись и выберите услышанное слово",
+              "testedDimension": "Вставьте слово — Вика помогла вам разобраться с непонятной формой. Отметьте полезность её помощи",
               "feedbackByLocale": {
-                "ru": "`come` стоит во второй записи; в первой записи — `calm`.",
-                "uk": "`come` стоїть у другому записі; у першому записі — `calm`."
+                "ru": "Нужно отметить помощь, а не случайную удачу.",
+                "uk": "Потрібно відзначити допомогу, а не випадкову удачу."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i14:r3",
+              "correct": false,
+              "testedDimension": "Вставьте слово — Вика помогла вам разобраться с непонятной формой. Отметьте полезность её помощи",
+              "feedbackByLocale": {
+                "ru": "Tired — «уставшая». Здесь вы отмечаете помощь: helpful.",
+                "uk": "Tired — «втомлена». Тут ви відзначаєте допомогу: helpful."
               }
             }
           ]
@@ -872,52 +852,118 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-15:i16",
-        "ordinal": 19,
+        "interactionId": "en:lesson-01:session-15:i15",
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — honest",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-15:i15:r1",
+            "text": "calm"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i15:r2",
+            "text": "cold"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i15:r3",
+            "text": "kind"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-15:i15:audio",
+            "transcript": "calm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i15:r1",
+              "targetText": "calm",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i15:r2",
+              "targetText": "cold",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i15:r3",
+              "targetText": "kind",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит calm, а не cold.",
+                "uk": "У записі звучить calm, а не cold."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит calm, а не kind.",
+                "uk": "У записі звучить calm, а не kind."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-15:i16",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите вслух — Вика приветливо познакомилась с новыми соседями. Скажите ей, что она дружелюбная",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-15:i16:audio"
         ],
-        "accessibilityLabel": "Карточка слова — honest",
+        "accessibilityLabel": "Скажите вслух — Вика приветливо познакомилась с новыми соседями. Скажите ей, что она дружелюбная",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-15:i16:audio",
-            "transcript": "honest"
+            "transcript": "You are friendly."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-15:i16:r1",
-              "targetText": "honest",
-              "meaningByLocale": {
-                "ru": "«честный». Говорит как есть, даже когда правда невыгодна ему самому.",
-                "uk": "«чесний». Каже як є, навіть коли правда невигідна йому самому."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "honest",
-            "definitionByLocale": {
-              "ru": "«честный». Говорит как есть, даже когда правда невыгодна ему самому.",
-              "uk": "«чесний». Каже як є, навіть коли правда невигідна йому самому."
-            }
-          }
+          "targetPhrase": "You are friendly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-15:i17:s01",
         "ordinal": 20,
-        "purpose": "independent_check",
+        "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
         "prompt": "Соберите фразу — Вика честно призналась, что не успела ответить; скажите ей: «ты честная»",
@@ -951,7 +997,6 @@
               }
             }
           ],
-          "choiceFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -1000,7 +1045,6 @@
               }
             }
           ],
-          "choiceFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -1012,41 +1056,42 @@
         "interactionId": "en:lesson-01:session-15:i18",
         "ordinal": 22,
         "purpose": "independent_check",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — kind",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите фразу — Вика помогла найти нужный пункт в инструкции. Скажите ей, что её помощь полезна",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-15:i18:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — kind",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соберите фразу — Вика помогла найти нужный пункт в инструкции. Скажите ей, что её помощь полезна",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-15:i18:audio",
-            "transcript": "kind"
+          "family": "phrase_builder",
+          "targetPhrase": "You are helpful.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу — Вика помогла найти нужный пункт в инструкции. Скажите ей, что её помощь полезна",
+            "uk": "Складіть фразу — Віка допомогла знайти потрібний пункт в інструкції. Скажіть їй, що її допомога корисна"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "orderedTokens": [
+            "You",
+            "are",
+            "helpful"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-15:i18:r1",
-              "targetText": "kind",
-              "meaningByLocale": {
-                "ru": "«добрый». Помогает, когда его не просили и ему за это ничего не будет.",
-                "uk": "«добрий». Допомагає, коли його не просили і йому за це нічого не буде."
+              "responseId": "en:lesson-01:session-15:i18:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — Вика помогла найти нужный пункт в инструкции. Скажите ей, что её помощь полезна",
+              "feedbackByLocale": {
+                "ru": "с You здесь нужно are.",
+                "uk": "з You тут потрібне are."
               }
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "kind",
-            "definitionByLocale": {
-              "ru": "«добрый». Помогает, когда его не просили и ему за это ничего не будет.",
-              "uk": "«добрий». Допомагає, коли його не просили і йому за це нічого не буде."
-            }
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
           }
         },
         "scriptedAlternate": null
@@ -1076,7 +1121,6 @@
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
-          "choiceFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -1087,7 +1131,7 @@
       {
         "interactionId": "en:lesson-01:session-15:i19:s02",
         "ordinal": 24,
-        "purpose": "retrieval_practice",
+        "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Послушайте и соберите — Вика зовёт гулять, но вы весь день носили коробки; скажите, что вы устали",
@@ -1124,7 +1168,6 @@
               }
             }
           ],
-          "choiceFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -1135,16 +1178,16 @@
       {
         "interactionId": "en:lesson-01:session-15:i20",
         "ordinal": 25,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите вслух — Вика придержала дверь для человека с коробками и сказала «спасибо»; скажите Вике: «ты вежливая»",
+        "prompt": "Скажите вслух — человек придержал дверь для Вики с коробками, и она поблагодарила его; скажите Вике: «ты вежливая»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-15:i20:audio"
         ],
-        "accessibilityLabel": "Скажите вслух — Вика придержала дверь для человека с коробками и сказала «спасибо»; скажите Вике: «ты вежливая»",
+        "accessibilityLabel": "Скажите вслух — человек придержал дверь для Вики с коробками, и она поблагодарила его; скажите Вике: «ты вежливая»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1161,8 +1204,7 @@
             "NEEDS_WORK_CONFIDENT",
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
-          ],
-          "choiceFeedback": []
+          ]
         },
         "scriptedAlternate": null
       }
@@ -1174,27 +1216,27 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — polite",
+        "prompt": "Картка слова — friendly",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-15:i01:audio"
         ],
-        "accessibilityLabel": "Картка слова — polite",
+        "accessibilityLabel": "Картка слова — friendly",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-15:i01:audio",
-            "transcript": "polite"
+            "transcript": "friendly"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-15:i01:r1",
-              "targetText": "polite",
+              "targetText": "friendly",
               "meaningByLocale": {
-                "ru": "«вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится.",
-                "uk": "«ввічливий». Той, хто притримає двері й скаже «дякую», навіть коли поспішає."
+                "ru": "дружелюбный: приветливо общается с людьми. You are friendly — «Ты дружелюбный / дружелюбная».",
+                "uk": "дружелюбний: привітно спілкується з людьми. You are friendly — «Ти дружелюбний / дружелюбна»."
               }
             }
           ],
@@ -1202,10 +1244,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "polite",
+            "word": "friendly",
             "definitionByLocale": {
-              "ru": "«вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится.",
-              "uk": "«ввічливий». Той, хто притримає двері й скаже «дякую», навіть коли поспішає."
+              "ru": "дружелюбный: приветливо общается с людьми. You are friendly — «Ты дружелюбный / дружелюбная».",
+              "uk": "дружелюбний: привітно спілкується з людьми. You are friendly — «Ти дружелюбний / дружелюбна»."
             }
           }
         },
@@ -1221,15 +1263,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-15:i02:r1",
-            "text": "polite"
+            "text": "friendly"
           },
           {
             "responseId": "en:lesson-01:session-15:i02:r2",
-            "text": "pilot"
+            "text": "free"
           },
           {
             "responseId": "en:lesson-01:session-15:i02:r3",
-            "text": "plate"
+            "text": "ready"
           }
         ],
         "mediaIds": [],
@@ -1241,23 +1283,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-15:i02:audio",
-            "transcript": "polite"
+            "transcript": "friendly"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-15:i02:r1",
-              "targetText": "polite",
+              "targetText": "friendly",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i02:r2",
-              "targetText": "pilot",
+              "targetText": "free",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i02:r3",
-              "targetText": "plate",
+              "targetText": "ready",
               "meaningByLocale": null
             }
           ],
@@ -1268,8 +1310,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`pilot` — пилот, а `polite` — вежливый; это разные слова и значения.",
-                "uk": "`pilot` — пілот, а `polite` — ввічлива; це різні слова й значення."
+                "ru": "В записи звучит friendly, а не free.",
+                "uk": "У записі звучить friendly, а не free."
               }
             },
             {
@@ -1277,8 +1319,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`plate` — тарелка, а `polite` описывает вежливого человека.",
-                "uk": "`plate` — тарілка, а `polite` описує ввічливу людину."
+                "ru": "В записи звучит friendly, а не ready.",
+                "uk": "У записі звучить friendly, а не ready."
               }
             }
           ],
@@ -1312,8 +1354,8 @@
               "responseId": "en:lesson-01:session-15:i03:r1",
               "targetText": "serious",
               "meaningByLocale": {
-                "ru": "«серьёзный». Не шутит, не отмахивается — говорит как есть.",
-                "uk": "«серйозний». Не жартує, не відмахується — каже як є."
+                "ru": "серьёзный. В I am serious — «Я серьёзно»: человек говорит не в шутку.",
+                "uk": "серйозний. У I am serious — «Я серйозно»: людина говорить не жартома."
               }
             }
           ],
@@ -1323,8 +1365,8 @@
           "wordCard": {
             "word": "serious",
             "definitionByLocale": {
-              "ru": "«серьёзный». Не шутит, не отмахивается — говорит как есть.",
-              "uk": "«серйозний». Не жартує, не відмахується — каже як є."
+              "ru": "серьёзный. В I am serious — «Я серьёзно»: человек говорит не в шутку.",
+              "uk": "серйозний. У I am serious — «Я серйозно»: людина говорить не жартома."
             }
           }
         },
@@ -1344,11 +1386,11 @@
           },
           {
             "responseId": "en:lesson-01:session-15:i04:r2",
-            "text": "series"
+            "text": "sure"
           },
           {
             "responseId": "en:lesson-01:session-15:i04:r3",
-            "text": "service"
+            "text": "strong"
           }
         ],
         "mediaIds": [],
@@ -1371,12 +1413,12 @@
             },
             {
               "responseId": "en:lesson-01:session-15:i04:r2",
-              "targetText": "series",
+              "targetText": "sure",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i04:r3",
-              "targetText": "service",
+              "targetText": "strong",
               "meaningByLocale": null
             }
           ],
@@ -1387,8 +1429,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`series` — серия, а `serious` значит «серьёзный».",
-                "uk": "`series` — серія, а `serious` означає «серйозний»."
+                "ru": "В записи звучит serious, а не sure.",
+                "uk": "У записі звучить serious, а не sure."
               }
             },
             {
@@ -1396,8 +1438,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`service` — обслуживание, а `serious` описывает серьёзное отношение.",
-                "uk": "`service` — обслуговування, а `serious` описує серйозне ставлення."
+                "ru": "В записи звучит serious, а не strong.",
+                "uk": "У записі звучить serious, а не strong."
               }
             }
           ],
@@ -1451,7 +1493,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставте слово — колега всім каже «дякую»",
+          "testedDimension": "Вставте слово — Віка всім каже «дякую»; ви кажете їй: «ти ввічлива»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-15:i05:r2",
@@ -1481,27 +1523,37 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть фразу — «я не серйозний»",
+        "prompt": "Складіть фразу — ви не жартуєте й хочете сказати: «Я серйозно»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть фразу — «я не серйозний»",
+        "accessibilityLabel": "Складіть фразу — ви не жартуєте й хочете сказати: «Я серйозно»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am not serious.",
+          "targetPhrase": "I am serious.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — «я не серьёзен»",
-            "uk": "Складіть фразу — «я не серйозний»"
+            "ru": "Соберите фразу — вы не шутите и хотите сказать: «Я серьёзно»",
+            "uk": "Складіть фразу — ви не жартуєте й хочете сказати: «Я серйозно»"
           },
           "orderedTokens": [
             "I",
             "am",
-            "not",
             "serious"
           ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "choiceFeedback": [],
+          "authoredDistractorTokens": [
+            "not"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Складіть фразу — ви не жартуєте й хочете сказати: «Я серйозно»",
+              "feedbackByLocale": {
+                "ru": "вы подтверждаете, что говорите всерьёз.",
+                "uk": "ви підтверджуєте, що говорите серйозно."
+              }
+            }
+          ],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -1512,7 +1564,7 @@
       {
         "interactionId": "en:lesson-01:session-15:i07",
         "ordinal": 10,
-        "purpose": "guided_practice",
+        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Картка слова — lucky",
@@ -1534,8 +1586,8 @@
               "responseId": "en:lesson-01:session-15:i07:r1",
               "targetText": "lucky",
               "meaningByLocale": {
-                "ru": "«везучий» или «везучая»: человеку просто повезло.",
-                "uk": "«везучий» або «везуча»: людині просто пощастило."
+                "ru": "везучий: человеку повезло. You are lucky — «Ты везучий / везучая», «Тебе повезло».",
+                "uk": "везучий: людині пощастило. You are lucky — «Ти везучий / везуча», «Тобі пощастило»."
               }
             }
           ],
@@ -1545,8 +1597,8 @@
           "wordCard": {
             "word": "lucky",
             "definitionByLocale": {
-              "ru": "«везучий» или «везучая»: человеку просто повезло.",
-              "uk": "«везучий» або «везуча»: людині просто пощастило."
+              "ru": "везучий: человеку повезло. You are lucky — «Ты везучий / везучая», «Тебе повезло».",
+              "uk": "везучий: людині пощастило. You are lucky — «Ти везучий / везуча», «Тобі пощастило»."
             }
           }
         },
@@ -1566,11 +1618,11 @@
           },
           {
             "responseId": "en:lesson-01:session-15:i08:r2",
-            "text": "luck"
+            "text": "lazy"
           },
           {
             "responseId": "en:lesson-01:session-15:i08:r3",
-            "text": "lock"
+            "text": "lost"
           }
         ],
         "mediaIds": [],
@@ -1593,12 +1645,12 @@
             },
             {
               "responseId": "en:lesson-01:session-15:i08:r2",
-              "targetText": "luck",
+              "targetText": "lazy",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i08:r3",
-              "targetText": "lock",
+              "targetText": "lost",
               "meaningByLocale": null
             }
           ],
@@ -1609,8 +1661,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`luck` — удача, а `lucky` — везучая.",
-                "uk": "`luck` — удача, а `lucky` — везуча."
+                "ru": "В записи звучит lucky, а не lazy.",
+                "uk": "У записі звучить lucky, а не lazy."
               }
             },
             {
@@ -1618,8 +1670,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`lock` — замок, а `lucky` значит «везучая».",
-                "uk": "`lock` — замок, а `lucky` означає «везуча»."
+                "ru": "В записи звучит lucky, а не lost.",
+                "uk": "У записі звучить lucky, а не lost."
               }
             }
           ],
@@ -1634,27 +1686,27 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — sad",
+        "prompt": "Картка слова — helpful",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-15:i09:audio"
         ],
-        "accessibilityLabel": "Картка слова — sad",
+        "accessibilityLabel": "Картка слова — helpful",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-15:i09:audio",
-            "transcript": "sad"
+            "transcript": "helpful"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-15:i09:r1",
-              "targetText": "sad",
+              "targetText": "helpful",
               "meaningByLocale": {
-                "ru": "«грустный». Не в слезах, но радости в человеке сейчас ноль.",
-                "uk": "«сумний». Не в сльозах, але радості в людині зараз нуль."
+                "ru": "охотно помогающий, оказывающий полезную помощь. You are helpful — «Ты мне помогаешь, от твоей помощи есть польза». Например, коллега помогает разобраться с непонятной формой.",
+                "uk": "той, хто охоче допомагає та надає корисну допомогу. You are helpful — «Ти мені допомагаєш, твоя допомога корисна». Наприклад, колега допомагає розібратися з незрозумілою формою."
               }
             }
           ],
@@ -1662,10 +1714,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "sad",
+            "word": "helpful",
             "definitionByLocale": {
-              "ru": "«грустный». Не в слезах, но радости в человеке сейчас ноль.",
-              "uk": "«сумний». Не в сльозах, але радості в людині зараз нуль."
+              "ru": "охотно помогающий, оказывающий полезную помощь. You are helpful — «Ты мне помогаешь, от твоей помощи есть польза». Например, коллега помогает разобраться с непонятной формой.",
+              "uk": "той, хто охоче допомагає та надає корисну допомогу. You are helpful — «Ти мені допомагаєш, твоя допомога корисна». Наприклад, колега допомагає розібратися з незрозумілою формою."
             }
           }
         },
@@ -1681,15 +1733,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-15:i10:r1",
-            "text": "sad"
+            "text": "helpful"
           },
           {
             "responseId": "en:lesson-01:session-15:i10:r2",
-            "text": "said"
+            "text": "happy"
           },
           {
             "responseId": "en:lesson-01:session-15:i10:r3",
-            "text": "sand"
+            "text": "honest"
           }
         ],
         "mediaIds": [],
@@ -1701,23 +1753,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-15:i10:audio",
-            "transcript": "sad"
+            "transcript": "helpful"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-15:i10:r1",
-              "targetText": "sad",
+              "targetText": "helpful",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i10:r2",
-              "targetText": "said",
+              "targetText": "happy",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-15:i10:r3",
-              "targetText": "sand",
+              "targetText": "honest",
               "meaningByLocale": null
             }
           ],
@@ -1728,8 +1780,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`said` значит «сказал», а `sad` — «грустный».",
-                "uk": "`said` означає «сказав», а `sad` — «сумний»."
+                "ru": "В записи звучит helpful, а не happy.",
+                "uk": "У записі звучить helpful, а не happy."
               }
             },
             {
@@ -1737,8 +1789,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`sand` значит «песок», а `sad` — «грустный».",
-                "uk": "`sand` означає «пісок», а `sad` — «сумний»."
+                "ru": "В записи звучит helpful, а не honest.",
+                "uk": "У записі звучить helpful, а не honest."
               }
             }
           ],
@@ -1753,20 +1805,20 @@
         "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З'єднайте пари",
+        "prompt": "З’єднайте пари",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З'єднайте пари",
+        "accessibilityLabel": "З’єднайте пари",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-01:session-15:i11:p1",
-              "target": "polite",
+              "target": "friendly",
               "meaningByLocale": {
-                "ru": "вежливый",
-                "uk": "ввічливий"
+                "ru": "дружелюбный",
+                "uk": "дружелюбний"
               }
             },
             {
@@ -1781,30 +1833,30 @@
               "pairId": "en:lesson-01:session-15:i11:p3",
               "target": "lucky",
               "meaningByLocale": {
-                "ru": "везучий / везучая",
-                "uk": "везучий / везуча"
+                "ru": "везучий",
+                "uk": "везучий"
               }
             },
             {
               "pairId": "en:lesson-01:session-15:i11:p4",
-              "target": "sad",
+              "target": "helpful",
               "meaningByLocale": {
-                "ru": "грустный / грустная",
-                "uk": "сумний / сумна"
+                "ru": "оказывающий полезную помощь",
+                "uk": "той, хто надає корисну допомогу"
               }
             }
           ],
           "leftColumn": [
-            "polite",
+            "friendly",
             "serious",
             "lucky",
-            "sad"
+            "helpful"
           ],
           "rightColumn": [
-            "ввічливий",
+            "дружелюбний",
             "серйозний",
-            "везучий / везуча",
-            "сумний / сумна"
+            "везучий",
+            "той, хто надає корисну допомогу"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -1816,8 +1868,7 @@
             "speed",
             "accuracy",
             "personal_best"
-          ],
-          "choiceFeedback": []
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1866,7 +1917,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Оберіть потрібне слово після `you`.",
+          "testedDimension": "Віка витягла призовий квиток. Скажіть їй: «ти везуча» — вставте слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-15:i12:r2",
@@ -1893,7 +1944,7 @@
       {
         "interactionId": "en:lesson-01:session-15:i13",
         "ordinal": 16,
-        "purpose": "retrieval_practice",
+        "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Віка каже, що просто втомилася й не сумує. Скажіть їй: «ти не сумна»",
@@ -1931,7 +1982,6 @@
               }
             }
           ],
-          "choiceFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -1942,92 +1992,66 @@
       {
         "interactionId": "en:lesson-01:session-15:i14",
         "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — calm",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-15:i14:audio"
-        ],
-        "accessibilityLabel": "Картка слова — calm",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-15:i14:audio",
-            "transcript": "calm"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-15:i14:r1",
-              "targetText": "calm",
-              "meaningByLocale": {
-                "ru": "«спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была.",
-                "uk": "«спокійний». Голос рівний, руки не тремтять, хоча причина понервувати була."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "calm",
-            "definitionByLocale": {
-              "ru": "«спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была.",
-              "uk": "«спокійний». Голос рівний, руки не тремтять, хоча причина понервувати була."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-15:i15",
-        "ordinal": 18,
         "purpose": "guided_practice",
-        "family": "sound_contrast",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Прослухайте перший запис і виберіть почуте слово",
+        "prompt": "Вставте слово — Віка допомогла вам розібратися з незрозумілою формою. Відзначте користь її допомоги",
         "responseOptions": [
           {
-            "responseId": "en:lesson-01:session-15:i15:r1",
-            "text": "calm"
+            "responseId": "en:lesson-01:session-15:i14:r1",
+            "text": "helpful"
           },
           {
-            "responseId": "en:lesson-01:session-15:i15:r2",
-            "text": "come"
+            "responseId": "en:lesson-01:session-15:i14:r2",
+            "text": "lucky"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i14:r3",
+            "text": "tired"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-15:i15:audioA",
-          "en:lesson-01:session-15:i15:audioB"
-        ],
-        "accessibilityLabel": "Прослухайте перший запис і виберіть почуте слово",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте слово — Віка допомогла вам розібратися з незрозумілою формою. Відзначте користь її допомоги",
         "modePayload": {
-          "family": "sound_contrast",
-          "contrastA": "calm",
-          "contrastB": "come",
-          "ipaA": "",
-          "ipaB": "",
-          "audioA": {
-            "audioTargetId": "en:lesson-01:session-15:i15:audioA",
-            "transcript": "calm"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Вика помогла вам разобраться с непонятной формой. Отметьте полезность её помощи",
+            "uk": "Вставте слово — Віка допомогла вам розібратися з незрозумілою формою. Відзначте користь її допомоги"
           },
-          "audioB": {
-            "audioTargetId": "en:lesson-01:session-15:i15:audioB",
-            "transcript": "come"
-          },
-          "testedPhoneticContrast": "Прослухайте перший запис і виберіть почуте слово",
+          "gappedTargetPhrase": "You are ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-15:i14:r1",
+              "text": "helpful"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i14:r2",
+              "text": "lucky"
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i14:r3",
+              "text": "tired"
+            }
+          ],
+          "testedDimension": "Вставте слово — Віка допомогла вам розібратися з незрозумілою формою. Відзначте користь її допомоги",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-01:session-15:i15:r2",
+              "responseId": "en:lesson-01:session-15:i14:r2",
               "correct": false,
-              "testedDimension": "Прослухайте перший запис і виберіть почуте слово",
+              "testedDimension": "Вставте слово — Віка допомогла вам розібратися з незрозумілою формою. Відзначте користь її допомоги",
               "feedbackByLocale": {
-                "ru": "`come` стоит во второй записи; в первой записи — `calm`.",
-                "uk": "`come` стоїть у другому записі; у першому записі — `calm`."
+                "ru": "Нужно отметить помощь, а не случайную удачу.",
+                "uk": "Потрібно відзначити допомогу, а не випадкову удачу."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i14:r3",
+              "correct": false,
+              "testedDimension": "Вставте слово — Віка допомогла вам розібратися з незрозумілою формою. Відзначте користь її допомоги",
+              "feedbackByLocale": {
+                "ru": "Tired — «уставшая». Здесь вы отмечаете помощь: helpful.",
+                "uk": "Tired — «втомлена». Тут ви відзначаєте допомогу: helpful."
               }
             }
           ]
@@ -2035,52 +2059,118 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-15:i16",
-        "ordinal": 19,
+        "interactionId": "en:lesson-01:session-15:i15",
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — honest",
+        "prompt": "Послухайте і виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-15:i15:r1",
+            "text": "calm"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i15:r2",
+            "text": "cold"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i15:r3",
+            "text": "kind"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте і виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-15:i15:audio",
+            "transcript": "calm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-15:i15:r1",
+              "targetText": "calm",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i15:r2",
+              "targetText": "cold",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i15:r3",
+              "targetText": "kind",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-15:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит calm, а не cold.",
+                "uk": "У записі звучить calm, а не cold."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-15:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит calm, а не kind.",
+                "uk": "У записі звучить calm, а не kind."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-15:i16",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть уголос — Віка привітно познайомилася з новими сусідами. Скажіть їй, що вона дружелюбна",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-15:i16:audio"
         ],
-        "accessibilityLabel": "Картка слова — honest",
+        "accessibilityLabel": "Скажіть уголос — Віка привітно познайомилася з новими сусідами. Скажіть їй, що вона дружелюбна",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-15:i16:audio",
-            "transcript": "honest"
+            "transcript": "You are friendly."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-15:i16:r1",
-              "targetText": "honest",
-              "meaningByLocale": {
-                "ru": "«честный». Говорит как есть, даже когда правда невыгодна ему самому.",
-                "uk": "«чесний». Каже як є, навіть коли правда невигідна йому самому."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "honest",
-            "definitionByLocale": {
-              "ru": "«честный». Говорит как есть, даже когда правда невыгодна ему самому.",
-              "uk": "«чесний». Каже як є, навіть коли правда невигідна йому самому."
-            }
-          }
+          "targetPhrase": "You are friendly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-15:i17:s01",
         "ordinal": 20,
-        "purpose": "independent_check",
+        "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
         "prompt": "Складіть фразу — Віка чесно зізналася, що не встигла відповісти; скажіть їй: «ти чесна»",
@@ -2114,7 +2204,6 @@
               }
             }
           ],
-          "choiceFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -2163,7 +2252,6 @@
               }
             }
           ],
-          "choiceFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -2175,41 +2263,42 @@
         "interactionId": "en:lesson-01:session-15:i18",
         "ordinal": 22,
         "purpose": "independent_check",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — kind",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть фразу — Віка допомогла знайти потрібний пункт в інструкції. Скажіть їй, що її допомога корисна",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-15:i18:audio"
-        ],
-        "accessibilityLabel": "Картка слова — kind",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Складіть фразу — Віка допомогла знайти потрібний пункт в інструкції. Скажіть їй, що її допомога корисна",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-15:i18:audio",
-            "transcript": "kind"
+          "family": "phrase_builder",
+          "targetPhrase": "You are helpful.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу — Вика помогла найти нужный пункт в инструкции. Скажите ей, что её помощь полезна",
+            "uk": "Складіть фразу — Віка допомогла знайти потрібний пункт в інструкції. Скажіть їй, що її допомога корисна"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "orderedTokens": [
+            "You",
+            "are",
+            "helpful"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-15:i18:r1",
-              "targetText": "kind",
-              "meaningByLocale": {
-                "ru": "«добрый». Помогает, когда его не просили и ему за это ничего не будет.",
-                "uk": "«добрий». Допомагає, коли його не просили і йому за це нічого не буде."
+              "responseId": "en:lesson-01:session-15:i18:tile:d1",
+              "correct": false,
+              "testedDimension": "Складіть фразу — Віка допомогла знайти потрібний пункт в інструкції. Скажіть їй, що її допомога корисна",
+              "feedbackByLocale": {
+                "ru": "с You здесь нужно are.",
+                "uk": "з You тут потрібне are."
               }
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "kind",
-            "definitionByLocale": {
-              "ru": "«добрый». Помогает, когда его не просили и ему за это ничего не будет.",
-              "uk": "«добрий». Допомагає, коли його не просили і йому за це нічого не буде."
-            }
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
           }
         },
         "scriptedAlternate": null
@@ -2239,7 +2328,6 @@
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
-          "choiceFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -2250,7 +2338,7 @@
       {
         "interactionId": "en:lesson-01:session-15:i19:s02",
         "ordinal": 24,
-        "purpose": "retrieval_practice",
+        "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Послухайте й складіть — Віка кличе гуляти, але ви весь день носили коробки; скажіть, що ви втомилися",
@@ -2287,7 +2375,6 @@
               }
             }
           ],
-          "choiceFeedback": [],
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
@@ -2298,16 +2385,16 @@
       {
         "interactionId": "en:lesson-01:session-15:i20",
         "ordinal": 25,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть уголос — Віка притримала двері для людини з коробками й сказала «дякую»; скажіть Віці: «ти ввічлива»",
+        "prompt": "Скажіть уголос — людина притримала двері для Віки з коробками, і вона подякувала; скажіть Віці: «ти ввічлива»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-15:i20:audio"
         ],
-        "accessibilityLabel": "Скажіть уголос — Віка притримала двері для людини з коробками й сказала «дякую»; скажіть Віці: «ти ввічлива»",
+        "accessibilityLabel": "Скажіть уголос — людина притримала двері для Віки з коробками, і вона подякувала; скажіть Віці: «ти ввічлива»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -2324,8 +2411,7 @@
             "NEEDS_WORK_CONFIDENT",
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
-          ],
-          "choiceFeedback": []
+          ]
         },
         "scriptedAlternate": null
       }
@@ -2334,12 +2420,12 @@
   "answers": [
     {
       "interactionId": "en:lesson-01:session-15:i01",
-      "correctText": "polite",
+      "correctText": "friendly",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-15:i02",
-      "correctText": "polite",
+      "correctText": "friendly",
       "correctResponseId": "en:lesson-01:session-15:i02:r1"
     },
     {
@@ -2359,7 +2445,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-15:i06",
-      "correctText": "I am not serious.",
+      "correctText": "I am serious.",
       "correctResponseId": null
     },
     {
@@ -2374,17 +2460,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-15:i09",
-      "correctText": "sad",
+      "correctText": "helpful",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-15:i10",
-      "correctText": "sad",
+      "correctText": "helpful",
       "correctResponseId": "en:lesson-01:session-15:i10:r1"
     },
     {
       "interactionId": "en:lesson-01:session-15:i11",
-      "correctText": "en:lesson-01:session-15:i11:p1=polite\nen:lesson-01:session-15:i11:p2=serious\nen:lesson-01:session-15:i11:p3=lucky\nen:lesson-01:session-15:i11:p4=sad",
+      "correctText": "",
       "correctResponseId": null
     },
     {
@@ -2399,12 +2485,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-15:i14",
+      "correctText": "helpful",
+      "correctResponseId": "en:lesson-01:session-15:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i15",
       "correctText": "calm",
-      "correctResponseId": null
+      "correctResponseId": "en:lesson-01:session-15:i15:r1"
     },
     {
       "interactionId": "en:lesson-01:session-15:i16",
-      "correctText": "honest",
+      "correctText": "You are friendly.",
       "correctResponseId": null
     },
     {
@@ -2413,23 +2504,18 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-01:session-15:i17:s02",
+      "correctText": "I am not sad.",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-15:i18",
-      "correctText": "kind",
+      "correctText": "You are helpful.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-15:i19:s01",
       "correctText": "You are kind.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-15:i15",
-      "correctText": "calm",
-      "correctResponseId": "en:lesson-01:session-15:i15:r1"
-    },
-    {
-      "interactionId": "en:lesson-01:session-15:i17:s02",
-      "correctText": "I am not sad.",
       "correctResponseId": null
     },
     {

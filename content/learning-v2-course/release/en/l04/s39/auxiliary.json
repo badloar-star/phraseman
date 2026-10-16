@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-39:intro1:r2": {
+          "ru": "Перед одним котлом нужно `a`: `a boiler`.",
+          "uk": "Перед одним котлом потрібне `a`: `a boiler`."
+        },
+        "en:lesson-04:session-39:intro1:r3": {
+          "ru": "Здесь один котёл: `This is a boiler`.",
+          "uk": "Тут один котел: `This is a boiler`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-39:intro2:r2": {
+          "ru": "Несколько бутылок: `The bottles are`.",
+          "uk": "Кілька пляшок: `The bottles are`."
+        },
+        "en:lesson-04:session-39:intro2:r3": {
+          "ru": "`under` — под; на поверхности — `on`.",
+          "uk": "`under` — під; на поверхні — `on`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-39:intro3:r2": {
+          "ru": "`irrelevant` — не относится к теме; здесь `relevant`.",
+          "uk": "`irrelevant` — не стосується теми; тут `relevant`."
+        },
+        "en:lesson-04:session-39:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f80ae7c124ac31e77e4c905f0de01d4d9bd6114d9973cbcc478dd5549c7fe332"
+}

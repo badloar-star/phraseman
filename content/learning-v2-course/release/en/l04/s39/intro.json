@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "назвать отопительный котёл, спросить о его наличии и сказать, что информация относится к теме",
+    "uk": "назвати опалювальний котел, запитати про його наявність і сказати, що інформація стосується теми"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тепло в доме",
+        "uk": "Тепло в будинку"
+      },
+      "bodyByLocale": {
+        "ru": "`boiler` — «отопительный котёл»: здесь устройство, нагревающее воду для отопления дома. Один котёл — `a boiler`. `This is a boiler` — «Это отопительный котёл». Он греет воду для дома, но чай в нём мы не завариваем.",
+        "uk": "`boiler` — «опалювальний котел»: тут пристрій, який нагріває воду для опалення будинку. Один котел — `a boiler`. `This is a boiler` — «Це опалювальний котел». Він гріє воду для будинку, але чай у ньому ми не заварюємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один отопительный котёл.",
+          "uk": "Назвіть один опалювальний котел."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-39:intro1:r1",
+              "text": "This is a boiler."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro1:r2",
+              "text": "This is boiler."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro1:r3",
+              "text": "These are boilers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-39:intro1:r1",
+              "text": "This is a boiler."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro1:r2",
+              "text": "This is boiler."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro1:r3",
+              "text": "These are boilers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один отопительный котёл.",
+          "uk": "Назвіть один опалювальний котел."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бутылки и парковка",
+        "uk": "Пляшки й парковка"
+      },
+      "bodyByLocale": {
+        "ru": "`bottles` — «бутылки», `car park` — «парковка». `The bottles are on the table` — «Бутылки на столе». `The car park is next to the house` — «Парковка рядом с домом». Несколько бутылок — `are`, одна парковка — `is`.",
+        "uk": "`bottles` — «пляшки», `car park` — «парковка». `The bottles are on the table` — «Пляшки на столі». `The car park is next to the house` — «Парковка поруч із будинком». Кілька пляшок — `are`, одна парковка — `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Бутылки на поверхности стола. Выберите описание.",
+          "uk": "Пляшки на поверхні столу. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-39:intro2:r1",
+              "text": "The bottles are on the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro2:r2",
+              "text": "The bottles is on the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro2:r3",
+              "text": "The bottles are under the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-39:intro2:r1",
+              "text": "The bottles are on the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro2:r2",
+              "text": "The bottles is on the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro2:r3",
+              "text": "The bottles are under the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Бутылки на поверхности стола. Выберите описание.",
+          "uk": "Пляшки на поверхні столу. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Относится к теме",
+        "uk": "Стосується теми"
+      },
+      "bodyByLocale": {
+        "ru": "`relevant` — «относящийся к делу, к обсуждаемой теме». Вы обсуждаете отопление; вопрос о котле относится к теме: `It is relevant`, короче `It’s relevant`. Это не просто «интересно»: информация связана с тем, что обсуждают. `Is there a boiler?` — «Есть отопительный котёл?» `There isn’t a boiler` — «Отопительного котла нет».",
+        "uk": "`relevant` — «доречний, пов’язаний з обговорюваною темою». Ви обговорюєте опалення; запитання про котел стосується теми: `It is relevant`, коротше `It’s relevant`. Це не просто «цікаво»: інформація пов’язана з тим, що обговорюють. `Is there a boiler?` — «Є опалювальний котел?» `There isn’t a boiler` — «Опалювального котла немає»."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Вопрос о котле относится к обсуждению отопления. Скажите «Это относится к теме» с сокращением.",
+          "uk": "Запитання про котел стосується обговорення опалення. Скажіть «Це стосується теми» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-39:intro3:r1",
+              "text": "It's relevant."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro3:r2",
+              "text": "It's irrelevant."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro3:r3",
+              "text": "It are relevant."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-39:intro3:r1",
+              "text": "It's relevant."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro3:r2",
+              "text": "It's irrelevant."
+            },
+            {
+              "responseId": "en:lesson-04:session-39:intro3:r3",
+              "text": "It are relevant."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вопрос о котле относится к обсуждению отопления. Скажите «Это относится к теме» с сокращением.",
+          "uk": "Запитання про котел стосується обговорення опалення. Скажіть «Це стосується теми» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1eb718d3208a54cdb63c821f5bc28cb49a655eddc52e5a9b282986c0d2049fe8"
+}

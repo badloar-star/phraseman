@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-04:i01",
+    "correctText": "I'm hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i02",
+    "correctText": "curtain",
+    "correctResponseId": "en:lesson-05:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i03",
+    "correctText": "curtain",
+    "correctResponseId": "en:lesson-05:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i04",
+    "correctText": "en:lesson-05:session-04:i04:p1=curtain\nen:lesson-05:session-04:i04:p2=hungry\nen:lesson-05:session-04:i04:p3=thirsty\nen:lesson-05:session-04:i04:p4=sick",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i05",
+    "correctText": "I have a curtain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i06",
+    "correctText": "She has a bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i07",
+    "correctText": "He is sick.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i09",
+    "correctText": "The curtain is in the bag.",
+    "correctResponseId": "en:lesson-05:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i10",
+    "correctText": "en:lesson-05:session-04:i10:p1=curtain\nen:lesson-05:session-04:i10:p2=bag\nen:lesson-05:session-04:i10:p3=post office\nen:lesson-05:session-04:i10:p4=nursery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i11",
+    "correctText": "They have curtains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i12",
+    "correctText": "The nursery is next to the post office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i13",
+    "correctText": "We have a curtain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i14",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-05:session-04:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i15",
+    "correctText": "We are hungry.",
+    "correctResponseId": "en:lesson-05:session-04:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i16",
+    "correctText": "en:lesson-05:session-04:i16:p1=curtain\nen:lesson-05:session-04:i16:p2=bag\nen:lesson-05:session-04:i16:p3=post office\nen:lesson-05:session-04:i16:p4=nursery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:i17",
+    "correctText": "She has a curtain.",
+    "correctResponseId": null
+  }
+]

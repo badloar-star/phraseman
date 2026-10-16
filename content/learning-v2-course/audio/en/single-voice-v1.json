@@ -77431,6 +77431,309 @@
           "byteSize": 53760
         }
       ]
+    },
+    "l05/s32/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's lunchbox.",
+          "file": "e58b74d4483169121e77ae86e6cbf6c8e683b134b308cfb4b0680fd44465223f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e58b74d4483169121e77ae86e6cbf6c8e683b134b308cfb4b0680fd44465223f.mp3",
+          "contentHash": "624823eb34c7c6a306c8f5ef807cafbd50c0e782e60e4477564ecf2d1bc23c82",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s32/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "These are Tom's headphones.",
+          "file": "c3a715a3322c440242d616ce46910950ff9339cd917e8718d860bb7a818c2549.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3a715a3322c440242d616ce46910950ff9339cd917e8718d860bb7a818c2549.mp3",
+          "contentHash": "04eab11a363a9febf9b991f4808cfc6bb06d923da238dd24c84e812c83adc2a2",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s32/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your keycard.",
+          "file": "81bd23b2826b7beb5ddfd5356f947fd59224563871b5052075cea002fba905f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81bd23b2826b7beb5ddfd5356f947fd59224563871b5052075cea002fba905f4.mp3",
+          "contentHash": "4a609ec44b4caa4835a52f7aa9c717a2ff66afb3caa41a51e8324a416667b0f9",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s32/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom is next to the fountain.",
+          "file": "02473e37ca021112f11342754526f42e629128a18efa71d9d2a0729ebe4d88c1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/02473e37ca021112f11342754526f42e629128a18efa71d9d2a0729ebe4d88c1.mp3",
+          "contentHash": "167c58df9600f09cf039b56ccc333ff38789ed322f72ce5d459268ec7aa058d6",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s32/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's lunchbox.",
+          "file": "e58b74d4483169121e77ae86e6cbf6c8e683b134b308cfb4b0680fd44465223f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e58b74d4483169121e77ae86e6cbf6c8e683b134b308cfb4b0680fd44465223f.mp3",
+          "contentHash": "624823eb34c7c6a306c8f5ef807cafbd50c0e782e60e4477564ecf2d1bc23c82",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s32/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is Tom's badge.",
+          "file": "f1dc2a2352b9937821bb736077669f97b29e82c3e35d80aef79a010d1652f82c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f1dc2a2352b9937821bb736077669f97b29e82c3e35d80aef79a010d1652f82c.mp3",
+          "contentHash": "f3c4f25897c52325e74f5412530a1acc3d9fe4ea637af77ce1aeeca40a8fc08f",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s32/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "fountain",
+          "file": "fae388479b7a933605b07e875fc122af9f57c2be00f617e35d15b6afd808f288.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fae388479b7a933605b07e875fc122af9f57c2be00f617e35d15b6afd808f288.mp3",
+          "contentHash": "dac2bb6bdbc3121c89ec56d3c5092561afcee9d156cc651f9da4ce25f0f778c7",
+          "byteSize": 14976
+        },
+        {
+          "text": "lunchbox",
+          "file": "1d90abadb4c2bfa010cf27cda4122099bfcb2f9100f044d944bbe81e1afb19d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d90abadb4c2bfa010cf27cda4122099bfcb2f9100f044d944bbe81e1afb19d1.mp3",
+          "contentHash": "382a022c571c314105e24bc3450610e7fb986ca5b6463bce2a39c0bcd43e8e98",
+          "byteSize": 24576
+        },
+        {
+          "text": "badge",
+          "file": "e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "contentHash": "59c07ad813e54fe0ede388035e8362c5e0c41880dd795a5c0480086434b70c31",
+          "byteSize": 14976
+        },
+        {
+          "text": "passport",
+          "file": "7af108e0aa8183d035ac00081e8b596e17b5c8c68cd9bc04afab03d0ebee135d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7af108e0aa8183d035ac00081e8b596e17b5c8c68cd9bc04afab03d0ebee135d.mp3",
+          "contentHash": "eedf9be92f3e2f89c7f7e4fa4ffa3e6e1a3a1f480ba3166d1400762eb6d68061",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s32/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom's passport is in the bag.",
+          "file": "fcf6c8a81077a1551456ceb95ac2aa77579e914c3093e7bec633c47910247082.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fcf6c8a81077a1551456ceb95ac2aa77579e914c3093e7bec633c47910247082.mp3",
+          "contentHash": "e62dcd68f6f973c990df9c799db333cd292a9e91c7bc8d584a5d00647ac7412e",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s32/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "These are Tom's headphones.",
+          "file": "2d6eb3a6079d3fd5c86ae9fd790f6d0247c502ada3391687973d2de9376b0fab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2d6eb3a6079d3fd5c86ae9fd790f6d0247c502ada3391687973d2de9376b0fab.mp3",
+          "contentHash": "efab98cd5356e31d9b7a2545ad3501e08a07c59f7ba68cdd3cdb85c889409619",
+          "byteSize": 59520
+        }
+      ]
+    },
+    "l05/s32/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your keycard.",
+          "file": "81bd23b2826b7beb5ddfd5356f947fd59224563871b5052075cea002fba905f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81bd23b2826b7beb5ddfd5356f947fd59224563871b5052075cea002fba905f4.mp3",
+          "contentHash": "4a609ec44b4caa4835a52f7aa9c717a2ff66afb3caa41a51e8324a416667b0f9",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s32/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The skateboard is his.",
+          "file": "f00ba680d0afd3be26c26c621d805b3bd213060727a8804f5def742cec2d2d30.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f00ba680d0afd3be26c26c621d805b3bd213060727a8804f5def742cec2d2d30.mp3",
+          "contentHash": "dca45ea826ea2b1ea35d7faa783b82886b767db000f8ebbcd108ccf9ed16b0ff",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s32/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Anna's guitar is here.",
+          "file": "73c96a7c432f048a7e71d5ca99194af1029632e9e8a9c6ad462d3d65a9e4d8de.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/73c96a7c432f048a7e71d5ca99194af1029632e9e8a9c6ad462d3d65a9e4d8de.mp3",
+          "contentHash": "f96b1f1cd2b45d704450c47d2a66079a136e1cb93871d5ab74576137982ae4e6",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s32/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "keycard",
+          "file": "0deb0efcfea20c86dc69c5a35ca806135b40d96e3f279e23113c5eda5a71d257.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0deb0efcfea20c86dc69c5a35ca806135b40d96e3f279e23113c5eda5a71d257.mp3",
+          "contentHash": "0e818e3e348b89a166b1eff767467e425fe47462354d9cc34b8060654add7bd2",
+          "byteSize": 18816
+        },
+        {
+          "text": "skateboard",
+          "file": "d5478e38d577eea7afe44a53b7111902c1b2f6f7738425d3c96834332165fa28.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5478e38d577eea7afe44a53b7111902c1b2f6f7738425d3c96834332165fa28.mp3",
+          "contentHash": "ffceb9e8719c20974b93168c20fee5cf002513c1b7bb4bb663e4024ec3c7f2e7",
+          "byteSize": 23040
+        },
+        {
+          "text": "headphones",
+          "file": "adf9fd12ce702fdb19c02c81b279acd55ef9efd454707e5a8f3f3c94c476e041.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/adf9fd12ce702fdb19c02c81b279acd55ef9efd454707e5a8f3f3c94c476e041.mp3",
+          "contentHash": "dbc1c1928336d60be2fe2cfc0a22dd9c8e759de8709dcd525a59dfabe4164b04",
+          "byteSize": 40320
+        },
+        {
+          "text": "guitar",
+          "file": "14aef5fc97ee171fd41468dd53f7d45a0de42046fe9c6bf96317b57b011d9431.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/14aef5fc97ee171fd41468dd53f7d45a0de42046fe9c6bf96317b57b011d9431.mp3",
+          "contentHash": "36326cb05c70e0fc662d68ddd0c72a40174311dab3a070edfac62d4b647e8357",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s32/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is my badge?",
+          "file": "8464cf3e641a853ecc75d788c45dfc888c056593a26826d5483855043a24c4b8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8464cf3e641a853ecc75d788c45dfc888c056593a26826d5483855043a24c4b8.mp3",
+          "contentHash": "91ffb8d152c30238dba114192f8a1bde3dcc350f70c7b69c974e3a506ad7f27c",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s32/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is no fountain here.",
+          "file": "689a27d4568da763b2caaa13a0d07029815f7ac51a0b12e482cadbe4ed0dbb81.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/689a27d4568da763b2caaa13a0d07029815f7ac51a0b12e482cadbe4ed0dbb81.mp3",
+          "contentHash": "17d93d03c4072c720f9d08222a56cb2e6a11f68e34ca6da013dfe620ee717bf4",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s32/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Anna's skateboard is under the table.",
+          "file": "b17133abcc7c78117203c974a4732a4f23a376af265d1fdd0c855ec7b8722f51.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b17133abcc7c78117203c974a4732a4f23a376af265d1fdd0c855ec7b8722f51.mp3",
+          "contentHash": "06f37072c5f04a3716661322b900e82833f4c09ebd2604d507e5203a8ec5b7a8",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s32/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom's headphones are in the bag.",
+          "file": "2098669de93e2b5f628465fa3e4c7f5b940c7958d8dd8534dc5c94bdd6d13c65.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2098669de93e2b5f628465fa3e4c7f5b940c7958d8dd8534dc5c94bdd6d13c65.mp3",
+          "contentHash": "5e89b523b24071c18f43f11a2c4f9542bae857cc5c7719eef7287cffa0f6c60b",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s32/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Your keycard is here.",
+          "file": "82e4ceff6e8b4c104343c2f4f4cfee47012d86fd5bfad9198540198043ee502c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/82e4ceff6e8b4c104343c2f4f4cfee47012d86fd5bfad9198540198043ee502c.mp3",
+          "contentHash": "c3822064e11fe1ab14b52a1a4212b2038908bff326f6a4254d67f0aa8c876c4a",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s32/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "keycard",
+          "file": "ff9ef8e3eb1fea5285bd141d77544011e0d871e4aa879b2b893e53a21f1a3bd3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ff9ef8e3eb1fea5285bd141d77544011e0d871e4aa879b2b893e53a21f1a3bd3.mp3",
+          "contentHash": "a5926a22a5a3657c6a8810cd86277abad9c1f98b0a97beef7327b679b2b900e2",
+          "byteSize": 24576
+        },
+        {
+          "text": "skateboard",
+          "file": "d58dc55ce601904daed9de05b3789850844abadfdd5cc55f0627d49e99d56973.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d58dc55ce601904daed9de05b3789850844abadfdd5cc55f0627d49e99d56973.mp3",
+          "contentHash": "887e5af305c27c01e3d308f8e4d161c5a859b48ebaddc18ad75c3c0407e5e3ad",
+          "byteSize": 32640
+        },
+        {
+          "text": "headphones",
+          "file": "db0267501febf3330aced2547d5ba1e63b426933f195edaf5f986bdf8d92f633.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/db0267501febf3330aced2547d5ba1e63b426933f195edaf5f986bdf8d92f633.mp3",
+          "contentHash": "ea18fe9cf13ab7fd0f44621e16d3f4aeef03f122ebf33a42a980546341242faa",
+          "byteSize": 21888
+        },
+        {
+          "text": "guitar",
+          "file": "929d5cccbb50a73726935a77f26de9fc7e56b972a97c2eee5cab6f4b1f996e37.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/929d5cccbb50a73726935a77f26de9fc7e56b972a97c2eee5cab6f4b1f996e37.mp3",
+          "contentHash": "d9fa7004a683d3a5c8f3a1e2987e16340e9e5bf9800bb7191dd92dc4d7c5412e",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l05/s32/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "These are Tom's headphones.",
+          "file": "625cc0cc19bd686b7fb9fd3547951bb81c6227e7775c5cfdc24d61bc89b8ae44.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/625cc0cc19bd686b7fb9fd3547951bb81c6227e7775c5cfdc24d61bc89b8ae44.mp3",
+          "contentHash": "b620b80913aaec1bb9e1790e243a062f2a24a86e91059e51442a2285d865554e",
+          "byteSize": 44160
+        }
+      ]
     }
   },
   "settings": {

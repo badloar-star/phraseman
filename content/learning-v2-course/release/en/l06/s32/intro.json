@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "повторить рассказ о привычках со всеми словами главы",
+    "uk": "повторити розповідь про звички з усіма словами глави"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У каждого своё утро",
+        "uk": "У кожного свій ранок"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим знакомые действия: `jog` — «бегать трусцой», `exercise` — «тренироваться», `stretch` — «делать растяжку». `I jog here` — «Я бегаю трусцой здесь». `She jogs here` — «Она бегает трусцой здесь»: после `she` добавляем `s`. Фраза рассказывает о привычке; Анна вполне может сейчас сидеть и отдыхать.",
+        "uk": "Повторимо знайомі дії: `jog` — «бігати підтюпцем», `exercise` — «тренуватися», `stretch` — «робити розтяжку». `I jog here` — «Я бігаю підтюпцем тут». `She jogs here` — «Вона бігає підтюпцем тут»: після `she` додаємо `s`. Фраза розповідає про звичку; Анна цілком може зараз сидіти й відпочивати."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она бегает трусцой здесь».",
+          "uk": "Скажіть «Вона бігає підтюпцем тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-32:intro1:r1",
+              "text": "She jogs here."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro1:r2",
+              "text": "She jog here."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro1:r3",
+              "text": "She is jogs here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-32:intro1:r1",
+              "text": "She jogs here."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro1:r2",
+              "text": "She jog here."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro1:r3",
+              "text": "She is jogs here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она бегает трусцой здесь».",
+          "uk": "Скажіть «Вона бігає підтюпцем тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "После пробежки",
+        "uk": "Після пробіжки"
+      },
+      "bodyByLocale": {
+        "ru": "`shower` — «принимать душ», `clean` — «убирать», `call` — «звонить по телефону». `He showers at home` — «Он принимает душ дома». `We clean our room` — «Мы убираем свою комнату»: после `we` нет `s`. `She calls her mother` — «Она звонит своей маме», без `to` перед `her mother`.",
+        "uk": "`shower` — «приймати душ», `clean` — «прибирати», `call` — «телефонувати». `He showers at home` — «Він приймає душ удома». `We clean our room` — «Ми прибираємо свою кімнату»: після `we` немає `s`. `She calls her mother` — «Вона телефонує своїй мамі», без `to` перед `her mother`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мы убираем свою комнату».",
+          "uk": "Скажіть «Ми прибираємо свою кімнату»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-32:intro2:r1",
+              "text": "We clean our room."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro2:r2",
+              "text": "We cleans our room."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro2:r3",
+              "text": "We are clean our room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-32:intro2:r1",
+              "text": "We clean our room."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro2:r2",
+              "text": "We cleans our room."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro2:r3",
+              "text": "We are clean our room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мы убираем свою комнату».",
+          "uk": "Скажіть «Ми прибираємо свою кімнату»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Встретимся у фонтана",
+        "uk": "Зустрінемося біля фонтана"
+      },
+      "bodyByLocale": {
+        "ru": "`fountain` — «фонтан», `walk` — «ходить пешком». `This fountain is beautiful` — «Этот фонтан красивый». `He walks here` — «Он ходит здесь пешком». `She stretches here` — «Она делает здесь растяжку»: у `stretch` после `she` добавляется `es`. Можно растягиваться у фонтана, но душ лучше принять дома.",
+        "uk": "`fountain` — «фонтан», `walk` — «ходити пішки». `This fountain is beautiful` — «Цей фонтан гарний». `He walks here` — «Він ходить тут пішки». `She stretches here` — «Вона робить тут розтяжку»: у `stretch` після `she` додається `es`. Можна робити розтяжку біля фонтана, але душ краще прийняти вдома."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она делает здесь растяжку».",
+          "uk": "Скажіть «Вона робить тут розтяжку»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-32:intro3:r1",
+              "text": "She stretches here."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro3:r2",
+              "text": "She stretch here."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro3:r3",
+              "text": "She stretchs here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-32:intro3:r1",
+              "text": "She stretches here."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro3:r2",
+              "text": "She stretch here."
+            },
+            {
+              "responseId": "en:lesson-06:session-32:intro3:r3",
+              "text": "She stretchs here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она делает здесь растяжку».",
+          "uk": "Скажіть «Вона робить тут розтяжку»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4436fda736c0e8c53e0f0a2cac9d2892bfeaadd483ce564a99ca51dba97d81f7"
+}

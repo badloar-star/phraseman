@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-12:intro1:r2": {
+          "ru": "Перед `my notebook` не нужно `a`.",
+          "uk": "Перед `my notebook` не потрібне `a`."
+        },
+        "en:lesson-05:session-12:intro1:r3": {
+          "ru": "`your` — твоя / ваша; моя — `my`.",
+          "uk": "`your` — твій / ваш; мій — `my`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-12:intro2:r2": {
+          "ru": "`her` — её; здесь его: `his`.",
+          "uk": "`her` — її; тут його: `his`."
+        },
+        "en:lesson-05:session-12:intro2:r3": {
+          "ru": "Один друг: `friend is`.",
+          "uk": "Один друг: `friend is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-12:intro3:r2": {
+          "ru": "С `music` здесь нужно `is`.",
+          "uk": "З `music` тут потрібне `is`."
+        },
+        "en:lesson-05:session-12:intro3:r3": {
+          "ru": "`quiet` — тихая; громкая — `loud`.",
+          "uk": "`quiet` — тиха; гучна — `loud`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "575bb618c492b7170aa06482f9ef823fc76af2bb03316855ca26f5d3b4a88c3e"
+}

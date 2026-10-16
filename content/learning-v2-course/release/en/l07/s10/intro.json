@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "задавать вопросы с Does об устройстве и с Do о человеке",
+    "uk": "ставити запитання з Does про пристрій і з Do про людину"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Автомат у входа",
+        "uk": "Автомат біля входу"
+      },
+      "bodyByLocale": {
+        "ru": "`machine` — «машина», «устройство»; здесь — торговый автомат. Вы хотите купить воду. `Does the machine work?` — «Автомат работает?» `Work` здесь значит «работать», исправно действовать. Одна машина: `Does the machine work`, без `s` у `work`.",
+        "uk": "`machine` — «машина», «пристрій»; тут — торговий автомат. Ви хочете купити воду. `Does the machine work?` — «Автомат працює?» `Work` тут означає «працювати», справно діяти. Одна машина: `Does the machine work`, без `s` у `work`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите сотрудника «Автомат работает?»",
+          "uk": "Запитайте працівника «Автомат працює?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-10:intro1:r1",
+              "text": "Does the machine work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro1:r2",
+              "text": "Do the machine work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro1:r3",
+              "text": "Does the machine works?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-10:intro1:r1",
+              "text": "Does the machine work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro1:r2",
+              "text": "Do the machine work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro1:r3",
+              "text": "Does the machine works?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите сотрудника «Автомат работает?»",
+          "uk": "Запитайте працівника «Автомат працює?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тот же автомат",
+        "uk": "Той самий автомат"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудник подошёл к автомату вместе с вами. Уже понятно, о чём речь, поэтому можно спросить короче: `Does it work?` — «Он работает?» `It` заменяет название устройства. После `Does it` — `work`. Автомат может выглядеть бодро и ярко светиться, но воду всё равно не выдавать — вопрос полезный.",
+        "uk": "Працівник підійшов до автомата разом із вами. Уже зрозуміло, про що йдеться, тому можна запитати коротше: `Does it work?` — «Він працює?» `It` замінює назву пристрою. Після `Does it` — `work`. Автомат може виглядати бадьоро й яскраво світитися, але воду все одно не видавати — запитання корисне."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите о показанном автомате «Он работает?»",
+          "uk": "Запитайте про показаний автомат «Він працює?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-10:intro2:r1",
+              "text": "Does it work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro2:r2",
+              "text": "Do it work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro2:r3",
+              "text": "Does it works?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-10:intro2:r1",
+              "text": "Does it work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro2:r2",
+              "text": "Do it work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro2:r3",
+              "text": "Does it works?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о показанном автомате «Он работает?»",
+          "uk": "Запитайте про показаний автомат «Він працює?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверяем карман",
+        "uk": "Перевіряємо кишеню"
+      },
+      "bodyByLocale": {
+        "ru": "У закрытой двери вы ищете ключ. `There is no key in my pocket` — «В моём кармане нет ключа». `In my pocket` уточняет место; об отсутствии одного ключа говорим `There is no key`. Это не значит, что ключа нет нигде: пока проверен только карман.",
+        "uk": "Біля зачинених дверей ви шукаєте ключ. `There is no key in my pocket` — «У моїй кишені немає ключа». `In my pocket` уточнює місце; про відсутність одного ключа кажемо `There is no key`. Це не означає, що ключа немає ніде: поки перевірено лише кишеню."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите другу «В моём кармане нет ключа».",
+          "uk": "Повідомте другові «У моїй кишені немає ключа»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-10:intro3:r1",
+              "text": "There is no key in my pocket."
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro3:r2",
+              "text": "There are no key in my pocket."
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro3:r3",
+              "text": "There no key in my pocket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-10:intro3:r1",
+              "text": "There is no key in my pocket."
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro3:r2",
+              "text": "There are no key in my pocket."
+            },
+            {
+              "responseId": "en:lesson-07:session-10:intro3:r3",
+              "text": "There no key in my pocket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите другу «В моём кармане нет ключа».",
+          "uk": "Повідомте другові «У моїй кишені немає ключа»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "04ca12c8aa8451939ecf86344ff77c1208072622d4884a8be7e6057a62a02e13"
+}

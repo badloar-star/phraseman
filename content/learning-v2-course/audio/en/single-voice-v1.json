@@ -104701,6 +104701,309 @@
           "byteSize": 31488
         }
       ]
+    },
+    "l07/s10/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does the machine work?",
+          "file": "a31f6623ff55ab515d54d06d73085717e023d09953b5c6eb729565d0d2e8305b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a31f6623ff55ab515d54d06d73085717e023d09953b5c6eb729565d0d2e8305b.mp3",
+          "contentHash": "3ed3f8d5d32c1405beae746e2724f9699011e7e2f051663ac8da63ca3570e817",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s10/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does it work?",
+          "file": "23e2382b2d494ab3ebd7812266f686d88eba922a425546a895463db06bfb6720.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/23e2382b2d494ab3ebd7812266f686d88eba922a425546a895463db06bfb6720.mp3",
+          "contentHash": "359e25a4de3981b727c951402d56ca619f762c0270f28f55d11699d3880cea85",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l07/s10/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is no key in my pocket.",
+          "file": "9c296d88b81f38caf83d186becc2766741f71b8f2bf1c8e4594ed20e199a56a0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9c296d88b81f38caf83d186becc2766741f71b8f2bf1c8e4594ed20e199a56a0.mp3",
+          "contentHash": "9332363aad2a56c81b34fe8b90416f323f68a4d283a22278efa4b4bb4ac9c213",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l07/s10/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does the machine work?",
+          "file": "604e1fbd4ff8e0a0e17d588330768c516bfce0db895960a500fad217eda3eea4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/604e1fbd4ff8e0a0e17d588330768c516bfce0db895960a500fad217eda3eea4.mp3",
+          "contentHash": "0ec0f27205e5e15821667ea009d1b3c860902cb58669a1ce460e702c4e4b30e8",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s10/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "machine",
+          "file": "8326d4a21c1a425a60f4d9c42c0c8c287417dfb2688ffc68c806f2ebabbb291c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8326d4a21c1a425a60f4d9c42c0c8c287417dfb2688ffc68c806f2ebabbb291c.mp3",
+          "contentHash": "4c491851cfa1d00cf8106e8ef4905f540ca06faae2e3fd20c31731dfbce9de78",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l07/s10/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Does the machine work?",
+          "file": "becb5737fe9a1e70925a4f8b616e8b0622737788729b1da7c45c51c97bea5b4f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/becb5737fe9a1e70925a4f8b616e8b0622737788729b1da7c45c51c97bea5b4f.mp3",
+          "contentHash": "beaa73a5f2e32a1903812a54da3a6622cac3876cf074d82490b71542a8b498d5",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s10/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "machine",
+          "file": "15e32f99633aad30bf3fa174f9daee3cec2269608e3e30f536262bfaf13da91a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/15e32f99633aad30bf3fa174f9daee3cec2269608e3e30f536262bfaf13da91a.mp3",
+          "contentHash": "a51331de5872a3be2b5fdc33aaca9b509e4a990a36d87fcecb24bc9c63ecd38d",
+          "byteSize": 20352
+        },
+        {
+          "text": "lock",
+          "file": "1d0a4e0c964edecc5df616574db2d1528330ed7318861df1659c37ee1d81182c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d0a4e0c964edecc5df616574db2d1528330ed7318861df1659c37ee1d81182c.mp3",
+          "contentHash": "0e3085e11bbca21e38dac464d4f04ec41f9ecc9f89b966ec0b8ff9c63f6cf1ee",
+          "byteSize": 18816
+        },
+        {
+          "text": "pocket",
+          "file": "1c165979a42f4c12e14506ad607bed846260ed37189bc6c0b21f425bd00a211e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c165979a42f4c12e14506ad607bed846260ed37189bc6c0b21f425bd00a211e.mp3",
+          "contentHash": "779931b57816c7b35ff4e30044194354b3aa41a0e8ef00754553c36eb6c72189",
+          "byteSize": 16512
+        },
+        {
+          "text": "package",
+          "file": "0ea1cfd6871a6631e6964c1eecb10f8639fbf30bec52d80faac6699db0251cc2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ea1cfd6871a6631e6964c1eecb10f8639fbf30bec52d80faac6699db0251cc2.mp3",
+          "contentHash": "d9ba21ef93688477c9520232917cd7e6b17300edf2f26745e9c14cb4a65791b7",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l07/s10/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does the machine work?",
+          "file": "604e1fbd4ff8e0a0e17d588330768c516bfce0db895960a500fad217eda3eea4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/604e1fbd4ff8e0a0e17d588330768c516bfce0db895960a500fad217eda3eea4.mp3",
+          "contentHash": "0ec0f27205e5e15821667ea009d1b3c860902cb58669a1ce460e702c4e4b30e8",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s10/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does it work?",
+          "file": "23e2382b2d494ab3ebd7812266f686d88eba922a425546a895463db06bfb6720.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/23e2382b2d494ab3ebd7812266f686d88eba922a425546a895463db06bfb6720.mp3",
+          "contentHash": "359e25a4de3981b727c951402d56ca619f762c0270f28f55d11699d3880cea85",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l07/s10/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is no key in my pocket.",
+          "file": "e8e8d9de9b7e2f56c7f613014babe499d04beee4ed4d061873f69290aea1e35e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8e8d9de9b7e2f56c7f613014babe499d04beee4ed4d061873f69290aea1e35e.mp3",
+          "contentHash": "df59828c3ac91427330a92445eb1464271c5e66cd2f9850983fd864304b83c64",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l07/s10/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does it work?",
+          "file": "9802b10cbd76d8ce31e03c01af3e70ed2406920311cc96b2b76ed9eb4cc98902.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9802b10cbd76d8ce31e03c01af3e70ed2406920311cc96b2b76ed9eb4cc98902.mp3",
+          "contentHash": "ef518dc15577765a5ba3ed1c9b1b945506d351c7317caac1f08bf95b158ce88d",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s10/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Does the machine work?",
+          "file": "becb5737fe9a1e70925a4f8b616e8b0622737788729b1da7c45c51c97bea5b4f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/becb5737fe9a1e70925a4f8b616e8b0622737788729b1da7c45c51c97bea5b4f.mp3",
+          "contentHash": "beaa73a5f2e32a1903812a54da3a6622cac3876cf074d82490b71542a8b498d5",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s10/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "practice",
+          "file": "16ad2d6fda4fa101b57835f50dab4c6da84752fbeee88a7bf8950f567f2c3015.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/16ad2d6fda4fa101b57835f50dab4c6da84752fbeee88a7bf8950f567f2c3015.mp3",
+          "contentHash": "4bbb42e922b49d037a81b5e72db575469662f853237c35a0bc4f3e3c5491537f",
+          "byteSize": 21120
+        },
+        {
+          "text": "machine",
+          "file": "8326d4a21c1a425a60f4d9c42c0c8c287417dfb2688ffc68c806f2ebabbb291c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8326d4a21c1a425a60f4d9c42c0c8c287417dfb2688ffc68c806f2ebabbb291c.mp3",
+          "contentHash": "4c491851cfa1d00cf8106e8ef4905f540ca06faae2e3fd20c31731dfbce9de78",
+          "byteSize": 18816
+        },
+        {
+          "text": "lock",
+          "file": "d7f2fb69f9c1e205262625207509b89611acb813746eb4fdf8cfe8e14365cbd1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d7f2fb69f9c1e205262625207509b89611acb813746eb4fdf8cfe8e14365cbd1.mp3",
+          "contentHash": "9641b97d761882c1663af4cef6b26edfcff6f9f56b2705561bbb7196fc8b00df",
+          "byteSize": 22656
+        },
+        {
+          "text": "pocket",
+          "file": "74e4fda483d69750d5d132eb66e929fa917df9fc82ec204d349e0c0dfb63e5db.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/74e4fda483d69750d5d132eb66e929fa917df9fc82ec204d349e0c0dfb63e5db.mp3",
+          "contentHash": "645a0eed573e4720564ebe5f30e8dce88500b9b1119cec910d9a391cb64d8750",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l07/s10/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does it work?",
+          "file": "9802b10cbd76d8ce31e03c01af3e70ed2406920311cc96b2b76ed9eb4cc98902.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9802b10cbd76d8ce31e03c01af3e70ed2406920311cc96b2b76ed9eb4cc98902.mp3",
+          "contentHash": "ef518dc15577765a5ba3ed1c9b1b945506d351c7317caac1f08bf95b158ce88d",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s10/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you have a package?",
+          "file": "48ac88319272c2be864cc7d2aab3dd9e3b2a16d2a3d251bb49c190b96659b93a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/48ac88319272c2be864cc7d2aab3dd9e3b2a16d2a3d251bb49c190b96659b93a.mp3",
+          "contentHash": "f834083f87b3100703e92c1e7ad91390a98b0324a0f77cfa20dc1a1d803d402b",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l07/s10/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Does the lock work?",
+          "file": "25e8db50322389b6be0f578ddfc16695499c205af8cfed614fc7630f7c7e374d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/25e8db50322389b6be0f578ddfc16695499c205af8cfed614fc7630f7c7e374d.mp3",
+          "contentHash": "be8699a572522823326de3a40aee9d4b0fc2d9eb88b6d3476ceda0e31ec4cd6d",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s10/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you practice here?",
+          "file": "0462cad720c1074754f6dcb0a5b155dbcaf05e20f5a44b9acc2164dbf92ebcf8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0462cad720c1074754f6dcb0a5b155dbcaf05e20f5a44b9acc2164dbf92ebcf8.mp3",
+          "contentHash": "36c3969537d92b1993a0f9e3a12800341ed47524ec0ab4e70d82292f5ae295fd",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l07/s10/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Does the lock work?",
+          "file": "25e8db50322389b6be0f578ddfc16695499c205af8cfed614fc7630f7c7e374d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/25e8db50322389b6be0f578ddfc16695499c205af8cfed614fc7630f7c7e374d.mp3",
+          "contentHash": "be8699a572522823326de3a40aee9d4b0fc2d9eb88b6d3476ceda0e31ec4cd6d",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s10/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "machine",
+          "file": "15e32f99633aad30bf3fa174f9daee3cec2269608e3e30f536262bfaf13da91a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/15e32f99633aad30bf3fa174f9daee3cec2269608e3e30f536262bfaf13da91a.mp3",
+          "contentHash": "a51331de5872a3be2b5fdc33aaca9b509e4a990a36d87fcecb24bc9c63ecd38d",
+          "byteSize": 20352
+        },
+        {
+          "text": "package",
+          "file": "0ea1cfd6871a6631e6964c1eecb10f8639fbf30bec52d80faac6699db0251cc2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ea1cfd6871a6631e6964c1eecb10f8639fbf30bec52d80faac6699db0251cc2.mp3",
+          "contentHash": "d9ba21ef93688477c9520232917cd7e6b17300edf2f26745e9c14cb4a65791b7",
+          "byteSize": 41088
+        },
+        {
+          "text": "practice",
+          "file": "a1d0d2923151f466f476401099a92d9f7e79622d2270b7e9397d3b21211dd818.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a1d0d2923151f466f476401099a92d9f7e79622d2270b7e9397d3b21211dd818.mp3",
+          "contentHash": "76bc505ac50fd1ef8f38b59c4616273e881435a7cd9a162df18f0abde16339be",
+          "byteSize": 36480
+        },
+        {
+          "text": "pocket",
+          "file": "1c165979a42f4c12e14506ad607bed846260ed37189bc6c0b21f425bd00a211e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c165979a42f4c12e14506ad607bed846260ed37189bc6c0b21f425bd00a211e.mp3",
+          "contentHash": "779931b57816c7b35ff4e30044194354b3aa41a0e8ef00754553c36eb6c72189",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l07/s10/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Does the charger work?",
+          "file": "20b83673341b04886d234777b703b0848de300bb26e927ed9dc58cb13ac3ab29.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/20b83673341b04886d234777b703b0848de300bb26e927ed9dc58cb13ac3ab29.mp3",
+          "contentHash": "17681d7fc4efe2411c6a847b6feba1956d92cc911890f446d65721c8a2c72379",
+          "byteSize": 31488
+        }
+      ]
     }
   },
   "settings": {

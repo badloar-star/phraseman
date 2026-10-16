@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "рассказывать о привычках с often и usually",
+    "uk": "розповідати про звички з often і usually"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книги для других",
+        "uk": "Книжки для інших"
+      },
+      "bodyByLocale": {
+        "ru": "Друг замечает коробку книг у двери. Вы часто отдаёте книги на благотворительность. `Donate` — «жертвовать, отдавать на благотворительность». `I often donate books` — «Я часто отдаю книги на благотворительность». `Often` стоит перед `donate`. Книги отправляются к новым читателям — им тоже надоело стоять без дела.",
+        "uk": "Друг помічає коробку книжок біля дверей. Ви часто віддаєте книжки на благодійність. `Donate` — «жертвувати, віддавати на благодійність». `I often donate books` — «Я часто віддаю книжки на благодійність». `Often` стоїть перед `donate`. Книжки вирушають до нових читачів — їм теж набридло стояти без діла."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Объясните другу свою привычку.",
+          "uk": "Поясніть другові свою звичку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-45:intro1:r1",
+              "text": "I often donate books."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro1:r2",
+              "text": "I often donates books."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro1:r3",
+              "text": "I often donating books."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-45:intro1:r1",
+              "text": "I often donate books."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro1:r2",
+              "text": "I often donates books."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro1:r3",
+              "text": "I often donating books."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните другу свою привычку.",
+          "uk": "Поясніть другові свою звичку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Собираюсь заранее",
+        "uk": "Збираюся завчасно"
+      },
+      "bodyByLocale": {
+        "ru": "Друг удивляется, что ваш чемодан уже готов. `I usually pack early` — «Я обычно собираю вещи заранее». `Pack` здесь значит «собирать вещи», а `early` — «заранее, заблаговременно». `Usually` стоит перед `pack`.",
+        "uk": "Друг дивується, що ваша валіза вже готова. `I usually pack early` — «Я зазвичай збираю речі завчасно». `Pack` тут означає «збирати речі», а `early` — «заздалегідь, завчасно». `Usually` стоїть перед `pack`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите, когда вы обычно собираете вещи.",
+          "uk": "Розкажіть, коли ви зазвичай збираєте речі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-45:intro2:r1",
+              "text": "I usually pack early."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro2:r2",
+              "text": "I usually packs early."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro2:r3",
+              "text": "I usually packing early."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-45:intro2:r1",
+              "text": "I usually pack early."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro2:r2",
+              "text": "I usually packs early."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro2:r3",
+              "text": "I usually packing early."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите, когда вы обычно собираете вещи.",
+          "uk": "Розкажіть, коли ви зазвичай збираєте речі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пешком в офис",
+        "uk": "Пішки до офісу"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега спрашивает, как вы обычно добираетесь до офиса. `I usually walk to the office` — «Я обычно хожу в офис пешком». `Usually` стоит перед `walk`; `to the office` говорит, куда вы идёте.",
+        "uk": "Колега запитує, як ви зазвичай дістаєтеся до офісу. `I usually walk to the office` — «Я зазвичай ходжу до офісу пішки». `Usually` стоїть перед `walk`; `to the office` говорить, куди ви йдете."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Расскажите о дороге в офис.",
+          "uk": "Розкажіть про дорогу до офісу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-45:intro3:r1",
+              "text": "I usually walk to the office."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro3:r2",
+              "text": "I usually walks to the office."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro3:r3",
+              "text": "I usually walking to the office."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-45:intro3:r1",
+              "text": "I usually walk to the office."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro3:r2",
+              "text": "I usually walks to the office."
+            },
+            {
+              "responseId": "en:lesson-07:session-45:intro3:r3",
+              "text": "I usually walking to the office."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о дороге в офис.",
+          "uk": "Розкажіть про дорогу до офісу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "00a189393af30c86e746b64db6c6cee426ed9f208583b10bd0e407628efb451a"
+}

@@ -115306,6 +115306,309 @@
           "byteSize": 52992
         }
       ]
+    },
+    "l07/s45/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often donate books.",
+          "file": "5d283aca82283295c125ffb742932899fac022bc8b8fac31be5eef25b42a5c2f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d283aca82283295c125ffb742932899fac022bc8b8fac31be5eef25b42a5c2f.mp3",
+          "contentHash": "bad9687693be338f96d1bfd9dda0f2ad79e319b08aaa3474b27378b5a58ff7c8",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l07/s45/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually pack early.",
+          "file": "80d47126bec6a01987d2bd3e1cdb9bde2f0e5a5240364dae73a48ad32faee906.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80d47126bec6a01987d2bd3e1cdb9bde2f0e5a5240364dae73a48ad32faee906.mp3",
+          "contentHash": "d74fa752be474ddecc343bb9ea7f8008c224042d61b9bbc2b29224ebcb3b9476",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s45/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually walk to the office.",
+          "file": "6f3549b85a6718e7c0fc531f8fe2109afacabe3a6c5e48b3df73bb98f9fec0b1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6f3549b85a6718e7c0fc531f8fe2109afacabe3a6c5e48b3df73bb98f9fec0b1.mp3",
+          "contentHash": "202bdf144be17348e3b231725c62d1057577fce22da27b56e07002a285eb1062",
+          "byteSize": 61056
+        }
+      ]
+    },
+    "l07/s45/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often donate books.",
+          "file": "5d283aca82283295c125ffb742932899fac022bc8b8fac31be5eef25b42a5c2f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d283aca82283295c125ffb742932899fac022bc8b8fac31be5eef25b42a5c2f.mp3",
+          "contentHash": "bad9687693be338f96d1bfd9dda0f2ad79e319b08aaa3474b27378b5a58ff7c8",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l07/s45/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "donate",
+          "file": "45697795866a531c283e9081ab2f69cb2d1e9b9fd3da569d40e2c03c297196ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/45697795866a531c283e9081ab2f69cb2d1e9b9fd3da569d40e2c03c297196ac.mp3",
+          "contentHash": "526a41972efa969f41df62206523bc56e5b0800852912ea0378085c0e50c4c7d",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l07/s45/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often donate books.",
+          "file": "5d283aca82283295c125ffb742932899fac022bc8b8fac31be5eef25b42a5c2f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d283aca82283295c125ffb742932899fac022bc8b8fac31be5eef25b42a5c2f.mp3",
+          "contentHash": "bad9687693be338f96d1bfd9dda0f2ad79e319b08aaa3474b27378b5a58ff7c8",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l07/s45/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "donate",
+          "file": "45697795866a531c283e9081ab2f69cb2d1e9b9fd3da569d40e2c03c297196ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/45697795866a531c283e9081ab2f69cb2d1e9b9fd3da569d40e2c03c297196ac.mp3",
+          "contentHash": "526a41972efa969f41df62206523bc56e5b0800852912ea0378085c0e50c4c7d",
+          "byteSize": 18816
+        },
+        {
+          "text": "pack",
+          "file": "60181c1727d707a298e6b18bc48441b6c49d9572b6e6a10daf435d995b454cfa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60181c1727d707a298e6b18bc48441b6c49d9572b6e6a10daf435d995b454cfa.mp3",
+          "contentHash": "8d58ffadcd5dbe63f889079bf07920ef483a5ed4132da982251fbbc9be1cbf4a",
+          "byteSize": 26880
+        },
+        {
+          "text": "office",
+          "file": "b8c6de968bf1752461575325674b85e3d188ce407c7bb9795f051e9d34100b59.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8c6de968bf1752461575325674b85e3d188ce407c7bb9795f051e9d34100b59.mp3",
+          "contentHash": "b68ccd0b389740553ec28b78745ef14e0ad9a91af4c102e31a584f32c1c57bd9",
+          "byteSize": 27648
+        },
+        {
+          "text": "motorbike",
+          "file": "3181559a8f758a9c073f551d911cb6b963081c425f520d1384c35b6374bd73a8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3181559a8f758a9c073f551d911cb6b963081c425f520d1384c35b6374bd73a8.mp3",
+          "contentHash": "77ac12d1a1c3c98ff614caa8435543d54e28106d763d441ede1d567afff4d27c",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l07/s45/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I often donate books.",
+          "file": "4ae27e3d8f1fc1b863b923b0948ba22c5cb69f08a2bbae55b3382477de9e8c12.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4ae27e3d8f1fc1b863b923b0948ba22c5cb69f08a2bbae55b3382477de9e8c12.mp3",
+          "contentHash": "970c7ff8c47adbc37f5d34e9235973cc88b5d6a882a7790386b579bedd486c03",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s45/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually pack early.",
+          "file": "e7e4142e8cd44b49f8a378c13548d55290b6f1df30c037a467eee1c3ce134527.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e7e4142e8cd44b49f8a378c13548d55290b6f1df30c037a467eee1c3ce134527.mp3",
+          "contentHash": "2fe6998b807a4821b41c5ebd98d2af6dac915f1ad5f2ca544e18e62948a53f8e",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l07/s45/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually walk to the office.",
+          "file": "0ed16d47e7c4b0b612fde519d44021b7ad0865ce9c1717274fb3e995b014a894.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ed16d47e7c4b0b612fde519d44021b7ad0865ce9c1717274fb3e995b014a894.mp3",
+          "contentHash": "0a4908b79230204a9aeee316203f69aefbb4478999c18a83aefb5c985c10beba",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s45/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually pack early.",
+          "file": "ca8caa95f962676dc5683613c1da7d01f5ce89db866f049d25ba0ebcb3ca9691.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca8caa95f962676dc5683613c1da7d01f5ce89db866f049d25ba0ebcb3ca9691.mp3",
+          "contentHash": "bf5a5d91d8ac41feb806df20c018aeecd077f76774d7d81150e5cd4c54d5246d",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s45/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often donate books.",
+          "file": "c2c1d79b27568eb2a1d173475731b01da40a7653729512ebada76e5fd03439ed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c2c1d79b27568eb2a1d173475731b01da40a7653729512ebada76e5fd03439ed.mp3",
+          "contentHash": "13b85395d3613f59d2ea468849cb9e7a20f58ecb4ae33276b222f21a1f513e90",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s45/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "pack",
+          "file": "60181c1727d707a298e6b18bc48441b6c49d9572b6e6a10daf435d995b454cfa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/60181c1727d707a298e6b18bc48441b6c49d9572b6e6a10daf435d995b454cfa.mp3",
+          "contentHash": "8d58ffadcd5dbe63f889079bf07920ef483a5ed4132da982251fbbc9be1cbf4a",
+          "byteSize": 26880
+        },
+        {
+          "text": "donate",
+          "file": "45697795866a531c283e9081ab2f69cb2d1e9b9fd3da569d40e2c03c297196ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/45697795866a531c283e9081ab2f69cb2d1e9b9fd3da569d40e2c03c297196ac.mp3",
+          "contentHash": "526a41972efa969f41df62206523bc56e5b0800852912ea0378085c0e50c4c7d",
+          "byteSize": 18816
+        },
+        {
+          "text": "pencil",
+          "file": "c63fc54e3c783e2e8fddd2896bd1cab7194e6deeb95a1523e178344a5d06fcc2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c63fc54e3c783e2e8fddd2896bd1cab7194e6deeb95a1523e178344a5d06fcc2.mp3",
+          "contentHash": "1d6f83df66bb79f32422b95b7aa46bd82a7444e91434245915b218c6367ef629",
+          "byteSize": 38016
+        },
+        {
+          "text": "office",
+          "file": "b8c6de968bf1752461575325674b85e3d188ce407c7bb9795f051e9d34100b59.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8c6de968bf1752461575325674b85e3d188ce407c7bb9795f051e9d34100b59.mp3",
+          "contentHash": "b68ccd0b389740553ec28b78745ef14e0ad9a91af4c102e31a584f32c1c57bd9",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s45/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually pack early.",
+          "file": "e7e4142e8cd44b49f8a378c13548d55290b6f1df30c037a467eee1c3ce134527.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e7e4142e8cd44b49f8a378c13548d55290b6f1df30c037a467eee1c3ce134527.mp3",
+          "contentHash": "2fe6998b807a4821b41c5ebd98d2af6dac915f1ad5f2ca544e18e62948a53f8e",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l07/s45/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you have a motorbike?",
+          "file": "f1f46d3f1c60de93fd5e71ebc2f4edad407c714e48161ad647a037923b2788e7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f1f46d3f1c60de93fd5e71ebc2f4edad407c714e48161ad647a037923b2788e7.mp3",
+          "contentHash": "a97d78d1f274978c86525e36abc30602ae3b2767317d434d4fc8ccc1a02c27e0",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s45/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a pencil?",
+          "file": "f3a7a5a0bb87db531b5384a483930e2d6d44e206f0a52e6320b22539d45ab8ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3a7a5a0bb87db531b5384a483930e2d6d44e206f0a52e6320b22539d45ab8ef.mp3",
+          "contentHash": "b722f2f16a6df426b0231d7e23664a07bbd171c3c828fdd167828b54e3d388fd",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s45/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often donate books.",
+          "file": "5d283aca82283295c125ffb742932899fac022bc8b8fac31be5eef25b42a5c2f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d283aca82283295c125ffb742932899fac022bc8b8fac31be5eef25b42a5c2f.mp3",
+          "contentHash": "bad9687693be338f96d1bfd9dda0f2ad79e319b08aaa3474b27378b5a58ff7c8",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l07/s45/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The office is here.",
+          "file": "6b7e496f0900550884a7c69ae85f4d920c68e1424ee7487c9ebeb86739bb28de.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6b7e496f0900550884a7c69ae85f4d920c68e1424ee7487c9ebeb86739bb28de.mp3",
+          "contentHash": "e68afebe8708f70915d1af0315d31e6032f08d209c0f28be58407414d86afd52",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l07/s45/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "donate",
+          "file": "9fe8ecb2e0014c9d95c34a475a2176619ad435167d5d74a01183e54092f1a591.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9fe8ecb2e0014c9d95c34a475a2176619ad435167d5d74a01183e54092f1a591.mp3",
+          "contentHash": "acf64c2d98d76fc460aaed85c2d1117080c93225de019c2898eb6f0baf2f02a5",
+          "byteSize": 29952
+        },
+        {
+          "text": "motorbike",
+          "file": "c69dbe7e22b9e82233e558f76b8baf47381f0facf0da5941a080092506c6d76b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c69dbe7e22b9e82233e558f76b8baf47381f0facf0da5941a080092506c6d76b.mp3",
+          "contentHash": "d23db83b1180b345be0e4728ce892112a95163dc313bab3f449e9902ce060815",
+          "byteSize": 23040
+        },
+        {
+          "text": "pack",
+          "file": "ac15424b2a8fa1c421ce9d11f6aa6cc7713af9397fd9375c5a6b79ce5866e3d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ac15424b2a8fa1c421ce9d11f6aa6cc7713af9397fd9375c5a6b79ce5866e3d1.mp3",
+          "contentHash": "aebfb6f9288d15ccbc5b2b944b2c14a5799dd42b284105c7ff6cb6e8d44da7b4",
+          "byteSize": 24192
+        },
+        {
+          "text": "pencil",
+          "file": "0e594a802decd89ddd44ee44addc10d7f9e3dc7bc273e18ef880405eb5d9b83a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e594a802decd89ddd44ee44addc10d7f9e3dc7bc273e18ef880405eb5d9b83a.mp3",
+          "contentHash": "452ff2011eeed915b761c32cdc047947819e7d09570236c73d2b90d6ffb2cf05",
+          "byteSize": 6912
+        }
+      ]
+    },
+    "l07/s45/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom often donates books.",
+          "file": "d146e234f64ea5d31bd2749bc5bdcfcbc3c6d73ee89248094b0a7702fd244207.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d146e234f64ea5d31bd2749bc5bdcfcbc3c6d73ee89248094b0a7702fd244207.mp3",
+          "contentHash": "1ec2b2322e8980ac301622a11b902dc7727a68bf70ef589def4c80cc9980423d",
+          "byteSize": 42624
+        }
+      ]
     }
   },
   "settings": {

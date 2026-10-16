@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "спросить об устройстве и работе человека, сообщить об отсутствии вещи",
+    "uk": "запитати про пристрій і роботу людини, повідомити про відсутність речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Перед печатью",
+        "uk": "Перед друком"
+      },
+      "bodyByLocale": {
+        "ru": "`printer` — «принтер». Вы хотите распечатать плакат. `Does the printer work?` — «Принтер работает?» Один принтер — `Does the printer`, затем `work`, без `s`. Бумага уже в руках, но сначала убедимся, что принтер готов к работе, а не только к украшению стола.",
+        "uk": "`printer` — «принтер». Ви хочете надрукувати плакат. `Does the printer work?` — «Принтер працює?» Один принтер — `Does the printer`, потім `work`, без `s`. Папір уже в руках, але спочатку переконаємося, що принтер готовий до роботи, а не лише до прикрашання столу."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите коллегу «Принтер работает?»",
+          "uk": "Запитайте колегу «Принтер працює?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-11:intro1:r1",
+              "text": "Does the printer work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro1:r2",
+              "text": "Do the printer work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro1:r3",
+              "text": "Does the printer works?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-11:intro1:r1",
+              "text": "Does the printer work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro1:r2",
+              "text": "Do the printer work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro1:r3",
+              "text": "Does the printer works?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллегу «Принтер работает?»",
+          "uk": "Запитайте колегу «Принтер працює?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "В этой комнате его нет",
+        "uk": "У цій кімнаті його немає"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заглянули в соседнюю комнату в поисках принтера. `There is no printer in this room` — «В этой комнате нет принтера». Здесь сообщаем об отсутствии одной вещи: `There is no printer`. `In this room` уточняет, где вы проверили.",
+        "uk": "Ви зазирнули до сусідньої кімнати в пошуках принтера. `There is no printer in this room` — «У цій кімнаті немає принтера». Тут повідомляємо про відсутність однієї речі: `There is no printer`. `In this room` уточнює, де ви перевірили."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите коллеге «В этой комнате нет принтера».",
+          "uk": "Скажіть колезі «У цій кімнаті немає принтера»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-11:intro2:r1",
+              "text": "There is no printer in this room."
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro2:r2",
+              "text": "There are no printer in this room."
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro2:r3",
+              "text": "There no printer in this room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-11:intro2:r1",
+              "text": "There is no printer in this room."
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro2:r2",
+              "text": "There are no printer in this room."
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro2:r3",
+              "text": "There no printer in this room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите коллеге «В этой комнате нет принтера».",
+          "uk": "Скажіть колезі «У цій кімнаті немає принтера»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто поможет",
+        "uk": "Хто допоможе"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега упомянул Анну, которая разбирается в принтерах. Вы уточняете `Does she work here?` — «Она работает здесь?» С `she` используем `Does`, а после него `work` без `s`. Мы спрашиваем о месте работы Анны.",
+        "uk": "Колега згадав Анну, яка розуміється на принтерах. Ви уточнюєте `Does she work here?` — «Вона працює тут?» Із `she` використовуємо `Does`, а після нього `work` без `s`. Ми запитуємо про місце роботи Анни."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите коллегу «Она работает здесь?»",
+          "uk": "Запитайте колегу «Вона працює тут?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-11:intro3:r1",
+              "text": "Does she work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro3:r2",
+              "text": "Do she work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro3:r3",
+              "text": "Does she works here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-11:intro3:r1",
+              "text": "Does she work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro3:r2",
+              "text": "Do she work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-11:intro3:r3",
+              "text": "Does she works here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллегу «Она работает здесь?»",
+          "uk": "Запитайте колегу «Вона працює тут?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "849f445cfa411b1fe60d5442f083b5960103c30688d99ae0925e9f8254f55442"
+}

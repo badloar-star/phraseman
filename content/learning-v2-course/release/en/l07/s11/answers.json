@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-11:i01",
+    "correctText": "Does the printer work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i02",
+    "correctText": "printer",
+    "correctResponseId": "en:lesson-07:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i03",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i04",
+    "correctText": "en:lesson-07:session-11:i04:p1=printer\nen:lesson-07:session-11:i04:p2=room\nen:lesson-07:session-11:i04:p3=backpack\nen:lesson-07:session-11:i04:p4=poster",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i05",
+    "correctText": "Does the printer work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i06",
+    "correctText": "There is no printer in this room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i07",
+    "correctText": "Does she work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i08",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-07:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i09",
+    "correctText": "Does the printer work?",
+    "correctResponseId": "en:lesson-07:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i10",
+    "correctText": "en:lesson-07:session-11:i10:p1=learn\nen:lesson-07:session-11:i10:p2=printer\nen:lesson-07:session-11:i10:p3=room\nen:lesson-07:session-11:i10:p4=backpack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i11",
+    "correctText": "Does she work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i12",
+    "correctText": "Do you have a poster?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i13",
+    "correctText": "The poster is in my backpack.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-07:session-11:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i15",
+    "correctText": "Do you learn English here?",
+    "correctResponseId": "en:lesson-07:session-11:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i16",
+    "correctText": "en:lesson-07:session-11:i16:p1=printer\nen:lesson-07:session-11:i16:p2=poster\nen:lesson-07:session-11:i16:p3=learn\nen:lesson-07:session-11:i16:p4=backpack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-11:i17",
+    "correctText": "Does Anna learn English here?",
+    "correctResponseId": null
+  }
+]

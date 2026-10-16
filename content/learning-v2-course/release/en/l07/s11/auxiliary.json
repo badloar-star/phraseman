@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-11:intro1:r2": {
+          "ru": "Один принтер: `Does the printer`.",
+          "uk": "Один принтер: `Does the printer`."
+        },
+        "en:lesson-07:session-11:intro1:r3": {
+          "ru": "После `Does` нужно `work`.",
+          "uk": "Після `Does` потрібне `work`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-11:intro2:r2": {
+          "ru": "Один принтер: `There is no printer`.",
+          "uk": "Один принтер: `There is no printer`."
+        },
+        "en:lesson-07:session-11:intro2:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-11:intro3:r2": {
+          "ru": "С `she` нужен вопрос с `Does`.",
+          "uk": "Із `she` потрібне запитання з `Does`."
+        },
+        "en:lesson-07:session-11:intro3:r3": {
+          "ru": "После `Does she` нужно `work`.",
+          "uk": "Після `Does she` потрібне `work`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "277050e7e1de7d78a0f2a7e0a2cc0a15a7ed12e0355018aa1be6281e9b708ad8"
+}

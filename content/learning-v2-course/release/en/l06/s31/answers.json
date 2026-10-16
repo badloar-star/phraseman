@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-31:i01",
+    "correctText": "I shower at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i02",
+    "correctText": "shower",
+    "correctResponseId": "en:lesson-06:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i03",
+    "correctText": "showers",
+    "correctResponseId": "en:lesson-06:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i04",
+    "correctText": "en:lesson-06:session-31:i04:p1=shower\nen:lesson-06:session-31:i04:p2=unusual\nen:lesson-06:session-31:i04:p3=car park\nen:lesson-06:session-31:i04:p4=guitar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i05",
+    "correctText": "Tom showers at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i06",
+    "correctText": "She teaches here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i07",
+    "correctText": "This guitar is unusual.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i08",
+    "correctText": "shower",
+    "correctResponseId": "en:lesson-06:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i09",
+    "correctText": "This guitar is mine.",
+    "correctResponseId": "en:lesson-06:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i10",
+    "correctText": "en:lesson-06:session-31:i10:p1=shower\nen:lesson-06:session-31:i10:p2=teach\nen:lesson-06:session-31:i10:p3=guitar\nen:lesson-06:session-31:i10:p4=unusual",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i11",
+    "correctText": "We are in the car park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i12",
+    "correctText": "Whose guitar is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i13",
+    "correctText": "I teach here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i14",
+    "correctText": "teaches",
+    "correctResponseId": "en:lesson-06:session-31:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i15",
+    "correctText": "The car park is here.",
+    "correctResponseId": "en:lesson-06:session-31:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i16",
+    "correctText": "en:lesson-06:session-31:i16:p1=shower\nen:lesson-06:session-31:i16:p2=car park\nen:lesson-06:session-31:i16:p3=unusual\nen:lesson-06:session-31:i16:p4=teach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-31:i17",
+    "correctText": "He showers at home.",
+    "correctResponseId": null
+  }
+]

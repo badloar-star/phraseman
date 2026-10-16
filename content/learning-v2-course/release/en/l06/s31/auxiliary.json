@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-31:intro1:r2": {
+          "ru": "После `he` — `showers`, с `s`.",
+          "uk": "Після `he` — `showers`, з `s`."
+        },
+        "en:lesson-06:session-31:intro1:r3": {
+          "ru": "Нужно `He showers`, без `is`.",
+          "uk": "Потрібно `He showers`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-31:intro2:r2": {
+          "ru": "После `she` — `teaches`.",
+          "uk": "Після `she` — `teaches`."
+        },
+        "en:lesson-06:session-31:intro2:r3": {
+          "ru": "Пишем `teaches`, с `es`.",
+          "uk": "Пишемо `teaches`, з `es`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-31:intro3:r2": {
+          "ru": "О владельце спрашиваем `Whose` — «чья».",
+          "uk": "Про власника запитуємо `Whose` — «чия»."
+        },
+        "en:lesson-06:session-31:intro3:r3": {
+          "ru": "Одна гитара: `is this`.",
+          "uk": "Одна гітара: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ad2ec074babdab264300d4875b54ffa4f0ba42131733b6a01a40f28f080037e3"
+}

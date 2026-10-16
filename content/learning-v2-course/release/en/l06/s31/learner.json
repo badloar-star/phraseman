@@ -1,0 +1,959 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о привычке: «Я принимаю душ дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о привычке: «Я принимаю душ дома»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I shower at home.",
+        "localizedMeaning": {
+          "ru": "Расскажите о привычке: «Я принимаю душ дома»",
+          "uk": "Розкажіть про звичку: «Я приймаю душ удома»"
+        },
+        "orderedTokens": [
+          "I",
+          "shower",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-31:i02:r1",
+          "text": "shower"
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i02:r2",
+          "text": "teach"
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i02:r3",
+          "text": "clean"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-31:i02:audio",
+          "transcript": "shower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-31:i02:r1",
+            "targetText": "shower",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i02:r2",
+            "targetText": "teach",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i02:r3",
+            "targetText": "clean",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `shower`, а в этом варианте — `teach`.",
+              "uk": "У записі перше слово — `shower`, а в цьому варіанті — `teach`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `shower`, а в этом варианте — `clean`.",
+              "uk": "У записі перше слово — `shower`, а в цьому варіанті — `clean`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Он принимает душ дома»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-31:i03:r1",
+          "text": "showers"
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i03:r2",
+          "text": "shower"
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i03:r3",
+          "text": "is showers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он принимает душ дома»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Он принимает душ дома»",
+          "uk": "Скажіть «Він приймає душ удома»"
+        },
+        "gappedTargetPhrase": "He ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i03:r1",
+            "text": "showers"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i03:r2",
+            "text": "shower"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i03:r3",
+            "text": "is showers"
+          }
+        ],
+        "testedDimension": "Скажите «Он принимает душ дома»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Он принимает душ дома»",
+            "feedbackByLocale": {
+              "ru": "После `he` — `showers`.",
+              "uk": "Після `he` — `showers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Он принимает душ дома»",
+            "feedbackByLocale": {
+              "ru": "Говорим `He showers`, без `is`.",
+              "uk": "Кажемо `He showers`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-31:i04:p1",
+            "target": "shower",
+            "meaningByLocale": {
+              "ru": "принимать душ",
+              "uk": "приймати душ"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-31:i04:p2",
+            "target": "unusual",
+            "meaningByLocale": {
+              "ru": "необычный",
+              "uk": "незвичайний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-31:i04:p3",
+            "target": "car park",
+            "meaningByLocale": {
+              "ru": "автостоянка",
+              "uk": "автостоянка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-31:i04:p4",
+            "target": "guitar",
+            "meaningByLocale": {
+              "ru": "гитара",
+              "uk": "гітара"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shower",
+          "unusual",
+          "car park",
+          "guitar"
+        ],
+        "rightColumn": [
+          "принимать душ",
+          "необычный",
+          "автостоянка",
+          "гитара"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-31:i05:audio",
+          "transcript": "Tom showers at home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tom showers at home.",
+        "orderedTokens": [
+          "Tom",
+          "showers",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Она преподаёт здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она преподаёт здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She teaches here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Она преподаёт здесь»",
+          "uk": "Скажіть «Вона викладає тут»"
+        },
+        "orderedTokens": [
+          "She",
+          "teaches",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Эта гитара необычная»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Эта гитара необычная»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-31:i07:audio",
+          "transcript": "This guitar is unusual."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This guitar is unusual.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они принимают душ дома»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-31:i08:r1",
+          "text": "shower"
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i08:r2",
+          "text": "showers"
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i08:r3",
+          "text": "are shower"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они принимают душ дома»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они принимают душ дома»",
+          "uk": "Скажіть «Вони приймають душ удома»"
+        },
+        "gappedTargetPhrase": "They ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i08:r1",
+            "text": "shower"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i08:r2",
+            "text": "showers"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i08:r3",
+            "text": "are shower"
+          }
+        ],
+        "testedDimension": "Скажите «Они принимают душ дома»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они принимают душ дома»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `shower`, без `s`.",
+              "uk": "Після `they` — `shower`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они принимают душ дома»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They shower`, без `are`.",
+              "uk": "Потрібно `They shower`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежит гитара",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-31:i09:r1",
+          "text": "This guitar is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i09:r2",
+          "text": "This guitar is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i09:r3",
+          "text": "This guitar is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит гитара",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-31:i09:audio",
+          "transcript": "This guitar is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-31:i09:r1",
+            "targetText": "This guitar is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i09:r2",
+            "targetText": "This guitar is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i09:r3",
+            "targetText": "This guitar is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит гитара",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит гитара",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-31:i10:p1",
+            "target": "shower",
+            "meaningByLocale": {
+              "ru": "принимать душ",
+              "uk": "приймати душ"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-31:i10:p2",
+            "target": "teach",
+            "meaningByLocale": {
+              "ru": "преподавать",
+              "uk": "викладати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-31:i10:p3",
+            "target": "guitar",
+            "meaningByLocale": {
+              "ru": "гитара",
+              "uk": "гітара"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-31:i10:p4",
+            "target": "unusual",
+            "meaningByLocale": {
+              "ru": "необычный",
+              "uk": "незвичайний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shower",
+          "teach",
+          "guitar",
+          "unusual"
+        ],
+        "rightColumn": [
+          "принимать душ",
+          "преподавать",
+          "гитара",
+          "необычный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-31:i11:audio",
+          "transcript": "We are in the car park."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are in the car park.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "in",
+          "the",
+          "car",
+          "park"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-31:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `We are in the car park.`",
+              "uk": "тут потрібно `are` — `We are in the car park.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Чья это гитара?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Чья это гитара?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose guitar is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чья это гитара?»",
+          "uk": "Запитайте «Чия це гітара?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "guitar",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Я преподаю здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-31:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Я преподаю здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-31:i13:audio",
+          "transcript": "I teach here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I teach here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Анна преподаёт здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-31:i14:r1",
+          "text": "teaches"
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i14:r2",
+          "text": "teach"
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i14:r3",
+          "text": "teachs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Анна преподаёт здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна преподаёт здесь»",
+          "uk": "Скажіть «Анна викладає тут»"
+        },
+        "gappedTargetPhrase": "Anna ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-31:i14:r1",
+            "text": "teaches"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i14:r2",
+            "text": "teach"
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i14:r3",
+            "text": "teachs"
+          }
+        ],
+        "testedDimension": "Скажите «Анна преподаёт здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-31:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Анна преподаёт здесь»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna teaches`.",
+              "uk": "Анна — вона: `Anna teaches`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Анна преподаёт здесь»",
+            "feedbackByLocale": {
+              "ru": "Пишем `teaches`, с `es`.",
+              "uk": "Пишемо `teaches`, з `es`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где автостоянка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-31:i15:r1",
+          "text": "The car park is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i15:r2",
+          "text": "The car park is there."
+        },
+        {
+          "responseId": "en:lesson-06:session-31:i15:r3",
+          "text": "The car park is nearby."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где автостоянка",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-31:i15:audio",
+          "transcript": "The car park is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-31:i15:r1",
+            "targetText": "The car park is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i15:r2",
+            "targetText": "The car park is there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i15:r3",
+            "targetText": "The car park is nearby.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-31:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где автостоянка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-31:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где автостоянка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `nearby`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `nearby`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-31:i16:p1",
+            "target": "shower",
+            "meaningByLocale": {
+              "ru": "принимать душ",
+              "uk": "приймати душ"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-31:i16:p2",
+            "target": "car park",
+            "meaningByLocale": {
+              "ru": "автостоянка",
+              "uk": "автостоянка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-31:i16:p3",
+            "target": "unusual",
+            "meaningByLocale": {
+              "ru": "необычный",
+              "uk": "незвичайний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-31:i16:p4",
+            "target": "teach",
+            "meaningByLocale": {
+              "ru": "преподавать",
+              "uk": "викладати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shower",
+          "car park",
+          "unusual",
+          "teach"
+        ],
+        "rightColumn": [
+          "принимать душ",
+          "автостоянка",
+          "необычный",
+          "преподавать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-31:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Расскажите об утренней привычке Тома: «Он принимает душ дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Расскажите об утренней привычке Тома: «Он принимает душ дома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-31:i17:audio",
+          "transcript": "He showers at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He showers at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "425fe0bb2230c77291457ee5c7e386b7781b5766b274d3a115810bc15fa53df9"
+}

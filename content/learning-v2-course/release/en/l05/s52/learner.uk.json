@@ -1,0 +1,999 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-52:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть про вагу: «Цей велосипед легкий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть про вагу: «Цей велосипед легкий»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This bicycle is light.",
+        "localizedMeaning": {
+          "ru": "Скажите о весе: «Этот велосипед лёгкий»",
+          "uk": "Скажіть про вагу: «Цей велосипед легкий»"
+        },
+        "orderedTokens": [
+          "This",
+          "bicycle",
+          "is",
+          "light"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажіть про вагу: «Цей велосипед легкий»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This bicycle is light.`",
+              "uk": "тут потрібно `is` — `This bicycle is light.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-52:i02:r1",
+          "text": "pool"
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i02:r2",
+          "text": "park"
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i02:r3",
+          "text": "nursery"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:i02:audio",
+          "transcript": "pool"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-52:i02:r1",
+            "targetText": "pool",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i02:r2",
+            "targetText": "park",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i02:r3",
+            "targetText": "nursery",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `pool`, а в этом варианте — `park`.",
+              "uk": "У записі перше слово — `pool`, а в цьому варіанті — `park`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `pool`, а в этом варианте — `nursery`.",
+              "uk": "У записі перше слово — `pool`, а в цьому варіанті — `nursery`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть басейн для плавання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-52:i03:r1",
+          "text": "pool"
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i03:r2",
+          "text": "park"
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i03:r3",
+          "text": "nursery"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть басейн для плавання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите бассейн для плавания",
+          "uk": "Назвіть басейн для плавання"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-52:i03:r1",
+            "text": "pool"
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i03:r2",
+            "text": "park"
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i03:r3",
+            "text": "nursery"
+          }
+        ],
+        "testedDimension": "Назвіть басейн для плавання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть басейн для плавання",
+            "feedbackByLocale": {
+              "ru": "`park` — парк; бассейн — `pool`.",
+              "uk": "`park` — парк; басейн — `pool`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть басейн для плавання",
+            "feedbackByLocale": {
+              "ru": "`nursery` здесь — детский сад; бассейн — `pool`.",
+              "uk": "`nursery` тут — дитячий садок; басейн — `pool`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-52:i04:p1",
+            "target": "pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-52:i04:p2",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-52:i04:p3",
+            "target": "stations",
+            "meaningByLocale": {
+              "ru": "станции",
+              "uk": "станції"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-52:i04:p4",
+            "target": "nursery",
+            "meaningByLocale": {
+              "ru": "детский сад",
+              "uk": "дитячий садок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pool",
+          "bicycle",
+          "stations",
+          "nursery"
+        ],
+        "rightColumn": [
+          "басейн",
+          "велосипед",
+          "станції",
+          "дитячий садок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:i05:audio",
+          "transcript": "Where is the pool?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the pool?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "pool"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Дитячий садок поруч із парком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Дитячий садок поруч із парком»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The nursery is next to the park.",
+        "localizedMeaning": {
+          "ru": "Скажите «Детский сад рядом с парком»",
+          "uk": "Скажіть «Дитячий садок поруч із парком»"
+        },
+        "orderedTokens": [
+          "The",
+          "nursery",
+          "is",
+          "next",
+          "to",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажіть «Дитячий садок поруч із парком»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The nursery is next to the park.`",
+              "uk": "тут потрібно `is` — `The nursery is next to the park.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Анна в басейні», маючи на увазі місце, а не обов’язково воду",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Анна в басейні», маючи на увазі місце, а не обов’язково воду",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:i07:audio",
+          "transcript": "Anna is at the pool."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Anna is at the pool.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, де станції",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-52:i08:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, де станції",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, где станции",
+          "uk": "Запитайте, де станції"
+        },
+        "gappedTargetPhrase": "Where ___ the stations?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-52:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Запитайте, де станції",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, де станції",
+            "feedbackByLocale": {
+              "ru": "`stations` — множественное число: `are`.",
+              "uk": "`stations` — множина: `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, де станції",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `are`.",
+              "uk": "`am` використовується з `I`; тут `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, який транспорт називає Анна",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-52:i09:r1",
+          "text": "This is Tom's bicycle."
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i09:r2",
+          "text": "This is Tom's scooter."
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i09:r3",
+          "text": "This is Tom's motorbike."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який транспорт називає Анна",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:i09:audio",
+          "transcript": "This is Tom's bicycle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-52:i09:r1",
+            "targetText": "This is Tom's bicycle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i09:r2",
+            "targetText": "This is Tom's scooter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i09:r3",
+            "targetText": "This is Tom's motorbike.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, який транспорт називає Анна",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bicycle`, а в этом варианте — `scooter`.",
+              "uk": "У записі останнє слово — `bicycle`, а в цьому варіанті — `scooter`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, який транспорт називає Анна",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bicycle`, а в этом варианте — `motorbike`.",
+              "uk": "У записі останнє слово — `bicycle`, а в цьому варіанті — `motorbike`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-52:i10:p1",
+            "target": "pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-52:i10:p2",
+            "target": "light",
+            "meaningByLocale": {
+              "ru": "лёгкий по весу",
+              "uk": "легкий за вагою"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-52:i10:p3",
+            "target": "nursery",
+            "meaningByLocale": {
+              "ru": "детский сад",
+              "uk": "дитячий садок"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-52:i10:p4",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pool",
+          "light",
+          "nursery",
+          "bicycle"
+        ],
+        "rightColumn": [
+          "басейн",
+          "легкий за вагою",
+          "дитячий садок",
+          "велосипед"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:i11:audio",
+          "transcript": "The pool is near the park."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The pool is near the park.",
+        "orderedTokens": [
+          "The",
+          "pool",
+          "is",
+          "near",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The pool is near the park.`",
+              "uk": "тут потрібно `is` — `The pool is near the park.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Велосипед належить Анні. Скажіть «Велосипед її»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Велосипед належить Анні. Скажіть «Велосипед її»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bicycle is hers.",
+        "localizedMeaning": {
+          "ru": "Велосипед принадлежит Анне. Скажите «Велосипед её»",
+          "uk": "Велосипед належить Анні. Скажіть «Велосипед її»"
+        },
+        "orderedTokens": [
+          "The",
+          "bicycle",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Велосипед належить Анні. Скажіть «Велосипед її»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bicycle is hers.`",
+              "uk": "тут потрібно `is` — `The bicycle is hers.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть Анні «Твій велосипед тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть Анні «Твій велосипед тут»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:i13:audio",
+          "transcript": "Your bicycle is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Your bicycle is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про власника велосипеда",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-52:i14:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i14:r2",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i14:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про власника велосипеда",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце велосипеда",
+          "uk": "Запитайте про власника велосипеда"
+        },
+        "gappedTargetPhrase": "___ bicycle is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-52:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i14:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Запитайте про власника велосипеда",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i14:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про власника велосипеда",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чей — `Whose`.",
+              "uk": "`Where` — де; чий — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i14:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про власника велосипеда",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чей — `Whose`.",
+              "uk": "`Who` — хто; чий — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить велосипед",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-52:i15:r1",
+          "text": "The bicycle is mine."
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i15:r2",
+          "text": "The bicycle is hers."
+        },
+        {
+          "responseId": "en:lesson-05:session-52:i15:r3",
+          "text": "The bicycle is ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить велосипед",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:i15:audio",
+          "transcript": "The bicycle is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-52:i15:r1",
+            "targetText": "The bicycle is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i15:r2",
+            "targetText": "The bicycle is hers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i15:r3",
+            "targetText": "The bicycle is ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-52:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить велосипед",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-52:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить велосипед",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `ours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `ours`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-52:i16:p1",
+            "target": "pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-52:i16:p2",
+            "target": "light",
+            "meaningByLocale": {
+              "ru": "лёгкий по весу",
+              "uk": "легкий за вагою"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-52:i16:p3",
+            "target": "stations",
+            "meaningByLocale": {
+              "ru": "станции",
+              "uk": "станції"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-52:i16:p4",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pool",
+          "light",
+          "stations",
+          "bicycle"
+        ],
+        "rightColumn": [
+          "басейн",
+          "легкий за вагою",
+          "станції",
+          "велосипед"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Біля входу до басейну стоїть велосипед. Запитайте друзів «Чий це велосипед?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Біля входу до басейну стоїть велосипед. Запитайте друзів «Чий це велосипед?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-52:i17:audio",
+          "transcript": "Whose bicycle is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose bicycle is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b0fdb029820318761a1df3906a56ef2451f3b6aff2d0a8c58d48a51a1125118b"
+}

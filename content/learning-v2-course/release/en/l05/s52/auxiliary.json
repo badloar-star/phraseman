@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-52:intro1:r2": {
+          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
+          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+        },
+        "en:lesson-05:session-52:intro1:r3": {
+          "ru": "Один бассейн: `is`.",
+          "uk": "Один басейн: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-52:intro2:r2": {
+          "ru": "Один велосипед: `is`.",
+          "uk": "Один велосипед: `is`."
+        },
+        "en:lesson-05:session-52:intro2:r3": {
+          "ru": "`heavy` — тяжёлый; лёгкий — `light`.",
+          "uk": "`heavy` — важкий; легкий — `light`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-52:intro3:r2": {
+          "ru": "Несколько станций: `stations`, нужна форма `are`.",
+          "uk": "Кілька станцій: `stations`, потрібна форма `are`."
+        },
+        "en:lesson-05:session-52:intro3:r3": {
+          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
+          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bf1027a4b90ec896682ec9e8fedb2731c1d13b25f8a476462da9dcd75e901422"
+}

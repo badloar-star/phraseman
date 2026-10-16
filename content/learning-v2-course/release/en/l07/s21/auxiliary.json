@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-21:intro1:r2": {
+          "ru": "После `I` нужно `don’t`.",
+          "uk": "Після `I` потрібне `don’t`."
+        },
+        "en:lesson-07:session-21:intro1:r3": {
+          "ru": "Для отрицания действия нужно `don’t`.",
+          "uk": "Для заперечення дії потрібне `don’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-21:intro2:r2": {
+          "ru": "Для вопроса о Томе нужно `does`.",
+          "uk": "Для запитання про Тома потрібне `does`."
+        },
+        "en:lesson-07:session-21:intro2:r3": {
+          "ru": "После `does` нужно `write`, без `s`.",
+          "uk": "Після `does` потрібне `write`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-21:intro3:r2": {
+          "ru": "С `pens` нужно `are`.",
+          "uk": "З `pens` потрібне `are`."
+        },
+        "en:lesson-07:session-21:intro3:r3": {
+          "ru": "Без `no` фраза сообщает, что ручки есть.",
+          "uk": "Без `no` фраза повідомляє, що ручки є."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9c895c3c9d88eb470f46a06a9b728b1bdf2d7cd8e42dd49f22e37254dea05f00"
+}

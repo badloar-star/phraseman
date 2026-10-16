@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-42:i01",
+    "correctText": "You are polite.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i02",
+    "correctText": "scooter",
+    "correctResponseId": "en:lesson-05:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i03",
+    "correctText": "scooter",
+    "correctResponseId": "en:lesson-05:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i04",
+    "correctText": "en:lesson-05:session-42:i04:p1=scooter\nen:lesson-05:session-42:i04:p2=ring\nen:lesson-05:session-42:i04:p3=bathroom\nen:lesson-05:session-42:i04:p4=bus shelter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i05",
+    "correctText": "Whose scooter is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i06",
+    "correctText": "The ring is in the bathroom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i07",
+    "correctText": "The scooter is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i09",
+    "correctText": "This is Tom's scooter.",
+    "correctResponseId": "en:lesson-05:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i10",
+    "correctText": "en:lesson-05:session-42:i10:p1=scooter\nen:lesson-05:session-42:i10:p2=polite\nen:lesson-05:session-42:i10:p3=bus shelter\nen:lesson-05:session-42:i10:p4=ring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i11",
+    "correctText": "Anna is next to the bus shelter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i12",
+    "correctText": "Your scooter is near the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i13",
+    "correctText": "I have your ring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i14",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-42:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i15",
+    "correctText": "My scooter is here.",
+    "correctResponseId": "en:lesson-05:session-42:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i16",
+    "correctText": "en:lesson-05:session-42:i16:p1=scooter\nen:lesson-05:session-42:i16:p2=polite\nen:lesson-05:session-42:i16:p3=bathroom\nen:lesson-05:session-42:i16:p4=ring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:i17",
+    "correctText": "Whose ring is this?",
+    "correctResponseId": null
+  }
+]

@@ -75007,6 +75007,309 @@
           "byteSize": 28416
         }
       ]
+    },
+    "l05/s24/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The gloves are yours.",
+          "file": "c3c4e99f6d26ba279ee9559ef0207690117501b0a4d971b177d28d134cff7a28.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3c4e99f6d26ba279ee9559ef0207690117501b0a4d971b177d28d134cff7a28.mp3",
+          "contentHash": "5723586e79ff45d55a727ca7feac156063f9cc190f570a274c4a25737f821272",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s24/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The camera is ours.",
+          "file": "684623bb988bda5db3d6f51e08fe3824721f39843341f2d2ee14a7ac33678b48.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/684623bb988bda5db3d6f51e08fe3824721f39843341f2d2ee14a7ac33678b48.mp3",
+          "contentHash": "f5453ddf47ca9f0ee8f42de4a23f39543f531086279e4eef172a05c36fc4b19a",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s24/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I have your scarf.",
+          "file": "efe7e4f9ce88a143d2a32bc142fd2ddc413a3d7be6de5911cacb6290c7808353.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/efe7e4f9ce88a143d2a32bc142fd2ddc413a3d7be6de5911cacb6290c7808353.mp3",
+          "contentHash": "4432dafcddc5af29214960711b68f2086f0ec669e39327d669827c8393dc663c",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s24/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The jacket is mine.",
+          "file": "98dd6c4da86f7f983058f6c0267ad9857123c33d6dea22fcf52d1b6943df7abb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/98dd6c4da86f7f983058f6c0267ad9857123c33d6dea22fcf52d1b6943df7abb.mp3",
+          "contentHash": "e81853291916767431451b89573930c56af5333e4298169390e3fe767e0ca8a4",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s24/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The gloves are yours.",
+          "file": "6599494b3d159bcb8287665b52fed5fb44ba4c9865cd937d77ea9a9fe281eff1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6599494b3d159bcb8287665b52fed5fb44ba4c9865cd937d77ea9a9fe281eff1.mp3",
+          "contentHash": "dd83fbba3f7fdeedf5fbff14447cb64fe32904f8173568f8d263199632fafb2d",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s24/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is no yoghurt.",
+          "file": "079d9e4f5ede6559c918de279b9af5791653a940cc47dff05c77c98514b88b9d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/079d9e4f5ede6559c918de279b9af5791653a940cc47dff05c77c98514b88b9d.mp3",
+          "contentHash": "877769c1aed92d6e6798dc6f28d8f89fedcfe437fcee66e2318477f5c58571f4",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s24/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "yoghurt",
+          "file": "fd2791aa3393aa61b19ef8f3442f2abd2c2a03e11076b9512b688e0b6a68b7f1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd2791aa3393aa61b19ef8f3442f2abd2c2a03e11076b9512b688e0b6a68b7f1.mp3",
+          "contentHash": "2da24169425f50bb957e00c0baa80bfc3c0b11ffa3a57e4b5c896b853a8573ea",
+          "byteSize": 15744
+        },
+        {
+          "text": "jacket",
+          "file": "aa89799577ddad2b055e7201d42199cd254d6fc237b381f46613767197175567.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aa89799577ddad2b055e7201d42199cd254d6fc237b381f46613767197175567.mp3",
+          "contentHash": "a1ae4230f83f0c367bd66688878902f797b90943cb94fdae13760a6442c21258",
+          "byteSize": 26880
+        },
+        {
+          "text": "gloves",
+          "file": "5ca2e845caf0b509be6ebc8348044c7555a12e82aa8a7f7721efab1983f9a786.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ca2e845caf0b509be6ebc8348044c7555a12e82aa8a7f7721efab1983f9a786.mp3",
+          "contentHash": "6a5af2ceb226514921d4edc834216db09297c7188d52aafeca7c6803cd2b2d2c",
+          "byteSize": 18816
+        },
+        {
+          "text": "tablet",
+          "file": "6f585fb80495d58e1bb26c788e85aa8b57dc4c484b0c00e01c900473873695bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6f585fb80495d58e1bb26c788e85aa8b57dc4c484b0c00e01c900473873695bb.mp3",
+          "contentHash": "942251bbc5c204656f6e8535fe0a252188e7fdd467f9e371dee9ee6fa622a1e9",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s24/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is my tablet?",
+          "file": "14f7a4a082c4ecffa19c7192af6596b65f76d979f5260fff91e555f16e5379ce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/14f7a4a082c4ecffa19c7192af6596b65f76d979f5260fff91e555f16e5379ce.mp3",
+          "contentHash": "46065a2381762250bdc5d3981e7905bfd9ebf64906f379dd59ef94caa717f692",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l05/s24/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The scarf is his.",
+          "file": "3c0b0ea541c3310bfd07008595cf19ac98b1a1c36266eba9ed3020bc6cd1680a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c0b0ea541c3310bfd07008595cf19ac98b1a1c36266eba9ed3020bc6cd1680a.mp3",
+          "contentHash": "190643e0dae3d9185c3d5a3a0652bce078426319c8256d5cbab7447e7662b4a8",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s24/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The camera is ours.",
+          "file": "b915778ed753e29eba328d62d45e6cec1793c33a47ad4c9a0c58e6f138e74730.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b915778ed753e29eba328d62d45e6cec1793c33a47ad4c9a0c58e6f138e74730.mp3",
+          "contentHash": "aa89a00a22d16953b30dc1d0868af4e5d9b80de06fbeaebc86e6c06d0c1320aa",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s24/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The necklace is hers.",
+          "file": "6e98453c52bbae2d83caede82a00bebf8aac2336852bcf9dec3f11eda1609e10.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6e98453c52bbae2d83caede82a00bebf8aac2336852bcf9dec3f11eda1609e10.mp3",
+          "contentHash": "ab6b05a6aef6a1d6446c72c7f3d623d3f3558b4b2a1e706132799c6b7a7a13c9",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s24/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Your boots are under the bed.",
+          "file": "690d5238f0d29647718d3c9aa13e820a70a67e853860c81ee93faafab9acf3c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/690d5238f0d29647718d3c9aa13e820a70a67e853860c81ee93faafab9acf3c0.mp3",
+          "contentHash": "1b228fe046e5781cb1f2719e7b9b35e0ad9277e1e139c8f9c3d6c0c5f46ae73c",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l05/s24/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "scarf",
+          "file": "6767544616be4095f2a61f23ad6cd052e182ba5b8f659c36079de4611595bca5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-nova.mp3",
+          "contentHash": "9f8974bee11b5ff0298e8c040db1c058777e55d0d1b2c24f3db8f8a502f26e39",
+          "byteSize": 17280
+        },
+        {
+          "text": "necklace",
+          "file": "a24d5c502beca94e3069e987e75d48855568c210964bfd25aed1d257131ebae3.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-nova.mp3",
+          "contentHash": "cf616f5275f2214b2c55f02c46039c7fbe5ae01daf652d45e99f213f2190321d",
+          "byteSize": 18816
+        },
+        {
+          "text": "boots",
+          "file": "bdc3adcd3dea6c5c21494ecb685d2fa708bf1feeee923809372a29be6fa20349.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bdc3adcd3dea6c5c21494ecb685d2fa708bf1feeee923809372a29be6fa20349.mp3",
+          "contentHash": "2baf44ff746f45cb222154881907cbf85f748c4840af28faa7f9d65cebac7459",
+          "byteSize": 13440
+        },
+        {
+          "text": "camera",
+          "file": "6a16e7fe89bfea2ab08f17770f86046dbad2f171fca64c62123b7fd9363be1f2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a16e7fe89bfea2ab08f17770f86046dbad2f171fca64c62123b7fd9363be1f2.mp3",
+          "contentHash": "228cd4a0eb2b177b3e017db4d5e99bb8fd6c88709b9a7e3a285d07fac269310a",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s24/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your scarf.",
+          "file": "2425eb25ac05ac6453d9563c912bd741e1ce0a54376801440c7b19c8e906216d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2425eb25ac05ac6453d9563c912bd741e1ce0a54376801440c7b19c8e906216d.mp3",
+          "contentHash": "a2475db0ef363d5551b0d450800928a40d0f4794c540b2818c3dccbf84b3976e",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l05/s24/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My jacket is next to your gloves.",
+          "file": "fc214f62fcb17f710fe1fc3c0029edd0005f236b848f656c5dad9d9ef76e8dfe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fc214f62fcb17f710fe1fc3c0029edd0005f236b848f656c5dad9d9ef76e8dfe.mp3",
+          "contentHash": "d786daf4567a92f9317a6f539ac1b0f32e4ccb9a7fc867001159be8abc8a52a6",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l05/s24/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The boots are theirs.",
+          "file": "060090ad8312b721be3684fb08ec0cfebf6796fdc18592d66bc01248125e2a6a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/060090ad8312b721be3684fb08ec0cfebf6796fdc18592d66bc01248125e2a6a.mp3",
+          "contentHash": "9849fdade3757b6d9dcac927c6af4b6b4c88f1de39e5fc3aef65aab8153fba5c",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s24/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The tablet is yours.",
+          "file": "0860e4a4265b9b29b19cda2d80040fce8b65dc4ba40f8fcdfc7b241de9e766bd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0860e4a4265b9b29b19cda2d80040fce8b65dc4ba40f8fcdfc7b241de9e766bd.mp3",
+          "contentHash": "1c125ed9f9b99aa5e0ee8304fe4743c10914d20f6291ce203842d38830fc778b",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s24/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Her camera is here.",
+          "file": "8e89247f1d58bca2f2ebf264536897178b9dcd9a35836b722325e3f97a7fd942.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e89247f1d58bca2f2ebf264536897178b9dcd9a35836b722325e3f97a7fd942.mp3",
+          "contentHash": "59236e1e7e16522cf3cad347e1f4e159356a43a46b342b3327946d9b713ddf53",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s24/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "scarf",
+          "file": "4c7a4990aa8b118dc5c4bce87a3bcfd59edfe7d5ccd63c5c851019dd48144ada.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-onyx.mp3",
+          "contentHash": "dd057ed3ee74466bb8df9970ed8bd4ce7defaf1323c79529621297f9dec39c88",
+          "byteSize": 19584
+        },
+        {
+          "text": "necklace",
+          "file": "978619c2303d7bbda4ffd58391823e67b8cf92a07adcd34978dafa6dde33abcf.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-onyx.mp3",
+          "contentHash": "867fd0864af97276893003340558346bee324a3ec630d52fa8be6292dcbd3788",
+          "byteSize": 23040
+        },
+        {
+          "text": "boots",
+          "file": "10be55c25103a4d05a2250f13a8d00d84ef3995c82261140c37f732f086327ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/10be55c25103a4d05a2250f13a8d00d84ef3995c82261140c37f732f086327ec.mp3",
+          "contentHash": "1cbd6d04a2dfbf3dd9fc2e51fa68ffb8af10194a896c48a7a32f229f4ec7c220",
+          "byteSize": 33792
+        },
+        {
+          "text": "camera",
+          "file": "4c8608fbfd16633677c5962adcf63868b82bcb7fb019bdc6a32c6819179de642.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4c8608fbfd16633677c5962adcf63868b82bcb7fb019bdc6a32c6819179de642.mp3",
+          "contentHash": "37f290f31727179cb8db156b9b3164430f056c449f7ab9b004c17a645c5db3f4",
+          "byteSize": 6912
+        }
+      ]
+    },
+    "l05/s24/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The camera is ours.",
+          "file": "b915778ed753e29eba328d62d45e6cec1793c33a47ad4c9a0c58e6f138e74730.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b915778ed753e29eba328d62d45e6cec1793c33a47ad4c9a0c58e6f138e74730.mp3",
+          "contentHash": "aa89a00a22d16953b30dc1d0868af4e5d9b80de06fbeaebc86e6c06d0c1320aa",
+          "byteSize": 40320
+        }
+      ]
     }
   },
   "settings": {

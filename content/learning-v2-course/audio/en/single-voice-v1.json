@@ -76825,6 +76825,309 @@
           "byteSize": 38784
         }
       ]
+    },
+    "l05/s30/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "These are Anna's headphones.",
+          "file": "d5d3dac1cd460f5304eb0222bec85941be353f65bb2dd4ff68cedd2a9c1003a4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5d3dac1cd460f5304eb0222bec85941be353f65bb2dd4ff68cedd2a9c1003a4.mp3",
+          "contentHash": "4907493c8668d0c5aa16f86aece6e4706bf8d03a665e37f1069c7ede545807f8",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s30/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My headphones are missing.",
+          "file": "5977675523115a7dac0063d4c6b80d88bb03d19bf9a9a093eb83294635e81c95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5977675523115a7dac0063d4c6b80d88bb03d19bf9a9a093eb83294635e81c95.mp3",
+          "contentHash": "d556d3751ea7c3c1c3f0b624145cba625bce0447c96328818306dbb06927f13d",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s30/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The windows are open.",
+          "file": "99b5c391be01148a1967a6889f062030ba300e46daed7d9f225cc49440d638b7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99b5c391be01148a1967a6889f062030ba300e46daed7d9f225cc49440d638b7.mp3",
+          "contentHash": "196170a04d4f4bb698bff83440ee2a62f339c7c40165acdef09ac543ccf4e119",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s30/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The tree is alive.",
+          "file": "1b0f3b2b638b8964c9cf5328fd871da0ea8b7c74ed3faeff3d7f7b070a23e8ba.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1b0f3b2b638b8964c9cf5328fd871da0ea8b7c74ed3faeff3d7f7b070a23e8ba.mp3",
+          "contentHash": "7f85886a75b3889caa78ed05d18fc8009fd6f53e87575b8bcdd52a1964d0b881",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s30/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "headphones",
+          "file": "adf9fd12ce702fdb19c02c81b279acd55ef9efd454707e5a8f3f3c94c476e041.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/adf9fd12ce702fdb19c02c81b279acd55ef9efd454707e5a8f3f3c94c476e041.mp3",
+          "contentHash": "dbc1c1928336d60be2fe2cfc0a22dd9c8e759de8709dcd525a59dfabe4164b04",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s30/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "headphones",
+          "file": "db0267501febf3330aced2547d5ba1e63b426933f195edaf5f986bdf8d92f633.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/db0267501febf3330aced2547d5ba1e63b426933f195edaf5f986bdf8d92f633.mp3",
+          "contentHash": "ea18fe9cf13ab7fd0f44621e16d3f4aeef03f122ebf33a42a980546341242faa",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l05/s30/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "headphones",
+          "file": "db0267501febf3330aced2547d5ba1e63b426933f195edaf5f986bdf8d92f633.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/db0267501febf3330aced2547d5ba1e63b426933f195edaf5f986bdf8d92f633.mp3",
+          "contentHash": "ea18fe9cf13ab7fd0f44621e16d3f4aeef03f122ebf33a42a980546341242faa",
+          "byteSize": 21888
+        },
+        {
+          "text": "alive",
+          "file": "3efe711f2d8762d0a23268fea52ec41e7c470cc4180a3f266126600ad520c598.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3efe711f2d8762d0a23268fea52ec41e7c470cc4180a3f266126600ad520c598.mp3",
+          "contentHash": "3c01c175b90cc0ee6cba245a8e985677e9fc96339366420006278aacdef846d2",
+          "byteSize": 34560
+        },
+        {
+          "text": "dead",
+          "file": "e79b8750a11f6d1a4b3193bb25e9808fff2d8a4452c1f3d08c2cc10c8c6a89f8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e79b8750a11f6d1a4b3193bb25e9808fff2d8a4452c1f3d08c2cc10c8c6a89f8.mp3",
+          "contentHash": "7f72929a00965a361c33e16d061d9aec0ab20e277567af424c047c8a18ed6f39",
+          "byteSize": 20352
+        },
+        {
+          "text": "missing",
+          "file": "028eecef785617a63a3fbb714743a8585f527d6f0941fadd8d101db33352af4e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/028eecef785617a63a3fbb714743a8585f527d6f0941fadd8d101db33352af4e.mp3",
+          "contentHash": "e0377d5ba33d73f1118d369874997b92630f66277cb916cbdba56a5265add843",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s30/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "These are Anna's headphones.",
+          "file": "d5d3dac1cd460f5304eb0222bec85941be353f65bb2dd4ff68cedd2a9c1003a4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5d3dac1cd460f5304eb0222bec85941be353f65bb2dd4ff68cedd2a9c1003a4.mp3",
+          "contentHash": "4907493c8668d0c5aa16f86aece6e4706bf8d03a665e37f1069c7ede545807f8",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s30/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom's boots are next to the door.",
+          "file": "4149d7df99250631ef209f839e2a7ecff76ae7e4052b6b7a123ced4f1970ca69.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4149d7df99250631ef209f839e2a7ecff76ae7e4052b6b7a123ced4f1970ca69.mp3",
+          "contentHash": "afa7cad42faee9caa8ce7487e9ea67fe87d69983ca593fa674ca9c2625cf0ff1",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l05/s30/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "My headphones are missing.",
+          "file": "fa47f4a19df45010d33bcc678c02bebfb1f7d03104391fbcea181c1b43814603.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fa47f4a19df45010d33bcc678c02bebfb1f7d03104391fbcea181c1b43814603.mp3",
+          "contentHash": "a7949739234d4a94d75cebec078b9a61d306f807c04add9ca5085459e28cac9a",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l05/s30/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "These are Tom's boots.",
+          "file": "2e139af70a575c0711ffc83ada02ac8ffb6329f49a2c261b06e8ba58cf4a2d25.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e139af70a575c0711ffc83ada02ac8ffb6329f49a2c261b06e8ba58cf4a2d25.mp3",
+          "contentHash": "ddaab22a87f7cea5559763eb8951a1d97ee8a4b76391907d97cd1011f1cdb738",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s30/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The tree is dead.",
+          "file": "cd2edb3b5bb1d7a427caa17ea8f6647dd8f7b115eef18e4c5cb86e566128bdb2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cd2edb3b5bb1d7a427caa17ea8f6647dd8f7b115eef18e4c5cb86e566128bdb2.mp3",
+          "contentHash": "9a3c1efa04b50c77e7d5417d92ec75c63c28cccdee719d48eec2f7964d38b062",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s30/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "headphones",
+          "file": "4a242cbc1688078bfc1ae45912015de597fdfc10502906cd605eaf2f83c65505.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a242cbc1688078bfc1ae45912015de597fdfc10502906cd605eaf2f83c65505.mp3",
+          "contentHash": "5f1571790734422d65aef45afbb6d7b7ddb2742faa0e1c63537f4b26aa721aba",
+          "byteSize": 32640
+        },
+        {
+          "text": "windows",
+          "file": "ad50ddd1e68402e219d91867169a68ba3b37ec7ec06998f84c744e677c82fc96.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ad50ddd1e68402e219d91867169a68ba3b37ec7ec06998f84c744e677c82fc96.mp3",
+          "contentHash": "491d4bb0438727d11b3a8c4de823795aa33bbf1119b8d45e7414b195865c50e1",
+          "byteSize": 23040
+        },
+        {
+          "text": "signpost",
+          "file": "2509843d379f035816c2dcf5e8c47a517efe15125600ff5d5a207123595f0e3d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2509843d379f035816c2dcf5e8c47a517efe15125600ff5d5a207123595f0e3d.mp3",
+          "contentHash": "3cd8dd6ddf35d258df0234b6a5be6c5e606710fd1feb6df011cba767af30fe89",
+          "byteSize": 42624
+        },
+        {
+          "text": "boots",
+          "file": "9c41be4857d36b4d0bd8d96eeff36024885ae33dfbc42b60f1897a354f6faa52.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9c41be4857d36b4d0bd8d96eeff36024885ae33dfbc42b60f1897a354f6faa52.mp3",
+          "contentHash": "af43b90f1e4bb2778db4a5dba7862b7aaf7d8ec948f53f6989eb99e2a66aee76",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s30/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Anna is next to the signpost.",
+          "file": "9cd3c64fa0f775ad4657f4ee781ec31dd75265d7c2fd0b4d9b830b530477eca7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9cd3c64fa0f775ad4657f4ee781ec31dd75265d7c2fd0b4d9b830b530477eca7.mp3",
+          "contentHash": "6f5ec8b65f598023f21d47769a4c9d8d004fd121a932a80409dd77f97a723fa1",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s30/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The windows are open.",
+          "file": "1dde1d182e8aaf06142cc97fc95a5dca5b07124b6b6fa369d671b28d7e9c95db.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1dde1d182e8aaf06142cc97fc95a5dca5b07124b6b6fa369d671b28d7e9c95db.mp3",
+          "contentHash": "8fcbbeaa640d799eb8dfc3e7e6605096c083b940d230fcff808987ed94c6732c",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s30/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where are my headphones?",
+          "file": "4d604069ad10e05561bd55db7396462134da4c99e7a6e4eb635c4faf65382c3e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4d604069ad10e05561bd55db7396462134da4c99e7a6e4eb635c4faf65382c3e.mp3",
+          "contentHash": "373c9e7f08e90d0aa3aeda47f1faf75766ad8d466a3b74309d410c0c32ab6748",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l05/s30/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The headphones are hers.",
+          "file": "0647933021c61bc3ef3cbc30560997576d95f637a0af872c69b157b045433eb0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0647933021c61bc3ef3cbc30560997576d95f637a0af872c69b157b045433eb0.mp3",
+          "contentHash": "61cccac1e61b31845f15a5f0da118f5aeade012b3eb810ee3a839db88d33b1c5",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l05/s30/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Tom's headphones are here.",
+          "file": "addd127f168a85f0bf39ffea96fd17ba6233cecd497d4d9b5c7fbc69ab73499b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/addd127f168a85f0bf39ffea96fd17ba6233cecd497d4d9b5c7fbc69ab73499b.mp3",
+          "contentHash": "3d69ec31c5059745a7e9c649ad0650a9d8e68c5e454ad6acc85e2affbda21a0e",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s30/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "headphones",
+          "file": "4a242cbc1688078bfc1ae45912015de597fdfc10502906cd605eaf2f83c65505.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a242cbc1688078bfc1ae45912015de597fdfc10502906cd605eaf2f83c65505.mp3",
+          "contentHash": "5f1571790734422d65aef45afbb6d7b7ddb2742faa0e1c63537f4b26aa721aba",
+          "byteSize": 32640
+        },
+        {
+          "text": "windows",
+          "file": "ad50ddd1e68402e219d91867169a68ba3b37ec7ec06998f84c744e677c82fc96.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ad50ddd1e68402e219d91867169a68ba3b37ec7ec06998f84c744e677c82fc96.mp3",
+          "contentHash": "491d4bb0438727d11b3a8c4de823795aa33bbf1119b8d45e7414b195865c50e1",
+          "byteSize": 23040
+        },
+        {
+          "text": "signpost",
+          "file": "2509843d379f035816c2dcf5e8c47a517efe15125600ff5d5a207123595f0e3d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2509843d379f035816c2dcf5e8c47a517efe15125600ff5d5a207123595f0e3d.mp3",
+          "contentHash": "3cd8dd6ddf35d258df0234b6a5be6c5e606710fd1feb6df011cba767af30fe89",
+          "byteSize": 42624
+        },
+        {
+          "text": "boots",
+          "file": "9c41be4857d36b4d0bd8d96eeff36024885ae33dfbc42b60f1897a354f6faa52.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9c41be4857d36b4d0bd8d96eeff36024885ae33dfbc42b60f1897a354f6faa52.mp3",
+          "contentHash": "af43b90f1e4bb2778db4a5dba7862b7aaf7d8ec948f53f6989eb99e2a66aee76",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s30/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "These are Anna's headphones.",
+          "file": "7d74711dbcf4d396bdc90de93b7826d224547f0dd37a83b9935811351adaa337.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d74711dbcf4d396bdc90de93b7826d224547f0dd37a83b9935811351adaa337.mp3",
+          "contentHash": "39186cf5216f8a896f0070fd22eb671471782636ca3d48b7ed6fd17cc95439a8",
+          "byteSize": 42624
+        }
+      ]
     }
   },
   "settings": {

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "назвать письменный стол и сказать, у кого он есть",
+    "uk": "назвати письмовий стіл і сказати, у кого він є"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Стол для работы",
+        "uk": "Стіл для роботи"
+      },
+      "bodyByLocale": {
+        "ru": "`desk` — «письменный стол», за которым работают или учатся. `I have a desk` — «У меня есть письменный стол». Кофейная чашка на нём не превращает его в кафе: работать всё равно придётся. Один стол — `a desk`.",
+        "uk": "`desk` — «письмовий стіл», за яким працюють або навчаються. `I have a desk` — «У мене є письмовий стіл». Чашка кави на ньому не перетворює його на кафе: працювати все одно доведеться. Один стіл — `a desk`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что у вас есть письменный стол.",
+          "uk": "Скажіть, що у вас є письмовий стіл."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-03:intro1:r1",
+              "text": "I have a desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro1:r2",
+              "text": "I has a desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro1:r3",
+              "text": "I have desk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-03:intro1:r1",
+              "text": "I have a desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro1:r2",
+              "text": "I has a desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro1:r3",
+              "text": "I have desk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что у вас есть письменный стол.",
+          "uk": "Скажіть, що у вас є письмовий стіл."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто занят, кто свободен",
+        "uk": "Хто зайнятий, хто вільний"
+      },
+      "bodyByLocale": {
+        "ru": "`busy` — «занят», `free` — «свободен», `late` — «опоздал, не вовремя». `He is busy` — «Он занят». `I’m free` — «Я свободен», здесь речь о времени. `We are late` — «Мы опоздали». В этих фразах нужны `am`, `is`, `are`. Когда сообщаете, у кого есть вещь, используйте `have` или `has`: `She has a desk` — «У неё есть письменный стол».",
+        "uk": "`busy` — «зайнятий», `free` — «вільний», `late` — «запізнився, невчасно». `He is busy` — «Він зайнятий». `I’m free` — «Я вільний», тут ідеться про час. `We are late` — «Ми запізнилися». У цих фразах потрібні `am`, `is`, `are`. Коли повідомляєте, у кого є річ, використовуйте `have` або `has`: `She has a desk` — «У неї є письмовий стіл»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг занят. Выберите фразу.",
+          "uk": "Друг зайнятий. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-03:intro2:r1",
+              "text": "He is busy."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro2:r2",
+              "text": "He has busy."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro2:r3",
+              "text": "He are busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-03:intro2:r1",
+              "text": "He is busy."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro2:r2",
+              "text": "He has busy."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro2:r3",
+              "text": "He are busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг занят. Выберите фразу.",
+          "uk": "Друг зайнятий. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Книга и место встречи",
+        "uk": "Книжка й місце зустрічі"
+      },
+      "bodyByLocale": {
+        "ru": "`book` — «книга», `bank` — «банк», `community centre` — «общественный центр». `The book is on the desk` — «Книга на письменном столе». `The community centre is next to the bank` — «Общественный центр рядом с банком». С `on` книга лежит на поверхности стола; с `under` она была бы под столом.",
+        "uk": "`book` — «книжка», `bank` — «банк», `community centre` — «громадський центр». `The book is on the desk` — «Книжка на письмовому столі». `The community centre is next to the bank` — «Громадський центр поруч із банком». З `on` книжка лежить на поверхні столу; з `under` вона була б під столом."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Книга лежит на письменном столе. Выберите описание.",
+          "uk": "Книжка лежить на письмовому столі. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-03:intro3:r1",
+              "text": "The book is on the desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro3:r2",
+              "text": "The book is under the desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro3:r3",
+              "text": "The book are on the desk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-03:intro3:r1",
+              "text": "The book is on the desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro3:r2",
+              "text": "The book is under the desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-03:intro3:r3",
+              "text": "The book are on the desk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Книга лежит на письменном столе. Выберите описание.",
+          "uk": "Книжка лежить на письмовому столі. Виберіть опис."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "877d024cd3994360419cebef677914492fde237742c8bef6665cec130593b7bd"
+}

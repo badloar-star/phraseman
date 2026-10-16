@@ -81370,6 +81370,309 @@
           "byteSize": 51456
         }
       ]
+    },
+    "l05/s45/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose motorbike is this?",
+          "file": "148122d47ed29ac9cf9f9ed76c35661763b1c53d577d9bf95367733b185330f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/148122d47ed29ac9cf9f9ed76c35661763b1c53d577d9bf95367733b185330f4.mp3",
+          "contentHash": "e1b153abfd53dd46ece1a6205429bced84616e7d7bb32c2866a62227a902d226",
+          "byteSize": 52224
+        }
+      ]
+    },
+    "l05/s45/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The earrings are hers.",
+          "file": "4a95814312aab1d3941777e47786d2f6be9bf8099379bf6f45e3c5d74e528cd8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a95814312aab1d3941777e47786d2f6be9bf8099379bf6f45e3c5d74e528cd8.mp3",
+          "contentHash": "61454e93dc7d6a6e4fa1bc80f3bd4642bb1b0be3da115a36dc0753945831ecaa",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s45/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The microwave is useful.",
+          "file": "52c28c38d1dad859d8f71a80fec82b5b9817ee9f9f87165b603b778dd69ef0ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/52c28c38d1dad859d8f71a80fec82b5b9817ee9f9f87165b603b778dd69ef0ff.mp3",
+          "contentHash": "35e70b30afa71f08234f4f05e80465202f476a2ccd3517ede1a1ff1e150ac3a4",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s45/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The microwave is useful.",
+          "file": "1ebaf37e9c90f07db2b9678839a085ccb6568ba8bd40b6c22e45423b2f75799b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1ebaf37e9c90f07db2b9678839a085ccb6568ba8bd40b6c22e45423b2f75799b.mp3",
+          "contentHash": "79e50a36d9a221d9cce9d3ed17053f9965a6bc405621850d20e9e6c57c0a161a",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s45/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "motorbike",
+          "file": "c69dbe7e22b9e82233e558f76b8baf47381f0facf0da5941a080092506c6d76b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c69dbe7e22b9e82233e558f76b8baf47381f0facf0da5941a080092506c6d76b.mp3",
+          "contentHash": "d23db83b1180b345be0e4728ce892112a95163dc313bab3f449e9902ce060815",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s45/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "motorbike",
+          "file": "fd36548bf1a80308b1a91797d9e8f700883687bfd4e6d156f4ac3278314ae39f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd36548bf1a80308b1a91797d9e8f700883687bfd4e6d156f4ac3278314ae39f.mp3",
+          "contentHash": "172c432d55d9ad3308169b01049abcb91bf20aa7fe80fd65c09aa59e96cca06a",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l05/s45/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "motorbike",
+          "file": "3181559a8f758a9c073f551d911cb6b963081c425f520d1384c35b6374bd73a8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3181559a8f758a9c073f551d911cb6b963081c425f520d1384c35b6374bd73a8.mp3",
+          "contentHash": "77ac12d1a1c3c98ff614caa8435543d54e28106d763d441ede1d567afff4d27c",
+          "byteSize": 24576
+        },
+        {
+          "text": "earrings",
+          "file": "d2b5215d05e2cfab1d9eeea776f174e9842037bc83bb728548f0d8f6c44969f8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2b5215d05e2cfab1d9eeea776f174e9842037bc83bb728548f0d8f6c44969f8.mp3",
+          "contentHash": "507604ae5ff5bf45e11575e5895c1bb9b2cd79ba9ac7c90c66724d98d12f9266",
+          "byteSize": 33792
+        },
+        {
+          "text": "office",
+          "file": "b8c6de968bf1752461575325674b85e3d188ce407c7bb9795f051e9d34100b59.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8c6de968bf1752461575325674b85e3d188ce407c7bb9795f051e9d34100b59.mp3",
+          "contentHash": "b68ccd0b389740553ec28b78745ef14e0ad9a91af4c102e31a584f32c1c57bd9",
+          "byteSize": 27648
+        },
+        {
+          "text": "microwave",
+          "file": "d9b26d295976b249615df2dfb2a8ab904fd644f33c1f7c521c29fe91b12b476a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d9b26d295976b249615df2dfb2a8ab904fd644f33c1f7c521c29fe91b12b476a.mp3",
+          "contentHash": "93c72bb2b2e2bc757383bfee1e93ffefa3b66c4dc5bd12bd6fe7a45cad75c0fa",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l05/s45/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose motorbike is this?",
+          "file": "0a3612491c4e302f5ccb00dbcc008e3af392ce76892b2ae602c248ea96ef3288.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0a3612491c4e302f5ccb00dbcc008e3af392ce76892b2ae602c248ea96ef3288.mp3",
+          "contentHash": "f73f0076a537a899010d93ea38d595eb23489dd4063f2a368e252d7f900a5570",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s45/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The earrings are in the office.",
+          "file": "49a0207b5858e6c5cc867c40a2bc0add9a2348f7bff8bb1450b7d0f32f1fc016.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/49a0207b5858e6c5cc867c40a2bc0add9a2348f7bff8bb1450b7d0f32f1fc016.mp3",
+          "contentHash": "a152b12fea4d2206281a2f978dcfa2688dbecdd721057240d723bee796faeaf5",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s45/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The motorbike is mine.",
+          "file": "11eeaf469af746f9ad1596a3f252ef45488895e682a4a1af423940ed37da9356.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11eeaf469af746f9ad1596a3f252ef45488895e682a4a1af423940ed37da9356.mp3",
+          "contentHash": "3fc90d0f81fa01af1036f36b4bbad0a3a5d48719348f784918c979b671cf2fad",
+          "byteSize": 55680
+        }
+      ]
+    },
+    "l05/s45/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose earrings are these?",
+          "file": "ada38b9633e4058bc15faa8687683d1a3aea91226d270182b41fc49924cc7cd8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ada38b9633e4058bc15faa8687683d1a3aea91226d270182b41fc49924cc7cd8.mp3",
+          "contentHash": "aa5e1bf24d9e4c43c89a5a9832e21308f50ec06be6ab222d6aff029e0d82d05e",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s45/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Tom's motorbike.",
+          "file": "56a6c9c4d61cce9ff50cb6db6cc1b981b8a85c3346694c59cc76670551a4dfee.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56a6c9c4d61cce9ff50cb6db6cc1b981b8a85c3346694c59cc76670551a4dfee.mp3",
+          "contentHash": "b10d6cf7f7b75719876c0208c396863de4a81519495cb5d0717d1e6530f1a0fd",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s45/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "motorbike",
+          "file": "c69dbe7e22b9e82233e558f76b8baf47381f0facf0da5941a080092506c6d76b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c69dbe7e22b9e82233e558f76b8baf47381f0facf0da5941a080092506c6d76b.mp3",
+          "contentHash": "d23db83b1180b345be0e4728ce892112a95163dc313bab3f449e9902ce060815",
+          "byteSize": 23040
+        },
+        {
+          "text": "useful",
+          "file": "0675bdb309a61bebe6206793ddf1635113c0cfe35071c7860cd80fa4e0e5b165.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0675bdb309a61bebe6206793ddf1635113c0cfe35071c7860cd80fa4e0e5b165.mp3",
+          "contentHash": "f378c94612aa109b35ad2f214aeae77ceddd61f41de51c3fe85077d4a9491ccc",
+          "byteSize": 24576
+        },
+        {
+          "text": "microwave",
+          "file": "c60f5016c8694abf81901b9382d7fcbed8d60896641785ad745f1fef46e0a56d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c60f5016c8694abf81901b9382d7fcbed8d60896641785ad745f1fef46e0a56d.mp3",
+          "contentHash": "9f12eaed529b9b6d830d1962bdff776a5510bd8f065c1c618d234fc2d7eb23c2",
+          "byteSize": 22656
+        },
+        {
+          "text": "earrings",
+          "file": "2953ca610b61643cbfd186174a205a4168911280424b42985540154c5b0de949.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2953ca610b61643cbfd186174a205a4168911280424b42985540154c5b0de949.mp3",
+          "contentHash": "ffd7fdc3df5df9ce10942daf205118b1dea5aeedcc18b7b85884f420344e585d",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l05/s45/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The motorbike is near the office.",
+          "file": "85c9b93ced1d88f3c06bc200d7b24902625dedd9257944c466e6ba2dbb47bb15.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/85c9b93ced1d88f3c06bc200d7b24902625dedd9257944c466e6ba2dbb47bb15.mp3",
+          "contentHash": "00a80eb562e06cae523c4019414e81a87f4038bc5530225e8e7a06a3bf69ba46",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s45/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The earrings are hers.",
+          "file": "767e7b655e9561a87695a7b7472aabc04639097bf035902d92f3dc2df185c2d7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/767e7b655e9561a87695a7b7472aabc04639097bf035902d92f3dc2df185c2d7.mp3",
+          "contentHash": "8dbf86c9ae037b3a53baf1a1bc151176fd024aabdfaa038f95cfff44c08ec69e",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s45/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I have your earrings.",
+          "file": "346ecb2482dc47c1156972b541f2c978e3b626a40d078cdb5f9fa4d9da624bde.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/346ecb2482dc47c1156972b541f2c978e3b626a40d078cdb5f9fa4d9da624bde.mp3",
+          "contentHash": "d0825a86a4343cbe90396447ab7d2ca8e7d0f5fcb0292e385d84af05f09fdc22",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s45/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose motorbike is this?",
+          "file": "fadecc0c0d71f133ae522c4d283779e8561c8c61b841279d7dae2a0eb4310542.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fadecc0c0d71f133ae522c4d283779e8561c8c61b841279d7dae2a0eb4310542.mp3",
+          "contentHash": "b48481955d354345faead8173da5d63a63c2ea729ad5afc933ed48e2b3fca702",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s45/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Your motorbike is here.",
+          "file": "dd44a7b2750ef59bdc49168ff1b1a42d15bb39903fdbb29aaffdc315a7a21f84.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd44a7b2750ef59bdc49168ff1b1a42d15bb39903fdbb29aaffdc315a7a21f84.mp3",
+          "contentHash": "f039c520607d804970d8fb9ca01e67708315551c75740fbb10ba7015432a7a1e",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l05/s45/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "motorbike",
+          "file": "3181559a8f758a9c073f551d911cb6b963081c425f520d1384c35b6374bd73a8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3181559a8f758a9c073f551d911cb6b963081c425f520d1384c35b6374bd73a8.mp3",
+          "contentHash": "77ac12d1a1c3c98ff614caa8435543d54e28106d763d441ede1d567afff4d27c",
+          "byteSize": 24576
+        },
+        {
+          "text": "useful",
+          "file": "ea441a80d30a130f763327e68b47f3d504c0741647d7be3789e4048df15b2760.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ea441a80d30a130f763327e68b47f3d504c0741647d7be3789e4048df15b2760.mp3",
+          "contentHash": "0700eab9202dc9565a35c21f83fce72cf69fdefd051305b86f22caddd0d97d01",
+          "byteSize": 32256
+        },
+        {
+          "text": "office",
+          "file": "b8c6de968bf1752461575325674b85e3d188ce407c7bb9795f051e9d34100b59.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8c6de968bf1752461575325674b85e3d188ce407c7bb9795f051e9d34100b59.mp3",
+          "contentHash": "b68ccd0b389740553ec28b78745ef14e0ad9a91af4c102e31a584f32c1c57bd9",
+          "byteSize": 27648
+        },
+        {
+          "text": "earrings",
+          "file": "d2b5215d05e2cfab1d9eeea776f174e9842037bc83bb728548f0d8f6c44969f8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2b5215d05e2cfab1d9eeea776f174e9842037bc83bb728548f0d8f6c44969f8.mp3",
+          "contentHash": "507604ae5ff5bf45e11575e5895c1bb9b2cd79ba9ac7c90c66724d98d12f9266",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s45/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose earrings are these?",
+          "file": "81114fd4b67f6335c50f1853eef44db7512ff49657cd47cd792c910806db012d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81114fd4b67f6335c50f1853eef44db7512ff49657cd47cd792c910806db012d.mp3",
+          "contentHash": "295ca1071346dbb762fb51c0df5cee7ac52ea7968a0c5746455b8645725a734a",
+          "byteSize": 31488
+        }
+      ]
     }
   },
   "settings": {

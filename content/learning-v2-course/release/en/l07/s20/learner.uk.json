@@ -1,0 +1,945 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я не кричу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я не кричу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I don’t shout.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я не кричу»",
+          "uk": "Скажіть «Я не кричу»"
+        },
+        "orderedTokens": [
+          "I",
+          "don’t",
+          "shout"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-20:i02:r1",
+          "text": "shout"
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i02:r2",
+          "text": "cook"
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i02:r3",
+          "text": "scarf"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:i02:audio",
+          "transcript": "shout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-20:i02:r1",
+            "targetText": "shout",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i02:r2",
+            "targetText": "cook",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i02:r3",
+            "targetText": "scarf",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `shout`, а в этом варианте — `cook`.",
+              "uk": "У записі перше слово — `shout`, а в цьому варіанті — `cook`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `shout`, а в этом варианте — `scarf`.",
+              "uk": "У записі перше слово — `shout`, а в цьому варіанті — `scarf`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я не кричу»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-20:i03:r1",
+          "text": "don’t"
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i03:r2",
+          "text": "doesn’t"
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i03:r3",
+          "text": "not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я не кричу»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я не кричу»",
+          "uk": "Скажіть «Я не кричу»"
+        },
+        "gappedTargetPhrase": "I ___ shout.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-20:i03:r1",
+            "text": "don’t"
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i03:r2",
+            "text": "doesn’t"
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i03:r3",
+            "text": "not"
+          }
+        ],
+        "testedDimension": "Скажіть «Я не кричу»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я не кричу»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `don’t`.",
+              "uk": "Після `I` потрібне `don’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я не кричу»",
+            "feedbackByLocale": {
+              "ru": "Для отрицания действия нужно `don’t`.",
+              "uk": "Для заперечення дії потрібне `don’t`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-20:i04:p1",
+            "target": "shout",
+            "meaningByLocale": {
+              "ru": "кричать",
+              "uk": "кричати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i04:p2",
+            "target": "cook",
+            "meaningByLocale": {
+              "ru": "готовить",
+              "uk": "готувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i04:p3",
+            "target": "scarf",
+            "meaningByLocale": {
+              "ru": "шарф",
+              "uk": "шарф"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i04:p4",
+            "target": "maps",
+            "meaningByLocale": {
+              "ru": "карты",
+              "uk": "карти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shout",
+          "cook",
+          "scarf",
+          "maps"
+        ],
+        "rightColumn": [
+          "кричати",
+          "готувати",
+          "шарф",
+          "карти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:i05:audio",
+          "transcript": "I don’t shout."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I don’t shout.",
+        "orderedTokens": [
+          "I",
+          "don’t",
+          "shout"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Будильник працює?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Будильник працює?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does the alarm work?",
+        "localizedMeaning": {
+          "ru": "Спросите «Будильник работает?»",
+          "uk": "Запитайте «Будильник працює?»"
+        },
+        "orderedTokens": [
+          "Does",
+          "the",
+          "alarm",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повідомте «Тут немає карт»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:i07:audio"
+      ],
+      "accessibilityLabel": "Повідомте «Тут немає карт»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:i07:audio",
+          "transcript": "There are no maps here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are no maps here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Будильник працює?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-20:i08:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i08:r2",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i08:r3",
+          "text": "is work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Будильник працює?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Будильник работает?»",
+          "uk": "Запитайте «Будильник працює?»"
+        },
+        "gappedTargetPhrase": "Does the alarm ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-20:i08:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i08:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i08:r3",
+            "text": "is work"
+          }
+        ],
+        "testedDimension": "Запитайте «Будильник працює?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Будильник працює?»",
+            "feedbackByLocale": {
+              "ru": "После `does` нужно `work`.",
+              "uk": "Після `does` потрібне `work`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Будильник працює?»",
+            "feedbackByLocale": {
+              "ru": "В этом вопросе нужно `work`, без `is`.",
+              "uk": "У цьому запитанні потрібне `work`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чого не робить співрозмовник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-20:i09:r1",
+          "text": "I don’t shout."
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i09:r2",
+          "text": "I don’t complain."
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i09:r3",
+          "text": "I don’t smoke."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чого не робить співрозмовник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:i09:audio",
+          "transcript": "I don’t shout."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-20:i09:r1",
+            "targetText": "I don’t shout.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i09:r2",
+            "targetText": "I don’t complain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i09:r3",
+            "targetText": "I don’t smoke.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `shout`, а в этом варианте — `complain`.",
+              "uk": "У записі останнє слово — `shout`, а в цьому варіанті — `complain`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `shout`, а в этом варианте — `smoke`.",
+              "uk": "У записі останнє слово — `shout`, а в цьому варіанті — `smoke`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-20:i10:p1",
+            "target": "alarm",
+            "meaningByLocale": {
+              "ru": "будильник",
+              "uk": "будильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i10:p2",
+            "target": "shout",
+            "meaningByLocale": {
+              "ru": "кричать",
+              "uk": "кричати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i10:p3",
+            "target": "cook",
+            "meaningByLocale": {
+              "ru": "готовить",
+              "uk": "готувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i10:p4",
+            "target": "scarf",
+            "meaningByLocale": {
+              "ru": "шарф",
+              "uk": "шарф"
+            }
+          }
+        ],
+        "leftColumn": [
+          "alarm",
+          "shout",
+          "cook",
+          "scarf"
+        ],
+        "rightColumn": [
+          "будильник",
+          "кричати",
+          "готувати",
+          "шарф"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:i11:audio",
+          "transcript": "Does the alarm work?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does the alarm work?",
+        "orderedTokens": [
+          "Does",
+          "the",
+          "alarm",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перед виходом запитайте друга «У тебе є шарф?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед виходом запитайте друга «У тебе є шарф?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a scarf?",
+        "localizedMeaning": {
+          "ru": "Перед выходом спросите друга «У тебя есть шарф?»",
+          "uk": "Перед виходом запитайте друга «У тебе є шарф?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "scarf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажіть другові «Карти тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Покажіть другові «Карти тут»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:i13:audio",
+          "transcript": "The maps are here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The maps are here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Повідомте «Тут немає карт»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-20:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте «Тут немає карт»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите «Здесь нет карт»",
+          "uk": "Повідомте «Тут немає карт»"
+        },
+        "gappedTargetPhrase": "There ___ no maps here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-20:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Повідомте «Тут немає карт»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i14:r2",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут немає карт»",
+            "feedbackByLocale": {
+              "ru": "С `maps` нужно `are`.",
+              "uk": "З `maps` потрібне `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i14:r3",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут немає карт»",
+            "feedbackByLocale": {
+              "ru": "С `maps` нужно `are`.",
+              "uk": "З `maps` потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чого не робить співрозмовник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-20:i15:r1",
+          "text": "I don’t cook."
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i15:r2",
+          "text": "I don’t shout."
+        },
+        {
+          "responseId": "en:lesson-07:session-20:i15:r3",
+          "text": "I don’t drive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чого не робить співрозмовник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:i15:audio",
+          "transcript": "I don’t cook."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-20:i15:r1",
+            "targetText": "I don’t cook.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i15:r2",
+            "targetText": "I don’t shout.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i15:r3",
+            "targetText": "I don’t drive.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cook`, а в этом варианте — `shout`.",
+              "uk": "У записі останнє слово — `cook`, а в цьому варіанті — `shout`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-20:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cook`, а в этом варианте — `drive`.",
+              "uk": "У записі останнє слово — `cook`, а в цьому варіанті — `drive`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-20:i16:p1",
+            "target": "maps",
+            "meaningByLocale": {
+              "ru": "карты",
+              "uk": "карти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i16:p2",
+            "target": "alarm",
+            "meaningByLocale": {
+              "ru": "будильник",
+              "uk": "будильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i16:p3",
+            "target": "shout",
+            "meaningByLocale": {
+              "ru": "кричать",
+              "uk": "кричати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i16:p4",
+            "target": "cook",
+            "meaningByLocale": {
+              "ru": "готовить",
+              "uk": "готувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "maps",
+          "alarm",
+          "shout",
+          "cook"
+        ],
+        "rightColumn": [
+          "карти",
+          "будильник",
+          "кричати",
+          "готувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, як Том поводиться в суперечках. Скажіть «Том не кричить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, як Том поводиться в суперечках. Скажіть «Том не кричить»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:i17:audio",
+          "transcript": "Tom doesn’t shout."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom doesn’t shout.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7222f8db30d6e6c239143bd50bacba273d08273aefaf4b3c4f5e29894c9c6bda"
+}

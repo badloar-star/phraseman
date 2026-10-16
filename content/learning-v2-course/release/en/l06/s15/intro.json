@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о пении и различить действие и состояние",
+    "uk": "розповісти про спів і розрізнити дію та стан"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Петь",
+        "uk": "Співати"
+      },
+      "bodyByLocale": {
+        "ru": "`sing` — «петь». `I sing at home` — «Я пою дома»: говорим о привычном занятии. `We sing here` — «Мы поём здесь». Для `sing` не нужен билет на большую сцену: ванная тоже считается, даже если зрители — только шампуни.",
+        "uk": "`sing` — «співати». `I sing at home` — «Я співаю вдома»: говоримо про звичне заняття. `We sing here` — «Ми співаємо тут». Для `sing` не потрібен квиток на велику сцену: ванна кімната теж рахується, навіть якщо глядачі — лише шампуні."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мы поём здесь».",
+          "uk": "Скажіть «Ми співаємо тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-15:intro1:r1",
+              "text": "We sing here."
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro1:r2",
+              "text": "We sings here."
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro1:r3",
+              "text": "We are sing here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-15:intro1:r1",
+              "text": "We sing here."
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro1:r2",
+              "text": "We sings here."
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro1:r3",
+              "text": "We are sing here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мы поём здесь».",
+          "uk": "Скажіть «Ми співаємо тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Петь и молчать",
+        "uk": "Співати й мовчати"
+      },
+      "bodyByLocale": {
+        "ru": "`silent` — «молчащий», «беззвучный»; о месте — «тихий», без слышимых звуков. `They are silent` — «Они молчат». Это состояние: после `they` нужно `are`. `They sing at home` — «Они поют дома»: действие `sing`, без `are`. `gym` — «тренажёрный зал».",
+        "uk": "`silent` — «мовчазний», «беззвучний»; про місце — «тихий», без чутних звуків. `They are silent` — «Вони мовчать». Це стан: після `they` потрібно `are`. `They sing at home` — «Вони співають удома»: дія `sing`, без `are`. `gym` — «тренажерний зал»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Они молчат».",
+          "uk": "Скажіть «Вони мовчать»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-15:intro2:r1",
+              "text": "They are silent."
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro2:r2",
+              "text": "They silent."
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro2:r3",
+              "text": "They is silent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-15:intro2:r1",
+              "text": "They are silent."
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro2:r2",
+              "text": "They silent."
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro2:r3",
+              "text": "They is silent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Они молчат».",
+          "uk": "Скажіть «Вони мовчать»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вещи у двери",
+        "uk": "Речі біля дверей"
+      },
+      "bodyByLocale": {
+        "ru": "`helmet` — «шлем», `calendar` — «календарь». `Whose helmet is this?` — «Чей это шлем?» `That helmet is yours` — «Тот шлем твой». `The calendar is on the wall` — «Календарь на стене». `We are at the gym` — «Мы в тренажёрном зале».",
+        "uk": "`helmet` — «шолом», `calendar` — «календар». `Whose helmet is this?` — «Чий це шолом?» `That helmet is yours` — «Той шолом твій». `The calendar is on the wall` — «Календар на стіні». `We are at the gym` — «Ми в тренажерному залі»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Чей это шлем?»",
+          "uk": "Запитайте «Чий це шолом?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-15:intro3:r1",
+              "text": "Whose helmet is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro3:r2",
+              "text": "Where is the helmet?"
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro3:r3",
+              "text": "Whose helmet are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-15:intro3:r1",
+              "text": "Whose helmet is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro3:r2",
+              "text": "Where is the helmet?"
+            },
+            {
+              "responseId": "en:lesson-06:session-15:intro3:r3",
+              "text": "Whose helmet are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Чей это шлем?»",
+          "uk": "Запитайте «Чий це шолом?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c921678c24047a363ccf92361da069baa2e475f16d0077dc17a672c9854f273d"
+}

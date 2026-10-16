@@ -116215,6 +116215,309 @@
           "byteSize": 53760
         }
       ]
+    },
+    "l07/s48/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often meditate.",
+          "file": "395cf006ebc5feaf37d50840816b92631b9b0e35f610849dd4bf67fc4ae27021.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/395cf006ebc5feaf37d50840816b92631b9b0e35f610849dd4bf67fc4ae27021.mp3",
+          "contentHash": "e5e3a2a78a54cc4c1f6fa685196743b3797e44e7d9f77181f60e63b5d9e181ee",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s48/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often sew at home.",
+          "file": "779d8d77818c4b1aa5a25af097a20532637ee7a51023a0e3d275e6a5eaab17cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/779d8d77818c4b1aa5a25af097a20532637ee7a51023a0e3d275e6a5eaab17cc.mp3",
+          "contentHash": "7135be17f76c2e8bd75592e6c960226fe97220ef7cee0ff0eb716b65a0998d46",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l07/s48/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom often donates books.",
+          "file": "29f50c5d4cfb4392eb91f0d39fa2b3e54605115b0b71487321dad42889c17b48.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/29f50c5d4cfb4392eb91f0d39fa2b3e54605115b0b71487321dad42889c17b48.mp3",
+          "contentHash": "5cc20f400b197951a4137171f444b89ac2d221a3152f4b011584a2d17201d826",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l07/s48/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often meditate.",
+          "file": "395cf006ebc5feaf37d50840816b92631b9b0e35f610849dd4bf67fc4ae27021.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/395cf006ebc5feaf37d50840816b92631b9b0e35f610849dd4bf67fc4ae27021.mp3",
+          "contentHash": "e5e3a2a78a54cc4c1f6fa685196743b3797e44e7d9f77181f60e63b5d9e181ee",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s48/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "decorate",
+          "file": "be67a85debc2ec293861672c9e0d2ca306854674bba102c6b6a7ec65518192d9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/be67a85debc2ec293861672c9e0d2ca306854674bba102c6b6a7ec65518192d9.mp3",
+          "contentHash": "1cdcc0e1d8a2af1fc3e56dd190f91b7e05060baea285c3343277b1215b82d3b0",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l07/s48/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often sew at home.",
+          "file": "819a6584fcb6372faf1dee24f36b54c56a7f42b9add3a374b2ce444ff15356ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/819a6584fcb6372faf1dee24f36b54c56a7f42b9add3a374b2ce444ff15356ae.mp3",
+          "contentHash": "9b1c814cc12ee04e1025bc37355efecb0520c7eb623513eac125f9ed67768573",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l07/s48/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "meditate",
+          "file": "df95dbf4e09ed06fc195ed2d0de3ef0c600729ca112edc566eae75f0e96d2218.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/df95dbf4e09ed06fc195ed2d0de3ef0c600729ca112edc566eae75f0e96d2218.mp3",
+          "contentHash": "8e5f934c54425319601d3c4232c00006de0ddedd8b948a290868a803f96cecb8",
+          "byteSize": 15744
+        },
+        {
+          "text": "decorate",
+          "file": "256c27da4805c61401091563fba04c35628b108d97d6f17f7f3b7db7818ad4ce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/256c27da4805c61401091563fba04c35628b108d97d6f17f7f3b7db7818ad4ce.mp3",
+          "contentHash": "b0f9f0ad9087086ad12792112cb8aa183116a4e7a744956b5553232733cfe9b8",
+          "byteSize": 26880
+        },
+        {
+          "text": "sew",
+          "file": "fdad895648a91577bb282e40c2fb11f175b08bef8bbb669316333552672dbf46.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fdad895648a91577bb282e40c2fb11f175b08bef8bbb669316333552672dbf46.mp3",
+          "contentHash": "7575a1c4a87ef34107f883a1f90529b99ccd7e4c2f8640ace5d1b32fb6ee7750",
+          "byteSize": 15744
+        },
+        {
+          "text": "polish",
+          "file": "13973a29cf93d68e7e259856f4fd5bd2befd237c8166a478c8b5d5aa3e1a3995.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/13973a29cf93d68e7e259856f4fd5bd2befd237c8166a478c8b5d5aa3e1a3995.mp3",
+          "contentHash": "ce183ff42c777ae4872ca3f9df5105d4d85cbe0f28bd37b01b04c93370e317d1",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l07/s48/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often sew at home.",
+          "file": "779d8d77818c4b1aa5a25af097a20532637ee7a51023a0e3d275e6a5eaab17cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/779d8d77818c4b1aa5a25af097a20532637ee7a51023a0e3d275e6a5eaab17cc.mp3",
+          "contentHash": "7135be17f76c2e8bd75592e6c960226fe97220ef7cee0ff0eb716b65a0998d46",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l07/s48/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually polish the table.",
+          "file": "e5a66a0a53d9b0b5c31616edb94894b986cce04d59861e73573270e2ca766517.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e5a66a0a53d9b0b5c31616edb94894b986cce04d59861e73573270e2ca766517.mp3",
+          "contentHash": "1ae1c8b77977930074dbfa08848a82cfe8761d8656c9dcc73641db63b761618c",
+          "byteSize": 52992
+        }
+      ]
+    },
+    "l07/s48/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom often donates books.",
+          "file": "36a7d438e3fb80cc1ea480825ed748e94b313e9c21e9dc14813a73f5cda00c2a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36a7d438e3fb80cc1ea480825ed748e94b313e9c21e9dc14813a73f5cda00c2a.mp3",
+          "contentHash": "430e770d637eb1edd1e865b7b9e45650a42d570c968fbe218f3c7f4d341e3126",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l07/s48/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom often donates books.",
+          "file": "d146e234f64ea5d31bd2749bc5bdcfcbc3c6d73ee89248094b0a7702fd244207.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d146e234f64ea5d31bd2749bc5bdcfcbc3c6d73ee89248094b0a7702fd244207.mp3",
+          "contentHash": "1ec2b2322e8980ac301622a11b902dc7727a68bf70ef589def4c80cc9980423d",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s48/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often photograph birds.",
+          "file": "5569edf838970aa81078c5111177b9911383752b9d799a854bfa1092e4b3c119.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5569edf838970aa81078c5111177b9911383752b9d799a854bfa1092e4b3c119.mp3",
+          "contentHash": "fc8e645f3201c84ffe499a7f3da4c492b7805aa79036e49ebca7201ef281aa9e",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l07/s48/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "donate",
+          "file": "025453c45ce5dcb8f755568b1f45602b9d4ae4a9a5aad30ca0867d8c42f63006.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/025453c45ce5dcb8f755568b1f45602b9d4ae4a9a5aad30ca0867d8c42f63006.mp3",
+          "contentHash": "831102c9046bbd8fb14c834f7d016715018987bdd4f5dd6d8afbb1a04cd0cf56",
+          "byteSize": 17280
+        },
+        {
+          "text": "organize",
+          "file": "7d736c57573889bae2b7dc93a761bde8c28da9ce796c9419e8eb1e3a1572d986.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d736c57573889bae2b7dc93a761bde8c28da9ce796c9419e8eb1e3a1572d986.mp3",
+          "contentHash": "4331d8a21a74d5a4eda9d76132aea1ab92f13c38ef89810a37b6915dc3be5f47",
+          "byteSize": 18816
+        },
+        {
+          "text": "photograph",
+          "file": "6c85828628e60dc8c2395ed3f049ec8db6cb183f6b18ebd1d8b25db7101c8dd4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6c85828628e60dc8c2395ed3f049ec8db6cb183f6b18ebd1d8b25db7101c8dd4.mp3",
+          "contentHash": "54b8480a2975cf0d28c5cf41c9f44a766b17c4aeb1cc4a618bf25fd977cb8238",
+          "byteSize": 33792
+        },
+        {
+          "text": "sew",
+          "file": "0dcaf199ad70d8d2296379412d39f22bcc46c0f8ce82465735e9931982b8da5e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0dcaf199ad70d8d2296379412d39f22bcc46c0f8ce82465735e9931982b8da5e.mp3",
+          "contentHash": "e2cd704cb6d52067b50a08c96ab66be5723cecc30b71171919907900f6107cc0",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l07/s48/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually organize my books.",
+          "file": "e69cdfc87aceb0b0a27c5a8c1c25bcb2c212c5ac72ac5d67e49a3c0384bce631.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e69cdfc87aceb0b0a27c5a8c1c25bcb2c212c5ac72ac5d67e49a3c0384bce631.mp3",
+          "contentHash": "8afeb7b2957386dff1cf326bd2d76992ae46ef3693fa639cf229e4467c63995d",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s48/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you often meditate?",
+          "file": "c9e01e1966ce36563df4ffafbd4d304ba2cc19ae6b6cd308366325c18e6ae1af.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c9e01e1966ce36563df4ffafbd4d304ba2cc19ae6b6cd308366325c18e6ae1af.mp3",
+          "contentHash": "17fd940f73f00a2226f311e88065044c39722c30e14be83c0d167db6b2d44523",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s48/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Does Tom often sew?",
+          "file": "d6300655798cde292c3488166c7eee7e6141354e103beae447bd84fef1977944.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d6300655798cde292c3488166c7eee7e6141354e103beae447bd84fef1977944.mp3",
+          "contentHash": "2d76898431e451fbeee8ec4eb0e75acb3113b053ccf3bcba611be573bed35f8e",
+          "byteSize": 54912
+        }
+      ]
+    },
+    "l07/s48/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often photograph birds.",
+          "file": "63b03555454ef342781d712500b747d4bd6c1e0d45331560efc7ad410bbeb3d7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63b03555454ef342781d712500b747d4bd6c1e0d45331560efc7ad410bbeb3d7.mp3",
+          "contentHash": "36f7c28c9e14287d30fcc2a40e5108159387efc75b6efdf3fed17d6732322335",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l07/s48/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually polish the table.",
+          "file": "e5a66a0a53d9b0b5c31616edb94894b986cce04d59861e73573270e2ca766517.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e5a66a0a53d9b0b5c31616edb94894b986cce04d59861e73573270e2ca766517.mp3",
+          "contentHash": "1ae1c8b77977930074dbfa08848a82cfe8761d8656c9dcc73641db63b761618c",
+          "byteSize": 52992
+        }
+      ]
+    },
+    "l07/s48/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "decorate",
+          "file": "256c27da4805c61401091563fba04c35628b108d97d6f17f7f3b7db7818ad4ce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/256c27da4805c61401091563fba04c35628b108d97d6f17f7f3b7db7818ad4ce.mp3",
+          "contentHash": "b0f9f0ad9087086ad12792112cb8aa183116a4e7a744956b5553232733cfe9b8",
+          "byteSize": 26880
+        },
+        {
+          "text": "polish",
+          "file": "13973a29cf93d68e7e259856f4fd5bd2befd237c8166a478c8b5d5aa3e1a3995.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/13973a29cf93d68e7e259856f4fd5bd2befd237c8166a478c8b5d5aa3e1a3995.mp3",
+          "contentHash": "ce183ff42c777ae4872ca3f9df5105d4d85cbe0f28bd37b01b04c93370e317d1",
+          "byteSize": 23040
+        },
+        {
+          "text": "organize",
+          "file": "8fcaa4367ab78b368845f534d4347640c681f911802475bae8d65a121677b8c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8fcaa4367ab78b368845f534d4347640c681f911802475bae8d65a121677b8c4.mp3",
+          "contentHash": "efbcf29517d8a5083f868a870d5b44b5a6d2a60d488473f464b23856705ea6af",
+          "byteSize": 19584
+        },
+        {
+          "text": "photograph",
+          "file": "ef264d7d92d7c818b1f4123b9958b7465bcdb1b20acd5ae3d955228905417ded.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef264d7d92d7c818b1f4123b9958b7465bcdb1b20acd5ae3d955228905417ded.mp3",
+          "contentHash": "f72def21336100672be6dd5fe114a12ad66d3d5591d3d41b05c11de5e1caf4d2",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s48/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Tom often photographs birds.",
+          "file": "90c20b6080ee1ea7975f50109c96949e22797da33354f6e7b0510344ab95b2cb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90c20b6080ee1ea7975f50109c96949e22797da33354f6e7b0510344ab95b2cb.mp3",
+          "contentHash": "b7c9c9312a8667437d9e0f6cfb9e74b9e952f88d33292b32eaffd8697f1c3722",
+          "byteSize": 42624
+        }
+      ]
     }
   },
   "settings": {

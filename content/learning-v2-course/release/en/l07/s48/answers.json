@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-48:i01",
+    "correctText": "I often meditate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i02",
+    "correctText": "decorate",
+    "correctResponseId": "en:lesson-07:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i03",
+    "correctText": "sew",
+    "correctResponseId": "en:lesson-07:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i04",
+    "correctText": "en:lesson-07:session-48:i04:p1=meditate\nen:lesson-07:session-48:i04:p2=decorate\nen:lesson-07:session-48:i04:p3=sew\nen:lesson-07:session-48:i04:p4=polish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i05",
+    "correctText": "I often sew at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i06",
+    "correctText": "I usually polish the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i07",
+    "correctText": "Tom often donates books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i08",
+    "correctText": "donates",
+    "correctResponseId": "en:lesson-07:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i09",
+    "correctText": "I often photograph birds.",
+    "correctResponseId": "en:lesson-07:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i10",
+    "correctText": "en:lesson-07:session-48:i10:p1=donate\nen:lesson-07:session-48:i10:p2=organize\nen:lesson-07:session-48:i10:p3=photograph\nen:lesson-07:session-48:i10:p4=sew",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i11",
+    "correctText": "I usually organize my books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i12",
+    "correctText": "Do you often meditate?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i13",
+    "correctText": "Does Tom often sew?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i14",
+    "correctText": "often",
+    "correctResponseId": "en:lesson-07:session-48:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i15",
+    "correctText": "I usually polish the table.",
+    "correctResponseId": "en:lesson-07:session-48:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i16",
+    "correctText": "en:lesson-07:session-48:i16:p1=decorate\nen:lesson-07:session-48:i16:p2=polish\nen:lesson-07:session-48:i16:p3=organize\nen:lesson-07:session-48:i16:p4=photograph",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:i17",
+    "correctText": "Tom often photographs birds.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-48:intro1:r2": {
+          "ru": "После `I` нужно `meditate`.",
+          "uk": "Після `I` потрібне `meditate`."
+        },
+        "en:lesson-07:session-48:intro1:r3": {
+          "ru": "Здесь нужна форма `meditate`.",
+          "uk": "Тут потрібна форма `meditate`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-48:intro2:r2": {
+          "ru": "После `I` нужно `sew`.",
+          "uk": "Після `I` потрібне `sew`."
+        },
+        "en:lesson-07:session-48:intro2:r3": {
+          "ru": "Здесь нужна форма `sew`.",
+          "uk": "Тут потрібна форма `sew`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-48:intro3:r2": {
+          "ru": "После `Tom` нужно `donates`.",
+          "uk": "Після `Tom` потрібне `donates`."
+        },
+        "en:lesson-07:session-48:intro3:r3": {
+          "ru": "Здесь нужна форма `donates`.",
+          "uk": "Тут потрібна форма `donates`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "24db2224e97a303fc61dfae2312cb88ac380828074ff8f832deb84ced2ec8681"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "повторить слова главы и рассказать о своих и чужих привычках",
+    "uk": "повторити слова розділу й розповісти про свої та чужі звички"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Время для медитации",
+        "uk": "Час для медитації"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, часто ли вы медитируете. `I often meditate` — «Я часто медитирую». `Often` стоит перед `meditate`. После `I` у слова `meditate` нет окончания `s`. Чтобы спросить друга, скажите `Do you often meditate?` — «Ты часто медитируешь?» В вопросе `often` остаётся перед действием.",
+        "uk": "Друг запитує, чи часто ви медитуєте. `I often meditate` — «Я часто медитую». `Often` стоїть перед `meditate`. Після `I` у слова `meditate` немає закінчення `s`. Щоб запитати друга, скажіть `Do you often meditate?` — «Ти часто медитуєш?» У запитанні `often` залишається перед дією."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте другу о своей привычке.",
+          "uk": "Дайте другові відповідь про свою звичку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-48:intro1:r1",
+              "text": "I often meditate."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro1:r2",
+              "text": "I often meditates."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro1:r3",
+              "text": "I often meditating."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-48:intro1:r1",
+              "text": "I often meditate."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro1:r2",
+              "text": "I often meditates."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro1:r3",
+              "text": "I often meditating."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте другу о своей привычке.",
+          "uk": "Дайте другові відповідь про свою звичку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шью дома",
+        "uk": "Шию вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга замечает швейную машинку у вас дома. `I often sew at home` — «Я часто шью дома». `Often` стоит перед `sew`, а `at home` значит «дома». Машинка здесь работает, а не просто собирает пыль.",
+        "uk": "Подруга помічає швейну машинку у вас удома. `I often sew at home` — «Я часто шию вдома». `Often` стоїть перед `sew`, а `at home` означає «вдома». Машинка тут працює, а не просто збирає пил."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Объясните подруге, что вы часто делаете дома.",
+          "uk": "Поясніть подрузі, що ви часто робите вдома."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-48:intro2:r1",
+              "text": "I often sew at home."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro2:r2",
+              "text": "I often sews at home."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro2:r3",
+              "text": "I often sewing at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-48:intro2:r1",
+              "text": "I often sew at home."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro2:r2",
+              "text": "I often sews at home."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro2:r3",
+              "text": "I often sewing at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните подруге, что вы часто делаете дома.",
+          "uk": "Поясніть подрузі, що ви часто робите вдома."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Книги Тома",
+        "uk": "Книжки Тома"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, куда Том относит коробки с книгами. `Tom often donates books` — «Том часто отдаёт книги на благотворительность». После `Tom` нужно `donates`, с окончанием `s`. `Often` стоит перед `donates`. Спросить об этой привычке можно так: `Does Tom often donate books?` — «Том часто отдаёт книги на благотворительность?» После `does` у `donate` нет окончания `s`.",
+        "uk": "Друг запитує, куди Том відносить коробки з книжками. `Tom often donates books` — «Том часто віддає книжки на благодійність». Після `Tom` потрібне `donates`, із закінченням `s`. `Often` стоїть перед `donates`. Запитати про цю звичку можна так: `Does Tom often donate books?` — «Том часто віддає книжки на благодійність?» Після `does` у `donate` немає закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Расскажите о привычке Тома.",
+          "uk": "Розкажіть про звичку Тома."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-48:intro3:r1",
+              "text": "Tom often donates books."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro3:r2",
+              "text": "Tom often donate books."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro3:r3",
+              "text": "Tom often donating books."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-48:intro3:r1",
+              "text": "Tom often donates books."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro3:r2",
+              "text": "Tom often donate books."
+            },
+            {
+              "responseId": "en:lesson-07:session-48:intro3:r3",
+              "text": "Tom often donating books."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о привычке Тома.",
+          "uk": "Розкажіть про звичку Тома."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f09eb0ca9dfd670cfbe5054b82f3e832dbd9ab6b4cfe09fd0f457674f96dea4f"
+}

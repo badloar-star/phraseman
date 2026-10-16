@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-17:i01",
+      "interactionId": "en:lesson-01:session-17:word:welcome",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — welcome",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:word:welcome:audio"
+      ],
+      "accessibilityLabel": "Картка слова — welcome",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:word:welcome:audio",
+          "transcript": "welcome"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:word:welcome:r1",
+            "targetText": "welcome",
+            "meaningByLocale": {
+              "ru": "желанный: человеку рады. You are welcome — «Тебе здесь рады» в ситуации прихода гостя.",
+              "uk": "бажаний: людині раді. You are welcome — «Тобі тут раді» в ситуації приходу гостя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "welcome",
+          "definitionByLocale": {
+            "ru": "желанный: человеку рады. You are welcome — «Тебе здесь рады» в ситуации прихода гостя.",
+            "uk": "бажаний: людині раді. You are welcome — «Тобі тут раді» в ситуації приходу гостя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:word:together",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — together",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:word:together:audio"
+      ],
+      "accessibilityLabel": "Картка слова — together",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:word:together:audio",
+          "transcript": "together"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:word:together:r1",
+            "targetText": "together",
+            "meaningByLocale": {
+              "ru": "вместе. We are together — «Мы вместе»: например, приехали одной компанией.",
+              "uk": "разом. We are together — «Ми разом»: наприклад, приїхали однією компанією."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "together",
+          "definitionByLocale": {
+            "ru": "вместе. We are together — «Мы вместе»: например, приехали одной компанией.",
+            "uk": "разом. We are together — «Ми разом»: наприклад, приїхали однією компанією."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:word:grateful",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grateful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:word:grateful:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grateful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:word:grateful:audio",
+          "transcript": "grateful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:word:grateful:r1",
+            "targetText": "grateful",
+            "meaningByLocale": {
+              "ru": "благодарный за помощь или доброе дело. They are grateful — «Они благодарны».",
+              "uk": "вдячний за допомогу або добру справу. They are grateful — «Вони вдячні»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grateful",
+          "definitionByLocale": {
+            "ru": "благодарный за помощь или доброе дело. They are grateful — «Они благодарны».",
+            "uk": "вдячний за допомогу або добру справу. They are grateful — «Вони вдячні»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:word:comfortable",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — comfortable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:word:comfortable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — comfortable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:word:comfortable:audio",
+          "transcript": "comfortable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:word:comfortable:r1",
+            "targetText": "comfortable",
+            "meaningByLocale": {
+              "ru": "чувствующий себя комфортно, без неудобства. We are comfortable — «Нам удобно»: например, в новых креслах.",
+              "uk": "той, кому зручно, хто не відчуває незручності. We are comfortable — «Нам зручно»: наприклад, у нових кріслах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "comfortable",
+          "definitionByLocale": {
+            "ru": "чувствующий себя комфортно, без неудобства. We are comfortable — «Нам удобно»: например, в новых креслах.",
+            "uk": "той, кому зручно, хто не відчуває незручності. We are comfortable — «Нам зручно»: наприклад, у нових кріслах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -194,8 +366,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова та значення",
@@ -267,41 +439,41 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть почуте",
+      "prompt": "Послухайте й складіть повідомлення однієї компанії",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-17:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть почуте",
+      "accessibilityLabel": "Послухайте й складіть повідомлення однієї компанії",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-17:i05:audio",
-          "transcript": "We are safe."
+          "transcript": "We are together."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are safe.",
+        "hiddenTargetPhrase": "We are together.",
         "orderedTokens": [
           "We",
           "are",
-          "safe"
+          "together"
         ],
         "authoredDistractorTokens": [
-          "You"
+          "They"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-17:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть почуте",
+            "testedDimension": "Послухайте й складіть повідомлення однієї компанії",
             "feedbackByLocale": {
-              "ru": "здесь нужно `We` — `We are safe.`",
-              "uk": "тут потрібно `We` — `We are safe.`"
+              "ru": "в записи We — «мы», а не They — «они».",
+              "uk": "у записі We — «ми», а не They — «вони»."
             }
           }
         ],
@@ -314,26 +486,26 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — решта гостей теж сховалися в будинку: «Вони в безпеці»",
+      "prompt": "Складіть фразу — гості вдячні господині за допомогу. Скажіть другові про гостей: «Вони вдячні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — решта гостей теж сховалися в будинку: «Вони в безпеці»",
+      "accessibilityLabel": "Складіть фразу — гості вдячні господині за допомогу. Скажіть другові про гостей: «Вони вдячні»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are safe.",
+        "targetPhrase": "They are grateful.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — остальные гости тоже укрылись в доме: «Они в безопасности»",
-          "uk": "Складіть фразу — решта гостей теж сховалися в будинку: «Вони в безпеці»"
+          "ru": "Соберите фразу — гости благодарны хозяйке за помощь. Скажите другу о гостях: «Они благодарны»",
+          "uk": "Складіть фразу — гості вдячні господині за допомогу. Скажіть другові про гостей: «Вони вдячні»"
         },
         "orderedTokens": [
           "They",
           "are",
-          "safe"
+          "grateful"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -342,10 +514,10 @@
           {
             "responseId": "en:lesson-01:session-17:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — решта гостей теж сховалися в будинку: «Вони в безпеці»",
+            "testedDimension": "Складіть фразу — гості вдячні господині за допомогу. Скажіть другові про гостей: «Вони вдячні»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are safe.`",
-              "uk": "тут потрібно `are` — `They are safe.`"
+              "ru": "с They нужно are.",
+              "uk": "з They потрібне are."
             }
           }
         ],
@@ -358,7 +530,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова з їхніми значеннями",
@@ -609,41 +781,41 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте й складіть фразу про те, що вам зручно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-17:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте й складіть фразу про те, що вам зручно",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-17:i11:audio",
-          "transcript": "You are ready."
+          "transcript": "We are comfortable."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "You are ready.",
+        "hiddenTargetPhrase": "We are comfortable.",
         "orderedTokens": [
-          "You",
+          "We",
           "are",
-          "ready"
+          "comfortable"
         ],
         "authoredDistractorTokens": [
-          "We"
+          "You"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-17:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте й складіть фразу про те, що вам зручно",
             "feedbackByLocale": {
-              "ru": "здесь нужно `You` — `You are ready.`",
-              "uk": "тут потрібно `You` — `You are ready.`"
+              "ru": "в записи We — «мы».",
+              "uk": "у записі We — «ми»."
             }
           }
         ],
@@ -656,7 +828,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -700,7 +872,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вставте слово — друг запитує, чи немає небезпеки. Заспокойте його: «Ти в безпеці»",
@@ -802,51 +974,51 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу про те, як відчинити замок",
+      "prompt": "Послухайте й виберіть фразу гостей, яким зручно в нових кріслах",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-17:i15:r1",
-          "text": "It is easy."
+          "text": "We are comfortable."
         },
         {
           "responseId": "en:lesson-01:session-17:i15:r2",
-          "text": "It is difficult."
+          "text": "They are comfortable."
         },
         {
           "responseId": "en:lesson-01:session-17:i15:r3",
-          "text": "It is important."
+          "text": "We are grateful."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-17:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу про те, як відчинити замок",
+      "accessibilityLabel": "Послухайте й виберіть фразу гостей, яким зручно в нових кріслах",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-17:i15:audio",
-          "transcript": "It is easy."
+          "transcript": "We are comfortable."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-17:i15:r1",
-            "targetText": "It is easy.",
+            "targetText": "We are comfortable.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-17:i15:r2",
-            "targetText": "It is difficult.",
+            "targetText": "They are comfortable.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-17:i15:r3",
-            "targetText": "It is important.",
+            "targetText": "We are grateful.",
             "meaningByLocale": null
           }
         ],
@@ -855,19 +1027,19 @@
           {
             "responseId": "en:lesson-01:session-17:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу про те, як відчинити замок",
+            "testedDimension": "Послухайте й виберіть фразу гостей, яким зручно в нових кріслах",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `easy`, а в этом варианте — `difficult`.",
-              "uk": "У записі останнє слово — `easy`, а в цьому варіанті — `difficult`."
+              "ru": "В записи We, а не They.",
+              "uk": "У записі We, а не They."
             }
           },
           {
             "responseId": "en:lesson-01:session-17:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу про те, як відчинити замок",
+            "testedDimension": "Послухайте й виберіть фразу гостей, яким зручно в нових кріслах",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `easy`, а в этом варианте — `important`.",
-              "uk": "У записі останнє слово — `easy`, а в цьому варіанті — `important`."
+              "ru": "В записи comfortable, а не grateful.",
+              "uk": "У записі comfortable, а не grateful."
             }
           }
         ],
@@ -878,62 +1050,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова та значення",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова та значення",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-17:i16:p1",
-            "target": "easy",
+            "target": "welcome",
             "meaningByLocale": {
-              "ru": "лёгкий",
-              "uk": "легкий"
+              "ru": "желанный",
+              "uk": "бажаний"
             }
           },
           {
             "pairId": "en:lesson-01:session-17:i16:p2",
-            "target": "difficult",
+            "target": "together",
             "meaningByLocale": {
-              "ru": "трудный",
-              "uk": "складний"
+              "ru": "вместе",
+              "uk": "разом"
             }
           },
           {
             "pairId": "en:lesson-01:session-17:i16:p3",
-            "target": "important",
+            "target": "grateful",
             "meaningByLocale": {
-              "ru": "важный",
-              "uk": "важливий"
+              "ru": "благодарный",
+              "uk": "вдячний"
             }
           },
           {
             "pairId": "en:lesson-01:session-17:i16:p4",
-            "target": "here",
+            "target": "comfortable",
             "meaningByLocale": {
-              "ru": "здесь",
-              "uk": "тут"
+              "ru": "чувствующий себя комфортно",
+              "uk": "той, кому зручно"
             }
           }
         ],
         "leftColumn": [
-          "easy",
-          "difficult",
-          "important",
-          "here"
+          "welcome",
+          "together",
+          "grateful",
+          "comfortable"
         ],
         "rightColumn": [
-          "легкий",
-          "складний",
-          "важливий",
-          "тут"
+          "бажаний",
+          "разом",
+          "вдячний",
+          "той, кому зручно"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -951,7 +1123,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-17:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bdcf977bf1a3cfd39c171d9c734bcef5a04234e10457cb71c9c389b7b6bb86b3"
+  "learnerFingerprint": "64d58e4a0519bc7929757ad1320f981cfad54d0699dbed046699108cd5a6c788"
 }

@@ -3,7 +3,8 @@
 **Ситуация.** Вы встречаете друга в гостевом доме после сильного дождя. Он сомневается, туда ли пришёл, и вы объясняете, что ему рады и он в безопасности.
 
 **Что вы освоите:** сказать о собеседнике `You are`, о нас `We are`, о других людях `They are`
-**Новые слова:** welcome, safe, right
+**Новые слова:** welcome, together, grateful, comfortable
+**Возвращаются:** safe, right, ready, tall, short, young, happy, here
 
 ---
 
@@ -23,116 +24,132 @@
 
 ## Интро 2
 
-### Мы в безопасности
+### Одна компания
 
-`safe` — «в безопасности». Дождь закончился, вы оба уже в доме: `We are safe` — «Мы в безопасности». `we` значит «мы». После него тоже стоит `are`. Когда успокаиваете только друга, скажите `You are safe` — «Ты в безопасности».
+У стойки гостевого дома сотрудник не понял, приехали ли вы с другом вместе. together — «вместе». We are together — «Мы вместе»: здесь вы сообщаете, что вы одна компания. We значит «мы» и включает вас; после We ставится are.
 
-**Вы с другом уже в доме, опасности нет. Скажите за вас обоих: «Мы в безопасности».**
+**Вы с другом приехали вместе. Сообщите сотруднику за вас обоих: «Мы вместе».**
 
-- ✅ **We are safe.**
-- ❌ We is safe. — *После `We` нужна форма `are`, а не `is`.*
-- ❌ I am safe. — *Это «Я в безопасности». Чтобы сказать за вас обоих, начните с `We are`.*
+- ✅ **We are together.**
+- ❌ We is together. — *После We нужно are, а не is.*
+- ❌ They are together. — *They — «они». Вы говорите и о себе тоже: We are together.*
 
 ---
 
 ## Интро 3
 
-### Они правы
+### Благодарность гостей
 
-`right` здесь значит «прав». Двое гостей назвали верный адрес: `They are right` — «Они правы». `they` — «они», после него ставим `are`. Само `right` остаётся таким же. А одному другу можно сказать `You are right` — «Ты прав».
+Хозяйка помогла двум гостям найти забытый чемодан. Гости благодарят её за помощь. grateful — «благодарный». They are grateful — «Они благодарны». They — «они»: вы рассказываете другу о гостях, а не говорите за себя. После They нужно are.
 
-**Двое гостей верно назвали адрес дома. Скажите другу про них: «Они правы».**
+**Двое гостей благодарны хозяйке за найденный чемодан. Скажите другу про них: «Они благодарны».**
 
-- ✅ **They are right.**
-- ❌ They is right. — *С `They` нужно `are`: речь о них.*
-- ❌ They are rights. — *В описании людей слово `right` не получает `-s`: `They are right`.*
+- ✅ **They are grateful.**
+- ❌ They is grateful. — *После They нужно are.*
+- ❌ We are grateful. — *We — «мы». Здесь вы сообщаете о двух других гостях: They are grateful.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Соберите фразу — скажите другу у двери: «Тебе здесь рады»**
+**1 · Карточка слова — welcome**
+<!-- interaction_id: en:lesson-01:session-17:word:welcome; family: word_card -->
+> **welcome** — желанный: человеку рады. You are welcome — «Тебе здесь рады» в ситуации прихода гостя.
+
+**2 · Карточка слова — together**
+<!-- interaction_id: en:lesson-01:session-17:word:together; family: word_card -->
+> **together** — вместе. We are together — «Мы вместе»: например, приехали одной компанией.
+
+**3 · Карточка слова — grateful**
+<!-- interaction_id: en:lesson-01:session-17:word:grateful; family: word_card -->
+> **grateful** — благодарный за помощь или доброе дело. They are grateful — «Они благодарны».
+
+**4 · Карточка слова — comfortable**
+<!-- interaction_id: en:lesson-01:session-17:word:comfortable; family: word_card -->
+> **comfortable** — чувствующий себя комфортно, без неудобства. We are comfortable — «Нам удобно»: например, в новых креслах.
+
+**5 · Соберите фразу — скажите другу у двери: «Тебе здесь рады»**
 <!-- interaction_id: en:lesson-01:session-17:i01; family: phrase_builder -->
 Плитки: `welcome` `are` `You` `am` → **You are welcome.**
 *(плитка `am` лишняя: здесь нужно `are` — `You are welcome.`)*
 
-**2 · Послушайте и выберите фразу хозяина**
+**6 · Послушайте и выберите фразу хозяина**
 <!-- interaction_id: en:lesson-01:session-17:i02; family: listen_choose -->
 🔊 *You are safe.* → **You are safe.** · We are safe. · You are right.
 - We are safe. — *В записи первое слово — `You`, а в этом варианте — `We`.*
 - You are right. — *В записи последнее слово — `safe`, а в этом варианте — `right`.*
 
-**3 · Вставьте слово — двое гостей правильно назвали адрес: «Они правы»**
+**7 · Вставьте слово — двое гостей правильно назвали адрес: «Они правы»**
 <!-- interaction_id: en:lesson-01:session-17:i03; family: context_gap_grammar -->
 They ___ right. → **are** · is · am
 - is — *После `They` нужно `are`. `is` подходит к `He`, `She` или `It`.*
 - am — *`am` ставим с `I`. Здесь говорится о них: `They are`.*
 
-**4 · Соедините слова и значения**
+**8 · Соедините слова и значения**
 <!-- interaction_id: en:lesson-01:session-17:i04; family: speed_match -->
 welcome — желанный · safe — в безопасности · right — прав · ready — готов
 
-**5 · Послушайте и соберите услышанное**
+**9 · Послушайте и соберите сообщение одной компании**
 <!-- interaction_id: en:lesson-01:session-17:i05; family: listen_build_dictation -->
-🔊 *We are safe.* Плитки: `safe` `are` `We` `You` → **We are safe.**
-*(плитка `You` лишняя: здесь нужно `We` — `We are safe.`)*
+🔊 *We are together.* Плитки: `together` `are` `We` `They` → **We are together.**
+Плитка `They` лишняя: в записи We — «мы», а не They — «они».
 
-**6 · Соберите фразу — остальные гости тоже укрылись в доме: «Они в безопасности»**
+**10 · Соберите фразу — гости благодарны хозяйке за помощь. Скажите другу о гостях: «Они благодарны»**
 <!-- interaction_id: en:lesson-01:session-17:i06; family: phrase_builder -->
-Плитки: `safe` `are` `They` `is` → **They are safe.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are safe.`)*
+Плитки: `grateful` `are` `They` `is` → **They are grateful.**
+Плитка `is` лишняя: с They нужно are.
 
-**7 · Скажите вслух — друг верно прочитал номер дома: «Ты прав»**
+**11 · Скажите вслух — друг верно прочитал номер дома: «Ты прав»**
 <!-- interaction_id: en:lesson-01:session-17:i07; family: scripted_repeat_compare -->
 🎙 **You are right.**
 
-**8 · Вставьте слово — высокий друг помог достать полотенце. Скажите: «Ты высокий»**
+**12 · Вставьте слово — высокий друг помог достать полотенце. Скажите: «Ты высокий»**
 <!-- interaction_id: en:lesson-01:session-17:i08; family: context_gap_grammar -->
 You ___ tall. → **are** · am · is
 - am — *С `You` используем `are`; `am` нужно, когда говорим `I am`.*
 - is — *`is` подходит к `He`, а вы говорите самому другу: `You are`.*
 
-**9 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-17:i09; family: listen_choose -->
 🔊 *They are welcome.* → **They are welcome.** · You are welcome. · They are ready.
 - You are welcome. — *В записи первое слово — `They`, а в этом варианте — `You`.*
 - They are ready. — *В записи последнее слово — `welcome`, а в этом варианте — `ready`.*
 
-**10 · Соедините слова с их значениями**
+**14 · Соедините слова с их значениями**
 <!-- interaction_id: en:lesson-01:session-17:i10; family: speed_match -->
 tall — высокий · short — невысокий · young — молодой · happy — счастливый
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу о том, что вам удобно**
 <!-- interaction_id: en:lesson-01:session-17:i11; family: listen_build_dictation -->
-🔊 *You are ready.* Плитки: `ready` `are` `You` `We` → **You are ready.**
-*(плитка `We` лишняя: здесь нужно `You` — `You are ready.`)*
+🔊 *We are comfortable.* Плитки: `comfortable` `are` `We` `You` → **We are comfortable.**
+Плитка `You` лишняя: в записи We — «мы».
 
-**12 · Соберите фразу — хозяин рад всей вашей компании. Скажите другу: «Нам здесь рады»**
+**16 · Соберите фразу — хозяин рад всей вашей компании. Скажите другу: «Нам здесь рады»**
 <!-- interaction_id: en:lesson-01:session-17:i12; family: phrase_builder -->
 Плитки: `welcome` `are` `We` `am` → **We are welcome.**
 *(плитка `am` лишняя: здесь нужно `are` — `We are welcome.`)*
 
-**13 · Скажите вслух — вы с другом предположили, что это нужный дом, и хозяин подтвердил адрес: «Мы правы»**
+**17 · Скажите вслух — вы с другом предположили, что это нужный дом, и хозяин подтвердил адрес: «Мы правы»**
 <!-- interaction_id: en:lesson-01:session-17:i13; family: scripted_repeat_compare -->
 🎙 **We are right.**
 
-**14 · Вставьте слово — друг спрашивает, нет ли опасности. Успокойте его: «Ты в безопасности»**
+**18 · Вставьте слово — друг спрашивает, нет ли опасности. Успокойте его: «Ты в безопасности»**
 <!-- interaction_id: en:lesson-01:session-17:i14; family: context_gap_grammar -->
 You are ___ . → **safe** · young · short
 - young — *`young` — «молодой». Сейчас речь об отсутствии опасности: `safe`.*
 - short — *`short` здесь описывает рост. Отсутствие опасности — `safe`.*
 
-**15 · Послушайте и выберите фразу о том, как открыть замок**
+**19 · Послушайте и выберите фразу гостей, которым удобно в новых креслах**
 <!-- interaction_id: en:lesson-01:session-17:i15; family: listen_choose -->
-🔊 *It is easy.* → **It is easy.** · It is difficult. · It is important.
-- It is difficult. — *В записи последнее слово — `easy`, а в этом варианте — `difficult`.*
-- It is important. — *В записи последнее слово — `easy`, а в этом варианте — `important`.*
+🔊 *We are comfortable.* → **We are comfortable.** · They are comfortable. · We are grateful.
+- They are comfortable. — *В записи We, а не They.*
+- We are grateful. — *В записи comfortable, а не grateful.*
 
-**16 · Соедините слова и значения**
+**20 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-17:i16; family: speed_match -->
-easy — лёгкий · difficult — трудный · important — важный · here — здесь
+welcome — желанный · together — вместе · grateful — благодарный · comfortable — чувствующий себя комфортно
 
-**17 · Скажите вслух — на встрече соседей новичок спрашивает, можно ли присоединиться. Скажите ему, что вы рады его приходу**
+**21 · Скажите вслух — на встрече соседей новичок спрашивает, можно ли присоединиться. Скажите ему, что вы рады его приходу**
 <!-- interaction_id: en:lesson-01:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **You are welcome.**
 

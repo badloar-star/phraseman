@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить can’t для отсутствия умения и повторить вопрос «чей?»",
+    "uk": "закріпити can’t для відсутності вміння й повторити запитання «чий?»"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разговор о программировании",
+        "uk": "Розмова про програмування"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, умеете ли вы писать программы. Вы пока не умеете. `Code` — «писать код, программировать». `I can’t code` — «Я не умею писать код». После `can’t` нужно `code`, без `to` и окончания `s`. Знать код от домофона — полезно, но это другое умение.",
+        "uk": "Друг запитує, чи вмієте ви писати програми. Ви поки не вмієте. `Code` — «писати код, програмувати». `I can’t code` — «Я не вмію писати код». Після `can’t` потрібне `code`, без `to` й закінчення `s`. Знати код від домофона — корисно, але це інше вміння."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте другу о своём умении.",
+          "uk": "Дайте другові відповідь про своє вміння."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-11:intro1:r1",
+              "text": "I can’t code."
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro1:r2",
+              "text": "I can code."
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro1:r3",
+              "text": "I can’t to code."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-11:intro1:r1",
+              "text": "I can’t code."
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro1:r2",
+              "text": "I can code."
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro1:r3",
+              "text": "I can’t to code."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте другу о своём умении.",
+          "uk": "Дайте другові відповідь про своє вміння."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не привыкла к клавиатуре",
+        "uk": "Не звикла до клавіатури"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега спрашивает, умеет ли ваша знакомая печатать на клавиатуре. Она пока не научилась. `She can’t type` — «Она не умеет печатать на клавиатуре». `Can’t` не меняется после `she`; после него нужно `type`, без окончания `s`.",
+        "uk": "Колега запитує, чи вміє ваша знайома друкувати на клавіатурі. Вона поки не навчилася. `She can’t type` — «Вона не вміє друкувати на клавіатурі». `Can’t` не змінюється після `she`; після нього потрібне `type`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-11:intro2:r1",
+              "text": "She can’t type."
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro2:r2",
+              "text": "She can type."
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro2:r3",
+              "text": "She can’t types."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-11:intro2:r1",
+              "text": "She can’t type."
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro2:r2",
+              "text": "She can type."
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro2:r3",
+              "text": "She can’t types."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чей принтер",
+        "uk": "Чий принтер"
+      },
+      "bodyByLocale": {
+        "ru": "После переезда офиса остался принтер. Вы хотите найти его владельца. `Whose printer is this?` — «Чей это принтер?» Сначала `whose printer`, затем `is this`.",
+        "uk": "Після переїзду офісу залишився принтер. Ви хочете знайти його власника. `Whose printer is this?` — «Чий це принтер?» Спочатку `whose printer`, потім `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите коллег, чей это принтер.",
+          "uk": "Запитайте колег, чий це принтер."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-11:intro3:r1",
+              "text": "Whose printer is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro3:r2",
+              "text": "Who printer is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro3:r3",
+              "text": "Whose printer are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-11:intro3:r1",
+              "text": "Whose printer is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro3:r2",
+              "text": "Who printer is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-11:intro3:r3",
+              "text": "Whose printer are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллег, чей это принтер.",
+          "uk": "Запитайте колег, чий це принтер."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7dd519e61070c1fba967d63e3e4abc5337c5592d993304c05ae8ffcd49299f23"
+}

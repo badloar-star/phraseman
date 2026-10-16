@@ -71674,6 +71674,309 @@
           "byteSize": 59520
         }
       ]
+    },
+    "l05/s13/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I have an umbrella.",
+          "file": "0da98e6053f1d174202dfddd3ce33a240b4ab07e791b211025b6d7d6fe6c4bcc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0da98e6053f1d174202dfddd3ce33a240b4ab07e791b211025b6d7d6fe6c4bcc.mp3",
+          "contentHash": "619bada803b6163ff61cae19e79fcbbcb00f46eae5769b1365cfae006052132a",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l05/s13/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Her umbrella is big.",
+          "file": "a22d9ba3885a4debc673bd1b838a15ec5a43f8f8455cd17d8ee17cb0781177c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a22d9ba3885a4debc673bd1b838a15ec5a43f8f8455cd17d8ee17cb0781177c4.mp3",
+          "contentHash": "e1ce4107bae57fd0beaef708cc69d49faaa1737fe9b352996e48f7573b7eac0c",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s13/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The umbrella is in my drawer.",
+          "file": "c824e2ed45d70734cd145699f285104c0e382b49bff7dc25bfad249dba674bc5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c824e2ed45d70734cd145699f285104c0e382b49bff7dc25bfad249dba674bc5.mp3",
+          "contentHash": "0196f282e9ea902b443fe040292ab2dc3593754e6fc723da5b4b8907e0ad85bf",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s13/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Our window is clean.",
+          "file": "f763554b27074ff50fd4d33fb7d3130c971f081ec13f7eb2e074a0077c9325b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f763554b27074ff50fd4d33fb7d3130c971f081ec13f7eb2e074a0077c9325b9.mp3",
+          "contentHash": "3524ba3538f90ae6c96ba18932a37fcef827fe5e7c29db0fedbcc3a9acd7c07c",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s13/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "umbrella",
+          "file": "9b298240d78c6d9d10e7e2fd7a46821e87c6b897ada231d3e9ebb2fbbd15391f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-nova.mp3",
+          "contentHash": "54c1fa8e7d4611b9a58445191aa6e51317a09c1f6063e63e1efeeef81e703f7c",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s13/task/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "umbrella",
+          "file": "9b298240d78c6d9d10e7e2fd7a46821e87c6b897ada231d3e9ebb2fbbd15391f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-nova.mp3",
+          "contentHash": "54c1fa8e7d4611b9a58445191aa6e51317a09c1f6063e63e1efeeef81e703f7c",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s13/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "umbrella",
+          "file": "303c74968e6fbd7faf0bda5a2d4bc975f75c577527c05ef5f0e12eee7cdc3a9e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-onyx.mp3",
+          "contentHash": "8fa010d2a1ff65eb4a37a0c6a9d8b34bc6e87799b7eed27000ac9cefb3759a20",
+          "byteSize": 25344
+        },
+        {
+          "text": "small",
+          "file": "6a78ecc771e02ae0088bac28e27ee494994859226dfc3f20c3b3bdc2b7300750.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/81db8ebbbbc69c6c6ad4a6aa-onyx.mp3",
+          "contentHash": "61c785ab4fc9ab728862fb5909a48138334fd27632e0ef62c47ea3d6ea8ea982",
+          "byteSize": 18048
+        },
+        {
+          "text": "big",
+          "file": "244f8f3254f9c888691d1931b73a685477a8e366cd2d0b628c42456dda263239.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/244f8f3254f9c888691d1931b73a685477a8e366cd2d0b628c42456dda263239.mp3",
+          "contentHash": "5f00a767012d88119a508aa5f022d27d1abb69fe65a0ec3e6a20653428cd3d05",
+          "byteSize": 37248
+        },
+        {
+          "text": "clean",
+          "file": "14e7afea5ad606161c928a22fe4f3348d9ba48dc573f0be6a5fb1e0cd96eb1db.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3b066804f6d1d077173cfe4d-onyx.mp3",
+          "contentHash": "55f4acfa4415602d67723394493676b521b7db4b42ee594a0c379876242f5ad4",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l05/s13/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I have an umbrella.",
+          "file": "e5b4f7656c373271a4e7c631a443730a719c727c2210723b4776d441a7d3c372.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e5b4f7656c373271a4e7c631a443730a719c727c2210723b4776d441a7d3c372.mp3",
+          "contentHash": "fd42f899fadb00c8dfd2ede1dcbd8b155631fa2f6236bc95cf235e29fc181a6b",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s13/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My umbrella is small.",
+          "file": "0b58be8b1496ceebe30405b99833f90e5699a50e9576fc24327c22bada5053c9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0b58be8b1496ceebe30405b99833f90e5699a50e9576fc24327c22bada5053c9.mp3",
+          "contentHash": "25f916ed8c9dc18b3ae149f39a8359007381f7f281f70aed6ea9d26ff9cbbf2f",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s13/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Her umbrella is big.",
+          "file": "a141cf91d7ffb1104737824b9e64a486e43eb4aa792f7943e14e11da32656265.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a141cf91d7ffb1104737824b9e64a486e43eb4aa792f7943e14e11da32656265.mp3",
+          "contentHash": "c1755c6703d5e8ed31e0ecc329c892536139ab94945ef802902227fbeeadd09f",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s13/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is his umbrella.",
+          "file": "e0265e716c691a8b74af68e303ebd2742f0d07d51822f1c2d05304b3c8d37ae4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0265e716c691a8b74af68e303ebd2742f0d07d51822f1c2d05304b3c8d37ae4.mp3",
+          "contentHash": "367a1b3c562d1277a453a8bd0131d9e520a5b6b727b49860a0e92a648b766475",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s13/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The umbrella is in my drawer.",
+          "file": "c2c9cc9dbd40ef5a8b61976d91d86152a4e24093dab129f2b980c358e0af4a6f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c2c9cc9dbd40ef5a8b61976d91d86152a4e24093dab129f2b980c358e0af4a6f.mp3",
+          "contentHash": "8710fb238711647090fafc89a8aa53b403734148cd91d9aa66509c5ea6189ec7",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s13/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "umbrella",
+          "file": "303c74968e6fbd7faf0bda5a2d4bc975f75c577527c05ef5f0e12eee7cdc3a9e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-onyx.mp3",
+          "contentHash": "8fa010d2a1ff65eb4a37a0c6a9d8b34bc6e87799b7eed27000ac9cefb3759a20",
+          "byteSize": 25344
+        },
+        {
+          "text": "window",
+          "file": "aed834ecaa8d1b0f19a14c7408a94e5cca72fc64158871e3a9c5ee06285f32f2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/44ff7b02c80d38b26dd6aa31-onyx.mp3",
+          "contentHash": "957c4b61e7b8cfc6009ba216d24f17a4f6dbdfcd36c93ce98d45c9caba423dcd",
+          "byteSize": 18048
+        },
+        {
+          "text": "taxi",
+          "file": "07f0d0018453e4c9d3a70e572c9bea53ed689bdad32b7ad377fced4118845aa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07f0d0018453e4c9d3a70e572c9bea53ed689bdad32b7ad377fced4118845aa4.mp3",
+          "contentHash": "217d27331222e12a1f85a6be341966a5806976418612dfb443f5e2be7e2b26cc",
+          "byteSize": 24576
+        },
+        {
+          "text": "drawer",
+          "file": "91c8c45764c517aa1222893f30520c0dc0bdf5c833e3aab61d592c804223faf4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d329f11d9a60de9b6f268d88-onyx.mp3",
+          "contentHash": "2e7e7998f11e9757f507ffd62daa1bbf8e61b4db2bf3a056e4d41c3fa843f4d9",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l05/s13/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Their window is clean.",
+          "file": "1d81fe07cd4c848588a0d1e2e5d60f29ae991d00038a5fa020b65cf7d5678b9f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d81fe07cd4c848588a0d1e2e5d60f29ae991d00038a5fa020b65cf7d5678b9f.mp3",
+          "contentHash": "85eeaef698921ea5f2eec589c6da697ecd9386c0f9f81b3d439604ec8a394aab",
+          "byteSize": 52224
+        }
+      ]
+    },
+    "l05/s13/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Our taxi is here.",
+          "file": "9db72bf9f4cebe3e3eff135992d3e8d0c12f42b362122c5028cd13b0ace8cffb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9db72bf9f4cebe3e3eff135992d3e8d0c12f42b362122c5028cd13b0ace8cffb.mp3",
+          "contentHash": "067e979f30d13f89c1990b8c032ee029e1f131020a886dc26d9ca2490bf3e61a",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s13/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your umbrella.",
+          "file": "642e24e56025895c938b7042700c5cbf483fa3ae3b7291d4d8d936c3ed4452ea.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/642e24e56025895c938b7042700c5cbf483fa3ae3b7291d4d8d936c3ed4452ea.mp3",
+          "contentHash": "413a08fcd9ff7576d6561f5b3cd8d13620f564684dd34bdf30ba36a628d2027a",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s13/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Their taxi is big.",
+          "file": "3cfc8886e9031cbb3e69f2daf83b2ab96f1da89191fe0e6c2a77a006f6015c07.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3cfc8886e9031cbb3e69f2daf83b2ab96f1da89191fe0e6c2a77a006f6015c07.mp3",
+          "contentHash": "1c9981804708c6e542da22255d287b535e25b7886bb210f36a173c75c4f17d93",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s13/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Your umbrella is here.",
+          "file": "24db88f9188e3501bbe26cbd6c91c703ef57e4a0794d24881b9a333bb60c9414.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/24db88f9188e3501bbe26cbd6c91c703ef57e4a0794d24881b9a333bb60c9414.mp3",
+          "contentHash": "fd0657ff91b06612fcd92d04fcaf8b011a95a455337d28fcc644b6acf7e8c4cc",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s13/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "umbrella",
+          "file": "5ad34db7f05e846948ac3ec7f70e454a3b55c10282db1788d143ea8f6bcbb063.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2974744982f08b2077515f1e-ash.mp3",
+          "contentHash": "aa3d40f3b6c23e5c9729bbca03f5476ef61e3252566b5a4c712ae5d6cf8089bd",
+          "byteSize": 22656
+        },
+        {
+          "text": "window",
+          "file": "c259a9d2cb378083f2967713b6942452d93b7391661c3785c7b830702d1e7a0b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/44ff7b02c80d38b26dd6aa31-ash.mp3",
+          "contentHash": "142bc9d9213eb71ce1ed627f2f09dd8358129aac9407d84712a5bb8924ccaa04",
+          "byteSize": 22656
+        },
+        {
+          "text": "taxi",
+          "file": "1e4156f534493ef9dc58f3a9ce854e01f4c250ad4149e1a1979a6ac76ff81267.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1e4156f534493ef9dc58f3a9ce854e01f4c250ad4149e1a1979a6ac76ff81267.mp3",
+          "contentHash": "022f82bbfeeb55d35f57b455b3bca699bc3ac83cf766f5d4c8343d0cd3be2b24",
+          "byteSize": 19584
+        },
+        {
+          "text": "drawer",
+          "file": "b8a45e8178eab19b91a222a48232fe8cbcf6520a90532c564fb9a19c6988a9a7.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d329f11d9a60de9b6f268d88-ash.mp3",
+          "contentHash": "e1bf0d4276c60243bd49529b0011e789a1e3b2bd44c3a8f1f1cc3f0aaf28e221",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l05/s13/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The umbrella is in your drawer.",
+          "file": "dd8ad6b373c24186d34989c3e04cfc8a248a27e442e5ac8b34824911d2f9d40f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd8ad6b373c24186d34989c3e04cfc8a248a27e442e5ac8b34824911d2f9d40f.mp3",
+          "contentHash": "b57499b336993f2ea60c9e8131891e2624449348687e748428140734d015caf1",
+          "byteSize": 38784
+        }
+      ]
     }
   },
   "settings": {

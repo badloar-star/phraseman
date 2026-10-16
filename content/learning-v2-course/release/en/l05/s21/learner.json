@@ -1,0 +1,993 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга находится внутри дома. Скажите «Она внутри» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга находится внутри дома. Скажите «Она внутри» без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is inside.",
+        "localizedMeaning": {
+          "ru": "Подруга находится внутри дома. Скажите «Она внутри» без сокращения",
+          "uk": "Подруга перебуває всередині будинку. Скажіть «Вона всередині» без скорочення"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "inside"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-21:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга находится внутри дома. Скажите «Она внутри» без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is inside.`",
+              "uk": "тут потрібно `is` — `She is inside.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-21:i02:r1",
+          "text": "necklace"
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i02:r2",
+          "text": "scarf"
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i02:r3",
+          "text": "jacket"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-21:i02:audio",
+          "transcript": "necklace"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-21:i02:r1",
+            "targetText": "necklace",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i02:r2",
+            "targetText": "scarf",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i02:r3",
+            "targetText": "jacket",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `necklace`, а в этом варианте — `scarf`.",
+              "uk": "У записі перше слово — `necklace`, а в цьому варіанті — `scarf`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `necklace`, а в этом варианте — `jacket`.",
+              "uk": "У записі перше слово — `necklace`, а в цьому варіанті — `jacket`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите ожерелье",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-21:i03:r1",
+          "text": "necklace"
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i03:r2",
+          "text": "scarf"
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i03:r3",
+          "text": "umbrella"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите ожерелье",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите ожерелье",
+          "uk": "Назвіть намисто"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i03:r1",
+            "text": "necklace"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i03:r2",
+            "text": "scarf"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i03:r3",
+            "text": "umbrella"
+          }
+        ],
+        "testedDimension": "Назовите ожерелье",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите ожерелье",
+            "feedbackByLocale": {
+              "ru": "`scarf` — шарф; ожерелье — `necklace`.",
+              "uk": "`scarf` — шарф; намисто — `necklace`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите ожерелье",
+            "feedbackByLocale": {
+              "ru": "`umbrella` — зонт; ожерелье — `necklace`.",
+              "uk": "`umbrella` — парасоля; намисто — `necklace`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-21:i04:p1",
+            "target": "necklace",
+            "meaningByLocale": {
+              "ru": "ожерелье",
+              "uk": "намисто"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-21:i04:p2",
+            "target": "inside",
+            "meaningByLocale": {
+              "ru": "внутри",
+              "uk": "усередині"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-21:i04:p3",
+            "target": "outside",
+            "meaningByLocale": {
+              "ru": "снаружи",
+              "uk": "зовні"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-21:i04:p4",
+            "target": "upstairs",
+            "meaningByLocale": {
+              "ru": "на верхнем этаже",
+              "uk": "на верхньому поверсі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "necklace",
+          "inside",
+          "outside",
+          "upstairs"
+        ],
+        "rightColumn": [
+          "ожерелье",
+          "внутри",
+          "снаружи",
+          "на верхнем этаже"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-21:i05:audio",
+          "transcript": "The necklace is upstairs."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The necklace is upstairs.",
+        "orderedTokens": [
+          "The",
+          "necklace",
+          "is",
+          "upstairs"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-21:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The necklace is upstairs.`",
+              "uk": "тут потрібно `is` — `The necklace is upstairs.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ручки принадлежат вам и другу. Скажите «Ручки наши»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ручки принадлежат вам и другу. Скажите «Ручки наши»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The pens are ours.",
+        "localizedMeaning": {
+          "ru": "Ручки принадлежат вам и другу. Скажите «Ручки наши»",
+          "uk": "Ручки належать вам і другові. Скажіть «Ручки наші»"
+        },
+        "orderedTokens": [
+          "The",
+          "pens",
+          "are",
+          "ours"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-21:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ручки принадлежат вам и другу. Скажите «Ручки наши»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The pens are ours.`",
+              "uk": "тут потрібно `are` — `The pens are ours.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг ждёт снаружи дома. Скажите «Он снаружи» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-21:i07:audio"
+      ],
+      "accessibilityLabel": "Друг ждёт снаружи дома. Скажите «Он снаружи» без сокращения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-21:i07:audio",
+          "transcript": "He is outside."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is outside.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-21:i08:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i08:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i08:r3",
+          "text": "his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+          "uk": "Намисто належить подрузі. Скажіть «Намисто її»"
+        },
+        "gappedTargetPhrase": "The necklace is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i08:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i08:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i08:r3",
+            "text": "his"
+          }
+        ],
+        "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `hers`.",
+              "uk": "Без назви речі потрібна форма `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+            "feedbackByLocale": {
+              "ru": "`his` — его; её — `hers`.",
+              "uk": "`his` — його; її — `hers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежит зонт",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-21:i09:r1",
+          "text": "The umbrella is yours."
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i09:r2",
+          "text": "The umbrella is mine."
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i09:r3",
+          "text": "The umbrella is theirs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-21:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит зонт",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-21:i09:audio",
+          "transcript": "The umbrella is yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-21:i09:r1",
+            "targetText": "The umbrella is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i09:r2",
+            "targetText": "The umbrella is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i09:r3",
+            "targetText": "The umbrella is theirs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит зонт",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит зонт",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `theirs`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `theirs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-21:i10:p1",
+            "target": "necklace",
+            "meaningByLocale": {
+              "ru": "ожерелье",
+              "uk": "намисто"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-21:i10:p2",
+            "target": "pens",
+            "meaningByLocale": {
+              "ru": "ручки",
+              "uk": "ручки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-21:i10:p3",
+            "target": "juice",
+            "meaningByLocale": {
+              "ru": "сок",
+              "uk": "сік"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-21:i10:p4",
+            "target": "umbrella",
+            "meaningByLocale": {
+              "ru": "зонт",
+              "uk": "парасоля"
+            }
+          }
+        ],
+        "leftColumn": [
+          "necklace",
+          "pens",
+          "juice",
+          "umbrella"
+        ],
+        "rightColumn": [
+          "ожерелье",
+          "ручки",
+          "сок",
+          "зонт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-21:i11:audio",
+          "transcript": "Where is my necklace?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is my necklace?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "my",
+          "necklace"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сок закончился. Скажите «Сока нет»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сок закончился. Скажите «Сока нет»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is no juice.",
+        "localizedMeaning": {
+          "ru": "Сок закончился. Скажите «Сока нет»",
+          "uk": "Сік закінчився. Скажіть «Соку немає»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "no",
+          "juice"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-21:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Сок закончился. Скажите «Сока нет»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is no juice.`",
+              "uk": "тут потрібно `is` — `There is no juice.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ожерелье подруги у вас. Скажите ей «Твоё ожерелье у меня»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-21:i13:audio"
+      ],
+      "accessibilityLabel": "Ожерелье подруги у вас. Скажите ей «Твоё ожерелье у меня»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-21:i13:audio",
+          "transcript": "I have your necklace."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your necklace.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ручки лежат в коробке. Выберите форму для нескольких ручек",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-21:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i14:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ручки лежат в коробке. Выберите форму для нескольких ручек",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ручки лежат в коробке. Выберите форму для нескольких ручек",
+          "uk": "Ручки лежать у коробці. Виберіть форму для кількох ручок"
+        },
+        "gappedTargetPhrase": "The pens ___ in the box.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i14:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Ручки лежат в коробке. Выберите форму для нескольких ручек",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-21:i14:r2",
+            "correct": false,
+            "testedDimension": "Ручки лежат в коробке. Выберите форму для нескольких ручек",
+            "feedbackByLocale": {
+              "ru": "Несколько ручек: `pens are`.",
+              "uk": "Кілька ручок: `pens are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i14:r3",
+            "correct": false,
+            "testedDimension": "Ручки лежат в коробке. Выберите форму для нескольких ручек",
+            "feedbackByLocale": {
+              "ru": "Место нескольких ручек: `pens are in the box`.",
+              "uk": "Місце кількох ручок: `pens are in the box`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чьё ожерелье здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-21:i15:r1",
+          "text": "Her necklace is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i15:r2",
+          "text": "His necklace is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-21:i15:r3",
+          "text": "My necklace is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чьё ожерелье здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-21:i15:audio",
+          "transcript": "Her necklace is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-21:i15:r1",
+            "targetText": "Her necklace is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i15:r2",
+            "targetText": "His necklace is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i15:r3",
+            "targetText": "My necklace is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-21:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чьё ожерелье здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Her`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `His`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чьё ожерелье здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Her`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `My`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-21:i16:p1",
+            "target": "necklace",
+            "meaningByLocale": {
+              "ru": "ожерелье",
+              "uk": "намисто"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-21:i16:p2",
+            "target": "pens",
+            "meaningByLocale": {
+              "ru": "ручки",
+              "uk": "ручки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-21:i16:p3",
+            "target": "juice",
+            "meaningByLocale": {
+              "ru": "сок",
+              "uk": "сік"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-21:i16:p4",
+            "target": "umbrella",
+            "meaningByLocale": {
+              "ru": "зонт",
+              "uk": "парасоля"
+            }
+          }
+        ],
+        "leftColumn": [
+          "necklace",
+          "pens",
+          "juice",
+          "umbrella"
+        ],
+        "rightColumn": [
+          "ожерелье",
+          "ручки",
+          "сок",
+          "зонт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг нашёл ваше ожерелье. Уточните «Ожерелье моё»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Друг нашёл ваше ожерелье. Уточните «Ожерелье моё»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-21:i17:audio",
+          "transcript": "The necklace is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The necklace is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c5bd9e8f2f917cd73bf9c0d059902f7a991fd85800b42fc6e9e12b0936726ca1"
+}

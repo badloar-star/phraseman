@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-21:intro1:r2": {
+          "ru": "Без названия вещи нужна форма `hers`.",
+          "uk": "Без назви речі потрібна форма `hers`."
+        },
+        "en:lesson-05:session-21:intro1:r3": {
+          "ru": "`his` — его; её — `hers`.",
+          "uk": "`his` — його; її — `hers`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-21:intro2:r2": {
+          "ru": "`inside` — внутри; снаружи — `outside`.",
+          "uk": "`inside` — усередині; зовні — `outside`."
+        },
+        "en:lesson-05:session-21:intro2:r3": {
+          "ru": "С `He` нужна форма `is`.",
+          "uk": "З `He` потрібна форма `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-21:intro3:r2": {
+          "ru": "Несколько ручек: `pens are`.",
+          "uk": "Кілька ручок: `pens are`."
+        },
+        "en:lesson-05:session-21:intro3:r3": {
+          "ru": "Без названия вещи нужна форма `ours`.",
+          "uk": "Без назви речі потрібна форма `ours`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4ac9845a3ee06307d46b2817e05a269341155dd6aea5dc3d90640a66b7b41da0"
+}

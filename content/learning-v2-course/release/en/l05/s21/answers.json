@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-21:i01",
+    "correctText": "She is inside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i02",
+    "correctText": "necklace",
+    "correctResponseId": "en:lesson-05:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i03",
+    "correctText": "necklace",
+    "correctResponseId": "en:lesson-05:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i04",
+    "correctText": "en:lesson-05:session-21:i04:p1=necklace\nen:lesson-05:session-21:i04:p2=inside\nen:lesson-05:session-21:i04:p3=outside\nen:lesson-05:session-21:i04:p4=upstairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i05",
+    "correctText": "The necklace is upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i06",
+    "correctText": "The pens are ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i07",
+    "correctText": "He is outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i08",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i09",
+    "correctText": "The umbrella is yours.",
+    "correctResponseId": "en:lesson-05:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i10",
+    "correctText": "en:lesson-05:session-21:i10:p1=necklace\nen:lesson-05:session-21:i10:p2=pens\nen:lesson-05:session-21:i10:p3=juice\nen:lesson-05:session-21:i10:p4=umbrella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i11",
+    "correctText": "Where is my necklace?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i12",
+    "correctText": "There is no juice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i13",
+    "correctText": "I have your necklace.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-21:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i15",
+    "correctText": "Her necklace is here.",
+    "correctResponseId": "en:lesson-05:session-21:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i16",
+    "correctText": "en:lesson-05:session-21:i16:p1=necklace\nen:lesson-05:session-21:i16:p2=pens\nen:lesson-05:session-21:i16:p3=juice\nen:lesson-05:session-21:i16:p4=umbrella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:i17",
+    "correctText": "The necklace is mine.",
+    "correctResponseId": null
+  }
+]

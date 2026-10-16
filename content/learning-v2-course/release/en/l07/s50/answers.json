@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-50:i01",
+    "correctText": "I usually hike.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i02",
+    "correctText": "hike",
+    "correctResponseId": "en:lesson-07:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i03",
+    "correctText": "hike",
+    "correctResponseId": "en:lesson-07:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i04",
+    "correctText": "en:lesson-07:session-50:i04:p1=hike\nen:lesson-07:session-50:i04:p2=deliver\nen:lesson-07:session-50:i04:p3=cinema\nen:lesson-07:session-50:i04:p4=decorate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i05",
+    "correctText": "I usually hike.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i06",
+    "correctText": "Do you deliver?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i07",
+    "correctText": "Where is the cinema?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i08",
+    "correctText": "deliver",
+    "correctResponseId": "en:lesson-07:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i09",
+    "correctText": "I usually hike.",
+    "correctResponseId": "en:lesson-07:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i10",
+    "correctText": "en:lesson-07:session-50:i10:p1=decorate\nen:lesson-07:session-50:i10:p2=hike\nen:lesson-07:session-50:i10:p3=deliver\nen:lesson-07:session-50:i10:p4=cinema",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i11",
+    "correctText": "Do you deliver?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i12",
+    "correctText": "Do you decorate the room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i13",
+    "correctText": "Does Tom hike?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-50:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i15",
+    "correctText": "Where is the cinema?",
+    "correctResponseId": "en:lesson-07:session-50:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i16",
+    "correctText": "en:lesson-07:session-50:i16:p1=hike\nen:lesson-07:session-50:i16:p2=cinema\nen:lesson-07:session-50:i16:p3=decorate\nen:lesson-07:session-50:i16:p4=deliver",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:i17",
+    "correctText": "Tom usually hikes.",
+    "correctResponseId": null
+  }
+]

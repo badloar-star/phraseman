@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "рассказывать о привычках и задавать знакомые вопросы",
+    "uk": "розповідати про звички й ставити знайомі запитання"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выхожу на тропу",
+        "uk": "Виходжу на стежку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, как вы обычно проводите время на природе. `Hike` — «ходить в пеший поход»: долго идти пешком на природе, например по лесной тропе. `I usually hike` — «Я обычно хожу в пешие походы». `Usually` стоит перед `hike`. Поход до холодильника не считается — даже если очень устали.",
+        "uk": "Друг запитує, як ви зазвичай проводите час на природі. `Hike` — «ходити в піший похід»: довго йти пішки на природі, наприклад лісовою стежкою. `I usually hike` — «Я зазвичай ходжу в піші походи». `Usually` стоїть перед `hike`. Похід до холодильника не рахується — навіть якщо дуже втомилися."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите другу о своей привычке.",
+          "uk": "Розкажіть другові про свою звичку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-50:intro1:r1",
+              "text": "I usually hike."
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro1:r2",
+              "text": "I usually hikes."
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro1:r3",
+              "text": "I usually hiking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-50:intro1:r1",
+              "text": "I usually hike."
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro1:r2",
+              "text": "I usually hikes."
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro1:r3",
+              "text": "I usually hiking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите другу о своей привычке.",
+          "uk": "Розкажіть другові про свою звичку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Доставка магазина",
+        "uk": "Доставка магазину"
+      },
+      "bodyByLocale": {
+        "ru": "Вы звоните в магазин и хотите узнать, доставляют ли покупки. `Do you deliver?` — «Вы доставляете?» Вопрос начинается с `do`, затем идут `you` и `deliver`.",
+        "uk": "Ви телефонуєте до магазину й хочете дізнатися, чи доставляють покупки. `Do you deliver?` — «Ви доставляєте?» Запитання починається з `do`, потім ідуть `you` та `deliver`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите сотрудника о доставке.",
+          "uk": "Запитайте працівника про доставку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-50:intro2:r1",
+              "text": "Do you deliver?"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro2:r2",
+              "text": "Does you deliver?"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro2:r3",
+              "text": "Do you delivers?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-50:intro2:r1",
+              "text": "Do you deliver?"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro2:r2",
+              "text": "Does you deliver?"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro2:r3",
+              "text": "Do you delivers?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите сотрудника о доставке.",
+          "uk": "Запитайте працівника про доставку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ищу кинотеатр",
+        "uk": "Шукаю кінотеатр"
+      },
+      "bodyByLocale": {
+        "ru": "Вы идёте на фильм и просите прохожего показать кинотеатр. `Where is the cinema?` — «Где кинотеатр?» После `where` здесь идёт `is`, затем `the cinema`.",
+        "uk": "Ви йдете на фільм і просите перехожого показати кінотеатр. `Where is the cinema?` — «Де кінотеатр?» Після `where` тут іде `is`, потім `the cinema`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, где кинотеатр.",
+          "uk": "Запитайте, де кінотеатр."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-50:intro3:r1",
+              "text": "Where is the cinema?"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro3:r2",
+              "text": "Where are the cinema?"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro3:r3",
+              "text": "Where the cinema is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-50:intro3:r1",
+              "text": "Where is the cinema?"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro3:r2",
+              "text": "Where are the cinema?"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:intro3:r3",
+              "text": "Where the cinema is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где кинотеатр.",
+          "uk": "Запитайте, де кінотеатр."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fdb9294fbf0b1c56ca9e1f3a38a93f07d72c37f005d3f2770c9e84d54940d5be"
+}

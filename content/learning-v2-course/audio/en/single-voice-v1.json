@@ -116821,6 +116821,309 @@
           "byteSize": 39552
         }
       ]
+    },
+    "l07/s50/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually hike.",
+          "file": "947ff96ec6cb6468b8c503c06628948795ace46328d7e35bac26c58555684436.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/947ff96ec6cb6468b8c503c06628948795ace46328d7e35bac26c58555684436.mp3",
+          "contentHash": "62674e5543c3748a900863fd49ad6aa6af408c63fff382c6006be49bb3475940",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s50/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you deliver?",
+          "file": "7a54c29a9254d61aa8640318b4819efaa49f4560e0bd8acd164cd4bae386e882.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7a54c29a9254d61aa8640318b4819efaa49f4560e0bd8acd164cd4bae386e882.mp3",
+          "contentHash": "597ea5f51f6dbc400657238dc48fdce08bdf680fbaff950b0b8febd1a1bb9199",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s50/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the cinema?",
+          "file": "7d34206e1be8fdc662b4ff8c5404e8960ff0844b62c436c99ba10324d1260a23.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d34206e1be8fdc662b4ff8c5404e8960ff0844b62c436c99ba10324d1260a23.mp3",
+          "contentHash": "4ce4a8fb114a64bfb649f7dd3e85ebd6e34118aebfb80e0416193ca908d1a941",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l07/s50/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually hike.",
+          "file": "4e09b48709eb8d3ba56f5549484406e79c52e8a41ca31f1059e5b31e229f5f16.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4e09b48709eb8d3ba56f5549484406e79c52e8a41ca31f1059e5b31e229f5f16.mp3",
+          "contentHash": "4975dde770906a08f6dfc1736e9fa4f7494f993263a895670a42706dc9afbe12",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l07/s50/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "hike",
+          "file": "27ddf0692aa9dc58531417b414310acd8908cee124f468665b1cf32591fa1e7d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/27ddf0692aa9dc58531417b414310acd8908cee124f468665b1cf32591fa1e7d.mp3",
+          "contentHash": "83ac7ae90efd706d20376d76e89c1fe4a13d37e08c1c80d9bef1f5b3988eb326",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l07/s50/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually hike.",
+          "file": "947ff96ec6cb6468b8c503c06628948795ace46328d7e35bac26c58555684436.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/947ff96ec6cb6468b8c503c06628948795ace46328d7e35bac26c58555684436.mp3",
+          "contentHash": "62674e5543c3748a900863fd49ad6aa6af408c63fff382c6006be49bb3475940",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s50/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "hike",
+          "file": "6056c11670f7f8c3827edb6265a9df06fbff8cca4f6997019b0443f2b51c2f31.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6056c11670f7f8c3827edb6265a9df06fbff8cca4f6997019b0443f2b51c2f31.mp3",
+          "contentHash": "a339c818422067834f1182ca75f77fba2e712aa30044c5f362555623d7c53572",
+          "byteSize": 14976
+        },
+        {
+          "text": "deliver",
+          "file": "555ec8b3fcc2c5ccda3cf2a080eb9838ddf45c55426ab9437846c4f26c0380da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/555ec8b3fcc2c5ccda3cf2a080eb9838ddf45c55426ab9437846c4f26c0380da.mp3",
+          "contentHash": "a5096744f4e960a3e0dc2f9f8c3eb29d9859c25358e35bad8446ee729505b34f",
+          "byteSize": 23040
+        },
+        {
+          "text": "cinema",
+          "file": "03c51cbfbbd331187b92e1b4ef13699b50a50205887edfc0d8155eb7af37f381.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/03c51cbfbbd331187b92e1b4ef13699b50a50205887edfc0d8155eb7af37f381.mp3",
+          "contentHash": "e8b0cda5e600261924d58e6f81485b47b649938b8f541766d02dcd9925d26c20",
+          "byteSize": 29952
+        },
+        {
+          "text": "decorate",
+          "file": "be67a85debc2ec293861672c9e0d2ca306854674bba102c6b6a7ec65518192d9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/be67a85debc2ec293861672c9e0d2ca306854674bba102c6b6a7ec65518192d9.mp3",
+          "contentHash": "1cdcc0e1d8a2af1fc3e56dd190f91b7e05060baea285c3343277b1215b82d3b0",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l07/s50/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually hike.",
+          "file": "947ff96ec6cb6468b8c503c06628948795ace46328d7e35bac26c58555684436.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/947ff96ec6cb6468b8c503c06628948795ace46328d7e35bac26c58555684436.mp3",
+          "contentHash": "62674e5543c3748a900863fd49ad6aa6af408c63fff382c6006be49bb3475940",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s50/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you deliver?",
+          "file": "d7517ea8447a1cb3cc8b84c5a9aa795bd2697c585113bbae99da38234736a408.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d7517ea8447a1cb3cc8b84c5a9aa795bd2697c585113bbae99da38234736a408.mp3",
+          "contentHash": "cbc1111b5a07344964e6f9022690eb39abc0f58ff46929527e691427abdc867e",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l07/s50/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is the cinema?",
+          "file": "b13b20c5c2aeeeb3c4984c336a14a66f5e1ec839fe9d983a01cd9f49ab53861c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b13b20c5c2aeeeb3c4984c336a14a66f5e1ec839fe9d983a01cd9f49ab53861c.mp3",
+          "contentHash": "6d0e857894c58a4e01f204814da9ed9c634da7c0626cdbbf06b561cd3478972e",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s50/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you deliver?",
+          "file": "7a54c29a9254d61aa8640318b4819efaa49f4560e0bd8acd164cd4bae386e882.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7a54c29a9254d61aa8640318b4819efaa49f4560e0bd8acd164cd4bae386e882.mp3",
+          "contentHash": "597ea5f51f6dbc400657238dc48fdce08bdf680fbaff950b0b8febd1a1bb9199",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s50/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually hike.",
+          "file": "4e09b48709eb8d3ba56f5549484406e79c52e8a41ca31f1059e5b31e229f5f16.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4e09b48709eb8d3ba56f5549484406e79c52e8a41ca31f1059e5b31e229f5f16.mp3",
+          "contentHash": "4975dde770906a08f6dfc1736e9fa4f7494f993263a895670a42706dc9afbe12",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l07/s50/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "decorate",
+          "file": "ba62ee6de5c871b3b006162124e1a342dbaa0954f7fb2f55ead961781bc03840.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ba62ee6de5c871b3b006162124e1a342dbaa0954f7fb2f55ead961781bc03840.mp3",
+          "contentHash": "9d110910137464c55e7a6e8acc5847b1327638e38caf11c79bf6fa19192551be",
+          "byteSize": 22656
+        },
+        {
+          "text": "hike",
+          "file": "49db69ac4f9e056c21b4e703041fb0da87cc80ae6188ddddf43555cd9cde9043.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/49db69ac4f9e056c21b4e703041fb0da87cc80ae6188ddddf43555cd9cde9043.mp3",
+          "contentHash": "c9cf83cb94a3555a3a97574f3f8cc1d86dc14b8ba43f2bb33fd0c1efba749f6f",
+          "byteSize": 29184
+        },
+        {
+          "text": "deliver",
+          "file": "881298c1f006f70125f081b963127faca82ee029d2a7c846751fd99ccc2d6dee.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/881298c1f006f70125f081b963127faca82ee029d2a7c846751fd99ccc2d6dee.mp3",
+          "contentHash": "271e7583e8ae4bd12934abbce82fd0fb5682725e56025b95b2c35e531d875542",
+          "byteSize": 18048
+        },
+        {
+          "text": "cinema",
+          "file": "4c97ad845b728e49fa86515959905956249e61004cbf9fe37b391b92d72d217d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4c97ad845b728e49fa86515959905956249e61004cbf9fe37b391b92d72d217d.mp3",
+          "contentHash": "1926d24bfd46f8b03953be5feb4674908ad6ae67560e68901d63b3cdbb9a24e8",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s50/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you deliver?",
+          "file": "6e6b0bc78c20d83b216c286494cc25e2a745531c73268897a3b21c2b5aeec105.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6e6b0bc78c20d83b216c286494cc25e2a745531c73268897a3b21c2b5aeec105.mp3",
+          "contentHash": "3091666847e0d8bec2fc26ce1555aacc19864d9bcf24709b15744ca1477228f4",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l07/s50/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you decorate the room?",
+          "file": "f1822d88679bce1f7fe0d8f6baf0d65fdac5a5c1ba50da36fc8d05e3ff2ea037.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f1822d88679bce1f7fe0d8f6baf0d65fdac5a5c1ba50da36fc8d05e3ff2ea037.mp3",
+          "contentHash": "62d0a663baee9aa55b99fc04e0bad23f4f05a1443d9a1e4215edb4968030ed01",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s50/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does Tom hike?",
+          "file": "019cf15726d9908bb0c5f3b7085ae95d66f03f97086f006205d6adb665b591a7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/019cf15726d9908bb0c5f3b7085ae95d66f03f97086f006205d6adb665b591a7.mp3",
+          "contentHash": "4f936b2a1f7c3bddcbd9e543b617dcc67779f5481d3fa7c21893479ca5fea502",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s50/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually hike.",
+          "file": "8221f895c42b1d27a0fa115516fb10ad06d357d0286e8750d9d4441e613792fc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8221f895c42b1d27a0fa115516fb10ad06d357d0286e8750d9d4441e613792fc.mp3",
+          "contentHash": "4c88885ab48c91964c6d867d70b9ac06dae88e7e7d69099df761a76da70c55b2",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l07/s50/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the cinema?",
+          "file": "efbcf2dd347e4b1f20160f95d60462b9d5cbdaac6c22246ff9c6d99a6a757bd6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/efbcf2dd347e4b1f20160f95d60462b9d5cbdaac6c22246ff9c6d99a6a757bd6.mp3",
+          "contentHash": "0d9b676e96fc1930ad3fb6a434bd56f6c67e20b1421ac5a56e1541d0f5965e3c",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s50/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "hike",
+          "file": "6056c11670f7f8c3827edb6265a9df06fbff8cca4f6997019b0443f2b51c2f31.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6056c11670f7f8c3827edb6265a9df06fbff8cca4f6997019b0443f2b51c2f31.mp3",
+          "contentHash": "a339c818422067834f1182ca75f77fba2e712aa30044c5f362555623d7c53572",
+          "byteSize": 14976
+        },
+        {
+          "text": "cinema",
+          "file": "03c51cbfbbd331187b92e1b4ef13699b50a50205887edfc0d8155eb7af37f381.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/03c51cbfbbd331187b92e1b4ef13699b50a50205887edfc0d8155eb7af37f381.mp3",
+          "contentHash": "e8b0cda5e600261924d58e6f81485b47b649938b8f541766d02dcd9925d26c20",
+          "byteSize": 29952
+        },
+        {
+          "text": "decorate",
+          "file": "be67a85debc2ec293861672c9e0d2ca306854674bba102c6b6a7ec65518192d9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/be67a85debc2ec293861672c9e0d2ca306854674bba102c6b6a7ec65518192d9.mp3",
+          "contentHash": "1cdcc0e1d8a2af1fc3e56dd190f91b7e05060baea285c3343277b1215b82d3b0",
+          "byteSize": 17280
+        },
+        {
+          "text": "deliver",
+          "file": "555ec8b3fcc2c5ccda3cf2a080eb9838ddf45c55426ab9437846c4f26c0380da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/555ec8b3fcc2c5ccda3cf2a080eb9838ddf45c55426ab9437846c4f26c0380da.mp3",
+          "contentHash": "a5096744f4e960a3e0dc2f9f8c3eb29d9859c25358e35bad8446ee729505b34f",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l07/s50/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom usually hikes.",
+          "file": "3ad7809c72b2b8664f85c233e73bcf87c88b79d8185c9a154802f5e4777e64e0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3ad7809c72b2b8664f85c233e73bcf87c88b79d8185c9a154802f5e4777e64e0.mp3",
+          "contentHash": "37d068ff6e7d4707504a5d7655cb618a1e40b5bcf4ab5274eb50ae6f5af08e32",
+          "byteSize": 31488
+        }
+      ]
     }
   },
   "settings": {

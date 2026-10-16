@@ -76522,6 +76522,309 @@
           "byteSize": 43008
         }
       ]
+    },
+    "l05/s29/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is Tom's skateboard.",
+          "file": "c1e89107a250514fa6bc7d291c1c11ef51fb87944819bf9a1aaba84a486272d6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c1e89107a250514fa6bc7d291c1c11ef51fb87944819bf9a1aaba84a486272d6.mp3",
+          "contentHash": "473ab6ef68f679aacf3975d99d9df58b2c9d752223e23388837762345acbb749",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s29/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Anna is online.",
+          "file": "c431432e17c2449020f569699806a238dbc7835e63d08543765d06ce0169b197.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c431432e17c2449020f569699806a238dbc7835e63d08543765d06ce0169b197.mp3",
+          "contentHash": "98988db19d0879006ccb052db62fad53856aaef96cc144caac8a5a3a82b57bc8",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s29/intro/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom is at the bus stop.",
+          "file": "cc682fb213c7d6e1ed5219bae3536c3194f3627621a575b5a44694d3355e8b1a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc682fb213c7d6e1ed5219bae3536c3194f3627621a575b5a44694d3355e8b1a.mp3",
+          "contentHash": "312ba326662ae8dc4c3f98235933f4bbb0902fdb7ed7672fe64e1446e392848c",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s29/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Anna is online.",
+          "file": "c431432e17c2449020f569699806a238dbc7835e63d08543765d06ce0169b197.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c431432e17c2449020f569699806a238dbc7835e63d08543765d06ce0169b197.mp3",
+          "contentHash": "98988db19d0879006ccb052db62fad53856aaef96cc144caac8a5a3a82b57bc8",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s29/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "skateboard",
+          "file": "a49f705de3854793beed1be10443fd269bda8718983ca7dcd794ed8f0f461259.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a49f705de3854793beed1be10443fd269bda8718983ca7dcd794ed8f0f461259.mp3",
+          "contentHash": "409b423b373b1dec2b94911371938abeac475c25c1b51705b88f6107e11d7d9b",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l05/s29/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "skateboard",
+          "file": "d5478e38d577eea7afe44a53b7111902c1b2f6f7738425d3c96834332165fa28.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5478e38d577eea7afe44a53b7111902c1b2f6f7738425d3c96834332165fa28.mp3",
+          "contentHash": "ffceb9e8719c20974b93168c20fee5cf002513c1b7bb4bb663e4024ec3c7f2e7",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s29/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "skateboard",
+          "file": "a49f705de3854793beed1be10443fd269bda8718983ca7dcd794ed8f0f461259.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a49f705de3854793beed1be10443fd269bda8718983ca7dcd794ed8f0f461259.mp3",
+          "contentHash": "409b423b373b1dec2b94911371938abeac475c25c1b51705b88f6107e11d7d9b",
+          "byteSize": 24192
+        },
+        {
+          "text": "local",
+          "file": "99641e4b561ae813822f7b73446d7084f6a151e16065d2f97ee4f296e979bdff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99641e4b561ae813822f7b73446d7084f6a151e16065d2f97ee4f296e979bdff.mp3",
+          "contentHash": "a6a7e5ca35104f6c699c82f9184e4d8155ef4f7636727fead88d805016baf1ca",
+          "byteSize": 27648
+        },
+        {
+          "text": "foreign",
+          "file": "c14a6c4ab60e736f55210ecbc18685db81000da58d3af2586919e098726a7d9f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c14a6c4ab60e736f55210ecbc18685db81000da58d3af2586919e098726a7d9f.mp3",
+          "contentHash": "70428b9511c3532ebdef5adace0f9213f5bed59d1b6243cd62b0de7d83cbddcd",
+          "byteSize": 42624
+        },
+        {
+          "text": "online",
+          "file": "1d23cb48220e790dd15e8c8ed6ddf6ccafe52b8df0c353928aea0f6de1d5e37c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d23cb48220e790dd15e8c8ed6ddf6ccafe52b8df0c353928aea0f6de1d5e37c.mp3",
+          "contentHash": "73b5f605df59150e5686cdc3c88e0ca9cbe6f8e0a80c090a6d9b238698c7b3f8",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s29/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Tom's skateboard.",
+          "file": "286379f522e6742c52b1ad51969d99d5ceffd9626ef4137dee2e5e2641c7dd0c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/286379f522e6742c52b1ad51969d99d5ceffd9626ef4137dee2e5e2641c7dd0c.mp3",
+          "contentHash": "df6671ca6e77af9493c648dfee9c32457622c36fc87ae5daf6ff9f18b9af1731",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s29/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Anna's necklace is on the table.",
+          "file": "382f0808753afb236c2f4bcdfdcdf9ac4a5fd55062a04b583ec09184d05711c7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/382f0808753afb236c2f4bcdfdcdf9ac4a5fd55062a04b583ec09184d05711c7.mp3",
+          "contentHash": "fef4437384f353e0c3670bbec5dc59388a38bff761f487a907f5bed44d9c5edb",
+          "byteSize": 54912
+        }
+      ]
+    },
+    "l05/s29/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The shop is local.",
+          "file": "f9b80f65b54bf4de8d9fc124ea6c2b2782001ea31fc669dc8bda20bb0b9c706d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f9b80f65b54bf4de8d9fc124ea6c2b2782001ea31fc669dc8bda20bb0b9c706d.mp3",
+          "contentHash": "51f663ccb02c72a5a0dbcc02e2d9610abd5baa5d87b5f4605406815ea4d06172",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l05/s29/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's skateboard.",
+          "file": "02105cb71af6c832f95a7e6a61541962ff4d468558404661982e440faf63c9ca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/02105cb71af6c832f95a7e6a61541962ff4d468558404661982e440faf63c9ca.mp3",
+          "contentHash": "80ef341384b8537811c8786cc7012c75b3b8268671ee2ff524f64cdbea6c446c",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s29/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The car is foreign.",
+          "file": "61c1e38a075eb7091678a611f241f90d0abcbbdd95edbf89677bac0714008726.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/61c1e38a075eb7091678a611f241f90d0abcbbdd95edbf89677bac0714008726.mp3",
+          "contentHash": "34d54f42c71c4c5b7ae20dd20ada7d766a75a6718e561e82a0c54a386c5d0127",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s29/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "skateboard",
+          "file": "a49f705de3854793beed1be10443fd269bda8718983ca7dcd794ed8f0f461259.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a49f705de3854793beed1be10443fd269bda8718983ca7dcd794ed8f0f461259.mp3",
+          "contentHash": "409b423b373b1dec2b94911371938abeac475c25c1b51705b88f6107e11d7d9b",
+          "byteSize": 24192
+        },
+        {
+          "text": "tables",
+          "file": "10b55156953ddc4c239b00e73794377eba08103c4ed4824f4064ba5618b0aaaf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/10b55156953ddc4c239b00e73794377eba08103c4ed4824f4064ba5618b0aaaf.mp3",
+          "contentHash": "2cb2331836844676545d3e20cb12ed180b973efb67658a7de0171ebba0df5b29",
+          "byteSize": 35712
+        },
+        {
+          "text": "bus stop",
+          "file": "0b75e732f25c427ab3e37899278dce6214e25aab9a10752752f8b42936c10e7a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0b75e732f25c427ab3e37899278dce6214e25aab9a10752752f8b42936c10e7a.mp3",
+          "contentHash": "954ad34e41ed87d587f240c59e32c5c1edd6955781ab5faa7bb542fbb7ebb5ec",
+          "byteSize": 29184
+        },
+        {
+          "text": "necklace",
+          "file": "6205cdcacf8d8646bf27cdd7c50cda289227cc339c986b67bb0a116da2851c80.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-ash.mp3",
+          "contentHash": "a3159a3399c6a157c40f38666dc87e76afa680338f3b8b012d4e19c8a7ab297b",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s29/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom is at the bus stop.",
+          "file": "487a702493b3c9e4ed2a81e18140913251192a5d39bafeee897f325463a1d20e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/487a702493b3c9e4ed2a81e18140913251192a5d39bafeee897f325463a1d20e.mp3",
+          "contentHash": "861b5c7888a965dbf7f479c94e61cb9b257bdf848c506363fb0d5408e35b6ff7",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s29/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The tables are outside.",
+          "file": "ec6669fbafcef06bb1474e7bea75d14e0767d753e606a000a63d61ef000ecfd4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ec6669fbafcef06bb1474e7bea75d14e0767d753e606a000a63d61ef000ecfd4.mp3",
+          "contentHash": "92f2c7c93871055d18808e9fbc13ba3e98302d371a6cf6c08b81353e14b149cd",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l05/s29/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is my skateboard?",
+          "file": "11744481ba8d2e7bdf131ef854c9f2ad9f54156cad3a8868cc1de5e6f603ca75.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11744481ba8d2e7bdf131ef854c9f2ad9f54156cad3a8868cc1de5e6f603ca75.mp3",
+          "contentHash": "cd76b08ca1e7ad72d720663be91629851abab2c0ff3d7e846cd2a6e5156c96fc",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s29/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The necklace is hers.",
+          "file": "b5e0773125dcb30819fe15cb2eef66f028661895ec7725ffdbd94e2979f62082.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b5e0773125dcb30819fe15cb2eef66f028661895ec7725ffdbd94e2979f62082.mp3",
+          "contentHash": "03d99a30f36fbed4bb823e129a0d0ecd18eac5b02ff4957c1f1a61a78f7490c5",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s29/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Your skateboard is here.",
+          "file": "81dbd25e170a2b5215c9f6532130baad2080f8ebd9d185f478a51beb25af5c82.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81dbd25e170a2b5215c9f6532130baad2080f8ebd9d185f478a51beb25af5c82.mp3",
+          "contentHash": "91988fda1a9a439d260fd2655c3871aa80262ab627a392f0be0539bd2571cbd8",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s29/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "skateboard",
+          "file": "d58dc55ce601904daed9de05b3789850844abadfdd5cc55f0627d49e99d56973.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d58dc55ce601904daed9de05b3789850844abadfdd5cc55f0627d49e99d56973.mp3",
+          "contentHash": "887e5af305c27c01e3d308f8e4d161c5a859b48ebaddc18ad75c3c0407e5e3ad",
+          "byteSize": 32640
+        },
+        {
+          "text": "tables",
+          "file": "cf3ae50cc1e496b4fcec83c78b9063b8bde10968fad588738c90192c964d920e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cf3ae50cc1e496b4fcec83c78b9063b8bde10968fad588738c90192c964d920e.mp3",
+          "contentHash": "a964b95f10a5674473c38bdd67133f07503b58c24d1d2ca666d7f0a99c14a21e",
+          "byteSize": 20352
+        },
+        {
+          "text": "bus stop",
+          "file": "918c6a0859da3c9afeea8a419b57ad9b0c55fa803a22f7e86491b1ff4e485678.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/918c6a0859da3c9afeea8a419b57ad9b0c55fa803a22f7e86491b1ff4e485678.mp3",
+          "contentHash": "1741db6b8700c9682afecdae4f2c6ceb8af9d83868e3c147f90d62265992f666",
+          "byteSize": 26880
+        },
+        {
+          "text": "necklace",
+          "file": "cd8de44dbb6fccd9d1e0e5404e3aba37d12b0cef49db0d612d31887436f52fd4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/731f46507cc5394513e3bfa3-coral.mp3",
+          "contentHash": "5edc21eb132dbe746cd4517a5d597dec4f20650033467616fc0ac8339d2f43a2",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s29/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Tom's skateboard.",
+          "file": "286379f522e6742c52b1ad51969d99d5ceffd9626ef4137dee2e5e2641c7dd0c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/286379f522e6742c52b1ad51969d99d5ceffd9626ef4137dee2e5e2641c7dd0c.mp3",
+          "contentHash": "df6671ca6e77af9493c648dfee9c32457622c36fc87ae5daf6ff9f18b9af1731",
+          "byteSize": 38784
+        }
+      ]
     }
   },
   "settings": {

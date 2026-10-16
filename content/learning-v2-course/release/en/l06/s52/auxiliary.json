@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-52:intro1:r2": {
+          "ru": "После `she` нужно `wears`.",
+          "uk": "Після `she` потрібне `wears`."
+        },
+        "en:lesson-06:session-52:intro1:r3": {
+          "ru": "Нужно `She wears`, без `is`.",
+          "uk": "Потрібно `She wears`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-52:intro2:r2": {
+          "ru": "После `we` нужно `wear`.",
+          "uk": "Після `we` потрібне `wear`."
+        },
+        "en:lesson-06:session-52:intro2:r3": {
+          "ru": "Нужно `We wear`, без `are`.",
+          "uk": "Потрібно `We wear`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-52:intro3:r2": {
+          "ru": "Это вопрос «Где эта шляпа?», а нужен владелец.",
+          "uk": "Це запитання «Де цей капелюх?», а потрібен власник."
+        },
+        "en:lesson-06:session-52:intro3:r3": {
+          "ru": "Одна шляпа: `is this`.",
+          "uk": "Один капелюх: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f00382ff00e76aea2671153cd7efe4433e68f8591fee55dc236f483263b05091"
+}

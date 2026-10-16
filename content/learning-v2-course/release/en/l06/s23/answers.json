@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-23:i01",
+    "correctText": "I teach English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i02",
+    "correctText": "teach",
+    "correctResponseId": "en:lesson-06:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i03",
+    "correctText": "teaches",
+    "correctResponseId": "en:lesson-06:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i04",
+    "correctText": "en:lesson-06:session-23:i04:p1=teach\nen:lesson-06:session-23:i04:p2=valid\nen:lesson-06:session-23:i04:p3=cheese\nen:lesson-06:session-23:i04:p4=camera",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i05",
+    "correctText": "Anna teaches here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i06",
+    "correctText": "He sings here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i07",
+    "correctText": "The ticket is valid.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i08",
+    "correctText": "teach",
+    "correctResponseId": "en:lesson-06:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i09",
+    "correctText": "My camera is here.",
+    "correctResponseId": "en:lesson-06:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i10",
+    "correctText": "en:lesson-06:session-23:i10:p1=teach\nen:lesson-06:session-23:i10:p2=sing\nen:lesson-06:session-23:i10:p3=camera\nen:lesson-06:session-23:i10:p4=valid",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i11",
+    "correctText": "The cheese is in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i12",
+    "correctText": "Whose camera is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i13",
+    "correctText": "They sing here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i14",
+    "correctText": "sings",
+    "correctResponseId": "en:lesson-06:session-23:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i15",
+    "correctText": "The cheese is fresh.",
+    "correctResponseId": "en:lesson-06:session-23:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i16",
+    "correctText": "en:lesson-06:session-23:i16:p1=teach\nen:lesson-06:session-23:i16:p2=cheese\nen:lesson-06:session-23:i16:p3=valid\nen:lesson-06:session-23:i16:p4=sing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:i17",
+    "correctText": "She teaches English.",
+    "correctResponseId": null
+  }
+]

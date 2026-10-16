@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-31:i01",
+    "correctText": "Do you visit parks?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i02",
+    "correctText": "visit",
+    "correctResponseId": "en:lesson-07:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i03",
+    "correctText": "visit",
+    "correctResponseId": "en:lesson-07:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i04",
+    "correctText": "en:lesson-07:session-31:i04:p1=visit\nen:lesson-07:session-31:i04:p2=shower\nen:lesson-07:session-31:i04:p3=guitar\nen:lesson-07:session-31:i04:p4=parks",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i05",
+    "correctText": "Do you visit parks?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i06",
+    "correctText": "When do you shower?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i07",
+    "correctText": "Where do you work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i08",
+    "correctText": "do",
+    "correctResponseId": "en:lesson-07:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i09",
+    "correctText": "Do you visit parks?",
+    "correctResponseId": "en:lesson-07:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i10",
+    "correctText": "en:lesson-07:session-31:i10:p1=cheat\nen:lesson-07:session-31:i10:p2=visit\nen:lesson-07:session-31:i10:p3=parks\nen:lesson-07:session-31:i10:p4=shower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i11",
+    "correctText": "When do you shower?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i12",
+    "correctText": "Do you have a guitar?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i13",
+    "correctText": "I don’t cheat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i14",
+    "correctText": "visit",
+    "correctResponseId": "en:lesson-07:session-31:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i15",
+    "correctText": "Where do you work?",
+    "correctResponseId": "en:lesson-07:session-31:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i16",
+    "correctText": "en:lesson-07:session-31:i16:p1=visit\nen:lesson-07:session-31:i16:p2=guitar\nen:lesson-07:session-31:i16:p3=cheat\nen:lesson-07:session-31:i16:p4=parks",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:i17",
+    "correctText": "When does Tom visit parks?",
+    "correctResponseId": null
+  }
+]

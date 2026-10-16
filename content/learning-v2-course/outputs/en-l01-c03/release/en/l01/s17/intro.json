@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "сказать о собеседнике `You are`, о нас `We are`, о других людях `They are`",
+    "uk": "сказати про співрозмовника `You are`, про нас `We are`, про інших людей `They are`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Гостю рады",
+        "uk": "Гостеві раді"
+      },
+      "bodyByLocale": {
+        "ru": "`welcome` — «желанный»: вы рады, что человек пришёл. Скажите другу `You are welcome` — «Тебе здесь рады». `you` значит «ты» или «вы»; после него нужно `are`. Даже если гость один: звать второго ради `are` не нужно.",
+        "uk": "`welcome` — «бажаний»: ви раді, що людина прийшла. Скажіть другові `You are welcome` — «Тобі тут раді». `you` означає «ти» або «ви»; після нього потрібно `are`. Навіть якщо гість один: кликати другого заради `are` не треба."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг ещё у двери и сомневается, можно ли войти. Скажите ему, что вы рады его приходу.",
+          "uk": "Друг іще біля дверей і вагається, чи можна зайти. Скажіть йому, що раді його приходу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-17:intro1:r1",
+              "text": "You are welcome."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro1:r2",
+              "text": "You welcome."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro1:r3",
+              "text": "You am welcome."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-17:intro1:r1",
+              "text": "You are welcome."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro1:r2",
+              "text": "You welcome."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro1:r3",
+              "text": "You am welcome."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг ещё у двери и сомневается, можно ли войти. Скажите ему, что вы рады его приходу.",
+          "uk": "Друг іще біля дверей і вагається, чи можна зайти. Скажіть йому, що раді його приходу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одна компания",
+        "uk": "Одна компанія"
+      },
+      "bodyByLocale": {
+        "ru": "У стойки гостевого дома сотрудник не понял, приехали ли вы с другом вместе. together — «вместе». We are together — «Мы вместе»: здесь вы сообщаете, что вы одна компания. We значит «мы» и включает вас; после We ставится are.",
+        "uk": "Біля стійки гостьового будинку працівник не зрозумів, чи ви з другом приїхали разом. together — «разом». We are together — «Ми разом»: тут ви повідомляєте, що ви одна компанія. We означає «ми» й включає вас; після We ставиться are."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы с другом приехали вместе. Сообщите сотруднику за вас обоих: «Мы вместе».",
+          "uk": "Ви з другом приїхали разом. Повідомте працівнику за вас обох: «Ми разом»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-17:intro2:r1",
+              "text": "We are together."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro2:r2",
+              "text": "We is together."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro2:r3",
+              "text": "They are together."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-17:intro2:r1",
+              "text": "We are together."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro2:r2",
+              "text": "We is together."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro2:r3",
+              "text": "They are together."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы с другом приехали вместе. Сообщите сотруднику за вас обоих: «Мы вместе».",
+          "uk": "Ви з другом приїхали разом. Повідомте працівнику за вас обох: «Ми разом»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Благодарность гостей",
+        "uk": "Вдячність гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Хозяйка помогла двум гостям найти забытый чемодан. Гости благодарят её за помощь. grateful — «благодарный». They are grateful — «Они благодарны». They — «они»: вы рассказываете другу о гостях, а не говорите за себя. После They нужно are.",
+        "uk": "Господиня допомогла двом гостям знайти забуту валізу. Гості дякують їй за допомогу. grateful — «вдячний». They are grateful — «Вони вдячні». They — «вони»: ви розповідаєте другові про гостей, а не говорите за себе. Після They потрібне are."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Двое гостей благодарны хозяйке за найденный чемодан. Скажите другу про них: «Они благодарны».",
+          "uk": "Двоє гостей вдячні господині за знайдену валізу. Скажіть другові про них: «Вони вдячні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-17:intro3:r1",
+              "text": "They are grateful."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro3:r2",
+              "text": "They is grateful."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro3:r3",
+              "text": "We are grateful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-17:intro3:r1",
+              "text": "They are grateful."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro3:r2",
+              "text": "They is grateful."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro3:r3",
+              "text": "We are grateful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Двое гостей благодарны хозяйке за найденный чемодан. Скажите другу про них: «Они благодарны».",
+          "uk": "Двоє гостей вдячні господині за знайдену валізу. Скажіть другові про них: «Вони вдячні»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a027e64628c881d39bc9464501b8579831afe4cdc14d82fdba188f0c246c604f"
+}

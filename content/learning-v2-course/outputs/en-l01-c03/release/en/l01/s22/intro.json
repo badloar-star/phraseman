@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "узнавать на слух знакомые I am, He/She is, You/We/They are и описывать героев фильма",
+    "uk": "впізнавати на слух знайомі I am, He/She is, You/We/They are та описувати героїв фільму"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У него много денег",
+        "uk": "У нього багато грошей"
+      },
+      "bodyByLocale": {
+        "ru": "`rich` — «богатый». Герою принадлежат несколько дорогих домов: `He is rich` — «Он богатый».",
+        "uk": "`rich` — «багатий». Героєві належать кілька дорогих будинків: `He is rich` — «Він багатий»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает о мужчине, которому принадлежат несколько дорогих домов. Скажите: «Он богатый».",
+          "uk": "Друг запитує про чоловіка, якому належать кілька дорогих будинків. Скажіть: «Він багатий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-22:intro1:r1",
+              "text": "He is rich."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro1:r2",
+              "text": "He are rich."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro1:r3",
+              "text": "They are rich."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-22:intro1:r1",
+              "text": "He is rich."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro1:r2",
+              "text": "He are rich."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro1:r3",
+              "text": "They are rich."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает о мужчине, которому принадлежат несколько дорогих домов. Скажите: «Он богатый».",
+          "uk": "Друг запитує про чоловіка, якому належать кілька дорогих будинків. Скажіть: «Він багатий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Денег мало",
+        "uk": "Грошей мало"
+      },
+      "bodyByLocale": {
+        "ru": "`poor` — «бедный»: в этой истории героине едва хватает денег на еду. `She is poor` — «Она бедная». Это про деньги, а не про доброту или ум.",
+        "uk": "`poor` — «бідний»: у цій історії героїні ледве вистачає грошей на їжу. `She is poor` — «Вона бідна». Це про гроші, а не про доброту чи розум."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "У героини почти нет денег. Скажите другу о её положении.",
+          "uk": "У героїні майже немає грошей. Скажіть другові про її становище."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-22:intro2:r1",
+              "text": "She is poor."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro2:r2",
+              "text": "She poor."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro2:r3",
+              "text": "She is rich."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-22:intro2:r1",
+              "text": "She is poor."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro2:r2",
+              "text": "She poor."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro2:r3",
+              "text": "She is rich."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У героини почти нет денег. Скажите другу о её положении.",
+          "uk": "У героїні майже немає грошей. Скажіть другові про її становище."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнают даже без сцены",
+        "uk": "Упізнають навіть без сцени"
+      },
+      "bodyByLocale": {
+        "ru": "`famous` — «знаменитый». Два певца в фильме заходят в кафе, и посетители сразу узнают обоих. They are famous — «Они знаменитые». Это говорит об известности, а не о деньгах: автографом за кофе обычно не расплатишься.",
+        "uk": "`famous` — «знаменитий». Двоє співаків у фільмі заходять до кафе, і відвідувачі одразу впізнають обох. They are famous — «Вони знамениті». Це говорить про відомість, а не про гроші: автографом за каву зазвичай не розплатишся."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Двух певцов узнают по всей стране. Скажите про них: «Они знаменитые».",
+          "uk": "Двох співаків упізнають по всій країні. Скажіть про них: «Вони знамениті»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-22:intro3:r1",
+              "text": "They are famous."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro3:r2",
+              "text": "They is famous."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro3:r3",
+              "text": "They are rich."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-22:intro3:r1",
+              "text": "They are famous."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro3:r2",
+              "text": "They is famous."
+            },
+            {
+              "responseId": "en:lesson-01:session-22:intro3:r3",
+              "text": "They are rich."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Двух певцов узнают по всей стране. Скажите про них: «Они знаменитые».",
+          "uk": "Двох співаків упізнають по всій країні. Скажіть про них: «Вони знамениті»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9632cdada46fe87a6b05dcf39c4fe64a2f8710bb947168807a8e5627b87fe737"
+}

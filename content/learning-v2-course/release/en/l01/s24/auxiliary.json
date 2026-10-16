@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-24:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-24:intro1:r2": {
-          "ru": "Это только о вас. Вы говорите за себя и сестру: `We are early`.",
-          "uk": "Це лише про вас. Ви говорите за себе та сестру: `We are early`."
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
         },
         "en:lesson-01:session-24:intro1:r3": {
-          "ru": "После `We` нужно `are`.",
-          "uk": "Після `We` потрібно `are`."
+          "ru": "Здесь описываем освещение: It is dim. Фраза с I была бы о вас, а не о свете.",
+          "uk": "Тут описуємо освітлення: It is dim. Фраза з I була б про вас, а не про світло."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-24:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-24:intro2:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "She — о человеке. Коробку здесь обозначаем It.",
+          "uk": "She — про людину. Коробку тут позначаємо It."
         },
         "en:lesson-01:session-24:intro2:r3": {
-          "ru": "`outside` — «снаружи». Друзья на верхнем этаже: `upstairs`.",
-          "uk": "`outside` — «зовні». Друзі на верхньому поверсі: `upstairs`."
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-24:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-24:intro3:r2": {
-          "ru": "О деньгах ничего не сказано. Известность — `famous`.",
-          "uk": "Про гроші нічого не сказано. Популярність — `famous`."
+          "ru": "heavy описывает вес. Здесь нужно предупредить, что вазу легко разбить: fragile.",
+          "uk": "heavy описує вагу. Тут потрібно попередити, що вазу легко розбити: fragile."
         },
         "en:lesson-01:session-24:intro3:r3": {
-          "ru": "После `She` нужна форма `is`.",
-          "uk": "Після `She` потрібна форма `is`."
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "77db6aa3925eb34f8c8b4fb694cac5458e260edf2a7d264f8b948904579c9c95"
+  "auxiliaryFingerprint": "a05f1e8d5438113999b76d6a04d33591e5885bc7b06350d0cedebb6e73d695b9"
 }

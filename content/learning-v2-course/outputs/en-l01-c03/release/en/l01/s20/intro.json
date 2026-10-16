@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно построить знакомую фразу с am, is или are о подготовке к прогулке, крутом подъёме и испачканной одежде",
+    "uk": "самостійно побудувати знайому фразу з am, is або are про підготовку до прогулянки, крутий підйом і забруднений одяг"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Крутой подъём",
+        "uk": "Крутий підйом"
+      },
+      "bodyByLocale": {
+        "ru": "Перед вами тропинка, которая резко уходит вверх. steep — «крутой», если речь о склоне или подъёме. Показывая на подъём, скажите It is steep — «Он крутой». Это описание наклона, а не похвала маршруту.",
+        "uk": "Перед вами стежка, яка різко йде вгору. steep — «крутий», якщо йдеться про схил або підйом. Показуючи на підйом, скажіть It is steep — «Він крутий». Це опис нахилу, а не похвала маршруту."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг не видит подъём за поворотом. Скажите ему, что подъём крутой.",
+          "uk": "Друг не бачить підйому за поворотом. Скажіть йому, що підйом крутий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r1",
+              "text": "It is steep."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r2",
+              "text": "He is steep."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r3",
+              "text": "It are steep."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r1",
+              "text": "It is steep."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r2",
+              "text": "He is steep."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r3",
+              "text": "It are steep."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг не видит подъём за поворотом. Скажите ему, что подъём крутой.",
+          "uk": "Друг не бачить підйому за поворотом. Скажіть йому, що підйом крутий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рюкзак проверен",
+        "uk": "Рюкзак перевірено"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга заранее изучила маршрут, взяла воду и выбрала подходящую обувь. prepared — «подготовленный». She is prepared — «Она подготовилась». Знакомое ready говорит о готовности, а prepared подчёркивает предварительную подготовку. Рюкзак лучше проверить дома: забытая бутылка воды сама вас не догонит.",
+        "uk": "Подруга заздалегідь вивчила маршрут, узяла воду й вибрала відповідне взуття. prepared — «підготовлений». She is prepared — «Вона підготувалася». Знайоме ready говорить про готовність, а prepared підкреслює попередню підготовку. Рюкзак краще перевірити вдома: забута пляшка води сама вас не наздожене."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Подруга заранее изучила маршрут и собрала вещи. Скажите о ней: «Она подготовилась».",
+          "uk": "Подруга заздалегідь вивчила маршрут і зібрала речі. Скажіть про неї: «Вона підготувалася»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r1",
+              "text": "She is prepared."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r2",
+              "text": "She are prepared."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r3",
+              "text": "She is lost."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r1",
+              "text": "She is prepared."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r2",
+              "text": "She are prepared."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r3",
+              "text": "She is lost."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подруга заранее изучила маршрут и собрала вещи. Скажите о ней: «Она подготовилась».",
+          "uk": "Подруга заздалегідь вивчила маршрут і зібрала речі. Скажіть про неї: «Вона підготувалася»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Куртка после падения",
+        "uk": "Куртка після падіння"
+      },
+      "bodyByLocale": {
+        "ru": "Вы поскользнулись, и куртка испачкалась в мокрой земле. muddy — «в грязи, покрытый грязью». Про куртку скажите It is muddy — «Она в грязи». Это точнее, чем просто сказать, что она мокрая: на ткани осталась земля.",
+        "uk": "Ви посковзнулися, і куртка забруднилася мокрою землею. muddy — «у багнюці, вкритий багнюкою». Про куртку скажіть It is muddy — «Вона в багнюці». Це точніше, ніж просто сказати, що вона мокра: на тканині залишилася земля."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает о вашей куртке после падения. Скажите, что она в грязи.",
+          "uk": "Друг запитує про вашу куртку після падіння. Скажіть, що вона в багнюці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r1",
+              "text": "It is muddy."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r2",
+              "text": "She is muddy."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r3",
+              "text": "It am muddy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r1",
+              "text": "It is muddy."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r2",
+              "text": "She is muddy."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r3",
+              "text": "It am muddy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает о вашей куртке после падения. Скажите, что она в грязи.",
+          "uk": "Друг запитує про вашу куртку після падіння. Скажіть, що вона в багнюці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dc6761fa654f32534072ff8c6aba790d18581c9783e12a7fd4dfa68581873dc0"
+}

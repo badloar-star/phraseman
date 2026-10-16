@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "описать растерянность, сонливость и облегчение, выбирая знакомые am, is, are",
+    "uk": "описати розгубленість, сонливість і полегшення, вибираючи знайомі am, is, are"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два табло — непонятно, куда идти",
+        "uk": "Два табло — незрозуміло, куди йти"
+      },
+      "bodyByLocale": {
+        "ru": "Вы смотрите на два вокзальных табло и не понимаете, какое относится к вашему поезду. confused — «растерянный, запутавшийся». I am confused — «Я запутался / запуталась». Вы сообщаете, что пока не разобрались, а не утверждаете, что уже дали неверный ответ.",
+        "uk": "Ви дивитеся на два вокзальні табло й не розумієте, яке стосується вашого потяга. confused — «розгублений, спантеличений». I am confused — «Я заплутався / заплуталася». Ви повідомляєте, що поки не розібралися, а не стверджуєте, що вже дали неправильну відповідь."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы не можете разобраться в табло. Скажите другу о своей растерянности.",
+          "uk": "Ви не можете розібратися в табло. Скажіть другові про свою розгубленість."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-18:intro1:r1",
+              "text": "I am confused."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro1:r2",
+              "text": "You are confused."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro1:r3",
+              "text": "I is confused."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-18:intro1:r1",
+              "text": "I am confused."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro1:r2",
+              "text": "You are confused."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro1:r3",
+              "text": "I is confused."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы не можете разобраться в табло. Скажите другу о своей растерянности.",
+          "uk": "Ви не можете розібратися в табло. Скажіть другові про свою розгубленість."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ранний поезд после короткой ночи",
+        "uk": "Ранній потяг після короткої ночі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом спали мало, и теперь вам обоим хочется спать. sleepy — «сонный». We are sleepy — «Мы сонные», «Нам хочется спать». Вы говорите за себя и друга, поэтому начинаете с We are.",
+        "uk": "Ви з другом спали мало, і тепер вам обом хочеться спати. sleepy — «сонний». We are sleepy — «Ми сонні», «Нам хочеться спати». Ви говорите за себе й друга, тому починаєте з We are."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы оба хотите спать. Скажите за вас двоих: «Мы сонные».",
+          "uk": "Ви обоє хочете спати. Скажіть за вас двох: «Ми сонні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-18:intro2:r1",
+              "text": "We are sleepy."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro2:r2",
+              "text": "I am sleepy."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro2:r3",
+              "text": "We is sleepy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-18:intro2:r1",
+              "text": "We are sleepy."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro2:r2",
+              "text": "I am sleepy."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro2:r3",
+              "text": "We is sleepy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы оба хотите спать. Скажите за вас двоих: «Мы сонные».",
+          "uk": "Ви обоє хочете спати. Скажіть за вас двох: «Ми сонні»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Билеты нашлись",
+        "uk": "Квитки знайшлися"
+      },
+      "bodyByLocale": {
+        "ru": "Двое пассажиров переживали, что потеряли билеты. Теперь билеты нашлись, и пассажиры больше не волнуются из-за пропажи. relieved — «испытывающий облегчение». They are relieved — «Они почувствовали облегчение». Слово описывает чувство после того, как тревога прошла.",
+        "uk": "Двоє пасажирів хвилювалися, що загубили квитки. Тепер квитки знайшлися, і пасажири більше не хвилюються через втрату. relieved — «той, хто відчуває полегшення». They are relieved — «Вони відчули полегшення». Слово описує почуття після того, як тривога минула."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Пассажиры нашли билеты и почувствовали облегчение. Скажите другу об их состоянии.",
+          "uk": "Пасажири знайшли квитки й відчули полегшення. Скажіть другові про їхній стан."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-18:intro3:r1",
+              "text": "They are relieved."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro3:r2",
+              "text": "We are relieved."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro3:r3",
+              "text": "They is relieved."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-18:intro3:r1",
+              "text": "They are relieved."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro3:r2",
+              "text": "We are relieved."
+            },
+            {
+              "responseId": "en:lesson-01:session-18:intro3:r3",
+              "text": "They is relieved."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Пассажиры нашли билеты и почувствовали облегчение. Скажите другу об их состоянии.",
+          "uk": "Пасажири знайшли квитки й відчули полегшення. Скажіть другові про їхній стан."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "db44683546d650ab8b866c01b46488fbba3740e96bd64675b75dd795aa6a2a43"
+}

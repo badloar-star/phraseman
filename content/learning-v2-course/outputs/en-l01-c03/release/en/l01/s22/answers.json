@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-22:word:rich",
+    "correctText": "rich",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:word:poor",
+    "correctText": "poor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:word:famous",
+    "correctText": "famous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:word:generous",
+    "correctText": "generous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i01",
+    "correctText": "He is rich.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i02",
+    "correctText": "She is poor.",
+    "correctResponseId": "en:lesson-01:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i04",
+    "correctText": "en:lesson-01:session-22:i04:p1=rich\nen:lesson-01:session-22:i04:p2=poor\nen:lesson-01:session-22:i04:p3=famous\nen:lesson-01:session-22:i04:p4=generous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i05",
+    "correctText": "We are poor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i06",
+    "correctText": "She is famous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i07",
+    "correctText": "They are rich.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i08",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i09",
+    "correctText": "You are rich.",
+    "correctResponseId": "en:lesson-01:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i10",
+    "correctText": "en:lesson-01:session-22:i10:p1=outside\nen:lesson-01:session-22:i10:p2=upstairs\nen:lesson-01:session-22:i10:p3=clean\nen:lesson-01:session-22:i10:p4=open",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i11",
+    "correctText": "He is famous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i12",
+    "correctText": "He is generous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i13",
+    "correctText": "It is closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i14",
+    "correctText": "famous",
+    "correctResponseId": "en:lesson-01:session-22:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i15",
+    "correctText": "You are generous.",
+    "correctResponseId": "en:lesson-01:session-22:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i16",
+    "correctText": "en:lesson-01:session-22:i16:p1=generous\nen:lesson-01:session-22:i16:p2=famous\nen:lesson-01:session-22:i16:p3=poor\nen:lesson-01:session-22:i16:p4=rich",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i17",
+    "correctText": "He is famous.",
+    "correctResponseId": null
+  }
+]

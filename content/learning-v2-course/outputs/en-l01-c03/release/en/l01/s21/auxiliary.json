@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-21:intro1:r2": {
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
+        },
+        "en:lesson-01:session-21:intro1:r3": {
+          "ru": "am используем с I; здесь It is.",
+          "uk": "am уживаємо з I; тут It is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-21:intro2:r2": {
+          "ru": "crowded — о множестве людей, а за столиком никого нет.",
+          "uk": "crowded — про велику кількість людей, а за столиком нікого немає."
+        },
+        "en:lesson-01:session-21:intro2:r3": {
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-21:intro3:r2": {
+          "ru": "She — о человеке. Про сумку здесь нужно It.",
+          "uk": "She — про людину. Про сумку тут потрібне It."
+        },
+        "en:lesson-01:session-21:intro3:r3": {
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "872201ff0671f312064fab6a5e870c44849f6aad13aa164a4555973df04c066b"
+}

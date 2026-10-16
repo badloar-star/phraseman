@@ -1,0 +1,1173 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-22:word:rich",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rich",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:rich:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rich",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:rich:audio",
+          "transcript": "rich"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:rich:r1",
+            "targetText": "rich",
+            "meaningByLocale": {
+              "ru": "богатый: у человека много денег и имущества. He is rich — «Он богатый».",
+              "uk": "багатий: у людини багато грошей і майна. He is rich — «Він багатий»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rich",
+          "definitionByLocale": {
+            "ru": "богатый: у человека много денег и имущества. He is rich — «Он богатый».",
+            "uk": "багатий: у людини багато грошей і майна. He is rich — «Він багатий»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:word:poor",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — poor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:poor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — poor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:poor:audio",
+          "transcript": "poor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:poor:r1",
+            "targetText": "poor",
+            "meaningByLocale": {
+              "ru": "бедный: у человека мало денег на жизнь. She is poor — «Она бедная». Здесь слово описывает материальное положение.",
+              "uk": "бідний: у людини мало грошей на життя. She is poor — «Вона бідна». Тут слово описує матеріальне становище."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "poor",
+          "definitionByLocale": {
+            "ru": "бедный: у человека мало денег на жизнь. She is poor — «Она бедная». Здесь слово описывает материальное положение.",
+            "uk": "бідний: у людини мало грошей на життя. She is poor — «Вона бідна». Тут слово описує матеріальне становище."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:word:famous",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — famous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:famous:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — famous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:famous:audio",
+          "transcript": "famous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:famous:r1",
+            "targetText": "famous",
+            "meaningByLocale": {
+              "ru": "знаменитый: его знают многие. They are famous — «Они знаменитые». Известность сама по себе не говорит о богатстве.",
+              "uk": "знаменитий: його знають багато людей. They are famous — «Вони знамениті». Відомість сама по собі не говорить про багатство."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "famous",
+          "definitionByLocale": {
+            "ru": "знаменитый: его знают многие. They are famous — «Они знаменитые». Известность сама по себе не говорит о богатстве.",
+            "uk": "знаменитий: його знають багато людей. They are famous — «Вони знамениті». Відомість сама по собі не говорить про багатство."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:word:generous",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — generous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:generous:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — generous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:generous:audio",
+          "transcript": "generous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:generous:r1",
+            "targetText": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый: охотно делится деньгами, вещами или временем. He is generous — «Он щедрый». Щедрым можно быть и без большого состояния.",
+              "uk": "щедрий: охоче ділиться грошима, речами або часом. He is generous — «Він щедрий». Щедрим можна бути й без великих статків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "generous",
+          "definitionByLocale": {
+            "ru": "щедрый: охотно делится деньгами, вещами или временем. He is generous — «Он щедрый». Щедрым можно быть и без большого состояния.",
+            "uk": "щедрий: охоче ділиться грошима, речами або часом. He is generous — «Він щедрий». Щедрим можна бути й без великих статків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i01",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу о состоятельном герое: «Он богатый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу о состоятельном герое: «Он богатый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is rich.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу о состоятельном герое: «Он богатый»",
+          "uk": "Складіть фразу про заможного героя: «Він багатий»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "rich"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу о состоятельном герое: «Он богатый»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is rich.`",
+              "uk": "тут потрібно `is` — `He is rich.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i02",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите услышанную фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i02:r1",
+          "text": "She is poor."
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i02:r2",
+          "text": "He is poor."
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i02:r3",
+          "text": "She is rich."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i02:audio",
+          "transcript": "She is poor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:i02:r1",
+            "targetText": "She is poor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i02:r2",
+            "targetText": "He is poor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i02:r3",
+            "targetText": "She is rich.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите услышанную фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите услышанную фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `poor`, а в этом варианте — `rich`.",
+              "uk": "У записі останнє слово — `poor`, а в цьому варіанті — `rich`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i03",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — двух певцов знают по всей стране",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — двух певцов знают по всей стране",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — двух певцов знают по всей стране",
+          "uk": "Вставте слово — двох співаків знають по всій країні"
+        },
+        "gappedTargetPhrase": "They ___ famous.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-22:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — двух певцов знают по всей стране",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — двух певцов знают по всей стране",
+            "feedbackByLocale": {
+              "ru": "После `They` нужно `are`.",
+              "uk": "Після `They` потрібно `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — двух певцов знают по всей стране",
+            "feedbackByLocale": {
+              "ru": "`am` ставим с `I`, а здесь `They are`.",
+              "uk": "`am` ставимо з `I`, а тут `They are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i04",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините новые слова и значения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините новые слова и значения",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-22:i04:p1",
+            "target": "rich",
+            "meaningByLocale": {
+              "ru": "богатый",
+              "uk": "багатий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i04:p2",
+            "target": "poor",
+            "meaningByLocale": {
+              "ru": "бедный",
+              "uk": "бідний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i04:p3",
+            "target": "famous",
+            "meaningByLocale": {
+              "ru": "знаменитый",
+              "uk": "знаменитий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i04:p4",
+            "target": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый",
+              "uk": "щедрий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "rich",
+          "poor",
+          "famous",
+          "generous"
+        ],
+        "rightColumn": [
+          "богатый",
+          "бедный",
+          "знаменитый",
+          "щедрый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i05",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте реплику героев и соберите услышанное",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте реплику героев и соберите услышанное",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i05:audio",
+          "transcript": "We are poor."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are poor.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "poor"
+        ],
+        "authoredDistractorTokens": [
+          "They"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте реплику героев и соберите услышанное",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `We` — `We are poor.`",
+              "uk": "тут потрібно `We` — `We are poor.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i06",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Певицу узнают во всех городах. Соберите фразу о ней: «Она знаменитая»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Певицу узнают во всех городах. Соберите фразу о ней: «Она знаменитая»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is famous.",
+        "localizedMeaning": {
+          "ru": "Певицу узнают во всех городах. Соберите фразу о ней: «Она знаменитая»",
+          "uk": "Співачку впізнають у всіх містах. Складіть фразу про неї: «Вона знаменита»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "famous"
+        ],
+        "authoredDistractorTokens": [
+          "He"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Певицу узнают во всех городах. Соберите фразу о ней: «Она знаменитая»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `She` — `She is famous.`",
+              "uk": "тут потрібно `She` — `She is famous.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У двух братьев в фильме много денег. Скажите о них: «Они богатые»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i07:audio"
+      ],
+      "accessibilityLabel": "У двух братьев в фильме много денег. Скажите о них: «Они богатые»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i07:audio",
+          "transcript": "They are rich."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are rich.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово в реплику певицы о себе: «Я знаменитая»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i08:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово в реплику певицы о себе: «Я знаменитая»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово в реплику певицы о себе: «Я знаменитая»",
+          "uk": "Вставте слово в репліку співачки про себе: «Я знаменита»"
+        },
+        "gappedTargetPhrase": "I ___ famous.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-22:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте слово в реплику певицы о себе: «Я знаменитая»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово в реплику певицы о себе: «Я знаменитая»",
+            "feedbackByLocale": {
+              "ru": "О себе певица говорит `I am`.",
+              "uk": "Про себе співачка каже `I am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово в реплику певицы о себе: «Я знаменитая»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужна форма `am`.",
+              "uk": "Після `I` потрібна форма `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точную реплику",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i09:r1",
+          "text": "You are rich."
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i09:r2",
+          "text": "We are rich."
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i09:r3",
+          "text": "You are famous."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точную реплику",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i09:audio",
+          "transcript": "You are rich."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:i09:r1",
+            "targetText": "You are rich.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i09:r2",
+            "targetText": "We are rich.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i09:r3",
+            "targetText": "You are famous.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точную реплику",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точную реплику",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `rich`, а в этом варианте — `famous`.",
+              "uk": "У записі останнє слово — `rich`, а в цьому варіанті — `famous`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините знакомые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-22:i10:p1",
+            "target": "outside",
+            "meaningByLocale": {
+              "ru": "снаружи",
+              "uk": "зовні"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i10:p2",
+            "target": "upstairs",
+            "meaningByLocale": {
+              "ru": "на верхнем этаже",
+              "uk": "на верхньому поверсі"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i10:p3",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "чистый",
+              "uk": "чистий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i10:p4",
+            "target": "open",
+            "meaningByLocale": {
+              "ru": "открытый",
+              "uk": "відкритий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "outside",
+          "upstairs",
+          "clean",
+          "open"
+        ],
+        "rightColumn": [
+          "снаружи",
+          "на верхнем этаже",
+          "чистый",
+          "открытый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i11:audio",
+          "transcript": "He is famous."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is famous.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "famous"
+        ],
+        "authoredDistractorTokens": [
+          "She"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите услышанную фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `He` — `He is famous.`",
+              "uk": "тут потрібно `He` — `He is famous.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Герой охотно делится деньгами и вещами с соседями. Соберите фразу о нём: «Он щедрый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Герой охотно делится деньгами и вещами с соседями. Соберите фразу о нём: «Он щедрый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is generous.",
+        "localizedMeaning": {
+          "ru": "Герой охотно делится деньгами и вещами с соседями. Соберите фразу о нём: «Он щедрый»",
+          "uk": "Герой охоче ділиться грошима й речами із сусідами. Складіть фразу про нього: «Він щедрий»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "generous"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Герой охотно делится деньгами и вещами с соседями. Соберите фразу о нём: «Он щедрый»",
+            "feedbackByLocale": {
+              "ru": "после He нужно is.",
+              "uk": "після He потрібне is."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В фильме герои пришли к закрытому магазину. Скажите о магазине: «Он закрыт»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i13:audio"
+      ],
+      "accessibilityLabel": "В фильме герои пришли к закрытому магазину. Скажите о магазине: «Он закрыт»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i13:audio",
+          "transcript": "It is closed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is closed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы знаете только, что певицу узнают тысячи людей. Дополните описание её известности",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i14:r1",
+          "text": "famous"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i14:r2",
+          "text": "rich"
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i14:r3",
+          "text": "poor"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы знаете только, что певицу узнают тысячи людей. Дополните описание её известности",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы знаете только, что певицу узнают тысячи людей. Дополните описание её известности",
+          "uk": "Ви знаєте лише, що співачку впізнають тисячі людей. Доповніть опис її популярності"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-22:i14:r1",
+            "text": "famous"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i14:r2",
+            "text": "rich"
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i14:r3",
+            "text": "poor"
+          }
+        ],
+        "testedDimension": "Вы знаете только, что певицу узнают тысячи людей. Дополните описание её известности",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы знаете только, что певицу узнают тысячи людей. Дополните описание её известности",
+            "feedbackByLocale": {
+              "ru": "`rich` говорит о деньгах. Здесь известно только, что её узнают: `famous`.",
+              "uk": "`rich` говорить про гроші. Тут відомо лише, що її впізнають: `famous`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы знаете только, что певицу узнают тысячи людей. Дополните описание её известности",
+            "feedbackByLocale": {
+              "ru": "`poor` — «бедная». О деньгах ничего не сказано; речь об известности: `famous`.",
+              "uk": "`poor` — «бідна». Про гроші нічого не сказано; ідеться про популярність: `famous`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите услышанное",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-22:i15:r1",
+          "text": "You are generous."
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i15:r2",
+          "text": "We are generous."
+        },
+        {
+          "responseId": "en:lesson-01:session-22:i15:r3",
+          "text": "You are famous."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i15:audio",
+          "transcript": "You are generous."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:i15:r1",
+            "targetText": "You are generous.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i15:r2",
+            "targetText": "We are generous.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i15:r3",
+            "targetText": "You are famous.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-22:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите услышанное",
+            "feedbackByLocale": {
+              "ru": "В записи You, а не We.",
+              "uk": "У записі You, а не We."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-22:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите услышанное",
+            "feedbackByLocale": {
+              "ru": "В записи generous, а не famous.",
+              "uk": "У записі generous, а не famous."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-22:i16:p1",
+            "target": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый",
+              "uk": "щедрий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i16:p2",
+            "target": "famous",
+            "meaningByLocale": {
+              "ru": "знаменитый",
+              "uk": "знаменитий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i16:p3",
+            "target": "poor",
+            "meaningByLocale": {
+              "ru": "бедный",
+              "uk": "бідний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-22:i16:p4",
+            "target": "rich",
+            "meaningByLocale": {
+              "ru": "богатый",
+              "uk": "багатий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "generous",
+          "famous",
+          "poor",
+          "rich"
+        ],
+        "rightColumn": [
+          "щедрый",
+          "знаменитый",
+          "бедный",
+          "богатый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На книжной ярмарке вы встретили писателя, которого знают по всей стране. Скажите другу о писателе: «Он знаменитый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:i17:audio"
+      ],
+      "accessibilityLabel": "На книжной ярмарке вы встретили писателя, которого знают по всей стране. Скажите другу о писателе: «Он знаменитый»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:i17:audio",
+          "transcript": "He is famous."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is famous.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c0ece12656ad5c48d00a5cf05eacbc5ceb9cac4f94945f8cfb15681fdc1f9007"
+}

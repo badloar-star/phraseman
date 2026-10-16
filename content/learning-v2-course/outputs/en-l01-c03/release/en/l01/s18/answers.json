@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-18:word:confused",
+    "correctText": "confused",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:word:sleepy",
+    "correctText": "sleepy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:word:relieved",
+    "correctText": "relieved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:word:funny",
+    "correctText": "funny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i01",
+    "correctText": "I am confused.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i02",
+    "correctText": "We are sleepy.",
+    "correctResponseId": "en:lesson-01:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i04",
+    "correctText": "en:lesson-01:session-18:i04:p1=confused\nen:lesson-01:session-18:i04:p2=sleepy\nen:lesson-01:session-18:i04:p3=relieved\nen:lesson-01:session-18:i04:p4=funny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i05",
+    "correctText": "You are confused.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i06",
+    "correctText": "We are relieved.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i07",
+    "correctText": "She is sleepy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i09",
+    "correctText": "He is lucky.",
+    "correctResponseId": "en:lesson-01:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i10",
+    "correctText": "en:lesson-01:session-18:i10:p1=welcome\nen:lesson-01:session-18:i10:p2=safe\nen:lesson-01:session-18:i10:p3=old\nen:lesson-01:session-18:i10:p4=kind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i11",
+    "correctText": "They are early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i12",
+    "correctText": "They are wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i13",
+    "correctText": "You are lucky.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i14",
+    "correctText": "safe",
+    "correctResponseId": "en:lesson-01:session-18:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i15",
+    "correctText": "She is funny.",
+    "correctResponseId": "en:lesson-01:session-18:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i16",
+    "correctText": "en:lesson-01:session-18:i16:p1=early\nen:lesson-01:session-18:i16:p2=lucky\nen:lesson-01:session-18:i16:p3=funny\nen:lesson-01:session-18:i16:p4=wrong",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i17",
+    "correctText": "We are early.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-20:intro1:r2": {
+          "ru": "He — о человеке. Подъём здесь обозначаем словом It.",
+          "uk": "He — про людину. Підйом тут позначаємо словом It."
+        },
+        "en:lesson-01:session-20:intro1:r3": {
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-20:intro2:r2": {
+          "ru": "После She ставим is.",
+          "uk": "Після She ставимо is."
+        },
+        "en:lesson-01:session-20:intro2:r3": {
+          "ru": "lost — «заблудилась». Здесь речь о подготовке: prepared.",
+          "uk": "lost — «заблукала». Тут ідеться про підготовку: prepared."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-20:intro3:r2": {
+          "ru": "She — о человеке. Про куртку здесь говорим It.",
+          "uk": "She — про людину. Про куртку тут говоримо It."
+        },
+        "en:lesson-01:session-20:intro3:r3": {
+          "ru": "После It нужно is; am используем с I.",
+          "uk": "Після It потрібне is; am уживаємо з I."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "669a6d02df43362750996a9c6d0ffaee8047c8279a23b7e838ddadf3095ed2b8"
+}

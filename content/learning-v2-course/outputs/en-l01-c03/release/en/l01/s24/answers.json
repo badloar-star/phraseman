@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-24:word:dim",
+    "correctText": "dim",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:word:bright",
+    "correctText": "bright",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:word:heavy",
+    "correctText": "heavy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:word:fragile",
+    "correctText": "fragile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i01",
+    "correctText": "You are welcome.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i02",
+    "correctText": "We are prepared.",
+    "correctResponseId": "en:lesson-01:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i04",
+    "correctText": "en:lesson-01:session-24:i04:p1=dim\nen:lesson-01:session-24:i04:p2=bright\nen:lesson-01:session-24:i04:p3=heavy\nen:lesson-01:session-24:i04:p4=fragile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i05",
+    "correctText": "It is bright.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i06",
+    "correctText": "It is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i07",
+    "correctText": "It is fragile.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i09",
+    "correctText": "They are married.",
+    "correctResponseId": "en:lesson-01:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i10",
+    "correctText": "en:lesson-01:session-24:i10:p1=dim\nen:lesson-01:session-24:i10:p2=lucky\nen:lesson-01:session-24:i10:p3=alone\nen:lesson-01:session-24:i10:p4=nearby",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i11",
+    "correctText": "You are careful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i12",
+    "correctText": "He is poor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i13",
+    "correctText": "She is single.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i14",
+    "correctText": "outside",
+    "correctResponseId": "en:lesson-01:session-24:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i15",
+    "correctText": "They are different.",
+    "correctResponseId": "en:lesson-01:session-24:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i16",
+    "correctText": "en:lesson-01:session-24:i16:p1=rich\nen:lesson-01:session-24:i16:p2=poor\nen:lesson-01:session-24:i16:p3=famous\nen:lesson-01:session-24:i16:p4=married",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i17",
+    "correctText": "We are prepared.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-19:word:inside",
+    "correctText": "inside",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:word:outside",
+    "correctText": "outside",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:word:upstairs",
+    "correctText": "upstairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:word:nearby",
+    "correctText": "nearby",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i01",
+    "correctText": "We are inside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i02",
+    "correctText": "I am outside.",
+    "correctResponseId": "en:lesson-01:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i04",
+    "correctText": "en:lesson-01:session-19:i04:p1=inside\nen:lesson-01:session-19:i04:p2=outside\nen:lesson-01:session-19:i04:p3=upstairs\nen:lesson-01:session-19:i04:p4=nearby",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i05",
+    "correctText": "They are outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i06",
+    "correctText": "He is outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i07",
+    "correctText": "I am nearby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i09",
+    "correctText": "You are alone.",
+    "correctResponseId": "en:lesson-01:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i10",
+    "correctText": "en:lesson-01:session-19:i10:p1=wrong\nen:lesson-01:session-19:i10:p2=lucky\nen:lesson-01:session-19:i10:p3=smart\nen:lesson-01:session-19:i10:p4=strong",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i11",
+    "correctText": "We are nearby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i12",
+    "correctText": "They are together.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i13",
+    "correctText": "We are upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i14",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-19:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i15",
+    "correctText": "They are lucky.",
+    "correctResponseId": "en:lesson-01:session-19:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i16",
+    "correctText": "en:lesson-01:session-19:i16:p1=quiet\nen:lesson-01:session-19:i16:p2=alone\nen:lesson-01:session-19:i16:p3=together\nen:lesson-01:session-19:i16:p4=upstairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i17",
+    "correctText": "We are nearby.",
+    "correctResponseId": null
+  }
+]

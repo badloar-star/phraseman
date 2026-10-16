@@ -1,5 +1,25 @@
 [
   {
+    "interactionId": "en:lesson-01:session-24:word:dim",
+    "correctText": "dim",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:word:bright",
+    "correctText": "bright",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:word:heavy",
+    "correctText": "heavy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:word:fragile",
+    "correctText": "fragile",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-24:i01",
     "correctText": "You are welcome.",
     "correctResponseId": null
@@ -16,22 +36,22 @@
   },
   {
     "interactionId": "en:lesson-01:session-24:i04",
-    "correctText": "en:lesson-01:session-24:i04:p1=welcome\nen:lesson-01:session-24:i04:p2=safe\nen:lesson-01:session-24:i04:p3=right\nen:lesson-01:session-24:i04:p4=wrong",
+    "correctText": "en:lesson-01:session-24:i04:p1=dim\nen:lesson-01:session-24:i04:p2=bright\nen:lesson-01:session-24:i04:p3=heavy\nen:lesson-01:session-24:i04:p4=fragile",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i05",
-    "correctText": "She is inside.",
+    "correctText": "It is bright.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i06",
-    "correctText": "They are together.",
+    "correctText": "It is heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-24:i07",
-    "correctText": "He is lost.",
+    "correctText": "It is fragile.",
     "correctResponseId": null
   },
   {
@@ -46,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-24:i10",
-    "correctText": "en:lesson-01:session-24:i10:p1=early\nen:lesson-01:session-24:i10:p2=lucky\nen:lesson-01:session-24:i10:p3=alone\nen:lesson-01:session-24:i10:p4=nearby",
+    "correctText": "en:lesson-01:session-24:i10:p1=dim\nen:lesson-01:session-24:i10:p2=lucky\nen:lesson-01:session-24:i10:p3=alone\nen:lesson-01:session-24:i10:p4=nearby",
     "correctResponseId": null
   },
   {

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-23:word:married",
+    "correctText": "married",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:word:single",
+    "correctText": "single",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:word:different",
+    "correctText": "different",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:word:engaged",
+    "correctText": "engaged",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i01",
+    "correctText": "She is married.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i02",
+    "correctText": "He is single.",
+    "correctResponseId": "en:lesson-01:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i04",
+    "correctText": "en:lesson-01:session-23:i04:p1=married\nen:lesson-01:session-23:i04:p2=single\nen:lesson-01:session-23:i04:p3=different\nen:lesson-01:session-23:i04:p4=engaged",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i05",
+    "correctText": "I am married.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i06",
+    "correctText": "They are different.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i07",
+    "correctText": "I am single.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i09",
+    "correctText": "We are married.",
+    "correctResponseId": "en:lesson-01:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i10",
+    "correctText": "en:lesson-01:session-23:i10:p1=rich\nen:lesson-01:session-23:i10:p2=poor\nen:lesson-01:session-23:i10:p3=famous\nen:lesson-01:session-23:i10:p4=generous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i11",
+    "correctText": "She is single.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i12",
+    "correctText": "She is engaged.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i13",
+    "correctText": "She is famous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i14",
+    "correctText": "single",
+    "correctResponseId": "en:lesson-01:session-23:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i15",
+    "correctText": "We are engaged.",
+    "correctResponseId": "en:lesson-01:session-23:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i16",
+    "correctText": "en:lesson-01:session-23:i16:p1=engaged\nen:lesson-01:session-23:i16:p2=different\nen:lesson-01:session-23:i16:p3=married\nen:lesson-01:session-23:i16:p4=single",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i17",
+    "correctText": "They are different.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "произнести короткую фразу о себе или других с известными am, is, are",
+    "uk": "вимовити коротку фразу про себе чи інших із відомими am, is, are"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Новость о свадьбе",
+        "uk": "Новина про весілля"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра показывает фото Анны и говорит, что Анна недавно вышла замуж. married — «женат» или «замужем». She is married — «Она замужем». Фраза сообщает, что Анна сейчас состоит в браке; она не описывает свадебную церемонию.",
+        "uk": "Сестра показує фото Анни й каже, що Анна нещодавно вийшла заміж. married — «одружений» або «заміжня». She is married — «Вона заміжня». Фраза повідомляє, що Анна зараз перебуває у шлюбі; вона не описує весільну церемонію."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Анна недавно вышла замуж. Скажите о её семейном положении.",
+          "uk": "Анна нещодавно вийшла заміж. Скажіть про її сімейний стан."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r1",
+              "text": "She is married."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r2",
+              "text": "She married."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r3",
+              "text": "He is married."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r1",
+              "text": "She is married."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r2",
+              "text": "She married."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r3",
+              "text": "He is married."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Анна недавно вышла замуж. Скажите о её семейном положении.",
+          "uk": "Анна нещодавно вийшла заміж. Скажіть про її сімейний стан."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Без пары, но в компании",
+        "uk": "Без пари, але в компанії"
+      },
+      "bodyByLocale": {
+        "ru": "На празднике брат сам рассказывает, что сейчас ни с кем не встречается и не женат. single — «без пары», а в анкете о семейном положении — «не состоит в браке». He is single — «Он без пары». Это не alone: вокруг него двадцать родственников, и каждый уже предлагает ещё салата.",
+        "uk": "На святі брат сам розповідає, що зараз ні з ким не зустрічається й не одружений. single — «без пари», а в анкеті про сімейний стан — «не перебуває у шлюбі». He is single — «Він без пари». Це не alone: навколо нього двадцять родичів, і кожен уже пропонує ще салату."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Брат рассказал, что сейчас у него нет партнёра. Скажите сестре об этом словом single.",
+          "uk": "Брат розповів, що зараз у нього немає партнера. Скажіть сестрі про це словом single."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r1",
+              "text": "He is single."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r2",
+              "text": "He is alone."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r3",
+              "text": "He are single."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r1",
+              "text": "He is single."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r2",
+              "text": "He is alone."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r3",
+              "text": "He are single."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Брат рассказал, что сейчас у него нет партнёра. Скажите сестре об этом словом single.",
+          "uk": "Брат розповів, що зараз у нього немає партнера. Скажіть сестрі про це словом single."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Разные планы на праздник",
+        "uk": "Різні плани на свято"
+      },
+      "bodyByLocale": {
+        "ru": "Вы предлагаете тихий ужин, а сестра хочет танцев до утра. different — «разный, другой». We are different — «Мы разные»: вы сравниваете ваши предпочтения. Слово different остаётся без окончания -s, хотя речь о вас двоих.",
+        "uk": "Ви пропонуєте тиху вечерю, а сестра хоче танців до ранку. different — «різний, інший». We are different — «Ми різні»: ви порівнюєте ваші вподобання. Слово different залишається без закінчення -s, хоча йдеться про вас двох."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы любите тихие вечера, а сестра — шумные праздники. Скажите за вас обоих: «Мы разные».",
+          "uk": "Ви любите тихі вечори, а сестра — гучні свята. Скажіть за вас обох: «Ми різні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r1",
+              "text": "We are different."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r2",
+              "text": "We is different."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r3",
+              "text": "We are differents."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r1",
+              "text": "We are different."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r2",
+              "text": "We is different."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r3",
+              "text": "We are differents."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы любите тихие вечера, а сестра — шумные праздники. Скажите за вас обоих: «Мы разные».",
+          "uk": "Ви любите тихі вечори, а сестра — гучні свята. Скажіть за вас обох: «Ми різні»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9a73fabc4797f1a9a3a6b58fb908daa04985d5bf3f56633987e02215afb30339"
+}

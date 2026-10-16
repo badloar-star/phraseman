@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-23:intro1:r2": {
+          "ru": "Для сообщения о нынешнем семейном положении нужно She is married.",
+          "uk": "Для повідомлення про нинішній сімейний стан потрібне She is married."
+        },
+        "en:lesson-01:session-23:intro1:r3": {
+          "ru": "He — «он». Об Анне говорим She.",
+          "uk": "He — «він». Про Анну говоримо She."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-23:intro2:r2": {
+          "ru": "alone — один, без других людей. Брат среди гостей; речь об отсутствии партнёра.",
+          "uk": "alone — сам, без інших людей. Брат серед гостей; ідеться про відсутність партнера."
+        },
+        "en:lesson-01:session-23:intro2:r3": {
+          "ru": "После He нужно is.",
+          "uk": "Після He потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-23:intro3:r2": {
+          "ru": "После We нужно are.",
+          "uk": "Після We потрібне are."
+        },
+        "en:lesson-01:session-23:intro3:r3": {
+          "ru": "Здесь слово different не получает окончания -s.",
+          "uk": "Тут слово different не отримує закінчення -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "20e307f069ba405893a3996b1f1b4f308e8a437035c901eb11fc4395ac3fc550"
+}

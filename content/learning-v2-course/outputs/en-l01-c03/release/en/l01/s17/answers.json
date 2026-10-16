@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-17:word:welcome",
+    "correctText": "welcome",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:word:together",
+    "correctText": "together",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:word:grateful",
+    "correctText": "grateful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:word:comfortable",
+    "correctText": "comfortable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i01",
+    "correctText": "You are welcome.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i02",
+    "correctText": "You are safe.",
+    "correctResponseId": "en:lesson-01:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i04",
+    "correctText": "en:lesson-01:session-17:i04:p1=welcome\nen:lesson-01:session-17:i04:p2=safe\nen:lesson-01:session-17:i04:p3=right\nen:lesson-01:session-17:i04:p4=ready",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i05",
+    "correctText": "We are together.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i06",
+    "correctText": "They are grateful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i07",
+    "correctText": "You are right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i09",
+    "correctText": "They are welcome.",
+    "correctResponseId": "en:lesson-01:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i10",
+    "correctText": "en:lesson-01:session-17:i10:p1=tall\nen:lesson-01:session-17:i10:p2=short\nen:lesson-01:session-17:i10:p3=young\nen:lesson-01:session-17:i10:p4=happy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i11",
+    "correctText": "We are comfortable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i12",
+    "correctText": "We are welcome.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i13",
+    "correctText": "We are right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i14",
+    "correctText": "safe",
+    "correctResponseId": "en:lesson-01:session-17:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i15",
+    "correctText": "We are comfortable.",
+    "correctResponseId": "en:lesson-01:session-17:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i16",
+    "correctText": "en:lesson-01:session-17:i16:p1=welcome\nen:lesson-01:session-17:i16:p2=together\nen:lesson-01:session-17:i16:p3=grateful\nen:lesson-01:session-17:i16:p4=comfortable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i17",
+    "correctText": "You are welcome.",
+    "correctResponseId": null
+  }
+]

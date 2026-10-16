@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-18:intro1:r2": {
+          "ru": "Вы говорите о себе: I am.",
+          "uk": "Ви говорите про себе: I am."
+        },
+        "en:lesson-01:session-18:intro1:r3": {
+          "ru": "С I здесь нужно am.",
+          "uk": "З I тут потрібне am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-18:intro2:r2": {
+          "ru": "I am — только о себе. Нужно сказать за вас обоих: We are sleepy.",
+          "uk": "I am — лише про себе. Треба сказати за вас обох: We are sleepy."
+        },
+        "en:lesson-01:session-18:intro2:r3": {
+          "ru": "С We здесь нужно are.",
+          "uk": "З We тут потрібне are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-18:intro3:r2": {
+          "ru": "Вы описываете других пассажиров: They, а не We.",
+          "uk": "Ви описуєте інших пасажирів: They, а не We."
+        },
+        "en:lesson-01:session-18:intro3:r3": {
+          "ru": "После They нужно are.",
+          "uk": "Після They потрібне are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "32cf7dc655c8846cff0adadb7d839f4592753f67aa3093e273710294049dab89"
+}

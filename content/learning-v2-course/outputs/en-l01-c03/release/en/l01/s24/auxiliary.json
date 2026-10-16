@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-24:intro1:r2": {
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
+        },
+        "en:lesson-01:session-24:intro1:r3": {
+          "ru": "Здесь описываем освещение: It is dim. Фраза с I была бы о вас, а не о свете.",
+          "uk": "Тут описуємо освітлення: It is dim. Фраза з I була б про вас, а не про світло."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-24:intro2:r2": {
+          "ru": "She — о человеке. Коробку здесь обозначаем It.",
+          "uk": "She — про людину. Коробку тут позначаємо It."
+        },
+        "en:lesson-01:session-24:intro2:r3": {
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-24:intro3:r2": {
+          "ru": "heavy описывает вес. Здесь нужно предупредить, что вазу легко разбить: fragile.",
+          "uk": "heavy описує вагу. Тут потрібно попередити, що вазу легко розбити: fragile."
+        },
+        "en:lesson-01:session-24:intro3:r3": {
+          "ru": "После It нужно is.",
+          "uk": "Після It потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a05f1e8d5438113999b76d6a04d33591e5885bc7b06350d0cedebb6e73d695b9"
+}

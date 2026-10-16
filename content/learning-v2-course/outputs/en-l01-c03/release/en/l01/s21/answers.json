@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-21:word:crowded",
+    "correctText": "crowded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:word:empty",
+    "correctText": "empty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:word:small",
+    "correctText": "small",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:word:noisy",
+    "correctText": "noisy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i01",
+    "correctText": "It is crowded.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i02",
+    "correctText": "It is noisy.",
+    "correctResponseId": "en:lesson-01:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i04",
+    "correctText": "en:lesson-01:session-21:i04:p1=crowded\nen:lesson-01:session-21:i04:p2=empty\nen:lesson-01:session-21:i04:p3=small\nen:lesson-01:session-21:i04:p4=noisy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i05",
+    "correctText": "It is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i06",
+    "correctText": "It is empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i07",
+    "correctText": "They are noisy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i09",
+    "correctText": "She is inside.",
+    "correctResponseId": "en:lesson-01:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i10",
+    "correctText": "en:lesson-01:session-21:i10:p1=prepared\nen:lesson-01:session-21:i10:p2=careful\nen:lesson-01:session-21:i10:p3=small\nen:lesson-01:session-21:i10:p4=big",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i11",
+    "correctText": "I am outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i12",
+    "correctText": "They are upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i13",
+    "correctText": "It is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i14",
+    "correctText": "outside",
+    "correctResponseId": "en:lesson-01:session-21:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i15",
+    "correctText": "You are prepared.",
+    "correctResponseId": "en:lesson-01:session-21:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i16",
+    "correctText": "en:lesson-01:session-21:i16:p1=clean\nen:lesson-01:session-21:i16:p2=inside\nen:lesson-01:session-21:i16:p3=outside\nen:lesson-01:session-21:i16:p4=upstairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i17",
+    "correctText": "It is empty.",
+    "correctResponseId": null
+  }
+]

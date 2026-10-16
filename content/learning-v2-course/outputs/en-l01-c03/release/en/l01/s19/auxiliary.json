@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-19:intro1:r2": {
+          "ru": "They — о других людях. Вы говорите за себя и сестру: We.",
+          "uk": "They — про інших людей. Ви говорите за себе й сестру: We."
+        },
+        "en:lesson-01:session-19:intro1:r3": {
+          "ru": "После We нужно are.",
+          "uk": "Після We потрібне are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-19:intro2:r2": {
+          "ru": "Вы остались у входа. Наверху подруга: She is upstairs.",
+          "uk": "Ви залишилися біля входу. Нагорі подруга: She is upstairs."
+        },
+        "en:lesson-01:session-19:intro2:r3": {
+          "ru": "После She нужно is.",
+          "uk": "Після She потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-19:intro3:r2": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        },
+        "en:lesson-01:session-19:intro3:r3": {
+          "ru": "`alone` значит «одни, без других». О близком расстоянии говорит `nearby`.",
+          "uk": "`alone` означає «самі, без інших». Про близьку відстань говорить `nearby`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5f4adffa0b826bdcc578bb61093bf4768815b4dc593107709f8d8118e8967ee1"
+}

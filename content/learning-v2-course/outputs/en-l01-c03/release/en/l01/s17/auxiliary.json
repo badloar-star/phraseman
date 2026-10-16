@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-17:intro1:r2": {
+          "ru": "Между `You` и `welcome` нужно `are`: `You are welcome`.",
+          "uk": "Між `You` та `welcome` потрібно `are`: `You are welcome`."
+        },
+        "en:lesson-01:session-17:intro1:r3": {
+          "ru": "`am` подходит к `I`. Здесь вы обращаетесь к другу: `You are`.",
+          "uk": "`am` поєднується з `I`. Тут ви звертаєтеся до друга: `You are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-17:intro2:r2": {
+          "ru": "После We нужно are, а не is.",
+          "uk": "Після We потрібне are, а не is."
+        },
+        "en:lesson-01:session-17:intro2:r3": {
+          "ru": "They — «они». Вы говорите и о себе тоже: We are together.",
+          "uk": "They — «вони». Ви говорите і про себе також: We are together."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-17:intro3:r2": {
+          "ru": "После They нужно are.",
+          "uk": "Після They потрібне are."
+        },
+        "en:lesson-01:session-17:intro3:r3": {
+          "ru": "We — «мы». Здесь вы сообщаете о двух других гостях: They are grateful.",
+          "uk": "We — «ми». Тут ви повідомляєте про двох інших гостей: They are grateful."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a737cd8b3c9b3da64c8978aba267619b326076e3defbfefff47a3cdf7aaa9f72"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-22:intro1:r2": {
+          "ru": "После `He` нужна форма `is`.",
+          "uk": "Після `He` потрібна форма `is`."
+        },
+        "en:lesson-01:session-22:intro1:r3": {
+          "ru": "Это о них. Сейчас речь об одном мужчине: `He is rich`.",
+          "uk": "Це про них. Зараз ідеться про одного чоловіка: `He is rich`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-22:intro2:r2": {
+          "ru": "В этой фразе между `She` и `poor` нужно `is`.",
+          "uk": "У цій фразі між `She` і `poor` потрібно `is`."
+        },
+        "en:lesson-01:session-22:intro2:r3": {
+          "ru": "`rich` — «богатая», а здесь денег мало: `poor`.",
+          "uk": "`rich` — «багата», а тут грошей мало: `poor`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-22:intro3:r2": {
+          "ru": "После `They` нужно `are`.",
+          "uk": "Після `They` потрібно `are`."
+        },
+        "en:lesson-01:session-22:intro3:r3": {
+          "ru": "О деньгах ничего не сказано. Их знают многие: `famous`.",
+          "uk": "Про гроші нічого не сказано. Їх знають багато людей: `famous`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "43e177f7c0786048adc9f90052cf214927b599cb6095e19278dfded4251104ad"
+}

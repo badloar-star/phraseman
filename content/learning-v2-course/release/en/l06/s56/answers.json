@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-56:i01",
+    "correctText": "He delivers newspapers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i02",
+    "correctText": "They repair uniforms.",
+    "correctResponseId": "en:lesson-06:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i03",
+    "correctText": "sells",
+    "correctResponseId": "en:lesson-06:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i04",
+    "correctText": "en:lesson-06:session-56:i04:p1=newspaper\nen:lesson-06:session-56:i04:p2=deliver\nen:lesson-06:session-56:i04:p3=sell\nen:lesson-06:session-56:i04:p4=corner shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i05",
+    "correctText": "They repair uniforms.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i06",
+    "correctText": "She is an artist.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i07",
+    "correctText": "Whose uniform is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i08",
+    "correctText": "wear",
+    "correctResponseId": "en:lesson-06:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i09",
+    "correctText": "He delivers newspapers.",
+    "correctResponseId": "en:lesson-06:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i10",
+    "correctText": "en:lesson-06:session-56:i10:p1=wear\nen:lesson-06:session-56:i10:p2=uniform\nen:lesson-06:session-56:i10:p3=repair\nen:lesson-06:session-56:i10:p4=artist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i11",
+    "correctText": "Whose newspaper is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i12",
+    "correctText": "The corner shop is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i13",
+    "correctText": "I wear a uniform.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-06:session-56:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i15",
+    "correctText": "She is an artist.",
+    "correctResponseId": "en:lesson-06:session-56:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i16",
+    "correctText": "en:lesson-06:session-56:i16:p1=artist\nen:lesson-06:session-56:i16:p2=corner shop\nen:lesson-06:session-56:i16:p3=deliver\nen:lesson-06:session-56:i16:p4=repair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-56:i17",
+    "correctText": "She repairs uniforms.",
+    "correctResponseId": null
+  }
+]

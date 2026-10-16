@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-56:intro1:r2": {
+          "ru": "После `he` нужно `delivers`.",
+          "uk": "Після `he` потрібне `delivers`."
+        },
+        "en:lesson-06:session-56:intro1:r3": {
+          "ru": "Нужно `He delivers`, без `is`.",
+          "uk": "Потрібно `He delivers`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-56:intro2:r2": {
+          "ru": "После `they` нужно `repair`.",
+          "uk": "Після `they` потрібне `repair`."
+        },
+        "en:lesson-06:session-56:intro2:r3": {
+          "ru": "Нужно `They repair`, без `are`.",
+          "uk": "Потрібно `They repair`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-56:intro3:r2": {
+          "ru": "Это вопрос о месте, а нужен владелец.",
+          "uk": "Це запитання про місце, а потрібен власник."
+        },
+        "en:lesson-06:session-56:intro3:r3": {
+          "ru": "Один комплект: `is this`.",
+          "uk": "Один комплект: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "492f01b320dbd551439c87aac8e1c80c09f797b4097d9c1f2cbd07d9cce21623"
+}

@@ -101671,6 +101671,309 @@
           "byteSize": 29184
         }
       ]
+    },
+    "l06/s56/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He delivers newspapers.",
+          "file": "e1209806e1ddc54a6803892e9477815813570c3dedbb78551ef760e9428c65a5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1209806e1ddc54a6803892e9477815813570c3dedbb78551ef760e9428c65a5.mp3",
+          "contentHash": "636062d037199cc04e79d4cdfa9edf39065cfd5a6365acedbda95f7bb70ff97b",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l06/s56/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They repair uniforms.",
+          "file": "a124e9007c4b0898df0c8a4bb3744b91bb79199feeec0776abacfa47a1faf463.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a124e9007c4b0898df0c8a4bb3744b91bb79199feeec0776abacfa47a1faf463.mp3",
+          "contentHash": "f12a65e601f755a3edc727380259a91a571414bc6b97fc0f900ffedd82ef4746",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s56/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose uniform is this?",
+          "file": "2562cc6f36738dd5eca1c80dd9dbb0b64c7e018f1d3dbc9c2aee20f0b8b16ce6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2562cc6f36738dd5eca1c80dd9dbb0b64c7e018f1d3dbc9c2aee20f0b8b16ce6.mp3",
+          "contentHash": "b4e1afe6b03905090b8907b84fec095eba11a8f90cdd850f75cb80ed369f5fe3",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s56/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He delivers newspapers.",
+          "file": "9770d18d3a9c344a53ae66af8e7a006f0d41f998d28be65f2ec321b7875ea50d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9770d18d3a9c344a53ae66af8e7a006f0d41f998d28be65f2ec321b7875ea50d.mp3",
+          "contentHash": "ec593039fd821cde46abd6c5c3324a5c5256862975094f00d78d6b44c743e2af",
+          "byteSize": 54912
+        }
+      ]
+    },
+    "l06/s56/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They repair uniforms.",
+          "file": "3c979f3323cb69842a9c9d2fb78e74a93060edcdd955b8c1e979a7e9df1f1166.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c979f3323cb69842a9c9d2fb78e74a93060edcdd955b8c1e979a7e9df1f1166.mp3",
+          "contentHash": "0d7d14a2ff181d7ef2cdfb8e2a89a8dcbfb15b5b9e73149b65b7f8ac0d06ee54",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l06/s56/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Anna sells newspapers.",
+          "file": "de59f2093789a62c39aed3e50f6cfe211e55b43d0cae682c6a28b994d423d40c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de59f2093789a62c39aed3e50f6cfe211e55b43d0cae682c6a28b994d423d40c.mp3",
+          "contentHash": "7c58f9212c88cfecbf9845d7541856a1220d695610d043c42ae23b14ed5dc098",
+          "byteSize": 61056
+        }
+      ]
+    },
+    "l06/s56/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "newspaper",
+          "file": "c772436d342a4f294910af69f69b00e16979618550568bdd8fac02f082f9ef2f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-ash.mp3",
+          "contentHash": "0b8e8a5360fb13e1c748ab85e0f86a1c4b4411ea313a5179d94bb63490dac423",
+          "byteSize": 29952
+        },
+        {
+          "text": "deliver",
+          "file": "555ec8b3fcc2c5ccda3cf2a080eb9838ddf45c55426ab9437846c4f26c0380da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/555ec8b3fcc2c5ccda3cf2a080eb9838ddf45c55426ab9437846c4f26c0380da.mp3",
+          "contentHash": "a5096744f4e960a3e0dc2f9f8c3eb29d9859c25358e35bad8446ee729505b34f",
+          "byteSize": 23040
+        },
+        {
+          "text": "sell",
+          "file": "cc5b77289972859f09ad311bbfe8149f9947b9994b097edaca23ef4d393f1bf1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc5b77289972859f09ad311bbfe8149f9947b9994b097edaca23ef4d393f1bf1.mp3",
+          "contentHash": "2388ddf86239d6c3ea3baa10d9e6deb9d4f60591c120cf0c5f08646d06d6a878",
+          "byteSize": 21120
+        },
+        {
+          "text": "corner shop",
+          "file": "de1d9f0d87e1b15b47f4455a8b4447b11ac3dd0491a77e03a8c879b002d8a784.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de1d9f0d87e1b15b47f4455a8b4447b11ac3dd0491a77e03a8c879b002d8a784.mp3",
+          "contentHash": "c3947034cd5c16ad781a722cd3352f4ea1ca58a178bb185510cfcf800d648102",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s56/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They repair uniforms.",
+          "file": "a124e9007c4b0898df0c8a4bb3744b91bb79199feeec0776abacfa47a1faf463.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a124e9007c4b0898df0c8a4bb3744b91bb79199feeec0776abacfa47a1faf463.mp3",
+          "contentHash": "f12a65e601f755a3edc727380259a91a571414bc6b97fc0f900ffedd82ef4746",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s56/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She is an artist.",
+          "file": "a9f77bc6b623cf08102255e6db7c19eef6e08a62ee36b936d64c8487f412aac7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a9f77bc6b623cf08102255e6db7c19eef6e08a62ee36b936d64c8487f412aac7.mp3",
+          "contentHash": "20a0a295f6934e5bda69c193c4206d0bebf45ba88ad1649668558e861f7c2bbd",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l06/s56/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose uniform is this?",
+          "file": "dd1f8447ab49e7c0b8a158e6b3e5759b53f5969ed7683468d2d4d4044dada6cd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd1f8447ab49e7c0b8a158e6b3e5759b53f5969ed7683468d2d4d4044dada6cd.mp3",
+          "contentHash": "d23c5b6c78ec789a9c3a636818d34ac6d030f9a524dbbef8da3f241c7f39ace2",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l06/s56/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We wear uniforms.",
+          "file": "6cca1212dd7bde2638bc02c5071e24ba1e0805e624b007896356cceb1b887fde.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6cca1212dd7bde2638bc02c5071e24ba1e0805e624b007896356cceb1b887fde.mp3",
+          "contentHash": "ee49a053d1751ebb34e9fc97f531ada1872ad3290c7d59fe3389c652e735cba8",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s56/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He delivers newspapers.",
+          "file": "0fed040bad4d4bf8a2363475b7815f91b878d5a8f4ea4ce5aabba6735da92475.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0fed040bad4d4bf8a2363475b7815f91b878d5a8f4ea4ce5aabba6735da92475.mp3",
+          "contentHash": "166e49557710f238b02454b12d822457077787fc08a8d90cb8572196d0610de3",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l06/s56/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "wear",
+          "file": "420ad470da39b3931e09ff003e5cab2599b2651373267c4d34329c2063e9645b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/420ad470da39b3931e09ff003e5cab2599b2651373267c4d34329c2063e9645b.mp3",
+          "contentHash": "2bc342e2bb4009376b27962ae088a74882f1ed26924f2422562f5b93ec708d49",
+          "byteSize": 18048
+        },
+        {
+          "text": "uniform",
+          "file": "4324157d36582f99f758d71d57618036883f079c253111f25c7f8f769e941202.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ef379363dd0cb7be66638cf7-ash.mp3",
+          "contentHash": "133cb34d1d229bf0247d6cd3a1849cd1a7b7b6775b726f1f454a7f7176cc560d",
+          "byteSize": 42624
+        },
+        {
+          "text": "repair",
+          "file": "55eb23ca22ba632f41573829220ed431b8d275aa3eb5143a0ab39dd7d5b7e3e0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/55eb23ca22ba632f41573829220ed431b8d275aa3eb5143a0ab39dd7d5b7e3e0.mp3",
+          "contentHash": "e041ef3fb318f753e2358d51511192a63a28f75dc111e7beea9a3304a0587799",
+          "byteSize": 24576
+        },
+        {
+          "text": "artist",
+          "file": "6d44843e8e36efcff4d5fd2976b8bb49d7eacc101eb4c709533cb2412cd16fb5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d44843e8e36efcff4d5fd2976b8bb49d7eacc101eb4c709533cb2412cd16fb5.mp3",
+          "contentHash": "da8c5750539bc568555eb948327d0cb855e56b9a113653e007741daffd8a10c3",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l06/s56/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose newspaper is this?",
+          "file": "c63f8e2e03d0ec752ecea5d353e46180bf59e9790753f43bf4dd8f1c9e5cc941.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c63f8e2e03d0ec752ecea5d353e46180bf59e9790753f43bf4dd8f1c9e5cc941.mp3",
+          "contentHash": "1270c39a5aa9f13de9a5114aed8bb585f2410439b735ae568b7afdf9cca47190",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s56/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The corner shop is here.",
+          "file": "2cd7ba628128c2c81163f9c53e7d931572eec00a4b312e33932e1bb716628070.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2cd7ba628128c2c81163f9c53e7d931572eec00a4b312e33932e1bb716628070.mp3",
+          "contentHash": "bf64f3bb35eff227c4bdf909af3f9f67870a157b8d71ba3250b71c68ac97a902",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l06/s56/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I wear a uniform.",
+          "file": "b9cbc1ff48d1bce939f98c295e39dd40dda4e177fd46324f00b541df70604012.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b9cbc1ff48d1bce939f98c295e39dd40dda4e177fd46324f00b541df70604012.mp3",
+          "contentHash": "0fa32f0e48e537541d99efa6f479338d35912fa3ae5c53c292080b980c940a80",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s56/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose newspapers are these?",
+          "file": "c5830935ff63024f78a905a9c971aacb57f03498bb55a4ce0176fb4d1c76505f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c5830935ff63024f78a905a9c971aacb57f03498bb55a4ce0176fb4d1c76505f.mp3",
+          "contentHash": "b8d1579ed7a95b1be62affab5e912db6a2474285c9502ba9217efd579eb34e7d",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l06/s56/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She is an artist.",
+          "file": "36d33d646bce211a1dd06f3735423676eed2115e1c9da085924f985eb3c2ee01.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36d33d646bce211a1dd06f3735423676eed2115e1c9da085924f985eb3c2ee01.mp3",
+          "contentHash": "4adc04c7dfb36f24ada66024bcbe4476ed59e839e69bf2ca121e9760b714952d",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s56/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "artist",
+          "file": "e83bd9d235e08cae47e14d047cae1f4baf62cdee743548b8d513842bd5e38fd4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e83bd9d235e08cae47e14d047cae1f4baf62cdee743548b8d513842bd5e38fd4.mp3",
+          "contentHash": "d8c786e681b36b94a8fc3e09e5c0ff8efc5bc08e5915b8de87fe0d4967e50869",
+          "byteSize": 20352
+        },
+        {
+          "text": "corner shop",
+          "file": "cf7639841b72210096c4896165a89a8be507ae149a9ef1f4e9f57f875374b947.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cf7639841b72210096c4896165a89a8be507ae149a9ef1f4e9f57f875374b947.mp3",
+          "contentHash": "2f60de64e56f89f4538f5b2744134341c7143d4193bd42cbb2a13c874640aa20",
+          "byteSize": 40320
+        },
+        {
+          "text": "deliver",
+          "file": "2d0cf46ffb3ec5a039b772755826237b032d6e344b7fa610cec1da9b61040677.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2d0cf46ffb3ec5a039b772755826237b032d6e344b7fa610cec1da9b61040677.mp3",
+          "contentHash": "4896910dcb2ba6c11987fc8654cfb05c32aed5e4bf269a47441a421bf0faf08d",
+          "byteSize": 23040
+        },
+        {
+          "text": "repair",
+          "file": "8922eb57ff29997692e61588c6c1488d31c0164f94da7e9f650c06539c5898f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8922eb57ff29997692e61588c6c1488d31c0164f94da7e9f650c06539c5898f0.mp3",
+          "contentHash": "0ae338ce4ffba843159031edbf715674ad96d65c6dda2b2196bc9c67bea8811f",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l06/s56/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She repairs uniforms.",
+          "file": "b6b7e93a07215c1a7c47621d5a5af7d3a97620bdf8cff16f4397e01eae9e9028.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b6b7e93a07215c1a7c47621d5a5af7d3a97620bdf8cff16f4397e01eae9e9028.mp3",
+          "contentHash": "2695599bbd1f284bda2c45b08f50a0ca43a0f3be41289b107bd8162658439512",
+          "byteSize": 34560
+        }
+      ]
     }
   },
   "settings": {

@@ -1,0 +1,954 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Вы работаете на фабрике?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Вы работаете на фабрике?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you work in a factory?",
+        "localizedMeaning": {
+          "ru": "Спросите «Вы работаете на фабрике?»",
+          "uk": "Запитайте «Ви працюєте на фабриці?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "work",
+          "in",
+          "a",
+          "factory"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-01:i02:r1",
+          "text": "factory"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i02:r2",
+          "text": "key"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i02:r3",
+          "text": "newspaper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-01:i02:audio",
+          "transcript": "factory"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-01:i02:r1",
+            "targetText": "factory",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i02:r2",
+            "targetText": "key",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i02:r3",
+            "targetText": "newspaper",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `factory`, а в этом варианте — `key`.",
+              "uk": "У записі перше слово — `factory`, а в цьому варіанті — `key`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `factory`, а в этом варианте — `newspaper`.",
+              "uk": "У записі перше слово — `factory`, а в цьому варіанті — `newspaper`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о работе «Вы работаете на фабрике?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-01:i03:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i03:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i03:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о работе «Вы работаете на фабрике?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о работе «Вы работаете на фабрике?»",
+          "uk": "Запитайте про роботу «Ви працюєте на фабриці?»"
+        },
+        "gappedTargetPhrase": "___ you work in a factory?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-01:i03:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i03:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Спросите о работе «Вы работаете на фабрике?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите о работе «Вы работаете на фабрике?»",
+            "feedbackByLocale": {
+              "ru": "С действием `work` здесь нужно `Do you work?`.",
+              "uk": "З дією `work` тут потрібно `Do you work?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите о работе «Вы работаете на фабрике?»",
+            "feedbackByLocale": {
+              "ru": "В этом вопросе нужно `Do you work?`.",
+              "uk": "У цьому запитанні потрібно `Do you work?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-01:i04:p1",
+            "target": "factory",
+            "meaningByLocale": {
+              "ru": "фабрика",
+              "uk": "фабрика"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-01:i04:p2",
+            "target": "work",
+            "meaningByLocale": {
+              "ru": "работать",
+              "uk": "працювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-01:i04:p3",
+            "target": "key",
+            "meaningByLocale": {
+              "ru": "ключ",
+              "uk": "ключ"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-01:i04:p4",
+            "target": "newspaper",
+            "meaningByLocale": {
+              "ru": "газета",
+              "uk": "газета"
+            }
+          }
+        ],
+        "leftColumn": [
+          "factory",
+          "work",
+          "key",
+          "newspaper"
+        ],
+        "rightColumn": [
+          "фабрика",
+          "работать",
+          "ключ",
+          "газета"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-01:i05:audio",
+          "transcript": "Do you work in a factory?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you work in a factory?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "work",
+          "in",
+          "a",
+          "factory"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите о друзьях соседа «Они работают на фабрике?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о друзьях соседа «Они работают на фабрике?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do they work in a factory?",
+        "localizedMeaning": {
+          "ru": "Спросите о друзьях соседа «Они работают на фабрике?»",
+          "uk": "Запитайте про друзів сусіда «Вони працюють на фабриці?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "they",
+          "work",
+          "in",
+          "a",
+          "factory"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У двери спросите соседа «У вас есть ключ?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-01:i07:audio"
+      ],
+      "accessibilityLabel": "У двери спросите соседа «У вас есть ключ?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-01:i07:audio",
+          "transcript": "Do you have a key?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have a key?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите «Они работают на фабрике?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-01:i08:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i08:r2",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i08:r3",
+          "text": "are work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Они работают на фабрике?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Они работают на фабрике?»",
+          "uk": "Запитайте «Вони працюють на фабриці?»"
+        },
+        "gappedTargetPhrase": "Do they ___ in a factory?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-01:i08:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i08:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i08:r3",
+            "text": "are work"
+          }
+        ],
+        "testedDimension": "Спросите «Они работают на фабрике?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите «Они работают на фабрике?»",
+            "feedbackByLocale": {
+              "ru": "После `Do they` нужно `work`.",
+              "uk": "Після `Do they` потрібне `work`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите «Они работают на фабрике?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do they work?`, без `are`.",
+              "uk": "Потрібно `Do they work?`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, о какой вещи спрашивает сосед",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-01:i09:r1",
+          "text": "Do you have a key?"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i09:r2",
+          "text": "Do you have a newspaper?"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i09:r3",
+          "text": "Do you have a uniform?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-01:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о какой вещи спрашивает сосед",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-01:i09:audio",
+          "transcript": "Do you have a key?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-01:i09:r1",
+            "targetText": "Do you have a key?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i09:r2",
+            "targetText": "Do you have a newspaper?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i09:r3",
+            "targetText": "Do you have a uniform?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, о какой вещи спрашивает сосед",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `key`, а в этом варианте — `newspaper`.",
+              "uk": "У записі останнє слово — `key`, а в цьому варіанті — `newspaper`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, о какой вещи спрашивает сосед",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `key`, а в этом варианте — `uniform`.",
+              "uk": "У записі останнє слово — `key`, а в цьому варіанті — `uniform`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-01:i10:p1",
+            "target": "have",
+            "meaningByLocale": {
+              "ru": "иметь",
+              "uk": "мати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-01:i10:p2",
+            "target": "factory",
+            "meaningByLocale": {
+              "ru": "фабрика",
+              "uk": "фабрика"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-01:i10:p3",
+            "target": "work",
+            "meaningByLocale": {
+              "ru": "работать",
+              "uk": "працювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-01:i10:p4",
+            "target": "key",
+            "meaningByLocale": {
+              "ru": "ключ",
+              "uk": "ключ"
+            }
+          }
+        ],
+        "leftColumn": [
+          "have",
+          "factory",
+          "work",
+          "key"
+        ],
+        "rightColumn": [
+          "иметь",
+          "фабрика",
+          "работать",
+          "ключ"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-01:i11:audio",
+          "transcript": "Do you have a key?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you have a key?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сосед ждёт друзей у двери. Спросите «У них есть ключ?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сосед ждёт друзей у двери. Спросите «У них есть ключ?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do they have a key?",
+        "localizedMeaning": {
+          "ru": "Сосед ждёт друзей у двери. Спросите «У них есть ключ?»",
+          "uk": "Сусід чекає на друзів біля дверей. Запитайте «У них є ключ?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "they",
+          "have",
+          "a",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В мастерской спросите человека у входа «Вы работаете здесь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "В мастерской спросите человека у входа «Вы работаете здесь?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-01:i13:audio",
+          "transcript": "Do you work here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you work here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите соседа «У вас есть газета?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-01:i14:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i14:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i14:r3",
+          "text": "are have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите соседа «У вас есть газета?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите соседа «У вас есть газета?»",
+          "uk": "Запитайте сусіда «У вас є газета?»"
+        },
+        "gappedTargetPhrase": "Do you ___ a newspaper?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-01:i14:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i14:r3",
+            "text": "are have"
+          }
+        ],
+        "testedDimension": "Спросите соседа «У вас есть газета?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-01:i14:r2",
+            "correct": false,
+            "testedDimension": "Спросите соседа «У вас есть газета?»",
+            "feedbackByLocale": {
+              "ru": "После `Do you` нужно `have`.",
+              "uk": "Після `Do you` потрібне `have`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i14:r3",
+            "correct": false,
+            "testedDimension": "Спросите соседа «У вас есть газета?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do you have?`, без `are`.",
+              "uk": "Потрібно `Do you have?`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, о каком месте спрашивает сосед",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-01:i15:r1",
+          "text": "Do they work here?"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i15:r2",
+          "text": "Do they work there?"
+        },
+        {
+          "responseId": "en:lesson-07:session-01:i15:r3",
+          "text": "Do they work outside?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о каком месте спрашивает сосед",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-01:i15:audio",
+          "transcript": "Do they work here?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-01:i15:r1",
+            "targetText": "Do they work here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i15:r2",
+            "targetText": "Do they work there?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i15:r3",
+            "targetText": "Do they work outside?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-01:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, о каком месте спрашивает сосед",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-01:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, о каком месте спрашивает сосед",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-01:i16:p1",
+            "target": "factory",
+            "meaningByLocale": {
+              "ru": "фабрика",
+              "uk": "фабрика"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-01:i16:p2",
+            "target": "newspaper",
+            "meaningByLocale": {
+              "ru": "газета",
+              "uk": "газета"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-01:i16:p3",
+            "target": "have",
+            "meaningByLocale": {
+              "ru": "иметь",
+              "uk": "мати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-01:i16:p4",
+            "target": "work",
+            "meaningByLocale": {
+              "ru": "работать",
+              "uk": "працювати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "factory",
+          "newspaper",
+          "have",
+          "work"
+        ],
+        "rightColumn": [
+          "фабрика",
+          "газета",
+          "иметь",
+          "работать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-01:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В кафе друг указывает на соседний стол. Узнайте у друга «У них есть газета?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "В кафе друг указывает на соседний стол. Узнайте у друга «У них есть газета?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-01:i17:audio",
+          "transcript": "Do they have a newspaper?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do they have a newspaper?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "708beb9decec2991f6f1b2164f0146ead645cdb57793f4ff2301645bcccfc3d4"
+}

@@ -101974,6 +101974,309 @@
           "byteSize": 34560
         }
       ]
+    },
+    "l07/s01/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you work in a factory?",
+          "file": "529f11d163e04e3b2df2ea5a64a61fe68a240a00836f8dd25948c8c3f15a8c70.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/529f11d163e04e3b2df2ea5a64a61fe68a240a00836f8dd25948c8c3f15a8c70.mp3",
+          "contentHash": "e58c3ec042e9cea8abc8b9941605d313f828209fe534b3fea24a0555b21622f4",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s01/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do they work in a factory?",
+          "file": "319172af395166f17ed20ea86a55b5aef45aaf1408167213a190f33ecb48029f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/319172af395166f17ed20ea86a55b5aef45aaf1408167213a190f33ecb48029f.mp3",
+          "contentHash": "71ca2b892b0131493c1db04329e550400f45d3e06e0ca0df9235eea02a02f3ed",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l07/s01/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a key?",
+          "file": "05b2a8bede9823055eedcfa005b3342366c5982fc759a23aaa5eaa0a33a61855.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/05b2a8bede9823055eedcfa005b3342366c5982fc759a23aaa5eaa0a33a61855.mp3",
+          "contentHash": "b09d00377136fdb9410b5c19bb82e90cbdb318914c232bce374a47eefa85ba0a",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l07/s01/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you work in a factory?",
+          "file": "529f11d163e04e3b2df2ea5a64a61fe68a240a00836f8dd25948c8c3f15a8c70.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/529f11d163e04e3b2df2ea5a64a61fe68a240a00836f8dd25948c8c3f15a8c70.mp3",
+          "contentHash": "e58c3ec042e9cea8abc8b9941605d313f828209fe534b3fea24a0555b21622f4",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s01/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "factory",
+          "file": "a7100618f30d629ab8f56a004f1b2c92b9c0ea44f9806888bdb51a849b1fe7d6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a7100618f30d629ab8f56a004f1b2c92b9c0ea44f9806888bdb51a849b1fe7d6.mp3",
+          "contentHash": "a55502b6580ea63b1703d98ca4ae9a2417997fd18ad46b1b5c756a7f2089add5",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l07/s01/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you work in a factory?",
+          "file": "5f793c86e31a12555fac0eafe77ec9dd2ee8dff13d700c7680772a9d96f51691.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5f793c86e31a12555fac0eafe77ec9dd2ee8dff13d700c7680772a9d96f51691.mp3",
+          "contentHash": "ae56d3e8fa558d44fdb9212fbf673b6be3f22b2425001fe0cbae9ab1558f775a",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s01/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "factory",
+          "file": "4cf3f12c651bd44e7bf90c691d1c96ce9d14008e43d2f2d80e68181870ccfc12.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4cf3f12c651bd44e7bf90c691d1c96ce9d14008e43d2f2d80e68181870ccfc12.mp3",
+          "contentHash": "5d92c228837a8bb004cc19c9f08b61023a0c380272278c21f87b31a5d823c682",
+          "byteSize": 31488
+        },
+        {
+          "text": "work",
+          "file": "26b0d1a04cbcd7aebeb3fb4a8f5ef50441c59b7b4bc649a718d3f7703bd75509.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/26b0d1a04cbcd7aebeb3fb4a8f5ef50441c59b7b4bc649a718d3f7703bd75509.mp3",
+          "contentHash": "063132e8f12687f443a25b2cf49b33c07aea45ba7190e8938b02444b5adc8d09",
+          "byteSize": 18048
+        },
+        {
+          "text": "key",
+          "file": "36f3266011aed615d83dbb9ef5e3c1d3181c51baa864579ff2f7a10afcd9a374.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2c70e12b7a0646f92279f427-onyx.mp3",
+          "contentHash": "33fea90315c0c8c162767d506e63df3a958c9692d61a86e232ecee76827fd3e6",
+          "byteSize": 29184
+        },
+        {
+          "text": "newspaper",
+          "file": "30697894cb9288437c8b7b9f0d627a13217ff4bb0b3a21411be81b47526ed0b0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-onyx.mp3",
+          "contentHash": "ce49d4bf1356e535f41db40fec5bd30ace8b3467ba24f3614db01594bc504cea",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l07/s01/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you work in a factory?",
+          "file": "529f11d163e04e3b2df2ea5a64a61fe68a240a00836f8dd25948c8c3f15a8c70.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/529f11d163e04e3b2df2ea5a64a61fe68a240a00836f8dd25948c8c3f15a8c70.mp3",
+          "contentHash": "e58c3ec042e9cea8abc8b9941605d313f828209fe534b3fea24a0555b21622f4",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s01/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do they work in a factory?",
+          "file": "d0ffc83a93634c8b7fba24fb0c7c7f6a9c6e0e14a174d301516397e33fab5092.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d0ffc83a93634c8b7fba24fb0c7c7f6a9c6e0e14a174d301516397e33fab5092.mp3",
+          "contentHash": "ade4027cc73774637c06574921f2b0bc32107addd949c475ff44afcb460784bc",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l07/s01/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you have a key?",
+          "file": "8f8ccf47edd6b28ddf405e641060c6becbe6a531af6c632540415a98d6dfc091.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8f8ccf47edd6b28ddf405e641060c6becbe6a531af6c632540415a98d6dfc091.mp3",
+          "contentHash": "95a07c5ad23d28991b679da6ab21cd0c8f742d8d9e96deceec23cb403a74a7ff",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l07/s01/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do they work in a factory?",
+          "file": "319172af395166f17ed20ea86a55b5aef45aaf1408167213a190f33ecb48029f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/319172af395166f17ed20ea86a55b5aef45aaf1408167213a190f33ecb48029f.mp3",
+          "contentHash": "71ca2b892b0131493c1db04329e550400f45d3e06e0ca0df9235eea02a02f3ed",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l07/s01/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you have a key?",
+          "file": "98d77aadb1a2aa8d3b76bd27bd7078e1994debec4aa4d51270d9666b1b5bd9f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/98d77aadb1a2aa8d3b76bd27bd7078e1994debec4aa4d51270d9666b1b5bd9f4.mp3",
+          "contentHash": "7b70d1683cf772dfa752d1d2e2e6d696a524de29d85a9288e9b2c0bbdeff89d9",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l07/s01/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "have",
+          "file": "ad0b1bd276c9a644bc269847d5ee763f988bccfbc65302544491392f113beee7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ad0b1bd276c9a644bc269847d5ee763f988bccfbc65302544491392f113beee7.mp3",
+          "contentHash": "71ac9e2648cde636c650561c91655a0fc609c6562737c02570d06ac218a54bec",
+          "byteSize": 18816
+        },
+        {
+          "text": "factory",
+          "file": "4cf3f12c651bd44e7bf90c691d1c96ce9d14008e43d2f2d80e68181870ccfc12.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4cf3f12c651bd44e7bf90c691d1c96ce9d14008e43d2f2d80e68181870ccfc12.mp3",
+          "contentHash": "5d92c228837a8bb004cc19c9f08b61023a0c380272278c21f87b31a5d823c682",
+          "byteSize": 31488
+        },
+        {
+          "text": "work",
+          "file": "26b0d1a04cbcd7aebeb3fb4a8f5ef50441c59b7b4bc649a718d3f7703bd75509.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/26b0d1a04cbcd7aebeb3fb4a8f5ef50441c59b7b4bc649a718d3f7703bd75509.mp3",
+          "contentHash": "063132e8f12687f443a25b2cf49b33c07aea45ba7190e8938b02444b5adc8d09",
+          "byteSize": 18048
+        },
+        {
+          "text": "key",
+          "file": "36f3266011aed615d83dbb9ef5e3c1d3181c51baa864579ff2f7a10afcd9a374.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/2c70e12b7a0646f92279f427-onyx.mp3",
+          "contentHash": "33fea90315c0c8c162767d506e63df3a958c9692d61a86e232ecee76827fd3e6",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s01/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you have a key?",
+          "file": "98d77aadb1a2aa8d3b76bd27bd7078e1994debec4aa4d51270d9666b1b5bd9f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/98d77aadb1a2aa8d3b76bd27bd7078e1994debec4aa4d51270d9666b1b5bd9f4.mp3",
+          "contentHash": "7b70d1683cf772dfa752d1d2e2e6d696a524de29d85a9288e9b2c0bbdeff89d9",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l07/s01/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do they have a key?",
+          "file": "290c7c03d24f1055c1975dd1c043b5f7d69fc55778fd9ed7a29e28a699bc12ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/290c7c03d24f1055c1975dd1c043b5f7d69fc55778fd9ed7a29e28a699bc12ef.mp3",
+          "contentHash": "672df2a248950b1ea9486333bdbd6fcb07fed19d9e25646419e403dfb71043cb",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l07/s01/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you work here?",
+          "file": "1f21b8c434573516d7ed8aa62e17df30dd51bb64892e40f0ec6fc024885e43a3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f21b8c434573516d7ed8aa62e17df30dd51bb64892e40f0ec6fc024885e43a3.mp3",
+          "contentHash": "99b2ed4e59e190d0e9c7850d7f99b673bdafa3ce1e5ef3f617883196130b670e",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s01/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you have a newspaper?",
+          "file": "cceb67b749d830e8d725943f8b5be3102646dd20a5043daeae0a3155495cb485.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cceb67b749d830e8d725943f8b5be3102646dd20a5043daeae0a3155495cb485.mp3",
+          "contentHash": "563a1627308e3e5f5143463ca2011030c48d3054a693d26a7177587c922f87f6",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s01/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do they work here?",
+          "file": "0b35e89b0ba02263930e814491e15fa9b5162cc321b07bf5368ea83b234be105.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0b35e89b0ba02263930e814491e15fa9b5162cc321b07bf5368ea83b234be105.mp3",
+          "contentHash": "a7113e1633cd5fd09691178b0b72ca195d5f58160b07da52328213443cacc9a7",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l07/s01/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "factory",
+          "file": "4cf3f12c651bd44e7bf90c691d1c96ce9d14008e43d2f2d80e68181870ccfc12.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4cf3f12c651bd44e7bf90c691d1c96ce9d14008e43d2f2d80e68181870ccfc12.mp3",
+          "contentHash": "5d92c228837a8bb004cc19c9f08b61023a0c380272278c21f87b31a5d823c682",
+          "byteSize": 31488
+        },
+        {
+          "text": "newspaper",
+          "file": "30697894cb9288437c8b7b9f0d627a13217ff4bb0b3a21411be81b47526ed0b0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-onyx.mp3",
+          "contentHash": "ce49d4bf1356e535f41db40fec5bd30ace8b3467ba24f3614db01594bc504cea",
+          "byteSize": 33792
+        },
+        {
+          "text": "have",
+          "file": "ad0b1bd276c9a644bc269847d5ee763f988bccfbc65302544491392f113beee7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ad0b1bd276c9a644bc269847d5ee763f988bccfbc65302544491392f113beee7.mp3",
+          "contentHash": "71ac9e2648cde636c650561c91655a0fc609c6562737c02570d06ac218a54bec",
+          "byteSize": 18816
+        },
+        {
+          "text": "work",
+          "file": "26b0d1a04cbcd7aebeb3fb4a8f5ef50441c59b7b4bc649a718d3f7703bd75509.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/26b0d1a04cbcd7aebeb3fb4a8f5ef50441c59b7b4bc649a718d3f7703bd75509.mp3",
+          "contentHash": "063132e8f12687f443a25b2cf49b33c07aea45ba7190e8938b02444b5adc8d09",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l07/s01/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do they have a newspaper?",
+          "file": "0fafc176917d20fb5b4451a4a9cd3b01326929953c14722a15c08051a62a99c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0fafc176917d20fb5b4451a4a9cd3b01326929953c14722a15c08051a62a99c5.mp3",
+          "contentHash": "2ce076a106795b88eb8e990feeec15eb26fc3b3e54096a5c639381b8181af5c7",
+          "byteSize": 29184
+        }
+      ]
     }
   },
   "settings": {

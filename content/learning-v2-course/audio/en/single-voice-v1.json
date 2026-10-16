@@ -108943,6 +108943,309 @@
           "byteSize": 38016
         }
       ]
+    },
+    "l07/s24/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I don’t smoke.",
+          "file": "b3ecb97572c6c1f53396eb6ef70a6f2237e9fe60595126afec4a1a1cd40b7cbd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3ecb97572c6c1f53396eb6ef70a6f2237e9fe60595126afec4a1a1cd40b7cbd.mp3",
+          "contentHash": "e036b0e5544e8de4e7eaec841c0763e4bc8a2d02c3bd8f6db42d295b4cc27f42",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s24/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom doesn’t shout.",
+          "file": "329f66df9177ed97b171728eb2a439c8b53978ca42d24e6e260096aaec12094d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/329f66df9177ed97b171728eb2a439c8b53978ca42d24e6e260096aaec12094d.mp3",
+          "contentHash": "1969566986c9d19d843a85a0f4abd3369b4d6e2def14d1b43f12884225b7d6f7",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l07/s24/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you cheat?",
+          "file": "4092f7d79e96940edfcf9da5b6b1d9e54e8769ec6e31781eee0d7594074df5b6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4092f7d79e96940edfcf9da5b6b1d9e54e8769ec6e31781eee0d7594074df5b6.mp3",
+          "contentHash": "3aad7ef47238fd83639ecce1daaa45820d75680e9388b5bb2df04f8a0ffe5f4c",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s24/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I don’t smoke.",
+          "file": "1f107ccf407f900eda130c10155e72be99e030c6f2d03320d1bfb55ad8bd64c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f107ccf407f900eda130c10155e72be99e030c6f2d03320d1bfb55ad8bd64c5.mp3",
+          "contentHash": "f31a1dd792dc3a08172ef57b81039a199dc7e39e0f51bacfe5a79adf0998d2c7",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s24/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "complain",
+          "file": "645e95d8d665a24f10b649464cd8d8a1c706f1ac38c3312da8d7d4babee87f7c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/645e95d8d665a24f10b649464cd8d8a1c706f1ac38c3312da8d7d4babee87f7c.mp3",
+          "contentHash": "272ed730e932e92931eccdd1f9a751a1b74fbc4ae2d326e91cf153611182d07e",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l07/s24/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I don’t gamble.",
+          "file": "3c0e71e8d53119b9550ebeb066340e2c23a65902221c6a9d34ef8d13199cbce1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3c0e71e8d53119b9550ebeb066340e2c23a65902221c6a9d34ef8d13199cbce1.mp3",
+          "contentHash": "a2cd2d644ccbd95bbf6b280dc69d8f0ab4b0215e3346d4911f1b6ecfd18f377c",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s24/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "smoke",
+          "file": "524b9368ba7ffa626828a41208a391098ed76e082625e456a876a995be1cc9e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/524b9368ba7ffa626828a41208a391098ed76e082625e456a876a995be1cc9e1.mp3",
+          "contentHash": "9903e9ebe6101d122c31035b4bc9827f0014ac26c39d1258e82d05cb64414660",
+          "byteSize": 19584
+        },
+        {
+          "text": "gamble",
+          "file": "e32f413cc6b50dc3e1162526afcd1746c6021c26574dbaa99b2e26232acd5b1c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e32f413cc6b50dc3e1162526afcd1746c6021c26574dbaa99b2e26232acd5b1c.mp3",
+          "contentHash": "4c9c5d683108716c7af1627af9262ab22ad32efd57508f1898a39343317896ec",
+          "byteSize": 16512
+        },
+        {
+          "text": "complain",
+          "file": "645e95d8d665a24f10b649464cd8d8a1c706f1ac38c3312da8d7d4babee87f7c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/645e95d8d665a24f10b649464cd8d8a1c706f1ac38c3312da8d7d4babee87f7c.mp3",
+          "contentHash": "272ed730e932e92931eccdd1f9a751a1b74fbc4ae2d326e91cf153611182d07e",
+          "byteSize": 18816
+        },
+        {
+          "text": "shout",
+          "file": "b3a662696ccd25dafcd3d166457ddb5fc0f69395297ee9c4ce2ddb04e7e5b33f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3a662696ccd25dafcd3d166457ddb5fc0f69395297ee9c4ce2ddb04e7e5b33f.mp3",
+          "contentHash": "b92af1e6959334c30f48383056d7ece233a9e6f9ce0cf37c590d86d98869df06",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l07/s24/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I don’t lie.",
+          "file": "dcf83f545a8888807726bff533ddd9500ed2c85c33e2b430e5f760c45b315a9d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dcf83f545a8888807726bff533ddd9500ed2c85c33e2b430e5f760c45b315a9d.mp3",
+          "contentHash": "c3f319f591a15884de893707939ea60dae7569c0a4cade96208d8c1801b8b90e",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l07/s24/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom doesn’t argue.",
+          "file": "64123827bcb4e8bafa2e56e1b6a6d29c8b4726018d7cc4b554a80eb718555fed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/64123827bcb4e8bafa2e56e1b6a6d29c8b4726018d7cc4b554a80eb718555fed.mp3",
+          "contentHash": "a3ca2dfd8cbd129aa2c3a7a7961d4d43c9d3cae90e3326cc9ddc19fae821408a",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l07/s24/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you cheat?",
+          "file": "2d328cc66253fc84d6c956e80ce9f9266d6a5c060259c537ebd4323a27a803e2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2d328cc66253fc84d6c956e80ce9f9266d6a5c060259c537ebd4323a27a803e2.mp3",
+          "contentHash": "a6aafaedadc46f68576933c0b775e6861686d0da6ea85748ab3b0b07f42879be",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s24/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does Tom smoke?",
+          "file": "441c05dd84c814ccf97cd1df604c619efdb34fdb103f906e4501788747ee5b12.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/441c05dd84c814ccf97cd1df604c619efdb34fdb103f906e4501788747ee5b12.mp3",
+          "contentHash": "fcdd36abeeca4d124f86d4fc22af927a11f69d35910546dff1abbc9ebd314996",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l07/s24/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I don’t complain.",
+          "file": "d9add367673544bd74caf12518fd7c7b98027be81d843330b139fe80a9720918.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d9add367673544bd74caf12518fd7c7b98027be81d843330b139fe80a9720918.mp3",
+          "contentHash": "899ef102f8d18a9030fe6760daf5f976bb2988e48f2d43e1b9702fd32fc95edc",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s24/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "lie",
+          "file": "f45a0939967324a64225b0e3c626a479afc9f031eaa36a889983a6c3d16d2c55.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f45a0939967324a64225b0e3c626a479afc9f031eaa36a889983a6c3d16d2c55.mp3",
+          "contentHash": "0fff03e06140984075cc739998ccdaf9a17a09e62da00e5b26c24af0eff43095",
+          "byteSize": 24576
+        },
+        {
+          "text": "argue",
+          "file": "5fb5e1e1a3d1750b427fc55d95e53a4149f3d40c885091bc2f12777d8553df67.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fb5e1e1a3d1750b427fc55d95e53a4149f3d40c885091bc2f12777d8553df67.mp3",
+          "contentHash": "cc7c8313a4bbcae742e4fafca4feb5296998a639fc6f27a2b136bdec98e55e71",
+          "byteSize": 17280
+        },
+        {
+          "text": "cheat",
+          "file": "7b3d47296b3f2145062e5b72432766e21769e3ac17e720521744f4b41a5c99ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b3d47296b3f2145062e5b72432766e21769e3ac17e720521744f4b41a5c99ec.mp3",
+          "contentHash": "a13f5a8aff0685ea8e0a10a0ce68e17072d2c6adec60e346456c8270e13bba51",
+          "byteSize": 15744
+        },
+        {
+          "text": "gamble",
+          "file": "e32f413cc6b50dc3e1162526afcd1746c6021c26574dbaa99b2e26232acd5b1c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e32f413cc6b50dc3e1162526afcd1746c6021c26574dbaa99b2e26232acd5b1c.mp3",
+          "contentHash": "4c9c5d683108716c7af1627af9262ab22ad32efd57508f1898a39343317896ec",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l07/s24/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom doesn’t shout.",
+          "file": "47235f352b66807e3dbeb763a44e0d3904500704af7cf326a17c0382eded138c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47235f352b66807e3dbeb763a44e0d3904500704af7cf326a17c0382eded138c.mp3",
+          "contentHash": "2478020e825d55367f72d71c5a88f8f0922d75071b175ebcc8a9867e4567fe0b",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l07/s24/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you gamble?",
+          "file": "f826f158a688dea27da2524ea95dee9c56633bcd5a83fb0c72534d0d25b36ee0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f826f158a688dea27da2524ea95dee9c56633bcd5a83fb0c72534d0d25b36ee0.mp3",
+          "contentHash": "83984ebb7b7bb20052f48b6602d63226ae848423953ea8ebe9041c44f83f43d8",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l07/s24/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There are no tickets here.",
+          "file": "59ec73570f1e194e27c54c4d6bddaca51b26d87f3dadff233b0cbe0f872d5f2e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/59ec73570f1e194e27c54c4d6bddaca51b26d87f3dadff233b0cbe0f872d5f2e.mp3",
+          "contentHash": "bd45ac2c1c0d09ce22dc567154f85a0915b9c8946a011bc236f8404a29aea063",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s24/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom doesn’t cheat.",
+          "file": "07e6168d6c0cf3ebb11353fb3843ab077308f3ce617dd28b5aba1c2bd86cec52.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07e6168d6c0cf3ebb11353fb3843ab077308f3ce617dd28b5aba1c2bd86cec52.mp3",
+          "contentHash": "cf227ba5e3b516e620265fc0ef578649ac0201cbdd1bac55314cd8cb60b3b74f",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l07/s24/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I don’t argue.",
+          "file": "cf9503938065b82da3fac8d670ec7ec271b11b262a253e6867736dc0de0ce7e6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cf9503938065b82da3fac8d670ec7ec271b11b262a253e6867736dc0de0ce7e6.mp3",
+          "contentHash": "7c5c59c3448152e64b6297bbfc7732b6d2b76a8f67366f5fa20cd5849ca1d963",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l07/s24/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "complain",
+          "file": "ef109ba039843e57dc3f99b698d94d2dc49786a60c58a2bbd256e47ed05a450b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef109ba039843e57dc3f99b698d94d2dc49786a60c58a2bbd256e47ed05a450b.mp3",
+          "contentHash": "fea02826396405999c08e5d7ea8005c8adfa6ff060c974e5a470b4e486b8b899",
+          "byteSize": 23040
+        },
+        {
+          "text": "shout",
+          "file": "153805417c91e33644eedc1412ce66d583482477554f268feaf23e361d4eb035.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/153805417c91e33644eedc1412ce66d583482477554f268feaf23e361d4eb035.mp3",
+          "contentHash": "7eb07e2fce7cd541b14005f27de7c9c17b401e38d2f2bdbf0f7dafd16c2a7a74",
+          "byteSize": 31488
+        },
+        {
+          "text": "lie",
+          "file": "63ce9631cfb6fe22e4b83e74cf674050a90408174bbf8d867131dbdf6f93909c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63ce9631cfb6fe22e4b83e74cf674050a90408174bbf8d867131dbdf6f93909c.mp3",
+          "contentHash": "3965019823522c326f67854aa2660da78ef7da18204918a747d9fec29914d7d9",
+          "byteSize": 23040
+        },
+        {
+          "text": "cheat",
+          "file": "229aa6ed4f8449b4d2d8d8c2edd072e37f002bef4c6365f9c802068ca9236eb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/229aa6ed4f8449b4d2d8d8c2edd072e37f002bef4c6365f9c802068ca9236eb7.mp3",
+          "contentHash": "772e141cae19714ce8d5b6f3f1b0d01c88ce01ea645499d070d90ba7faa18521",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l07/s24/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Does Tom gamble?",
+          "file": "43032e9051b5e8ff38fb55507d601b2088850ccae5dd3af26176adac42e0c007.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43032e9051b5e8ff38fb55507d601b2088850ccae5dd3af26176adac42e0c007.mp3",
+          "contentHash": "ca12bf3b4358c48d15af0e342b607c9bc90f2b9bd5019dfbd04e0fb2303b2ad6",
+          "byteSize": 34944
+        }
+      ]
     }
   },
   "settings": {

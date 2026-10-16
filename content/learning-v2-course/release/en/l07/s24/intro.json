@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно выбирать do, does, don’t и doesn’t в знакомых ситуациях",
+    "uk": "самостійно вибирати do, does, don’t і doesn’t у знайомих ситуаціях"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сигарета на перерыве",
+        "uk": "Сигарета на перерві"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега предлагает вам сигарету. `I don’t smoke` — «Я не курю». Вы сообщаете о своей привычке: после `I` ставим `don’t`, затем `smoke`. Простого `not` перед действием недостаточно.",
+        "uk": "Колега пропонує вам сигарету. `I don’t smoke` — «Я не курю». Ви повідомляєте про свою звичку: після `I` ставимо `don’t`, потім `smoke`. Самого `not` перед дією недостатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Откажитесь, объяснив: «Я не курю».",
+          "uk": "Відмовтеся, пояснивши: «Я не курю»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-24:intro1:r1",
+              "text": "I don’t smoke."
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro1:r2",
+              "text": "I not smoke."
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro1:r3",
+              "text": "I doesn’t smoke."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-24:intro1:r1",
+              "text": "I don’t smoke."
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro1:r2",
+              "text": "I not smoke."
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro1:r3",
+              "text": "I doesn’t smoke."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Откажитесь, объяснив: «Я не курю».",
+          "uk": "Відмовтеся, пояснивши: «Я не курю»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спокойный собеседник",
+        "uk": "Спокійний співрозмовник"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, кричит ли Том во время споров. `Tom doesn’t shout` — «Том не кричит». Том — один человек: используем `doesn’t`, затем `shout`, без `s`. Его аргументы слышны и без режима громкоговорителя.",
+        "uk": "Друг запитує, чи кричить Том під час суперечок. `Tom doesn’t shout` — «Том не кричить». Том — одна людина: використовуємо `doesn’t`, потім `shout`, без `s`. Його аргументи чути й без режиму гучномовця."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Том не кричит».",
+          "uk": "Скажіть другові: «Том не кричить»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-24:intro2:r1",
+              "text": "Tom doesn’t shout."
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro2:r2",
+              "text": "Tom don’t shout."
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro2:r3",
+              "text": "Tom doesn’t shouts."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-24:intro2:r1",
+              "text": "Tom doesn’t shout."
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro2:r2",
+              "text": "Tom don’t shout."
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro2:r3",
+              "text": "Tom doesn’t shouts."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Том не кричит».",
+          "uk": "Скажіть другові: «Том не кричить»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Честная игра",
+        "uk": "Чесна гра"
+      },
+      "bodyByLocale": {
+        "ru": "Перед игрой вы обсуждаете с другом правила и прямо спрашиваете, не жульничает ли он обычно. `Do you cheat?` — «Ты жульничаешь?» Вопрос с `you` начинается с `do`; действие — `cheat`, без окончания. Это прямой вопрос, поэтому важно говорить без обвинительного тона.",
+        "uk": "Перед грою ви обговорюєте з другом правила й прямо запитуєте, чи не шахрує він зазвичай. `Do you cheat?` — «Ти шахруєш?» Запитання з `you` починається з `do`; дія — `cheat`, без закінчення. Це пряме запитання, тому важливо говорити без звинувачувального тону."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите друга: «Ты жульничаешь?»",
+          "uk": "Запитайте друга: «Ти шахруєш?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-24:intro3:r1",
+              "text": "Do you cheat?"
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro3:r2",
+              "text": "Does you cheat?"
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro3:r3",
+              "text": "Do you cheats?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-24:intro3:r1",
+              "text": "Do you cheat?"
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro3:r2",
+              "text": "Does you cheat?"
+            },
+            {
+              "responseId": "en:lesson-07:session-24:intro3:r3",
+              "text": "Do you cheats?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга: «Ты жульничаешь?»",
+          "uk": "Запитайте друга: «Ти шахруєш?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "77fd5c50f0b92a7e5b033062bf1f9761ddb01970f39c6fa7f2a0f022f12c8366"
+}

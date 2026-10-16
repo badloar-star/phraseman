@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о владельце вещи и найти знакомые места",
+    "uk": "запитати про власника речі й знайти знайомі місця"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Самокат и цена",
+        "uk": "Самокат і ціна"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим: `scooter` — «самокат», `expensive` — «дорогой» по цене. `This scooter is expensive` — «Этот самокат дорогой». `Whose scooter is this?` — «Чей это самокат?» Высокая цена не подскажет имя владельца: для этого есть `Whose`.",
+        "uk": "Повторимо: `scooter` — «самокат», `expensive` — «дорогий» за ціною. `This scooter is expensive` — «Цей самокат дорогий». `Whose scooter is this?` — «Чий це самокат?» Висока ціна не підкаже ім’я власника: для цього є `Whose`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о владельце самоката.",
+          "uk": "Запитайте про власника самоката."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-50:intro1:r1",
+              "text": "Whose scooter is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro1:r2",
+              "text": "Where is the scooter?"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro1:r3",
+              "text": "Whose scooter are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-50:intro1:r1",
+              "text": "Whose scooter is this?"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro1:r2",
+              "text": "Where is the scooter?"
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro1:r3",
+              "text": "Whose scooter are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о владельце самоката.",
+          "uk": "Запитайте про власника самоката."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "У реки",
+        "uk": "Біля річки"
+      },
+      "bodyByLocale": {
+        "ru": "`playground` — «детская площадка», `river` — «река». `The playground is near the river` — «Детская площадка возле реки». `The scooter is next to the playground` — «Самокат рядом с детской площадкой». `Where is the river?` — «Где река?»",
+        "uk": "`playground` — «дитячий майданчик», `river` — «річка». `The playground is near the river` — «Дитячий майданчик біля річки». `The scooter is next to the playground` — «Самокат поруч із дитячим майданчиком». `Where is the river?` — «Де річка?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Детская площадка возле реки».",
+          "uk": "Скажіть «Дитячий майданчик біля річки»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-50:intro2:r1",
+              "text": "The playground is near the river."
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro2:r2",
+              "text": "The playground are near the river."
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro2:r3",
+              "text": "The playground is in the river."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-50:intro2:r1",
+              "text": "The playground is near the river."
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro2:r2",
+              "text": "The playground are near the river."
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro2:r3",
+              "text": "The playground is in the river."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Детская площадка возле реки».",
+          "uk": "Скажіть «Дитячий майданчик біля річки»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кино и владельцы",
+        "uk": "Кіно й власники"
+      },
+      "bodyByLocale": {
+        "ru": "`cinema` — «кинотеатр». `Where is the cinema?` — «Где кинотеатр?» `This is Anna’s scooter` — «Это самокат Анны». `The scooter is hers` — «Самокат её». `The scooter is ours` — «Самокат наш». Самостоятельные `hers` и `ours` уже заменяют сочетание с названием вещи.",
+        "uk": "`cinema` — «кінотеатр». `Where is the cinema?` — «Де кінотеатр?» `This is Anna’s scooter` — «Це самокат Анни». `The scooter is hers` — «Самокат її». `The scooter is ours` — «Самокат наш». Самостійні `hers` та `ours` уже замінюють сполучення з назвою речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Самокат наш».",
+          "uk": "Скажіть «Самокат наш»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-50:intro3:r1",
+              "text": "The scooter is ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro3:r2",
+              "text": "The scooter is our."
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro3:r3",
+              "text": "The scooter are ours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-50:intro3:r1",
+              "text": "The scooter is ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro3:r2",
+              "text": "The scooter is our."
+            },
+            {
+              "responseId": "en:lesson-05:session-50:intro3:r3",
+              "text": "The scooter are ours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Самокат наш».",
+          "uk": "Скажіть «Самокат наш»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4ca241daf2e0f94f3a20881b8b08f2d1840c9bbe8a776c164180f9de504e874d"
+}

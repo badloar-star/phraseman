@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-17:intro1:r2": {
+          "ru": "Без названия вещи используем `mine`; `my` нужно перед названием: `my jacket`.",
+          "uk": "Без назви речі використовуємо `mine`; `my` потрібне перед назвою: `my jacket`."
+        },
+        "en:lesson-05:session-17:intro1:r3": {
+          "ru": "`yours` — твоя / ваша; моя — `mine`.",
+          "uk": "`yours` — твоя / ваша; моя — `mine`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-17:intro2:r2": {
+          "ru": "Без названия вещи нужна форма `ours`.",
+          "uk": "Без назви речі потрібна форма `ours`."
+        },
+        "en:lesson-05:session-17:intro2:r3": {
+          "ru": "Несколько книг: `books are`.",
+          "uk": "Кілька книжок: `books are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-17:intro3:r2": {
+          "ru": "С `You` нужно `are`.",
+          "uk": "З `You` потрібне `are`."
+        },
+        "en:lesson-05:session-17:intro3:r3": {
+          "ru": "`safe` — в безопасности; прав — `right`.",
+          "uk": "`safe` — у безпеці; мати рацію — `be right`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8239ab55dac87c391cce78c0814d84cc11fd3e25275ccdaa40ec22137eb6a88d"
+}

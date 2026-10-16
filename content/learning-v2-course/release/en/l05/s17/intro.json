@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "указать владельца без повторения названия вещи",
+    "uk": "вказати власника без повторення назви речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Можно не повторять",
+        "uk": "Можна не повторювати"
+      },
+      "bodyByLocale": {
+        "ru": "`jacket` — «куртка». `my jacket` — «моя куртка», но `The jacket is mine` — «Куртка моя». `mine` уже означает «мой / моя / моё / мои», поэтому после него название вещи не повторяем. `yours` — «твой / ваш» без названия вещи: `The charger is yours` — «Зарядка твоя». Куртки похожи, но карман с вашей забытой ягодой — убедительная подсказка.",
+        "uk": "`jacket` — «куртка». `my jacket` — «моя куртка», але `The jacket is mine` — «Куртка моя». `mine` уже означає «мій / моя / моє / мої», тому після нього назву речі не повторюємо. `yours` — «твій / ваш» без назви речі: `The charger is yours` — «Зарядка твоя». Куртки схожі, але кишеня з вашою забутою ягодою — переконлива підказка."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Куртка принадлежит вам. Выберите фразу.",
+          "uk": "Куртка належить вам. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-17:intro1:r1",
+              "text": "The jacket is mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro1:r2",
+              "text": "The jacket is my."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro1:r3",
+              "text": "The jacket is yours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-17:intro1:r1",
+              "text": "The jacket is mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro1:r2",
+              "text": "The jacket is my."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro1:r3",
+              "text": "The jacket is yours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Куртка принадлежит вам. Выберите фразу.",
+          "uk": "Куртка належить вам. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Его, её, наши, их",
+        "uk": "Його, її, наші, їхні"
+      },
+      "bodyByLocale": {
+        "ru": "Без названия вещи: `his` — «его», `hers` — «её», `ours` — «наш / наши», `theirs` — «их». `his` одинаково в `his jacket` и `The jacket is his`. Сравните: `her jacket`, но `The jacket is hers`. `The books are ours` — «Книги наши»: несколько книг, поэтому `are`.",
+        "uk": "Без назви речі: `his` — «його», `hers` — «її», `ours` — «наш / наші», `theirs` — «їхній / їхні». `his` однакове в `his jacket` і `The jacket is his`. Порівняйте: `her jacket`, але `The jacket is hers`. `The books are ours` — «Книжки наші»: кілька книжок, тому `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Книги принадлежат вам и вашему другу. Скажите «Книги наши».",
+          "uk": "Книжки належать вам і вашому другові. Скажіть «Книжки наші»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-17:intro2:r1",
+              "text": "The books are ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro2:r2",
+              "text": "The books are our."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro2:r3",
+              "text": "The books is ours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-17:intro2:r1",
+              "text": "The books are ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro2:r2",
+              "text": "The books are our."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro2:r3",
+              "text": "The books is ours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Книги принадлежат вам и вашему другу. Скажите «Книги наши».",
+          "uk": "Книжки належать вам і вашому другові. Скажіть «Книжки наші»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вещи в безопасности",
+        "uk": "Речі в безпеці"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим: `welcome` — «желанный», `safe` — «в безопасности», `right` — «прав», `books` — «книги», `berry` — «ягода», `charger` — «зарядка». `You are welcome here` — «Тебе здесь рады». `You are right` — «Ты прав / права». `The books are safe` — «Книги в безопасности». `The berry is hers` — «Ягода её». Форма `hers` говорит о владелице, а `is` — об одной ягоде.",
+        "uk": "Повторімо: `welcome` — «бажаний», `safe` — «у безпеці», `right` — «має рацію», `books` — «книжки», `berry` — «ягода», `charger` — «зарядка». `You are welcome here` — «Тобі тут раді». `You are right` — «Ти маєш рацію». `The books are safe` — «Книжки в безпеці». `The berry is hers` — «Ягода її». Форма `hers` говорить про власницю, а `is` — про одну ягоду."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг верно определил владельца. Скажите «Ты прав» без сокращения.",
+          "uk": "Друг правильно визначив власника. Скажіть «Ти маєш рацію» без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-17:intro3:r1",
+              "text": "You are right."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro3:r2",
+              "text": "You is right."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro3:r3",
+              "text": "You are safe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-17:intro3:r1",
+              "text": "You are right."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro3:r2",
+              "text": "You is right."
+            },
+            {
+              "responseId": "en:lesson-05:session-17:intro3:r3",
+              "text": "You are safe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг верно определил владельца. Скажите «Ты прав» без сокращения.",
+          "uk": "Друг правильно визначив власника. Скажіть «Ти маєш рацію» без скорочення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ed81172f9838d61f9a104380388e29639257a36eb5c817435ed885ec419af664"
+}

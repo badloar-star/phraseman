@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-17:i01",
+    "correctText": "You are welcome here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i02",
+    "correctText": "jacket",
+    "correctResponseId": "en:lesson-05:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i03",
+    "correctText": "jacket",
+    "correctResponseId": "en:lesson-05:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i04",
+    "correctText": "en:lesson-05:session-17:i04:p1=jacket\nen:lesson-05:session-17:i04:p2=welcome\nen:lesson-05:session-17:i04:p3=safe\nen:lesson-05:session-17:i04:p4=right",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i05",
+    "correctText": "The jacket is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i06",
+    "correctText": "The charger is yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i07",
+    "correctText": "You are right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i08",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i09",
+    "correctText": "The books are ours.",
+    "correctResponseId": "en:lesson-05:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i10",
+    "correctText": "en:lesson-05:session-17:i10:p1=jacket\nen:lesson-05:session-17:i10:p2=books\nen:lesson-05:session-17:i10:p3=berry\nen:lesson-05:session-17:i10:p4=charger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i11",
+    "correctText": "The jacket is his.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i12",
+    "correctText": "The books are safe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i13",
+    "correctText": "The charger is theirs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i14",
+    "correctText": "yours",
+    "correctResponseId": "en:lesson-05:session-17:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i15",
+    "correctText": "The books are hers.",
+    "correctResponseId": "en:lesson-05:session-17:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i16",
+    "correctText": "en:lesson-05:session-17:i16:p1=mine\nen:lesson-05:session-17:i16:p2=yours\nen:lesson-05:session-17:i16:p3=ours\nen:lesson-05:session-17:i16:p4=theirs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-17:i17",
+    "correctText": "The jacket is mine.",
+    "correctResponseId": null
+  }
+]

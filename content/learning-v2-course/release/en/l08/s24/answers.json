@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-24:i01",
+    "correctText": "Can you lend me a pen?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i02",
+    "correctText": "remind",
+    "correctResponseId": "en:lesson-08:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i03",
+    "correctText": "explain",
+    "correctResponseId": "en:lesson-08:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i04",
+    "correctText": "en:lesson-08:session-24:i04:p1=lend\nen:lesson-08:session-24:i04:p2=pass\nen:lesson-08:session-24:i04:p3=explain\nen:lesson-08:session-24:i04:p4=hold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i05",
+    "correctText": "Can you fetch it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i06",
+    "correctText": "Can you reserve a table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i07",
+    "correctText": "Can you hold this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i08",
+    "correctText": "pass",
+    "correctResponseId": "en:lesson-08:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i09",
+    "correctText": "Can you remind me?",
+    "correctResponseId": "en:lesson-08:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i10",
+    "correctText": "en:lesson-08:session-24:i10:p1=fetch\nen:lesson-08:session-24:i10:p2=remind\nen:lesson-08:session-24:i10:p3=reserve\nen:lesson-08:session-24:i10:p4=yoghurt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i11",
+    "correctText": "Can you explain it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i12",
+    "correctText": "Whose pen is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i13",
+    "correctText": "I often read.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i14",
+    "correctText": "reserve",
+    "correctResponseId": "en:lesson-08:session-24:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i15",
+    "correctText": "Can you pass me the yoghurt?",
+    "correctResponseId": "en:lesson-08:session-24:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i16",
+    "correctText": "en:lesson-08:session-24:i16:p1=hold\nen:lesson-08:session-24:i16:p2=fetch\nen:lesson-08:session-24:i16:p3=remind\nen:lesson-08:session-24:i16:p4=reserve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:i17",
+    "correctText": "Can you pass me the yoghurt?",
+    "correctResponseId": null
+  }
+]

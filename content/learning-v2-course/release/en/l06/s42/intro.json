@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, что вы пользуетесь чем-то вместе, и описать такую привычку другого человека",
+    "uk": "сказати, що ви користуєтеся чимось разом, і описати таку звичку іншої людини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мы живём в одной комнате",
+        "uk": "Ми живемо в одній кімнаті"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, у каждого ли из вас отдельная комната. `share` — «пользоваться вместе», «делить с кем-то». `We share a room` — «Мы живём в одной комнате». Речь об общей комнате, а не о том, что её распилили пополам. После `we` используем `share`, без `s`.",
+        "uk": "Друг запитує, чи в кожного з вас окрема кімната. `share` — «користуватися разом», «ділити з кимось». `We share a room` — «Ми живемо в одній кімнаті». Ідеться про спільну кімнату, а не про те, що її розпиляли навпіл. Після `we` використовуємо `share`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте другу «Мы живём в одной комнате».",
+          "uk": "Дайте другові відповідь «Ми живемо в одній кімнаті»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-42:intro1:r1",
+              "text": "We share a room."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro1:r2",
+              "text": "We shares a room."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro1:r3",
+              "text": "We are share a room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-42:intro1:r1",
+              "text": "We share a room."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro1:r2",
+              "text": "We shares a room."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro1:r3",
+              "text": "We are share a room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте другу «Мы живём в одной комнате».",
+          "uk": "Дайте другові відповідь «Ми живемо в одній кімнаті»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "С кем живёт Анна",
+        "uk": "З ким живе Анна"
+      },
+      "bodyByLocale": {
+        "ru": "Друг уточняет, есть ли у Анны сосед по комнате. `She shares a room with Tom` — «Она живёт в одной комнате с Томом». После `she` добавляем `s`: `share → shares`. `with Tom` означает «с Томом». Здесь описывается их жильё, а не то, где они находятся прямо сейчас.",
+        "uk": "Друг уточнює, чи має Анна сусіда по кімнаті. `She shares a room with Tom` — «Вона живе в одній кімнаті з Томом». Після `she` додаємо `s`: `share → shares`. `with Tom` означає «з Томом». Тут описується їхнє житло, а не те, де вони перебувають просто зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она живёт в одной комнате с Томом».",
+          "uk": "Скажіть «Вона живе в одній кімнаті з Томом»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-42:intro2:r1",
+              "text": "She shares a room with Tom."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro2:r2",
+              "text": "She share a room with Tom."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro2:r3",
+              "text": "She is shares a room with Tom."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-42:intro2:r1",
+              "text": "She shares a room with Tom."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro2:r2",
+              "text": "She share a room with Tom."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro2:r3",
+              "text": "She is shares a room with Tom."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она живёт в одной комнате с Томом».",
+          "uk": "Скажіть «Вона живе в одній кімнаті з Томом»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Общий самокат",
+        "uk": "Спільний самокат"
+      },
+      "bodyByLocale": {
+        "ru": "У Анны и Тома один самокат на двоих. `scooter` — «самокат». `They share a scooter` — «Они пользуются одним самокатом». Они могут кататься по очереди: `share` не означает, что нужно стоять на нём вдвоём. После `they` — `share`, без `s`.",
+        "uk": "Анна й Том мають один самокат на двох. `scooter` — «самокат». `They share a scooter` — «Вони користуються одним самокатом». Вони можуть кататися по черзі: `share` не означає, що потрібно стояти на ньому вдвох. Після `they` — `share`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Расскажите другу «Они пользуются одним самокатом».",
+          "uk": "Розкажіть другові «Вони користуються одним самокатом»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-42:intro3:r1",
+              "text": "They share a scooter."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro3:r2",
+              "text": "They shares a scooter."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro3:r3",
+              "text": "They are share a scooter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-42:intro3:r1",
+              "text": "They share a scooter."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro3:r2",
+              "text": "They shares a scooter."
+            },
+            {
+              "responseId": "en:lesson-06:session-42:intro3:r3",
+              "text": "They are share a scooter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите другу «Они пользуются одним самокатом».",
+          "uk": "Розкажіть другові «Вони користуються одним самокатом»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8887c0c184b9dfc5219cf2c1f3022e060fa73b156d4fa14a33935ea3e0f470fb"
+}

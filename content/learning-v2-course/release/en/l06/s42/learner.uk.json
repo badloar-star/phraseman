@@ -1,0 +1,958 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Ми живемо в одній кімнаті»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Ми живемо в одній кімнаті»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We share a room.",
+        "localizedMeaning": {
+          "ru": "Скажите «Мы живём в одной комнате»",
+          "uk": "Скажіть «Ми живемо в одній кімнаті»"
+        },
+        "orderedTokens": [
+          "We",
+          "share",
+          "a",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-42:i02:r1",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i02:r2",
+          "text": "drink"
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i02:r3",
+          "text": "chat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:i02:audio",
+          "transcript": "share"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-42:i02:r1",
+            "targetText": "share",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i02:r2",
+            "targetText": "drink",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i02:r3",
+            "targetText": "chat",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `share`, а в этом варианте — `drink`.",
+              "uk": "У записі перше слово — `share`, а в цьому варіанті — `drink`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `share`, а в этом варианте — `chat`.",
+              "uk": "У записі перше слово — `share`, а в цьому варіанті — `chat`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вона живе в одній кімнаті з Томом»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-42:i03:r1",
+          "text": "shares"
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i03:r2",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i03:r3",
+          "text": "is shares"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона живе в одній кімнаті з Томом»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она живёт в одной комнате с Томом»",
+          "uk": "Скажіть «Вона живе в одній кімнаті з Томом»"
+        },
+        "gappedTargetPhrase": "She ___ a room with Tom.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-42:i03:r1",
+            "text": "shares"
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i03:r2",
+            "text": "share"
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i03:r3",
+            "text": "is shares"
+          }
+        ],
+        "testedDimension": "Скажіть «Вона живе в одній кімнаті з Томом»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона живе в одній кімнаті з Томом»",
+            "feedbackByLocale": {
+              "ru": "После `she` — `shares`.",
+              "uk": "Після `she` — `shares`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона живе в одній кімнаті з Томом»",
+            "feedbackByLocale": {
+              "ru": "Нужно `She shares`, без `is`.",
+              "uk": "Потрібно `She shares`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-42:i04:p1",
+            "target": "share",
+            "meaningByLocale": {
+              "ru": "пользоваться вместе",
+              "uk": "користуватися разом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-42:i04:p2",
+            "target": "inaccurate",
+            "meaningByLocale": {
+              "ru": "неточный",
+              "uk": "неточний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-42:i04:p3",
+            "target": "bus shelter",
+            "meaningByLocale": {
+              "ru": "павильон на остановке",
+              "uk": "павільйон на зупинці"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-42:i04:p4",
+            "target": "scooter",
+            "meaningByLocale": {
+              "ru": "самокат",
+              "uk": "самокат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "share",
+          "inaccurate",
+          "bus shelter",
+          "scooter"
+        ],
+        "rightColumn": [
+          "користуватися разом",
+          "неточний",
+          "павільйон на зупинці",
+          "самокат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:i05:audio",
+          "transcript": "They share a scooter."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They share a scooter.",
+        "orderedTokens": [
+          "They",
+          "share",
+          "a",
+          "scooter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Він п’є воду»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Він п’є воду»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He drinks water.",
+        "localizedMeaning": {
+          "ru": "Скажите «Он пьёт воду»",
+          "uk": "Скажіть «Він п’є воду»"
+        },
+        "orderedTokens": [
+          "He",
+          "drinks",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На зупинці встановили павільйон. Скажіть «Цей павільйон на зупинці новий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:i07:audio"
+      ],
+      "accessibilityLabel": "На зупинці встановили павільйон. Скажіть «Цей павільйон на зупинці новий»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:i07:audio",
+          "transcript": "This bus shelter is new."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This bus shelter is new.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вони живуть в одній кімнаті»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-42:i08:r1",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i08:r2",
+          "text": "shares"
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i08:r3",
+          "text": "are share"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вони живуть в одній кімнаті»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они живут в одной комнате»",
+          "uk": "Скажіть «Вони живуть в одній кімнаті»"
+        },
+        "gappedTargetPhrase": "They ___ a room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-42:i08:r1",
+            "text": "share"
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i08:r2",
+            "text": "shares"
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i08:r3",
+            "text": "are share"
+          }
+        ],
+        "testedDimension": "Скажіть «Вони живуть в одній кімнаті»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вони живуть в одній кімнаті»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `share`, без `s`.",
+              "uk": "Після `they` — `share`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вони живуть в одній кімнаті»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They share`, без `are`.",
+              "uk": "Потрібно `They share`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить самокат",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-42:i09:r1",
+          "text": "This scooter is ours."
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i09:r2",
+          "text": "This scooter is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i09:r3",
+          "text": "This scooter is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить самокат",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:i09:audio",
+          "transcript": "This scooter is ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-42:i09:r1",
+            "targetText": "This scooter is ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i09:r2",
+            "targetText": "This scooter is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i09:r3",
+            "targetText": "This scooter is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить самокат",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ours`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `ours`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить самокат",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ours`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `ours`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-42:i10:p1",
+            "target": "share",
+            "meaningByLocale": {
+              "ru": "пользоваться вместе",
+              "uk": "користуватися разом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-42:i10:p2",
+            "target": "drink",
+            "meaningByLocale": {
+              "ru": "пить",
+              "uk": "пити"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-42:i10:p3",
+            "target": "scooter",
+            "meaningByLocale": {
+              "ru": "самокат",
+              "uk": "самокат"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-42:i10:p4",
+            "target": "inaccurate",
+            "meaningByLocale": {
+              "ru": "неточный",
+              "uk": "неточний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "share",
+          "drink",
+          "scooter",
+          "inaccurate"
+        ],
+        "rightColumn": [
+          "користуватися разом",
+          "пити",
+          "самокат",
+          "неточний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:i11:audio",
+          "transcript": "The bus shelter is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bus shelter is here.",
+        "orderedTokens": [
+          "The",
+          "bus",
+          "shelter",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bus shelter is here.`",
+              "uk": "тут потрібно `is` — `The bus shelter is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Біля дверей стоїть самокат. Запитайте «Чий це самокат?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Біля дверей стоїть самокат. Запитайте «Чий це самокат?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose scooter is this?",
+        "localizedMeaning": {
+          "ru": "У двери стоит самокат. Спросите «Чей это самокат?»",
+          "uk": "Біля дверей стоїть самокат. Запитайте «Чий це самокат?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "scooter",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Я п’ю воду»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Я п’ю воду»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:i13:audio",
+          "transcript": "I drink water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I drink water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Анна живе в одній кімнаті з Томом»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-42:i14:r1",
+          "text": "shares"
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i14:r2",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i14:r3",
+          "text": "is shares"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Анна живе в одній кімнаті з Томом»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна живёт в одной комнате с Томом»",
+          "uk": "Скажіть «Анна живе в одній кімнаті з Томом»"
+        },
+        "gappedTargetPhrase": "Anna ___ a room with Tom.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-42:i14:r1",
+            "text": "shares"
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i14:r2",
+            "text": "share"
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i14:r3",
+            "text": "is shares"
+          }
+        ],
+        "testedDimension": "Скажіть «Анна живе в одній кімнаті з Томом»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Анна живе в одній кімнаті з Томом»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna shares`.",
+              "uk": "Анна — вона: `Anna shares`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Анна живе в одній кімнаті з Томом»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Anna shares`, без `is`.",
+              "uk": "Потрібно `Anna shares`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-42:i15:r1",
+          "text": "We share a scooter."
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i15:r2",
+          "text": "They share a scooter."
+        },
+        {
+          "responseId": "en:lesson-06:session-42:i15:r3",
+          "text": "You share a scooter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:i15:audio",
+          "transcript": "We share a scooter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-42:i15:r1",
+            "targetText": "We share a scooter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i15:r2",
+            "targetText": "They share a scooter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i15:r3",
+            "targetText": "You share a scooter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-42:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `You`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `You`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-42:i16:p1",
+            "target": "share",
+            "meaningByLocale": {
+              "ru": "пользоваться вместе",
+              "uk": "користуватися разом"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-42:i16:p2",
+            "target": "bus shelter",
+            "meaningByLocale": {
+              "ru": "павильон на остановке",
+              "uk": "павільйон на зупинці"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-42:i16:p3",
+            "target": "inaccurate",
+            "meaningByLocale": {
+              "ru": "неточный",
+              "uk": "неточний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-42:i16:p4",
+            "target": "drink",
+            "meaningByLocale": {
+              "ru": "пить",
+              "uk": "пити"
+            }
+          }
+        ],
+        "leftColumn": [
+          "share",
+          "bus shelter",
+          "inaccurate",
+          "drink"
+        ],
+        "rightColumn": [
+          "користуватися разом",
+          "павільйон на зупинці",
+          "неточний",
+          "пити"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, з ким Анна живе в одній кімнаті. Дайте відповідь «Вона живе в одній кімнаті з Томом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, з ким Анна живе в одній кімнаті. Дайте відповідь «Вона живе в одній кімнаті з Томом»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:i17:audio",
+          "transcript": "She shares a room with Tom."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She shares a room with Tom.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e3bd222c0199d000f76cc473a4ee2837238cc66cb22ab5adb109c7326ed409ca"
+}

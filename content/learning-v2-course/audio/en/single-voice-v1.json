@@ -97429,6 +97429,309 @@
           "byteSize": 45312
         }
       ]
+    },
+    "l06/s42/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "We share a room.",
+          "file": "d60236c6ff48b9ad6e7866bbecc8ec6e77279fbf7560941c547ad049ebe2cbd0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d60236c6ff48b9ad6e7866bbecc8ec6e77279fbf7560941c547ad049ebe2cbd0.mp3",
+          "contentHash": "4dfbb20c78e167490ad7385eb974b5be743b7a3912ebf77be2caa77b6a5b06bb",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s42/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She shares a room with Tom.",
+          "file": "f4254786230b6507024abf41a280e75213f36f9b3cc6b2aa2b4b68a249c40427.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f4254786230b6507024abf41a280e75213f36f9b3cc6b2aa2b4b68a249c40427.mp3",
+          "contentHash": "5cb3f78515903a9da8f8fbf608c81630d1b45f596c22ebb2eb3e2c9d3e2fdd1c",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l06/s42/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They share a scooter.",
+          "file": "dd046748e3a79f84c295a66890a39bf82e39b1261af0a1e8deae7c3a687af274.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd046748e3a79f84c295a66890a39bf82e39b1261af0a1e8deae7c3a687af274.mp3",
+          "contentHash": "3b6cae265ae25c12bf0e1f57bc494c73ef657b277b124b48f785fc02cc0cfc8e",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l06/s42/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We share a room.",
+          "file": "9fa64519d3a05f7ed4a868f05fb0e1a368a008d5c88d213f621efc8abe80ea4b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9fa64519d3a05f7ed4a868f05fb0e1a368a008d5c88d213f621efc8abe80ea4b.mp3",
+          "contentHash": "8db16be1ba3cbf93f98f6915582d4f4055387d6efe1c689f2ffcbbbc11c3d360",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l06/s42/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "share",
+          "file": "a75bab2da4a412d632de675d4075f815d315008130021c9a8c01e7babbd803c3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a75bab2da4a412d632de675d4075f815d315008130021c9a8c01e7babbd803c3.mp3",
+          "contentHash": "f0af26909ddcd0a53af1d84881bbb44d60641479416d5eb7c9e4bed94b3d1a2b",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l06/s42/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She shares a room with Tom.",
+          "file": "9ffa9e102b3e68b1f4763fa21d930d9e8c2464ed9ed2f5dc8ec7c66e3b73c5a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ffa9e102b3e68b1f4763fa21d930d9e8c2464ed9ed2f5dc8ec7c66e3b73c5a6.mp3",
+          "contentHash": "b53c7598549f5b99af886785fc719a6fef6983a1d0dcf5aa4022ff9931e426cd",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s42/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "share",
+          "file": "a75bab2da4a412d632de675d4075f815d315008130021c9a8c01e7babbd803c3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a75bab2da4a412d632de675d4075f815d315008130021c9a8c01e7babbd803c3.mp3",
+          "contentHash": "f0af26909ddcd0a53af1d84881bbb44d60641479416d5eb7c9e4bed94b3d1a2b",
+          "byteSize": 15744
+        },
+        {
+          "text": "inaccurate",
+          "file": "f3d6aeb2dedbc7f7ababbab3cc69516ea5d9624991eecb92f6143a3922f812d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3d6aeb2dedbc7f7ababbab3cc69516ea5d9624991eecb92f6143a3922f812d0.mp3",
+          "contentHash": "b353c21a5bf485b4b1129f4a22652cb15680d3d176085a607cdb31a93edd96b9",
+          "byteSize": 41088
+        },
+        {
+          "text": "bus shelter",
+          "file": "662458dc34f3730d23e70c6883fbc252db6f31e21d6ef65b55adac9f6fde605a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/662458dc34f3730d23e70c6883fbc252db6f31e21d6ef65b55adac9f6fde605a.mp3",
+          "contentHash": "16ea92c21ea6aa5c4e72f57e15564bbb812679316696c3a5973a3c26d47853ca",
+          "byteSize": 21120
+        },
+        {
+          "text": "scooter",
+          "file": "f72ee2c4f6d7ae3684935ee56eb995f1d2e077c014694598103d4a71781b2f4d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f72ee2c4f6d7ae3684935ee56eb995f1d2e077c014694598103d4a71781b2f4d.mp3",
+          "contentHash": "169dbdb566697e64b269bfe4f1a3526c4ef9429696c506331688124d9c590e68",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l06/s42/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They share a scooter.",
+          "file": "14859d364fbd6962cb5272d64d8a9f65253998406d95dfe3e4da943db5a5fa0d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/14859d364fbd6962cb5272d64d8a9f65253998406d95dfe3e4da943db5a5fa0d.mp3",
+          "contentHash": "91561732283ff1642bf7dd07412712c42954728e141052ec8d1fe40727df3887",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l06/s42/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He drinks water.",
+          "file": "6a7fac04c828ef13f4fac161912b5024870c334ec1d6617052e7fe29dbfd1a18.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a7fac04c828ef13f4fac161912b5024870c334ec1d6617052e7fe29dbfd1a18.mp3",
+          "contentHash": "c4af1b2cf55f1037876268fe6883d73f3c1d2fdfe7dd9a55e5a54f46fadf0eac",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s42/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This bus shelter is new.",
+          "file": "19b2b7c1caa13fdef8572be76bb2b192f7acb0db52989ed7d24333a7a3b62ed1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/19b2b7c1caa13fdef8572be76bb2b192f7acb0db52989ed7d24333a7a3b62ed1.mp3",
+          "contentHash": "f304f943f2021d91a9a8726ee090261ad3a0f9ef03027f73fd6a30704421135a",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l06/s42/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They share a room.",
+          "file": "cc1e5058351018e4c25e3fbe15add2832e757418c2933317ee0e2928b00807d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc1e5058351018e4c25e3fbe15add2832e757418c2933317ee0e2928b00807d0.mp3",
+          "contentHash": "3cc852dfdee99a438565d345bf1b13dad5857e0bce255d6edefb746a3eda9e1e",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s42/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This scooter is ours.",
+          "file": "10671d084d8c2f5777bb0dfeebd9f1baecb6864097e065633ce5a2d5aacccc57.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/10671d084d8c2f5777bb0dfeebd9f1baecb6864097e065633ce5a2d5aacccc57.mp3",
+          "contentHash": "8b3db2c409b0211bdba875131f29e473d7c22eb702e174407ebbe253f964bf1c",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s42/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "share",
+          "file": "74e19364594ecb864ce074fb1e22325287f709f0d64c0de64946c93130a335b5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/74e19364594ecb864ce074fb1e22325287f709f0d64c0de64946c93130a335b5.mp3",
+          "contentHash": "be95023a0da4bd023c2f369f486b405c9ba769fb238efdf6603a7574aa49dff3",
+          "byteSize": 38784
+        },
+        {
+          "text": "drink",
+          "file": "bbdc5a24fb08308a1dbe48ca8b799966d3598e4abe6a6b9f447a3a0bccfeee78.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bbdc5a24fb08308a1dbe48ca8b799966d3598e4abe6a6b9f447a3a0bccfeee78.mp3",
+          "contentHash": "6dc39ea57225f338d7d39dd7cc2bcaa0a4a0b8415be957c9fa600525b87e1025",
+          "byteSize": 24576
+        },
+        {
+          "text": "scooter",
+          "file": "58c1ea2c82ae67ca943cf4b47fa38c3742ae3edf4f65611056a81a3d774b5150.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/58c1ea2c82ae67ca943cf4b47fa38c3742ae3edf4f65611056a81a3d774b5150.mp3",
+          "contentHash": "699924b3251eecb570a83e5ac19368b214f1979eb05392f878b82cd8c9963428",
+          "byteSize": 22656
+        },
+        {
+          "text": "inaccurate",
+          "file": "0740f1032bcb5f5a26111ee179039242c9662d8ec62cd6965baa6e05449f9bd9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0740f1032bcb5f5a26111ee179039242c9662d8ec62cd6965baa6e05449f9bd9.mp3",
+          "contentHash": "bfa80707ddef18aca1b1512f26989981b57829e731cfb2b2cd29488eaa5412a5",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l06/s42/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The bus shelter is here.",
+          "file": "6333a5135e3f300d707e0083791df0069d1047816d16b86c96ed968544ae9659.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6333a5135e3f300d707e0083791df0069d1047816d16b86c96ed968544ae9659.mp3",
+          "contentHash": "6ac5743529867935a718430a322ef98c1c5c2cef41729457f1341a95a9d972b5",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l06/s42/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose scooter is this?",
+          "file": "dc06d1768f1a4e7cf107be4aca7e975a58e3df3c6abc58ca6bee3160276ef30f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc06d1768f1a4e7cf107be4aca7e975a58e3df3c6abc58ca6bee3160276ef30f.mp3",
+          "contentHash": "8c890922895a3a1b191423286a584a0f2ecbf48d05f7564ff3ffa8f3acfc4989",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l06/s42/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I drink water.",
+          "file": "bc6eead8ff999af895bc1d0414af7b5544042e5eb8eca2a9c5ae1161a54d00d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc6eead8ff999af895bc1d0414af7b5544042e5eb8eca2a9c5ae1161a54d00d1.mp3",
+          "contentHash": "92a7d0cf2fecd6fb391fc7df307fa201c71140395f2daa93997bc5a9c023dba1",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s42/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Anna shares a room with Tom.",
+          "file": "b02d0a5484e0fce1be21c5c7ec5e4c69a187118736ff1fa63b0f8020f103dada.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b02d0a5484e0fce1be21c5c7ec5e4c69a187118736ff1fa63b0f8020f103dada.mp3",
+          "contentHash": "ef5ac17c9c4df9deb74ed8b318693c23f3112223bc99ce38be256ac37571ac63",
+          "byteSize": 57984
+        }
+      ]
+    },
+    "l06/s42/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We share a scooter.",
+          "file": "861192cd46b79d4da478c3f456fd0d22afd1618ccf1cc1f1b42023746ab05123.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/861192cd46b79d4da478c3f456fd0d22afd1618ccf1cc1f1b42023746ab05123.mp3",
+          "contentHash": "54b815b9d7550a50839b3752a1d6d2d9b8caac543b89809c6accdcb349afddb6",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s42/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "share",
+          "file": "a75bab2da4a412d632de675d4075f815d315008130021c9a8c01e7babbd803c3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a75bab2da4a412d632de675d4075f815d315008130021c9a8c01e7babbd803c3.mp3",
+          "contentHash": "f0af26909ddcd0a53af1d84881bbb44d60641479416d5eb7c9e4bed94b3d1a2b",
+          "byteSize": 15744
+        },
+        {
+          "text": "bus shelter",
+          "file": "662458dc34f3730d23e70c6883fbc252db6f31e21d6ef65b55adac9f6fde605a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/662458dc34f3730d23e70c6883fbc252db6f31e21d6ef65b55adac9f6fde605a.mp3",
+          "contentHash": "16ea92c21ea6aa5c4e72f57e15564bbb812679316696c3a5973a3c26d47853ca",
+          "byteSize": 21120
+        },
+        {
+          "text": "inaccurate",
+          "file": "f3d6aeb2dedbc7f7ababbab3cc69516ea5d9624991eecb92f6143a3922f812d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3d6aeb2dedbc7f7ababbab3cc69516ea5d9624991eecb92f6143a3922f812d0.mp3",
+          "contentHash": "b353c21a5bf485b4b1129f4a22652cb15680d3d176085a607cdb31a93edd96b9",
+          "byteSize": 41088
+        },
+        {
+          "text": "drink",
+          "file": "a10ed9c95129d77c761634d469ca1dc1896dfd7c0a8c3cac624255362f6f9b95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a10ed9c95129d77c761634d469ca1dc1896dfd7c0a8c3cac624255362f6f9b95.mp3",
+          "contentHash": "56fa60733341efa99fe19d4cfe28b7d6b0157df08f6e9dece20c7c7f0deb0cc3",
+          "byteSize": 14208
+        }
+      ]
+    },
+    "l06/s42/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She shares a room with Tom.",
+          "file": "3d627dc6c8c222f3848b04bc2c8aa16fd5ce41b823a22cbbfa4773a6e6d91878.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d627dc6c8c222f3848b04bc2c8aa16fd5ce41b823a22cbbfa4773a6e6d91878.mp3",
+          "contentHash": "92d19e58cbcc3fcab0f64b18db0fcf165955b84c3fda0c5449ba918b1226b96d",
+          "byteSize": 44544
+        }
+      ]
     }
   },
   "settings": {

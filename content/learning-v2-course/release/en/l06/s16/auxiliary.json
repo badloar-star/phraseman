@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-16:intro1:r2": {
+          "ru": "После `we` — `learn`, без `s`.",
+          "uk": "Після `we` — `learn`, без `s`."
+        },
+        "en:lesson-06:session-16:intro1:r3": {
+          "ru": "Говорим `We learn`, без `are`.",
+          "uk": "Кажемо `We learn`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-16:intro2:r2": {
+          "ru": "После `I` — `paint`, без `s`.",
+          "uk": "Після `I` — `paint`, без `s`."
+        },
+        "en:lesson-06:session-16:intro2:r3": {
+          "ru": "Говорим `I paint`, без `am`.",
+          "uk": "Кажемо `I paint`, без `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-16:intro3:r2": {
+          "ru": "После `we` — `start`, без `s`.",
+          "uk": "Після `we` — `start`, без `s`."
+        },
+        "en:lesson-06:session-16:intro3:r3": {
+          "ru": "Говорим `We start`, без `are`.",
+          "uk": "Кажемо `We start`, без `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a698b593e43464de47b1deb9a432133ecbe821c4f501cfd24be6c59d5b7a92ca"
+}

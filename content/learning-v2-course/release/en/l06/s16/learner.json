@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Мы изучаем английский»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Мы изучаем английский»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We learn English.",
+        "localizedMeaning": {
+          "ru": "Скажите «Мы изучаем английский»",
+          "uk": "Скажіть «Ми вивчаємо англійську»"
+        },
+        "orderedTokens": [
+          "We",
+          "learn",
+          "English"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-16:i02:r1",
+          "text": "practice"
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i02:r2",
+          "text": "paint"
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i02:r3",
+          "text": "swim"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-16:i02:audio",
+          "transcript": "practice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-16:i02:r1",
+            "targetText": "practice",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i02:r2",
+            "targetText": "paint",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i02:r3",
+            "targetText": "swim",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `practice`, а в этом варианте — `paint`.",
+              "uk": "У записі перше слово — `practice`, а в цьому варіанті — `paint`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `practice`, а в этом варианте — `swim`.",
+              "uk": "У записі перше слово — `practice`, а в цьому варіанті — `swim`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они много смеются»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-16:i03:r1",
+          "text": "laugh"
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i03:r2",
+          "text": "laughs"
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i03:r3",
+          "text": "are laugh"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они много смеются»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они много смеются»",
+          "uk": "Скажіть «Вони багато сміються»"
+        },
+        "gappedTargetPhrase": "They ___ a lot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i03:r1",
+            "text": "laugh"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i03:r2",
+            "text": "laughs"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i03:r3",
+            "text": "are laugh"
+          }
+        ],
+        "testedDimension": "Скажите «Они много смеются»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они много смеются»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `laugh`, без `s`.",
+              "uk": "Після `they` — `laugh`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они много смеются»",
+            "feedbackByLocale": {
+              "ru": "Говорим `They laugh`, без `are`.",
+              "uk": "Кажемо `They laugh`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-16:i04:p1",
+            "target": "practice",
+            "meaningByLocale": {
+              "ru": "практиковаться",
+              "uk": "практикуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-16:i04:p2",
+            "target": "learn",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "вчитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-16:i04:p3",
+            "target": "paint",
+            "meaningByLocale": {
+              "ru": "рисовать красками",
+              "uk": "малювати фарбами"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-16:i04:p4",
+            "target": "swim",
+            "meaningByLocale": {
+              "ru": "плавать",
+              "uk": "плавати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "practice",
+          "learn",
+          "paint",
+          "swim"
+        ],
+        "rightColumn": [
+          "практиковаться",
+          "учиться",
+          "рисовать красками",
+          "плавать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-16:i05:audio",
+          "transcript": "We start at nine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We start at nine.",
+        "orderedTokens": [
+          "We",
+          "start",
+          "at",
+          "nine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я рисую красками дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я рисую красками дома»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I paint at home.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я рисую красками дома»",
+          "uk": "Скажіть «Я малюю фарбами вдома»"
+        },
+        "orderedTokens": [
+          "I",
+          "paint",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Используйте полное название swimming pool: «Мы плаваем в этом бассейне»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-16:i07:audio"
+      ],
+      "accessibilityLabel": "Используйте полное название swimming pool: «Мы плаваем в этом бассейне»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-16:i07:audio",
+          "transcript": "We swim in this swimming pool."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We swim in this swimming pool.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Покажите Тому место для пения: «Ты поёшь здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-16:i08:r1",
+          "text": "sing"
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i08:r2",
+          "text": "sings"
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i08:r3",
+          "text": "are sing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите Тому место для пения: «Ты поёшь здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Покажите Тому место для пения: «Ты поёшь здесь»",
+          "uk": "Покажіть Томові місце для співу: «Ти співаєш тут»"
+        },
+        "gappedTargetPhrase": "You ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i08:r1",
+            "text": "sing"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i08:r2",
+            "text": "sings"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i08:r3",
+            "text": "are sing"
+          }
+        ],
+        "testedDimension": "Покажите Тому место для пения: «Ты поёшь здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Покажите Тому место для пения: «Ты поёшь здесь»",
+            "feedbackByLocale": {
+              "ru": "После `you` — `sing`, без `s`.",
+              "uk": "Після `you` — `sing`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Покажите Тому место для пения: «Ты поёшь здесь»",
+            "feedbackByLocale": {
+              "ru": "Говорим `You sing`, без `are`.",
+              "uk": "Кажемо `You sing`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, во сколько они начинают",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-16:i09:r1",
+          "text": "They start at ten."
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i09:r2",
+          "text": "They start at nine."
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i09:r3",
+          "text": "They start at eight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-16:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, во сколько они начинают",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-16:i09:audio",
+          "transcript": "They start at ten."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-16:i09:r1",
+            "targetText": "They start at ten.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i09:r2",
+            "targetText": "They start at nine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i09:r3",
+            "targetText": "They start at eight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, во сколько они начинают",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ten`, а в этом варианте — `nine`.",
+              "uk": "У записі останнє слово — `ten`, а в цьому варіанті — `nine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, во сколько они начинают",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ten`, а в этом варианте — `eight`.",
+              "uk": "У записі останнє слово — `ten`, а в цьому варіанті — `eight`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-16:i10:p1",
+            "target": "laugh",
+            "meaningByLocale": {
+              "ru": "смеяться",
+              "uk": "сміятися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-16:i10:p2",
+            "target": "sing",
+            "meaningByLocale": {
+              "ru": "петь",
+              "uk": "співати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-16:i10:p3",
+            "target": "start",
+            "meaningByLocale": {
+              "ru": "начинать",
+              "uk": "починати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-16:i10:p4",
+            "target": "swimming pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          }
+        ],
+        "leftColumn": [
+          "laugh",
+          "sing",
+          "start",
+          "swimming pool"
+        ],
+        "rightColumn": [
+          "смеяться",
+          "петь",
+          "начинать",
+          "бассейн"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-16:i11:audio",
+          "transcript": "We practice here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We practice here.",
+        "orderedTokens": [
+          "We",
+          "practice",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У бассейна лежит шлем. Спросите «Чей это шлем?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У бассейна лежит шлем. Спросите «Чей это шлем?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose helmet is this?",
+        "localizedMeaning": {
+          "ru": "У бассейна лежит шлем. Спросите «Чей это шлем?»",
+          "uk": "Біля басейну лежить шолом. Запитайте «Чий це шолом?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "helmet",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Я много смеюсь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Я много смеюсь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-16:i13:audio",
+          "transcript": "I laugh a lot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I laugh a lot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они изучают английский»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-16:i14:r1",
+          "text": "learn"
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i14:r2",
+          "text": "learns"
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i14:r3",
+          "text": "are learn"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они изучают английский»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они изучают английский»",
+          "uk": "Скажіть «Вони вивчають англійську»"
+        },
+        "gappedTargetPhrase": "They ___ English.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-16:i14:r1",
+            "text": "learn"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i14:r2",
+            "text": "learns"
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i14:r3",
+            "text": "are learn"
+          }
+        ],
+        "testedDimension": "Скажите «Они изучают английский»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-16:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они изучают английский»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `learn`, без `s`.",
+              "uk": "Після `they` — `learn`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они изучают английский»",
+            "feedbackByLocale": {
+              "ru": "Говорим `They learn`, без `are`.",
+              "uk": "Кажемо `They learn`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кто поёт дома",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-16:i15:r1",
+          "text": "We sing at home."
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i15:r2",
+          "text": "They sing at home."
+        },
+        {
+          "responseId": "en:lesson-06:session-16:i15:r3",
+          "text": "You sing at home."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто поёт дома",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-16:i15:audio",
+          "transcript": "We sing at home."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-16:i15:r1",
+            "targetText": "We sing at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i15:r2",
+            "targetText": "They sing at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i15:r3",
+            "targetText": "You sing at home.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-16:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кто поёт дома",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-16:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кто поёт дома",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `We`, а в этом варианте — `You`.",
+              "uk": "У записі перше слово — `We`, а в цьому варіанті — `You`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-16:i16:p1",
+            "target": "swimming pool",
+            "meaningByLocale": {
+              "ru": "бассейн",
+              "uk": "басейн"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-16:i16:p2",
+            "target": "paint",
+            "meaningByLocale": {
+              "ru": "рисовать красками",
+              "uk": "малювати фарбами"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-16:i16:p3",
+            "target": "swim",
+            "meaningByLocale": {
+              "ru": "плавать",
+              "uk": "плавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-16:i16:p4",
+            "target": "sing",
+            "meaningByLocale": {
+              "ru": "петь",
+              "uk": "співати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "swimming pool",
+          "paint",
+          "swim",
+          "sing"
+        ],
+        "rightColumn": [
+          "бассейн",
+          "рисовать красками",
+          "плавать",
+          "петь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-16:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Том хочет прийти на занятие с вашей группой. Сообщите время: «Мы начинаем в девять»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Том хочет прийти на занятие с вашей группой. Сообщите время: «Мы начинаем в девять»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-16:i17:audio",
+          "transcript": "We start at nine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We start at nine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b3a16051dfa87d324cb358c6909bb412b591c2c747aa5a9cbfc30b6b7d68c30d"
+}

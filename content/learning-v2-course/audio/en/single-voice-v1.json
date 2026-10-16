@@ -63493,6 +63493,309 @@
           "byteSize": 45312
         }
       ]
+    },
+    "l04/s42/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a bus shelter.",
+          "file": "e09630200540da8bfac91c0fdc993c0b538e6f2ac99b295073a1626a3cecebee.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e09630200540da8bfac91c0fdc993c0b538e6f2ac99b295073a1626a3cecebee.mp3",
+          "contentHash": "3818987ec1a651bdc9787d37a72d86256ca594c7ff428391e737e552ab00fc67",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s42/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there a handrail?",
+          "file": "589d372dc75043ad3e89267f347212ca35dee93acb1fa10defa80537b1fca947.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/589d372dc75043ad3e89267f347212ca35dee93acb1fa10defa80537b1fca947.mp3",
+          "contentHash": "8ec8e4b2e68b3136ea13bbecc1b4da94547fadeade21a7f6819eda1fddd45933",
+          "byteSize": 57216
+        }
+      ]
+    },
+    "l04/s42/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's inaccurate.",
+          "file": "00744cce54f819b9c57c84c8a5116b553f956226e577e63e51a2bd6a36f1f10d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/00744cce54f819b9c57c84c8a5116b553f956226e577e63e51a2bd6a36f1f10d.mp3",
+          "contentHash": "5f51253bf18a409c0284694fff6d3c26815d5c25be9517f7862b7c6af0da67ad",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s42/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It is inaccurate.",
+          "file": "988b4159a5303be1f451dd9140d240aa75cb8ae2abb6f998e618343d475a4cec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/988b4159a5303be1f451dd9140d240aa75cb8ae2abb6f998e618343d475a4cec.mp3",
+          "contentHash": "ba7bd27c966ae653e742fc29ceec0caf9266ada47ca62b7a281920ce2bfceac0",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l04/s42/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bus shelter",
+          "file": "47c508f4dddf1569ef21b645b8b7802442715d832cb8ec2ef1014594b0d6784c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47c508f4dddf1569ef21b645b8b7802442715d832cb8ec2ef1014594b0d6784c.mp3",
+          "contentHash": "02a74c83033947daef7bd078d4e735b2c178afa34d05c2ce9fd6fbc67cc42688",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s42/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "bus shelter",
+          "file": "a7aa316e1db1d260780790944400b2eff21347a8c29852c67ab984ec498de2f6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a7aa316e1db1d260780790944400b2eff21347a8c29852c67ab984ec498de2f6.mp3",
+          "contentHash": "e24ad697b67f6c914678dc2c765d4f35bebba8e9c78c20efb07957c5a9c0d175",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s42/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "bus shelter",
+          "file": "662458dc34f3730d23e70c6883fbc252db6f31e21d6ef65b55adac9f6fde605a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/662458dc34f3730d23e70c6883fbc252db6f31e21d6ef65b55adac9f6fde605a.mp3",
+          "contentHash": "16ea92c21ea6aa5c4e72f57e15564bbb812679316696c3a5973a3c26d47853ca",
+          "byteSize": 21120
+        },
+        {
+          "text": "inaccurate",
+          "file": "f3d6aeb2dedbc7f7ababbab3cc69516ea5d9624991eecb92f6143a3922f812d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3d6aeb2dedbc7f7ababbab3cc69516ea5d9624991eecb92f6143a3922f812d0.mp3",
+          "contentHash": "b353c21a5bf485b4b1129f4a22652cb15680d3d176085a607cdb31a93edd96b9",
+          "byteSize": 41088
+        },
+        {
+          "text": "bathroom",
+          "file": "3be14eb3ab3a6137327a8cda5a440ab33e010847d831c0ff1ccb13c0518b91ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3be14eb3ab3a6137327a8cda5a440ab33e010847d831c0ff1ccb13c0518b91ff.mp3",
+          "contentHash": "267bdab79d8a83fb1864d2ebf65a4ac0bc4d69ef75f6f703365b50b9a1d4961e",
+          "byteSize": 23040
+        },
+        {
+          "text": "handrail",
+          "file": "d724a031e44c9448ee72c56a737c0f8c96fb9a9dbad12d6c2360c70317fe1d9b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d724a031e44c9448ee72c56a737c0f8c96fb9a9dbad12d6c2360c70317fe1d9b.mp3",
+          "contentHash": "56a2c90e5d5c3adf907b1c947934250548e7a2263d3effaa69909a04f0a6e0d0",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s42/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a bus shelter.",
+          "file": "d205ec1b19db5a27e11ae49dfd8cbd67886cf050ef0d05fb19cfd9f9bd6da14e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d205ec1b19db5a27e11ae49dfd8cbd67886cf050ef0d05fb19cfd9f9bd6da14e.mp3",
+          "contentHash": "b969c6642dcbf7fb53109320cd23aeef6119f8d8e1e27fcfa74c00136468088f",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l04/s42/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The handrail is in the bathroom.",
+          "file": "86dbdfca85dd13033da953a32cbbd6f7fb818f080aeb0536c76075dd30dd3caf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/86dbdfca85dd13033da953a32cbbd6f7fb818f080aeb0536c76075dd30dd3caf.mp3",
+          "contentHash": "c80ae50a65e5f710eec8d26482d931fdaaf4ea1155e813cd2f032f80d3838618",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s42/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's inaccurate.",
+          "file": "00744cce54f819b9c57c84c8a5116b553f956226e577e63e51a2bd6a36f1f10d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/00744cce54f819b9c57c84c8a5116b553f956226e577e63e51a2bd6a36f1f10d.mp3",
+          "contentHash": "5f51253bf18a409c0284694fff6d3c26815d5c25be9517f7862b7c6af0da67ad",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s42/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There isn't a handrail.",
+          "file": "3288706e500a74c6fddbbfe719b6512a9aa046abf227e76eb0d745cd00ec6beb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3288706e500a74c6fddbbfe719b6512a9aa046abf227e76eb0d745cd00ec6beb.mp3",
+          "contentHash": "0c53785ed8aac6354dbe68e41ce9ee0f164a39283d5af5443cec4e4f21c99046",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s42/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bus shelter is next to the shop.",
+          "file": "8ae2e4d4c81f47914a4bfd042287b2ac75c55ab8b4b934f04df36665a717c2bf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ae2e4d4c81f47914a4bfd042287b2ac75c55ab8b4b934f04df36665a717c2bf.mp3",
+          "contentHash": "dc387cb17d46f89a442da590c440c0c0a79e5497eeb56ce8ef9d2ede5c9865a6",
+          "byteSize": 52224
+        }
+      ]
+    },
+    "l04/s42/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bus shelter",
+          "file": "47c508f4dddf1569ef21b645b8b7802442715d832cb8ec2ef1014594b0d6784c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47c508f4dddf1569ef21b645b8b7802442715d832cb8ec2ef1014594b0d6784c.mp3",
+          "contentHash": "02a74c83033947daef7bd078d4e735b2c178afa34d05c2ce9fd6fbc67cc42688",
+          "byteSize": 27648
+        },
+        {
+          "text": "inaccurate",
+          "file": "315307694eee170eb00b8591ff837823b521e19bb6965d38dbd822eab71d6c5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/315307694eee170eb00b8591ff837823b521e19bb6965d38dbd822eab71d6c5d.mp3",
+          "contentHash": "8b1f90e6c0c7d0360916de170260c9e2c9d9dce6d85e7b1394a6c1f3ad3abeed",
+          "byteSize": 29184
+        },
+        {
+          "text": "bathroom",
+          "file": "277f2413fe083f195b6f84a23b7c26f2d7779078bd65e0aaa063da348a9d3412.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/277f2413fe083f195b6f84a23b7c26f2d7779078bd65e0aaa063da348a9d3412.mp3",
+          "contentHash": "727882581cbfc7be28621eb1d971f76fd8929f59cb20df7430f7931a3d686ffd",
+          "byteSize": 26880
+        },
+        {
+          "text": "handrail",
+          "file": "6b51cd27c659df635c83486a73a63ad76d929aaa8102c8fb46c44735321aabba.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6b51cd27c659df635c83486a73a63ad76d929aaa8102c8fb46c44735321aabba.mp3",
+          "contentHash": "dab4d22ae7f9fba1f7dfe5b2474ea610aeca3e40d4683178eb25d92539357dd0",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s42/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There aren't any bus shelters.",
+          "file": "32e97ea7adf2d23ef9a963165cf00694118fd5ee62537e0554f16a457ed275c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/32e97ea7adf2d23ef9a963165cf00694118fd5ee62537e0554f16a457ed275c5.mp3",
+          "contentHash": "83d375af82455f69c9a42af5792070a248ec3537d730442b40bf0170a3c798d3",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s42/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is a bus shelter.",
+          "file": "53b2ffbfa47848956e1d002d18c2ad9326a810bb577961e720d686083cd3889a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53b2ffbfa47848956e1d002d18c2ad9326a810bb577961e720d686083cd3889a.mp3",
+          "contentHash": "8fd152841ecdd8fb2e19315d318715912e7d4974609345aad31ecdd429c93e1e",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l04/s42/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a bus shelter?",
+          "file": "c8ee0ca250886ac40ec9fd0c02bea0571f298997e4adaf51ae3f660cf1f0348b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c8ee0ca250886ac40ec9fd0c02bea0571f298997e4adaf51ae3f660cf1f0348b.mp3",
+          "contentHash": "2b34145cf7d7bb49487a66d861cdbefb047e4bb1f979abc39e6573a9cdbf8fcf",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s42/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The bag is in the bus shelter.",
+          "file": "5f0c5b4eb8565c4b28cb9cc1acc78ca503240b47d78ad366ec510b56f5dee7a8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5f0c5b4eb8565c4b28cb9cc1acc78ca503240b47d78ad366ec510b56f5dee7a8.mp3",
+          "contentHash": "97b8c135cd31e9262151b9ec10fb13a0bb8a3aeb28a03bc9047ef0a462975a04",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s42/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "That is a bus shelter.",
+          "file": "47b4389bfa0beba4672b4f8ccbf6b651aa0df4db9d84fd060fe2edbc2baab119.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47b4389bfa0beba4672b4f8ccbf6b651aa0df4db9d84fd060fe2edbc2baab119.mp3",
+          "contentHash": "a73a2c728f41464c2692cf6fae3ca29478d39eabfa26e45c7a0a656ba56d6267",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s42/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "bus shelter",
+          "file": "662458dc34f3730d23e70c6883fbc252db6f31e21d6ef65b55adac9f6fde605a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/662458dc34f3730d23e70c6883fbc252db6f31e21d6ef65b55adac9f6fde605a.mp3",
+          "contentHash": "16ea92c21ea6aa5c4e72f57e15564bbb812679316696c3a5973a3c26d47853ca",
+          "byteSize": 21120
+        },
+        {
+          "text": "inaccurate",
+          "file": "f3d6aeb2dedbc7f7ababbab3cc69516ea5d9624991eecb92f6143a3922f812d0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3d6aeb2dedbc7f7ababbab3cc69516ea5d9624991eecb92f6143a3922f812d0.mp3",
+          "contentHash": "b353c21a5bf485b4b1129f4a22652cb15680d3d176085a607cdb31a93edd96b9",
+          "byteSize": 41088
+        },
+        {
+          "text": "bathroom",
+          "file": "3be14eb3ab3a6137327a8cda5a440ab33e010847d831c0ff1ccb13c0518b91ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3be14eb3ab3a6137327a8cda5a440ab33e010847d831c0ff1ccb13c0518b91ff.mp3",
+          "contentHash": "267bdab79d8a83fb1864d2ebf65a4ac0bc4d69ef75f6f703365b50b9a1d4961e",
+          "byteSize": 23040
+        },
+        {
+          "text": "handrail",
+          "file": "d724a031e44c9448ee72c56a737c0f8c96fb9a9dbad12d6c2360c70317fe1d9b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d724a031e44c9448ee72c56a737c0f8c96fb9a9dbad12d6c2360c70317fe1d9b.mp3",
+          "contentHash": "56a2c90e5d5c3adf907b1c947934250548e7a2263d3effaa69909a04f0a6e0d0",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s42/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There isn't a bus shelter.",
+          "file": "436c478ae1b2ec26ea40fa62bb9aac965f4fdfcbf4c9cdb430e888afc4a8e872.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/436c478ae1b2ec26ea40fa62bb9aac965f4fdfcbf4c9cdb430e888afc4a8e872.mp3",
+          "contentHash": "73a7ad425d1dc44ddff877baff1282cd9471285a2e5421390ab663a8fbcc440d",
+          "byteSize": 33792
+        }
+      ]
     }
   },
   "settings": {

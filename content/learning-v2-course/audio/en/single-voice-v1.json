@@ -73189,6 +73189,309 @@
           "byteSize": 25344
         }
       ]
+    },
+    "l05/s18/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The gloves are mine.",
+          "file": "f6ff14229e565034d4eca8dd98fecb90a2aa7cd5d52d5b58f2d11aa0f7b750b2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f6ff14229e565034d4eca8dd98fecb90a2aa7cd5d52d5b58f2d11aa0f7b750b2.mp3",
+          "contentHash": "5bd7d93fb45d2d226a54be0f5d06f7a47e3b70462d66287a2595d5fcf0d3f99e",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s18/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am wrong.",
+          "file": "986d63fc2e69c0248cb90fc2961b20d2d5228a4f5264fc2b27a0977483808ce1.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d812b4a01f291bc97a9ba838-ash.mp3",
+          "contentHash": "af8fb3a295e30897b1c9feb50773436e33da12bf0308836748c8a22792bd10a3",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s18/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is no milk.",
+          "file": "b6fba23b543206baac711a84f4d7a3e4810fcfe1c988de487605f09538f9d894.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b6fba23b543206baac711a84f4d7a3e4810fcfe1c988de487605f09538f9d894.mp3",
+          "contentHash": "d997202a4e85ddbac1fd6ebb921c1b4a1f8feddf1c5af879c0b2b5ea11bc037b",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s18/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It is early.",
+          "file": "b7867aa1ff1d0d65bcec14086ff2dc73a4810885eea3a731acc42a8cdb6b065f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b7867aa1ff1d0d65bcec14086ff2dc73a4810885eea3a731acc42a8cdb6b065f.mp3",
+          "contentHash": "f9271e2d07fbfcdf9ab7df78fc376bcbccb8bce5b03dc6efbd4a78d9c793fba8",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s18/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "gloves",
+          "file": "5ca2e845caf0b509be6ebc8348044c7555a12e82aa8a7f7721efab1983f9a786.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ca2e845caf0b509be6ebc8348044c7555a12e82aa8a7f7721efab1983f9a786.mp3",
+          "contentHash": "6a5af2ceb226514921d4edc834216db09297c7188d52aafeca7c6803cd2b2d2c",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s18/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "gloves",
+          "file": "19c781fdc72535a3b8812d967c797a4277fef3dc8ee75e90f9aded4e993c531f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/19c781fdc72535a3b8812d967c797a4277fef3dc8ee75e90f9aded4e993c531f.mp3",
+          "contentHash": "d09593d16a53d0b9ced5a6e3b51f1f000b84437d43123caeeb1d6e313d0b2668",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s18/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "gloves",
+          "file": "19c781fdc72535a3b8812d967c797a4277fef3dc8ee75e90f9aded4e993c531f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/19c781fdc72535a3b8812d967c797a4277fef3dc8ee75e90f9aded4e993c531f.mp3",
+          "contentHash": "d09593d16a53d0b9ced5a6e3b51f1f000b84437d43123caeeb1d6e313d0b2668",
+          "byteSize": 20352
+        },
+        {
+          "text": "wrong",
+          "file": "09c88a5095cf1b6e4ba287987a8d77e413849c1a529681a252f0c96343aacc2f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/8810ad581e59f2bc3928b261-coral.mp3",
+          "contentHash": "a3df7584e640ee3fc9857c7f6dc2f3644a5ffd293f01b98b14f88de077526c9b",
+          "byteSize": 40320
+        },
+        {
+          "text": "early",
+          "file": "d7887a69409d6f29565eb6957130e60f23180cb9d71740c4c69cd680fd301899.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f408830bcc7fab3708191722-coral.mp3",
+          "contentHash": "30f19a6c3c4d5459250489ef0d098e839604c0ee7aa5a47ba15ba8fb5b8b3e02",
+          "byteSize": 31488
+        },
+        {
+          "text": "lucky",
+          "file": "4b5080f08940d07e8a1032aab85d6266eacbb829e0f8b9f423ccf937daf2252b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/db9fbddbd7caeff7a326645c-coral.mp3",
+          "contentHash": "4d7c5a81a984118a3b08777bf85cd8c266e25f682e32011381e810dfefacb6ec",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l05/s18/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The gloves are in my pocket.",
+          "file": "6cbbed9f1a8af37c97545d5f34ba313330fadd1663b2d61b3c0c42a397b5ac20.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6cbbed9f1a8af37c97545d5f34ba313330fadd1663b2d61b3c0c42a397b5ac20.mp3",
+          "contentHash": "a9703b778f8a51277a28be21aa691d6d000d655ad40148ea85c3b64240c3098c",
+          "byteSize": 53760
+        }
+      ]
+    },
+    "l05/s18/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The boxes are ours.",
+          "file": "0b6739104c36694aefd703668e43add69a7d363065586090da3bf7456a482e75.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0b6739104c36694aefd703668e43add69a7d363065586090da3bf7456a482e75.mp3",
+          "contentHash": "7e7854d7a91f0b251231c38d5508092363544825304d1bbb1e953f0ed47cb7f5",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s18/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am wrong.",
+          "file": "986d63fc2e69c0248cb90fc2961b20d2d5228a4f5264fc2b27a0977483808ce1.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d812b4a01f291bc97a9ba838-ash.mp3",
+          "contentHash": "af8fb3a295e30897b1c9feb50773436e33da12bf0308836748c8a22792bd10a3",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l05/s18/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The gloves are hers.",
+          "file": "7c3d896556c46cc43c6ab10ccf34b63e4a08ddbf678458cb838059c18883156c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c3d896556c46cc43c6ab10ccf34b63e4a08ddbf678458cb838059c18883156c.mp3",
+          "contentHash": "de64f70a1f6a791c3b429dbdb0569fc16bdf1fdf2030b3f633bad38406ad60d2",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s18/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "You are lucky.",
+          "file": "422a44eb9a0e79c73aef25d1b94957bfecbddc3d38b27bfc66ce53e25ca6484c.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/54faa93596dd6701d69264bd-coral.mp3",
+          "contentHash": "9c7780e239a3796aebf48b90e66887b32edbe6c37d0e0c06036edabad7671e6a",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s18/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "gloves",
+          "file": "19c781fdc72535a3b8812d967c797a4277fef3dc8ee75e90f9aded4e993c531f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/19c781fdc72535a3b8812d967c797a4277fef3dc8ee75e90f9aded4e993c531f.mp3",
+          "contentHash": "d09593d16a53d0b9ced5a6e3b51f1f000b84437d43123caeeb1d6e313d0b2668",
+          "byteSize": 20352
+        },
+        {
+          "text": "boxes",
+          "file": "8a55911f053cdd9a85cdaca1e5448621a45241fbe5f16d94561dabf8b58f100a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8a55911f053cdd9a85cdaca1e5448621a45241fbe5f16d94561dabf8b58f100a.mp3",
+          "contentHash": "8ea24c01c945c2c53f8a124a541a0b964ecd9b6069d60c6946c4020de0c8be9c",
+          "byteSize": 44160
+        },
+        {
+          "text": "milk",
+          "file": "f407c47ceabb619bc70da98bb5e84c118d67c56c5b8ae55df03a9c6ee9059bef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f407c47ceabb619bc70da98bb5e84c118d67c56c5b8ae55df03a9c6ee9059bef.mp3",
+          "contentHash": "8edc8c2938fb940268f1353a9cfb163a57eb1c014996290c9dcb222dc3505150",
+          "byteSize": 19584
+        },
+        {
+          "text": "pocket",
+          "file": "04b5a83c4d6394dec662bd569ddaf42c1afd424f6421e653a6993051efc4843f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/04b5a83c4d6394dec662bd569ddaf42c1afd424f6421e653a6993051efc4843f.mp3",
+          "contentHash": "e8396c226a5b8c98cbf291d683a18eb84f581b47d3672a8a1e2d646616f17595",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l05/s18/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where are your gloves?",
+          "file": "e803e97d287324737e4305cbadeca2e83123deac0c1a7b2dbeca1a001402e975.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e803e97d287324737e4305cbadeca2e83123deac0c1a7b2dbeca1a001402e975.mp3",
+          "contentHash": "1f567930ab749577efe055fc530ced037e210be45cd54335fca3c273fb2b08e2",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s18/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is no milk.",
+          "file": "9e62e3a031b55499eb00cc1fc495df66a3052b7c399a5bd2a6df507369654644.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e62e3a031b55499eb00cc1fc495df66a3052b7c399a5bd2a6df507369654644.mp3",
+          "contentHash": "e792ec9aec5051894cf8c5f05d37b0790d9ddc022bc4e9a46d36875bf39a3900",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l05/s18/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I have your gloves.",
+          "file": "0eba7b709f025d36f7f16b2789341e9f6589dfdaca92febaccbecd4714bc940b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0eba7b709f025d36f7f16b2789341e9f6589dfdaca92febaccbecd4714bc940b.mp3",
+          "contentHash": "13869cc58d0942f863cb6c5b1a7f4fbce8791127c56c94e02b22128b2fefe46d",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s18/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There are no boxes.",
+          "file": "6fcc39b2d63bfa7f60f6de0cab5734b4a15641ea0d38c7d05cc8a58094dd6efb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6fcc39b2d63bfa7f60f6de0cab5734b4a15641ea0d38c7d05cc8a58094dd6efb.mp3",
+          "contentHash": "91f15d7fc09e14eb071f9b21bb369a473f4800afb6c6a0ce4703b708a4e6b91c",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s18/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The gloves are yours.",
+          "file": "c3c4e99f6d26ba279ee9559ef0207690117501b0a4d971b177d28d134cff7a28.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3c4e99f6d26ba279ee9559ef0207690117501b0a4d971b177d28d134cff7a28.mp3",
+          "contentHash": "5723586e79ff45d55a727ca7feac156063f9cc190f570a274c4a25737f821272",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s18/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "gloves",
+          "file": "4f8b18664b7343603e2d4b15f36f0167895c9dda5d63f1dbf6b7d5665ed82c84.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f8b18664b7343603e2d4b15f36f0167895c9dda5d63f1dbf6b7d5665ed82c84.mp3",
+          "contentHash": "ebea6ef10c5435e857d57c817e58f5ecc93a23c54a97eb903d2e9d1f9760c11f",
+          "byteSize": 24576
+        },
+        {
+          "text": "boxes",
+          "file": "283865f8574d7caaeb86541a0d84317e31aa5af05216b26114d0a817b378c5d2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/283865f8574d7caaeb86541a0d84317e31aa5af05216b26114d0a817b378c5d2.mp3",
+          "contentHash": "e9cfd52e4b66b8c3a5beb3a5a87e4c075293e63eed3bced45662195e4b8fa0fb",
+          "byteSize": 21120
+        },
+        {
+          "text": "milk",
+          "file": "63849f694769638f2ed9b51d5e113ffe6e81ef6b035bd727cccb5b7327166c3b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63849f694769638f2ed9b51d5e113ffe6e81ef6b035bd727cccb5b7327166c3b.mp3",
+          "contentHash": "189238aa2e6f4f30e61798c9fbcd843388abb493d7def10a96ac5bcd542013a5",
+          "byteSize": 29184
+        },
+        {
+          "text": "pocket",
+          "file": "09a1132c3cdf05845e74d8e50882d666615b1a99fcb2cb19f7efe53d5e98ef30.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/09a1132c3cdf05845e74d8e50882d666615b1a99fcb2cb19f7efe53d5e98ef30.mp3",
+          "contentHash": "dbb7cc02849e01010bbe43a9e3093df6ae9fde9eef971d6d77b4b42f21fad749",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s18/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The gloves are mine.",
+          "file": "5af2ef366be35ffa3984be6621e483c6a756d9c307d7c18f62c62b1d60329c0b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5af2ef366be35ffa3984be6621e483c6a756d9c307d7c18f62c62b1d60329c0b.mp3",
+          "contentHash": "1ff63a971409647842f082ff0d53630e76be774ad0e9ed89ac66eb1ef209815d",
+          "byteSize": 31488
+        }
+      ]
     }
   },
   "settings": {

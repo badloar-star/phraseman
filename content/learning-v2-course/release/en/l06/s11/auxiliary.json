@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-11:intro1:r2": {
+          "ru": "Перед `learn` здесь не нужно `am`.",
+          "uk": "Перед `learn` тут не потрібно `am`."
+        },
+        "en:lesson-06:session-11:intro1:r3": {
+          "ru": "После `I` — `learn`, без `s`.",
+          "uk": "Після `I` — `learn`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-11:intro2:r2": {
+          "ru": "Когда говорим, где мы, нужно `We are`.",
+          "uk": "Коли кажемо, де ми, потрібно `We are`."
+        },
+        "en:lesson-06:session-11:intro2:r3": {
+          "ru": "С `we` — `are`, не `is`.",
+          "uk": "З `we` — `are`, не `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-11:intro3:r2": {
+          "ru": "С `it` — `is`.",
+          "uk": "З `it` — `is`."
+        },
+        "en:lesson-06:session-11:intro3:r3": {
+          "ru": "`impossible` — невозможно; срочно — `urgent`.",
+          "uk": "`impossible` — неможливо; терміново — `urgent`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9aa1a9106649ee24073e3cf2c934807a2161c6e0f607e63386365f6ffec664ff"
+}

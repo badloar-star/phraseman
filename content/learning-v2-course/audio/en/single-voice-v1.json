@@ -90460,6 +90460,309 @@
           "byteSize": 34560
         }
       ]
+    },
+    "l06/s19/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I draw on my tablet.",
+          "file": "3cc2650ad3028678b67d57e048c84a6b7da339f73b8092e02513ffe4190aa793.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3cc2650ad3028678b67d57e048c84a6b7da339f73b8092e02513ffe4190aa793.mp3",
+          "contentHash": "fd3c9d61236a94946f55af313cde7b38d899c69d60b2fdcfe8589ff823492583",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s19/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He learns English.",
+          "file": "7d08c844070317bb0bad882e07f79fc5a945636fd864e8ad5c952976831b58ba.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d08c844070317bb0bad882e07f79fc5a945636fd864e8ad5c952976831b58ba.mp3",
+          "contentHash": "97adcc69dcf70a7d579b5a4732c197acde11024e87ff2513b14d4308e6d4ee7d",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l06/s19/intro/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I am guilty.",
+          "file": "39d5943f14d41fec53b993ed5b383ddd91ad1a8865fee9adac4eb161ff70eb51.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/39d5943f14d41fec53b993ed5b383ddd91ad1a8865fee9adac4eb161ff70eb51.mp3",
+          "contentHash": "8b6f35631d4d93fd4ee06ef0db786ceacc46cabf82fb8d555b1605a9eeb06b56",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l06/s19/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I draw on my tablet.",
+          "file": "4256d7a5c85b872b43aeab3912686590eb200b20204475139cf5a627ed847a36.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4256d7a5c85b872b43aeab3912686590eb200b20204475139cf5a627ed847a36.mp3",
+          "contentHash": "fd8bdf22fbf4031f1499712e9f5fa1bcaa842bea33891eaa7a848126f7b83dbc",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s19/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "draw",
+          "file": "8a5dc8184765efcac549c27cc7a114379eb1cea4422bc9eb7237f62408b988cd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8a5dc8184765efcac549c27cc7a114379eb1cea4422bc9eb7237f62408b988cd.mp3",
+          "contentHash": "b65ecb6cf1a55cf0d67d05308495f9632214cf972425ecaaa91685e7704356e5",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l06/s19/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She draws at home.",
+          "file": "de1ba5a26c18ae20d73ce3680b33e22d13f732787bbe369bb943543f9c6f7dae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de1ba5a26c18ae20d73ce3680b33e22d13f732787bbe369bb943543f9c6f7dae.mp3",
+          "contentHash": "e4c58a2c30f45e43ed8f720faf1d0945fd4748913660d4951bc224f3aad42323",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s19/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "draw",
+          "file": "dc32dce28fb20d6a8530bc527dd414158c5c3ee29a2d72675652df6600027aa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc32dce28fb20d6a8530bc527dd414158c5c3ee29a2d72675652df6600027aa4.mp3",
+          "contentHash": "05c00b0930f29ff6f92ba5cae1684f0477b4db24511e0b3f0305c1a8519f3124",
+          "byteSize": 18816
+        },
+        {
+          "text": "guilty",
+          "file": "2e403401884a5fadd7402871c675bbf0b4189ba7486f6b99ca659b44c1ce21ce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e403401884a5fadd7402871c675bbf0b4189ba7486f6b99ca659b44c1ce21ce.mp3",
+          "contentHash": "5db0d0c4a3a2df0355624886de0e442b3309840b03cbe04efae147fc5a1f3a58",
+          "byteSize": 27648
+        },
+        {
+          "text": "soup",
+          "file": "ca9b15b4f5727739e53c8ec1340f71dbf4479b552ca0110129e09a47e135f083.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca9b15b4f5727739e53c8ec1340f71dbf4479b552ca0110129e09a47e135f083.mp3",
+          "contentHash": "a5c130abe32f67010c5021f5e28ff39a2b47d2056962169b77b2b18db84afba0",
+          "byteSize": 25344
+        },
+        {
+          "text": "tablet",
+          "file": "6f585fb80495d58e1bb26c788e85aa8b57dc4c484b0c00e01c900473873695bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6f585fb80495d58e1bb26c788e85aa8b57dc4c484b0c00e01c900473873695bb.mp3",
+          "contentHash": "942251bbc5c204656f6e8535fe0a252188e7fdd467f9e371dee9ee6fa622a1e9",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l06/s19/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Anna draws at home.",
+          "file": "baf8be12322ff73ef206e6b36d6a9e57284007337963fb25ce38c2d80d09b6da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/baf8be12322ff73ef206e6b36d6a9e57284007337963fb25ce38c2d80d09b6da.mp3",
+          "contentHash": "2268387c3c6ce4434127bad6b7c7a22135b7684584adece033ab3b6d068aed8c",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s19/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He learns English.",
+          "file": "5fef5d44ca51db001a0b5a60e57d36599294b2dc36396c22c6d4856afdd9655a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fef5d44ca51db001a0b5a60e57d36599294b2dc36396c22c6d4856afdd9655a.mp3",
+          "contentHash": "beb6bf3aa0a888ebb1efb93563f795a96eab41e1616ed86f3d0834eeabac4232",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l06/s19/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I am guilty.",
+          "file": "aaca0705f2d64d092e181ed881fc68cb8e1b1bdef6df8a8e31e126866cdbd12d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aaca0705f2d64d092e181ed881fc68cb8e1b1bdef6df8a8e31e126866cdbd12d.mp3",
+          "contentHash": "39885b4bffaa086042b624084cd9e69987c3e3f5cdbe44fb3209e387cd79abcd",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s19/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They draw here.",
+          "file": "1f663f4ef621e2329fb8a8b7bc0d7e26f792c733d7507697f6de4e016cb3cd9d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f663f4ef621e2329fb8a8b7bc0d7e26f792c733d7507697f6de4e016cb3cd9d.mp3",
+          "contentHash": "3a189070d2193a79171141a7261ac4fe7e8cb71b59131e47518451e68a4e8b85",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s19/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She learns English.",
+          "file": "6e1baab21cf78e40d7b3b0ed5d676dc4239f6c4abf25968a541c60817397b5a3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6e1baab21cf78e40d7b3b0ed5d676dc4239f6c4abf25968a541c60817397b5a3.mp3",
+          "contentHash": "01449de29cc2d45332cb6c6887a96bd5f462e11cfe07a2066191a2aad89c29bd",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l06/s19/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "draw",
+          "file": "8d0e0085f4ef80c8a37e12df3e3f0a950fd14f7c66634d0d6d25635face79706.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8d0e0085f4ef80c8a37e12df3e3f0a950fd14f7c66634d0d6d25635face79706.mp3",
+          "contentHash": "bbdf9d98fe0024eb8d7d7b1cd3686df845546b137a6ead13bdaca2cb7cfe70fa",
+          "byteSize": 23040
+        },
+        {
+          "text": "learn",
+          "file": "2e0b153900bfb332d33652a387715f3f3770510885d25b7d7cecf9a622b86186.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e0b153900bfb332d33652a387715f3f3770510885d25b7d7cecf9a622b86186.mp3",
+          "contentHash": "4465d9795c681f3d0cb91673e4faf561f96e75f21de32b47b5f8933e4d71fab5",
+          "byteSize": 16512
+        },
+        {
+          "text": "tablet",
+          "file": "5446640be0b35346a212a76e6077db3fa7199af0dafaffcd2754d64612bbbe3f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5446640be0b35346a212a76e6077db3fa7199af0dafaffcd2754d64612bbbe3f.mp3",
+          "contentHash": "03951d0eae32c91e22a7875a1209e9746d2b3f71b10210b3f4f52c6f9b019b35",
+          "byteSize": 41856
+        },
+        {
+          "text": "guilty",
+          "file": "c66af9e06beef0a4de6a5d8a91a92cf8684c740658c7db5f9bcfdca53d6b148f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c66af9e06beef0a4de6a5d8a91a92cf8684c740658c7db5f9bcfdca53d6b148f.mp3",
+          "contentHash": "dfc1cc6640b99cdf2d85d38a9cb7f34c0217dccf7ae8c7979f5551ef5e968063",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l06/s19/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The soup is hot.",
+          "file": "00c1d84d00736e6443165dbfd2fc213101f10e2b4c93235767c7807b830b36ed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/00c1d84d00736e6443165dbfd2fc213101f10e2b4c93235767c7807b830b36ed.mp3",
+          "contentHash": "ba86895f6d9cdfb8bb097860bc973069fa206d214e05ec868d0c741da5e68f58",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s19/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose tablet is this?",
+          "file": "62056ab6760049cbb029b6fbc05bc76eb03678606df9b290dc39407d5082b1ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/62056ab6760049cbb029b6fbc05bc76eb03678606df9b290dc39407d5082b1ac.mp3",
+          "contentHash": "e78abfd2e3ce6079f3910e55964c25bad1a1a84c1055bc254a0f89eaa7ba72ee",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l06/s19/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They learn English.",
+          "file": "2141d7b3dc079624c29f4cd8c179441704e5999eb2785b8a26a20b8a896abd89.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2141d7b3dc079624c29f4cd8c179441704e5999eb2785b8a26a20b8a896abd89.mp3",
+          "contentHash": "e5ddde1beb8f5cf740dd0565f41e4f14424928b05ecc2990d7c4b750ed345b0c",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l06/s19/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom learns here.",
+          "file": "d04b43de8d7af612ed033df348c2bbe4956ac2b88fba47cccc8707654091387b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d04b43de8d7af612ed033df348c2bbe4956ac2b88fba47cccc8707654091387b.mp3",
+          "contentHash": "424658a5df7be88834783fac82ad5afeff10022e456084738b5f9e353d0766ec",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l06/s19/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My tablet is here.",
+          "file": "2a5fdd6a53ac5cd026b57e45753544ddd011fba8931201080c030ed0453d8b14.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2a5fdd6a53ac5cd026b57e45753544ddd011fba8931201080c030ed0453d8b14.mp3",
+          "contentHash": "9bae2fd46043607f9f7a83b08cd176eee780045d591132702022a9b067b076cb",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l06/s19/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "draw",
+          "file": "dc32dce28fb20d6a8530bc527dd414158c5c3ee29a2d72675652df6600027aa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc32dce28fb20d6a8530bc527dd414158c5c3ee29a2d72675652df6600027aa4.mp3",
+          "contentHash": "05c00b0930f29ff6f92ba5cae1684f0477b4db24511e0b3f0305c1a8519f3124",
+          "byteSize": 18816
+        },
+        {
+          "text": "guilty",
+          "file": "2e403401884a5fadd7402871c675bbf0b4189ba7486f6b99ca659b44c1ce21ce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e403401884a5fadd7402871c675bbf0b4189ba7486f6b99ca659b44c1ce21ce.mp3",
+          "contentHash": "5db0d0c4a3a2df0355624886de0e442b3309840b03cbe04efae147fc5a1f3a58",
+          "byteSize": 27648
+        },
+        {
+          "text": "soup",
+          "file": "ca9b15b4f5727739e53c8ec1340f71dbf4479b552ca0110129e09a47e135f083.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca9b15b4f5727739e53c8ec1340f71dbf4479b552ca0110129e09a47e135f083.mp3",
+          "contentHash": "a5c130abe32f67010c5021f5e28ff39a2b47d2056962169b77b2b18db84afba0",
+          "byteSize": 25344
+        },
+        {
+          "text": "learn",
+          "file": "e5dcdf068ee47baa8a27fa92748b2ff67927b1095d13132262ffe158c11e5397.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e5dcdf068ee47baa8a27fa92748b2ff67927b1095d13132262ffe158c11e5397.mp3",
+          "contentHash": "d1f49f9ea917b4bccf210e494517126172915dee8850cab22bf72dc1242fdef8",
+          "byteSize": 13440
+        }
+      ]
+    },
+    "l06/s19/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She draws at home.",
+          "file": "8396099e60264db2aeb60e938232f5d7d8695d1bb80dc9b678a347d853eba9b7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8396099e60264db2aeb60e938232f5d7d8695d1bb80dc9b678a347d853eba9b7.mp3",
+          "contentHash": "242f8b69844a93bdb1dc2277a0566dbcf73cca41d82df72a6c500dbee437bf9a",
+          "byteSize": 62592
+        }
+      ]
     }
   },
   "settings": {

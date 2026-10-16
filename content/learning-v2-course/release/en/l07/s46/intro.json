@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "рассказывать о привычках и спрашивать о месте",
+    "uk": "розповідати про звички й запитувати про місце"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Порядок в книгах",
+        "uk": "Порядок у книжках"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, как вы поддерживаете порядок на книжной полке. `Organize` — «организовывать»; когда речь о вещах — «упорядочивать, раскладывать по порядку». `I usually organize my books` — «Я обычно раскладываю свои книги по порядку». `Usually` стоит перед `organize`. Теперь нужную книгу можно найти раньше, чем передумаешь читать.",
+        "uk": "Друг запитує, як ви підтримуєте порядок на книжковій полиці. `Organize` — «організовувати»; коли йдеться про речі — «упорядковувати, розкладати за порядком». `I usually organize my books` — «Я зазвичай розкладаю свої книжки за порядком». `Usually` стоїть перед `organize`. Тепер потрібну книжку можна знайти раніше, ніж передумаєш читати."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Расскажите, что вы обычно делаете со своими книгами.",
+          "uk": "Розкажіть, що ви зазвичай робите зі своїми книжками."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-46:intro1:r1",
+              "text": "I usually organize my books."
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro1:r2",
+              "text": "I usually organizes my books."
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro1:r3",
+              "text": "I usually organizing my books."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-46:intro1:r1",
+              "text": "I usually organize my books."
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro1:r2",
+              "text": "I usually organizes my books."
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro1:r3",
+              "text": "I usually organizing my books."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите, что вы обычно делаете со своими книгами.",
+          "uk": "Розкажіть, що ви зазвичай робите зі своїми книжками."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Глажу утром",
+        "uk": "Прасую вранці"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, когда вы обычно гладите. `I usually iron in the morning` — «Я обычно глажу утром». `Usually` стоит перед `iron`; `in the morning` — «утром».",
+        "uk": "Друг запитує, коли ви зазвичай прасуєте. `I usually iron in the morning` — «Я зазвичай прасую вранці». `Usually` стоїть перед `iron`; `in the morning` — «вранці»."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите о своей привычке.",
+          "uk": "Розкажіть про свою звичку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-46:intro2:r1",
+              "text": "I usually iron in the morning."
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro2:r2",
+              "text": "I usually irons in the morning."
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro2:r3",
+              "text": "I usually ironing in the morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-46:intro2:r1",
+              "text": "I usually iron in the morning."
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro2:r2",
+              "text": "I usually irons in the morning."
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro2:r3",
+              "text": "I usually ironing in the morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите о своей привычке.",
+          "uk": "Розкажіть про свою звичку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ищу аэропорт",
+        "uk": "Шукаю аеропорт"
+      },
+      "bodyByLocale": {
+        "ru": "Вы смотрите на карту города и просите знакомую показать аэропорт. `Where is the airport?` — «Где аэропорт?» После `where` здесь идёт `is`, затем `the airport`.",
+        "uk": "Ви дивитеся на карту міста й просите знайому показати аеропорт. `Where is the airport?` — «Де аеропорт?» Після `where` тут іде `is`, потім `the airport`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Попросите знакомую показать, где аэропорт.",
+          "uk": "Попросіть знайому показати, де аеропорт."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-46:intro3:r1",
+              "text": "Where is the airport?"
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro3:r2",
+              "text": "Where are the airport?"
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro3:r3",
+              "text": "Where the airport is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-46:intro3:r1",
+              "text": "Where is the airport?"
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro3:r2",
+              "text": "Where are the airport?"
+            },
+            {
+              "responseId": "en:lesson-07:session-46:intro3:r3",
+              "text": "Where the airport is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите знакомую показать, где аэропорт.",
+          "uk": "Попросіть знайому показати, де аеропорт."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c30a3c23043fbaf80e03715847d3040a408a91f6adbc039f942d7b1e24c0a743"
+}

@@ -115609,6 +115609,309 @@
           "byteSize": 42624
         }
       ]
+    },
+    "l07/s46/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually organize my books.",
+          "file": "172ecbbbe004a913ac5d7581fc9e92e3daf29275de00dd4cfcfceb0489562249.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/172ecbbbe004a913ac5d7581fc9e92e3daf29275de00dd4cfcfceb0489562249.mp3",
+          "contentHash": "73e6f4ffc2969f125e4a901405dca7b9f6bb6d2b5905ecd0f2796acea28f67e3",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s46/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually iron in the morning.",
+          "file": "82f6d9e42a84eb4c1fbefe8b9fb4fe9a65709148408ee75a551af2a2f11504e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/82f6d9e42a84eb4c1fbefe8b9fb4fe9a65709148408ee75a551af2a2f11504e1.mp3",
+          "contentHash": "3093d5f56d0118ebc7a49069ea76e33a4d8b55b8720eb06ba33ba99dbe2ae6b3",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l07/s46/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the airport?",
+          "file": "68f875e39fbf675feb813c7597946e98968086003bdca005bd3662b3c0735a22.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/68f875e39fbf675feb813c7597946e98968086003bdca005bd3662b3c0735a22.mp3",
+          "contentHash": "6f4ec4837ac58a03c218216558f395f770e3679924d31e33158523792bc307cb",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l07/s46/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually organize my books.",
+          "file": "4bcb27414d2d8d7fbae0ed379d418b4ccf733e2f6ce910f5cd60e7efb0f31bf1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4bcb27414d2d8d7fbae0ed379d418b4ccf733e2f6ce910f5cd60e7efb0f31bf1.mp3",
+          "contentHash": "c9355ef66ccfe6616bab730679974ddef833bd79517d953c442ccc9d519507eb",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l07/s46/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "organize",
+          "file": "7d736c57573889bae2b7dc93a761bde8c28da9ce796c9419e8eb1e3a1572d986.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d736c57573889bae2b7dc93a761bde8c28da9ce796c9419e8eb1e3a1572d986.mp3",
+          "contentHash": "4331d8a21a74d5a4eda9d76132aea1ab92f13c38ef89810a37b6915dc3be5f47",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l07/s46/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually organize my books.",
+          "file": "172ecbbbe004a913ac5d7581fc9e92e3daf29275de00dd4cfcfceb0489562249.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/172ecbbbe004a913ac5d7581fc9e92e3daf29275de00dd4cfcfceb0489562249.mp3",
+          "contentHash": "73e6f4ffc2969f125e4a901405dca7b9f6bb6d2b5905ecd0f2796acea28f67e3",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s46/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "organize",
+          "file": "7d736c57573889bae2b7dc93a761bde8c28da9ce796c9419e8eb1e3a1572d986.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d736c57573889bae2b7dc93a761bde8c28da9ce796c9419e8eb1e3a1572d986.mp3",
+          "contentHash": "4331d8a21a74d5a4eda9d76132aea1ab92f13c38ef89810a37b6915dc3be5f47",
+          "byteSize": 18816
+        },
+        {
+          "text": "iron",
+          "file": "acf62a72a8dcb1570eb328e30d8bad7b4755cb7e3534571b1e9c9dd46a610e67.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/acf62a72a8dcb1570eb328e30d8bad7b4755cb7e3534571b1e9c9dd46a610e67.mp3",
+          "contentHash": "71b4305e48abeb753fa33a0abafbbad7d57ff954f76ac4f52c579003a1d6ed7f",
+          "byteSize": 22656
+        },
+        {
+          "text": "airport",
+          "file": "55f301bdf333e0c56cfe2436286155ef9a956bb31885ede3ec4ee8908e83cbed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/55f301bdf333e0c56cfe2436286155ef9a956bb31885ede3ec4ee8908e83cbed.mp3",
+          "contentHash": "d449e53b09a0c544302512feddf21f3a522770fcb90824d8c1b606cc86eed979",
+          "byteSize": 21120
+        },
+        {
+          "text": "ferry",
+          "file": "e30ead6d3808d090739894299cde3d65e8fc2845adb68e1dd32fb76ea622d164.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e30ead6d3808d090739894299cde3d65e8fc2845adb68e1dd32fb76ea622d164.mp3",
+          "contentHash": "38f21207b7a5114bbc2cd5881d07ec32e11c857b51023fad1767e31e2e1373a2",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l07/s46/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I usually organize my books.",
+          "file": "9cce331c88be16358d11e9ebbc35fa5c50ba625d4d4a7c7e56dcbecd2b8736f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9cce331c88be16358d11e9ebbc35fa5c50ba625d4d4a7c7e56dcbecd2b8736f4.mp3",
+          "contentHash": "3c5675ee0ad3be3492e0ba5b934b4147557ada042ce0b5fe156301c0a193f4b5",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l07/s46/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually iron in the morning.",
+          "file": "82f6d9e42a84eb4c1fbefe8b9fb4fe9a65709148408ee75a551af2a2f11504e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/82f6d9e42a84eb4c1fbefe8b9fb4fe9a65709148408ee75a551af2a2f11504e1.mp3",
+          "contentHash": "3093d5f56d0118ebc7a49069ea76e33a4d8b55b8720eb06ba33ba99dbe2ae6b3",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l07/s46/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is the airport?",
+          "file": "18cfae983741d8cdd4500a5be0e4e032cba32d0cfd0b97dd9e08f2c6b072164b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/18cfae983741d8cdd4500a5be0e4e032cba32d0cfd0b97dd9e08f2c6b072164b.mp3",
+          "contentHash": "5270bf31c9de615ae5ac176e07d3b2337f73212166243d76ba2fab9f326296bf",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s46/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually iron in the morning.",
+          "file": "953d0bc5e927bedf19bb2c07cdef5518642e293cfa18e50b0352bc5dcc2fd95b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/953d0bc5e927bedf19bb2c07cdef5518642e293cfa18e50b0352bc5dcc2fd95b.mp3",
+          "contentHash": "65fe598ca60bb183ffa0a08240f2bc8a6bf4a41894c0aebec6ae62826262b565",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l07/s46/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually organize my books.",
+          "file": "e69cdfc87aceb0b0a27c5a8c1c25bcb2c212c5ac72ac5d67e49a3c0384bce631.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e69cdfc87aceb0b0a27c5a8c1c25bcb2c212c5ac72ac5d67e49a3c0384bce631.mp3",
+          "contentHash": "8afeb7b2957386dff1cf326bd2d76992ae46ef3693fa639cf229e4467c63995d",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s46/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "iron",
+          "file": "539ce7d33a363e7e25edd8158eb420ff83d62e81842537556f656a04a60c4e5e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/539ce7d33a363e7e25edd8158eb420ff83d62e81842537556f656a04a60c4e5e.mp3",
+          "contentHash": "76994bda2f05b493532f6c1252f7373516b2a05fe0297e4bd4d42b0b615d242c",
+          "byteSize": 23040
+        },
+        {
+          "text": "organize",
+          "file": "8e386bda597a54a7f1856b3f6fd01c0bfcbe6780aa0b67a538b6aa8741f323f8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e386bda597a54a7f1856b3f6fd01c0bfcbe6780aa0b67a538b6aa8741f323f8.mp3",
+          "contentHash": "7a3c27baa0e2a66ff700dddbd826572da0f45a314932b4fa952e5041d51b5628",
+          "byteSize": 32640
+        },
+        {
+          "text": "mug",
+          "file": "e6e02e3f4f9efdfe646744276fa6bd7420674b983b6dd6df3798cdae25a90a71.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e6e02e3f4f9efdfe646744276fa6bd7420674b983b6dd6df3798cdae25a90a71.mp3",
+          "contentHash": "4874e7b61b7ee0c732b2eca7989b9b628c524de5bce2ac7fdffa9f4b086e85e2",
+          "byteSize": 27648
+        },
+        {
+          "text": "airport",
+          "file": "dc764529f39ff54be94e3bbe69ffbd4c9d9a2151783ed89d8b8c507926955399.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc764529f39ff54be94e3bbe69ffbd4c9d9a2151783ed89d8b8c507926955399.mp3",
+          "contentHash": "fef0d39d419f61eb44f08e4f8a18d01c9216b79c4602778b310a9a20df141dd6",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l07/s46/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the airport?",
+          "file": "2d7b708e8a5a7e72e9bce7b4f4a529807bf05f0800fd79ac15a98e4309dd48fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2d7b708e8a5a7e72e9bce7b4f4a529807bf05f0800fd79ac15a98e4309dd48fd.mp3",
+          "contentHash": "abb3a16ed836ffde5ba794b13fc39a969ef67db32035481642d17894ef743631",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s46/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is the ferry?",
+          "file": "d4a1a060d19b885de25efbc88292d6186a3214caf52a36d2de1992d9669ac218.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d4a1a060d19b885de25efbc88292d6186a3214caf52a36d2de1992d9669ac218.mp3",
+          "contentHash": "2b6f9ada860ad0dcb57b5e86ec6db3953f3b5a4e31785afee861834c18a60cbc",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l07/s46/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you have a mug?",
+          "file": "56c7bab9eb7d6ba42aba5a4a666796c56abed303416d9ce38b7bb0fc12d5016f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56c7bab9eb7d6ba42aba5a4a666796c56abed303416d9ce38b7bb0fc12d5016f.mp3",
+          "contentHash": "dd74a7d138e388deed23424b5073fe63e447aed1d29e49ca49de3cb7dfb82dc7",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l07/s46/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I usually organize my books.",
+          "file": "9cce331c88be16358d11e9ebbc35fa5c50ba625d4d4a7c7e56dcbecd2b8736f4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9cce331c88be16358d11e9ebbc35fa5c50ba625d4d4a7c7e56dcbecd2b8736f4.mp3",
+          "contentHash": "3c5675ee0ad3be3492e0ba5b934b4147557ada042ce0b5fe156301c0a193f4b5",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l07/s46/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is the airport?",
+          "file": "f7ed393a9a0d5d87ca6199743c04d6193295047c9a57562898879ea8a863e4a8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f7ed393a9a0d5d87ca6199743c04d6193295047c9a57562898879ea8a863e4a8.mp3",
+          "contentHash": "ca288813976ffc637aeef72eaca2991c7a8334b83fc989bec171f4f6cb09ddb3",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s46/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "organize",
+          "file": "1de2bdfe748daa29d6c8056180b4078d345361a9117a8a26c24138c0cd8bc2c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1de2bdfe748daa29d6c8056180b4078d345361a9117a8a26c24138c0cd8bc2c6.mp3",
+          "contentHash": "bfeca63cbb4cd65517eae22a44bc61cd7327471794278f7dfd3022d23f1bdf00",
+          "byteSize": 21888
+        },
+        {
+          "text": "ferry",
+          "file": "dfa05497309b68c7669d1539d2c0ee113a2a5a0d4870cdb51819ff05ec468a05.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dfa05497309b68c7669d1539d2c0ee113a2a5a0d4870cdb51819ff05ec468a05.mp3",
+          "contentHash": "8ae507cca484ddc90a4d314d291822c06d3d7b974f8756955782e99526745475",
+          "byteSize": 26880
+        },
+        {
+          "text": "iron",
+          "file": "6c309b55732233fc446530503ba0c575c8eac873846e609d620d013be65eacb1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6c309b55732233fc446530503ba0c575c8eac873846e609d620d013be65eacb1.mp3",
+          "contentHash": "0921c8d45044d12b38bf607c59bb3353088621ab4023cabed583087fa79cb85c",
+          "byteSize": 31488
+        },
+        {
+          "text": "mug",
+          "file": "0afb89b5a48757043520fd6e4693e05fc03800df4d1a431a38b8e3f835428c7e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0afb89b5a48757043520fd6e4693e05fc03800df4d1a431a38b8e3f835428c7e.mp3",
+          "contentHash": "f359b65e0f4b27dfdf3f5d251ea463bf4123126d4b5e79de86d8e0f910682331",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l07/s46/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Tom usually organizes his books.",
+          "file": "e13687cea7417c522ac97588682e412464b5f1cf1e78a123f2bdc7f52b27b750.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e13687cea7417c522ac97588682e412464b5f1cf1e78a123f2bdc7f52b27b750.mp3",
+          "contentHash": "fed5897c9d5bd03a20e5d77f1e8e9163906f04b46915b83f7f152e39f55014e1",
+          "byteSize": 39552
+        }
+      ]
     }
   },
   "settings": {

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-46:intro1:r2": {
+          "ru": "После `I` нужно `organize`, без `s`.",
+          "uk": "Після `I` потрібне `organize`, без `s`."
+        },
+        "en:lesson-07:session-46:intro1:r3": {
+          "ru": "Здесь нужна форма `organize`.",
+          "uk": "Тут потрібна форма `organize`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-46:intro2:r2": {
+          "ru": "После `I` нужно `iron`.",
+          "uk": "Після `I` потрібне `iron`."
+        },
+        "en:lesson-07:session-46:intro2:r3": {
+          "ru": "Здесь нужна форма `iron`.",
+          "uk": "Тут потрібна форма `iron`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-46:intro3:r2": {
+          "ru": "Аэропорт один: нужно `is`.",
+          "uk": "Аеропорт один: потрібне `is`."
+        },
+        "en:lesson-07:session-46:intro3:r3": {
+          "ru": "В этом вопросе `is` стоит перед `the airport`.",
+          "uk": "У цьому запитанні `is` стоїть перед `the airport`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ccd854ff71e331737d3aef96b8306cc9d831b9488c8b4a5cfbeef736ef44880d"
+}

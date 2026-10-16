@@ -1,0 +1,950 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually organize my books.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно раскладываю свои книги по порядку»",
+          "uk": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "organize",
+          "my",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-46:i02:r1",
+          "text": "organize"
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i02:r2",
+          "text": "iron"
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i02:r3",
+          "text": "pack"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:i02:audio",
+          "transcript": "organize"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-46:i02:r1",
+            "targetText": "organize",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i02:r2",
+            "targetText": "iron",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i02:r3",
+            "targetText": "pack",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `organize`, а в этом варианте — `iron`.",
+              "uk": "У записі перше слово — `organize`, а в цьому варіанті — `iron`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `organize`, а в этом варианте — `pack`.",
+              "uk": "У записі перше слово — `organize`, а в цьому варіанті — `pack`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-46:i03:r1",
+          "text": "organize"
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i03:r2",
+          "text": "organizes"
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i03:r3",
+          "text": "organizing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно раскладываю свои книги по порядку»",
+          "uk": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»"
+        },
+        "gappedTargetPhrase": "I usually ___ my books.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-46:i03:r1",
+            "text": "organize"
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i03:r2",
+            "text": "organizes"
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i03:r3",
+            "text": "organizing"
+          }
+        ],
+        "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `organize`.",
+              "uk": "Після `I` потрібне `organize`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `organize`.",
+              "uk": "Тут потрібна форма `organize`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-46:i04:p1",
+            "target": "organize",
+            "meaningByLocale": {
+              "ru": "упорядочивать",
+              "uk": "упорядковувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-46:i04:p2",
+            "target": "iron",
+            "meaningByLocale": {
+              "ru": "гладить",
+              "uk": "прасувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-46:i04:p3",
+            "target": "airport",
+            "meaningByLocale": {
+              "ru": "аэропорт",
+              "uk": "аеропорт"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-46:i04:p4",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          }
+        ],
+        "leftColumn": [
+          "organize",
+          "iron",
+          "airport",
+          "ferry"
+        ],
+        "rightColumn": [
+          "упорядковувати",
+          "прасувати",
+          "аеропорт",
+          "пором"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:i05:audio",
+          "transcript": "I usually organize my books."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I usually organize my books.",
+        "orderedTokens": [
+          "I",
+          "usually",
+          "organize",
+          "my",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я зазвичай прасую вранці»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай прасую вранці»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually iron in the morning.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я обычно глажу утром»",
+          "uk": "Скажіть «Я зазвичай прасую вранці»"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "iron",
+          "in",
+          "the",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте в знайомої «Де аеропорт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте в знайомої «Де аеропорт?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:i07:audio",
+          "transcript": "Where is the airport?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the airport?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я зазвичай прасую вранці»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-46:i08:r1",
+          "text": "iron"
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i08:r2",
+          "text": "irons"
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i08:r3",
+          "text": "ironing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай прасую вранці»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно глажу утром»",
+          "uk": "Скажіть «Я зазвичай прасую вранці»"
+        },
+        "gappedTargetPhrase": "I usually ___ in the morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-46:i08:r1",
+            "text": "iron"
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i08:r2",
+            "text": "irons"
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i08:r3",
+            "text": "ironing"
+          }
+        ],
+        "testedDimension": "Скажіть «Я зазвичай прасую вранці»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай прасую вранці»",
+            "feedbackByLocale": {
+              "ru": "После `I` нужно `iron`.",
+              "uk": "Після `I` потрібне `iron`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай прасую вранці»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма `iron`.",
+              "uk": "Тут потрібна форма `iron`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-46:i09:r1",
+          "text": "I usually organize my books."
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i09:r2",
+          "text": "I usually organize my photos."
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i09:r3",
+          "text": "I usually organize my clothes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:i09:audio",
+          "transcript": "I usually organize my books."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-46:i09:r1",
+            "targetText": "I usually organize my books.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i09:r2",
+            "targetText": "I usually organize my photos.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i09:r3",
+            "targetText": "I usually organize my clothes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `books`, а в этом варианте — `photos`.",
+              "uk": "У записі останнє слово — `books`, а в цьому варіанті — `photos`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `books`, а в этом варианте — `clothes`.",
+              "uk": "У записі останнє слово — `books`, а в цьому варіанті — `clothes`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-46:i10:p1",
+            "target": "iron",
+            "meaningByLocale": {
+              "ru": "гладить",
+              "uk": "прасувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-46:i10:p2",
+            "target": "organize",
+            "meaningByLocale": {
+              "ru": "упорядочивать",
+              "uk": "упорядковувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-46:i10:p3",
+            "target": "mug",
+            "meaningByLocale": {
+              "ru": "кружка",
+              "uk": "кухоль"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-46:i10:p4",
+            "target": "airport",
+            "meaningByLocale": {
+              "ru": "аэропорт",
+              "uk": "аеропорт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "iron",
+          "organize",
+          "mug",
+          "airport"
+        ],
+        "rightColumn": [
+          "прасувати",
+          "упорядковувати",
+          "кухоль",
+          "аеропорт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:i11:audio",
+          "transcript": "Where is the airport?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the airport?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "airport"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви прийшли до пристані. Запитайте працівника «Де пором?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви прийшли до пристані. Запитайте працівника «Де пором?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the ferry?",
+        "localizedMeaning": {
+          "ru": "Вы пришли к пристани. Спросите сотрудника «Где паром?»",
+          "uk": "Ви прийшли до пристані. Запитайте працівника «Де пором?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "ferry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перш ніж налити чай, запитайте гостя «У тебе є кухоль?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Перш ніж налити чай, запитайте гостя «У тебе є кухоль?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:i13:audio",
+          "transcript": "Do you have a mug?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have a mug?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-46:i14:r1",
+          "text": "usually"
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i14:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я обычно раскладываю свои книги по порядку»",
+          "uk": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»"
+        },
+        "gappedTargetPhrase": "I ___ organize my books.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-46:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-46:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually` перед `organize`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `organize`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+            "feedbackByLocale": {
+              "ru": "Для «обычно» нужно `usually`; `am` перед `organize` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `organize` не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-46:i15:r1",
+          "text": "Where is the airport?"
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i15:r2",
+          "text": "Where is the office?"
+        },
+        {
+          "responseId": "en:lesson-07:session-46:i15:r3",
+          "text": "Where is the ferry?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:i15:audio",
+          "transcript": "Where is the airport?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-46:i15:r1",
+            "targetText": "Where is the airport?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i15:r2",
+            "targetText": "Where is the office?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i15:r3",
+            "targetText": "Where is the ferry?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-46:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `airport`, а в этом варианте — `office`.",
+              "uk": "У записі останнє слово — `airport`, а в цьому варіанті — `office`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-46:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `airport`, а в этом варианте — `ferry`.",
+              "uk": "У записі останнє слово — `airport`, а в цьому варіанті — `ferry`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-46:i16:p1",
+            "target": "organize",
+            "meaningByLocale": {
+              "ru": "упорядочивать",
+              "uk": "упорядковувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-46:i16:p2",
+            "target": "ferry",
+            "meaningByLocale": {
+              "ru": "паром",
+              "uk": "пором"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-46:i16:p3",
+            "target": "iron",
+            "meaningByLocale": {
+              "ru": "гладить",
+              "uk": "прасувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-46:i16:p4",
+            "target": "mug",
+            "meaningByLocale": {
+              "ru": "кружка",
+              "uk": "кухоль"
+            }
+          }
+        ],
+        "leftColumn": [
+          "organize",
+          "ferry",
+          "iron",
+          "mug"
+        ],
+        "rightColumn": [
+          "упорядковувати",
+          "пором",
+          "прасувати",
+          "кухоль"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про порядок на полиці Тома. Скажіть «Том зазвичай розкладає свої книжки за порядком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про порядок на полиці Тома. Скажіть «Том зазвичай розкладає свої книжки за порядком»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:i17:audio",
+          "transcript": "Tom usually organizes his books."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom usually organizes his books.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "edd5b2ba898274cf32a9624a33d60ec7d749534c22d6109a742d273e20ee6436"
+}

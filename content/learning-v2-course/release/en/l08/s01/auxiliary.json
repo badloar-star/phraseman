@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-01:intro1:r2": {
+          "ru": "После `can` сразу ставим `whistle`, без `to`.",
+          "uk": "Після `can` одразу ставимо `whistle`, без `to`."
+        },
+        "en:lesson-08:session-01:intro1:r3": {
+          "ru": "Здесь достаточно `I can`; `am` не нужно.",
+          "uk": "Тут достатньо `I can`; `am` не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-01:intro2:r2": {
+          "ru": "После `can` нужно `swim`, без `to`.",
+          "uk": "Після `can` потрібне `swim`, без `to`."
+        },
+        "en:lesson-08:session-01:intro2:r3": {
+          "ru": "После `can` нужно `swim`, без `s`.",
+          "uk": "Після `can` потрібне `swim`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-01:intro3:r2": {
+          "ru": "После `she` всё равно нужно `can`, без `s`.",
+          "uk": "Після `she` однаково потрібне `can`, без `s`."
+        },
+        "en:lesson-08:session-01:intro3:r3": {
+          "ru": "После `can` нужно `drive`, без `s`.",
+          "uk": "Після `can` потрібне `drive`, без `s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3c9f0a578e13d05cf80d88c20e02e099374f3f0af6b92ee6b94a5f6b85b89d3d"
+}

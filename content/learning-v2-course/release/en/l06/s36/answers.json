@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-36:i01",
+    "correctText": "I live here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i02",
+    "correctText": "live",
+    "correctResponseId": "en:lesson-06:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i03",
+    "correctText": "lives",
+    "correctResponseId": "en:lesson-06:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i04",
+    "correctText": "en:lesson-06:session-36:i04:p1=live\nen:lesson-06:session-36:i04:p2=informal\nen:lesson-06:session-36:i04:p3=smoke alarm\nen:lesson-06:session-36:i04:p4=sunglasses",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i05",
+    "correctText": "Tom lives there.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i06",
+    "correctText": "She stretches here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i07",
+    "correctText": "This smoke alarm is new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i08",
+    "correctText": "live",
+    "correctResponseId": "en:lesson-06:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i09",
+    "correctText": "These sunglasses are mine.",
+    "correctResponseId": "en:lesson-06:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i10",
+    "correctText": "en:lesson-06:session-36:i10:p1=live\nen:lesson-06:session-36:i10:p2=stretch\nen:lesson-06:session-36:i10:p3=sunglasses\nen:lesson-06:session-36:i10:p4=informal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i11",
+    "correctText": "The smoke alarm is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i12",
+    "correctText": "Whose sunglasses are these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i13",
+    "correctText": "They stretch here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i14",
+    "correctText": "lives",
+    "correctResponseId": "en:lesson-06:session-36:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i15",
+    "correctText": "They live here.",
+    "correctResponseId": "en:lesson-06:session-36:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i16",
+    "correctText": "en:lesson-06:session-36:i16:p1=live\nen:lesson-06:session-36:i16:p2=smoke alarm\nen:lesson-06:session-36:i16:p3=informal\nen:lesson-06:session-36:i16:p4=stretch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:i17",
+    "correctText": "He lives there.",
+    "correctResponseId": null
+  }
+]

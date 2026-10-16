@@ -95611,6 +95611,309 @@
           "byteSize": 32256
         }
       ]
+    },
+    "l06/s36/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I live here.",
+          "file": "c4e088669b3c87bc53f00435bf639c9a300294d3dced60e878c6920084e0f05f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c4e088669b3c87bc53f00435bf639c9a300294d3dced60e878c6920084e0f05f.mp3",
+          "contentHash": "bcaf792c6afb0c7e6aa3ad179f8ef8d1030b1d5d5945794d13ccd5906e2705e8",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s36/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He lives there.",
+          "file": "ce07d3164c7c5ece0179a1a15122a323c634d9c0fb20bcc874ba11d72dcf22da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce07d3164c7c5ece0179a1a15122a323c634d9c0fb20bcc874ba11d72dcf22da.mp3",
+          "contentHash": "7e6031c92ccc5e1dabcc73226accaf64ecf8b94d761708ae94e42c039062ae40",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l06/s36/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose sunglasses are these?",
+          "file": "e3eeecba98db9486c2bc80f4248dea28083e6624c7c7d0f072c7e637ecc746e0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e3eeecba98db9486c2bc80f4248dea28083e6624c7c7d0f072c7e637ecc746e0.mp3",
+          "contentHash": "683d8d4dfe89907b503c90c7d2462429bec0c255523f365b6b61874ae2bd1276",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l06/s36/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I live here.",
+          "file": "c4e088669b3c87bc53f00435bf639c9a300294d3dced60e878c6920084e0f05f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c4e088669b3c87bc53f00435bf639c9a300294d3dced60e878c6920084e0f05f.mp3",
+          "contentHash": "bcaf792c6afb0c7e6aa3ad179f8ef8d1030b1d5d5945794d13ccd5906e2705e8",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s36/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "live",
+          "file": "07ce55c9f4434eec01cc6d06b3f188d3eac7841e1e78107ae0b8dd46c04e1f3e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07ce55c9f4434eec01cc6d06b3f188d3eac7841e1e78107ae0b8dd46c04e1f3e.mp3",
+          "contentHash": "b11b8914072ec6428b67f0f4d3a5eebac8eaf7c6a7cd39cbf0fb5a4c97bf19ce",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l06/s36/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "He lives there.",
+          "file": "ce07d3164c7c5ece0179a1a15122a323c634d9c0fb20bcc874ba11d72dcf22da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce07d3164c7c5ece0179a1a15122a323c634d9c0fb20bcc874ba11d72dcf22da.mp3",
+          "contentHash": "7e6031c92ccc5e1dabcc73226accaf64ecf8b94d761708ae94e42c039062ae40",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l06/s36/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "live",
+          "file": "07ce55c9f4434eec01cc6d06b3f188d3eac7841e1e78107ae0b8dd46c04e1f3e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07ce55c9f4434eec01cc6d06b3f188d3eac7841e1e78107ae0b8dd46c04e1f3e.mp3",
+          "contentHash": "b11b8914072ec6428b67f0f4d3a5eebac8eaf7c6a7cd39cbf0fb5a4c97bf19ce",
+          "byteSize": 21120
+        },
+        {
+          "text": "informal",
+          "file": "3039f09054a2d8346c44b6a59779807dcdf0677c73469252f2c5b29ef06a2525.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3039f09054a2d8346c44b6a59779807dcdf0677c73469252f2c5b29ef06a2525.mp3",
+          "contentHash": "596af7691e40c033864da3e049cbd2d22580d35ea405e2a9b8ecb935151377a0",
+          "byteSize": 18048
+        },
+        {
+          "text": "smoke alarm",
+          "file": "c607cd92731eca09d0e4d7cf46ce0a229d75b3d0b35df3bc286acce262075733.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c607cd92731eca09d0e4d7cf46ce0a229d75b3d0b35df3bc286acce262075733.mp3",
+          "contentHash": "f875ea44a44107714679a399bab01ac92a82625db1d1e8953ab9fae0d3214d6a",
+          "byteSize": 26112
+        },
+        {
+          "text": "sunglasses",
+          "file": "7569f94202bd51011174ecf1ee5320b14b056be17398ad7daa065193906cad3a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7569f94202bd51011174ecf1ee5320b14b056be17398ad7daa065193906cad3a.mp3",
+          "contentHash": "149fbd7182d65a3f6184a6ab81efc3cab9bbe7a090eb5a33fcb3fd2332cb98b8",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s36/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Tom lives there.",
+          "file": "2581e3a861d3e6270ea9b0794d1dd806639104c4b515187285db1d51d8e1ce3b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2581e3a861d3e6270ea9b0794d1dd806639104c4b515187285db1d51d8e1ce3b.mp3",
+          "contentHash": "747dfea0ee331ca06ed9245e5a25422aca30c873afe80b962790cd698fd90215",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s36/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She stretches here.",
+          "file": "4bf3c8a3883e8d0586acd566561608b19e5d6fffcc0018a7c09a26745b2d3d7e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4bf3c8a3883e8d0586acd566561608b19e5d6fffcc0018a7c09a26745b2d3d7e.mp3",
+          "contentHash": "e6203fe4d2834fd8e3c4f02beea1b1e488a0c579e0e9ff47c1884637bc13f02e",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l06/s36/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This smoke alarm is new.",
+          "file": "9d8041dbfcc15c54a06b3fc4b1e452b81093df24881957d1eea0e21a53a88169.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9d8041dbfcc15c54a06b3fc4b1e452b81093df24881957d1eea0e21a53a88169.mp3",
+          "contentHash": "7ca64a3e04151bc7aa1aabdc03f531ebf4b396b0aa543ff1a53db1044e82efe1",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l06/s36/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We live here.",
+          "file": "f8cfdd06c0997b01c722cedd069ac92742acf4ba1f804e2a90df45143631d8cf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f8cfdd06c0997b01c722cedd069ac92742acf4ba1f804e2a90df45143631d8cf.mp3",
+          "contentHash": "7cedffe7004cd6112905c54ed30acb83e2fceba6d22a2d77f083784b460c9186",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l06/s36/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "These sunglasses are mine.",
+          "file": "e64b423ebfe60549e9dc34a6b409606d6c0fa27d215de71305783eaa93d4b516.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e64b423ebfe60549e9dc34a6b409606d6c0fa27d215de71305783eaa93d4b516.mp3",
+          "contentHash": "88bbeb38451a0da8c4b2f441c178a1364e2575b292c244e707b1c427c4927c2c",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s36/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "live",
+          "file": "07ce55c9f4434eec01cc6d06b3f188d3eac7841e1e78107ae0b8dd46c04e1f3e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07ce55c9f4434eec01cc6d06b3f188d3eac7841e1e78107ae0b8dd46c04e1f3e.mp3",
+          "contentHash": "b11b8914072ec6428b67f0f4d3a5eebac8eaf7c6a7cd39cbf0fb5a4c97bf19ce",
+          "byteSize": 21120
+        },
+        {
+          "text": "stretch",
+          "file": "da7ac496d479760c27f23458588dc29453943881be4231240ca4fb53856a1346.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/da7ac496d479760c27f23458588dc29453943881be4231240ca4fb53856a1346.mp3",
+          "contentHash": "fdc7b8379e825ebea02fc1adb739c5cc0c3fa454b9ce9b975e9a7e728a6d0585",
+          "byteSize": 19584
+        },
+        {
+          "text": "sunglasses",
+          "file": "7569f94202bd51011174ecf1ee5320b14b056be17398ad7daa065193906cad3a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7569f94202bd51011174ecf1ee5320b14b056be17398ad7daa065193906cad3a.mp3",
+          "contentHash": "149fbd7182d65a3f6184a6ab81efc3cab9bbe7a090eb5a33fcb3fd2332cb98b8",
+          "byteSize": 30720
+        },
+        {
+          "text": "informal",
+          "file": "3039f09054a2d8346c44b6a59779807dcdf0677c73469252f2c5b29ef06a2525.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3039f09054a2d8346c44b6a59779807dcdf0677c73469252f2c5b29ef06a2525.mp3",
+          "contentHash": "596af7691e40c033864da3e049cbd2d22580d35ea405e2a9b8ecb935151377a0",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l06/s36/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The smoke alarm is here.",
+          "file": "b84e0bb87e5e5874cdbe74fed9860dd5b12ec2738cad55684da588c64f9af515.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b84e0bb87e5e5874cdbe74fed9860dd5b12ec2738cad55684da588c64f9af515.mp3",
+          "contentHash": "3bfc1101f4d66554991abbab776f53ffad3ae7219168f64bc89be78418bd0745",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l06/s36/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose sunglasses are these?",
+          "file": "e3eeecba98db9486c2bc80f4248dea28083e6624c7c7d0f072c7e637ecc746e0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e3eeecba98db9486c2bc80f4248dea28083e6624c7c7d0f072c7e637ecc746e0.mp3",
+          "contentHash": "683d8d4dfe89907b503c90c7d2462429bec0c255523f365b6b61874ae2bd1276",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l06/s36/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They stretch here.",
+          "file": "d0ca27f16b1434784ab865f51bc54ad5efd8b36905b6cf4a9c8358222c96f129.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d0ca27f16b1434784ab865f51bc54ad5efd8b36905b6cf4a9c8358222c96f129.mp3",
+          "contentHash": "e165af3e401bc332fe4a20c6ba02199ae5f39de2b2d78b305613675a42acebb4",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s36/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Anna lives here.",
+          "file": "7feaaccd42df71c59312118439b694c91cd2bb2a3341a5c5d0943d2811100f87.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7feaaccd42df71c59312118439b694c91cd2bb2a3341a5c5d0943d2811100f87.mp3",
+          "contentHash": "ddabdff4e6f41e18e5b3b64c19de0e0ed63159f305428fb99d45320f9d2be233",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l06/s36/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They live here.",
+          "file": "dffcdc621d59d069681833cbb8413e857dd8deed8adda585d0787da8e2358599.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dffcdc621d59d069681833cbb8413e857dd8deed8adda585d0787da8e2358599.mp3",
+          "contentHash": "7cf9a50f7047798d90732162a3c9d8d8640d0e87d3f14d40372f84b5966326c5",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l06/s36/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "live",
+          "file": "23c0f62ca3e930426d7a4e43661bc1da64bbccd98edf9d9f5d2542e20f542bfd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/23c0f62ca3e930426d7a4e43661bc1da64bbccd98edf9d9f5d2542e20f542bfd.mp3",
+          "contentHash": "fc510b031ab8671ead0040715a404bed455f1b0c9a13b6282fbcbfdd64f36c18",
+          "byteSize": 28416
+        },
+        {
+          "text": "smoke alarm",
+          "file": "36284eed8a853b63e72f7c5444f6f4a09f1a4def3cc73f8969eda2bc3c9d78f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36284eed8a853b63e72f7c5444f6f4a09f1a4def3cc73f8969eda2bc3c9d78f0.mp3",
+          "contentHash": "a31cd60876769920589f8aa050560c14ea219e6b698f0706576723b2a4aa79ff",
+          "byteSize": 47616
+        },
+        {
+          "text": "informal",
+          "file": "8ad0b557074160af6dbcb7f326c2e359b26566eef1f099e6c1a7cd5763807de1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ad0b557074160af6dbcb7f326c2e359b26566eef1f099e6c1a7cd5763807de1.mp3",
+          "contentHash": "d97e0ab41a1aea8cd850f171f87ff9ced7b33cb8b218ae2cbe65ddf59d997063",
+          "byteSize": 24192
+        },
+        {
+          "text": "stretch",
+          "file": "a82619164e3a2886b8463cbe4ec226716f2786eb20c6a99b81a67059aeb85fa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a82619164e3a2886b8463cbe4ec226716f2786eb20c6a99b81a67059aeb85fa4.mp3",
+          "contentHash": "960e0eedb350f591878565ff741fa84f68963788a7bec000d10452293084dec6",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l06/s36/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He lives there.",
+          "file": "2401016be9b81aa792ca140cb5fc41cda4c88875d4b05a4823cddc739ce16651.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2401016be9b81aa792ca140cb5fc41cda4c88875d4b05a4823cddc739ce16651.mp3",
+          "contentHash": "944efb8c64c405ad19919a263cb130f59f9cd8c87ad29f856c24cdacbf8d08ba",
+          "byteSize": 22656
+        }
+      ]
     }
   },
   "settings": {

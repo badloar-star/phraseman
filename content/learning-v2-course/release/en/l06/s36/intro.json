@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, где вы живёте, и рассказать о месте жительства другого человека",
+    "uk": "сказати, де ви живете, й розповісти про місце проживання іншої людини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я здесь живу",
+        "uk": "Я тут живу"
+      },
+      "bodyByLocale": {
+        "ru": "Новый сосед принимает вас за гостя. `live` — «жить». Скажите `I live here` — «Я живу здесь». Перед `live` не нужно `am`: слово уже называет действие. Даже если вы часто заходите к соседу на чай, это ещё не значит, что вы у него живёте.",
+        "uk": "Новий сусід приймає вас за гостя. `live` — «жити». Скажіть `I live here` — «Я живу тут». Перед `live` не потрібне `am`: слово вже називає дію. Навіть якщо ви часто заходите до сусіда на чай, це ще не означає, що ви в нього живете."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Объясните соседу «Я живу здесь».",
+          "uk": "Поясніть сусідові «Я живу тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-36:intro1:r1",
+              "text": "I live here."
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro1:r2",
+              "text": "I am live here."
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro1:r3",
+              "text": "I lives here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-36:intro1:r1",
+              "text": "I live here."
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro1:r2",
+              "text": "I am live here."
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro1:r3",
+              "text": "I lives here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните соседу «Я живу здесь».",
+          "uk": "Поясніть сусідові «Я живу тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где живёт Том",
+        "uk": "Де живе Том"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед спрашивает о Томе. Покажите на соседний дом: `He lives there` — «Он живёт там». После `he` добавляем `s`: `live → lives`. Можно назвать друга по имени: `Tom lives there`. Это его место жительства; Том не обязан находиться дома в эту секунду.",
+        "uk": "Сусід запитує про Тома. Покажіть на сусідній будинок: `He lives there` — «Він живе там». Після `he` додаємо `s`: `live → lives`. Можна назвати друга на ім’я: `Tom lives there`. Це його місце проживання; Том не зобов’язаний бути вдома цієї секунди."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Покажите на дом Тома и скажите «Он живёт там».",
+          "uk": "Покажіть на будинок Тома й скажіть «Він живе там»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-36:intro2:r1",
+              "text": "He lives there."
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro2:r2",
+              "text": "He live there."
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro2:r3",
+              "text": "He is lives there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-36:intro2:r1",
+              "text": "He lives there."
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro2:r2",
+              "text": "He live there."
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro2:r3",
+              "text": "He is lives there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите на дом Тома и скажите «Он живёт там».",
+          "uk": "Покажіть на будинок Тома й скажіть «Він живе там»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Очки у входа",
+        "uk": "Окуляри біля входу"
+      },
+      "bodyByLocale": {
+        "ru": "У входа забыли солнцезащитные очки. `sunglasses` — «солнцезащитные очки». Спросите соседей: `Whose sunglasses are these?` — «Чьи это солнцезащитные очки?» С `sunglasses` используем `are these`, даже когда перед нами одна пара.",
+        "uk": "Біля входу забули сонцезахисні окуляри. `sunglasses` — «сонцезахисні окуляри». Запитайте сусідів: `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» З `sunglasses` використовуємо `are these`, навіть коли перед нами одна пара."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Найдите владельца: спросите «Чьи это солнцезащитные очки?»",
+          "uk": "Знайдіть власника: запитайте «Чиї це сонцезахисні окуляри?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-36:intro3:r1",
+              "text": "Whose sunglasses are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro3:r2",
+              "text": "Whose sunglasses is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro3:r3",
+              "text": "Who sunglasses are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-36:intro3:r1",
+              "text": "Whose sunglasses are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro3:r2",
+              "text": "Whose sunglasses is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-36:intro3:r3",
+              "text": "Who sunglasses are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Найдите владельца: спросите «Чьи это солнцезащитные очки?»",
+          "uk": "Знайдіть власника: запитайте «Чиї це сонцезахисні окуляри?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1f186f977b5fa6c379398fc84769fce4732dabf7a53d2c0ba6afd88f65671732"
+}

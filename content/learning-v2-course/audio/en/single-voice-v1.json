@@ -76219,6 +76219,309 @@
           "byteSize": 34944
         }
       ]
+    },
+    "l05/s28/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's keycard.",
+          "file": "d2aed7eec0dcb13f3538a4b20ac6edccc2fdf5a33be9ef027461b3d264768a06.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2aed7eec0dcb13f3538a4b20ac6edccc2fdf5a33be9ef027461b3d264768a06.mp3",
+          "contentHash": "0c3b61d3afc539dcda3834b20b29ced987022d28391a812d9f09ebb43aa04998",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s28/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That is correct.",
+          "file": "d8261ca12ba8f37cfe0afbf5df123f0da07cdb8409d3521e21922e866a832583.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d8261ca12ba8f37cfe0afbf5df123f0da07cdb8409d3521e21922e866a832583.mp3",
+          "contentHash": "c8b37ffe5d01c23e575547a40f1b76376377ebf6e0eaa187d35a37129838282c",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s28/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The keycard is hers.",
+          "file": "aae445c6ff23baad623a7e8498370cdc1717619d4f80db1a1ba2b8636e530d77.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aae445c6ff23baad623a7e8498370cdc1717619d4f80db1a1ba2b8636e530d77.mp3",
+          "contentHash": "63df3f1f78a1c3281c183c1ceae1549e9d9ed690180e2d246b074ef2ba876712",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s28/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "That is correct.",
+          "file": "1ec99a56a6b4f1082385aa3ab6d51d826d0e4d62574be435fc6b6527cab36276.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1ec99a56a6b4f1082385aa3ab6d51d826d0e4d62574be435fc6b6527cab36276.mp3",
+          "contentHash": "922a50a80228890083573bc8aed920a980251a942496c29e0ca338f310fc8bbe",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s28/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "keycard",
+          "file": "0deb0efcfea20c86dc69c5a35ca806135b40d96e3f279e23113c5eda5a71d257.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0deb0efcfea20c86dc69c5a35ca806135b40d96e3f279e23113c5eda5a71d257.mp3",
+          "contentHash": "0e818e3e348b89a166b1eff767467e425fe47462354d9cc34b8060654add7bd2",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s28/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "keycard",
+          "file": "5ca6cb0f4dd2c5155da6372ae0216120316c5c513262406ccbdf44e54308ea14.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ca6cb0f4dd2c5155da6372ae0216120316c5c513262406ccbdf44e54308ea14.mp3",
+          "contentHash": "1a4fdc4b2d5aba1daba18442a372b7d7b98b7c758c11c25fe9abf948613fdc8d",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s28/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "keycard",
+          "file": "5ca6cb0f4dd2c5155da6372ae0216120316c5c513262406ccbdf44e54308ea14.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ca6cb0f4dd2c5155da6372ae0216120316c5c513262406ccbdf44e54308ea14.mp3",
+          "contentHash": "1a4fdc4b2d5aba1daba18442a372b7d7b98b7c758c11c25fe9abf948613fdc8d",
+          "byteSize": 26880
+        },
+        {
+          "text": "correct",
+          "file": "0689d21498315e05efbd9abf66cb847f8342ebd591a6fdb1e669f779098de195.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0689d21498315e05efbd9abf66cb847f8342ebd591a6fdb1e669f779098de195.mp3",
+          "contentHash": "23388ce3f1c976e911208c2529ba80eb2c92d2aeedf1c3f65b8f2b43344c198d",
+          "byteSize": 24192
+        },
+        {
+          "text": "certain",
+          "file": "b77466dac5e96437756bc1ecde74979675598e67cf587ecba1f87c7c531bd6b6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b77466dac5e96437756bc1ecde74979675598e67cf587ecba1f87c7c531bd6b6.mp3",
+          "contentHash": "fcc9d861503ab8bc3f4398380c4f6a20e28b799158bc48a2bdce01c5b2a600ae",
+          "byteSize": 34560
+        },
+        {
+          "text": "serious",
+          "file": "d9f57e553f930a0d2e14924715d8482efd41a2d2efb7fde51fcb77599209b2a7.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/645dfcb4d1d2d7f1fa00f60e-ash.mp3",
+          "contentHash": "f8798066c88a92eff28c4aa19f483fe7cae0a5b63e3ea76936f473a1f69067f6",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s28/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's keycard.",
+          "file": "d2aed7eec0dcb13f3538a4b20ac6edccc2fdf5a33be9ef027461b3d264768a06.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2aed7eec0dcb13f3538a4b20ac6edccc2fdf5a33be9ef027461b3d264768a06.mp3",
+          "contentHash": "0c3b61d3afc539dcda3834b20b29ced987022d28391a812d9f09ebb43aa04998",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s28/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom's keycard is here.",
+          "file": "e63214927656de93d901123e4607718594443ddc8ea70cdc85ac00cf26347d0a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e63214927656de93d901123e4607718594443ddc8ea70cdc85ac00cf26347d0a.mp3",
+          "contentHash": "8dce506d6f4c7d951e976eabd5974fd5c5ee8bdd47c33175252a6fb2af143bde",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s28/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I am certain.",
+          "file": "47813535665dc295be46f30981c1b68846ccbc604aa8472a3c5ca49cf76cf55b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/47813535665dc295be46f30981c1b68846ccbc604aa8472a3c5ca49cf76cf55b.mp3",
+          "contentHash": "d05c604b6fe9027b58eec6d6d8b9ea2202b1983a74ef7a67aa7dd4fbca1d0943",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s28/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is Anna's scarf.",
+          "file": "525a6ab6a33109305a9e8cde362965fc348ee5b557dee39dc63a87d08ce279da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/525a6ab6a33109305a9e8cde362965fc348ee5b557dee39dc63a87d08ce279da.mp3",
+          "contentHash": "642bd677e24345daaa1a17bae2cd46c7c725adacecf59f723ec3ea8296cbfff6",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s28/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am serious.",
+          "file": "9e25774e496dc283d84f8cf75f76ad25e2964f8a4373bf6cb9ff92bd8a97b6cb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e25774e496dc283d84f8cf75f76ad25e2964f8a4373bf6cb9ff92bd8a97b6cb.mp3",
+          "contentHash": "c74ee8652eddb49a6f18aae730178e5ea2d9ddac1bc96e5829d6aad32831cc8f",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s28/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "keycard",
+          "file": "79d6799a50c5fdbac7c0ac5877bcd3a2f0809aa5674862f05306d6f109cf697e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/79d6799a50c5fdbac7c0ac5877bcd3a2f0809aa5674862f05306d6f109cf697e.mp3",
+          "contentHash": "8e5f3d00736307cc402a9067d71af06dba917f60ed1a029f2c599832dc4a2c73",
+          "byteSize": 31488
+        },
+        {
+          "text": "chairs",
+          "file": "a23215cdb58f87df718c51cb9d237949298d9c8ad6f6aca06f24bc36379bb44f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a23215cdb58f87df718c51cb9d237949298d9c8ad6f6aca06f24bc36379bb44f.mp3",
+          "contentHash": "734fa80afe936df928ed00330e2595a6c6a8bff772c680636bff084a97926ee1",
+          "byteSize": 21888
+        },
+        {
+          "text": "alley",
+          "file": "964429130e0eaabf814dfc525c594c3e0cf8b4258aa1202be83c6f86a4aa3bb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/964429130e0eaabf814dfc525c594c3e0cf8b4258aa1202be83c6f86a4aa3bb7.mp3",
+          "contentHash": "b943619998720d7f881c26395752dd9dacc846abe2c8af08ca785c1869a6fa81",
+          "byteSize": 14976
+        },
+        {
+          "text": "scarf",
+          "file": "6767544616be4095f2a61f23ad6cd052e182ba5b8f659c36079de4611595bca5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-nova.mp3",
+          "contentHash": "9f8974bee11b5ff0298e8c040db1c058777e55d0d1b2c24f3db8f8a502f26e39",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l05/s28/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Anna's scarf is on the chair.",
+          "file": "2cc594864dfd33f5c7dbd33ade519f2382ef30115840fe0b23e35fda5f464cc4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2cc594864dfd33f5c7dbd33ade519f2382ef30115840fe0b23e35fda5f464cc4.mp3",
+          "contentHash": "9c15ac059c3d1ea695e5219a0cf741b728bc4070298b122b4d55abd11300e41a",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s28/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The chairs are in the alley.",
+          "file": "13100ae40af895fc8f9503f5dd17b11b129d0a782d72c23ea5f898a3c6a67f29.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/13100ae40af895fc8f9503f5dd17b11b129d0a782d72c23ea5f898a3c6a67f29.mp3",
+          "contentHash": "96067b60521e824563ffc3588967af4381f6b5b8f09f54c2d7be6e35a346147c",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s28/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is my keycard?",
+          "file": "713b3d9db675a283bba9417ebadbf8cd10fe163ed915c8998022e287a45c529c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/713b3d9db675a283bba9417ebadbf8cd10fe163ed915c8998022e287a45c529c.mp3",
+          "contentHash": "e28b12e0f470df1dd8917ceeab6b1fb3321b086452df8abc52ce9c1d6bbd3ca8",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s28/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The keycard is hers.",
+          "file": "1474b517eceb7ea4c9b6d9c487af9a4d070ea178c9d568bfe55a4da91fcde2db.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1474b517eceb7ea4c9b6d9c487af9a4d070ea178c9d568bfe55a4da91fcde2db.mp3",
+          "contentHash": "931b63d59a5b9cf6d16ad8b5ac9b85f1211a45a939c69d443bdbbcdc295504c4",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s28/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Your keycard is on the table.",
+          "file": "4c0fc31b31598a07db189c8c1125227ff6bcb6f7ad220a58a71f4d1bab02f05d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4c0fc31b31598a07db189c8c1125227ff6bcb6f7ad220a58a71f4d1bab02f05d.mp3",
+          "contentHash": "de4fbce34acb3c9b677054a95cef3f9c18b1a25c4dbb2cb8b7ad5be25f596509",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l05/s28/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "keycard",
+          "file": "ff9ef8e3eb1fea5285bd141d77544011e0d871e4aa879b2b893e53a21f1a3bd3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ff9ef8e3eb1fea5285bd141d77544011e0d871e4aa879b2b893e53a21f1a3bd3.mp3",
+          "contentHash": "a5926a22a5a3657c6a8810cd86277abad9c1f98b0a97beef7327b679b2b900e2",
+          "byteSize": 24576
+        },
+        {
+          "text": "chairs",
+          "file": "9eb95e3186c760c1873278e785c7cc39ed74b2e5ac215ceab62bf80efad6c664.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9eb95e3186c760c1873278e785c7cc39ed74b2e5ac215ceab62bf80efad6c664.mp3",
+          "contentHash": "73e0f99596fff5df8c2b121d5d7f09dcc150690c9fbbd18396c43efa11cdb8d8",
+          "byteSize": 28416
+        },
+        {
+          "text": "alley",
+          "file": "4d59e6db0c8c8545c2201a40dec291f1adff69b68932a7003b3eed308d278527.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4d59e6db0c8c8545c2201a40dec291f1adff69b68932a7003b3eed308d278527.mp3",
+          "contentHash": "721373c13cb37b5fa04262fea1c377965e9bb78720792622dfd7ee12faacbc62",
+          "byteSize": 24192
+        },
+        {
+          "text": "scarf",
+          "file": "b842c8b4dd6a4d27704eae92af31eb309dbb4f01d4fdaa9124a5f6765ca9b4a4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-coral.mp3",
+          "contentHash": "385b751f491565fbc21f180e75973c0241c14e7249d2bce4d3b3fd8f2b11c9a7",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l05/s28/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Anna's keycard.",
+          "file": "1029ce14716f26203bbf80434fd1f8b4a963f1d533c19b1289771a799efa0d89.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1029ce14716f26203bbf80434fd1f8b4a963f1d533c19b1289771a799efa0d89.mp3",
+          "contentHash": "729e937f13b0c7656bc0e1c95c785b2f3528ac52d1ad6ddcdc25a9e458ad4048",
+          "byteSize": 43008
+        }
+      ]
     }
   },
   "settings": {

@@ -71371,6 +71371,309 @@
           "byteSize": 56448
         }
       ]
+    },
+    "l05/s12/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is my notebook.",
+          "file": "d5d990391dbad165a414e9e4c79d4d8a2f9f7b06d3e1cff9644b84a69f82494a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5d990391dbad165a414e9e4c79d4d8a2f9f7b06d3e1cff9644b84a69f82494a.mp3",
+          "contentHash": "41de72e573dd88c79e23dda319e745ea9dbd548a3fd000f5b8140717c15f1fd9",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l05/s12/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "His friend is helpful.",
+          "file": "5796e3802ee46921bc890a823b9448740490d7a015bfdafb67407d7d6766f42e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5796e3802ee46921bc890a823b9448740490d7a015bfdafb67407d7d6766f42e.mp3",
+          "contentHash": "1af7704ae65bf25b1f04d583686c841aae2873cb24cd00fd5e1f6cccd7039b44",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s12/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The music is loud.",
+          "file": "1df71552c046b220a75b7975410d5112b014db0a48d64ede910856b8aee0152b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1df71552c046b220a75b7975410d5112b014db0a48d64ede910856b8aee0152b.mp3",
+          "contentHash": "dd87feef6bbce12a3afdba4e57151c256948aae0e3638f380ce78d00f518ecdd",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s12/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Her friend is friendly.",
+          "file": "e80735f12dae5347d5ed567aca1317530e1d203505dfbd2d9bc8208b84dfe0fe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e80735f12dae5347d5ed567aca1317530e1d203505dfbd2d9bc8208b84dfe0fe.mp3",
+          "contentHash": "cc173494c98f29c3e7adf64ff6e6f97685fa583abf0412b5974fef7789e7331b",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s12/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "notebook",
+          "file": "a34993a6146bdcffbff4e5bf220d25ac4e6b7a6c487ca4779994c28e482e5e8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a34993a6146bdcffbff4e5bf220d25ac4e6b7a6c487ca4779994c28e482e5e8c.mp3",
+          "contentHash": "8a440e2a79aa31e4b32355a7a97bbedc6fc3b1d7cdcf7354fcfe11a26e6455c4",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l05/s12/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "notebook",
+          "file": "4d4ca26228532281cb16ffb484ed0b99d3f4ec37a9f422cfc01d0bd6fb4d0cce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4d4ca26228532281cb16ffb484ed0b99d3f4ec37a9f422cfc01d0bd6fb4d0cce.mp3",
+          "contentHash": "e3db0c786722a2d2be0e2688ca407dbc74f7cc7ae360039308e03d1cfe0bca9f",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l05/s12/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "notebook",
+          "file": "e50d24ea8e1511238d36626168f0a0460380212fde8c7a083e8fbc6021b684a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e50d24ea8e1511238d36626168f0a0460380212fde8c7a083e8fbc6021b684a6.mp3",
+          "contentHash": "4a073098ed6fffa133d8f437f4d265acaebeb89426c8a26d1ba7c2005a4ad793",
+          "byteSize": 36480
+        },
+        {
+          "text": "loud",
+          "file": "5e2dfd13dd97555c074d91050668ea3023e76cb51de63cdbc89d6bec32b4e240.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/db1a60bbff220d0910f01747-ash.mp3",
+          "contentHash": "2482aeff8155a3913e6b2d9612a90b178ccc3667d05da5bf698c753389eb6e25",
+          "byteSize": 35712
+        },
+        {
+          "text": "friendly",
+          "file": "52e18ade7fcdfbb94e2bd65367096918fa0d8912acde7792dd653901c66528de.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4c448a406dcdf064f7262820-ash.mp3",
+          "contentHash": "50864e81b92b79fada54f1bcb1347d32cd5943cc1efa1c1bb1f6c7a687bf0a22",
+          "byteSize": 40320
+        },
+        {
+          "text": "helpful",
+          "file": "c16b31e646f84beb339dbd02206df957001ffa595421ca7f609fab963c3eaea4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c16b31e646f84beb339dbd02206df957001ffa595421ca7f609fab963c3eaea4.mp3",
+          "contentHash": "1b01a64dc45505f045b7e5c3e15b4e85b18f6cdf4f55956981c3614545621b49",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s12/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is my notebook.",
+          "file": "8ee830b431dc442b74d618cdd0296db530f005dff375a9aae594969be749979c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ee830b431dc442b74d618cdd0296db530f005dff375a9aae594969be749979c.mp3",
+          "contentHash": "f77939d680900daedb365e32f450e3d3ae8b154b828fdd34ac16ea928c553418",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s12/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "His friend is helpful.",
+          "file": "5796e3802ee46921bc890a823b9448740490d7a015bfdafb67407d7d6766f42e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5796e3802ee46921bc890a823b9448740490d7a015bfdafb67407d7d6766f42e.mp3",
+          "contentHash": "1af7704ae65bf25b1f04d583686c841aae2873cb24cd00fd5e1f6cccd7039b44",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s12/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The music is loud.",
+          "file": "1df71552c046b220a75b7975410d5112b014db0a48d64ede910856b8aee0152b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1df71552c046b220a75b7975410d5112b014db0a48d64ede910856b8aee0152b.mp3",
+          "contentHash": "dd87feef6bbce12a3afdba4e57151c256948aae0e3638f380ce78d00f518ecdd",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s12/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is their notebook.",
+          "file": "6bcefad1b264474a672b2aa6ce9925efc9a4a1996e7ca836b923313c35f30c06.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6bcefad1b264474a672b2aa6ce9925efc9a4a1996e7ca836b923313c35f30c06.mp3",
+          "contentHash": "25353776b725e036514839443a69a256b65998f097b656076650c53bca386d44",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s12/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The notebook is on your table.",
+          "file": "2d462d05ef299bc2cce177d7593a5a854fe16a87ed13cd2fe1fad4a982363a0a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2d462d05ef299bc2cce177d7593a5a854fe16a87ed13cd2fe1fad4a982363a0a.mp3",
+          "contentHash": "501a15bf67778071195124e5933093f546b71ed6ed6cbc8279ddee1ab9b529ed",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s12/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "notebook",
+          "file": "e50d24ea8e1511238d36626168f0a0460380212fde8c7a083e8fbc6021b684a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e50d24ea8e1511238d36626168f0a0460380212fde8c7a083e8fbc6021b684a6.mp3",
+          "contentHash": "4a073098ed6fffa133d8f437f4d265acaebeb89426c8a26d1ba7c2005a4ad793",
+          "byteSize": 36480
+        },
+        {
+          "text": "table",
+          "file": "b5dd307e1c7f668a6462dfdbf9159a8e710a016090dddfbf83b45734554f5cfd.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0d4fc4a78d3706edccafb665-ash.mp3",
+          "contentHash": "9279e1999f21cc6dba5549c1a5af01e7105a092033a9d4d935a3078eb1d83ccc",
+          "byteSize": 30720
+        },
+        {
+          "text": "platform",
+          "file": "28a7e7622af2cb6d50fc601a0d00a5dd866cf180a5c46939909c7f974d7cb25b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28a7e7622af2cb6d50fc601a0d00a5dd866cf180a5c46939909c7f974d7cb25b.mp3",
+          "contentHash": "5168e67d8b2dd7b00bbe0fe0007ea1bdbb9d3aa1a398637ffe167391119a3de5",
+          "byteSize": 34944
+        },
+        {
+          "text": "curtain",
+          "file": "c413cef27e466d9011f78ea7d31dc757c70aefa72198db6c3013a5831032e411.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/05e884950dccb9aad0801f6e-ash.mp3",
+          "contentHash": "8fb0a9f2f6679d54518068aa9b19f07ef68a07647d7441c6250e9e3f372e30d6",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s12/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Our curtain is blue.",
+          "file": "6a4773eacaafd9494ebc7d8107530286e00d451fd6cc6a6690eb8cd581c1110d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a4773eacaafd9494ebc7d8107530286e00d451fd6cc6a6690eb8cd581c1110d.mp3",
+          "contentHash": "60792f6cd4a05707aad455874055a520a76fe97a6914ee32240211dcd00a5e2c",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s12/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Our platform is here.",
+          "file": "4c5e296b881c1047b603887da36383fda70f3209487207bc1b37c355eaaaa13e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4c5e296b881c1047b603887da36383fda70f3209487207bc1b37c355eaaaa13e.mp3",
+          "contentHash": "65aa1856efd561cc9ed1a6dc50c326af8a03344f88a1df83fe10458734ee7c81",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l05/s12/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I have your notebook.",
+          "file": "1fdb79cb5c0f3ea4425e21ea0e1c2f1e9a03341817e42d270e1804745ba51099.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1fdb79cb5c0f3ea4425e21ea0e1c2f1e9a03341817e42d270e1804745ba51099.mp3",
+          "contentHash": "8b43271535f17d366346caf2e0628a74ea3c010488941e7b9ac2a562fbb8c4c7",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s12/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Their table is white.",
+          "file": "61f4f2e0336727cc2b31e822c3f9b16e27eca74652c401e31644781a0754ced2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/61f4f2e0336727cc2b31e822c3f9b16e27eca74652c401e31644781a0754ced2.mp3",
+          "contentHash": "0d48dc3cd18acd45234ac7e624328a07a480ad045cc115f12d041cdb33f32e5b",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s12/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Her notebook is here.",
+          "file": "3e85bac60ae59be5c7b0e60b80a56246a1a6ea15a80c33561a252982c588edd3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3e85bac60ae59be5c7b0e60b80a56246a1a6ea15a80c33561a252982c588edd3.mp3",
+          "contentHash": "812274d272cc22d53f7bfa1cc4cdb54e982b5623d4c46f471ce26d979845128a",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s12/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "notebook",
+          "file": "4d4ca26228532281cb16ffb484ed0b99d3f4ec37a9f422cfc01d0bd6fb4d0cce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4d4ca26228532281cb16ffb484ed0b99d3f4ec37a9f422cfc01d0bd6fb4d0cce.mp3",
+          "contentHash": "e3db0c786722a2d2be0e2688ca407dbc74f7cc7ae360039308e03d1cfe0bca9f",
+          "byteSize": 24576
+        },
+        {
+          "text": "table",
+          "file": "d3ed0ed726d443cbbf7178e712d50f7151ea41ec98977d89a45998779b1bcebc.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0d4fc4a78d3706edccafb665-coral.mp3",
+          "contentHash": "ea5ba5d89b6f6fcf50d1d51992b7816c4adcc9fd8bef18aed60b55d5ff016323",
+          "byteSize": 24192
+        },
+        {
+          "text": "platform",
+          "file": "1f2dcfe8d4f68135b0579c7083e84dab3160852b1138efc4bdde2292c9b33679.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1f2dcfe8d4f68135b0579c7083e84dab3160852b1138efc4bdde2292c9b33679.mp3",
+          "contentHash": "2fdc76104dc5d800d643f4f9ccd732753d108c988b7994cc6a1a600123367fa9",
+          "byteSize": 26112
+        },
+        {
+          "text": "curtain",
+          "file": "57face8d331ba5b4b247b74ebd5c6456d3248582f75d4f402468377ba6e75ec1.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/05e884950dccb9aad0801f6e-coral.mp3",
+          "contentHash": "21e01ca22daaaa11ab54f7eeb7d147cf2c97a1aa185e4fc76d29af1e5f7f7226",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s12/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The notebook is on your table.",
+          "file": "c03f2c0667e24902e0cd8cf05567dcee0a67d196f38d3c90ffe78eecb16e736c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c03f2c0667e24902e0cd8cf05567dcee0a67d196f38d3c90ffe78eecb16e736c.mp3",
+          "contentHash": "b2db8fd3db57812bd29586b57029404cf36d1cb2e82846dd2dc18dedf525c1df",
+          "byteSize": 59520
+        }
+      ]
     }
   },
   "settings": {

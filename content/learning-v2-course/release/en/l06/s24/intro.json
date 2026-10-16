@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "собрать рассказ о привычках и работе другого человека",
+    "uk": "скласти розповідь про звички й роботу іншої людини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я и она",
+        "uk": "Я і вона"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим `drive` — «водить машину», `smile` — «улыбаться». `I drive to work` — «Я езжу на работу за рулём». `She drives to work` — «Она ездит на работу за рулём»: после `she` добавляем `s`. `Anna smiles a lot` — «Анна часто улыбается»: здесь имя соответствует `she`.",
+        "uk": "Повторимо `drive` — «водити машину», `smile` — «усміхатися». `I drive to work` — «Я їжджу на роботу за кермом». `She drives to work` — «Вона їздить на роботу за кермом»: після `she` додаємо `s`. `Anna smiles a lot` — «Анна часто усміхається»: тут ім’я відповідає `she`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она ездит на работу за рулём».",
+          "uk": "Скажіть «Вона їздить на роботу за кермом»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-24:intro1:r1",
+              "text": "She drives to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro1:r2",
+              "text": "She drive to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro1:r3",
+              "text": "She is drives to work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-24:intro1:r1",
+              "text": "She drives to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro1:r2",
+              "text": "She drive to work."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro1:r3",
+              "text": "She is drives to work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она ездит на работу за рулём».",
+          "uk": "Скажіть «Вона їздить на роботу за кермом»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Читает, пишет, рисует",
+        "uk": "Читає, пише, малює"
+      },
+      "bodyByLocale": {
+        "ru": "`read` — «читать», `write` — «писать», `draw` — «рисовать». `He reads at home` — «Он читает дома». `She writes here` — «Она пишет здесь». `They draw here` — «Они рисуют здесь»: после `they` окончания `s` нет. Книгу можно читать, а можно подложить под шаткий стол. Только первое — `read`.",
+        "uk": "`read` — «читати», `write` — «писати», `draw` — «малювати». `He reads at home` — «Він читає вдома». `She writes here` — «Вона пише тут». `They draw here` — «Вони малюють тут»: після `they` закінчення `s` немає. Книжку можна читати, а можна підкласти під хиткий стіл. Лише перше — `read`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Они рисуют здесь».",
+          "uk": "Скажіть «Вони малюють тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-24:intro2:r1",
+              "text": "They draw here."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro2:r2",
+              "text": "They draws here."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro2:r3",
+              "text": "They are draw here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-24:intro2:r1",
+              "text": "They draw here."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro2:r2",
+              "text": "They draws here."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro2:r3",
+              "text": "They are draw here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Они рисуют здесь».",
+          "uk": "Скажіть «Вони малюють тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Работа и завтрак",
+        "uk": "Робота й сніданок"
+      },
+      "bodyByLocale": {
+        "ru": "`teach` — «преподавать», `cook` — «готовить еду». `She teaches English` — «Она преподаёт английский»: `teach → teaches`, добавляем `es`. `He cooks at home` — «Он готовит дома». `yoghurt` — «йогурт». `The yoghurt is in the fridge` — «Йогурт в холодильнике».",
+        "uk": "`teach` — «викладати», `cook` — «готувати їжу». `She teaches English` — «Вона викладає англійську»: `teach → teaches`, додаємо `es`. `He cooks at home` — «Він готує вдома». `yoghurt` — «йогурт». `The yoghurt is in the fridge` — «Йогурт у холодильнику»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она преподаёт английский».",
+          "uk": "Скажіть «Вона викладає англійську»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-24:intro3:r1",
+              "text": "She teaches English."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro3:r2",
+              "text": "She teach English."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro3:r3",
+              "text": "She is teaches English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-24:intro3:r1",
+              "text": "She teaches English."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro3:r2",
+              "text": "She teach English."
+            },
+            {
+              "responseId": "en:lesson-06:session-24:intro3:r3",
+              "text": "She is teaches English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она преподаёт английский».",
+          "uk": "Скажіть «Вона викладає англійську»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bf4b1a2865ed5d09480a425b89a7feb03bb5a6b239b697b5a0896ce5a09a76dc"
+}

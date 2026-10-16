@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-24:intro1:r2": {
+          "ru": "После `she` — `drives`, с `s`.",
+          "uk": "Після `she` — `drives`, з `s`."
+        },
+        "en:lesson-06:session-24:intro1:r3": {
+          "ru": "Говорим `She drives`, без `is`.",
+          "uk": "Кажемо `She drives`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-24:intro2:r2": {
+          "ru": "После `they` — `draw`, без `s`.",
+          "uk": "Після `they` — `draw`, без `s`."
+        },
+        "en:lesson-06:session-24:intro2:r3": {
+          "ru": "Говорим `They draw`, без `are`.",
+          "uk": "Кажемо `They draw`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-24:intro3:r2": {
+          "ru": "После `she` — `teaches`.",
+          "uk": "Після `she` — `teaches`."
+        },
+        "en:lesson-06:session-24:intro3:r3": {
+          "ru": "Говорим `She teaches`, без `is`.",
+          "uk": "Кажемо `She teaches`, без `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "283f682684c136e807f221ac10450e76b92b5e51248aa642b5ac64337465656d"
+}

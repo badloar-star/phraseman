@@ -1,0 +1,959 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-24:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Она ездит на работу за рулём»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она ездит на работу за рулём»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She drives to work.",
+        "localizedMeaning": {
+          "ru": "Скажите «Она ездит на работу за рулём»",
+          "uk": "Скажіть «Вона їздить на роботу за кермом»"
+        },
+        "orderedTokens": [
+          "She",
+          "drives",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-24:i02:r1",
+          "text": "write"
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i02:r2",
+          "text": "read"
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i02:r3",
+          "text": "draw"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i02:audio",
+          "transcript": "write"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-24:i02:r1",
+            "targetText": "write",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i02:r2",
+            "targetText": "read",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i02:r3",
+            "targetText": "draw",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `write`, а в этом варианте — `read`.",
+              "uk": "У записі перше слово — `write`, а в цьому варіанті — `read`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `write`, а в этом варианте — `draw`.",
+              "uk": "У записі перше слово — `write`, а в цьому варіанті — `draw`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Анна часто улыбается»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-24:i03:r1",
+          "text": "smiles"
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i03:r2",
+          "text": "smile"
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i03:r3",
+          "text": "is smiles"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Анна часто улыбается»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна часто улыбается»",
+          "uk": "Скажіть «Анна часто усміхається»"
+        },
+        "gappedTargetPhrase": "Anna ___ a lot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-24:i03:r1",
+            "text": "smiles"
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i03:r2",
+            "text": "smile"
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i03:r3",
+            "text": "is smiles"
+          }
+        ],
+        "testedDimension": "Скажите «Анна часто улыбается»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Анна часто улыбается»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna smiles`, с `s`.",
+              "uk": "Анна — вона: `Anna smiles`, з `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Анна часто улыбается»",
+            "feedbackByLocale": {
+              "ru": "Говорим `Anna smiles`, без `is`.",
+              "uk": "Кажемо `Anna smiles`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-24:i04:p1",
+            "target": "drive",
+            "meaningByLocale": {
+              "ru": "водить машину",
+              "uk": "водити машину"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i04:p2",
+            "target": "smile",
+            "meaningByLocale": {
+              "ru": "улыбаться",
+              "uk": "усміхатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i04:p3",
+            "target": "draw",
+            "meaningByLocale": {
+              "ru": "рисовать",
+              "uk": "малювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i04:p4",
+            "target": "cook",
+            "meaningByLocale": {
+              "ru": "готовить еду",
+              "uk": "готувати їжу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drive",
+          "smile",
+          "draw",
+          "cook"
+        ],
+        "rightColumn": [
+          "водить машину",
+          "улыбаться",
+          "рисовать",
+          "готовить еду"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i05:audio",
+          "transcript": "He reads at home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He reads at home.",
+        "orderedTokens": [
+          "He",
+          "reads",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Она пишет здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она пишет здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She writes here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Она пишет здесь»",
+          "uk": "Скажіть «Вона пише тут»"
+        },
+        "orderedTokens": [
+          "She",
+          "writes",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Он готовит дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Он готовит дома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i07:audio",
+          "transcript": "He cooks at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He cooks at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они рисуют здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-24:i08:r1",
+          "text": "draw"
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i08:r2",
+          "text": "draws"
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i08:r3",
+          "text": "are draw"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они рисуют здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они рисуют здесь»",
+          "uk": "Скажіть «Вони малюють тут»"
+        },
+        "gappedTargetPhrase": "They ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-24:i08:r1",
+            "text": "draw"
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i08:r2",
+            "text": "draws"
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i08:r3",
+            "text": "are draw"
+          }
+        ],
+        "testedDimension": "Скажите «Они рисуют здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они рисуют здесь»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `draw`, без `s`.",
+              "uk": "Після `they` — `draw`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они рисуют здесь»",
+            "feedbackByLocale": {
+              "ru": "Говорим `They draw`, без `are`.",
+              "uk": "Кажемо `They draw`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что Том говорит о йогурте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-24:i09:r1",
+          "text": "The yoghurt is cold."
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i09:r2",
+          "text": "The yoghurt is warm."
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i09:r3",
+          "text": "The yoghurt is fresh."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что Том говорит о йогурте",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i09:audio",
+          "transcript": "The yoghurt is cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-24:i09:r1",
+            "targetText": "The yoghurt is cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i09:r2",
+            "targetText": "The yoghurt is warm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i09:r3",
+            "targetText": "The yoghurt is fresh.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что Том говорит о йогурте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cold`, а в этом варианте — `warm`.",
+              "uk": "У записі останнє слово — `cold`, а в цьому варіанті — `warm`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что Том говорит о йогурте",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cold`, а в этом варианте — `fresh`.",
+              "uk": "У записі останнє слово — `cold`, а в цьому варіанті — `fresh`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-24:i10:p1",
+            "target": "write",
+            "meaningByLocale": {
+              "ru": "писать",
+              "uk": "писати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i10:p2",
+            "target": "read",
+            "meaningByLocale": {
+              "ru": "читать",
+              "uk": "читати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i10:p3",
+            "target": "teach",
+            "meaningByLocale": {
+              "ru": "преподавать",
+              "uk": "викладати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i10:p4",
+            "target": "yoghurt",
+            "meaningByLocale": {
+              "ru": "йогурт",
+              "uk": "йогурт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "write",
+          "read",
+          "teach",
+          "yoghurt"
+        ],
+        "rightColumn": [
+          "писать",
+          "читать",
+          "преподавать",
+          "йогурт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i11:audio",
+          "transcript": "The yoghurt is in the fridge."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The yoghurt is in the fridge.",
+        "orderedTokens": [
+          "The",
+          "yoghurt",
+          "is",
+          "in",
+          "the",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The yoghurt is in the fridge.`",
+              "uk": "тут потрібно `is` — `The yoghurt is in the fridge.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На столе лежит тетрадь. Спросите «Чья это тетрадь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столе лежит тетрадь. Спросите «Чья это тетрадь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose notebook is this?",
+        "localizedMeaning": {
+          "ru": "На столе лежит тетрадь. Спросите «Чья это тетрадь?»",
+          "uk": "На столі лежить зошит. Запитайте «Чий це зошит?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "notebook",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Я езжу на работу за рулём»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Я езжу на работу за рулём»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i13:audio",
+          "transcript": "I drive to work."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I drive to work.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она преподаёт английский»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-24:i14:r1",
+          "text": "teaches"
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i14:r2",
+          "text": "teach"
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i14:r3",
+          "text": "is teaches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она преподаёт английский»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она преподаёт английский»",
+          "uk": "Скажіть «Вона викладає англійську»"
+        },
+        "gappedTargetPhrase": "She ___ English.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-24:i14:r1",
+            "text": "teaches"
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i14:r2",
+            "text": "teach"
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i14:r3",
+            "text": "is teaches"
+          }
+        ],
+        "testedDimension": "Скажите «Она преподаёт английский»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она преподаёт английский»",
+            "feedbackByLocale": {
+              "ru": "После `she` — `teaches`, с `es`.",
+              "uk": "Після `she` — `teaches`, з `es`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она преподаёт английский»",
+            "feedbackByLocale": {
+              "ru": "Говорим `She teaches`, без `is`.",
+              "uk": "Кажемо `She teaches`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кто готовит дома",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-24:i15:r1",
+          "text": "They cook at home."
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i15:r2",
+          "text": "We cook at home."
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i15:r3",
+          "text": "You cook at home."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто готовит дома",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i15:audio",
+          "transcript": "They cook at home."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-24:i15:r1",
+            "targetText": "They cook at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i15:r2",
+            "targetText": "We cook at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i15:r3",
+            "targetText": "You cook at home.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кто готовит дома",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кто готовит дома",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
+              "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-24:i16:p1",
+            "target": "smile",
+            "meaningByLocale": {
+              "ru": "улыбаться",
+              "uk": "усміхатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i16:p2",
+            "target": "draw",
+            "meaningByLocale": {
+              "ru": "рисовать",
+              "uk": "малювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i16:p3",
+            "target": "write",
+            "meaningByLocale": {
+              "ru": "писать",
+              "uk": "писати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i16:p4",
+            "target": "teach",
+            "meaningByLocale": {
+              "ru": "преподавать",
+              "uk": "викладати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "smile",
+          "draw",
+          "write",
+          "teach"
+        ],
+        "rightColumn": [
+          "улыбаться",
+          "рисовать",
+          "писать",
+          "преподавать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Новый коллега спрашивает, что преподаёт Анна. Скажите «Она преподаёт английский»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Новый коллега спрашивает, что преподаёт Анна. Скажите «Она преподаёт английский»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i17:audio",
+          "transcript": "She teaches English."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She teaches English.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "53c5e5a21a30e86ed3d2368381aaa1f5602c1147735900465d44f1c5c4016e4c"
+}

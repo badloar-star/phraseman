@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить просьбы Can you…? со словом hold",
+    "uk": "закріпити прохання Can you…? зі словом hold"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нужно завязать шнурок",
+        "uk": "Треба зав’язати шнурок"
+      },
+      "bodyByLocale": {
+        "ru": "Вы держите коробку и замечаете развязанный шнурок. Друг рядом. `Hold` — «держать». `Can you hold this?` — «Можешь это подержать?» Вы показываете на коробку: `this` значит «это». После `Can you` нужно `hold this`, без `to`. Коробка подождёт, а шнурок уже пытается попасть под ногу.",
+        "uk": "Ви тримаєте коробку й помічаєте розв’язаний шнурок. Друг поруч. `Hold` — «тримати». `Can you hold this?` — «Можеш це потримати?» Ви показуєте на коробку: `this` означає «це». Після `Can you` потрібне `hold this`, без `to`. Коробка зачекає, а шнурок уже намагається потрапити під ногу."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Попросите друга подержать коробку.",
+          "uk": "Попросіть друга потримати коробку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-20:intro1:r1",
+              "text": "Can you hold this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro1:r2",
+              "text": "Can you to hold this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro1:r3",
+              "text": "You can hold this."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-20:intro1:r1",
+              "text": "Can you hold this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro1:r2",
+              "text": "Can you to hold this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro1:r3",
+              "text": "You can hold this."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга подержать коробку.",
+          "uk": "Попросіть друга потримати коробку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Коробка перед дверью",
+        "uk": "Коробка перед дверима"
+      },
+      "bodyByLocale": {
+        "ru": "Вы снова несёте коробку. Дверь закрыта, а друг стоит возле ручки. `Can you open the door?` — «Можешь открыть дверь?» Начните с `Can you`, затем добавьте `open the door`.",
+        "uk": "Ви знову несете коробку. Двері зачинені, а друг стоїть біля ручки. `Can you open the door?` — «Можеш відчинити двері?» Почніть із `Can you`, потім додайте `open the door`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Попросите друга открыть дверь.",
+          "uk": "Попросіть друга відчинити двері."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-20:intro2:r1",
+              "text": "Can you open the door?"
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro2:r2",
+              "text": "Can you opens the door?"
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro2:r3",
+              "text": "Can you to open the door?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-20:intro2:r1",
+              "text": "Can you open the door?"
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro2:r2",
+              "text": "Can you opens the door?"
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro2:r3",
+              "text": "Can you to open the door?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга открыть дверь.",
+          "uk": "Попросіть друга відчинити двері."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шарф своими руками",
+        "uk": "Шарф власноруч"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает вам связать шарф. Вы пока не научились вязать. `I can’t knit` — «Я не умею вязать». После `can’t` нужно `knit`, без `to`.",
+        "uk": "Друг пропонує вам зв’язати шарф. Ви поки не навчилися в’язати. `I can’t knit` — «Я не вмію в’язати». Після `can’t` потрібне `knit`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что пока не умеете вязать.",
+          "uk": "Скажіть другові, що поки не вмієте в’язати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-20:intro3:r1",
+              "text": "I can’t knit."
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro3:r2",
+              "text": "I can knit."
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro3:r3",
+              "text": "I can’t to knit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-20:intro3:r1",
+              "text": "I can’t knit."
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro3:r2",
+              "text": "I can knit."
+            },
+            {
+              "responseId": "en:lesson-08:session-20:intro3:r3",
+              "text": "I can’t to knit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что пока не умеете вязать.",
+          "uk": "Скажіть другові, що поки не вмієте в’язати."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "702de4a812bdc61dab30d47865955862f883d0686b8f5fadaf6bfc41599cc19d"
+}

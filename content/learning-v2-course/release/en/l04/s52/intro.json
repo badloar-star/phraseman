@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "назвать детский сад, спросить о нём и сообщить, чего нет",
+    "uk": "назвати дитячий садок, запитати про нього й повідомити, чого немає"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сад без грядок",
+        "uk": "Садок без грядок"
+      },
+      "bodyByLocale": {
+        "ru": "`nursery` здесь — «детский сад»: место, куда днём приводят маленьких детей. `This is a nursery` — «Это детский сад». В русском названии есть сад, но сажать там детей в землю никто не собирается. Перед одним таким местом ставим `a`: `a nursery`.",
+        "uk": "`nursery` тут — «дитячий садок»: місце, куди вдень приводять маленьких дітей. `This is a nursery` — «Це дитячий садок». В українській назві є садок, але садити там дітей у землю ніхто не збирається. Перед одним таким місцем ставимо `a`: `a nursery`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Покажите один детский сад.",
+          "uk": "Покажіть один дитячий садок."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-52:intro1:r1",
+              "text": "This is a nursery."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro1:r2",
+              "text": "This is nursery."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro1:r3",
+              "text": "These are nurseries."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-52:intro1:r1",
+              "text": "This is a nursery."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro1:r2",
+              "text": "This is nursery."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro1:r3",
+              "text": "These are nurseries."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите один детский сад.",
+          "uk": "Покажіть один дитячий садок."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Есть ли и чего нет",
+        "uk": "Чи є і чого немає"
+      },
+      "bodyByLocale": {
+        "ru": "`Is there a nursery?` — «Есть ли детский сад?» Если его нет: `There isn’t a nursery`. `freezer` — «морозильник». `There isn’t a freezer` — «Морозильника нет». Для нескольких предметов: `There aren’t any freezers` — «Нет ни одного морозильника».",
+        "uk": "`Is there a nursery?` — «Чи є дитячий садок?» Якщо його немає: `There isn’t a nursery`. `freezer` — «морозильник». `There isn’t a freezer` — «Морозильника немає». Для кількох предметів: `There aren’t any freezers` — «Немає жодного морозильника»."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "В кухне сада нет морозильника. Сообщите об этом.",
+          "uk": "На кухні садка немає морозильника. Повідомте про це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-52:intro2:r1",
+              "text": "There isn't a freezer."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro2:r2",
+              "text": "There aren't a freezer."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro2:r3",
+              "text": "There is a freezer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-52:intro2:r1",
+              "text": "There isn't a freezer."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro2:r2",
+              "text": "There aren't a freezer."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro2:r3",
+              "text": "There is a freezer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В кухне сада нет морозильника. Сообщите об этом.",
+          "uk": "На кухні садка немає морозильника. Повідомте про це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дорога и справедливость",
+        "uk": "Дорога і справедливість"
+      },
+      "bodyByLocale": {
+        "ru": "`stations` — «станции»: `The stations are next to the park` — «Станции рядом с парком». `fair` — «справедливый». Места в саду распределили по одинаковым для всех правилам: `It is fair`, короче `It’s fair` — «Это справедливо». Здесь `fair` описывает решение, а не расстояние до сада.",
+        "uk": "`stations` — «станції»: `The stations are next to the park` — «Станції поруч із парком». `fair` — «справедливий». Місця в садку розподілили за однаковими для всіх правилами: `It is fair`, коротше `It’s fair` — «Це справедливо». Тут `fair` описує рішення, а не відстань до садка."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы считаете решение справедливым. Скажите это с сокращением.",
+          "uk": "Ви вважаєте рішення справедливим. Скажіть це зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-52:intro3:r1",
+              "text": "It's fair."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro3:r2",
+              "text": "It's unfair."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro3:r3",
+              "text": "It are fair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-52:intro3:r1",
+              "text": "It's fair."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro3:r2",
+              "text": "It's unfair."
+            },
+            {
+              "responseId": "en:lesson-04:session-52:intro3:r3",
+              "text": "It are fair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы считаете решение справедливым. Скажите это с сокращением.",
+          "uk": "Ви вважаєте рішення справедливим. Скажіть це зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f921abadf367669f4d9db3b08d55878d82f881397d49d6029506f23a2cde0395"
+}

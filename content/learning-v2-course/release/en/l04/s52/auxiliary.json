@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-52:intro1:r2": {
+          "ru": "Нужно `a nursery`: один детский сад.",
+          "uk": "Потрібне `a nursery`: один дитячий садок."
+        },
+        "en:lesson-04:session-52:intro1:r3": {
+          "ru": "Здесь один сад: `This is a nursery`.",
+          "uk": "Тут один садок: `This is a nursery`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-52:intro2:r2": {
+          "ru": "Один морозильник: `isn’t a freezer`.",
+          "uk": "Один морозильник: `isn’t a freezer`."
+        },
+        "en:lesson-04:session-52:intro2:r3": {
+          "ru": "Так вы скажете, что он есть; здесь `isn’t`.",
+          "uk": "Так ви скажете, що він є; тут `isn’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-52:intro3:r2": {
+          "ru": "`unfair` — несправедливо; здесь `fair`.",
+          "uk": "`unfair` — несправедливо; тут `fair`."
+        },
+        "en:lesson-04:session-52:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d9b85a506e7997b3e09b9eff17e15d48963644bfa5ad46618c22ea9f7d25fa6d"
+}

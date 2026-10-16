@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "назвать оставшуюся еду, сообщить о её наличии и оценить приемлемость варианта",
+    "uk": "назвати їжу, що залишилася, повідомити про її наявність і оцінити прийнятність варіанта"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Еда осталась",
+        "uk": "Їжа залишилася"
+      },
+      "bodyByLocale": {
+        "ru": "`leftover` — «остаток еды». Когда говорят об оставшейся после еды порции или нескольких продуктах вместе, обычно используют множественное число `leftovers` — «остатки еды». `There are some leftovers` — «Осталась еда». С `leftovers` нужно `are`. Ужин закончился, а еда решила остаться на второй сезон.",
+        "uk": "`leftover` — «залишок їжі». Коли говорять про порцію чи кілька продуктів, що залишилися після їжі, зазвичай використовують множину `leftovers` — «залишки їжі». `There are some leftovers` — «Залишилася їжа». З `leftovers` потрібне `are`. Вечеря закінчилася, а їжа вирішила залишитися на другий сезон."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите, что осталась еда, используя leftovers.",
+          "uk": "Повідомте, що залишилася їжа, використовуючи leftovers."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-47:intro1:r1",
+              "text": "There are some leftovers."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro1:r2",
+              "text": "There is some leftovers."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro1:r3",
+              "text": "There aren’t any leftovers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-47:intro1:r1",
+              "text": "There are some leftovers."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro1:r2",
+              "text": "There is some leftovers."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro1:r3",
+              "text": "There aren’t any leftovers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите, что осталась еда, используя leftovers.",
+          "uk": "Повідомте, що залишилася їжа, використовуючи leftovers."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что рядом",
+        "uk": "Що поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`restaurants` — «рестораны», `boiler` — «отопительный котёл». `The restaurants are next to the hotel` — «Рестораны рядом с отелем». `Is there a boiler?` — «Есть отопительный котёл?» `There isn’t a boiler` — «Отопительного котла нет». Несколько ресторанов — `are`, один котёл — `is`.",
+        "uk": "`restaurants` — «ресторани», `boiler` — «опалювальний котел». `The restaurants are next to the hotel` — «Ресторани поруч із готелем». `Is there a boiler?` — «Є опалювальний котел?» `There isn’t a boiler` — «Опалювального котла немає». Кілька ресторанів — `are`, один котел — `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Рестораны рядом с отелем. Выберите описание.",
+          "uk": "Ресторани поруч із готелем. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-47:intro2:r1",
+              "text": "The restaurants are next to the hotel."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro2:r2",
+              "text": "The restaurants is next to the hotel."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro2:r3",
+              "text": "The restaurants are in the hotel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-47:intro2:r1",
+              "text": "The restaurants are next to the hotel."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro2:r2",
+              "text": "The restaurants is next to the hotel."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro2:r3",
+              "text": "The restaurants are in the hotel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Рестораны рядом с отелем. Выберите описание.",
+          "uk": "Ресторани поруч із готелем. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Можно принять",
+        "uk": "Можна прийняти"
+      },
+      "bodyByLocale": {
+        "ru": "`acceptable` — «приемлемый»: вариант удовлетворяет требованиям, его можно принять, даже если он не идеален. `It is acceptable` — «Это приемлемо», короче `It’s acceptable`. Например, вы обсуждаете время встречи: предложенное время вас устраивает.",
+        "uk": "`acceptable` — «прийнятний»: варіант відповідає вимогам, його можна прийняти, навіть якщо він не ідеальний. `It is acceptable` — «Це прийнятно», коротше `It’s acceptable`. Наприклад, ви обговорюєте час зустрічі: запропонований час вас влаштовує."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Предложенное время встречи вас устраивает. Скажите «Это приемлемо» с сокращением.",
+          "uk": "Запропонований час зустрічі вас влаштовує. Скажіть «Це прийнятно» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-47:intro3:r1",
+              "text": "It's acceptable."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro3:r2",
+              "text": "It's unacceptable."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro3:r3",
+              "text": "It are acceptable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-47:intro3:r1",
+              "text": "It's acceptable."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro3:r2",
+              "text": "It's unacceptable."
+            },
+            {
+              "responseId": "en:lesson-04:session-47:intro3:r3",
+              "text": "It are acceptable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Предложенное время встречи вас устраивает. Скажите «Это приемлемо» с сокращением.",
+          "uk": "Запропонований час зустрічі вас влаштовує. Скажіть «Це прийнятно» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "df2f811659c6c0b1351a64f6c4196c01b7e3c0e11457455ced01fbce06188a5b"
+}

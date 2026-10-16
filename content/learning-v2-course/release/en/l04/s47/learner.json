@@ -1,0 +1,998 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вариант вас устраивает. Скажите «Это приемлемо» без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вариант вас устраивает. Скажите «Это приемлемо» без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is acceptable.",
+        "localizedMeaning": {
+          "ru": "Вариант вас устраивает. Скажите «Это приемлемо» без сокращения",
+          "uk": "Варіант вас влаштовує. Скажіть «Це прийнятно» без скорочення"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "acceptable"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-47:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Вариант вас устраивает. Скажите «Это приемлемо» без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is acceptable.`",
+              "uk": "тут потрібно `is` — `It is acceptable.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-47:i02:r1",
+          "text": "leftover"
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i02:r2",
+          "text": "leftovers"
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i02:r3",
+          "text": "boiler"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-47:i02:audio",
+          "transcript": "leftover"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-47:i02:r1",
+            "targetText": "leftover",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i02:r2",
+            "targetText": "leftovers",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i02:r3",
+            "targetText": "boiler",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `leftover`, а в этом варианте — `leftovers`.",
+              "uk": "У записі перше слово — `leftover`, а в цьому варіанті — `leftovers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `leftover`, а в этом варианте — `boiler`.",
+              "uk": "У записі перше слово — `leftover`, а в цьому варіанті — `boiler`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите словарную форму существительного «остаток еды»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-47:i03:r1",
+          "text": "leftover"
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i03:r2",
+          "text": "pantry"
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i03:r3",
+          "text": "freezer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите словарную форму существительного «остаток еды»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите словарную форму существительного «остаток еды»",
+          "uk": "Виберіть словникову форму іменника «залишок їжі»"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i03:r1",
+            "text": "leftover"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i03:r2",
+            "text": "pantry"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i03:r3",
+            "text": "freezer"
+          }
+        ],
+        "testedDimension": "Выберите словарную форму существительного «остаток еды»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите словарную форму существительного «остаток еды»",
+            "feedbackByLocale": {
+              "ru": "`pantry` — кладовая; остаток еды — `leftover`.",
+              "uk": "`pantry` — комора; залишок їжі — `leftover`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите словарную форму существительного «остаток еды»",
+            "feedbackByLocale": {
+              "ru": "`freezer` — морозильник; остаток еды — `leftover`.",
+              "uk": "`freezer` — морозильник; залишок їжі — `leftover`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-47:i04:p1",
+            "target": "leftover",
+            "meaningByLocale": {
+              "ru": "остаток еды",
+              "uk": "залишок їжі"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-47:i04:p2",
+            "target": "acceptable",
+            "meaningByLocale": {
+              "ru": "приемлемый",
+              "uk": "прийнятний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-47:i04:p3",
+            "target": "restaurants",
+            "meaningByLocale": {
+              "ru": "рестораны",
+              "uk": "ресторани"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-47:i04:p4",
+            "target": "boiler",
+            "meaningByLocale": {
+              "ru": "отопительный котёл",
+              "uk": "опалювальний котел"
+            }
+          }
+        ],
+        "leftColumn": [
+          "leftover",
+          "acceptable",
+          "restaurants",
+          "boiler"
+        ],
+        "rightColumn": [
+          "остаток еды",
+          "приемлемый",
+          "рестораны",
+          "отопительный котёл"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-47:i05:audio",
+          "transcript": "There are some leftovers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There are some leftovers.",
+        "orderedTokens": [
+          "There",
+          "are",
+          "some",
+          "leftovers"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-47:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `There are some leftovers.`",
+              "uk": "тут потрібно `are` — `There are some leftovers.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Рестораны рядом с отелем. Скажите, где они",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рестораны рядом с отелем. Скажите, где они",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The restaurants are next to the hotel.",
+        "localizedMeaning": {
+          "ru": "Рестораны рядом с отелем. Скажите, где они",
+          "uk": "Ресторани поруч із готелем. Скажіть, де вони"
+        },
+        "orderedTokens": [
+          "The",
+          "restaurants",
+          "are",
+          "next",
+          "to",
+          "the",
+          "hotel"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-47:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Рестораны рядом с отелем. Скажите, где они",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The restaurants are next to the hotel.`",
+              "uk": "тут потрібно `are` — `The restaurants are next to the hotel.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Время встречи вас устраивает. Скажите «Это приемлемо» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-47:i07:audio"
+      ],
+      "accessibilityLabel": "Время встречи вас устраивает. Скажите «Это приемлемо» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-47:i07:audio",
+          "transcript": "It's acceptable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's acceptable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "После ужина еды не осталось. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-47:i08:r1",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i08:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i08:r3",
+          "text": "isn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "После ужина еды не осталось. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После ужина еды не осталось. Выберите форму",
+          "uk": "Після вечері їжі не залишилося. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ any leftovers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i08:r1",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i08:r3",
+            "text": "isn't"
+          }
+        ],
+        "testedDimension": "После ужина еды не осталось. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "После ужина еды не осталось. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Здесь отсутствие: `There aren’t any leftovers`.",
+              "uk": "Тут відсутність: `There aren’t any leftovers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "После ужина еды не осталось. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "С leftovers нужно `aren’t`: множественное число.",
+              "uk": "З leftovers потрібне `aren’t`: множина."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где котёл",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-47:i09:r1",
+          "text": "The boiler is in the kitchen."
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i09:r2",
+          "text": "The boiler is in the office."
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i09:r3",
+          "text": "The boiler is in the bathroom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где котёл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-47:i09:audio",
+          "transcript": "The boiler is in the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-47:i09:r1",
+            "targetText": "The boiler is in the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i09:r2",
+            "targetText": "The boiler is in the office.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i09:r3",
+            "targetText": "The boiler is in the bathroom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где котёл",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `kitchen`, а в этом варианте — `office`.",
+              "uk": "У записі останнє слово — `kitchen`, а в цьому варіанті — `office`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где котёл",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `kitchen`, а в этом варианте — `bathroom`.",
+              "uk": "У записі останнє слово — `kitchen`, а в цьому варіанті — `bathroom`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-47:i10:p1",
+            "target": "leftovers",
+            "meaningByLocale": {
+              "ru": "остатки еды",
+              "uk": "залишки їжі"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-47:i10:p2",
+            "target": "acceptable",
+            "meaningByLocale": {
+              "ru": "приемлемый",
+              "uk": "прийнятний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-47:i10:p3",
+            "target": "restaurants",
+            "meaningByLocale": {
+              "ru": "рестораны",
+              "uk": "ресторани"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-47:i10:p4",
+            "target": "boiler",
+            "meaningByLocale": {
+              "ru": "отопительный котёл",
+              "uk": "опалювальний котел"
+            }
+          }
+        ],
+        "leftColumn": [
+          "leftovers",
+          "acceptable",
+          "restaurants",
+          "boiler"
+        ],
+        "rightColumn": [
+          "остатки еды",
+          "приемлемый",
+          "рестораны",
+          "отопительный котёл"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-47:i11:audio",
+          "transcript": "Are there any leftovers?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are there any leftovers?",
+        "orderedTokens": [
+          "Are",
+          "there",
+          "any",
+          "leftovers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Остатки еды на кухне. Скажите, где они",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Остатки еды на кухне. Скажите, где они",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The leftovers are in the kitchen.",
+        "localizedMeaning": {
+          "ru": "Остатки еды на кухне. Скажите, где они",
+          "uk": "Залишки їжі на кухні. Скажіть, де вони"
+        },
+        "orderedTokens": [
+          "The",
+          "leftovers",
+          "are",
+          "in",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-47:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Остатки еды на кухне. Скажите, где они",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The leftovers are in the kitchen.`",
+              "uk": "тут потрібно `are` — `The leftovers are in the kitchen.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы осматриваете дом. Спросите, есть ли отопительный котёл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-47:i13:audio"
+      ],
+      "accessibilityLabel": "Вы осматриваете дом. Спросите, есть ли отопительный котёл",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-47:i13:audio",
+          "transcript": "Is there a boiler?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a boiler?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Оставшаяся еда на поверхности стола, не внутри и не под ним. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-47:i14:r1",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i14:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i14:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Оставшаяся еда на поверхности стола, не внутри и не под ним. Выберите слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Оставшаяся еда на поверхности стола, не внутри и не под ним. Выберите слово",
+          "uk": "Їжа, що залишилася, на поверхні столу, не всередині й не під ним. Виберіть слово"
+        },
+        "gappedTargetPhrase": "The leftovers are ___ the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-47:i14:r1",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i14:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i14:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Оставшаяся еда на поверхности стола, не внутри и не под ним. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-47:i14:r2",
+            "correct": false,
+            "testedDimension": "Оставшаяся еда на поверхности стола, не внутри и не под ним. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`in` — внутри; на поверхности — `on`.",
+              "uk": "`in` — усередині; на поверхні — `on`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i14:r3",
+            "correct": false,
+            "testedDimension": "Оставшаяся еда на поверхности стола, не внутри и не под ним. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "`under` — под; на поверхности — `on`.",
+              "uk": "`under` — під; на поверхні — `on`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что здесь есть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-47:i15:r1",
+          "text": "There are some restaurants."
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i15:r2",
+          "text": "There are some hotels."
+        },
+        {
+          "responseId": "en:lesson-04:session-47:i15:r3",
+          "text": "There are some shops."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что здесь есть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-47:i15:audio",
+          "transcript": "There are some restaurants."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-47:i15:r1",
+            "targetText": "There are some restaurants.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i15:r2",
+            "targetText": "There are some hotels.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i15:r3",
+            "targetText": "There are some shops.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-47:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что здесь есть",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `restaurants`, а в этом варианте — `hotels`.",
+              "uk": "У записі останнє слово — `restaurants`, а в цьому варіанті — `hotels`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-47:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что здесь есть",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `restaurants`, а в этом варианте — `shops`.",
+              "uk": "У записі останнє слово — `restaurants`, а в цьому варіанті — `shops`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-47:i16:p1",
+            "target": "leftovers",
+            "meaningByLocale": {
+              "ru": "остатки еды",
+              "uk": "залишки їжі"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-47:i16:p2",
+            "target": "acceptable",
+            "meaningByLocale": {
+              "ru": "приемлемый",
+              "uk": "прийнятний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-47:i16:p3",
+            "target": "restaurants",
+            "meaningByLocale": {
+              "ru": "рестораны",
+              "uk": "ресторани"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-47:i16:p4",
+            "target": "boiler",
+            "meaningByLocale": {
+              "ru": "отопительный котёл",
+              "uk": "опалювальний котел"
+            }
+          }
+        ],
+        "leftColumn": [
+          "leftovers",
+          "acceptable",
+          "restaurants",
+          "boiler"
+        ],
+        "rightColumn": [
+          "остатки еды",
+          "приемлемый",
+          "рестораны",
+          "отопительный котёл"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На следующий день после другого ужина спросите, осталась ли еда, используя leftovers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "На следующий день после другого ужина спросите, осталась ли еда, используя leftovers",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-47:i17:audio",
+          "transcript": "Are there any leftovers?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are there any leftovers?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4742808e32a50f75e77f8925aef4c5c542a2356074977934d8ba7c90f0f08c94"
+}

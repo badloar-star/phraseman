@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-47:intro1:r2": {
+          "ru": "`leftovers` — множественное число: `are`.",
+          "uk": "`leftovers` — множина: `are`."
+        },
+        "en:lesson-04:session-47:intro1:r3": {
+          "ru": "Это значит, что ничего не осталось; здесь еда есть.",
+          "uk": "Це означає, що нічого не залишилося; тут їжа є."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-47:intro2:r2": {
+          "ru": "Несколько ресторанов: `The restaurants are`.",
+          "uk": "Кілька ресторанів: `The restaurants are`."
+        },
+        "en:lesson-04:session-47:intro2:r3": {
+          "ru": "`in` — внутри; здесь рядом: `next to`.",
+          "uk": "`in` — усередині; тут поруч: `next to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-47:intro3:r2": {
+          "ru": "`unacceptable` — неприемлемо; здесь `acceptable`.",
+          "uk": "`unacceptable` — неприйнятно; тут `acceptable`."
+        },
+        "en:lesson-04:session-47:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "430adda339d87298f840a1f83a9cf1a8dfe0bf5398753ac8aaec1e5b9385ee27"
+}

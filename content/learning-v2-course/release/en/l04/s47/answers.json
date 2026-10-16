@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-47:i01",
+    "correctText": "It is acceptable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i02",
+    "correctText": "leftover",
+    "correctResponseId": "en:lesson-04:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i03",
+    "correctText": "leftover",
+    "correctResponseId": "en:lesson-04:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i04",
+    "correctText": "en:lesson-04:session-47:i04:p1=leftover\nen:lesson-04:session-47:i04:p2=acceptable\nen:lesson-04:session-47:i04:p3=restaurants\nen:lesson-04:session-47:i04:p4=boiler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i05",
+    "correctText": "There are some leftovers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i06",
+    "correctText": "The restaurants are next to the hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i07",
+    "correctText": "It's acceptable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i08",
+    "correctText": "aren't",
+    "correctResponseId": "en:lesson-04:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i09",
+    "correctText": "The boiler is in the kitchen.",
+    "correctResponseId": "en:lesson-04:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i10",
+    "correctText": "en:lesson-04:session-47:i10:p1=leftovers\nen:lesson-04:session-47:i10:p2=acceptable\nen:lesson-04:session-47:i10:p3=restaurants\nen:lesson-04:session-47:i10:p4=boiler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i11",
+    "correctText": "Are there any leftovers?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i12",
+    "correctText": "The leftovers are in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i13",
+    "correctText": "Is there a boiler?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i14",
+    "correctText": "on",
+    "correctResponseId": "en:lesson-04:session-47:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i15",
+    "correctText": "There are some restaurants.",
+    "correctResponseId": "en:lesson-04:session-47:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i16",
+    "correctText": "en:lesson-04:session-47:i16:p1=leftovers\nen:lesson-04:session-47:i16:p2=acceptable\nen:lesson-04:session-47:i16:p3=restaurants\nen:lesson-04:session-47:i16:p4=boiler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i17",
+    "correctText": "Are there any leftovers?",
+    "correctResponseId": null
+  }
+]

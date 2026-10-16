@@ -1,0 +1,971 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг злится. Скажите это без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг злится. Скажите это без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is angry.",
+        "localizedMeaning": {
+          "ru": "Друг злится. Скажите это без сокращения",
+          "uk": "Друг злиться. Скажіть це без скорочення"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "angry"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-07:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг злится. Скажите это без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `He is angry.`",
+              "uk": "тут потрібно `is` — `He is angry.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-07:i02:r1",
+          "text": "remote"
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i02:r2",
+          "text": "remotes"
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i02:r3",
+          "text": "drawer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-07:i02:audio",
+          "transcript": "remote"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-07:i02:r1",
+            "targetText": "remote",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i02:r2",
+            "targetText": "remotes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i02:r3",
+            "targetText": "drawer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `remote`, а в этом варианте — `remotes`.",
+              "uk": "У записі перше слово — `remote`, а в цьому варіанті — `remotes`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `remote`, а в этом варианте — `drawer`.",
+              "uk": "У записі перше слово — `remote`, а в цьому варіанті — `drawer`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите пульт от телевизора",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-07:i03:r1",
+          "text": "remote"
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i03:r2",
+          "text": "cup"
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i03:r3",
+          "text": "curtain"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите пульт от телевизора",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите пульт от телевизора",
+          "uk": "Назвіть пульт від телевізора"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i03:r1",
+            "text": "remote"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i03:r2",
+            "text": "cup"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i03:r3",
+            "text": "curtain"
+          }
+        ],
+        "testedDimension": "Назовите пульт от телевизора",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите пульт от телевизора",
+            "feedbackByLocale": {
+              "ru": "`cup` — чашка; пульт — `remote`.",
+              "uk": "`cup` — чашка; пульт — `remote`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите пульт от телевизора",
+            "feedbackByLocale": {
+              "ru": "`curtain` — занавеска; пульт — `remote`.",
+              "uk": "`curtain` — завіска; пульт — `remote`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-07:i04:p1",
+            "target": "remote",
+            "meaningByLocale": {
+              "ru": "пульт",
+              "uk": "пульт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-07:i04:p2",
+            "target": "angry",
+            "meaningByLocale": {
+              "ru": "сердитый",
+              "uk": "сердитий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-07:i04:p3",
+            "target": "scared",
+            "meaningByLocale": {
+              "ru": "испуганный",
+              "uk": "наляканий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-07:i04:p4",
+            "target": "cup",
+            "meaningByLocale": {
+              "ru": "чашка",
+              "uk": "чашка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "remote",
+          "angry",
+          "scared",
+          "cup"
+        ],
+        "rightColumn": [
+          "пульт",
+          "сердитый",
+          "испуганный",
+          "чашка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-07:i05:audio",
+          "transcript": "I have a remote."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have a remote.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "a",
+          "remote"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ищете пульт от этого телевизора. Он у подруги. Скажите «Пульт у неё»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ищете пульт от этого телевизора. Он у подруги. Скажите «Пульт у неё»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has the remote.",
+        "localizedMeaning": {
+          "ru": "Вы ищете пульт от этого телевизора. Он у подруги. Скажите «Пульт у неё»",
+          "uk": "Ви шукаєте пульт від цього телевізора. Він у подруги. Скажіть «Пульт у неї»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "the",
+          "remote"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам страшно смотреть фильм. Скажите «Мне страшно» с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "Вам страшно смотреть фильм. Скажите «Мне страшно» с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-07:i07:audio",
+          "transcript": "I'm scared."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm scared.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пульт от вашего телевизора у друзей. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-07:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пульт от вашего телевизора у друзей. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пульт от вашего телевизора у друзей. Выберите форму",
+          "uk": "Пульт від вашого телевізора у друзів. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the remote.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Пульт от вашего телевизора у друзей. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Пульт от вашего телевизора у друзей. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "С `They` нужно `have`.",
+              "uk": "З `They` потрібне `have`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Пульт от вашего телевизора у друзей. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Чтобы сказать, у кого пульт, нужно `have`: `They have the remote`.",
+              "uk": "Щоб сказати, у кого пульт, потрібне `have`: `They have the remote`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где пульт",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-07:i09:r1",
+          "text": "The remote is next to the cup."
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i09:r2",
+          "text": "The remote is next to the book."
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i09:r3",
+          "text": "The remote is next to the bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-07:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где пульт",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-07:i09:audio",
+          "transcript": "The remote is next to the cup."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-07:i09:r1",
+            "targetText": "The remote is next to the cup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i09:r2",
+            "targetText": "The remote is next to the book.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i09:r3",
+            "targetText": "The remote is next to the bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где пульт",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cup`, а в этом варианте — `book`.",
+              "uk": "У записі останнє слово — `cup`, а в цьому варіанті — `book`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где пульт",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `cup`, а в этом варианте — `bag`.",
+              "uk": "У записі останнє слово — `cup`, а в цьому варіанті — `bag`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-07:i10:p1",
+            "target": "remote",
+            "meaningByLocale": {
+              "ru": "пульт",
+              "uk": "пульт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-07:i10:p2",
+            "target": "cup",
+            "meaningByLocale": {
+              "ru": "чашка",
+              "uk": "чашка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-07:i10:p3",
+            "target": "playground",
+            "meaningByLocale": {
+              "ru": "детская площадка",
+              "uk": "дитячий майданчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-07:i10:p4",
+            "target": "shortcut",
+            "meaningByLocale": {
+              "ru": "короткий путь",
+              "uk": "короткий шлях"
+            }
+          }
+        ],
+        "leftColumn": [
+          "remote",
+          "cup",
+          "playground",
+          "shortcut"
+        ],
+        "rightColumn": [
+          "пульт",
+          "чашка",
+          "детская площадка",
+          "короткий путь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-07:i11:audio",
+          "transcript": "We have cups."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have cups.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "cups"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Детская площадка рядом с парком. Скажите, где она",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Детская площадка рядом с парком. Скажите, где она",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The playground is next to the park.",
+        "localizedMeaning": {
+          "ru": "Детская площадка рядом с парком. Скажите, где она",
+          "uk": "Дитячий майданчик поруч із парком. Скажіть, де він"
+        },
+        "orderedTokens": [
+          "The",
+          "playground",
+          "is",
+          "next",
+          "to",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-07:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Детская площадка рядом с парком. Скажите, где она",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The playground is next to the park.`",
+              "uk": "тут потрібно `is` — `The playground is next to the park.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "До площадки далеко. Спросите, есть ли короткий путь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-07:i13:audio"
+      ],
+      "accessibilityLabel": "До площадки далеко. Спросите, есть ли короткий путь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-07:i13:audio",
+          "transcript": "Is there a shortcut?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a shortcut?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга сердится из-за громкого звука. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-07:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i14:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга сердится из-за громкого звука. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга сердится из-за громкого звука. Выберите форму",
+          "uk": "Подруга сердиться через гучний звук. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ angry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-07:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Подруга сердится из-за громкого звука. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-07:i14:r2",
+            "correct": false,
+            "testedDimension": "Подруга сердится из-за громкого звука. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для состояния здесь нужно `She is angry`.",
+              "uk": "Для стану тут потрібне `She is angry`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i14:r3",
+            "correct": false,
+            "testedDimension": "Подруга сердится из-за громкого звука. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "С `She` нужно `is`.",
+              "uk": "З `She` потрібне `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, как чувствует себя друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-07:i15:r1",
+          "text": "He's scared."
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i15:r2",
+          "text": "He's angry."
+        },
+        {
+          "responseId": "en:lesson-05:session-07:i15:r3",
+          "text": "She's scared."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, как чувствует себя друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-07:i15:audio",
+          "transcript": "He's scared."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-07:i15:r1",
+            "targetText": "He's scared.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i15:r2",
+            "targetText": "He's angry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i15:r3",
+            "targetText": "She's scared.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-07:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, как чувствует себя друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `scared`, а в этом варианте — `angry`.",
+              "uk": "У записі останнє слово — `scared`, а в цьому варіанті — `angry`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-07:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, как чувствует себя друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `He's`, а в этом варианте — `She's`.",
+              "uk": "У записі перше слово — `He's`, а в цьому варіанті — `She's`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-07:i16:p1",
+            "target": "remote",
+            "meaningByLocale": {
+              "ru": "пульт",
+              "uk": "пульт"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-07:i16:p2",
+            "target": "cup",
+            "meaningByLocale": {
+              "ru": "чашка",
+              "uk": "чашка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-07:i16:p3",
+            "target": "playground",
+            "meaningByLocale": {
+              "ru": "детская площадка",
+              "uk": "дитячий майданчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-07:i16:p4",
+            "target": "shortcut",
+            "meaningByLocale": {
+              "ru": "короткий путь",
+              "uk": "короткий шлях"
+            }
+          }
+        ],
+        "leftColumn": [
+          "remote",
+          "cup",
+          "playground",
+          "shortcut"
+        ],
+        "rightColumn": [
+          "пульт",
+          "чашка",
+          "детская площадка",
+          "короткий путь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-07:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Все ищут пульт от телевизора. Вы нашли его у себя. Сообщите «Пульт у меня»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Все ищут пульт от телевизора. Вы нашли его у себя. Сообщите «Пульт у меня»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-07:i17:audio",
+          "transcript": "I have the remote."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have the remote.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b4c52e3fcebb129736a55c4d5055a1e7324060d0833be101b57ee290390b4237"
+}

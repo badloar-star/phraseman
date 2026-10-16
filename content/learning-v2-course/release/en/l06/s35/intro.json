@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать о привычном месте сна и повторить окончания действий",
+    "uk": "розповісти про звичне місце сну й повторити закінчення дій"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кот выбрал диван",
+        "uk": "Кіт обрав диван"
+      },
+      "bodyByLocale": {
+        "ru": "`sleep` — «спать». Вы рассказываете о привычке кота: `The cat sleeps here` — «Кот спит здесь». Кота можно назвать `it`: `It sleeps here`. После `it` у `sleep` появляется `s`. Диван купили для гостей, но кот с этим решением явно не согласен.",
+        "uk": "`sleep` — «спати». Ви розповідаєте про звичку кота: `The cat sleeps here` — «Кіт спить тут». Кота можна назвати `it`: `It sleeps here`. Після `it` у `sleep` з’являється `s`. Диван купили для гостей, але кіт із цим рішенням явно не згоден."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о привычке кота: «Он спит здесь» — используйте `it`.",
+          "uk": "Скажіть про звичку кота: «Він спить тут» — використайте `it`."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-35:intro1:r1",
+              "text": "It sleeps here."
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro1:r2",
+              "text": "It sleep here."
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro1:r3",
+              "text": "It is sleeps here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-35:intro1:r1",
+              "text": "It sleeps here."
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro1:r2",
+              "text": "It sleep here."
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro1:r3",
+              "text": "It is sleeps here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о привычке кота: «Он спит здесь» — используйте `it`.",
+          "uk": "Скажіть про звичку кота: «Він спить тут» — використайте `it`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Это его место",
+        "uk": "Це його місце"
+      },
+      "bodyByLocale": {
+        "ru": "Том показывает на другое кресло. Вы уточняете: `He sleeps here` — «Он спит здесь». Речь о коте, которого вы называете `he`: окончание остаётся `s`. Эта фраза может обозначать обычное место сна, даже если кот сейчас гуляет.",
+        "uk": "Том показує на інше крісло. Ви уточнюєте: `He sleeps here` — «Він спить тут». Ідеться про кота, якого ви називаєте `he`: закінчення залишається `s`. Ця фраза може означати звичне місце сну, навіть якщо кіт зараз гуляє."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Уточните Тому привычное место кота: «Он спит здесь» — используйте `he`.",
+          "uk": "Уточніть Тому звичне місце кота: «Він спить тут» — використайте `he`."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-35:intro2:r1",
+              "text": "He sleeps here."
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro2:r2",
+              "text": "He sleep here."
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro2:r3",
+              "text": "He are sleeps here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-35:intro2:r1",
+              "text": "He sleeps here."
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro2:r2",
+              "text": "He sleep here."
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro2:r3",
+              "text": "He are sleeps here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Уточните Тому привычное место кота: «Он спит здесь» — используйте `he`.",
+          "uk": "Уточніть Тому звичне місце кота: «Він спить тут» — використайте `he`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Браслет на диване",
+        "uk": "Браслет на дивані"
+      },
+      "bodyByLocale": {
+        "ru": "Убирая диван, Анна находит браслет. `bracelet` — «браслет». Чтобы вернуть его гостю, спросите: `Whose bracelet is this?` — «Чей это браслет?» Один браслет: `is this`; `whose` спрашивает о владельце.",
+        "uk": "Прибираючи диван, Анна знаходить браслет. `bracelet` — «браслет». Щоб повернути його гостеві, запитайте: `Whose bracelet is this?` — «Чий це браслет?» Один браслет: `is this`; `whose` запитує про власника."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Обратитесь к гостю: «Чей это браслет?»",
+          "uk": "Зверніться до гостя: «Чий це браслет?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-35:intro3:r1",
+              "text": "Whose bracelet is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro3:r2",
+              "text": "Who bracelet is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro3:r3",
+              "text": "Whose bracelet are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-35:intro3:r1",
+              "text": "Whose bracelet is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro3:r2",
+              "text": "Who bracelet is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-35:intro3:r3",
+              "text": "Whose bracelet are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Обратитесь к гостю: «Чей это браслет?»",
+          "uk": "Зверніться до гостя: «Чий це браслет?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8a000dfca458263ffac5c9e88a73fdc672c5bead8c4fe38b4c0ab2217713e5d8"
+}

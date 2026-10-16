@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-35:intro1:r2": {
+          "ru": "После `it` — `sleeps`.",
+          "uk": "Після `it` — `sleeps`."
+        },
+        "en:lesson-06:session-35:intro1:r3": {
+          "ru": "Говорим `It sleeps`, без `is`.",
+          "uk": "Кажемо `It sleeps`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-35:intro2:r2": {
+          "ru": "После `he` — `sleeps`.",
+          "uk": "Після `he` — `sleeps`."
+        },
+        "en:lesson-06:session-35:intro2:r3": {
+          "ru": "Нужно `He sleeps`, без `are`.",
+          "uk": "Потрібно `He sleeps`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-35:intro3:r2": {
+          "ru": "О владельце спрашиваем `Whose`.",
+          "uk": "Про власника запитуємо `Whose`."
+        },
+        "en:lesson-06:session-35:intro3:r3": {
+          "ru": "Один браслет: `is this`.",
+          "uk": "Один браслет: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f9f98ed744a75c7a9e0552ad0986c7006014c44051854630a7c0c102f7186256"
+}

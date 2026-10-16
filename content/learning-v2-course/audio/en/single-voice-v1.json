@@ -95308,6 +95308,309 @@
           "byteSize": 49920
         }
       ]
+    },
+    "l06/s35/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It sleeps here.",
+          "file": "21b2952e6c365f3b4226ceb7b2948572f33602d2f4ef117d9c3de8dba55e12c4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/21b2952e6c365f3b4226ceb7b2948572f33602d2f4ef117d9c3de8dba55e12c4.mp3",
+          "contentHash": "14b69ec8faaefa3581219d7781f4012ece9633bdd94ccdbb5eea59a3b621ce8e",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s35/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "He sleeps here.",
+          "file": "6b837844adbcd08cc83ee1f1f017bbe54b5b1cb4565ce5de4e17770351f84c63.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6b837844adbcd08cc83ee1f1f017bbe54b5b1cb4565ce5de4e17770351f84c63.mp3",
+          "contentHash": "b0adce0cc7c4942858c88fd13f97c0fd5f996392f6f7ae9953a5d6933e83b346",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s35/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose bracelet is this?",
+          "file": "3da35f760fd41998dba55316280bc1374823ff1d16097a58926246c3645a2ebf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3da35f760fd41998dba55316280bc1374823ff1d16097a58926246c3645a2ebf.mp3",
+          "contentHash": "b9ad42ebfc592ffe3aa901d9a64fe30ceda0f40b456e171da39c3fc84a42e8c1",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s35/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The cat sleeps here.",
+          "file": "676642749b52ce3791281f2e64863c9fd8850eadf25e0fb4ba481fa347930188.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/676642749b52ce3791281f2e64863c9fd8850eadf25e0fb4ba481fa347930188.mp3",
+          "contentHash": "44230e3419fe1f0b9e4cbbc0bdad34d7bdc5cd4d8b963039e72e37fa5f7c3d8f",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l06/s35/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "sleep",
+          "file": "9762f92514d76a540151c80f3c1bc66c40eb5c7cdf9a28669230ab622701b7be.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9762f92514d76a540151c80f3c1bc66c40eb5c7cdf9a28669230ab622701b7be.mp3",
+          "contentHash": "56ab1b213e04f8ae61f194bb9914ce1b97d3e73e2ea2010cc40d84aa2612e4c5",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l06/s35/task/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It sleeps here.",
+          "file": "96ab1507d059f73d7079fa2bfc0dd7a3ae0ca1289b4bc64d36ecb0521a470b44.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/96ab1507d059f73d7079fa2bfc0dd7a3ae0ca1289b4bc64d36ecb0521a470b44.mp3",
+          "contentHash": "4859a5fe786bd29f4e809d0f6d9ec5bc401305dbb337fd4d333ce9e798cfa3f8",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l06/s35/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "sleep",
+          "file": "813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
+          "contentHash": "06aae1eb8c3454421acf8de42897c8ce01f1ed3ee1d113315a8717a638623fe9",
+          "byteSize": 14976
+        },
+        {
+          "text": "formal",
+          "file": "1128bedf9d54ebc6df310e2667b252b367fa625eceaa8b1f8c0fbc938bb5616f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1128bedf9d54ebc6df310e2667b252b367fa625eceaa8b1f8c0fbc938bb5616f.mp3",
+          "contentHash": "6afa0f2b720966e7e35fb17e12b654453b23f9977204d222879f3bc80aa6feb4",
+          "byteSize": 21888
+        },
+        {
+          "text": "ramp",
+          "file": "3d0ec8849eb3cda0af3de160eba708090d9088797d6399ca66affaf58fcd988d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3d0ec8849eb3cda0af3de160eba708090d9088797d6399ca66affaf58fcd988d.mp3",
+          "contentHash": "f80485184bc0d5d3cccd1938a6d0723990247d55bd9026f0c5734a3012e463d0",
+          "byteSize": 20352
+        },
+        {
+          "text": "bracelet",
+          "file": "3218d7d5ed19f53aa7b318f101c0edcddc98dd488c5c60f9ef4dddb5be4701c4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/da7fc2ffdb753178e421e652-onyx.mp3",
+          "contentHash": "98e5dbb87e649d11a4ccad19623d0fa9a8d7ae27646e07ef5916f8cbbeb11a6b",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l06/s35/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He sleeps here.",
+          "file": "9b5142eec77813c3e424ebdcf98d45ff3e267715312ddebc4703040c12061a68.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9b5142eec77813c3e424ebdcf98d45ff3e267715312ddebc4703040c12061a68.mp3",
+          "contentHash": "85b073bfe19a50a06778358ee73aeca49b08bdd00ddca5f53c108b7a128f5cb7",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s35/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She exercises here.",
+          "file": "be2f9f3f5853c198ee3be67769999a0ab0e0d38174178b3a9ab77ac6f756865b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/be2f9f3f5853c198ee3be67769999a0ab0e0d38174178b3a9ab77ac6f756865b.mp3",
+          "contentHash": "99721a4a523dc532ee323f9d5fe708cd08e230f9dc0fc82a204e53c691bcce07",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s35/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This ramp is new.",
+          "file": "523e568af5a9d85cc17a4113f066df2697803a332d217c543a3a7dd59eb559db.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/523e568af5a9d85cc17a4113f066df2697803a332d217c543a3a7dd59eb559db.mp3",
+          "contentHash": "fa1a2512332fd6d0e2c07e2719575b6ebf00ae15e2bd9006203e95df6db31f1f",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s35/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "They sleep here.",
+          "file": "0485270fa0ef1657752c70f426a17178e5957bf1b2dce30742da348079217def.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0485270fa0ef1657752c70f426a17178e5957bf1b2dce30742da348079217def.mp3",
+          "contentHash": "458d4944c8f6fa3ae6e25fc57fb70e39b80cd71bd776429f5da0cac9657a1c5e",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l06/s35/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This bracelet is mine.",
+          "file": "a260a9b2ce62a9e407af2274b28479693d67c191cf017fef3f9847ae83b2e5c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a260a9b2ce62a9e407af2274b28479693d67c191cf017fef3f9847ae83b2e5c6.mp3",
+          "contentHash": "004f2a6267b2ba877f8e32786bb555eb459cd02b7c3903bfb7279819179cce65",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s35/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "sleep",
+          "file": "813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
+          "contentHash": "06aae1eb8c3454421acf8de42897c8ce01f1ed3ee1d113315a8717a638623fe9",
+          "byteSize": 14976
+        },
+        {
+          "text": "exercise",
+          "file": "6dfc1bc821915755f3b0140f46ea18157e2b50994aa48b355f0d2c0c3a252f20.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6dfc1bc821915755f3b0140f46ea18157e2b50994aa48b355f0d2c0c3a252f20.mp3",
+          "contentHash": "119710bb203a7df4990e92521f0c103a481f295532c491f5be4f72e22027e2ca",
+          "byteSize": 29952
+        },
+        {
+          "text": "bracelet",
+          "file": "3218d7d5ed19f53aa7b318f101c0edcddc98dd488c5c60f9ef4dddb5be4701c4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/da7fc2ffdb753178e421e652-onyx.mp3",
+          "contentHash": "98e5dbb87e649d11a4ccad19623d0fa9a8d7ae27646e07ef5916f8cbbeb11a6b",
+          "byteSize": 28416
+        },
+        {
+          "text": "formal",
+          "file": "1128bedf9d54ebc6df310e2667b252b367fa625eceaa8b1f8c0fbc938bb5616f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1128bedf9d54ebc6df310e2667b252b367fa625eceaa8b1f8c0fbc938bb5616f.mp3",
+          "contentHash": "6afa0f2b720966e7e35fb17e12b654453b23f9977204d222879f3bc80aa6feb4",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l06/s35/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The ramp is here.",
+          "file": "3dd106900edfa3f5168ba485f507f11e076cc0d493cb90571c2513acffddb0e4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3dd106900edfa3f5168ba485f507f11e076cc0d493cb90571c2513acffddb0e4.mp3",
+          "contentHash": "e50fb745e602d75c62fef9fcce268568c7c7db69db0f080dd69a6a1d048d000d",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s35/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose bracelet is this?",
+          "file": "0de2dfe923888bfc2538faeda3bbf01e0b75f8dd210f82d17339b58a2e051e1e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0de2dfe923888bfc2538faeda3bbf01e0b75f8dd210f82d17339b58a2e051e1e.mp3",
+          "contentHash": "9aa305f08646eed3b3cf49af88e04ccb0a92bb3e475567fbd7d9211a0d847344",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s35/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I exercise here.",
+          "file": "a923cb7b3403589f938858a56482ca9be94368f1a6bd7ca5f18517c8e87bca9a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a923cb7b3403589f938858a56482ca9be94368f1a6bd7ca5f18517c8e87bca9a.mp3",
+          "contentHash": "1720f05d737d8fa69340d5181304839a29cec4b674bf01a65bf6e38c159f90f0",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l06/s35/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The cat sleeps here.",
+          "file": "ed1a7a260d5de0af4e0e099ed9098b8a0ff59ee5bd11efe171e8495e87d5bb01.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ed1a7a260d5de0af4e0e099ed9098b8a0ff59ee5bd11efe171e8495e87d5bb01.mp3",
+          "contentHash": "14f00d0747a5036fad870fa3039b5faae35e9a6848d1102941780447d2d4ffc6",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s35/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This ramp is new.",
+          "file": "9a526691b93f0fabab662b3152f1567510f5adc4907f30e4667676a42df66ae4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9a526691b93f0fabab662b3152f1567510f5adc4907f30e4667676a42df66ae4.mp3",
+          "contentHash": "5796f3dc7ac9601385f26f8752db252e1c8b98a6773ead130c4d4b8f8643d821",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s35/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "sleep",
+          "file": "27c124b11ae9caf741e87a9f5aca2e844ab3ef2c7bc275a61ba82ecda2affa11.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/27c124b11ae9caf741e87a9f5aca2e844ab3ef2c7bc275a61ba82ecda2affa11.mp3",
+          "contentHash": "292c6b6ba538f29ab9b1032d04a57a8c6619a1ec22abed12b3ae349f592c2700",
+          "byteSize": 20352
+        },
+        {
+          "text": "ramp",
+          "file": "a5c519dae66e6b7eac65b6f1a5036e3555680cfbd31f8ee89e334fa757422d1e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a5c519dae66e6b7eac65b6f1a5036e3555680cfbd31f8ee89e334fa757422d1e.mp3",
+          "contentHash": "663332325689ce639a8e596c068e3d43d70af018fa5ee4dee6af1108fd5d2354",
+          "byteSize": 26880
+        },
+        {
+          "text": "formal",
+          "file": "cc7ab87ff4c901666af7c118a242c9fabc06c28c28c6e79e61586f09af41d1cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc7ab87ff4c901666af7c118a242c9fabc06c28c28c6e79e61586f09af41d1cc.mp3",
+          "contentHash": "e25dd278866b189b6b91743726648544700db11e83b646da7d4d5fdf610769c7",
+          "byteSize": 21888
+        },
+        {
+          "text": "exercise",
+          "file": "ebb5e6de7c001f6c0cc819d780ca5efc2dcabebdab54c37582378fb6a3d9d4c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebb5e6de7c001f6c0cc819d780ca5efc2dcabebdab54c37582378fb6a3d9d4c2.mp3",
+          "contentHash": "62d85cd7ee03591dcf521da4e46445067739c4dd94e307f4a7165df0a57d3197",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s35/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The cat sleeps here.",
+          "file": "ed1a7a260d5de0af4e0e099ed9098b8a0ff59ee5bd11efe171e8495e87d5bb01.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ed1a7a260d5de0af4e0e099ed9098b8a0ff59ee5bd11efe171e8495e87d5bb01.mp3",
+          "contentHash": "14f00d0747a5036fad870fa3039b5faae35e9a6848d1102941780447d2d4ffc6",
+          "byteSize": 32256
+        }
+      ]
     }
   },
   "settings": {

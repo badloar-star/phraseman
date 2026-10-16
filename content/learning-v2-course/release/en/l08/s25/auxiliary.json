@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-25:intro1:r2": {
+          "ru": "Для указания начните с `Attach`, без `to`.",
+          "uk": "Для вказівки почніть із `Attach`, без `to`."
+        },
+        "en:lesson-08:session-25:intro1:r3": {
+          "ru": "Здесь нужно `Attach`, без окончания `es`.",
+          "uk": "Тут потрібне `Attach`, без закінчення `es`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-25:intro2:r2": {
+          "ru": "Нужно `Open`, без `s`.",
+          "uk": "Потрібне `Open`, без `s`."
+        },
+        "en:lesson-08:session-25:intro2:r3": {
+          "ru": "Для указания нужно `Open`, без `to`.",
+          "uk": "Для вказівки потрібне `Open`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-25:intro3:r2": {
+          "ru": "Для указания нужно `Turn`, без `s`.",
+          "uk": "Для вказівки потрібне `Turn`, без `s`."
+        },
+        "en:lesson-08:session-25:intro3:r3": {
+          "ru": "Начните с `Turn`, без `to`.",
+          "uk": "Почніть із `Turn`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "42cdbef4179248113c215252a068d7decb29c3b156caca5b59b09706f592846c"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "дать короткое указание: начать сразу с действия",
+    "uk": "дати коротку вказівку: почати одразу з дії"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Файл к письму",
+        "uk": "Файл до листа"
+      },
+      "bodyByLocale": {
+        "ru": "Друг пишет письмо и спрашивает, что делать с готовым файлом. `Attach` — «прикрепить». `Attach it` — «Прикрепи его». Здесь `it` — файл. Для короткого указания начните сразу с действия: `Attach`, без `you` и `to`. Письмо с фразой «файл прикреплён» убедительнее, когда файл действительно прикреплён.",
+        "uk": "Друг пише листа й запитує, що робити з готовим файлом. `Attach` — «прикріпити». `Attach it` — «Прикріпи його». Тут `it` — файл. Для короткої вказівки почніть одразу з дії: `Attach`, без `you` і `to`. Лист із фразою «файл прикріплено» переконливіший, коли файл справді прикріплено."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу прикрепить файл.",
+          "uk": "Скажіть другові прикріпити файл."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-25:intro1:r1",
+              "text": "Attach it."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro1:r2",
+              "text": "To attach it."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro1:r3",
+              "text": "Attaches it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-25:intro1:r1",
+              "text": "Attach it."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro1:r2",
+              "text": "To attach it."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro1:r3",
+              "text": "Attaches it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу прикрепить файл.",
+          "uk": "Скажіть другові прикріпити файл."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Душно в комнате",
+        "uk": "Душно в кімнаті"
+      },
+      "bodyByLocale": {
+        "ru": "В комнате душно. Друг стоит у окна, и вы говорите ему, что сделать. `Open the window` — «Открой окно». Начните сразу с `Open`. Это короткое указание; для более мягкой просьбы вы уже знаете `Can you open the window?`.",
+        "uk": "У кімнаті душно. Друг стоїть біля вікна, і ви кажете йому, що зробити. `Open the window` — «Відчини вікно». Почніть одразу з `Open`. Це коротка вказівка; для м’якшого прохання ви вже знаєте `Can you open the window?`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Дайте короткое указание «Открой окно».",
+          "uk": "Дайте коротку вказівку «Відчини вікно»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-25:intro2:r1",
+              "text": "Open the window."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro2:r2",
+              "text": "Opens the window."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro2:r3",
+              "text": "To open the window."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-25:intro2:r1",
+              "text": "Open the window."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro2:r2",
+              "text": "Opens the window."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro2:r3",
+              "text": "To open the window."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Дайте короткое указание «Открой окно».",
+          "uk": "Дайте коротку вказівку «Відчини вікно»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поворот на прогулке",
+        "uk": "Поворот на прогулянці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы идёте с другом и знаете дорогу. На следующем повороте нужно налево. `Turn left` — «Поверни налево». Начните с `Turn`, затем направление `left`.",
+        "uk": "Ви йдете з другом і знаєте дорогу. На наступному повороті потрібно ліворуч. `Turn left` — «Поверни ліворуч». Почніть із `Turn`, потім напрямок `left`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Подскажите другу: «Поверни налево».",
+          "uk": "Підкажіть другові: «Поверни ліворуч»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-25:intro3:r1",
+              "text": "Turn left."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro3:r2",
+              "text": "Turns left."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro3:r3",
+              "text": "To turn left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-25:intro3:r1",
+              "text": "Turn left."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro3:r2",
+              "text": "Turns left."
+            },
+            {
+              "responseId": "en:lesson-08:session-25:intro3:r3",
+              "text": "To turn left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подскажите другу: «Поверни налево».",
+          "uk": "Підкажіть другові: «Поверни ліворуч»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f6d46bfdc88135ab0646a1edd15f0c7e505426f9058354ba052cdcc8f6e75a36"
+}

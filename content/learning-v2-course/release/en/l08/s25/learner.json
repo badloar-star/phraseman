@@ -1,0 +1,941 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте указание «Прикрепи его»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте указание «Прикрепи его»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Attach it.",
+        "localizedMeaning": {
+          "ru": "Дайте указание «Прикрепи его»",
+          "uk": "Дайте вказівку «Прикріпи його»"
+        },
+        "orderedTokens": [
+          "Attach",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i02:r1",
+          "text": "attach"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i02:r2",
+          "text": "lend"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i02:r3",
+          "text": "walk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i02:audio",
+          "transcript": "attach"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-25:i02:r1",
+            "targetText": "attach",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i02:r2",
+            "targetText": "lend",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i02:r3",
+            "targetText": "walk",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `attach`, а в этом варианте — `lend`.",
+              "uk": "У записі перше слово — `attach`, а в цьому варіанті — `lend`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `attach`, а в этом варианте — `walk`.",
+              "uk": "У записі перше слово — `attach`, а в цьому варіанті — `walk`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дайте короткое указание прикрепить файл",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i03:r1",
+          "text": "Attach"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i03:r2",
+          "text": "Attaches"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i03:r3",
+          "text": "To attach"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте короткое указание прикрепить файл",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дайте короткое указание прикрепить файл",
+          "uk": "Дайте коротку вказівку прикріпити файл"
+        },
+        "gappedTargetPhrase": "___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i03:r1",
+            "text": "Attach"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i03:r2",
+            "text": "Attaches"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i03:r3",
+            "text": "To attach"
+          }
+        ],
+        "testedDimension": "Дайте короткое указание прикрепить файл",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Дайте короткое указание прикрепить файл",
+            "feedbackByLocale": {
+              "ru": "Для указания нужно `Attach`, без `es`.",
+              "uk": "Для вказівки потрібне `Attach`, без `es`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Дайте короткое указание прикрепить файл",
+            "feedbackByLocale": {
+              "ru": "Начните с `Attach`, без `to`.",
+              "uk": "Почніть із `Attach`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-25:i04:p1",
+            "target": "attach",
+            "meaningByLocale": {
+              "ru": "прикрепить",
+              "uk": "прикріпити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-25:i04:p2",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-25:i04:p3",
+            "target": "meet",
+            "meaningByLocale": {
+              "ru": "встречаться",
+              "uk": "зустрічатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-25:i04:p4",
+            "target": "walk",
+            "meaningByLocale": {
+              "ru": "ходить пешком",
+              "uk": "ходити пішки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "attach",
+          "sink",
+          "meet",
+          "walk"
+        ],
+        "rightColumn": [
+          "прикрепить",
+          "раковина",
+          "встречаться",
+          "ходить пешком"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i05:audio",
+          "transcript": "Attach it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Attach it.",
+        "orderedTokens": [
+          "Attach",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте короткое указание «Открой окно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте короткое указание «Открой окно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Open the window.",
+        "localizedMeaning": {
+          "ru": "Дайте короткое указание «Открой окно»",
+          "uk": "Дайте коротку вказівку «Відчини вікно»"
+        },
+        "orderedTokens": [
+          "Open",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На прогулке подскажите другу «Поверни налево»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "На прогулке подскажите другу «Поверни налево»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i07:audio",
+          "transcript": "Turn left."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Turn left.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дайте короткое указание открыть окно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i08:r1",
+          "text": "Open"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i08:r2",
+          "text": "Opens"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i08:r3",
+          "text": "To open"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте короткое указание открыть окно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дайте короткое указание открыть окно",
+          "uk": "Дайте коротку вказівку відчинити вікно"
+        },
+        "gappedTargetPhrase": "___ the window.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i08:r1",
+            "text": "Open"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i08:r2",
+            "text": "Opens"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i08:r3",
+            "text": "To open"
+          }
+        ],
+        "testedDimension": "Дайте короткое указание открыть окно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Дайте короткое указание открыть окно",
+            "feedbackByLocale": {
+              "ru": "Для указания нужно `Open`, без `s`.",
+              "uk": "Для вказівки потрібне `Open`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Дайте короткое указание открыть окно",
+            "feedbackByLocale": {
+              "ru": "Начните с `Open`, без `to`.",
+              "uk": "Почніть із `Open`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i09:r1",
+          "text": "Attach it."
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i09:r2",
+          "text": "Attach this."
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i09:r3",
+          "text": "Attach that."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i09:audio",
+          "transcript": "Attach it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-25:i09:r1",
+            "targetText": "Attach it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i09:r2",
+            "targetText": "Attach this.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i09:r3",
+            "targetText": "Attach that.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-25:i10:p1",
+            "target": "lend",
+            "meaningByLocale": {
+              "ru": "одолжить",
+              "uk": "позичити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-25:i10:p2",
+            "target": "attach",
+            "meaningByLocale": {
+              "ru": "прикрепить",
+              "uk": "прикріпити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-25:i10:p3",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-25:i10:p4",
+            "target": "meet",
+            "meaningByLocale": {
+              "ru": "встречаться",
+              "uk": "зустрічатися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lend",
+          "attach",
+          "sink",
+          "meet"
+        ],
+        "rightColumn": [
+          "одолжить",
+          "прикрепить",
+          "раковина",
+          "встречаться"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i11:audio",
+          "transcript": "Turn left."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Turn left.",
+        "orderedTokens": [
+          "Turn",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите «Можешь одолжить мне ручку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите «Можешь одолжить мне ручку?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you lend me a pen?",
+        "localizedMeaning": {
+          "ru": "Попросите «Можешь одолжить мне ручку?»",
+          "uk": "Попросіть «Можеш позичити мені ручку?»"
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "lend",
+          "me",
+          "a",
+          "pen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, как вы передвигаетесь по городу. Скажите «Я часто хожу пешком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, как вы передвигаетесь по городу. Скажите «Я часто хожу пешком»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i13:audio",
+          "transcript": "I often walk."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often walk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дайте указание повернуть налево",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i14:r1",
+          "text": "Turn"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i14:r2",
+          "text": "Turns"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i14:r3",
+          "text": "To turn"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте указание повернуть налево",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дайте указание повернуть налево",
+          "uk": "Дайте вказівку повернути ліворуч"
+        },
+        "gappedTargetPhrase": "___ left.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i14:r1",
+            "text": "Turn"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i14:r2",
+            "text": "Turns"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i14:r3",
+            "text": "To turn"
+          }
+        ],
+        "testedDimension": "Дайте указание повернуть налево",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i14:r2",
+            "correct": false,
+            "testedDimension": "Дайте указание повернуть налево",
+            "feedbackByLocale": {
+              "ru": "Для указания нужно `Turn`, без `s`.",
+              "uk": "Для вказівки потрібне `Turn`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i14:r3",
+            "correct": false,
+            "testedDimension": "Дайте указание повернуть налево",
+            "feedbackByLocale": {
+              "ru": "Начните с `Turn`, без `to`.",
+              "uk": "Почніть із `Turn`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i15:r1",
+          "text": "Open the window."
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i15:r2",
+          "text": "Open the door."
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i15:r3",
+          "text": "Open the box."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i15:audio",
+          "transcript": "Open the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-25:i15:r1",
+            "targetText": "Open the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i15:r2",
+            "targetText": "Open the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i15:r3",
+            "targetText": "Open the box.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `window`, а в этом варианте — `door`.",
+              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `door`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `window`, а в этом варианте — `box`.",
+              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `box`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-25:i16:p1",
+            "target": "attach",
+            "meaningByLocale": {
+              "ru": "прикрепить",
+              "uk": "прикріпити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-25:i16:p2",
+            "target": "walk",
+            "meaningByLocale": {
+              "ru": "ходить пешком",
+              "uk": "ходити пішки"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-25:i16:p3",
+            "target": "lend",
+            "meaningByLocale": {
+              "ru": "одолжить",
+              "uk": "позичити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-25:i16:p4",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "attach",
+          "walk",
+          "lend",
+          "sink"
+        ],
+        "rightColumn": [
+          "прикрепить",
+          "ходить пешком",
+          "одолжить",
+          "раковина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг готовит письмо с фотографией. Фотография уже выбрана. Дайте короткое указание «Прикрепи её»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Друг готовит письмо с фотографией. Фотография уже выбрана. Дайте короткое указание «Прикрепи её»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i17:audio",
+          "transcript": "Attach it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Attach it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e8e46ef855a2d6a725b1f76dcaca3ffca9e2550956c8c444365748e0c4767975"
+}

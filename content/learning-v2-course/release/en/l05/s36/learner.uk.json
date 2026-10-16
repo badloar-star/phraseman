@@ -1,0 +1,984 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вам хочеться спати. Скажіть про це без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хочеться спати. Скажіть про це без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am sleepy.",
+        "localizedMeaning": {
+          "ru": "Вам хочется спать. Скажите об этом без сокращения",
+          "uk": "Вам хочеться спати. Скажіть про це без скорочення"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "sleepy"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-36:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Вам хочеться спати. Скажіть про це без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am sleepy.`",
+              "uk": "тут потрібно `am` — `I am sleepy.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-36:i02:r1",
+          "text": "sunglasses"
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i02:r2",
+          "text": "gloves"
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i02:r3",
+          "text": "headphones"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-36:i02:audio",
+          "transcript": "sunglasses"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-36:i02:r1",
+            "targetText": "sunglasses",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i02:r2",
+            "targetText": "gloves",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i02:r3",
+            "targetText": "headphones",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `sunglasses`, а в этом варианте — `gloves`.",
+              "uk": "У записі перше слово — `sunglasses`, а в цьому варіанті — `gloves`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `sunglasses`, а в этом варианте — `headphones`.",
+              "uk": "У записі перше слово — `sunglasses`, а в цьому варіанті — `headphones`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть сонцезахисні окуляри",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-36:i03:r1",
+          "text": "sunglasses"
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i03:r2",
+          "text": "headphones"
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i03:r3",
+          "text": "watch"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть сонцезахисні окуляри",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите солнцезащитные очки",
+          "uk": "Назвіть сонцезахисні окуляри"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i03:r1",
+            "text": "sunglasses"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i03:r2",
+            "text": "headphones"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i03:r3",
+            "text": "watch"
+          }
+        ],
+        "testedDimension": "Назвіть сонцезахисні окуляри",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть сонцезахисні окуляри",
+            "feedbackByLocale": {
+              "ru": "`headphones` — наушники; солнцезащитные очки — `sunglasses`.",
+              "uk": "`headphones` — навушники; сонцезахисні окуляри — `sunglasses`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть сонцезахисні окуляри",
+            "feedbackByLocale": {
+              "ru": "`watch` — наручные часы; солнцезащитные очки — `sunglasses`.",
+              "uk": "`watch` — наручний годинник; сонцезахисні окуляри — `sunglasses`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-36:i04:p1",
+            "target": "sunglasses",
+            "meaningByLocale": {
+              "ru": "солнцезащитные очки",
+              "uk": "сонцезахисні окуляри"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-36:i04:p2",
+            "target": "children",
+            "meaningByLocale": {
+              "ru": "дети",
+              "uk": "діти"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-36:i04:p3",
+            "target": "smoke alarm",
+            "meaningByLocale": {
+              "ru": "датчик дыма",
+              "uk": "датчик диму"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-36:i04:p4",
+            "target": "keycard",
+            "meaningByLocale": {
+              "ru": "ключ-карта",
+              "uk": "ключ-картка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sunglasses",
+          "children",
+          "smoke alarm",
+          "keycard"
+        ],
+        "rightColumn": [
+          "сонцезахисні окуляри",
+          "діти",
+          "датчик диму",
+          "ключ-картка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-36:i05:audio",
+          "transcript": "Whose sunglasses are these?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose sunglasses are these?",
+        "orderedTokens": [
+          "Whose",
+          "sunglasses",
+          "are",
+          "these"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знайшли ключ-картку. Запитайте «Чия це ключ-картка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайшли ключ-картку. Запитайте «Чия це ключ-картка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose keycard is this?",
+        "localizedMeaning": {
+          "ru": "Вы нашли ключ-карту. Спросите «Чья это ключ-карта?»",
+          "uk": "Ви знайшли ключ-картку. Запитайте «Чия це ключ-картка?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "keycard",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сонцезахисні окуляри належать вам. Скажіть «Сонцезахисні окуляри мої»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Сонцезахисні окуляри належать вам. Скажіть «Сонцезахисні окуляри мої»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-36:i07:audio",
+          "transcript": "The sunglasses are mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The sunglasses are mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Діти сонні. Виберіть форму для кількох дітей",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-36:i08:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Діти сонні. Виберіть форму для кількох дітей",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дети сонные. Выберите форму для нескольких детей",
+          "uk": "Діти сонні. Виберіть форму для кількох дітей"
+        },
+        "gappedTargetPhrase": "The children ___ sleepy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Діти сонні. Виберіть форму для кількох дітей",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Діти сонні. Виберіть форму для кількох дітей",
+            "feedbackByLocale": {
+              "ru": "`children` — множественное число: `are`.",
+              "uk": "`children` — множина: `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Діти сонні. Виберіть форму для кількох дітей",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; с `children` нужно `are`.",
+              "uk": "`am` використовується з `I`; з `children` потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, яку річ називає друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-36:i09:r1",
+          "text": "These are Anna's sunglasses."
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i09:r2",
+          "text": "These are Anna's gloves."
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i09:r3",
+          "text": "These are Anna's headphones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-36:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, яку річ називає друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-36:i09:audio",
+          "transcript": "These are Anna's sunglasses."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-36:i09:r1",
+            "targetText": "These are Anna's sunglasses.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i09:r2",
+            "targetText": "These are Anna's gloves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i09:r3",
+            "targetText": "These are Anna's headphones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, яку річ називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `sunglasses`, а в этом варианте — `gloves`.",
+              "uk": "У записі останнє слово — `sunglasses`, а в цьому варіанті — `gloves`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, яку річ називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `sunglasses`, а в этом варианте — `headphones`.",
+              "uk": "У записі останнє слово — `sunglasses`, а в цьому варіанті — `headphones`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-36:i10:p1",
+            "target": "sunglasses",
+            "meaningByLocale": {
+              "ru": "солнцезащитные очки",
+              "uk": "сонцезахисні окуляри"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-36:i10:p2",
+            "target": "sleepy",
+            "meaningByLocale": {
+              "ru": "сонный",
+              "uk": "сонний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-36:i10:p3",
+            "target": "smoke alarm",
+            "meaningByLocale": {
+              "ru": "датчик дыма",
+              "uk": "датчик диму"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-36:i10:p4",
+            "target": "keycard",
+            "meaningByLocale": {
+              "ru": "ключ-карта",
+              "uk": "ключ-картка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sunglasses",
+          "sleepy",
+          "smoke alarm",
+          "keycard"
+        ],
+        "rightColumn": [
+          "сонцезахисні окуляри",
+          "сонний",
+          "датчик диму",
+          "ключ-картка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-36:i11:audio",
+          "transcript": "The smoke alarm is on the ceiling."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The smoke alarm is on the ceiling.",
+        "orderedTokens": [
+          "The",
+          "smoke",
+          "alarm",
+          "is",
+          "on",
+          "the",
+          "ceiling"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-36:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The smoke alarm is on the ceiling.`",
+              "uk": "тут потрібно `is` — `The smoke alarm is on the ceiling.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ключ-картка належить Анні. Скажіть «Це ключ-картка Анни»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ключ-картка належить Анні. Скажіть «Це ключ-картка Анни»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is Anna's keycard.",
+        "localizedMeaning": {
+          "ru": "Ключ-карта принадлежит Анне. Скажите «Это ключ-карта Анны»",
+          "uk": "Ключ-картка належить Анні. Скажіть «Це ключ-картка Анни»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "Anna's",
+          "keycard"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-36:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ключ-картка належить Анні. Скажіть «Це ключ-картка Анни»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is Anna's keycard.`",
+              "uk": "тут потрібно `is` — `This is Anna's keycard.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Окуляри друга у вас. Скажіть йому «Твої сонцезахисні окуляри в мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-36:i13:audio"
+      ],
+      "accessibilityLabel": "Окуляри друга у вас. Скажіть йому «Твої сонцезахисні окуляри в мене»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-36:i13:audio",
+          "transcript": "I have your sunglasses."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your sunglasses.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про власника сонцезахисних окулярів",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-36:i14:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i14:r2",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i14:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про власника сонцезахисних окулярів",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце солнцезащитных очков",
+          "uk": "Запитайте про власника сонцезахисних окулярів"
+        },
+        "gappedTargetPhrase": "___ sunglasses are these?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-36:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i14:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Запитайте про власника сонцезахисних окулярів",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-36:i14:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про власника сонцезахисних окулярів",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чьи — `Whose`.",
+              "uk": "`Where` — де; чиї — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i14:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про власника сонцезахисних окулярів",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чьи — `Whose`.",
+              "uk": "`Who` — хто; чиї — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чиї окуляри тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-36:i15:r1",
+          "text": "Your sunglasses are here."
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i15:r2",
+          "text": "My sunglasses are here."
+        },
+        {
+          "responseId": "en:lesson-05:session-36:i15:r3",
+          "text": "His sunglasses are here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чиї окуляри тут",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-36:i15:audio",
+          "transcript": "Your sunglasses are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-36:i15:r1",
+            "targetText": "Your sunglasses are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i15:r2",
+            "targetText": "My sunglasses are here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i15:r3",
+            "targetText": "His sunglasses are here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-36:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чиї окуляри тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-36:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чиї окуляри тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-36:i16:p1",
+            "target": "sunglasses",
+            "meaningByLocale": {
+              "ru": "солнцезащитные очки",
+              "uk": "сонцезахисні окуляри"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-36:i16:p2",
+            "target": "sleepy",
+            "meaningByLocale": {
+              "ru": "сонный",
+              "uk": "сонний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-36:i16:p3",
+            "target": "children",
+            "meaningByLocale": {
+              "ru": "дети",
+              "uk": "діти"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-36:i16:p4",
+            "target": "keycard",
+            "meaningByLocale": {
+              "ru": "ключ-карта",
+              "uk": "ключ-картка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sunglasses",
+          "sleepy",
+          "children",
+          "keycard"
+        ],
+        "rightColumn": [
+          "сонцезахисні окуляри",
+          "сонний",
+          "діти",
+          "ключ-картка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-36:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знайшли сонцезахисні окуляри й хочете повернути їх власникові. Запитайте «Чиї це сонцезахисні окуляри?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Ви знайшли сонцезахисні окуляри й хочете повернути їх власникові. Запитайте «Чиї це сонцезахисні окуляри?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-36:i17:audio",
+          "transcript": "Whose sunglasses are these?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose sunglasses are these?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "99b17ba84ad23ed3ee200d037caa240e900a595e7f6f664f7418f4860f0738c7"
+}

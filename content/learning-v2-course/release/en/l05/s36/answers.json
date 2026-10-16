@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-36:i01",
+    "correctText": "I am sleepy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i02",
+    "correctText": "sunglasses",
+    "correctResponseId": "en:lesson-05:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i03",
+    "correctText": "sunglasses",
+    "correctResponseId": "en:lesson-05:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i04",
+    "correctText": "en:lesson-05:session-36:i04:p1=sunglasses\nen:lesson-05:session-36:i04:p2=children\nen:lesson-05:session-36:i04:p3=smoke alarm\nen:lesson-05:session-36:i04:p4=keycard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i05",
+    "correctText": "Whose sunglasses are these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i06",
+    "correctText": "Whose keycard is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i07",
+    "correctText": "The sunglasses are mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i09",
+    "correctText": "These are Anna's sunglasses.",
+    "correctResponseId": "en:lesson-05:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i10",
+    "correctText": "en:lesson-05:session-36:i10:p1=sunglasses\nen:lesson-05:session-36:i10:p2=sleepy\nen:lesson-05:session-36:i10:p3=smoke alarm\nen:lesson-05:session-36:i10:p4=keycard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i11",
+    "correctText": "The smoke alarm is on the ceiling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i12",
+    "correctText": "This is Anna's keycard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i13",
+    "correctText": "I have your sunglasses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i14",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-36:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i15",
+    "correctText": "Your sunglasses are here.",
+    "correctResponseId": "en:lesson-05:session-36:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i16",
+    "correctText": "en:lesson-05:session-36:i16:p1=sunglasses\nen:lesson-05:session-36:i16:p2=sleepy\nen:lesson-05:session-36:i16:p3=children\nen:lesson-05:session-36:i16:p4=keycard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-36:i17",
+    "correctText": "Whose sunglasses are these?",
+    "correctResponseId": null
+  }
+]

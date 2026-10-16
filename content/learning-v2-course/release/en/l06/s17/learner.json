@@ -591,17 +591,15 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-17:i11:audio",
-          "transcript": "The berry is on my jacket."
+          "transcript": "The berry is red."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The berry is on my jacket.",
+        "hiddenTargetPhrase": "The berry is red.",
         "orderedTokens": [
           "The",
           "berry",
           "is",
-          "on",
-          "my",
-          "jacket"
+          "red"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -612,8 +610,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The berry is on my jacket.`",
-              "uk": "тут потрібно `is` — `The berry is on my jacket.`"
+              "ru": "здесь нужно `is` — `The berry is red.`",
+              "uk": "тут потрібно `is` — `The berry is red.`"
             }
           }
         ],
@@ -956,5 +954,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "21c721e5735779d0c3ecb8f236c11d2377cc9a926930248b6c53684735ac47c9"
+  "learnerFingerprint": "da364cc34b8de1e2d9e56c6ce5de35aac57ad0ef01dbff8f4b8a7b2c470a558e"
 }

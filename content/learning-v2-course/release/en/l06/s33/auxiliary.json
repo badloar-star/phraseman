@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-33:intro1:r2": {
+          "ru": "После `I` — `study`, без изменения окончания.",
+          "uk": "Після `I` — `study`, без зміни закінчення."
+        },
+        "en:lesson-06:session-33:intro1:r3": {
+          "ru": "Говорим `I study`, без `am`.",
+          "uk": "Кажемо `I study`, без `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-33:intro2:r2": {
+          "ru": "Пишем `studies`: вместо `y` — `ies`.",
+          "uk": "Пишемо `studies`: замість `y` — `ies`."
+        },
+        "en:lesson-06:session-33:intro2:r3": {
+          "ru": "После `she` нужно `studies`.",
+          "uk": "Після `she` потрібно `studies`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-33:intro3:r2": {
+          "ru": "Один предмет `watch`: `is this`.",
+          "uk": "Один предмет `watch`: `is this`."
+        },
+        "en:lesson-06:session-33:intro3:r3": {
+          "ru": "О владельце спрашиваем `Whose` — «чьи».",
+          "uk": "Про власника запитуємо `Whose` — «чий»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "022ebb2520cf99d470853aa0eafaf9172e7f384d3a09bd3bdfc07bcf3417be69"
+}

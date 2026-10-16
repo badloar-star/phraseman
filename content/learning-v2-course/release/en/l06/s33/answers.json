@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-33:i01",
+    "correctText": "I study at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i02",
+    "correctText": "study",
+    "correctResponseId": "en:lesson-06:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i03",
+    "correctText": "studies",
+    "correctResponseId": "en:lesson-06:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i04",
+    "correctText": "en:lesson-06:session-33:i04:p1=study\nen:lesson-06:session-33:i04:p2=active\nen:lesson-06:session-33:i04:p3=doorbell\nen:lesson-06:session-33:i04:p4=watch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i05",
+    "correctText": "Anna studies at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i06",
+    "correctText": "He walks here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i07",
+    "correctText": "This doorbell is new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i08",
+    "correctText": "study",
+    "correctResponseId": "en:lesson-06:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i09",
+    "correctText": "My watch is here.",
+    "correctResponseId": "en:lesson-06:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i10",
+    "correctText": "en:lesson-06:session-33:i10:p1=study\nen:lesson-06:session-33:i10:p2=walk\nen:lesson-06:session-33:i10:p3=watch\nen:lesson-06:session-33:i10:p4=active",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i11",
+    "correctText": "She is active.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i12",
+    "correctText": "Whose watch is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i13",
+    "correctText": "We study here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i14",
+    "correctText": "studies",
+    "correctResponseId": "en:lesson-06:session-33:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i15",
+    "correctText": "This doorbell is new.",
+    "correctResponseId": "en:lesson-06:session-33:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i16",
+    "correctText": "en:lesson-06:session-33:i16:p1=study\nen:lesson-06:session-33:i16:p2=doorbell\nen:lesson-06:session-33:i16:p3=active\nen:lesson-06:session-33:i16:p4=walk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-33:i17",
+    "correctText": "She studies at home.",
+    "correctResponseId": null
+  }
+]

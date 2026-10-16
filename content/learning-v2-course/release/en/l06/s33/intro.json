@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "рассказать, кто где учится, и освоить форму studies",
+    "uk": "розповісти, хто де навчається, й опанувати форму studies"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Учиться и заниматься",
+        "uk": "Учитися й займатися"
+      },
+      "bodyByLocale": {
+        "ru": "`study` — «учиться», «заниматься». `I study at home` — «Я занимаюсь дома». Здесь речь о занятиях: например, вы читаете учебник или решаете задачи. Просто сидеть рядом с учебником — ещё не совсем `study`, даже если он открыт.",
+        "uk": "`study` — «учитися», «займатися». `I study at home` — «Я займаюся вдома». Тут ідеться про навчання: наприклад, ви читаєте підручник або розв’язуєте задачі. Просто сидіти поруч із підручником — ще не зовсім `study`, навіть якщо він відкритий."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я занимаюсь дома».",
+          "uk": "Скажіть «Я займаюся вдома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-33:intro1:r1",
+              "text": "I study at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro1:r2",
+              "text": "I studies at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro1:r3",
+              "text": "I am study at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-33:intro1:r1",
+              "text": "I study at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro1:r2",
+              "text": "I studies at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro1:r3",
+              "text": "I am study at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я занимаюсь дома».",
+          "uk": "Скажіть «Я займаюся вдома»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она занимается",
+        "uk": "Вона займається"
+      },
+      "bodyByLocale": {
+        "ru": "`She studies at home` — «Она занимается дома». У `study` после `he` или `she` буква `y` меняется на `ies`: получается `studies`. `They study here` — «Они занимаются здесь»: после `they` остаётся `study`. Эти фразы могут описывать обычное место занятий, а не то, что происходит прямо сейчас.",
+        "uk": "`She studies at home` — «Вона займається вдома». У `study` після `he` або `she` літера `y` змінюється на `ies`: виходить `studies`. `They study here` — «Вони займаються тут»: після `they` залишається `study`. Ці фрази можуть описувати звичне місце занять, а не те, що відбувається просто зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Она занимается дома».",
+          "uk": "Скажіть «Вона займається вдома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-33:intro2:r1",
+              "text": "She studies at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro2:r2",
+              "text": "She studys at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro2:r3",
+              "text": "She study at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-33:intro2:r1",
+              "text": "She studies at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro2:r2",
+              "text": "She studys at home."
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro2:r3",
+              "text": "She study at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Она занимается дома».",
+          "uk": "Скажіть «Вона займається вдома»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Часы у двери",
+        "uk": "Годинник біля дверей"
+      },
+      "bodyByLocale": {
+        "ru": "`watch` — «наручные часы», `doorbell` — «дверной звонок», `active` — «активный». `Whose watch is this?` — «Чьи это наручные часы?» По-английски одни наручные часы — один предмет: `is this`. `He walks here` — «Он ходит здесь пешком». `This doorbell is new` — «Этот дверной звонок новый».",
+        "uk": "`watch` — «наручний годинник», `doorbell` — «дверний дзвінок», `active` — «активний». `Whose watch is this?` — «Чий це наручний годинник?» Один `watch` — один предмет: `is this`. `He walks here` — «Він ходить тут пішки». `This doorbell is new` — «Цей дверний дзвінок новий»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Чьи это наручные часы?»",
+          "uk": "Запитайте «Чий це наручний годинник?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-33:intro3:r1",
+              "text": "Whose watch is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro3:r2",
+              "text": "Whose watch are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro3:r3",
+              "text": "Who watch is this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-33:intro3:r1",
+              "text": "Whose watch is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro3:r2",
+              "text": "Whose watch are these?"
+            },
+            {
+              "responseId": "en:lesson-06:session-33:intro3:r3",
+              "text": "Who watch is this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Чьи это наручные часы?»",
+          "uk": "Запитайте «Чий це наручний годинник?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6709845058bd607a7787732d4f3907279c6392736fc7b857f47a82b8f17271f7"
+}

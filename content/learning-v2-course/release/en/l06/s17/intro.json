@@ -119,12 +119,12 @@
       "pageId": "en:lesson-06:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Самочувствие и вещи",
-        "uk": "Самопочуття й речі"
+        "ru": "Повторим знакомые слова",
+        "uk": "Повторимо знайомі слова"
       },
       "bodyByLocale": {
-        "ru": "`I am well` — «Я хорошо себя чувствую». Здесь `well` описывает самочувствие, поэтому нужно `am`; `She is well` — «Она хорошо себя чувствует». `jacket` — «куртка», `berry` — «ягода». `The berry is on my jacket` — «Ягода на моей куртке».",
-        "uk": "`I am well` — «Я добре почуваюся». Тут `well` описує самопочуття, тому потрібно `am`; `She is well` — «Вона добре почувається». `jacket` — «куртка», `berry` — «ягода». `The berry is on my jacket` — «Ягода на моїй куртці»."
+        "ru": "`I am well` — «Я хорошо себя чувствую». Здесь `well` описывает самочувствие, поэтому нужно `am`; `She is well` — «Она хорошо себя чувствует». Перед выходом можно спросить о самочувствии. А для повторения слов возьмём две отдельные ситуации: за завтраком `The berry is red` — «Ягода красная» (`berry` — «ягода»); у двери `My jacket is here` — «Моя куртка здесь» (`jacket` — «куртка»).",
+        "uk": "`I am well` — «Я добре почуваюся». Тут `well` описує самопочуття, тому потрібно `am`; `She is well` — «Вона добре почувається». Перед виходом можна запитати про самопочуття. А для повторення слів візьмемо дві окремі ситуації: за сніданком `The berry is red` — «Ягода червона» (`berry` — «ягода»); біля дверей `My jacket is here` — «Моя куртка тут» (`jacket` — «куртка»)."
       },
       "question": {
         "interactionId": "en:lesson-06:session-17:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7df84b84c355b3a13d369b9f3863f41fc98e7975c65248edde90eb4b0cabe15d"
+  "introFingerprint": "69d025716a6521970a2ed17b2de564f18b992837c96c8a6fbf7731d50b0fa024"
 }

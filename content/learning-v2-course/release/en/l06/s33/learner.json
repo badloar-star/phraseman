@@ -1,0 +1,956 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я занимаюсь дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я занимаюсь дома»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I study at home.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я занимаюсь дома»",
+          "uk": "Скажіть «Я займаюся вдома»"
+        },
+        "orderedTokens": [
+          "I",
+          "study",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-33:i02:r1",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i02:r2",
+          "text": "shower"
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i02:r3",
+          "text": "walk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:i02:audio",
+          "transcript": "study"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-33:i02:r1",
+            "targetText": "study",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i02:r2",
+            "targetText": "shower",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i02:r3",
+            "targetText": "walk",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `study`, а в этом варианте — `shower`.",
+              "uk": "У записі перше слово — `study`, а в цьому варіанті — `shower`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `study`, а в этом варианте — `walk`.",
+              "uk": "У записі перше слово — `study`, а в цьому варіанті — `walk`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она занимается дома»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-33:i03:r1",
+          "text": "studies"
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i03:r2",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i03:r3",
+          "text": "studys"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она занимается дома»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она занимается дома»",
+          "uk": "Скажіть «Вона займається вдома»"
+        },
+        "gappedTargetPhrase": "She ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-33:i03:r1",
+            "text": "studies"
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i03:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i03:r3",
+            "text": "studys"
+          }
+        ],
+        "testedDimension": "Скажите «Она занимается дома»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она занимается дома»",
+            "feedbackByLocale": {
+              "ru": "После `she` нужно `studies`.",
+              "uk": "Після `she` потрібно `studies`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она занимается дома»",
+            "feedbackByLocale": {
+              "ru": "В `study` меняем `y` на `ies`: `studies`.",
+              "uk": "У `study` змінюємо `y` на `ies`: `studies`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-33:i04:p1",
+            "target": "study",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "учитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-33:i04:p2",
+            "target": "active",
+            "meaningByLocale": {
+              "ru": "активный",
+              "uk": "активний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-33:i04:p3",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-33:i04:p4",
+            "target": "watch",
+            "meaningByLocale": {
+              "ru": "наручные часы",
+              "uk": "наручний годинник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "study",
+          "active",
+          "doorbell",
+          "watch"
+        ],
+        "rightColumn": [
+          "учиться",
+          "активный",
+          "дверной звонок",
+          "наручные часы"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:i05:audio",
+          "transcript": "Anna studies at home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Anna studies at home.",
+        "orderedTokens": [
+          "Anna",
+          "studies",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Он ходит здесь пешком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он ходит здесь пешком»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He walks here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Он ходит здесь пешком»",
+          "uk": "Скажіть «Він ходить тут пішки»"
+        },
+        "orderedTokens": [
+          "He",
+          "walks",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Этот дверной звонок новый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Этот дверной звонок новый»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:i07:audio",
+          "transcript": "This doorbell is new."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This doorbell is new.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они занимаются здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-33:i08:r1",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i08:r2",
+          "text": "studies"
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i08:r3",
+          "text": "are study"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они занимаются здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они занимаются здесь»",
+          "uk": "Скажіть «Вони займаються тут»"
+        },
+        "gappedTargetPhrase": "They ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-33:i08:r1",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i08:r2",
+            "text": "studies"
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i08:r3",
+            "text": "are study"
+          }
+        ],
+        "testedDimension": "Скажите «Они занимаются здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они занимаются здесь»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `study`.",
+              "uk": "Після `they` — `study`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они занимаются здесь»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They study`, без `are`.",
+              "uk": "Потрібно `They study`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чьи часы здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-33:i09:r1",
+          "text": "My watch is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i09:r2",
+          "text": "Your watch is here."
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i09:r3",
+          "text": "His watch is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чьи часы здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:i09:audio",
+          "transcript": "My watch is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-33:i09:r1",
+            "targetText": "My watch is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i09:r2",
+            "targetText": "Your watch is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i09:r3",
+            "targetText": "His watch is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чьи часы здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чьи часы здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-33:i10:p1",
+            "target": "study",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "учитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-33:i10:p2",
+            "target": "walk",
+            "meaningByLocale": {
+              "ru": "ходить пешком",
+              "uk": "ходити пішки"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-33:i10:p3",
+            "target": "watch",
+            "meaningByLocale": {
+              "ru": "наручные часы",
+              "uk": "наручний годинник"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-33:i10:p4",
+            "target": "active",
+            "meaningByLocale": {
+              "ru": "активный",
+              "uk": "активний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "study",
+          "walk",
+          "watch",
+          "active"
+        ],
+        "rightColumn": [
+          "учиться",
+          "ходить пешком",
+          "наручные часы",
+          "активный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:i11:audio",
+          "transcript": "She is active."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is active.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "active"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `She is active.`",
+              "uk": "тут потрібно `is` — `She is active.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите «Чьи это наручные часы?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите «Чьи это наручные часы?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose watch is this?",
+        "localizedMeaning": {
+          "ru": "Спросите «Чьи это наручные часы?»",
+          "uk": "Запитайте «Чий це наручний годинник?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "watch",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Мы занимаемся здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Мы занимаемся здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:i13:audio",
+          "transcript": "We study here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We study here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Том занимается дома»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-33:i14:r1",
+          "text": "studies"
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i14:r2",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i14:r3",
+          "text": "is studies"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Том занимается дома»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Том занимается дома»",
+          "uk": "Скажіть «Том займається вдома»"
+        },
+        "gappedTargetPhrase": "Tom ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-33:i14:r1",
+            "text": "studies"
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i14:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i14:r3",
+            "text": "is studies"
+          }
+        ],
+        "testedDimension": "Скажите «Том занимается дома»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Том занимается дома»",
+            "feedbackByLocale": {
+              "ru": "Том — он: `Tom studies`.",
+              "uk": "Том — він: `Tom studies`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Том занимается дома»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Tom studies`, без `is`.",
+              "uk": "Потрібно `Tom studies`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какой дверной звонок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-33:i15:r1",
+          "text": "This doorbell is new."
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i15:r2",
+          "text": "This doorbell is old."
+        },
+        {
+          "responseId": "en:lesson-06:session-33:i15:r3",
+          "text": "This doorbell is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой дверной звонок",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:i15:audio",
+          "transcript": "This doorbell is new."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-33:i15:r1",
+            "targetText": "This doorbell is new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i15:r2",
+            "targetText": "This doorbell is old.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i15:r3",
+            "targetText": "This doorbell is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какой дверной звонок",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-33:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, какой дверной звонок",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `small`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `small`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-33:i16:p1",
+            "target": "study",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "учитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-33:i16:p2",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-33:i16:p3",
+            "target": "active",
+            "meaningByLocale": {
+              "ru": "активный",
+              "uk": "активний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-33:i16:p4",
+            "target": "walk",
+            "meaningByLocale": {
+              "ru": "ходить пешком",
+              "uk": "ходити пішки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "study",
+          "doorbell",
+          "active",
+          "walk"
+        ],
+        "rightColumn": [
+          "учиться",
+          "дверной звонок",
+          "активный",
+          "ходить пешком"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Расскажите, где обычно занимается Анна: «Она занимается дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Расскажите, где обычно занимается Анна: «Она занимается дома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:i17:audio",
+          "transcript": "She studies at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She studies at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "89af5bf97bb8bb1b2c21efde6f82fa0fd5f1ef741babd5848ff765ac8656f654"
+}

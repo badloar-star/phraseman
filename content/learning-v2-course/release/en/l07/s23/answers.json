@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-23:i01",
+    "correctText": "I don’t cheat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i02",
+    "correctText": "cheat",
+    "correctResponseId": "en:lesson-07:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i03",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-07:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i04",
+    "correctText": "en:lesson-07:session-23:i04:p1=cheat\nen:lesson-07:session-23:i04:p2=teach\nen:lesson-07:session-23:i04:p3=camera\nen:lesson-07:session-23:i04:p4=tickets",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i05",
+    "correctText": "I don’t cheat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i06",
+    "correctText": "Does Tom teach here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i07",
+    "correctText": "The website doesn’t work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i08",
+    "correctText": "teach",
+    "correctResponseId": "en:lesson-07:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i09",
+    "correctText": "I don’t cheat.",
+    "correctResponseId": "en:lesson-07:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i10",
+    "correctText": "en:lesson-07:session-23:i10:p1=website\nen:lesson-07:session-23:i10:p2=cheat\nen:lesson-07:session-23:i10:p3=teach\nen:lesson-07:session-23:i10:p4=camera",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i11",
+    "correctText": "The website doesn’t work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i12",
+    "correctText": "Do you have a camera?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i13",
+    "correctText": "There are no tickets here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i14",
+    "correctText": "doesn’t",
+    "correctResponseId": "en:lesson-07:session-23:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i15",
+    "correctText": "The tickets are here.",
+    "correctResponseId": "en:lesson-07:session-23:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i16",
+    "correctText": "en:lesson-07:session-23:i16:p1=tickets\nen:lesson-07:session-23:i16:p2=website\nen:lesson-07:session-23:i16:p3=cheat\nen:lesson-07:session-23:i16:p4=teach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:i17",
+    "correctText": "Tom doesn’t cheat.",
+    "correctResponseId": null
+  }
+]

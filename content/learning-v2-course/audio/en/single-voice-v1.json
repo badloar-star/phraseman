@@ -108640,6 +108640,309 @@
           "byteSize": 29184
         }
       ]
+    },
+    "l07/s23/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I don’t cheat.",
+          "file": "0acaa9fe46c135f1fe675a3a45409f036513a73abbe0caa13ffc5739088e6d0e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0acaa9fe46c135f1fe675a3a45409f036513a73abbe0caa13ffc5739088e6d0e.mp3",
+          "contentHash": "ab16bbd92af66a6a126dfc3b18c9527b2fed9d327007f57228ee5e3877d270a3",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l07/s23/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Does Tom teach here?",
+          "file": "515985448c5e25f810e04d6c570e187036781e659a5c57ce3d22b88de2c62778.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/515985448c5e25f810e04d6c570e187036781e659a5c57ce3d22b88de2c62778.mp3",
+          "contentHash": "44c139ce64b465557784a23dbd3602eff5d5bac8b3d36bb18daffd54819a25bf",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s23/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The website doesn’t work.",
+          "file": "3a8f23b5fd758236c34a8180a23b1d8840dbb5256253a0428993ba8dc00b1376.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a8f23b5fd758236c34a8180a23b1d8840dbb5256253a0428993ba8dc00b1376.mp3",
+          "contentHash": "4489af64b08fda103423b96d03a1707c26c645684445ab9d709530b303e67382",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l07/s23/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I don’t cheat.",
+          "file": "f67cef7d2cd67c076780d6d6d3135f83411aadd356df98ab805bb6f67f613fd6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f67cef7d2cd67c076780d6d6d3135f83411aadd356df98ab805bb6f67f613fd6.mp3",
+          "contentHash": "6d7b9004933887278a55714d85b97f4aa9817e6b8437c4fca6bc61d814a95281",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s23/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "cheat",
+          "file": "f501eb8c1b4e512e214b416ee06fa1912051164b44023c8b0e6c2276d0dfe317.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f501eb8c1b4e512e214b416ee06fa1912051164b44023c8b0e6c2276d0dfe317.mp3",
+          "contentHash": "18129fd31099c58346746d597fda291c6871bded4e64d3b3815d48cc9d4dda8e",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l07/s23/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I don’t cheat.",
+          "file": "0acaa9fe46c135f1fe675a3a45409f036513a73abbe0caa13ffc5739088e6d0e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0acaa9fe46c135f1fe675a3a45409f036513a73abbe0caa13ffc5739088e6d0e.mp3",
+          "contentHash": "ab16bbd92af66a6a126dfc3b18c9527b2fed9d327007f57228ee5e3877d270a3",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l07/s23/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "cheat",
+          "file": "229aa6ed4f8449b4d2d8d8c2edd072e37f002bef4c6365f9c802068ca9236eb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/229aa6ed4f8449b4d2d8d8c2edd072e37f002bef4c6365f9c802068ca9236eb7.mp3",
+          "contentHash": "772e141cae19714ce8d5b6f3f1b0d01c88ce01ea645499d070d90ba7faa18521",
+          "byteSize": 18048
+        },
+        {
+          "text": "teach",
+          "file": "41f6358616473a24c5cc06336045ae1133580d8b3f3a2f369967342ba9103c95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/41f6358616473a24c5cc06336045ae1133580d8b3f3a2f369967342ba9103c95.mp3",
+          "contentHash": "2d7064488757e4d22cd08187016b3c6ba4271a7b28ebae847243856b0699dead",
+          "byteSize": 20352
+        },
+        {
+          "text": "camera",
+          "file": "4c8608fbfd16633677c5962adcf63868b82bcb7fb019bdc6a32c6819179de642.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4c8608fbfd16633677c5962adcf63868b82bcb7fb019bdc6a32c6819179de642.mp3",
+          "contentHash": "37f290f31727179cb8db156b9b3164430f056c449f7ab9b004c17a645c5db3f4",
+          "byteSize": 6912
+        },
+        {
+          "text": "tickets",
+          "file": "350d25aab9525febb13045d1150bf312066c8ec286e019627b1c975a67d444fa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/350d25aab9525febb13045d1150bf312066c8ec286e019627b1c975a67d444fa.mp3",
+          "contentHash": "225e5fc4dd1e79ea5f5aa2891caeefbbbdc7b565607a48a72da231954af6e5ab",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l07/s23/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I don’t cheat.",
+          "file": "0acaa9fe46c135f1fe675a3a45409f036513a73abbe0caa13ffc5739088e6d0e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0acaa9fe46c135f1fe675a3a45409f036513a73abbe0caa13ffc5739088e6d0e.mp3",
+          "contentHash": "ab16bbd92af66a6a126dfc3b18c9527b2fed9d327007f57228ee5e3877d270a3",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l07/s23/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Does Tom teach here?",
+          "file": "0a873196d20dc38f04cd8de124482c3d0d22319cd2f0a621e892f6828d7e8642.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0a873196d20dc38f04cd8de124482c3d0d22319cd2f0a621e892f6828d7e8642.mp3",
+          "contentHash": "29db3cd748b700faba319dcc8888d54d9df39bcf2dd588036571d678f6c8a1bd",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s23/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The website doesn’t work.",
+          "file": "5b2b1ad1e02d53e7289ca47edab5feb453ad4afa3ae12461811b3161e92c76ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5b2b1ad1e02d53e7289ca47edab5feb453ad4afa3ae12461811b3161e92c76ad.mp3",
+          "contentHash": "f12f0d5190516bcf3da2b3053334607ca2f8d8e13ef2cc46df2567c02a5afddc",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s23/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Does Tom teach here?",
+          "file": "7fa466a51bbba75234787da5564d4b784c0458e02c0a1935f06ab6a1328bcd19.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7fa466a51bbba75234787da5564d4b784c0458e02c0a1935f06ab6a1328bcd19.mp3",
+          "contentHash": "b10f0deab9cc5b2495f02c270718a79f981ecc76ec2186b3b885400714838f9c",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l07/s23/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I don’t cheat.",
+          "file": "ae3274795c9494eee6dfe61489ca1726cab85543b069d65acb19549eb10dd2c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae3274795c9494eee6dfe61489ca1726cab85543b069d65acb19549eb10dd2c6.mp3",
+          "contentHash": "b92e101262b916438d05530a7d0f56ac818df82abcef47235cdb391931a302e9",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l07/s23/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "website",
+          "file": "eceffaa085d5dd4aa14810566c765c73aaf3e108658243ce00a940ef71c0db5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/eceffaa085d5dd4aa14810566c765c73aaf3e108658243ce00a940ef71c0db5d.mp3",
+          "contentHash": "8c40d22049022a5aa8582eff179355d817ad2197a9de3d53978bd10fd6b0ccff",
+          "byteSize": 35712
+        },
+        {
+          "text": "cheat",
+          "file": "b51cda696265ea9aeabf6873707b2f0e7406fb028886a741f7a10f76324ada1c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b51cda696265ea9aeabf6873707b2f0e7406fb028886a741f7a10f76324ada1c.mp3",
+          "contentHash": "fd28e4c8bd5ebb4c5a466d6e883ed22b2a8a1036819b8ed54f7930331e0d2098",
+          "byteSize": 21888
+        },
+        {
+          "text": "teach",
+          "file": "34e4a023f9cd57233e27337d8c4e1b9ad05c725f67108b1da6258e9131e9aaf4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/34e4a023f9cd57233e27337d8c4e1b9ad05c725f67108b1da6258e9131e9aaf4.mp3",
+          "contentHash": "dfc809cd89cde396ed474992c9a66c3efd2e5eecd675bb538cd00424887d9fd2",
+          "byteSize": 32256
+        },
+        {
+          "text": "camera",
+          "file": "585081f2431e21b333a1b055eac455527919f12424ec68648dc5d09f66cfa640.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/585081f2431e21b333a1b055eac455527919f12424ec68648dc5d09f66cfa640.mp3",
+          "contentHash": "5cd703a92129bf9ea8e622b220467c3e625000ac33b3990b031fc0646d507630",
+          "byteSize": 17280
+        }
+      ]
+    },
+    "l07/s23/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The website doesn’t work.",
+          "file": "f10e45fdbf572caf41aec3c992c40eb88944acc4abd1c3ede8249e25450d5b32.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f10e45fdbf572caf41aec3c992c40eb88944acc4abd1c3ede8249e25450d5b32.mp3",
+          "contentHash": "133334ee2cf12f07fd7aafb6b01a32754ed50e9a61dba9e70c64a802147d5401",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s23/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you have a camera?",
+          "file": "db5346336b49b50b2d14dc08d8c0f31c220a7f3e66603439ce03c093e47f7816.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/db5346336b49b50b2d14dc08d8c0f31c220a7f3e66603439ce03c093e47f7816.mp3",
+          "contentHash": "a81245721c66c0ce0fc3141b4954665856e18a5b8d2efa4960097be4332c89b4",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l07/s23/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There are no tickets here.",
+          "file": "2190c5fb36aef19f6135b010bcbe3c08f9c2abd712d657f99675708578f29bdc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2190c5fb36aef19f6135b010bcbe3c08f9c2abd712d657f99675708578f29bdc.mp3",
+          "contentHash": "0e7701718fceb33a2c6686a66e38d4a4090e6334b24f3d87142ebc022af3c124",
+          "byteSize": 57216
+        }
+      ]
+    },
+    "l07/s23/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The website doesn’t work.",
+          "file": "3bd52683a25b219374bbdf0cbb79f794d702e0476ebc8fe511683b4f19c4cf53.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3bd52683a25b219374bbdf0cbb79f794d702e0476ebc8fe511683b4f19c4cf53.mp3",
+          "contentHash": "eb2dcb8a8fa45645f649dca231f79458e48b97e30c76adfd94aa085459febabf",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s23/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The tickets are here.",
+          "file": "54616831038014d67079b395323021b363d06bd7851065bde734896e3983a65b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/54616831038014d67079b395323021b363d06bd7851065bde734896e3983a65b.mp3",
+          "contentHash": "0d50dc2b7c01835a6c1e528ff1227576d550475eb19ead43031e839a1b47f486",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l07/s23/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "tickets",
+          "file": "350d25aab9525febb13045d1150bf312066c8ec286e019627b1c975a67d444fa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/350d25aab9525febb13045d1150bf312066c8ec286e019627b1c975a67d444fa.mp3",
+          "contentHash": "225e5fc4dd1e79ea5f5aa2891caeefbbbdc7b565607a48a72da231954af6e5ab",
+          "byteSize": 20352
+        },
+        {
+          "text": "website",
+          "file": "a6dddf3ca848a5b5ba2d69974edc7bfcf6d8ec396562ab463fe6251b4975d26a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a6dddf3ca848a5b5ba2d69974edc7bfcf6d8ec396562ab463fe6251b4975d26a.mp3",
+          "contentHash": "e422a46816aa7a86113de4344ab64546b20d0f4baa26749d42cb6c74f2192e4b",
+          "byteSize": 21120
+        },
+        {
+          "text": "cheat",
+          "file": "229aa6ed4f8449b4d2d8d8c2edd072e37f002bef4c6365f9c802068ca9236eb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/229aa6ed4f8449b4d2d8d8c2edd072e37f002bef4c6365f9c802068ca9236eb7.mp3",
+          "contentHash": "772e141cae19714ce8d5b6f3f1b0d01c88ce01ea645499d070d90ba7faa18521",
+          "byteSize": 18048
+        },
+        {
+          "text": "teach",
+          "file": "41f6358616473a24c5cc06336045ae1133580d8b3f3a2f369967342ba9103c95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/41f6358616473a24c5cc06336045ae1133580d8b3f3a2f369967342ba9103c95.mp3",
+          "contentHash": "2d7064488757e4d22cd08187016b3c6ba4271a7b28ebae847243856b0699dead",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l07/s23/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom doesn’t cheat.",
+          "file": "b0f23274aff3534ec12d089bcf3e26d67c7f5ebc357ae201d1382738d59df958.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0f23274aff3534ec12d089bcf3e26d67c7f5ebc357ae201d1382738d59df958.mp3",
+          "contentHash": "ca45dcaa5ff8bb7fbf8934657578bcd589a95cc446a7c73c8d85521606427454",
+          "byteSize": 38016
+        }
+      ]
     }
   },
   "settings": {

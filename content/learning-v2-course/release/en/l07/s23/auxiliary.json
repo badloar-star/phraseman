@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-23:intro1:r2": {
+          "ru": "После `I` нужно `don’t`.",
+          "uk": "Після `I` потрібне `don’t`."
+        },
+        "en:lesson-07:session-23:intro1:r3": {
+          "ru": "Для отрицания действия нужно `don’t`.",
+          "uk": "Для заперечення дії потрібне `don’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-23:intro2:r2": {
+          "ru": "Для вопроса о Томе нужно `does`.",
+          "uk": "Для запитання про Тома потрібне `does`."
+        },
+        "en:lesson-07:session-23:intro2:r3": {
+          "ru": "После `does` нужно `teach`, без `es`.",
+          "uk": "Після `does` потрібне `teach`, без `es`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-23:intro3:r2": {
+          "ru": "Для одного сайта нужно `doesn’t`.",
+          "uk": "Для одного сайту потрібне `doesn’t`."
+        },
+        "en:lesson-07:session-23:intro3:r3": {
+          "ru": "После `doesn’t` нужно `work`, без `s`.",
+          "uk": "Після `doesn’t` потрібне `work`, без `s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5bfa47291d2d062b4bc9f93e0ca1975b3bf42f4630cd4a87c9647c4441eb6696"
+}

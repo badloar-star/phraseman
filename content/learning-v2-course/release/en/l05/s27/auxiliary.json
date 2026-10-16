@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-27:intro1:r2": {
+          "ru": "К имени владельца добавляем `’s`: `Anna’s passport`.",
+          "uk": "До імені власниці додаємо `’s`: `Anna’s passport`."
+        },
+        "en:lesson-05:session-27:intro1:r3": {
+          "ru": "Это паспорт Тома; здесь владелица Анна.",
+          "uk": "Це паспорт Тома; тут власниця Анна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-27:intro2:r2": {
+          "ru": "`awake` — не спит; спит — `asleep`.",
+          "uk": "`awake` — не спить; спить — `asleep`."
+        },
+        "en:lesson-05:session-27:intro2:r3": {
+          "ru": "Один Том: `Tom is`.",
+          "uk": "Один Том: `Tom is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-27:intro3:r2": {
+          "ru": "Одна машина: `car is`.",
+          "uk": "Одна машина: `car is`."
+        },
+        "en:lesson-05:session-27:intro3:r3": {
+          "ru": "`asleep` — спит; доступна — `available`.",
+          "uk": "`asleep` — спить; доступна — `available`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "37847a53ee62b29bbe048db25f92ee88c82e7d49f35f376c1f5b1538116615ce"
+}

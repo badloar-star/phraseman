@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "уточнить владельца документа, состояние человека и доступность машины",
+    "uk": "уточнити власника документа, стан людини й доступність машини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Главный документ",
+        "uk": "Головний документ"
+      },
+      "bodyByLocale": {
+        "ru": "`passport` — «паспорт». `This is Anna’s passport` — «Это паспорт Анны». `Tom’s passport is here` — «Паспорт Тома здесь». Имя владельца с `’s` ставим перед вещью. Паспорт уже на столе: к поездке он готов, осталось разбудить владельца.",
+        "uk": "`passport` — «паспорт». `This is Anna’s passport` — «Це паспорт Анни». `Tom’s passport is here` — «Паспорт Тома тут». Ім’я власника з `’s` ставимо перед річчю. Паспорт уже на столі: до поїздки він готовий, залишилося розбудити власника."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Покажите паспорт Анны.",
+          "uk": "Покажіть паспорт Анни."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-27:intro1:r1",
+              "text": "This is Anna's passport."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro1:r2",
+              "text": "This is Anna passport."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro1:r3",
+              "text": "This is Tom's passport."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-27:intro1:r1",
+              "text": "This is Anna's passport."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro1:r2",
+              "text": "This is Anna passport."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro1:r3",
+              "text": "This is Tom's passport."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите паспорт Анны.",
+          "uk": "Покажіть паспорт Анни."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто проснулся",
+        "uk": "Хто прокинувся"
+      },
+      "bodyByLocale": {
+        "ru": "`awake` — «не спит», `asleep` — «спит». `Anna is awake` — «Анна не спит», `Tom is asleep` — «Том спит». Это состояния: здесь нужна форма `is`. `available` — «доступен, свободен»: `The car is available` — «Машина доступна», её можно взять. Это не значит, что она бесплатная.",
+        "uk": "`awake` — «не спить», `asleep` — «спить». `Anna is awake` — «Анна не спить», `Tom is asleep` — «Том спить». Це стани: тут потрібна форма `is`. `available` — «доступний, вільний»: `The car is available` — «Машина доступна», її можна взяти. Це не означає, що вона безкоштовна."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Том ещё спит. Выберите фразу.",
+          "uk": "Том іще спить. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-27:intro2:r1",
+              "text": "Tom is asleep."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro2:r2",
+              "text": "Tom is awake."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro2:r3",
+              "text": "Tom are asleep."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-27:intro2:r1",
+              "text": "Tom is asleep."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro2:r2",
+              "text": "Tom is awake."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro2:r3",
+              "text": "Tom are asleep."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Том ещё спит. Выберите фразу.",
+          "uk": "Том іще спить. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Машины у входа",
+        "uk": "Машини біля входу"
+      },
+      "bodyByLocale": {
+        "ru": "`cars` — «машины», `awning` — «навес», `tablet` — «планшет». `The cars are under the awning` — «Машины под навесом». `Anna’s tablet is on the table` — «Планшет Анны на столе». `Where is my passport?` — «Где мой паспорт?» С несколькими машинами — `are`, с одним планшетом или паспортом — `is`.",
+        "uk": "`cars` — «машини», `awning` — «навіс», `tablet` — «планшет». `The cars are under the awning` — «Машини під навісом». `Anna’s tablet is on the table` — «Планшет Анни на столі». `Where is my passport?` — «Де мій паспорт?» З кількома машинами — `are`, з одним планшетом чи паспортом — `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Машину можно взять. Скажите «Машина доступна».",
+          "uk": "Машину можна взяти. Скажіть «Машина доступна»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-27:intro3:r1",
+              "text": "The car is available."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro3:r2",
+              "text": "The car are available."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro3:r3",
+              "text": "The car is asleep."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-27:intro3:r1",
+              "text": "The car is available."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro3:r2",
+              "text": "The car are available."
+            },
+            {
+              "responseId": "en:lesson-05:session-27:intro3:r3",
+              "text": "The car is asleep."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Машину можно взять. Скажите «Машина доступна».",
+          "uk": "Машину можна взяти. Скажіть «Машина доступна»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2a30048e3f3e4e183cbb43248d14e2e863c53e33b0992ffb751c430d99bfb9be"
+}

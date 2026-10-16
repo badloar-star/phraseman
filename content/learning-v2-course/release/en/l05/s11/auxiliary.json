@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-11:intro1:r2": {
+          "ru": "Перед `my backpack` не нужно `a`.",
+          "uk": "Перед `my backpack` не потрібне `a`."
+        },
+        "en:lesson-05:session-11:intro1:r3": {
+          "ru": "`your` — твой / ваш; мой — `my`.",
+          "uk": "`your` — твій / ваш; мій — `my`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-11:intro2:r2": {
+          "ru": "Друг женщины: `her friend`, а не `his friend`.",
+          "uk": "Друг жінки: `her friend`, а не `his friend`."
+        },
+        "en:lesson-05:session-11:intro2:r3": {
+          "ru": "Один друг: `friend is`.",
+          "uk": "Один друг: `friend is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-11:intro3:r2": {
+          "ru": "`on` — на столе; под — `under`.",
+          "uk": "`on` — на столі; під — `under`."
+        },
+        "en:lesson-05:session-11:intro3:r3": {
+          "ru": "`my` — моим; здесь твоим / вашим: `your`.",
+          "uk": "`my` — моїм; тут твоїм / вашим: `your`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3c75b3b60f9c1617b786f820f6495a38fc2fd547ea3475b9a782006f3a2e3196"
+}

@@ -1,0 +1,994 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-11:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг вашої подруги розумний. Скажіть «Її друг розумний»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг вашої подруги розумний. Скажіть «Її друг розумний»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Her friend is smart.",
+        "localizedMeaning": {
+          "ru": "Друг вашей подруги умный. Скажите «Её друг умный»",
+          "uk": "Друг вашої подруги розумний. Скажіть «Її друг розумний»"
+        },
+        "orderedTokens": [
+          "Her",
+          "friend",
+          "is",
+          "smart"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-11:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг вашої подруги розумний. Скажіть «Її друг розумний»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Her friend is smart.`",
+              "uk": "тут потрібно `is` — `Her friend is smart.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-11:i02:r1",
+          "text": "backpack"
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i02:r2",
+          "text": "backpacks"
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i02:r3",
+          "text": "bag"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-11:i02:audio",
+          "transcript": "backpack"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-11:i02:r1",
+            "targetText": "backpack",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i02:r2",
+            "targetText": "backpacks",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i02:r3",
+            "targetText": "bag",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `backpack`, а в этом варианте — `backpacks`.",
+              "uk": "У записі перше слово — `backpack`, а в цьому варіанті — `backpacks`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `backpack`, а в этом варианте — `bag`.",
+              "uk": "У записі перше слово — `backpack`, а в цьому варіанті — `bag`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть рюкзак",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-11:i03:r1",
+          "text": "backpack"
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i03:r2",
+          "text": "desk"
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i03:r3",
+          "text": "pocket"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть рюкзак",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите рюкзак",
+          "uk": "Назвіть рюкзак"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i03:r1",
+            "text": "backpack"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i03:r2",
+            "text": "desk"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i03:r3",
+            "text": "pocket"
+          }
+        ],
+        "testedDimension": "Назвіть рюкзак",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть рюкзак",
+            "feedbackByLocale": {
+              "ru": "`desk` — письменный стол; рюкзак — `backpack`.",
+              "uk": "`desk` — письмовий стіл; рюкзак — `backpack`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть рюкзак",
+            "feedbackByLocale": {
+              "ru": "`pocket` — карман; рюкзак — `backpack`.",
+              "uk": "`pocket` — кишеня; рюкзак — `backpack`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-11:i04:p1",
+            "target": "backpack",
+            "meaningByLocale": {
+              "ru": "рюкзак",
+              "uk": "рюкзак"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-11:i04:p2",
+            "target": "smart",
+            "meaningByLocale": {
+              "ru": "умный",
+              "uk": "розумний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-11:i04:p3",
+            "target": "strong",
+            "meaningByLocale": {
+              "ru": "сильный",
+              "uk": "сильний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-11:i04:p4",
+            "target": "quiet",
+            "meaningByLocale": {
+              "ru": "тихий",
+              "uk": "тихий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "backpack",
+          "smart",
+          "strong",
+          "quiet"
+        ],
+        "rightColumn": [
+          "рюкзак",
+          "розумний",
+          "сильний",
+          "тихий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-11:i05:audio",
+          "transcript": "This is my backpack."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is my backpack.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "my",
+          "backpack"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг вашого брата сильний. Скажіть «Його друг сильний»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг вашого брата сильний. Скажіть «Його друг сильний»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "His friend is strong.",
+        "localizedMeaning": {
+          "ru": "Друг вашего брата сильный. Скажите «Его друг сильный»",
+          "uk": "Друг вашого брата сильний. Скажіть «Його друг сильний»"
+        },
+        "orderedTokens": [
+          "His",
+          "friend",
+          "is",
+          "strong"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-11:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг вашого брата сильний. Скажіть «Його друг сильний»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `His friend is strong.`",
+              "uk": "тут потрібно `is` — `His friend is strong.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Наша кімната тиха»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-11:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Наша кімната тиха»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-11:i07:audio",
+          "transcript": "Our room is quiet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Our room is quiet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Рюкзак належить вашій подрузі. Скажіть «Це її рюкзак»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-11:i08:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i08:r2",
+          "text": "his"
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i08:r3",
+          "text": "their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рюкзак належить вашій подрузі. Скажіть «Це її рюкзак»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рюкзак принадлежит вашей подруге. Скажите «Это её рюкзак»",
+          "uk": "Рюкзак належить вашій подрузі. Скажіть «Це її рюкзак»"
+        },
+        "gappedTargetPhrase": "This is ___ backpack.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i08:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i08:r2",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i08:r3",
+            "text": "their"
+          }
+        ],
+        "testedDimension": "Рюкзак належить вашій подрузі. Скажіть «Це її рюкзак»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Рюкзак належить вашій подрузі. Скажіть «Це її рюкзак»",
+            "feedbackByLocale": {
+              "ru": "`his` — его; здесь её: `her`.",
+              "uk": "`his` — його; тут її: `her`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Рюкзак належить вашій подрузі. Скажіть «Це її рюкзак»",
+            "feedbackByLocale": {
+              "ru": "`their` — их; здесь её: `her`.",
+              "uk": "`their` — їхній; тут її: `her`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де рюкзак",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-11:i09:r1",
+          "text": "The backpack is under your desk."
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i09:r2",
+          "text": "The backpack is under your chair."
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i09:r3",
+          "text": "The backpack is under your table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-11:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де рюкзак",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-11:i09:audio",
+          "transcript": "The backpack is under your desk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-11:i09:r1",
+            "targetText": "The backpack is under your desk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i09:r2",
+            "targetText": "The backpack is under your chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i09:r3",
+            "targetText": "The backpack is under your table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де рюкзак",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `desk`, а в этом варианте — `chair`.",
+              "uk": "У записі останнє слово — `desk`, а в цьому варіанті — `chair`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де рюкзак",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `desk`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `desk`, а в цьому варіанті — `table`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-11:i10:p1",
+            "target": "backpack",
+            "meaningByLocale": {
+              "ru": "рюкзак",
+              "uk": "рюкзак"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-11:i10:p2",
+            "target": "room",
+            "meaningByLocale": {
+              "ru": "комната",
+              "uk": "кімната"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-11:i10:p3",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-11:i10:p4",
+            "target": "desk",
+            "meaningByLocale": {
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
+            }
+          }
+        ],
+        "leftColumn": [
+          "backpack",
+          "room",
+          "tram",
+          "desk"
+        ],
+        "rightColumn": [
+          "рюкзак",
+          "кімната",
+          "трамвай",
+          "письмовий стіл"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-11:i11:audio",
+          "transcript": "Their room is quiet."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Their room is quiet.",
+        "orderedTokens": [
+          "Their",
+          "room",
+          "is",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-11:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Their room is quiet.`",
+              "uk": "тут потрібно `is` — `Their room is quiet.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Підійшов потрібний вам із другом трамвай. Скажіть «Наш трамвай тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підійшов потрібний вам із другом трамвай. Скажіть «Наш трамвай тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our tram is here.",
+        "localizedMeaning": {
+          "ru": "Подошёл нужный вам с другом трамвай. Скажите «Наш трамвай здесь»",
+          "uk": "Підійшов потрібний вам із другом трамвай. Скажіть «Наш трамвай тут»"
+        },
+        "orderedTokens": [
+          "Our",
+          "tram",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-11:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Підійшов потрібний вам із другом трамвай. Скажіть «Наш трамвай тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Our tram is here.`",
+              "uk": "тут потрібно `is` — `Our tram is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Рюкзак друга у вас. Повідомте йому «Твій рюкзак у мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-11:i13:audio"
+      ],
+      "accessibilityLabel": "Рюкзак друга у вас. Повідомте йому «Твій рюкзак у мене»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-11:i13:audio",
+          "transcript": "I have your backpack."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your backpack.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Їхня кімната тиха. Власників кілька, кімната одна. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-11:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i14:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Їхня кімната тиха. Власників кілька, кімната одна. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Их комната тихая. Владельцев несколько, комната одна. Выберите форму",
+          "uk": "Їхня кімната тиха. Власників кілька, кімната одна. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Their room ___ quiet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-11:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i14:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Їхня кімната тиха. Власників кілька, кімната одна. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-11:i14:r2",
+            "correct": false,
+            "testedDimension": "Їхня кімната тиха. Власників кілька, кімната одна. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одна комната: `room is`; число владельцев этого не меняет.",
+              "uk": "Одна кімната: `room is`; кількість власників цього не змінює."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i14:r3",
+            "correct": false,
+            "testedDimension": "Їхня кімната тиха. Власників кілька, кімната одна. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Здесь описываем комнату: `room is quiet`.",
+              "uk": "Тут описуємо кімнату: `room is quiet`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чий рюкзак тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-11:i15:r1",
+          "text": "His backpack is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i15:r2",
+          "text": "Her backpack is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-11:i15:r3",
+          "text": "My backpack is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чий рюкзак тут",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-11:i15:audio",
+          "transcript": "His backpack is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-11:i15:r1",
+            "targetText": "His backpack is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i15:r2",
+            "targetText": "Her backpack is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i15:r3",
+            "targetText": "My backpack is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-11:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чий рюкзак тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `His`, а в этом варианте — `Her`.",
+              "uk": "У записі перше слово — `His`, а в цьому варіанті — `Her`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-11:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чий рюкзак тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `His`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `His`, а в цьому варіанті — `My`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-11:i16:p1",
+            "target": "backpack",
+            "meaningByLocale": {
+              "ru": "рюкзак",
+              "uk": "рюкзак"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-11:i16:p2",
+            "target": "room",
+            "meaningByLocale": {
+              "ru": "комната",
+              "uk": "кімната"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-11:i16:p3",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-11:i16:p4",
+            "target": "desk",
+            "meaningByLocale": {
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
+            }
+          }
+        ],
+        "leftColumn": [
+          "backpack",
+          "room",
+          "tram",
+          "desk"
+        ],
+        "rightColumn": [
+          "рюкзак",
+          "кімната",
+          "трамвай",
+          "письмовий стіл"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-11:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг шукає рюкзак. Він під письмовим столом друга. Поясніть йому «Рюкзак під твоїм письмовим столом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Друг шукає рюкзак. Він під письмовим столом друга. Поясніть йому «Рюкзак під твоїм письмовим столом»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-11:i17:audio",
+          "transcript": "The backpack is under your desk."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The backpack is under your desk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "90c9a0e1ed0ee94bb3a8d8e59247af4df278ee68f4e6dd057fe69e2ac6845a85"
+}

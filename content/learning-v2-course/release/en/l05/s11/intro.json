@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "назвать рюкзак и указать владельца вещи или комнаты",
+    "uk": "назвати рюкзак і вказати власника речі або кімнати"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "За спиной",
+        "uk": "За спиною"
+      },
+      "bodyByLocale": {
+        "ru": "`backpack` — «рюкзак», сумка, которую носят на спине. `my backpack` — «мой рюкзак», `your backpack` — «твой / ваш рюкзак». `This is my backpack` — «Это мой рюкзак». Рюкзак оставляет руки свободными — например, чтобы искать телефон, который лежит в рюкзаке. Перед `my backpack` не добавляйте `a` или `the`.",
+        "uk": "`backpack` — «рюкзак», сумка, яку носять на спині. `my backpack` — «мій рюкзак», `your backpack` — «твій / ваш рюкзак». `This is my backpack` — «Це мій рюкзак». Рюкзак залишає руки вільними — наприклад, щоб шукати телефон, який лежить у рюкзаку. Перед `my backpack` не додавайте `a` чи `the`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Покажите свой рюкзак.",
+          "uk": "Покажіть свій рюкзак."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-11:intro1:r1",
+              "text": "This is my backpack."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro1:r2",
+              "text": "This is a my backpack."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro1:r3",
+              "text": "This is your backpack."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-11:intro1:r1",
+              "text": "This is my backpack."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro1:r2",
+              "text": "This is a my backpack."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro1:r3",
+              "text": "This is your backpack."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите свой рюкзак.",
+          "uk": "Покажіть свій рюкзак."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто помогает собраться",
+        "uk": "Хто допомагає зібратися"
+      },
+      "bodyByLocale": {
+        "ru": "`smart` — «умный», `strong` — «сильный», `quiet` — «тихий». `Her friend is smart` — «Её друг умный». `His friend is strong` — «Его друг сильный». Выбирайте `her` или `his` по тому, чей это друг, а не по слову «друг». `Our room is quiet` — «Наша комната тихая»: `our` — наша, `room` — комната.",
+        "uk": "`smart` — «розумний», `strong` — «сильний», `quiet` — «тихий». `Her friend is smart` — «Її друг розумний». `His friend is strong` — «Його друг сильний». Вибирайте `her` чи `his` за тим, чий це друг, а не за словом «друг». `Our room is quiet` — «Наша кімната тиха»: `our` — наша, `room` — кімната."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг вашей подруги умный. Выберите описание.",
+          "uk": "Друг вашої подруги розумний. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-11:intro2:r1",
+              "text": "Her friend is smart."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro2:r2",
+              "text": "His friend is smart."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro2:r3",
+              "text": "Her friend are smart."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-11:intro2:r1",
+              "text": "Her friend is smart."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro2:r2",
+              "text": "His friend is smart."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro2:r3",
+              "text": "Her friend are smart."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг вашей подруги умный. Выберите описание.",
+          "uk": "Друг вашої подруги розумний. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В комнате и в трамвае",
+        "uk": "У кімнаті й у трамваї"
+      },
+      "bodyByLocale": {
+        "ru": "`desk` — «письменный стол», `tram` — «трамвай». `The backpack is under your desk` — «Рюкзак под твоим столом». `Their room is quiet` — «Их комната тихая». `Our tram is here` — «Наш трамвай здесь». `our tram` может означать трамвай, на котором мы поедем: покупать целый трамвай для такой фразы не нужно.",
+        "uk": "`desk` — «письмовий стіл», `tram` — «трамвай». `The backpack is under your desk` — «Рюкзак під твоїм столом». `Their room is quiet` — «Їхня кімната тиха». `Our tram is here` — «Наш трамвай тут». `our tram` може означати трамвай, яким ми поїдемо: купувати цілий трамвай для такої фрази не потрібно."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Рюкзак под столом собеседника. Выберите фразу.",
+          "uk": "Рюкзак під столом співрозмовника. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-11:intro3:r1",
+              "text": "The backpack is under your desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro3:r2",
+              "text": "The backpack is on your desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro3:r3",
+              "text": "The backpack is under my desk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-11:intro3:r1",
+              "text": "The backpack is under your desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro3:r2",
+              "text": "The backpack is on your desk."
+            },
+            {
+              "responseId": "en:lesson-05:session-11:intro3:r3",
+              "text": "The backpack is under my desk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Рюкзак под столом собеседника. Выберите фразу.",
+          "uk": "Рюкзак під столом співрозмовника. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b79e7363876f56a34aa3706dd6bd58d68bb7c0030921e9c7ad6075944a4bd0a2"
+}

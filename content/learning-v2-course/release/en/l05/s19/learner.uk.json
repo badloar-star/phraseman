@@ -1,0 +1,995 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-19:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з другом прийшли вдвох. Скажіть «Ми разом» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з другом прийшли вдвох. Скажіть «Ми разом» без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are together.",
+        "localizedMeaning": {
+          "ru": "Вы с другом пришли вдвоём. Скажите «Мы вместе» без сокращения",
+          "uk": "Ви з другом прийшли вдвох. Скажіть «Ми разом» без скорочення"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "together"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-19:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви з другом прийшли вдвох. Скажіть «Ми разом» без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `We are together.`",
+              "uk": "тут потрібно `are` — `We are together.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-19:i02:r1",
+          "text": "tablet"
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i02:r2",
+          "text": "table"
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i02:r3",
+          "text": "backpack"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-19:i02:audio",
+          "transcript": "tablet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-19:i02:r1",
+            "targetText": "tablet",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i02:r2",
+            "targetText": "table",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i02:r3",
+            "targetText": "backpack",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `tablet`, а в этом варианте — `table`.",
+              "uk": "У записі перше слово — `tablet`, а в цьому варіанті — `table`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `tablet`, а в этом варианте — `backpack`.",
+              "uk": "У записі перше слово — `tablet`, а в цьому варіанті — `backpack`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть планшет — пристрій з екраном",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-19:i03:r1",
+          "text": "tablet"
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i03:r2",
+          "text": "table"
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i03:r3",
+          "text": "charger"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть планшет — пристрій з екраном",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите планшет — устройство с экраном",
+          "uk": "Назвіть планшет — пристрій з екраном"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i03:r1",
+            "text": "tablet"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i03:r2",
+            "text": "table"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i03:r3",
+            "text": "charger"
+          }
+        ],
+        "testedDimension": "Назвіть планшет — пристрій з екраном",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-19:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть планшет — пристрій з екраном",
+            "feedbackByLocale": {
+              "ru": "`table` — стол; планшет — `tablet`.",
+              "uk": "`table` — стіл; планшет — `tablet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть планшет — пристрій з екраном",
+            "feedbackByLocale": {
+              "ru": "`charger` — зарядка; планшет — `tablet`.",
+              "uk": "`charger` — зарядка; планшет — `tablet`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-19:i04:p1",
+            "target": "tablet",
+            "meaningByLocale": {
+              "ru": "планшет",
+              "uk": "планшет"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-19:i04:p2",
+            "target": "together",
+            "meaningByLocale": {
+              "ru": "вместе",
+              "uk": "разом"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-19:i04:p3",
+            "target": "alone",
+            "meaningByLocale": {
+              "ru": "один, без других",
+              "uk": "сам, без інших"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-19:i04:p4",
+            "target": "nearby",
+            "meaningByLocale": {
+              "ru": "поблизости",
+              "uk": "поблизу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tablet",
+          "together",
+          "alone",
+          "nearby"
+        ],
+        "rightColumn": [
+          "планшет",
+          "разом",
+          "сам, без інших",
+          "поблизу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-19:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-19:i05:audio",
+          "transcript": "My tablet is in your backpack."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My tablet is in your backpack.",
+        "orderedTokens": [
+          "My",
+          "tablet",
+          "is",
+          "in",
+          "your",
+          "backpack"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-19:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `My tablet is in your backpack.`",
+              "uk": "тут потрібно `is` — `My tablet is in your backpack.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сумки належать вам і другові. Скажіть «Сумки наші»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумки належать вам і другові. Скажіть «Сумки наші»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bags are ours.",
+        "localizedMeaning": {
+          "ru": "Сумки принадлежат вам и другу. Скажите «Сумки наши»",
+          "uk": "Сумки належать вам і другові. Скажіть «Сумки наші»"
+        },
+        "orderedTokens": [
+          "The",
+          "bags",
+          "are",
+          "ours"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-19:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Сумки належать вам і другові. Скажіть «Сумки наші»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The bags are ours.`",
+              "uk": "тут потрібно `are` — `The bags are ours.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви сидите без компанії. Скажіть «Я сам» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-19:i07:audio"
+      ],
+      "accessibilityLabel": "Ви сидите без компанії. Скажіть «Я сам» без скорочення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-19:i07:audio",
+          "transcript": "I am alone."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am alone.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Планшет належить другові-чоловікові. Скажіть «Планшет його»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-19:i08:r1",
+          "text": "his"
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i08:r2",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i08:r3",
+          "text": "ours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Планшет належить другові-чоловікові. Скажіть «Планшет його»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Планшет принадлежит другу-мужчине. Скажите «Планшет его»",
+          "uk": "Планшет належить другові-чоловікові. Скажіть «Планшет його»"
+        },
+        "gappedTargetPhrase": "The tablet is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i08:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i08:r2",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i08:r3",
+            "text": "ours"
+          }
+        ],
+        "testedDimension": "Планшет належить другові-чоловікові. Скажіть «Планшет його»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Планшет належить другові-чоловікові. Скажіть «Планшет його»",
+            "feedbackByLocale": {
+              "ru": "`hers` — её; его — `his`.",
+              "uk": "`hers` — її; його — `his`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Планшет належить другові-чоловікові. Скажіть «Планшет його»",
+            "feedbackByLocale": {
+              "ru": "`ours` — наш; его — `his`.",
+              "uk": "`ours` — наш; його — `his`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що друг повідомляє про подругу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-19:i09:r1",
+          "text": "She is nearby."
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i09:r2",
+          "text": "She is alone."
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i09:r3",
+          "text": "He is nearby."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-19:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що друг повідомляє про подругу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-19:i09:audio",
+          "transcript": "She is nearby."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-19:i09:r1",
+            "targetText": "She is nearby.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i09:r2",
+            "targetText": "She is alone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i09:r3",
+            "targetText": "He is nearby.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що друг повідомляє про подругу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `nearby`, а в этом варианте — `alone`.",
+              "uk": "У записі останнє слово — `nearby`, а в цьому варіанті — `alone`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що друг повідомляє про подругу",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-19:i10:p1",
+            "target": "tablet",
+            "meaningByLocale": {
+              "ru": "планшет",
+              "uk": "планшет"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-19:i10:p2",
+            "target": "bags",
+            "meaningByLocale": {
+              "ru": "сумки",
+              "uk": "сумки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-19:i10:p3",
+            "target": "soup",
+            "meaningByLocale": {
+              "ru": "суп",
+              "uk": "суп"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-19:i10:p4",
+            "target": "backpack",
+            "meaningByLocale": {
+              "ru": "рюкзак",
+              "uk": "рюкзак"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tablet",
+          "bags",
+          "soup",
+          "backpack"
+        ],
+        "rightColumn": [
+          "планшет",
+          "сумки",
+          "суп",
+          "рюкзак"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-19:i11:audio",
+          "transcript": "Where is my tablet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is my tablet?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "my",
+          "tablet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Суп закінчився. Скажіть «Супу немає»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Суп закінчився. Скажіть «Супу немає»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is no soup.",
+        "localizedMeaning": {
+          "ru": "Суп закончился. Скажите «Супа нет»",
+          "uk": "Суп закінчився. Скажіть «Супу немає»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "no",
+          "soup"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-19:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Суп закінчився. Скажіть «Супу немає»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is no soup.`",
+              "uk": "тут потрібно `is` — `There is no soup.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Планшет друга у вас. Скажіть йому «Твій планшет у мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-19:i13:audio"
+      ],
+      "accessibilityLabel": "Планшет друга у вас. Скажіть йому «Твій планшет у мене»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-19:i13:audio",
+          "transcript": "I have your tablet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your tablet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Рюкзак належить подрузі. Скажіть «Рюкзак її»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-19:i14:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i14:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i14:r3",
+          "text": "theirs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рюкзак належить подрузі. Скажіть «Рюкзак її»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рюкзак принадлежит подруге. Скажите «Рюкзак её»",
+          "uk": "Рюкзак належить подрузі. Скажіть «Рюкзак її»"
+        },
+        "gappedTargetPhrase": "The backpack is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i14:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i14:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i14:r3",
+            "text": "theirs"
+          }
+        ],
+        "testedDimension": "Рюкзак належить подрузі. Скажіть «Рюкзак її»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-19:i14:r2",
+            "correct": false,
+            "testedDimension": "Рюкзак належить подрузі. Скажіть «Рюкзак її»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `hers`.",
+              "uk": "Без назви речі потрібна форма `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i14:r3",
+            "correct": false,
+            "testedDimension": "Рюкзак належить подрузі. Скажіть «Рюкзак її»",
+            "feedbackByLocale": {
+              "ru": "`theirs` — их; её — `hers`.",
+              "uk": "`theirs` — їхній; її — `hers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить планшет",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-19:i15:r1",
+          "text": "The tablet is yours."
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i15:r2",
+          "text": "The tablet is mine."
+        },
+        {
+          "responseId": "en:lesson-05:session-19:i15:r3",
+          "text": "The tablet is theirs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-19:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить планшет",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-19:i15:audio",
+          "transcript": "The tablet is yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-19:i15:r1",
+            "targetText": "The tablet is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i15:r2",
+            "targetText": "The tablet is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i15:r3",
+            "targetText": "The tablet is theirs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-19:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить планшет",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить планшет",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `theirs`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `theirs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-19:i16:p1",
+            "target": "tablet",
+            "meaningByLocale": {
+              "ru": "планшет",
+              "uk": "планшет"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-19:i16:p2",
+            "target": "bags",
+            "meaningByLocale": {
+              "ru": "сумки",
+              "uk": "сумки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-19:i16:p3",
+            "target": "soup",
+            "meaningByLocale": {
+              "ru": "суп",
+              "uk": "суп"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-19:i16:p4",
+            "target": "backpack",
+            "meaningByLocale": {
+              "ru": "рюкзак",
+              "uk": "рюкзак"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tablet",
+          "bags",
+          "soup",
+          "backpack"
+        ],
+        "rightColumn": [
+          "планшет",
+          "сумки",
+          "суп",
+          "рюкзак"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На столі знайшли ваш планшет. Уточніть «Планшет мій»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "На столі знайшли ваш планшет. Уточніть «Планшет мій»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-19:i17:audio",
+          "transcript": "The tablet is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The tablet is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0dc11194d273b25bd1a04ed1af27482b73b8b07a9929308a61947c6ca787b34c"
+}

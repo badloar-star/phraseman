@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "уточнить, где вещи и кому они принадлежат",
+    "uk": "уточнити, де речі й кому вони належать"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Планшет, не стол",
+        "uk": "Планшет, не стіл"
+      },
+      "bodyByLocale": {
+        "ru": "`tablet` — «планшет», переносное устройство с экраном. `The tablet is mine` — «Планшет мой». `My tablet is in your backpack` — «Мой планшет в твоём рюкзаке». `my` стоит перед названием вещи, а `mine` заменяет «мой» вместе с подразумеваемой вещью. Планшет в рюкзаке друга: экран ваш, носит друг — удобное распределение обязанностей.",
+        "uk": "`tablet` — «планшет», переносний пристрій з екраном. `The tablet is mine` — «Планшет мій». `My tablet is in your backpack` — «Мій планшет у твоєму рюкзаку». `my` стоїть перед назвою речі, а `mine` замінює «мій» разом із річчю, яку маємо на увазі. Планшет у рюкзаку друга: екран ваш, носить друг — зручний розподіл обов’язків."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Планшет мой».",
+          "uk": "Скажіть «Планшет мій»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-19:intro1:r1",
+              "text": "The tablet is mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro1:r2",
+              "text": "The tablet is my."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro1:r3",
+              "text": "The tablet is yours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-19:intro1:r1",
+              "text": "The tablet is mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro1:r2",
+              "text": "The tablet is my."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro1:r3",
+              "text": "The tablet is yours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Планшет мой».",
+          "uk": "Скажіть «Планшет мій»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вместе или одни",
+        "uk": "Разом чи самі"
+      },
+      "bodyByLocale": {
+        "ru": "`together` — «вместе», `alone` — «один / одни, без других», `nearby` — «рядом, поблизости». `We are together` — «Мы вместе». `I am alone` — «Я один / одна». `She is nearby` — «Она поблизости». `nearby` здесь используется самостоятельно; для «рядом с рюкзаком» подойдёт знакомое `next to the backpack`.",
+        "uk": "`together` — «разом», `alone` — «сам / самі, без інших», `nearby` — «поруч, поблизу». `We are together` — «Ми разом». `I am alone` — «Я сам / сама». `She is nearby` — «Вона поблизу». `nearby` тут використовується самостійно; для «поруч із рюкзаком» підійде знайоме `next to the backpack`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, далеко ли подруга. Она поблизости. Выберите фразу.",
+          "uk": "Друг запитує, чи далеко подруга. Вона поблизу. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-19:intro2:r1",
+              "text": "She is nearby."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro2:r2",
+              "text": "She are nearby."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro2:r3",
+              "text": "She is alone."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-19:intro2:r1",
+              "text": "She is nearby."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro2:r2",
+              "text": "She are nearby."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro2:r3",
+              "text": "She is alone."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, далеко ли подруга. Она поблизости. Выберите фразу.",
+          "uk": "Друг запитує, чи далеко подруга. Вона поблизу. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сумки и обед",
+        "uk": "Сумки й обід"
+      },
+      "bodyByLocale": {
+        "ru": "`bags` — «сумки», `soup` — «суп», `backpack` — «рюкзак». `The bags are ours` — «Сумки наши». `Where is my tablet?` — «Где мой планшет?» `There is no soup` — «Супа нет»: здесь `soup` не считаем поштучно, поэтому `is`. `The backpack is hers` — «Рюкзак её»: `hers` указывает на владелицу без повторения названия вещи.",
+        "uk": "`bags` — «сумки», `soup` — «суп», `backpack` — «рюкзак». `The bags are ours` — «Сумки наші». `Where is my tablet?` — «Де мій планшет?» `There is no soup` — «Супу немає»: тут `soup` не рахуємо поштучно, тому `is`. `The backpack is hers` — «Рюкзак її»: `hers` указує на власницю без повторення назви речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Сумки принадлежат вам и другу. Скажите «Сумки наши».",
+          "uk": "Сумки належать вам і другові. Скажіть «Сумки наші»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-19:intro3:r1",
+              "text": "The bags are ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro3:r2",
+              "text": "The bags is ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro3:r3",
+              "text": "The bags are our."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-19:intro3:r1",
+              "text": "The bags are ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro3:r2",
+              "text": "The bags is ours."
+            },
+            {
+              "responseId": "en:lesson-05:session-19:intro3:r3",
+              "text": "The bags are our."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сумки принадлежат вам и другу. Скажите «Сумки наши».",
+          "uk": "Сумки належать вам і другові. Скажіть «Сумки наші»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4325d4ac827ea0acc04b1d4bc39eb0abf30dad3f58e86a3de15d8f584f3ac314"
+}

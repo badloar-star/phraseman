@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-37:intro1:r2": {
+          "ru": "Перед одним постаматом нужно `a`: `a parcel locker`.",
+          "uk": "Перед одним поштоматом потрібне `a`: `a parcel locker`."
+        },
+        "en:lesson-04:session-37:intro1:r3": {
+          "ru": "Здесь один постамат: `This is a parcel locker`.",
+          "uk": "Тут один поштомат: `This is a parcel locker`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-37:intro2:r2": {
+          "ru": "`in` — внутри; здесь рядом: `next to`.",
+          "uk": "`in` — усередині; тут поруч: `next to`."
+        },
+        "en:lesson-04:session-37:intro2:r3": {
+          "ru": "Одна машина: `The car is`.",
+          "uk": "Одна машина: `The car is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-37:intro3:r2": {
+          "ru": "`unofficial` — неофициально; здесь информация официальная: `official`.",
+          "uk": "`unofficial` — неофіційно; тут інформація офіційна: `official`."
+        },
+        "en:lesson-04:session-37:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3da300be38ac989158b0cede8626af6068ea76314b67dcf25b3442d79266295a"
+}

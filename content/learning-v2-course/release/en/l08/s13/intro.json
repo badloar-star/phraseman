@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, чего пока не умеете, и повторить can, whose и often",
+    "uk": "сказати, чого поки не вмієте, і повторити can, whose та often"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Лодка у причала",
+        "uk": "Човен біля причалу"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает вам взять руль лодки, но вы ещё не умеете им управлять. `Steer` — «управлять рулём, направлять движение». `I can’t steer` — «Я не умею управлять рулём». После `can’t` нужно `steer`, без `to`. Крепко держаться за руль вы уже можете — осталось научиться поворачивать куда надо.",
+        "uk": "Друг пропонує вам узяти кермо човна, але ви ще не вмієте ним керувати. `Steer` — «керувати кермом, спрямовувати рух». `I can’t steer` — «Я не вмію керувати кермом». Після `can’t` потрібне `steer`, без `to`. Міцно триматися за кермо ви вже можете — залишилося навчитися повертати куди треба."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что пока не умеете управлять рулём.",
+          "uk": "Скажіть другові, що поки не вмієте керувати кермом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-13:intro1:r1",
+              "text": "I can’t steer."
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro1:r2",
+              "text": "I can steer."
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro1:r3",
+              "text": "I can’t to steer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-13:intro1:r1",
+              "text": "I can’t steer."
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro1:r2",
+              "text": "I can steer."
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro1:r3",
+              "text": "I can’t to steer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что пока не умеете управлять рулём.",
+          "uk": "Скажіть другові, що поки не вмієте керувати кермом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подруга в бассейне",
+        "uk": "Подруга в басейні"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга записалась на первые уроки плавания. Она пока не умеет плавать. `She can’t swim` — «Она не умеет плавать». После `she` слово `can’t` не меняется; дальше нужно `swim`, без `s`.",
+        "uk": "Подруга записалася на перші уроки плавання. Вона поки не вміє плавати. `She can’t swim` — «Вона не вміє плавати». Після `she` слово `can’t` не змінюється; далі потрібне `swim`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите об умении подруги.",
+          "uk": "Розкажіть про вміння подруги."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-13:intro2:r1",
+              "text": "She can’t swim."
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro2:r2",
+              "text": "She can swim."
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro2:r3",
+              "text": "She can’t swims."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-13:intro2:r1",
+              "text": "She can’t swim."
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro2:r2",
+              "text": "She can swim."
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro2:r3",
+              "text": "She can’t swims."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите об умении подруги.",
+          "uk": "Розкажіть про вміння подруги."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Экран после встречи",
+        "uk": "Екран після зустрічі"
+      },
+      "bodyByLocale": {
+        "ru": "После рабочей встречи в комнате остался переносной экран. Вы хотите узнать, кому он принадлежит. `Whose screen is this?` — «Чей это экран?» Сначала `whose screen`, затем `is this`.",
+        "uk": "Після робочої зустрічі в кімнаті залишився переносний екран. Ви хочете дізнатися, кому він належить. `Whose screen is this?` — «Чий це екран?» Спочатку `whose screen`, потім `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите коллег, чей это экран.",
+          "uk": "Запитайте колег, чий це екран."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-13:intro3:r1",
+              "text": "Whose screen is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro3:r2",
+              "text": "Who screen is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro3:r3",
+              "text": "Whose screen are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-13:intro3:r1",
+              "text": "Whose screen is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro3:r2",
+              "text": "Who screen is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-13:intro3:r3",
+              "text": "Whose screen are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллег, чей это экран.",
+          "uk": "Запитайте колег, чий це екран."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0a3d6ec4f44833b69baf752c9758802dc0b35a9fedf2cf4ba84e5e01e6fa5f35"
+}

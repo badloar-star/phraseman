@@ -122578,6 +122578,309 @@
           "byteSize": 29184
         }
       ]
+    },
+    "l08/s13/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can’t steer.",
+          "file": "7c9fba5ef27f376ce0688df127ac7a781a4fbf2ae0dac3020960434c57dadf34.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c9fba5ef27f376ce0688df127ac7a781a4fbf2ae0dac3020960434c57dadf34.mp3",
+          "contentHash": "4001a2fa1edba003266afeec8a0ded3cc7360243a93985b7f5c4c1f5ee3d2869",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l08/s13/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She can’t swim.",
+          "file": "f88247487721d5f3ff5b542923b45adbe61473713db8ee5608955c20a08cd469.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f88247487721d5f3ff5b542923b45adbe61473713db8ee5608955c20a08cd469.mp3",
+          "contentHash": "11dc07fa9726d725baf9b04964529216627a299bd5dbcaf56d74c12e38fd90e6",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s13/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose screen is this?",
+          "file": "c5fb5b4da85c2f839ef547320666b83cd997a5e2e6884726ba7a817006379c8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c5fb5b4da85c2f839ef547320666b83cd997a5e2e6884726ba7a817006379c8c.mp3",
+          "contentHash": "bb1620621216c8388d380008da01b00ace6c3da13f6390e76aaaef349cde9adc",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l08/s13/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I can’t steer.",
+          "file": "75c10ec5d0edfb85ede68ee1c78e88b21b57a067f0ebf622e2a3c9ef80362967.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75c10ec5d0edfb85ede68ee1c78e88b21b57a067f0ebf622e2a3c9ef80362967.mp3",
+          "contentHash": "71fcd501320dd46e0e15b9a493c5eb1255315c142d28b77d239fa2f6f2ce09d5",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l08/s13/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "steer",
+          "file": "e246a6415683ccbb0ecf28a9b67a06dfee1c0cbffa090d9a4c8fea0e33ea2db3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e246a6415683ccbb0ecf28a9b67a06dfee1c0cbffa090d9a4c8fea0e33ea2db3.mp3",
+          "contentHash": "f22afe9401a4cb45ec4f3a345c3bb099068662581a43e14f7218f6ca2efcb738",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l08/s13/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can’t steer.",
+          "file": "7c9fba5ef27f376ce0688df127ac7a781a4fbf2ae0dac3020960434c57dadf34.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c9fba5ef27f376ce0688df127ac7a781a4fbf2ae0dac3020960434c57dadf34.mp3",
+          "contentHash": "4001a2fa1edba003266afeec8a0ded3cc7360243a93985b7f5c4c1f5ee3d2869",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l08/s13/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "steer",
+          "file": "78090555fefe6c4988bc08ab87826004fdd5b8e913926a28c2f961dc126e9289.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/78090555fefe6c4988bc08ab87826004fdd5b8e913926a28c2f961dc126e9289.mp3",
+          "contentHash": "d8933c7633bac96fbdcd335ccaea7e67a9541739480cc8d7a571b5f5cd5fd4b2",
+          "byteSize": 24192
+        },
+        {
+          "text": "taxi",
+          "file": "07f0d0018453e4c9d3a70e572c9bea53ed689bdad32b7ad377fced4118845aa4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07f0d0018453e4c9d3a70e572c9bea53ed689bdad32b7ad377fced4118845aa4.mp3",
+          "contentHash": "217d27331222e12a1f85a6be341966a5806976418612dfb443f5e2be7e2b26cc",
+          "byteSize": 24576
+        },
+        {
+          "text": "swim",
+          "file": "1ac455e09b4427d5b10ea8142258092c45f8be0da409697f7b9a19150c93ba97.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1ac455e09b4427d5b10ea8142258092c45f8be0da409697f7b9a19150c93ba97.mp3",
+          "contentHash": "a680f4eb1a31b664318ef2adf2c957f2d21855857129b1eadf79abd28a8976c0",
+          "byteSize": 22656
+        },
+        {
+          "text": "screen",
+          "file": "de6e6f7bd9f8b14e9a6215afe1d4b03380b2d109c7d20fd162ce248e4ff646d7.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4cd6c2914887dd4a68e4c9ff-onyx.mp3",
+          "contentHash": "4c7efb6722b004edd1c3399d0197c6ed5e4962d5e6a066103feeb3ef5a147537",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l08/s13/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I can’t steer.",
+          "file": "90148082c26e46b78fa23466b13a03bc8e7d66e708727232e64935898b363774.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90148082c26e46b78fa23466b13a03bc8e7d66e708727232e64935898b363774.mp3",
+          "contentHash": "d59f40fe7a179174025d2f356f2d9838fbcd913b65694d96d3730a32d9304661",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l08/s13/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She can’t swim.",
+          "file": "ce905253143e44f453a213b36210705c26c9d3186cd98db1974d2921b6ab0b21.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce905253143e44f453a213b36210705c26c9d3186cd98db1974d2921b6ab0b21.mp3",
+          "contentHash": "625401c9430e1498394b2e433a027ac893d7d30f7e29dabe02b8e339c04bc5aa",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l08/s13/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose screen is this?",
+          "file": "49fc51650bdb2fe8f2c35425c6bc2f0641f9cf4b03222423b270b999d2468c7d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/49fc51650bdb2fe8f2c35425c6bc2f0641f9cf4b03222423b270b999d2468c7d.mp3",
+          "contentHash": "95f30199b9bab46cf040eba3a8e4c371d8d95b97037f454e439d55193c03d371",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l08/s13/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She can’t swim.",
+          "file": "ce905253143e44f453a213b36210705c26c9d3186cd98db1974d2921b6ab0b21.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce905253143e44f453a213b36210705c26c9d3186cd98db1974d2921b6ab0b21.mp3",
+          "contentHash": "625401c9430e1498394b2e433a027ac893d7d30f7e29dabe02b8e339c04bc5aa",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l08/s13/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I can’t steer.",
+          "file": "90148082c26e46b78fa23466b13a03bc8e7d66e708727232e64935898b363774.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90148082c26e46b78fa23466b13a03bc8e7d66e708727232e64935898b363774.mp3",
+          "contentHash": "d59f40fe7a179174025d2f356f2d9838fbcd913b65694d96d3730a32d9304661",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l08/s13/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "translate",
+          "file": "f966e51336814a29af9b401b6bcadc7a814c64fa615330af3b429c0f0470ceb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f966e51336814a29af9b401b6bcadc7a814c64fa615330af3b429c0f0470ceb7.mp3",
+          "contentHash": "373a1759679d7a7666d1d54340f463c9ba89023cfe8ebf60d3e452549170b058",
+          "byteSize": 21120
+        },
+        {
+          "text": "steer",
+          "file": "9d6d9b9e4d438cf5d1b60f3a49da21f18ee13df8d61d1848df67fd14f7108fda.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9d6d9b9e4d438cf5d1b60f3a49da21f18ee13df8d61d1848df67fd14f7108fda.mp3",
+          "contentHash": "45fc57193e3b6a11ad82493e9bd3083035a07978233222073a7b887800e6e08c",
+          "byteSize": 18816
+        },
+        {
+          "text": "screen",
+          "file": "b61717ac013c9f73f402842ad90e5607b63d2bde63111a8291c0ccb1476a39cb.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4cd6c2914887dd4a68e4c9ff-nova.mp3",
+          "contentHash": "7b9dc8bf8dec44099d6cfddd073e0642ed526477f9c8c2ad672f2c577f5232a6",
+          "byteSize": 21120
+        },
+        {
+          "text": "swim",
+          "file": "1d1991959b132f0c6cf08505006a74c9003c24fb6c89ba590dc240a33aadc2ac.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d1991959b132f0c6cf08505006a74c9003c24fb6c89ba590dc240a33aadc2ac.mp3",
+          "contentHash": "812a5c6a3ec0cd44633a5fc314ed5ef569add1e7dc4751412a2994604dda9420",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l08/s13/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose screen is this?",
+          "file": "c5fb5b4da85c2f839ef547320666b83cd997a5e2e6884726ba7a817006379c8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c5fb5b4da85c2f839ef547320666b83cd997a5e2e6884726ba7a817006379c8c.mp3",
+          "contentHash": "bb1620621216c8388d380008da01b00ace6c3da13f6390e76aaaef349cde9adc",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l08/s13/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I can translate.",
+          "file": "9ccaa21be2d7480282e38bbda5cad7c0a355a460857e65b0fcb8e1ce36502dab.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ccaa21be2d7480282e38bbda5cad7c0a355a460857e65b0fcb8e1ce36502dab.mp3",
+          "contentHash": "1d85e3abcf2c71ce0b373fdc72f6b112fbfa1b93d673fc4bb8c62ea25ef434fc",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s13/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often swim.",
+          "file": "32e52527b9884acbc2e5beea869da08ca3ebb9874f4d13dd320220ea8b05702e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/32e52527b9884acbc2e5beea869da08ca3ebb9874f4d13dd320220ea8b05702e.mp3",
+          "contentHash": "6b2b4573875bef9cedaaf83b29ba04f05bc55c1d75e8f3bb5d2ef1d183dfe96e",
+          "byteSize": 57216
+        }
+      ]
+    },
+    "l08/s13/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He can’t steer.",
+          "file": "f085cd263c2b34da7ab6258255472950ae345c764470034f4cdc9cba17dab3b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f085cd263c2b34da7ab6258255472950ae345c764470034f4cdc9cba17dab3b9.mp3",
+          "contentHash": "f0cba168c30811d973e4f23489ca61c4ec8532fa773688597e0f91563fc106cb",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l08/s13/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is the taxi?",
+          "file": "c71c89ff4f91d48fc1cdccdccef81126485fedbe65dbd329e3ff4a34ea223c42.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c71c89ff4f91d48fc1cdccdccef81126485fedbe65dbd329e3ff4a34ea223c42.mp3",
+          "contentHash": "740243ffe81e27ff08c242f7850c7f73ecab9bff71cd984508174c75110979a3",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l08/s13/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "steer",
+          "file": "e246a6415683ccbb0ecf28a9b67a06dfee1c0cbffa090d9a4c8fea0e33ea2db3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e246a6415683ccbb0ecf28a9b67a06dfee1c0cbffa090d9a4c8fea0e33ea2db3.mp3",
+          "contentHash": "f22afe9401a4cb45ec4f3a345c3bb099068662581a43e14f7218f6ca2efcb738",
+          "byteSize": 18816
+        },
+        {
+          "text": "taxi",
+          "file": "1e4156f534493ef9dc58f3a9ce854e01f4c250ad4149e1a1979a6ac76ff81267.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1e4156f534493ef9dc58f3a9ce854e01f4c250ad4149e1a1979a6ac76ff81267.mp3",
+          "contentHash": "022f82bbfeeb55d35f57b455b3bca699bc3ac83cf766f5d4c8343d0cd3be2b24",
+          "byteSize": 19584
+        },
+        {
+          "text": "translate",
+          "file": "5ebc23f89b3a9cebc37a8c0e524c33e91d9fe3aa2ab0ddacbbf3d0b472f69b3a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ebc23f89b3a9cebc37a8c0e524c33e91d9fe3aa2ab0ddacbbf3d0b472f69b3a.mp3",
+          "contentHash": "7792077f924b4190a81939d3f450ec94e05e7f07508e4a39d8ee7e52f8be1429",
+          "byteSize": 34944
+        },
+        {
+          "text": "screen",
+          "file": "fa5830c7b2783412b378cb55bf9a2f5996fdb2dc26ef9fa3c11189591e0045fc.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4cd6c2914887dd4a68e4c9ff-ash.mp3",
+          "contentHash": "40ac2306a09252f9e3239a462739bcf91c1ddb57992f0173d5691e31ed6955d2",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l08/s13/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Tom can’t steer.",
+          "file": "f58bbbca4e840791e29eb73cb129a1093674f9eb924b56c1b1d759c84cda87a4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f58bbbca4e840791e29eb73cb129a1093674f9eb924b56c1b1d759c84cda87a4.mp3",
+          "contentHash": "542b8cbc6fe82b62a812971bf6550439fc3952456c2911a9c01427d57fb4ba27",
+          "byteSize": 29952
+        }
+      ]
     }
   },
   "settings": {

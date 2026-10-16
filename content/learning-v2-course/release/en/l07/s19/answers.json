@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-19:i01",
+    "correctText": "I don’t complain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i02",
+    "correctText": "complain",
+    "correctResponseId": "en:lesson-07:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i03",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-07:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i04",
+    "correctText": "en:lesson-07:session-19:i04:p1=complain\nen:lesson-07:session-19:i04:p2=draw\nen:lesson-07:session-19:i04:p3=tablet\nen:lesson-07:session-19:i04:p4=bags",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i05",
+    "correctText": "I don’t complain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i06",
+    "correctText": "Does the printer work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i07",
+    "correctText": "There are no bags here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i08",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-07:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i09",
+    "correctText": "I don’t complain.",
+    "correctResponseId": "en:lesson-07:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i10",
+    "correctText": "en:lesson-07:session-19:i10:p1=printer\nen:lesson-07:session-19:i10:p2=complain\nen:lesson-07:session-19:i10:p3=draw\nen:lesson-07:session-19:i10:p4=tablet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i11",
+    "correctText": "Does the printer work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i12",
+    "correctText": "Do you have a tablet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i13",
+    "correctText": "The bags are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-07:session-19:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i15",
+    "correctText": "I don’t draw.",
+    "correctResponseId": "en:lesson-07:session-19:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i16",
+    "correctText": "en:lesson-07:session-19:i16:p1=bags\nen:lesson-07:session-19:i16:p2=tablet\nen:lesson-07:session-19:i16:p3=complain\nen:lesson-07:session-19:i16:p4=printer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-19:i17",
+    "correctText": "Tom doesn’t complain.",
+    "correctResponseId": null
+  }
+]

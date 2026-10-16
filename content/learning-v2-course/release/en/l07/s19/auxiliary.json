@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-19:intro1:r2": {
+          "ru": "После `I` нужно `don’t`.",
+          "uk": "Після `I` потрібне `don’t`."
+        },
+        "en:lesson-07:session-19:intro1:r3": {
+          "ru": "Перед действием нужно `don’t`, а не просто `not`.",
+          "uk": "Перед дією потрібне `don’t`, а не просто `not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-19:intro2:r2": {
+          "ru": "Один принтер: нужен вопрос с `does`.",
+          "uk": "Один принтер: потрібне запитання з `does`."
+        },
+        "en:lesson-07:session-19:intro2:r3": {
+          "ru": "После `does` нужно `work`, без `s`.",
+          "uk": "Після `does` потрібне `work`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-19:intro3:r2": {
+          "ru": "`Bags` — множественное число, нужно `are`.",
+          "uk": "`Bags` — множина, потрібне `are`."
+        },
+        "en:lesson-07:session-19:intro3:r3": {
+          "ru": "Без `no` фраза означает, что сумки здесь есть.",
+          "uk": "Без `no` фраза означає, що сумки тут є."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5eb0029fba6750302266efb9a13612ad7956f8f3aaaea23ed9145fa9f2c8b379"
+}

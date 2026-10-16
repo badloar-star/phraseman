@@ -111973,6 +111973,309 @@
           "byteSize": 35712
         }
       ]
+    },
+    "l07/s34/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I often volunteer.",
+          "file": "504a6db9ab6bd60f91b71a465dd948f04e5291ca6884b15cb2bd2f1f64386613.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/504a6db9ab6bd60f91b71a465dd948f04e5291ca6884b15cb2bd2f1f64386613.mp3",
+          "contentHash": "26338a2aa25a712619ed286d1bb56aca9c96912d676dc169d4b8a96d18e93700",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l07/s34/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I usually walk.",
+          "file": "7e5b6341f4d4329c7b2ff6a8d20d2345a19d8d3bb3df7dc9545937f882b4a484.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e5b6341f4d4329c7b2ff6a8d20d2345a19d8d3bb3df7dc9545937f882b4a484.mp3",
+          "contentHash": "d4ded15cdca32823e53e259f742096564b2cbd0317fb8f76244616dd1cb055bb",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s34/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She often calls.",
+          "file": "a86b2a17792a588381d9f6b8063c488becc051f838e083f8e17793c3e191b4c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a86b2a17792a588381d9f6b8063c488becc051f838e083f8e17793c3e191b4c8.mp3",
+          "contentHash": "6efc2ce5520b77c1de4fe575ea2223cdddb70f753c6c3a5b2731bb344cd2017d",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l07/s34/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I often volunteer.",
+          "file": "68a5c2427e68f673c2f77b8170f248823f56f2d851fe36b526b148f5514132da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/68a5c2427e68f673c2f77b8170f248823f56f2d851fe36b526b148f5514132da.mp3",
+          "contentHash": "9a6921fd393fc1a9e1a3081e97792c7c47b88670a18345992b46119e08d5fa2c",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s34/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "volunteer",
+          "file": "72dca357a8bdf8660291549938044039fd413e26a7a2c28af2ce178716804f50.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/72dca357a8bdf8660291549938044039fd413e26a7a2c28af2ce178716804f50.mp3",
+          "contentHash": "f096a4442a57accfddf3f95ffee604feb65a4fef6cd1b48076d30297fc027e44",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l07/s34/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I often volunteer.",
+          "file": "9fda69d7f3b7842acd8ac92228beff3c093f11c07d032d6db90a4aab28ee0515.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9fda69d7f3b7842acd8ac92228beff3c093f11c07d032d6db90a4aab28ee0515.mp3",
+          "contentHash": "8df50b7ec1d9a7f3103a48e0825d218ecc1f97d556573dfd60bff3a72f7a617b",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s34/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "volunteer",
+          "file": "28890fa5546b10141c32cbb569ef12e2d5d674b589d2d7cac343c1be894008f9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/28890fa5546b10141c32cbb569ef12e2d5d674b589d2d7cac343c1be894008f9.mp3",
+          "contentHash": "7dbc80458388bb41827da7db8f9d00f0791e8958d1ebae0e9e2ff09650e98b35",
+          "byteSize": 26880
+        },
+        {
+          "text": "drink",
+          "file": "4165efe61d83ff8f5bd5308df0f8efc6f6015396f2ff9ae992cde304cecbdbe6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4165efe61d83ff8f5bd5308df0f8efc6f6015396f2ff9ae992cde304cecbdbe6.mp3",
+          "contentHash": "a489f1d758904e44682651e05dbeb143a711c554efd7c17ab7da30c3c39395d5",
+          "byteSize": 26112
+        },
+        {
+          "text": "wallet",
+          "file": "1740adad910f3cb999a8fadbd15269703d7923f63dea694187515d394c4e63b4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e8d44050873dba865aa7c170-onyx.mp3",
+          "contentHash": "450616c4d0014f45f7d2ba2bf2eda15146b6acc7a00e969c398485a5f8fbce35",
+          "byteSize": 24576
+        },
+        {
+          "text": "ring",
+          "file": "a655fde0820d72094612e6d577fbae8f02020cd89ffc75d2f46ac224596826e1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a655fde0820d72094612e6d577fbae8f02020cd89ffc75d2f46ac224596826e1.mp3",
+          "contentHash": "15b2509b137eedf569592409a981ad706002de8142c004711d19014c50fb38b2",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l07/s34/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often volunteer.",
+          "file": "6a6202fee6d9a3df64ba7b3698330d7bbdc059197a9bb37863552ebadcbf764f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a6202fee6d9a3df64ba7b3698330d7bbdc059197a9bb37863552ebadcbf764f.mp3",
+          "contentHash": "c6736ede1acaefdcc2a5eb9a32a1d3c2144191277653cf06614bd9b302414004",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l07/s34/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I usually walk.",
+          "file": "7e5b6341f4d4329c7b2ff6a8d20d2345a19d8d3bb3df7dc9545937f882b4a484.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e5b6341f4d4329c7b2ff6a8d20d2345a19d8d3bb3df7dc9545937f882b4a484.mp3",
+          "contentHash": "d4ded15cdca32823e53e259f742096564b2cbd0317fb8f76244616dd1cb055bb",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s34/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She often calls.",
+          "file": "0a7099b973f3b2902b1748c31050904bcab8876482400e46bda5b62fc1843a6c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0a7099b973f3b2902b1748c31050904bcab8876482400e46bda5b62fc1843a6c.mp3",
+          "contentHash": "d812900d4c8584e1f5101159a8b7fb44bbc1c6ed19e3baa3d3471e40e3a6cfc5",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l07/s34/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She often calls.",
+          "file": "0a7099b973f3b2902b1748c31050904bcab8876482400e46bda5b62fc1843a6c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0a7099b973f3b2902b1748c31050904bcab8876482400e46bda5b62fc1843a6c.mp3",
+          "contentHash": "d812900d4c8584e1f5101159a8b7fb44bbc1c6ed19e3baa3d3471e40e3a6cfc5",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l07/s34/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I often volunteer.",
+          "file": "9fda69d7f3b7842acd8ac92228beff3c093f11c07d032d6db90a4aab28ee0515.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9fda69d7f3b7842acd8ac92228beff3c093f11c07d032d6db90a4aab28ee0515.mp3",
+          "contentHash": "8df50b7ec1d9a7f3103a48e0825d218ecc1f97d556573dfd60bff3a72f7a617b",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l07/s34/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "park",
+          "file": "e6e071be80af3b037c34c7f5cd95aa400be059fcc1b3bf44ca78f0ea01633644.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e6e071be80af3b037c34c7f5cd95aa400be059fcc1b3bf44ca78f0ea01633644.mp3",
+          "contentHash": "4251edefe89585a905a8d8b7ffbf38fdd20d3c45bd733e9e03c49a23953f2dda",
+          "byteSize": 27648
+        },
+        {
+          "text": "volunteer",
+          "file": "3083d5a7b94b03fab423e9622e53a5a8dd15bc46796bd995f5927c054f592cb3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3083d5a7b94b03fab423e9622e53a5a8dd15bc46796bd995f5927c054f592cb3.mp3",
+          "contentHash": "47ba138d8c6d761ed65c0600c3eec453622eedd0d70627d102b9995d4d1b36b8",
+          "byteSize": 44160
+        },
+        {
+          "text": "wallet",
+          "file": "5b71c3d5d6a4c5497c6ca2c26c6956478d9ced5909d3e9e8bfb21140001e68bd.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e8d44050873dba865aa7c170-coral.mp3",
+          "contentHash": "cbfa1ac416b671b7c54b08ef780366d96c3a65426cfe7ca0d5606462257444e1",
+          "byteSize": 19584
+        },
+        {
+          "text": "drink",
+          "file": "ecf0690d9966701109c6bb20c32a5aac2d5c188d2ba8457e26d054ded2b3205c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ecf0690d9966701109c6bb20c32a5aac2d5c188d2ba8457e26d054ded2b3205c.mp3",
+          "contentHash": "09f50f17626dce18b975172409fec9ed5938d4897958a585ec48efb6ce050da6",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s34/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She often calls.",
+          "file": "b7d8a2bbd24df03918e10d0aca150e565e449e2d80f0afb7c9d63eb20f414934.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b7d8a2bbd24df03918e10d0aca150e565e449e2d80f0afb7c9d63eb20f414934.mp3",
+          "contentHash": "f58ee64599facd938d91bfd1aa7d4e642162d38738711d78d2c6c8a70d26ed82",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s34/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a ring?",
+          "file": "c212bbb8021d29a714beec6a5d1ae8c623cb06acf03d9bf02e092a08be4ca83b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c212bbb8021d29a714beec6a5d1ae8c623cb06acf03d9bf02e092a08be4ca83b.mp3",
+          "contentHash": "e9dc17e293a27718eb84f9be21ff9b331c48c9224d3aceabad54ca509ec8e9ac",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l07/s34/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where do you park?",
+          "file": "b8b5677b55c63ba7f22a67eb97521d15cf3a2e41d79b0ebc2f21e1ab895a2eff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b8b5677b55c63ba7f22a67eb97521d15cf3a2e41d79b0ebc2f21e1ab895a2eff.mp3",
+          "contentHash": "43be5b62956dc5340662d4a08983885ed86e365772b2a87de4b799d061414854",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s34/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually drink water.",
+          "file": "99672a56b9eb7f0804d1cc42dbbeb8ff48f843749b861b24c042bd497a852b3e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99672a56b9eb7f0804d1cc42dbbeb8ff48f843749b861b24c042bd497a852b3e.mp3",
+          "contentHash": "fc088bb4af7ce9861f0094c18045d173f57c1ed4fb7508c4a2fc06a05959c910",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s34/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a wallet?",
+          "file": "fec11e417b691edc4ef108d174efe841b5523af78dbb8c690bbf81e068332c0b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fec11e417b691edc4ef108d174efe841b5523af78dbb8c690bbf81e068332c0b.mp3",
+          "contentHash": "3b1b534c60ef7fe8100f599db78702b529a75c960d24b6564a56ddac24a3b0f5",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s34/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "volunteer",
+          "file": "72acfce4fed9d022aee0725dde95f479795425b487b18b90dc76d2f34e465ece.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/72acfce4fed9d022aee0725dde95f479795425b487b18b90dc76d2f34e465ece.mp3",
+          "contentHash": "d493fc46a8d38acacec583b7e372704f6984d2b473977eb6d14ce905d26a5e5d",
+          "byteSize": 25344
+        },
+        {
+          "text": "ring",
+          "file": "ca6a80bb521b75c7e4a8ddac9fbee83a982b3eefe586ac147215bb897b190e08.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca6a80bb521b75c7e4a8ddac9fbee83a982b3eefe586ac147215bb897b190e08.mp3",
+          "contentHash": "47806149dcd361570f6be381a1b39fc7e3094c50402d7327f97eae1cf85b2e22",
+          "byteSize": 28416
+        },
+        {
+          "text": "park",
+          "file": "3ff77222c03b1ee186eb7c6f39b35ed37807999fbda7e897742f2c5790223c29.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3ff77222c03b1ee186eb7c6f39b35ed37807999fbda7e897742f2c5790223c29.mp3",
+          "contentHash": "5c3504cff00cc56d05b37738d938a2680a09c269f1fcaa4efe9e6bc71938dccf",
+          "byteSize": 39552
+        },
+        {
+          "text": "wallet",
+          "file": "299bde95556abe682d2260eadbbc39718abc79e29227b2062d1947f34afc7ae5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/e8d44050873dba865aa7c170-ash.mp3",
+          "contentHash": "5d9b2f87249ecef4951fc8d06c5b4202c7cb32ab350bd449370077944b2cd0cc",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l07/s34/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom often volunteers.",
+          "file": "14422f78417877d8dd72cfa559973d61ebb22aa4b68a5126e38a96d636084d90.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/14422f78417877d8dd72cfa559973d61ebb22aa4b68a5126e38a96d636084d90.mp3",
+          "contentHash": "b93819b79c04f8608028a08af8e6b78378ae6a01e0dcac97dab4f83dd3846de3",
+          "byteSize": 51456
+        }
+      ]
     }
   },
   "settings": {

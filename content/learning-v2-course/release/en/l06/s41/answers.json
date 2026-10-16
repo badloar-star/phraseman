@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-41:i01",
+    "correctText": "We chat here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i02",
+    "correctText": "chat",
+    "correctResponseId": "en:lesson-06:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i03",
+    "correctText": "chats",
+    "correctResponseId": "en:lesson-06:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i04",
+    "correctText": "en:lesson-06:session-41:i04:p1=chat\nen:lesson-06:session-41:i04:p2=accurate\nen:lesson-06:session-41:i04:p3=cashpoint\nen:lesson-06:session-41:i04:p4=locker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i05",
+    "correctText": "Tom chats with Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i06",
+    "correctText": "She studies here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i07",
+    "correctText": "This cashpoint is new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i08",
+    "correctText": "chat",
+    "correctResponseId": "en:lesson-06:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i09",
+    "correctText": "This locker is mine.",
+    "correctResponseId": "en:lesson-06:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i10",
+    "correctText": "en:lesson-06:session-41:i10:p1=chat\nen:lesson-06:session-41:i10:p2=study\nen:lesson-06:session-41:i10:p3=locker\nen:lesson-06:session-41:i10:p4=accurate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i11",
+    "correctText": "The cashpoint is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i12",
+    "correctText": "Whose locker is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i13",
+    "correctText": "I study at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i14",
+    "correctText": "studies",
+    "correctResponseId": "en:lesson-06:session-41:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i15",
+    "correctText": "They chat here.",
+    "correctResponseId": "en:lesson-06:session-41:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i16",
+    "correctText": "en:lesson-06:session-41:i16:p1=chat\nen:lesson-06:session-41:i16:p2=cashpoint\nen:lesson-06:session-41:i16:p3=accurate\nen:lesson-06:session-41:i16:p4=study",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:i17",
+    "correctText": "He chats with Anna.",
+    "correctResponseId": null
+  }
+]

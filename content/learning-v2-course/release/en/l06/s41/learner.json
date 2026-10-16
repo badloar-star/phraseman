@@ -1,0 +1,956 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите «Мы беседуем здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите «Мы беседуем здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We chat here.",
+        "localizedMeaning": {
+          "ru": "Расскажите «Мы беседуем здесь»",
+          "uk": "Розкажіть «Ми розмовляємо тут»"
+        },
+        "orderedTokens": [
+          "We",
+          "chat",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-41:i02:r1",
+          "text": "chat"
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i02:r2",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i02:r3",
+          "text": "cycle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-41:i02:audio",
+          "transcript": "chat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-41:i02:r1",
+            "targetText": "chat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i02:r2",
+            "targetText": "study",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i02:r3",
+            "targetText": "cycle",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `chat`, а в этом варианте — `study`.",
+              "uk": "У записі перше слово — `chat`, а в цьому варіанті — `study`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `chat`, а в этом варианте — `cycle`.",
+              "uk": "У записі перше слово — `chat`, а в цьому варіанті — `cycle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Он беседует с Анной»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-41:i03:r1",
+          "text": "chats"
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i03:r2",
+          "text": "chat"
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i03:r3",
+          "text": "is chats"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он беседует с Анной»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Он беседует с Анной»",
+          "uk": "Скажіть «Він розмовляє з Анною»"
+        },
+        "gappedTargetPhrase": "He ___ with Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i03:r1",
+            "text": "chats"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i03:r2",
+            "text": "chat"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i03:r3",
+            "text": "is chats"
+          }
+        ],
+        "testedDimension": "Скажите «Он беседует с Анной»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Он беседует с Анной»",
+            "feedbackByLocale": {
+              "ru": "После `he` — `chats`.",
+              "uk": "Після `he` — `chats`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Он беседует с Анной»",
+            "feedbackByLocale": {
+              "ru": "Нужно `He chats`, без `is`.",
+              "uk": "Потрібно `He chats`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-41:i04:p1",
+            "target": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать",
+              "uk": "розмовляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-41:i04:p2",
+            "target": "accurate",
+            "meaningByLocale": {
+              "ru": "точный",
+              "uk": "точний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-41:i04:p3",
+            "target": "cashpoint",
+            "meaningByLocale": {
+              "ru": "банкомат",
+              "uk": "банкомат"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-41:i04:p4",
+            "target": "locker",
+            "meaningByLocale": {
+              "ru": "шкафчик",
+              "uk": "шафка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "chat",
+          "accurate",
+          "cashpoint",
+          "locker"
+        ],
+        "rightColumn": [
+          "беседовать",
+          "точный",
+          "банкомат",
+          "шкафчик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-41:i05:audio",
+          "transcript": "Tom chats with Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tom chats with Anna.",
+        "orderedTokens": [
+          "Tom",
+          "chats",
+          "with",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Она занимается здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она занимается здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She studies here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Она занимается здесь»",
+          "uk": "Скажіть «Вона займається тут»"
+        },
+        "orderedTokens": [
+          "She",
+          "studies",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У входа установили банкомат. Скажите «Этот банкомат новый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-41:i07:audio"
+      ],
+      "accessibilityLabel": "У входа установили банкомат. Скажите «Этот банкомат новый»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-41:i07:audio",
+          "transcript": "This cashpoint is new."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This cashpoint is new.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Они беседуют здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-41:i08:r1",
+          "text": "chat"
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i08:r2",
+          "text": "chats"
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i08:r3",
+          "text": "are chat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Они беседуют здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они беседуют здесь»",
+          "uk": "Скажіть «Вони розмовляють тут»"
+        },
+        "gappedTargetPhrase": "They ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i08:r1",
+            "text": "chat"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i08:r2",
+            "text": "chats"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i08:r3",
+            "text": "are chat"
+          }
+        ],
+        "testedDimension": "Скажите «Они беседуют здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Они беседуют здесь»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `chat`, без `s`.",
+              "uk": "Після `they` — `chat`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Они беседуют здесь»",
+            "feedbackByLocale": {
+              "ru": "Нужно `They chat`, без `are`.",
+              "uk": "Потрібно `They chat`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, кому принадлежит шкафчик",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-41:i09:r1",
+          "text": "This locker is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i09:r2",
+          "text": "This locker is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i09:r3",
+          "text": "This locker is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-41:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит шкафчик",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-41:i09:audio",
+          "transcript": "This locker is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-41:i09:r1",
+            "targetText": "This locker is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i09:r2",
+            "targetText": "This locker is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i09:r3",
+            "targetText": "This locker is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит шкафчик",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, кому принадлежит шкафчик",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-41:i10:p1",
+            "target": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать",
+              "uk": "розмовляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-41:i10:p2",
+            "target": "study",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "учитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-41:i10:p3",
+            "target": "locker",
+            "meaningByLocale": {
+              "ru": "шкафчик",
+              "uk": "шафка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-41:i10:p4",
+            "target": "accurate",
+            "meaningByLocale": {
+              "ru": "точный",
+              "uk": "точний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "chat",
+          "study",
+          "locker",
+          "accurate"
+        ],
+        "rightColumn": [
+          "беседовать",
+          "учиться",
+          "шкафчик",
+          "точный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-41:i11:audio",
+          "transcript": "The cashpoint is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cashpoint is here.",
+        "orderedTokens": [
+          "The",
+          "cashpoint",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-41:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The cashpoint is here.`",
+              "uk": "тут потрібно `is` — `The cashpoint is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните у ученика «Чей это шкафчик?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните у ученика «Чей это шкафчик?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose locker is this?",
+        "localizedMeaning": {
+          "ru": "Уточните у ученика «Чей это шкафчик?»",
+          "uk": "Уточніть в учня «Чия це шафка?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "locker",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Я занимаюсь дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-41:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Я занимаюсь дома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-41:i13:audio",
+          "transcript": "I study at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I study at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Анна занимается здесь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-41:i14:r1",
+          "text": "studies"
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i14:r2",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i14:r3",
+          "text": "studys"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Анна занимается здесь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна занимается здесь»",
+          "uk": "Скажіть «Анна займається тут»"
+        },
+        "gappedTargetPhrase": "Anna ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i14:r1",
+            "text": "studies"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i14:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i14:r3",
+            "text": "studys"
+          }
+        ],
+        "testedDimension": "Скажите «Анна занимается здесь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-41:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Анна занимается здесь»",
+            "feedbackByLocale": {
+              "ru": "После имени Анна — `studies`.",
+              "uk": "Після імені Анна — `studies`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Анна занимается здесь»",
+            "feedbackByLocale": {
+              "ru": "Пишем `studies`: вместо `y` — `ies`.",
+              "uk": "Пишемо `studies`: замість `y` — `ies`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где беседуют Анна и Том",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-41:i15:r1",
+          "text": "They chat here."
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i15:r2",
+          "text": "They chat there."
+        },
+        {
+          "responseId": "en:lesson-06:session-41:i15:r3",
+          "text": "They chat nearby."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где беседуют Анна и Том",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-41:i15:audio",
+          "transcript": "They chat here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-41:i15:r1",
+            "targetText": "They chat here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i15:r2",
+            "targetText": "They chat there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i15:r3",
+            "targetText": "They chat nearby.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-41:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где беседуют Анна и Том",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где беседуют Анна и Том",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `nearby`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `nearby`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-41:i16:p1",
+            "target": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать",
+              "uk": "розмовляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-41:i16:p2",
+            "target": "cashpoint",
+            "meaningByLocale": {
+              "ru": "банкомат",
+              "uk": "банкомат"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-41:i16:p3",
+            "target": "accurate",
+            "meaningByLocale": {
+              "ru": "точный",
+              "uk": "точний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-41:i16:p4",
+            "target": "study",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "учитися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "chat",
+          "cashpoint",
+          "accurate",
+          "study"
+        ],
+        "rightColumn": [
+          "беседовать",
+          "банкомат",
+          "точный",
+          "учиться"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ученик спрашивает, с кем Том обычно беседует. Ответьте «Он беседует с Анной»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Ученик спрашивает, с кем Том обычно беседует. Ответьте «Он беседует с Анной»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-41:i17:audio",
+          "transcript": "He chats with Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He chats with Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d473c00a65c62416e73fbf861f1c6cb97d776a467ddf154d2ac8faedcaa22ddb"
+}

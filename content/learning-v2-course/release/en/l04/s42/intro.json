@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "назвать остановочный павильон и сообщить, что информация неточна",
+    "uk": "назвати зупинковий павільйон і повідомити, що інформація неточна"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Под крышей",
+        "uk": "Під дахом"
+      },
+      "bodyByLocale": {
+        "ru": "`bus shelter` — «остановочный павильон»: укрытие на автобусной остановке, обычно с крышей. Это не сама остановка `bus stop`, а место, где можно укрыться от дождя. Один павильон — `a bus shelter`. `This is a bus shelter` — «Это остановочный павильон». Крыша ждёт автобус вместе с вами, но никуда не едет.",
+        "uk": "`bus shelter` — «зупинковий павільйон»: укриття на автобусній зупинці, зазвичай із дахом. Це не сама зупинка `bus stop`, а місце, де можна сховатися від дощу. Один павільйон — `a bus shelter`. `This is a bus shelter` — «Це зупинковий павільйон». Дах чекає на автобус разом із вами, але нікуди не їде."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один остановочный павильон.",
+          "uk": "Назвіть один зупинковий павільйон."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-42:intro1:r1",
+              "text": "This is a bus shelter."
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro1:r2",
+              "text": "This is bus shelter."
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro1:r3",
+              "text": "These are bus shelters."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-42:intro1:r1",
+              "text": "This is a bus shelter."
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro1:r2",
+              "text": "This is bus shelter."
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro1:r3",
+              "text": "These are bus shelters."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один остановочный павильон.",
+          "uk": "Назвіть один зупинковий павільйон."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поручень в ванной",
+        "uk": "Поручень у ванній"
+      },
+      "bodyByLocale": {
+        "ru": "`bathroom` — «ванная комната», `handrail` — «поручень». `The handrail is in the bathroom` — «Поручень в ванной». `Is there a handrail?` — «Есть поручень?» `There isn’t a handrail` — «Поручня нет». В вопросе `is` стоит перед `there`.",
+        "uk": "`bathroom` — «ванна кімната», `handrail` — «поручень». `The handrail is in the bathroom` — «Поручень у ванній». `Is there a handrail?` — «Є поручень?» `There isn’t a handrail` — «Поручня немає». У запитанні `is` стоїть перед `there`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, есть ли поручень.",
+          "uk": "Запитайте, чи є поручень."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-42:intro2:r1",
+              "text": "Is there a handrail?"
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro2:r2",
+              "text": "There is a handrail."
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro2:r3",
+              "text": "Are there a handrail?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-42:intro2:r1",
+              "text": "Is there a handrail?"
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro2:r2",
+              "text": "There is a handrail."
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro2:r3",
+              "text": "Are there a handrail?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, есть ли поручень.",
+          "uk": "Запитайте, чи є поручень."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сведения с ошибкой",
+        "uk": "Відомості з помилкою"
+      },
+      "bodyByLocale": {
+        "ru": "`inaccurate` — «неточный». Вам сказали, что павильон есть, но на месте его нет: сведения не соответствуют действительности. `It is inaccurate` — «Это неточно», короче `It’s inaccurate`. Здесь речь об ошибке в информации, а не о небрежном внешнем виде. `There isn’t a bus shelter` — «Остановочного павильона нет».",
+        "uk": "`inaccurate` — «неточний». Вам сказали, що павільйон є, але на місці його немає: відомості не відповідають дійсності. `It is inaccurate` — «Це неточно», коротше `It’s inaccurate`. Тут ідеться про помилку в інформації, а не про неохайний вигляд. `There isn’t a bus shelter` — «Зупинкового павільйону немає»."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Информация о павильоне содержит ошибку. Скажите, что она неточна, с сокращением.",
+          "uk": "Інформація про павільйон містить помилку. Скажіть, що вона неточна, зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-42:intro3:r1",
+              "text": "It's inaccurate."
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro3:r2",
+              "text": "It's accurate."
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro3:r3",
+              "text": "It are inaccurate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-42:intro3:r1",
+              "text": "It's inaccurate."
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro3:r2",
+              "text": "It's accurate."
+            },
+            {
+              "responseId": "en:lesson-04:session-42:intro3:r3",
+              "text": "It are inaccurate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Информация о павильоне содержит ошибку. Скажите, что она неточна, с сокращением.",
+          "uk": "Інформація про павільйон містить помилку. Скажіть, що вона неточна, зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "21d239f39b3d6bba180da8161ba87be5a982fcf61836a7ee8c45ee18e6ded04b"
+}

@@ -102277,6 +102277,309 @@
           "byteSize": 29184
         }
       ]
+    },
+    "l07/s02/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a package?",
+          "file": "a31f55e7774a1f29a8b0869b55e5bad558b2e067eba2ed77ddde49b64178441b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a31f55e7774a1f29a8b0869b55e5bad558b2e067eba2ed77ddde49b64178441b.mp3",
+          "contentHash": "3541f2e1bc332a57f9a3e05fcac57828efe96ba514c22b22fe3289310a78254a",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l07/s02/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do they deliver packages?",
+          "file": "2965f27bb8b73b6d6ceb9363b95a75dc61057e3e9f2c3bc7e680a7270c11e082.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2965f27bb8b73b6d6ceb9363b95a75dc61057e3e9f2c3bc7e680a7270c11e082.mp3",
+          "contentHash": "da245c389ee7a10bc255754f02fbc57fe06be4f222712a091fa47c1f5bac3e3a",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l07/s02/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There is no package here.",
+          "file": "23e58c5489c170f35eac0326c2810c211af68519dadf402a5f213dc33855a776.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/23e58c5489c170f35eac0326c2810c211af68519dadf402a5f213dc33855a776.mp3",
+          "contentHash": "a821d7af580ac8b085a0562d76096863a26287db878bd31f0b7c42ddd9e861cb",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l07/s02/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a package?",
+          "file": "a31f55e7774a1f29a8b0869b55e5bad558b2e067eba2ed77ddde49b64178441b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a31f55e7774a1f29a8b0869b55e5bad558b2e067eba2ed77ddde49b64178441b.mp3",
+          "contentHash": "3541f2e1bc332a57f9a3e05fcac57828efe96ba514c22b22fe3289310a78254a",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l07/s02/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "package",
+          "file": "43b71b76864dc6d70b15bde5dab1246e1fc7272d1c0a5907bb01d13081eee269.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43b71b76864dc6d70b15bde5dab1246e1fc7272d1c0a5907bb01d13081eee269.mp3",
+          "contentHash": "8bc1982d9fc8cdb9c3d66496946bbd8880c44b0a94e875121fce6dde0ec199bd",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l07/s02/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do they deliver packages?",
+          "file": "90bd2f61111f9cb563f5a887c99c9c5574699d1dd5dc4ec963b1c3c73b17fb78.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90bd2f61111f9cb563f5a887c99c9c5574699d1dd5dc4ec963b1c3c73b17fb78.mp3",
+          "contentHash": "df31bb3e4abfa9a6c16f51a31947b1369ab375a6b14fbe4dceec20d663d6b4b0",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s02/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "package",
+          "file": "43b71b76864dc6d70b15bde5dab1246e1fc7272d1c0a5907bb01d13081eee269.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43b71b76864dc6d70b15bde5dab1246e1fc7272d1c0a5907bb01d13081eee269.mp3",
+          "contentHash": "8bc1982d9fc8cdb9c3d66496946bbd8880c44b0a94e875121fce6dde0ec199bd",
+          "byteSize": 18048
+        },
+        {
+          "text": "deliver",
+          "file": "ab359d49322bf583e24ea16c626aef80983deeb02d8e43aacb8b2cbe1004dfaf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab359d49322bf583e24ea16c626aef80983deeb02d8e43aacb8b2cbe1004dfaf.mp3",
+          "contentHash": "21f3847184c34bd4ca1b17daf4e2206759972784cfad01d7003607bc7657e408",
+          "byteSize": 21888
+        },
+        {
+          "text": "folder",
+          "file": "e6c0fd9df370708c9b7b43d36dce6cac0fc65d46acb130b11f8a5689b8eed367.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e6c0fd9df370708c9b7b43d36dce6cac0fc65d46acb130b11f8a5689b8eed367.mp3",
+          "contentHash": "262a75d3dbae2b5356aa7c063675b54972949a6b3dfda48b1974042682dffe8f",
+          "byteSize": 19584
+        },
+        {
+          "text": "apple",
+          "file": "711f59285ad72def6c646e80e0186439d8be9e4f2e30b2fc739ad7ab4933ae90.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3a7bd3e2360a3d29eea436fc-nova.mp3",
+          "contentHash": "d6799facb1554c50dd84d52db86ec38b64da9bed993ff221f6cd363bd879751d",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l07/s02/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you have a package?",
+          "file": "5d6a4512fd390f66fe58ae35cccf70a9157075678a0256f5e29dd0c901f99c3b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d6a4512fd390f66fe58ae35cccf70a9157075678a0256f5e29dd0c901f99c3b.mp3",
+          "contentHash": "dd07f44136416518174b9af5f9660b923ed16b7c0d96ccb56f99a6ecf037890e",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s02/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do they deliver packages?",
+          "file": "90bd2f61111f9cb563f5a887c99c9c5574699d1dd5dc4ec963b1c3c73b17fb78.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90bd2f61111f9cb563f5a887c99c9c5574699d1dd5dc4ec963b1c3c73b17fb78.mp3",
+          "contentHash": "df31bb3e4abfa9a6c16f51a31947b1369ab375a6b14fbe4dceec20d663d6b4b0",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s02/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is no package here.",
+          "file": "1e4f294d4e8c433a5f74f65c3aa7476219bbaccde0372bef28ee6c00089a0e2e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1e4f294d4e8c433a5f74f65c3aa7476219bbaccde0372bef28ee6c00089a0e2e.mp3",
+          "contentHash": "c8493f8ea31ef5f10a6edb02f2da8004dbff1088e00346933f3f1f86b5f249fb",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l07/s02/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you have a folder?",
+          "file": "43cb9edb566adb52560ab826848a095a984b072c9738c9f1ea0792a774556374.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43cb9edb566adb52560ab826848a095a984b072c9738c9f1ea0792a774556374.mp3",
+          "contentHash": "f3ac628d70e6990efd76037194aaf14c7936cce1df20af261afdbb1558c7188b",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l07/s02/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you have a package?",
+          "file": "5d6a4512fd390f66fe58ae35cccf70a9157075678a0256f5e29dd0c901f99c3b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d6a4512fd390f66fe58ae35cccf70a9157075678a0256f5e29dd0c901f99c3b.mp3",
+          "contentHash": "dd07f44136416518174b9af5f9660b923ed16b7c0d96ccb56f99a6ecf037890e",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s02/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "apple",
+          "file": "40e9ed99c1c7c0fd6f183091085655d8f9b344159c3326138f94b406b4aa4784.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3a7bd3e2360a3d29eea436fc-onyx.mp3",
+          "contentHash": "0983816144ee97e2a5a3953242763ff44214e36d91a4f859750e05671bd868f2",
+          "byteSize": 25344
+        },
+        {
+          "text": "folder",
+          "file": "bf093674264600de49d830b8e38f3b65179197c6ef21f46f84864e28b8e5a979.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf093674264600de49d830b8e38f3b65179197c6ef21f46f84864e28b8e5a979.mp3",
+          "contentHash": "fe9abf79bb3bb03b81159398493fa491969f9e9a1276c94fcaada8972a515f3a",
+          "byteSize": 23040
+        },
+        {
+          "text": "package",
+          "file": "0ea1cfd6871a6631e6964c1eecb10f8639fbf30bec52d80faac6699db0251cc2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0ea1cfd6871a6631e6964c1eecb10f8639fbf30bec52d80faac6699db0251cc2.mp3",
+          "contentHash": "d9ba21ef93688477c9520232917cd7e6b17300edf2f26745e9c14cb4a65791b7",
+          "byteSize": 41088
+        },
+        {
+          "text": "deliver",
+          "file": "2d0cf46ffb3ec5a039b772755826237b032d6e344b7fa610cec1da9b61040677.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2d0cf46ffb3ec5a039b772755826237b032d6e344b7fa610cec1da9b61040677.mp3",
+          "contentHash": "4896910dcb2ba6c11987fc8654cfb05c32aed5e4bf269a47441a421bf0faf08d",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l07/s02/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do they deliver packages?",
+          "file": "90bd2f61111f9cb563f5a887c99c9c5574699d1dd5dc4ec963b1c3c73b17fb78.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/90bd2f61111f9cb563f5a887c99c9c5574699d1dd5dc4ec963b1c3c73b17fb78.mp3",
+          "contentHash": "df31bb3e4abfa9a6c16f51a31947b1369ab375a6b14fbe4dceec20d663d6b4b0",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s02/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do they have folders?",
+          "file": "001356552d2895ab5a3cb4477a2423418ae49492039caa922f034827ff829d11.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/001356552d2895ab5a3cb4477a2423418ae49492039caa922f034827ff829d11.mp3",
+          "contentHash": "c8507a60ada61f81e9dc5593391c188c174e184a51148b6ac5e7f89a62dee841",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l07/s02/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have an apple?",
+          "file": "7dcde907a9a08d5722ea81ca33fe0621e8c5f668022b6f19b317b1cf8b79bb89.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7dcde907a9a08d5722ea81ca33fe0621e8c5f668022b6f19b317b1cf8b79bb89.mp3",
+          "contentHash": "9aa68c46e28cdccafc89fbe3a79593a0a71cc5be0eea2d133264cfdb4aa04f69",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s02/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is no package here.",
+          "file": "013f6a5b2d7746d277818d3818cbdd2520599bf4d031261ef0b22b437894ed31.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/013f6a5b2d7746d277818d3818cbdd2520599bf4d031261ef0b22b437894ed31.mp3",
+          "contentHash": "5d69dd319d98d0c82b9aeb8b9eb030b2a44c68c11838f3a05af9276f00587a5d",
+          "byteSize": 54528
+        }
+      ]
+    },
+    "l07/s02/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do they deliver here?",
+          "file": "0e4ae28651309e09dca2ddab0c50d0d4840581a7151189aaa4bf137a64106f4c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e4ae28651309e09dca2ddab0c50d0d4840581a7151189aaa4bf137a64106f4c.mp3",
+          "contentHash": "b941757907461b4b4118ef66fb0c922cd7a0d3d579eca2d6eb46b9fc1e0a1900",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s02/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "deliver",
+          "file": "ab359d49322bf583e24ea16c626aef80983deeb02d8e43aacb8b2cbe1004dfaf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab359d49322bf583e24ea16c626aef80983deeb02d8e43aacb8b2cbe1004dfaf.mp3",
+          "contentHash": "21f3847184c34bd4ca1b17daf4e2206759972784cfad01d7003607bc7657e408",
+          "byteSize": 21888
+        },
+        {
+          "text": "package",
+          "file": "43b71b76864dc6d70b15bde5dab1246e1fc7272d1c0a5907bb01d13081eee269.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43b71b76864dc6d70b15bde5dab1246e1fc7272d1c0a5907bb01d13081eee269.mp3",
+          "contentHash": "8bc1982d9fc8cdb9c3d66496946bbd8880c44b0a94e875121fce6dde0ec199bd",
+          "byteSize": 18048
+        },
+        {
+          "text": "apple",
+          "file": "711f59285ad72def6c646e80e0186439d8be9e4f2e30b2fc739ad7ab4933ae90.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/3a7bd3e2360a3d29eea436fc-nova.mp3",
+          "contentHash": "d6799facb1554c50dd84d52db86ec38b64da9bed993ff221f6cd363bd879751d",
+          "byteSize": 15744
+        },
+        {
+          "text": "folder",
+          "file": "e6c0fd9df370708c9b7b43d36dce6cac0fc65d46acb130b11f8a5689b8eed367.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e6c0fd9df370708c9b7b43d36dce6cac0fc65d46acb130b11f8a5689b8eed367.mp3",
+          "contentHash": "262a75d3dbae2b5356aa7c063675b54972949a6b3dfda48b1974042682dffe8f",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l07/s02/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you deliver packages?",
+          "file": "264116e6195c5cc91af79881f28550168c8be1fe6cf26d85fb112752d0ef6f10.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/264116e6195c5cc91af79881f28550168c8be1fe6cf26d85fb112752d0ef6f10.mp3",
+          "contentHash": "37277354a12ee368ed9d3e40c25f61d4d4d4d76bded8e70ca5f373bd8228a259",
+          "byteSize": 29184
+        }
+      ]
     }
   },
   "settings": {

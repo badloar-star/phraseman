@@ -1,0 +1,948 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-07:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-07:session-02:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «У вас є посилка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «У вас є посилка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a package?",
+        "localizedMeaning": {
+          "ru": "Спросите «У вас есть посылка?»",
+          "uk": "Запитайте «У вас є посилка?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "package"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-02:i02:r1",
+          "text": "package"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i02:r2",
+          "text": "folder"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i02:r3",
+          "text": "apple"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:i02:audio",
+          "transcript": "package"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-02:i02:r1",
+            "targetText": "package",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i02:r2",
+            "targetText": "folder",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i02:r3",
+            "targetText": "apple",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `package`, а в этом варианте — `folder`.",
+              "uk": "У записі перше слово — `package`, а в цьому варіанті — `folder`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `package`, а в этом варианте — `apple`.",
+              "uk": "У записі перше слово — `package`, а в цьому варіанті — `apple`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Вони доставляють посилки?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-02:i03:r1",
+          "text": "deliver"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i03:r2",
+          "text": "delivers"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i03:r3",
+          "text": "are deliver"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Вони доставляють посилки?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Они доставляют посылки?»",
+          "uk": "Запитайте «Вони доставляють посилки?»"
+        },
+        "gappedTargetPhrase": "Do they ___ packages?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-02:i03:r1",
+            "text": "deliver"
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i03:r2",
+            "text": "delivers"
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i03:r3",
+            "text": "are deliver"
+          }
+        ],
+        "testedDimension": "Запитайте «Вони доставляють посилки?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Вони доставляють посилки?»",
+            "feedbackByLocale": {
+              "ru": "После `Do they` нужно `deliver`.",
+              "uk": "Після `Do they` потрібне `deliver`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Вони доставляють посилки?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do they deliver?`, без `are`.",
+              "uk": "Потрібно `Do they deliver?`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-02:i04:p1",
+            "target": "package",
+            "meaningByLocale": {
+              "ru": "посылка",
+              "uk": "посилка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i04:p2",
+            "target": "deliver",
+            "meaningByLocale": {
+              "ru": "доставлять",
+              "uk": "доставляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i04:p3",
+            "target": "folder",
+            "meaningByLocale": {
+              "ru": "папка",
+              "uk": "папка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i04:p4",
+            "target": "apple",
+            "meaningByLocale": {
+              "ru": "яблоко",
+              "uk": "яблуко"
+            }
+          }
+        ],
+        "leftColumn": [
+          "package",
+          "deliver",
+          "folder",
+          "apple"
+        ],
+        "rightColumn": [
+          "посилка",
+          "доставляти",
+          "папка",
+          "яблуко"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:i05:audio",
+          "transcript": "Do you have a package?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you have a package?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "package"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте друга про службу «Вони доставляють посилки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга про службу «Вони доставляють посилки?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do they deliver packages?",
+        "localizedMeaning": {
+          "ru": "Спросите друга о службе «Они доставляют посылки?»",
+          "uk": "Запитайте друга про службу «Вони доставляють посилки?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "they",
+          "deliver",
+          "packages"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви перевірили кімнату. Повідомте «Тут немає посилки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:i07:audio"
+      ],
+      "accessibilityLabel": "Ви перевірили кімнату. Повідомте «Тут немає посилки»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:i07:audio",
+          "transcript": "There is no package here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is no package here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перед зустріччю запитайте колегу «У вас є папка?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-02:i08:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i08:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i08:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед зустріччю запитайте колегу «У вас є папка?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Перед встречей спросите коллегу «У вас есть папка?»",
+          "uk": "Перед зустріччю запитайте колегу «У вас є папка?»"
+        },
+        "gappedTargetPhrase": "___ you have a folder?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-02:i08:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i08:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Перед зустріччю запитайте колегу «У вас є папка?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Перед зустріччю запитайте колегу «У вас є папка?»",
+            "feedbackByLocale": {
+              "ru": "С `have` здесь нужно `Do you have?`.",
+              "uk": "З `have` тут потрібно `Do you have?`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Перед зустріччю запитайте колегу «У вас є папка?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Do you have?`.",
+              "uk": "Потрібно `Do you have?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, про яку річ запитує працівник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-02:i09:r1",
+          "text": "Do you have a package?"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i09:r2",
+          "text": "Do you have a folder?"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i09:r3",
+          "text": "Do you have a key?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, про яку річ запитує працівник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:i09:audio",
+          "transcript": "Do you have a package?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-02:i09:r1",
+            "targetText": "Do you have a package?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i09:r2",
+            "targetText": "Do you have a folder?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i09:r3",
+            "targetText": "Do you have a key?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, про яку річ запитує працівник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `package`, а в этом варианте — `folder`.",
+              "uk": "У записі останнє слово — `package`, а в цьому варіанті — `folder`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, про яку річ запитує працівник",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `package`, а в этом варианте — `key`.",
+              "uk": "У записі останнє слово — `package`, а в цьому варіанті — `key`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-02:i10:p1",
+            "target": "apple",
+            "meaningByLocale": {
+              "ru": "яблоко",
+              "uk": "яблуко"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i10:p2",
+            "target": "folder",
+            "meaningByLocale": {
+              "ru": "папка",
+              "uk": "папка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i10:p3",
+            "target": "package",
+            "meaningByLocale": {
+              "ru": "посылка",
+              "uk": "посилка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i10:p4",
+            "target": "deliver",
+            "meaningByLocale": {
+              "ru": "доставлять",
+              "uk": "доставляти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "apple",
+          "folder",
+          "package",
+          "deliver"
+        ],
+        "rightColumn": [
+          "яблуко",
+          "папка",
+          "посилка",
+          "доставляти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:i11:audio",
+          "transcript": "Do they deliver packages?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do they deliver packages?",
+        "orderedTokens": [
+          "Do",
+          "they",
+          "deliver",
+          "packages"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега збирає документи для групи. Запитайте «У них є папки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега збирає документи для групи. Запитайте «У них є папки?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do they have folders?",
+        "localizedMeaning": {
+          "ru": "Коллега собирает документы для группы. Спросите «У них есть папки?»",
+          "uk": "Колега збирає документи для групи. Запитайте «У них є папки?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "they",
+          "have",
+          "folders"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви збираєте перекус. Запитайте друга «У тебе є яблуко?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:i13:audio"
+      ],
+      "accessibilityLabel": "Ви збираєте перекус. Запитайте друга «У тебе є яблуко?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:i13:audio",
+          "transcript": "Do you have an apple?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have an apple?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Повідомте «Тут немає посилки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-02:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте «Тут немає посилки»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщите «Здесь нет посылки»",
+          "uk": "Повідомте «Тут немає посилки»"
+        },
+        "gappedTargetPhrase": "There ___ no package here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-07:session-02:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Повідомте «Тут немає посилки»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i14:r2",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут немає посилки»",
+            "feedbackByLocale": {
+              "ru": "Одна посылка: `There is no package`.",
+              "uk": "Одна посилка: `There is no package`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i14:r3",
+            "correct": false,
+            "testedDimension": "Повідомте «Тут немає посилки»",
+            "feedbackByLocale": {
+              "ru": "Нужно `There is no`, а `am` подходит к `I`.",
+              "uk": "Потрібно `There is no`, а `am` підходить до `I`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання про доставку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-07:session-02:i15:r1",
+          "text": "Do they deliver here?"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i15:r2",
+          "text": "Do they deliver there?"
+        },
+        {
+          "responseId": "en:lesson-07:session-02:i15:r3",
+          "text": "Do they deliver newspapers?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про доставку",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:i15:audio",
+          "transcript": "Do they deliver here?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-02:i15:r1",
+            "targetText": "Do they deliver here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i15:r2",
+            "targetText": "Do they deliver there?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i15:r3",
+            "targetText": "Do they deliver newspapers?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-07:session-02:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте запитання про доставку",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+            }
+          },
+          {
+            "responseId": "en:lesson-07:session-02:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання про доставку",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `here`, а в этом варианте — `newspapers`.",
+              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `newspapers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-07:session-02:i16:p1",
+            "target": "deliver",
+            "meaningByLocale": {
+              "ru": "доставлять",
+              "uk": "доставляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i16:p2",
+            "target": "package",
+            "meaningByLocale": {
+              "ru": "посылка",
+              "uk": "посилка"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i16:p3",
+            "target": "apple",
+            "meaningByLocale": {
+              "ru": "яблоко",
+              "uk": "яблуко"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-02:i16:p4",
+            "target": "folder",
+            "meaningByLocale": {
+              "ru": "папка",
+              "uk": "папка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "deliver",
+          "package",
+          "apple",
+          "folder"
+        ],
+        "rightColumn": [
+          "доставляти",
+          "посилка",
+          "яблуко",
+          "папка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-02:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви прийшли до офісу служби доставки. Зверніться до працівника від імені клієнта: «Ви доставляєте посилки?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Ви прийшли до офісу служби доставки. Зверніться до працівника від імені клієнта: «Ви доставляєте посилки?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-02:i17:audio",
+          "transcript": "Do you deliver packages?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you deliver packages?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c29e8e68b831ae3cdc35c525eb94e9b07a72abbc34a4c45d8d28f302ee45ad0e"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, чья вещь, где она и чего нет",
+    "uk": "сказати, чия річ, де вона й чого немає"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Моё, твоё, наше",
+        "uk": "Моє, твоє, наше"
+      },
+      "bodyByLocale": {
+        "ru": "`charger` — «зарядка», `pocket` — «карман», `backpack` — «рюкзак», `notebook` — «тетрадь». `I have your notebook` — «Твоя тетрадь у меня». `My charger is in your backpack` — «Моя зарядка в твоём рюкзаке». Перед названием вещи ставим владельца: `my` — мой, `your` — твой / ваш, `our` — наш, `their` — их. Перед этими словами не нужны `a` и `the`.",
+        "uk": "`charger` — «зарядка», `pocket` — «кишеня», `backpack` — «рюкзак», `notebook` — «зошит». `I have your notebook` — «Твій зошит у мене». `My charger is in your backpack` — «Моя зарядка у твоєму рюкзаку». Перед назвою речі ставимо власника: `my` — мій, `your` — твій / ваш, `our` — наш, `their` — їхній. Перед цими словами не потрібні `a` і `the`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Тетрадь собеседника у вас. Выберите фразу.",
+          "uk": "Зошит співрозмовника у вас. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-16:intro1:r1",
+              "text": "I have your notebook."
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro1:r2",
+              "text": "I have my notebook."
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro1:r3",
+              "text": "I has your notebook."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-16:intro1:r1",
+              "text": "I have your notebook."
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro1:r2",
+              "text": "I have my notebook."
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro1:r3",
+              "text": "I has your notebook."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Тетрадь собеседника у вас. Выберите фразу.",
+          "uk": "Зошит співрозмовника у вас. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "У кого что лежит",
+        "uk": "У кого що лежить"
+      },
+      "bodyByLocale": {
+        "ru": "`umbrella` — «зонт», `suitcase` — «чемодан», `helmet` — «шлем». `Her umbrella is in his suitcase` — «Её зонт в его чемодане». `his` — его, `her` — её: выбирайте по владельцу. `Where is my helmet?` — «Где мой шлем?» Сначала `Where is`, потом одна вещь. Если шлем уже на голове, поиски по комнате можно заканчивать.",
+        "uk": "`umbrella` — «парасоля», `suitcase` — «валіза», `helmet` — «шолом». `Her umbrella is in his suitcase` — «Її парасоля в його валізі». `his` — його, `her` — її: вибирайте за власником. `Where is my helmet?` — «Де мій шолом?» Спочатку `Where is`, потім одна річ. Якщо шолом уже на голові, пошуки по кімнаті можна закінчувати."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, где ваш шлем.",
+          "uk": "Запитайте, де ваш шолом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-16:intro2:r1",
+              "text": "Where is my helmet?"
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro2:r2",
+              "text": "Where my helmet is?"
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro2:r3",
+              "text": "Where are my helmet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-16:intro2:r1",
+              "text": "Where is my helmet?"
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro2:r2",
+              "text": "Where my helmet is?"
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro2:r3",
+              "text": "Where are my helmet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, где ваш шлем.",
+          "uk": "Запитайте, де ваш шолом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что есть в отеле",
+        "uk": "Що є в готелі"
+      },
+      "bodyByLocale": {
+        "ru": "`swimming pool` — «бассейн». `Our hotel has a swimming pool` — «У нашего отеля есть бассейн». Один отель, как `it`, требует `has`. Если бассейна нет: `There isn’t a swimming pool`. Если в комнате нет ни одной зарядки: `There aren’t any chargers`. `its` без апострофа относится к предмету или месту, названному `it`: `its swimming pool` — «его бассейн», если речь об отеле.",
+        "uk": "`swimming pool` — «басейн». `Our hotel has a swimming pool` — «У нашого готелю є басейн». Один готель, як `it`, потребує `has`. Якщо басейну немає: `There isn’t a swimming pool`. Якщо в кімнаті немає жодної зарядки: `There aren’t any chargers`. `its` без апострофа стосується предмета чи місця, названого `it`: `its swimming pool` — «його басейн», якщо йдеться про готель."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "У нашего отеля есть бассейн. Выберите фразу.",
+          "uk": "У нашого готелю є басейн. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-16:intro3:r1",
+              "text": "Our hotel has a swimming pool."
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro3:r2",
+              "text": "Our hotel have a swimming pool."
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro3:r3",
+              "text": "Our hotel is a swimming pool."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-16:intro3:r1",
+              "text": "Our hotel has a swimming pool."
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro3:r2",
+              "text": "Our hotel have a swimming pool."
+            },
+            {
+              "responseId": "en:lesson-05:session-16:intro3:r3",
+              "text": "Our hotel is a swimming pool."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У нашего отеля есть бассейн. Выберите фразу.",
+          "uk": "У нашого готелю є басейн. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "78315230a6c243292cc5700d59f6f8742e4d1235f9d43c3ca10dfeb737c53bd0"
+}

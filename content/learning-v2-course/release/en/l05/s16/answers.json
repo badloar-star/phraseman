@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-16:i01",
+    "correctText": "I have your notebook.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i02",
+    "correctText": "My charger is in your backpack.",
+    "correctResponseId": "en:lesson-05:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i03",
+    "correctText": "aren't",
+    "correctResponseId": "en:lesson-05:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i04",
+    "correctText": "en:lesson-05:session-16:i04:p1=charger\nen:lesson-05:session-16:i04:p2=pocket\nen:lesson-05:session-16:i04:p3=backpack\nen:lesson-05:session-16:i04:p4=notebook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i05",
+    "correctText": "Where is my helmet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i06",
+    "correctText": "Her umbrella is in his suitcase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i07",
+    "correctText": "Our hotel has a swimming pool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i09",
+    "correctText": "The key is in her pocket.",
+    "correctResponseId": "en:lesson-05:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i10",
+    "correctText": "en:lesson-05:session-16:i10:p1=umbrella\nen:lesson-05:session-16:i10:p2=suitcase\nen:lesson-05:session-16:i10:p3=helmet\nen:lesson-05:session-16:i10:p4=swimming pool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i11",
+    "correctText": "They have our notebook.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i12",
+    "correctText": "Your backpack is under the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i13",
+    "correctText": "There isn't a swimming pool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i14",
+    "correctText": "Its",
+    "correctResponseId": "en:lesson-05:session-16:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i15",
+    "correctText": "Your helmet is on the chair.",
+    "correctResponseId": "en:lesson-05:session-16:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i16",
+    "correctText": "en:lesson-05:session-16:i16:p1=umbrella\nen:lesson-05:session-16:i16:p2=suitcase\nen:lesson-05:session-16:i16:p3=helmet\nen:lesson-05:session-16:i16:p4=swimming pool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:i17",
+    "correctText": "My charger is in your backpack.",
+    "correctResponseId": null
+  }
+]

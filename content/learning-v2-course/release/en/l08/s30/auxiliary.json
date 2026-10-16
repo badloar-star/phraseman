@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-30:intro1:r2": {
+          "ru": "Для указания начните с `Label`, без `to`.",
+          "uk": "Для вказівки почніть із `Label`, без `to`."
+        },
+        "en:lesson-08:session-30:intro1:r3": {
+          "ru": "Нужно `Label`, без `s`.",
+          "uk": "Потрібне `Label`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-30:intro2:r2": {
+          "ru": "Для указания нужно `Turn`, без `s`.",
+          "uk": "Для вказівки потрібне `Turn`, без `s`."
+        },
+        "en:lesson-08:session-30:intro2:r3": {
+          "ru": "Начните с `Turn`, без `to`.",
+          "uk": "Почніть із `Turn`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-30:intro3:r2": {
+          "ru": "После `can` нужно `remind`, без `s`.",
+          "uk": "Після `can` потрібне `remind`, без `s`."
+        },
+        "en:lesson-08:session-30:intro3:r3": {
+          "ru": "После `can` нужно `remind`, без `to`.",
+          "uk": "Після `can` потрібне `remind`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3ae1a802b8739b72be1e1962462e8de2c3cd78415813945f3cb8236f389c98ac"
+}

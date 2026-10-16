@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-36:i01",
+    "correctText": "It is informal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i02",
+    "correctText": "smoke alarm",
+    "correctResponseId": "en:lesson-04:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i03",
+    "correctText": "smoke alarm",
+    "correctResponseId": "en:lesson-04:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i04",
+    "correctText": "en:lesson-04:session-36:i04:p1=smoke alarm\nen:lesson-04:session-36:i04:p2=informal\nen:lesson-04:session-36:i04:p3=children\nen:lesson-04:session-36:i04:p4=alley",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i05",
+    "correctText": "This is a smoke alarm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i06",
+    "correctText": "The children are next to the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i07",
+    "correctText": "It's informal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i09",
+    "correctText": "The door is in the alley.",
+    "correctResponseId": "en:lesson-04:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i10",
+    "correctText": "en:lesson-04:session-36:i10:p1=smoke alarm\nen:lesson-04:session-36:i10:p2=informal\nen:lesson-04:session-36:i10:p3=children\nen:lesson-04:session-36:i10:p4=alley",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i11",
+    "correctText": "There aren't any smoke alarms.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i12",
+    "correctText": "There is a smoke alarm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i13",
+    "correctText": "Is there a smoke alarm?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-36:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i15",
+    "correctText": "That is a smoke alarm.",
+    "correctResponseId": "en:lesson-04:session-36:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i16",
+    "correctText": "en:lesson-04:session-36:i16:p1=smoke alarm\nen:lesson-04:session-36:i16:p2=informal\nen:lesson-04:session-36:i16:p3=children\nen:lesson-04:session-36:i16:p4=alley",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-36:i17",
+    "correctText": "There isn't a smoke alarm.",
+    "correctResponseId": null
+  }
+]

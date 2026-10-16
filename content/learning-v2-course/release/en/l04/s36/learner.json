@@ -1,0 +1,999 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-04:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Встреча дружеская, без строгого официального формата. Скажите без сокращения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Встреча дружеская, без строгого официального формата. Скажите без сокращения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is informal.",
+        "localizedMeaning": {
+          "ru": "Встреча дружеская, без строгого официального формата. Скажите без сокращения",
+          "uk": "Зустріч дружня, без строгого офіційного формату. Скажіть без скорочення"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "informal"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Встреча дружеская, без строгого официального формата. Скажите без сокращения",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is informal.`",
+              "uk": "тут потрібно `is` — `It is informal.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите название",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-36:i02:r1",
+          "text": "smoke alarm"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i02:r2",
+          "text": "smoke alarms"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i02:r3",
+          "text": "doorbell"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите название",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i02:audio",
+          "transcript": "smoke alarm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-36:i02:r1",
+            "targetText": "smoke alarm",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i02:r2",
+            "targetText": "smoke alarms",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i02:r3",
+            "targetText": "doorbell",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите название",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `alarm`, а в этом варианте — `alarms`.",
+              "uk": "У записі останнє слово — `alarm`, а в цьому варіанті — `alarms`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите название",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `smoke`, а в этом варианте — `doorbell`.",
+              "uk": "У записі перше слово — `smoke`, а в цьому варіанті — `doorbell`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите прибор, подающий сигнал при дыме",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-36:i03:r1",
+          "text": "smoke alarm"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i03:r2",
+          "text": "doorbell"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i03:r3",
+          "text": "handrail"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите прибор, подающий сигнал при дыме",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите прибор, подающий сигнал при дыме",
+          "uk": "Назвіть прилад, що подає сигнал у разі диму"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-36:i03:r1",
+            "text": "smoke alarm"
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i03:r2",
+            "text": "doorbell"
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i03:r3",
+            "text": "handrail"
+          }
+        ],
+        "testedDimension": "Назовите прибор, подающий сигнал при дыме",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите прибор, подающий сигнал при дыме",
+            "feedbackByLocale": {
+              "ru": "`doorbell` — дверной звонок; здесь `smoke alarm`.",
+              "uk": "`doorbell` — дверний дзвінок; тут `smoke alarm`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите прибор, подающий сигнал при дыме",
+            "feedbackByLocale": {
+              "ru": "`handrail` — поручень; здесь `smoke alarm`.",
+              "uk": "`handrail` — поручень; тут `smoke alarm`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-36:i04:p1",
+            "target": "smoke alarm",
+            "meaningByLocale": {
+              "ru": "дымовой пожарный извещатель",
+              "uk": "димовий пожежний сповіщувач"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-36:i04:p2",
+            "target": "informal",
+            "meaningByLocale": {
+              "ru": "неформальный",
+              "uk": "неформальний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-36:i04:p3",
+            "target": "children",
+            "meaningByLocale": {
+              "ru": "дети",
+              "uk": "діти"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-36:i04:p4",
+            "target": "alley",
+            "meaningByLocale": {
+              "ru": "узкий переулок",
+              "uk": "вузький провулок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "smoke alarm",
+          "informal",
+          "children",
+          "alley"
+        ],
+        "rightColumn": [
+          "дымовой пожарный извещатель",
+          "неформальный",
+          "дети",
+          "узкий переулок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i05:audio",
+          "transcript": "This is a smoke alarm."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a smoke alarm.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "smoke",
+          "alarm"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a smoke alarm.`",
+              "uk": "тут потрібно `is` — `This is a smoke alarm.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дети рядом со столом. Скажите, где они",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дети рядом со столом. Скажите, где они",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The children are next to the table.",
+        "localizedMeaning": {
+          "ru": "Дети рядом со столом. Скажите, где они",
+          "uk": "Діти поруч зі столом. Скажіть, де вони"
+        },
+        "orderedTokens": [
+          "The",
+          "children",
+          "are",
+          "next",
+          "to",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Дети рядом со столом. Скажите, где они",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The children are next to the table.`",
+              "uk": "тут потрібно `are` — `The children are next to the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о формате встречи. Она дружеская, неформальная. Ответьте с сокращением",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о формате встречи. Она дружеская, неформальная. Ответьте с сокращением",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i07:audio",
+          "transcript": "It's informal."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's informal.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дымового пожарного извещателя нет. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-36:i08:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i08:r3",
+          "text": "aren't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дымового пожарного извещателя нет. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дымового пожарного извещателя нет. Выберите форму",
+          "uk": "Димового пожежного сповіщувача немає. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a smoke alarm.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-36:i08:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i08:r3",
+            "text": "aren't"
+          }
+        ],
+        "testedDimension": "Дымового пожарного извещателя нет. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Дымового пожарного извещателя нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "`is` сообщает о наличии; здесь отсутствие: `isn’t`.",
+              "uk": "`is` повідомляє про наявність; тут відсутність: `isn’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Дымового пожарного извещателя нет. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Один прибор: `isn’t a smoke alarm`.",
+              "uk": "Один прилад: `isn’t a smoke alarm`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где дверь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-36:i09:r1",
+          "text": "The door is in the alley."
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i09:r2",
+          "text": "The door is in the hotel."
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i09:r3",
+          "text": "The door is in the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где дверь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i09:audio",
+          "transcript": "The door is in the alley."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-36:i09:r1",
+            "targetText": "The door is in the alley.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i09:r2",
+            "targetText": "The door is in the hotel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i09:r3",
+            "targetText": "The door is in the shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где дверь",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `alley`, а в этом варианте — `hotel`.",
+              "uk": "У записі останнє слово — `alley`, а в цьому варіанті — `hotel`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где дверь",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `alley`, а в этом варианте — `shop`.",
+              "uk": "У записі останнє слово — `alley`, а в цьому варіанті — `shop`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-36:i10:p1",
+            "target": "smoke alarm",
+            "meaningByLocale": {
+              "ru": "дымовой пожарный извещатель",
+              "uk": "димовий пожежний сповіщувач"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-36:i10:p2",
+            "target": "informal",
+            "meaningByLocale": {
+              "ru": "неформальный",
+              "uk": "неформальний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-36:i10:p3",
+            "target": "children",
+            "meaningByLocale": {
+              "ru": "дети",
+              "uk": "діти"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-36:i10:p4",
+            "target": "alley",
+            "meaningByLocale": {
+              "ru": "узкий переулок",
+              "uk": "вузький провулок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "smoke alarm",
+          "informal",
+          "children",
+          "alley"
+        ],
+        "rightColumn": [
+          "дымовой пожарный извещатель",
+          "неформальный",
+          "дети",
+          "узкий переулок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i11:audio",
+          "transcript": "There aren't any smoke alarms."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There aren't any smoke alarms.",
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "smoke",
+          "alarms"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Здесь есть дымовой пожарный извещатель. Сообщите об этом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Здесь есть дымовой пожарный извещатель. Сообщите об этом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a smoke alarm.",
+        "localizedMeaning": {
+          "ru": "Здесь есть дымовой пожарный извещатель. Сообщите об этом",
+          "uk": "Тут є димовий пожежний сповіщувач. Повідомте про це"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "smoke",
+          "alarm"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Здесь есть дымовой пожарный извещатель. Сообщите об этом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a smoke alarm.`",
+              "uk": "тут потрібно `is` — `There is a smoke alarm.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ещё не осмотрели комнату. Спросите, есть ли дымовой пожарный извещатель",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i13:audio"
+      ],
+      "accessibilityLabel": "Вы ещё не осмотрели комнату. Спросите, есть ли дымовой пожарный извещатель",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i13:audio",
+          "transcript": "Is there a smoke alarm?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there a smoke alarm?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дети в комнате. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-36:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дети в комнате. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дети в комнате. Выберите форму",
+          "uk": "Діти в кімнаті. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The children ___ in the room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-36:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дети в комнате. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i14:r2",
+            "correct": false,
+            "testedDimension": "Дети в комнате. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "`children` — дети, несколько человек: `are`.",
+              "uk": "`children` — діти, кілька людей: `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i14:r3",
+            "correct": false,
+            "testedDimension": "Дети в комнате. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "`am` используется с I; с children нужно `are`.",
+              "uk": "`am` використовують з I; з children потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что показывает друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-36:i15:r1",
+          "text": "That is a smoke alarm."
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i15:r2",
+          "text": "This is a smoke alarm."
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i15:r3",
+          "text": "There is a smoke alarm."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что показывает друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i15:audio",
+          "transcript": "That is a smoke alarm."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-36:i15:r1",
+            "targetText": "That is a smoke alarm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i15:r2",
+            "targetText": "This is a smoke alarm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i15:r3",
+            "targetText": "There is a smoke alarm.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что показывает друг",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `That`, а в этом варианте — `There`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `There`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-36:i16:p1",
+            "target": "smoke alarm",
+            "meaningByLocale": {
+              "ru": "дымовой пожарный извещатель",
+              "uk": "димовий пожежний сповіщувач"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-36:i16:p2",
+            "target": "informal",
+            "meaningByLocale": {
+              "ru": "неформальный",
+              "uk": "неформальний"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-36:i16:p3",
+            "target": "children",
+            "meaningByLocale": {
+              "ru": "дети",
+              "uk": "діти"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-36:i16:p4",
+            "target": "alley",
+            "meaningByLocale": {
+              "ru": "узкий переулок",
+              "uk": "вузький провулок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "smoke alarm",
+          "informal",
+          "children",
+          "alley"
+        ],
+        "rightColumn": [
+          "дымовой пожарный извещатель",
+          "неформальный",
+          "дети",
+          "узкий переулок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В другом помещении такого прибора нет. Сообщите «Дымового пожарного извещателя нет»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "В другом помещении такого прибора нет. Сообщите «Дымового пожарного извещателя нет»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i17:audio",
+          "transcript": "There isn't a smoke alarm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There isn't a smoke alarm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "361af3593ec7dc858dfd454a8fb194ea9a94aac22845601d7849ce07443d4c8d"
+}

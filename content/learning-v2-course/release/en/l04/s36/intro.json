@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "назвать дымовой пожарный извещатель и спросить о его наличии",
+    "uk": "назвати димовий пожежний сповіщувач і запитати про його наявність"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сигнал при дыме",
+        "uk": "Сигнал у разі диму"
+      },
+      "bodyByLocale": {
+        "ru": "`smoke alarm` — «дымовой пожарный извещатель»: устройство, которое подаёт звуковой сигнал при обнаружении дыма. Два слова называют один прибор: `a smoke alarm`. `This is a smoke alarm` — «Это дымовой пожарный извещатель». Даже если сигнал слышат десять гостей, прибор остаётся один.",
+        "uk": "`smoke alarm` — «димовий пожежний сповіщувач»: пристрій, який подає звуковий сигнал у разі виявлення диму. Два слова називають один прилад: `a smoke alarm`. `This is a smoke alarm` — «Це димовий пожежний сповіщувач». Навіть якщо сигнал чують десятеро гостей, прилад залишається один."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один такой прибор рядом.",
+          "uk": "Назвіть один такий прилад поруч."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-36:intro1:r1",
+              "text": "This is a smoke alarm."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro1:r2",
+              "text": "This is smoke alarm."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro1:r3",
+              "text": "These are smoke alarms."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-36:intro1:r1",
+              "text": "This is a smoke alarm."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro1:r2",
+              "text": "This is smoke alarm."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro1:r3",
+              "text": "These are smoke alarms."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один такой прибор рядом.",
+          "uk": "Назвіть один такий прилад поруч."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дети и переулок",
+        "uk": "Діти й провулок"
+      },
+      "bodyByLocale": {
+        "ru": "`children` — «дети», `alley` — «узкий переулок». `The children are next to the table` — «Дети рядом со столом». `The door is in the alley` — «Дверь в переулке». С `children` нужно `are`: это несколько детей, хотя окончания `s` нет.",
+        "uk": "`children` — «діти», `alley` — «вузький провулок». `The children are next to the table` — «Діти поруч зі столом». `The door is in the alley` — «Двері в провулку». З `children` потрібне `are`: це кілька дітей, хоча закінчення `s` немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Дети рядом со столом. Выберите описание.",
+          "uk": "Діти поруч зі столом. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-36:intro2:r1",
+              "text": "The children are next to the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro2:r2",
+              "text": "The children is next to the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro2:r3",
+              "text": "The children are under the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-36:intro2:r1",
+              "text": "The children are next to the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro2:r2",
+              "text": "The children is next to the table."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro2:r3",
+              "text": "The children are under the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Дети рядом со столом. Выберите описание.",
+          "uk": "Діти поруч зі столом. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Неформально, но понятно",
+        "uk": "Неформально, але зрозуміло"
+      },
+      "bodyByLocale": {
+        "ru": "`informal` — «неформальный». Дружеская встреча без строгого официального формата: `It is informal`, короче `It’s informal`. О приборе можно спросить: `Is there a smoke alarm?` — «Есть дымовой пожарный извещатель?» Если его нет: `There isn’t a smoke alarm`. `There aren’t any smoke alarms` — «Нет ни одного дымового пожарного извещателя».",
+        "uk": "`informal` — «неформальний». Дружня зустріч без строгого офіційного формату: `It is informal`, коротше `It’s informal`. Про прилад можна запитати: `Is there a smoke alarm?` — «Є димовий пожежний сповіщувач?» Якщо його немає: `There isn’t a smoke alarm`. `There aren’t any smoke alarms` — «Немає жодного димового пожежного сповіщувача»."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Встреча дружеская, без строгого официального формата. Выберите описание с сокращением.",
+          "uk": "Зустріч дружня, без строгого офіційного формату. Виберіть опис зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-36:intro3:r1",
+              "text": "It's informal."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro3:r2",
+              "text": "It's formal."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro3:r3",
+              "text": "It are informal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-36:intro3:r1",
+              "text": "It's informal."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro3:r2",
+              "text": "It's formal."
+            },
+            {
+              "responseId": "en:lesson-04:session-36:intro3:r3",
+              "text": "It are informal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Встреча дружеская, без строгого официального формата. Выберите описание с сокращением.",
+          "uk": "Зустріч дружня, без строгого офіційного формату. Виберіть опис зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6bfd3017d3952f0df77b403fafbc1c8b54e380c216b5e43eb7ee57e121a699b0"
+}

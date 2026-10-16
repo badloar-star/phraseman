@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-30:intro1:r2": {
+          "ru": "После `she` нужно `cleans`.",
+          "uk": "Після `she` потрібно `cleans`."
+        },
+        "en:lesson-06:session-30:intro1:r3": {
+          "ru": "Говорим `She cleans`, без `is`.",
+          "uk": "Кажемо `She cleans`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-30:intro2:r2": {
+          "ru": "С `headphones` используем `are`.",
+          "uk": "З `headphones` використовуємо `are`."
+        },
+        "en:lesson-06:session-30:intro2:r3": {
+          "ru": "Говорим просто `elsewhere`, без `in`.",
+          "uk": "Кажемо просто `elsewhere`, без `in`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-30:intro3:r2": {
+          "ru": "Наушники: `are these`, не `is this`.",
+          "uk": "Навушники: `are these`, не `is this`."
+        },
+        "en:lesson-06:session-30:intro3:r3": {
+          "ru": "О владельце спрашиваем `Whose` — «чьи».",
+          "uk": "Про власника запитуємо `Whose` — «чиї»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "994096eb1f65c7a3e54886b159314d1f7a69888bf694cf7914c657483d299fdf"
+}

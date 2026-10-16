@@ -83491,6 +83491,309 @@
           "byteSize": 50688
         }
       ]
+    },
+    "l05/s52/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the pool?",
+          "file": "75f6c1ca10a21112bdec32e2fedc552107d6b16b576e44d9cea4cad124905715.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75f6c1ca10a21112bdec32e2fedc552107d6b16b576e44d9cea4cad124905715.mp3",
+          "contentHash": "a024d247164446e4e45e7bed5a641eb4fe41eeaf957287f0e540c6dce8572e41",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s52/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This bicycle is light.",
+          "file": "683a341465cb3007aaaeece9a666c5f7565a6bc5ee1e2baa2f053f6edfc6a20b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/683a341465cb3007aaaeece9a666c5f7565a6bc5ee1e2baa2f053f6edfc6a20b.mp3",
+          "contentHash": "3b6cee57426264b27ac8124a5e18ab6dc4a25c0b25bccb34d25b0d7c7e6ee30c",
+          "byteSize": 66816
+        }
+      ]
+    },
+    "l05/s52/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where are the stations?",
+          "file": "bf82f125e883cafb5626bb89c7c0c81a4025fe85a1f3264e65e4bb6e3e7910bf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bf82f125e883cafb5626bb89c7c0c81a4025fe85a1f3264e65e4bb6e3e7910bf.mp3",
+          "contentHash": "5b437cda24cb536454c1fe30f1a3b2ec2ceffa5f433060d8f7e018d99905cc4d",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s52/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This bicycle is light.",
+          "file": "485f25f46547dc946276a1083966f24efc0efd8f1c121992643ec96f5c6c3e68.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/485f25f46547dc946276a1083966f24efc0efd8f1c121992643ec96f5c6c3e68.mp3",
+          "contentHash": "7957f2788ab084c17c90e1f650ca8c5dfbdf5ac87771cb40298ebeb82909ba58",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s52/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "pool",
+          "file": "e034cef2a658786874f178df3e1170d548a675178856983307f4c952b2722863.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e034cef2a658786874f178df3e1170d548a675178856983307f4c952b2722863.mp3",
+          "contentHash": "416c6a037689d6dc6723d9f7e12059e25bc3e8c64340450b4894852ce4dd1cf9",
+          "byteSize": 6912
+        }
+      ]
+    },
+    "l05/s52/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "pool",
+          "file": "433e5bc9c29193f6882d3d90665dc5c6dc4d1cf5b599b97c9c3991ddf4a6650b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/433e5bc9c29193f6882d3d90665dc5c6dc4d1cf5b599b97c9c3991ddf4a6650b.mp3",
+          "contentHash": "a602a1ac20246b831858dc8c603715943fa5615868e9bab66f53b95d20159e22",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s52/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "pool",
+          "file": "433e5bc9c29193f6882d3d90665dc5c6dc4d1cf5b599b97c9c3991ddf4a6650b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/433e5bc9c29193f6882d3d90665dc5c6dc4d1cf5b599b97c9c3991ddf4a6650b.mp3",
+          "contentHash": "a602a1ac20246b831858dc8c603715943fa5615868e9bab66f53b95d20159e22",
+          "byteSize": 20352
+        },
+        {
+          "text": "bicycle",
+          "file": "5126bc2ccf146ab82fc1c073d5378b2b5d27f96866ceb20748a993a3c3a84ac0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-coral.mp3",
+          "contentHash": "9f3a16e7915e29be32753cebf0cd13925a37d6368881451b6906d011fdf863b8",
+          "byteSize": 22656
+        },
+        {
+          "text": "stations",
+          "file": "449cb5b5f768f894248a6de90016f4aec7b987ff6a6c87a9f17de69028eedf3c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/449cb5b5f768f894248a6de90016f4aec7b987ff6a6c87a9f17de69028eedf3c.mp3",
+          "contentHash": "b5ad391589d6655d2f19112fcd094e6038b726d6cf280916b2bd927cd573bdbf",
+          "byteSize": 46848
+        },
+        {
+          "text": "nursery",
+          "file": "4f4c4a973366882f8f1e0ac38a90f1f6477e65103a926a1ec60deb6353645edb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f4c4a973366882f8f1e0ac38a90f1f6477e65103a926a1ec60deb6353645edb.mp3",
+          "contentHash": "ed5a2a8ad683ffa9235cf68606c4832b5d32f58b03a9e1579b54977aa9a6d139",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s52/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the pool?",
+          "file": "75f6c1ca10a21112bdec32e2fedc552107d6b16b576e44d9cea4cad124905715.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75f6c1ca10a21112bdec32e2fedc552107d6b16b576e44d9cea4cad124905715.mp3",
+          "contentHash": "a024d247164446e4e45e7bed5a641eb4fe41eeaf957287f0e540c6dce8572e41",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s52/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The nursery is next to the park.",
+          "file": "e8295a484fcc71fa1c6c763c91fa2c6f9b751b1506a348a3ac362797a0dc9e14.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8295a484fcc71fa1c6c763c91fa2c6f9b751b1506a348a3ac362797a0dc9e14.mp3",
+          "contentHash": "c76b1b58d1449386f68828939d0d9b02abd6d022b5453a2c58b077a03323b292",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s52/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Anna is at the pool.",
+          "file": "847b872ce63689b96ec7628d770377330478de46805a480061c2473ea2d944dd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/847b872ce63689b96ec7628d770377330478de46805a480061c2473ea2d944dd.mp3",
+          "contentHash": "48054fb28c5874fc2a63fa55aee428200860ab83a39f99f415f00679dc750330",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s52/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where are the stations?",
+          "file": "465c4e2843d59d561cb14b837968960e64880725276dcf1a7d6fc69d95ec174c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/465c4e2843d59d561cb14b837968960e64880725276dcf1a7d6fc69d95ec174c.mp3",
+          "contentHash": "e80318b650d2f02fa87dbd989122113977c5d99298a81e5bb75029af9dbd8850",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s52/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Tom's bicycle.",
+          "file": "66c68568534e4adffb5f429f6cb9b5f3180213ae09b670c4f16c53d77a758a82.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/66c68568534e4adffb5f429f6cb9b5f3180213ae09b670c4f16c53d77a758a82.mp3",
+          "contentHash": "d978688c9d51e8b28c25b6faace2de2eb675587649adc4f40a36e91ceb360499",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s52/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "pool",
+          "file": "e034cef2a658786874f178df3e1170d548a675178856983307f4c952b2722863.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e034cef2a658786874f178df3e1170d548a675178856983307f4c952b2722863.mp3",
+          "contentHash": "416c6a037689d6dc6723d9f7e12059e25bc3e8c64340450b4894852ce4dd1cf9",
+          "byteSize": 6912
+        },
+        {
+          "text": "light",
+          "file": "cbcff523b92dc01366598b04b92034fb4e8bec942087907cb72bdd2a2b051660.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/99a7026172d42714d0293e55-nova.mp3",
+          "contentHash": "1a836212595f920aa799e61fd7ece869a773b1b6f3e702797290d4d8918bbd80",
+          "byteSize": 14208
+        },
+        {
+          "text": "nursery",
+          "file": "9e223247645bfd1a0ee254094209c7d1da4cdbdafb523864ed7f745f84be6c7d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e223247645bfd1a0ee254094209c7d1da4cdbdafb523864ed7f745f84be6c7d.mp3",
+          "contentHash": "3bf326bdb614d0f38c57b99b52d78b1560b5d14fea5b785080bb276df15f766a",
+          "byteSize": 26880
+        },
+        {
+          "text": "bicycle",
+          "file": "e3c99098141a70e2d98d990947611311e6232efbec03c25416256021d99250b4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-nova.mp3",
+          "contentHash": "87714b4a1abec8e29817b46afa2564a04aaafb6af79d2169c7a030d869a3ae85",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s52/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The pool is near the park.",
+          "file": "18b8fcb886b784404ab3577edb15e8ba19cc17b45fcd3b371c1666cee21f71a3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/18b8fcb886b784404ab3577edb15e8ba19cc17b45fcd3b371c1666cee21f71a3.mp3",
+          "contentHash": "0430a32e3238ce771c0f5696c4b6715d3084281bcf94909167507be0c1277ac6",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s52/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bicycle is hers.",
+          "file": "0f6beef9338748494825687eff9da8c162febf546ea6d08dc7f6e02f4a4865b1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f6beef9338748494825687eff9da8c162febf546ea6d08dc7f6e02f4a4865b1.mp3",
+          "contentHash": "67a6248c12db7ed57a53bda43e74a2fcd2d034af3715b2ba6c0b6463e231b6b3",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s52/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Your bicycle is here.",
+          "file": "2048aa19cca66976d58262358a30eaecac440c8f3c5faa4811af1e9e4a82cbaf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2048aa19cca66976d58262358a30eaecac440c8f3c5faa4811af1e9e4a82cbaf.mp3",
+          "contentHash": "f91909938f63d2f9b39ad04c8d36d7b2a1425d72e5bc58b1a9260352c5018573",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s52/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose bicycle is this?",
+          "file": "36a459f736db955c9315feaa7f1450435653c19ae3da870bd6bfebc137adb54e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36a459f736db955c9315feaa7f1450435653c19ae3da870bd6bfebc137adb54e.mp3",
+          "contentHash": "9488a221d2fdb0eb1828ad37d2e9745a5fe5e31a05fad69e4e22eb7bb3bf0962",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s52/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The bicycle is mine.",
+          "file": "c97e30fb7b4126a087ecb715a3895e15b78fb8893c4a8578c973e10a7a367847.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c97e30fb7b4126a087ecb715a3895e15b78fb8893c4a8578c973e10a7a367847.mp3",
+          "contentHash": "573919cbed23b090f5dba0c591b60a256d9c3b4e5fa964b3151fe81e49b71f9c",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s52/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "pool",
+          "file": "e034cef2a658786874f178df3e1170d548a675178856983307f4c952b2722863.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e034cef2a658786874f178df3e1170d548a675178856983307f4c952b2722863.mp3",
+          "contentHash": "416c6a037689d6dc6723d9f7e12059e25bc3e8c64340450b4894852ce4dd1cf9",
+          "byteSize": 6912
+        },
+        {
+          "text": "light",
+          "file": "cbcff523b92dc01366598b04b92034fb4e8bec942087907cb72bdd2a2b051660.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/99a7026172d42714d0293e55-nova.mp3",
+          "contentHash": "1a836212595f920aa799e61fd7ece869a773b1b6f3e702797290d4d8918bbd80",
+          "byteSize": 14208
+        },
+        {
+          "text": "stations",
+          "file": "272358a9a59b422c2f0adcd46d331afe03033fbecfbc6c62ef76a41729ab46f1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/272358a9a59b422c2f0adcd46d331afe03033fbecfbc6c62ef76a41729ab46f1.mp3",
+          "contentHash": "031387463d989c968468f3f9d0ac00244c778f74054445f6e7c65e3405301bf9",
+          "byteSize": 20352
+        },
+        {
+          "text": "bicycle",
+          "file": "e3c99098141a70e2d98d990947611311e6232efbec03c25416256021d99250b4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-nova.mp3",
+          "contentHash": "87714b4a1abec8e29817b46afa2564a04aaafb6af79d2169c7a030d869a3ae85",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s52/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose bicycle is this?",
+          "file": "efc018cbb2ba5a55d66505c3315cbb1ee83ca0ecd75ab60e05ff5b0948e3092a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/efc018cbb2ba5a55d66505c3315cbb1ee83ca0ecd75ab60e05ff5b0948e3092a.mp3",
+          "contentHash": "32fc0208a351ef61723f486d152401f79855c33354bac3b7c10aab2353dbb572",
+          "byteSize": 36480
+        }
+      ]
     }
   },
   "settings": {

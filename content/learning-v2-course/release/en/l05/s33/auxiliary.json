@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-33:intro1:r2": {
+          "ru": "Один предмет `watch`: нужна форма `is`.",
+          "uk": "Один предмет `watch`: потрібна форма `is`."
+        },
+        "en:lesson-05:session-33:intro1:r3": {
+          "ru": "Без названия вещи нужна форма `mine`.",
+          "uk": "Без назви речі потрібна форма `mine`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-33:intro2:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-33:intro2:r3": {
+          "ru": "Один предмет `watch`: `is this`.",
+          "uk": "Один предмет `watch`: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-33:intro3:r2": {
+          "ru": "Это «Где ланчбокс?»; вопрос о владельце начинается с `Whose`.",
+          "uk": "Це «Де ланчбокс?»; запитання про власника починається з `Whose`."
+        },
+        "en:lesson-05:session-33:intro3:r3": {
+          "ru": "Один ланчбокс: `is this`.",
+          "uk": "Один ланчбокс: `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d21c1aacbb6f0233397e62209c2e26a8e8ff856729bf52f91efc174345275b2f"
+}

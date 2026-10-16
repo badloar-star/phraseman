@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-26:intro1:r2": {
+          "ru": "После имени владельца нужно `’s`: `Anna’s badge`.",
+          "uk": "Після імені власниці потрібне `’s`: `Anna’s badge`."
+        },
+        "en:lesson-05:session-26:intro1:r3": {
+          "ru": "Это значок Тома; здесь владелица Анна.",
+          "uk": "Це значок Тома; тут власниця Анна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-26:intro2:r2": {
+          "ru": "С `I` нужна форма `am`.",
+          "uk": "З `I` потрібна форма `am`."
+        },
+        "en:lesson-05:session-26:intro2:r3": {
+          "ru": "`bored` — скучно; волнуюсь — `worried`.",
+          "uk": "`bored` — нудно; хвилююся — `worried`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-26:intro3:r2": {
+          "ru": "Несколько перчаток: `gloves are`.",
+          "uk": "Кілька рукавичок: `gloves are`."
+        },
+        "en:lesson-05:session-26:intro3:r3": {
+          "ru": "Это перчатки Тома; здесь владелица Анна.",
+          "uk": "Це рукавички Тома; тут власниця Анна."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7a94893e91449a352711b6b0c52d1ce6de3a064d74499d74ca58eb1f4201a5cd"
+}
